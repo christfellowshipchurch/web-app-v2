@@ -22,7 +22,7 @@ function Nav(props = {}) {
       <Button>Watch Online</Button>
       <Link href="/">
         <a>
-          <Icon name="circle" size="32" />
+          <Icon name="user" color="fg" size="32" />
         </a>
       </Link>
       <Link href="/">
