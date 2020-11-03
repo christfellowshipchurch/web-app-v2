@@ -10,10 +10,18 @@ const Button = styled.div`
   color: ${themeGet('colors.white')};
   cursor: pointer;
   display: inline-block;
+  font-weight: ${themeGet('fontWeights.bold')};
   line-height: 2.5;
   padding-left: ${themeGet('space.l')};
   padding-right: ${themeGet('space.l')};
   text-align: center;
+  transition: 0.3s ease-in-out;
+
+  &:active,
+  &:focus,
+  &:hover {
+    background-color: ${themeGet('colors.fg')};
+  }
 
   ${system}
 `;
