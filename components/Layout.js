@@ -2,9 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 
+import { rem } from '../utils';
+import { Header } from '../components';
 import { Box } from '../styled';
 
 const DEFAULT_TITLE = 'Christ Fellowship';
+const DEFAULT_CONTENT_WIDTH = rem('1100px');
 
 function getPageTitle(title) {
   if (title === DEFAULT_TITLE || title === 'Home') return DEFAULT_TITLE;
@@ -17,7 +20,8 @@ function Layout(props = {}) {
       <Head>
         <title>{getPageTitle(props.title)}</title>
       </Head>
-      <Box as="main" maxWidth="800px" mx="auto" p="xl">
+      <Header />
+      <Box as="main" maxWidth={props.contentMaxWidth} mx="auto" p="xl">
         {props.children}
       </Box>
     </>
@@ -31,10 +35,12 @@ Layout.propTypes = {
     PropTypes.element,
     PropTypes.node,
   ]),
+  contentMaxWidth: PropTypes.string,
   title: PropTypes.string,
 };
 
 Layout.defaultProps = {
+  contentMaxWidth: DEFAULT_CONTENT_WIDTH,
   title: DEFAULT_TITLE,
 };
 

@@ -1,8 +1,12 @@
 import { rem } from '../utils';
 
-const PRIMARY_BRAND_COLOR = '#00aeef';
-const PRIMARY_NEUTRAL_COLOR = '#272727';
+const BATTLESHIP_GRAY = '#828282';
+const PICTON_BLUE = '#00aeef';
+const TUATARA_GRAY = '#353535';
 const WHITE_SMOKE = '#f6f6f6';
+
+const PRIMARY_BRAND_COLOR = PICTON_BLUE;
+const PRIMARY_NEUTRAL_COLOR = TUATARA_GRAY;
 
 const theme = {
   breakpoints: {
@@ -27,15 +31,17 @@ const theme = {
       300: '',
       400: '',
       500: '',
-      600: '',
+      600: BATTLESHIP_GRAY,
       700: '',
       800: '',
       900: '',
     },
   },
   fonts: {
-    base: 'serif',
-    heading: 'sans-serif',
+    base:
+      '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+    heading:
+      '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
   },
   fontSizes: {
     base: rem('16px'),
