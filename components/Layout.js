@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import Head from 'next/head';
 
 import { rem } from '../utils';
-import { Header } from '../components';
-import { Box } from '../styled';
+import { Footer, Header } from '../components';
+import { Box, Cell } from '../styled';
 
 const DEFAULT_TITLE = 'Christ Fellowship';
 const DEFAULT_CONTENT_WIDTH = rem('1100px');
@@ -20,9 +20,18 @@ function Layout(props = {}) {
       <Head>
         <title>{getPageTitle(props.title)}</title>
       </Head>
-      <Header />
-      <Box as="main" maxWidth={props.contentMaxWidth} mx="auto" p="xl">
-        {props.children}
+      <Box display="grid" gridTemplateRows="auto 1fr auto" height="100vh">
+        <Header />
+        <Box>
+          <Cell
+            as="main"
+            maxWidth={props.contentMaxWidth}
+            py={props.contentVerticalPadding}
+          >
+            {props.children}
+          </Cell>
+        </Box>
+        <Footer />
       </Box>
     </>
   );
@@ -36,11 +45,13 @@ Layout.propTypes = {
     PropTypes.node,
   ]),
   contentMaxWidth: PropTypes.string,
+  contentVerticalPadding: PropTypes.string,
   title: PropTypes.string,
 };
 
 Layout.defaultProps = {
   contentMaxWidth: DEFAULT_CONTENT_WIDTH,
+  contentVerticalPadding: 'xl',
   title: DEFAULT_TITLE,
 };
 
