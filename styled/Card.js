@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import PropTypes from 'prop-types';
 import { themeGet } from '@styled-system/theme-get';
 
 import { system, propTypes } from './lib/system';
@@ -105,7 +106,7 @@ Card.CoverContent = CoverContent;
 Card.CoverLabel = CoverLabel;
 
 Cover.propTypes = {
-  src: propTypes.string,
+  src: PropTypes.string,
 };
 
 Card.propTypes = {

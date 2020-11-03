@@ -27,7 +27,7 @@ function Nav(props = {}) {
       </Link>
       <Link href="/">
         <a>
-          <Icon name="circle" color="fg" />
+          <Icon name="menu" color="fg" />
         </a>
       </Link>
     </StyledNav>

@@ -7,7 +7,7 @@ import icons from '../config/icons';
 import theme from '../config/theme';
 import { Icon as StyledIcon } from '../styled';
 
-const DEFAULT_ICON_SIZE = 20;
+const DEFAULT_ICON_SIZE = 24;
 const DEFAULT_ICON_NAME = 'circle';
 
 function Icon({ color, height, name, size, width, ...rest }) {

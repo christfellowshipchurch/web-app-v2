@@ -63,6 +63,7 @@ const GlobalStyles = createGlobalStyle`
 
   a {
     color: ${themeGet('colors.primary')};
+    transition: color 0.3s ease-in-out;
   }
   a:focus,
   a:hover,

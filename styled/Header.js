@@ -8,7 +8,7 @@ const Header = styled.header`
   align-items: center;
   display: grid;
   grid-template-columns: auto 1fr;
-  padding: ${themeGet('space.xs')} ${themeGet('space.xl')};
+  padding: ${themeGet('space.base')} ${themeGet('space.xl')};
 
   > *:last-child {
     justify-self: flex-end;
