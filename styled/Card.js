@@ -85,9 +85,24 @@ const CoverContent = styled.div`
   ${position}
 `;
 
+const CoverLabel = styled.b`
+  background-color: ${themeGet('colors.fg')};
+  color: ${themeGet('colors.white')};
+  bottom: 0;
+  font-size: ${themeGet('fontSizes.xs')};
+  font-weight: ${themeGet('fontWeights.bold')};
+  left: 0;
+  letter-spacing: 0.125rem;
+  padding: ${themeGet('space.s')} ${themeGet('space.base')};
+  position: absolute;
+  text-transform: uppercase;
+  z-index: 2;
+`;
+
 Card.Content = Content;
 Card.Cover = Cover;
 Card.CoverContent = CoverContent;
+Card.CoverLabel = CoverLabel;
 
 Cover.propTypes = {
   src: propTypes.string,

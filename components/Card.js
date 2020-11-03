@@ -17,6 +17,11 @@ function Card(props = {}) {
               {props.coverImageContent()}
             </StyledCard.CoverContent>
           ) : null}
+          {props.coverImageLabel ? (
+            <StyledCard.CoverLabel>
+              {props.coverImageLabel}
+            </StyledCard.CoverLabel>
+          ) : null}
         </StyledCard.Cover>
       ) : null}
       {props.children ? (
@@ -30,6 +35,7 @@ Card.propTypes = {
   coverImage: PropTypes.string,
   coverImageContent: PropTypes.func,
   coverImageContentPosition: PropTypes.oneOf(['bottomLeft']),
+  coverImageLabel: PropTypes.string,
   coverImageOverlay: PropTypes.bool,
 };
 
