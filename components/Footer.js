@@ -1,8 +1,9 @@
 import React from 'react';
 
 import { links } from '../config/metadata';
-import { Icon, Logo } from '../components';
-import { Box, Cell, Footer as StyledFooter, List } from '../styled';
+import { Box, Cell, Icon, List } from '../ui-kit';
+import { Logo } from '../components';
+import { Footer as StyledFooter } from '../styled';
 
 function Footer(props = {}) {
   return (

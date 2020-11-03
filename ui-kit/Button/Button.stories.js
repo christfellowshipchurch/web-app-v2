@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { Button } from '../styled';
+import Button from './Button';
 
 export default {
-  title: 'Components/Button',
+  title: 'ui-kit/Button',
   component: Button,
 };
 

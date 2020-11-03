@@ -1,5 +1,5 @@
-import { Card, Layout } from '../components';
-import { Box } from '../styled';
+import { Box, Card } from '../ui-kit';
+import { Layout } from '../components';
 
 export default function Home() {
   return (

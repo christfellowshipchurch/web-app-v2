@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { system, propTypes } from './lib/system';
+import { system } from '../_lib/system';
 
 const Icon = styled.div`
   align-self: center;
@@ -9,9 +9,5 @@ const Icon = styled.div`
 
   ${system}
 `;
-
-Icon.propTypes = {
-  ...propTypes,
-};
 
 export default Icon;

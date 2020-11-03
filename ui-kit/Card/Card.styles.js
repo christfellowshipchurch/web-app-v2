@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import { themeGet } from '@styled-system/theme-get';
 
-import { system, propTypes } from './lib/system';
+import { system, propTypes } from '../_lib/system';
 
 const DEFAULT_COVER_HEIGHT = '195px';
 

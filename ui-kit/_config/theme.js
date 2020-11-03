@@ -1,4 +1,4 @@
-import { rem } from '../utils';
+import { rem } from '../_utils';
 
 const BATTLESHIP_GRAY = '#828282';
 const PICTON_BLUE = '#00aeef';

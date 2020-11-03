@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
-import { system, propTypes } from './lib/system';
+import { system, propTypes } from '../_lib/system';
 
 const Button = styled.div`
   background-color: ${themeGet('colors.primary')};

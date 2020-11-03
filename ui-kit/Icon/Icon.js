@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { withTheme } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
-import icons from '../config/icons';
-import theme from '../config/theme';
-import { Icon as StyledIcon } from '../styled';
+import icons from '../_config/icons';
+import theme from '../_config/theme';
+import { propTypes } from '../_lib/system';
+import Styled from './Icon.styles';
 
 const DEFAULT_ICON_SIZE = 24;
 const DEFAULT_ICON_NAME = 'circle';
@@ -17,7 +18,7 @@ function Icon({ color, height, name, size, width, ...rest }) {
   const icon = icons[iconName];
 
   return (
-    <StyledIcon
+    <Styled
       as="svg"
       width={newWidth}
       height={newHeight}
@@ -38,11 +39,12 @@ function Icon({ color, height, name, size, width, ...rest }) {
           fill={themeGet(`colors.${color}`)(rest) || 'currentColor'}
         />
       )}
-    </StyledIcon>
+    </Styled>
   );
 }
 
 Icon.propTypes = {
+  ...propTypes,
   name: PropTypes.string.isRequired,
   color: PropTypes.string,
   height: PropTypes.string,

@@ -2,12 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 
-import { rem } from '../utils';
+import { Box, Cell, utils } from '../ui-kit';
 import { Footer, Header } from '../components';
-import { Box, Cell } from '../styled';
 
 const DEFAULT_TITLE = 'Christ Fellowship';
-const DEFAULT_CONTENT_WIDTH = rem('1100px');
+const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
 
 function getPageTitle(title) {
   if (title === DEFAULT_TITLE || title === 'Home') return DEFAULT_TITLE;

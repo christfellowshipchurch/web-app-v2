@@ -1,20 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Box, Card as StyledCard } from '../styled';
+import { propTypes } from '../_lib/system';
+import { Box } from '../';
+import Styled from './Card.styles';
 
 function Card(props = {}) {
   const hasContent = props.title || props.description || props.children;
 
   return (
-    <StyledCard {...props}>
+    <Styled {...props}>
       {props.coverImage ? (
-        <StyledCard.Cover
+        <Styled.Cover
           src={props.coverImage}
           hasContent={hasContent}
           overlay={props.coverImageOverlay}
         >
-          <StyledCard.CoverContent position={props.coverImageContentPosition}>
+          <Styled.CoverContent position={props.coverImageContentPosition}>
             {props.coverImageTitle || props.coverImageDescription ? (
               <Box color="white">
                 {props.coverImageTitle ? (
@@ -28,15 +30,13 @@ function Card(props = {}) {
               </Box>
             ) : null}
             {props.coverImageContent ? props.coverImageContent() : null}
-          </StyledCard.CoverContent>
+          </Styled.CoverContent>
           {props.coverImageLabel ? (
-            <StyledCard.CoverLabel>
-              {props.coverImageLabel}
-            </StyledCard.CoverLabel>
+            <Styled.CoverLabel>{props.coverImageLabel}</Styled.CoverLabel>
           ) : null}
-        </StyledCard.Cover>
+        </Styled.Cover>
       ) : null}
-      <StyledCard.Content>
+      <Styled.Content>
         {props.title ? <Box as="h3">{props.title}</Box> : null}
         {props.description ? (
           <Box as="p" color="neutrals.600" fontSize="s">
@@ -44,12 +44,13 @@ function Card(props = {}) {
           </Box>
         ) : null}
         {props.children ? props.children : null}
-      </StyledCard.Content>
-    </StyledCard>
+      </Styled.Content>
+    </Styled>
   );
 }
 
 Card.propTypes = {
+  ...propTypes,
   coverImage: PropTypes.string,
   coverImageContent: PropTypes.func,
   coverImageContentPosition: PropTypes.oneOf(['bottomLeft']),

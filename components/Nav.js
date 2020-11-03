@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 
-import { Icon } from '../components';
-import { Button, Nav as StyledNav } from '../styled';
+import { Button, Icon } from '../ui-kit';
+import { Nav as StyledNav } from '../styled';
 
 function Nav(props = {}) {
   return (

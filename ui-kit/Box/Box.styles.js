@@ -1,13 +1,9 @@
 import styled from 'styled-components';
 
-import { system, propTypes } from './lib/system';
+import { system } from '../_lib/system';
 
 const Box = styled.div`
   ${system}
 `;
-
-Box.propTypes = {
-  ...propTypes,
-};
 
 export default Box;

@@ -9,7 +9,8 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "lint": "npx eslint ./",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "new-ui-kit-component": "bash scripts/new-ui-kit-component.sh"
   },
   "dependencies": {
     "@storybook/cli": "^6.0.28",
