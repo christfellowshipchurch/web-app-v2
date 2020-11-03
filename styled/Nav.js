@@ -7,8 +7,11 @@ const Nav = styled.nav`
   align-items: center;
   display: flex;
 
-  > * {
+  > a {
     color: ${themeGet('colors.neutrals.600')};
+  }
+
+  > * {
     display: block;
     font-weight: ${themeGet('fontWeights.bold')};
     text-decoration: none;
