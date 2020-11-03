@@ -159,13 +159,13 @@ function Copyright() {
         mb="base"
         mx="auto"
       >
-        <Box as="a" color="primary" href="#0">
+        <Box as="a" color="primary" href={links.facebook}>
           <Icon name="facebook" size="32" />
         </Box>
-        <Box as="a" color="primary" href="#0">
+        <Box as="a" color="primary" href={links.instagram}>
           <Icon name="instagram" size="32" />
         </Box>
-        <Box as="a" color="primary" href="#0">
+        <Box as="a" color="primary" href={links.youtube}>
           <Icon name="youtube" size="32" />
         </Box>
       </Box>
