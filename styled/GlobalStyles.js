@@ -47,11 +47,6 @@ const GlobalStyles = createGlobalStyle`
     font-size: ${themeGet('fontSizes.h2')};
   }
 
-  h3,
-  h4 {
-    text-transform: uppercase;
-  }
-
   h3 {
     font-size: ${themeGet('fontSizes.h3')};
   }

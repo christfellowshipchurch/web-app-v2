@@ -51,7 +51,7 @@ const theme = {
     l: rem('20px'),
     xl: rem('24px'),
     h1: rem('28px'),
-    h2: rem('22px'),
+    h2: rem('24px'),
     h3: rem('20px'),
     h4: rem('18px'),
   },
@@ -82,8 +82,9 @@ const theme = {
     base: rem('20px'),
     xs: rem('5px'),
     s: rem('10px'),
-    l: rem('20px'),
+    l: rem('40px'),
     xl: rem('60px'),
+    xxl: rem('100px'),
   },
 };
 

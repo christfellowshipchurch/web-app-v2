@@ -12,8 +12,8 @@ const Button = styled.div`
   display: inline-block;
   font-weight: ${themeGet('fontWeights.bold')};
   line-height: 2.5;
-  padding-left: ${themeGet('space.l')};
-  padding-right: ${themeGet('space.l')};
+  padding-left: ${themeGet('space.base')};
+  padding-right: ${themeGet('space.base')};
   text-align: center;
   transition: 0.3s ease-in-out;
 
