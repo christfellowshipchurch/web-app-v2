@@ -1,11 +1,8 @@
+import { rem } from '../utils';
+
 const PRIMARY_BRAND_COLOR = '#00aeef';
 const PRIMARY_NEUTRAL_COLOR = '#272727';
-
-function rem(target, context = 16) {
-  const targetValue = target.split('px')[0];
-  const value = targetValue / context;
-  return String(`${value}rem`);
-}
+const WHITE_SMOKE = '#f6f6f6';
 
 const theme = {
   breakpoints: {
@@ -19,13 +16,13 @@ const theme = {
     error: '#fe5f55',
     success: '#8acb88',
     warning: '#ffc527',
-    bg: '#f7f7f7',
+    bg: WHITE_SMOKE,
     fg: PRIMARY_NEUTRAL_COLOR,
     white: '#fff',
     black: PRIMARY_NEUTRAL_COLOR,
     border: '#cbcbcb',
     neutrals: {
-      100: '',
+      100: WHITE_SMOKE,
       200: '',
       300: '',
       400: '',
