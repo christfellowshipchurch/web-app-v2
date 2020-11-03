@@ -15,7 +15,12 @@ const Nav = styled.nav`
   }
 
   > *:not(:last-child) {
-    margin-right: ${themeGet('space.xl')};
+    margin-right: calc(${themeGet('space.l')} + ${themeGet('space.s')});
+  }
+
+  > *:nth-child(5),
+  > *:nth-child(6) {
+    margin-right: ${themeGet('space.base')};
   }
 
   ${system}
