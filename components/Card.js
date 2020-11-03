@@ -1,22 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Card as StyledCard } from '../styled';
+import { Box, Card as StyledCard } from '../styled';
 
 function Card(props = {}) {
+  const hasContent = props.title || props.description || props.children;
+
   return (
     <StyledCard {...props}>
       {props.coverImage ? (
         <StyledCard.Cover
           src={props.coverImage}
-          hasContent={props.children}
+          hasContent={hasContent}
           overlay={props.coverImageOverlay}
         >
-          {props.coverImageContent ? (
-            <StyledCard.CoverContent position={props.coverImageContentPosition}>
-              {props.coverImageContent()}
-            </StyledCard.CoverContent>
-          ) : null}
+          <StyledCard.CoverContent position={props.coverImageContentPosition}>
+            {props.coverImageTitle || props.coverImageDescription ? (
+              <Box color="white">
+                {props.coverImageTitle ? (
+                  <Box as="h2" mb="xs">
+                    {props.coverImageTitle}
+                  </Box>
+                ) : null}
+                {props.coverImageDescription ? (
+                  <Box as="p">{props.coverImageDescription}</Box>
+                ) : null}
+              </Box>
+            ) : null}
+            {props.coverImageContent ? props.coverImageContent() : null}
+          </StyledCard.CoverContent>
           {props.coverImageLabel ? (
             <StyledCard.CoverLabel>
               {props.coverImageLabel}
@@ -24,9 +36,15 @@ function Card(props = {}) {
           ) : null}
         </StyledCard.Cover>
       ) : null}
-      {props.children ? (
-        <StyledCard.Content>{props.children}</StyledCard.Content>
-      ) : null}
+      <StyledCard.Content>
+        {props.title ? <Box as="h3">{props.title}</Box> : null}
+        {props.description ? (
+          <Box as="p" color="neutrals.600" fontSize="s">
+            {props.description}
+          </Box>
+        ) : null}
+        {props.children ? props.children : null}
+      </StyledCard.Content>
     </StyledCard>
   );
 }
@@ -35,8 +53,12 @@ Card.propTypes = {
   coverImage: PropTypes.string,
   coverImageContent: PropTypes.func,
   coverImageContentPosition: PropTypes.oneOf(['bottomLeft']),
+  coverImageDescription: PropTypes.string,
   coverImageLabel: PropTypes.string,
   coverImageOverlay: PropTypes.bool,
+  coverImageTitle: PropTypes.string,
+  description: PropTypes.string,
+  title: PropTypes.string,
 };
 
 Card.defaultProps = {
