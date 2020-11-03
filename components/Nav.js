@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-import { Nav as StyledNav } from '../styled';
+import { Button, Nav as StyledNav } from '../styled';
 
 function Nav(props = {}) {
   return (
@@ -18,9 +18,7 @@ function Nav(props = {}) {
       <Link href="/">
         <a>Give</a>
       </Link>
-      <Link href="/">
-        <a>Watch Online</a>
-      </Link>
+      <Button>Watch Online</Button>
       <Link href="/">
         <a>Profile</a>
       </Link>

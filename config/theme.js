@@ -64,6 +64,7 @@ const theme = {
     heading: '1.2',
   },
   radii: {
+    s: rem('4px'),
     base: rem('6px'),
   },
   // https://tailwindcss.com/docs/box-shadow
