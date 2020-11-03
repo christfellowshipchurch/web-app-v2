@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
+import { Icon } from '../components';
 import { Button, Nav as StyledNav } from '../styled';
 
 function Nav(props = {}) {
@@ -20,10 +21,14 @@ function Nav(props = {}) {
       </Link>
       <Button>Watch Online</Button>
       <Link href="/">
-        <a>Profile</a>
+        <a>
+          <Icon name="circle" size="32" />
+        </a>
       </Link>
       <Link href="/">
-        <a>Menu</a>
+        <a>
+          <Icon name="circle" color="fg" />
+        </a>
       </Link>
     </StyledNav>
   );
