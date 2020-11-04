@@ -51,9 +51,7 @@ function Card(props = {}) {
 
 Card.propTypes = {
   ...propTypes,
-  contentProps: {
-    ...propTypes,
-  },
+  contentProps: PropTypes.object,
   coverImage: PropTypes.string,
   coverImageContent: PropTypes.func,
   coverImageContentPosition: PropTypes.oneOf(['bottomLeft']),
