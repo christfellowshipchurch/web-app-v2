@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import { Button, Icon } from '../ui-kit';
 import { Nav as StyledNav } from '../styled';
@@ -25,9 +26,16 @@ function Nav(props = {}) {
 }
 
 function Primary(props = {}) {
+  const router = useRouter();
+  const isActive = action => router.pathname === action;
+
   return props.data.map((item, idx) => (
     <Link key={idx} href={item.action}>
-      <StyledNav.Link>{item.call}</StyledNav.Link>
+      <StyledNav.Link
+        data-state={isActive(item.action) ? 'active' : 'inactive'}
+      >
+        {item.call}
+      </StyledNav.Link>
     </Link>
   ));
 }

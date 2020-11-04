@@ -28,7 +28,8 @@ const Link = styled.a`
 
   &:active,
   &:focus,
-  &:hover {
+  &:hover,
+  &[data-state='active'] {
     color: ${themeGet('colors.fg')};
   }
 `;
