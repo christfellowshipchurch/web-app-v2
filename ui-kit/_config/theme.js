@@ -4,7 +4,7 @@ const COLORS = {
   Battleship: '#828282',
   Picton: '#00aeef',
   Tuatara: '#353535',
-  'White Smoke': '@f6f6f6',
+  'White Smoke': '#f6f6f6',
 };
 
 const PRIMARY_BRAND_COLOR = COLORS['Picton'];
