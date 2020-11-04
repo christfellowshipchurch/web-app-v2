@@ -15,12 +15,14 @@ const Button = styled.div`
   padding-left: ${themeGet('space.base')};
   padding-right: ${themeGet('space.base')};
   text-align: center;
+  text-decoration: none;
   transition: 0.3s ease-in-out;
 
   &:active,
   &:focus,
   &:hover {
     background-color: ${themeGet('colors.fg')};
+    color: ${themeGet('colors.white')};
   }
 
   ${system}

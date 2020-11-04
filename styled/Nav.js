@@ -7,16 +7,6 @@ const Nav = styled.nav`
   align-items: center;
   display: flex;
 
-  > a {
-    color: ${themeGet('colors.neutrals.600')};
-  }
-
-  > * {
-    display: block;
-    font-weight: ${themeGet('fontWeights.bold')};
-    text-decoration: none;
-  }
-
   > *:not(:last-child) {
     margin-right: ${themeGet('space.l')};
   }
@@ -28,6 +18,22 @@ const Nav = styled.nav`
 
   ${system}
 `;
+
+const Link = styled.a`
+  color: ${themeGet('colors.neutrals.600')};
+  cursor: pointer;
+  display: block;
+  font-weight: ${themeGet('fontWeights.bold')};
+  text-decoration: none;
+
+  &:active,
+  &:focus,
+  &:hover {
+    color: ${themeGet('colors.fg')};
+  }
+`;
+
+Nav.Link = Link;
 
 Nav.propTypes = {
   ...propTypes,
