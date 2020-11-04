@@ -1,3 +1,4 @@
+import AppProvider from './AppProvider';
 import NavigationProvider from './NavigationProvider';
 
-export { NavigationProvider };
+export { AppProvider, NavigationProvider };
