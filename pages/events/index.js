@@ -1,9 +1,9 @@
-import { initializeApollo } from '../config/apolloClient';
-import { EventsProvider } from '../providers';
-import { GET_EVENTS } from '../hooks/useEvents';
-import { GET_WEBSITE_HEADER } from '../hooks/useWebsiteNavigation';
-import { Box } from '../ui-kit';
-import { EventsGrid, Layout } from '../components';
+import { initializeApollo } from '../../config/apolloClient';
+import { EventsProvider } from '../../providers';
+import { GET_EVENTS } from '../../hooks/useEvents';
+import { GET_WEBSITE_HEADER } from '../../hooks/useWebsiteNavigation';
+import { Box } from '../../ui-kit';
+import { EventsGrid, Layout } from '../../components';
 
 export default function Events() {
   return (

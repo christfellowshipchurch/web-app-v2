@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { propTypes } from '../_lib/system';
 import Styled from './CardGrid.styles';
@@ -9,7 +10,7 @@ function CardGrid(props = {}) {
 
 CardGrid.propTypes = {
   ...propTypes,
-  columns: propTypes.string,
+  columns: PropTypes.string,
 };
 
 CardGrid.defaultProps = {

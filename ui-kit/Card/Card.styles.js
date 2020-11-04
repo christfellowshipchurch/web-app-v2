@@ -6,11 +6,32 @@ import { system, propTypes } from '../_lib/system';
 
 const DEFAULT_COVER_HEIGHT = '195px';
 
+const link = ({ as }) => props => {
+  if (as === 'a') {
+    return css`
+      cursor: pointer;
+      transition: 0.2s ease-in-out;
+
+      &:focus,
+      &:hover {
+        box-shadow: ${themeGet('shadows.xxl')};
+        transform: scale(1.02);
+      }
+
+      &:active {
+        transform: scale(1);
+      }
+    `;
+  }
+};
+
 const Card = styled.div`
   background-color: ${themeGet('colors.white')};
   border-radius: ${themeGet('radii.base')};
   box-shadow: ${themeGet('shadows.xl')};
+  color: ${themeGet('colors.fg')};
 
+  ${link}
   ${system}
 `;
 
