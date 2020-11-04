@@ -1,12 +1,14 @@
 import { rem } from '../_utils';
 
-const BATTLESHIP_GRAY = '#828282';
-const PICTON_BLUE = '#00aeef';
-const TUATARA_GRAY = '#353535';
-const WHITE_SMOKE = '#f6f6f6';
+const COLORS = {
+  Battleship: '#828282',
+  Picton: '#00aeef',
+  Tuatara: '#353535',
+  'White Smoke': '@f6f6f6',
+};
 
-const PRIMARY_BRAND_COLOR = PICTON_BLUE;
-const PRIMARY_NEUTRAL_COLOR = TUATARA_GRAY;
+const PRIMARY_BRAND_COLOR = COLORS['Picton'];
+const PRIMARY_NEUTRAL_COLOR = COLORS['Battleship'];
 
 const theme = {
   breakpoints: {
@@ -20,18 +22,18 @@ const theme = {
     error: '#fe5f55',
     success: '#8acb88',
     warning: '#ffc527',
-    bg: WHITE_SMOKE,
+    bg: COLORS['White Smoke'],
     fg: PRIMARY_NEUTRAL_COLOR,
     white: '#fff',
     black: PRIMARY_NEUTRAL_COLOR,
     border: '#cbcbcb',
     neutrals: {
-      100: WHITE_SMOKE,
+      100: COLORS['White Smoke'],
       200: '',
       300: '',
       400: '',
       500: '',
-      600: BATTLESHIP_GRAY,
+      600: COLORS['Battleship'],
       700: '',
       800: '',
       900: '',
