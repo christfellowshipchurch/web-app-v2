@@ -14,7 +14,7 @@ export default function Terms() {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const apolloClient = initializeApollo();
 
   await apolloClient.query({
@@ -26,6 +26,5 @@ export async function getStaticProps() {
     props: {
       initialApolloState: apolloClient.cache.extract(),
     },
-    revalidate: 1,
   };
 }
