@@ -36,7 +36,7 @@ function Card(props = {}) {
           ) : null}
         </Styled.Cover>
       ) : null}
-      <Styled.Content>
+      <Styled.Content {...props.contentProps}>
         {props.title ? <Box as="h3">{props.title}</Box> : null}
         {props.description ? (
           <Box as="p" color="neutrals.600" fontSize="s">
@@ -51,6 +51,9 @@ function Card(props = {}) {
 
 Card.propTypes = {
   ...propTypes,
+  contentProps: {
+    ...propTypes,
+  },
   coverImage: PropTypes.string,
   coverImageContent: PropTypes.func,
   coverImageContentPosition: PropTypes.oneOf(['bottomLeft']),

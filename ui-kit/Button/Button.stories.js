@@ -8,3 +8,7 @@ export default {
 };
 
 export const Default = () => <Button>Button</Button>;
+
+export const Sizes = () => <Button size="l">Button</Button>;
+
+export const Variants = () => <Button variant="secondary">Button</Button>;

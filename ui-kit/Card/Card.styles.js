@@ -37,6 +37,8 @@ const Card = styled.div`
 
 const Content = styled.div`
   padding: ${themeGet('space.base')};
+
+  ${system}
 `;
 
 const content = ({ hasContent }) => props => {

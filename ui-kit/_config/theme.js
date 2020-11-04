@@ -52,9 +52,9 @@ const theme = {
     s: rem('14px'),
     l: rem('20px'),
     xl: rem('24px'),
-    h1: rem('28px'),
-    h2: rem('24px'),
-    h3: rem('20px'),
+    h1: rem('36px'),
+    h2: rem('28px'),
+    h3: rem('22px'),
     h4: rem('18px'),
   },
   fontWeights: {

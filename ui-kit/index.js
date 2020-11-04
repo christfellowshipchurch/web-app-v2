@@ -12,6 +12,7 @@ import CardGrid from './CardGrid';
 import Cell from './Cell';
 import Icon from './Icon';
 import List from './List';
+import Longform from './Longform';
 
 export {
   // ====================
@@ -26,6 +27,7 @@ export {
   Cell,
   Icon,
   List,
+  Longform,
   // ====================
   icons,
   theme,
