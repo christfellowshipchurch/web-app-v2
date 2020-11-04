@@ -2,20 +2,19 @@ import { useRouter } from 'next/router';
 
 import { initializeApollo } from '../../config/apolloClient';
 import { slugify } from '../../utils';
-import useEvent, { GET_EVENT } from '../../hooks/useEvent';
+import { EventProvider } from '../../providers';
+import { GET_EVENT } from '../../hooks/useEvent';
 import { GET_EVENTS } from '../../hooks/useEvents';
 import { GET_WEBSITE_HEADER } from '../../hooks/useWebsiteNavigation';
-import { Box } from '../../ui-kit';
-import { Layout } from '../../components';
+import { EventSingle, Layout } from '../../components';
 
 export default function Event() {
   const router = useRouter();
   const { title } = router.query;
-  const { event } = useEvent({ variables: { title } });
 
   return (
     <Layout title="Event">
-      <Box as="h1">{event.title}</Box>
+      <EventProvider Component={EventSingle} title={title} />
     </Layout>
   );
 }
