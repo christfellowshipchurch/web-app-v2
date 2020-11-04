@@ -8,7 +8,7 @@ const COLORS = {
 };
 
 const PRIMARY_BRAND_COLOR = COLORS['Picton'];
-const PRIMARY_NEUTRAL_COLOR = COLORS['Battleship'];
+const PRIMARY_NEUTRAL_COLOR = COLORS['Tuatara'];
 
 const theme = {
   breakpoints: {
