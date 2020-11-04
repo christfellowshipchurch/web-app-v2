@@ -1,17 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
 
+import { NavigationProvider } from '../providers';
 import { Logo, Nav } from '../components';
 import { Header as StyledHeader } from '../styled';
-import useWebsiteNavigation from '../hooks/useWebsiteNavigation';
 
 function Header(props = {}) {
-  const { navigation } = useWebsiteNavigation({
-    variables: {
-      website: process.env.NEXT_PUBLIC_WEBSITE_KEY,
-    },
-  });
-
   return (
     <StyledHeader>
       <Link href="/">
@@ -19,7 +13,7 @@ function Header(props = {}) {
           <Logo />
         </a>
       </Link>
-      <Nav data={navigation} />
+      <NavigationProvider Component={Nav} />
     </StyledHeader>
   );
 }
