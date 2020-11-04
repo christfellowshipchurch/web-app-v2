@@ -8,6 +8,7 @@ import GlobalStyles, { styles as globalStyles } from './GlobalStyles';
 import Box from './Box';
 import Button from './Button';
 import Card from './Card';
+import CardGrid from './CardGrid';
 import Cell from './Cell';
 import Icon from './Icon';
 import List from './List';
@@ -21,6 +22,7 @@ export {
   Box,
   Button,
   Card,
+  CardGrid,
   Cell,
   Icon,
   List,

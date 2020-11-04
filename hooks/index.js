@@ -1,3 +1,4 @@
+import useEvents from './useEvents';
 import useWebsiteNavigation from './useWebsiteNavigation';
 
-export { useWebsiteNavigation };
+export { useEvents, useWebsiteNavigation };
