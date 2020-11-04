@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { PageTitle } from '../components';
 import { Box, Button, Card, Longform } from '../ui-kit';
 
 function EventSingle(props = {}) {
@@ -12,6 +13,7 @@ function EventSingle(props = {}) {
 
   return (
     <>
+      <PageTitle title={event.title} />
       <Card
         coverImage={event?.coverImage?.sources[0]?.uri}
         height="596px"

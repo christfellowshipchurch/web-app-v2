@@ -1,24 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Head from 'next/head';
 
 import { Box, Cell, utils } from '../ui-kit';
-import { Footer, Header } from '../components';
+import { Footer, Header, PageTitle } from '../components';
 
-const DEFAULT_TITLE = 'Christ Fellowship';
 const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
-
-function getPageTitle(title) {
-  if (title === DEFAULT_TITLE || title === 'Home') return DEFAULT_TITLE;
-  return `${title} - ${DEFAULT_TITLE}`;
-}
 
 function Layout(props = {}) {
   return (
     <>
-      <Head>
-        <title>{getPageTitle(props.title)}</title>
-      </Head>
+      <PageTitle title={props.title} />
       <Box display="grid" gridTemplateRows="auto 1fr auto" height="100vh">
         <Header />
         <Box>
@@ -51,7 +42,6 @@ Layout.propTypes = {
 Layout.defaultProps = {
   contentMaxWidth: DEFAULT_CONTENT_WIDTH,
   contentVerticalPadding: 'xl',
-  title: DEFAULT_TITLE,
 };
 
 export default Layout;

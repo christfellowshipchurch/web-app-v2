@@ -8,12 +8,12 @@ import { GET_EVENTS } from '../../hooks/useEvents';
 import { GET_WEBSITE_HEADER } from '../../hooks/useWebsiteNavigation';
 import { EventSingle, Layout } from '../../components';
 
-export default function Event() {
+export default function Event(props) {
   const router = useRouter();
   const { title } = router.query;
 
   return (
-    <Layout title="Event">
+    <Layout title={title}>
       <EventProvider Component={EventSingle} title={title} />
     </Layout>
   );
