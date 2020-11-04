@@ -1,3 +1,3 @@
-import GlobalStyles from './GlobalStyles';
+import GlobalStyles, { styles } from './GlobalStyles';
 
-export default GlobalStyles;
+export { GlobalStyles as default, styles };

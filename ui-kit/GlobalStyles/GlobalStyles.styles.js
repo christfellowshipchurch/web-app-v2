@@ -1,7 +1,7 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, css } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
-const GlobalStyles = createGlobalStyle`
+export const styles = css`
   * {
     box-sizing: border-box;
     margin: 0;
@@ -14,7 +14,8 @@ const GlobalStyles = createGlobalStyle`
     font-size: 16px;
   }
 
-  html, body {
+  html,
+  body {
     height: 100%;
   }
 
@@ -25,7 +26,7 @@ const GlobalStyles = createGlobalStyle`
     font-size: ${themeGet('fontSizes.base')};
     line-height: ${themeGet('lineHeights.base')};
   }
-  
+
   h1,
   h2,
   h3,
@@ -70,6 +71,10 @@ const GlobalStyles = createGlobalStyle`
   a:active {
     color: ${themeGet('colors.fg')};
   }
+`;
+
+const GlobalStyles = createGlobalStyle`
+  ${styles}
 `;
 
 export default GlobalStyles;

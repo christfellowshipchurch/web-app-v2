@@ -1,7 +1,6 @@
 import Head from 'next/head';
-import { ThemeProvider } from 'styled-components';
 
-import { theme, GlobalStyles } from '../ui-kit';
+import { ThemeProvider } from '../ui-kit';
 
 function App({ Component, pageProps }) {
   return (
@@ -9,8 +8,7 @@ function App({ Component, pageProps }) {
       <Head>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <ThemeProvider theme={theme}>
-        <GlobalStyles />
+      <ThemeProvider>
         <Component {...pageProps} />
       </ThemeProvider>
     </>
