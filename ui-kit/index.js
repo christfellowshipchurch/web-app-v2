@@ -15,6 +15,7 @@ import Cell from './Cell';
 import Icon from './Icon';
 import List from './List';
 import Longform from './Longform';
+import Modal from './Modal';
 
 export {
   // ====================
@@ -30,6 +31,7 @@ export {
   Icon,
   List,
   Longform,
+  Modal,
   // ====================
   icons,
   theme,

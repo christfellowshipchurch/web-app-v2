@@ -4,6 +4,7 @@ import Footer from './Footer';
 import Header from './Header';
 import Layout from './Layout';
 import Logo from './Logo';
+import * as modals from './Modals';
 import Nav from './Nav';
 import PageTitle from './PageTitle';
 
@@ -14,6 +15,7 @@ export {
   Header,
   Layout,
   Logo,
+  modals,
   Nav,
   PageTitle,
 };
