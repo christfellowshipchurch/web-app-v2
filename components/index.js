@@ -1,3 +1,4 @@
+import CustomLink from './CustomLink';
 import EventsGrid from './EventsGrid';
 import EventSingle from './EventSingle';
 import Footer from './Footer';
@@ -9,6 +10,7 @@ import Nav from './Nav';
 import PageTitle from './PageTitle';
 
 export {
+  CustomLink,
   EventsGrid,
   EventSingle,
   Footer,

@@ -10,6 +10,7 @@ const link = ({ as }) => props => {
   if (as === 'a') {
     return css`
       cursor: pointer;
+      text-decoration: none;
       transition: 0.2s ease-in-out;
 
       &:focus,

@@ -14,17 +14,16 @@ function Nav(props = {}) {
     <Styled>
       <Primary data={props.data.navigationLinks} />
       <QuickAction data={props.data.quickAction} />
-      <Link href="/">
-        <Box
-          as="a"
-          onClick={event => {
-            event.preventDefault();
-            modalDispatch(showModal('Auth'));
-          }}
-        >
-          <Icon name="user" color="fg" size="32" />
-        </Box>
-      </Link>
+      <Box
+        as="a"
+        href="#0"
+        onClick={event => {
+          event.preventDefault();
+          modalDispatch(showModal('Auth'));
+        }}
+      >
+        <Icon name="user" color="fg" size="32" />
+      </Box>
       <Link href="/">
         <a>
           <Icon name="menu" color="fg" />
