@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
-import { system, propTypes } from '../ui-kit/_lib/system';
+import { system } from '../../ui-kit';
 
 const Footer = styled.footer`
   ${system}
@@ -23,9 +23,5 @@ const Link = styled.a`
 `;
 
 Footer.Link = Link;
-
-Footer.propTypes = {
-  ...propTypes,
-};
 
 export default Footer;

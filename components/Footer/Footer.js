@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { links } from '../config/metadata';
-import { Box, Cell, Icon, List } from '../ui-kit';
-import { Logo } from '../components';
-import { Footer as StyledFooter } from '../styled';
+import { links } from '../../config/metadata';
+import { Box, Cell, Icon, List, systemPropTypes } from '../../ui-kit';
+import { Logo } from '../';
+import Styled from './Footer.styles';
 
 function Footer(props = {}) {
   return (
-    <StyledFooter>
+    <Styled {...props}>
       <Box bg="fg" color="white" p="xl">
         <Cell>
           <Box
@@ -27,7 +27,7 @@ function Footer(props = {}) {
           <Copyright />
         </Cell>
       </Box>
-    </StyledFooter>
+    </Styled>
   );
 }
 
@@ -37,12 +37,12 @@ function Contact() {
       <Box mb="base">
         <Logo dark={true} />
       </Box>
-      <StyledFooter.Link href="tel:561-799-7600" mb="s">
+      <Styled.Link href="tel:561-799-7600" mb="s">
         (561) 799-7600
-      </StyledFooter.Link>
-      <StyledFooter.Link href="mailto:hello@christfellowship.church">
+      </Styled.Link>
+      <Styled.Link href="mailto:hello@christfellowship.church">
         hello@christfellowship.church
-      </StyledFooter.Link>
+      </Styled.Link>
     </Box>
   );
 }
@@ -55,29 +55,21 @@ function Resources() {
       </Box>
       <List as="ul" space="xs">
         <Box as="li">
-          <StyledFooter.Link href={links.churchOnline}>
-            Church Online
-          </StyledFooter.Link>
+          <Styled.Link href={links.churchOnline}>Church Online</Styled.Link>
         </Box>
         <Box as="li">
-          <StyledFooter.Link href={links.pastMessages}>
-            Past Messages
-          </StyledFooter.Link>
+          <Styled.Link href={links.pastMessages}>Past Messages</Styled.Link>
         </Box>
         <Box as="li">
-          <StyledFooter.Link as="a" href="#0">
+          <Styled.Link as="a" href="#0">
             Ministry Updates
-          </StyledFooter.Link>
+          </Styled.Link>
         </Box>
         <Box as="li">
-          <StyledFooter.Link href={links.giveOnline}>
-            Give Online
-          </StyledFooter.Link>
+          <Styled.Link href={links.giveOnline}>Give Online</Styled.Link>
         </Box>
         <Box as="li">
-          <StyledFooter.Link href={links.shopOnline}>
-            Shop Online
-          </StyledFooter.Link>
+          <Styled.Link href={links.shopOnline}>Shop Online</Styled.Link>
         </Box>
       </List>
     </Box>
@@ -92,29 +84,25 @@ function Connect() {
       </Box>
       <List as="ul" space="xs">
         <Box as="li">
-          <StyledFooter.Link href={links.connectCard}>
-            Connect Card
-          </StyledFooter.Link>
+          <Styled.Link href={links.connectCard}>Connect Card</Styled.Link>
         </Box>
         <Box as="li">
-          <StyledFooter.Link href={links.submitPrayerRequest}>
+          <Styled.Link href={links.submitPrayerRequest}>
             Past Messages
-          </StyledFooter.Link>
+          </Styled.Link>
         </Box>
         <Box as="li">
-          <StyledFooter.Link as="a" href="#0">
+          <Styled.Link as="a" href="#0">
             Join Us In Prayer
-          </StyledFooter.Link>
+          </Styled.Link>
         </Box>
         <Box as="li">
-          <StyledFooter.Link href={links.subscribeToUpdates}>
+          <Styled.Link href={links.subscribeToUpdates}>
             Subscribe To Updates
-          </StyledFooter.Link>
+          </Styled.Link>
         </Box>
         <Box as="li">
-          <StyledFooter.Link href={links.contactUs}>
-            Contact Us
-          </StyledFooter.Link>
+          <Styled.Link href={links.contactUs}>Contact Us</Styled.Link>
         </Box>
       </List>
     </Box>
@@ -129,20 +117,20 @@ function About() {
       </Box>
       <List as="ul" space="xs">
         <Box as="li">
-          <StyledFooter.Link href="#0">Our Leadership</StyledFooter.Link>
+          <Styled.Link href="#0">Our Leadership</Styled.Link>
         </Box>
         <Box as="li">
-          <StyledFooter.Link href={links.careerOpportunities}>
+          <Styled.Link href={links.careerOpportunities}>
             Career Opportunities
-          </StyledFooter.Link>
+          </Styled.Link>
         </Box>
         <Box as="li">
-          <StyledFooter.Link as="a" href="#0">
+          <Styled.Link as="a" href="#0">
             Privacy Policy
-          </StyledFooter.Link>
+          </Styled.Link>
         </Box>
         <Box as="li">
-          <StyledFooter.Link href="#0">Terms of Use</StyledFooter.Link>
+          <Styled.Link href="#0">Terms of Use</Styled.Link>
         </Box>
       </List>
     </Box>
@@ -177,5 +165,9 @@ function Copyright() {
     </>
   );
 }
+
+Footer.propTypes = {
+  ...systemPropTypes,
+};
 
 export default Footer;

@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import { Button, Icon } from '../ui-kit';
-import { Nav as StyledNav } from '../styled';
+import { Button, Icon, systemPropTypes } from '../../ui-kit';
+import Styled from './Nav.styles';
 
 function Nav(props = {}) {
   return (
-    <StyledNav>
+    <Styled>
       <Primary data={props.data.navigationLinks} />
       <QuickAction data={props.data.quickAction} />
       <Link href="/">
@@ -21,7 +21,7 @@ function Nav(props = {}) {
           <Icon name="menu" color="fg" />
         </a>
       </Link>
-    </StyledNav>
+    </Styled>
   );
 }
 
@@ -31,11 +31,9 @@ function Primary(props = {}) {
 
   return props.data.map((item, idx) => (
     <Link key={idx} href={item.action}>
-      <StyledNav.Link
-        data-state={isActive(item.action) ? 'active' : 'inactive'}
-      >
+      <Styled.Link data-state={isActive(item.action) ? 'active' : 'inactive'}>
         {item.call}
-      </StyledNav.Link>
+      </Styled.Link>
     </Link>
   ));
 }
@@ -49,6 +47,7 @@ function QuickAction(props = {}) {
 }
 
 Nav.propTypes = {
+  ...systemPropTypes,
   data: PropTypes.object,
 };
 

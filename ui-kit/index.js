@@ -1,6 +1,8 @@
-import * as utils from './_utils';
 import icons from './_config/icons';
 import theme from './_config/theme';
+
+import { system, propTypes as systemPropTypes } from './_lib/system';
+import * as utils from './_utils';
 
 import ThemeProvider from './ThemeProvider';
 import GlobalStyles, { styles as globalStyles } from './GlobalStyles';
@@ -31,6 +33,8 @@ export {
   // ====================
   icons,
   theme,
+  system,
+  systemPropTypes,
   utils,
   // ====================
 };

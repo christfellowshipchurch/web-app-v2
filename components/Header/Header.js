@@ -1,21 +1,26 @@
 import React from 'react';
 import Link from 'next/link';
 
-import { NavigationProvider } from '../providers';
-import { Logo, Nav } from '../components';
-import { Header as StyledHeader } from '../styled';
+import { NavigationProvider } from '../../providers';
+import { systemPropTypes } from '../../ui-kit';
+import { Logo, Nav } from '../';
+import Styled from './Header.styles';
 
 function Header(props = {}) {
   return (
-    <StyledHeader>
+    <Styled>
       <Link href="/">
         <a>
           <Logo />
         </a>
       </Link>
       <NavigationProvider Component={Nav} />
-    </StyledHeader>
+    </Styled>
   );
 }
+
+Header.propTypes = {
+  ...systemPropTypes,
+};
 
 export default Header;

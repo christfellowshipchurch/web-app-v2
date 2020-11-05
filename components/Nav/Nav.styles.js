@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
-import { system, propTypes } from '../ui-kit/_lib/system';
+import { system } from '../../ui-kit';
 
 const Nav = styled.nav`
   align-items: center;
@@ -35,9 +35,5 @@ const Link = styled.a`
 `;
 
 Nav.Link = Link;
-
-Nav.propTypes = {
-  ...propTypes,
-};
 
 export default Nav;

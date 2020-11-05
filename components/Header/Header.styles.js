@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
-import { system, propTypes } from '../ui-kit/_lib/system';
+import { system } from '../../ui-kit';
 
 const Header = styled.header`
   background-color: ${themeGet('colors.white')};
@@ -16,9 +16,5 @@ const Header = styled.header`
 
   ${system}
 `;
-
-Header.propTypes = {
-  ...propTypes,
-};
 
 export default Header;
