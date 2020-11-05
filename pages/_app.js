@@ -10,7 +10,7 @@ function App({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" />
         <link rel="stylesheet" type="text/css" href="/nprogress.css" />
       </Head>
       <AppProvider initialApolloState={pageProps.initialApolloState}>
