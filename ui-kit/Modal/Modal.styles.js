@@ -12,6 +12,8 @@ const Modal = styled.div`
 const Close = styled.button`
   background-color: transparent;
   border: 0;
+  cursor: pointer;
+  display: block;
   position: absolute;
   right: ${themeGet('space.base')};
   top: ${themeGet('space.base')};
