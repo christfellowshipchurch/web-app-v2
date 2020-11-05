@@ -1,5 +1,3 @@
-import { initializeApollo } from '../config/apolloClient';
-import { GET_WEBSITE_HEADER } from '../hooks/useWebsiteNavigation';
 import { Box, Card } from '../ui-kit';
 import { Layout } from '../components';
 
@@ -126,19 +124,4 @@ export default function Home() {
       </Box>
     </Layout>
   );
-}
-
-export async function getServerSideProps() {
-  const apolloClient = initializeApollo();
-
-  await apolloClient.query({
-    query: GET_WEBSITE_HEADER,
-    variables: { website: process.env.NEXT_PUBLIC_WEBSITE_KEY },
-  });
-
-  return {
-    props: {
-      initialApolloState: apolloClient.cache.extract(),
-    },
-  };
 }

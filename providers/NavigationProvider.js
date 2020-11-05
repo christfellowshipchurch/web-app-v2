@@ -1,15 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { useWebsiteNavigation } from '../hooks';
+import navigation from '../config/navigation';
 
 function NavigationProvider({ Component, ...props }) {
-  const { navigation } = useWebsiteNavigation({
-    variables: {
-      website: process.env.NEXT_PUBLIC_WEBSITE_KEY,
-    },
-  });
-
   return <Component data={navigation} {...props} />;
 }
 

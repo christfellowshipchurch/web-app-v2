@@ -5,7 +5,6 @@ import { slugify } from '../../utils';
 import { EventProvider } from '../../providers';
 import { GET_EVENT } from '../../hooks/useEvent';
 import { GET_EVENTS } from '../../hooks/useEvents';
-import { GET_WEBSITE_HEADER } from '../../hooks/useWebsiteNavigation';
 import { EventSingle, Layout } from '../../components';
 
 export default function Event(props) {
@@ -21,11 +20,6 @@ export default function Event(props) {
 
 export async function getStaticProps(context) {
   const apolloClient = initializeApollo();
-
-  await apolloClient.query({
-    query: GET_WEBSITE_HEADER,
-    variables: { website: process.env.NEXT_PUBLIC_WEBSITE_KEY },
-  });
 
   await apolloClient.query({
     query: GET_EVENT,
