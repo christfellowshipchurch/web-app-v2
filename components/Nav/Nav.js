@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import { useModalDispatch, showModal } from '../../providers/ModalProvider';
@@ -43,21 +42,7 @@ function Nav(props = {}) {
         menuWidth="150px"
       >
         <List space="0" textAlign="center">
-          <Box as="li">
-            <CustomLink href="/events" Component={Menu.Link} p="s">
-              Events
-            </CustomLink>
-          </Box>
-          <Box as="li">
-            <Menu.Link href="#0" p="s">
-              Serve
-            </Menu.Link>
-          </Box>
-          <Box as="li">
-            <CustomLink href="/groups" Component={Menu.Link} p="s">
-              Groups
-            </CustomLink>
-          </Box>
+          <MenuLinks data={props.data.menuLinks} />
           <Box as="li">
             <Menu.Link href="#0" onClick={handleAuthClick} p="s">
               Sign in
@@ -74,11 +59,14 @@ function Primary(props = {}) {
   const isActive = action => router.pathname === action;
 
   return props.data.map((item, idx) => (
-    <Link key={idx} href={item.action}>
-      <Styled.Link data-state={isActive(item.action) ? 'active' : 'inactive'}>
-        {item.call}
-      </Styled.Link>
-    </Link>
+    <CustomLink
+      key={idx}
+      href={item.action}
+      Component={Styled.Link}
+      data-state={isActive(item.action) ? 'active' : 'inactive'}
+    >
+      {item.call}
+    </CustomLink>
   ));
 }
 
@@ -88,6 +76,16 @@ function QuickAction(props = {}) {
       {props.data.call}
     </Button>
   );
+}
+
+function MenuLinks(props = {}) {
+  return props.data.map((item, idx) => (
+    <Box key={idx} as="li">
+      <CustomLink href={item.action} Component={Menu.Link} p="s">
+        {item.call}
+      </CustomLink>
+    </Box>
+  ));
 }
 
 Nav.propTypes = {
