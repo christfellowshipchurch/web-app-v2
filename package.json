@@ -10,7 +10,7 @@
     "lint": "npx eslint ./",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "new-ui-kit-component": "bash scripts/new-ui-kit-component.sh"
+    "new-component": "bash scripts/new-component.sh"
   },
   "dependencies": {
     "@apollo/client": "^3.2.5",
