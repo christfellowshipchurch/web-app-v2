@@ -4,31 +4,67 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import { useModalDispatch, showModal } from '../../providers/ModalProvider';
-import { Box, Button, Icon, systemPropTypes } from '../../ui-kit';
+import { Box, Button, Icon, List, Menu, systemPropTypes } from '../../ui-kit';
+import { CustomLink } from '../';
 import Styled from './Nav.styles';
 
 function Nav(props = {}) {
   const modalDispatch = useModalDispatch();
 
+  function handleAuthClick(event) {
+    event.preventDefault();
+    modalDispatch(showModal('Auth'));
+  }
+
   return (
     <Styled>
       <Primary data={props.data.navigationLinks} />
       <QuickAction data={props.data.quickAction} />
-      <Box
-        as="a"
-        href="#0"
-        onClick={event => {
-          event.preventDefault();
-          modalDispatch(showModal('Auth'));
-        }}
-      >
+      <Box as="a" href="#0" onClick={handleAuthClick}>
         <Icon name="user" color="fg" size="32" />
+        <Box as="span" className="srt">
+          User
+        </Box>
       </Box>
-      <Link href="/">
-        <a>
-          <Icon name="menu" color="fg" />
-        </a>
-      </Link>
+      <Menu
+        cardContentProps={{
+          p: '0',
+          py: 's',
+        }}
+        renderTrigger={({ toggle }) => (
+          <Box as="a" href="#0" onClick={toggle}>
+            <Icon name="menu" color="fg" />
+            <Box as="span" className="srt">
+              Menu
+            </Box>
+          </Box>
+        )}
+        side="right"
+        menuWidth="150px"
+      >
+        <List space="0" textAlign="center">
+          <Box as="li">
+            <CustomLink href="/events" Component={Menu.Link} p="s">
+              Events
+            </CustomLink>
+          </Box>
+          <Box as="li">
+            <Menu.Link href="#0" p="s">
+              Serve
+            </Menu.Link>
+          </Box>
+          <Box as="li">
+            <CustomLink href="/groups" Component={Menu.Link} p="s">
+              Groups
+            </CustomLink>
+          </Box>
+          <Box as="li">
+            <Menu.Link href="#0" onClick={handleAuthClick} p="s">
+              Sign in
+            </Menu.Link>
+          </Box>
+        </List>
+      </Menu>
     </Styled>
   );
 }
