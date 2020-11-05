@@ -11,6 +11,12 @@ function App({ Component, pageProps }) {
     <>
       <Head>
         <link rel="icon" href="/favicon.png" />
+        {/* This will throw a 403 if you don't run on local.christfellowship.church! */}
+        <link
+          rel="stylesheet"
+          type="text/css"
+          href="https://cloud.typography.com/7426316/6701612/css/fonts.css"
+        />
         <link rel="stylesheet" type="text/css" href="/nprogress.css" />
       </Head>
       <AppProvider initialApolloState={pageProps.initialApolloState}>
