@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { cleanMarkup } from '../../utils';
 import { PageTitle } from '../';
 import { Box, Button, Card, Longform } from '../../ui-kit';
 
@@ -8,7 +9,7 @@ function EventSingle(props = {}) {
   const event = props.data;
 
   function createMarkup(string) {
-    return { __html: string };
+    return { __html: cleanMarkup(string) };
   }
 
   return (

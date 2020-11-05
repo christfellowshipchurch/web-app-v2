@@ -1,3 +1,4 @@
+import cleanMarkup from './cleanMarkup';
 import slugify from './slugify';
 
-export { slugify };
+export { cleanMarkup, slugify };

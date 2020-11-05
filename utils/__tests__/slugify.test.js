@@ -5,4 +5,7 @@ test('it should turn a string into a slug', () => {
   expect(slugify('Servicio en Español Online')).toEqual(
     'servicio-en-espanol-online'
   );
+  expect(slugify('Night of Prayer & Worship')).toEqual(
+    'night-of-prayer-worship'
+  );
 });
