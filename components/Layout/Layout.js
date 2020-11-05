@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Box, Cell, utils } from '../ui-kit';
-import { Footer, Header, PageTitle } from '../components';
+import { Box, Cell, utils } from '../../ui-kit';
+import { Footer, Header, PageTitle } from '../';
 
 const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
 

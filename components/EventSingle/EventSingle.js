@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { PageTitle } from '../components';
-import { Box, Button, Card, Longform } from '../ui-kit';
+import { PageTitle } from '../';
+import { Box, Button, Card, Longform } from '../../ui-kit';
 
 function EventSingle(props = {}) {
   const event = props.data;

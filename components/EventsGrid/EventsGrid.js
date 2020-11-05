@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 
-import { slugify } from '../utils';
-import { Card, CardGrid } from '../ui-kit';
+import { slugify } from '../../utils';
+import { Card, CardGrid } from '../../ui-kit';
 
 function EventsGrid(props = {}) {
   return (
