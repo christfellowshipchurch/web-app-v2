@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { propTypes } from '../_lib/system';
+import { systemPropTypes } from '../';
 import { Box } from '../';
 import Styled from './Card.styles';
 
@@ -50,7 +50,7 @@ function Card(props = {}) {
 }
 
 Card.propTypes = {
-  ...propTypes,
+  ...systemPropTypes,
   contentProps: PropTypes.object,
   coverImage: PropTypes.string,
   coverImageContent: PropTypes.func,

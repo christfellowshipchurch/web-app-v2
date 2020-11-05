@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { system } from '../_lib/system';
+import { system } from '../';
 
 const Box = styled.div`
   ${system}

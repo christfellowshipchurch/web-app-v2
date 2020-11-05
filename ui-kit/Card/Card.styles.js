@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import { themeGet } from '@styled-system/theme-get';
 
-import { system, propTypes } from '../_lib/system';
+import { system } from '../';
 
 const DEFAULT_COVER_HEIGHT = '195px';
 
@@ -128,13 +128,5 @@ Card.Content = Content;
 Card.Cover = Cover;
 Card.CoverContent = CoverContent;
 Card.CoverLabel = CoverLabel;
-
-Cover.propTypes = {
-  src: PropTypes.string,
-};
-
-Card.propTypes = {
-  ...propTypes,
-};
 
 export default Card;

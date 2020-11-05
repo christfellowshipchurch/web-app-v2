@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { propTypes } from '../_lib/system';
+import { systemPropTypes } from '../';
 import Styled from './List.styles';
 
 function List(props = {}) {
@@ -9,7 +9,7 @@ function List(props = {}) {
 }
 
 List.propTypes = {
-  ...propTypes,
+  ...systemPropTypes,
   space: PropTypes.string,
 };
 

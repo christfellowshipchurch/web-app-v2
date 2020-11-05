@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
-import { system } from '../_lib/system';
+import { system } from '../';
 
 const CardGrid = styled.div`
   display: grid;

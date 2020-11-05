@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
-import { system, propTypes } from '../_lib/system';
+import { system } from '../';
 
 const variant = ({ variant }) => props => {
   if (variant === 'secondary') {
@@ -50,9 +50,5 @@ const Button = styled.div`
   ${size}
   ${system}
 `;
-
-Button.propTypes = {
-  ...propTypes,
-};
 
 export default Button;

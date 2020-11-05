@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
-import { system } from '../_lib/system';
+import { system } from '../';
 
 const List = styled.ul`
   list-style-type: none;

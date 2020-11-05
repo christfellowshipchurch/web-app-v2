@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { propTypes } from '../_lib/system';
+import { systemPropTypes } from '../';
 import Styled from './Longform.styles';
 
 function Longform(props = {}) {
@@ -8,7 +8,7 @@ function Longform(props = {}) {
 }
 
 Longform.propTypes = {
-  ...propTypes,
+  ...systemPropTypes,
 };
 
 export default Longform;

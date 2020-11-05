@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { rem } from '../_utils';
-import { propTypes } from '../_lib/system';
+import { systemPropTypes } from '../';
 import Styled from './Cell.styles';
 
 const DEFAULT_MAX_WIDTH = rem('1100px');
@@ -11,7 +11,7 @@ function Cell(props = {}) {
 }
 
 Cell.propTypes = {
-  ...propTypes,
+  ...systemPropTypes,
 };
 
 Cell.defaultProps = {

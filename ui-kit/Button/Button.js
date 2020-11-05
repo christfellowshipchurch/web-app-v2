@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { propTypes } from '../_lib/system';
+import { systemPropTypes } from '../';
 import Styled from './Button.styles';
 
 function Button(props = {}) {
@@ -9,7 +9,7 @@ function Button(props = {}) {
 }
 
 Button.propTypes = {
-  ...propTypes,
+  ...systemPropTypes,
   size: PropTypes.oneOf(['l']),
   variant: PropTypes.oneOf(['secondary']),
 };

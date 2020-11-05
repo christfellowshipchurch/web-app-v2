@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { propTypes } from '../_lib/system';
+import { systemPropTypes } from '../';
 import Styled from './Box.styles';
 
 function Box(props = {}) {
@@ -8,7 +8,7 @@ function Box(props = {}) {
 }
 
 Box.propTypes = {
-  ...propTypes,
+  ...systemPropTypes,
 };
 
 export default Box;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { propTypes } from '../_lib/system';
+import { systemPropTypes } from '../';
 import Styled, { styles } from './GlobalStyles.styles';
 
 function GlobalStyles(props = {}) {
@@ -8,7 +8,7 @@ function GlobalStyles(props = {}) {
 }
 
 GlobalStyles.propTypes = {
-  ...propTypes,
+  ...systemPropTypes,
 };
 
 export { GlobalStyles as default, styles };

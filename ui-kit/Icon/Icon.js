@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import { withTheme } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
-import icons from '../_config/icons';
-import theme from '../_config/theme';
-import { propTypes } from '../_lib/system';
+import { icons, systemPropTypes, theme } from '../';
 import Styled from './Icon.styles';
 
 const DEFAULT_ICON_SIZE = 24;
@@ -44,7 +42,7 @@ function Icon({ color, height, name, size, width, ...rest }) {
 }
 
 Icon.propTypes = {
-  ...propTypes,
+  ...systemPropTypes,
   name: PropTypes.string.isRequired,
   color: PropTypes.string,
   height: PropTypes.string,
