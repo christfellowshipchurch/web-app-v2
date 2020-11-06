@@ -64,6 +64,7 @@ function Primary(props = {}) {
       href={item.action}
       Component={Styled.Link}
       data-state={isActive(item.action) ? 'active' : 'inactive'}
+      data-testid="nav-link"
     >
       {item.call}
     </CustomLink>
