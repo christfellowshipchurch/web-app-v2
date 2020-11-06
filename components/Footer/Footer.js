@@ -2,7 +2,7 @@ import React from 'react';
 
 import { links } from '../../config/metadata';
 import { Box, Cell, Icon, List, systemPropTypes } from '../../ui-kit';
-import { Logo } from '../';
+import { CustomLink, Logo } from '../';
 import Styled from './Footer.styles';
 
 function Footer(props = {}) {
@@ -125,12 +125,14 @@ function About() {
           </Styled.Link>
         </Box>
         <Box as="li">
-          <Styled.Link as="a" href="#0">
+          <CustomLink href="/privacy-policy" Component={Styled.Link}>
             Privacy Policy
-          </Styled.Link>
+          </CustomLink>
         </Box>
         <Box as="li">
-          <Styled.Link href="#0">Terms of Use</Styled.Link>
+          <CustomLink href="/terms-of-use" Component={Styled.Link}>
+            Terms of Use
+          </CustomLink>
         </Box>
       </List>
     </Box>
