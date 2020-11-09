@@ -1,11 +1,46 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 import { useModalDispatch, showModal } from '../../providers/ModalProvider';
 import { Box, Button, Icon, List, Menu, systemPropTypes } from '../../ui-kit';
 import { CustomLink } from '../';
 import Styled from './Nav.styles';
+import { CurrentUserProvider } from '../../providers';
+
+function Avatar(props = {}) {
+  const currentUser = props?.currentUser;
+  const name = `${currentUser?.profile?.firstName} ${currentUser?.profile?.lastName}`;
+  const src = currentUser?.profile?.photo?.uri;
+
+  if (!src || props.loading) {
+    return (
+      <>
+        <Icon name="user" color="fg" size="32" />
+        <Box as="span" className="srt">
+          User
+        </Box>
+      </>
+    );
+  }
+
+  return (
+    <>
+      <Box
+        as={Image}
+        borderRadius="50%"
+        src={src}
+        alt="Avatar"
+        height="45px"
+        width="45px"
+      />
+      <Box as="span" className="srt">
+        {name}
+      </Box>
+    </>
+  );
+}
 
 function Nav(props = {}) {
   const modalDispatch = useModalDispatch();
@@ -20,10 +55,7 @@ function Nav(props = {}) {
       <Primary data={props.data.navigationLinks} />
       <QuickAction data={props.data.quickAction} />
       <Box as="a" href="#0" onClick={handleAuthClick}>
-        <Icon name="user" color="fg" size="32" />
-        <Box as="span" className="srt">
-          User
-        </Box>
+        <CurrentUserProvider Component={Avatar} />
       </Box>
       <Menu
         cardContentProps={{

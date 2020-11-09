@@ -8,11 +8,16 @@ const AuthDispatchContext = createContext();
 
 const initialState = {
   authenticated: false,
+  identity: null,
+  step: 0,
   token: null,
+  type: null,
+  userExists: false,
 };
 
 const actionTypes = {
   update: 'update',
+  logout: 'logout',
 };
 
 function reducer(state, action) {
@@ -24,6 +29,9 @@ function reducer(state, action) {
         ...action.payload,
       };
     }
+    case actionTypes.logout: {
+      return initialState;
+    }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
     }
@@ -32,13 +40,28 @@ function reducer(state, action) {
 
 function AuthProvider(props = {}) {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const token = state.token;
 
   useEffect(() => {
-    if (window !== undefined) {
+    if (typeof window !== 'undefined') {
       const token = window.localStorage.getItem(AUTH_TOKEN_KEY);
       if (token) dispatch({ type: 'update', payload: { token } });
     }
-  }, [dispatch]);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem(AUTH_TOKEN_KEY, token);
+    }
+    if (token) {
+      dispatch({ type: 'update', payload: { token } });
+    } else {
+      if (typeof window !== 'undefined') {
+        window.localStorage.removeItem(AUTH_TOKEN_KEY);
+      }
+      dispatch({ type: 'update', payload: { token: null } });
+    }
+  }, [token]);
 
   return (
     <AuthStateContext.Provider value={state}>
@@ -76,6 +99,15 @@ function useAuth() {
   return context;
 }
 
+const update = payload => ({
+  type: 'update',
+  payload,
+});
+
+const logout = payload => ({
+  type: 'logout',
+});
+
 AuthProvider.propTypes = {
   children: PropTypes.oneOfType([PropTypes.element, PropTypes.node]),
 };
@@ -86,4 +118,6 @@ export {
   useAuthState,
   useAuthDispatch,
   actionTypes,
+  update,
+  logout,
 };
