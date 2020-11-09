@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 
-import { initializeApollo } from '../../config/apolloClient';
+import { initializeApollo } from '../../lib/apolloClient';
 import { slugify } from '../../utils';
 import { EventProvider } from '../../providers';
 import { GET_EVENT } from '../../hooks/useEvent';

@@ -1,4 +1,4 @@
-import { initializeApollo } from '../../config/apolloClient';
+import { initializeApollo } from '../../lib/apolloClient';
 import { EventsProvider } from '../../providers';
 import { GET_EVENTS } from '../../hooks/useEvents';
 import { Box } from '../../ui-kit';

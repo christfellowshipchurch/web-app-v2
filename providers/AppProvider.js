@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ApolloProvider } from '@apollo/client';
 
-import ModalProvider, { ModalManager } from '../providers/ModalProvider';
-import { useApollo } from '../config/apolloClient';
+import { useApollo } from '../lib/apolloClient';
+import { AuthProvider, ModalProvider } from '../providers';
+import { ModalManager } from '../providers/ModalProvider';
 import modals from '../config/modals';
 import { ThemeProvider } from '../ui-kit';
 
@@ -11,12 +12,14 @@ function AppProvider(props = {}) {
   const apolloClient = useApollo(props.initialApolloState);
   return (
     <ApolloProvider client={apolloClient}>
-      <ThemeProvider>
-        <ModalProvider modals={modals}>
-          {props.children}
-          <ModalManager />
-        </ModalProvider>
-      </ThemeProvider>
+      <AuthProvider>
+        <ThemeProvider>
+          <ModalProvider modals={modals}>
+            {props.children}
+            <ModalManager />
+          </ModalProvider>
+        </ThemeProvider>
+      </AuthProvider>
     </ApolloProvider>
   );
 }

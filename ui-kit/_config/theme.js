@@ -27,6 +27,7 @@ const theme = {
     white: '#fff',
     black: PRIMARY_NEUTRAL_COLOR,
     border: '#cbcbcb',
+    subdued: COLORS['Battleship'],
     neutrals: {
       100: COLORS['White Smoke'],
       200: '',
