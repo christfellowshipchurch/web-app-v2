@@ -2,7 +2,10 @@ import React from 'react';
 
 import { useAuthState } from '../../../providers/AuthProvider';
 import { Modal } from '../../../ui-kit';
-import Screens from './';
+import Confirm from './AuthConfirm';
+import Details from './AuthDetails';
+import Identity from './AuthIdentity';
+import Success from './AuthSuccess';
 
 function AuthModal(props = {}) {
   const state = useAuthState();
@@ -10,19 +13,19 @@ function AuthModal(props = {}) {
   function render() {
     switch (state.step) {
       case 0: {
-        return <Screens.Identity />;
+        return <Identity />;
       }
       case 1: {
-        return <Screens.Details />;
+        return <Details />;
       }
       case 2: {
-        return <Screens.Confirm />;
+        return <Confirm />;
       }
       case 3: {
-        return <Screens.Success />;
+        return <Success />;
       }
       default: {
-        return <Screens.Identity />;
+        return <Identity />;
       }
     }
   }
