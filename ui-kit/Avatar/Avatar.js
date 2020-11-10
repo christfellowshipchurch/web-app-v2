@@ -1,18 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Box, Icon, systemPropTypes } from '../';
+import { Box, systemPropTypes } from '../';
 import Styled from './Avatar.styles';
 
 function Avatar(props = {}) {
   if (!props.src) {
     return (
-      <>
-        <Icon name="user" color="fg" size="32" />
+      <Box
+        bg="subdued"
+        borderRadius="50%"
+        height={props.height}
+        width={props.width}
+      >
         <Box as="span" className="srt">
           User
         </Box>
-      </>
+      </Box>
     );
   }
 

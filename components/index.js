@@ -1,3 +1,4 @@
+import ClientSideComponent from './ClientSideComponent';
 import CustomLink from './CustomLink';
 import EventsGrid from './EventsGrid';
 import EventSingle from './EventSingle';
@@ -10,6 +11,7 @@ import Nav from './Nav';
 import PageTitle from './PageTitle';
 
 export {
+  ClientSideComponent,
   CustomLink,
   EventsGrid,
   EventSingle,

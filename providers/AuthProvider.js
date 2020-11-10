@@ -25,7 +25,6 @@ function reducer(state, action) {
     case actionTypes.update: {
       return {
         ...state,
-        authenticated: state.token !== null,
         ...action.payload,
       };
     }
@@ -59,7 +58,10 @@ function AuthProvider(props = {}) {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      if (token) window.localStorage.setItem(AUTH_TOKEN_KEY, token);
+      if (token) {
+        window.localStorage.setItem(AUTH_TOKEN_KEY, token);
+        dispatch({ type: 'update', payload: { authenticated: true } });
+      }
     }
   }, [token]);
 

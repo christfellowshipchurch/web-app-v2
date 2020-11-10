@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 
 import { normalizeUserData } from '../../utils';
+import { CurrentUserProvider } from '../../providers';
 import { logout, useAuth } from '../../providers/AuthProvider';
 import { useModalDispatch, showModal } from '../../providers/ModalProvider';
 import {
@@ -15,9 +16,8 @@ import {
   Menu,
   systemPropTypes,
 } from '../../ui-kit';
-import { CustomLink } from '../';
+import { ClientSideComponent, CustomLink } from '../';
 import Styled from './Nav.styles';
-import { CurrentUserProvider } from '../../providers';
 
 function Nav(props = {}) {
   const [{ authenticated }, authDispatch] = useAuth();
@@ -37,10 +37,21 @@ function Nav(props = {}) {
     <Styled>
       <Primary data={props.data.navigationLinks} />
       <QuickAction data={props.data.quickAction} />
-      <CurrentUserProvider
-        Component={Avatar}
-        handleAuthClick={handleAuthClick}
-      />
+      <ClientSideComponent>
+        {authenticated ? (
+          <CurrentUserProvider
+            Component={Avatar}
+            handleAuthClick={handleAuthClick}
+          />
+        ) : (
+          <Box as="a" href="#0" onClick={handleAuthClick}>
+            <Icon name="user" color="fg" size="32" />
+            <Box as="span" className="srt">
+              User
+            </Box>
+          </Box>
+        )}
+      </ClientSideComponent>
       <Menu
         cardContentProps={{
           p: '0',
@@ -77,27 +88,19 @@ function Nav(props = {}) {
 }
 
 function Avatar(props = {}) {
-  const currentUser = props.currentUser;
+  const { currentUser } = props;
   const { name, src } = normalizeUserData(currentUser);
 
-  if (currentUser) {
-    return (
-      <CustomLink
-        href="/profile"
-        Component={UIAvatar}
-        as={Image}
-        name={name}
-        src={src}
-        height="45px"
-        width="45px"
-      />
-    );
-  }
-
   return (
-    <Box as="a" href="#0" onClick={props.handleAuthClick}>
-      <UIAvatar as={Image} name={name} src={src} height="45px" width="45px" />
-    </Box>
+    <CustomLink
+      href="/profile"
+      Component={UIAvatar}
+      as={Image}
+      name={name}
+      src={src}
+      height="45px"
+      width="45px"
+    />
   );
 }
 
