@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useForm, useRequestPin, useUserExists } from '../../../hooks';
 import {
@@ -8,6 +8,7 @@ import {
 import { Box, Button, Checkbox, TextInput } from '../../../ui-kit';
 
 function AuthIdentity() {
+  const [status, setStatus] = useState('IDLE');
   const dispatch = useAuthDispatch();
   const [requestPin] = useRequestPin();
   const [checkIfUserExists] = useUserExists({
@@ -32,6 +33,7 @@ function AuthIdentity() {
               }
             ) => {
               if (success) {
+                setStatus('SUCCESS');
                 dispatch(
                   updateAuth({
                     identity: phone,
@@ -50,6 +52,7 @@ function AuthIdentity() {
     },
   });
   const { values, handleSubmit, handleChange } = useForm(() => {
+    setStatus('LOADING');
     checkIfUserExists({ variables: { identity: values.identity } });
   });
 
@@ -78,7 +81,9 @@ function AuthIdentity() {
           />
         </Box>
         <Box textAlign="center">
-          <Button type="submit">Agree and continue</Button>
+          <Button type="submit">
+            {status === 'LOADING' ? 'Loading...' : 'Agree and continue'}
+          </Button>
         </Box>
       </Box>
     </>

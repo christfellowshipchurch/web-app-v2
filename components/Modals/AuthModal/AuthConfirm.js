@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useForm, useVerifyPin } from '../../../hooks';
 import { useAuth, update as updateAuth } from '../../../providers/AuthProvider';
@@ -6,11 +6,13 @@ import { hideModal, useModalDispatch } from '../../../providers/ModalProvider';
 import { Box, Button, TextInput } from '../../../ui-kit';
 
 function AuthConfirm() {
+  const [status, setStatus] = useState('IDLE');
   const [state, dispatch] = useAuth();
   const modalDispatch = useModalDispatch();
   const [verifyPin] = useVerifyPin();
   const { values, handleChange, handleSubmit } = useForm(async () => {
     const passcode = values.passcode;
+    setStatus('LOADING');
     if (state.type === 'sms') {
       try {
         await verifyPin({
@@ -19,6 +21,7 @@ function AuthConfirm() {
             cache,
             { data: { authenticateWithSms: { token } = {} } = {} }
           ) => {
+            setStatus('SUCCESS');
             dispatch(updateAuth({ token }));
             modalDispatch(hideModal());
           },
@@ -46,7 +49,7 @@ function AuthConfirm() {
         </Box>
         <Box textAlign="center">
           <Button type="submit" mb="base">
-            Submit
+            Submit{status === 'LOADING' ? 'ting...' : ''}
           </Button>
           <Box as="a" href="#0" display="block">
             Did't get a code? Request a new one.
