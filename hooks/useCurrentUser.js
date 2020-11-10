@@ -2,7 +2,7 @@ import { gql } from '@apollo/client';
 
 import { useAuthQuery } from './';
 
-const GET_CURRENT_USER = gql`
+export const GET_CURRENT_USER = gql`
   query {
     currentUser {
       profile {

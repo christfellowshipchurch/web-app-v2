@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 
+import { normalizeUserData } from '../../utils';
 import { logout, useAuth } from '../../providers/AuthProvider';
 import { useModalDispatch, showModal } from '../../providers/ModalProvider';
 import {
@@ -76,9 +77,8 @@ function Nav(props = {}) {
 }
 
 function Avatar(props = {}) {
-  const currentUser = props?.currentUser;
-  const name = `${currentUser?.profile?.firstName} ${currentUser?.profile?.lastName}`;
-  const src = currentUser?.profile?.photo?.uri;
+  const currentUser = props.currentUser;
+  const { name, src } = normalizeUserData(currentUser);
 
   if (currentUser) {
     return (

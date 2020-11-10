@@ -16,6 +16,7 @@ import Cell from './Cell';
 import Checkbox from './Checkbox';
 import Icon from './Icon';
 import List from './List';
+import Loader from './Loader';
 import Longform from './Longform';
 import Menu from './Menu';
 import Modal from './Modal';
@@ -36,6 +37,7 @@ export {
   Checkbox,
   Icon,
   List,
+  Loader,
   Longform,
   Menu,
   Modal,
