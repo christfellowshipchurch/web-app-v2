@@ -23,7 +23,7 @@ const size = ({ size }) => props => {
   }
 };
 
-const Button = styled.div`
+const Button = styled.button`
   background-color: ${themeGet('colors.primary')};
   border: 1px solid transparent;
   border-radius: ${themeGet('radii.s')};

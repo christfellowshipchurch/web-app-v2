@@ -1,13 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
+import { normalizeUserData } from '../../utils';
+import { CurrentUserProvider } from '../../providers';
+import { logout, useAuth } from '../../providers/AuthProvider';
 import { useModalDispatch, showModal } from '../../providers/ModalProvider';
-import { Box, Button, Icon, List, Menu, systemPropTypes } from '../../ui-kit';
-import { CustomLink } from '../';
+import {
+  Avatar as UIAvatar,
+  Box,
+  Button,
+  Icon,
+  List,
+  Menu,
+  systemPropTypes,
+} from '../../ui-kit';
+import { ClientSideComponent, CustomLink } from '../';
 import Styled from './Nav.styles';
 
 function Nav(props = {}) {
+  const [{ authenticated }, authDispatch] = useAuth();
   const modalDispatch = useModalDispatch();
 
   function handleAuthClick(event) {
@@ -15,16 +28,30 @@ function Nav(props = {}) {
     modalDispatch(showModal('Auth'));
   }
 
+  function handleLogoutClick(event) {
+    event.preventDefault();
+    authDispatch(logout());
+  }
+
   return (
     <Styled>
       <Primary data={props.data.navigationLinks} />
       <QuickAction data={props.data.quickAction} />
-      <Box as="a" href="#0" onClick={handleAuthClick}>
-        <Icon name="user" color="fg" size="32" />
-        <Box as="span" className="srt">
-          User
-        </Box>
-      </Box>
+      <ClientSideComponent>
+        {authenticated ? (
+          <CurrentUserProvider
+            Component={Avatar}
+            handleAuthClick={handleAuthClick}
+          />
+        ) : (
+          <Box as="a" href="#0" onClick={handleAuthClick}>
+            <Icon name="user" color="fg" size="32" />
+            <Box as="span" className="srt">
+              User
+            </Box>
+          </Box>
+        )}
+      </ClientSideComponent>
       <Menu
         cardContentProps={{
           p: '0',
@@ -44,13 +71,36 @@ function Nav(props = {}) {
         <List space="0" textAlign="center">
           <MenuLinks data={props.data.menuLinks} />
           <Box as="li">
-            <Menu.Link href="#0" onClick={handleAuthClick} p="s">
-              Sign in
-            </Menu.Link>
+            {authenticated ? (
+              <Menu.Link href="#0" onClick={handleLogoutClick} p="s">
+                Log out
+              </Menu.Link>
+            ) : (
+              <Menu.Link href="#0" onClick={handleAuthClick} p="s">
+                Sign in
+              </Menu.Link>
+            )}
           </Box>
         </List>
       </Menu>
     </Styled>
+  );
+}
+
+function Avatar(props = {}) {
+  const { currentUser } = props;
+  const { name, src } = normalizeUserData(currentUser);
+
+  return (
+    <CustomLink
+      href="/profile"
+      Component={UIAvatar}
+      as={Image}
+      name={name}
+      src={src}
+      height="45px"
+      width="45px"
+    />
   );
 }
 

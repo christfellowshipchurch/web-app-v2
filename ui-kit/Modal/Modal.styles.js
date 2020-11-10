@@ -24,10 +24,11 @@ const Content = styled.div`
   border-radius: ${themeGet('radii.base')};
   box-shadow: ${themeGet('shadows.xl')};
   left: 50%;
+  margin-top: -${themeGet('space.xxl')};
   padding: ${themeGet('space.l')};
   position: fixed;
   top: 50%;
-  transform: translate(-50%, -150%);
+  transform: translate(-50%, -50%);
   width: ${props => props.width};
   z-index: 10;
 `;

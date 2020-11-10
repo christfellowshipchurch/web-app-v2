@@ -7,16 +7,20 @@ import * as utils from './_utils';
 import ThemeProvider from './ThemeProvider';
 import GlobalStyles, { styles as globalStyles } from './GlobalStyles';
 
+import Avatar from './Avatar';
 import Box from './Box';
 import Button from './Button';
 import Card from './Card';
 import CardGrid from './CardGrid';
 import Cell from './Cell';
+import Checkbox from './Checkbox';
 import Icon from './Icon';
 import List from './List';
+import Loader from './Loader';
 import Longform from './Longform';
 import Menu from './Menu';
 import Modal from './Modal';
+import TextInput from './TextInput';
 
 export {
   // ====================
@@ -24,16 +28,20 @@ export {
   GlobalStyles,
   globalStyles,
   // ====================
+  Avatar,
   Box,
   Button,
   Card,
   CardGrid,
   Cell,
+  Checkbox,
   Icon,
   List,
+  Loader,
   Longform,
   Menu,
   Modal,
+  TextInput,
   // ====================
   icons,
   theme,

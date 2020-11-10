@@ -17,6 +17,7 @@
     "@apollo/client": "^3.2.5",
     "@storybook/cli": "^6.0.28",
     "@styled-system/theme-get": "^5.1.2",
+    "apollo3-cache-persist": "^0.8.0",
     "graphql": "^15.4.0",
     "next": "10.0.0",
     "nprogress": "^0.2.0",
