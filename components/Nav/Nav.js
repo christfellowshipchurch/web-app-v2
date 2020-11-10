@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 
+import { logout, useAuth } from '../../providers/AuthProvider';
 import { useModalDispatch, showModal } from '../../providers/ModalProvider';
 import {
   Avatar as UIAvatar,
@@ -18,6 +19,7 @@ import Styled from './Nav.styles';
 import { CurrentUserProvider } from '../../providers';
 
 function Nav(props = {}) {
+  const [{ authenticated }, authDispatch] = useAuth();
   const modalDispatch = useModalDispatch();
 
   function handleAuthClick(event) {
@@ -25,13 +27,19 @@ function Nav(props = {}) {
     modalDispatch(showModal('Auth'));
   }
 
+  function handleLogoutClick(event) {
+    event.preventDefault();
+    authDispatch(logout());
+  }
+
   return (
     <Styled>
       <Primary data={props.data.navigationLinks} />
       <QuickAction data={props.data.quickAction} />
-      <Box as="a" href="#0" onClick={handleAuthClick}>
-        <CurrentUserProvider Component={Avatar} />
-      </Box>
+      <CurrentUserProvider
+        Component={Avatar}
+        handleAuthClick={handleAuthClick}
+      />
       <Menu
         cardContentProps={{
           p: '0',
@@ -51,9 +59,15 @@ function Nav(props = {}) {
         <List space="0" textAlign="center">
           <MenuLinks data={props.data.menuLinks} />
           <Box as="li">
-            <Menu.Link href="#0" onClick={handleAuthClick} p="s">
-              Sign in
-            </Menu.Link>
+            {authenticated ? (
+              <Menu.Link href="#0" onClick={handleLogoutClick} p="s">
+                Log out
+              </Menu.Link>
+            ) : (
+              <Menu.Link href="#0" onClick={handleAuthClick} p="s">
+                Sign in
+              </Menu.Link>
+            )}
           </Box>
         </List>
       </Menu>
@@ -65,8 +79,25 @@ function Avatar(props = {}) {
   const currentUser = props?.currentUser;
   const name = `${currentUser?.profile?.firstName} ${currentUser?.profile?.lastName}`;
   const src = currentUser?.profile?.photo?.uri;
+
+  if (currentUser) {
+    return (
+      <CustomLink
+        href="/profile"
+        Component={UIAvatar}
+        as={Image}
+        name={name}
+        src={src}
+        height="45px"
+        width="45px"
+      />
+    );
+  }
+
   return (
-    <UIAvatar as={Image} name={name} src={src} height="45px" width="45px" />
+    <Box as="a" href="#0" onClick={props.handleAuthClick}>
+      <UIAvatar as={Image} name={name} src={src} height="45px" width="45px" />
+    </Box>
   );
 }
 
