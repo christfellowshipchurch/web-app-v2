@@ -38,21 +38,28 @@ function reducer(state, action) {
   }
 }
 
+function getInitialState(state) {
+  if (typeof window !== 'undefined') {
+    const token = window.localStorage.getItem(AUTH_TOKEN_KEY);
+    if (token) {
+      return {
+        ...state,
+        authenticated: true,
+        token,
+      };
+    }
+    return state;
+  }
+  return state;
+}
+
 function AuthProvider(props = {}) {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState, getInitialState);
   const token = state.token;
 
   useEffect(() => {
-    if (token) {
-      if (typeof window !== 'undefined') {
-        window.localStorage.setItem(AUTH_TOKEN_KEY, token);
-      }
-      dispatch({ type: 'update', payload: { token } });
-    } else {
-      if (typeof window !== 'undefined') {
-        window.localStorage.removeItem(AUTH_TOKEN_KEY);
-      }
-      dispatch({ type: 'update', payload: { token: null } });
+    if (typeof window !== 'undefined') {
+      if (token) window.localStorage.setItem(AUTH_TOKEN_KEY, token);
     }
   }, [token]);
 
