@@ -22,7 +22,9 @@ export default function Profile(props = {}) {
           <Avatar src={src} name={name} width="100px" height="100px" />
         </Box>
         <Box flex="1">
-          <Box as="h1">{name}</Box>
+          <Box as="h1" mb="0">
+            {name}
+          </Box>
         </Box>
       </Box>
     </Layout>
