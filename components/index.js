@@ -3,6 +3,7 @@ import CustomLink from './CustomLink';
 import EventsGrid from './EventsGrid';
 import EventSingle from './EventSingle';
 import Footer from './Footer';
+import GroupsGrid from './GroupsGrid';
 import Header from './Header';
 import Layout from './Layout';
 import Logo from './Logo';
@@ -16,6 +17,7 @@ export {
   EventsGrid,
   EventSingle,
   Footer,
+  GroupsGrid,
   Header,
   Layout,
   Logo,

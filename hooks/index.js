@@ -4,6 +4,8 @@ import useCurrentUser from './useCurrentUser';
 import useEvent from './useEvent';
 import useEvents from './useEvents';
 import useForm from './useForm';
+import useGroup from './useGroup';
+import useGroups from './useGroups';
 import useRegisterWithEmail from './useRegisterWithEmail';
 import useRegisterWithSms from './useRegisterWithSms';
 import useRequestPin from './useRequestPin';
@@ -17,6 +19,8 @@ export {
   useEvent,
   useEvents,
   useForm,
+  useGroup,
+  useGroups,
   useRegisterWithEmail,
   useRegisterWithSms,
   useRequestPin,
