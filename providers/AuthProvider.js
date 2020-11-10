@@ -43,17 +43,10 @@ function AuthProvider(props = {}) {
   const token = state.token;
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const token = window.localStorage.getItem(AUTH_TOKEN_KEY);
-      if (token) dispatch({ type: 'update', payload: { token } });
-    }
-  }, []);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.localStorage.setItem(AUTH_TOKEN_KEY, token);
-    }
     if (token) {
+      if (typeof window !== 'undefined') {
+        window.localStorage.setItem(AUTH_TOKEN_KEY, token);
+      }
       dispatch({ type: 'update', payload: { token } });
     } else {
       if (typeof window !== 'undefined') {
