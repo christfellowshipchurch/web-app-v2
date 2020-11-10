@@ -44,8 +44,19 @@ function Nav(props = {}) {
             handleAuthClick={handleAuthClick}
           />
         ) : (
-          <Box as="a" href="#0" onClick={handleAuthClick}>
-            <Icon name="user" color="fg" size="32" />
+          <Box
+            as="a"
+            href="#0"
+            display="block"
+            border="2px solid"
+            borderColor="fg"
+            borderRadius="50%"
+            lineHeight="38px"
+            size="45px"
+            textAlign="center"
+            onClick={handleAuthClick}
+          >
+            <Icon name="user" color="fg" size="28px" />
             <Box as="span" className="srt">
               User
             </Box>
