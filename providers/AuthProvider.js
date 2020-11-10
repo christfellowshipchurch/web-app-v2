@@ -54,16 +54,18 @@ function getInitialState(state) {
 
 function AuthProvider(props = {}) {
   const [state, dispatch] = useReducer(reducer, initialState, getInitialState);
-  const token = state.token;
+  const { authenticated, token } = state;
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       if (token) {
         window.localStorage.setItem(AUTH_TOKEN_KEY, token);
         dispatch({ type: 'update', payload: { authenticated: true } });
+      } else {
+        if (!authenticated) window.localStorage.removeItem(AUTH_TOKEN_KEY);
       }
     }
-  }, [token]);
+  }, [token, authenticated]);
 
   return (
     <AuthStateContext.Provider value={state}>
