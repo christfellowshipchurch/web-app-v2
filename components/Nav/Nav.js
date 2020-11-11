@@ -22,6 +22,7 @@ import Styled from './Nav.styles';
 function Nav(props = {}) {
   const [{ authenticated }, authDispatch] = useAuth();
   const modalDispatch = useModalDispatch();
+  const router = useRouter();
 
   function handleAuthClick(event) {
     event.preventDefault();
@@ -31,6 +32,7 @@ function Nav(props = {}) {
   function handleLogoutClick(event) {
     event.preventDefault();
     authDispatch(logout());
+    router.reload();
   }
 
   return (
