@@ -4,6 +4,14 @@ import { Layout } from '../components';
 export default function Home() {
   return (
     <Layout title="Home">
+      <StaticContent />
+    </Layout>
+  );
+}
+
+function StaticContent() {
+  return (
+    <>
       <Card
         height="450px"
         mb="xl"
@@ -122,6 +130,6 @@ export default function Home() {
           />
         </Box>
       </Box>
-    </Layout>
+    </>
   );
 }

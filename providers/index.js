@@ -3,6 +3,7 @@ import AuthProvider from './AuthProvider';
 import CurrentUserProvider from './CurrentUserProvider';
 import EventProvider from './EventProvider';
 import EventsProvider from './EventsProvider';
+import FeedFeaturesProvider from './FeedFeaturesProvider';
 import GroupProvider from './GroupProvider';
 import GroupsProvider from './GroupsProvider';
 import ModalProvider from './ModalProvider';
@@ -14,6 +15,7 @@ export {
   CurrentUserProvider,
   EventProvider,
   EventsProvider,
+  FeedFeaturesProvider,
   GroupProvider,
   GroupsProvider,
   ModalProvider,
