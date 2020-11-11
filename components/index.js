@@ -1,9 +1,10 @@
 import ClientSideComponent from './ClientSideComponent';
 import CustomLink from './CustomLink';
-import EventsGrid from './EventsGrid';
+import EventsList from './EventsList';
 import EventSingle from './EventSingle';
 import Footer from './Footer';
-import GroupsGrid from './GroupsGrid';
+import GroupsList from './GroupsList';
+import GroupSingle from './GroupSingle';
 import Header from './Header';
 import Layout from './Layout';
 import Logo from './Logo';
@@ -14,10 +15,11 @@ import PageTitle from './PageTitle';
 export {
   ClientSideComponent,
   CustomLink,
-  EventsGrid,
+  EventsList,
   EventSingle,
   Footer,
-  GroupsGrid,
+  GroupsList,
+  GroupSingle,
   Header,
   Layout,
   Logo,

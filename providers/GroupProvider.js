@@ -14,7 +14,7 @@ GroupProvider.propTypes = {
     PropTypes.func,
     PropTypes.object,
   ]),
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
 };
 
 export default GroupProvider;

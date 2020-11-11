@@ -19,9 +19,8 @@ export const GET_GROUPS = gql`
   ${GROUP_FRAGMENT}
 `;
 
-function useEvent(options) {
+function useGroups(options) {
   const query = useQuery(GET_GROUPS, options);
-  console.log(query);
 
   return {
     groups: query?.data?.currentUser?.profile?.groups || [],
@@ -29,4 +28,4 @@ function useEvent(options) {
   };
 }
 
-export default useEvent;
+export default useGroups;

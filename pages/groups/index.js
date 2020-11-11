@@ -1,6 +1,6 @@
 import { GroupsProvider } from '../../providers';
 import { Box } from '../../ui-kit';
-import { GroupsGrid, Layout } from '../../components';
+import { GroupsList, Layout } from '../../components';
 
 export default function Groups() {
   return (
@@ -8,7 +8,7 @@ export default function Groups() {
       <Box as="h1" mb="l">
         Groups
       </Box>
-      <GroupsProvider Component={GroupsGrid} />
+      <GroupsProvider Component={GroupsList} />
     </Layout>
   );
 }

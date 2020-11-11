@@ -5,7 +5,7 @@ import { slugify } from '../../utils';
 import { Card, CardGrid } from '../../ui-kit';
 import { CustomLink } from '../';
 
-function EventsGrid(props = {}) {
+function EventsList(props = {}) {
   return (
     <CardGrid>
       {props.data.map(event => (
@@ -23,8 +23,8 @@ function EventsGrid(props = {}) {
   );
 }
 
-EventsGrid.propTypes = {
+EventsList.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
 };
 
-export default EventsGrid;
+export default EventsList;
