@@ -1,7 +1,7 @@
 import { gql, useQuery } from '@apollo/client';
 
 export const GROUP_FRAGMENT = gql`
-  fragment groupFragment on Group {
+  fragment GroupFragment on Group {
     id
     title
     groupType
@@ -31,7 +31,7 @@ export const GET_GROUP = gql`
     node(id: $itemId) {
       __typename
       ... on Group {
-        ...groupFragment
+        ...GroupFragment
       }
     }
   }

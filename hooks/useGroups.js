@@ -10,7 +10,7 @@ export const GET_GROUPS = gql`
         id
         groups {
           ... on Group {
-            ...groupFragment
+            ...GroupFragment
           }
         }
       }
