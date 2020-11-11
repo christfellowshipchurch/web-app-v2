@@ -5,6 +5,7 @@ import useEvent from './useEvent';
 import useEvents from './useEvents';
 import useForm from './useForm';
 import useGroup from './useGroup';
+import useGroupContentId from './useGroupContentId';
 import useGroups from './useGroups';
 import useRegisterWithEmail from './useRegisterWithEmail';
 import useRegisterWithSms from './useRegisterWithSms';
@@ -20,6 +21,7 @@ export {
   useEvents,
   useForm,
   useGroup,
+  useGroupContentId,
   useGroups,
   useRegisterWithEmail,
   useRegisterWithSms,

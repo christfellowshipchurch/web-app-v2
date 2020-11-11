@@ -1,24 +1,25 @@
-import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
+import { useGroupContentId } from '../../hooks';
 import { GroupProvider } from '../../providers';
-import { useAuthState } from '../../providers/AuthProvider';
+import { Loader } from '../../ui-kit';
 import { GroupSingle, Layout } from '../../components';
 
 export default function Group(props) {
-  const { authenticated } = useAuthState();
   const router = useRouter();
   const { title, id } = router.query;
+  const state = useGroupContentId({ title, id });
 
-  // If we don't have an ID or the user isn't authenticated,
-  // then we're just going to redirect the user to the /groups page.
-  useEffect(() => {
-    if (!id || !authenticated) router.push('/groups');
-  }, [id, authenticated, router]);
+  const _id = id || state.contentId;
+  const isLoading = state.status === 'LOADING' || state.status === 'RECEIVED';
 
   return (
     <Layout title={title}>
-      <GroupProvider Component={GroupSingle} title={id} />
+      {isLoading ? (
+        <Loader text="Loading your Group" />
+      ) : _id ? (
+        <GroupProvider Component={GroupSingle} title={_id} />
+      ) : null}
     </Layout>
   );
 }
