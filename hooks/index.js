@@ -1,5 +1,6 @@
 import useAuthenticateCredentials from './useAuthenticateCredentials';
 import useAuthQuery from './useAuthQuery';
+import useContentFeed from './useContentFeed';
 import useCurrentUser from './useCurrentUser';
 import useEvent from './useEvent';
 import useEvents from './useEvents';
@@ -17,6 +18,7 @@ import useVerifyPin from './useVerifyPin';
 export {
   useAuthenticateCredentials,
   useAuthQuery,
+  useContentFeed,
   useCurrentUser,
   useEvent,
   useEvents,

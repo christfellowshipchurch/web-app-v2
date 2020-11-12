@@ -6,6 +6,7 @@ import Footer from './Footer';
 import GroupsList from './GroupsList';
 import GroupSingle from './GroupSingle';
 import Header from './Header';
+import HomeFeed from './HomeFeed';
 import Layout from './Layout';
 import Logo from './Logo';
 import * as modals from './Modals';
@@ -21,6 +22,7 @@ export {
   GroupsList,
   GroupSingle,
   Header,
+  HomeFeed,
   Layout,
   Logo,
   modals,

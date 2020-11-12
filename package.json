@@ -19,6 +19,7 @@
     "@styled-system/theme-get": "^5.1.2",
     "apollo3-cache-persist": "^0.8.0",
     "graphql": "^15.4.0",
+    "lodash": "^4.17.20",
     "next": "10.0.0",
     "nprogress": "^0.2.0",
     "prop-types": "^15.7.2",
