@@ -1,6 +1,7 @@
 import AppProvider from './AppProvider';
 import AuthProvider from './AuthProvider';
 import ContentFeedProvider from './ContentFeedProvider';
+import ContentItemProvider from './ContentItemProvider';
 import CurrentUserProvider from './CurrentUserProvider';
 import EventProvider from './EventProvider';
 import EventsProvider from './EventsProvider';
@@ -14,6 +15,7 @@ export {
   AppProvider,
   AuthProvider,
   ContentFeedProvider,
+  ContentItemProvider,
   CurrentUserProvider,
   EventProvider,
   EventsProvider,

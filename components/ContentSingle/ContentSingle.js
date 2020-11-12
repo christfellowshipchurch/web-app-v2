@@ -4,25 +4,25 @@ import PropTypes from 'prop-types';
 import { Box, Button } from '../../ui-kit';
 import { ContentLayout } from '../';
 
-function EventSingle(props = {}) {
+function ContentSingle(props = {}) {
   return (
     <ContentLayout
       title={props.data.title}
-      summary={props.data.summary}
+      summary={props.data.schedule?.friendlyScheduleText}
       coverImage={props.data?.coverImage?.sources[0]?.uri}
-      renderC={() => (
-        <Button variant="secondary">Invite others to this event</Button>
-      )}
+      renderC={() => <Button variant="secondary">Share</Button>}
       contentTitleD="About"
       htmlContent={props.data.htmlContent}
-      contentTitleE="Schedule"
-      renderContentE={() => <Box as="p">The schedule will go here&hellip;</Box>}
+      contentTitleE="Resources"
+      renderContentE={() => (
+        <Box as="p">The resources will go here&hellip;</Box>
+      )}
     />
   );
 }
 
-EventSingle.propTypes = {
+ContentSingle.propTypes = {
   data: PropTypes.object,
 };
 
-export default EventSingle;
+export default ContentSingle;

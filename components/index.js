@@ -1,4 +1,7 @@
 import ClientSideComponent from './ClientSideComponent';
+import ContentLayout from './ContentLayout';
+import ContentList from './ContentList';
+import ContentSingle from './ContentSingle';
 import CustomLink from './CustomLink';
 import EventsList from './EventsList';
 import EventSingle from './EventSingle';
@@ -15,6 +18,9 @@ import PageTitle from './PageTitle';
 
 export {
   ClientSideComponent,
+  ContentLayout,
+  ContentList,
+  ContentSingle,
   CustomLink,
   EventsList,
   EventSingle,
