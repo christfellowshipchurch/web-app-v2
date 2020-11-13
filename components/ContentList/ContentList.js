@@ -1,29 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { slugify } from '../../utils';
+import { getURLFromType } from '../../utils';
 import { Box, Card, CardGrid, Loader } from '../../ui-kit';
 import { CustomLink } from '../../components';
 
 function ContentList(props = {}) {
-  function getUrl(node) {
-    const [type, randomId] = node.id.split(':');
-    switch (type) {
-      case 'EventContentItem': {
-        return `/events/${slugify(node.title)}`;
-      }
-      case 'InformationalContentItem': {
-        return `/items/${slugify(node.title)}-${randomId}`;
-      }
-      case 'MediaContentItem': {
-        return `/content/${slugify(node.title)}-${randomId}`;
-      }
-      default: {
-        return '/';
-      }
-    }
-  }
-
   function render() {
     if (props.item.action === 'READ_GLOBAL_CONTENT') {
       if (props.loading) {
@@ -34,7 +16,7 @@ function ContentList(props = {}) {
         <CustomLink
           as="a"
           key={edge?.node?.id}
-          href={getUrl(edge?.node)}
+          href={getURLFromType(edge?.node)}
           Component={Card}
           coverImage={edge?.node?.images[0]?.sources[0]?.uri}
           coverImageOverlay={true}
@@ -60,7 +42,7 @@ function ContentList(props = {}) {
                 <CustomLink
                   as="a"
                   key={edge?.node?.id}
-                  href={getUrl(edge?.node)}
+                  href={getURLFromType(edge?.node)}
                   Component={Card}
                   coverImage={edge?.node?.images[0]?.sources[0]?.uri}
                   title={edge?.node?.title}
