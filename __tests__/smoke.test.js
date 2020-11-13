@@ -1,6 +1,7 @@
 import { render } from '@testing-library/react';
+import { MockedProvider } from '@apollo/client/testing';
 
-import { ModalProvider } from '../providers';
+import { AuthProvider, ModalProvider } from '../providers';
 import App from '../pages/index';
 
 jest.mock('next/router', () => ({
@@ -12,9 +13,13 @@ jest.mock('next/router', () => ({
 describe('App', () => {
   it('renders without crashing', () => {
     const { getAllByTestId } = render(
-      <ModalProvider>
-        <App />
-      </ModalProvider>
+      <MockedProvider mocks={[]} addTypename={false}>
+        <AuthProvider>
+          <ModalProvider>
+            <App />
+          </ModalProvider>
+        </AuthProvider>
+      </MockedProvider>
     );
     expect(getAllByTestId('nav-link').length).toEqual(4);
   });
