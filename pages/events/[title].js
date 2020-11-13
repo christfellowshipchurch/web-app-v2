@@ -13,7 +13,10 @@ export default function Event(props) {
 
   return (
     <Layout title={title}>
-      <EventProvider Component={EventSingle} title={title} />
+      <EventProvider
+        Component={EventSingle}
+        options={{ variables: { title } }}
+      />
     </Layout>
   );
 }

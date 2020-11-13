@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import { useGroups } from '../hooks';
 
-function GroupsProvider({ Component, ...props }) {
-  const { loading, error, groups } = useGroups();
+function GroupsProvider({ Component, options, ...props }) {
+  const { loading, error, groups } = useGroups(options);
   return <Component data={groups} loading={loading} error={error} {...props} />;
 }
 
@@ -14,6 +14,7 @@ GroupsProvider.propTypes = {
     PropTypes.func,
     PropTypes.object,
   ]),
+  options: PropTypes.object,
 };
 
 export default GroupsProvider;

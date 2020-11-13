@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import { useCurrentUser } from '../hooks';
 
-function CurrentUserProvider({ Component, ...props }) {
-  const { loading, error, currentUser } = useCurrentUser();
+function CurrentUserProvider({ Component, options, ...props }) {
+  const { loading, error, currentUser } = useCurrentUser(options);
   return (
     <Component
       loading={loading}
@@ -21,6 +21,7 @@ CurrentUserProvider.propTypes = {
     PropTypes.func,
     PropTypes.object,
   ]),
+  options: PropTypes.object,
 };
 
 export default CurrentUserProvider;

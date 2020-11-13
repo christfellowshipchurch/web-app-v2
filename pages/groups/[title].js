@@ -18,7 +18,10 @@ export default function Group(props) {
       {isLoading ? (
         <Loader text="Loading your Group" />
       ) : _id ? (
-        <GroupProvider Component={GroupSingle} title={_id} />
+        <GroupProvider
+          Component={GroupSingle}
+          options={{ variables: { itemId: _id } }}
+        />
       ) : null}
     </Layout>
   );

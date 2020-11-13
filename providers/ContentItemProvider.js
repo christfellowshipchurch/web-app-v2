@@ -14,6 +14,7 @@ ContentItemProvider.propTypes = {
     PropTypes.func,
     PropTypes.object,
   ]),
+  options: PropTypes.object,
 };
 
 export default ContentItemProvider;

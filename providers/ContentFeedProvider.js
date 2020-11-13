@@ -16,6 +16,7 @@ ContentFeedProvider.propTypes = {
     PropTypes.func,
     PropTypes.object,
   ]),
+  options: PropTypes.object,
 };
 
 export default ContentFeedProvider;

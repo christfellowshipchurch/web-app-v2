@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import { useEvent } from '../hooks';
 
-function EventProvider({ Component, title, ...props }) {
-  const { event } = useEvent({ variables: { title } });
-  return <Component data={event} {...props} />;
+function EventProvider({ Component, options, ...props }) {
+  const { loading, error, event } = useEvent(options);
+  return <Component data={event} loading={loading} error={error} {...props} />;
 }
 
 EventProvider.propTypes = {
@@ -14,7 +14,7 @@ EventProvider.propTypes = {
     PropTypes.func,
     PropTypes.object,
   ]),
-  title: PropTypes.string.isRequired,
+  options: PropTypes.object,
 };
 
 export default EventProvider;
