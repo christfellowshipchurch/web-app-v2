@@ -82,7 +82,7 @@ function ContentList(props = {}) {
 }
 
 ContentList.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object),
+  data: PropTypes.object,
 };
 
 export default ContentList;
