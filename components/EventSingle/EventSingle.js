@@ -10,9 +10,7 @@ function EventSingle(props = {}) {
       title={props.data.title}
       summary={props.data.summary}
       coverImage={props.data?.coverImage?.sources[0]?.uri}
-      renderC={() => (
-        <Button variant="secondary">Invite others to this event</Button>
-      )}
+      renderC={() => <Button variant="secondary">Invite</Button>}
       contentTitleD="About"
       htmlContent={props.data.htmlContent}
       contentTitleE="Schedule"
