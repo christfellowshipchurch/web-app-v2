@@ -17,15 +17,16 @@ export default function Profile(props = {}) {
 
   return (
     <Layout title="Profile">
-      <Box alignItems="center" display="flex">
-        <Box mr="base">
-          <Avatar src={src} name={name} width="100px" height="100px" />
-        </Box>
-        <Box flex="1">
-          <Box as="h1" mb="0">
-            {name}
-          </Box>
-        </Box>
+      <Box textAlign="center">
+        <Avatar
+          src={src}
+          name={name}
+          width="150px"
+          height="150px"
+          mb="base"
+          mx="auto"
+        />
+        <Box as="h1">{name}</Box>
       </Box>
     </Layout>
   );
