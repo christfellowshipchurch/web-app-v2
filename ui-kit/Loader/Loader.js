@@ -54,4 +54,6 @@ Loader.defaultProps = {
   text: 'Loading',
 };
 
+Loader.SVG = SVG;
+
 export default Loader;

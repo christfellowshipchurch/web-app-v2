@@ -32,6 +32,8 @@ function AuthConfirm() {
     }
   });
 
+  const isLoading = status === 'LOADING';
+
   return (
     <>
       <Box as="p" color="subdued" mb="l">
@@ -48,8 +50,8 @@ function AuthConfirm() {
           />
         </Box>
         <Box textAlign="center">
-          <Button type="submit" mb="base">
-            Submit{status === 'LOADING' ? 'ting...' : ''}
+          <Button type="submit" loading={isLoading} mb="base">
+            Submit{isLoading ? 'ting...' : ''}
           </Button>
           <Box as="a" href="#0" display="block">
             Did't get a code? Request a new one.

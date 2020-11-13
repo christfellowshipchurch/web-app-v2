@@ -56,6 +56,8 @@ function AuthIdentity() {
     checkIfUserExists({ variables: { identity: values.identity } });
   });
 
+  const isLoading = status === 'LOADING';
+
   return (
     <>
       <Box as="p" color="subdued" mb="l">
@@ -81,8 +83,8 @@ function AuthIdentity() {
           />
         </Box>
         <Box textAlign="center">
-          <Button type="submit">
-            {status === 'LOADING' ? 'Loading...' : 'Agree and continue'}
+          <Button type="submit" loading={isLoading}>
+            {isLoading ? 'Loading...' : 'Agree and continue'}
           </Button>
         </Box>
       </Box>

@@ -23,6 +23,19 @@ const size = ({ size }) => props => {
   }
 };
 
+const loading = ({ loading }) => props => {
+  if (loading) {
+    return css`
+      align-items: center;
+      display: inline-flex;
+
+      > *:first-child {
+        margin-right: ${themeGet('space.s')};
+      }
+    `;
+  }
+};
+
 const Button = styled.button`
   background-color: ${themeGet('colors.primary')};
   border: 1px solid transparent;
@@ -46,6 +59,7 @@ const Button = styled.button`
     color: ${themeGet('colors.white')};
   }
 
+  ${loading}
   ${variant}
   ${size}
   ${system}
