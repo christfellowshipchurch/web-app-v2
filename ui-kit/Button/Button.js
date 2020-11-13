@@ -20,7 +20,7 @@ function Button(props = {}) {
 Button.propTypes = {
   ...systemPropTypes,
   loading: PropTypes.bool,
-  size: PropTypes.oneOf(['l']),
+  size: PropTypes.oneOf(['s', 'l']),
   variant: PropTypes.oneOf(['secondary']),
 };
 
