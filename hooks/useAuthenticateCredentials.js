@@ -8,7 +8,7 @@ export const AUTHENTICATE_CREDENTIALS = gql`
   }
 `;
 
-function useAuthenticateCredentials(options) {
+function useAuthenticateCredentials(options = {}) {
   return useMutation(AUTHENTICATE_CREDENTIALS, options);
 }
 

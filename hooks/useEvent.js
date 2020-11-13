@@ -30,7 +30,7 @@ export const GET_EVENT = gql`
   }
 `;
 
-function useEvent(options) {
+function useEvent(options = {}) {
   const query = useQuery(GET_EVENT, options);
 
   return {

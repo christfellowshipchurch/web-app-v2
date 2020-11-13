@@ -19,7 +19,7 @@ export const GET_GROUPS = gql`
   ${GROUP_FRAGMENT}
 `;
 
-function useGroups(options) {
+function useGroups(options = {}) {
   const query = useQuery(GET_GROUPS, options);
 
   return {

@@ -8,7 +8,7 @@ export const REQUEST_PIN = gql`
   }
 `;
 
-function useRequestPin(options) {
+function useRequestPin(options = {}) {
   return useMutation(REQUEST_PIN, options);
 }
 

@@ -24,7 +24,7 @@ export const REGISTER_WITH_SMS = gql`
   }
 `;
 
-function useRegisterWithSms(options) {
+function useRegisterWithSms(options = {}) {
   return useMutation(REGISTER_WITH_SMS, options);
 }
 

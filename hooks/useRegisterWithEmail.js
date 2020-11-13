@@ -24,7 +24,7 @@ export const REGISTER_WITH_EMAIL = gql`
   }
 `;
 
-function useRegisterWithEmail(options) {
+function useRegisterWithEmail(options = {}) {
   return useMutation(REGISTER_WITH_EMAIL, options);
 }
 

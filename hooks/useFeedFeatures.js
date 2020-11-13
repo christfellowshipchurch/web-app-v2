@@ -26,7 +26,7 @@ export const GET_FEED_FEATURES = gql`
   }
 `;
 
-function useFeedFeatures(options) {
+function useFeedFeatures(options = {}) {
   const query = useQuery(GET_FEED_FEATURES, options);
 
   return {

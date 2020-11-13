@@ -78,7 +78,7 @@ export const GET_CONTENT_FEED = gql`
   }
 `;
 
-function useContentFeed(options) {
+function useContentFeed(options = {}) {
   const query = useQuery(GET_CONTENT_FEED, options);
 
   return {

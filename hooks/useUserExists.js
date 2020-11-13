@@ -6,7 +6,7 @@ export const USER_EXISTS = gql`
   }
 `;
 
-function useUserExists(options) {
+function useUserExists(options = {}) {
   return useLazyQuery(USER_EXISTS, options);
 }
 

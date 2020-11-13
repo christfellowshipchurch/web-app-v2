@@ -8,7 +8,7 @@ export const VERIFY_PIN = gql`
   }
 `;
 
-function useVerifyPin(options) {
+function useVerifyPin(options = {}) {
   return useMutation(VERIFY_PIN, options);
 }
 

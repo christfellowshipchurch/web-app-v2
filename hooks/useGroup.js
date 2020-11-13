@@ -38,7 +38,7 @@ export const GET_GROUP = gql`
   ${GROUP_FRAGMENT}
 `;
 
-function useGroup(options) {
+function useGroup(options = {}) {
   const query = useQuery(GET_GROUP, options);
 
   return {

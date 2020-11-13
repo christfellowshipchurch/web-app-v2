@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/client';
 
 import { useAuth, logout } from '../providers/AuthProvider';
 
-const useAuthQuery = (query, options) => {
+const useAuthQuery = (query, options = {}) => {
   const [state, dispatch] = useAuth();
   const { token, authenticated } = state;
   const { data, error, loading, refetch } = useQuery(query, {

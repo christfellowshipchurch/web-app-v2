@@ -16,7 +16,7 @@ export const GET_CURRENT_USER = gql`
   }
 `;
 
-function useCurrentUser(options) {
+function useCurrentUser(options = {}) {
   const query = useAuthQuery(GET_CURRENT_USER, options);
 
   return {

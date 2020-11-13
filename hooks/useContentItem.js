@@ -137,7 +137,7 @@ export const GET_CONTENT_ITEM = gql`
   ${INFORMATIONAL_ITEM_FRAGMENT}
 `;
 
-function useContentItem(options) {
+function useContentItem(options = {}) {
   const query = useQuery(GET_CONTENT_ITEM, options);
 
   return {
