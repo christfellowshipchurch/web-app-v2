@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import { validatePhoneNumber } from '../../../utils';
 import { useForm, useRequestPin, useUserExists } from '../../../hooks';
 import {
   useAuthDispatch,
@@ -18,7 +19,7 @@ function AuthIdentity() {
       if (userExists) {
         // If they used a phone number, we need to send a PIN.
         const phone = values.identity;
-        const isValidPhoneNumber = phone.match(/[0-9]{10}/);
+        const isValidPhoneNumber = validatePhoneNumber(phone);
         if (isValidPhoneNumber) {
           requestPin({
             variables: {

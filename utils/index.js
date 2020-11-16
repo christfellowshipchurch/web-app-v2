@@ -3,6 +3,8 @@ import createMarkup from './createMarkup';
 import getURLFromType from './getURLFromType';
 import normalizeUserData from './normalizeUserData';
 import slugify from './slugify';
+import validateEmail from './validateEmail';
+import validatePhoneNumber from './validatePhoneNumber';
 
 export {
   cleanMarkup,
@@ -10,4 +12,6 @@ export {
   getURLFromType,
   normalizeUserData,
   slugify,
+  validateEmail,
+  validatePhoneNumber,
 };
