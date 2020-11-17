@@ -25,16 +25,6 @@ const Input = styled.input`
   ${system}
 `;
 
-const Label = styled.label`
-  display: block;
-  font-size: ${themeGet('fontSizes.s')};
-  font-weight: ${themeGet('fontWeights.bold')};
-  margin-bottom: ${themeGet('space.s')};
-
-  ${system}
-`;
-
 TextInput.Input = Input;
-TextInput.Label = Label;
 
 export default TextInput;

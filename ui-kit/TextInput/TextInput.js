@@ -1,15 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { systemPropTypes } from '../';
+import { Box, FormLabel, systemPropTypes } from '../';
 import Styled from './TextInput.styles';
 
 function TextInput(props = {}) {
   return (
     <Styled {...props.containerProps}>
-      <Styled.Label htmlFor={props.id} {...props.labelProps}>
+      <FormLabel htmlFor={props.id} {...props.labelProps}>
         {props.label}
-      </Styled.Label>
+        {props.required ? (
+          <Box as="span" color="error" fontWeight="bold">
+            *
+          </Box>
+        ) : null}
+      </FormLabel>
       <Styled.Input id={props.id} name={props.id} {...props} />
     </Styled>
   );

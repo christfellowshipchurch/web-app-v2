@@ -14,12 +14,14 @@ import Card from './Card';
 import CardGrid from './CardGrid';
 import Cell from './Cell';
 import Checkbox from './Checkbox';
+import FormLabel from './FormLabel';
 import Icon from './Icon';
 import List from './List';
 import Loader from './Loader';
 import Longform from './Longform';
 import Menu from './Menu';
 import Modal from './Modal';
+import Radio from './Radio';
 import TextInput from './TextInput';
 
 export {
@@ -35,12 +37,14 @@ export {
   CardGrid,
   Cell,
   Checkbox,
+  FormLabel,
   Icon,
   List,
   Loader,
   Longform,
   Menu,
   Modal,
+  Radio,
   TextInput,
   // ====================
   icons,
