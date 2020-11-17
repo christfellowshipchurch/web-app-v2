@@ -9,8 +9,21 @@ import { useAuth, update as updateAuth } from '../../../providers/AuthProvider';
 import { hideModal, useModalDispatch } from '../../../providers/ModalProvider';
 import { Box, Button, TextInput } from '../../../ui-kit';
 
+const COPY = {
+  DESCRIPTION: {
+    sms:
+      'Enter in the Confirmation Code that was texted to your mobile phone number.',
+    password: 'Enter in your existing password or create your password below.',
+  },
+  LABEL: {
+    sms: 'Confirmation Code',
+    password: 'Password',
+  },
+};
+
 function AuthConfirm() {
   const [status, setStatus] = useState('IDLE');
+  const [error, setError] = useState(null);
   const [state, dispatch] = useAuth();
   const modalDispatch = useModalDispatch();
   const [verifyPin] = useVerifyPin();
@@ -30,6 +43,14 @@ function AuthConfirm() {
             dispatch(updateAuth({ token }));
             modalDispatch(hideModal());
           },
+          onError: () => {
+            setStatus('ERROR');
+            setError({
+              passcode: `The ${
+                COPY.LABEL[state.type]
+              } you entered is incorrect.`,
+            });
+          },
         });
       } catch (error) {
         setStatus('IDLE');
@@ -45,6 +66,14 @@ function AuthConfirm() {
             dispatch(updateAuth({ token }));
             modalDispatch(hideModal());
           },
+          onError: () => {
+            setStatus('ERROR');
+            setError({
+              passcode: `The ${
+                COPY.LABEL[state.type]
+              } you entered is incorrect.`,
+            });
+          },
         });
       } catch (error) {
         setStatus('IDLE');
@@ -54,19 +83,6 @@ function AuthConfirm() {
   });
 
   const isLoading = status === 'LOADING';
-
-  const COPY = {
-    DESCRIPTION: {
-      sms:
-        'Enter in the Confirmation Code that was texted to your mobile phone number.',
-      password:
-        'Enter in your existing password or create your password below.',
-    },
-    LABEL: {
-      sms: 'Confirmation Code',
-      password: 'Password',
-    },
-  };
 
   const canRequestNewCode =
     state.type === 'sms' && state.identity && state.identity !== '';
@@ -84,6 +100,11 @@ function AuthConfirm() {
             onChange={handleChange}
             required
           />
+          {error?.passcode ? (
+            <Box as="p" color="error" fontSize="s" mt="s">
+              {error.passcode}
+            </Box>
+          ) : null}
         </Box>
         <Box textAlign="center">
           <Button type="submit" status={status} mb="base">
