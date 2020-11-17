@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { validatePhoneNumber } from '../../../utils';
+import { validateEmail, validatePhoneNumber } from '../../../utils';
 import { useForm, useRequestPin, useUserExists } from '../../../hooks';
 import {
   useAuthDispatch,
@@ -17,13 +17,15 @@ function AuthIdentity() {
     onCompleted: async data => {
       const userExists = data?.userExists !== 'NONE';
       if (userExists) {
+        const identity = values.identity;
+        const isValidPhoneNumber = validatePhoneNumber(identity);
+        const isValidEmail = validateEmail(identity);
+
         // If they used a phone number, we need to send a PIN.
-        const phone = values.identity;
-        const isValidPhoneNumber = validatePhoneNumber(phone);
         if (isValidPhoneNumber) {
           requestPin({
             variables: {
-              phone,
+              phone: identity,
             },
             update: (
               cache,
@@ -37,7 +39,7 @@ function AuthIdentity() {
                 setStatus('SUCCESS');
                 dispatch(
                   updateAuth({
-                    identity: phone,
+                    identity,
                     type: 'sms',
                     step: 2,
                     userExists,
@@ -46,6 +48,19 @@ function AuthIdentity() {
               }
             },
           });
+        }
+
+        // If they have a valid email, we need to set the type and
+        // move them to the confirmation step.
+        if (isValidEmail) {
+          dispatch(
+            updateAuth({
+              identity,
+              type: 'password',
+              step: 2,
+              userExists,
+            })
+          );
         }
       } else {
         dispatch(updateAuth({ step: 1 }));
@@ -84,7 +99,7 @@ function AuthIdentity() {
           />
         </Box>
         <Box textAlign="center">
-          <Button type="submit" loading={isLoading}>
+          <Button type="submit" loading={isLoading || undefined}>
             {isLoading ? 'Loading...' : 'Agree and continue'}
           </Button>
         </Box>
