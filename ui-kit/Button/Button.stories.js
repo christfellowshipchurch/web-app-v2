@@ -13,4 +13,4 @@ export const Sizes = () => <Button size="l">Button</Button>;
 
 export const Variants = () => <Button variant="secondary">Button</Button>;
 
-export const Loading = () => <Button loading={true}>Button</Button>;
+export const Loading = () => <Button status="LOADING">Button</Button>;

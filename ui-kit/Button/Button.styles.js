@@ -32,8 +32,8 @@ const size = ({ size }) => props => {
   }
 };
 
-const loading = ({ loading }) => props => {
-  if (loading) {
+const status = ({ status }) => props => {
+  if (status === 'LOADING') {
     return css`
       align-items: center;
       display: inline-flex;
@@ -68,9 +68,9 @@ const Button = styled.button`
     color: ${themeGet('colors.white')};
   }
 
-  ${loading}
-  ${variant}
   ${size}
+  ${status}
+  ${variant}
   ${system}
 `;
 

@@ -10,6 +10,7 @@ import { Box, Button, Checkbox, TextInput } from '../../../ui-kit';
 
 function AuthIdentity() {
   const [status, setStatus] = useState('IDLE');
+  const [error, setError] = useState(null);
   const dispatch = useAuthDispatch();
   const [requestPin] = useRequestPin();
   const [checkIfUserExists] = useUserExists({
@@ -68,8 +69,18 @@ function AuthIdentity() {
     },
   });
   const { values, handleSubmit, handleChange } = useForm(() => {
-    setStatus('LOADING');
-    checkIfUserExists({ variables: { identity: values.identity } });
+    const identity = values.identity;
+    const validEmail = validateEmail(identity);
+    const validPhoneNumber = validatePhoneNumber(identity);
+    const validIdentity = validEmail || validPhoneNumber;
+
+    if (validIdentity) {
+      setStatus('LOADING');
+      checkIfUserExists({ variables: { identity: values.identity } });
+    } else {
+      setStatus('ERROR');
+      setError({ identity: 'That is not a valid email or phone number.' });
+    }
   });
 
   const isLoading = status === 'LOADING';
@@ -88,6 +99,11 @@ function AuthIdentity() {
             required
             onChange={handleChange}
           />
+          {error?.identity ? (
+            <Box as="p" color="error" fontSize="s" mt="s">
+              {error.identity}
+            </Box>
+          ) : null}
         </Box>
         <Box mb="l">
           <Checkbox
@@ -99,7 +115,7 @@ function AuthIdentity() {
           />
         </Box>
         <Box textAlign="center">
-          <Button type="submit" loading={isLoading || undefined}>
+          <Button type="submit" status={status}>
             {isLoading ? 'Loading...' : 'Agree and continue'}
           </Button>
         </Box>

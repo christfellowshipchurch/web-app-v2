@@ -86,7 +86,7 @@ function AuthConfirm() {
           />
         </Box>
         <Box textAlign="center">
-          <Button type="submit" loading={isLoading || undefined} mb="base">
+          <Button type="submit" status={status} mb="base">
             Submit{isLoading ? 'ting...' : ''}
           </Button>
           {canRequestNewCode ? (

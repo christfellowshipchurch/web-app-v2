@@ -5,7 +5,7 @@ import { Box, Loader, systemPropTypes } from '../';
 import Styled from './Button.styles';
 
 function Button(props = {}) {
-  if (props.loading) {
+  if (props.status === 'LOADING') {
     return (
       <Styled {...props}>
         <Loader noLabel={true} />
@@ -19,8 +19,8 @@ function Button(props = {}) {
 
 Button.propTypes = {
   ...systemPropTypes,
-  loading: PropTypes.bool,
   size: PropTypes.oneOf(['s', 'l']),
+  status: PropTypes.oneOf(['IDLE', 'LOADING', 'ERROR', 'SUCCESS']),
   variant: PropTypes.oneOf(['secondary']),
 };
 
