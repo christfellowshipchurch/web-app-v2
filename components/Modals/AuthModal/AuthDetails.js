@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import { getAge } from '../../../utils';
 import { useForm, useRequestPin } from '../../../hooks';
 import { useAuth } from '../../../providers/AuthProvider';
 import { Box, Button, FormLabel, Radio, TextInput } from '../../../ui-kit';
@@ -10,7 +11,13 @@ function AuthDetails() {
   const [error, setError] = useState(null);
   const [requestPin] = useRequestPin();
   const { values, handleSubmit, handleChange } = useForm(() => {
-    // TODO: Make sure they are at least 13 years of age.
+    const age = getAge(values.birthDate);
+    // Make sure they are at least 13 years of age.
+    if (age < 13) {
+      setError({
+        birthDate: 'You must be at least 13-years-old to create an account.',
+      });
+    }
     if (!error) {
       setStatus('LOADING');
       // TODO: requestPin()
