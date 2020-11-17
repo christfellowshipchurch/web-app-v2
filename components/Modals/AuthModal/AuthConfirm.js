@@ -28,6 +28,12 @@ function AuthConfirm() {
   const modalDispatch = useModalDispatch();
   const [verifyPin] = useVerifyPin();
   const [authenticateCredentials] = useAuthenticateCredentials();
+  const onError = () => {
+    setStatus('ERROR');
+    setError({
+      passcode: `The ${COPY.LABEL[state.type]} you entered is incorrect.`,
+    });
+  };
   const { values, handleChange, handleSubmit } = useForm(async () => {
     const passcode = values.passcode;
     setStatus('LOADING');
@@ -43,14 +49,7 @@ function AuthConfirm() {
             dispatch(updateAuth({ token }));
             modalDispatch(hideModal());
           },
-          onError: () => {
-            setStatus('ERROR');
-            setError({
-              passcode: `The ${
-                COPY.LABEL[state.type]
-              } you entered is incorrect.`,
-            });
-          },
+          onError,
         });
       } catch (error) {
         setStatus('IDLE');
@@ -66,14 +65,7 @@ function AuthConfirm() {
             dispatch(updateAuth({ token }));
             modalDispatch(hideModal());
           },
-          onError: () => {
-            setStatus('ERROR');
-            setError({
-              passcode: `The ${
-                COPY.LABEL[state.type]
-              } you entered is incorrect.`,
-            });
-          },
+          onError,
         });
       } catch (error) {
         setStatus('IDLE');
