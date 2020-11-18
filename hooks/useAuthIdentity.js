@@ -52,6 +52,7 @@ function useAuthIdentity() {
     // If they have a valid email, we need to set the type and
     // move them to the confirmation step.
     if (isValidEmail) {
+      setStatus('SUCCESS');
       dispatch(
         updateAuth({
           identity,
