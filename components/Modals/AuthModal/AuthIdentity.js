@@ -1,71 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { validateEmail, validatePhoneNumber } from '../../../utils';
-import { useForm, useRequestPin, useUserExists } from '../../../hooks';
-import {
-  useAuthDispatch,
-  update as updateAuth,
-} from '../../../providers/AuthProvider';
+import { useAuthIdentity, useForm, useUserExists } from '../../../hooks';
 import { Box, Button, Checkbox, TextInput } from '../../../ui-kit';
 
 function AuthIdentity() {
-  const [status, setStatus] = useState('IDLE');
-  const [error, setError] = useState(null);
-  const dispatch = useAuthDispatch();
-  const [requestPin] = useRequestPin();
+  const {
+    status,
+    setStatus,
+    error,
+    setError,
+    handleAuthIdentity,
+  } = useAuthIdentity();
   const [checkIfUserExists] = useUserExists({
     fetchPolicy: 'network-only',
     onCompleted: async data => {
+      const identity = values.identity;
       const userExists = data?.userExists !== 'NONE';
-      if (userExists) {
-        const identity = values.identity;
-        const isValidPhoneNumber = validatePhoneNumber(identity);
-        const isValidEmail = validateEmail(identity);
-
-        // If they used a phone number, we need to send a PIN.
-        if (isValidPhoneNumber) {
-          requestPin({
-            variables: {
-              phone: identity,
-            },
-            update: (
-              cache,
-              {
-                data: {
-                  requestSmsLoginPin: { success },
-                },
-              }
-            ) => {
-              if (success) {
-                setStatus('SUCCESS');
-                dispatch(
-                  updateAuth({
-                    identity,
-                    type: 'sms',
-                    step: 2,
-                    userExists,
-                  })
-                );
-              }
-            },
-          });
-        }
-
-        // If they have a valid email, we need to set the type and
-        // move them to the confirmation step.
-        if (isValidEmail) {
-          dispatch(
-            updateAuth({
-              identity,
-              type: 'password',
-              step: 2,
-              userExists,
-            })
-          );
-        }
-      } else {
-        dispatch(updateAuth({ step: 1 }));
-      }
+      handleAuthIdentity({
+        identity,
+        userExists,
+        nextStep: userExists ? 2 : 1,
+      });
     },
   });
   const { values, handleSubmit, handleChange } = useForm(() => {
@@ -73,7 +29,6 @@ function AuthIdentity() {
     const validEmail = validateEmail(identity);
     const validPhoneNumber = validatePhoneNumber(identity);
     const validIdentity = validEmail || validPhoneNumber;
-
     if (validIdentity) {
       setStatus('LOADING');
       checkIfUserExists({ variables: { identity: values.identity } });
@@ -96,8 +51,9 @@ function AuthIdentity() {
           <TextInput
             id="identity"
             label="Mobile Number or Email"
-            required
             onChange={handleChange}
+            required
+            autoFocus
           />
           {error?.identity ? (
             <Box as="p" color="error" fontSize="s" mt="s">

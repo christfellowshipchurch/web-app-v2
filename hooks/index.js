@@ -1,4 +1,5 @@
 import useAuthenticateCredentials from './useAuthenticateCredentials';
+import useAuthIdentity from './useAuthIdentity';
 import useAuthQuery from './useAuthQuery';
 import useContentFeed from './useContentFeed';
 import useContentItem from './useContentItem';
@@ -18,6 +19,7 @@ import useVerifyPin from './useVerifyPin';
 
 export {
   useAuthenticateCredentials,
+  useAuthIdentity,
   useAuthQuery,
   useContentFeed,
   useContentItem,

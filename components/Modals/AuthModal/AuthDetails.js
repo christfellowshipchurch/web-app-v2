@@ -1,28 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { getAge } from '../../../utils';
-import { useForm, useRequestPin } from '../../../hooks';
-import { useAuth } from '../../../providers/AuthProvider';
+import { useAuthIdentity, useForm } from '../../../hooks';
 import { Box, Button, FormLabel, Radio, TextInput } from '../../../ui-kit';
 
 function AuthDetails() {
-  const [state, dispatch] = useAuth();
-  const [status, setStatus] = useState('IDLE');
-  const [error, setError] = useState(null);
-  const [requestPin] = useRequestPin();
+  const {
+    error,
+    setError,
+    status,
+    setStatus,
+    handleAuthIdentity,
+  } = useAuthIdentity();
   const { values, handleSubmit, handleChange } = useForm(() => {
     const age = getAge(values.birthDate);
     // Make sure they are at least 13 years of age.
     if (age < 13) {
       setError({
-        birthDate: 'You must be at least 13-years-old to create an account.',
+        birthDate: 'You must be at least 13.',
       });
     }
     if (!error) {
       setStatus('LOADING');
-      // TODO: requestPin()
-      // TODO: Register the user via their identity
-      // TODO: Send them to the confirm screen
+      handleAuthIdentity({ nextStep: 2 });
     }
   });
 
@@ -45,8 +45,9 @@ function AuthDetails() {
             <TextInput
               id="firstName"
               label="First Name"
-              required
               onChange={handleChange}
+              required
+              autoFocus
             />
             {error?.firstName ? (
               <Box as="p" color="error" fontSize="s" mt="s">
@@ -58,8 +59,8 @@ function AuthDetails() {
             <TextInput
               id="lastName"
               label="Last Name"
-              required
               onChange={handleChange}
+              required
             />
             {error?.lastName ? (
               <Box as="p" color="error" fontSize="s" mt="s">
@@ -79,8 +80,8 @@ function AuthDetails() {
               id="birthDate"
               label="Birth Date"
               type="date"
-              required
               onChange={handleChange}
+              required
             />
             {error?.birthDate ? (
               <Box as="p" color="error" fontSize="s" mt="s">

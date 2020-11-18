@@ -91,6 +91,7 @@ function AuthConfirm() {
             label={COPY.LABEL[state.type]}
             onChange={handleChange}
             required
+            autoFocus
           />
           {error?.passcode ? (
             <Box as="p" color="error" fontSize="s" mt="s">
