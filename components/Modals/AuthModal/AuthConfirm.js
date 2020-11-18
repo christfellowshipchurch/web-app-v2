@@ -8,6 +8,8 @@ import {
 import { useAuth, update as updateAuth } from '../../../providers/AuthProvider';
 import { hideModal, useModalDispatch } from '../../../providers/ModalProvider';
 import { Box, Button, TextInput } from '../../../ui-kit';
+import ResendCode from './ResendCode';
+import ResetPassword from './ResetPassword';
 
 const COPY = {
   DESCRIPTION: {
@@ -76,9 +78,6 @@ function AuthConfirm() {
 
   const isLoading = status === 'LOADING';
 
-  const canRequestNewCode =
-    state.type === 'sms' && state.identity && state.identity !== '';
-
   return (
     <>
       <Box as="p" color="subdued" mb="l">
@@ -103,11 +102,8 @@ function AuthConfirm() {
           <Button type="submit" status={status} mb="base">
             Submit{isLoading ? 'ting...' : ''}
           </Button>
-          {canRequestNewCode ? (
-            <Box as="a" href="#0" display="block">
-              Did't get a code? Request a new one.
-            </Box>
-          ) : null}
+          <ResendCode />
+          <ResetPassword />
         </Box>
       </Box>
     </>
