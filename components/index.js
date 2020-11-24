@@ -15,6 +15,7 @@ import Logo from './Logo';
 import * as modals from './Modals';
 import Nav from './Nav';
 import PageTitle from './PageTitle';
+import UserProfile from './UserProfile';
 
 export {
   ClientSideComponent,
@@ -34,4 +35,5 @@ export {
   modals,
   Nav,
   PageTitle,
+  UserProfile,
 };

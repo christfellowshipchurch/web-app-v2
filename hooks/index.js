@@ -3,6 +3,7 @@ import useAuthIdentity from './useAuthIdentity';
 import useAuthQuery from './useAuthQuery';
 import useContentFeed from './useContentFeed';
 import useContentItem from './useContentItem';
+import useCurrentPerson from './useCurrentPerson';
 import useCurrentUser from './useCurrentUser';
 import useEvent from './useEvent';
 import useEvents from './useEvents';
@@ -23,6 +24,7 @@ export {
   useAuthQuery,
   useContentFeed,
   useContentItem,
+  useCurrentPerson,
   useCurrentUser,
   useEvent,
   useEvents,

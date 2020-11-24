@@ -1,5 +1,6 @@
 import cleanMarkup from './cleanMarkup';
 import createMarkup from './createMarkup';
+import formatPhoneNumber from './formatPhoneNumber';
 import getAge from './getAge';
 import getURLFromType from './getURLFromType';
 import normalizeUserData from './normalizeUserData';
@@ -10,6 +11,7 @@ import validatePhoneNumber from './validatePhoneNumber';
 export {
   cleanMarkup,
   createMarkup,
+  formatPhoneNumber,
   getAge,
   getURLFromType,
   normalizeUserData,
