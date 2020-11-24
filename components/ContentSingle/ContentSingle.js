@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Box, Button } from '../../ui-kit';
+import { Button } from '../../ui-kit';
 import { ContentLayout } from '../';
 
 function ContentSingle(props = {}) {
@@ -13,10 +13,6 @@ function ContentSingle(props = {}) {
       renderC={() => <Button variant="secondary">Share</Button>}
       contentTitleD="About"
       htmlContent={props.data.htmlContent}
-      contentTitleE="Resources"
-      renderContentE={() => (
-        <Box as="p">The resources will go here&hellip;</Box>
-      )}
     />
   );
 }

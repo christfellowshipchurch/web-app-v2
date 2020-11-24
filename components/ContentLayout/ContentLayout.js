@@ -44,9 +44,10 @@ function ContentLayout(props = {}) {
 
   function renderD() {
     if (props.renderD) return props.renderD();
+    console.log(props);
     const noContent =
-      !props.contentTitleD && !props.htmlContent && !props.renderContentD;
-    if (noContent) return null;
+      !props.contentTitleD || !props.htmlContent || props.htmlContent === '';
+    if (noContent && !props.renderContentD) return null;
     return (
       <Box>
         {props.contentTitleD ? (
@@ -71,6 +72,8 @@ function ContentLayout(props = {}) {
 
   function renderE() {
     if (props.renderE) return props.renderE();
+    const noContent = !props.contentTitleE && !props.renderContentE;
+    if (noContent) return null;
     return (
       <Box>
         {props.contentTitleE ? (
