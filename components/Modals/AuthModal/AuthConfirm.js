@@ -87,6 +87,7 @@ function AuthConfirm() {
         <Box mb="l">
           <TextInput
             id="passcode"
+            type={state.type === 'password' ? 'password' : 'text'}
             label={COPY.LABEL[state.type]}
             onChange={handleChange}
             required
