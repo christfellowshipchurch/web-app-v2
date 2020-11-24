@@ -54,7 +54,7 @@ function AuthConfirm() {
           onError,
         });
       } catch (error) {
-        setStatus('IDLE');
+        onError();
         console.log(error);
       }
     }
@@ -70,7 +70,7 @@ function AuthConfirm() {
           onError,
         });
       } catch (error) {
-        setStatus('IDLE');
+        onError();
         console.log(error);
       }
     }

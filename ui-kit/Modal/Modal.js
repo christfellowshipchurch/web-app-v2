@@ -11,6 +11,7 @@ function Modal(props = {}) {
   function handleClose(event) {
     event.preventDefault();
     dispatch(hideModal());
+    props.onClose && props.onClose(event);
   }
 
   return (
@@ -32,6 +33,7 @@ function Modal(props = {}) {
 
 Modal.propTypes = {
   ...systemPropTypes,
+  onClose: PropTypes.func,
   title: PropTypes.string,
 };
 

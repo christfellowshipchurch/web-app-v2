@@ -18,6 +18,7 @@ const initialState = {
 const actionTypes = {
   update: 'update',
   logout: 'logout',
+  reset: 'reset',
 };
 
 function reducer(state, action) {
@@ -29,6 +30,9 @@ function reducer(state, action) {
       };
     }
     case actionTypes.logout: {
+      return initialState;
+    }
+    case actionTypes.reset: {
       return initialState;
     }
     default: {
@@ -112,6 +116,10 @@ const logout = payload => ({
   type: 'logout',
 });
 
+const reset = payload => ({
+  type: 'reset',
+});
+
 AuthProvider.propTypes = {
   children: PropTypes.oneOfType([PropTypes.element, PropTypes.node]),
 };
@@ -124,4 +132,5 @@ export {
   actionTypes,
   update,
   logout,
+  reset,
 };

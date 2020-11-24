@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useAuthState } from '../../../providers/AuthProvider';
+import { useAuth, reset as resetAuth } from '../../../providers/AuthProvider';
 import { Modal } from '../../../ui-kit';
 import Confirm from './AuthConfirm';
 import Details from './AuthDetails';
@@ -8,7 +8,7 @@ import Identity from './AuthIdentity';
 import Success from './AuthSuccess';
 
 function AuthModal(props = {}) {
-  const state = useAuthState();
+  const [state, dispatch] = useAuth();
 
   function render() {
     switch (state.step) {
@@ -31,7 +31,7 @@ function AuthModal(props = {}) {
   }
 
   return (
-    <Modal title="Sign in" {...props}>
+    <Modal title="Sign in" onClose={() => dispatch(resetAuth())} {...props}>
       {render()}
     </Modal>
   );
