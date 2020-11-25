@@ -52,6 +52,7 @@ const Button = styled.button`
   color: ${themeGet('colors.white')};
   cursor: pointer;
   display: inline-block;
+  font-family: ${themeGet('fonts.base')};
   font-size: ${themeGet('fontSizes.base')};
   font-weight: ${themeGet('fontWeights.bold')};
   line-height: 2.5;

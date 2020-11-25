@@ -11,6 +11,7 @@ import GroupProvider from './GroupProvider';
 import GroupsProvider from './GroupsProvider';
 import ModalProvider from './ModalProvider';
 import NavigationProvider from './NavigationProvider';
+import UserProfileProvider from './UserProfileProvider';
 
 export {
   AppProvider,
@@ -26,4 +27,5 @@ export {
   GroupsProvider,
   ModalProvider,
   NavigationProvider,
+  UserProfileProvider,
 };

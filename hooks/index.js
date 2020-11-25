@@ -15,6 +15,7 @@ import useGroups from './useGroups';
 import useRegisterWithEmail from './useRegisterWithEmail';
 import useRegisterWithSms from './useRegisterWithSms';
 import useRequestPin from './useRequestPin';
+import useUpdateCurrentUser from './useUpdateCurrentUser';
 import useUserExists from './useUserExists';
 import useVerifyPin from './useVerifyPin';
 
@@ -36,6 +37,7 @@ export {
   useRegisterWithEmail,
   useRegisterWithSms,
   useRequestPin,
+  useUpdateCurrentUser,
   useUserExists,
   useVerifyPin,
 };
