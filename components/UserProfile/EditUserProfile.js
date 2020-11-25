@@ -49,7 +49,9 @@ function EditUserProfile(props = {}) {
         {loading ? (
           <Loader text="Updating your profile" />
         ) : (
-          <Box as="p">EDIT!</Box>
+          <Box as="p" color="subdued" fontStyle="italic" textAlign="center">
+            This is where the edit form will go&hellip;
+          </Box>
         )}
       </Box>
     </Cell>
