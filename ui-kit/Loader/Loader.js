@@ -45,6 +45,7 @@ function SVG() {
 
 Loader.propTypes = {
   ...systemPropTypes,
+  centered: PropTypes.bool,
   noLabel: PropTypes.bool,
   text: PropTypes.string,
 };

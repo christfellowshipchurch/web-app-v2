@@ -1,7 +1,15 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
 import { system } from '../';
+
+const centered = ({ centered }) => props => {
+  if (centered) {
+    return css`
+      justify-content: center;
+    `;
+  }
+};
 
 const Loader = styled.div`
   align-items: center;
@@ -11,6 +19,7 @@ const Loader = styled.div`
     margin-right: ${themeGet('space.s')};
   }
 
+  ${centered}
   ${system}
 `;
 

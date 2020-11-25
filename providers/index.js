@@ -1,5 +1,6 @@
 import AppProvider from './AppProvider';
 import AuthProvider from './AuthProvider';
+import CampusesProvider from './CampusesProvider';
 import ContentFeedProvider from './ContentFeedProvider';
 import ContentItemProvider from './ContentItemProvider';
 import CurrentPersonProvider from './CurrentPersonProvider';
@@ -16,6 +17,7 @@ import UserProfileProvider from './UserProfileProvider';
 export {
   AppProvider,
   AuthProvider,
+  CampusesProvider,
   ContentFeedProvider,
   ContentItemProvider,
   CurrentPersonProvider,

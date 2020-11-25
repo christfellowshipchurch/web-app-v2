@@ -1,13 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { CampusesProvider } from '../../providers';
 import { useUserProfile, update } from '../../providers/UserProfileProvider';
 import { useForm, useUpdateCurrentUser } from '../../hooks';
 import { Box, Cell, Loader } from '../../ui-kit';
+import UserProfileCampusSelect from './UserProfileCampusSelect';
 
 function EditUserProfile(props = {}) {
-  const [{ status, user }, dispatch] = useUserProfile();
-  const [updateCurrentPerson, { loading }] = useUpdateCurrentUser();
+  const [{ user }, dispatch] = useUserProfile();
+  const [updateCurrentPerson, { loading }] = useUpdateCurrentUser({
+    // TODO: Update the cache.
+    onCompleted: () => dispatch(update({ status: 'SUCCESS' })),
+  });
   const { campusId, birthdate, gender, email, phone } = user;
 
   const { values, handleChange, handleSubmit } = useForm(() => {
@@ -30,7 +35,7 @@ function EditUserProfile(props = {}) {
             state: '',
             postalCode: '',
           },
-          campusId: values.campusId || campusId || '',
+          campusId: values.campus || campusId || '',
           communicationPreferences: [
             { type: 'SMS', allow: values.allowSMS || false },
             { type: 'Email', allow: values.allowEmail || false },
@@ -47,11 +52,15 @@ function EditUserProfile(props = {}) {
     <Cell maxWidth="500px">
       <Box as="form" id="editProfile" action="" onSubmit={handleSubmit}>
         {loading ? (
-          <Loader text="Updating your profile" />
+          <Loader text="Updating your profile" centered={true} />
         ) : (
-          <Box as="p" color="subdued" fontStyle="italic" textAlign="center">
-            This is where the edit form will go&hellip;
-          </Box>
+          <>
+            <CampusesProvider
+              Component={UserProfileCampusSelect}
+              selectedCampusId={values.campusId || campusId}
+              onChange={handleChange}
+            />
+          </>
         )}
       </Box>
     </Cell>
