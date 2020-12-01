@@ -17,6 +17,9 @@ function normalizeUserData(user) {
   const campusId = user?.profile?.campus?.id;
   const _address = user?.profile?.address;
   const address = _address ? formatAddress(_address) : null;
+  const { street1: street, city, state, postalCode: zip } = address
+    ? address
+    : {};
   const _birthdate = user?.profile?.birthDate;
   const birthdate = _birthdate
     ? format(new Date(_birthdate), 'MMM d, yyyy')
@@ -32,6 +35,10 @@ function normalizeUserData(user) {
     campus,
     campusId,
     address,
+    street,
+    city,
+    state,
+    zip,
     birthdate,
     gender,
     email,

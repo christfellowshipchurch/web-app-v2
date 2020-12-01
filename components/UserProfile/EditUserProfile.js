@@ -5,6 +5,7 @@ import { CampusesProvider } from '../../providers';
 import { useUserProfile, update } from '../../providers/UserProfileProvider';
 import { useForm, useUpdateCurrentUser } from '../../hooks';
 import { Box, Cell, Loader } from '../../ui-kit';
+import UserProfileAddress from './UserProfileAddress';
 import UserProfileCampusSelect from './UserProfileCampusSelect';
 
 function EditUserProfile(props = {}) {
@@ -13,9 +14,19 @@ function EditUserProfile(props = {}) {
     // TODO: Update the cache.
     onCompleted: () => dispatch(update({ status: 'SUCCESS' })),
   });
-  const { campusId, birthdate, gender, email, phone } = user;
+  const {
+    campusId,
+    birthdate,
+    gender,
+    email,
+    phone,
+    street,
+    city,
+    state,
+    zip,
+  } = user;
 
-  const { values, handleChange, handleSubmit } = useForm(() => {
+  function onSubmit() {
     try {
       updateCurrentPerson({
         variables: {
@@ -29,11 +40,11 @@ function EditUserProfile(props = {}) {
             { field: 'Email', value: values.email || email || '' },
           ],
           address: {
-            street1: '',
+            street1: values.street || street || '',
             street2: '',
-            city: '',
-            state: '',
-            postalCode: '',
+            city: values.city || city || '',
+            state: values.state || state || '',
+            postalCode: values.zip || zip || '',
           },
           campusId: values.campus || campusId || '',
           communicationPreferences: [
@@ -46,7 +57,9 @@ function EditUserProfile(props = {}) {
       console.log(error);
       dispatch(update({ status: 'ERROR' }));
     }
-  });
+  }
+
+  const { values, handleChange, handleSubmit } = useForm(onSubmit);
 
   return (
     <Cell maxWidth="500px">
@@ -55,11 +68,24 @@ function EditUserProfile(props = {}) {
           <Loader text="Updating your profile" centered={true} />
         ) : (
           <>
-            <CampusesProvider
-              Component={UserProfileCampusSelect}
-              selectedCampusId={values.campusId || campusId}
-              onChange={handleChange}
-            />
+            <Box mb="l">
+              <CampusesProvider
+                Component={UserProfileCampusSelect}
+                selectedCampusId={values.campusId || campusId}
+                onChange={handleChange}
+              />
+            </Box>
+            <Box>
+              <UserProfileAddress
+                initialValues={{
+                  street: values.street || street || '',
+                  city: values.city || city || '',
+                  state: values.state || state || '',
+                  zip: values.zip || zip || '',
+                }}
+                onChange={handleChange}
+              />
+            </Box>
           </>
         )}
       </Box>
