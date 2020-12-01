@@ -1,28 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Box, FormLabel } from '../../ui-kit';
+import { Box, FormLabel, Select } from '../../ui-kit';
 
 function UserProfileCampusSelect(props = {}) {
   return (
     <Box mb="base">
       <FormLabel>My Campus</FormLabel>
-      <Box
-        as="select"
+      <Select
         id="campus"
         name="campus"
         defaultValue={props.selectedCampusId}
         onChange={props.onChange}
       >
-        <Box as="option" value="">
-          Select...
-        </Box>
+        <Select.Option value="">Select...</Select.Option>
         {props.data.map(item => (
-          <Box key={item.id} as="option" value={item.id}>
+          <Select.Option key={item.id} value={item.id}>
             {item.name}
-          </Box>
+          </Select.Option>
         ))}
-      </Box>
+      </Select>
     </Box>
   );
 }
