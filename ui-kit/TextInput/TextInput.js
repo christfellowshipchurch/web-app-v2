@@ -7,14 +7,16 @@ import Styled from './TextInput.styles';
 function TextInput(props = {}) {
   return (
     <Styled {...props.containerProps}>
-      <FormLabel htmlFor={props.id} {...props.labelProps}>
-        {props.label}
-        {props.required ? (
-          <Box as="span" color="error" fontWeight="bold">
-            *
-          </Box>
-        ) : null}
-      </FormLabel>
+      {props.label ? (
+        <FormLabel htmlFor={props.id} {...props.labelProps}>
+          {props.label}
+          {props.required ? (
+            <Box as="span" color="error" fontWeight="bold">
+              *
+            </Box>
+          ) : null}
+        </FormLabel>
+      ) : null}
       <Styled.Input id={props.id} name={props.id} {...props} />
     </Styled>
   );
@@ -29,7 +31,7 @@ TextInput.propTypes = {
     ...systemPropTypes,
   }),
   id: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
 };
 
 TextInput.defaultProps = {
