@@ -29,7 +29,13 @@ function UserProfileAddress(props = {}) {
           />
         </Box>
         <Box>
-          <Select id="state" name="state" onChange={props.onChange}>
+          <Select
+            id="state"
+            name="state"
+            onChange={props.onChange}
+            defaultValue={props.initialValues?.state}
+          >
+            <Select.Option value="">Select...</Select.Option>
             <Select.Option value="AL">Alabama</Select.Option>
             <Select.Option value="AK">Alaska</Select.Option>
             <Select.Option value="AZ">Arizona</Select.Option>
@@ -88,6 +94,7 @@ function UserProfileAddress(props = {}) {
             id="zip"
             placeholder="Zip Code"
             onChange={props.onChange}
+            value={props.initialValues?.zip}
           />
         </Box>
       </Box>

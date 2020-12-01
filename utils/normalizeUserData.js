@@ -17,8 +17,8 @@ function normalizeUserData(user) {
   const campusId = user?.profile?.campus?.id;
   const _address = user?.profile?.address;
   const address = _address ? formatAddress(_address) : null;
-  const { street1: street, city, state, postalCode: zip } = address
-    ? address
+  const { street1: street, city, state, postalCode: zip } = _address
+    ? _address
     : {};
   const _birthdate = user?.profile?.birthDate;
   const birthdate = _birthdate
@@ -28,6 +28,8 @@ function normalizeUserData(user) {
   const email = user?.profile?.email;
   const _phone = user?.profile?.phoneNumber;
   const phone = formatPhoneNumber(_phone);
+
+  console.log(address);
 
   return {
     name,
