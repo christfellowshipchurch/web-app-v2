@@ -3,6 +3,7 @@ import React from 'react';
 import { getAge } from '../../../utils';
 import { useAuthIdentity, useForm } from '../../../hooks';
 import { Box, Button, FormLabel, Radio, TextInput } from '../../../ui-kit';
+import { BirthDateField } from '../..';
 
 function AuthDetails() {
   const {
@@ -13,11 +14,11 @@ function AuthDetails() {
     handleAuthIdentity,
   } = useAuthIdentity();
   const { values, handleSubmit, handleChange } = useForm(() => {
-    const age = getAge(values.birthDate);
+    const age = getAge(values.birthdate);
     // Make sure they are at least 13 years of age.
     if (age < 13) {
       setError({
-        birthDate: 'You must be at least 13.',
+        birthdate: 'You must be at least 13.',
       });
     }
     if (!error) {
@@ -76,18 +77,7 @@ function AuthDetails() {
           mb="l"
         >
           <Box>
-            <TextInput
-              id="birthDate"
-              label="Birth Date"
-              type="date"
-              onChange={handleChange}
-              required
-            />
-            {error?.birthDate ? (
-              <Box as="p" color="error" fontSize="s" mt="s">
-                {error.birthDate}
-              </Box>
-            ) : null}
+            <BirthDateField onChange={handleChange} error={error?.birthdate} />
           </Box>
           <Box>
             <FormLabel>Gender</FormLabel>

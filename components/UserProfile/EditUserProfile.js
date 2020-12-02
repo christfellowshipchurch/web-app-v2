@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { format, parseISO } from 'date-fns';
 
 import { CampusesProvider } from '../../providers';
 import { useUserProfile, update } from '../../providers/UserProfileProvider';
 import { useForm, useUpdateCurrentUser } from '../../hooks';
 import { Box, Cell, Loader } from '../../ui-kit';
+import { BirthDateField } from '..';
 import UserProfileAddress from './UserProfileAddress';
 import UserProfileCampusSelect from './UserProfileCampusSelect';
 
@@ -28,6 +30,7 @@ function EditUserProfile(props = {}) {
 
   function onSubmit() {
     try {
+      dispatch(update({ status: 'LOADING' }));
       updateCurrentPerson({
         variables: {
           profileFields: [
@@ -61,6 +64,18 @@ function EditUserProfile(props = {}) {
 
   const { values, handleChange, handleSubmit } = useForm(onSubmit);
 
+  function getBirthdate() {
+    const _format = birthdate => {
+      try {
+        return format(parseISO(birthdate), 'yyyy-MM-dd');
+      } catch (error) {
+        return format(new Date(birthdate), 'yyyy-MM-dd');
+      }
+    };
+    const _birthdate = values.birthdate || birthdate || '';
+    return _birthdate === '' ? _birthdate : _format(_birthdate);
+  }
+
   return (
     <Cell maxWidth="500px">
       <Box as="form" id="editProfile" action="" onSubmit={handleSubmit}>
@@ -75,7 +90,7 @@ function EditUserProfile(props = {}) {
                 onChange={handleChange}
               />
             </Box>
-            <Box>
+            <Box mb="l">
               <UserProfileAddress
                 initialValues={{
                   street: values.street || street || '',
@@ -85,6 +100,9 @@ function EditUserProfile(props = {}) {
                 }}
                 onChange={handleChange}
               />
+            </Box>
+            <Box>
+              <BirthDateField onChange={handleChange} value={getBirthdate()} />
             </Box>
           </>
         )}

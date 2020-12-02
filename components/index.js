@@ -1,3 +1,4 @@
+import BirthDateField from './BirthDateField';
 import ClientSideComponent from './ClientSideComponent';
 import ContentLayout from './ContentLayout';
 import ContentList from './ContentList';
@@ -18,6 +19,7 @@ import PageTitle from './PageTitle';
 import UserProfile from './UserProfile';
 
 export {
+  BirthDateField,
   ClientSideComponent,
   ContentLayout,
   ContentList,
