@@ -62,6 +62,10 @@ const Button = styled.button`
   text-decoration: none;
   transition: 0.3s ease-in-out;
 
+  &:disabled {
+    opacity: 0.5;
+  }
+
   &:active,
   &:focus,
   &:hover {
