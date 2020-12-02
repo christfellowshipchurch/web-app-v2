@@ -29,8 +29,6 @@ function normalizeUserData(user) {
   const _phone = user?.profile?.phoneNumber;
   const phone = formatPhoneNumber(_phone);
 
-  console.log(address);
-
   return {
     name,
     src,

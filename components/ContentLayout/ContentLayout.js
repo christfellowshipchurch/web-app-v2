@@ -44,7 +44,6 @@ function ContentLayout(props = {}) {
 
   function renderD() {
     if (props.renderD) return props.renderD();
-    console.log(props);
     const noContent =
       !props.contentTitleD || !props.htmlContent || props.htmlContent === '';
     if (noContent && !props.renderContentD) return null;
