@@ -19,13 +19,7 @@ function UserProfileControls(props = {}) {
   if (status === 'EDITING') {
     return (
       <Box alignItems="center" display="flex" justifyContent="center">
-        <Button
-          type="submit"
-          form="editProfile"
-          disabled={status === 'LOADING'}
-          size="s"
-          mr="base"
-        >
+        <Button type="submit" form="editProfile" size="s" mr="base">
           Save changes
         </Button>
         <Box as="a" href="#0" onClick={handleCancelClick} fontSize="s">

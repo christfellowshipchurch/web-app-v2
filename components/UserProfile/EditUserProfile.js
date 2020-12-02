@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { format, parseISO } from 'date-fns';
+import startCase from 'lodash/startCase';
 
 import { CampusesProvider } from '../../providers';
 import { useUserProfile, update } from '../../providers/UserProfileProvider';
 import { useForm, useUpdateCurrentUser } from '../../hooks';
 import { Box, Cell, Loader } from '../../ui-kit';
-import { BirthDateField } from '..';
+import { BirthDateField, GenderField } from '..';
 import UserProfileAddress from './UserProfileAddress';
 import UserProfileCampusSelect from './UserProfileCampusSelect';
 
 function EditUserProfile(props = {}) {
-  const [{ user }, dispatch] = useUserProfile();
+  const [{ user, status }, dispatch] = useUserProfile();
   const [updateCurrentPerson, { loading }] = useUpdateCurrentUser({
     // TODO: Update the cache.
     onCompleted: () => dispatch(update({ status: 'SUCCESS' })),
@@ -30,11 +31,13 @@ function EditUserProfile(props = {}) {
 
   function onSubmit() {
     try {
-      dispatch(update({ status: 'LOADING' }));
       updateCurrentPerson({
         variables: {
           profileFields: [
-            { field: 'Gender', value: values.gender || gender || 'Unknown' },
+            {
+              field: 'Gender',
+              value: startCase(values.gender) || startCase(gender) || 'Unknown',
+            },
             { field: 'BirthDate', value: values.birthdate || birthdate || '' },
             {
               field: 'PhoneNumber',
@@ -101,8 +104,18 @@ function EditUserProfile(props = {}) {
                 onChange={handleChange}
               />
             </Box>
-            <Box>
+            <Box
+              display="grid"
+              gridTemplateColumns="repeat(2, 50%)"
+              gridColumnGap="l"
+            >
               <BirthDateField onChange={handleChange} value={getBirthdate()} />
+              <Box>
+                <GenderField
+                  onChange={handleChange}
+                  initialValue={values.gender || gender || ''}
+                />
+              </Box>
             </Box>
           </>
         )}

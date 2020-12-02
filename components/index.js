@@ -7,6 +7,7 @@ import CustomLink from './CustomLink';
 import EventsList from './EventsList';
 import EventSingle from './EventSingle';
 import Footer from './Footer';
+import GenderField from './GenderField';
 import GroupsList from './GroupsList';
 import GroupSingle from './GroupSingle';
 import Header from './Header';
@@ -28,6 +29,7 @@ export {
   EventsList,
   EventSingle,
   Footer,
+  GenderField,
   GroupsList,
   GroupSingle,
   Header,
