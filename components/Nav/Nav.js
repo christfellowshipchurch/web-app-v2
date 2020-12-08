@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import Image from 'next/image';
 
 import { normalizeUserData } from '../../utils';
 import { CurrentUserProvider } from '../../providers';
@@ -108,7 +107,7 @@ function Avatar(props = {}) {
     <CustomLink
       href="/profile"
       Component={UIAvatar}
-      as={Image}
+      as="img"
       name={name}
       src={src}
       height="45px"

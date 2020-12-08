@@ -1,11 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Image from 'next/image';
+
+import { Box } from '../../ui-kit';
 
 function Logo(props = {}) {
   const filename = `/logo${props.dark ? '-dark' : ''}.png`;
   return (
-    <Image src={filename} alt="Christ Fellowship" width="135" height="42" />
+    <Box
+      as="img"
+      src={filename}
+      alt="Christ Fellowship"
+      width="135"
+      height="42"
+    />
   );
 }
 
