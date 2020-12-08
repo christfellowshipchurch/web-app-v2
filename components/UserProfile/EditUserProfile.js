@@ -4,18 +4,42 @@ import { format, parseISO } from 'date-fns';
 import isNil from 'lodash/isNil';
 import startCase from 'lodash/startCase';
 
+import { normalizeUserData } from '../../utils';
 import { CampusesProvider } from '../../providers';
 import { useUserProfile, update } from '../../providers/UserProfileProvider';
 import { useForm, useUpdateCurrentUser } from '../../hooks';
+import { GET_CURRENT_PERSON } from '../../hooks/useCurrentPerson';
 import { Box, Cell, Checkbox, Loader, TextInput } from '../../ui-kit';
 import { BirthDateField, GenderField } from '..';
 import UserProfileAddress from './UserProfileAddress';
 import UserProfileCampusSelect from './UserProfileCampusSelect';
 
 function EditUserProfile(props = {}) {
-  const [{ user, status }, dispatch] = useUserProfile();
+  const [{ user }, dispatch] = useUserProfile();
   const [updateCurrentPerson, { loading }] = useUpdateCurrentUser({
-    // TODO: Update the cache.
+    // TODO: This cache-update is only partially working right now.
+    update: async (
+      cache,
+      { data: { updateProfileFields, updateAddress, updateUserCampus } }
+    ) => {
+      const { currentUser } = cache.readQuery({ query: GET_CURRENT_PERSON });
+      const newCacheData = {
+        currentUser: {
+          ...currentUser,
+          profile: {
+            ...currentUser.profile,
+            ...updateProfileFields,
+            address: updateAddress,
+            campus: updateUserCampus.campus,
+          },
+        },
+      };
+      await cache.writeQuery({
+        query: GET_CURRENT_PERSON,
+        data: newCacheData,
+      });
+      dispatch(update({ user: normalizeUserData(newCacheData.currentUser) }));
+    },
     onCompleted: () => dispatch(update({ status: 'SUCCESS' })),
   });
   const {
