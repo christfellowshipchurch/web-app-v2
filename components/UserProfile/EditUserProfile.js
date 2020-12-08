@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { format, parseISO } from 'date-fns';
+import isNil from 'lodash/isNil';
 import startCase from 'lodash/startCase';
 
 import { CampusesProvider } from '../../providers';
 import { useUserProfile, update } from '../../providers/UserProfileProvider';
 import { useForm, useUpdateCurrentUser } from '../../hooks';
-import { Box, Cell, Loader } from '../../ui-kit';
+import { Box, Cell, Checkbox, Loader, TextInput } from '../../ui-kit';
 import { BirthDateField, GenderField } from '..';
 import UserProfileAddress from './UserProfileAddress';
 import UserProfileCampusSelect from './UserProfileCampusSelect';
@@ -27,7 +28,17 @@ function EditUserProfile(props = {}) {
     city,
     state,
     zip,
+    allowEmail,
+    allowSMS,
   } = user;
+
+  function getCommunicationPreference(key, variable) {
+    const _isNil = isNil(values[key]) && isNil(variable);
+    if (_isNil) return false;
+    if (!isNil(values[key])) return values[key];
+    if (!isNil(variable)) return variable;
+    return false;
+  }
 
   function onSubmit() {
     try {
@@ -54,8 +65,14 @@ function EditUserProfile(props = {}) {
           },
           campusId: values.campus || campusId || '',
           communicationPreferences: [
-            { type: 'SMS', allow: values.allowSMS || false },
-            { type: 'Email', allow: values.allowEmail || false },
+            {
+              type: 'SMS',
+              allow: getCommunicationPreference('allowSMS', allowSMS),
+            },
+            {
+              type: 'Email',
+              allow: getCommunicationPreference('allowEmail', allowEmail),
+            },
           ],
         },
       });
@@ -86,6 +103,36 @@ function EditUserProfile(props = {}) {
           <Loader text="Updating your profile" centered={true} />
         ) : (
           <>
+            <Box mb="l">
+              <TextInput
+                id="email"
+                label="Email"
+                onChange={handleChange}
+                value={values.email || email || ''}
+                mb="s"
+              />
+              <Checkbox
+                id="allowEmail"
+                label="Allow email notifications"
+                onChange={handleChange}
+                defaultChecked={values.allowEmail || allowEmail || false}
+              />
+            </Box>
+            <Box mb="l">
+              <TextInput
+                id="phone"
+                label="Phone Number"
+                onChange={handleChange}
+                value={values.phone || phone || ''}
+                mb="s"
+              />
+              <Checkbox
+                id="allowSMS"
+                label="Allow text notifications"
+                onChange={handleChange}
+                defaultChecked={values.allowSMS || allowSMS || false}
+              />
+            </Box>
             <Box mb="l">
               <CampusesProvider
                 Component={UserProfileCampusSelect}

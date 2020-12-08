@@ -28,6 +28,8 @@ function normalizeUserData(user) {
   const email = user?.profile?.email;
   const _phone = user?.profile?.phoneNumber;
   const phone = formatPhoneNumber(_phone);
+  const allowEmail = user?.profile?.communicationPreferences?.allowEmail;
+  const allowSMS = user?.profile?.communicationPreferences?.allowSMS;
 
   return {
     name,
@@ -44,6 +46,8 @@ function normalizeUserData(user) {
     email,
     phone,
     user,
+    allowEmail,
+    allowSMS,
   };
 }
 
