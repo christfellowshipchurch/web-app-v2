@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Card from './Card';
+import Card from './';
 
 export default {
   title: 'ui-kit/Card',
@@ -8,5 +8,7 @@ export default {
 };
 
 export const Default = () => (
-  <Card title="Card" description="This is a default card." />
+  <Card>
+    <h1>Shared Card Wrapper Component</h1>
+  </Card>
 );

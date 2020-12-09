@@ -86,6 +86,7 @@ const Cover = styled.div`
   background-image: url(${props => props.src});
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
   overflow: hidden;
   position: relative;
 
