@@ -8,7 +8,13 @@ import { PageTitle } from '../';
 function ContentLayout(props = {}) {
   function renderA() {
     if (props.coverImage) {
-      return <Card coverImage={props.coverImage} height="596px" mb="l" />;
+      return (
+        <Card
+          coverImage={props.coverImage}
+          height={{ _: '298px', md: '596px' }}
+          mb="l"
+        />
+      );
     }
     if (props.renderA) return props.renderA();
     return null;
@@ -18,7 +24,7 @@ function ContentLayout(props = {}) {
     if (props.renderB) return props.renderB();
     if (props.title || props.summary) {
       return (
-        <Box>
+        <Box mb={{ _: 'base', md: '' }}>
           {props.title ? (
             <Box as="h1" mb="0">
               {props.title}
@@ -48,7 +54,7 @@ function ContentLayout(props = {}) {
       !props.contentTitleD || !props.htmlContent || props.htmlContent === '';
     if (noContent && !props.renderContentD) return null;
     return (
-      <Box>
+      <Box mb={{ _: 'l', md: '' }}>
         {props.contentTitleD ? (
           <Box as="h2" fontSize="h3" mb="base">
             {props.contentTitleD}
@@ -93,14 +99,18 @@ function ContentLayout(props = {}) {
       {renderA()}
       <Box
         alignItems="center"
-        display="grid"
+        display={{ lg: 'grid' }}
         gridTemplateColumns="70% 30%"
         mb="l"
       >
         {renderB()}
         {renderC()}
       </Box>
-      <Box display="grid" gridTemplateColumns="70% 30%" gridColumnGap="l">
+      <Box
+        display={{ lg: 'grid' }}
+        gridTemplateColumns="70% 30%"
+        gridColumnGap="l"
+      >
         {renderD()}
         {renderE()}
       </Box>
