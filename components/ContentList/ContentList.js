@@ -9,7 +9,13 @@ function ContentList(props = {}) {
   function render() {
     if (props.item.action === 'READ_GLOBAL_CONTENT') {
       if (props.loading) {
-        return <Box bg="border" borderRadius="base" height="450px" />;
+        return (
+          <Box
+            bg="border"
+            borderRadius="base"
+            height={{ _: '250px', md: '450px' }}
+          />
+        );
       }
 
       return props.data?.edges?.map(edge => (
@@ -22,7 +28,7 @@ function ContentList(props = {}) {
           coverImageOverlay={true}
           coverImageTitle={edge?.node?.title}
           coverImageDescription={edge?.node?.summary}
-          height="450px"
+          height={{ _: '250px', md: '450px' }}
           display="block"
         />
       ));
@@ -57,7 +63,7 @@ function ContentList(props = {}) {
   }
 
   return (
-    <Box as="section" mb="xxl">
+    <Box as="section" mb={{ _: 'l', lg: 'xxl' }}>
       {render()}
     </Box>
   );

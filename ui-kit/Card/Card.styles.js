@@ -31,6 +31,7 @@ const Card = styled.div`
   border-radius: ${themeGet('radii.base')};
   box-shadow: ${themeGet('shadows.xl')};
   color: ${themeGet('colors.fg')};
+  display: block;
 
   ${link}
   ${system}
