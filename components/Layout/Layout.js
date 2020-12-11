@@ -16,7 +16,8 @@ function Layout(props = {}) {
           <Cell
             as="main"
             maxWidth={props.contentMaxWidth}
-            py={props.contentVerticalPadding}
+            px={{ _: 'base', lg: '0' }}
+            py={{ _: 'l', lg: props.contentVerticalPadding }}
           >
             {props.children}
           </Cell>

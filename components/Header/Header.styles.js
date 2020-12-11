@@ -9,10 +9,14 @@ const Header = styled.header`
   align-items: center;
   display: grid;
   grid-template-columns: auto 1fr;
-  padding: ${themeGet('space.base')} ${themeGet('space.xl')};
+  padding: ${themeGet('space.base')};
 
   > *:last-child {
     justify-self: flex-end;
+  }
+
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    padding: ${themeGet('space.base')} ${themeGet('space.xl')};
   }
 
   ${system}

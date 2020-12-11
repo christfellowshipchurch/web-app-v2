@@ -27,7 +27,6 @@ function Nav(props = {}) {
 
   return (
     <Styled>
-      <Primary data={props.data.navigationLinks} />
       <QuickAction data={props.data.quickAction} />
       <ClientSideComponent>
         {authenticated ? (
@@ -71,15 +70,21 @@ function Nav(props = {}) {
         side="right"
         menuWidth="150px"
       >
-        <List space="0" textAlign="center">
+        <List space="0">
+          <Primary data={props.data.navigationLinks} />
           <MenuLinks data={props.data.menuLinks} />
           <Box as="li">
             {authenticated ? (
-              <Menu.Link href="#0" onClick={handleLogoutClick} p="s">
+              <Menu.Link
+                href="#0"
+                onClick={handleLogoutClick}
+                px="base"
+                py="xs"
+              >
                 Log out
               </Menu.Link>
             ) : (
-              <Menu.Link href="#0" onClick={handleAuthClick} p="s">
+              <Menu.Link href="#0" onClick={handleAuthClick} px="base" py="xs">
                 Sign in
               </Menu.Link>
             )}
@@ -91,19 +96,12 @@ function Nav(props = {}) {
 }
 
 function Primary(props = {}) {
-  const router = useRouter();
-  const isActive = action => router.pathname === action;
-
   return props.data.map((item, idx) => (
-    <CustomLink
-      key={idx}
-      href={item.action}
-      Component={Styled.Link}
-      data-state={isActive(item.action) ? 'active' : 'inactive'}
-      data-testid="nav-link"
-    >
-      {item.call}
-    </CustomLink>
+    <Box key={idx} as="li">
+      <CustomLink href={item.action} Component={Menu.Link} px="base" py="xs">
+        {item.call}
+      </CustomLink>
+    </Box>
   ));
 }
 
@@ -118,7 +116,7 @@ function QuickAction(props = {}) {
 function MenuLinks(props = {}) {
   return props.data.map((item, idx) => (
     <Box key={idx} as="li">
-      <CustomLink href={item.action} Component={Menu.Link} p="s">
+      <CustomLink href={item.action} Component={Menu.Link} px="base" py="xs">
         {item.call}
       </CustomLink>
     </Box>

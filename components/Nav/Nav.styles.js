@@ -8,11 +8,6 @@ const Nav = styled.nav`
   display: flex;
 
   > *:not(:last-child) {
-    margin-right: ${themeGet('space.l')};
-  }
-
-  > *:nth-child(5),
-  > *:nth-child(6) {
     margin-right: ${themeGet('space.base')};
   }
 
