@@ -12,6 +12,10 @@ function getPageTitle(title) {
 function PageTitle(props = {}) {
   return (
     <Head>
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, shrink-to-fit=no"
+      />
       <title>{getPageTitle(props.title)}</title>
     </Head>
   );

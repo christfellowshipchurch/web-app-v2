@@ -2,20 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 
-import { normalizeUserData } from '../../utils';
 import { CurrentUserProvider } from '../../providers';
 import { logout, useAuth } from '../../providers/AuthProvider';
 import { useModalDispatch, showModal } from '../../providers/ModalProvider';
-import {
-  Avatar as UIAvatar,
-  Box,
-  Button,
-  Icon,
-  List,
-  Menu,
-  systemPropTypes,
-} from '../../ui-kit';
-import { ClientSideComponent, CustomLink } from '../';
+import { Box, Button, Icon, List, Menu, systemPropTypes } from '../../ui-kit';
+import { ClientSideComponent, CustomLink, UserAvatar } from '../';
 import Styled from './Nav.styles';
 
 function Nav(props = {}) {
@@ -41,7 +32,7 @@ function Nav(props = {}) {
       <ClientSideComponent>
         {authenticated ? (
           <CurrentUserProvider
-            Component={Avatar}
+            Component={UserAvatar}
             handleAuthClick={handleAuthClick}
           />
         ) : (
@@ -96,23 +87,6 @@ function Nav(props = {}) {
         </List>
       </Menu>
     </Styled>
-  );
-}
-
-function Avatar(props = {}) {
-  const { currentUser } = props;
-  const { name, src } = normalizeUserData(currentUser);
-
-  return (
-    <CustomLink
-      href="/profile"
-      Component={UIAvatar}
-      as="img"
-      name={name}
-      src={src}
-      height="45px"
-      width="45px"
-    />
   );
 }
 
