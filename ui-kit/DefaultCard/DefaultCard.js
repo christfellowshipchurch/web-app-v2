@@ -3,20 +3,20 @@ import PropTypes from 'prop-types';
 
 import { systemPropTypes } from '..';
 import { Box } from '..';
-import Card from '../Card';
+import Styled from '../Card/Card.styles';
 
 const DefaultCard = (props = {}) => {
   const hasContent = props.title || props.description || props.children;
 
   return (
-    <Card {...props}>
+    <Styled {...props}>
       {props.coverImage ? (
-        <Card.Cover
+        <Styled.Cover
           src={props.coverImage}
           hasContent={hasContent}
           overlay={props.coverImageOverlay}
         >
-          <Card.CoverContent position={props.coverImageContentPosition}>
+          <Styled.CoverContent position={props.coverImageContentPosition}>
             {props.coverImageTitle || props.coverImageDescription ? (
               <Box color="white">
                 {props.coverImageTitle ? (
@@ -30,13 +30,13 @@ const DefaultCard = (props = {}) => {
               </Box>
             ) : null}
             {props.coverImageContent ? props.coverImageContent() : null}
-          </Card.CoverContent>
+          </Styled.CoverContent>
           {props.coverImageLabel ? (
             <Styled.CoverLabel>{props.coverImageLabel}</Styled.CoverLabel>
           ) : null}
-        </Card.Cover>
+        </Styled.Cover>
       ) : null}
-      <Card.Content {...props.contentProps}>
+      <Styled.Content {...props.contentProps}>
         {props.title ? (
           <Box as="h3" mb={{ _: 'xs', md: 's' }}>
             {props.title}
@@ -48,8 +48,8 @@ const DefaultCard = (props = {}) => {
           </Box>
         ) : null}
         {props.children ? props.children : null}
-      </Card.Content>
-    </Card>
+      </Styled.Content>
+    </Styled>
   );
 };
 

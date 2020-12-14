@@ -1,3 +1,3 @@
-import HighlightCard from './DefaultCard';
+import HighlightCard from './HighlightCard';
 
 export default HighlightCard;

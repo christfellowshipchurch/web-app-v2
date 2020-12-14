@@ -3,25 +3,25 @@ import PropTypes from 'prop-types';
 
 import { systemPropTypes } from '..';
 import { Box } from '..';
-import Card from './HighLightCard.styles';
+import Styled from './HighLightCard.styles';
 
 const HighlightCard = (props = {}) => {
   const hasContent = props.title || props.description || props.children;
 
   return (
-    <Card {...props}>
+    <Styled {...props}>
     {props.coverImage ? (
-      <Card.Cover
+      <Styled.Cover
         src={props.coverImage}
         hasContent={hasContent}
         overlay={props.coverImageOverlay}
         display={{xs: 'flex'}}
       >
-        <Card.CoverContent position={props.coverImageContentPosition}>
+        <Styled.CoverContent position={props.coverImageContentPosition}>
           {props.title || props.description ? (
             <Box color="white">
               {props.label ? (
-                <Card.Label>{props.label}</Card.Label>
+                <Styled.Label>{props.label}</Styled.Label>
               ) : null}
               {props.title ? (
                 <Box as="h2" mb="xs" mt="s">
@@ -34,10 +34,10 @@ const HighlightCard = (props = {}) => {
             </Box>
           ) : null}
           {props.coverImageContent ? props.coverImageContent() : null}
-        </Card.CoverContent>
-      </Card.Cover>
+        </Styled.CoverContent>
+      </Styled.Cover>
     ) : null}
-  </Card>
+  </Styled>
   );
 };
 
