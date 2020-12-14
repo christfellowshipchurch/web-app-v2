@@ -8,10 +8,10 @@ import Styled from './Footer.styles';
 function Footer(props = {}) {
   return (
     <Styled {...props}>
-      <Box bg="fg" color="white" p="xl">
+      <Box bg="fg" color="white" p={{ _: 'base', md: 'l', lg: 'xl' }}>
         <Cell>
           <Box
-            display="grid"
+            display={{ lg: 'grid' }}
             gridTemplateColumns="30% repeat(3, 20%)"
             gridColumnGap="l"
           >
@@ -33,7 +33,7 @@ function Footer(props = {}) {
 
 function Contact() {
   return (
-    <Box>
+    <Box mb={{ _: 'base', lg: '0' }}>
       <Box mb="base">
         <Logo dark={true} />
       </Box>
@@ -49,7 +49,7 @@ function Contact() {
 
 function Resources() {
   return (
-    <Box>
+    <Box mb={{ _: 'base', lg: '0' }}>
       <Box as="h4" fontSize="h3">
         Resources
       </Box>
@@ -78,7 +78,7 @@ function Resources() {
 
 function Connect() {
   return (
-    <Box>
+    <Box mb={{ _: 'base', lg: '0' }}>
       <Box as="h4" fontSize="h3">
         Connect
       </Box>
