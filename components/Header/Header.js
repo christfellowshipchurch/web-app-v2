@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 
 import { NavigationProvider } from '../../providers';
-import { systemPropTypes } from '../../ui-kit';
+import { Box, systemPropTypes } from '../../ui-kit';
 import { Logo, Nav } from '../';
 import Styled from './Header.styles';
 
@@ -11,7 +11,11 @@ function Header(props = {}) {
     <Styled>
       <Link href="/">
         <a>
-          <Logo />
+          <Box
+            as={Logo}
+            mx={{ _: 'auto', md: '0' }}
+            mb={{ _: 'base', md: '0' }}
+          />
         </a>
       </Link>
       <NavigationProvider Component={Nav} />

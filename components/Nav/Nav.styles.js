@@ -6,9 +6,14 @@ import { system } from '../../ui-kit';
 const Nav = styled.nav`
   align-items: center;
   display: flex;
+  justify-content: center;
 
   > *:not(:last-child) {
     margin-right: ${themeGet('space.base')};
+  }
+
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    justify-content: flex-start;
   }
 
   ${system}
