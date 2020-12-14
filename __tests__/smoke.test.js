@@ -12,7 +12,7 @@ jest.mock('next/router', () => ({
 
 describe('App', () => {
   it('renders without crashing', () => {
-    const { getAllByTestId } = render(
+    const { getByText } = render(
       <MockedProvider mocks={[]} addTypename={false}>
         <AuthProvider>
           <ModalProvider>
@@ -21,6 +21,6 @@ describe('App', () => {
         </AuthProvider>
       </MockedProvider>
     );
-    expect(getAllByTestId('nav-link').length).toEqual(4);
+    expect(getByText(/watch online/i)).toBeInTheDocument();
   });
 });
