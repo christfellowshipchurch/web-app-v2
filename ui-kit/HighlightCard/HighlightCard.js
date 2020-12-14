@@ -21,8 +21,7 @@ const HighlightCard = (props = {}) => {
           {props.title || props.description ? (
             <Box color="white">
               {props.label ? (
-                <Card.Label styles={{  backdropFilter: 'blur(7px)',
-              }}>{props.label}</Card.Label>
+                <Card.Label>{props.label}</Card.Label>
               ) : null}
               {props.title ? (
                 <Box as="h2" mb="xs" mt="s">
