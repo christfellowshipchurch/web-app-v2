@@ -5,7 +5,7 @@ import Card from '../Card/Card.styles'
 const HighlightCardLabel = styled.div`
   background-color: rgba(255, 255, 255, .3);  
   backdrop-filter: blur(7px);
-  border-radius: ${themeGet('radii.base')};
+  border-radius: ${themeGet('radii.xl')};
   color: ${themeGet('colors.white')};
   display:inline-block;
   font-size: ${themeGet('fontSizes.xs')};
