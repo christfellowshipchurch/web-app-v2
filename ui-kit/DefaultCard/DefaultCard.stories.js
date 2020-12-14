@@ -15,6 +15,6 @@ export const CoverImage = () => (
   <DefaultCard
     title="DefaultCard"
     description="This is a default card with an image."
-    coverImage="https://cloudfront.christfellowship.church/GetImage.ashx?guid=3376aa0d-5610-4a8a-ae24-046250ebf297"
+    coverImage="https://source.unsplash.com/random/1000x1000"
   />
 );
