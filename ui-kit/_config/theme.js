@@ -69,6 +69,8 @@ const theme = {
   radii: {
     s: rem('4px'),
     base: rem('6px'),
+    l: rem('10px'),
+    xl: rem('16px'),
   },
   // https://tailwindcss.com/docs/box-shadow
   shadows: {

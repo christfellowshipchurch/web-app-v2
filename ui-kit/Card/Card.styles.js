@@ -88,6 +88,7 @@ const overlay = ({ overlay }) => props => {
 const Cover = styled.div`
   background-color: ${themeGet('colors.fg')};
   background-image: url(${props => props.src});
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   overflow: hidden;
