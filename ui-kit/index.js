@@ -16,6 +16,7 @@ import Cell from './Cell';
 import Checkbox from './Checkbox';
 import DefaultCard from './DefaultCard';
 import FormLabel from './FormLabel';
+import HighlightCard from './HighlightCard'
 import Icon from './Icon';
 import List from './List';
 import Loader from './Loader';
@@ -41,6 +42,7 @@ export {
   Checkbox,
   DefaultCard,
   FormLabel,
+  HighlightCard,
   Icon,
   List,
   Loader,
