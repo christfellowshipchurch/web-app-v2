@@ -1,17 +1,17 @@
 import styled, { css } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
-import Card from '../Card'
+import Card from '../Card/Card.styles'
 
 const HighlightCardLabel = styled.div`
   background-color: rgba(255, 255, 255, .3);  
   backdrop-filter: blur(7px);
-  display:inline-block;
+  border-radius: ${themeGet('radii.base')};
   color: ${themeGet('colors.white')};
+  display:inline-block;
   font-size: ${themeGet('fontSizes.xs')};
   font-weight: ${themeGet('fontWeights.bold')};
   letter-spacing: 0.125rem;
   padding: ${themeGet('space.s')} ${themeGet('space.base')};
-  border-radius: 1rem;
   text-transform: uppercase;
   z-index: 2;
 `;
