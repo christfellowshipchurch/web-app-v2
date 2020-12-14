@@ -108,7 +108,7 @@ function ContentLayout(props = {}) {
       </Box>
       <Box
         display={{ lg: 'grid' }}
-        gridTemplateColumns="70% 30%"
+        gridTemplateColumns="65% 1fr"
         gridColumnGap="l"
       >
         {renderD()}
