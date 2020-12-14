@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import PropTypes from 'prop-types';
 import { themeGet } from '@styled-system/theme-get';
 
 import { system } from '../';
@@ -31,13 +30,18 @@ const Card = styled.div`
   border-radius: ${themeGet('radii.base')};
   box-shadow: ${themeGet('shadows.xl')};
   color: ${themeGet('colors.fg')};
+  display: block;
 
   ${link}
   ${system}
 `;
 
 const Content = styled.div`
-  padding: ${themeGet('space.base')};
+  padding: ${themeGet('space.s')};
+
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    padding: ${themeGet('space.base')};
+  }
 
   ${system}
 `;
@@ -98,8 +102,14 @@ const Cover = styled.div`
 const position = ({ position }) => props => {
   if (position === 'bottomLeft') {
     return css`
-      bottom: ${themeGet('space.l')};
-      left: ${themeGet('space.l')};
+      bottom: ${themeGet('space.s')};
+      left: ${themeGet('space.s')};
+      padding: ${themeGet('space.s')};
+
+      @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+        bottom: ${themeGet('space.l')};
+        left: ${themeGet('space.l')};
+      }
     `;
   }
 };

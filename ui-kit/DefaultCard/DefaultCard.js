@@ -37,7 +37,11 @@ const DefaultCard = (props = {}) => {
         </Card.Cover>
       ) : null}
       <Card.Content {...props.contentProps}>
-        {props.title ? <Box as="h3">{props.title}</Box> : null}
+        {props.title ? (
+          <Box as="h3" mb={{ _: 'xs', md: 's' }}>
+            {props.title}
+          </Box>
+        ) : null}
         {props.description ? (
           <Box as="p" color="neutrals.600" fontSize="s">
             {props.description}

@@ -17,6 +17,7 @@ import Logo from './Logo';
 import * as modals from './Modals';
 import Nav from './Nav';
 import PageTitle from './PageTitle';
+import UserAvatar from './UserAvatar';
 import UserProfile from './UserProfile';
 
 export {
@@ -39,5 +40,6 @@ export {
   modals,
   Nav,
   PageTitle,
+  UserAvatar,
   UserProfile,
 };

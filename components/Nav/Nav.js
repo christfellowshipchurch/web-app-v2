@@ -2,20 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 
-import { normalizeUserData } from '../../utils';
 import { CurrentUserProvider } from '../../providers';
 import { logout, useAuth } from '../../providers/AuthProvider';
 import { useModalDispatch, showModal } from '../../providers/ModalProvider';
-import {
-  Avatar as UIAvatar,
-  Box,
-  Button,
-  Icon,
-  List,
-  Menu,
-  systemPropTypes,
-} from '../../ui-kit';
-import { ClientSideComponent, CustomLink } from '../';
+import { Box, Button, Icon, List, Menu, systemPropTypes } from '../../ui-kit';
+import { ClientSideComponent, CustomLink, UserAvatar } from '../';
 import Styled from './Nav.styles';
 
 function Nav(props = {}) {
@@ -36,12 +27,11 @@ function Nav(props = {}) {
 
   return (
     <Styled>
-      <Primary data={props.data.navigationLinks} />
       <QuickAction data={props.data.quickAction} />
       <ClientSideComponent>
         {authenticated ? (
           <CurrentUserProvider
-            Component={Avatar}
+            Component={UserAvatar}
             handleAuthClick={handleAuthClick}
           />
         ) : (
@@ -80,15 +70,21 @@ function Nav(props = {}) {
         side="right"
         menuWidth="150px"
       >
-        <List space="0" textAlign="center">
+        <List space="0">
+          <Primary data={props.data.navigationLinks} />
           <MenuLinks data={props.data.menuLinks} />
           <Box as="li">
             {authenticated ? (
-              <Menu.Link href="#0" onClick={handleLogoutClick} p="s">
+              <Menu.Link
+                href="#0"
+                onClick={handleLogoutClick}
+                px="base"
+                py="xs"
+              >
                 Log out
               </Menu.Link>
             ) : (
-              <Menu.Link href="#0" onClick={handleAuthClick} p="s">
+              <Menu.Link href="#0" onClick={handleAuthClick} px="base" py="xs">
                 Sign in
               </Menu.Link>
             )}
@@ -99,37 +95,13 @@ function Nav(props = {}) {
   );
 }
 
-function Avatar(props = {}) {
-  const { currentUser } = props;
-  const { name, src } = normalizeUserData(currentUser);
-
-  return (
-    <CustomLink
-      href="/profile"
-      Component={UIAvatar}
-      as="img"
-      name={name}
-      src={src}
-      height="45px"
-      width="45px"
-    />
-  );
-}
-
 function Primary(props = {}) {
-  const router = useRouter();
-  const isActive = action => router.pathname === action;
-
   return props.data.map((item, idx) => (
-    <CustomLink
-      key={idx}
-      href={item.action}
-      Component={Styled.Link}
-      data-state={isActive(item.action) ? 'active' : 'inactive'}
-      data-testid="nav-link"
-    >
-      {item.call}
-    </CustomLink>
+    <Box key={idx} as="li">
+      <CustomLink href={item.action} Component={Menu.Link} px="base" py="xs">
+        {item.call}
+      </CustomLink>
+    </Box>
   ));
 }
 
@@ -144,7 +116,7 @@ function QuickAction(props = {}) {
 function MenuLinks(props = {}) {
   return props.data.map((item, idx) => (
     <Box key={idx} as="li">
-      <CustomLink href={item.action} Component={Menu.Link} p="s">
+      <CustomLink href={item.action} Component={Menu.Link} px="base" py="xs">
         {item.call}
       </CustomLink>
     </Box>

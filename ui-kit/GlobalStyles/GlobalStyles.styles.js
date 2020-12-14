@@ -41,19 +41,37 @@ export const styles = css`
   }
 
   h1 {
-    font-size: ${themeGet('fontSizes.h1')};
-  }
-
-  h2 {
     font-size: ${themeGet('fontSizes.h2')};
   }
 
-  h3 {
+  h2 {
     font-size: ${themeGet('fontSizes.h3')};
   }
 
-  h4 {
+  h3 {
     font-size: ${themeGet('fontSizes.h4')};
+  }
+
+  h4 {
+    font-size: ${themeGet('fontSizes.base')};
+  }
+
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    h1 {
+      font-size: ${themeGet('fontSizes.h1')};
+    }
+
+    h2 {
+      font-size: ${themeGet('fontSizes.h2')};
+    }
+
+    h3 {
+      font-size: ${themeGet('fontSizes.h3')};
+    }
+
+    h4 {
+      font-size: ${themeGet('fontSizes.h4')};
+    }
   }
 
   img {

@@ -12,6 +12,7 @@ function Logo(props = {}) {
       alt="Christ Fellowship"
       width="135"
       height="42"
+      {...props}
     />
   );
 }
