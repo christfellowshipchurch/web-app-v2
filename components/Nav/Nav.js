@@ -70,7 +70,7 @@ function Nav(props = {}) {
         side="right"
         menuWidth="150px"
       >
-        <List space="0">
+        <List py="xs" space="0">
           <Primary data={props.data.navigationLinks} />
           <MenuLinks data={props.data.menuLinks} />
           <Box as="li">
