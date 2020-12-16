@@ -1,13 +1,13 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
-import Card from '../Card/Card.styles'
+import Card from '../Card/Card.styles';
 
 const HighlightCardLabel = styled.div`
-  background-color: rgba(255, 255, 255, .3);  
+  background-color: rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(7px);
   border-radius: ${themeGet('radii.xl')};
   color: ${themeGet('colors.white')};
-  display:inline-block;
+  display: inline-block;
   font-size: ${themeGet('fontSizes.xs')};
   font-weight: ${themeGet('fontWeights.bold')};
   letter-spacing: 0.125rem;
@@ -16,6 +16,6 @@ const HighlightCardLabel = styled.div`
   z-index: 2;
 `;
 
-Card.Label = HighlightCardLabel
+Card.Label = HighlightCardLabel;
 
 export default Card;
