@@ -5,7 +5,7 @@ import { Box, Card } from '../../ui-kit';
 
 function UserProfileAttribute(props = {}) {
   return (
-    <Card boxShadow="base">
+    <Card boxShadow="base" p="base">
       <Box as="h2" color="subdued" fontSize="s" fontWeight="bold">
         {props.title}
       </Box>
