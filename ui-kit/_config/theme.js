@@ -1,14 +1,5 @@
 import { rem } from '../_utils';
-
-const COLORS = {
-  Battleship: '#828282',
-  Picton: '#00aeef',
-  Tuatara: '#353535',
-  'White Smoke': '#f6f6f6',
-};
-
-const PRIMARY_BRAND_COLOR = COLORS['Picton'];
-const PRIMARY_NEUTRAL_COLOR = COLORS['Tuatara'];
+import colors from './colors';
 
 const theme = {
   breakpoints: {
@@ -17,29 +8,7 @@ const theme = {
     lg: rem('1024px'),
     xl: rem('1350px'),
   },
-  colors: {
-    primary: PRIMARY_BRAND_COLOR,
-    error: '#fe5f55',
-    success: '#8acb88',
-    warning: '#ffc527',
-    bg: COLORS['White Smoke'],
-    fg: PRIMARY_NEUTRAL_COLOR,
-    white: '#fff',
-    black: PRIMARY_NEUTRAL_COLOR,
-    border: '#cbcbcb',
-    subdued: COLORS['Battleship'],
-    neutrals: {
-      100: COLORS['White Smoke'],
-      200: '',
-      300: '',
-      400: '',
-      500: '',
-      600: COLORS['Battleship'],
-      700: '',
-      800: '',
-      900: '',
-    },
-  },
+  colors,
   fonts: {
     base:
       '"Gotham A", "Gotham B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',

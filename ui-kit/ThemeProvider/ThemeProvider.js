@@ -7,9 +7,16 @@ import {
   theme as defaultTheme,
 } from '../';
 
+const DEFAULT_MODE = 'light';
+
 function ThemeProvider(props = {}) {
+  const theme = {
+    ...props.theme,
+    colors: props.theme.colors[props.mode],
+  };
+
   return (
-    <SCThemeProvider theme={props.theme}>
+    <SCThemeProvider theme={theme}>
       <>
         {props.children}
         {props.renderGlobalStyles ? (
@@ -26,10 +33,12 @@ ThemeProvider.propTypes = {
   children: PropTypes.node.isRequired,
   renderGlobalStyles: PropTypes.func,
   theme: PropTypes.object,
+  mode: PropTypes.oneOf(['light', 'dark']),
 };
 
 ThemeProvider.defaultProps = {
   theme: defaultTheme,
+  mode: DEFAULT_MODE,
 };
 
 export default ThemeProvider;
