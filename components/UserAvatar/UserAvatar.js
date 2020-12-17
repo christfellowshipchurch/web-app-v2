@@ -23,7 +23,7 @@ function UserAvatar(props = {}) {
 }
 
 UserAvatar.propTypes = {
-  currentUser: PropTypes.object,
+  currentUser: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 };
 
 export default UserAvatar;
