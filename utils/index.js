@@ -5,6 +5,7 @@ import getAge from './getAge';
 import getURLFromType from './getURLFromType';
 import normalizeUserData from './normalizeUserData';
 import slugify from './slugify';
+import textTrimmer from './textTrimmer'
 import validateEmail from './validateEmail';
 import validatePhoneNumber from './validatePhoneNumber';
 
@@ -16,6 +17,7 @@ export {
   getURLFromType,
   normalizeUserData,
   slugify,
+  textTrimmer,
   validateEmail,
   validatePhoneNumber,
 };

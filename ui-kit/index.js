@@ -25,6 +25,7 @@ import Menu from './Menu';
 import Modal from './Modal';
 import Radio from './Radio';
 import Select from './Select';
+import SquareAvatar from './SquareAvatar'
 import TextInput from './TextInput';
 
 export {
@@ -51,6 +52,7 @@ export {
   Modal,
   Radio,
   Select,
+  SquareAvatar,
   TextInput,
   // ====================
   icons,
