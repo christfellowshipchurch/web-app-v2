@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Box, Cell, utils } from '../../ui-kit';
-import { Footer, Header, PageTitle } from '../';
+import { Footer, Header, SEO } from '../';
 
 const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
 
 function Layout(props = {}) {
   return (
     <>
-      <PageTitle title={props.title} />
+      <SEO title={props.title} />
       <Box display="grid" gridTemplateRows="auto 1fr auto" height="100vh">
         <Header />
         <Box>

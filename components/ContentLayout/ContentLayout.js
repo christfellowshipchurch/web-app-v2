@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { createMarkup } from '../../utils';
 import { Box, Card, DefaultCard, Longform } from '../../ui-kit';
-import { PageTitle } from '../';
+import { SEO } from '../';
 
 function ContentLayout(props = {}) {
   function renderA() {
@@ -99,7 +99,7 @@ function ContentLayout(props = {}) {
 
   return (
     <>
-      <PageTitle title={props.title} />
+      <SEO title={props.title} />
       {renderA()}
       <Box
         alignItems="center"
