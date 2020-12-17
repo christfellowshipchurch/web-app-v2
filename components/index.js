@@ -16,7 +16,7 @@ import Layout from './Layout';
 import Logo from './Logo';
 import * as modals from './Modals';
 import Nav from './Nav';
-import PageTitle from './PageTitle';
+import SEO from './SEO';
 import UserAvatar from './UserAvatar';
 import UserProfile from './UserProfile';
 
@@ -39,7 +39,7 @@ export {
   Logo,
   modals,
   Nav,
-  PageTitle,
+  SEO,
   UserAvatar,
   UserProfile,
 };

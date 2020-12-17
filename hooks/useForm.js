@@ -15,7 +15,6 @@ const useForm = callback => {
     // If we're dealing with a `<input type="checkbox">`, then we
     // need to pass along the `checked` value instead of `value`.
     if (type === 'checkbox') {
-      console.log(event.target.checked);
       setValues(values => ({ ...values, [name]: event.target.checked }));
     } else {
       setValues(values => ({ ...values, [name]: value }));

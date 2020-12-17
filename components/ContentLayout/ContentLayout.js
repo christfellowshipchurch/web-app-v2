@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { createMarkup } from '../../utils';
-import { Box, Card, HighlightCard, Longform } from '../../ui-kit';
-import { PageTitle } from '../';
+import { Box, Card, DefaultCard, Longform } from '../../ui-kit';
+import { SEO } from '../';
 
 function ContentLayout(props = {}) {
   function renderA() {
     if (props.coverImage) {
       return (
-        <HighlightCard
+        <DefaultCard
           coverImage={props.coverImage}
           height={{ _: '298px', md: '596px' }}
           mb="l"
@@ -99,7 +99,7 @@ function ContentLayout(props = {}) {
 
   return (
     <>
-      <PageTitle title={props.title} />
+      <SEO title={props.title} />
       {renderA()}
       <Box
         alignItems="center"

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 
 import { slugify } from '../../utils';
-import { Box, Card, CardGrid, Loader } from '../../ui-kit';
+import { Box, CardGrid, DefaultCard, Loader } from '../../ui-kit';
 import { CustomLink } from '../';
 
 function GroupsList(props = {}) {
@@ -31,7 +31,7 @@ function GroupsList(props = {}) {
           key={group.id}
           onClick={handleClick(group)}
           href={`/groups/${slugify(group.title)}`}
-          Component={Card}
+          Component={DefaultCard}
           coverImage={group?.coverImage?.sources[0]?.uri}
           title={group.title}
         />
