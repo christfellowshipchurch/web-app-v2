@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client';
 
-import { GROUP_FRAGMENT } from './useGroup';
+import { GROUP_FRAGMENT, GROUP_ITEM_FRAGMENT } from './useGroup';
 
 export const GET_GROUPS = gql`
   query getCurrentUserGroups {
@@ -12,10 +12,14 @@ export const GET_GROUPS = gql`
           ... on Group {
             ...GroupFragment
           }
+          ... on VolunteerGroup {
+            ...GroupItemFragment
+          }
         }
       }
     }
   }
+  ${GROUP_ITEM_FRAGMENT}
   ${GROUP_FRAGMENT}
 `;
 

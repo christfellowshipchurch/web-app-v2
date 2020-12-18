@@ -1,5 +1,39 @@
 import { gql, useQuery } from '@apollo/client';
 
+export const GROUP_ITEM_FRAGMENT = gql`
+  fragment GroupItemFragment on GroupItem {
+    title
+    summary
+    groupType
+    groupResources {
+      title
+      action
+      relatedNode {
+        id
+        ... on Url {
+          url
+        }
+      }
+    }
+    coverImage {
+      sources {
+        uri
+      }
+    }
+
+    leaders: people(isLeader: true) {
+      edges {
+        node {
+          id
+          photo {
+            uri
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const GROUP_FRAGMENT = gql`
   fragment GroupFragment on Group {
     id
@@ -33,8 +67,12 @@ export const GET_GROUP = gql`
       ... on Group {
         ...GroupFragment
       }
+      ... on VolunteerGroup {
+        ...GroupItemFragment
+      }
     }
   }
+  ${GROUP_ITEM_FRAGMENT}
   ${GROUP_FRAGMENT}
 `;
 
