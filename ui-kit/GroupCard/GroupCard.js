@@ -7,63 +7,98 @@ import Styled from './GroupCard.styles';
 import { textTrimmer } from '../../utils';
 
 const GroupCard = (props = {}) => {
-  const summaryLength = props.summary.length
-  const maxChar = 130
+  const summaryLength = props.summary ? props.summary.length : 0;
+  const maxChar = 130;
+
+  // Option if we want to add a Avatar Count label for leaders
+  // const heroAvatarsDiff = props.totalHeroAvatars - props.heroAvatars.length;
+  const avatarsDiff = props.totalAvatars - props.avatars.length;
 
   return (
-    <Styled {...props}>
-      {props.coverImage ? (
-       <Styled.GradientContainer
-        src={props.coverImage}
-       >
-         <Box as="div" display="flex" justifyContent="center">
-           {props.heroAvatars && props.heroAvatars.map((n) => (
-             <Avatar
-                src={n}
+    <Styled display="flex" flexDirection="column" {...props}>
+      <Box flexGrow={1}>
+        {props.coverImage ? (
+          <Styled.GradientBackground src={props.coverImage}>
+            {props.heroAvatars ? (
+              props.heroAvatars
+                .slice(0, 3)
+                .map((n, i) => (
+                  <Avatar
+                    height="80px"
+                    key={i}
+                    mr={props.heroAvatars.length > 1 ? 'xs' : null}
+                    name="Group Leader"
+                    src={n.node?.photo?.uri}
+                    width="80px"
+                  />
+                ))
+            ) : (
+              <Avatar
                 height="80px"
+                name="Group Leader"
+                src={false}
                 width="80px"
-                mr="xs"
-             />
-           ))
-           }
-         </Box>
-       </Styled.GradientContainer>
-      ) : null}
-        <Box as="div" display="flex" justifyContent="center">
-           <h2>{props.title}</h2>
-         </Box>
-         <Box as="div" display="flex" justifyContent="center">
-           <p>{props.groupType}</p>
-         </Box>
-        <Styled.GroupCardContent>
-        <Styled.DateTimeLabel>
-            {/* <Icon name="x" size="10" /> */}
-            {props.dateTime}
-          </Styled.DateTimeLabel>
-      {props.summary && (
-          <Box as="p">
-             {summaryLength > maxChar 
-            ? (<>
-              {textTrimmer(props.summary, maxChar)}
-              <Box as="a" pl="xs" textDecoration="none">See More...</Box>
-            </>)
-            : props.summary
+              />
+            )}
+          </Styled.GradientBackground>
+        ) : null}
+        <Styled.GroupCardTitle>
+          <h4>{props.title}</h4>
+        </Styled.GroupCardTitle>
+        <Styled.GroupCardTitle>
+          <Box as="p" fontSize="s">
+            {props.groupType}
+          </Box>
+        </Styled.GroupCardTitle>
+      </Box>
+      <Styled.GroupCardContent>
+        <Styled.DateTimeLabel>{props.dateTime}</Styled.DateTimeLabel>
+        {props.summary && (
+          <Box as="p" fontSize="xs">
+            {summaryLength > maxChar ? (
+              <>
+                {textTrimmer(props.summary, maxChar)}
+                <Box as="a" pl="xs" textDecoration="none">
+                  See More...
+                </Box>
+              </>
+            ) : (
+              props.summary
+            )}
+          </Box>
+        )}
+        <Box as="h5" mt="base">
+          Group Members
+        </Box>
+        <Box as="div" display="flex">
+          {props.avatars &&
+            props.avatars
+              .slice(0, 4)
+              .map((n, i = 2) => (
+                <SquareAvatar
+                  height="90px"
+                  key={i}
+                  mr="xs"
+                  name="Group Member"
+                  src={n.node?.photo?.uri}
+                  width="70px"
+                />
+              ))}
+          {avatarsDiff > 0 &&
+            <Styled.AvatarCount>{`+${avatarsDiff}`}</Styled.AvatarCount>
           }
-          </Box>
-      )}
-      <Box as="h4" mt="base">Group Members</Box>
-          <Box as="div" display="flex">
-          {props.avatars && props.avatars.map((n) => (
-             <SquareAvatar
-                src={n}
-                height="90px"
-                width="70px"
-                mr="xs"
-             />
-          ))}
-          </Box>
-          <Button size="l" width="100%" mt="xl">How Do I Join?</Button>
-        </Styled.GroupCardContent>
+        </Box>
+        {props.callToAction && (
+          <Button
+            href={props?.callToAction?.action}
+            mt="l"
+            size="l"
+            width="100%"
+          >
+            {props?.callToAction?.call}
+          </Button>
+        )}
+      </Styled.GroupCardContent>
     </Styled>
   );
 };
@@ -78,20 +113,20 @@ GroupCard.propTypes = {
   dateTime: PropTypes.string,
   avatars: PropTypes.array,
   heroAvatars: PropTypes.array,
-  // totalAvatars: PropTypes.number,
-  // totalHeroAvatars: PropTypes.number,
-  // theme: PropTypes.shape({}),
-  // isLive: PropTypes.bool,
+  callToAction: PropTypes.shape({
+    call: PropTypes.string,
+    action: PropTypes.string,
+  }),
+  totalAvatars: PropTypes.number,
+  totalHeroAvatars: PropTypes.number,
 };
 
 GroupCard.defaultProps = {
-  coverImage: null,
-  // avatars: [],
-  // totalAvatars: 0,
-  // heroAvatars: [],
-  // totalHeroAvatars: 0,
-  // isLive: false,
-  // inHorizontalList: false,
+  coverImage: '/cf-logo.png',
+  avatars: [],
+  totalAvatars: 0,
+  heroAvatars: [],
+  totalHeroAvatars: 0,
 };
 
 export default GroupCard;

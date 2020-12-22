@@ -1,18 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Box, systemPropTypes } from '..';
+import { Box, Icon, systemPropTypes } from '..';
 import Styled from './SquareAvatar.styles';
+
 
 function SquareAvatar(props = {}) {
   if (!props.src) {
     return (
       <Box
+        {...props}
         bg="subdued"
-        borderRadius="50%"
+        borderRadius="15%"
+        display='flex'
+        alignItems='center'
         height={props.height}
         width={props.width}
       >
+        <Icon 
+          color="white" 
+          name="user"
+          padding='s'
+          size={props.width} />
         <Box as="span" className="srt">
           User
         </Box>

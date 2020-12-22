@@ -1,7 +1,8 @@
 import { gql, useQuery } from '@apollo/client';
 
 export const GROUP_ITEM_FRAGMENT = gql`
-  fragment GroupItemFragment on GroupItem {
+  fragment GroupItemFragment on VolunteerGroup {
+    id
     title
     summary
     groupType
@@ -21,7 +22,7 @@ export const GROUP_ITEM_FRAGMENT = gql`
       }
     }
 
-    leaders: people(isLeader: true) {
+    leaders: people(isLeader: true, first: 3) {
       edges {
         node {
           id
@@ -30,6 +31,18 @@ export const GROUP_ITEM_FRAGMENT = gql`
           }
         }
       }
+      totalCount
+    }
+    members: people(isLeader: false, first: 4) {
+      edges {
+        node {
+          id
+          photo {
+            uri
+          }
+        }
+      }
+      totalCount
     }
   }
 `;
@@ -56,6 +69,28 @@ export const GROUP_FRAGMENT = gql`
     dateTime {
       start
       end
+    }
+    leaders: people(isLeader: true, first: 3) {
+      edges {
+        node {
+          id
+          photo {
+            uri
+          }
+        }
+      }
+      totalCount
+    }
+    members: people(isLeader: false, first: 4) {
+      edges {
+        node {
+          id
+          photo {
+            uri
+          }
+        }
+      }
+      totalCount
     }
   }
 `;

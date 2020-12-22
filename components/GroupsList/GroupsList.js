@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { slugify } from '../../utils';
 import { Box, CardGrid, DefaultCard, Loader } from '../../ui-kit';
 import { CustomLink } from '../';
+import GroupCard from '../../ui-kit/GroupCard/GroupCard';
 
 function GroupsList(props = {}) {
   const router = useRouter();
@@ -26,16 +27,21 @@ function GroupsList(props = {}) {
   return (
     <CardGrid>
       {props.data.map(group => (
-        <CustomLink
-          as="a"
-          key={group.id}
-          onClick={handleClick(group)}
-          href={`/groups/${slugify(group.title)}`}
-          Component={DefaultCard}
-          coverImage={group?.coverImage?.sources[0]?.uri}
-          title={group.title}
-        />
-      ))}
+          <CustomLink
+            as="a"
+            key={group.id}
+            onClick={handleClick(group)}
+            href={`/groups/${slugify(group.title)}`}
+            Component={GroupCard}
+            coverImage={group?.coverImage?.sources[0]?.uri}
+            title={group.title}
+            summary={group.summary}
+            heroAvatars={group?.leaders?.edges}
+            avatars={group?.members?.edges}
+            totalHeroAvatars={group?.leaders?.totalCount}
+            totalAvatars={group?.members?.totalCount}
+          />
+        ))}
     </CardGrid>
   );
 }
