@@ -2,6 +2,11 @@ import styled, { css } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 import Card from '../Card/Card.styles'
 
+const GroupCard = styled(Card)`
+  display: flex;
+  flex-direction: column;
+`
+
 const AvatarCount = styled.p`
   background-color: ${themeGet('colors.tertiary')};
   border-radius: ${themeGet('radii.xl')};
@@ -39,11 +44,6 @@ const GradientBackground = styled.div`
   padding-top: ${themeGet('space.xl')};
   position: relative;
 `;
-
-const GroupCard = styled(Card)`
-  display: flex;
-  flex-direction: column;
-`
 
 const GroupCardContent = styled.div`
   padding: ${themeGet('space.base')};
