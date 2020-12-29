@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 
 import { slugify } from '../../utils';
-import { Box, CardGrid, DefaultCard, Loader } from '../../ui-kit';
+import { Box, CardGrid, GroupCard, Loader } from '../../ui-kit';
 import { CustomLink } from '../';
-import GroupCard from '../../ui-kit/GroupCard/GroupCard';
 
 function GroupsList(props = {}) {
   const router = useRouter();

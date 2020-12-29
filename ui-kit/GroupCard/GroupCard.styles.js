@@ -1,8 +1,6 @@
 import styled, { css } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 import Card from '../Card/Card.styles'
-import { fontSize } from 'styled-system';
-import Avatar from '../Avatar/Avatar.styles';
 
 const AvatarCount = styled.p`
   background-color: ${themeGet('colors.tertiary')};
@@ -42,6 +40,11 @@ const GradientBackground = styled.div`
   position: relative;
 `;
 
+const GroupCard = styled(Card)`
+  display: flex;
+  flex-direction: column;
+`
+
 const GroupCardContent = styled.div`
   padding: ${themeGet('space.base')};
 `
@@ -57,6 +60,7 @@ const GroupCardTitle = styled.div`
 Card.AvatarCount = AvatarCount
 Card.DateTimeLabel = DateTimeLabel
 Card.GradientBackground = GradientBackground
+Card.GroupCard = GroupCard
 Card.GroupCardContent = GroupCardContent
 Card.GroupCardTitle = GroupCardTitle
 

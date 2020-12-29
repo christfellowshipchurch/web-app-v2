@@ -7,7 +7,7 @@ import Styled from './GroupCard.styles';
 import { textTrimmer } from '../../utils';
 
 const GroupCard = (props = {}) => {
-  const summaryLength = props.summary ? props.summary.length : 0;
+  const summaryLength = props?.summary?.length || 0;
   const maxChar = 130;
 
   // Option if we want to add a Avatar Count label for leaders
@@ -15,7 +15,7 @@ const GroupCard = (props = {}) => {
   const avatarsDiff = props.totalAvatars - props.avatars.length;
 
   return (
-    <Styled display="flex" flexDirection="column" {...props}>
+    <Styled.GroupCard {...props}>
       <Box flexGrow={1}>
         {props.coverImage ? (
           <Styled.GradientBackground src={props.coverImage}>
@@ -43,7 +43,7 @@ const GroupCard = (props = {}) => {
           </Styled.GradientBackground>
         ) : null}
         <Styled.GroupCardTitle>
-          <h4>{props.title}</h4>
+          <Box as="h4">{props.title}</Box>
         </Styled.GroupCardTitle>
         <Styled.GroupCardTitle>
           <Box as="p" fontSize="s">
@@ -70,7 +70,7 @@ const GroupCard = (props = {}) => {
         <Box as="h5" mt="base">
           Group Members
         </Box>
-        <Box as="div" display="flex">
+        <Box display="flex">
           {props.avatars &&
             props.avatars
               .slice(0, 4)
@@ -99,33 +99,33 @@ const GroupCard = (props = {}) => {
           </Button>
         )}
       </Styled.GroupCardContent>
-    </Styled>
+    </Styled.GroupCard>
   );
 };
 
 GroupCard.propTypes = {
   ...systemPropTypes,
-  coverImage: PropTypes.string,
-  isLoading: PropTypes.bool,
-  title: PropTypes.string,
-  groupType: PropTypes.string,
-  summary: PropTypes.string,
-  dateTime: PropTypes.string,
   avatars: PropTypes.array,
-  heroAvatars: PropTypes.array,
   callToAction: PropTypes.shape({
     call: PropTypes.string,
     action: PropTypes.string,
   }),
+  coverImage: PropTypes.string,
+  dateTime: PropTypes.string,
+  groupType: PropTypes.string,
+  heroAvatars: PropTypes.array,
+  isLoading: PropTypes.bool,
+  summary: PropTypes.string,
+  title: PropTypes.string,
   totalAvatars: PropTypes.number,
   totalHeroAvatars: PropTypes.number,
 };
 
 GroupCard.defaultProps = {
-  coverImage: '/cf-logo.png',
   avatars: [],
-  totalAvatars: 0,
+  coverImage: '/cf-logo.png',
   heroAvatars: [],
+  totalAvatars: 0,
   totalHeroAvatars: 0,
 };
 
