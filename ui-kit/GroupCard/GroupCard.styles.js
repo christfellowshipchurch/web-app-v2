@@ -57,11 +57,10 @@ const GroupCardTitle = styled.div`
   padding-right: ${themeGet('space.base')};
 `
 
-Card.AvatarCount = AvatarCount
-Card.DateTimeLabel = DateTimeLabel
-Card.GradientBackground = GradientBackground
-Card.GroupCard = GroupCard
-Card.GroupCardContent = GroupCardContent
-Card.GroupCardTitle = GroupCardTitle
+GroupCard.AvatarCount = AvatarCount
+GroupCard.DateTimeLabel = DateTimeLabel
+GroupCard.GradientBackground = GradientBackground
+GroupCard.GroupCardContent = GroupCardContent
+GroupCard.GroupCardTitle = GroupCardTitle
 
-export default Card;
+export default GroupCard;

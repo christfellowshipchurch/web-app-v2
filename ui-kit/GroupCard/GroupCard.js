@@ -15,7 +15,7 @@ const GroupCard = (props = {}) => {
   const avatarsDiff = props.totalAvatars - props.avatars.length;
 
   return (
-    <Styled.GroupCard {...props}>
+    <Styled {...props}>
       <Box flexGrow={1}>
         {props.coverImage ? (
           <Styled.GradientBackground src={props.coverImage}>
@@ -99,7 +99,7 @@ const GroupCard = (props = {}) => {
           </Button>
         )}
       </Styled.GroupCardContent>
-    </Styled.GroupCard>
+    </Styled>
   );
 };
 
