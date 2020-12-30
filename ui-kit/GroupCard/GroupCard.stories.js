@@ -1,7 +1,7 @@
 import React from 'react';
 
 import GroupCard from './GroupCard';
-import { CardGrid, Layout } from '../../ui-kit';
+import { CardGrid } from '../../ui-kit';
 
 const heroAvatars = [
   {

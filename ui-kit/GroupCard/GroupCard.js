@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { systemPropTypes } from '..';
-import { Box, Avatar, SquareAvatar, Button, Icon } from '..';
+import { Box, Avatar, SquareAvatar, Button } from '..';
 import Styled from './GroupCard.styles';
 import { textTrimmer } from '../../utils';
 
