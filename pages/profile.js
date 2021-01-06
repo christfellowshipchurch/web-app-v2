@@ -1,5 +1,5 @@
-import { Layout, UserProfile } from '../components';
-import { CurrentPersonProvider } from '../providers';
+import { Layout, UserProfile } from 'components';
+import { CurrentPersonProvider } from 'providers';
 
 export default function Profile(props = {}) {
   return (

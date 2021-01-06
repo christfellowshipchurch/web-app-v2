@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useReducer } from 'react';
 import PropTypes from 'prop-types';
 
-import { normalizeUserData } from '../utils';
+import { normalizeUserData } from 'utils';
 
 const UserProfileProviderStateContext = createContext();
 const UserProfileProviderDispatchContext = createContext();

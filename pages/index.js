@@ -1,12 +1,12 @@
 import flatten from 'lodash/flatten';
 
-import { initializeApollo } from '../lib/apolloClient';
-import { GET_CONTENT_FEED } from '../hooks/useContentFeed';
-import { GET_FEED_FEATURES } from '../hooks/useFeedFeatures';
-import { Layout } from '../components';
+import { initializeApollo } from 'lib/apolloClient';
+import { GET_CONTENT_FEED } from 'hooks/useContentFeed';
+import { GET_FEED_FEATURES } from 'hooks/useFeedFeatures';
+import { Layout } from 'components';
 
-import { FeedFeaturesProvider } from '../providers';
-import { HomeFeed } from '../components';
+import { FeedFeaturesProvider } from 'providers';
+import { HomeFeed } from 'components';
 
 export default function Home(props = {}) {
   return (

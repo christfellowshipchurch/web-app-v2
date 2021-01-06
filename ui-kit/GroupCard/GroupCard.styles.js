@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
-import Card from '../Card/Card.styles'
+import Card from 'ui-kit/Card/Card.styles';
 
 const GroupCard = styled(Card)`
   display: flex;
   flex-direction: column;
-`
+`;
 
 const AvatarCount = styled.p`
   background-color: ${themeGet('colors.tertiary')};
@@ -17,7 +17,7 @@ const AvatarCount = styled.p`
   padding: ${themeGet('space.xs')};
   position: relative;
   right: ${themeGet('space.base')};
-`
+`;
 
 const DateTimeLabel = styled.p`
   align-items: center;
@@ -25,12 +25,15 @@ const DateTimeLabel = styled.p`
   font-size: ${themeGet('fontSizes.xs')};
   font-weight: ${themeGet('fontWeights.bold')};
   padding-bottom: ${themeGet('space.xs')};
-`
+`;
 
 const GradientBackground = styled.div`
-  background-image: 
-  linear-gradient(to top, rgb(255, 255, 255, 1), rgba(255, 255, 255, 0.6)),
-  url(${props => props.src});
+  background-image: linear-gradient(
+      to top,
+      rgb(255, 255, 255, 1),
+      rgba(255, 255, 255, 0.6)
+    ),
+    url(${props => props.src});
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -47,20 +50,20 @@ const GradientBackground = styled.div`
 
 const GroupCardContent = styled.div`
   padding: ${themeGet('space.base')};
-`
+`;
 
-const GroupCardTitle = styled.div`  
+const GroupCardTitle = styled.div`
   display: flex;
   justify-content: center;
   text-align: center;
   padding-left: ${themeGet('space.base')};
   padding-right: ${themeGet('space.base')};
-`
+`;
 
-GroupCard.AvatarCount = AvatarCount
-GroupCard.DateTimeLabel = DateTimeLabel
-GroupCard.GradientBackground = GradientBackground
-GroupCard.GroupCardContent = GroupCardContent
-GroupCard.GroupCardTitle = GroupCardTitle
+GroupCard.AvatarCount = AvatarCount;
+GroupCard.DateTimeLabel = DateTimeLabel;
+GroupCard.GradientBackground = GradientBackground;
+GroupCard.GroupCardContent = GroupCardContent;
+GroupCard.GroupCardTitle = GroupCardTitle;
 
 export default GroupCard;

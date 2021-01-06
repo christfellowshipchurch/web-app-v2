@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { useGroups } from '../hooks';
+import { useGroups } from 'hooks';
 
 function GroupsProvider({ Component, options, ...props }) {
   const { loading, error, groups } = useGroups(options);

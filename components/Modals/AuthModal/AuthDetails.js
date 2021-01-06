@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { getAge } from '../../../utils';
-import { useAuthIdentity, useForm } from '../../../hooks';
-import { Box, Button, TextInput } from '../../../ui-kit';
+import { getAge } from 'utils';
+import { useAuthIdentity, useForm } from 'hooks';
+import { Box, Button, TextInput } from 'ui-kit';
 import { BirthDateField, GenderField } from '../..';
 
 function AuthDetails() {

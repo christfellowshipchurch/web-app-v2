@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { useUserProfileState } from '../../providers/UserProfileProvider';
-import { Box } from '../../ui-kit';
+import { useUserProfileState } from 'providers/UserProfileProvider';
+import { Box } from 'ui-kit';
 import EditUserProfile from './EditUserProfile';
 import UserProfileAttribute from './UserProfileAttribute';
 

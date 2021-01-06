@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { normalizeUserData } from '../../utils';
-import { Avatar as UIAvatar } from '../../ui-kit';
-import { CustomLink } from '../';
+import { normalizeUserData } from 'utils';
+import { Avatar as UIAvatar } from 'ui-kit';
+import { CustomLink } from 'components';
 
 function UserAvatar(props = {}) {
   const { currentUser } = props;

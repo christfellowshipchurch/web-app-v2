@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { getURLFromType } from '../../utils';
-import { Box, DefaultCard, CardGrid, Loader } from '../../ui-kit';
-import { CustomLink } from '../../components';
+import { getURLFromType } from 'utils';
+import { Box, DefaultCard, CardGrid, Loader } from 'ui-kit';
+import { CustomLink } from 'components';
 
 function ContentList(props = {}) {
   function render() {

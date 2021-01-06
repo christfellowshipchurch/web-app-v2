@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { useEvents } from '../hooks';
+import { useEvents } from 'hooks';
 
 function EventsProvider({ Component, options, ...props }) {
   const { loading, error, events } = useEvents(options);

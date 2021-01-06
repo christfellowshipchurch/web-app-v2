@@ -5,7 +5,7 @@ import { ThemeProvider as SCThemeProvider } from 'styled-components';
 import {
   GlobalStyles as DefaultGlobalStyles,
   theme as defaultTheme,
-} from '../';
+} from 'ui-kit';
 
 const DEFAULT_MODE = 'light';
 

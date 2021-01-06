@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import flatten from 'lodash/flatten';
 
-import { ContentFeedProvider } from '../../providers';
-import { ContentList } from '../../components';
+import { ContentFeedProvider } from 'providers';
+import { ContentList } from 'components';
 
 const EXCLUDED_CONTENT = [
   'Feature Demos',

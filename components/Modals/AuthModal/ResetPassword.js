@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { useAuth } from '../../../providers/AuthProvider';
-import { Box } from '../../../ui-kit';
+import { useAuth } from 'providers/AuthProvider';
+import { Box } from 'ui-kit';
 
 function ResetPassword() {
   const [state, dispatch] = useAuth();

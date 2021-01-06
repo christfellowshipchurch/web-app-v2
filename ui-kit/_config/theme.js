@@ -1,4 +1,4 @@
-import { rem } from '../_utils';
+import { rem } from 'ui-kit/_utils';
 import colors from './colors';
 
 const theme = {

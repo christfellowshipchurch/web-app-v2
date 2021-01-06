@@ -1,7 +1,7 @@
 import React from 'react';
 
 import GroupCard from './GroupCard';
-import { CardGrid } from '../../ui-kit';
+import { CardGrid } from 'ui-kit';
 
 const heroAvatars = [
   {
@@ -116,32 +116,32 @@ export const Default = () => (
 );
 
 export const GridView = () => (
-    <CardGrid maxWidth='68.75rem'>
-      <GroupCard
-        title="Group Title"
-        groupType="Group Type"
-        summary={groupSummary}
-        heroAvatars={heroAvatars}
-        avatars={avatars}
-        dateTime="Wednesdays at 6:30pm"
-        coverImage="https://source.unsplash.com/random/1000x1000"
-        totalAvatars={100}
-      />
-      <GroupCard
-        title="A Group That Does Not Contain Summary Text"
-        groupType="Group Type"
-        heroAvatars={heroAvatars}
-        avatars={blankAvatars}
-        coverImage="https://source.unsplash.com/random/1000x1000"
-        totalAvatars={100}
-      />
-      <GroupCard
-        title="No Leaders in Group"
-        summary={groupSummary}
-        avatars={avatars}
-        dateTime="Wednesdays at 6:30pm"
-        coverImage="https://source.unsplash.com/random/1000x1000"
-        totalAvatars={100}
-      />
-    </CardGrid>
+  <CardGrid maxWidth="68.75rem">
+    <GroupCard
+      title="Group Title"
+      groupType="Group Type"
+      summary={groupSummary}
+      heroAvatars={heroAvatars}
+      avatars={avatars}
+      dateTime="Wednesdays at 6:30pm"
+      coverImage="https://source.unsplash.com/random/1000x1000"
+      totalAvatars={100}
+    />
+    <GroupCard
+      title="A Group That Does Not Contain Summary Text"
+      groupType="Group Type"
+      heroAvatars={heroAvatars}
+      avatars={blankAvatars}
+      coverImage="https://source.unsplash.com/random/1000x1000"
+      totalAvatars={100}
+    />
+    <GroupCard
+      title="No Leaders in Group"
+      summary={groupSummary}
+      avatars={avatars}
+      dateTime="Wednesdays at 6:30pm"
+      coverImage="https://source.unsplash.com/random/1000x1000"
+      totalAvatars={100}
+    />
+  </CardGrid>
 );

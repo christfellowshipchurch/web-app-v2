@@ -1,7 +1,7 @@
 import Head from 'next/head';
 
-import configureNProgress from '../config/nprogress';
-import { AppProvider } from '../providers';
+import configureNProgress from 'config/nprogress';
+import { AppProvider } from 'providers';
 
 // Tracks the route changes and adds a bar to the top.
 configureNProgress();

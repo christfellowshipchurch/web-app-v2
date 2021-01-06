@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { UserProfileProvider } from '../../providers';
-import { Box, Cell, Loader } from '../../ui-kit';
+import { UserProfileProvider } from 'providers';
+import { Box, Cell, Loader } from 'ui-kit';
 import UserProfileContent from './UserProfileContent';
 import UserProfileHeader from './UserProfileHeader';
 

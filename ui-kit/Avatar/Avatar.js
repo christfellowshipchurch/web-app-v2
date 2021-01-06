@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Box, systemPropTypes } from '../';
+import { Box, systemPropTypes } from 'ui-kit';
 import Styled from './Avatar.styles';
 
 function Avatar(props = {}) {

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-import { useRequestPin } from '../../../hooks';
-import { useAuthState } from '../../../providers/AuthProvider';
-import { Box } from '../../../ui-kit';
+import { useRequestPin } from 'hooks';
+import { useAuthState } from 'providers/AuthProvider';
+import { Box } from 'ui-kit';
 
 function ResendCode() {
   const initialText = `Didn't get a code? Request a new one.`;

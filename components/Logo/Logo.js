@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Box } from '../../ui-kit';
+import { Box } from 'ui-kit';
 
 function Logo(props = {}) {
   const filename = `/logo${props.dark ? '-dark' : ''}.png`;

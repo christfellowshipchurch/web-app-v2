@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { systemPropTypes } from '..';
-import { Box, Avatar, SquareAvatar, Button } from '..';
+import { systemPropTypes } from 'ui-kit';
+import { Box, Avatar, SquareAvatar, Button } from 'ui-kit';
 import Styled from './GroupCard.styles';
-import { textTrimmer } from '../../utils';
+import { textTrimmer } from 'utils';
 
 const GroupCard = (props = {}) => {
   const summaryLength = props?.summary?.length || 0;
@@ -84,9 +84,9 @@ const GroupCard = (props = {}) => {
                   width="70px"
                 />
               ))}
-          {avatarsDiff > 0 &&
+          {avatarsDiff > 0 && (
             <Styled.AvatarCount>{`+${avatarsDiff}`}</Styled.AvatarCount>
-          }
+          )}
         </Box>
         {props.callToAction && (
           <Button

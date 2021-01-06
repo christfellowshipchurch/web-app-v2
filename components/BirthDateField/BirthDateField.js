@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Box, TextInput } from '../../ui-kit';
+import { Box, TextInput } from 'ui-kit';
 
 function BirthDateField(props = {}) {
   return (

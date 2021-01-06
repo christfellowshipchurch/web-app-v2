@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { useUserProfile, update } from '../../providers/UserProfileProvider';
-import { Box, Button } from '../../ui-kit';
+import { useUserProfile, update } from 'providers/UserProfileProvider';
+import { Box, Button } from 'ui-kit';
 
 function UserProfileControls(props = {}) {
   const [{ status }, dispatch] = useUserProfile();

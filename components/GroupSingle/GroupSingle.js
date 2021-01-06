@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { ContentLayout } from '../';
-import { Box, Button } from '../../ui-kit';
+import { ContentLayout } from 'components';
+import { Box, Button } from 'ui-kit';
 
 function GroupSingle(props = {}) {
   return (

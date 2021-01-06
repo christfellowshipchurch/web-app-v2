@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
-import { system } from '../';
+import { system } from 'ui-kit';
 
 const variant = ({ variant }) => props => {
   if (variant === 'secondary') {

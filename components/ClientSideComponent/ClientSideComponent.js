@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Box, systemPropTypes } from '../../ui-kit';
+import { Box, systemPropTypes } from 'ui-kit';
 
 function ClientSideComponent(props = {}) {
   return (

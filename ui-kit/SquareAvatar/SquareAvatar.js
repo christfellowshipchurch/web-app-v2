@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Box, Icon, systemPropTypes } from '..';
+import { Box, Icon, systemPropTypes } from 'ui-kit';
 import Styled from './SquareAvatar.styles';
-
 
 function SquareAvatar(props = {}) {
   if (!props.src) {
@@ -12,16 +11,12 @@ function SquareAvatar(props = {}) {
         {...props}
         bg="subdued"
         borderRadius="15%"
-        display='flex'
-        alignItems='center'
+        display="flex"
+        alignItems="center"
         height={props.height}
         width={props.width}
       >
-        <Icon 
-          color="white" 
-          name="user"
-          padding='s'
-          size={props.width} />
+        <Icon color="white" name="user" padding="s" size={props.width} />
         <Box as="span" className="srt">
           User
         </Box>

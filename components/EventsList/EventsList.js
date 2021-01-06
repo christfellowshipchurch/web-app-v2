@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { slugify } from '../../utils';
-import { DefaultCard, CardGrid } from '../../ui-kit';
-import { CustomLink } from '../';
+import { slugify } from 'utils';
+import { DefaultCard, CardGrid } from 'ui-kit';
+import { CustomLink } from 'components';
 
 function EventsList(props = {}) {
   return (

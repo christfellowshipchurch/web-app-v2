@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Box, FormLabel, Select } from '../../ui-kit';
+import { Box, FormLabel, Select } from 'ui-kit';
 
 function UserProfileCampusSelect(props = {}) {
   return (

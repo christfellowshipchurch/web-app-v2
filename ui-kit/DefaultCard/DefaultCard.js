@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { systemPropTypes } from '..';
-import { Box } from '..';
-import Styled from '../Card/Card.styles';
+import { systemPropTypes } from 'ui-kit';
+import { Box } from 'ui-kit';
+import Styled from 'ui-kit/Card/Card.styles';
 
 const DefaultCard = (props = {}) => {
   const hasContent = props.title || props.description || props.children;
