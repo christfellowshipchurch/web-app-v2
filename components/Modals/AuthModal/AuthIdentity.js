@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { validateEmail, validatePhoneNumber } from '../../../utils';
-import { useAuthIdentity, useForm, useUserExists } from '../../../hooks';
-import { Box, Button, Checkbox, TextInput } from '../../../ui-kit';
+import { validateEmail, validatePhoneNumber } from 'utils';
+import { useAuthIdentity, useForm, useUserExists } from 'hooks';
+import { Box, Button, Checkbox, TextInput } from 'ui-kit';
 
 function AuthIdentity() {
   const {

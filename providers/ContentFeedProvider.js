@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { useContentFeed } from '../hooks';
+import { useContentFeed } from 'hooks';
 
 function ContentFeedProvider({ Component, options, ...props }) {
   const { loading, error, content } = useContentFeed(options);

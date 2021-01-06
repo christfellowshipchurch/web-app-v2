@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { systemPropTypes } from '../';
+import { systemPropTypes } from 'ui-kit';
 import Styled from './FormLabel.styles';
 
 function FormLabel(props = {}) {

@@ -1,4 +1,4 @@
-import { systemPropTypes } from '../';
+import { systemPropTypes } from 'ui-kit';
 import Styled from './Card.styles';
 
 function Card(props = {}) {

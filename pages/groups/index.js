@@ -1,6 +1,6 @@
-import { GroupsProvider } from '../../providers';
-import { Box } from '../../ui-kit';
-import { GroupsList, Layout } from '../../components';
+import { GroupsProvider } from 'providers';
+import { Box } from 'ui-kit';
+import { GroupsList, Layout } from 'components';
 
 export default function Groups() {
   return (

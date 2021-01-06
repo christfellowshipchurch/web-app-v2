@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { systemPropTypes } from '../';
+import { systemPropTypes } from 'ui-kit';
 import Styled, { styles } from './GlobalStyles.styles';
 
 function GlobalStyles(props = {}) {

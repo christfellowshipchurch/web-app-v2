@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { useContentItem } from '../hooks';
+import { useContentItem } from 'hooks';
 
 function ContentItemProvider({ Component, options, ...props }) {
   const { loading, error, item } = useContentItem(options);

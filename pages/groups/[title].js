@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
 
-import { useGroupContentId } from '../../hooks';
-import { GroupProvider } from '../../providers';
-import { Loader } from '../../ui-kit';
-import { GroupSingle, Layout } from '../../components';
+import { useGroupContentId } from 'hooks';
+import { GroupProvider } from 'providers';
+import { Loader } from 'ui-kit';
+import { GroupSingle, Layout } from 'components';
 
 export default function Group(props) {
   const router = useRouter();

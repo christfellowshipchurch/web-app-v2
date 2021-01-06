@@ -1,9 +1,9 @@
 import { useEffect, useReducer } from 'react';
 import { useRouter } from 'next/router';
 
-import { initializeApollo } from '../lib/apolloClient';
-import { slugify } from '../utils';
-import { useAuthState } from '../providers/AuthProvider';
+import { initializeApollo } from 'lib/apolloClient';
+import { slugify } from 'utils';
+import { useAuthState } from 'providers/AuthProvider';
 import { GET_GROUPS } from './useGroups';
 
 const initialState = {

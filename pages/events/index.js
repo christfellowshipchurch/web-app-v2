@@ -1,8 +1,8 @@
-import { initializeApollo } from '../../lib/apolloClient';
-import { EventsProvider } from '../../providers';
-import { GET_EVENTS } from '../../hooks/useEvents';
-import { Box } from '../../ui-kit';
-import { EventsList, Layout } from '../../components';
+import { initializeApollo } from 'lib/apolloClient';
+import { EventsProvider } from 'providers';
+import { GET_EVENTS } from 'hooks/useEvents';
+import { Box } from 'ui-kit';
+import { EventsList, Layout } from 'components';
 
 export default function Events() {
   return (

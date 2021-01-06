@@ -4,12 +4,12 @@ import { format, parseISO } from 'date-fns';
 import isNil from 'lodash/isNil';
 import startCase from 'lodash/startCase';
 
-import { normalizeUserData } from '../../utils';
-import { CampusesProvider } from '../../providers';
-import { useUserProfile, update } from '../../providers/UserProfileProvider';
-import { useForm, useUpdateCurrentUser } from '../../hooks';
-import { GET_CURRENT_PERSON } from '../../hooks/useCurrentPerson';
-import { Box, Cell, Checkbox, Loader, TextInput } from '../../ui-kit';
+import { normalizeUserData } from 'utils';
+import { CampusesProvider } from 'providers';
+import { useUserProfile, update } from 'providers/UserProfileProvider';
+import { useForm, useUpdateCurrentUser } from 'hooks';
+import { GET_CURRENT_PERSON } from 'hooks/useCurrentPerson';
+import { Box, Cell, Checkbox, Loader, TextInput } from 'ui-kit';
 import { BirthDateField, GenderField } from '..';
 import UserProfileAddress from './UserProfileAddress';
 import UserProfileCampusSelect from './UserProfileCampusSelect';

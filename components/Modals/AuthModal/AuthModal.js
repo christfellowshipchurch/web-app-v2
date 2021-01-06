@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { useAuth, reset as resetAuth } from '../../../providers/AuthProvider';
-import { Modal } from '../../../ui-kit';
+import { useAuth, reset as resetAuth } from 'providers/AuthProvider';
+import { Modal } from 'ui-kit';
 import Confirm from './AuthConfirm';
 import Details from './AuthDetails';
 import Identity from './AuthIdentity';

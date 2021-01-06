@@ -1,5 +1,5 @@
-import { Box } from '../ui-kit';
-import { Layout } from '../components';
+import { Box } from 'ui-kit';
+import { Layout } from 'components';
 
 export default function Discover() {
   return (

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Box, Button } from '../../ui-kit';
-import { ContentLayout } from '../';
+import { Box, Button } from 'ui-kit';
+import { ContentLayout } from 'components';
 
 function EventSingle(props = {}) {
   return (

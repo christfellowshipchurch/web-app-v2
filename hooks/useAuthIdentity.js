@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import { validateEmail, validatePhoneNumber } from '../utils';
-import { useAuth, update as updateAuth } from '../providers/AuthProvider';
+import { validateEmail, validatePhoneNumber } from 'utils';
+import { useAuth, update as updateAuth } from 'providers/AuthProvider';
 import { useRequestPin } from './';
 
 function useAuthIdentity() {

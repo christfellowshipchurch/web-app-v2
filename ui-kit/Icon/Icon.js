@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withTheme } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
-import { icons, systemPropTypes, theme } from '../';
+import { icons, systemPropTypes, theme } from 'ui-kit';
 import Styled from './Icon.styles';
 
 const DEFAULT_ICON_SIZE = 24;
