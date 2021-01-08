@@ -17,6 +17,7 @@ import Checkbox from './Checkbox';
 import DefaultCard from './DefaultCard';
 import FormLabel from './FormLabel';
 import GroupCard from './GroupCard'
+import HeroCardGrid from './HeroCardGrid'
 import Icon from './Icon';
 import List from './List';
 import Loader from './Loader';
@@ -44,6 +45,7 @@ export {
   DefaultCard,
   FormLabel,
   GroupCard,
+  HeroCardGrid,
   Icon,
   List,
   Loader,
