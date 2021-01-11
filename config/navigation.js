@@ -14,6 +14,10 @@ const navigation = {
       action: '/groups',
       call: 'Groups',
     },
+    {
+      action: '/community',
+      call: 'Community',
+    },
   ],
   navigationLinks: [
     {
