@@ -11,6 +11,18 @@ const variant = ({ variant }) => props => {
       color: ${themeGet('colors.fg')};
     `;
   }
+  if (variant === 'link') {
+    return css`
+      background-color: transparent;
+      color: ${themeGet('colors.primary')};
+      &:active,
+      &:focus,
+      &:hover {
+        background: 0;
+        color: ${themeGet('colors.primaryHover')};
+      }
+    `;
+  }
 };
 
 const size = ({ size }) => props => {

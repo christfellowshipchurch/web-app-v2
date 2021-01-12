@@ -13,7 +13,7 @@ const CardwithBackground = (props = {}) => (
       justifyContent={'center'}
       p={'l'}
       flexDirection={'column'}
-      backgroundImage={`url(${props.coverImage})`}
+      backgroundImage={`linear-gradient(rgba(0, 0, 0, 0.33), rgba(71, 71, 71, 0.85)),url(${props.coverImage})`}
       backgroundSize={'cover'}
       color={'white'}
       maxWidth={'300px'}
