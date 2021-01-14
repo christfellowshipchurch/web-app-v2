@@ -24,7 +24,9 @@ function Modal(props = {}) {
           </Box>
         </Styled.Close>
         <Box as="h2">{props.title}</Box>
-        {props.children}
+        {typeof props.children === 'function'
+          ? props.children(props.step)
+          : props.children}
       </Styled.Content>
       <Styled.Overlay onClick={handleClose} />
     </Styled>
