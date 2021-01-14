@@ -15,7 +15,7 @@ const EXCLUDED_CONTENT = [
 
 function HomeFeed(props = {}) {
   const actions = flatten(props.data.map(({ actions }) => actions));
-  const byType = type => item => item.action === type;
+  const byType = type => item => item?.action === type;
 
   function render(type) {
     return actions
