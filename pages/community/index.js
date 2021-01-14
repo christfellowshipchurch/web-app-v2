@@ -2,9 +2,24 @@ import { Box, Button, Cell, utils } from 'ui-kit';
 import { CardList, Footer, Header, SEO } from 'components';
 import { CommunityProvider } from 'providers';
 import Styled from './Community.styles';
+import { useAuthState } from 'providers/AuthProvider';
+import { useModalDispatch, showModal } from 'providers/ModalProvider';
+import { useEffect } from 'react';
+
 const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
 
 export default function Community() {
+  const { authenticated } = useAuthState();
+  const modalDispatch = useModalDispatch();
+
+  function handleOnClick() {
+    if (!authenticated) {
+      modalDispatch(showModal('Auth'), modalDispatch(showModal('GroupFilter')));
+    } else {
+      modalDispatch(showModal('GroupFilter'));
+    }
+  }
+
   return (
     <>
       <SEO title="Community" />
@@ -42,7 +57,7 @@ export default function Community() {
           <Box as="p" mb="l">
             There are hundreds of communities at CF. We’ll help find yours.
           </Box>
-          <Button variant="primary">Find your community</Button>
+          <Button onClick={handleOnClick}>Find your community</Button>
         </Box>
         <Footer />
       </Box>
