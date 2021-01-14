@@ -92,7 +92,7 @@ function AuthConfirm() {
             autoFocus
           />
           {error?.passcode ? (
-            <Box as="p" color="error" fontSize="s" mt="s">
+            <Box as="p" color="alert" fontSize="s" mt="s">
               {error.passcode}
             </Box>
           ) : null}
