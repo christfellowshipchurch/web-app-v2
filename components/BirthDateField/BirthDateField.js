@@ -8,7 +8,7 @@ function BirthDateField(props = {}) {
     <>
       <TextInput id="birthdate" label="Birth Date" type="date" {...props} />
       {props.error ? (
-        <Box as="p" color="error" fontSize="s" mt="s">
+        <Box as="p" color="alert" fontSize="s" mt="s">
           {props.error}
         </Box>
       ) : null}

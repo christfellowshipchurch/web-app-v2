@@ -11,7 +11,7 @@ function TextInput(props = {}) {
         <FormLabel htmlFor={props.id} {...props.labelProps}>
           {props.label}
           {props.required ? (
-            <Box as="span" color="error" fontWeight="bold">
+            <Box as="span" color="alert" fontWeight="bold">
               *
             </Box>
           ) : null}
