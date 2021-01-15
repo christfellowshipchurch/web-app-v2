@@ -6,12 +6,15 @@ import ContentSingle from './ContentSingle';
 import CustomLink from './CustomLink';
 import EventsList from './EventsList';
 import EventSingle from './EventSingle';
+import FeatureFeed from './FeatureFeed'
 import Footer from './Footer';
 import GenderField from './GenderField';
 import GroupsList from './GroupsList';
 import GroupSingle from './GroupSingle';
 import Header from './Header';
+import HeroListFeature from './HeroListFeature';
 import HomeFeed from './HomeFeed';
+import HorizontalCardListFeature from './HorizontalCardListFeature';
 import Layout from './Layout';
 import Logo from './Logo';
 import * as modals from './Modals';
@@ -19,6 +22,7 @@ import Nav from './Nav';
 import SEO from './SEO';
 import UserAvatar from './UserAvatar';
 import UserProfile from './UserProfile';
+import VerticalCardListFeature from './VerticalCardListFeature'
 
 export {
   BirthDateField,
@@ -29,12 +33,15 @@ export {
   CustomLink,
   EventsList,
   EventSingle,
+  FeatureFeed,
   Footer,
   GenderField,
   GroupsList,
   GroupSingle,
   Header,
+  HeroListFeature,
   HomeFeed,
+  HorizontalCardListFeature,
   Layout,
   Logo,
   modals,
@@ -42,4 +49,5 @@ export {
   SEO,
   UserAvatar,
   UserProfile,
+  VerticalCardListFeature,
 };
