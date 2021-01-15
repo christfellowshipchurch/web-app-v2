@@ -1,11 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import { useForm } from 'hooks';
 import { Box, Button, Radio, Select } from 'ui-kit';
 
 function GroupFilterPreferences(props = {}) {
+  const { handleSubmit } = useForm(() => {
+    console.log('Show me Results');
+  });
+
   return (
-    <Box display="flex" flexDirection="column">
+    <Box
+      as="form"
+      onSubmit={handleSubmit}
+      display="flex"
+      flexDirection="column"
+    >
       <Box textAlign="center">
         <Box as="h2">Find your Crew</Box>
         <Box as="p" color="subdued" mb="l">
@@ -86,7 +95,7 @@ function GroupFilterPreferences(props = {}) {
           checked={props.initialValues?.day === 'sun'}
         />
       </Box>
-      <Button>Continue</Button>
+      <Button type="submit">Continue</Button>
     </Box>
   );
 }

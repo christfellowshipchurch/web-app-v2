@@ -7,8 +7,8 @@ import GroupFilterPreferences from './GroupFilterPreferences';
 function GroupFilterModal(props = {}) {
   const initialValues = { day: '', campus: '' };
 
-  function render() {
-    switch (0) {
+  function render(step) {
+    switch (step) {
       case 0: {
         return <GroupFilterType initialValue={''} />;
       }
@@ -21,7 +21,7 @@ function GroupFilterModal(props = {}) {
     }
   }
 
-  return <Modal {...props}>{render()}</Modal>;
+  return <Modal {...props}>{render}</Modal>;
 }
 
 GroupFilterModal.propTypes = {

@@ -1,13 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import { useForm } from 'hooks';
+import { showStep, useModalDispatch } from 'providers/ModalProvider';
 import { Box, Button, Radio } from 'ui-kit';
 
 function GroupFilterType(props = {}) {
-  const initialValue = props.initialValue.toLowerCase();
+  const initialValue = 'bibleStudies';
+  const modalDispatch = useModalDispatch();
+
+  const { handleSubmit } = useForm(() => {
+    modalDispatch(showStep(1));
+  });
 
   return (
-    <Box display="flex" flexDirection="column" textAlign="center">
+    <Box
+      as="form"
+      onSubmit={handleSubmit}
+      display="flex"
+      flexDirection="column"
+      textAlign="center"
+    >
       <Box as="h2">Find your Crew</Box>
       <Box as="p" color="subdued" mb="l">
         Select the types of Crew groups you’re interested in.
@@ -46,7 +58,7 @@ function GroupFilterType(props = {}) {
           checked={initialValue === 'classes'}
         />
       </Box>
-      <Button>Continue</Button>
+      <Button type="submit">Continue</Button>
     </Box>
   );
 }
