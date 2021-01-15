@@ -7,6 +7,8 @@ import CurrentPersonProvider from './CurrentPersonProvider';
 import CurrentUserProvider from './CurrentUserProvider';
 import EventProvider from './EventProvider';
 import EventsProvider from './EventsProvider';
+import FeatureFeedProvider from './FeatureFeedProvider';
+import FeatureProvider from './FeatureProvider'
 import FeedFeaturesProvider from './FeedFeaturesProvider';
 import GroupProvider from './GroupProvider';
 import GroupsProvider from './GroupsProvider';
@@ -24,6 +26,8 @@ export {
   CurrentUserProvider,
   EventProvider,
   EventsProvider,
+  FeatureFeedProvider,
+  FeatureProvider,
   FeedFeaturesProvider,
   GroupProvider,
   GroupsProvider,
