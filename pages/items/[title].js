@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
 
-import { initializeApollo } from '../../lib/apolloClient';
-import { ContentItemProvider } from '../../providers';
-import { GET_CONTENT_ITEM } from '../../hooks/useContentItem';
-import { ContentSingle, Layout } from '../../components';
+import { initializeApollo } from 'lib/apolloClient';
+import { ContentItemProvider } from 'providers';
+import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
+import { ContentSingle, Layout } from 'components';
 
 function getItemId(slug) {
   const id = slug.split('-').pop();

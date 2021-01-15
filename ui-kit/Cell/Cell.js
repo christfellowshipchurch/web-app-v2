@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { rem } from '../_utils';
-import { systemPropTypes } from '../';
+import { rem } from 'ui-kit/_utils';
+import { systemPropTypes } from 'ui-kit';
 import Styled from './Cell.styles';
 
 const DEFAULT_MAX_WIDTH = rem('1100px');

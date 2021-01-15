@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { systemPropTypes } from '../';
+import { systemPropTypes } from 'ui-kit';
 import Styled from './Checkbox.styles';
 
 function Checkbox(props = {}) {

@@ -1,4 +1,4 @@
-import rem from '../rem';
+import rem from 'ui-kitrem';
 
 test('it should turn a pixel value into a rem', () => {
   expect(rem('16px')).toEqual('1rem');

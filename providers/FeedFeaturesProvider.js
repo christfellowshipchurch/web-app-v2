@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { useFeedFeatures } from '../hooks';
+import { useFeedFeatures } from 'hooks';
 
 function FeedFeaturesProvider({ Component, options, ...props }) {
   const { loading, error, features } = useFeedFeatures(options);

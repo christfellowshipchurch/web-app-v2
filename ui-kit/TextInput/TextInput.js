@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Box, FormLabel, systemPropTypes } from '../';
+import { Box, FormLabel, systemPropTypes } from 'ui-kit';
 import Styled from './TextInput.styles';
 
 function TextInput(props = {}) {
@@ -11,7 +11,7 @@ function TextInput(props = {}) {
         <FormLabel htmlFor={props.id} {...props.labelProps}>
           {props.label}
           {props.required ? (
-            <Box as="span" color="error" fontWeight="bold">
+            <Box as="span" color="alert" fontWeight="bold">
               *
             </Box>
           ) : null}

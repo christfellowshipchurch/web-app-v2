@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { system } from '../';
+import { system } from 'ui-kit';
 
 const Cell = styled.div`
   margin-left: auto;

@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import flatten from 'lodash/flatten';
 
-import { ContentFeedProvider } from '../../providers';
-import { ContentList } from '../../components';
+import { ContentFeedProvider } from 'providers';
+import { ContentList } from 'components';
 
 const EXCLUDED_CONTENT = [
   'Feature Demos',
@@ -15,7 +15,7 @@ const EXCLUDED_CONTENT = [
 
 function HomeFeed(props = {}) {
   const actions = flatten(props.data.map(({ actions }) => actions));
-  const byType = type => item => item.action === type;
+  const byType = type => item => item?.action === type;
 
   function render(type) {
     return actions

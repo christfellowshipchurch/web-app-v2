@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { hideModal, useModalDispatch } from '../../providers/ModalProvider';
-import { Box, Icon, systemPropTypes, utils } from '../../ui-kit';
+import { hideModal, useModalDispatch } from 'providers/ModalProvider';
+import { Box, Icon, systemPropTypes, utils } from 'ui-kit';
 import Styled from './Modal.styles';
 
 function Modal(props = {}) {
@@ -24,7 +24,9 @@ function Modal(props = {}) {
           </Box>
         </Styled.Close>
         <Box as="h2">{props.title}</Box>
-        {props.children}
+        {typeof props.children === 'function'
+          ? props.children(props.step)
+          : props.children}
       </Styled.Content>
       <Styled.Overlay onClick={handleClose} />
     </Styled>

@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
 
-import {
-  useAuthenticateCredentials,
-  useForm,
-  useVerifyPin,
-} from '../../../hooks';
-import { useAuth, update as updateAuth } from '../../../providers/AuthProvider';
-import { hideModal, useModalDispatch } from '../../../providers/ModalProvider';
-import { Box, Button, TextInput } from '../../../ui-kit';
+import { useAuthenticateCredentials, useForm, useVerifyPin } from 'hooks';
+import { useAuth, update as updateAuth } from 'providers/AuthProvider';
+import { hideModal, useModalDispatch } from 'providers/ModalProvider';
+import { Box, Button, TextInput } from 'ui-kit';
 import ResendCode from './ResendCode';
 import ResetPassword from './ResetPassword';
 
@@ -36,6 +32,12 @@ function AuthConfirm() {
       passcode: `The ${COPY.LABEL[state.type]} you entered is incorrect.`,
     });
   };
+  const onSuccess = token => {
+    setStatus('SUCCESS');
+    dispatch(updateAuth({ token }));
+    modalDispatch(hideModal());
+    state?.onSuccess();
+  };
   const { values, handleChange, handleSubmit } = useForm(async () => {
     const passcode = values.passcode;
     setStatus('LOADING');
@@ -47,9 +49,7 @@ function AuthConfirm() {
             cache,
             { data: { authenticateWithSms: { token } = {} } = {} }
           ) => {
-            setStatus('SUCCESS');
-            dispatch(updateAuth({ token }));
-            modalDispatch(hideModal());
+            onSuccess(token);
           },
           onError,
         });
@@ -63,9 +63,7 @@ function AuthConfirm() {
         await authenticateCredentials({
           variables: { email: state.identity, password: passcode },
           update: (cache, { data: { authenticate: { token } = {} } = {} }) => {
-            setStatus('SUCCESS');
-            dispatch(updateAuth({ token }));
-            modalDispatch(hideModal());
+            onSuccess(token);
           },
           onError,
         });
@@ -94,7 +92,7 @@ function AuthConfirm() {
             autoFocus
           />
           {error?.passcode ? (
-            <Box as="p" color="error" fontSize="s" mt="s">
+            <Box as="p" color="alert" fontSize="s" mt="s">
               {error.passcode}
             </Box>
           ) : null}

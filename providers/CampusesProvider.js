@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { useCampuses } from '../hooks';
+import { useCampuses } from 'hooks';
 
 function CampusesProvider({ Component, options, ...props }) {
   const { loading, error, campuses } = useCampuses(options);

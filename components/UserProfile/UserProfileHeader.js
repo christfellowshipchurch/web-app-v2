@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { useUserProfileState } from '../../providers/UserProfileProvider';
-import { Avatar, Box } from '../../ui-kit';
+import { useUserProfileState } from 'providers/UserProfileProvider';
+import { Avatar, Box } from 'ui-kit';
 import UserProfileControls from './UserProfileControls';
 
 function UserProfileHeader(props = {}) {

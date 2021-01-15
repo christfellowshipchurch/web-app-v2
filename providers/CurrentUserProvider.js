@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { useCurrentUser } from '../hooks';
+import { useCurrentUser } from 'hooks';
 
 function CurrentUserProvider({ Component, options, ...props }) {
   const { loading, error, currentUser } = useCurrentUser(options);

@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Box, TextInput } from '../../ui-kit';
+import { Box, TextInput } from 'ui-kit';
 
 function BirthDateField(props = {}) {
   return (
     <>
       <TextInput id="birthdate" label="Birth Date" type="date" {...props} />
       {props.error ? (
-        <Box as="p" color="error" fontSize="s" mt="s">
+        <Box as="p" color="alert" fontSize="s" mt="s">
           {props.error}
         </Box>
       ) : null}

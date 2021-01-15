@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
-import { system } from '../';
+import { system } from 'ui-kit';
 
 const FormLabel = styled.label`
   display: block;

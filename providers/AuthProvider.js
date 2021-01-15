@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 
-import { AUTH_TOKEN_KEY } from '../config/keys';
+import { AUTH_TOKEN_KEY } from 'config/keys';
 
 const AuthStateContext = createContext();
 const AuthDispatchContext = createContext();
@@ -13,6 +13,7 @@ const initialState = {
   token: null,
   type: null,
   userExists: false,
+  onSuccess: () => false,
 };
 
 const actionTypes = {

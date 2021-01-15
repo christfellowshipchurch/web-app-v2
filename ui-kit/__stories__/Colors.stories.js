@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Box, Card, ThemeProvider } from '../';
+import { Box, Card, ThemeProvider } from 'ui-kit';
 
 export default {
   title: 'Colors',

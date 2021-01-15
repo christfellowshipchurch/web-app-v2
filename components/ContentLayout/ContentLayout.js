@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { createMarkup } from '../../utils';
-import { Box, Card, DefaultCard, Longform } from '../../ui-kit';
-import { SEO } from '../';
+import { createMarkup } from 'utils';
+import { Box, Card, DefaultCard, Longform } from 'ui-kit';
+import { SEO } from 'components';
 
 function ContentLayout(props = {}) {
   function renderA() {

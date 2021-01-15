@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { Card, systemPropTypes, utils } from '../';
+import { Card, systemPropTypes, utils } from 'ui-kit';
 import Styled from './Menu.styles';
 
 function Menu(props = {}) {

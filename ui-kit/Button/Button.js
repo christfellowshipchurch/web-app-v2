@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Box, Loader, systemPropTypes } from '../';
+import { Box, Loader, systemPropTypes } from 'ui-kit';
 import Styled from './Button.styles';
 
 function Button(props = {}) {

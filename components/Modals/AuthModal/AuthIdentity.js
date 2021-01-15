@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { validateEmail, validatePhoneNumber } from '../../../utils';
-import { useAuthIdentity, useForm, useUserExists } from '../../../hooks';
-import { Box, Button, Checkbox, TextInput } from '../../../ui-kit';
+import { validateEmail, validatePhoneNumber } from 'utils';
+import { useAuthIdentity, useForm, useUserExists } from 'hooks';
+import { Box, Button, Checkbox, TextInput } from 'ui-kit';
 
 function AuthIdentity() {
   const {
@@ -56,7 +56,7 @@ function AuthIdentity() {
             autoFocus
           />
           {error?.identity ? (
-            <Box as="p" color="error" fontSize="s" mt="s">
+            <Box as="p" color="alert" fontSize="s" mt="s">
               {error.identity}
             </Box>
           ) : null}

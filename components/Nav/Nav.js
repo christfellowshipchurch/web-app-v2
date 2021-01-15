@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 
-import { CurrentUserProvider } from '../../providers';
-import { logout, useAuth } from '../../providers/AuthProvider';
-import { useModalDispatch, showModal } from '../../providers/ModalProvider';
-import { Box, Button, Icon, List, Menu, systemPropTypes } from '../../ui-kit';
-import { ClientSideComponent, CustomLink, UserAvatar } from '../';
+import { CurrentUserProvider } from 'providers';
+import { logout, useAuth } from 'providers/AuthProvider';
+import { useModalDispatch, showModal } from 'providers/ModalProvider';
+import { Box, Button, Icon, List, Menu, systemPropTypes } from 'ui-kit';
+import { ClientSideComponent, CustomLink, UserAvatar } from 'components';
 import Styled from './Nav.styles';
 
 function Nav(props = {}) {

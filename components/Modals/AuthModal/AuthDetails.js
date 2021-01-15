@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { getAge } from '../../../utils';
-import { useAuthIdentity, useForm } from '../../../hooks';
-import { Box, Button, TextInput } from '../../../ui-kit';
+import { getAge } from 'utils';
+import { useAuthIdentity, useForm } from 'hooks';
+import { Box, Button, TextInput } from 'ui-kit';
 import { BirthDateField, GenderField } from '../..';
 
 function AuthDetails() {
@@ -51,7 +51,7 @@ function AuthDetails() {
               autoFocus
             />
             {error?.firstName ? (
-              <Box as="p" color="error" fontSize="s" mt="s">
+              <Box as="p" color="alert" fontSize="s" mt="s">
                 {error.firstName}
               </Box>
             ) : null}
@@ -64,7 +64,7 @@ function AuthDetails() {
               required
             />
             {error?.lastName ? (
-              <Box as="p" color="error" fontSize="s" mt="s">
+              <Box as="p" color="alert" fontSize="s" mt="s">
                 {error.lastName}
               </Box>
             ) : null}
