@@ -6,26 +6,26 @@ import { Box, CardGrid, Card, Loader } from 'ui-kit';
 import { CustomLink } from 'components';
 
 const CardwithBackground = (props = {}) => (
-  <Box as="a" onClick={props.handleOnClick}>
-    <Card
-      display="flex"
-      alignItems={'center'}
-      justifyContent={'center'}
-      p={'l'}
-      flexDirection={'column'}
-      backgroundImage={`linear-gradient(rgba(0, 0, 0, 0.33), rgba(71, 71, 71, 0.85)),url(${props.coverImage})`}
-      backgroundSize={'cover'}
-      color={'white'}
-      maxWidth={'300px'}
-    >
-      <Box as={'h1'} display={'flex'}>
-        {props.title}
-      </Box>
-      <Box as={'p'} display={'flex'}>
-        {props.summary}
-      </Box>
-    </Card>
-  </Box>
+  <Card
+    as="a"
+    onClick={props.handleOnClick}
+    display="flex"
+    alignItems={'center'}
+    justifyContent={'center'}
+    p={'l'}
+    flexDirection={'column'}
+    backgroundImage={`linear-gradient(rgba(0, 0, 0, 0.33), rgba(71, 71, 71, 0.85)),url(${props.coverImage})`}
+    backgroundSize={'cover'}
+    color={'white'}
+    maxWidth={'300px'}
+  >
+    <Box as={'h1'} display={'flex'}>
+      {props.title}
+    </Box>
+    <Box as={'p'} display={'flex'}>
+      {props.summary}
+    </Box>
+  </Card>
 );
 
 function CardList(props = {}) {
