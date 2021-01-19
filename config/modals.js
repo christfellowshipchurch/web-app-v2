@@ -1,5 +1,5 @@
 import DefaultModal from 'ui-kit/Modal';
-import { AuthModal } from 'components/Modals';
+import { AuthModal, ConnectModal } from 'components/Modals';
 
 const modals = [
   {
@@ -9,6 +9,10 @@ const modals = [
   {
     title: 'Auth',
     component: AuthModal,
+  },
+  {
+    title: 'ConnectModal',
+    component: ConnectModal,
   },
 ];
 

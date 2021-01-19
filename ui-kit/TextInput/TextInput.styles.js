@@ -1,3 +1,5 @@
+import React from 'react';
+
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
@@ -9,7 +11,13 @@ const TextInput = styled.div`
   ${system}
 `;
 
-const Input = styled.input`
+const e = React.createElement;
+
+const getTag = ({ multiline }) => (multiline ? 'textarea' : 'input');
+
+const Field = styled(({ tag = 'input', children, ...props }) =>
+  e(getTag(props), props, children)
+)`
   border: 2px solid ${themeGet('colors.border')};
   border-radius: ${themeGet('radii.s')};
   font-family: ${themeGet('fonts.base')};
@@ -25,6 +33,6 @@ const Input = styled.input`
   ${system}
 `;
 
-TextInput.Input = Input;
+TextInput.Field = Field;
 
 export default TextInput;
