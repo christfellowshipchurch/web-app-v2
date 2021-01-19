@@ -121,6 +121,7 @@ query getFeature($featureId: ID!) {
           }
         }
       }
+      cardType
       primaryAction {
         title
         action
@@ -137,7 +138,6 @@ query getFeature($featureId: ID!) {
     }
   }
 }
-
 `;
 
 // export const GET_FEATURE = gql`
