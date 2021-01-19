@@ -3,9 +3,30 @@ import PropTypes from 'prop-types';
 
 import { Box, Icon } from 'ui-kit';
 
-function Logo(props = {}) {
-  const filename = `/logo.svg`;
-  return (
+function Logo({ withText, ...props } = {}) {
+  return withText ? (
+    <Box>
+      <Icon
+        name="logo"
+        alt="Long Hollow"
+        viewBox="0 0 78 78"
+        width="78px"
+        height="78px"
+        color="primary"
+        {...props}
+      />
+      <Icon
+        name="logoText"
+        alt="Long Hollow Baptist Church"
+        viewBox="0 0 260 36"
+        width="260px"
+        height="36px"
+        ml="20px"
+        color="black"
+        {...props}
+      />
+    </Box>
+  ) : (
     <Icon
       name="logo"
       alt="Long Hollow"
@@ -19,11 +40,11 @@ function Logo(props = {}) {
 }
 
 Logo.propTypes = {
-  dark: PropTypes.bool,
+  withText: PropTypes.bool,
 };
 
 Logo.defaultProps = {
-  dark: false,
+  withText: false,
 };
 
 export default Logo;

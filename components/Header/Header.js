@@ -11,11 +11,7 @@ function Header(props = {}) {
     <Styled>
       <Link href="/">
         <a>
-          <Box
-            as={Logo}
-            mx={{ _: 'auto', md: '0' }}
-            mb={{ _: 'base', md: '0' }}
-          />
+          <Logo withText />
         </a>
       </Link>
       <NavigationProvider Component={Nav} />
