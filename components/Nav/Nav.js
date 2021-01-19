@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { CurrentUserProvider } from 'providers';
 import { logout, useAuth } from 'providers/AuthProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
-import { Box, Button, Icon, List, Menu, systemPropTypes } from 'ui-kit';
+import { Box, Button, Icon, Menu, systemPropTypes } from 'ui-kit';
 import { ClientSideComponent, CustomLink, UserAvatar } from 'components';
 import Styled from './Nav.styles';
 
@@ -27,7 +27,12 @@ function Nav(props = {}) {
 
   return (
     <Styled>
-      <QuickAction data={props.data.quickAction} />
+      {props.data.quickActions.map(action => (
+        <QuickAction
+          data={action}
+          selected={action.action === router.pathname}
+        />
+      ))}
       <ClientSideComponent>
         {authenticated ? (
           <CurrentUserProvider
@@ -54,43 +59,6 @@ function Nav(props = {}) {
           </Box>
         )}
       </ClientSideComponent>
-      <Menu
-        cardContentProps={{
-          p: '0',
-          py: 's',
-        }}
-        renderTrigger={({ toggle }) => (
-          <Box as="a" href="#0" onClick={toggle}>
-            <Icon name="menu" color="fg" />
-            <Box as="span" className="srt">
-              Menu
-            </Box>
-          </Box>
-        )}
-        side="right"
-        menuWidth="175px"
-      >
-        <List py="xs" space="0">
-          <Primary data={props.data.navigationLinks} />
-          <MenuLinks data={props.data.menuLinks} />
-          <Box as="li">
-            {authenticated ? (
-              <Menu.Link
-                href="#0"
-                onClick={handleLogoutClick}
-                px="base"
-                py="xs"
-              >
-                Log out
-              </Menu.Link>
-            ) : (
-              <Menu.Link href="#0" onClick={handleAuthClick} px="base" py="xs">
-                Sign in
-              </Menu.Link>
-            )}
-          </Box>
-        </List>
-      </Menu>
     </Styled>
   );
 }
@@ -106,10 +74,17 @@ function Primary(props = {}) {
 }
 
 function QuickAction(props = {}) {
+  console.log(props.selected);
   return (
-    <Button as="a" href={props.data.action}>
+    <CustomLink
+      as="a"
+      Component={Menu.Link}
+      href={props.data.action}
+      selected={props.selected}
+      fontSize="h2"
+    >
       {props.data.call}
-    </Button>
+    </CustomLink>
   );
 }
 

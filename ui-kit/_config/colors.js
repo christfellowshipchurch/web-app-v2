@@ -1,5 +1,6 @@
 const BATTLESHIP = '#818181';
 const LH_GREEN = '#85C471';
+const LH_YELLOW = '#F6CC4F';
 const TUATARA = '#353535';
 const WHITE_SMOKE = '#f6f6f6';
 
@@ -9,7 +10,7 @@ const colors = {
   // LIGHT THEME
   light: {
     primary: LH_GREEN,
-    secondary: TUATARA,
+    secondary: LH_YELLOW,
     tertiary: BATTLESHIP,
 
     neutrals: {
@@ -45,7 +46,7 @@ const colors = {
   // DARK THEME
   dark: {
     primary: LH_GREEN,
-    secondary: WHITE_SMOKE,
+    secondary: LH_YELLOW,
     tertiary: BATTLESHIP,
 
     neutrals: {

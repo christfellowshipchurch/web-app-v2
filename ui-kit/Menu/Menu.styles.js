@@ -21,6 +21,19 @@ const side = ({ side }) => props => {
   `;
 };
 
+const color = ({ selected }) => props => {
+  console.log(selected);
+  if (selected) {
+    return css`
+      color: ${themeGet('colors.secondary')};
+    `;
+  }
+
+  return css`
+    color: ${themeGet('colors.black')};
+  `;
+};
+
 const Content = styled.div`
   margin-top: ${themeGet('space.base')};
   position: absolute;
@@ -32,17 +45,16 @@ const Content = styled.div`
 `;
 
 const Link = styled.a`
-  color: ${themeGet('colors.fg')};
   display: block;
-  font-weight: ${themeGet('fontWeights.bold')};
   text-decoration: none;
 
   &:active,
   &:hover,
   &:focus {
-    color: ${themeGet('colors.primary')};
+    color: ${themeGet('colors.secondary')};
   }
 
+  ${color}
   ${system}
 `;
 
