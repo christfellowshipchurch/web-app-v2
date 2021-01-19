@@ -3,26 +3,20 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 
 import { CurrentUserProvider } from 'providers';
-import { logout, useAuth } from 'providers/AuthProvider';
+import { useAuth } from 'providers/AuthProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
-import { Box, Button, Icon, Menu, systemPropTypes } from 'ui-kit';
+import { Box, Icon, Menu, systemPropTypes } from 'ui-kit';
 import { ClientSideComponent, CustomLink, UserAvatar } from 'components';
 import Styled from './Nav.styles';
 
 function Nav(props = {}) {
-  const [{ authenticated }, authDispatch] = useAuth();
+  const [{ authenticated }] = useAuth();
   const modalDispatch = useModalDispatch();
   const router = useRouter();
 
   function handleAuthClick(event) {
     event.preventDefault();
     modalDispatch(showModal('Auth'));
-  }
-
-  function handleLogoutClick(event) {
-    event.preventDefault();
-    authDispatch(logout());
-    router.reload();
   }
 
   return (
@@ -63,18 +57,7 @@ function Nav(props = {}) {
   );
 }
 
-function Primary(props = {}) {
-  return props.data.map((item, idx) => (
-    <Box key={idx} as="li">
-      <CustomLink href={item.action} Component={Menu.Link} px="base" py="xs">
-        {item.call}
-      </CustomLink>
-    </Box>
-  ));
-}
-
 function QuickAction(props = {}) {
-  console.log(props.selected);
   return (
     <CustomLink
       as="a"
@@ -86,16 +69,6 @@ function QuickAction(props = {}) {
       {props.data.call}
     </CustomLink>
   );
-}
-
-function MenuLinks(props = {}) {
-  return props.data.map((item, idx) => (
-    <Box key={idx} as="li">
-      <CustomLink href={item.action} Component={Menu.Link} px="base" py="xs">
-        {item.call}
-      </CustomLink>
-    </Box>
-  ));
 }
 
 Nav.propTypes = {
