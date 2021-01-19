@@ -1,12 +1,14 @@
 const BATTLESHIP = '#818181';
-const PICTON = '#00aeef';
+const LH_GREEN = '#85C471';
 const TUATARA = '#353535';
 const WHITE_SMOKE = '#f6f6f6';
+
+const BACKGROUND_LIGHT = '#E5E5E5';
 
 const colors = {
   // LIGHT THEME
   light: {
-    primary: PICTON,
+    primary: LH_GREEN,
     secondary: TUATARA,
     tertiary: BATTLESHIP,
 
@@ -34,7 +36,7 @@ const colors = {
     white: '#fff',
 
     // LEGACY!
-    bg: WHITE_SMOKE,
+    bg: BACKGROUND_LIGHT,
     fg: TUATARA,
     subdued: BATTLESHIP,
     border: '#cecece',
@@ -42,7 +44,7 @@ const colors = {
 
   // DARK THEME
   dark: {
-    primary: PICTON,
+    primary: LH_GREEN,
     secondary: WHITE_SMOKE,
     tertiary: BATTLESHIP,
 

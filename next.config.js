@@ -1,6 +1,6 @@
 module.exports = {
   images: {
-    domains: ['cloudfront.christfellowship.church'],
+    domains: [],
   },
   target: 'serverless',
 };

@@ -15,7 +15,7 @@ const EXCLUDED_CONTENT = [
 
 function HomeFeed(props = {}) {
   const actions = flatten(props.data.map(({ actions }) => actions));
-  const byType = type => item => item.action === type;
+  const byType = type => item => item?.action === type;
 
   function render(type) {
     return actions
@@ -37,12 +37,7 @@ function HomeFeed(props = {}) {
       ));
   }
 
-  return (
-    <>
-      {render('READ_GLOBAL_CONTENT')}
-      {render('VIEW_CHILDREN')}
-    </>
-  );
+  return <>{['READ_GLOBAL_CONTENT', 'VIEW_CHILDREN'].map(render)}</>;
 }
 
 HomeFeed.propTypes = {

@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Box } from 'ui-kit';
+import { Box, Icon } from 'ui-kit';
 
 function Logo(props = {}) {
-  const filename = `/logo${props.dark ? '-dark' : ''}.png`;
+  const filename = `/logo.svg`;
   return (
-    <Box
-      as="img"
-      src={filename}
-      alt="Christ Fellowship"
-      width="135"
-      height="42"
+    <Icon
+      name="logo"
+      alt="Long Hollow"
+      viewBox="0 0 78 78"
+      width="78"
+      height="78"
+      color="primary"
       {...props}
     />
   );
