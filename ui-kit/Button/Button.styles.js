@@ -20,6 +20,7 @@ const variant = ({ variant }) => props => {
       &:hover {
         background: 0;
         color: ${themeGet('colors.primaryHover')};
+        outline: none;
       }
     `;
   }
