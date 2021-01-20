@@ -140,51 +140,6 @@ query getFeature($featureId: ID!) {
 }
 `;
 
-// export const GET_FEATURE = gql`
-//   query getFeature($featureId: ID!) {
-//     node(id: $featureId) {
-//       id
-//       __typename
-//       ... on VerticalCardListFeature {
-//         ...VerticalCardListFeatureFragment
-//       }
-//     }
-//   }
-
-//   fragment VerticalCardListFeatureFragment on VerticalCardListFeature {
-//     id
-//     isFeatured
-//     title
-//     subtitle
-//     cards {
-//       action
-//       title
-//       hasAction
-//       actionIcon
-//       labelText
-//       summary
-//       coverImage {
-//         sources {
-//           uri
-//         }
-//       }
-//       relatedNode {
-//         ...RelatedFeatureNodeFragment
-//       }
-//     }
-//   }
-
-//   fragment RelatedFeatureNodeFragment on Node {
-//     id
-//     ... on Url {
-//       url
-//     }
-//     ... on ContentChannel {
-//       name
-//   }
-
-// `;
-
 function useFeature(options = {}) {
   const query = useQuery(GET_FEATURE, options);
 
