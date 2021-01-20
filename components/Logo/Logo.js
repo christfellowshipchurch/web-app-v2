@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 import { Box, Icon } from 'ui-kit';
 
 function Logo({ withText, dark, ...props } = {}) {
-  const color = dark ? 'logoDark' : 'primary';
-  const textColor = dark ? 'logoDark' : 'black';
+  const color = dark ? 'neutrals.100' : 'primary';
+  const textColor = dark ? 'neutrals.100' : 'black';
+  const opacity = dark ? '33%' : '100%';
   return withText ? (
     <Box>
       <Icon
@@ -15,6 +16,7 @@ function Logo({ withText, dark, ...props } = {}) {
         width="42px"
         height="42px"
         color={color}
+        opacity={opacity}
         {...props}
       />
       <Icon
@@ -25,6 +27,7 @@ function Logo({ withText, dark, ...props } = {}) {
         height="42px"
         ml="20px"
         color={textColor}
+        opacity={opacity}
         {...props}
       />
     </Box>
@@ -36,6 +39,7 @@ function Logo({ withText, dark, ...props } = {}) {
       width="42px"
       height="42px"
       color={color}
+      opacity={opacity}
       {...props}
     />
   );

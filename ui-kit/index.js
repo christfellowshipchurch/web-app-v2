@@ -16,7 +16,7 @@ import Cell from './Cell';
 import Checkbox from './Checkbox';
 import DefaultCard from './DefaultCard';
 import FormLabel from './FormLabel';
-import GroupCard from './GroupCard'
+import GroupCard from './GroupCard';
 import Icon from './Icon';
 import List from './List';
 import Loader from './Loader';
@@ -25,8 +25,9 @@ import Menu from './Menu';
 import Modal from './Modal';
 import Radio from './Radio';
 import Select from './Select';
-import SquareAvatar from './SquareAvatar'
+import SquareAvatar from './SquareAvatar';
 import TextInput from './TextInput';
+import Heading from './Heading';
 
 export {
   // ====================
@@ -44,6 +45,7 @@ export {
   DefaultCard,
   FormLabel,
   GroupCard,
+  Heading,
   Icon,
   List,
   Loader,

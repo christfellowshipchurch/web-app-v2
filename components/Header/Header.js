@@ -10,7 +10,9 @@ function Header(props = {}) {
   return (
     <Styled>
       <Link href="/">
-        <Logo withText />
+        <a>
+          <Logo withText />
+        </a>
       </Link>
       <NavigationProvider Component={Nav} />
     </Styled>

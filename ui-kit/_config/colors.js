@@ -20,8 +20,6 @@ const colors = {
     secondary: LH_YELLOW,
     tertiary: LH_DARK_GREEN,
 
-    logoDark: `${WHITE_SMOKE}21`,
-
     gradient: [LH_GRADIENT_BLUE, LH_GRADIENT_GREEN],
 
     neutrals: {

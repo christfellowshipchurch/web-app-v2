@@ -11,9 +11,9 @@ const theme = {
   colors,
   fonts: {
     base:
-      '"Poppins", "Gotham A", "Gotham B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+      '"Inter", "Gotham A", "Gotham B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
     heading:
-      '"Poppins", "Gotham A", "Gotham B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+      '"Montserrat", "Gotham A", "Gotham B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
   },
   fontSizes: {
     base: rem('14px'),
@@ -22,8 +22,9 @@ const theme = {
     s: rem('14px'),
     l: rem('20px'),
     xl: rem('24px'),
-    h2: rem('32.4px'),
-    h3: rem('28px'),
+    h1: rem('43px'),
+    h2: rem('33px'),
+    h3: rem('24px'),
     h4: rem('22px'),
     h5: rem('18px'),
   },
@@ -34,6 +35,9 @@ const theme = {
   lineHeights: {
     base: '1.5',
     heading: '1.2',
+    h1: rem('45.15px'),
+    h2: rem('40px'),
+    h3: rem('28px'),
   },
   radii: {
     s: rem('4px'),

@@ -6,7 +6,7 @@ import { CurrentUserProvider } from 'providers';
 import { useAuth } from 'providers/AuthProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 import { Box, Icon, Menu, systemPropTypes } from 'ui-kit';
-import { ClientSideComponent, CustomLink, UserAvatar } from 'components';
+import { ClientSideComponent, CustomLink } from 'components';
 import Styled from './Nav.styles';
 
 function Nav(props = {}) {
@@ -23,35 +23,29 @@ function Nav(props = {}) {
     <Styled>
       {props.data.quickActions.map(action => (
         <QuickAction
+          key={action.action}
           data={action}
           selected={action.action === router.pathname}
         />
       ))}
       <ClientSideComponent>
-        {authenticated ? (
-          <CurrentUserProvider
-            Component={UserAvatar}
-            handleAuthClick={handleAuthClick}
-          />
-        ) : (
-          <Box
-            as="a"
-            href="#0"
-            display="block"
-            border="2px solid"
-            borderColor="fg"
-            borderRadius="50%"
-            lineHeight="38px"
-            size="45px"
-            textAlign="center"
-            onClick={handleAuthClick}
-          >
-            <Icon name="user" color="fg" size="28px" />
-            <Box as="span" className="srt">
-              User
-            </Box>
+        <Box
+          as="a"
+          href="#0"
+          display="block"
+          border="2px solid"
+          borderColor="fg"
+          borderRadius="50%"
+          lineHeight="38px"
+          size="45px"
+          textAlign="center"
+          onClick={handleAuthClick}
+        >
+          <Icon name="user" color="fg" size="28px" />
+          <Box as="span" className="srt">
+            User
           </Box>
-        )}
+        </Box>
       </ClientSideComponent>
     </Styled>
   );

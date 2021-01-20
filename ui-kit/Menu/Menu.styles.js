@@ -22,7 +22,6 @@ const side = ({ side }) => props => {
 };
 
 const color = ({ selected }) => props => {
-  console.log(selected);
   if (selected) {
     return css`
       color: ${themeGet('colors.secondary')};
