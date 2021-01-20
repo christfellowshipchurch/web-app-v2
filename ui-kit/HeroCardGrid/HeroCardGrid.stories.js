@@ -1,18 +1,20 @@
 import React from 'react';
 
-import { CardGrid, DefaultCard } from '../../ui-kit';
+import { HeroCardGrid, DefaultCard } from '..';
 
 export default {
-  title: 'ui-kit/CardGrid',
-  component: CardGrid,
+  title: 'ui-kit/HeroCardGrid',
+  component: HeroCardGrid,
 };
 
 export const Default = () => (
-  <CardGrid>
+  <HeroCardGrid>
     <DefaultCard
-      title="DefaultCard"
-      description="This is a default card with an image."
+      coverImageTitle="Cover Image Card"
       coverImage="https://source.unsplash.com/random/1000x1000"
+      coverImageOverlay={true}
+      height={{ _: '250px', md: '450px' }}
+      display="block"
     />
     <DefaultCard
       title="DefaultCard"
@@ -29,10 +31,5 @@ export const Default = () => (
       description="This is a default card with an image."
       coverImage="https://source.unsplash.com/random/1000x1000"
     />
-    <DefaultCard
-      title="DefaultCard"
-      description="This is a default card with an image."
-      coverImage="https://source.unsplash.com/random/1000x1000"
-    />
-  </CardGrid>
+  </HeroCardGrid>
 );

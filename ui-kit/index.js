@@ -15,8 +15,10 @@ import CardGrid from './CardGrid';
 import Cell from './Cell';
 import Checkbox from './Checkbox';
 import DefaultCard from './DefaultCard';
+import Divider from './Divider';
 import FormLabel from './FormLabel';
-import GroupCard from './GroupCard'
+import GroupCard from './GroupCard';
+import HeroCardGrid from './HeroCardGrid';
 import Icon from './Icon';
 import List from './List';
 import Loader from './Loader';
@@ -25,7 +27,7 @@ import Menu from './Menu';
 import Modal from './Modal';
 import Radio from './Radio';
 import Select from './Select';
-import SquareAvatar from './SquareAvatar'
+import SquareAvatar from './SquareAvatar';
 import TextInput from './TextInput';
 
 export {
@@ -42,8 +44,10 @@ export {
   Cell,
   Checkbox,
   DefaultCard,
+  Divider,
   FormLabel,
   GroupCard,
+  HeroCardGrid,
   Icon,
   List,
   Loader,
