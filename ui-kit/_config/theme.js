@@ -16,7 +16,7 @@ const theme = {
       '"Poppins", "Gotham A", "Gotham B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
   },
   fontSizes: {
-    base: rem('16px'),
+    base: rem('14px'),
     xxs: rem('10px'),
     xs: rem('12px'),
     s: rem('14px'),

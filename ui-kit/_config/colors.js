@@ -3,7 +3,7 @@ const LH_GREEN = '#85C471';
 const LH_YELLOW = '#F6CC4F';
 const LH_DARK_GREEN = '#1E484E';
 const TUATARA = '#353535';
-const WHITE_SMOKE = '#f6f6f6';
+const WHITE_SMOKE = '#F4F7F8';
 const LH_GRADIENT_BLUE = '#429CC2';
 const LH_GRADIENT_GREEN = '#8BC76A';
 
@@ -19,6 +19,8 @@ const colors = {
     primary: LH_GREEN,
     secondary: LH_YELLOW,
     tertiary: LH_DARK_GREEN,
+
+    logoDark: `${WHITE_SMOKE}21`,
 
     gradient: [LH_GRADIENT_BLUE, LH_GRADIENT_GREEN],
 

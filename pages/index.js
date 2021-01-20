@@ -19,25 +19,25 @@ export default function Home(props = {}) {
 export async function getServerSideProps() {
   const apolloClient = initializeApollo();
 
-  const features = await apolloClient.query({ query: GET_HOME_FEED_FEATURES });
-  const data = features?.data?.homeFeedFeatures;
-  const actions = flatten(data.features.map(({ actions }) => actions));
-  let promises = [];
-  actions
-    .filter(action => Boolean(action))
-    .map(item =>
-      promises.push(
-        apolloClient.query({
-          query: GET_CONTENT_FEED,
-          variables: {
-            itemId: item?.relatedNode?.id,
-            child: true,
-            sibling: false,
-          },
-        })
-      )
-    );
-  await Promise.all(promises);
+  // const features = await apolloClient.query({ query: GET_HOME_FEED_FEATURES });
+  // const data = features?.data?.homeFeedFeatures;
+  // const actions = flatten(data.features.map(({ actions }) => actions));
+  // let promises = [];
+  // actions
+  //   .filter(action => Boolean(action))
+  //   .map(item =>
+  //     promises.push(
+  //       apolloClient.query({
+  //         query: GET_CONTENT_FEED,
+  //         variables: {
+  //           itemId: item?.relatedNode?.id,
+  //           child: true,
+  //           sibling: false,
+  //         },
+  //       })
+  //     )
+  //   );
+  // await Promise.all(promises);
 
   return {
     props: {

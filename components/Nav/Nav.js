@@ -64,7 +64,7 @@ function QuickAction(props = {}) {
       Component={Menu.Link}
       href={props.data.action}
       selected={props.selected}
-      fontSize="h2"
+      textTransform="uppercase"
     >
       {props.data.call}
     </CustomLink>

@@ -3,26 +3,28 @@ import PropTypes from 'prop-types';
 
 import { Box, Icon } from 'ui-kit';
 
-function Logo({ withText, ...props } = {}) {
+function Logo({ withText, dark, ...props } = {}) {
+  const color = dark ? 'logoDark' : 'primary';
+  const textColor = dark ? 'logoDark' : 'black';
   return withText ? (
     <Box>
       <Icon
         name="logo"
         alt="Long Hollow"
         viewBox="0 0 78 78"
-        width="78px"
-        height="78px"
-        color="primary"
+        width="42px"
+        height="42px"
+        color={color}
         {...props}
       />
       <Icon
         name="logoText"
         alt="Long Hollow Baptist Church"
         viewBox="0 0 260 36"
-        width="260px"
-        height="36px"
+        width="140px"
+        height="42px"
         ml="20px"
-        color="black"
+        color={textColor}
         {...props}
       />
     </Box>
@@ -31,9 +33,9 @@ function Logo({ withText, ...props } = {}) {
       name="logo"
       alt="Long Hollow"
       viewBox="0 0 78 78"
-      width="78"
-      height="78"
-      color="primary"
+      width="42px"
+      height="42px"
+      color={color}
       {...props}
     />
   );

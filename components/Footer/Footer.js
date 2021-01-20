@@ -37,7 +37,7 @@ function Contact() {
   return (
     <Box mb={{ _: 'base', lg: '0' }}>
       <Box mb="base">
-        <Logo dark={true} />
+        <Logo dark />
       </Box>
       <Styled.Link href="tel:561-799-7600" mb="s">
         (561) 799-7600
