@@ -10,7 +10,7 @@ function ContentSingle(props = {}) {
       title={props.data.title}
       summary={props.data.schedule?.friendlyScheduleText}
       coverImage={props.data?.coverImage?.sources[0]?.uri}
-      renderC={() => <Button variant="secondary">Share</Button>}
+      renderC={() => <Button color="secondary">Share</Button>}
       contentTitleD="About"
       htmlContent={props.data.htmlContent}
     />

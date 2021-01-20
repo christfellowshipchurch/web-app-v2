@@ -1,17 +1,26 @@
 const BATTLESHIP = '#818181';
 const LH_GREEN = '#85C471';
 const LH_YELLOW = '#F6CC4F';
+const LH_DARK_GREEN = '#1E484E';
 const TUATARA = '#353535';
 const WHITE_SMOKE = '#f6f6f6';
+const LH_GRADIENT_BLUE = '#429CC2';
+const LH_GRADIENT_GREEN = '#8BC76A';
 
-const BACKGROUND_LIGHT = '#E5E5E5';
+const BORDER = '#C4C4C4';
+
+const BLACK = '#000';
+const GRAY = '#EBEBEF';
+const WHITE = '#FFF';
 
 const colors = {
   // LIGHT THEME
   light: {
     primary: LH_GREEN,
     secondary: LH_YELLOW,
-    tertiary: BATTLESHIP,
+    tertiary: LH_DARK_GREEN,
+
+    gradient: [LH_GRADIENT_BLUE, LH_GRADIENT_GREEN],
 
     neutrals: {
       100: WHITE_SMOKE,
@@ -31,23 +40,27 @@ const colors = {
     wordOfChrist: TUATARA,
 
     screen: WHITE_SMOKE,
-    paper: '#fff',
+    paper: '#FFF',
 
-    black: '#000',
-    white: '#fff',
+    black: BLACK,
+    gray: GRAY,
+    grey: GRAY,
+    white: WHITE,
 
     // LEGACY!
-    bg: BACKGROUND_LIGHT,
+    bg: GRAY,
     fg: TUATARA,
     subdued: BATTLESHIP,
-    border: '#cecece',
+    border: BORDER,
   },
 
   // DARK THEME
   dark: {
     primary: LH_GREEN,
     secondary: LH_YELLOW,
-    tertiary: BATTLESHIP,
+    tertiary: LH_DARK_GREEN,
+
+    gradient: [LH_GRADIENT_BLUE, LH_GRADIENT_GREEN],
 
     neutrals: {
       100: WHITE_SMOKE,
@@ -69,14 +82,16 @@ const colors = {
     screen: TUATARA,
     paper: BATTLESHIP,
 
-    black: '#000',
-    white: '#fff',
+    black: BLACK,
+    gray: GRAY,
+    grey: GRAY,
+    white: WHITE,
 
     // LEGACY!
     bg: TUATARA,
     fg: WHITE_SMOKE,
     subdued: BATTLESHIP,
-    border: '#cecece',
+    border: BORDER,
   },
 };
 

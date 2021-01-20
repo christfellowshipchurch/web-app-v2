@@ -40,6 +40,7 @@ const theme = {
     base: rem('6px'),
     l: rem('10px'),
     xl: rem('16px'),
+    button: rem('40px'),
   },
   // https://tailwindcss.com/docs/box-shadow
   shadows: {
@@ -56,6 +57,7 @@ const theme = {
     base: rem('20px'),
     xs: rem('5px'),
     s: rem('10px'),
+    m: rem('14px'),
     l: rem('40px'),
     xl: rem('60px'),
     xxl: rem('100px'),

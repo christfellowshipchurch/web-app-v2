@@ -4,6 +4,7 @@ import flatten from 'lodash/flatten';
 
 import { ContentFeedProvider } from 'providers';
 import { ContentList } from 'components';
+import { Button } from 'ui-kit';
 
 const EXCLUDED_CONTENT = [
   'Feature Demos',
@@ -37,7 +38,23 @@ function HomeFeed(props = {}) {
       ));
   }
 
-  return <>{['READ_GLOBAL_CONTENT', 'VIEW_CHILDREN'].map(render)}</>;
+  return (
+    <>
+      {['READ_GLOBAL_CONTENT', 'VIEW_CHILDREN'].map(render)}
+      <Button color="primary" mr="10px" mb="10px">
+        Primary
+      </Button>
+      <Button color="secondary" mr="10px" size="s">
+        Secondary
+      </Button>
+      <Button color="primary" variant="outlined" mr="10px">
+        Primary Outlined
+      </Button>
+      <Button color="secondary" variant="outlined" mr="10px">
+        Secondary Outlined
+      </Button>
+    </>
+  );
 }
 
 HomeFeed.propTypes = {
