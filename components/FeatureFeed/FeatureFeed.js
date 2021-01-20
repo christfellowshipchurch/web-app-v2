@@ -19,30 +19,24 @@ const FeatureFeed = (props = {}) => {
     VerticalCardListFeature,
   }
 
-  return props.data?.map((edge, i) => {
-    let { __typename } = edge;
-    if (!__typename && itemId) {
-      [__typename] = itemId.split(':');
-    }
-    const CardListComponent = CardListComponents[__typename]
-    return (
+  const isLastItem = i => i < (props.data.length - 1);
+
+  return props.data?.map((edge, i) => (
       <Box pb="xl">
         <Box as="h2" pb='base'>{edge.title}</Box>
         <FeatureProvider
-          Component={CardListComponent}
+          Component={getComponent(edge, CardListComponents)}
           options={{
             variables: {
               featureId: edge?.id,
             },
           }}
         />
-        {i < (props.data.length - 1) &&
+        {isLastItem(i) &&
           <Box as='hr' maxWidth="50rem" mt='xl' mx='auto'/>
         }
       </Box>
-    );
-   
-  });
+    ));
 };
 
 FeatureFeed.propTypes = {

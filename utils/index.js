@@ -2,6 +2,7 @@ import cleanMarkup from './cleanMarkup';
 import createMarkup from './createMarkup';
 import formatPhoneNumber from './formatPhoneNumber';
 import getAge from './getAge';
+import getComponent from './getComponent';
 import getURLFromType from './getURLFromType';
 import normalizeUserData from './normalizeUserData';
 import slugify from './slugify';
@@ -14,6 +15,7 @@ export {
   createMarkup,
   formatPhoneNumber,
   getAge,
+  getComponent,
   getURLFromType,
   normalizeUserData,
   slugify,
