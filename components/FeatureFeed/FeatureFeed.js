@@ -7,36 +7,35 @@ import {
   VerticalCardListFeature,
 } from '../';
 import { FeatureProvider } from 'providers';
-import { Box } from 'ui-kit';
-import { getComponent } from 'utils'
+import { Box, Divider } from 'ui-kit';
+import { getComponent } from 'utils';
 
 //This component is created to map the features by type and send them
 const FeatureFeed = (props = {}) => {
-
   const CardListComponents = {
     HeroListFeature,
     HorizontalCardListFeature,
     VerticalCardListFeature,
-  }
+  };
 
-  const isLastItem = i => i < (props.data.length - 1);
+  const isLastItem = i => i < props.data.length - 1;
 
   return props.data?.map((edge, i) => (
-      <Box pb="xl">
-        <Box as="h2" pb='base'>{edge.title}</Box>
-        <FeatureProvider
-          Component={getComponent(edge, CardListComponents)}
-          options={{
-            variables: {
-              featureId: edge?.id,
-            },
-          }}
-        />
-        {isLastItem(i) &&
-          <Box as='hr' maxWidth="50rem" mt='xl' mx='auto'/>
-        }
+    <Box pb="xl">
+      <Box as="h2" pb="base">
+        {edge.title}
       </Box>
-    ));
+      <FeatureProvider
+        Component={getComponent(edge, CardListComponents)}
+        options={{
+          variables: {
+            featureId: edge?.id,
+          },
+        }}
+      />
+      {isLastItem(i) && <Divider />}
+    </Box>
+  ));
 };
 
 FeatureFeed.propTypes = {
