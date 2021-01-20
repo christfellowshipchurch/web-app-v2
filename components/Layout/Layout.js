@@ -8,7 +8,7 @@ function Layout(props = {}) {
   return (
     <>
       <SEO title={props.title} />
-      <Box height="100vh">
+      <Box>
         <Header />
         <Box>{props.children}</Box>
         <Footer />

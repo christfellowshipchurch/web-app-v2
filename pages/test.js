@@ -1,5 +1,5 @@
 import { Box } from 'ui-kit';
-import { Layout, MainPhotoHeader } from 'components';
+import { ArticleLink, Layout, MainPhotoHeader } from 'components';
 
 export default function About() {
   return (
@@ -10,6 +10,15 @@ export default function About() {
         title="Lorem ipsum doler sit itmut del fal some big bold header."
         subtitle="Lorem ipsum doler sit itmut del fal some big bold header."
       />
+      <Box p="xxl">
+        <ArticleLink
+          title="Child Dedication"
+          description="Make a public commitment to raise and train your children to be faithful followers of Jesus Christ"
+          url="/rsvp"
+          urlText="RSVP"
+          imageSrc="https://s3-alpha-sig.figma.com/img/c56b/0838/b6294050e9e43aff944b8569ef22dbd7?Expires=1612137600&Signature=VzoGDvUPIScP3mFxtLpHKrMvVxmz-J2HMAo8mAcKHwuLMR1wsrm0UvmEsBv28Li0UCU17wlVHk-QW7qG2lcVMVyFeYA8IlfsnJASuP5B1GUKkex37RwfNYXbwOnW7ApUU7KsdVawH8loZkIzIvGcNF33dAz7m7wAsqgYK097xN0sVP7GFqu0y6SnRR1o8qDm6XaoUOvU2P2PrN78z6jKyiFKhIK5lWE2ao7ueIXCELYo3WE9~cdZ4utPBzCxuAKfQHAz0pYhCEZrAf3aS2bUibNIWMrH1ddyMFY-P2oVPOOPpA-DShXg6UWw0C0l0H-wTXqRryFOINX2OR~XGMHl5w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+        />
+      </Box>
     </Layout>
   );
 }

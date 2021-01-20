@@ -1,3 +1,4 @@
+import ArticleLink from './ArticleLink';
 import ClientSideComponent from './ClientSideComponent';
 import ContentLayout from './ContentLayout';
 import ContentList from './ContentList';
@@ -17,6 +18,7 @@ import Nav from './Nav';
 import SEO from './SEO';
 
 export {
+  ArticleLink,
   ClientSideComponent,
   ContentLayout,
   ContentList,

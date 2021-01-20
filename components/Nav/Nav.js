@@ -2,15 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 
-import { CurrentUserProvider } from 'providers';
-import { useAuth } from 'providers/AuthProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 import { Box, Icon, Menu, systemPropTypes } from 'ui-kit';
 import { ClientSideComponent, CustomLink } from 'components';
 import Styled from './Nav.styles';
 
 function Nav(props = {}) {
-  const [{ authenticated }] = useAuth();
   const modalDispatch = useModalDispatch();
   const router = useRouter();
 
@@ -41,7 +38,7 @@ function Nav(props = {}) {
           textAlign="center"
           onClick={handleAuthClick}
         >
-          <Icon name="user" color="fg" size="28px" />
+          <Icon name="user" fill="fg" size="28px" />
           <Box as="span" className="srt">
             User
           </Box>

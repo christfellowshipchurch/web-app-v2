@@ -28,6 +28,8 @@ import Select from './Select';
 import SquareAvatar from './SquareAvatar';
 import TextInput from './TextInput';
 import Heading from './Heading';
+import Text from './Text';
+import Image from './Image';
 
 export {
   // ====================
@@ -47,6 +49,7 @@ export {
   GroupCard,
   Heading,
   Icon,
+  Image,
   List,
   Loader,
   Longform,
@@ -55,6 +58,7 @@ export {
   Radio,
   Select,
   SquareAvatar,
+  Text,
   TextInput,
   // ====================
   icons,

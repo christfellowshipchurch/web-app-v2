@@ -153,17 +153,35 @@ function Copyright() {
         mx="auto"
       >
         <Box as="a" color="primary" href={links.facebook}>
-          <Icon name="facebook" size="32" />
+          <Icon
+            name="facebook"
+            size="32"
+            stroke="neutrals.900"
+            fill="neutrals.900"
+            opacity="60%"
+          />
         </Box>
         <Box as="a" color="primary" href={links.instagram}>
-          <Icon name="instagram" size="32" />
+          <Icon
+            name="instagram"
+            size="32"
+            stroke="neutrals.900"
+            fill="neutrals.900"
+            opacity="60%"
+          />
         </Box>
         <Box as="a" color="primary" href={links.youtube}>
-          <Icon name="youtube" size="32" />
+          <Icon
+            name="youtube"
+            size="32"
+            stroke="neutrals.900"
+            fill="neutrals.900"
+            opacity="60%"
+          />
         </Box>
       </Box>
       <Box as="p" fontSize="s">
-        &copy; {new Date().getFullYear()} Christ Fellowship Church. All Rights
+        &copy; {new Date().getFullYear()} Long Hollow Baptist Church. All Rights
         Reserved
       </Box>
     </>

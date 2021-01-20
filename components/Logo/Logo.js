@@ -15,7 +15,8 @@ function Logo({ withText, dark, ...props } = {}) {
         viewBox="0 0 78 78"
         width="42px"
         height="42px"
-        color={color}
+        stroke={color}
+        fill={color}
         opacity={opacity}
         {...props}
       />
@@ -26,7 +27,7 @@ function Logo({ withText, dark, ...props } = {}) {
         width="140px"
         height="42px"
         ml="20px"
-        color={textColor}
+        fill={textColor}
         opacity={opacity}
         {...props}
       />
@@ -38,7 +39,8 @@ function Logo({ withText, dark, ...props } = {}) {
       viewBox="0 0 78 78"
       width="42px"
       height="42px"
-      color={color}
+      stroke={color}
+      fill={color}
       opacity={opacity}
       {...props}
     />

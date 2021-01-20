@@ -19,7 +19,7 @@ const theme = {
     base: rem('14px'),
     xxs: rem('10px'),
     xs: rem('12px'),
-    s: rem('14px'),
+    s: rem('16px'),
     l: rem('20px'),
     xl: rem('24px'),
     h1: rem('43px'),
@@ -35,6 +35,7 @@ const theme = {
   lineHeights: {
     base: '1.5',
     heading: '1.2',
+    s: rem('24px'),
     h1: rem('45.15px'),
     h2: rem('40px'),
     h3: rem('28px'),
@@ -44,6 +45,7 @@ const theme = {
     base: rem('6px'),
     l: rem('10px'),
     xl: rem('16px'),
+    image: rem('24px'),
     button: rem('40px'),
   },
   // https://tailwindcss.com/docs/box-shadow

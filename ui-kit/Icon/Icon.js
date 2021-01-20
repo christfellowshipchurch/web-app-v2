@@ -9,11 +9,22 @@ import Styled from './Icon.styles';
 const DEFAULT_ICON_SIZE = 24;
 const DEFAULT_ICON_NAME = 'circle';
 
-function Icon({ color, height, name, size, width, ...rest }) {
+function Icon({
+  stroke,
+  fill,
+  strokeWidth,
+  height,
+  name,
+  size,
+  width,
+  ...rest
+}) {
   const newWidth = size || width || DEFAULT_ICON_SIZE;
   const newHeight = size || height || DEFAULT_ICON_SIZE;
   const iconName = name || DEFAULT_ICON_NAME;
   const icon = icons[iconName];
+  const strokeColor = themeGet(`colors.${stroke}`)(rest) || 'transparent';
+  const fillColor = themeGet(`colors.${fill}`)(rest) || 'transparent';
 
   return (
     <Styled
@@ -28,13 +39,17 @@ function Icon({ color, height, name, size, width, ...rest }) {
           <path
             key={i}
             d={d}
-            fill={themeGet(`colors.${color}`)(rest) || 'currentColor'}
+            stroke={strokeColor}
+            fill={fillColor}
+            strokeWidth={strokeWidth}
           />
         ))
       ) : (
         <path
           d={icon}
-          fill={themeGet(`colors.${color}`)(rest) || 'currentColor'}
+          stroke={strokeColor}
+          fill={fillColor}
+          strokeWidth={strokeWidth}
         />
       )}
     </Styled>
@@ -44,7 +59,9 @@ function Icon({ color, height, name, size, width, ...rest }) {
 Icon.propTypes = {
   ...systemPropTypes,
   name: PropTypes.string.isRequired,
-  color: PropTypes.string,
+  stroke: PropTypes.string,
+  fill: PropTypes.string,
+  strokeWidth: PropTypes.number,
   height: PropTypes.string,
   size: PropTypes.string,
   theme: PropTypes.object,
@@ -52,7 +69,6 @@ Icon.propTypes = {
 };
 
 Icon.defaultProps = {
-  color: 'currentColor',
   height: null,
   size: null,
   theme,

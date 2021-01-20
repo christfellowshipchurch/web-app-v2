@@ -7,6 +7,7 @@ const WHITE_SMOKE = '#F4F7F8';
 const LH_GRADIENT_BLUE = '#429CC2';
 const LH_GRADIENT_GREEN = '#8BC76A';
 
+const BACKGROUND = '#F2F2F7';
 const BORDER = '#C4C4C4';
 
 const BLACK = '#000';
@@ -48,7 +49,7 @@ const colors = {
     white: WHITE,
 
     // LEGACY!
-    bg: GRAY,
+    bg: BACKGROUND,
     fg: TUATARA,
     subdued: BATTLESHIP,
     border: BORDER,
