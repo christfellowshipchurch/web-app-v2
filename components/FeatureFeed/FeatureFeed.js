@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Box } from '../../ui-kit';
 
-import { FeatureProvider } from '../../providers';
 import {
   HeroListFeature,
   HorizontalCardListFeature,
   VerticalCardListFeature,
-} from '../index';
+} from '../';
+import { FeatureProvider } from 'providers';
+import { Box } from 'ui-kit';
+import { getComponent } from 'utils'
 
 //This component is created to map the features by type and send them
 const FeatureFeed = (props = {}) => {

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getURLFromType } from '../../utils';
-import { CustomLink } from '..';
 
-import { Box, CardGrid, DefaultCard, HeroCardGrid, Loader } from '../../ui-kit';
+import { CustomLink } from '..';
+import { Box, CardGrid, DefaultCard, HeroCardGrid, Loader } from 'ui-kit';
+import { getURLFromType } from 'utils';
 
 function HorizontalCardListFeature(props = {}) {
   const cards = props?.data?.cards || [];

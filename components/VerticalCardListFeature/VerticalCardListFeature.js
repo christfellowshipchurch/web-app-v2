@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getURLFromType } from '../../utils';
-import { CustomLink } from '../../components';
 
-import { CardGrid, DefaultCard, HeroCardGrid } from '../../ui-kit';
+import { CustomLink } from 'components';
+import { CardGrid, DefaultCard, HeroCardGrid } from 'ui-kit';
+import { getURLFromType } from 'utils';
 
 function VerticalCardListFeature(props = {}) {
   const cards = props?.data?.cards || [];

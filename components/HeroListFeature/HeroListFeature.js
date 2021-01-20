@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getURLFromType } from '../../utils';
-import { CustomLink } from '..';
 
-import { DefaultCard, HeroCardGrid } from '../../ui-kit';
+import { CustomLink } from '..';
+import { DefaultCard, HeroCardGrid } from 'ui-kit';
+import { getURLFromType } from 'utils';
 
 function HeroListFeature(props = {}) {
   const heroCard = props?.data?.heroCard;
