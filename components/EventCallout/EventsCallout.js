@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, Text } from 'ui-kit';
 import PropTypes from 'prop-types';
 import Styled from './EventsCallout.styles';

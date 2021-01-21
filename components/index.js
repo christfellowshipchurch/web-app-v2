@@ -13,6 +13,7 @@ import Layout from './Layout';
 import Logo from './Logo';
 import MainPhotoHeader from './MainPhotoHeader';
 import Nav from './Nav';
+import PageSplit from './PageSplit';
 import SEO from './SEO';
 import { EventsCallout, EventCallout } from './EventCallout';
 
@@ -34,5 +35,6 @@ export {
   Logo,
   MainPhotoHeader,
   Nav,
+  PageSplit,
   SEO,
 };

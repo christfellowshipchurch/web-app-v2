@@ -1,10 +1,10 @@
-import { themeGet } from '@styled-system/theme-get';
 import {
   ArticleLink,
   Layout,
   MainPhotoHeader,
   EventsCallout,
   EventCallout,
+  PageSplit,
 } from 'components';
 import { Info } from 'phosphor-react';
 import { Box, CardGrid, theme } from 'ui-kit';
@@ -19,8 +19,8 @@ export default function About() {
         subtitle="Lorem ipsum doler sit itmut del fal some big bold header."
       />
       <CardGrid
-        px="xxl"
-        py="xl"
+        mx="xxl"
+        my="xl"
         gridColumnGap="l"
         columns="2"
         minColumns="1"
@@ -77,6 +77,7 @@ export default function About() {
           </EventsCallout>
         </Box>
       </CardGrid>
+      <PageSplit title="Explore" variant="h3" />
     </Layout>
   );
 }
