@@ -1,5 +1,5 @@
 import DefaultModal from 'ui-kit/Modal';
-import { AuthModal, ConnectModal } from 'components/Modals';
+import { AuthModal, ConnectModal, GroupFilterModal } from 'components/Modals';
 
 const modals = [
   {
@@ -13,6 +13,10 @@ const modals = [
   {
     title: 'ConnectModal',
     component: ConnectModal,
+  },
+  {
+    title: 'GroupFilter',
+    component: GroupFilterModal,
   },
 ];
 

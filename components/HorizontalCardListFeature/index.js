@@ -1,0 +1,3 @@
+import HorizontalCardListFeature from './HorizontalCardListFeature'
+
+export default HorizontalCardListFeature
