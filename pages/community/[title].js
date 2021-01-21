@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { get, find, kebabCase, toLower } from 'lodash';
 
-import { CommunityProvider } from 'providers';
+import { CommunitiesProvider } from 'providers';
 import { useCommunities } from 'hooks';
 import { CommunitySingle, Layout } from 'components';
 
@@ -19,7 +19,7 @@ export default function Community(props) {
 
   return (
     <Layout title={title}>
-      <CommunityProvider Component={CommunitySingle} data={commmunity} />
+      <CommunitiesProvider Component={CommunitySingle} data={commmunity} />
     </Layout>
   );
 }

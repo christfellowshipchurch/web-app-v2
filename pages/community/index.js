@@ -1,6 +1,6 @@
 import { Box, Button, Cell, utils } from 'ui-kit';
 import { CommunityList, Footer, Header, SEO } from 'components';
-import { CommunityProvider } from 'providers';
+import { CommunitiesProvider } from 'providers';
 import Styled from './Community.styles';
 import { update as updateAuth, useAuth } from 'providers/AuthProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
@@ -46,7 +46,7 @@ export default function Community() {
             py={{ _: 'l', lg: 'xl' }}
           >
             <Box as="section" py={{ _: 'l', lg: 'xl' }}>
-              <CommunityProvider Component={CommunityList} />
+              <CommunitiesProvider Component={CommunityList} />
             </Box>
           </Cell>
         </Box>
