@@ -1,11 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useForm } from 'hooks';
-import { Box, Button, Radio, Select } from 'ui-kit';
+import { useForm, useSearchGroups } from 'hooks';
+import { Box, Button, Checkbox, Select } from 'ui-kit';
 
 function GroupFilterPreferences(props = {}) {
-  const { handleSubmit } = useForm(() => {
-    console.log('Show me Results');
+  const [searchGroups] = useSearchGroups({
+    fetchPolicy: 'network-only',
+    onCompleted: data => {
+      console.log('✅ data:', data);
+    },
+  });
+
+  const { handleSubmit } = useForm(async () => {
+    console.log(
+      '🔍%c Searching groups...',
+      'color: #00aeff; font-weight: bold;'
+    );
+
+    searchGroups({
+      variables: {
+        query: 'test',
+      },
+    });
   });
 
   return (
@@ -38,61 +54,61 @@ function GroupFilterPreferences(props = {}) {
         <Box as="p" color="subdued" mb="s">
           Preferred meeting days
         </Box>
-        <Radio
+        <Checkbox
           label="Mon"
           id="mon"
           name="days"
           value="mon"
           onChange={props.onChange}
-          checked={props.initialValues?.day === 'mon'}
+          checked={props.initialValues?.days.includes('mon')}
         />
-        <Radio
+        <Checkbox
           label="Tue"
           id="tue"
           name="days"
           value="tue"
           onChange={props.onChange}
-          checked={props.initialValues?.day === 'tue'}
+          checked={props.initialValues?.days.includes('tue')}
         />
-        <Radio
+        <Checkbox
           label="Wed"
           id="wed"
           name="days"
           value="wed"
           onChange={props.onChange}
-          checked={props.initialValues?.day === 'wed'}
+          checked={props.initialValues?.days.includes('wed')}
         />
-        <Radio
+        <Checkbox
           label="Thu"
           id="thu"
           name="days"
           value="thu"
           onChange={props.onChange}
-          checked={props.initialValues?.day === 'thu'}
+          checked={props.initialValues?.days.includes('thu')}
         />
-        <Radio
+        <Checkbox
           label="Fri"
           id="fri"
           name="days"
           value="fri"
           onChange={props.onChange}
-          checked={props.initialValues?.day === 'fri'}
+          checked={props.initialValues?.days.includes('fri')}
         />
-        <Radio
+        <Checkbox
           label="Sat"
           id="sat"
           name="days"
           value="sat"
           onChange={props.onChange}
-          checked={props.initialValues?.day === 'sat'}
+          checked={props.initialValues?.days.includes('sat')}
         />
-        <Radio
+        <Checkbox
           label="Sun"
           id="sun"
           name="days"
           value="sun"
           onChange={props.onChange}
-          checked={props.initialValues?.day === 'sun'}
+          checked={props.initialValues?.days.includes('sun')}
         />
       </Box>
       <Button type="submit">Continue</Button>
@@ -103,7 +119,7 @@ function GroupFilterPreferences(props = {}) {
 GroupFilterPreferences.propTypes = {
   initialValues: PropTypes.shape({
     location: PropTypes.string,
-    day: PropTypes.string,
+    days: PropTypes.arrayOf(PropTypes.string),
   }),
   onChange: PropTypes.func,
 };

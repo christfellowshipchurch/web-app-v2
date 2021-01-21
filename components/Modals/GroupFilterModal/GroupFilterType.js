@@ -2,15 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'hooks';
 import { showStep, useModalDispatch } from 'providers/ModalProvider';
-import { Box, Button, Radio } from 'ui-kit';
+import { useGroupFilters, toggleValue } from 'providers/GroupFiltersProvider';
+import { Box, Button, Checkbox } from 'ui-kit';
 
 function GroupFilterType(props = {}) {
-  const initialValue = 'bibleStudies';
   const modalDispatch = useModalDispatch();
+  const [filtersState, filtersDispatch] = useGroupFilters();
+
+  console.log('🔹 <GroupFilterType> filtersState:', filtersState);
 
   const { handleSubmit } = useForm(() => {
     modalDispatch(showStep(1));
   });
+
+  const handleChange = event => {
+    event.persist();
+    const { name, value } = event.target;
+
+    filtersDispatch(toggleValue({ name, value }));
+  };
 
   return (
     <Box
@@ -25,37 +35,37 @@ function GroupFilterType(props = {}) {
         Select the types of Crew groups you’re interested in.
       </Box>
       <Box mb="l">
-        <Radio
+        <Checkbox
           label="Bible Studies"
           id="bibleStudies"
-          name="groupType"
+          name="groupTypes"
           value="bibleStudies"
-          onChange={props.onChange}
-          checked={initialValue === 'bibleStudies'}
+          onChange={handleChange}
+          checked={filtersState.groupTypes.includes('bibleStudies')}
         />
-        <Radio
+        <Checkbox
           label="Prayer Groups"
           id="prayerGroups"
-          name="groupType"
+          name="groupTypes"
           value="prayerGroups"
-          onChange={props.onChange}
-          checked={initialValue === 'prayerGroups'}
+          onChange={handleChange}
+          checked={filtersState.groupTypes.includes('prayerGroups')}
         />
-        <Radio
+        <Checkbox
           label="Activity Studies"
           id="activityStudies"
-          name="groupType"
+          name="groupTypes"
           value="activityStudies"
-          onChange={props.onChange}
-          checked={initialValue === 'activityStudies'}
+          onChange={handleChange}
+          checked={filtersState.groupTypes.includes('activityStudies')}
         />
-        <Radio
+        <Checkbox
           label="Classes"
           id="classes"
-          name="groupType"
+          name="groupTypes"
           value="classes"
-          onChange={props.onChange}
-          checked={initialValue === 'classes'}
+          onChange={handleChange}
+          checked={filtersState.groupTypes.includes('classes')}
         />
       </Box>
       <Button type="submit">Continue</Button>
