@@ -9,6 +9,8 @@ import useCurrentPerson from './useCurrentPerson';
 import useCurrentUser from './useCurrentUser';
 import useEvent from './useEvent';
 import useEvents from './useEvents';
+import useFeature from './useFeature';
+import useFeatureFeed from './useFeatureFeed'
 import useFeedFeatures from './useFeedFeatures';
 import useForm from './useForm';
 import useGroup from './useGroup';
@@ -33,6 +35,8 @@ export {
   useCurrentUser,
   useEvent,
   useEvents,
+  useFeature,
+  useFeatureFeed,
   useFeedFeatures,
   useForm,
   useGroup,
