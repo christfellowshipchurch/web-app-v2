@@ -8,15 +8,13 @@ const CardGrid = styled.div`
     margin-bottom: ${themeGet('space.l')};
   }
 
-  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
-    display: grid;
-    grid-column-gap: ${themeGet('space.base')};
-    grid-row-gap: ${themeGet('space.l')};
-    grid-template-columns: repeat(${props => props.columns}, 1fr);
+  display: grid;
+  grid-column-gap: ${themeGet('space.base')};
+  grid-row-gap: ${themeGet('space.l')};
+  grid-template-columns: repeat(${props => props.columns}, 1fr);
 
-    > *:not(:last-child) {
-      margin-bottom: 0;
-    }
+  > *:not(:last-child) {
+    margin-bottom: 0;
   }
 
   ${system}

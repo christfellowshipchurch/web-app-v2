@@ -4,15 +4,17 @@ import PropTypes from 'prop-types';
 import { Box, Icon, Image, Text } from 'ui-kit';
 import Link from 'next/link';
 
-function ArticleLink({ title, description, url, urlText, imageSrc }) {
+function ArticleLink({ title, description, url, urlText, imageSrc, ...props }) {
   return (
     <Box
       display="flex"
       flexDirection="row"
       alignItems="center"
       justifyContent="space-between"
+      mb="m"
+      {...props}
     >
-      <Box>
+      <Box mr="l">
         <Text fontWeight="700" variant="s">
           {title}
         </Text>
@@ -42,7 +44,7 @@ function ArticleLink({ title, description, url, urlText, imageSrc }) {
           </a>
         </Link>
       </Box>
-      <Image rounded src={imageSrc} />
+      <Image rounded src={imageSrc} width="245px" />
     </Box>
   );
 }
