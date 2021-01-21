@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'hooks';
 import { Box, Button, Radio, Select } from 'ui-kit';
-
+import { capitalize } from 'lodash';
 function GroupFilterPreferences(props = {}) {
   const { handleSubmit } = useForm(() => {
     console.log('Show me Results');
   });
+
+  const meetingDays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
   return (
     <Box
@@ -38,62 +40,16 @@ function GroupFilterPreferences(props = {}) {
         <Box as="p" color="subdued" mb="s">
           Preferred meeting days
         </Box>
-        <Radio
-          label="Mon"
-          id="mon"
-          name="days"
-          value="mon"
-          onChange={props.onChange}
-          checked={props.initialValues?.day === 'mon'}
-        />
-        <Radio
-          label="Tue"
-          id="tue"
-          name="days"
-          value="tue"
-          onChange={props.onChange}
-          checked={props.initialValues?.day === 'tue'}
-        />
-        <Radio
-          label="Wed"
-          id="wed"
-          name="days"
-          value="wed"
-          onChange={props.onChange}
-          checked={props.initialValues?.day === 'wed'}
-        />
-        <Radio
-          label="Thu"
-          id="thu"
-          name="days"
-          value="thu"
-          onChange={props.onChange}
-          checked={props.initialValues?.day === 'thu'}
-        />
-        <Radio
-          label="Fri"
-          id="fri"
-          name="days"
-          value="fri"
-          onChange={props.onChange}
-          checked={props.initialValues?.day === 'fri'}
-        />
-        <Radio
-          label="Sat"
-          id="sat"
-          name="days"
-          value="sat"
-          onChange={props.onChange}
-          checked={props.initialValues?.day === 'sat'}
-        />
-        <Radio
-          label="Sun"
-          id="sun"
-          name="days"
-          value="sun"
-          onChange={props.onChange}
-          checked={props.initialValues?.day === 'sun'}
-        />
+        {meetingDays.map((item, i) => (
+          <Radio
+            label={capitalize(item)}
+            id={item}
+            name="days"
+            value={item}
+            onChange={props.onChange}
+            checked={props.initialValues?.day === item}
+          />
+        ))}
       </Box>
       <Button type="submit">Continue</Button>
     </Box>
