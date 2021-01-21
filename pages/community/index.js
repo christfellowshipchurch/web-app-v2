@@ -1,5 +1,5 @@
 import { Box, Button, Cell, utils } from 'ui-kit';
-import { CardList, Footer, Header, SEO } from 'components';
+import { CommunityList, Footer, Header, SEO } from 'components';
 import { CommunityProvider } from 'providers';
 import Styled from './Community.styles';
 import { update as updateAuth, useAuth } from 'providers/AuthProvider';
@@ -39,13 +39,17 @@ export default function Community() {
             <Button variant="link">Find your community</Button>
           </Box>
         </Styled.Hero>
-        <Cell
-          maxWidth={DEFAULT_CONTENT_WIDTH}
-          px="base"
-          py={{ _: 'l', lg: 'xl' }}
-        >
-          <CommunityProvider Component={CardList} />
-        </Cell>
+        <Box>
+          <Cell
+            maxWidth={DEFAULT_CONTENT_WIDTH}
+            px="base"
+            py={{ _: 'l', lg: 'xl' }}
+          >
+            <Box as="section" py={{ _: 'l', lg: 'xl' }}>
+              <CommunityProvider Component={CommunityList} />
+            </Box>
+          </Cell>
+        </Box>
         <Box
           display="flex"
           alignItems="center"
