@@ -1,9 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useForm, useSearchGroups } from 'hooks';
+import { useSearchGroups } from 'hooks';
+import {
+  useGroupFilters,
+  update,
+  toggleValue,
+} from 'providers/GroupFiltersProvider';
 import { Box, Button, Checkbox, Select } from 'ui-kit';
 
 function GroupFilterPreferences(props = {}) {
+  const [filtersState, filtersDispatch] = useGroupFilters();
   const [searchGroups] = useSearchGroups({
     fetchPolicy: 'network-only',
     onCompleted: data => {
@@ -11,7 +17,22 @@ function GroupFilterPreferences(props = {}) {
     },
   });
 
-  const { handleSubmit } = useForm(async () => {
+  const handleChange = event => {
+    event.persist();
+    const { name, value } = event.target;
+
+    if (name === 'campuses') {
+      // Campus selection is stored as a multi-select, but the input
+      // is a single-select. Handle it's value specially.
+      filtersDispatch(update({ [name]: [value] }));
+    } else {
+      filtersDispatch(toggleValue({ name, value }));
+    }
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault();
+
     console.log(
       '🔍%c Searching groups...',
       'color: #00aeff; font-weight: bold;'
@@ -22,7 +43,7 @@ function GroupFilterPreferences(props = {}) {
         query: 'test',
       },
     });
-  });
+  };
 
   return (
     <Box
@@ -39,10 +60,10 @@ function GroupFilterPreferences(props = {}) {
       </Box>
       <Box mb="base">
         <Select
-          id="campus"
-          name="campus"
-          onChange={props.onChange}
-          defaultValue={props.initialValues?.campus}
+          id="campuses"
+          name="campuses"
+          onChange={handleChange}
+          defaultValue={filtersState.campuses[0] || ''}
         >
           <Select.Option value="">Select...</Select.Option>
           <Select.Option value="WPB">West Palm Beach</Select.Option>
@@ -59,56 +80,56 @@ function GroupFilterPreferences(props = {}) {
           id="mon"
           name="days"
           value="mon"
-          onChange={props.onChange}
-          checked={props.initialValues?.days.includes('mon')}
+          onChange={handleChange}
+          checked={filtersState.days.includes('mon')}
         />
         <Checkbox
           label="Tue"
           id="tue"
           name="days"
           value="tue"
-          onChange={props.onChange}
-          checked={props.initialValues?.days.includes('tue')}
+          onChange={handleChange}
+          checked={filtersState.days.includes('tue')}
         />
         <Checkbox
           label="Wed"
           id="wed"
           name="days"
           value="wed"
-          onChange={props.onChange}
-          checked={props.initialValues?.days.includes('wed')}
+          onChange={handleChange}
+          checked={filtersState.days.includes('wed')}
         />
         <Checkbox
           label="Thu"
           id="thu"
           name="days"
           value="thu"
-          onChange={props.onChange}
-          checked={props.initialValues?.days.includes('thu')}
+          onChange={handleChange}
+          checked={filtersState.days.includes('thu')}
         />
         <Checkbox
           label="Fri"
           id="fri"
           name="days"
           value="fri"
-          onChange={props.onChange}
-          checked={props.initialValues?.days.includes('fri')}
+          onChange={handleChange}
+          checked={filtersState.days.includes('fri')}
         />
         <Checkbox
           label="Sat"
           id="sat"
           name="days"
           value="sat"
-          onChange={props.onChange}
-          checked={props.initialValues?.days.includes('sat')}
+          onChange={handleChange}
+          checked={filtersState.days.includes('sat')}
         />
         <Checkbox
           label="Sun"
           id="sun"
           name="days"
           value="sun"
-          onChange={props.onChange}
-          checked={props.initialValues?.days.includes('sun')}
+          onChange={handleChange}
+          checked={filtersState.days.includes('sun')}
         />
       </Box>
       <Button type="submit">Continue</Button>

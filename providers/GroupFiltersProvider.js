@@ -5,10 +5,10 @@ const GroupFiltersProviderStateContext = createContext();
 const GroupFiltersProviderDispatchContext = createContext();
 
 const initialState = {
-  groupTypes: [],
-  groupLineups: [],
+  preferences: [],
+  subPreferences: [],
   campuses: [],
-  meetingDays: [],
+  days: [],
 };
 
 const actionTypes = {

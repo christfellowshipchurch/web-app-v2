@@ -1,25 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useForm } from 'hooks';
-import { showStep, useModalDispatch } from 'providers/ModalProvider';
 import { useGroupFilters, toggleValue } from 'providers/GroupFiltersProvider';
+import { showStep, useModalDispatch } from 'providers/ModalProvider';
 import { Box, Button, Checkbox } from 'ui-kit';
 
 function GroupFilterType(props = {}) {
   const modalDispatch = useModalDispatch();
   const [filtersState, filtersDispatch] = useGroupFilters();
 
-  console.log('🔹 <GroupFilterType> filtersState:', filtersState);
-
-  const { handleSubmit } = useForm(() => {
-    modalDispatch(showStep(1));
-  });
-
   const handleChange = event => {
     event.persist();
     const { name, value } = event.target;
 
     filtersDispatch(toggleValue({ name, value }));
+  };
+
+  const handleSubmit = () => {
+    modalDispatch(showStep(1));
   };
 
   return (
@@ -38,34 +35,34 @@ function GroupFilterType(props = {}) {
         <Checkbox
           label="Bible Studies"
           id="bibleStudies"
-          name="groupTypes"
+          name="subPreferences"
           value="bibleStudies"
           onChange={handleChange}
-          checked={filtersState.groupTypes.includes('bibleStudies')}
+          checked={filtersState.subPreferences.includes('bibleStudies')}
         />
         <Checkbox
           label="Prayer Groups"
           id="prayerGroups"
-          name="groupTypes"
+          name="subPreferences"
           value="prayerGroups"
           onChange={handleChange}
-          checked={filtersState.groupTypes.includes('prayerGroups')}
+          checked={filtersState.subPreferences.includes('prayerGroups')}
         />
         <Checkbox
           label="Activity Studies"
           id="activityStudies"
-          name="groupTypes"
+          name="subPreferences"
           value="activityStudies"
           onChange={handleChange}
-          checked={filtersState.groupTypes.includes('activityStudies')}
+          checked={filtersState.subPreferences.includes('activityStudies')}
         />
         <Checkbox
           label="Classes"
           id="classes"
-          name="groupTypes"
+          name="subPreferences"
           value="classes"
           onChange={handleChange}
-          checked={filtersState.groupTypes.includes('classes')}
+          checked={filtersState.subPreferences.includes('classes')}
         />
       </Box>
       <Button type="submit">Continue</Button>
