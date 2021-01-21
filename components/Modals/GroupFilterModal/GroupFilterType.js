@@ -15,7 +15,8 @@ function GroupFilterType(props = {}) {
     filtersDispatch(toggleValue({ name, value }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = event => {
+    event.preventDefault();
     modalDispatch(showStep(1));
   };
 

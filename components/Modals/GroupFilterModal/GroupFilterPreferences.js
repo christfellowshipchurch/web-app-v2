@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useSearchGroups } from 'hooks';
 import {
   useGroupFilters,
   update,
@@ -10,12 +9,6 @@ import { Box, Button, Checkbox, Select } from 'ui-kit';
 
 function GroupFilterPreferences(props = {}) {
   const [filtersState, filtersDispatch] = useGroupFilters();
-  const [searchGroups] = useSearchGroups({
-    fetchPolicy: 'network-only',
-    onCompleted: data => {
-      console.log('✅ data:', data);
-    },
-  });
 
   const handleChange = event => {
     event.persist();
@@ -32,17 +25,6 @@ function GroupFilterPreferences(props = {}) {
 
   const handleSubmit = event => {
     event.preventDefault();
-
-    console.log(
-      '🔍%c Searching groups...',
-      'color: #00aeff; font-weight: bold;'
-    );
-
-    searchGroups({
-      variables: {
-        query: 'test',
-      },
-    });
   };
 
   return (
