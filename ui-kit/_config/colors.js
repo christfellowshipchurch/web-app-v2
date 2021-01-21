@@ -1,3 +1,5 @@
+import Color from 'color';
+
 const BATTLESHIP = '#818181';
 const PICTON = '#00aeef';
 const TUATARA = '#353535';
@@ -7,8 +9,11 @@ const colors = {
   // LIGHT THEME
   light: {
     primary: PICTON,
+    primaryHover: Color(PICTON).darken(0.2),
     secondary: TUATARA,
+    secondaryHover: Color(TUATARA).darken(0.2),
     tertiary: BATTLESHIP,
+    tertiaryHover: Color(BATTLESHIP).darken(0.2),
 
     neutrals: {
       100: WHITE_SMOKE,

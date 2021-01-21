@@ -1,7 +1,8 @@
-import useAuthenticateCredentials from './useAuthenticateCredentials';
 import useAuthIdentity from './useAuthIdentity';
 import useAuthQuery from './useAuthQuery';
+import useAuthenticateCredentials from './useAuthenticateCredentials';
 import useCampuses from './useCampuses';
+import useCommunities from './useCommunities';
 import useContentFeed from './useContentFeed';
 import useContentItem from './useContentItem';
 import useCurrentPerson from './useCurrentPerson';
@@ -23,10 +24,11 @@ import useUserExists from './useUserExists';
 import useVerifyPin from './useVerifyPin';
 
 export {
-  useAuthenticateCredentials,
   useAuthIdentity,
   useAuthQuery,
+  useAuthenticateCredentials,
   useCampuses,
+  useCommunities,
   useContentFeed,
   useContentItem,
   useCurrentPerson,
