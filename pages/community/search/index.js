@@ -1,4 +1,4 @@
-import { CommunitySearchResults, Footer, Header, SEO } from 'components';
+import { GroupSearch, Footer, Header, SEO } from 'components';
 import { GroupFiltersProvider } from 'providers';
 import { Box, Cell, utils } from 'ui-kit';
 
@@ -16,7 +16,7 @@ export default function CommunitySearch() {
           py={{ _: 'l', lg: 'xl' }}
         >
           <GroupFiltersProvider>
-            <CommunitySearchResults />
+            <GroupSearch />
           </GroupFiltersProvider>
         </Cell>
         <Footer />

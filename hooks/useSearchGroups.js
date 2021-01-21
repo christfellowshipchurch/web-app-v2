@@ -8,24 +8,34 @@ export const SEARCH_GROUPS = gql`
         endCursor
       }
       edges {
-        __typename
         cursor
-        ... on GroupSearchResult {
-          title
-          summary
-          coverImage {
-            sources {
-              uri
-            }
-          }
-        }
+        ...groupSearchResult
+      }
+    }
+  }
+
+  fragment groupSearchResult on GroupSearchResult {
+    id
+    title
+    summary
+    coverImage {
+      sources {
+        uri
       }
     }
   }
 `;
 
 function useSearchGroups(options = {}) {
-  return useLazyQuery(SEARCH_GROUPS, options);
+  const [searchGroups, query] = useLazyQuery(SEARCH_GROUPS, options);
+
+  return [
+    searchGroups,
+    {
+      groups: query?.data?.searchGroups?.edges,
+      ...query,
+    },
+  ];
 }
 
 export default useSearchGroups;

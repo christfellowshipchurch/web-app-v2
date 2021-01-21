@@ -2,7 +2,7 @@ import * as modals from './Modals';
 import BirthDateField from './BirthDateField';
 import CardList from './CardList';
 import ClientSideComponent from './ClientSideComponent';
-import CommunitySearchResults from './CommunitySearchResults';
+import GroupSearch from './GroupSearch';
 import ContentLayout from './ContentLayout';
 import ContentList from './ContentList';
 import ContentSingle from './ContentSingle';
@@ -30,7 +30,7 @@ export {
   BirthDateField,
   CardList,
   ClientSideComponent,
-  CommunitySearchResults,
+  GroupSearch,
   ContentLayout,
   ContentList,
   ContentSingle,
