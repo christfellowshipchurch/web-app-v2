@@ -1,7 +1,17 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
 import { system } from 'ui-kit';
+
+const collapse = ({ minColumns, breakpoint, columns }) => props => {
+  if (breakpoint && minColumns) {
+    return css`
+      @media screen and (max-width: ${themeGet(`breakpoints.${breakpoint}`)}) {
+        grid-template-columns: repeat(${minColumns}, 1fr);
+      }
+    `;
+  }
+};
 
 const CardGrid = styled.div`
   > *:not(:last-child) {
@@ -17,6 +27,7 @@ const CardGrid = styled.div`
     margin-bottom: 0;
   }
 
+  ${collapse}
   ${system}
 `;
 

@@ -1,10 +1,11 @@
 import React from 'react';
 import { Box, Text } from 'ui-kit';
 import PropTypes from 'prop-types';
+import Styled from './EventsCallout.styles';
 
 function EventsCallout({ icon, title, ...props } = {}) {
   return (
-    <Box bg="white" p="m" borderRadius="image">
+    <Styled floater>
       <Box display="flex" alignItems="center" mb="m">
         {icon}
         <Text color="neutrals.900" opacity="60%" variant="h4" fontWeight="600">
@@ -12,7 +13,7 @@ function EventsCallout({ icon, title, ...props } = {}) {
         </Text>
       </Box>
       {props.children}
-    </Box>
+    </Styled>
   );
 }
 

@@ -18,7 +18,14 @@ export default function About() {
         title="Lorem ipsum doler sit itmut del fal some big bold header."
         subtitle="Lorem ipsum doler sit itmut del fal some big bold header."
       />
-      <CardGrid px="xxl" py="xl" gridColumnGap="l" columns="2">
+      <CardGrid
+        px="xxl"
+        py="xl"
+        gridColumnGap="l"
+        columns="2"
+        minColumns="1"
+        breakpoint="lg"
+      >
         <Box>
           <ArticleLink
             title="Child Dedication"
@@ -35,7 +42,7 @@ export default function About() {
             imageSrc="https://s3-alpha-sig.figma.com/img/0607/2b98/01ff019c692234b93cbf2696d450cbf5?Expires=1612137600&Signature=g3l4pjYR2pJwn-FYDyfahRI4gqzi2ZYFmIPmSCEMkS5BGXz3SQKO79flt7yK-qZswrYkOghjJ0aGiUaysTL2kQlcemrXifg-AUbNqQJWK9QK5w-63CBdnIF4xiBhTkUwcCajSpTOtknw8LvIWhCsqIvaX1KNa--N8nrRh8oc9qYitevXDWU3yOhaQrvOFRBgWPidyKUTGZ7hQtJEXW3bfyZ4coCg8mfiNVbGYVRcfEz0EyJbXMLG4scnnnAC2czVYJKtR~VP3h1eS5anTmuJWBGQ-4BghgxDvQC9vQnQcZEI2S2z0UTLhDi8m7griG-0X9rL9Uv~OVRZ1kPEDOZhiA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
           />
         </Box>
-        <Box mt="-150px" zIndex="2">
+        <Box zIndex="2">
           <EventsCallout
             title="General Info"
             icon={
