@@ -1,6 +1,6 @@
 import * as modals from './Modals';
 import BirthDateField from './BirthDateField';
-import CardList from './CardList';
+import CommunityList from './CommunityList';
 import ClientSideComponent from './ClientSideComponent';
 import ContentLayout from './ContentLayout';
 import ContentList from './ContentList';
@@ -27,7 +27,7 @@ import VerticalCardListFeature from './VerticalCardListFeature'
 
 export {
   BirthDateField,
-  CardList,
+  CommunityList,
   ClientSideComponent,
   ContentLayout,
   ContentList,
