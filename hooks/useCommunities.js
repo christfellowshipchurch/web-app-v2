@@ -10,9 +10,18 @@ export const GET_COMMUNITIES = gql`
     id
     title
     summary
+    type
     coverImage {
       sources {
         uri
+      }
+    }
+    lineups {
+      title
+      coverImage {
+        sources {
+          uri
+        }
       }
     }
   }
