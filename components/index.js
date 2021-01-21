@@ -4,8 +4,6 @@ import ContentLayout from './ContentLayout';
 import ContentList from './ContentList';
 import ContentSingle from './ContentSingle';
 import CustomLink from './CustomLink';
-import EventsList from './EventsList';
-import EventSingle from './EventSingle';
 import Footer from './Footer';
 import GroupsList from './GroupsList';
 import GroupSingle from './GroupSingle';
@@ -16,6 +14,7 @@ import Logo from './Logo';
 import MainPhotoHeader from './MainPhotoHeader';
 import Nav from './Nav';
 import SEO from './SEO';
+import { EventsCallout, EventCallout } from './EventCallout';
 
 export {
   ArticleLink,
@@ -24,8 +23,8 @@ export {
   ContentList,
   ContentSingle,
   CustomLink,
-  EventsList,
-  EventSingle,
+  EventCallout,
+  EventsCallout,
   Footer,
   GroupsList,
   GroupSingle,

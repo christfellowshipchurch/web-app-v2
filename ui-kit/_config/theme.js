@@ -25,8 +25,8 @@ const theme = {
     h1: rem('43px'),
     h2: rem('33px'),
     h3: rem('24px'),
-    h4: rem('22px'),
-    h5: rem('18px'),
+    h4: rem('16px'),
+    h5: rem('12px'),
   },
   fontWeights: {
     normal: 'normal',
@@ -39,6 +39,7 @@ const theme = {
     h1: rem('45.15px'),
     h2: rem('40px'),
     h3: rem('28px'),
+    h4: rem('24px'),
   },
   radii: {
     s: rem('4px'),
@@ -62,8 +63,8 @@ const theme = {
   space: {
     base: rem('20px'),
     xs: rem('5px'),
-    s: rem('10px'),
-    m: rem('14px'),
+    s: rem('14px'),
+    m: rem('25px'),
     l: rem('40px'),
     xl: rem('60px'),
     xxl: rem('100px'),

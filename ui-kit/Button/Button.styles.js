@@ -67,7 +67,7 @@ const Button = styled.button`
   font-family: ${themeGet('fonts.base')};
   font-size: ${themeGet('fontSizes.base')};
   height: 52px;
-  padding: ${themeGet('space.m')};
+  padding: ${themeGet('space.s')};
   border-radius: ${themeGet('radii.button')};
   text-align: center;
   text-decoration: none;

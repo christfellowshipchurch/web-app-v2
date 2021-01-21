@@ -1,7 +1,7 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { ArrowRight } from 'phosphor-react';
 
-import { Box, Icon, Image, Text } from 'ui-kit';
+import { Box, Image, Text, theme } from 'ui-kit';
 import Link from 'next/link';
 
 function ArticleLink({ title, description, url, urlText, imageSrc, ...props }) {
@@ -11,7 +11,7 @@ function ArticleLink({ title, description, url, urlText, imageSrc, ...props }) {
       flexDirection="row"
       alignItems="center"
       justifyContent="space-between"
-      mb="m"
+      mb="s"
       {...props}
     >
       <Box mr="l">
@@ -22,24 +22,21 @@ function ArticleLink({ title, description, url, urlText, imageSrc, ...props }) {
           {description}
         </Text>
         <Link href={url}>
-          <a style={{ display: 'flex', textDecoration: 'none' }}>
-            <Text
-              fontWeight="600"
-              variant="s"
-              color="primary"
-              display="inline"
-              mr="4px"
-            >
+          <a
+            style={{
+              display: 'flex',
+              textDecoration: 'none',
+              alignItems: 'center',
+            }}
+          >
+            <Text fontWeight="600" variant="s" color="primary" mr="4px">
               {urlText}
             </Text>
-            <Icon
-              name="arrowRight"
+            <ArrowRight
               alt={title}
-              viewBox="0 0 18 19"
-              width="18px"
-              height="19px"
-              stroke="primary"
-              strokeWidth={2}
+              weight="bold"
+              size={18}
+              color={theme.primary}
             />
           </a>
         </Link>
