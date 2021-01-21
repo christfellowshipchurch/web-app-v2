@@ -3,20 +3,20 @@ import React from 'react';
 import { GroupFiltersProvider } from 'providers';
 import { Modal } from 'ui-kit';
 
-import GroupFilterType from './GroupFilterType';
-import GroupFilterPreferences from './GroupFilterPreferences';
+import GroupFilterSubPreferences from './GroupFilterSubPreferences';
+import GroupFilterWhereWhen from './GroupFilterWhereWhen';
 
 function GroupFilterModal(props = {}) {
   function render(step) {
     switch (step) {
       case 0: {
-        return <GroupFilterType />;
+        return <GroupFilterSubPreferences />;
       }
       case 1: {
-        return <GroupFilterPreferences />;
+        return <GroupFilterWhereWhen />;
       }
       default: {
-        return <GroupFilterType />;
+        return <GroupFilterSubPreferences />;
       }
     }
   }
