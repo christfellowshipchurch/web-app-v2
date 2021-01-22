@@ -9,7 +9,7 @@ export default function GroupSearch(props = {}) {
     fetchPolicy: 'network-only',
   });
 
-  console.group('<GroupSearch> render()');
+  console.groupCollapsed('%c<GroupSearch> render()', 'color: #888');
   console.log('filtersState:', filtersState);
   console.log('loading:', loading);
   console.log('groups:', groups);
@@ -17,17 +17,23 @@ export default function GroupSearch(props = {}) {
   console.groupEnd();
 
   useEffect(() => {
-    console.log(
-      '🔍%c Searching groups...',
-      'color: #00aeff; font-weight: bold;'
-    );
+    if (filtersState.hydrated) {
+      console.log(
+        '🔍%c Searching groups...',
+        'color: #00aeff; font-weight: bold;'
+      );
 
-    searchGroups({
-      variables: {
-        query: 'test',
-      },
-    });
-  }, [searchGroups]);
+      searchGroups({
+        variables: {
+          query: 'test',
+        },
+      });
+    } else {
+      console.log(
+        '<GroupSearch> ⏳ Waiting for state to hydrate from query string'
+      );
+    }
+  }, [searchGroups, filtersState.hydrated]);
 
   return (
     <Box>
@@ -35,7 +41,22 @@ export default function GroupSearch(props = {}) {
       <Box as="p" color="subdued" mb="l">
         Found {groups?.length} groups that meet your search criteria.
       </Box>
-      <Box as="pre" color="subdued" mb="l" letterSpacing={-1} fontSize="s">
+      <Box
+        as="pre"
+        color="subdued"
+        mb="l"
+        fontSize="xs"
+        position="fixed"
+        bottom="0"
+        left={16}
+        padding="base"
+        bg="white"
+        borderRadius="base"
+        boxShadow="xl"
+        maxWidth={300}
+        overflow="scroll"
+        zIndex="10"
+      >
         {JSON.stringify(filtersState, null, 2)}
       </Box>
       <CardGrid>

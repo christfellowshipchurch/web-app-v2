@@ -5,11 +5,13 @@ import {
   update,
   toggleValue,
 } from 'providers/GroupFiltersProvider';
+import { hideModal, useModalDispatch } from 'providers/ModalProvider';
 import { Box, Button, Checkbox, Select } from 'ui-kit';
 
 function GroupFilterPreferences(props = {}) {
   const router = useRouter();
   const [filtersState, filtersDispatch] = useGroupFilters();
+  const modalDispatch = useModalDispatch();
 
   const handleChange = event => {
     event.persist();
@@ -26,7 +28,11 @@ function GroupFilterPreferences(props = {}) {
 
   const handleSubmit = event => {
     event.preventDefault();
-    router.push(`/community/search?${filtersState.serialized}`);
+    router.push({
+      pathname: `/community/search`,
+      query: filtersState.serialized,
+    });
+    modalDispatch(hideModal());
   };
 
   return (
