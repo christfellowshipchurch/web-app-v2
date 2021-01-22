@@ -45,24 +45,41 @@ function CommunitySingle(props = {}) {
           as="p"
           mb="base"
         >{`There's a ${props.data?.title} for everyone`}</Box>
-        <CardGrid>
+        <Box
+          display="flex"
+          flexWrap="wrap"
+          justifyContent="center"
+          margin="-8px"
+        >
           {props.data?.lineups.map((item, i) => (
             <DefaultCard
               as="a"
               key={i}
+              flex="0 0 calc(33.333% - 16px)"
+              margin="8px"
               coverImage={item?.coverImage?.sources[0]?.uri}
               coverImageOverlay={true}
               coverImageTitle={item?.title}
               height="250px"
             />
           ))}
-        </CardGrid>
+        </Box>
       </Box>
       <Box
-        display={{ lg: 'grid' }}
-        gridTemplateColumns="65% 1fr"
-        gridColumnGap="l"
-      ></Box>
+        display="flex"
+        alignItems="center"
+        flexDirection="column"
+        p="l"
+        mb="l"
+      >
+        <Box as="h2" mb="s">
+          We’ll help you get connected.
+        </Box>
+        <Box as="p" mb="l">
+          There are hundreds of communities at CF. We’ll help find yours.
+        </Box>
+        <Button>Find your community</Button>
+      </Box>
     </>
   );
 }

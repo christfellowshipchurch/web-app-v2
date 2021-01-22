@@ -57,7 +57,7 @@ export default function Community() {
           p="l"
           mb="l"
         >
-          <Box as="h2" mb="l">
+          <Box as="h2" mb="s">
             We’ll help you get connected.
           </Box>
           <Box as="p" mb="l">

@@ -13,7 +13,7 @@ function CommunityList(props = {}) {
     return <Box as="p">You do not have any items to display right now.</Box>;
 
   return (
-    <CardGrid>
+    <Box display="flex" flexWrap="wrap" justifyContent="center" margin="-8px">
       {props.data.map((item, i) => (
         <CustomLink
           as="a"
@@ -24,11 +24,13 @@ function CommunityList(props = {}) {
           coverImageOverlay={true}
           coverImageTitle={item?.title}
           coverImageDescription={item?.summary}
+          flex="0 0 calc(33.333% - 16px)"
+          margin="8px"
           height="250px"
           display="block"
         />
       ))}
-    </CardGrid>
+    </Box>
   );
 }
 
