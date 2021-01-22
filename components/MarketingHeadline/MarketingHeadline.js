@@ -1,7 +1,8 @@
+import { Quote } from 'components';
 import PropTypes from 'prop-types';
 import { Box, Button, CardGrid, Heading, Text } from 'ui-kit';
 import { parseNewlines } from 'utils';
-import { StyledImage } from './MarketingHeadline.styles';
+import { StyledImage, StyledQuote } from './MarketingHeadline.styles';
 
 function MarketingHeadline({
   imageSrc,
@@ -19,7 +20,11 @@ function MarketingHeadline({
     sideContent = <StyledImage src={imageSrc} rounded justify={justify} />;
   } else if (quote) {
     // TODO - add quote component
-    sideContent = null;
+    sideContent = (
+      <StyledQuote>
+        <Quote />
+      </StyledQuote>
+    );
   }
   const buttons = actions?.length ? (
     <Box display="flex" mt="l">

@@ -22,3 +22,14 @@ export const StyledImage = styled(Image)`
   ${justify}
   ${system}
 `;
+
+export const StyledQuote = styled.div`
+  width: 50%;
+
+  @media screen and (max-width: ${themeGet(`breakpoints.lg`)}) {
+    width: 100%;
+  }
+
+  ${justify}
+  ${system}
+`;
