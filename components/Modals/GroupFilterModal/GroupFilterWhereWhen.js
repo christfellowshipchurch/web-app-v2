@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
   useGroupFilters,
   update,
@@ -119,12 +118,6 @@ function GroupFilterPreferences(props = {}) {
   );
 }
 
-GroupFilterPreferences.propTypes = {
-  initialValues: PropTypes.shape({
-    location: PropTypes.string,
-    days: PropTypes.arrayOf(PropTypes.string),
-  }),
-  onChange: PropTypes.func,
-};
+GroupFilterPreferences.propTypes = {};
 
 export default GroupFilterPreferences;

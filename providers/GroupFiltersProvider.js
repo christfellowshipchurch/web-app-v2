@@ -16,16 +16,71 @@ const actionTypes = {
   toggleValue: 'toggleValue',
 };
 
-function reducer(state, action) {
-  console.log('[GroupFiltersProvider] action:', action);
+function serializeState(state) {
+  const { serialized, ...keys } = state;
 
+  const entriesWithValues = Object.entries(keys).filter(([key, value]) =>
+    // Only serialize state entries that are non-empty arrays or truthy
+    Array.isArray(value) ? value.length : Boolean(value)
+  );
+
+  // console.log(
+  //   '🔸 parseSerializedState:',
+  //   parseSerializedState(new URLSearchParams(entriesWithValues).toString())
+  // );
+
+  return new URLSearchParams(entriesWithValues).toString();
+}
+
+function parseSerializedState(string) {
+  const entries = new URLSearchParams(string).entries();
+  const state = {};
+
+  for (let [key, value] of entries) {
+    // Slightly risky logical leap: look at the initialState value
+    // for this key, and if it's an array, parse the value as one.
+    if (Array.isArray(initialState[key])) {
+      // Properly parse single and multiple selections into an array.
+      state[key] = value.includes(',') ? value.split(',') : [value];
+    } else {
+      state[key] = value;
+    }
+  }
+
+  return state;
+}
+
+function appendSerializedState(state) {
+  const newState = {
+    ...state,
+    serialized: serializeState(state),
+  };
+
+  console.group(
+    '%c🔵 [ GroupFiltersProvider ] Updated and serialized state',
+    'color: #00AEFF'
+  );
+  console.log(
+    `%cstate: %c${JSON.stringify(state, null, 2)}`,
+    'color: cyan',
+    ''
+  );
+  console.log(
+    `%cserialized: %c"${newState.serialized}"`,
+    'color: cyan',
+    'color: limegreen;'
+  );
+  console.groupEnd();
+  return newState;
+}
+
+function reducer(state, action) {
   switch (action.type) {
     case actionTypes.update: {
-      return {
+      return appendSerializedState({
         ...state,
         ...action.payload,
-        // ❓ :: Should we auto-serialize state to url param string here?
-      };
+      });
     }
     case actionTypes.toggleValue: {
       const { name, value } = action.payload;
@@ -33,16 +88,16 @@ function reducer(state, action) {
 
       if (valueExists) {
         // Remove value
-        return {
+        return appendSerializedState({
           ...state,
           [name]: state[name].filter(item => item !== value),
-        };
+        });
       } else {
         // Add value
-        return {
+        return appendSerializedState({
           ...state,
           [name]: state[name].concat(value),
-        };
+        });
       }
     }
     default: {
@@ -54,7 +109,6 @@ function reducer(state, action) {
 function GroupFiltersProvider(props = {}) {
   const [state, dispatch] = useReducer(reducer, initialState, state => ({
     ...state,
-    values: props.values || {}, //  ❓ :: Hydrate state from URL params?
   }));
 
   return (
@@ -117,7 +171,6 @@ const toggleValue = payload => ({
 
 GroupFiltersProvider.propTypes = {
   children: PropTypes.oneOfType([PropTypes.element, PropTypes.node]),
-  values: PropTypes.object,
   // ❓ :: Some prop like this 👇 so the Search results page instance of
   //       this provider can automatically serialize state changes to URL?
   // serializeStateToUrl: PropTypes.bool
