@@ -4,8 +4,9 @@ import formatPhoneNumber from './formatPhoneNumber';
 import getAge from './getAge';
 import getURLFromType from './getURLFromType';
 import normalizeUserData from './normalizeUserData';
+import parseNewlines from './parseNewlines';
 import slugify from './slugify';
-import textTrimmer from './textTrimmer'
+import textTrimmer from './textTrimmer';
 import validateEmail from './validateEmail';
 import validatePhoneNumber from './validatePhoneNumber';
 
@@ -16,6 +17,7 @@ export {
   getAge,
   getURLFromType,
   normalizeUserData,
+  parseNewlines,
   slugify,
   textTrimmer,
   validateEmail,

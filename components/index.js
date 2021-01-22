@@ -12,6 +12,7 @@ import HomeFeed from './HomeFeed';
 import Layout from './Layout';
 import Logo from './Logo';
 import MainPhotoHeader from './MainPhotoHeader';
+import MarketingHeadline from './MarketingHeadline';
 import Nav from './Nav';
 import PageSplit from './PageSplit';
 import SEO from './SEO';
@@ -34,6 +35,7 @@ export {
   Layout,
   Logo,
   MainPhotoHeader,
+  MarketingHeadline,
   Nav,
   PageSplit,
   SEO,

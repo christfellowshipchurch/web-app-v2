@@ -18,7 +18,7 @@ const theme = {
   fontSizes: {
     base: rem('14px'),
     xxs: rem('10px'),
-    xs: rem('12px'),
+    xs: rem('11px'),
     s: rem('16px'),
     l: rem('20px'),
     xl: rem('24px'),
@@ -35,6 +35,7 @@ const theme = {
   lineHeights: {
     base: '1.5',
     heading: '1.2',
+    xs: rem('18.5px'),
     s: rem('24px'),
     h1: rem('45.15px'),
     h2: rem('40px'),
@@ -62,7 +63,8 @@ const theme = {
   },
   space: {
     base: rem('20px'),
-    xs: rem('5px'),
+    xxs: rem('5px'),
+    xs: rem('10px'),
     s: rem('14px'),
     m: rem('25px'),
     l: rem('40px'),

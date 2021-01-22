@@ -2,17 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Box, Heading } from 'ui-kit';
+import { StyledImage } from './MainPhotoHeader.styles';
 
 function MainPhotoHeader({ src, category, title, subtitle } = {}) {
   return (
     <Box position="relative">
-      <Box
-        as="img"
-        src={src}
-        name="main-photo-header"
-        width="100%"
-        maxHeight="870px"
-      />
+      <StyledImage as="img" src={src} name="main-photo-header" />
       <Box position="absolute" left="97px" bottom="73px" maxWidth="440px">
         {category && (
           <Heading
