@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import {
   useGroupFilters,
   update,
@@ -7,6 +8,7 @@ import {
 import { Box, Button, Checkbox, Select } from 'ui-kit';
 
 function GroupFilterPreferences(props = {}) {
+  const router = useRouter();
   const [filtersState, filtersDispatch] = useGroupFilters();
 
   const handleChange = event => {
@@ -24,6 +26,7 @@ function GroupFilterPreferences(props = {}) {
 
   const handleSubmit = event => {
     event.preventDefault();
+    router.push(`/community/search?${filtersState.serialized}`);
   };
 
   return (

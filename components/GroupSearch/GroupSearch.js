@@ -39,9 +39,10 @@ export default function GroupSearch(props = {}) {
         {JSON.stringify(filtersState, null, 2)}
       </Box>
       <CardGrid>
-        {groups?.map(group => (
+        {groups?.map((group, index) => (
           <GroupCard
-            key={group}
+            /* Temporarily need to use index in key due to duplicate data */
+            key={`${group.node?.id}-${index}`}
             title={group.title}
             groupType={group.type}
             summary={group.summary}

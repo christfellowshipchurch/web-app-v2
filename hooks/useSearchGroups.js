@@ -9,6 +9,9 @@ export const SEARCH_GROUPS = gql`
       }
       edges {
         cursor
+        node {
+          id
+        }
         ...groupSearchResult
       }
     }

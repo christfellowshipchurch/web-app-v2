@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useReducer } from 'react';
 import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 
 const GroupFiltersProviderStateContext = createContext();
 const GroupFiltersProviderDispatchContext = createContext();
@@ -74,6 +75,24 @@ function appendSerializedState(state) {
   return newState;
 }
 
+const getHydratedState = router => {
+  let searchString;
+
+  if (typeof window !== 'undefined') {
+    console.log('*** CLIENT ***');
+    searchString = window.location.search;
+  } else {
+    console.log('*** SERVER ***');
+    searchString = router.asPath.split(/\?/)[1];
+  }
+  console.log('searchString:', searchString);
+
+  return {
+    ...initialState,
+    ...parseSerializedState(searchString),
+  };
+};
+
 function reducer(state, action) {
   switch (action.type) {
     case actionTypes.update: {
@@ -107,9 +126,14 @@ function reducer(state, action) {
 }
 
 function GroupFiltersProvider(props = {}) {
-  const [state, dispatch] = useReducer(reducer, initialState, state => ({
-    ...state,
-  }));
+  const router = useRouter();
+  const [state, dispatch] = useReducer(
+    reducer,
+    getHydratedState(router),
+    state => ({
+      ...state,
+    })
+  );
 
   return (
     <GroupFiltersProviderStateContext.Provider value={state}>
