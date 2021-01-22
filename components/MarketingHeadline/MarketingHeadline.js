@@ -34,7 +34,7 @@ function MarketingHeadline({
     <CardGrid
       my="xl"
       gridColumnGap="xl"
-      columns={sideContent ? 2 : 1}
+      columns={sideContent ? '2' : '1'}
       minColumns="1"
       breakpoint="lg"
       alignItems="center"
@@ -117,7 +117,7 @@ MarketingHeadline.propTypes = {
     title: PropTypes.string,
     text: PropTypes.string,
     attribution: PropTypes.string,
-    action: PropTypes.string,
+    action: PropTypes.func,
     actionLabel: PropTypes.string,
     avatar: PropTypes.string,
   }),

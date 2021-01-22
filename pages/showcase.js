@@ -6,6 +6,7 @@ import {
   EventsCallout,
   EventCallout,
   PageSplit,
+  Quote,
 } from 'components';
 import { useRouter } from 'next/router';
 import { Info } from 'phosphor-react';
@@ -98,6 +99,11 @@ export default function About() {
             </>
           }
           description="Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet."
+        />
+        <Quote
+          attribution="Sarah Connor"
+          actionLabel="Full story"
+          text="When trauma and loss left me adrift and disoriented, God provided faithful believers to remind me that He is good, His Word can be trusted, and He will never leave or forsake us."
         />
         <MarketingHeadline
           imageSrc="https://s3-alpha-sig.figma.com/img/7be8/6993/46526ee7a373891356914030a50eecb1?Expires=1612137600&Signature=P~ma-wzBuFel034I5mDV7N09k05Jc5uA7PBM-Rj0~W6smzKHp4S845mDEcRehgLug5aUc27r1Jps~ETWmBMRyY1RRTg8Y4FluHPLGKqKOgK7mYkFZ3Tv5oFGGeXDXHsp8Taz~ZdFb9zJC0O-cHOKBe~oyLkiwmgJbIh-XL9~l6hiNKzu7jaSd5nMvKL7jSFiRsa2C0pYEpkapsDdRl9WXvgkM61VWM7n7sm9wLKaWq-84axd6D9pRHtWKYkzE-DApMofKcDQzlGWvjXVD-bgkkZz4qzf2e41wuRJKusZkLEdscpDG4k0kpO7sxGsA0ubhXiUnp3Qn8QpGhU6DVHuVQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"

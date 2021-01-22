@@ -15,6 +15,7 @@ import MainPhotoHeader from './MainPhotoHeader';
 import MarketingHeadline from './MarketingHeadline';
 import Nav from './Nav';
 import PageSplit from './PageSplit';
+import Quote from './Quote';
 import SEO from './SEO';
 import { EventsCallout, EventCallout } from './EventCallout';
 
@@ -38,5 +39,6 @@ export {
   MarketingHeadline,
   Nav,
   PageSplit,
+  Quote,
   SEO,
 };
