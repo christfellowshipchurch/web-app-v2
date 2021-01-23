@@ -4,7 +4,7 @@ import { useGroupFilters, toggleValue } from 'providers/GroupFiltersProvider';
 import { showStep, useModalDispatch } from 'providers/ModalProvider';
 import { Box, Button, Checkbox } from 'ui-kit';
 
-function GroupFilterType(props = {}) {
+function GroupFilterSubPreference(props = {}) {
   const modalDispatch = useModalDispatch();
   const [filtersState, filtersDispatch] = useGroupFilters();
 
@@ -71,9 +71,9 @@ function GroupFilterType(props = {}) {
   );
 }
 
-GroupFilterType.propTypes = {
+GroupFilterSubPreference.propTypes = {
   initialValue: PropTypes.string,
   onChange: PropTypes.func,
 };
 
-export default GroupFilterType;
+export default GroupFilterSubPreference;

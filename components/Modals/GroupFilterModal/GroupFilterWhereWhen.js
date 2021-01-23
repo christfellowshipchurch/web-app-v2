@@ -8,10 +8,12 @@ import {
 import { hideModal, useModalDispatch } from 'providers/ModalProvider';
 import { Box, Button, Checkbox, Select } from 'ui-kit';
 
-function GroupFilterPreferences(props = {}) {
+function GroupFilterWhereWhen(props = {}) {
   const router = useRouter();
   const [filtersState, filtersDispatch] = useGroupFilters();
   const modalDispatch = useModalDispatch();
+
+  console.log('<GroupFilterWhereWhen> filtersState:', filtersState);
 
   const handleChange = event => {
     event.persist();
@@ -127,6 +129,6 @@ function GroupFilterPreferences(props = {}) {
   );
 }
 
-GroupFilterPreferences.propTypes = {};
+GroupFilterWhereWhen.propTypes = {};
 
-export default GroupFilterPreferences;
+export default GroupFilterWhereWhen;
