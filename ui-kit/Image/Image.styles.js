@@ -5,8 +5,9 @@ import { system } from 'ui-kit';
 
 const rounded = ({ rounded }) => props => {
   if (rounded) {
+    const _rounded = rounded === true ? 'image' : rounded;
     return css`
-      border-radius: ${themeGet('radii.image')};
+      border-radius: ${themeGet(`radii.${_rounded}`)};
     `;
   }
 };

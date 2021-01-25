@@ -29,6 +29,7 @@ export default function About() {
         columns="2"
         minColumns="1"
         breakpoint="lg"
+        fullWidth
       >
         <Box>
           <ArticleLink
@@ -82,7 +83,15 @@ export default function About() {
         </Box>
       </CardGrid>
       <PageSplit title="Explore" variant="h3" />
-      <Box mx="xxl" my="xl">
+      <CardGrid
+        mx="xxl"
+        my="xl"
+        gridColumnGap="l"
+        columns="1"
+        minColumns="1"
+        breakpoint="lg"
+        fullWidth
+      >
         <MarketingHeadline
           imageSrc="https://s3-alpha-sig.figma.com/img/0c64/d4fc/add8d8345bbc582fcd9698863a611910?Expires=1612137600&Signature=APFKcOaU0w-iZmyAWGeEu3PoVIgIWYEMa7Lq4jfMjKcyKyEBZujU2JTl2qOJf4fED3HhhpMWBYPTc~4foisZPwCE6m3eYgAE6KkPn5~2VsZmYWl-z9FjqRParOf3sCMXM0cY0Q771NhfOr5Ybdm7Tp0s~uZlRJfkNckBeM5Oo3kgzja~OHmuVE7dftPq4C-EZ3Hafj8k7fHAK7OJ5gR5zBaBQgx6T8o2HPrfomrvCeC7AB0gLGaOcC7TUZ3PSFRmAm~cCwM0T-eEnEAntP2F6F9Y9U6xvDEfD5gaan~HKQ0QrPe2ojGhpPBAEFFpThLfdjsBKumURZ8SVVYIDoOIVg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
           title={
@@ -101,9 +110,12 @@ export default function About() {
           description="Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet."
         />
         <Quote
+          color="quaternary"
           attribution="Sarah Connor"
           actionLabel="Full story"
+          actionLink="/sarah-connor-quote"
           text="When trauma and loss left me adrift and disoriented, God provided faithful believers to remind me that He is good, His Word can be trusted, and He will never leave or forsake us."
+          avatar="https://s3-alpha-sig.figma.com/img/157c/c6d9/8fb9cd71abfce81ea46bb9375e44af18?Expires=1612742400&Signature=SSjcHzKAP8nbHd5k9TaIDxbR2VnuIOnNDy61YRCbwePp7zMc6I5dXb2bt67XCpzFtHB3EX5Vsfnx1nitDFukOfaHVMr0LsbPvmNIz8-Rt3vVljeQzUhwswiZMKm8Q6~7wI7-ygpPpIwo45pga53hTWfdEfEWIDj9YRvsEr-gpysagJg1mpn1ibF2DhPDjpq8Wb1~3D6z~T-ZRWuhLcT7GAh7pkY4v7mGjJUWYumIWhXqkSs6NoYbbbxHcaGarQfzKv1JGL9imro731-yfG5JSOI2OaXmw3c~gVkCuwy-yq1Pd~0nnKdoRW3YjB7G7g8lAh86qHJAP2iNHgEyNtIabQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
         />
         <MarketingHeadline
           imageSrc="https://s3-alpha-sig.figma.com/img/7be8/6993/46526ee7a373891356914030a50eecb1?Expires=1612137600&Signature=P~ma-wzBuFel034I5mDV7N09k05Jc5uA7PBM-Rj0~W6smzKHp4S845mDEcRehgLug5aUc27r1Jps~ETWmBMRyY1RRTg8Y4FluHPLGKqKOgK7mYkFZ3Tv5oFGGeXDXHsp8Taz~ZdFb9zJC0O-cHOKBe~oyLkiwmgJbIh-XL9~l6hiNKzu7jaSd5nMvKL7jSFiRsa2C0pYEpkapsDdRl9WXvgkM61VWM7n7sm9wLKaWq-84axd6D9pRHtWKYkzE-DApMofKcDQzlGWvjXVD-bgkkZz4qzf2e41wuRJKusZkLEdscpDG4k0kpO7sxGsA0ubhXiUnp3Qn8QpGhU6DVHuVQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
@@ -123,9 +135,17 @@ export default function About() {
           description="Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet."
           justify="right"
         />
-      </Box>
+      </CardGrid>
       <PageSplit title="Meet the Staff" variant="h3" />
-      <Box mx="xxl" my="xl">
+      <CardGrid
+        mx="xxl"
+        my="xl"
+        gridColumnGap="l"
+        columns="1"
+        minColumns="1"
+        breakpoint="lg"
+        fullWidth
+      >
         <MarketingHeadline
           imageSrc="https://s3-alpha-sig.figma.com/img/8688/4842/db5a433818ef7b5e55fd48645ee17c72?Expires=1612137600&Signature=CANbQ-ScaFdP78lYAQCCQ1LREPBjzGiOolM1g5zV8JNG6buyTXWrKy0zPtaycJuVlCbB2qa~Ll-EQ9QV6MLXTx~6Bp7vOYneDWVSZhIFZyGLmqxYm7fxtEo1kPyCYg72fDDN3i37v~9byzWJOqzVyUMy5Du-5aIrl2mTCNUaog5t~aURMZ1FwC~FL9oILhMV3ujKRtvtwIAXmmKcrrCqpFWVYpjX~YHrAvTcGnKCcKRxe73suf5z5QlLTyO~q1a6gOPdCZ8tOfXV1OWurzDaaHQWsuI4FXuNSiAGxHbmKpP3IHWQGutGytTut3m0NxMJw1qEuleaI7BUooNzjTdS~g__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
           title={
@@ -187,37 +207,59 @@ export default function About() {
           description="We believe that the term “marriage” has only one meaning and that is marriage sanctioned by God, which joins one man and one woman in a single, exclusive union, as delineated in Scripture and as part of God’s good creation prior to the entry of sin into the world. We believe that God intends sexual intimacy to only occur between one man and one woman who are married to each other. We believe that God has commanded that no intimate sexual activity be engaged in outside of a marriage between one man and one woman.\n\nWe believe that any form of sexual immorality, including, but not limited to, lust, fornication, adultery, unbiblical divorce, cohabitation prior to marriage, the use or promulgation of pornography, pedophilia, homosexual conduct, bisexual conduct, polygamy, polyamory, bestiality, or incest, is sinful and offensive to God."
           details="Genesis 1:26-28; 2:15-25; 3:1-20; Exodus 20:12; Deuteronomy 6:4-9; Joshua 24:15; 1 Samuel 1:26-28; Psalms 51:5; 78:1-8; 127; 128; 139:13-16; Proverbs 1:8; 5:15-20; 6:20-22; 12:4; 13:24; 14:1; 17:6; 18:22; 22:6,15; 23:13-14; 24:3; 29:15,17; 31:10-31; Ecclesiastes 4:9-12; 9:9; Malachi 2:14-16; Matthew 5:31-32; 18:2-5; 19:3-9; Mark 10:6-12; Romans 1:18-32; 1 Corinthians 7:1-16; Ephesians 5:21-33; 6:1-4; Colossians 3:18-21; 1 Timothy 5:8,14; 2 Timothy 1:3-5; Titus 2:3-5; Hebrews 13:4; 1 Peter 3:1-7."
         />
-        <MarketingHeadline
-          title={
-            <>
-              <Heading color="neutrals.900" variant="h2" fontWeight="800">
-                They're welcome here.
-              </Heading>
-            </>
-          }
-          supertitle="Know someone in need?"
-          description="Long Hollow is one church that meets in two locations just north of Nashville. We’re a community of believers with something for everyone. Whether you’re checking out Christ for the first time or are looking for a place to call home, you’re invited to discover your purpose and live it out at Long Hollow."
-          actions={[
-            {
-              color: 'primary',
-              label: 'Primary Call',
-            },
-            {
-              color: 'secondary',
-              label: 'Secondary Call',
-            },
-          ]}
-          quote={{
-            color: 'primary',
-            title: 'LH Story',
-            text:
-              'When trauma and loss left me adrift and disoriented, God provided faithful believers to remind me that He is good, His Word can be trusted, and He will never leave or forsake us.',
-            attribution: 'Sarah Connor',
-            actionLabel: 'Full story',
-            avatar: '',
-          }}
-        />
-      </Box>
+        <CardGrid gridColumnGap="l" columns="2" minColumns="1" breakpoint="lg">
+          <MarketingHeadline
+            title={
+              <>
+                <Heading color="neutrals.900" variant="h2" fontWeight="800">
+                  They're welcome here.
+                </Heading>
+              </>
+            }
+            supertitle="Know someone in need?"
+            description="Long Hollow is one church that meets in two locations just north of Nashville. We’re a community of believers with something for everyone. Whether you’re checking out Christ for the first time or are looking for a place to call home, you’re invited to discover your purpose and live it out at Long Hollow."
+            actions={[
+              {
+                color: 'primary',
+                label: 'Primary Call',
+              },
+              {
+                color: 'secondary',
+                label: 'Secondary Call',
+              },
+            ]}
+          />
+          <Quote
+            color="primary"
+            title={
+              <Box display="flex">
+                <Heading
+                  color="primary"
+                  fontSize="18px"
+                  lineHeight="27px"
+                  fontWeight="700"
+                >
+                  LH&nbsp;
+                </Heading>
+                <Heading
+                  textTransform="uppercase"
+                  color="primary"
+                  fontSize="18px"
+                  lineHeight="27px"
+                  fontWeight="400"
+                >
+                  Story
+                </Heading>
+              </Box>
+            }
+            attribution="Sarah Connor"
+            actionLabel="Full story"
+            actionLink="/lh-story-quote"
+            text="When trauma and loss left me adrift and disoriented, God provided faithful believers to remind me that He is good, His Word can be trusted, and He will never leave or forsake us."
+            avatar="https://s3-alpha-sig.figma.com/img/157c/c6d9/8fb9cd71abfce81ea46bb9375e44af18?Expires=1612742400&Signature=SSjcHzKAP8nbHd5k9TaIDxbR2VnuIOnNDy61YRCbwePp7zMc6I5dXb2bt67XCpzFtHB3EX5Vsfnx1nitDFukOfaHVMr0LsbPvmNIz8-Rt3vVljeQzUhwswiZMKm8Q6~7wI7-ygpPpIwo45pga53hTWfdEfEWIDj9YRvsEr-gpysagJg1mpn1ibF2DhPDjpq8Wb1~3D6z~T-ZRWuhLcT7GAh7pkY4v7mGjJUWYumIWhXqkSs6NoYbbbxHcaGarQfzKv1JGL9imro731-yfG5JSOI2OaXmw3c~gVkCuwy-yq1Pd~0nnKdoRW3YjB7G7g8lAh86qHJAP2iNHgEyNtIabQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+          />
+        </CardGrid>
+      </CardGrid>
     </Layout>
   );
 }

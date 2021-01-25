@@ -18,6 +18,18 @@ const CardGrid = styled.div`
     margin-bottom: ${themeGet('space.l')};
   }
 
+  @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
+    margin-left: auto;
+    margin-right: auto;
+    ${props =>
+      props.fullWidth &&
+      css`
+        width: calc(
+          ${themeGet('breakpoints.xl')} - ${themeGet('space.xxl')} * 2
+        );
+      `}
+  }
+
   display: grid;
   grid-column-gap: ${themeGet('space.base')};
   grid-row-gap: ${themeGet('space.l')};

@@ -1,7 +1,7 @@
 import { themeGet } from '@styled-system/theme-get';
 import styled, { css } from 'styled-components';
 
-import { Image, system } from 'ui-kit';
+import { Button, Image, system } from 'ui-kit';
 
 const justify = ({ justify }) => props => {
   return css`
@@ -24,12 +24,18 @@ export const StyledImage = styled(Image)`
 `;
 
 export const StyledQuote = styled.div`
-  width: 50%;
-
   @media screen and (max-width: ${themeGet(`breakpoints.lg`)}) {
     width: 100%;
+    justify-self: 'center';
   }
 
   ${justify}
   ${system}
+`;
+
+export const StyledButton = styled(Button)`
+  flex: 1;
+  max-width: 240px;
+  min-width: 145px;
+  width: auto;
 `;

@@ -4,7 +4,15 @@ import { ArrowRight } from 'phosphor-react';
 import { Box, Image, Text, theme } from 'ui-kit';
 import Link from 'next/link';
 
-function ArticleLink({ title, description, url, urlText, imageSrc, ...props }) {
+function ArticleLink({
+  title,
+  color,
+  description,
+  url,
+  urlText,
+  imageSrc,
+  ...props
+}) {
   return (
     <Box
       display="flex"
@@ -29,14 +37,14 @@ function ArticleLink({ title, description, url, urlText, imageSrc, ...props }) {
               alignItems: 'center',
             }}
           >
-            <Text fontWeight="600" variant="s" color="primary" mr="4px">
+            <Text fontWeight="600" variant="s" color={color} mr="4px">
               {urlText}
             </Text>
             <ArrowRight
               alt={title}
               weight="bold"
               size={18}
-              color={theme.primary}
+              color={theme.colors[color]}
             />
           </a>
         </Link>
@@ -46,12 +54,17 @@ function ArticleLink({ title, description, url, urlText, imageSrc, ...props }) {
   );
 }
 
+ArticleLink.defaultProps = {
+  color: 'primary',
+};
+
 ArticleLink.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   url: PropTypes.string,
   urlText: PropTypes.string,
   imageSrc: PropTypes.string,
+  color: PropTypes.string,
 };
 
 export default ArticleLink;

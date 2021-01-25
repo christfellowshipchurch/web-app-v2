@@ -1,6 +1,7 @@
 const BATTLESHIP = '#818181';
 const LH_GREEN = '#85C471';
 const LH_YELLOW = '#F6CC4F';
+const LH_ORANGE = '#EF886D';
 const LH_DARK_GREEN = '#1E484E';
 const TUATARA = '#27272E';
 const WHITE_SMOKE = '#F4F7F8';
@@ -18,6 +19,7 @@ const universal = {
   primary: LH_GREEN,
   secondary: LH_YELLOW,
   tertiary: LH_DARK_GREEN,
+  quaternary: LH_ORANGE,
 
   neutrals: {
     100: WHITE_SMOKE,
@@ -25,7 +27,7 @@ const universal = {
     300: '#cecece',
     400: '#b4b4b4',
     500: '#9b9b9b',
-    600: '#818181',
+    600: '#8E8E93',
     700: '#686868',
     800: '#4e4e4e',
     900: TUATARA,

@@ -1,8 +1,12 @@
 import { Quote } from 'components';
 import PropTypes from 'prop-types';
-import { Box, Button, CardGrid, Heading, Text } from 'ui-kit';
+import { Box, CardGrid, Heading, Text } from 'ui-kit';
 import { parseNewlines } from 'utils';
-import { StyledImage, StyledQuote } from './MarketingHeadline.styles';
+import {
+  StyledImage,
+  StyledQuote,
+  StyledButton,
+} from './MarketingHeadline.styles';
 
 function MarketingHeadline({
   imageSrc,
@@ -18,26 +22,29 @@ function MarketingHeadline({
   let sideContent;
   if (imageSrc) {
     sideContent = <StyledImage src={imageSrc} rounded justify={justify} />;
-  } else if (quote) {
-    // TODO - add quote component
-    sideContent = (
-      <StyledQuote>
-        <Quote />
-      </StyledQuote>
-    );
   }
   const buttons = actions?.length ? (
-    <Box display="flex" mt="l">
+    <Box
+      display="flex"
+      mt="l"
+      width="100%"
+      justifyContent={justify === 'right' ? 'flex-end' : 'flex-start'}
+    >
       {actions.map(({ variant, color, onClick, label }, i) => (
-        <Button variant={variant} color={color} onClick={onClick}>
+        <StyledButton
+          key={i}
+          color={color}
+          onClick={onClick}
+          mr={justify === 'left' && 's'}
+          ml={justify === 'right' && 's'}
+        >
           {label}
-        </Button>
+        </StyledButton>
       ))}
     </Box>
   ) : null;
   return (
     <CardGrid
-      my="xl"
       gridColumnGap="xl"
       columns={sideContent ? '2' : '1'}
       minColumns="1"
@@ -109,23 +116,16 @@ MarketingHeadline.propTypes = {
   details: PropTypes.string,
   justify: PropTypes.oneOf(['left', 'right']),
   buttonLabel: PropTypes.string,
-  onClick: PropTypes.func,
   buttonColor: PropTypes.string,
   buttonVariant: PropTypes.string,
-  actions: PropTypes.shape({
-    variant: PropTypes.string,
-    color: PropTypes.string,
-    label: PropTypes.string,
-    onClick: PropTypes.func,
-  }),
-  quote: PropTypes.shape({
-    title: PropTypes.string,
-    text: PropTypes.string,
-    attribution: PropTypes.string,
-    action: PropTypes.func,
-    actionLabel: PropTypes.string,
-    avatar: PropTypes.string,
-  }),
+  actions: PropTypes.arrayOf(
+    PropTypes.shape({
+      variant: PropTypes.string,
+      color: PropTypes.string,
+      label: PropTypes.string,
+      onClick: PropTypes.func,
+    })
+  ),
   supertitle: PropTypes.string,
 };
 

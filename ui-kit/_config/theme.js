@@ -6,7 +6,7 @@ const theme = {
     sm: rem('480px'),
     md: rem('768px'),
     lg: rem('1024px'),
-    xl: rem('1350px'),
+    xl: rem('1366px'),
   },
   colors,
   fonts: {
