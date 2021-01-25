@@ -3,6 +3,7 @@ import createMarkup from './createMarkup';
 import formatPhoneNumber from './formatPhoneNumber';
 import getAge from './getAge';
 import getURLFromType from './getURLFromType';
+import noop from './noop';
 import normalizeUserData from './normalizeUserData';
 import parseNewlines from './parseNewlines';
 import slugify from './slugify';
@@ -16,6 +17,7 @@ export {
   formatPhoneNumber,
   getAge,
   getURLFromType,
+  noop,
   normalizeUserData,
   parseNewlines,
   slugify,
