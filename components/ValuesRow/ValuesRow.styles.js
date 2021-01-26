@@ -1,12 +1,13 @@
 import { themeGet } from '@styled-system/theme-get';
 import styled from 'styled-components';
 
-import { CardGrid, Image, system } from 'ui-kit';
+import { CardGrid, system } from 'ui-kit';
 
-export const StyledImage = styled(Image)`
-  object-fit: cover;
-  width: 310px;
-  max-height: 218px;
+export const StyledCard = styled.div`
+  background-color: ${themeGet(`colors.white`)};
+  box-shadow: 0px 20px 48px rgba(0, 0, 0, 0.05);
+  height: 399px;
+  width: 463px;
 
   ${system}
 `;
@@ -16,7 +17,8 @@ export const StyledCardGrid = styled(CardGrid)`
     grid-template-columns: repeat(1, 1fr);
   }
 
-  grid-column-gap: ${themeGet('space.m')};
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: ${themeGet('space.l')};
   grid-row-gap: ${themeGet('space.base')};
 `;
 

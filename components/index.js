@@ -19,6 +19,7 @@ import Nav from './Nav';
 import PageSplit from './PageSplit';
 import Quote from './Quote';
 import SEO from './SEO';
+import ValuesRow from './ValuesRow';
 import { EventsCallout, EventCallout } from './EventCallout';
 
 export {
@@ -45,4 +46,5 @@ export {
   PageSplit,
   Quote,
   SEO,
+  ValuesRow,
 };

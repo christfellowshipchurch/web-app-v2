@@ -9,6 +9,7 @@ import {
   Quote,
   LargeImage,
   HorizontalRow,
+  ValuesRow,
 } from 'components';
 import { useRouter } from 'next/router';
 import { Info } from 'phosphor-react';
@@ -205,6 +206,30 @@ export default function About() {
               src:
                 'https://s3-alpha-sig.figma.com/img/3d8b/c8d0/b14a632da1e6e32e7e2ec1acdc1befbb?Expires=1612742400&Signature=bpds~I-~pQwWugwuvGLrP3b97I~1mI0Q3A-2CSQr7uinyYZk5NmSqZMboDG-JumlxrAWYXpHWUgeAI~VawJjl5P~VtzvkZXaoFuD4Bi-lcABhQZlOnAygzwsUMO~bYPcZ5~X0WUrvR9~jpUF5z0ukPcwWQTlhLp67RKhACVr0FLP0~HkAo-8MwHqOfPPnJCJB9YREGPXfaN4Pl7mQFYwG4Bz636Ly~PKg9Td7-yxAh993kKtXNXGw6lf99Ckyry7KxNIjJbALciFRq34MOKvcC4Ms2s0Du3P~60wvfm~XK0mwIfVP5dG725TbRjuXgOT1fne42fpe6GLUDOYwV3oCA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
               action: () => router.push('/cr-support'),
+            },
+          ]}
+        />
+      </CardGrid>
+      <CardGrid
+        px="xxl"
+        py="xxl"
+        gridColumnGap="l"
+        columns="1"
+        minColumns="1"
+        breakpoint="lg"
+      >
+        <ValuesRow
+          title="Values Row"
+          items={[
+            {
+              title: 'The Bible',
+              text:
+                'Lorem ipsum doler sit itmut this is a title of this story article or news something or thing.',
+            },
+            {
+              title: 'The Bible',
+              text:
+                'Lorem ipsum doler sit itmut this is a title of this story article or news something or thing.',
             },
           ]}
         />

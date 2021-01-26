@@ -34,14 +34,7 @@ function HorizontalRow({ title, items, action, color, actionLabel } = {}) {
       <StyledCardGrid>
         {items.map((item, i) => {
           return (
-            <StyledImage
-              key={i}
-              src={item.src}
-              onClick={item.action}
-              rounded
-              width="310px"
-              height="218px"
-            />
+            <StyledImage key={i} src={item.src} onClick={item.action} rounded />
           );
         })}
       </StyledCardGrid>
