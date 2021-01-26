@@ -47,8 +47,7 @@ function MarketingHeadline({
     <CardGrid
       gridColumnGap="xl"
       columns={sideContent ? '2' : '1'}
-      minColumns="1"
-      breakpoint="lg"
+      breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
       alignItems="center"
     >
       {justify === 'left' && sideContent}

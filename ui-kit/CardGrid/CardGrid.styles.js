@@ -1,15 +1,24 @@
 import styled, { css } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
-import { system } from 'ui-kit';
+import { system, theme } from 'ui-kit';
 
-const collapse = ({ minColumns, breakpoint, columns }) => props => {
-  if (breakpoint && minColumns) {
-    return css`
-      @media screen and (max-width: ${themeGet(`breakpoints.${breakpoint}`)}) {
-        grid-template-columns: repeat(${minColumns}, 1fr);
-      }
-    `;
+const collapse = ({ breakpoints, columns }) => props => {
+  if (breakpoints) {
+    let cssString = ``;
+
+    breakpoints.forEach(breakpoint => {
+      const breaksize =
+        breakpoint.breakpoint in theme.breakpoints
+          ? theme.breakpoints[breakpoint.breakpoint]
+          : breakpoint.breakpoint;
+      cssString += `
+          @media screen and (max-width: ${breaksize}) {
+            grid-template-columns: repeat(${breakpoint.columns}, 1fr);
+          }
+        `;
+    });
+    return cssString;
   }
 };
 

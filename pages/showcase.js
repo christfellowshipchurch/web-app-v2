@@ -1,14 +1,15 @@
 import {
   ArticleLink,
+  EventCallout,
+  EventsCallout,
+  HorizontalRow,
+  LargeImage,
   Layout,
   MainPhotoHeader,
   MarketingHeadline,
-  EventsCallout,
-  EventCallout,
+  MeetTheStaff,
   PageSplit,
   Quote,
-  LargeImage,
-  HorizontalRow,
   ValuesRow,
 } from 'components';
 import { useRouter } from 'next/router';
@@ -30,8 +31,7 @@ export default function About() {
         py="xl"
         gridColumnGap="xl"
         columns="2"
-        minColumns="1"
-        breakpoint="lg"
+        breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
         fullWidth
       >
         <Box display="flex" flexDirection="column">
@@ -92,8 +92,7 @@ export default function About() {
         py="xl"
         gridColumnGap="xl"
         columns="1"
-        minColumns="1"
-        breakpoint="lg"
+        breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
         fullWidth
       >
         <MarketingHeadline
@@ -145,8 +144,7 @@ export default function About() {
         py="xl"
         gridColumnGap="xl"
         columns="2"
-        minColumns="1"
-        breakpoint="lg"
+        breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
         backgroundColor="white"
         fullWidth
       >
@@ -184,8 +182,7 @@ export default function About() {
         py="xxl"
         gridColumnGap="l"
         columns="1"
-        minColumns="1"
-        breakpoint="lg"
+        breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
       >
         <HorizontalRow
           title="Horizontal Row"
@@ -215,8 +212,7 @@ export default function About() {
         py="xxl"
         gridColumnGap="l"
         columns="1"
-        minColumns="1"
-        breakpoint="lg"
+        breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
       >
         <ValuesRow
           title="Values Row"
@@ -236,12 +232,41 @@ export default function About() {
       </CardGrid>
       <PageSplit title="Meet the Staff" variant="h3" />
       <CardGrid
-        mx="xxl"
-        my="xl"
+        px="xl"
+        gridColumnGap="l"
+        columns="4"
+        breakpoints={[
+          { breakpoint: 'xl', columns: 2 },
+          { breakpoint: 'lg', columns: 1 },
+        ]}
+      >
+        <MeetTheStaff
+          src="https://s3-alpha-sig.figma.com/img/810e/a9cb/028675aba90fb0c25e1f84801b2b4e3f?Expires=1612742400&Signature=WhbSYarVW0uQ8Au1zqrG5VRP5z6SaPrVDrcCaW1tFDBWWratO1FTXdZrkHnXdKLM3Ee3-CXV98EOasoupndHYG33NnnKgz0pG5HjCEJsG~YFk2XX~4HClhWbdsY7hVZ~tPQEj0lQCZ4rx8sypp0mitV8gt~t27NQD5mUOevdbmFkcywyVJZUcMPkMWRcEekHGgykfB88BFsH1IVp5j7hL2PAlKXHfWdqbT22uLm-SwLi3dJwL~brtHvacaWfgFPaP3SWwHpdIZZHdKpR2dSDKJGpYZbkljTAXDp-wqEVuxJu-Z-xEMLhO24sQg66y9pBINulvvH3Gh4K1d8u40nhWw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+          name="Amet minim"
+          description="Nonn deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet."
+        />
+        <MeetTheStaff
+          src="https://s3-alpha-sig.figma.com/img/5be1/75c3/313059fa178ec19969b1d4a4db71f5fa?Expires=1612742400&Signature=gI8t6mxgtd~eeJBNIrh457ZJeX~rOA68UlpJZG7pRYVfIOLfAxLcu8t9aLnhBllg9FxA2jsWH1cEw3mXMvVo5TsV-KfYUh1tN~mUqZ1~ZcaSuQ7fynJPgneiBeHe7lh2h7RXae89TltAO73MlOxgDYYET2QEBiJGL3UWB9hfxRgREWC0OtdLdGoV47h1hE6LXWQ5nTWAPB-UQ3QcWJAWUjwQu2bmLCl2ngXyp7K6RbXG2Hu2EFRnNFjPnsz9q~WQjXd4~WfjImNDT8u-5uR~vig3AWMS~wLkPJWz2F~LKaZ2Q0RSsygiLlyHd~puTdAGpTRIy~EXEbGOxdP9B-VFdA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+          name="Amet minim"
+          description="Nonn deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet."
+        />
+        <MeetTheStaff
+          src="https://s3-alpha-sig.figma.com/img/3699/04e5/fa86e779b7c749638f38b96e066913c3?Expires=1612742400&Signature=At3Yv8fSCokLu0CRS2jqv8R4k7dw5ZQSIFwvl51nUnMGMckZs04NzBvWhAAECdv1FFdEqjAHlytiuckroEWtBdbL1DoH9ykw3SBCg0EifkaKguo8i6wR2BEjSjU~BCVC60oxKnKgkY6oPnjQXBHchHTaHVNOu1I-1qyLzvnM7URS3TWoizGnEnJqlJ3jVPtQcJzDy8fipYSGjeOELtITL9vJOcHZVR2jNh0Y45gccRQ0ZgvSWJQtPqZJje4308ucDjXVGhjqCpTN9DnxrsxHF3efmm1VtzofCFINdNgaylGfHoGM1RrZJyrfML~3ssL-OX-2KIAEVZKiGhXMC-pkqA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+          name="Amet minim"
+          description="Nonn deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet."
+        />
+        <MeetTheStaff
+          src="https://s3-alpha-sig.figma.com/img/aa09/110e/bd10ceabb7e15ad1c9342d94d6d4c75f?Expires=1612742400&Signature=ZcWGh14SE4CrjeY7yJoorLpEqhFQM5KPepDx3swNBbTmlcKi8oRxQhMZWKCEIRFWv45tXeNCjiI1ujiZEn0ffoxsTn2ZT2kj2LgH4NIH-Mnio-ZKXJLDMku4kWNnF4dRG5VGD31vHDsUZf2W60bd-ulaJ5O~uhbbNwwSlsmTb8mdROqtdz3ClWijPBK~r2Qtb68794N6vharY5tAFS3CvnqONRrnIDfPP5krhFfGxOH5zDhKxP9-E2a1UmYOMDKxQ~7W~A~cjU3kMcxPAyN8zagiK7jiwYsqWLxfHTPRieAaVT4UDAOIg3sbeKKqr86-wJAuQeliWpMaNOKBy6t~FQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+          name="Amet minim"
+          description="Nonn deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet."
+        />
+      </CardGrid>
+      <CardGrid
+        px="xxl"
+        py="xxl"
         gridColumnGap="l"
         columns="1"
-        minColumns="1"
-        breakpoint="lg"
+        breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
         fullWidth
       >
         <MarketingHeadline
@@ -265,6 +290,15 @@ export default function About() {
             },
           ]}
         />
+      </CardGrid>
+      <CardGrid
+        px="xxl"
+        py="xxl"
+        gridColumnGap="l"
+        columns="1"
+        breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
+        fullWidth
+      >
         <MarketingHeadline
           title={
             <>
@@ -283,6 +317,15 @@ export default function About() {
           details="Deuteronomy 4:1,5,9,14; 6:1-10; 31:12-13; Nehemiah 8:1-8; Job 28:28; Psalms 19:7ff.; 119:11; Proverbs 3:13ff.; 4:1-10; 8:1-7,11; 15:14; Ecclesiastes 7:19; Matthew 5:2; 7:24ff.; 28:19-20; Luke 2:40; 1 Corinthians 1:18-31; Ephesians 4:11-16; Philippians 4:8; Colossians 2:3,8-9; 1 Timothy 1:3-7; 2 Timothy 2:15; 3:14-17; Hebrews 5:12-6:3; James 1:5; 3:17."
           justify="right"
         />
+      </CardGrid>
+      <CardGrid
+        px="xxl"
+        py="xxl"
+        gridColumnGap="l"
+        columns="1"
+        breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
+        fullWidth
+      >
         <MarketingHeadline
           title={
             <>
@@ -305,7 +348,11 @@ export default function About() {
           description="We believe that the term “marriage” has only one meaning and that is marriage sanctioned by God, which joins one man and one woman in a single, exclusive union, as delineated in Scripture and as part of God’s good creation prior to the entry of sin into the world. We believe that God intends sexual intimacy to only occur between one man and one woman who are married to each other. We believe that God has commanded that no intimate sexual activity be engaged in outside of a marriage between one man and one woman.\n\nWe believe that any form of sexual immorality, including, but not limited to, lust, fornication, adultery, unbiblical divorce, cohabitation prior to marriage, the use or promulgation of pornography, pedophilia, homosexual conduct, bisexual conduct, polygamy, polyamory, bestiality, or incest, is sinful and offensive to God."
           details="Genesis 1:26-28; 2:15-25; 3:1-20; Exodus 20:12; Deuteronomy 6:4-9; Joshua 24:15; 1 Samuel 1:26-28; Psalms 51:5; 78:1-8; 127; 128; 139:13-16; Proverbs 1:8; 5:15-20; 6:20-22; 12:4; 13:24; 14:1; 17:6; 18:22; 22:6,15; 23:13-14; 24:3; 29:15,17; 31:10-31; Ecclesiastes 4:9-12; 9:9; Malachi 2:14-16; Matthew 5:31-32; 18:2-5; 19:3-9; Mark 10:6-12; Romans 1:18-32; 1 Corinthians 7:1-16; Ephesians 5:21-33; 6:1-4; Colossians 3:18-21; 1 Timothy 5:8,14; 2 Timothy 1:3-5; Titus 2:3-5; Hebrews 13:4; 1 Peter 3:1-7."
         />
-        <CardGrid gridColumnGap="l" columns="2" minColumns="1" breakpoint="lg">
+        <CardGrid
+          gridColumnGap="l"
+          columns="2"
+          breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
+        >
           <MarketingHeadline
             title={
               <>

@@ -15,6 +15,7 @@ import Layout from './Layout';
 import Logo from './Logo';
 import MainPhotoHeader from './MainPhotoHeader';
 import MarketingHeadline from './MarketingHeadline';
+import MeetTheStaff from './MeetTheStaff';
 import Nav from './Nav';
 import PageSplit from './PageSplit';
 import Quote from './Quote';
@@ -42,6 +43,7 @@ export {
   Logo,
   MainPhotoHeader,
   MarketingHeadline,
+  MeetTheStaff,
   Nav,
   PageSplit,
   Quote,

@@ -11,8 +11,7 @@ function CardGrid(props = {}) {
         <Styled
           columns={props.columns}
           children={props.children}
-          minColumns={props.minColumns}
-          breakpoint={props.breakpoint}
+          breakpoints={props.breakpoints}
           fullWidth={props.fullWidth}
         />
       </StyledFullWidth>
@@ -24,8 +23,12 @@ function CardGrid(props = {}) {
 CardGrid.propTypes = {
   ...systemPropTypes,
   columns: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  minColumns: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  breakpoint: PropTypes.string,
+  breakpoints: PropTypes.arrayOf(
+    PropTypes.shape({
+      breakpoint: PropTypes.string,
+      columns: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    })
+  ),
   fullWidth: PropTypes.bool,
 };
 
