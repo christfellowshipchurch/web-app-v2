@@ -51,18 +51,19 @@ function CommunitySingle(props = {}) {
           justifyContent="center"
           margin="-8px"
         >
-          {props.data?.lineups.map((item, i) => (
-            <DefaultCard
-              as="a"
-              key={i}
-              flex="0 0 calc(33.333% - 16px)"
-              margin="8px"
-              coverImage={item?.coverImage?.sources[0]?.uri}
-              coverImageOverlay={true}
-              coverImageTitle={item?.title}
-              height="250px"
-            />
-          ))}
+          {props.data?.subpreferences &&
+            props.data?.subpreferences.map((item, i) => (
+              <DefaultCard
+                as="a"
+                key={i}
+                flex="0 0 calc(33.333% - 16px)"
+                margin="8px"
+                coverImage={item?.coverImage?.sources[0]?.uri}
+                coverImageOverlay={true}
+                coverImageTitle={item?.title}
+                height="250px"
+              />
+            ))}
         </Box>
       </Box>
       <Box

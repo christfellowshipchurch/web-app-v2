@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { useCommunities } from 'hooks';
+import { usePreferences } from 'hooks';
 
 function CommunitiesProvider({ Component, options, ...props }) {
-  const { loading, error, communities } = useCommunities(options);
+  const { loading, error, preferences } = usePreferences(options);
   return (
-    <Component data={communities} loading={loading} error={error} {...props} />
+    <Component data={preferences} loading={loading} error={error} {...props} />
   );
 }
 
