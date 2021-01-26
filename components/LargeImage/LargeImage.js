@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ArrowCircleRight } from 'phosphor-react';
 
-import { Box, Heading, Image } from 'ui-kit';
+import { Box, Heading } from 'ui-kit';
 import { noop } from 'utils';
 
 import Styled, { StyledImage } from './LargeImage.styles';

@@ -9,6 +9,7 @@ import GroupsList from './GroupsList';
 import GroupSingle from './GroupSingle';
 import Header from './Header';
 import HomeFeed from './HomeFeed';
+import HorizontalRow from './HorizontalRow';
 import LargeImage from './LargeImage';
 import Layout from './Layout';
 import Logo from './Logo';
@@ -34,6 +35,7 @@ export {
   GroupSingle,
   Header,
   HomeFeed,
+  HorizontalRow,
   LargeImage,
   Layout,
   Logo,
