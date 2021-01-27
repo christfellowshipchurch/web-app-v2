@@ -83,7 +83,7 @@ function CommunitySingle(props = {}) {
         <Box as="p" mb="l">
           There are hundreds of communities at CF. We’ll help find yours.
         </Box>
-        <Button>Find your community</Button>
+        <Button rounded>Find your community</Button>
       </Box>
     </>
   );

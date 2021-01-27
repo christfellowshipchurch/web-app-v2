@@ -65,7 +65,9 @@ export default function Community() {
           <Box as="p" mb="l">
             There are hundreds of communities at CF. We’ll help find yours.
           </Box>
-          <Button onClick={handleOnClick}>Find your community</Button>
+          <Button onClick={handleOnClick} rounded>
+            Find your community
+          </Button>
         </Box>
         <Footer />
       </Box>
