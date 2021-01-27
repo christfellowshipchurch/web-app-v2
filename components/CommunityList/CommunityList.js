@@ -12,26 +12,47 @@ function CommunityList(props = {}) {
   if (noData)
     return <Box as="p">You do not have any items to display right now.</Box>;
 
+  const featuredItems = props.data.filter(
+    item => item.featured && item?.coverImage?.sources[0]?.uri
+  );
+  const notFeaturedItems = props.data.filter(
+    item => !item.featured && item?.coverImage?.sources[0]?.uri
+  );
+
   return (
     <Box display="flex" flexWrap="wrap" justifyContent="center" margin="-8px">
-      {props.data
-        .filter(item => item?.coverImage?.sources[0]?.uri)
-        .map((item, i) => (
-          <CustomLink
-            as="a"
-            key={i}
-            href={item?.url ? item?.url : `/community/${slugify(item?.title)}`}
-            Component={props.component}
-            coverImage={item?.coverImage?.sources[0]?.uri}
-            coverImageOverlay={true}
-            coverImageTitle={item?.title}
-            coverImageDescription={item?.summary}
-            flex="0 0 calc(33.333% - 16px)"
-            margin="8px"
-            height="250px"
-            display="block"
-          />
-        ))}
+      {featuredItems.map((item, i) => (
+        <CustomLink
+          as="a"
+          key={i}
+          href={item?.url ? item?.url : `/community/${slugify(item?.title)}`}
+          Component={props.component}
+          coverImage={item?.coverImage?.sources[0]?.uri}
+          coverImageOverlay={true}
+          coverImageTitle={item?.title}
+          coverImageDescription={item?.summary}
+          flex="0 0 calc(50% - 16px)"
+          margin="8px"
+          height="250px"
+          display="block"
+        />
+      ))}
+      {notFeaturedItems.map((item, i) => (
+        <CustomLink
+          as="a"
+          key={i}
+          href={item?.url ? item?.url : `/community/${slugify(item?.title)}`}
+          Component={props.component}
+          coverImage={item?.coverImage?.sources[0]?.uri}
+          coverImageOverlay={true}
+          coverImageTitle={item?.title}
+          coverImageDescription={item?.summary}
+          flex="0 0 calc(33.333% - 16px)"
+          margin="8px"
+          height="250px"
+          display="block"
+        />
+      ))}
     </Box>
   );
 }
