@@ -35,7 +35,9 @@ export default function Community() {
             There’s community for everyone.
           </Box>
           <Box display="flex">
-            <Button variant="secondary">Watch</Button>
+            <Button variant="tertiary" rounded>
+              Watch
+            </Button>
             <Button variant="link">Find your community</Button>
           </Box>
         </Styled.Hero>
