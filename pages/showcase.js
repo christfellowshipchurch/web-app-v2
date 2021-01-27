@@ -1,5 +1,6 @@
 import {
   ArticleLink,
+  Carousel,
   EventCallout,
   EventsCallout,
   HorizontalRow,
@@ -348,6 +349,32 @@ export default function About() {
           description="We believe that the term “marriage” has only one meaning and that is marriage sanctioned by God, which joins one man and one woman in a single, exclusive union, as delineated in Scripture and as part of God’s good creation prior to the entry of sin into the world. We believe that God intends sexual intimacy to only occur between one man and one woman who are married to each other. We believe that God has commanded that no intimate sexual activity be engaged in outside of a marriage between one man and one woman.\n\nWe believe that any form of sexual immorality, including, but not limited to, lust, fornication, adultery, unbiblical divorce, cohabitation prior to marriage, the use or promulgation of pornography, pedophilia, homosexual conduct, bisexual conduct, polygamy, polyamory, bestiality, or incest, is sinful and offensive to God."
           details="Genesis 1:26-28; 2:15-25; 3:1-20; Exodus 20:12; Deuteronomy 6:4-9; Joshua 24:15; 1 Samuel 1:26-28; Psalms 51:5; 78:1-8; 127; 128; 139:13-16; Proverbs 1:8; 5:15-20; 6:20-22; 12:4; 13:24; 14:1; 17:6; 18:22; 22:6,15; 23:13-14; 24:3; 29:15,17; 31:10-31; Ecclesiastes 4:9-12; 9:9; Malachi 2:14-16; Matthew 5:31-32; 18:2-5; 19:3-9; Mark 10:6-12; Romans 1:18-32; 1 Corinthians 7:1-16; Ephesians 5:21-33; 6:1-4; Colossians 3:18-21; 1 Timothy 5:8,14; 2 Timothy 1:3-5; Titus 2:3-5; Hebrews 13:4; 1 Peter 3:1-7."
         />
+      </CardGrid>
+      <Carousel
+        labels={[
+          'Sunday Messages',
+          "Robby's Wed Night Studies",
+          'Archives',
+          'Baptism Videos',
+          'Watch Live',
+        ]}
+        px="xxl"
+        py="xxl"
+      >
+        <Box height="200px" width="500px" backgroundColor="red" />
+        <Box height="200px" width="600px" backgroundColor="orange" />
+        <Box height="600px" width="500px" backgroundColor="yellow" />
+        <Box height="400px" width="800px" backgroundColor="green" />
+        <Box height="400px" width="500px" backgroundColor="blue" />
+      </Carousel>
+      <CardGrid
+        px="xxl"
+        py="xxl"
+        gridColumnGap="l"
+        columns="1"
+        fullWidth
+        breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
+      >
         <CardGrid
           gridColumnGap="l"
           columns="2"

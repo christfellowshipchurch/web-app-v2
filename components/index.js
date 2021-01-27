@@ -1,4 +1,5 @@
 import ArticleLink from './ArticleLink';
+import Carousel from './Carousel';
 import ClientSideComponent from './ClientSideComponent';
 import ContentLayout from './ContentLayout';
 import ContentList from './ContentList';
@@ -25,6 +26,7 @@ import { EventsCallout, EventCallout } from './EventCallout';
 
 export {
   ArticleLink,
+  Carousel,
   ClientSideComponent,
   ContentLayout,
   ContentList,

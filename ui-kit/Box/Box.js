@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 
 import { systemPropTypes } from 'ui-kit';
 import Styled from './Box.styles';
 
-function Box(props = {}) {
-  return <Styled {...props} />;
-}
+const Box = forwardRef((props = {}, ref) => {
+  return <Styled {...props} ref={ref} />;
+});
 
 Box.propTypes = {
   ...systemPropTypes,
