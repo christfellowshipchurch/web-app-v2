@@ -38,9 +38,9 @@ function CommunitySingle(props = {}) {
         </Box>
         <Box display="flex" mb="l">
           <Button variant="tertiary" rounded>
-            Find your Crew
+            {`Find your ${props.data?.title}`}
           </Button>
-          <Button variant="link">Explore Crew</Button>
+          <Button variant="link">{`Explore ${props.data?.title}`}</Button>
         </Box>
       </Box>
       <Box textAlign="center" alignItems="center" mb="l" px="xxl">
