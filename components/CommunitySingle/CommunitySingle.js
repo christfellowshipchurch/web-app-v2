@@ -29,8 +29,12 @@ function CommunitySingle(props = {}) {
           flex="1"
           justifyContent="center"
         >
-          <Box as="h1">{props.data?.title}</Box>
-          <Box as="p">{props.data?.summary}</Box>
+          <Box as="h1" fontSize="95px">
+            {props.data?.title}
+          </Box>
+          <Box as="p" px="190px">
+            {props.data?.summary}
+          </Box>
         </Box>
         <Box display="flex" mb="l">
           <Button variant="tertiary" rounded>
