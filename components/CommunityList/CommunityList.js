@@ -18,7 +18,7 @@ function CommunityList(props = {}) {
         <CustomLink
           as="a"
           key={i}
-          href={`/community/${slugify(item?.title)}`}
+            href={item?.url ? item?.url : `/community/${slugify(item?.title)}`}
           Component={props.component}
           coverImage={item?.coverImage?.sources[0]?.uri}
           coverImageOverlay={true}

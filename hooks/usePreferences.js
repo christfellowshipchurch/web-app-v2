@@ -15,6 +15,7 @@ export const GET_PREFERENCES = gql`
         uri
       }
     }
+    url
   }
 `;
 
