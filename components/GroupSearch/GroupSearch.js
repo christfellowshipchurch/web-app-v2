@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSearchGroups } from 'hooks';
 import { useGroupFilters } from 'providers/GroupFiltersProvider';
-import { Box, CardGrid, GroupCard } from 'ui-kit';
+import { Box, CardGrid, GroupCard, Loader } from 'ui-kit';
 
 import DebugGroupFilterValues from './DebugGroupFilterValues';
 
@@ -64,15 +64,24 @@ export default function GroupSearch(props = {}) {
   return (
     <Box>
       <Box as="h1">Find your Community</Box>
-      <Box as="p" color="subdued" mb="l">
-        {loading
-          ? `Searching...`
-          : `Found ${groups?.length} groups that meet your search criteria.`}
-      </Box>
+      {!loading && (
+        <Box as="p" color="subdued" mb="l">
+          {groups?.length ? `Found ${groups?.length} ` : 'Could not find any '}
+          groups that meet your search criteria.
+        </Box>
+      )}
       <Box as="p" fontSize="s" mb="l">
         <code>{JSON.stringify(filtersState.values)}</code>
       </Box>
+      <Box
+        as="hr"
+        mt="s"
+        mb="l"
+        borderStyle="solid"
+        borderColor="neutrals.200"
+      />
       <CardGrid>
+        {loading && <Loader />}
         {groups?.map((group, index) => (
           <GroupCard
             /* Temporarily need to use index in key due to duplicate data */
