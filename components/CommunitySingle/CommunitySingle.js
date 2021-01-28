@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { rem } from 'ui-kit/_utils';
 import { Card, Box, Button, DefaultCard, CardGrid } from 'ui-kit';
 import { themeGet } from '@styled-system/theme-get';
 import { SEO, CustomLink } from 'components';
@@ -37,7 +38,7 @@ function CommunitySingle(props = {}) {
           </Box>
         </Box>
         <Box display="flex" mb="l">
-          <Button variant="tertiary" rounded>
+          <Button variant="tertiary" rounded={true}>
             {`Find your ${props.data?.title}`}
           </Button>
           <Button variant="link">{`Explore ${props.data?.title}`}</Button>
@@ -49,19 +50,14 @@ function CommunitySingle(props = {}) {
           as="p"
           mb="base"
         >{`There's a ${props.data?.title} for everyone`}</Box>
-        <Box
-          display="flex"
-          flexWrap="wrap"
-          justifyContent="center"
-          margin="-8px"
-        >
+        <Box display="flex" flexWrap="wrap" justifyContent="center" m="s">
           {props.data?.subpreferences &&
             props.data?.subpreferences.map((item, i) => (
               <DefaultCard
                 as="a"
                 key={i}
-                flex="0 0 calc(33.333% - 16px)"
-                margin="8px"
+                flex={`0 0 calc(33.333% - ${rem('20px')})`}
+                m="s"
                 coverImage={item?.coverImage?.sources[0]?.uri}
                 coverImageOverlay={true}
                 coverImageTitle={item?.title}
@@ -83,7 +79,7 @@ function CommunitySingle(props = {}) {
         <Box as="p" mb="l">
           There are hundreds of communities at CF. We’ll help find yours.
         </Box>
-        <Button rounded>Find your community</Button>
+        <Button rounded={true}>Find your community</Button>
       </Box>
     </>
   );

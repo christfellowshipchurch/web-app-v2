@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'hooks';
 import { Box, Button, Radio, Select } from 'ui-kit';
-import { capitalize } from 'lodash';
+import capitalize from 'lodash/capitalize';
 function GroupFilterPreferences(props = {}) {
   const { handleSubmit } = useForm(() => {
     console.log('Show me Results');

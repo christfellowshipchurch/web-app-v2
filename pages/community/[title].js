@@ -1,5 +1,8 @@
 import { useRouter } from 'next/router';
-import { get, find, kebabCase, toLower } from 'lodash';
+import get from 'lodash/get';
+import find from 'lodash/find';
+import kebabCase from 'lodash/kebabCase';
+import toLower from 'lodash/toLower';
 
 import { CommunitiesProvider } from 'providers';
 import { usePreferences } from 'hooks';

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { rem } from 'ui-kit/_utils';
 import { slugify } from 'utils';
 import { DefaultCard, Box, Loader } from 'ui-kit';
 import { CustomLink } from 'components';
@@ -31,8 +32,8 @@ function CommunityList(props = {}) {
           coverImageOverlay={true}
           coverImageTitle={item?.title}
           coverImageDescription={item?.summary}
-          flex="0 0 calc(50% - 16px)"
-          margin="8px"
+          flex={`0 0 calc(50% - ${rem('20px')})`}
+          m="s"
           height="250px"
           display="block"
         />
@@ -47,8 +48,8 @@ function CommunityList(props = {}) {
           coverImageOverlay={true}
           coverImageTitle={item?.title}
           coverImageDescription={item?.summary}
-          flex="0 0 calc(33.333% - 16px)"
-          margin="8px"
+          flex={`0 0 calc(33.333% - ${rem('20px')})`}
+          m="s"
           height="250px"
           display="block"
         />

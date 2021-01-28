@@ -35,7 +35,7 @@ export default function Community() {
             There’s community for everyone.
           </Box>
           <Box display="flex">
-            <Button variant="tertiary" rounded>
+            <Button variant="tertiary" rounded={true}>
               Watch
             </Button>
             <Button variant="link">Find your community</Button>
@@ -65,7 +65,7 @@ export default function Community() {
           <Box as="p" mb="l">
             There are hundreds of communities at CF. We’ll help find yours.
           </Box>
-          <Button onClick={handleOnClick} rounded>
+          <Button onClick={handleOnClick} rounded={true}>
             Find your community
           </Button>
         </Box>
