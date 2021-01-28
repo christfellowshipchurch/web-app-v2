@@ -6,18 +6,55 @@ import { useRouter } from 'next/router';
 const GroupFiltersProviderStateContext = createContext();
 const GroupFiltersProviderDispatchContext = createContext();
 
+// TODO: There has to be a better, dynamic way to define these.
+// Frozen to convey these are static
+const options = Object.freeze({
+  campuses: [
+    { label: 'Boynton Beach', value: 'boynton-beach' },
+    { label: 'Daytona', value: 'daytona' },
+    { label: 'Jupiter', value: 'jupiter' },
+    { label: 'Orlando', value: 'orlando' },
+    { label: 'West Palm Beach', value: 'west-palm-beach' },
+  ],
+  days: [
+    { label: 'Mon', value: 'mon' },
+    { label: 'Tue', value: 'tue' },
+    { label: 'Wed', value: 'wed' },
+    { label: 'Thu', value: 'thu' },
+    { label: 'Fri', value: 'fri' },
+    { label: 'Sat', value: 'sat' },
+    { label: 'Sun', value: 'sun' },
+  ],
+  preferences: [
+    { label: "Crew (Men's)", value: 'crew' },
+    { label: 'Sisterhood', value: 'sisterhood' },
+    { label: 'Married People', value: 'married-people' },
+    { label: 'Young Adults', value: 'young-adults' },
+  ],
+  subPreferences: [
+    { label: 'Bible Studies', value: 'bibleStudies' },
+    { label: 'Prayer Groups', value: 'prayerGroups' },
+    { label: 'Activity Studies', value: 'activityStudies' },
+    { label: 'Classes', value: 'classes' },
+  ],
+});
+
 const initialState = {
   hydrated: false,
-  preferences: [],
-  subPreferences: [],
-  campuses: [],
-  days: [],
+  options,
+  values: {
+    campuses: [],
+    days: [],
+    preferences: [],
+    subPreferences: [],
+  },
 };
 
 const actionTypes = {
   hydrate: 'hydrate',
-  update: 'update',
+  resetValues: 'resetValues',
   toggleValue: 'toggleValue',
+  update: 'update',
 };
 
 // ACTION CREATORS
@@ -27,9 +64,9 @@ const hydrate = payload => ({
   payload,
 });
 
-// dispatch(update({ pieceOfState: true }));
-const update = payload => ({
-  type: actionTypes.update,
+// dispatch(resetValues());
+const resetValues = payload => ({
+  type: actionTypes.resetValues,
   payload,
 });
 
@@ -39,30 +76,36 @@ const toggleValue = payload => ({
   payload,
 });
 
+// dispatch(update({ pieceOfState: true }));
+const update = payload => ({
+  type: actionTypes.update,
+  payload,
+});
+
 // PRIVATE UTILS / HELPERS
+
 /**
  * Convert a state object to a serialized string representing it. The format
  * is a URL search params/query string.
- * We customize the serialization, instead of fully relying on Next.js and
- * browser/Node mechanisms, because of how array values are serialized.
- * Next.js will serialize { days: ["mon", "tue", "wed"] } as:
- * "?days=mon&days=tue&days=wed" ... which makes parsing cumbersome.
+ * We need to roll our own wrapper since Next.js will serialize this:
+ *   { days: ["mon", "tue", "wed"] }
+ * as:
+ *   "?days=mon&days=tue&days=wed"
+ * The redundant keys are cumbersome and inconvenient.
+ *
  * @example
- * serializeState({ colors: ['red', 'green', 'blue'], num: 3, emptyArray: [] })
+ * serializeFilterValues({ colors: ['red', 'green', 'blue'], num: 3, emptyArray: [] })
  * // --> "?colors=red,green,blue&num=3"
  * @see https://nextjs.org/docs/api-reference/next/link#with-url-object
  * @param {Object} state
  * @returns {String} string
  */
-function serializeState(state) {
-  const { hydrated, serialized, ...keys } = state;
-
-  const entriesWithValues = Object.entries(keys).filter(([key, value]) =>
-    // Only serialize state entries that are non-empty arrays or truthy
-    Array.isArray(value) ? value.length : Boolean(value)
+function serializeFilterValues(filterValues) {
+  const nonEmptyValues = Object.entries(filterValues).filter(([key, value]) =>
+    Array.isArray(value) ? value.length > 0 : Boolean(value)
   );
 
-  return new URLSearchParams(entriesWithValues).toString();
+  return new URLSearchParams(nonEmptyValues).toString();
 }
 
 /**
@@ -70,71 +113,84 @@ function serializeState(state) {
  * @param {String} string
  * @returns {Object}
  */
-function parseSerializedState(string) {
+function parseFilterValues(string) {
   const entries = new URLSearchParams(string).entries();
-  const state = { hydrated: true };
+  const values = {};
 
   for (let [key, value] of entries) {
+    if (key === 'debug') {
+      continue;
+    }
+
     // Slightly risky logical leap: look at the initialState value
     // for this key, and if it's an array, parse the value as one.
-    if (Array.isArray(initialState[key])) {
+    if (Array.isArray(initialState.values[key])) {
       // Properly parse single and multiple selections into an array.
-      state[key] = value.includes(',') ? value.split(',') : [value];
+      values[key] = value.includes(',') ? value.split(',') : [value];
     } else {
-      state[key] = value;
+      values[key] = value;
     }
   }
 
-  return state;
+  return values;
 }
 
 /**
- * Appends a `serialized` property to a state object, representing the
- * state as a serialized string.
+ * Appends a property with the string-serialized filter values.
  * @param {Object} state
  * @param {Object} updatedState
  */
-function appendSerializedState(state) {
+function appendSerialized(state) {
   const newState = {
     ...state,
-    serialized: serializeState(state),
+    valuesSerialized: serializeFilterValues(state.values),
   };
 
   return newState;
 }
 
 // REDUCER
+
 function reducer(state, action) {
   switch (action.type) {
     case actionTypes.hydrate: {
-      return appendSerializedState({
+      return appendSerialized({
         ...initialState,
-        ...parseSerializedState(action.payload),
+        hydrated: true,
+        values: {
+          ...initialState.values,
+          ...parseFilterValues(action.payload),
+        },
       });
     }
-    case actionTypes.update: {
-      return appendSerializedState({
+    case actionTypes.resetValues: {
+      return {
         ...state,
-        ...action.payload,
+        values: initialState.values,
+      };
+    }
+    case actionTypes.update: {
+      return appendSerialized({
+        ...state,
+        values: {
+          ...state.values,
+          ...action.payload,
+        },
       });
     }
     case actionTypes.toggleValue: {
       const { name, value } = action.payload;
-      const valueExists = state[name].includes(value);
+      const valueExists = state.values[name].includes(value);
 
-      if (valueExists) {
-        // Remove value
-        return appendSerializedState({
-          ...state,
-          [name]: state[name].filter(item => item !== value),
-        });
-      } else {
-        // Add value
-        return appendSerializedState({
-          ...state,
-          [name]: state[name].concat(value),
-        });
-      }
+      return appendSerialized({
+        ...state,
+        values: {
+          ...state.values,
+          [name]: valueExists
+            ? state.values[name].filter(item => item !== value) // Remove
+            : state.values[name].concat(value), // Add
+        },
+      });
     }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
@@ -213,6 +269,7 @@ export {
   useGroupFiltersDispatch,
   actionTypes,
   selectors,
-  update,
+  resetValues,
   toggleValue,
+  update,
 };

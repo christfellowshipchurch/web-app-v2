@@ -3,6 +3,8 @@ import { useSearchGroups } from 'hooks';
 import { useGroupFilters } from 'providers/GroupFiltersProvider';
 import { Box, CardGrid, GroupCard } from 'ui-kit';
 
+import DebugGroupFilterValues from './DebugGroupFilterValues';
+
 export default function GroupSearch(props = {}) {
   const [filtersState] = useGroupFilters();
   const [searchGroups, { loading, groups, error }] = useSearchGroups({
@@ -41,24 +43,6 @@ export default function GroupSearch(props = {}) {
       <Box as="p" color="subdued" mb="l">
         Found {groups?.length} groups that meet your search criteria.
       </Box>
-      <Box
-        as="pre"
-        color="subdued"
-        mb="l"
-        fontSize="xs"
-        position="fixed"
-        bottom="0"
-        left={16}
-        padding="base"
-        bg="white"
-        borderRadius="base"
-        boxShadow="xl"
-        maxWidth={300}
-        overflow="scroll"
-        zIndex="10"
-      >
-        {JSON.stringify(filtersState, null, 2)}
-      </Box>
       <CardGrid>
         {groups?.map((group, index) => (
           <GroupCard
@@ -75,6 +59,7 @@ export default function GroupSearch(props = {}) {
           />
         ))}
       </CardGrid>
+      <DebugGroupFilterValues />
     </Box>
   );
 }

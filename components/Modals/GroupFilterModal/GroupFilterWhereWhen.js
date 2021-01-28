@@ -32,7 +32,7 @@ function GroupFilterWhereWhen(props = {}) {
     event.preventDefault();
     router.push({
       pathname: `/community/search`,
-      query: filtersState.serialized,
+      query: filtersState.valuesSerialized,
     });
     modalDispatch(hideModal());
   };
@@ -55,74 +55,31 @@ function GroupFilterWhereWhen(props = {}) {
           id="campuses"
           name="campuses"
           onChange={handleChange}
-          defaultValue={filtersState.campuses[0] || ''}
+          defaultValue={filtersState.values.campuses[0] || ''}
         >
           <Select.Option value="">Select...</Select.Option>
-          <Select.Option value="WPB">West Palm Beach</Select.Option>
-          <Select.Option value="ORL">Orlando</Select.Option>
-          <Select.Option value="DAY">Daytona</Select.Option>
+          {filtersState.options.campuses.map(({ label, value }) => (
+            <Select.Option key={value} value={value}>
+              {label}
+            </Select.Option>
+          ))}
         </Select>
       </Box>
       <Box mb="l">
         <Box as="p" color="subdued" mb="s">
           Preferred meeting days
         </Box>
-        <Checkbox
-          label="Mon"
-          id="mon"
-          name="days"
-          value="mon"
-          onChange={handleChange}
-          checked={filtersState.days.includes('mon')}
-        />
-        <Checkbox
-          label="Tue"
-          id="tue"
-          name="days"
-          value="tue"
-          onChange={handleChange}
-          checked={filtersState.days.includes('tue')}
-        />
-        <Checkbox
-          label="Wed"
-          id="wed"
-          name="days"
-          value="wed"
-          onChange={handleChange}
-          checked={filtersState.days.includes('wed')}
-        />
-        <Checkbox
-          label="Thu"
-          id="thu"
-          name="days"
-          value="thu"
-          onChange={handleChange}
-          checked={filtersState.days.includes('thu')}
-        />
-        <Checkbox
-          label="Fri"
-          id="fri"
-          name="days"
-          value="fri"
-          onChange={handleChange}
-          checked={filtersState.days.includes('fri')}
-        />
-        <Checkbox
-          label="Sat"
-          id="sat"
-          name="days"
-          value="sat"
-          onChange={handleChange}
-          checked={filtersState.days.includes('sat')}
-        />
-        <Checkbox
-          label="Sun"
-          id="sun"
-          name="days"
-          value="sun"
-          onChange={handleChange}
-          checked={filtersState.days.includes('sun')}
-        />
+        {filtersState.options.days.map(({ label, value }) => (
+          <Checkbox
+            key={value}
+            id={value}
+            label={label}
+            value={value}
+            name="days"
+            onChange={handleChange}
+            checked={filtersState.values.days.includes(value)}
+          />
+        ))}
       </Box>
       <Button type="submit">Continue</Button>
     </Box>

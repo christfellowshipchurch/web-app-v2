@@ -33,38 +33,17 @@ function GroupFilterSubPreference(props = {}) {
         Select the types of Crew groups you’re interested in.
       </Box>
       <Box mb="l">
-        <Checkbox
-          label="Bible Studies"
-          id="bibleStudies"
-          name="subPreferences"
-          value="bibleStudies"
-          onChange={handleChange}
-          checked={filtersState.subPreferences.includes('bibleStudies')}
-        />
-        <Checkbox
-          label="Prayer Groups"
-          id="prayerGroups"
-          name="subPreferences"
-          value="prayerGroups"
-          onChange={handleChange}
-          checked={filtersState.subPreferences.includes('prayerGroups')}
-        />
-        <Checkbox
-          label="Activity Studies"
-          id="activityStudies"
-          name="subPreferences"
-          value="activityStudies"
-          onChange={handleChange}
-          checked={filtersState.subPreferences.includes('activityStudies')}
-        />
-        <Checkbox
-          label="Classes"
-          id="classes"
-          name="subPreferences"
-          value="classes"
-          onChange={handleChange}
-          checked={filtersState.subPreferences.includes('classes')}
-        />
+        {filtersState.options.subPreferences.map(({ label, value }) => (
+          <Checkbox
+            key={value}
+            id={value}
+            label={label}
+            value={value}
+            name="subPreferences"
+            onChange={handleChange}
+            checked={filtersState.values.subPreferences.includes(value)}
+          />
+        ))}
       </Box>
       <Button type="submit">Continue</Button>
     </Box>
