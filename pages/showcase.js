@@ -12,6 +12,7 @@ import {
   PageSplit,
   Quote,
   ValuesRow,
+  VideoPlayer,
 } from 'components';
 import { useRouter } from 'next/router';
 import { Info } from 'phosphor-react';
@@ -361,7 +362,11 @@ export default function About() {
         px="xxl"
         py="xxl"
       >
-        <Box height="200px" width="500px" backgroundColor="red" />
+        <VideoPlayer
+          src="http://embed.wistia.com/deliveries/0e364f7e6f6604384ece8a35905a53a864386e9f.bin"
+          title="What Happens When God Shows Up"
+          details="In this message from January 3rd, 2021, Pastor Robby discusses how one moment in the presence of God can alter your life for eternity."
+        />
         <Box height="200px" width="600px" backgroundColor="orange" />
         <Box height="600px" width="500px" backgroundColor="yellow" />
         <Box height="400px" width="800px" backgroundColor="green" />

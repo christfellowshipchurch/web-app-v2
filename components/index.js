@@ -22,6 +22,7 @@ import PageSplit from './PageSplit';
 import Quote from './Quote';
 import SEO from './SEO';
 import ValuesRow from './ValuesRow';
+import VideoPlayer from './VideoPlayer';
 import { EventsCallout, EventCallout } from './EventCallout';
 
 export {
@@ -51,4 +52,5 @@ export {
   Quote,
   SEO,
   ValuesRow,
+  VideoPlayer,
 };

@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import { Box } from 'ui-kit';
 
-import { StyledContainer, StyledText } from './Carousel.styles';
+import { StyledContent, StyledContainer, StyledText } from './Carousel.styles';
 
 function Carousel({
   labels,
@@ -49,12 +49,7 @@ function Carousel({
           );
         })}
       </Box>
-      <Box
-        overflowX="hidden"
-        position="relative"
-        width="100%"
-        style={{ transform: 'height 600ms linear' }}
-      >
+      <StyledContent>
         {children.map((child, i) => {
           return (
             <StyledContainer key={i} index={i} selected={selectedItem}>
@@ -64,11 +59,7 @@ function Carousel({
             </StyledContainer>
           );
         })}
-        {/* Used to determine height of carousel */}
-        <Box display="flex" style={{ visibility: 'hidden' }}>
-          {children}
-        </Box>
-      </Box>
+      </StyledContent>
     </Box>
   );
 }
