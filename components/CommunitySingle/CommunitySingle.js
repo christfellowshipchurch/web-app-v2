@@ -2,38 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { rem } from 'ui-kit/_utils';
-import { Card, Box, Button, DefaultCard, CardGrid } from 'ui-kit';
-import { themeGet } from '@styled-system/theme-get';
-import { SEO, CustomLink } from 'components';
+import { Box, Button, DefaultCard } from 'ui-kit';
+import { SEO } from 'components';
+import Header from './CommunitySingle.styles';
 
 function CommunitySingle(props = {}) {
   return (
     <>
       <SEO title={props.data?.title} />
-      <Box
-        height={{ _: '298px', md: '596px' }}
-        mb="l"
-        textAlign="center"
-        flexDirection="column"
-        backgroundImage={`linear-gradient(rgba(0, 0, 0, 0.33), rgba(71, 71, 71, 0.85)),url(${props.data?.coverImage?.sources[0]?.uri})`}
-        backgroundSize="cover"
-        color="white"
-        justifyContent="center"
-        alignItems="center"
-        display="flex"
-        borderRadius="base"
-        mx="xxl"
-      >
+      <Header src={props.data?.coverImage?.sources[0]?.uri}>
         <Box
           display="flex"
           flexDirection="column"
           flex="1"
           justifyContent="center"
         >
-          <Box as="h1" fontSize="95px">
+          <Box as="h1" fontSize={{ md: '95px' }}>
             {props.data?.title}
           </Box>
-          <Box as="p" px="190px">
+          <Box as="p" px={{ _: 's', sm: '80px', md: '140px', lg: '190px' }}>
             {props.data?.summary}
           </Box>
         </Box>
@@ -43,8 +30,8 @@ function CommunitySingle(props = {}) {
           </Button>
           <Button variant="link">{`Explore ${props.data?.title}`}</Button>
         </Box>
-      </Box>
-      <Box textAlign="center" alignItems="center" mb="l" px="xxl">
+      </Header>
+      <Box textAlign="center" alignItems="center" mb="l" px={{ md: 'xxl' }}>
         <Box as="h1" mb="0">{`The ${props.data?.title} Lineup`}</Box>
         <Box
           as="p"
@@ -56,7 +43,10 @@ function CommunitySingle(props = {}) {
               <DefaultCard
                 as="a"
                 key={i}
-                flex={`0 0 calc(33.333% - ${rem('20px')})`}
+                flex={{
+                  _: `0 0 calc(50% - ${rem('20px')})`,
+                  md: `0 0 calc(33.333% - ${rem('20px')})`,
+                }}
                 m="s"
                 coverImage={item?.coverImage?.sources[0]?.uri}
                 coverImageOverlay={true}
