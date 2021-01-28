@@ -1,7 +1,7 @@
 import { gql, useLazyQuery } from '@apollo/client';
 
 export const SEARCH_GROUPS = gql`
-  query searchGroups($query: String!) {
+  query searchGroups($query: SearchGroupsInput!) {
     searchGroups(query: $query) {
       pageInfo {
         startCursor
@@ -9,21 +9,46 @@ export const SEARCH_GROUPS = gql`
       }
       edges {
         cursor
+        title
+        summary
+        coverImage {
+          sources {
+            uri
+          }
+        }
         node {
           id
+          ...groupSearchResultNodeFragment
         }
-        ...groupSearchResult
       }
     }
   }
 
-  fragment groupSearchResult on GroupSearchResult {
-    id
-    title
-    summary
-    coverImage {
-      sources {
-        uri
+  fragment groupSearchResultNodeFragment on Node {
+    ... on Group {
+      preference
+      subPreference
+      campus {
+        name
+      }
+    }
+    ... on GroupItem {
+      members: people(first: 1) {
+        totalCount
+      }
+      leaders: people(first: 20, isLeader: true) {
+        totalCount
+        edges {
+          node {
+            id
+            firstName
+            lastName
+            nickName
+            photo {
+              uri
+            }
+          }
+        }
       }
     }
   }

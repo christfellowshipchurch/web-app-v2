@@ -27,7 +27,7 @@ const GroupCard = (props = {}) => {
                     height="80px"
                     key={i}
                     mr={props.heroAvatars.length > 1 ? 'xs' : null}
-                    name="Group Leader"
+                    name={`${n.node?.firstName} ${n.node?.lastName}`}
                     src={n.node?.photo?.uri}
                     width="80px"
                   />
@@ -45,14 +45,28 @@ const GroupCard = (props = {}) => {
         <Styled.GroupCardTitle>
           <Box as="h4">{props.title}</Box>
         </Styled.GroupCardTitle>
-        <Styled.GroupCardTitle>
-          <Box as="p" fontSize="s">
-            {props.groupType}
-          </Box>
-        </Styled.GroupCardTitle>
+        {props.groupType && (
+          <Styled.GroupCardTitle>
+            <Box as="p" fontSize="s">
+              {props.groupType}
+            </Box>
+          </Styled.GroupCardTitle>
+        )}
+        {props.preference && (
+          <Styled.GroupCardTitle>
+            <Box as="p" fontSize="s">
+              {props.preference}
+            </Box>
+          </Styled.GroupCardTitle>
+        )}
       </Box>
       <Styled.GroupCardContent>
-        <Styled.DateTimeLabel>{props.dateTime}</Styled.DateTimeLabel>
+        {props.campus && (
+          <Styled.DateTimeLabel>{props.campus}</Styled.DateTimeLabel>
+        )}
+        {props.dateTime && (
+          <Styled.DateTimeLabel>{props.dateTime}</Styled.DateTimeLabel>
+        )}
         {props.summary && (
           <Box as="p" fontSize="xs">
             {summaryLength > maxChar ? (
@@ -68,26 +82,25 @@ const GroupCard = (props = {}) => {
           </Box>
         )}
         <Box as="h5" mt="base">
-          Group Members
+          <Box as="span">{props.totalAvatars}</Box> Group Members
         </Box>
-        <Box display="flex">
-          {props.avatars &&
-            props.avatars
-              .slice(0, 4)
-              .map((n, i = 2) => (
-                <SquareAvatar
-                  height="90px"
-                  key={i}
-                  mr="xs"
-                  name="Group Member"
-                  src={n.node?.photo?.uri}
-                  width="70px"
-                />
-              ))}
-          {avatarsDiff > 0 && (
-            <Styled.AvatarCount>{`+${avatarsDiff}`}</Styled.AvatarCount>
-          )}
-        </Box>
+        {props.avatars?.length > 0 && (
+          <Box display="flex">
+            {props.avatars.slice(0, 4).map((n, i = 2) => (
+              <SquareAvatar
+                height="90px"
+                key={i}
+                mr="xs"
+                name="Group Member"
+                src={n.node?.photo?.uri}
+                width="70px"
+              />
+            ))}
+            {avatarsDiff > 0 && (
+              <Styled.AvatarCount>{`+${avatarsDiff}`}</Styled.AvatarCount>
+            )}
+          </Box>
+        )}
         {props.callToAction && (
           <Button
             href={props?.callToAction?.action}
@@ -110,6 +123,9 @@ GroupCard.propTypes = {
     call: PropTypes.string,
     action: PropTypes.string,
   }),
+  campus: PropTypes.string,
+  preference: PropTypes.string,
+  subPreference: PropTypes.string,
   coverImage: PropTypes.string,
   dateTime: PropTypes.string,
   groupType: PropTypes.string,

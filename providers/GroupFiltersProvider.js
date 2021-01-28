@@ -7,7 +7,7 @@ const GroupFiltersProviderStateContext = createContext();
 const GroupFiltersProviderDispatchContext = createContext();
 
 // TODO: There has to be a better, dynamic way to define these.
-// Frozen to convey these are static
+// Frozen to convey that these are static.
 const options = Object.freeze({
   campuses: [
     { label: 'Boynton Beach', value: 'boynton-beach' },
@@ -32,9 +32,9 @@ const options = Object.freeze({
     { label: 'Young Adults', value: 'young-adults' },
   ],
   subPreferences: [
-    { label: 'Bible Studies', value: 'bibleStudies' },
-    { label: 'Prayer Groups', value: 'prayerGroups' },
-    { label: 'Activity Studies', value: 'activityStudies' },
+    { label: 'Bible Studies', value: 'bible-studies' },
+    { label: 'Prayer Groups', value: 'prayer-groups' },
+    { label: 'Activity Studies', value: 'activity-studies' },
     { label: 'Classes', value: 'classes' },
   ],
 });
@@ -118,6 +118,7 @@ function parseFilterValues(string) {
   const values = {};
 
   for (let [key, value] of entries) {
+    // Skip over non-serialized values
     if (key === 'debug') {
       continue;
     }

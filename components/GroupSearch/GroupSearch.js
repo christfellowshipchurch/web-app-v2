@@ -19,43 +19,78 @@ export default function GroupSearch(props = {}) {
   console.groupEnd();
 
   useEffect(() => {
-    if (filtersState.hydrated) {
-      console.log(
-        '🔍%c Searching groups...',
-        'color: #00aeff; font-weight: bold;'
-      );
-
-      searchGroups({
-        variables: {
-          query: 'test',
-        },
-      });
-    } else {
-      console.log(
-        '<GroupSearch> ⏳ Waiting for state to hydrate from query string'
-      );
+    if (!filtersState.hydrated) {
+      return;
     }
-  }, [searchGroups, filtersState.hydrated]);
+
+    // API doesn't know our client side mappings for option values => labels.
+    // It needs spoon-fed the values to search for. Go find the labels for
+    // a given filter's currently selected values.
+    const getSelectedLabels = filterName => {
+      const options = filtersState.options[filterName];
+      const values = filtersState.values[filterName];
+
+      return values.map(value => {
+        const option = options.find(option => option.value === value);
+        return option?.label;
+      });
+    };
+
+    const query = {
+      // text: 'You can fuzzy search strings here too',
+      campusNames: getSelectedLabels('campuses'),
+      preferences: getSelectedLabels('preferences'),
+      subPreferences: getSelectedLabels('subPreferences'),
+    };
+
+    console.log(
+      '🔍%c Searching groups...',
+      'background: #00aeff; color: white; font-weight: bold;'
+    );
+    console.log('--> query: ', query);
+
+    searchGroups({
+      variables: {
+        query,
+      },
+    });
+  }, [
+    searchGroups,
+    filtersState.hydrated,
+    filtersState.options,
+    filtersState.values,
+  ]);
 
   return (
     <Box>
       <Box as="h1">Find your Community</Box>
       <Box as="p" color="subdued" mb="l">
-        Found {groups?.length} groups that meet your search criteria.
+        {loading
+          ? `Searching...`
+          : `Found ${groups?.length} groups that meet your search criteria.`}
+      </Box>
+      <Box as="p" fontSize="s" mb="l">
+        <code>{JSON.stringify(filtersState.values)}</code>
       </Box>
       <CardGrid>
         {groups?.map((group, index) => (
           <GroupCard
             /* Temporarily need to use index in key due to duplicate data */
             key={`${group.node?.id}-${index}`}
-            title={group.title}
+            callToAction={{
+              call: 'Contact',
+              action: 'action',
+            }}
+            campus={group.node?.campus.name}
+            coverImage={group.coverImage?.sources[0]?.uri}
+            dateTime={''}
             groupType={group.type}
+            heroAvatars={group.node?.leaders?.edges}
+            preference={group.node?.preference}
+            subPreference={group.node?.subPreference}
             summary={group.summary}
-            heroAvatars={[]}
-            avatars={[]}
-            dateTime="Wednesdays at 6:30pm"
-            coverImage="https://source.unsplash.com/random/1000x1000"
-            totalAvatars={100}
+            title={group.title}
+            totalAvatars={group.node?.members?.totalCount}
           />
         ))}
       </CardGrid>
