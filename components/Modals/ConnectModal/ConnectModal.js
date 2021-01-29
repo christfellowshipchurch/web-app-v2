@@ -30,7 +30,7 @@ function ConnectModal(props = {}) {
           <TextInput
             id="body"
             multiline
-            placeholder={'Hey Juan, I’m interested in joining your Crew group!'}
+            placeholder="Hey Juan, I’m interested in joining your Crew group!"
             autoFocus
             mb="base"
             height="115px"
