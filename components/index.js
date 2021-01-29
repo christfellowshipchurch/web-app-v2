@@ -20,6 +20,7 @@ import MeetTheStaff from './MeetTheStaff';
 import Nav from './Nav';
 import PageSplit from './PageSplit';
 import Quote from './Quote';
+import Search from './Search';
 import SEO from './SEO';
 import ValuesRow from './ValuesRow';
 import VideoPlayer from './VideoPlayer';
@@ -50,6 +51,7 @@ export {
   Nav,
   PageSplit,
   Quote,
+  Search,
   SEO,
   ValuesRow,
   VideoPlayer,
