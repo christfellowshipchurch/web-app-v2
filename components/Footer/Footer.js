@@ -16,9 +16,6 @@ function Footer(props = {}) {
       flexDirection="column"
       {...props}
     >
-      <Box mb="xs">
-        <Logo dark />
-      </Box>
       <Styled.Grid
         breakpoints={[{ breakpoint: 'md', columns: 1 }]}
         gridTemplateColumns="270px 1fr"
@@ -45,6 +42,9 @@ function Footer(props = {}) {
 function Contact() {
   return (
     <Styled.Contact>
+      <Box mb="xs">
+        <Logo dark />
+      </Box>
       <Box display="flex" flexDirection="column">
         <Text variant="h4" color="neutrals.100" opacity="33%">
           Long Hollow Baptist Church

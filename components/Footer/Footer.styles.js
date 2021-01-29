@@ -44,6 +44,7 @@ const Grid = styled(CardGrid)`
 `;
 
 const Contact = styled.div`
+  margin-top: calc(-${themeGet('space.xs')} - 42px);
   @media screen and (max-width: ${themeGet('breakpoints.lg')}) {
     text-align: center;
   }
