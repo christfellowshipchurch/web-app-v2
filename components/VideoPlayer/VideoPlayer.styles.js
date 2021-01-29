@@ -43,7 +43,6 @@ export const StyledRange = styled.input`
     background: #ffffff;
     cursor: pointer;
     margin-bottom: -1px;
-    // box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
   }
 `;
 

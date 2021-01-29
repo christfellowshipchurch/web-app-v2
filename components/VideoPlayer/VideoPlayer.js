@@ -4,7 +4,7 @@ import { PauseCircle, PlayCircle } from 'phosphor-react';
 import { Box, Text, theme } from 'ui-kit';
 import { StyledHeading, StyledRange, StyledVideo } from './VideoPlayer.styles';
 
-function VideoPlayer({ src, title, details, ...props } = {}) {
+function VideoPlayer({ src, title, details, stopPropagation, ...props } = {}) {
   const [playing, setPlaying] = useState(false);
   const [time, setTime] = useState(0);
   const [showControls, setShowControls] = useState(true);
@@ -47,8 +47,10 @@ function VideoPlayer({ src, title, details, ...props } = {}) {
         borderRadius="image"
         overflow="hidden"
         onClick={event => {
-          if (event.target !== rangeRef.current) {
-            setPlaying(!playing);
+          if (!stopPropagation) {
+            if (event.target !== rangeRef.current) {
+              setPlaying(!playing);
+            }
           }
         }}
       >
@@ -83,17 +85,19 @@ function VideoPlayer({ src, title, details, ...props } = {}) {
           />
         </Box>
       </Box>
-      <Text
-        variant="h4"
-        color="neutrals.900"
-        fontWeight="400"
-        opacity="60%"
-        textAlign="center"
-        mt="l"
-        maxWidth={theme.breakpoints.md}
-      >
-        {details}
-      </Text>
+      {details && (
+        <Text
+          variant="h4"
+          color="neutrals.900"
+          fontWeight="400"
+          opacity="60%"
+          textAlign="center"
+          mt="l"
+          maxWidth={theme.breakpoints.md}
+        >
+          {details}
+        </Text>
+      )}
     </Box>
   );
 }
@@ -102,6 +106,7 @@ VideoPlayer.propTypes = {
   src: PropTypes.string.isRequired,
   details: PropTypes.string,
   title: PropTypes.string,
+  stopPropagation: PropTypes.bool,
 };
 
 export default VideoPlayer;

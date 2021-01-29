@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Box } from 'ui-kit';
 import { StyledImage } from './MainPhotoHeader.styles';
 
-function MainPhotoHeader({ src, text, overlay } = {}) {
+function MainPhotoHeader({ src, content, overlay } = {}) {
   return (
     <Box position="relative">
       <StyledImage as="img" src={src} name="main-photo-header" />
@@ -18,7 +18,7 @@ function MainPhotoHeader({ src, text, overlay } = {}) {
           background={overlay}
         />
       )}
-      {text}
+      {content}
     </Box>
   );
 }
@@ -26,7 +26,7 @@ function MainPhotoHeader({ src, text, overlay } = {}) {
 MainPhotoHeader.propTypes = {
   src: PropTypes.string.isRequired,
   overlay: PropTypes.string,
-  text: PropTypes.node,
+  content: PropTypes.node,
 };
 
 export default MainPhotoHeader;
