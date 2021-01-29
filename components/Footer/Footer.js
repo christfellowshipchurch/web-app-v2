@@ -1,77 +1,123 @@
-// TODO: Update details
-
 import React from 'react';
 
 import { links } from 'config/metadata';
-import { Box, Cell, Icon, List, systemPropTypes } from 'ui-kit';
-import { CustomLink, Logo } from 'components';
+import { Box, CardGrid, List, systemPropTypes, Text, theme } from 'ui-kit';
+import { Logo } from 'components';
 import Styled from './Footer.styles';
 
 function Footer(props = {}) {
   return (
-    <Styled {...props}>
-      <Box bg="fg" color="white" p={{ _: 'base', md: 'l', lg: 'xl' }}>
-        <Cell>
-          <Box
-            display={{ lg: 'grid' }}
-            gridTemplateColumns="30% repeat(3, 20%)"
-            gridColumnGap="l"
-          >
-            <Contact />
-            <Resources />
-            <Connect />
-            <About />
-          </Box>
-        </Cell>
+    <Styled
+      bg="fg"
+      color="white"
+      px="xl"
+      pb="l"
+      display="flex"
+      flexDirection="column"
+      {...props}
+    >
+      <Box mb="xs">
+        <Logo dark />
       </Box>
-      <Box bg="white" p="xl" textAlign="center">
-        <Cell>
-          <Copyright />
-        </Cell>
-      </Box>
+      <Styled.Grid
+        breakpoints={[{ breakpoint: 'md', columns: 1 }]}
+        gridTemplateColumns="270px 1fr"
+      >
+        <Contact />
+        <CardGrid
+          breakpoints={[
+            { breakpoint: 'lg', columns: 2 },
+            { breakpoint: 'md', columns: 1 },
+          ]}
+          gridTemplateColumns="repeat(4, 1fr)"
+          gridColumnGap="l"
+        >
+          <About />
+          <NextSteps />
+          <Connect />
+          <QuickLinks />
+        </CardGrid>
+      </Styled.Grid>
     </Styled>
   );
 }
 
 function Contact() {
   return (
-    <Box mb={{ _: 'base', lg: '0' }}>
-      <Box mb="base">
-        <Logo dark />
+    <Styled.Contact>
+      <Box display="flex" flexDirection="column">
+        <Text variant="h4" color="neutrals.100" opacity="33%">
+          Long Hollow Baptist Church
+        </Text>
+        <Text variant="h5" color="neutrals.100" opacity="60%">
+          3031 Long Hollow Pike
+        </Text>
+        <Text variant="h5" color="neutrals.100" opacity="60%">
+          Hendersonville, TN 37075
+        </Text>
+        <Styled.Link
+          href="tel:615-824-4006"
+          mb="s"
+          fontSize={theme.fontSizes.h5}
+          lineHeight={theme.lineHeights.h5}
+        >
+          (615) 824-4006
+        </Styled.Link>
       </Box>
-      <Styled.Link href="tel:561-799-7600" mb="s">
-        (561) 799-7600
-      </Styled.Link>
-      <Styled.Link href="mailto:hello@christfellowship.church">
-        hello@christfellowship.church
-      </Styled.Link>
+    </Styled.Contact>
+  );
+}
+
+function About() {
+  return (
+    <Box>
+      <Text variant="h4" color="white" fontWeight="600" mb="xs">
+        About
+      </Text>
+      <List as="ul" space="xs">
+        <Box as="li">
+          <Styled.Link href={links.schedule}>Schedule</Styled.Link>
+        </Box>
+        <Box as="li">
+          <Styled.Link href={links.ourBeliefs}>Our beliefs</Styled.Link>
+        </Box>
+        <Box as="li">
+          <Styled.Link href={links.ourStory}>Our story</Styled.Link>
+        </Box>
+        <Box as="li">
+          <Styled.Link href={links.ourStaff}>Meet our staff</Styled.Link>
+        </Box>
+      </List>
     </Box>
   );
 }
 
-function Resources() {
+function NextSteps() {
   return (
-    <Box mb={{ _: 'base', lg: '0' }}>
-      <Box as="h4" fontSize="h3">
-        Resources
-      </Box>
+    <Box>
+      <Text variant="h4" color="white" fontWeight="600" mb="xs">
+        Next Steps
+      </Text>
       <List as="ul" space="xs">
         <Box as="li">
-          <Styled.Link href={links.churchOnline}>Church Online</Styled.Link>
-        </Box>
-        <Box as="li">
-          <Styled.Link href={links.pastMessages}>Past Messages</Styled.Link>
-        </Box>
-        <Box as="li">
-          <Styled.Link as="a" href="#0">
-            Ministry Updates
+          <Styled.Link href={links.join}>
+            Join us (online or in-person)
           </Styled.Link>
         </Box>
         <Box as="li">
-          <Styled.Link href={links.giveOnline}>Give Online</Styled.Link>
+          <Styled.Link href={links.talk}>Talk to someone</Styled.Link>
         </Box>
         <Box as="li">
-          <Styled.Link href={links.shopOnline}>Shop Online</Styled.Link>
+          <Styled.Link href={links.baptize}>Get baptized</Styled.Link>
+        </Box>
+        <Box as="li">
+          <Styled.Link href={links.findCommunity}>Find community</Styled.Link>
+        </Box>
+        <Box as="li">
+          <Styled.Link href={links.volunteer}>Volunteer with us</Styled.Link>
+        </Box>
+        <Box as="li">
+          <Styled.Link href={links.missions}>Mission trips</Styled.Link>
         </Box>
       </List>
     </Box>
@@ -80,111 +126,75 @@ function Resources() {
 
 function Connect() {
   return (
-    <Box mb={{ _: 'base', lg: '0' }}>
-      <Box as="h4" fontSize="h3">
-        Connect
-      </Box>
-      <List as="ul" space="xs">
-        <Box as="li">
-          <Styled.Link href={links.connectCard}>Connect Card</Styled.Link>
-        </Box>
-        <Box as="li">
-          <Styled.Link href={links.submitPrayerRequest}>
-            Past Messages
-          </Styled.Link>
-        </Box>
-        <Box as="li">
-          <Styled.Link as="a" href="#0">
-            Join Us In Prayer
-          </Styled.Link>
-        </Box>
-        <Box as="li">
-          <Styled.Link href={links.subscribeToUpdates}>
-            Subscribe To Updates
-          </Styled.Link>
-        </Box>
-        <Box as="li">
-          <Styled.Link href={links.contactUs}>Contact Us</Styled.Link>
-        </Box>
-      </List>
-    </Box>
-  );
-}
-
-function About() {
-  return (
     <Box>
-      <Box as="h4" fontSize="h3">
-        About
-      </Box>
+      <Text variant="h4" color="white" fontWeight="600" mb="xs">
+        Connect
+      </Text>
       <List as="ul" space="xs">
         <Box as="li">
-          <Styled.Link href="#0">Our Leadership</Styled.Link>
+          <Styled.Link href={links.preschool}>Weekday preschool</Styled.Link>
         </Box>
         <Box as="li">
-          <Styled.Link href={links.careerOpportunities}>
-            Career Opportunities
-          </Styled.Link>
+          <Styled.Link href={links.kids}>Kids</Styled.Link>
         </Box>
         <Box as="li">
-          <CustomLink href="/privacy-policy" Component={Styled.Link}>
-            Privacy Policy
-          </CustomLink>
+          <Styled.Link href={links.students}>Students</Styled.Link>
         </Box>
         <Box as="li">
-          <CustomLink href="/terms-of-use" Component={Styled.Link}>
-            Terms of Use
-          </CustomLink>
+          <Styled.Link href={links.youngAdults}>Young adults</Styled.Link>
+        </Box>
+        <Box as="li">
+          <Styled.Link href={links.women}>Women</Styled.Link>
+        </Box>
+        <Box as="li">
+          <Styled.Link href={links.recovery}>Support and recovery</Styled.Link>
+        </Box>
+        <Box as="li">
+          <Styled.Link href={links.prayer}>Prayer</Styled.Link>
         </Box>
       </List>
     </Box>
   );
 }
 
-function Copyright() {
+function QuickLinks() {
   return (
-    <>
-      <Box
-        display="grid"
-        gridTemplateColumns="repeat(3, 1fr)"
-        gridColumnGap="l"
-        maxWidth="12.5rem"
-        mb="base"
-        mx="auto"
-      >
-        <Box as="a" color="primary" href={links.facebook}>
-          <Icon
-            name="facebook"
-            size="32"
-            stroke="neutrals.900"
-            fill="neutrals.900"
-            opacity="60%"
-          />
-        </Box>
-        <Box as="a" color="primary" href={links.instagram}>
-          <Icon
-            name="instagram"
-            size="32"
-            stroke="neutrals.900"
-            fill="neutrals.900"
-            opacity="60%"
-          />
-        </Box>
-        <Box as="a" color="primary" href={links.youtube}>
-          <Icon
-            name="youtube"
-            size="32"
-            stroke="neutrals.900"
-            fill="neutrals.900"
-            opacity="60%"
-          />
-        </Box>
+    <List as="ul" space="xs">
+      <Box as="li">
+        <Styled.Link
+          href={links.watch}
+          color={theme.colors.white}
+          fontWeight="600"
+          opacity="1"
+        >
+          Watch
+        </Styled.Link>
+        <Styled.Link
+          href={links.search}
+          color={theme.colors.white}
+          fontWeight="600"
+          opacity="1"
+        >
+          Search
+        </Styled.Link>
+        <Styled.Link
+          href={links.give}
+          color={theme.colors.white}
+          fontWeight="600"
+          opacity="1"
+        >
+          Give
+        </Styled.Link>
+        <Styled.Link
+          href={links.profile}
+          color={theme.colors.white}
+          fontWeight="600"
+          opacity="1"
+        >
+          My Profile
+        </Styled.Link>
       </Box>
-      <Box as="p" fontSize="s">
-        &copy; {new Date().getFullYear()} Long Hollow Baptist Church. All Rights
-        Reserved
-      </Box>
-    </>
+    </List>
   );
 }
 

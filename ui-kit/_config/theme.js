@@ -26,7 +26,7 @@ const theme = {
     h2: rem('33px'),
     h3: rem('24px'),
     h4: rem('16px'),
-    h5: rem('12px'),
+    h5: rem('14px'),
   },
   fontWeights: {
     normal: 'normal',
@@ -41,6 +41,7 @@ const theme = {
     h2: rem('40px'),
     h3: rem('28px'),
     h4: rem('24px'),
+    h5: rem('21px'),
   },
   radii: {
     s: rem('4px'),

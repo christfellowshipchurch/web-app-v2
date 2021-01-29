@@ -1,3 +1,4 @@
+// TODO - update
 const metadata = {
   links: {
     churchOnline: 'https://live.christfellowship.church/',
