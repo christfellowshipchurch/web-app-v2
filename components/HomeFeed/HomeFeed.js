@@ -8,24 +8,20 @@ import VideoPlayer from 'components/VideoPlayer';
 function HomeFeed(props = {}) {
   const videoPlayers = [
     {
-      src:
-        'http://embed.wistia.com/deliveries/0e364f7e6f6604384ece8a35905a53a864386e9f.bin',
+      src: 'https://player.vimeo.com/video/504118986',
       title: 'INTRO',
     },
     {
-      src:
-        'http://embed.wistia.com/deliveries/0e364f7e6f6604384ece8a35905a53a864386e9f.bin',
+      src: 'https://player.vimeo.com/video/160532499',
       title: 'GOOD NEWS',
     },
     {
-      src:
-        'http://embed.wistia.com/deliveries/0e364f7e6f6604384ece8a35905a53a864386e9f.bin',
-      title: 'GOOD NEWS',
+      src: 'https://player.vimeo.com/video/485173775',
+      title: 'EVERYONE',
     },
     {
-      src:
-        'http://embed.wistia.com/deliveries/0e364f7e6f6604384ece8a35905a53a864386e9f.bin',
-      title: 'GOOD NEWS',
+      src: 'https://player.vimeo.com/video/457496548',
+      title: 'GOD',
     },
   ];
   return (
