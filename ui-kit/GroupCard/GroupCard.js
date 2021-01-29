@@ -62,10 +62,10 @@ const GroupCard = (props = {}) => {
       </Box>
       <Styled.GroupCardContent>
         {props.campus && (
-          <Styled.DateTimeLabel>{props.campus}</Styled.DateTimeLabel>
+          <Styled.DateTimeLabel>📍 {props.campus}</Styled.DateTimeLabel>
         )}
         {props.dateTime && (
-          <Styled.DateTimeLabel>{props.dateTime}</Styled.DateTimeLabel>
+          <Styled.DateTimeLabel>🗓️ {props.dateTime}</Styled.DateTimeLabel>
         )}
         {props.summary && (
           <Box as="p" fontSize="xs">
@@ -82,7 +82,7 @@ const GroupCard = (props = {}) => {
           </Box>
         )}
         <Box as="h5" mt="base">
-          <Box as="span">{props.totalAvatars}</Box> Group Members
+          <Box as="span">👥 {props.totalAvatars}</Box> Members
         </Box>
         {props.avatars?.length > 0 && (
           <Box display="flex">

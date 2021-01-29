@@ -9,7 +9,6 @@ export default function DebugFilterValues(props = {}) {
   const [filtersState] = useGroupFilters();
 
   useEffect(() => {
-    console.log('router.query:', router.query);
     if (router.query?.hasOwnProperty('debug')) {
       setVisible(true);
     }

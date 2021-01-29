@@ -1,6 +1,4 @@
 import React from 'react';
-
-import { GroupFiltersProvider } from 'providers';
 import { Modal } from 'ui-kit';
 
 import GroupFilterSubPreferences from './GroupFilterSubPreferences';
@@ -21,11 +19,7 @@ function GroupFilterModal(props = {}) {
     }
   }
 
-  return (
-    <GroupFiltersProvider>
-      <Modal {...props}>{render}</Modal>
-    </GroupFiltersProvider>
-  );
+  return <Modal {...props}>{render}</Modal>;
 }
 
 GroupFilterModal.propTypes = {

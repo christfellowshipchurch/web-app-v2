@@ -13,7 +13,16 @@ const options = Object.freeze({
     { label: 'Boynton Beach', value: 'boynton-beach' },
     { label: 'Daytona', value: 'daytona' },
     { label: 'Jupiter', value: 'jupiter' },
+    { label: 'Okeechobee', value: 'okeechobee' },
     { label: 'Orlando', value: 'orlando' },
+    { label: 'Palm Beach Gardens', value: 'palm-beach-gardens' },
+    { label: 'Port St. Lucie', value: 'port-st-lucie' },
+    { label: 'Royal Palm Beach', value: 'royal-palm-beach' },
+    {
+      label: 'en Español Royal Palm Beach',
+      value: 'en-espanol-royal-palm-beach',
+    },
+    { label: 'Stuart', value: 'stuart' },
     { label: 'West Palm Beach', value: 'west-palm-beach' },
   ],
   days: [
@@ -48,6 +57,7 @@ const initialState = {
     preferences: [],
     subPreferences: [],
   },
+  queryParams: {},
 };
 
 const actionTypes = {
@@ -136,6 +146,28 @@ function parseFilterValues(string) {
   return values;
 }
 
+function getQueryParams(options, values) {
+  const getLabelFromValue = filterName =>
+    // Iterate over the selected values for each filter,
+    // and go fetch their `label` from their option for that filter.
+    values[filterName]
+      .map(value => {
+        if (value === '') return value;
+
+        const option = options[filterName].find(
+          option => option.value === value
+        );
+        return option?.label;
+      })
+      .filter(string => !isEmpty(string));
+
+  return {
+    campusNames: getLabelFromValue('campuses'),
+    preferences: getLabelFromValue('preferences'),
+    subPreferences: getLabelFromValue('subPreferences'),
+  };
+}
+
 /**
  * Appends a property with the string-serialized filter values.
  * @param {Object} state
@@ -145,6 +177,7 @@ function appendSerialized(state) {
   const newState = {
     ...state,
     valuesSerialized: serializeFilterValues(state.values),
+    queryParams: getQueryParams(state.options, state.values),
   };
 
   return newState;
@@ -165,10 +198,10 @@ function reducer(state, action) {
       });
     }
     case actionTypes.resetValues: {
-      return {
+      return appendSerialized({
         ...state,
         values: initialState.values,
-      };
+      });
     }
     case actionTypes.update: {
       return appendSerialized({

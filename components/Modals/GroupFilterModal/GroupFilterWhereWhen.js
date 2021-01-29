@@ -22,7 +22,7 @@ function GroupFilterWhereWhen(props = {}) {
     if (name === 'campuses') {
       // Campus selection is stored as a multi-select, but the input
       // is a single-select. Handle it's value specially.
-      filtersDispatch(update({ [name]: [value] }));
+      filtersDispatch(update({ [name]: value === '' ? [] : [value] }));
     } else {
       filtersDispatch(toggleValue({ name, value }));
     }
