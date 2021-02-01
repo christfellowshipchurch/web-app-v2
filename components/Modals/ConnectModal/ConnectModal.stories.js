@@ -8,5 +8,10 @@ export default {
 };
 
 export const Default = () => {
-  return <ConnectModal />;
+  return (
+    <ConnectModal
+      leaderAvatar="https://source.unsplash.com/random/200x200"
+      leaderName="Jordan"
+    />
+  );
 };
