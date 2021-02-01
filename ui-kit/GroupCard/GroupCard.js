@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { format } from 'date-fns';
 
 import { systemPropTypes } from 'ui-kit';
 import { Box, Avatar, SquareAvatar, Button } from 'ui-kit';
@@ -65,7 +66,9 @@ const GroupCard = (props = {}) => {
           <Styled.DateTimeLabel>📍 {props.campus}</Styled.DateTimeLabel>
         )}
         {props.dateTime && (
-          <Styled.DateTimeLabel>🗓️ {props.dateTime}</Styled.DateTimeLabel>
+          <Styled.DateTimeLabel>
+            🗓️ {format(new Date(props.dateTime), "EEE 'at' h:mm")}
+          </Styled.DateTimeLabel>
         )}
         {props.summary && (
           <Box as="p" fontSize="xs">

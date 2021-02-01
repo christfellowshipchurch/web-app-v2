@@ -165,6 +165,7 @@ function getQueryParams(options, values) {
     campusNames: getLabelFromValue('campuses'),
     preferences: getLabelFromValue('preferences'),
     subPreferences: getLabelFromValue('subPreferences'),
+    days: getLabelFromValue('days'),
   };
 }
 

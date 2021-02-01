@@ -31,6 +31,9 @@ export const SEARCH_GROUPS = gql`
       campus {
         name
       }
+      dateTime {
+        start
+      }
     }
     ... on GroupItem {
       members: people(first: 1) {

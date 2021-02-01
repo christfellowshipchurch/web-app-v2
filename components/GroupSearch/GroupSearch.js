@@ -44,7 +44,7 @@ export default function GroupSearch(props = {}) {
               }}
               campus={group.node?.campus.name}
               coverImage={group.coverImage?.sources[0]?.uri}
-              dateTime={''}
+              dateTime={group.node?.dateTime.start}
               groupType={group.type}
               heroAvatars={group.node?.leaders?.edges}
               preference={group.node?.preference}
