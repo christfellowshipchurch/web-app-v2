@@ -1,5 +1,7 @@
-import { CardList, Footer, Header, SEO } from 'components';
-import { CommunityProvider } from 'providers';
+import { Box, Button, Cell, utils } from 'ui-kit';
+import { CommunityList, Footer, Header, SEO } from 'components';
+import { CommunitiesProvider } from 'providers';
+import Styled from './Community.styles';
 import { update as updateAuth, useAuth } from 'providers/AuthProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 import { Box, Button, Cell, utils } from 'ui-kit';
@@ -35,17 +37,23 @@ export default function Community() {
             There’s community for everyone.
           </Box>
           <Box display="flex">
-            <Button variant="secondary">Watch</Button>
+            <Button variant="tertiary" rounded={true}>
+              Watch
+            </Button>
             <Button variant="link">Find your community</Button>
           </Box>
         </Styled.Hero>
-        <Cell
-          maxWidth={DEFAULT_CONTENT_WIDTH}
-          px="base"
-          py={{ _: 'l', lg: 'xl' }}
-        >
-          <CommunityProvider Component={CardList} />
-        </Cell>
+        <Box>
+          <Cell
+            maxWidth={DEFAULT_CONTENT_WIDTH}
+            px="base"
+            py={{ _: 'l', lg: 'xl' }}
+          >
+            <Box as="section" py={{ _: 'l', lg: 'xl' }}>
+              <CommunitiesProvider Component={CommunityList} />
+            </Box>
+          </Cell>
+        </Box>
         <Box
           display="flex"
           alignItems="center"
@@ -53,13 +61,15 @@ export default function Community() {
           p="l"
           mb="l"
         >
-          <Box as="h2" mb="l">
+          <Box as="h2" mb="s">
             We’ll help you get connected.
           </Box>
           <Box as="p" mb="l">
             There are hundreds of communities at CF. We’ll help find yours.
           </Box>
-          <Button onClick={handleOnClick}>Find your community</Button>
+          <Button onClick={handleOnClick} rounded={true}>
+            Find your community
+          </Button>
         </Box>
         <Footer />
       </Box>

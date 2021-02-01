@@ -1,7 +1,7 @@
 import AppProvider from './AppProvider';
 import AuthProvider from './AuthProvider';
 import CampusesProvider from './CampusesProvider';
-import CommunityProvider from './CommunityProvider';
+import CommunitiesProvider from './CommunitiesProvider';
 import ContentFeedProvider from './ContentFeedProvider';
 import ContentItemProvider from './ContentItemProvider';
 import CurrentPersonProvider from './CurrentPersonProvider';
@@ -9,7 +9,7 @@ import CurrentUserProvider from './CurrentUserProvider';
 import EventProvider from './EventProvider';
 import EventsProvider from './EventsProvider';
 import FeatureFeedProvider from './FeatureFeedProvider';
-import FeatureProvider from './FeatureProvider'
+import FeatureProvider from './FeatureProvider';
 import FeedFeaturesProvider from './FeedFeaturesProvider';
 import GroupFiltersProvider from './GroupFiltersProvider';
 import GroupProvider from './GroupProvider';
@@ -22,7 +22,7 @@ export {
   AppProvider,
   AuthProvider,
   CampusesProvider,
-  CommunityProvider,
+  CommunitiesProvider,
   ContentFeedProvider,
   ContentItemProvider,
   CurrentPersonProvider,
