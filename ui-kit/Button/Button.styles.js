@@ -3,6 +3,13 @@ import { themeGet } from '@styled-system/theme-get';
 
 import { system } from 'ui-kit';
 
+const rounded = ({ rounded }) => props => {
+  if (rounded) {
+    return css`
+      border-radius: 9999px;
+    `;
+  }
+};
 const variant = ({ variant }) => props => {
   if (variant === 'secondary') {
     return css`
@@ -18,10 +25,16 @@ const variant = ({ variant }) => props => {
       &:active,
       &:focus,
       &:hover {
-        background: 0;
+        background: none;
         color: ${themeGet('colors.primaryHover')};
         outline: none;
       }
+    `;
+  }
+  if (variant === 'tertiary') {
+    return css`
+      background-color: ${themeGet('colors.paper')};
+      color: ${themeGet('colors.secondary')};
     `;
   }
 };
@@ -89,6 +102,7 @@ const Button = styled.button`
   ${size}
   ${status}
   ${variant}
+  ${rounded}
   ${system}
 `;
 

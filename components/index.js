@@ -1,8 +1,8 @@
 import * as modals from './Modals';
 import BirthDateField from './BirthDateField';
-import CardList from './CardList';
 import ClientSideComponent from './ClientSideComponent';
-import GroupSearch from './GroupSearch';
+import CommunityList from './CommunityList';
+import CommunitySingle from './CommunitySingle';
 import ContentLayout from './ContentLayout';
 import ContentList from './ContentList';
 import ContentSingle from './ContentSingle';
@@ -12,6 +12,7 @@ import EventsList from './EventsList';
 import FeatureFeed from './FeatureFeed';
 import Footer from './Footer';
 import GenderField from './GenderField';
+import GroupSearch from './GroupSearch';
 import GroupSingle from './GroupSingle';
 import GroupsList from './GroupsList';
 import Header from './Header';
@@ -28,9 +29,9 @@ import VerticalCardListFeature from './VerticalCardListFeature';
 
 export {
   BirthDateField,
-  CardList,
   ClientSideComponent,
-  GroupSearch,
+  CommunityList,
+  CommunitySingle,
   ContentLayout,
   ContentList,
   ContentSingle,
@@ -40,6 +41,7 @@ export {
   FeatureFeed,
   Footer,
   GenderField,
+  GroupSearch,
   GroupSingle,
   GroupsList,
   Header,
@@ -48,10 +50,10 @@ export {
   HorizontalCardListFeature,
   Layout,
   Logo,
+  modals,
   Nav,
   SEO,
   UserAvatar,
   UserProfile,
-  modals,
   VerticalCardListFeature,
 };
