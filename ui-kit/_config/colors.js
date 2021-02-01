@@ -8,7 +8,7 @@ const WHITE_SMOKE = '#F4F7F8';
 const LH_GRADIENT_BLUE = '#429CC2';
 const LH_GRADIENT_GREEN = '#8BC76A';
 
-const BACKGROUND = '#F9F9FB';
+const BACKGROUND = '#FFF';
 const BORDER = '#C4C4C4';
 
 const BLACK = '#000';
@@ -29,7 +29,7 @@ const universal = {
     500: '#9b9b9b',
     600: '#8E8E93',
     700: '#686868',
-    800: '#4e4e4e',
+    800: '#2C2C2E',
     900: TUATARA,
   },
 
@@ -58,7 +58,7 @@ const colors = {
 
     // LEGACY!
     bg: BACKGROUND,
-    fg: TUATARA,
+    fg: '#1C1C1E',
     subdued: BATTLESHIP,
     border: BORDER,
   },

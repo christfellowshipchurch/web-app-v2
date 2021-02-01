@@ -2,9 +2,9 @@ import styled, { css } from 'styled-components';
 
 import { Image, system } from 'ui-kit';
 
-const visibility = ({ avatar }) => props => {
+const visibility = ({ src }) => props => {
   return css`
-    visibility: ${avatar ? 'visible' : 'hidden'};
+    visibility: ${src ? 'visible' : 'hidden'};
   `;
 };
 

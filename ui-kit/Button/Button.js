@@ -21,7 +21,7 @@ Button.propTypes = {
   ...systemPropTypes,
   size: PropTypes.oneOf(['s', 'l']),
   status: PropTypes.oneOf(['IDLE', 'LOADING', 'ERROR', 'SUCCESS']),
-  variant: PropTypes.oneOf(['secondary']),
+  variant: PropTypes.oneOf(['outlined']),
 };
 
 export default Button;

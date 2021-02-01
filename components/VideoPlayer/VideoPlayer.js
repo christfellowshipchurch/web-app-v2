@@ -60,6 +60,7 @@ function VideoPlayer({ src, title, details, stopPropagation, ...props } = {}) {
           onTimeUpdate={() => {
             setTime(videoRef.current?.currentTime || 0);
           }}
+          {...props}
         />
         <Box position="absolute" width="100%" height="100%">
           {showControls && (

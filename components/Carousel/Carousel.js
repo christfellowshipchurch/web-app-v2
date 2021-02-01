@@ -65,6 +65,7 @@ function Carousel({
               key={i}
               index={i}
               selected={selectedItem}
+              numItems={_children.length}
               neighbors={neighbors}
               width={contentWidth}
               height={contentHeight}

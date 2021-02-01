@@ -1,12 +1,7 @@
-import { Quote } from 'components';
 import PropTypes from 'prop-types';
 import { Box, CardGrid, Heading, Text } from 'ui-kit';
 import { parseNewlines } from 'utils';
-import {
-  StyledImage,
-  StyledQuote,
-  StyledButton,
-} from './MarketingHeadline.styles';
+import { StyledImage, StyledButton } from './MarketingHeadline.styles';
 
 function MarketingHeadline({
   imageSrc,
@@ -34,6 +29,7 @@ function MarketingHeadline({
         <StyledButton
           key={i}
           color={color}
+          variant={variant}
           onClick={onClick}
           mr={justify === 'left' && 's'}
           ml={justify === 'right' && 's'}
@@ -49,6 +45,7 @@ function MarketingHeadline({
       columns={sideContent ? '2' : '1'}
       breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
       alignItems="center"
+      {...props}
     >
       {justify === 'left' && sideContent}
       <Box

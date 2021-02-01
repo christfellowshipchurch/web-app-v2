@@ -19,7 +19,7 @@ export const StyledText = styled(Text)`
   ${system}
 `;
 
-const neighbors = ({ neighbors }) => props => {
+const neighbors = ({ neighbors, numItems }) => props => {
   switch (neighbors) {
     case 'flat':
       return css`
@@ -27,15 +27,16 @@ const neighbors = ({ neighbors }) => props => {
           translateX(${props => 42}px);
       `;
     case '3d':
+      const translateWidth = (numItems - 1) * 50;
       return css`
         transform: translateX(
             ${props => {
               if (props.selected === props.index) {
-                return 150;
+                return translateWidth;
               } else if (props.selected > props.index) {
-                return 115;
+                return translateWidth - 35;
               } else if (props.selected < props.index) {
-                return 185;
+                return translateWidth + 35;
               }
             }}%
           )

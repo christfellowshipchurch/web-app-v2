@@ -23,16 +23,6 @@ export const StyledImage = styled(Image)`
   ${system}
 `;
 
-export const StyledQuote = styled.div`
-  @media screen and (max-width: ${themeGet(`breakpoints.lg`)}) {
-    width: 100%;
-    justify-self: 'center';
-  }
-
-  ${justify}
-  ${system}
-`;
-
 export const StyledButton = styled(Button)`
   flex: 1;
   max-width: 240px;

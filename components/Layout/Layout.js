@@ -10,7 +10,7 @@ function Layout(props = {}) {
       <SEO title={props.title} />
       <Box>
         <Header />
-        <Box>{props.children}</Box>
+        <Box style={{ overflowX: 'hidden' }}>{props.children}</Box>
         <Footer />
       </Box>
     </>

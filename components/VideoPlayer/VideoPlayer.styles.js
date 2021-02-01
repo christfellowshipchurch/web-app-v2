@@ -48,4 +48,6 @@ export const StyledRange = styled.input`
 
 export const StyledVideo = styled.video`
   width: 100%;
+
+  ${system}
 `;

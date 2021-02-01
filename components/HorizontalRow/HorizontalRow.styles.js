@@ -16,6 +16,8 @@ export const StyledCardGrid = styled(CardGrid)`
     grid-template-columns: repeat(1, 1fr);
   }
 
+  margin-left: auto;
+  margin-right: auto;
   grid-column-gap: ${themeGet('space.m')};
   grid-row-gap: ${themeGet('space.base')};
 `;
@@ -25,7 +27,8 @@ const Styled = styled.div`
   flex-direction: column;
   margin-left: auto;
   margin-right: auto;
-  max-width: 980px;
+
+  ${system}
 `;
 
 export default Styled;

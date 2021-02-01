@@ -7,30 +7,43 @@ import { noop } from 'utils';
 
 import Styled, { StyledCardGrid, StyledImage } from './HorizontalRow.styles';
 
-function HorizontalRow({ title, items, action, color, actionLabel } = {}) {
+function HorizontalRow({
+  title,
+  items,
+  action,
+  color,
+  actionLabel,
+  ...props
+} = {}) {
   return (
-    <Styled>
-      <Box
-        display="flex"
-        justifyContent="space-between"
-        alignItems="center"
-        mb="base"
-      >
-        <Heading variant="h3" color="black">
-          {title}
-        </Heading>
-        <Text
+    <Styled {...props}>
+      {(title || actionLabel) && (
+        <Box
           display="flex"
+          justifyContent="space-between"
           alignItems="center"
-          onClick={action || noop}
-          color={color}
-          variant="h4"
-          fontWeight="600"
+          mb="base"
         >
-          <Box mr="xxs">{actionLabel}</Box>
-          <ArrowRight color={theme.colors[color]} weight="bold" size={18} />
-        </Text>
-      </Box>
+          {title && (
+            <Heading variant="h3" color="black">
+              {title}
+            </Heading>
+          )}
+          {actionLabel && (
+            <Text
+              display="flex"
+              alignItems="center"
+              onClick={action || noop}
+              color={color}
+              variant="h4"
+              fontWeight="600"
+            >
+              <Box mr="xxs">{actionLabel}</Box>
+              <ArrowRight color={theme.colors[color]} weight="bold" size={18} />
+            </Text>
+          )}
+        </Box>
+      )}
       <StyledCardGrid>
         {items.map((item, i) => {
           return (
