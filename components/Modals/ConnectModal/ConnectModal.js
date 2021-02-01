@@ -14,7 +14,6 @@ function ConnectModal(props = {}) {
   useEffect(() => {
     const initialValue = {
       message: defaultMessage,
-      preference: 'email',
     };
     setValues(initialValue);
   }, [setValues, defaultMessage]);
