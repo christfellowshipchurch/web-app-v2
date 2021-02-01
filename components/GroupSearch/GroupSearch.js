@@ -12,25 +12,12 @@ export default function GroupSearch(props = {}) {
     fetchPolicy: 'cache-and-network',
   });
 
-  console.groupCollapsed('%c<GroupSearch> render()', 'color: #888');
-  console.log('filtersState:', filtersState);
-  console.log('loading:', loading);
-  console.log('groups:', groups);
-  console.log('error:', error);
-  console.groupEnd();
-
   useEffect(() => {
     console.log('✨ Use Effect ✨');
 
     if (!filtersState.hydrated) {
       return;
     }
-
-    console.log(
-      '🔍%c Searching groups...',
-      'background: #00aeff; color: white; font-weight: bold;'
-    );
-    console.log('--> queryParams: ', filtersState.queryParams);
 
     searchGroups({
       variables: {
