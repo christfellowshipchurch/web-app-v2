@@ -56,28 +56,6 @@ function ConnectModal(props = {}) {
             height="115px"
             onChange={handleChange}
           />
-          <Box as="p" mb="base">
-            The leader will respond with the next steps. How would you like to
-            be reached?
-          </Box>
-          <Box display="flex" mb="l">
-            <Radio
-              id="email"
-              label="Email"
-              containerProps={{ marginRight: 'base' }}
-              name="preference"
-              value="email"
-              defaultChecked={true}
-              onChange={handleChange}
-            />
-            <Radio
-              id="phone"
-              name="preference"
-              label="Phone"
-              value="phone"
-              onChange={handleChange}
-            />
-          </Box>
           <Button type="submit" mb="base">
             Send
           </Button>
