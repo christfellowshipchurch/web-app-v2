@@ -17,7 +17,7 @@ function TextInput(props = {}) {
           ) : null}
         </FormLabel>
       ) : null}
-      <Styled.Field id={props.id} name={props.id} {...props} />
+      <Styled.Input id={props.id} name={props.id} {...props} />
     </Styled>
   );
 }
@@ -32,12 +32,10 @@ TextInput.propTypes = {
   }),
   id: PropTypes.string.isRequired,
   label: PropTypes.string,
-  tag: PropTypes.string,
 };
 
 TextInput.defaultProps = {
   type: 'text',
-  tag: 'input',
 };
 
 export default TextInput;

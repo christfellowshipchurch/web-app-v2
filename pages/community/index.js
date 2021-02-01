@@ -1,9 +1,9 @@
+import { Box, Button, Cell, utils } from 'ui-kit';
 import { CommunityList, Footer, Header, SEO } from 'components';
 import { CommunitiesProvider } from 'providers';
+import Styled from './Community.styles';
 import { update as updateAuth, useAuth } from 'providers/AuthProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
-import { Box, Button, Cell, utils } from 'ui-kit';
-import Styled from './Community.styles';
 
 const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
 
