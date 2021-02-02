@@ -3,7 +3,6 @@ import { cloneElement, Fragment } from 'react';
 import { useState } from 'react';
 
 import { Box } from 'ui-kit';
-import { noop } from 'utils';
 
 import { StyledContent, StyledContainer, StyledText } from './Carousel.styles';
 

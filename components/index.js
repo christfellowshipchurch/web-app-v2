@@ -6,6 +6,7 @@ import ContentList from './ContentList';
 import ContentSingle from './ContentSingle';
 import CustomLink from './CustomLink';
 import Footer from './Footer';
+import FullWidthText from './FullWidthText';
 import GroupsList from './GroupsList';
 import GroupSingle from './GroupSingle';
 import Header from './Header';
@@ -37,6 +38,7 @@ export {
   EventCallout,
   EventsCallout,
   Footer,
+  FullWidthText,
   GroupsList,
   GroupSingle,
   Header,

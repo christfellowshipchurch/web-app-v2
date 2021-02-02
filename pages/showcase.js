@@ -3,6 +3,7 @@ import {
   Carousel,
   EventCallout,
   EventsCallout,
+  FullWidthText,
   HorizontalRow,
   LargeImage,
   Layout,
@@ -486,6 +487,57 @@ export default function About() {
             avatar="https://s3-alpha-sig.figma.com/img/157c/c6d9/8fb9cd71abfce81ea46bb9375e44af18?Expires=1612742400&Signature=SSjcHzKAP8nbHd5k9TaIDxbR2VnuIOnNDy61YRCbwePp7zMc6I5dXb2bt67XCpzFtHB3EX5Vsfnx1nitDFukOfaHVMr0LsbPvmNIz8-Rt3vVljeQzUhwswiZMKm8Q6~7wI7-ygpPpIwo45pga53hTWfdEfEWIDj9YRvsEr-gpysagJg1mpn1ibF2DhPDjpq8Wb1~3D6z~T-ZRWuhLcT7GAh7pkY4v7mGjJUWYumIWhXqkSs6NoYbbbxHcaGarQfzKv1JGL9imro731-yfG5JSOI2OaXmw3c~gVkCuwy-yq1Pd~0nnKdoRW3YjB7G7g8lAh86qHJAP2iNHgEyNtIabQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
           />
         </CardGrid>
+      </CardGrid>
+      <CardGrid px="xxl" py="xl" columns="1">
+        <FullWidthText
+          title={
+            <>
+              <Heading color="neutrals.900" variant="h2" fontWeight="800">
+                Marketing&nbsp;
+              </Heading>
+              <Heading color="primary" variant="h2" fontWeight="800">
+                headline
+              </Heading>
+              <Heading color="neutrals.900" variant="h2" fontWeight="800">
+                .
+              </Heading>
+            </>
+          }
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit id massa id massa elementum nulla mi. Leo mauris aliquam porta suscipit vitae sit. Viverra scelerisque pellentesque quam adipiscing risus. Praesent euismod dui feugiat at mauris nisl tortor id. Mauris urna in a vehicula. Sed vivamus scelerisque tincidunt egestas. Accumsan, ut lacus, donec massa felis eget mauris. Elit magna sed urna posuere. Nascetur diam enim penatibus amet at pretium.\n\nMauris nulla montes, ut faucibus arcu eget amet libero. Volutpat, nibh venenatis, suscipit ornare mollis amet odio venenatis adipiscing. Amet posuere scelerisque aliquam volutpat."
+          justify="left"
+        />
+      </CardGrid>
+      <CardGrid px="xxl" py="xl" columns="1">
+        <FullWidthText
+          title={
+            <>
+              <Heading color="neutrals.900" variant="h2" fontWeight="800">
+                Marketing&nbsp;
+              </Heading>
+              <Heading color="primary" variant="h2" fontWeight="800">
+                headline
+              </Heading>
+              <Heading color="neutrals.900" variant="h2" fontWeight="800">
+                .
+              </Heading>
+            </>
+          }
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit id massa id massa elementum nulla mi. Leo mauris aliquam porta suscipit vitae sit. Viverra scelerisque pellentesque quam adipiscing risus. Praesent euismod dui feugiat at mauris nisl tortor id. Mauris urna in a vehicula. Sed vivamus scelerisque tincidunt egestas. Accumsan, ut lacus, donec massa felis eget mauris. Elit magna sed urna posuere. Nascetur diam enim penatibus amet at pretium.\n\nMauris nulla montes, ut faucibus arcu eget amet libero. Volutpat, nibh venenatis, suscipit ornare mollis amet odio venenatis adipiscing. Amet posuere scelerisque aliquam volutpat."
+          justify="right"
+        />
+      </CardGrid>
+      <CardGrid px="xxl" py="xl" columns="1">
+        <FullWidthText
+          title={
+            <>
+              <Heading color="neutrals.900" variant="h2" fontWeight="800">
+                Marketing headline.
+              </Heading>
+            </>
+          }
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit id massa id massa elementum nulla mi. Leo mauris aliquam porta suscipit vitae sit. Viverra scelerisque pellentesque quam adipiscing risus. Praesent euismod dui feugiat at mauris nisl tortor id. Mauris urna in a vehicula. Sed vivamus scelerisque tincidunt egestas. Accumsan, ut lacus, donec massa felis eget mauris. Elit magna sed urna posuere. Nascetur diam enim penatibus amet at pretium.\n\nMauris nulla montes, ut faucibus arcu eget amet libero. Volutpat, nibh venenatis, suscipit ornare mollis amet odio venenatis adipiscing. Amet posuere scelerisque aliquam volutpat."
+          justify="center"
+        />
       </CardGrid>
     </Layout>
   );
