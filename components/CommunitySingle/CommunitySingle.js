@@ -64,8 +64,8 @@ function CommunitySingle(props = {}) {
           mb="base"
         >{`There's a ${props.data?.title} for everyone`}</Box>
         <Box display="flex" flexWrap="wrap" justifyContent="center" m="s">
-          {props.data?.subpreferences &&
-            props.data?.subpreferences.map((item, i) => (
+          {props.data?.subPreferences &&
+            props.data?.subPreferences.map((item, i) => (
               <DefaultCard
                 as="a"
                 key={i}

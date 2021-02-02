@@ -41,7 +41,7 @@ function usePreferences(options = {}) {
   const querySubPreferences = useQuery(GET_SUB_PREFERENCES, options);
   return {
     preferences: queryPreferences?.data?.allPreferences || [],
-    subpreferences: querySubPreferences?.data?.allSubPreferences || [],
+    subPreferences: querySubPreferences?.data?.allSubPreferences || [],
     ...queryPreferences,
     ...querySubPreferences,
   };
