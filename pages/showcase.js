@@ -1,8 +1,12 @@
+import { useRouter } from 'next/router';
+import { ArrowRight, Circle, Info } from 'phosphor-react';
 import {
   ArticleLink,
   Carousel,
   EventCallout,
   EventsCallout,
+  FlagCTA,
+  FullWidthCTA,
   FullWidthText,
   HorizontalRow,
   LargeImage,
@@ -17,10 +21,7 @@ import {
   ValuesRow,
   VideoPlayer,
 } from 'components';
-import { useRouter } from 'next/router';
-import { Info } from 'phosphor-react';
-import { Box, CardGrid, Heading, Text, theme } from 'ui-kit';
-import { parseNewlines } from 'utils';
+import { Box, Button, CardGrid, Heading, Icon, Text, theme } from 'ui-kit';
 
 export default function About() {
   const router = useRouter();
@@ -577,6 +578,137 @@ export default function About() {
           textAlign="center"
         />
       </CardGrid>
+      <CardGrid
+        py="l"
+        columns="2"
+        gridRowGap="xxl"
+        breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
+      >
+        <FlagCTA left color="primary" height="227px" width="434px">
+          <Heading
+            color="white"
+            fontWeight="700"
+            fontSize="28px"
+            lineHeight="35px"
+            mb="s"
+          >
+            Join us live now!
+          </Heading>
+          <Button variant="outlined" color="white" bg="transparent" size="l">
+            <Text fontWeight="600">Join Us!</Text>
+          </Button>
+        </FlagCTA>
+        <FlagCTA right color="gray" height="227px" width="434px">
+          <Heading
+            color="neutrals.900"
+            opacity="60%"
+            fontWeight="700"
+            fontSize="28px"
+            lineHeight="35px"
+            mb="s"
+          >
+            Join us live now!
+          </Heading>
+          <Button
+            variant="outlined"
+            color="neutrals.900"
+            opacity="60%"
+            bg="transparent"
+            size="l"
+          >
+            <Text fontWeight="600">Join Us!</Text>
+          </Button>
+        </FlagCTA>
+      </CardGrid>
+      <FullWidthCTA
+        size="s"
+        title="Join us live now!"
+        action={{ text: 'The good news', onClick: () => {} }}
+        mb="m"
+        pt="37px"
+        height="134px"
+      >
+        <Heading
+          color="white"
+          fontSize="28px"
+          lineHeight="35px"
+          fontWeight="700"
+        >
+          Join us live now!
+        </Heading>
+        <Text
+          color="neutrals.100"
+          opacity="60%"
+          display="flex"
+          fontWeight="600"
+          alignItems="center"
+        >
+          The good news&nbsp;
+          <ArrowRight
+            size="18"
+            color={`${theme.colors.neutrals[100]}`}
+            opacity="60%"
+            weight="bold"
+          />
+        </Text>
+      </FullWidthCTA>
+      <FullWidthCTA height="434px" pt="171px">
+        <Box display="flex" alignItems="flex-end" mb="s">
+          <Icon
+            name="godLoves"
+            width="532px"
+            height="67px"
+            viewBox="0 0 532 67"
+            stroke="white"
+            fill="white"
+            mr="m"
+          />
+          <Icon
+            name="you"
+            width="200px"
+            height="67px"
+            viewBox="0 0 200 67"
+            stroke="white"
+          />
+          <Circle color="white" size={20} weight="fill" />
+        </Box>
+        <Text
+          color="white"
+          variant="h4"
+          width="530px"
+          textAlign="center"
+          display="inline"
+          fontWeight="600"
+          mb="s"
+        >
+          For God so loved the world, that he gave his only Son, that whoever
+          believes in him should not perish but have eternal life.&nbsp;
+          <Text
+            color="neutrals.100"
+            variant="h4"
+            opacity="60%"
+            display="inline"
+            fontWeight="600"
+          >
+            John 3.16
+          </Text>
+        </Text>
+        <Text
+          color="neutrals.100"
+          opacity="60%"
+          display="flex"
+          fontWeight="600"
+          alignItems="center"
+        >
+          The good news&nbsp;
+          <ArrowRight
+            size="18"
+            color={`${theme.colors.neutrals[100]}`}
+            opacity="60%"
+            weight="bold"
+          />
+        </Text>
+      </FullWidthCTA>
     </Layout>
   );
 }

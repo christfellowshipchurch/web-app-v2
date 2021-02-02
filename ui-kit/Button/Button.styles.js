@@ -77,11 +77,15 @@ const Button = styled.button`
     opacity: 0.5;
   }
 
-  ${system}
+  &:focus {
+    outline: none;
+  }
+
   ${background}
   ${border}
   ${size}
   ${status}
+  ${system}
   ${color}
 `;
 

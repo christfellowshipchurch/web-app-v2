@@ -5,7 +5,9 @@ import ContentLayout from './ContentLayout';
 import ContentList from './ContentList';
 import ContentSingle from './ContentSingle';
 import CustomLink from './CustomLink';
+import FlagCTA from './FlagCTA';
 import Footer from './Footer';
+import FullWidthCTA from './FullWidthCTA';
 import FullWidthText from './FullWidthText';
 import GroupsList from './GroupsList';
 import GroupSingle from './GroupSingle';
@@ -38,7 +40,9 @@ export {
   CustomLink,
   EventCallout,
   EventsCallout,
+  FlagCTA,
   Footer,
+  FullWidthCTA,
   FullWidthText,
   GroupsList,
   GroupSingle,
