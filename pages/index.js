@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { initializeApollo } from 'lib/apolloClient';
-import { GET_FEATURE_FEED } from '../hooks/useFeatureFeed'
-import { GET_FEATURE } from '../hooks/useFeature'
-import { FeatureFeedProvider } from '../providers';
-import { Layout, FeatureFeed } from '../components';
+import { GET_FEATURE_FEED } from 'hooks/useFeatureFeed';
+import { GET_FEATURE } from 'hooks/useFeature';
+import { FeatureFeedProvider } from 'providers';
+import { Layout, FeatureFeed } from 'components';
 
 export default function Home(props = {}) {
   return (
