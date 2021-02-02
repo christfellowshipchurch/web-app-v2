@@ -4,6 +4,7 @@ import { ArrowRight, Circle } from 'phosphor-react';
 import {
   ArticleLink,
   Carousel,
+  FullWidthCTA,
   HorizontalRow,
   LargeImage,
   MainPhotoHeader,
@@ -549,19 +550,7 @@ function LoggedOutHomeFeed(props = {}) {
           />
         </Box>
       </CardGrid>
-      <Box
-        background={`linear-gradient(to bottom right, ${theme.colors.gradient.join(
-          ', '
-        )})`}
-        height="434px"
-        minWidth={`${theme.breakpoints.lg}`}
-        width="100%"
-        mt={{ _: 'xl', lg: '-60px' }}
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        flexDirection="column"
-      >
+      <FullWidthCTA height="434px" pt="171px">
         <Box display="flex" alignItems="flex-end" mb="s" mt="l">
           <Icon
             name="godLoves"
@@ -617,7 +606,7 @@ function LoggedOutHomeFeed(props = {}) {
             weight="bold"
           />
         </Text>
-      </Box>
+      </FullWidthCTA>
       <HorizontalRow
         backgroundColor="neutrals.800"
         py="186px"
