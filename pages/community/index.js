@@ -38,7 +38,9 @@ export default function Community() {
             <Button variant="tertiary" rounded={true}>
               Watch
             </Button>
-            <Button variant="link">Find your community</Button>
+            <Button onClick={handleOnClick} variant="link">
+              Find your community
+            </Button>
           </Box>
         </Styled.Hero>
         <Box>
