@@ -4,9 +4,26 @@ import PropTypes from 'prop-types';
 import { rem } from 'ui-kit/_utils';
 import { Box, Button, DefaultCard } from 'ui-kit';
 import { SEO } from 'components';
+import { update as updateAuth, useAuth } from 'providers/AuthProvider';
+import { useModalDispatch, showModal } from 'providers/ModalProvider';
+
 import Header from './CommunitySingle.styles';
 
 function CommunitySingle(props = {}) {
+  const [{ authenticated }, authDispatch] = useAuth();
+  const modalDispatch = useModalDispatch();
+
+  function handleOnClick() {
+    if (!authenticated) {
+      modalDispatch(showModal('Auth'));
+      authDispatch(
+        updateAuth({ onSuccess: () => modalDispatch(showModal('GroupFilter')) })
+      );
+    } else {
+      modalDispatch(showModal('GroupFilter'));
+    }
+  }
+
   return (
     <>
       <SEO title={props.data?.title} />
@@ -25,7 +42,7 @@ function CommunitySingle(props = {}) {
           </Box>
         </Box>
         <Box display="flex" mb="l">
-          <Button variant="tertiary" rounded={true}>
+          <Button variant="tertiary" rounded={true} onClick={handleOnClick}>
             {`Find your ${props.data?.title}`}
           </Button>
           <Button variant="link">{`Explore ${props.data?.title}`}</Button>
@@ -69,7 +86,9 @@ function CommunitySingle(props = {}) {
         <Box as="p" mb="l">
           There are hundreds of communities at CF. We’ll help find yours.
         </Box>
-        <Button rounded={true}>Find your community</Button>
+        <Button rounded={true} onClick={handleOnClick}>
+          Find your community
+        </Button>
       </Box>
     </>
   );
