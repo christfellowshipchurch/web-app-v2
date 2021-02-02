@@ -106,7 +106,7 @@ const GroupCard = (props = {}) => {
         )}
         {props.callToAction && (
           <Button
-            href={props?.callToAction?.action}
+            onClick={props?.callToAction?.action}
             mt="l"
             size="l"
             width="100%"

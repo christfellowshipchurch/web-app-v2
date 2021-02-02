@@ -3,15 +3,13 @@ import { Box, CardGrid, Cell, GroupCard, Loader, utils } from 'ui-kit';
 import { Footer, GroupSearchFilters, Header, SEO } from 'components';
 import { useGroupFilters } from 'providers/GroupFiltersProvider';
 import { useSearchGroups } from 'hooks';
+import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
 const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
-const DEFAULT_GROUP_CALL_TO_ACTION = {
-  call: 'Contact',
-  action: 'action',
-};
 
 export default function CommunitySearch() {
   const [filtersState] = useGroupFilters();
+  const modalDispatch = useModalDispatch();
   const [searchGroups, { loading, groups, error }] = useSearchGroups({
     fetchPolicy: 'cache-and-network',
   });
@@ -56,22 +54,36 @@ export default function CommunitySearch() {
           )}
           {!loading && Boolean(groups?.length) && (
             <CardGrid>
-              {groups.map((group, index) => (
-                <GroupCard
-                  key={group.node?.id}
-                  callToAction={DEFAULT_GROUP_CALL_TO_ACTION}
-                  campus={group.node?.campus.name}
-                  coverImage={group.coverImage?.sources[0]?.uri}
-                  dateTime={group.node?.dateTime.start}
-                  groupType={group.type}
-                  heroAvatars={group.node?.leaders?.edges}
-                  preference={group.node?.preference}
-                  subPreference={group.node?.subPreference}
-                  summary={group.summary}
-                  title={group.title}
-                  totalAvatars={group.node?.members?.totalCount}
-                />
-              ))}
+              {groups.map((group, index) => {
+                const DEFAULT_GROUP_CALL_TO_ACTION = {
+                  call: 'Contact',
+                  action: () =>
+                    modalDispatch(
+                      showModal('ConnectModal', {
+                        leaderName: group.node?.leaders?.edges[0].node.nickName,
+                        leaderAvatar:
+                          group.node?.leaders?.edges[0].node.photo.uri,
+                      })
+                    ),
+                };
+
+                return (
+                  <GroupCard
+                    key={group.node?.id}
+                    callToAction={DEFAULT_GROUP_CALL_TO_ACTION}
+                    campus={group.node?.campus.name}
+                    coverImage={group.coverImage?.sources[0]?.uri}
+                    dateTime={group.node?.dateTime.start}
+                    groupType={group.type}
+                    heroAvatars={group.node?.leaders?.edges}
+                    preference={group.node?.preference}
+                    subPreference={group.node?.subPreference}
+                    summary={group.summary}
+                    title={group.title}
+                    totalAvatars={group.node?.members?.totalCount}
+                  />
+                );
+              })}
             </CardGrid>
           )}
           {!loading && !Boolean(groups?.length) && (
