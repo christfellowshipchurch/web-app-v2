@@ -13,6 +13,7 @@ const rounded = ({ rounded }) => props => {
 };
 
 const Image = styled.img`
+  ${props => props.objectFit && `object-fit: ${props.objectFit};`}
   ${rounded}
   ${system}
 `;

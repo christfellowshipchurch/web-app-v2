@@ -20,6 +20,7 @@ import MarketingHeadline from './MarketingHeadline';
 import MeetTheStaff from './MeetTheStaff';
 import Nav from './Nav';
 import PageSplit from './PageSplit';
+import Photo from './Photo';
 import Quote from './Quote';
 import Search from './Search';
 import SEO from './SEO';
@@ -52,6 +53,7 @@ export {
   MeetTheStaff,
   Nav,
   PageSplit,
+  Photo,
   Quote,
   Search,
   SEO,
