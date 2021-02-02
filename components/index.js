@@ -12,7 +12,7 @@ import EventsList from './EventsList';
 import FeatureFeed from './FeatureFeed';
 import Footer from './Footer';
 import GenderField from './GenderField';
-import GroupSearch from './GroupSearch';
+import GroupSearchFilters from './GroupSearchFilters';
 import GroupSingle from './GroupSingle';
 import GroupsList from './GroupsList';
 import Header from './Header';
@@ -41,7 +41,7 @@ export {
   FeatureFeed,
   Footer,
   GenderField,
-  GroupSearch,
+  GroupSearchFilters,
   GroupSingle,
   GroupsList,
   Header,
