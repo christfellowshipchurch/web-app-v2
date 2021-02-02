@@ -1,17 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { rem } from 'ui-kit/_utils';
 import { Box, Button, DefaultCard } from 'ui-kit';
 import { SEO } from 'components';
 import { update as updateAuth, useAuth } from 'providers/AuthProvider';
+import { useGroupFilters, toggleValue } from 'providers/GroupFiltersProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
 import Header from './CommunitySingle.styles';
 
 function CommunitySingle(props = {}) {
   const [{ authenticated }, authDispatch] = useAuth();
+  const [filtersState, filtersDispatch] = useGroupFilters();
   const modalDispatch = useModalDispatch();
+
+  useEffect(() => {
+    // Pre-populate this Group Preference on the group search filters
+    if (!filtersState.values.preferences?.includes(props.slug)) {
+      filtersDispatch(toggleValue({ name: 'preferences', value: props.slug }));
+    }
+  }, [filtersState.values.preferences, filtersDispatch, props.slug]);
 
   function handleOnClick() {
     if (!authenticated) {
@@ -96,6 +105,7 @@ function CommunitySingle(props = {}) {
 
 CommunitySingle.propTypes = {
   data: PropTypes.object,
+  slug: PropTypes.string,
 };
 
 export default CommunitySingle;

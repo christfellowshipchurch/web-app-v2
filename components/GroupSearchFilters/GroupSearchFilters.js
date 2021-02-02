@@ -18,7 +18,7 @@ function CurrentFiltersList(props = {}) {
             label = 'Campuses';
             break;
           case 'preferences':
-            label = 'Group Type';
+            label = 'Group Types';
             break;
           case 'subPreferences':
             label = 'Lineups';
@@ -67,7 +67,7 @@ function GroupSearchFilters(props = {}) {
   }
 
   console.log(
-    'Object.entries(filtersState.queryParams):',
+    '📡 Current search params',
     Object.entries(filtersState.queryParams)
   );
 

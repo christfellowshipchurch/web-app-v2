@@ -35,7 +35,7 @@ const options = Object.freeze({
     { label: 'Sun', value: 'sun' },
   ],
   preferences: [
-    { label: "Crew (Men's)", value: 'crew' },
+    { label: 'Crew (Men)', value: 'crew' },
     { label: 'Sisterhood', value: 'sisterhood' },
     { label: 'Married People', value: 'married-people' },
     { label: 'Young Adults', value: 'young-adults' },
@@ -80,7 +80,7 @@ const resetValues = payload => ({
   payload,
 });
 
-// dispatch(toggleValue({ arrayProp: "value to add/remove from array" }));
+// dispatch(toggleValue({ name: 'array prop key', value: "value to add/remove" }));
 const toggleValue = payload => ({
   type: actionTypes.toggleValue,
   payload,
@@ -170,17 +170,18 @@ function getQueryParams(options, values) {
 }
 
 /**
- * Appends a property with the string-serialized filter values.
+ * Appends serialized properties representing the state values.
  * @param {Object} state
  * @param {Object} updatedState
  */
-function appendSerialized(state) {
+function updateAndSerialize(state) {
   const newState = {
     ...state,
     valuesSerialized: serializeFilterValues(state.values),
     queryParams: getQueryParams(state.options, state.values),
   };
 
+  console.log('[GroupFiltersProvider] newState: ', newState);
   return newState;
 }
 
@@ -189,7 +190,7 @@ function appendSerialized(state) {
 function reducer(state, action) {
   switch (action.type) {
     case actionTypes.hydrate: {
-      return appendSerialized({
+      return updateAndSerialize({
         ...initialState,
         hydrated: true,
         values: {
@@ -199,13 +200,13 @@ function reducer(state, action) {
       });
     }
     case actionTypes.resetValues: {
-      return appendSerialized({
+      return updateAndSerialize({
         ...state,
         values: initialState.values,
       });
     }
     case actionTypes.update: {
-      return appendSerialized({
+      return updateAndSerialize({
         ...state,
         values: {
           ...state.values,
@@ -215,9 +216,16 @@ function reducer(state, action) {
     }
     case actionTypes.toggleValue: {
       const { name, value } = action.payload;
-      const valueExists = state.values[name].includes(value);
 
-      return appendSerialized({
+      if (!state.values[name]) {
+        console.warn(
+          `Cannot update GroupFiltersProvider state at path \`values.${name}\``
+        );
+        return state;
+      }
+      const valueExists = state.values[name]?.includes(value);
+
+      return updateAndSerialize({
         ...state,
         values: {
           ...state.values,

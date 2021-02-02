@@ -13,8 +13,6 @@ function GroupFilterWhereWhen(props = {}) {
   const [filtersState, filtersDispatch] = useGroupFilters();
   const modalDispatch = useModalDispatch();
 
-  console.log('<GroupFilterWhereWhen> filtersState:', filtersState);
-
   const handleChange = event => {
     event.persist();
     const { name, value } = event.target;

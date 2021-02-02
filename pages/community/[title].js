@@ -24,6 +24,7 @@ export default function Community(props) {
       <CommunitiesProvider
         Component={CommunitySingle}
         data={{ ...preference, subpreferences }}
+        slug={title}
       />
     </Layout>
   );
