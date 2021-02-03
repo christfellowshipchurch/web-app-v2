@@ -9,7 +9,7 @@ import { usePreferences } from 'hooks';
 import { CommunitySingle, Layout } from 'components';
 
 export default function Community(props) {
-  const { preferences, subpreferences } = usePreferences();
+  const { preferences, subPreferences } = usePreferences();
   const router = useRouter();
   const { title } = router.query;
   const formatTitleAsUrl = title => kebabCase(toLower(title));
@@ -23,7 +23,8 @@ export default function Community(props) {
     <Layout title={title}>
       <CommunitiesProvider
         Component={CommunitySingle}
-        data={{ ...preference, subpreferences }}
+        data={{ ...preference, subPreferences }}
+        slug={title}
       />
     </Layout>
   );

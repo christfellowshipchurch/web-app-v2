@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { ApolloProvider } from '@apollo/client';
 
 import { useApollo } from 'lib/apolloClient';
-import { AuthProvider, ModalProvider } from 'providers';
+import { AuthProvider, GroupFiltersProvider, ModalProvider } from 'providers';
 import { ModalManager } from 'providers/ModalProvider';
 import modals from 'config/modals';
 import { ThemeProvider } from 'ui-kit';
@@ -14,10 +14,12 @@ function AppProvider(props = {}) {
     <ApolloProvider client={apolloClient}>
       <AuthProvider>
         <ThemeProvider>
-          <ModalProvider modals={modals}>
-            {props.children}
-            <ModalManager />
-          </ModalProvider>
+          <GroupFiltersProvider>
+            <ModalProvider modals={modals}>
+              {props.children}
+              <ModalManager />
+            </ModalProvider>
+          </GroupFiltersProvider>
         </ThemeProvider>
       </AuthProvider>
     </ApolloProvider>

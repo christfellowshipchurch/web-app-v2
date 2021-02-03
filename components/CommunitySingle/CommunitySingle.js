@@ -1,12 +1,38 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { rem } from 'ui-kit/_utils';
 import { Box, Button, DefaultCard } from 'ui-kit';
 import { SEO } from 'components';
+import { update as updateAuth, useAuth } from 'providers/AuthProvider';
+import { useGroupFilters, toggleValue } from 'providers/GroupFiltersProvider';
+import { useModalDispatch, showModal } from 'providers/ModalProvider';
+
 import Header from './CommunitySingle.styles';
 
 function CommunitySingle(props = {}) {
+  const [{ authenticated }, authDispatch] = useAuth();
+  const [filtersState, filtersDispatch] = useGroupFilters();
+  const modalDispatch = useModalDispatch();
+
+  useEffect(() => {
+    // Pre-populate this Group Preference on the group search filters
+    if (!filtersState.values.preferences?.includes(props.slug)) {
+      filtersDispatch(toggleValue({ name: 'preferences', value: props.slug }));
+    }
+  }, [filtersState.values.preferences, filtersDispatch, props.slug]);
+
+  function handleOnClick() {
+    if (!authenticated) {
+      modalDispatch(showModal('Auth'));
+      authDispatch(
+        updateAuth({ onSuccess: () => modalDispatch(showModal('GroupFilter')) })
+      );
+    } else {
+      modalDispatch(showModal('GroupFilter'));
+    }
+  }
+
   return (
     <>
       <SEO title={props.data?.title} />
@@ -25,7 +51,7 @@ function CommunitySingle(props = {}) {
           </Box>
         </Box>
         <Box display="flex" mb="l">
-          <Button variant="tertiary" rounded={true}>
+          <Button variant="tertiary" rounded={true} onClick={handleOnClick}>
             {`Find your ${props.data?.title}`}
           </Button>
           <Button variant="link">{`Explore ${props.data?.title}`}</Button>
@@ -38,8 +64,8 @@ function CommunitySingle(props = {}) {
           mb="base"
         >{`There's a ${props.data?.title} for everyone`}</Box>
         <Box display="flex" flexWrap="wrap" justifyContent="center" m="s">
-          {props.data?.subpreferences &&
-            props.data?.subpreferences.map((item, i) => (
+          {props.data?.subPreferences &&
+            props.data?.subPreferences.map((item, i) => (
               <DefaultCard
                 as="a"
                 key={i}
@@ -69,7 +95,9 @@ function CommunitySingle(props = {}) {
         <Box as="p" mb="l">
           There are hundreds of communities at CF. We’ll help find yours.
         </Box>
-        <Button rounded={true}>Find your community</Button>
+        <Button rounded={true} onClick={handleOnClick}>
+          Find your community
+        </Button>
       </Box>
     </>
   );
@@ -77,6 +105,7 @@ function CommunitySingle(props = {}) {
 
 CommunitySingle.propTypes = {
   data: PropTypes.object,
+  slug: PropTypes.string,
 };
 
 export default CommunitySingle;
