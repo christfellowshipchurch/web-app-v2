@@ -10,7 +10,7 @@ import { FeatureProvider } from 'providers';
 import { Box, Divider } from 'ui-kit';
 import { getComponent } from 'utils';
 
-//This component is created to map the features by type and send them
+// This component is created to map the features by type and send them.
 const FeatureFeed = (props = {}) => {
   const CardListComponents = {
     HeroListFeature,
@@ -21,7 +21,7 @@ const FeatureFeed = (props = {}) => {
   const isLastItem = i => i < props.data.length - 1;
 
   return props.data?.map((edge, i) => (
-    <Box key={i} pb="xl">
+    <Box key={edge?.id} pb="xl">
       <Box as="h2" pb="base">
         {edge.title}
       </Box>
