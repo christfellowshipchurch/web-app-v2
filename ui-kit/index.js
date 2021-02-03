@@ -19,6 +19,7 @@ import Divider from './Divider';
 import FormLabel from './FormLabel';
 import GroupCard from './GroupCard';
 import HeroCardGrid from './HeroCardGrid';
+import HorizontalHighlightCard from './HorizontalHighlightCard'
 import Icon from './Icon';
 import List from './List';
 import Loader from './Loader';
@@ -48,6 +49,7 @@ export {
   FormLabel,
   GroupCard,
   HeroCardGrid,
+  HorizontalHighlightCard,
   Icon,
   List,
   Loader,
