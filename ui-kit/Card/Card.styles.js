@@ -99,8 +99,15 @@ const Cover = styled.div`
   ${system}
 `;
 
-const position = ({ position }) => props => {
+const position = ({ position, smallerCard }) => props => {
   if (position === 'bottomLeft') {
+    if (!!smallerCard){
+      return css`
+      bottom: ${themeGet('space.base')};
+      left: ${themeGet('space.s')};
+      padding: ${themeGet('space.s')};
+      `;
+    }
     return css`
       bottom: ${themeGet('space.s')};
       left: ${themeGet('space.s')};
