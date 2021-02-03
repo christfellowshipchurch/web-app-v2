@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
+import kebabCase from 'lodash/kebabCase';
+import toLower from 'lodash/toLower';
 import { useRouter } from 'next/router';
 
 const GroupFiltersProviderStateContext = createContext();
@@ -10,41 +12,30 @@ const GroupFiltersProviderDispatchContext = createContext();
 // Frozen to convey that these are static.
 const options = Object.freeze({
   campuses: [
-    { label: 'Boynton Beach', value: 'boynton-beach' },
-    { label: 'Daytona', value: 'daytona' },
-    { label: 'Jupiter', value: 'jupiter' },
-    { label: 'Okeechobee', value: 'okeechobee' },
-    { label: 'Orlando', value: 'orlando' },
-    { label: 'Palm Beach Gardens', value: 'palm-beach-gardens' },
-    { label: 'Port St. Lucie', value: 'port-st-lucie' },
-    { label: 'Royal Palm Beach', value: 'royal-palm-beach' },
-    {
-      label: 'en Español Royal Palm Beach',
-      value: 'en-espanol-royal-palm-beach',
-    },
-    { label: 'Stuart', value: 'stuart' },
-    { label: 'West Palm Beach', value: 'west-palm-beach' },
+    'Boynton Beach',
+    'Daytona',
+    'Jupiter',
+    'Okeechobee',
+    'Orlando',
+    'Palm Beach Gardens',
+    'Port St. Lucie',
+    'Royal Palm Beach',
+    'en Español Royal Palm Beach',
+    'Stuart',
+    'West Palm Beach',
   ],
-  days: [
-    { label: 'Mon', value: 'mon' },
-    { label: 'Tue', value: 'tue' },
-    { label: 'Wed', value: 'wed' },
-    { label: 'Thu', value: 'thu' },
-    { label: 'Fri', value: 'fri' },
-    { label: 'Sat', value: 'sat' },
-    { label: 'Sun', value: 'sun' },
-  ],
+  days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
   preferences: [
-    { label: 'Crew (Men)', value: 'crew' },
-    { label: 'Sisterhood', value: 'sisterhood' },
-    { label: 'Married People', value: 'married-people' },
-    { label: 'Young Adults', value: 'young-adults' },
+    // 'Crew (Men)',
+    // 'Sisterhood',
+    // 'Married People',
+    // 'Young Adults',
   ],
   subPreferences: [
-    { label: 'Bible Studies', value: 'bible-studies' },
-    { label: 'Prayer Groups', value: 'prayer-groups' },
-    { label: 'Activity Studies', value: 'activity-studies' },
-    { label: 'Classes', value: 'classes' },
+    // 'Bible Studies',
+    // 'Prayer Groups',
+    // 'Activity Studies',
+    // 'Classes',
   ],
 });
 
@@ -128,11 +119,6 @@ function parseFilterValues(string) {
   const values = {};
 
   for (let [key, value] of entries) {
-    // Skip over non-serialized values
-    if (key === 'debug') {
-      continue;
-    }
-
     // Slightly risky logical leap: look at the initialState value
     // for this key, and if it's an array, parse the value as one.
     if (Array.isArray(initialState.values[key])) {
@@ -147,25 +133,14 @@ function parseFilterValues(string) {
 }
 
 function getQueryParams(options, values) {
-  const getLabelFromValue = filterName =>
-    // Iterate over the selected values for each filter,
-    // and go fetch their `label` from their option for that filter.
-    values[filterName]
-      .map(value => {
-        if (value === '') return value;
-
-        const option = options[filterName].find(
-          option => option.value === value
-        );
-        return option?.label;
-      })
-      .filter(string => !isEmpty(string));
+  const getValidValues = filterName =>
+    values[filterName].filter(string => !isEmpty(string));
 
   return {
-    campusNames: getLabelFromValue('campuses'),
-    preferences: getLabelFromValue('preferences'),
-    subPreferences: getLabelFromValue('subPreferences'),
-    days: getLabelFromValue('days'),
+    campusNames: getValidValues('campuses'),
+    preferences: getValidValues('preferences'),
+    subPreferences: getValidValues('subPreferences'),
+    days: getValidValues('days'),
   };
 }
 
@@ -244,7 +219,24 @@ function reducer(state, action) {
 function GroupFiltersProvider(props = {}) {
   const router = useRouter();
 
-  const [state, dispatch] = useReducer(reducer, initialState);
+  // 💡 I think we need to receive the server side rendered/fetched data
+  // for preference/subPreference options here, and build up a dynamic
+  // initialState for the provider to use.
+  console.log(
+    `<GroupFiltersProvider> # preferences: ${props.preferences?.length}, # subPreferences: ${props.subPreferences?.length}`
+  );
+  // const optionsData = useGroupFilterOptions();
+
+  const hydratedInitialState = {
+    ...initialState,
+    options: {
+      ...initialState.options,
+      preferences: props.preferences.map(({ title }) => title),
+      subPreferences: props.subPreferences.map(({ title }) => title),
+    },
+  };
+
+  const [state, dispatch] = useReducer(reducer, hydratedInitialState);
 
   // Next.js won't have the hydrated state query string available when
   // rendering server-side, so watch for changes to `router.query` and

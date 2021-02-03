@@ -1,24 +1,35 @@
 import { Box, Button, Cell, utils } from 'ui-kit';
 import { CommunityList, Footer, Header, SEO } from 'components';
+import { GET_PREFERENCES, GET_SUB_PREFERENCES } from 'hooks/usePreferences';
+import { initializeApollo } from 'lib/apolloClient';
 import { CommunitiesProvider } from 'providers';
-import Styled from './Community.styles';
 import { update as updateAuth, useAuth } from 'providers/AuthProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
+import Styled from './Community.styles';
+
 const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
 
-export default function Community() {
+export default function Community(props = {}) {
   const [{ authenticated }, authDispatch] = useAuth();
   const modalDispatch = useModalDispatch();
+  const { preferences, subPreferences } = props;
+
+  // console.log('📄 <Community> props:', props);
 
   function handleOnClick() {
     if (!authenticated) {
       modalDispatch(showModal('Auth'));
       authDispatch(
-        updateAuth({ onSuccess: () => modalDispatch(showModal('GroupFilter')) })
+        updateAuth({
+          onSuccess: () =>
+            modalDispatch(
+              showModal('GroupFilter', { preferences, subPreferences })
+            ),
+        })
       );
     } else {
-      modalDispatch(showModal('GroupFilter'));
+      modalDispatch(showModal('GroupFilter', { preferences, subPreferences }));
     }
   }
 
@@ -75,4 +86,29 @@ export default function Community() {
       </Box>
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  console.log('🛰️ getServerSideProps()');
+  const apolloClient = initializeApollo();
+
+  console.log('--> ⏳ Fetching preferences and subPreferences in parallel...');
+  const [queryPreferences, querySubPreferences] = await Promise.all([
+    apolloClient.query({ query: GET_PREFERENCES }),
+    apolloClient.query({ query: GET_SUB_PREFERENCES }),
+    // apolloClient.query({ query: GET_CAMPUSES }),
+  ]);
+
+  const preferences = queryPreferences?.data?.allPreferences || [];
+  const subPreferences = querySubPreferences?.data?.allSubPreferences || [];
+  console.log(
+    `--> ✅ Fetched (${preferences.length}) preferences and (${subPreferences.length}) subPreferences`
+  );
+
+  return {
+    props: {
+      preferences: queryPreferences?.data?.allPreferences || [],
+      subPreferences: querySubPreferences?.data?.allSubPreferences || [],
+    },
+  };
 }
