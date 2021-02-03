@@ -21,7 +21,7 @@ const FeatureFeed = (props = {}) => {
   const isLastItem = i => i < props.data.length - 1;
 
   return props.data?.map((edge, i) => (
-    <Box pb="xl">
+    <Box key={i} pb="xl">
       <Box as="h2" pb="base">
         {edge.title}
       </Box>

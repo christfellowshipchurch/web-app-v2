@@ -2,14 +2,33 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { CustomLink } from '..';
-import { Box, CardGrid, DefaultCard, HeroCardGrid, Loader } from 'ui-kit';
+import {
+  CardGrid,
+  HorizontalHighlightCard,
+} from 'ui-kit';
 import { getURLFromType } from 'utils';
 
 function HorizontalCardListFeature(props = {}) {
   const cards = props?.data?.cards || [];
+  const cardType = props?.data?.cardType;
+  let col = 3;
+
+  if (!!cardType) {
+    switch (cardType) {
+      case 'HIGHLIGHT_SMALL':
+        col = '4';
+        break;
+      case 'HIGHLIGHT_MEDIUM':
+        col = '3';
+        break;
+      default:
+        col = '3';
+        break;
+    }
+  }
 
   return (
-    <CardGrid>
+    <CardGrid columns={col}>
       {cards.map((card, i) => {
         // NOTE:
         //  title is missing from related node inside feature
@@ -24,13 +43,12 @@ function HorizontalCardListFeature(props = {}) {
             as="a"
             key={i}
             href={getURLFromType(relatedNode)}
-            Component={DefaultCard}
+            Component={HorizontalHighlightCard}
             coverImage={card?.coverImage?.sources[0]?.uri}
             coverImageOverlay={true}
-            coverImageTitle={card?.title}
-            coverImageDescription={card?.summary}
-            height={{ _: '250px', md: '450px' }}
-            display="block"
+            title={card?.title}
+            description={card?.summary}
+            type={cardType}
           />
         );
       })}
