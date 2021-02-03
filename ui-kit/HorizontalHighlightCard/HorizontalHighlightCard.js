@@ -39,7 +39,7 @@ const HorizontalHighlightCard = (props = {}) => {
       height={{ _: '250px', md: height }}
       title={null}
       display="block"
-      smallerCard
+      cardSize={'s'}
     />
   );
 };
