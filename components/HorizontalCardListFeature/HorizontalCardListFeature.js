@@ -11,7 +11,7 @@ import { getURLFromType } from 'utils';
 function HorizontalCardListFeature(props = {}) {
   const cards = props?.data?.cards || [];
   const cardType = props?.data?.cardType;
-  let col = 3;
+  let col = '2';
 
   if (!!cardType) {
     switch (cardType) {
@@ -22,7 +22,7 @@ function HorizontalCardListFeature(props = {}) {
         col = '3';
         break;
       default:
-        col = '3';
+        col = '2';
         break;
     }
   }

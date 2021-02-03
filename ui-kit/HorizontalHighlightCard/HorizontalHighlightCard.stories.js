@@ -36,8 +36,7 @@ export const Medium = () => (
 )
 
 export const Default = () => (
-  <CardGrid columns={'3'} maxWidth={1000}>
-    <HorizontalHighlightCard {...card()}  />
+  <CardGrid columns={'2'} maxWidth={1000}>
     <HorizontalHighlightCard {...card()}  />
     <HorizontalHighlightCard {...card()}  />
   </CardGrid>
