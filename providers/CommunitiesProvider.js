@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { usePreferences } from 'hooks';
+import { useGroupPreferences } from 'hooks';
 
 function CommunitiesProvider({ Component, options, ...props }) {
-  const { loading, error, preferences } = usePreferences(options);
+  const { loading, error, preferences } = useGroupPreferences(options);
   return (
     <Component data={preferences} loading={loading} error={error} {...props} />
   );
