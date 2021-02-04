@@ -15,9 +15,9 @@ function getMenuItem(menuItem) {
     case 'connect':
       return Dropdowns.Connect;
     case 'watch':
-    // return Dropdowns.Watch;
+      return Dropdowns.Watch;
     case 'search':
-    // return Dropdowns.Search;
+      return Dropdowns.Search;
     case 'auth':
     // return Dropdowns.Auth;
     default:
@@ -38,11 +38,6 @@ function Nav(props = {}) {
             return (
               <Box
                 key={action.action}
-                onClick={() => {
-                  if (hoveredItem === action.id) {
-                    router.push(action.action);
-                  }
-                }}
                 // Don't show hover state on mobile
                 onTouchEnd={() => {
                   setHoveredItem(action.id);
@@ -61,6 +56,11 @@ function Nav(props = {}) {
                   id={action.id}
                   selected={action.action === router.pathname}
                   hovered={action.id === hoveredItem}
+                  onClick={() => {
+                    if (hoveredItem === action.id) {
+                      router.push(action.action);
+                    }
+                  }}
                 />
                 {Component && (
                   <Box
