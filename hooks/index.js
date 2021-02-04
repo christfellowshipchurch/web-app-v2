@@ -15,7 +15,7 @@ import useForm from './useForm';
 import useGroup from './useGroup';
 import useGroupContentId from './useGroupContentId';
 import useGroups from './useGroups';
-import usePreferences from './usePreferences';
+import useGroupPreferences from './useGroupPreferences';
 import useRegisterWithEmail from './useRegisterWithEmail';
 import useRegisterWithSms from './useRegisterWithSms';
 import useRequestPin from './useRequestPin';
@@ -42,7 +42,7 @@ export {
   useGroup,
   useGroupContentId,
   useGroups,
-  usePreferences,
+  useGroupPreferences,
   useRegisterWithEmail,
   useRegisterWithSms,
   useRequestPin,
