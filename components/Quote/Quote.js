@@ -27,9 +27,11 @@ function Quote({
           <Heading fontSize="48px" lineHeight="72px" fontWeight="700">
             “
           </Heading>
-          <Box ml="12px" pt="12px">
-            {title}
-          </Box>
+          {title && (
+            <Box ml="12px" pt="12px">
+              {title}
+            </Box>
+          )}
         </Box>
         <Heading
           color="neutrals.900"
@@ -50,38 +52,50 @@ function Quote({
         >
           ”
         </Heading>
-        <Box display="flex" justifyContent="center" mt="-36px">
-          <StyledAvatar src={avatar} rounded="xl" mr="s" />
-          <Box display="flex" flexDirection="column" justifyContent="center">
-            <Text
-              fontWeight="700"
-              fontSize="18px"
-              lineHeight="28px"
-              color="neutrals.600"
-            >
-              {attribution}
-            </Text>
-            <Link href={actionLink}>
-              <a
-                style={{
-                  display: 'flex',
-                  textDecoration: 'none',
-                  alignItems: 'center',
-                }}
+        {(attribution || actionLink || avatar) && (
+          <Box display="flex" justifyContent="center" mt="-36px">
+            <StyledAvatar src={avatar} rounded="xl" mr="s" />
+            {(attribution || actionLink) && (
+              <Box
+                display="flex"
+                flexDirection="column"
+                justifyContent="center"
               >
-                <Text fontWeight="600" variant="s" color={color} mr="4px">
-                  {actionLabel}
-                </Text>
-                <ArrowRight
-                  alt={actionLabel}
-                  weight="bold"
-                  size={18}
-                  color={theme.colors[color]}
-                />
-              </a>
-            </Link>
+                {attribution && (
+                  <Text
+                    fontWeight="700"
+                    fontSize="18px"
+                    lineHeight="28px"
+                    color="neutrals.600"
+                  >
+                    {attribution}
+                  </Text>
+                )}
+                {actionLink && (
+                  <Link href={actionLink}>
+                    <a
+                      style={{
+                        display: 'flex',
+                        textDecoration: 'none',
+                        alignItems: 'center',
+                      }}
+                    >
+                      <Text fontWeight="600" variant="s" color={color} mr="4px">
+                        {actionLabel}
+                      </Text>
+                      <ArrowRight
+                        alt={actionLabel}
+                        weight="bold"
+                        size={18}
+                        color={theme.colors[color]}
+                      />
+                    </a>
+                  </Link>
+                )}
+              </Box>
+            )}
           </Box>
-        </Box>
+        )}
       </Box>
     </Box>
   );
@@ -89,7 +103,7 @@ function Quote({
 
 Quote.propTypes = {
   title: PropTypes.node,
-  text: PropTypes.string,
+  text: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   attribution: PropTypes.string,
   actionLink: PropTypes.string,
   actionLabel: PropTypes.string,

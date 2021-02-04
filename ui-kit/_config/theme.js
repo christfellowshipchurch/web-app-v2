@@ -37,6 +37,7 @@ const theme = {
     heading: '1.2',
     xs: rem('18.5px'),
     s: rem('24px'),
+    xl: rem('34px'),
     h1: rem('45.15px'),
     h2: rem('40px'),
     h3: rem('28px'),

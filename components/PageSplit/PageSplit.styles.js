@@ -6,7 +6,6 @@ import { system } from 'ui-kit';
 const PageSplit = styled.div`
   display: flex;
   justify-content: center;
-  margin: ${themeGet('space.xl')} 0;
   width: 100%;
 
   ${system}

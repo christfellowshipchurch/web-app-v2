@@ -5,9 +5,11 @@ import Styled, { StyledCard, StyledCardGrid } from './ValuesRow.styles';
 function ValuesRow({ title, items } = {}) {
   return (
     <Styled>
-      <Heading variant="h3" color="black" mb="base">
-        {title}
-      </Heading>
+      {title && (
+        <Heading variant="h3" color="black" mb="base">
+          {title}
+        </Heading>
+      )}
       <StyledCardGrid>
         {items.map((item, i) => {
           return (

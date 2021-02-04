@@ -26,7 +26,7 @@ import { Box, Button, CardGrid, Heading, Icon, Text, theme } from 'ui-kit';
 export default function About() {
   const router = useRouter();
   return (
-    <Layout title="About">
+    <Layout title="Showcase">
       <MainPhotoHeader
         src="https://s3-alpha-sig.figma.com/img/dd11/d81a/34804b1e54856793f1d8d0e3d3e6d2cb?Expires=1612137600&Signature=FhLG0mx3yxgU3EXbHK-EXJJd-IS4xTx~x4yOYHJqCOgCpRncf5NU1lenhSbwdryzrzwSvxJ0UdXyX5VJ-iY7rNs8gtIlpi6aju5WXg~70bNpGZIH-X9Lke80xheBLGuy54oz6aCA9dvvWB11Fd-gjXBeSxPwZfG48MxqS-f4LSYDED5R5bTEVNmb9fpDcmURbDs4YlP~WUa6GF79MBR1wDya6YCsortedMOS4idt323LXWhhzYz-lQ~6v7ZS1UBDrSoeqZNoFjxl14ZHtemYa~hZoIngLlHw~mLxL~EiHvN3IWzae8WUtWDA7ZnfkmBT5Wi1j6NGG~fLQ7z~zMh-Dg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
         content={
@@ -65,7 +65,6 @@ export default function About() {
         gridColumnGap="xl"
         columns="2"
         breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
-        fullWidth
       >
         <Box display="flex" flexDirection="column">
           <ArticleLink
@@ -126,7 +125,6 @@ export default function About() {
         gridColumnGap="xl"
         columns="1"
         breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
-        fullWidth
       >
         <MarketingHeadline
           imageSrc="https://s3-alpha-sig.figma.com/img/0c64/d4fc/add8d8345bbc582fcd9698863a611910?Expires=1612137600&Signature=APFKcOaU0w-iZmyAWGeEu3PoVIgIWYEMa7Lq4jfMjKcyKyEBZujU2JTl2qOJf4fED3HhhpMWBYPTc~4foisZPwCE6m3eYgAE6KkPn5~2VsZmYWl-z9FjqRParOf3sCMXM0cY0Q771NhfOr5Ybdm7Tp0s~uZlRJfkNckBeM5Oo3kgzja~OHmuVE7dftPq4C-EZ3Hafj8k7fHAK7OJ5gR5zBaBQgx6T8o2HPrfomrvCeC7AB0gLGaOcC7TUZ3PSFRmAm~cCwM0T-eEnEAntP2F6F9Y9U6xvDEfD5gaan~HKQ0QrPe2ojGhpPBAEFFpThLfdjsBKumURZ8SVVYIDoOIVg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
@@ -179,7 +177,6 @@ export default function About() {
         columns="2"
         breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
         backgroundColor="white"
-        fullWidth
       >
         <Box display="flex" flexDirection="column">
           <ArticleLink
@@ -263,7 +260,7 @@ export default function About() {
           ]}
         />
       </CardGrid>
-      <PageSplit title="Meet the Staff" variant="h3" />
+      <PageSplit title="Meet the Staff" variant="h3" mb="xl" />
       <CardGrid
         px="xl"
         gridColumnGap="l"
@@ -272,6 +269,7 @@ export default function About() {
           { breakpoint: 'xl', columns: 2 },
           { breakpoint: 'lg', columns: 1 },
         ]}
+        justifyItems="center"
       >
         <MeetTheStaff
           src="https://s3-alpha-sig.figma.com/img/810e/a9cb/028675aba90fb0c25e1f84801b2b4e3f?Expires=1612742400&Signature=WhbSYarVW0uQ8Au1zqrG5VRP5z6SaPrVDrcCaW1tFDBWWratO1FTXdZrkHnXdKLM3Ee3-CXV98EOasoupndHYG33NnnKgz0pG5HjCEJsG~YFk2XX~4HClhWbdsY7hVZ~tPQEj0lQCZ4rx8sypp0mitV8gt~t27NQD5mUOevdbmFkcywyVJZUcMPkMWRcEekHGgykfB88BFsH1IVp5j7hL2PAlKXHfWdqbT22uLm-SwLi3dJwL~brtHvacaWfgFPaP3SWwHpdIZZHdKpR2dSDKJGpYZbkljTAXDp-wqEVuxJu-Z-xEMLhO24sQg66y9pBINulvvH3Gh4K1d8u40nhWw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
@@ -300,7 +298,6 @@ export default function About() {
         gridColumnGap="l"
         columns="1"
         breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
-        fullWidth
       >
         <MarketingHeadline
           imageSrc="https://s3-alpha-sig.figma.com/img/8688/4842/db5a433818ef7b5e55fd48645ee17c72?Expires=1612137600&Signature=CANbQ-ScaFdP78lYAQCCQ1LREPBjzGiOolM1g5zV8JNG6buyTXWrKy0zPtaycJuVlCbB2qa~Ll-EQ9QV6MLXTx~6Bp7vOYneDWVSZhIFZyGLmqxYm7fxtEo1kPyCYg72fDDN3i37v~9byzWJOqzVyUMy5Du-5aIrl2mTCNUaog5t~aURMZ1FwC~FL9oILhMV3ujKRtvtwIAXmmKcrrCqpFWVYpjX~YHrAvTcGnKCcKRxe73suf5z5QlLTyO~q1a6gOPdCZ8tOfXV1OWurzDaaHQWsuI4FXuNSiAGxHbmKpP3IHWQGutGytTut3m0NxMJw1qEuleaI7BUooNzjTdS~g__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
@@ -330,7 +327,6 @@ export default function About() {
         gridColumnGap="l"
         columns="1"
         breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
-        fullWidth
       >
         <MarketingHeadline
           title={
@@ -357,7 +353,6 @@ export default function About() {
         gridColumnGap="l"
         columns="1"
         breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
-        fullWidth
       >
         <MarketingHeadline
           title={
@@ -408,7 +403,6 @@ export default function About() {
         py="xxl"
         gridColumnGap="l"
         columns="1"
-        fullWidth
         breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
       >
         <Box display="flex" flexDirection="column" alignItems="center">

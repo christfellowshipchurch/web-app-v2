@@ -7,11 +7,12 @@ function EventCallout({ title, description, imageSrc, ...props } = {}) {
     <Box mt="s" display="flex" alignItems="center">
       <Image
         mr="s"
-        flex="0 0 80px"
         height="80px"
+        width="80px"
         src={imageSrc}
         rounded
         bg="neutrals.300"
+        style={{ objectFit: 'cover' }}
       />
       <Box display="flex" flexDirection="column">
         <Text color="neutrals.900" variant="h4" fontWeight="700">

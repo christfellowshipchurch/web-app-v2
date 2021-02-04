@@ -1,11 +1,10 @@
-import { Header } from 'components';
 import PropTypes from 'prop-types';
 import { Box, Heading } from 'ui-kit';
 import Styled, { Gradient } from './PageSplit.styles';
 
 function PageSplit({ title, variant, ...props } = {}) {
   return (
-    <Styled>
+    <Styled {...props}>
       <Box display="flex" flexDirection="column">
         <Heading
           color="neutrals.900"

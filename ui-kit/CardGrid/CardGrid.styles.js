@@ -22,23 +22,6 @@ const collapse = ({ breakpoints, columns }) => props => {
   }
 };
 
-const fullWidth = ({ fullWidth }) => props => {
-  return css`
-    @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
-      margin-left: auto;
-      margin-right: auto;
-      ${fullWidth &&
-      css`
-        width: calc(
-          ${themeGet('breakpoints.xl')} - ${themeGet('space.xxl')} * 2
-        );
-      `}
-    }
-
-    grid-column-gap: ${themeGet('space.xl')};
-  `;
-};
-
 const CardGrid = styled.div`
   > *:not(:last-child) {
     margin-bottom: ${themeGet('space.l')};
@@ -50,6 +33,7 @@ const CardGrid = styled.div`
   }
 
   display: grid;
+  justify-items: center;
   grid-column-gap: ${themeGet('space.base')};
   grid-row-gap: ${themeGet('space.l')};
   grid-template-columns: repeat(${props => props.columns}, 1fr);
@@ -58,7 +42,6 @@ const CardGrid = styled.div`
     margin-bottom: 0;
   }
 
-  ${fullWidth}
   ${collapse}
   ${system}
 `;

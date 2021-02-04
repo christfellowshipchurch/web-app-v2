@@ -4,9 +4,9 @@ import { Photo } from 'components';
 import { Box, CardGrid, Heading, Text, theme } from 'ui-kit';
 
 const links = [
-  { label: 'Our beliefs', action: '/our-beliefs' },
-  { label: 'Meet our staff', action: '/our-staff' },
-  { label: 'Our story', action: '/our-story' },
+  { label: 'Our beliefs', action: '/about/beliefs' },
+  { label: 'Meet our staff', action: '/about/staff' },
+  { label: 'Our story', action: '/about/story' },
 ];
 
 export default function DropdownAbout() {

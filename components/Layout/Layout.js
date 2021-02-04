@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import { Box } from 'ui-kit';
 import { Footer, Header, SEO } from 'components';
 
-function Layout(props = {}) {
+function Layout({ children, title, ...props }) {
   return (
     <>
-      <SEO title={props.title} />
-      <Box>
+      <SEO title={title} />
+      <Box minHeight="100vh" display="flex" flexDirection="column" {...props}>
         <Header />
-        <Box style={{ overflowX: 'hidden' }}>{props.children}</Box>
+        <Box style={{ overflowX: 'hidden', flex: 1 }}>{children}</Box>
         <Footer />
       </Box>
     </>
