@@ -1,7 +1,5 @@
 import { Box, Button, Cell, utils } from 'ui-kit';
 import { CommunityList, Footer, Header, SEO } from 'components';
-import { GET_PREFERENCES, GET_SUB_PREFERENCES } from 'hooks/usePreferences';
-import { initializeApollo } from 'lib/apolloClient';
 import { CommunitiesProvider } from 'providers';
 import { update as updateAuth, useAuth } from 'providers/AuthProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
@@ -13,8 +11,6 @@ const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
 export default function Community(props = {}) {
   const [{ authenticated }, authDispatch] = useAuth();
   const modalDispatch = useModalDispatch();
-
-  // console.log('📄 <Community> props:', props);
 
   function handleOnClick() {
     if (!authenticated) {
