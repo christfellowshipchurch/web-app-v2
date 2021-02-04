@@ -1,42 +1,18 @@
 import React, { createContext, useContext, useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
+import useGroupFilterOptions from 'hooks/useGroupFilterOptions';
 import isEmpty from 'lodash/isEmpty';
-import kebabCase from 'lodash/kebabCase';
-import toLower from 'lodash/toLower';
 import { useRouter } from 'next/router';
 
 const GroupFiltersProviderStateContext = createContext();
 const GroupFiltersProviderDispatchContext = createContext();
 
-// TODO: There has to be a better, dynamic way to define these.
 // Frozen to convey that these are static.
 const options = Object.freeze({
-  campuses: [
-    'Boynton Beach',
-    'Daytona',
-    'Jupiter',
-    'Okeechobee',
-    'Orlando',
-    'Palm Beach Gardens',
-    'Port St. Lucie',
-    'Royal Palm Beach',
-    'en Español Royal Palm Beach',
-    'Stuart',
-    'West Palm Beach',
-  ],
+  campuses: [],
   days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-  preferences: [
-    // 'Crew (Men)',
-    // 'Sisterhood',
-    // 'Married People',
-    // 'Young Adults',
-  ],
-  subPreferences: [
-    // 'Bible Studies',
-    // 'Prayer Groups',
-    // 'Activity Studies',
-    // 'Classes',
-  ],
+  preferences: [],
+  subPreferences: [],
 });
 
 const initialState = {
@@ -56,6 +32,7 @@ const actionTypes = {
   resetValues: 'resetValues',
   toggleValue: 'toggleValue',
   update: 'update',
+  updateOptions: 'updateOptions',
 };
 
 // ACTION CREATORS
@@ -83,11 +60,16 @@ const update = payload => ({
   payload,
 });
 
+// dispatch(updateOptions({ fieldName1: ['Option 1', 'Option 2'] }));
+const updateOptions = payload => ({
+  type: actionTypes.updateOptions,
+  payload,
+});
+
 // PRIVATE UTILS / HELPERS
 
 /**
  * Convert a state object to a serialized string representing it. The format
- * is a URL search params/query string.
  * We need to roll our own wrapper since Next.js will serialize this:
  *   { days: ["mon", "tue", "wed"] }
  * as:
@@ -189,6 +171,15 @@ function reducer(state, action) {
         },
       });
     }
+    case actionTypes.updateOptions: {
+      return updateAndSerialize({
+        ...state,
+        options: {
+          ...state.options,
+          ...action.payload,
+        },
+      });
+    }
     case actionTypes.toggleValue: {
       const { name, value } = action.payload;
 
@@ -219,33 +210,44 @@ function reducer(state, action) {
 function GroupFiltersProvider(props = {}) {
   const router = useRouter();
 
-  // 💡 I think we need to receive the server side rendered/fetched data
-  // for preference/subPreference options here, and build up a dynamic
-  // initialState for the provider to use.
-  console.log(
-    `<GroupFiltersProvider> # preferences: ${props.preferences?.length}, # subPreferences: ${props.subPreferences?.length}`
-  );
-  // const optionsData = useGroupFilterOptions();
-
-  const hydratedInitialState = {
-    ...initialState,
-    options: {
-      ...initialState.options,
-      preferences: props.preferences.map(({ title }) => title),
-      subPreferences: props.subPreferences.map(({ title }) => title),
-    },
-  };
-
-  const [state, dispatch] = useReducer(reducer, hydratedInitialState);
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const optionsData = useGroupFilterOptions();
 
   // Next.js won't have the hydrated state query string available when
   // rendering server-side, so watch for changes to `router.query` and
   // hydrate when it becomes available.
   useEffect(() => {
     if (!isEmpty(router.query) && !state.hydrated) {
-      dispatch(hydrate(router.query));
+      // Next's dynamic page route mechanism for routes like `[title].js`
+      // will get appended in router.query as `title`. Remove those.
+      const { title, ...rest } = router.query;
+      dispatch(hydrate({ ...rest }));
     }
   }, [router.query, state.hydrated]);
+
+  // To be simplified/removed when we lift group options definitions to API
+  // ✂️ -------------------------------------------------------------------
+  useEffect(() => {
+    if (optionsData.campuses?.length) {
+      dispatch(
+        updateOptions({
+          campuses: optionsData.campuses.map(({ name }) => name),
+        })
+      );
+    }
+  }, [optionsData.campuses]);
+
+  useEffect(() => {
+    if (optionsData.preferences?.length && optionsData.subPreferences?.length) {
+      dispatch(
+        updateOptions({
+          preferences: optionsData.preferences.map(({ title }) => title),
+          subPreferences: optionsData.subPreferences.map(({ title }) => title),
+        })
+      );
+    }
+  }, [optionsData.preferences, optionsData.subPreferences]);
+  // ✂️ -------------------------------------------------------------------
 
   return (
     <GroupFiltersProviderStateContext.Provider value={state}>

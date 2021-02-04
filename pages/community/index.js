@@ -13,7 +13,6 @@ const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
 export default function Community(props = {}) {
   const [{ authenticated }, authDispatch] = useAuth();
   const modalDispatch = useModalDispatch();
-  const { preferences, subPreferences } = props;
 
   // console.log('📄 <Community> props:', props);
 
@@ -22,14 +21,11 @@ export default function Community(props = {}) {
       modalDispatch(showModal('Auth'));
       authDispatch(
         updateAuth({
-          onSuccess: () =>
-            modalDispatch(
-              showModal('GroupFilter', { preferences, subPreferences })
-            ),
+          onSuccess: () => modalDispatch(showModal('GroupFilter')),
         })
       );
     } else {
-      modalDispatch(showModal('GroupFilter', { preferences, subPreferences }));
+      modalDispatch(showModal('GroupFilter'));
     }
   }
 
@@ -86,29 +82,4 @@ export default function Community(props = {}) {
       </Box>
     </>
   );
-}
-
-export async function getServerSideProps(context) {
-  console.log('🛰️ getServerSideProps()');
-  const apolloClient = initializeApollo();
-
-  console.log('--> ⏳ Fetching preferences and subPreferences in parallel...');
-  const [queryPreferences, querySubPreferences] = await Promise.all([
-    apolloClient.query({ query: GET_PREFERENCES }),
-    apolloClient.query({ query: GET_SUB_PREFERENCES }),
-    // apolloClient.query({ query: GET_CAMPUSES }),
-  ]);
-
-  const preferences = queryPreferences?.data?.allPreferences || [];
-  const subPreferences = querySubPreferences?.data?.allSubPreferences || [];
-  console.log(
-    `--> ✅ Fetched (${preferences.length}) preferences and (${subPreferences.length}) subPreferences`
-  );
-
-  return {
-    props: {
-      preferences: queryPreferences?.data?.allPreferences || [],
-      subPreferences: querySubPreferences?.data?.allSubPreferences || [],
-    },
-  };
 }

@@ -10,7 +10,7 @@ const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
 export default function CommunitySearch() {
   const [filtersState] = useGroupFilters();
   const modalDispatch = useModalDispatch();
-  const [searchGroups, { loading, groups, error }] = useSearchGroups({
+  const [searchGroups, { loading, groups }] = useSearchGroups({
     fetchPolicy: 'cache-and-network',
   });
 

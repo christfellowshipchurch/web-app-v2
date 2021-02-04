@@ -1,12 +1,10 @@
 import React from 'react';
-import { GroupFiltersProvider } from 'providers';
 import { Modal } from 'ui-kit';
 
 import GroupFilterSubPreferences from './GroupFilterSubPreferences';
 import GroupFilterWhereWhen from './GroupFilterWhereWhen';
 
 function GroupFilterModal(props = {}) {
-  console.log('<GroupFilterModal> props:', props);
   function render(step) {
     switch (step) {
       case 0: {
@@ -21,23 +19,13 @@ function GroupFilterModal(props = {}) {
     }
   }
 
-  return (
-    <GroupFiltersProvider
-      preferences={props.preferences}
-      subPreferences={props.subPreferences}
-    >
-      <Modal {...props}>{render}</Modal>
-    </GroupFiltersProvider>
-  );
+  return <Modal {...props}>{render}</Modal>;
 }
 
 GroupFilterModal.propTypes = {
   ...Modal.propTypes,
 };
 
-GroupFilterModal.defaultProps = {
-  preferences: [],
-  subPreferences: [],
-};
+GroupFilterModal.defaultProps = {};
 
 export default GroupFilterModal;
