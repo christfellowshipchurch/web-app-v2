@@ -5,11 +5,11 @@ import kebabCase from 'lodash/kebabCase';
 import toLower from 'lodash/toLower';
 
 import { CommunitiesProvider } from 'providers';
-import { usePreferences } from 'hooks';
+import { useGroupPreferences } from 'hooks';
 import { CommunitySingle, Layout } from 'components';
 
 export default function Community(props) {
-  const { preferences, subPreferences } = usePreferences();
+  const { preferences, subPreferences } = useGroupPreferences();
   const router = useRouter();
   const { title } = router.query;
   const formatTitleAsUrl = title => kebabCase(toLower(title));
