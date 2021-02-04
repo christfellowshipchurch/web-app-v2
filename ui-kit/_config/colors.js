@@ -9,8 +9,10 @@ const LH_GRADIENT_BLUE = '#429CC2';
 const LH_GRADIENT_GREEN = '#8BC76A';
 
 const BACKGROUND = '#FFF';
+const BACKGROUND_SECONDARY = '#F2F2F7';
 const BORDER = '#C4C4C4';
 
+const ALMOST_BLACK = '#1C1C1E';
 const BLACK = '#000';
 const GRAY = '#EBEBEF';
 const WHITE = '#FFF';
@@ -40,6 +42,7 @@ const universal = {
 
   gradient: [LH_GRADIENT_BLUE, LH_GRADIENT_GREEN],
 
+  almost_black: ALMOST_BLACK,
   black: BLACK,
   gray: GRAY,
   grey: GRAY,
@@ -55,10 +58,11 @@ const colors = {
 
     screen: WHITE_SMOKE,
     paper: '#FFF',
+    bg_alt: BACKGROUND_SECONDARY,
 
     // LEGACY!
     bg: BACKGROUND,
-    fg: '#1C1C1E',
+    fg: ALMOST_BLACK,
     subdued: BATTLESHIP,
     border: BORDER,
   },

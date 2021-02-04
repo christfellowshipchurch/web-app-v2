@@ -1,26 +1,37 @@
-import { links } from './metadata';
+import { MagnifyingGlass, UserCircle } from 'phosphor-react';
+import { theme } from 'ui-kit';
 
 const navigation = {
   quickActions: [
     {
+      id: 'about',
       action: '/about',
       call: 'About',
     },
     {
+      id: 'next-steps',
       action: '/next-steps',
       call: 'Next Steps',
     },
     {
+      id: 'connect',
       action: '/connect',
       call: 'Connect',
     },
     {
+      id: 'watch',
       action: '/watch',
       call: 'Watch',
     },
     {
-      action: links.giveOnline,
-      call: 'Give',
+      id: 'search',
+      action: '/search',
+      call: <MagnifyingGlass color={theme.colors.fg} size="22" />,
+    },
+    {
+      id: 'auth',
+      action: '/auth',
+      call: <UserCircle color={theme.colors.fg} size="22" />,
     },
   ],
 };

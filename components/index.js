@@ -5,6 +5,7 @@ import ContentLayout from './ContentLayout';
 import ContentList from './ContentList';
 import ContentSingle from './ContentSingle';
 import CustomLink from './CustomLink';
+import Dropdowns from './Dropdowns';
 import FlagCTA from './FlagCTA';
 import Footer from './Footer';
 import FullWidthCTA from './FullWidthCTA';
@@ -38,6 +39,7 @@ export {
   ContentList,
   ContentSingle,
   CustomLink,
+  Dropdowns,
   EventCallout,
   EventsCallout,
   FlagCTA,

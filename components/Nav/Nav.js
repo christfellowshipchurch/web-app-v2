@@ -1,48 +1,81 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 
-import { useModalDispatch, showModal } from 'providers/ModalProvider';
-import { Box, Icon, Menu, systemPropTypes } from 'ui-kit';
-import { ClientSideComponent, CustomLink } from 'components';
+import { Box, Heading, systemPropTypes } from 'ui-kit';
+import { ClientSideComponent, Dropdowns } from 'components';
 import Styled from './Nav.styles';
 
-function Nav(props = {}) {
-  const modalDispatch = useModalDispatch();
-  const router = useRouter();
-
-  function handleAuthClick(event) {
-    event.preventDefault();
-    modalDispatch(showModal('Auth'));
+function getMenuItem(menuItem) {
+  switch (menuItem) {
+    case 'about':
+      return Dropdowns.About;
+    case 'connect':
+    // return DropdownConnect;
+    case 'next-steps':
+    // return DropdownNextSteps;
+    case 'search':
+    // return DropdownSearch;
+    case 'auth':
+    // return DropdownAuth;
+    default:
+      return null;
   }
+}
+
+function Nav(props = {}) {
+  const router = useRouter();
+  const [hoveredItem, setHoveredItem] = useState(null);
 
   return (
-    <Styled>
-      {props.data.quickActions.map(action => (
-        <QuickAction
-          key={action.action}
-          data={action}
-          selected={action.action === router.pathname}
-        />
-      ))}
-      <ClientSideComponent>
-        <Box
-          as="a"
-          href="#0"
-          display="block"
-          border="2px solid"
-          borderColor="fg"
-          borderRadius="50%"
-          lineHeight="38px"
-          size="45px"
-          textAlign="center"
-          onClick={handleAuthClick}
-        >
-          <Icon name="user" fill="fg" size="28px" />
-          <Box as="span" className="srt">
-            User
-          </Box>
-        </Box>
+    <Styled px="s">
+      <ClientSideComponent height="100%">
+        <Styled.QuickActions>
+          {props.data.quickActions.map(action => {
+            const Component = getMenuItem(action.id);
+            return (
+              <Box
+                key={action.action}
+                onClick={() => {
+                  if (hoveredItem === action.id) {
+                    router.push(action.action);
+                  }
+                }}
+                // Don't show hover state on mobile
+                onTouchEnd={() => {
+                  setHoveredItem(action.id);
+                }}
+                onMouseEnter={() => {
+                  if (action.id === hoveredItem) {
+                    setHoveredItem(null);
+                  } else {
+                    setHoveredItem(action.id);
+                  }
+                }}
+                onMouseLeave={() => setHoveredItem(null)}
+              >
+                <QuickAction
+                  data={action}
+                  id={action.id}
+                  selected={action.action === router.pathname}
+                  hovered={action.id === hoveredItem}
+                />
+                {Component && (
+                  <Box
+                    display={action.id === hoveredItem ? 'block' : 'none'}
+                    width="100%"
+                    position="absolute"
+                    top="90px"
+                    left="0"
+                    zIndex="999"
+                  >
+                    <Component />
+                  </Box>
+                )}
+              </Box>
+            );
+          })}
+        </Styled.QuickActions>
       </ClientSideComponent>
     </Styled>
   );
@@ -50,15 +83,18 @@ function Nav(props = {}) {
 
 function QuickAction(props = {}) {
   return (
-    <CustomLink
-      as="a"
-      Component={Menu.Link}
-      href={props.data.action}
+    <Styled.QuickAction
+      mt="s"
+      pt="21px"
+      pb="35px"
+      px="s"
+      hovered={props.hovered}
       selected={props.selected}
-      textTransform="uppercase"
     >
-      {props.data.call}
-    </CustomLink>
+      <Heading variant="base" color="fg">
+        {props.data.call}
+      </Heading>
+    </Styled.QuickAction>
   );
 }
 

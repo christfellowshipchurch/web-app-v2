@@ -544,37 +544,44 @@ export default function About() {
       </CardGrid>
       <CardGrid px="xxl" py="xl" columns="1" gridRowGap="xxl">
         <Photo
-          srcs={[
-            'https://s3-alpha-sig.figma.com/img/2049/a3d6/d7d850f8389837aaa63909bd7be531d8?Expires=1613347200&Signature=IWFhoOcxSEasMsunnFXV0nxArxO6~ycdJx916yJzraIhzPkAsBOxhlOqXTpVITyuZhOd2A8lyBvxrb22GeGxBMoYZ2xvdSZZNwO1r9SR2VV~vXblREOw3KLbD7rxPmeD-r782tuAxKmhF4QNDvjDfGtOoB3S29aqcnutBsNQx~xsii49CkKJc0gDbFkyPdf6QJx5J9DNY9Fl8vpswa4Bye7gznEy~TecmR9XpalLPXUeUBg4IA3iqr4Wszi~NT4hQnXapRruI1WzjCu-0MjK79y0~uFza3-pLYRtgfhNNgtnPv~wHpzr224NzPxeAmNpnsuNdtNop5O1198bs4GlWw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
+          images={[
+            {
+              maxHeight: '451px',
+              src:
+                'https://s3-alpha-sig.figma.com/img/2049/a3d6/d7d850f8389837aaa63909bd7be531d8?Expires=1613347200&Signature=IWFhoOcxSEasMsunnFXV0nxArxO6~ycdJx916yJzraIhzPkAsBOxhlOqXTpVITyuZhOd2A8lyBvxrb22GeGxBMoYZ2xvdSZZNwO1r9SR2VV~vXblREOw3KLbD7rxPmeD-r782tuAxKmhF4QNDvjDfGtOoB3S29aqcnutBsNQx~xsii49CkKJc0gDbFkyPdf6QJx5J9DNY9Fl8vpswa4Bye7gznEy~TecmR9XpalLPXUeUBg4IA3iqr4Wszi~NT4hQnXapRruI1WzjCu-0MjK79y0~uFza3-pLYRtgfhNNgtnPv~wHpzr224NzPxeAmNpnsuNdtNop5O1198bs4GlWw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
+            },
           ]}
           title="Headline."
           description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit id massa id massa elementum nulla mi. Leo mauris aliquam porta suscipit vitae sit. Viverra scelerisque pellentesque quam adipiscing risus. Prae"
-          imageProps={{
-            maxHeight: '451px',
-          }}
         />
         <Photo
-          srcs={[
-            'https://s3-alpha-sig.figma.com/img/e2ce/bb31/0ceb508b5bfd15a0e4261ac8aeb53c4a?Expires=1613347200&Signature=b7OY1yB06ydQXTq3qilcXNaRG6piegkcy7Tsp-uoYJ-ktddiVTVPu1kJm16xfy~YDvq1rhwzHmKlT2GHOLWY~Qp25l80CjkRMVKslkDPrRwz6ek39C2AxDVUjKuzWisjopcCFA6G0vvAVx0OFf5zG54jGRyornigmjKHCypUSwaCe-iPTSGeUOo8o0Pv5mEfeRG4Ydj7IHHySLyAl19W256kFJUZW2dimj2DAGsaPz2TogIvrLAdrhpkQTD~4POT1A8P4Xx4~OzS~Jy-T-UPHFPug2w6ZdaeN-I6nSWAGVn42XiLOiuv4WHKjxtDZrZBC3OT5XBe7FF8yhFEP1E1Kg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
-            'https://s3-alpha-sig.figma.com/img/549d/f127/b0fc2847325ff1ed813fe77d09b5aaa4?Expires=1613347200&Signature=eRcHwqbrQ5edpZyO9ke5XaF9IxvrY3wAR40uOnKsGcgb-wwpglo2oWMzI9PAYeqjapkkXXxr7wojosuBKEQTLd7uufa9AIq3puZJ9b3pykN5mC0HbSwSejj2PWLNAoCjIwiHYrcA2X1ebL2XdYO8J3Bh-nxMvZgz0InuSvBpCCxgVeNZyGw-fYkh5g8X6Z8yrJs0CCMFnImnCQ7kS4Iqfr3B65y9-Qn-Ye2HvwJJdxet4DHJpr3CM1Ldv6d6r-LidHjHhC8j0KyS8IUkD3T9f2wwpgJHCzrx1-GoqRCOOq4UHxRHBnE6vbrsOLlIMLrXmoslYmrR95MaUIQhTlqHLg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
+          images={[
+            {
+              maxHeight: '451px',
+              src:
+                'https://s3-alpha-sig.figma.com/img/e2ce/bb31/0ceb508b5bfd15a0e4261ac8aeb53c4a?Expires=1613347200&Signature=b7OY1yB06ydQXTq3qilcXNaRG6piegkcy7Tsp-uoYJ-ktddiVTVPu1kJm16xfy~YDvq1rhwzHmKlT2GHOLWY~Qp25l80CjkRMVKslkDPrRwz6ek39C2AxDVUjKuzWisjopcCFA6G0vvAVx0OFf5zG54jGRyornigmjKHCypUSwaCe-iPTSGeUOo8o0Pv5mEfeRG4Ydj7IHHySLyAl19W256kFJUZW2dimj2DAGsaPz2TogIvrLAdrhpkQTD~4POT1A8P4Xx4~OzS~Jy-T-UPHFPug2w6ZdaeN-I6nSWAGVn42XiLOiuv4WHKjxtDZrZBC3OT5XBe7FF8yhFEP1E1Kg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
+            },
+            {
+              maxHeight: '451px',
+              src:
+                'https://s3-alpha-sig.figma.com/img/549d/f127/b0fc2847325ff1ed813fe77d09b5aaa4?Expires=1613347200&Signature=eRcHwqbrQ5edpZyO9ke5XaF9IxvrY3wAR40uOnKsGcgb-wwpglo2oWMzI9PAYeqjapkkXXxr7wojosuBKEQTLd7uufa9AIq3puZJ9b3pykN5mC0HbSwSejj2PWLNAoCjIwiHYrcA2X1ebL2XdYO8J3Bh-nxMvZgz0InuSvBpCCxgVeNZyGw-fYkh5g8X6Z8yrJs0CCMFnImnCQ7kS4Iqfr3B65y9-Qn-Ye2HvwJJdxet4DHJpr3CM1Ldv6d6r-LidHjHhC8j0KyS8IUkD3T9f2wwpgJHCzrx1-GoqRCOOq4UHxRHBnE6vbrsOLlIMLrXmoslYmrR95MaUIQhTlqHLg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
+            },
           ]}
           title="Headline."
           description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit id massa id massa elementum nulla mi. Leo mauris aliquam porta suscipit vitae sit. Viverra scelerisque pellentesque quam adipiscing risus. Prae"
-          imageProps={{
-            maxHeight: '451px',
-          }}
         />
       </CardGrid>
       <CardGrid px="xxl" py="xl" columns="2" gridRowGap="xxl">
         <Photo
-          srcs={[
-            'https://s3-alpha-sig.figma.com/img/d3f3/fec5/d6809c8d69c8e9d00fa3f6f41354ed8c?Expires=1613347200&Signature=MM3fidhZCdUoOJIMEWmDeW-KQPA59speMZlR~G6GF2r2qvHoaLxvyZC57v-ly~x1etbnJhpsNmr6pPYnf8p8Fqak4G6GSt11pUs~99e7KvEl0Otr78dMl~Hi6z4ODJ8VaZYKTgLdzCbdMzmDyYwJzfDggbSU3-w0iCEpKZ8AzNLroIRvLFT~xtfam8BrQtN~RWrRYaBCdDFT49~dNY9bLdLYq~EzspuIODUUdY4I5fmflK1PHAEvqSASu2K5uTDgI7UrmDk~oiRzwtvwqR58sWX6fJuOyo-k0thmjXzT7~dvOkpgeSjNz6RKTKGUpEOcQy4mte8HMjVmAZdpDiPVHQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
+          images={[
+            {
+              maxHeight: '451px',
+              src:
+                'https://s3-alpha-sig.figma.com/img/d3f3/fec5/d6809c8d69c8e9d00fa3f6f41354ed8c?Expires=1613347200&Signature=MM3fidhZCdUoOJIMEWmDeW-KQPA59speMZlR~G6GF2r2qvHoaLxvyZC57v-ly~x1etbnJhpsNmr6pPYnf8p8Fqak4G6GSt11pUs~99e7KvEl0Otr78dMl~Hi6z4ODJ8VaZYKTgLdzCbdMzmDyYwJzfDggbSU3-w0iCEpKZ8AzNLroIRvLFT~xtfam8BrQtN~RWrRYaBCdDFT49~dNY9bLdLYq~EzspuIODUUdY4I5fmflK1PHAEvqSASu2K5uTDgI7UrmDk~oiRzwtvwqR58sWX6fJuOyo-k0thmjXzT7~dvOkpgeSjNz6RKTKGUpEOcQy4mte8HMjVmAZdpDiPVHQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
+            },
           ]}
           title="Headline."
           description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit id massa id massa elementum nulla mi. Leo mauris aliquam porta suscipit vitae sit. Viverra scelerisque pellentesque quam adipiscing risus. Prae"
-          imageProps={{
-            maxHeight: '451px',
-          }}
           textAlign="center"
         />
       </CardGrid>
