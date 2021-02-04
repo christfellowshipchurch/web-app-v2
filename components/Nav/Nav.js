@@ -10,14 +10,16 @@ function getMenuItem(menuItem) {
   switch (menuItem) {
     case 'about':
       return Dropdowns.About;
-    case 'connect':
-    // return DropdownConnect;
     case 'next-steps':
-    // return DropdownNextSteps;
+      return Dropdowns.NextSteps;
+    case 'connect':
+      return Dropdowns.Connect;
+    case 'watch':
+    // return Dropdowns.Watch;
     case 'search':
-    // return DropdownSearch;
+    // return Dropdowns.Search;
     case 'auth':
-    // return DropdownAuth;
+    // return Dropdowns.Auth;
     default:
       return null;
   }
