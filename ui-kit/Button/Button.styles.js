@@ -33,7 +33,7 @@ const status = ({ status }) => props => {
 const background = ({ color, variant }) => props => {
   if (variant === 'outlined') {
     return css`
-      background-color: ${themeGet('colors.white')};
+      background-color: transparent;
     `;
   }
 

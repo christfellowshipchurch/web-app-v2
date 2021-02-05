@@ -3,6 +3,7 @@ import { ArrowRight, Circle, Info } from 'phosphor-react';
 import {
   ArticleLink,
   Carousel,
+  Countdown,
   EventCallout,
   EventsCallout,
   FlagCTA,
@@ -22,6 +23,7 @@ import {
   VideoPlayer,
 } from 'components';
 import { Box, Button, CardGrid, Heading, Icon, Text, theme } from 'ui-kit';
+import { addHours, addMinutes } from 'date-fns';
 
 export default function About() {
   const router = useRouter();
@@ -596,6 +598,23 @@ export default function About() {
             />
           </Box>
         </CardGrid>
+      </CardGrid>
+      <CardGrid
+        px="xxl"
+        py="l"
+        columns="2"
+        gridRowGap="xxl"
+        breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
+      >
+        <Countdown
+          src="https://www.figma.com/file/zlluMsbAFPmWX6Z50iG86s/image/2c35a9fea98b9a3404dfaca24537e5a91c123c48"
+          width="595px"
+          height="451px"
+          borderRadius="image"
+          alignItems="flex-end"
+          // date={new Date('02-15-2021')}
+          date={addHours(addMinutes(new Date(), 2), 15)}
+        />
       </CardGrid>
       <CardGrid
         py="l"

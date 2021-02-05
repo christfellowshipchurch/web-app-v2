@@ -19,7 +19,7 @@
     "@styled-system/theme-get": "^5.1.2",
     "apollo3-cache-persist": "^0.8.0",
     "cross-fetch": "^3.0.6",
-    "date-fns": "^2.16.1",
+    "date-fns": "^2.17.0",
     "graphql": "^15.4.0",
     "lodash": "^4.17.20",
     "next": "10.0.0",

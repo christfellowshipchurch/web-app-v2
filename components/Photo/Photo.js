@@ -8,6 +8,8 @@ export default function Photo({
   inner,
   hover,
   borderRadius = theme.radii.image,
+  alignItems = 'center',
+  justifyContent = 'center',
   ...props
 }) {
   const [hovered, setHovered] = useState(false);
@@ -30,9 +32,7 @@ export default function Photo({
           width="100%"
           height="100%"
           display={!hover || hovered ? 'flex' : 'none'}
-          alignItems="center"
-          justifyContent="center"
-          backgroundColor={overlay.color}
+          background={overlay.color}
           opacity={overlay.opacity}
           borderRadius={borderRadius}
           onMouseLeave={() => setHovered(false)}
@@ -41,14 +41,13 @@ export default function Photo({
       {inner && (
         <Box
           position="absolute"
-          top="50%"
-          left="50%"
-          style={{ transform: 'translate(-50%, -50%)' }}
+          top="0"
+          left="0"
           width="100%"
           height="100%"
           display={!hover || hovered ? 'flex' : 'none'}
-          alignItems="center"
-          justifyContent="center"
+          alignItems={alignItems}
+          justifyContent={justifyContent}
           px="l"
           onMouseLeave={() => setHovered(false)}
         >
