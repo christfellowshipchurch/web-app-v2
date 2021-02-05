@@ -109,7 +109,7 @@ export const Default = () => (
     summary={groupSummary}
     heroAvatars={heroAvatars}
     avatars={avatars}
-    dateTime="Wednesdays at 6:30pm"
+    dateTime={new Date()}
     coverImage="https://source.unsplash.com/random/1000x1000"
     totalAvatars={100}
   />
@@ -123,7 +123,7 @@ export const GridView = () => (
       summary={groupSummary}
       heroAvatars={heroAvatars}
       avatars={avatars}
-      dateTime="Wednesdays at 6:30pm"
+      dateTime={new Date()}
       coverImage="https://source.unsplash.com/random/1000x1000"
       totalAvatars={100}
     />
@@ -139,7 +139,7 @@ export const GridView = () => (
       title="No Leaders in Group"
       summary={groupSummary}
       avatars={avatars}
-      dateTime="Wednesdays at 6:30pm"
+      dateTime={new Date()}
       coverImage="https://source.unsplash.com/random/1000x1000"
       totalAvatars={100}
     />
