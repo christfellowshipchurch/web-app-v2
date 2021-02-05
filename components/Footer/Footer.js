@@ -1,4 +1,5 @@
 import React from 'react';
+import { FacebookLogo, InstagramLogo, TwitterLogo } from 'phosphor-react';
 
 import { links } from 'config/metadata';
 import { Box, CardGrid, List, systemPropTypes, Text, theme } from 'ui-kit';
@@ -63,6 +64,26 @@ function Contact() {
         >
           (615) 824-4006
         </Styled.Link>
+        <Box>
+          <FacebookLogo
+            size="32"
+            color={theme.colors.neutrals[100]}
+            style={{ opacity: '60%', marginRight: theme.space.s }}
+            weight="fill"
+          />
+          <TwitterLogo
+            size="32"
+            color={theme.colors.neutrals[100]}
+            style={{ opacity: '60%', marginRight: theme.space.s }}
+            weight="fill"
+          />
+          <InstagramLogo
+            size="32"
+            color={theme.colors.neutrals[100]}
+            style={{ opacity: '60%' }}
+            weight="fill"
+          />
+        </Box>
       </Box>
     </Styled.Contact>
   );

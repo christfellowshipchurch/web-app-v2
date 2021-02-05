@@ -5,7 +5,7 @@ import getAge from './getAge';
 import getURLFromType from './getURLFromType';
 import noop from './noop';
 import normalizeUserData from './normalizeUserData';
-import parseNewlines from './parseNewlines';
+import splitString from './splitString';
 import slugify from './slugify';
 import textTrimmer from './textTrimmer';
 import validateEmail from './validateEmail';
@@ -19,7 +19,7 @@ export {
   getURLFromType,
   noop,
   normalizeUserData,
-  parseNewlines,
+  splitString,
   slugify,
   textTrimmer,
   validateEmail,

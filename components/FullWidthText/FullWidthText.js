@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { Box, Heading, Text } from 'ui-kit';
-import { parseNewlines } from 'utils';
+import { splitString } from 'utils';
 
 function FullWidthText({
   imageSrc,
@@ -59,7 +59,7 @@ function FullWidthText({
           width="100%"
           whiteSpace="pre"
         >
-          {parseNewlines(description)}
+          {splitString(description)}
         </Text>
       )}
     </Box>

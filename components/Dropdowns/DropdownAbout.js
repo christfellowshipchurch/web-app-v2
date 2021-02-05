@@ -40,6 +40,7 @@ export default function DropdownAbout() {
           height="223px"
           flexDirection="column"
           justifyContent="space-between"
+          width="100%"
         >
           {links.map((link, i) => (
             <Box

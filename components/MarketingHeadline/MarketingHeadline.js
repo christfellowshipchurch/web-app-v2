@@ -1,7 +1,7 @@
 import { Photo } from 'components';
 import PropTypes from 'prop-types';
 import { Box, CardGrid, Heading, Text } from 'ui-kit';
-import { parseNewlines } from 'utils';
+import { splitString } from 'utils';
 import { StyledButton } from './MarketingHeadline.styles';
 
 function MarketingHeadline({
@@ -81,7 +81,7 @@ function MarketingHeadline({
             width={sideContent ? '85%' : '66%'}
             whiteSpace="pre"
           >
-            {parseNewlines(description)}
+            {splitString(description)}
           </Text>
         )}
         {details && (
@@ -92,7 +92,7 @@ function MarketingHeadline({
             width="66%"
             mt="m"
           >
-            {parseNewlines(details)}
+            {splitString(details)}
           </Text>
         )}
         {buttons}

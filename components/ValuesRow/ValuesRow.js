@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { Heading, Text } from 'ui-kit';
+import { splitString } from 'utils';
 import Styled, { StyledCard, StyledCardGrid } from './ValuesRow.styles';
 
 function ValuesRow({ title, items } = {}) {
@@ -31,7 +32,7 @@ function ValuesRow({ title, items } = {}) {
                 width="55%"
                 textAlign="center"
               >
-                {item.text}
+                {splitString(item.text, '\n')}
               </Text>
             </StyledCard>
           );

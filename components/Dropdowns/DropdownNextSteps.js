@@ -4,9 +4,8 @@ import { Photo } from 'components';
 import { Box, CardGrid, Heading, Text, theme } from 'ui-kit';
 
 const links = [
-  { label: 'Our beliefs', action: '/about/beliefs' },
-  { label: 'Meet our staff', action: '/about/staff' },
-  { label: 'Our story', action: '/about/story' },
+  { label: 'Baptism', action: '/next-steps/baptism' },
+  { label: 'Volunteer', action: '/next-steps/volunteer' },
 ];
 
 export default function DropdownAbout() {
@@ -37,9 +36,10 @@ export default function DropdownAbout() {
         />
         <Box
           display="flex"
-          height="223px"
+          height="148px"
           flexDirection="column"
           justifyContent="space-between"
+          width="100%"
         >
           {links.map((link, i) => (
             <Box

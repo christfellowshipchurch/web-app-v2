@@ -153,7 +153,10 @@ export default function About() {
         breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
       >
         <MarketingHeadline
-          imageSrc="https://s3-alpha-sig.figma.com/img/8316/01e5/a8585ef71c1f1859df4e8486db7968f8?Expires=1613347200&Signature=JZK-pjdBCVmLDTWKvMTQy2vWBsPyYrV3~bPvY1~tH~48flavJNMKMSlH4CYH-Cc5NB~ez-tq2UgiA2IWK2EynSH-eO24X1u1373zS6mSJqiy7BUsSjegQpJv8MqrwQHImT5XBNLcl8~gHE4fkQNKEIOOhWpL8WyqaOQOLiAqrZ6cIzfNjnJUN8wHZWraLNBr4lgk2kbDQ34H-L1KAnKSYBWeCYZYq9TPOMgw263T-2XwHozHuXQjbyj5dYFSKRCoXQ-1E89sfl~yPL7j~2Cg2mEWTFOcVGjwQeBCNhB5exWkp933BUlUkxfDxs8Q3I-kBtC-7emRjiEI5g0-wzwqrQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+          image={{
+            src:
+              'https://s3-alpha-sig.figma.com/img/8316/01e5/a8585ef71c1f1859df4e8486db7968f8?Expires=1613347200&Signature=JZK-pjdBCVmLDTWKvMTQy2vWBsPyYrV3~bPvY1~tH~48flavJNMKMSlH4CYH-Cc5NB~ez-tq2UgiA2IWK2EynSH-eO24X1u1373zS6mSJqiy7BUsSjegQpJv8MqrwQHImT5XBNLcl8~gHE4fkQNKEIOOhWpL8WyqaOQOLiAqrZ6cIzfNjnJUN8wHZWraLNBr4lgk2kbDQ34H-L1KAnKSYBWeCYZYq9TPOMgw263T-2XwHozHuXQjbyj5dYFSKRCoXQ-1E89sfl~yPL7j~2Cg2mEWTFOcVGjwQeBCNhB5exWkp933BUlUkxfDxs8Q3I-kBtC-7emRjiEI5g0-wzwqrQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
+          }}
           title={
             <>
               <Heading color="neutrals.900" variant="h2" fontWeight="800">
@@ -200,7 +203,10 @@ export default function About() {
           ]}
         />
         <MarketingHeadline
-          imageSrc="https://s3-alpha-sig.figma.com/img/809e/21ff/84f7abd2dec8e66ed842c325c618f51d?Expires=1613347200&Signature=Rkszss7pMAZjRdsHL4lAQR3pcBU7zUWPLGOEut0jWkbCfgHrwn1aH~iP3J79ob8erXbPT0fkH~zad6kKj1wCgnyEiBEhueSNTwdZPUyZ2eY9858231iVURQ5AvbQl0aQf69qQNjD8yhs1mFnSuK0yc2AUH1EOG4ZmaMkTskqt9OVogWpuBf1HUA~NGFEPvLb6aSf7zVuPsJWKagt7SBY3eCNPacR6XbM5hVZCX23tjFLsbe1olvKPUTYCHXjZCx-5ClNyEZE8ggVS1~CbCLXaeXcgI2fsOtMQf2ttIR-Jg~s~JenMd-IsYUCwd1wYCeilc7XvxjR-aMsc039kH4yLg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+          image={{
+            src:
+              'https://s3-alpha-sig.figma.com/img/809e/21ff/84f7abd2dec8e66ed842c325c618f51d?Expires=1613347200&Signature=Rkszss7pMAZjRdsHL4lAQR3pcBU7zUWPLGOEut0jWkbCfgHrwn1aH~iP3J79ob8erXbPT0fkH~zad6kKj1wCgnyEiBEhueSNTwdZPUyZ2eY9858231iVURQ5AvbQl0aQf69qQNjD8yhs1mFnSuK0yc2AUH1EOG4ZmaMkTskqt9OVogWpuBf1HUA~NGFEPvLb6aSf7zVuPsJWKagt7SBY3eCNPacR6XbM5hVZCX23tjFLsbe1olvKPUTYCHXjZCx-5ClNyEZE8ggVS1~CbCLXaeXcgI2fsOtMQf2ttIR-Jg~s~JenMd-IsYUCwd1wYCeilc7XvxjR-aMsc039kH4yLg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
+          }}
           title={
             <>
               <Heading color="neutrals.900" variant="h2" fontWeight="800">
