@@ -6,7 +6,7 @@ export const GET_PREFERENCES = gql`
       ...preferencesFragment
     }
   }
-  fragment preferencesFragment on Preference {
+  fragment preferencesFragment on GroupPreference {
     id
     title
     summary
@@ -25,7 +25,7 @@ export const GET_SUB_PREFERENCES = gql`
       ...subPreferencesFragment
     }
   }
-  fragment subPreferencesFragment on SubPreference {
+  fragment subPreferencesFragment on GroupPreference {
     id
     title
     coverImage {
