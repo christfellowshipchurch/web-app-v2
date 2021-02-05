@@ -33,11 +33,11 @@ function GroupFilterSubPreference(props = {}) {
         Select the types of Crew groups you’re interested in.
       </Box>
       <Box mb="l">
-        {filtersState.options.subPreferences.map(({ label, value }) => (
+        {filtersState.options.subPreferences.map(value => (
           <Checkbox
             key={value}
             id={value}
-            label={label}
+            label={value}
             value={value}
             name="subPreferences"
             onChange={handleChange}

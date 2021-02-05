@@ -12,7 +12,7 @@ function CurrentFiltersList(props = {}) {
           return null;
         }
 
-        let label;
+        let label = key;
         switch (key) {
           case 'campusNames':
             label = 'Campuses';
@@ -24,7 +24,7 @@ function CurrentFiltersList(props = {}) {
             label = 'Lineups';
             break;
           default:
-            return null;
+            break;
         }
 
         return (

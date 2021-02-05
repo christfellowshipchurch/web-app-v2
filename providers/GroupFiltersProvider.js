@@ -1,51 +1,18 @@
 import React, { createContext, useContext, useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
+import useGroupFilterOptions from 'hooks/useGroupFilterOptions';
 import isEmpty from 'lodash/isEmpty';
 import { useRouter } from 'next/router';
 
 const GroupFiltersProviderStateContext = createContext();
 const GroupFiltersProviderDispatchContext = createContext();
 
-// TODO: There has to be a better, dynamic way to define these.
 // Frozen to convey that these are static.
 const options = Object.freeze({
-  campuses: [
-    { label: 'Boynton Beach', value: 'boynton-beach' },
-    { label: 'Daytona', value: 'daytona' },
-    { label: 'Jupiter', value: 'jupiter' },
-    { label: 'Okeechobee', value: 'okeechobee' },
-    { label: 'Orlando', value: 'orlando' },
-    { label: 'Palm Beach Gardens', value: 'palm-beach-gardens' },
-    { label: 'Port St. Lucie', value: 'port-st-lucie' },
-    { label: 'Royal Palm Beach', value: 'royal-palm-beach' },
-    {
-      label: 'en Español Royal Palm Beach',
-      value: 'en-espanol-royal-palm-beach',
-    },
-    { label: 'Stuart', value: 'stuart' },
-    { label: 'West Palm Beach', value: 'west-palm-beach' },
-  ],
-  days: [
-    { label: 'Mon', value: 'mon' },
-    { label: 'Tue', value: 'tue' },
-    { label: 'Wed', value: 'wed' },
-    { label: 'Thu', value: 'thu' },
-    { label: 'Fri', value: 'fri' },
-    { label: 'Sat', value: 'sat' },
-    { label: 'Sun', value: 'sun' },
-  ],
-  preferences: [
-    { label: 'Crew (Men)', value: 'crew' },
-    { label: 'Sisterhood', value: 'sisterhood' },
-    { label: 'Married People', value: 'married-people' },
-    { label: 'Young Adults', value: 'young-adults' },
-  ],
-  subPreferences: [
-    { label: 'Bible Studies', value: 'bible-studies' },
-    { label: 'Prayer Groups', value: 'prayer-groups' },
-    { label: 'Activity Studies', value: 'activity-studies' },
-    { label: 'Classes', value: 'classes' },
-  ],
+  campuses: [],
+  days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+  preferences: [],
+  subPreferences: [],
 });
 
 const initialState = {
@@ -65,6 +32,7 @@ const actionTypes = {
   resetValues: 'resetValues',
   toggleValue: 'toggleValue',
   update: 'update',
+  updateOptions: 'updateOptions',
 };
 
 // ACTION CREATORS
@@ -92,11 +60,16 @@ const update = payload => ({
   payload,
 });
 
+// dispatch(updateOptions({ fieldName1: ['Option 1', 'Option 2'] }));
+const updateOptions = payload => ({
+  type: actionTypes.updateOptions,
+  payload,
+});
+
 // PRIVATE UTILS / HELPERS
 
 /**
  * Convert a state object to a serialized string representing it. The format
- * is a URL search params/query string.
  * We need to roll our own wrapper since Next.js will serialize this:
  *   { days: ["mon", "tue", "wed"] }
  * as:
@@ -128,11 +101,6 @@ function parseFilterValues(string) {
   const values = {};
 
   for (let [key, value] of entries) {
-    // Skip over non-serialized values
-    if (key === 'debug') {
-      continue;
-    }
-
     // Slightly risky logical leap: look at the initialState value
     // for this key, and if it's an array, parse the value as one.
     if (Array.isArray(initialState.values[key])) {
@@ -147,25 +115,14 @@ function parseFilterValues(string) {
 }
 
 function getQueryParams(options, values) {
-  const getLabelFromValue = filterName =>
-    // Iterate over the selected values for each filter,
-    // and go fetch their `label` from their option for that filter.
-    values[filterName]
-      .map(value => {
-        if (value === '') return value;
-
-        const option = options[filterName].find(
-          option => option.value === value
-        );
-        return option?.label;
-      })
-      .filter(string => !isEmpty(string));
+  const getValidValues = filterName =>
+    values[filterName].filter(string => !isEmpty(string));
 
   return {
-    campusNames: getLabelFromValue('campuses'),
-    preferences: getLabelFromValue('preferences'),
-    subPreferences: getLabelFromValue('subPreferences'),
-    days: getLabelFromValue('days'),
+    campusNames: getValidValues('campuses'),
+    preferences: getValidValues('preferences'),
+    subPreferences: getValidValues('subPreferences'),
+    days: getValidValues('days'),
   };
 }
 
@@ -214,6 +171,15 @@ function reducer(state, action) {
         },
       });
     }
+    case actionTypes.updateOptions: {
+      return updateAndSerialize({
+        ...state,
+        options: {
+          ...state.options,
+          ...action.payload,
+        },
+      });
+    }
     case actionTypes.toggleValue: {
       const { name, value } = action.payload;
 
@@ -245,15 +211,43 @@ function GroupFiltersProvider(props = {}) {
   const router = useRouter();
 
   const [state, dispatch] = useReducer(reducer, initialState);
+  const optionsData = useGroupFilterOptions();
 
   // Next.js won't have the hydrated state query string available when
   // rendering server-side, so watch for changes to `router.query` and
   // hydrate when it becomes available.
   useEffect(() => {
     if (!isEmpty(router.query) && !state.hydrated) {
-      dispatch(hydrate(router.query));
+      // Next's dynamic page route mechanism for routes like `[title].js`
+      // will get appended in router.query as `title`. Remove those.
+      const { title, ...rest } = router.query;
+      dispatch(hydrate({ ...rest }));
     }
   }, [router.query, state.hydrated]);
+
+  // To be simplified/removed when we lift group options definitions to API
+  // ✂️ -------------------------------------------------------------------
+  useEffect(() => {
+    if (optionsData.campuses?.length) {
+      dispatch(
+        updateOptions({
+          campuses: optionsData.campuses.map(({ name }) => name),
+        })
+      );
+    }
+  }, [optionsData.campuses]);
+
+  useEffect(() => {
+    if (optionsData.preferences?.length && optionsData.subPreferences?.length) {
+      dispatch(
+        updateOptions({
+          preferences: optionsData.preferences.map(({ title }) => title),
+          subPreferences: optionsData.subPreferences.map(({ title }) => title),
+        })
+      );
+    }
+  }, [optionsData.preferences, optionsData.subPreferences]);
+  // ✂️ -------------------------------------------------------------------
 
   return (
     <GroupFiltersProviderStateContext.Provider value={state}>
