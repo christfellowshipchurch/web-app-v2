@@ -4,8 +4,7 @@ import {
   MarketingHeadline,
   ValuesRow,
 } from 'components';
-import { TwitterLogo } from 'phosphor-react';
-import { Box, CardGrid, Heading, Icon, theme } from 'ui-kit';
+import { Box, CardGrid, Heading, Icon } from 'ui-kit';
 import { noop } from 'utils';
 
 export default function Baptism() {
@@ -18,7 +17,7 @@ export default function Baptism() {
   };
 
   return (
-    <Layout title="About - Story" bg="bg_alt">
+    <Layout title="Next Steps - Baptism" bg="bg_alt">
       <MainPhotoHeader
         src={mainHeaderData.src}
         content={

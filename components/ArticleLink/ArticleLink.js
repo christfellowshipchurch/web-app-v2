@@ -37,6 +37,7 @@ function ArticleLink({
                 display: 'flex',
                 textDecoration: 'none',
                 alignItems: 'center',
+                marginTop: theme.space.xxs,
               }}
             >
               <Text fontWeight="600" variant="s" color={color} mr="4px">
