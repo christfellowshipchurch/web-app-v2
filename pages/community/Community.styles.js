@@ -26,10 +26,9 @@ const Hero = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 75px;
   /* Fallback: Set a background color. */
   background-color: red;
-
+  font-size: 50px;
   /* Create the gradient. */
   background-image: linear-gradient(
     90.83deg,
@@ -49,6 +48,13 @@ const Title = styled.h1`
   -moz-background-clip: text;
   -moz-text-fill-color: transparent;
 
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    font-size: 65px;
+  }
+
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    font-size: 75px;
+  }
   ${system}
 `;
 
