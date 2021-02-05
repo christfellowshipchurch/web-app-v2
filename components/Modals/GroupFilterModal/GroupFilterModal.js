@@ -1,22 +1,20 @@
 import React from 'react';
+import { Modal } from 'ui-kit';
 
-import { Modal } from '../../../ui-kit';
-import GroupFilterType from './GroupFilterType';
-import GroupFilterPreferences from './GroupFilterPreferences';
+import GroupFilterSubPreferences from './GroupFilterSubPreferences';
+import GroupFilterWhereWhen from './GroupFilterWhereWhen';
 
 function GroupFilterModal(props = {}) {
-  const initialValues = { day: '', campus: '' };
-
   function render(step) {
     switch (step) {
       case 0: {
-        return <GroupFilterType initialValue={''} />;
+        return <GroupFilterSubPreferences />;
       }
       case 1: {
-        return <GroupFilterPreferences initialValues={initialValues} />;
+        return <GroupFilterWhereWhen />;
       }
       default: {
-        return <GroupFilterType />;
+        return <GroupFilterSubPreferences />;
       }
     }
   }
@@ -27,5 +25,7 @@ function GroupFilterModal(props = {}) {
 GroupFilterModal.propTypes = {
   ...Modal.propTypes,
 };
+
+GroupFilterModal.defaultProps = {};
 
 export default GroupFilterModal;

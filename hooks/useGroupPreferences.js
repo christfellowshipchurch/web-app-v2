@@ -6,7 +6,7 @@ export const GET_PREFERENCES = gql`
       ...preferencesFragment
     }
   }
-  fragment preferencesFragment on Preference {
+  fragment preferencesFragment on GroupPreference {
     id
     title
     summary
@@ -25,7 +25,7 @@ export const GET_SUB_PREFERENCES = gql`
       ...subPreferencesFragment
     }
   }
-  fragment subPreferencesFragment on SubPreference {
+  fragment subPreferencesFragment on GroupPreference {
     id
     title
     coverImage {
@@ -36,15 +36,13 @@ export const GET_SUB_PREFERENCES = gql`
   }
 `;
 
-function usePreferences(options = {}) {
+function useGroupPreferences(options = {}) {
   const queryPreferences = useQuery(GET_PREFERENCES, options);
   const querySubPreferences = useQuery(GET_SUB_PREFERENCES, options);
   return {
     preferences: queryPreferences?.data?.allPreferences || [],
-    subpreferences: querySubPreferences?.data?.allSubPreferences || [],
-    ...queryPreferences,
-    ...querySubPreferences,
+    subPreferences: querySubPreferences?.data?.allSubPreferences || [],
   };
 }
 
-export default usePreferences;
+export default useGroupPreferences;

@@ -1,13 +1,14 @@
 import { Box, Button, Cell, utils } from 'ui-kit';
 import { CommunityList, Footer, Header, SEO } from 'components';
 import { CommunitiesProvider } from 'providers';
-import Styled from './Community.styles';
 import { update as updateAuth, useAuth } from 'providers/AuthProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
+import Styled from './Community.styles';
+
 const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
 
-export default function Community() {
+export default function Community(props = {}) {
   const [{ authenticated }, authDispatch] = useAuth();
   const modalDispatch = useModalDispatch();
 
@@ -15,7 +16,9 @@ export default function Community() {
     if (!authenticated) {
       modalDispatch(showModal('Auth'));
       authDispatch(
-        updateAuth({ onSuccess: () => modalDispatch(showModal('GroupFilter')) })
+        updateAuth({
+          onSuccess: () => modalDispatch(showModal('GroupFilter')),
+        })
       );
     } else {
       modalDispatch(showModal('GroupFilter'));
@@ -38,7 +41,9 @@ export default function Community() {
             <Button variant="tertiary" rounded={true}>
               Watch
             </Button>
-            <Button variant="link">Find your community</Button>
+            <Button onClick={handleOnClick} variant="link">
+              Find your community
+            </Button>
           </Box>
         </Styled.Hero>
         <Box>
