@@ -62,7 +62,7 @@ const colors = {
 
     // LEGACY!
     bg: BACKGROUND,
-    fg: ALMOST_BLACK,
+    fg: TUATARA,
     subdued: BATTLESHIP,
     border: BORDER,
   },

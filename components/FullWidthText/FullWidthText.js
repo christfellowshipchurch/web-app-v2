@@ -72,7 +72,7 @@ FullWidthText.defaultProps = {
 
 FullWidthText.propTypes = {
   title: PropTypes.node,
-  description: PropTypes.string,
+  description: PropTypes.node,
   justify: PropTypes.oneOf(['left', 'center', 'right']),
 };
 

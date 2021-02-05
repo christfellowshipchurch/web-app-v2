@@ -3,7 +3,7 @@ import { themeGet } from '@styled-system/theme-get';
 
 import { system, theme } from 'ui-kit';
 
-const collapse = ({ breakpoints, columns }) => props => {
+const collapse = ({ breakpoints }) => props => {
   if (breakpoints) {
     let cssString = ``;
 
@@ -19,6 +19,14 @@ const collapse = ({ breakpoints, columns }) => props => {
         `;
     });
     return cssString;
+  }
+};
+
+const justify = ({ justifyItems }) => props => {
+  if (justifyItems) {
+    return css`
+      justify-items: ${justifyItems};
+    `;
   }
 };
 
@@ -43,6 +51,7 @@ const CardGrid = styled.div`
   }
 
   ${collapse}
+  ${justify}
   ${system}
 `;
 

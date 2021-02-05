@@ -1,10 +1,11 @@
+import { Photo } from 'components';
 import PropTypes from 'prop-types';
 import { Box, CardGrid, Heading, Text } from 'ui-kit';
 import { parseNewlines } from 'utils';
-import { StyledImage, StyledButton } from './MarketingHeadline.styles';
+import { StyledButton } from './MarketingHeadline.styles';
 
 function MarketingHeadline({
-  imageSrc,
+  image,
   quote,
   title,
   description,
@@ -15,8 +16,8 @@ function MarketingHeadline({
   ...props
 } = {}) {
   let sideContent;
-  if (imageSrc) {
-    sideContent = <StyledImage src={imageSrc} rounded justify={justify} />;
+  if (image) {
+    sideContent = <Photo {...image} />;
   }
   const buttons = actions?.length ? (
     <Box
@@ -45,6 +46,7 @@ function MarketingHeadline({
       columns={sideContent ? '2' : '1'}
       breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
       alignItems="center"
+      justifyItems={justify || 'left'}
       {...props}
     >
       {justify === 'left' && sideContent}
@@ -106,7 +108,12 @@ MarketingHeadline.defaultProps = {
 };
 
 MarketingHeadline.propTypes = {
-  imageSrc: PropTypes.string,
+  image: PropTypes.shape({
+    src: PropTypes.string,
+    overlay: PropTypes.object,
+    inner: PropTypes.node,
+    hover: PropTypes.bool,
+  }),
   title: PropTypes.node,
   description: PropTypes.string,
   details: PropTypes.string,
