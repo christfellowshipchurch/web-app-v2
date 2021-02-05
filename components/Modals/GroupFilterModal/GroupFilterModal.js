@@ -26,4 +26,6 @@ GroupFilterModal.propTypes = {
   ...Modal.propTypes,
 };
 
+GroupFilterModal.defaultProps = {};
+
 export default GroupFilterModal;

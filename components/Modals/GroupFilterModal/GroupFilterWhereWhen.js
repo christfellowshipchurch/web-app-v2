@@ -1,11 +1,13 @@
 import React from 'react';
 import { useRouter } from 'next/router';
+
 import {
   useGroupFilters,
   update,
   toggleValue,
 } from 'providers/GroupFiltersProvider';
 import { hideModal, useModalDispatch } from 'providers/ModalProvider';
+
 import { Box, Button, Checkbox, Select } from 'ui-kit';
 
 function GroupFilterWhereWhen(props = {}) {
@@ -56,9 +58,9 @@ function GroupFilterWhereWhen(props = {}) {
           defaultValue={filtersState.values.campuses[0] || ''}
         >
           <Select.Option value="">Select...</Select.Option>
-          {filtersState.options.campuses.map(({ label, value }) => (
+          {filtersState.options.campuses.map(value => (
             <Select.Option key={value} value={value}>
-              {label}
+              {value}
             </Select.Option>
           ))}
         </Select>
@@ -67,11 +69,11 @@ function GroupFilterWhereWhen(props = {}) {
         <Box as="p" color="subdued" mb="s">
           Preferred meeting days
         </Box>
-        {filtersState.options.days.map(({ label, value }) => (
+        {filtersState.options.days.map(value => (
           <Checkbox
             key={value}
             id={value}
-            label={label}
+            label={value}
             value={value}
             name="days"
             onChange={handleChange}
