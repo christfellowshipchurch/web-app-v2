@@ -1,92 +1,74 @@
 import PropTypes from 'prop-types';
-import isEmpty from 'lodash/isEmpty';
+
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 import { useGroupFilters, resetValues } from 'providers/GroupFiltersProvider';
 import { Box, Button } from 'ui-kit';
 
-function CurrentFiltersList(props = {}) {
-  return (
-    <Box fontSize="s">
-      {Object.entries(props.filters).map(([key, values]) => {
-        if (isEmpty(values)) {
-          return null;
-        }
-
-        let label = key;
-        switch (key) {
-          case 'campusNames':
-            label = 'Campuses';
-            break;
-          case 'preferences':
-            label = 'Group Types';
-            break;
-          case 'subPreferences':
-            label = 'Lineups';
-            break;
-          default:
-            break;
-        }
-
-        return (
-          <Box key={key} mb="base">
-            <Box as="span" fontWeight="bold">
-              {`${label}: `}
-            </Box>
-            {values.map(value => (
-              <Box
-                as="span"
-                bg="neutrals.200"
-                borderColor="neutrals.300"
-                borderStyle="solid"
-                borderWidth={1}
-                borderRadius="s"
-                display="inline-block"
-                ml="xs"
-                px="base"
-              >
-                {value}
-              </Box>
-            ))}
-          </Box>
-        );
-      })}
-    </Box>
-  );
-}
+import Styled from './GroupSearchFilters.styles';
 
 function GroupSearchFilters(props = {}) {
   const [filtersState, filtersDispatch] = useGroupFilters();
   const modalDispatch = useModalDispatch();
+  const { campuses, preferences, subPreferences, days } = filtersState.values;
+  console.log('filtersState:', filtersState);
 
   function handleChangeClick() {
-    modalDispatch(showModal('GroupFilter'));
+    modalDispatch(showModal('GroupFilter', { step: 2 }));
   }
 
   function handleClearClick() {
     filtersDispatch(resetValues());
   }
 
-  console.log(
-    '📡 Current search params',
-    Object.entries(filtersState.queryParams)
-  );
-
   return (
-    <Box mb="l">
-      <Box as="p" mb="l">
-        {props.loading && 'Finding groups…'}
-        {!props.loading &&
-          (props.resultsCount >= 1
-            ? `Found ${props.resultsCount} groups that meet your search criteria.`
-            : 'Could not find any groups that meet your search criteria.')}
-      </Box>
-      <Box mb="base">
+    <Box>
+      <Box mb="l">
         <Button onClick={handleChangeClick}>Change Filters</Button>
         <Button variant="secondary" ml="s" onClick={handleClearClick}>
-          Reset
+          Clear
         </Button>
       </Box>
-      <CurrentFiltersList filters={filtersState.queryParams} />
+      <Box
+        display="flex"
+        flexDirection="row"
+        justifyContent="space-between"
+        alignItems="flex-end"
+        mb="base"
+      >
+        <Box>
+          {campuses.length > 0 && (
+            <Styled.FilterButton
+              label="Campus"
+              labelDetail={campuses[0]}
+              onClick={handleChangeClick}
+            />
+          )}
+          {preferences.length > 0 && (
+            <Styled.FilterButton
+              label="Group Types"
+              labelDetail={preferences.length}
+              onClick={handleChangeClick}
+            />
+          )}
+          {subPreferences.length > 0 && (
+            <Styled.FilterButton
+              label="Lineups"
+              labelDetail={subPreferences.length}
+              onClick={handleChangeClick}
+            />
+          )}
+          {days.length > 0 && (
+            <Styled.FilterButton
+              label="Meeting Days"
+              labelDetail={days.length}
+              onClick={handleChangeClick}
+            />
+          )}
+        </Box>
+        <Box as="p" fontWeight="bold">{`${props.resultsCount} groups`}</Box>
+      </Box>
+
+      <Styled.Divider />
     </Box>
   );
 }

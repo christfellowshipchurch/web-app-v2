@@ -10,7 +10,7 @@ const GroupFiltersProviderDispatchContext = createContext();
 // Frozen to convey that these are static.
 const options = Object.freeze({
   campuses: [],
-  days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+  days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
   preferences: [],
   subPreferences: [],
 });

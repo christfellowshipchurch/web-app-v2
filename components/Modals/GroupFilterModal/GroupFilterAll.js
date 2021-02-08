@@ -2,7 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 
-import { useGroupFilters, toggleValue } from 'providers/GroupFiltersProvider';
+import {
+  useGroupFilters,
+  toggleValue,
+  update,
+} from 'providers/GroupFiltersProvider';
 import { useModalDispatch, hideModal } from 'providers/ModalProvider';
 import { Box, Button } from 'ui-kit';
 
@@ -15,6 +19,14 @@ function GroupFilterAll(props = {}) {
 
   const handleMultiSelectChange = ({ name, value }) => {
     filtersDispatch(toggleValue({ name, value }));
+  };
+
+  const handleClear = event => {
+    event.preventDefault();
+
+    const { name } = event.target;
+    console.log('🚦 name:', name);
+    filtersDispatch(update({ [name]: [] }));
   };
 
   const handleSubmit = event => {
@@ -39,7 +51,7 @@ function GroupFilterAll(props = {}) {
       <Box as="h2" mb="l">
         Find your Community
       </Box>
-      <Box overflow="scroll" maxHeight="40vh" mb="base">
+      <Box overflow="scroll" maxHeight="50vh" mb="base">
         <FilterField
           filterType="select"
           label="Campus"
@@ -47,20 +59,23 @@ function GroupFilterAll(props = {}) {
           options={filtersState.options.campuses}
           values={filtersState.values.campuses}
           onChange={handleMultiSelectChange}
+          onClear={handleClear}
         />
         <FilterField
-          label="Group Types (Preferences)"
+          label="Group Types"
           name="preferences"
           options={filtersState.options.preferences}
           values={filtersState.values.preferences}
           onChange={handleMultiSelectChange}
+          onClear={handleClear}
         />
         <FilterField
-          label="Lineups (Sub-Preferences)"
+          label="Lineups"
           name="subPreferences"
           options={filtersState.options.subPreferences}
           values={filtersState.values.subPreferences}
           onChange={handleMultiSelectChange}
+          onClear={handleClear}
         />
         <FilterField
           label="Meeting Days"
@@ -68,7 +83,8 @@ function GroupFilterAll(props = {}) {
           options={filtersState.options.days}
           values={filtersState.values.days}
           onChange={handleMultiSelectChange}
-          mb="none"
+          onClear={handleClear}
+          mb="base"
         />
       </Box>
       <Button type="submit">Continue</Button>
