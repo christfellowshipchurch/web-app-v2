@@ -52,11 +52,9 @@ const GroupCard = (props = {}) => {
           <Styled.GroupCardSubTitle>{props.groupType}</Styled.GroupCardSubTitle>
         )}
         {props.preference && (
-          <Styled.GroupCardTitle>
-            <Box as="p" fontSize="s">
-              {props.preference}
-            </Box>
-          </Styled.GroupCardTitle>
+          <Styled.GroupCardSubTitle>
+            {props.preference}
+          </Styled.GroupCardSubTitle>
         )}
       </Box>
       <Styled.GroupCardContent>
@@ -83,10 +81,11 @@ const GroupCard = (props = {}) => {
           </Box>
         )}
         <Box as="h5" mt="base">
-          <Box as="span">{props.totalAvatars}</Box> Group Members
+          <Box as="span">{props.totalAvatars}</Box>{' '}
+          {props.totalAvatars === 1 ? `Group Member` : 'Group Members'}
         </Box>
         {props.avatars?.length > 0 && (
-          <Box display="flex">
+          <Box display="flex" mb="l">
             {props.avatars.slice(0, maxAvatars).map((n, i = 2) => (
               <SquareAvatar
                 height="90px"
@@ -105,7 +104,7 @@ const GroupCard = (props = {}) => {
         {props.callToAction && (
           <Button
             onClick={props?.callToAction?.action}
-            mt="l"
+            mt="base"
             size="l"
             width="100%"
           >

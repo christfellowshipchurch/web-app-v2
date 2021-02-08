@@ -120,6 +120,7 @@ export const GridView = () => (
     <GroupCard
       title="Group Title"
       groupType="Group Type"
+      campus="Orlando"
       summary={groupSummary}
       heroAvatars={heroAvatars}
       avatars={avatars}
@@ -130,18 +131,24 @@ export const GridView = () => (
     <GroupCard
       title="A Group That Does Not Contain Summary Text"
       groupType="Group Type"
+      preference="Preference"
+      campus="Royal Palm Beach"
       heroAvatars={heroAvatars}
       avatars={blankAvatars}
       coverImage="https://source.unsplash.com/random/1000x1000"
       totalAvatars={100}
+      callToAction={{
+        call: 'Contact Group Leaders',
+        action: () => alert('Call to Action clicked'),
+      }}
     />
     <GroupCard
       title="No Leaders in Group"
       summary={groupSummary}
-      avatars={avatars}
+      avatars={avatars.slice(0, 3)}
       dateTime={new Date()}
       coverImage="https://source.unsplash.com/random/1000x1000"
-      totalAvatars={512}
+      totalAvatars={3}
     />
   </CardGrid>
 );
