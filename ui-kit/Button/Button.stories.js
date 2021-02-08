@@ -30,9 +30,6 @@ export const Variants = () => (
     <Button variant="tertiary" mr="s">
       Tertiary
     </Button>
-    <Button variant="chip" mr="s">
-      Chip
-    </Button>
   </Box>
 );
 
@@ -78,9 +75,6 @@ export const Rounded = () => (
     </Button>
     <Button rounded={true} variant="tertiary" mr="s">
       Rounded Tertiary
-    </Button>
-    <Button rounded={true} variant="tertiary" mr="s">
-      Rounded Chip
     </Button>
   </Box>
 );

@@ -24,4 +24,8 @@ Button.propTypes = {
   variant: PropTypes.oneOf(['link', 'secondary', 'tertiary', 'chip']),
 };
 
+Button.defaultProps = {
+  status: 'IDLE',
+};
+
 export default Button;

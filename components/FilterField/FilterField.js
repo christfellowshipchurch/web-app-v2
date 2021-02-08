@@ -55,11 +55,19 @@ export default function FilterField(props = {}) {
               const { value } = event.target;
               props.onChange({ name: props.name, value });
             }}
-            defaultValue={props.values[0] || ''}
           >
-            <Select.Option value="">Select...</Select.Option>
+            <Select.Option
+              value=""
+              selected={props.values.length === 0 || props.values[0] === ''}
+            >
+              Select...
+            </Select.Option>
             {props.options.map(value => (
-              <Select.Option key={value} value={value}>
+              <Select.Option
+                key={value}
+                value={value}
+                selected={props.values[0] === value}
+              >
                 {value}
               </Select.Option>
             ))}

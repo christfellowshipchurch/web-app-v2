@@ -66,9 +66,9 @@ export default function CommunitySearch() {
                   <GroupCard
                     key={group.node?.id}
                     callToAction={callToAction}
-                    campus={group.node?.campus.name}
+                    campus={group.node?.campus?.name}
                     coverImage={group.coverImage?.sources[0]?.uri}
-                    dateTime={group.node?.dateTime.start}
+                    dateTime={group.node?.dateTime?.start}
                     groupType={group.type}
                     heroAvatars={group.node?.leaders?.edges}
                     preference={group.node?.preference}

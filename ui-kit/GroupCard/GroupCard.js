@@ -121,7 +121,7 @@ GroupCard.propTypes = {
   avatars: PropTypes.array,
   callToAction: PropTypes.shape({
     call: PropTypes.string,
-    action: PropTypes.string,
+    action: PropTypes.func,
   }),
   campus: PropTypes.string,
   preference: PropTypes.string,

@@ -10,7 +10,6 @@ function GroupSearchFilters(props = {}) {
   const [filtersState, filtersDispatch] = useGroupFilters();
   const modalDispatch = useModalDispatch();
   const { campuses, preferences, subPreferences, days } = filtersState.values;
-  console.log('filtersState:', filtersState);
 
   function handleChangeClick() {
     modalDispatch(showModal('GroupFilter', { step: 2 }));

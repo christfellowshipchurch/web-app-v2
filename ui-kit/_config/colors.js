@@ -9,8 +9,9 @@ const colors = {
   // LIGHT THEME
   light: {
     primary: PICTON,
-    primaryHover: Color(PICTON).darken(0.2),
-    primarySubdued: Color(PICTON).desaturate(0.2).lighten(0.9),
+    primaryHover: Color(PICTON).darken(0.25),
+    primarySubdued: Color(PICTON).desaturate(0.25).lighten(0.98),
+    primarySubduedHover: Color(PICTON).desaturate(0.1).lighten(0.85),
     secondary: TUATARA,
     secondaryHover: Color(TUATARA).darken(0.2),
     tertiary: BATTLESHIP,

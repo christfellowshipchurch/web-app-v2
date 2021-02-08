@@ -18,14 +18,31 @@ export const MultiSelect = () => {
     }
   };
 
+  const handleClear = event => {
+    event.preventDefault();
+    setValues([]);
+  };
+
   return (
     <FilterField
       filterType="multi-select"
       label="Toppings"
       name="Toppings"
-      options={['Lettuce', 'Mayo', 'Tomato', 'Onions', 'Jalapeños', 'Pickles']}
+      options={[
+        'Lettuce',
+        'Mayo',
+        'Tomato',
+        'Onions',
+        'Jalapeños',
+        'Pickles',
+        'Mushrooms',
+        'Hot Sauce',
+        'Ketchup',
+        'Mustard',
+      ]}
       values={values}
       onChange={handleChange}
+      onClear={handleClear}
     />
   );
 };
@@ -37,6 +54,11 @@ export const SingleSelect = () => {
     setValue([value]);
   };
 
+  const handleClear = event => {
+    event.preventDefault();
+    setValue([]);
+  };
+
   return (
     <FilterField
       filterType="select"
@@ -45,6 +67,7 @@ export const SingleSelect = () => {
       options={['Chicken', 'Beef', 'Pork', 'Vegan']}
       values={value}
       onChange={handleChange}
+      onClear={handleClear}
     />
   );
 };
