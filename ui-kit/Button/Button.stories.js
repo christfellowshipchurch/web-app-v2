@@ -30,6 +30,41 @@ export const Variants = () => (
     <Button variant="tertiary" mr="s">
       Tertiary
     </Button>
+    <Button variant="chip" mr="s">
+      Chip
+    </Button>
+  </Box>
+);
+
+export const Chip = () => (
+  <Box flexDirection="column" bg="white" padding="l">
+    <Box mb="l">
+      <Box as="h5">Default</Box>
+      <Button variant="chip" mr="s">
+        Chip
+      </Button>
+      <Button variant="chip" status="SELECTED" mr="s">
+        Selected Chip
+      </Button>
+    </Box>
+    <Box mb="l">
+      <Box as="h5">Rounded</Box>
+      <Button rounded={true} variant="chip" mr="s">
+        Chip (Rounded)
+      </Button>
+      <Button rounded={true} variant="chip" status="SELECTED" mr="s">
+        Selected Chip (Rounded)
+      </Button>
+    </Box>
+    <Box mb="l">
+      <Box as="h5">Small &amp; Rounded</Box>
+      <Button rounded={true} variant="chip" size="s" mr="s">
+        Chip (Small, Rounded)
+      </Button>
+      <Button rounded={true} variant="chip" size="s" status="SELECTED" mr="s">
+        Selected Chip (Small, Rounded)
+      </Button>
+    </Box>
   </Box>
 );
 
@@ -43,6 +78,9 @@ export const Rounded = () => (
     </Button>
     <Button rounded={true} variant="tertiary" mr="s">
       Rounded Tertiary
+    </Button>
+    <Button rounded={true} variant="tertiary" mr="s">
+      Rounded Chip
     </Button>
   </Box>
 );

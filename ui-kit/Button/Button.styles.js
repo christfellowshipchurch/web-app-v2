@@ -37,6 +37,13 @@ const variant = ({ variant }) => props => {
       color: ${themeGet('colors.secondary')};
     `;
   }
+  if (variant === 'chip') {
+    return css`
+      background-color: ${themeGet('colors.screen')};
+      color: ${themeGet('colors.tertiary')};
+      border-color: ${themeGet('colors.tertiary')};
+    `;
+  }
 };
 
 const size = ({ size }) => props => {
@@ -67,6 +74,14 @@ const status = ({ status }) => props => {
       > *:first-child {
         margin-right: ${themeGet('space.s')};
       }
+    `;
+  }
+
+  if (status === 'SELECTED') {
+    return css`
+      color: ${themeGet('colors.primaryHover')};
+      background-color: ${themeGet('colors.primarySubdued')};
+      border-color: ${themeGet('colors.primary')};
     `;
   }
 };
@@ -100,8 +115,8 @@ const Button = styled.button`
   }
 
   ${size}
-  ${status}
   ${variant}
+  ${status}
   ${rounded}
   ${system}
 `;
