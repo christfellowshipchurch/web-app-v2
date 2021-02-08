@@ -45,7 +45,7 @@ function GroupFilterWhereWhen(props = {}) {
       flexDirection="column"
     >
       <Box textAlign="center">
-        <Box as="h2">Find your Crew</Box>
+        <Box as="h2">Find your Community</Box>
         <Box as="p" color="subdued" mb="l">
           Where and when?
         </Box>

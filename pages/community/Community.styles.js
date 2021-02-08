@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
 import { system } from 'ui-kit';
+import { rem } from 'ui-kit/_utils';
 
 const Community = styled.div`
   ${system}
@@ -26,10 +27,9 @@ const Hero = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 75px;
   /* Fallback: Set a background color. */
   background-color: red;
-
+  font-size: ${rem('50px')};
   /* Create the gradient. */
   background-image: linear-gradient(
     90.83deg,
@@ -49,6 +49,13 @@ const Title = styled.h1`
   -moz-background-clip: text;
   -moz-text-fill-color: transparent;
 
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    font-size: ${rem('65px')};
+  }
+
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    font-size: ${rem('75px')};
+  }
   ${system}
 `;
 
