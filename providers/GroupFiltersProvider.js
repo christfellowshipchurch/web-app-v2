@@ -217,13 +217,13 @@ function GroupFiltersProvider(props = {}) {
   // rendering server-side, so watch for changes to `router.query` and
   // hydrate when it becomes available.
   useEffect(() => {
-    if (!isEmpty(router.query) && !state.hydrated) {
+    if (!isEmpty(router?.query) && !state.hydrated) {
       // Next's dynamic page route mechanism for routes like `[title].js`
       // will get appended in router.query as `title`. Remove those.
-      const { title, ...rest } = router.query;
+      const { title, ...rest } = router?.query;
       dispatch(hydrate({ ...rest }));
     }
-  }, [router.query, state.hydrated]);
+  }, [router?.query, state.hydrated]);
 
   // To be simplified/removed when we lift group options definitions to API
   // ✂️ -------------------------------------------------------------------
