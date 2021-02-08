@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 import { useGroupFilters, resetValues } from 'providers/GroupFiltersProvider';
-import { Box, Button } from 'ui-kit';
+import { Box, Button, Divider } from 'ui-kit';
 
-import Styled from './GroupSearchFilters.styles';
+import FilterButton from './FilterButton';
 
 function GroupSearchFilters(props = {}) {
   const [filtersState, filtersDispatch] = useGroupFilters();
@@ -36,28 +36,28 @@ function GroupSearchFilters(props = {}) {
       >
         <Box>
           {campuses.length > 0 && (
-            <Styled.FilterButton
+            <FilterButton
               label="Campus"
               labelDetail={campuses[0]}
               onClick={handleChangeClick}
             />
           )}
           {preferences.length > 0 && (
-            <Styled.FilterButton
+            <FilterButton
               label="Group Types"
               labelDetail={preferences.length}
               onClick={handleChangeClick}
             />
           )}
           {subPreferences.length > 0 && (
-            <Styled.FilterButton
+            <FilterButton
               label="Lineups"
               labelDetail={subPreferences.length}
               onClick={handleChangeClick}
             />
           )}
           {days.length > 0 && (
-            <Styled.FilterButton
+            <FilterButton
               label="Meeting Days"
               labelDetail={days.length}
               onClick={handleChangeClick}
@@ -67,7 +67,7 @@ function GroupSearchFilters(props = {}) {
         <Box as="p" fontWeight="bold">{`${props.resultsCount} groups`}</Box>
       </Box>
 
-      <Styled.Divider />
+      <Divider mt="s" mb="l" />
     </Box>
   );
 }
