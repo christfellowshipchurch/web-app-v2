@@ -28,9 +28,9 @@ function GroupFilterSubPreference(props = {}) {
       flexDirection="column"
       textAlign="center"
     >
-      <Box as="h2">Find your Crew</Box>
+      <Box as="h2">Find your Community</Box>
       <Box as="p" color="subdued" mb="l">
-        Select the types of Crew groups you’re interested in.
+        Select the types of community groups you’re interested in.
       </Box>
       <Box mb="l">
         {filtersState.options.subPreferences.map(value => (
