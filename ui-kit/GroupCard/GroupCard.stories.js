@@ -111,7 +111,7 @@ export const Default = () => (
     avatars={avatars}
     dateTime={new Date()}
     coverImage="https://source.unsplash.com/random/1000x1000"
-    totalAvatars={100}
+    totalAvatars={10}
   />
 );
 
@@ -125,7 +125,7 @@ export const GridView = () => (
       avatars={avatars}
       dateTime={new Date()}
       coverImage="https://source.unsplash.com/random/1000x1000"
-      totalAvatars={100}
+      totalAvatars={17}
     />
     <GroupCard
       title="A Group That Does Not Contain Summary Text"
@@ -141,7 +141,7 @@ export const GridView = () => (
       avatars={avatars}
       dateTime={new Date()}
       coverImage="https://source.unsplash.com/random/1000x1000"
-      totalAvatars={100}
+      totalAvatars={512}
     />
   </CardGrid>
 );
