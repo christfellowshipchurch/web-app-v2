@@ -3,19 +3,20 @@ import PropTypes from 'prop-types';
 
 import { showStep, useModalDispatch } from 'providers/ModalProvider';
 
-import { useForm } from 'hooks';
+import { useForm, useContactGroupLeader } from 'hooks';
 
 import { Avatar, Box, Button, TextInput } from 'ui-kit';
 
 function ConnectForm(props = {}) {
   const modalDispatch = useModalDispatch();
-
+  const [contactGroupLeader] = useContactGroupLeader();
   const { values, handleChange, handleSubmit, setValues } = useForm(() => {
-    const options = {
-      groupId: props.groupId,
-      ...values,
-    };
-    console.log('Show me Results', options);
+    contactGroupLeader({
+      variables: {
+        groupId: 'Group:asdfasdf', // props.groupId,
+        message: values.message,
+      },
+    });
     modalDispatch(showStep(1));
   });
 
