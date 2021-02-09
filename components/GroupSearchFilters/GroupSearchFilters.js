@@ -1,22 +1,18 @@
 import PropTypes from 'prop-types';
 
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
-import { useGroupFilters, resetValues } from 'providers/GroupFiltersProvider';
-import { Box, Button, Divider, Icon, utils } from 'ui-kit';
+import { useGroupFilters } from 'providers/GroupFiltersProvider';
+import { Box, Button, Icon, utils } from 'ui-kit';
 
 import FilterButton from './FilterButton';
 
 function GroupSearchFilters(props = {}) {
-  const [filtersState, filtersDispatch] = useGroupFilters();
+  const [filtersState] = useGroupFilters();
   const modalDispatch = useModalDispatch();
   const { campuses, preferences, subPreferences, days } = filtersState.values;
 
   function handleChangeClick() {
     modalDispatch(showModal('GroupFilter', { step: 2 }));
-  }
-
-  function handleClearClick() {
-    filtersDispatch(resetValues());
   }
 
   return (
@@ -65,14 +61,6 @@ function GroupSearchFilters(props = {}) {
             onClick={handleChangeClick}
           />
         )}
-        <Button
-          variant="link"
-          rounded={true}
-          size="s"
-          onClick={handleClearClick}
-        >
-          Clear
-        </Button>
       </Box>
     </Box>
   );
