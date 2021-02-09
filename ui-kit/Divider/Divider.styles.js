@@ -9,8 +9,6 @@ const Divider = styled.hr`
   height: 1px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: ${themeGet('space.xl')};
-  max-width: 50rem;
 
   ${system}
 `;

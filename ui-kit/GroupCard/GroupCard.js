@@ -10,10 +10,12 @@ import { textTrimmer } from 'utils';
 const GroupCard = (props = {}) => {
   const summaryLength = props?.summary?.length || 0;
   const maxChar = 130;
+  const maxAvatars = 4;
 
   // Option if we want to add a Avatar Count label for leaders
   // const heroAvatarsDiff = props.totalHeroAvatars - props.heroAvatars.length;
-  const avatarsDiff = props.totalAvatars - props.avatars.length;
+  const avatarsDiff =
+    props.totalAvatars - Math.min(props.avatars.length, maxAvatars);
 
   return (
     <Styled {...props}>
@@ -47,18 +49,12 @@ const GroupCard = (props = {}) => {
           <Box as="h4">{props.title}</Box>
         </Styled.GroupCardTitle>
         {props.groupType && (
-          <Styled.GroupCardTitle>
-            <Box as="p" fontSize="s">
-              {props.groupType}
-            </Box>
-          </Styled.GroupCardTitle>
+          <Styled.GroupCardSubTitle>{props.groupType}</Styled.GroupCardSubTitle>
         )}
         {props.preference && (
-          <Styled.GroupCardTitle>
-            <Box as="p" fontSize="s">
-              {props.preference}
-            </Box>
-          </Styled.GroupCardTitle>
+          <Styled.GroupCardSubTitle>
+            {props.preference}
+          </Styled.GroupCardSubTitle>
         )}
       </Box>
       <Styled.GroupCardContent>
@@ -67,7 +63,7 @@ const GroupCard = (props = {}) => {
         )}
         {props.dateTime && (
           <Styled.DateTimeLabel>
-            🗓️ {format(new Date(props.dateTime), "EEE 'at' h:mm")}
+            🗓️ {format(new Date(props.dateTime), "EEEE 'at' h:mm a")}
           </Styled.DateTimeLabel>
         )}
         {props.summary && (
@@ -85,11 +81,12 @@ const GroupCard = (props = {}) => {
           </Box>
         )}
         <Box as="h5" mt="base">
-          <Box as="span">👥 {props.totalAvatars}</Box> Members
+          <Box as="span">{props.totalAvatars}</Box>{' '}
+          {props.totalAvatars === 1 ? `Group Member` : 'Group Members'}
         </Box>
         {props.avatars?.length > 0 && (
-          <Box display="flex">
-            {props.avatars.slice(0, 4).map((n, i = 2) => (
+          <Box display="flex" mb="l">
+            {props.avatars.slice(0, maxAvatars).map((n, i = 2) => (
               <SquareAvatar
                 height="90px"
                 key={i}
@@ -107,7 +104,7 @@ const GroupCard = (props = {}) => {
         {props.callToAction && (
           <Button
             onClick={props?.callToAction?.action}
-            mt="l"
+            mt="base"
             size="l"
             width="100%"
           >
@@ -124,7 +121,7 @@ GroupCard.propTypes = {
   avatars: PropTypes.array,
   callToAction: PropTypes.shape({
     call: PropTypes.string,
-    action: PropTypes.string,
+    action: PropTypes.func,
   }),
   campus: PropTypes.string,
   preference: PropTypes.string,

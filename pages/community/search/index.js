@@ -37,16 +37,11 @@ export default function CommunitySearch() {
           px="base"
           py={{ _: 'l', lg: 'xl' }}
         >
-          <Box as="h1">Find your Community</Box>
+          <Box as="h1" mb="l">
+            Find your Community
+          </Box>
           <GroupSearchFilters loading={loading} resultsCount={groups?.length} />
-          <Box
-            as="hr"
-            mt="s"
-            mb="l"
-            border="none"
-            bg="neutrals.200"
-            height={2}
-          />
+
           {loading && (
             <Box>
               <Loader />
@@ -55,7 +50,7 @@ export default function CommunitySearch() {
           {!loading && Boolean(groups?.length) && (
             <CardGrid>
               {groups.map((group, index) => {
-                const DEFAULT_GROUP_CALL_TO_ACTION = {
+                const callToAction = {
                   call: 'Contact',
                   action: () =>
                     modalDispatch(
@@ -70,10 +65,10 @@ export default function CommunitySearch() {
                 return (
                   <GroupCard
                     key={group.node?.id}
-                    callToAction={DEFAULT_GROUP_CALL_TO_ACTION}
-                    campus={group.node?.campus.name}
+                    callToAction={callToAction}
+                    campus={group.node?.campus?.name}
                     coverImage={group.coverImage?.sources[0]?.uri}
-                    dateTime={group.node?.dateTime.start}
+                    dateTime={group.node?.dateTime?.start}
                     groupType={group.type}
                     heroAvatars={group.node?.leaders?.edges}
                     preference={group.node?.preference}

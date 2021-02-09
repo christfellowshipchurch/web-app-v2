@@ -11,6 +11,7 @@ import CustomLink from './CustomLink';
 import EventSingle from './EventSingle';
 import EventsList from './EventsList';
 import FeatureFeed from './FeatureFeed';
+import FilterField from './FilterField';
 import Footer from './Footer';
 import GenderField from './GenderField';
 import GroupSearchFilters from './GroupSearchFilters';
@@ -40,6 +41,7 @@ export {
   CustomLink,
   EventSingle,
   EventsList,
+  FilterField,
   FeatureFeed,
   Footer,
   GenderField,

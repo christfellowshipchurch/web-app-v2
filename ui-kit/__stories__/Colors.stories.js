@@ -31,6 +31,11 @@ export const Light = () => (
       <Swatch color="tertiary" label="Tertiary" />
     </Box>
     <Box display="flex">
+      <Swatch color="primaryHover" label="Primary (Hover)" />
+      <Swatch color="primarySubdued" label="Primary (Subdued)" />
+      <Swatch color="primarySubduedHover" label="Primary (Subdued Hover)" />
+    </Box>
+    <Box display="flex">
       <Swatch color="neutrals.100" label="Neutral 100" borderColor="border" />
       <Swatch color="neutrals.200" label="Neutral 200" />
       <Swatch color="neutrals.300" label="Neutral 300" />
