@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useGroupFilters, toggleValue } from 'providers/GroupFiltersProvider';
 import { showStep, useModalDispatch } from 'providers/ModalProvider';
 import { Box, Button, Checkbox } from 'ui-kit';
@@ -50,9 +49,6 @@ function GroupFilterSubPreference(props = {}) {
   );
 }
 
-GroupFilterSubPreference.propTypes = {
-  initialValue: PropTypes.string,
-  onChange: PropTypes.func,
-};
+GroupFilterSubPreference.propTypes = {};
 
 export default GroupFilterSubPreference;

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 
 import {
@@ -92,9 +91,6 @@ function GroupFilterAll(props = {}) {
   );
 }
 
-GroupFilterAll.propTypes = {
-  initialValue: PropTypes.string,
-  onChange: PropTypes.func,
-};
+GroupFilterAll.propTypes = {};
 
 export default GroupFilterAll;
