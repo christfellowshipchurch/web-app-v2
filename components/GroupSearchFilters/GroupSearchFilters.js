@@ -33,7 +33,6 @@ function GroupSearchFilters(props = {}) {
           onClick={handleChangeClick}
           display="flex"
           rounded={true}
-          size="s"
           mr="s"
         >
           <Icon name="filter" size="14" mr={rem('8px')} />
@@ -79,7 +78,6 @@ function GroupSearchFilters(props = {}) {
       <Box as="p" fontWeight="bold">{`${props.resultsCount} ${
         props.resultsCount === 1 ? 'group' : 'groups'
       }`}</Box>
-      <Divider mt="s" mb="l" />
     </Box>
   );
 }
