@@ -9,7 +9,6 @@ export default function FilterButton(props = {}) {
       mr="s"
       onClick={props.onClick}
       rounded={true}
-      size="s"
       variant="chip"
       {...props}
     >

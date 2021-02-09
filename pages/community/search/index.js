@@ -30,10 +30,10 @@ export default function CommunitySearch() {
 
     searchGroups({
       variables: {
-        query: filtersState.queryParams,
+        query: filtersState.queryData,
       },
     });
-  }, [searchGroups, filtersState.hydrated, filtersState.queryParams]);
+  }, [searchGroups, filtersState.hydrated, filtersState.queryData]);
 
   return (
     <>

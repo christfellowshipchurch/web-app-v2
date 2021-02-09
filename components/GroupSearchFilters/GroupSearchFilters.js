@@ -76,7 +76,10 @@ function GroupSearchFilters(props = {}) {
           Clear
         </Button>
       </Box>
-      <Box as="p" fontWeight="bold">{`${props.resultsCount} groups`}</Box>
+      <Box as="p" fontWeight="bold">{`${props.resultsCount} ${
+        props.resultsCount === 1 ? 'group' : 'groups'
+      }`}</Box>
+      <Divider mt="s" mb="l" />
     </Box>
   );
 }
