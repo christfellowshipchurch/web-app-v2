@@ -11,7 +11,11 @@ function ConnectForm(props = {}) {
   const modalDispatch = useModalDispatch();
 
   const { values, handleChange, handleSubmit, setValues } = useForm(() => {
-    console.log('Show me Results', values);
+    const options = {
+      groupId: props.groupId,
+      ...values,
+    };
+    console.log('Show me Results', options);
     modalDispatch(showStep(1));
   });
 
