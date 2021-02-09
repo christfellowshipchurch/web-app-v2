@@ -54,9 +54,6 @@ function CommunitySingle(props = {}) {
           <Button variant="tertiary" rounded={true} onClick={handleOnClick}>
             {`Find your ${props.data?.title}`}
           </Button>
-          {props.data?.video && (
-            <Button variant="link">{`Explore ${props.data?.title}`}</Button>
-          )}
         </Box>
       </Header>
       <Box textAlign="center" alignItems="center" mb="l" px={{ md: 'xxl' }}>
