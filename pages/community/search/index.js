@@ -1,5 +1,13 @@
 import { useEffect } from 'react';
-import { Box, CardGrid, Cell, GroupCard, Loader, utils } from 'ui-kit';
+import {
+  Button,
+  Box,
+  CardGrid,
+  Cell,
+  GroupCard,
+  Loader,
+  utils,
+} from 'ui-kit';
 import { Footer, GroupSearchFilters, Header, SEO } from 'components';
 import { useGroupFilters } from 'providers/GroupFiltersProvider';
 import { useSearchGroups } from 'hooks';
@@ -37,8 +45,22 @@ export default function CommunitySearch() {
           px="base"
           py={{ _: 'l', lg: 'xl' }}
         >
-          <Box as="h1" mb="l">
-            Find your Community
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
+            mb="base"
+          >
+            <Box as="h1">Find your Community</Box>
+            <Button
+              as="a"
+              rounded={true}
+              size="s"
+              variant="secondary"
+              href="https://rock.gocf.org/page/2113"
+            >
+              Need help?
+            </Button>
           </Box>
           <GroupSearchFilters loading={loading} resultsCount={groups?.length} />
 
