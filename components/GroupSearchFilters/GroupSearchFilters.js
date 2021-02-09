@@ -2,8 +2,7 @@ import PropTypes from 'prop-types';
 
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 import { useGroupFilters, resetValues } from 'providers/GroupFiltersProvider';
-import { Box, Button, Divider, Icon } from 'ui-kit';
-import { rem } from 'ui-kit/_utils';
+import { Box, Button, Divider, Icon, utils } from 'ui-kit';
 
 import FilterButton from './FilterButton';
 
@@ -35,7 +34,7 @@ function GroupSearchFilters(props = {}) {
           rounded={true}
           mr="s"
         >
-          <Icon name="filter" size="14" mr={rem('8px')} />
+          <Icon name="filter" size="14" mr={utils.rem('8px')} />
           <Box as="span">Filter</Box>
         </Button>
         {campuses.length > 0 && (
