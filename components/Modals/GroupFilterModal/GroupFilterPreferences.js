@@ -22,14 +22,13 @@ function GroupFilterPreferences(props = {}) {
       onSubmit={handleSubmit}
       display="flex"
       flexDirection="column"
-      alignItems="center"
       textAlign="center"
     >
       <Box as="h2">Find your Community</Box>
       <Box as="p" color="subdued" mb="l">
         Select the types of community groups you’re interested in.
       </Box>
-      <Box display="flex" flexDirection="column" width="80%" mb="l">
+      <Box display="flex" flexDirection="column" width="80%" mx="auto" mb="l">
         {filtersState.options.preferences?.length === 0 && <Loader mx="auto" />}
         {filtersState.options.preferences.map(value => (
           <Button
