@@ -24,7 +24,9 @@ const initialState = {
     preferences: [],
     subPreferences: [],
   },
-  queryParams: {},
+  queryData: {
+    attributes: [],
+  },
 };
 
 const actionTypes = {
@@ -114,15 +116,19 @@ function parseFilterValues(string) {
   return values;
 }
 
-function getQueryParams(options, values) {
+function getQueryData(values) {
   const getValidValues = filterName =>
     values[filterName].filter(string => !isEmpty(string));
 
+  const attributes = [
+    { key: 'campusNames', values: getValidValues('campuses') },
+    { key: 'preferences', values: getValidValues('preferences') },
+    { key: 'subPreferences', values: getValidValues('subPreferences') },
+    { key: 'days', values: getValidValues('days') },
+  ].filter(({ values }) => values.length > 0);
+
   return {
-    campusNames: getValidValues('campuses'),
-    preferences: getValidValues('preferences'),
-    subPreferences: getValidValues('subPreferences'),
-    days: getValidValues('days'),
+    attributes,
   };
 }
 
@@ -135,7 +141,7 @@ function updateAndSerialize(state) {
   const newState = {
     ...state,
     valuesSerialized: serializeFilterValues(state.values),
-    queryParams: getQueryParams(state.options, state.values),
+    queryData: getQueryData(state.values),
   };
 
   console.log('[GroupFiltersProvider] newState: ', newState);
