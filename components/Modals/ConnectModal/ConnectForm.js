@@ -13,7 +13,7 @@ function ConnectForm(props = {}) {
   const { values, handleChange, handleSubmit, setValues } = useForm(() => {
     contactGroupLeader({
       variables: {
-        groupId: 'Group:asdfasdf', // props.groupId,
+        groupId: props.groupId,
         message: values.message,
       },
     });
