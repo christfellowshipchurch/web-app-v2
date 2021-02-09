@@ -1,17 +1,14 @@
 import React from 'react';
 import { useGroupFilters, toggleValue } from 'providers/GroupFiltersProvider';
 import { showStep, useModalDispatch } from 'providers/ModalProvider';
-import { Box, Button, Checkbox, Loader } from 'ui-kit';
+import { Box, Button, Loader } from 'ui-kit';
 
 function GroupFilterSubPreference(props = {}) {
   const modalDispatch = useModalDispatch();
   const [filtersState, filtersDispatch] = useGroupFilters();
 
-  const handleChange = event => {
-    event.persist();
-    const { name, value } = event.target;
-
-    filtersDispatch(toggleValue({ name, value }));
+  const handleChange = value => {
+    filtersDispatch(toggleValue({ name: 'subPreferences', value }));
   };
 
   const handleSubmit = event => {
@@ -29,22 +26,30 @@ function GroupFilterSubPreference(props = {}) {
     >
       <Box as="h2">Find your Community</Box>
       <Box as="p" color="subdued" mb="l">
-        Select the types of community groups you’re interested in.
+        Select the activities you're interested in doing with a group.
       </Box>
-      <Box mb="l">
+      <Box display="flex" flexDirection="column" width="80%" mx="auto" mb="l">
         {filtersState.options.subPreferences?.length === 0 && (
-          <Loader mx="auto" />
+          <Loader mx="auto" my="l" />
         )}
         {filtersState.options.subPreferences.map(value => (
-          <Checkbox
+          <Button
             key={value}
-            id={value}
-            label={value}
-            value={value}
-            name="subPreferences"
-            onChange={handleChange}
-            checked={filtersState.values.subPreferences.includes(value)}
-          />
+            variant="secondary"
+            size="s"
+            status={
+              filtersState.values.subPreferences.includes(value)
+                ? 'SELECTED'
+                : 'IDLE'
+            }
+            onClick={event => {
+              event.preventDefault();
+              handleChange(value);
+            }}
+            mb="xs"
+          >
+            {value}
+          </Button>
         ))}
       </Box>
       <Button type="submit">Continue</Button>

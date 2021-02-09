@@ -29,7 +29,9 @@ function GroupFilterPreferences(props = {}) {
         Select the types of community groups you’re interested in.
       </Box>
       <Box display="flex" flexDirection="column" width="80%" mx="auto" mb="l">
-        {filtersState.options.preferences?.length === 0 && <Loader mx="auto" />}
+        {filtersState.options.preferences?.length === 0 && (
+          <Loader mx="auto" my="l" />
+        )}
         {filtersState.options.preferences.map(value => (
           <Button
             key={value}
