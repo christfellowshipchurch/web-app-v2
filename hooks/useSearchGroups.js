@@ -1,8 +1,8 @@
 import { gql, useLazyQuery } from '@apollo/client';
 
 export const SEARCH_GROUPS = gql`
-  query searchGroups($query: SearchGroupsInput!) {
-    searchGroups(query: $query) {
+  query searchGroups($query: SearchQueryInput!, $first: Int, $after: String) {
+    searchGroups(query: $query, first: $first, after: $after) {
       pageInfo {
         startCursor
         endCursor
