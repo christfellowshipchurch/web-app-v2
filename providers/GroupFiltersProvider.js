@@ -10,7 +10,7 @@ const GroupFiltersProviderDispatchContext = createContext();
 // Frozen to convey that these are static.
 const options = Object.freeze({
   campuses: [],
-  days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+  days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
   preferences: [],
   subPreferences: [],
 });
@@ -24,7 +24,9 @@ const initialState = {
     preferences: [],
     subPreferences: [],
   },
-  queryParams: {},
+  queryData: {
+    attributes: [],
+  },
 };
 
 const actionTypes = {
@@ -114,15 +116,19 @@ function parseFilterValues(string) {
   return values;
 }
 
-function getQueryParams(options, values) {
+function getQueryData(values) {
   const getValidValues = filterName =>
     values[filterName].filter(string => !isEmpty(string));
 
+  const attributes = [
+    { key: 'campusNames', values: getValidValues('campuses') },
+    { key: 'preferences', values: getValidValues('preferences') },
+    { key: 'subPreferences', values: getValidValues('subPreferences') },
+    { key: 'days', values: getValidValues('days') },
+  ].filter(({ values }) => values.length > 0);
+
   return {
-    campusNames: getValidValues('campuses'),
-    preferences: getValidValues('preferences'),
-    subPreferences: getValidValues('subPreferences'),
-    days: getValidValues('days'),
+    attributes,
   };
 }
 
@@ -135,7 +141,7 @@ function updateAndSerialize(state) {
   const newState = {
     ...state,
     valuesSerialized: serializeFilterValues(state.values),
-    queryParams: getQueryParams(state.options, state.values),
+    queryData: getQueryData(state.values),
   };
 
   console.log('[GroupFiltersProvider] newState: ', newState);
@@ -217,13 +223,13 @@ function GroupFiltersProvider(props = {}) {
   // rendering server-side, so watch for changes to `router.query` and
   // hydrate when it becomes available.
   useEffect(() => {
-    if (!isEmpty(router.query) && !state.hydrated) {
+    if (!isEmpty(router?.query) && !state.hydrated) {
       // Next's dynamic page route mechanism for routes like `[title].js`
       // will get appended in router.query as `title`. Remove those.
-      const { title, ...rest } = router.query;
+      const { title, ...rest } = router?.query;
       dispatch(hydrate({ ...rest }));
     }
-  }, [router.query, state.hydrated]);
+  }, [router?.query, state.hydrated]);
 
   // To be simplified/removed when we lift group options definitions to API
   // ✂️ -------------------------------------------------------------------

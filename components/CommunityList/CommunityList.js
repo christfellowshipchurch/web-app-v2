@@ -48,7 +48,11 @@ function CommunityList(props = {}) {
           coverImageOverlay={true}
           coverImageTitle={item?.title}
           coverImageDescription={item?.summary}
-          flex={`0 0 calc(33.333% - ${rem('20px')})`}
+          flex={{
+            _: `0 0 calc(100% - ${rem('20px')})`,
+            sm: `0 0 calc(50% - ${rem('20px')})`,
+            lg: `0 0 calc(33.333% - ${rem('20px')})`,
+          }}
           m="s"
           height="250px"
           display="block"

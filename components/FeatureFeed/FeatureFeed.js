@@ -33,7 +33,7 @@ const FeatureFeed = (props = {}) => {
           },
         }}
       />
-      {isLastItem(i) && <Divider />}
+      {isLastItem(i) && <Divider maxWidth="50rem" mt="xl" />}
     </Box>
   ));
 };

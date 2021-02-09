@@ -1,5 +1,11 @@
 import { Box, Button, Cell, utils } from 'ui-kit';
-import { CommunityList, Footer, Header, SEO } from 'components';
+import {
+  CommunityActionSection,
+  CommunityList,
+  Footer,
+  Header,
+  SEO,
+} from 'components';
 import { CommunitiesProvider } from 'providers';
 import { update as updateAuth, useAuth } from 'providers/AuthProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
@@ -32,7 +38,7 @@ export default function Community(props = {}) {
         <Header />
         <Styled.Hero>
           <Styled.Title>Live. Laugh. Together.</Styled.Title>
-          <Box as="p" mb="l">
+          <Box as="p" mb="l" color="subdued">
             Build the kind of friendships we all need to live out our faith.
             <br />
             There’s community for everyone.
@@ -57,23 +63,7 @@ export default function Community(props = {}) {
             </Box>
           </Cell>
         </Box>
-        <Box
-          display="flex"
-          alignItems="center"
-          flexDirection="column"
-          p="l"
-          mb="l"
-        >
-          <Box as="h2" mb="s">
-            We’ll help you get connected.
-          </Box>
-          <Box as="p" mb="l">
-            There are hundreds of communities at CF. We’ll help find yours.
-          </Box>
-          <Button onClick={handleOnClick} rounded={true}>
-            Find your community
-          </Button>
-        </Box>
+        <CommunityActionSection handleOnClick={handleOnClick} />
         <Footer />
       </Box>
     </>

@@ -59,11 +59,22 @@ const GroupCardTitle = styled.div`
   padding-left: ${themeGet('space.base')};
   padding-right: ${themeGet('space.base')};
 `;
+const GroupCardSubTitle = styled.div`
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding-left: ${themeGet('space.base')};
+  padding-right: ${themeGet('space.base')};
+  font-size: ${themeGet('fontSizes.s')};
+  font-weight: ${themeGet('fontWeights.bold')};
+  color: ${themeGet('colors.subdued')};
+`;
 
 GroupCard.AvatarCount = AvatarCount;
 GroupCard.DateTimeLabel = DateTimeLabel;
 GroupCard.GradientBackground = GradientBackground;
 GroupCard.GroupCardContent = GroupCardContent;
 GroupCard.GroupCardTitle = GroupCardTitle;
+GroupCard.GroupCardSubTitle = GroupCardSubTitle;
 
 export default GroupCard;
