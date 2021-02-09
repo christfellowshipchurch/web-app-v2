@@ -1,7 +1,7 @@
 import React from 'react';
 import { useGroupFilters, toggleValue } from 'providers/GroupFiltersProvider';
 import { showStep, useModalDispatch } from 'providers/ModalProvider';
-import { Box, Button, Checkbox } from 'ui-kit';
+import { Box, Button, Checkbox, Loader } from 'ui-kit';
 
 function GroupFilterSubPreference(props = {}) {
   const modalDispatch = useModalDispatch();
@@ -16,7 +16,7 @@ function GroupFilterSubPreference(props = {}) {
 
   const handleSubmit = event => {
     event.preventDefault();
-    modalDispatch(showStep(1));
+    modalDispatch(showStep(2));
   };
 
   return (
@@ -32,6 +32,9 @@ function GroupFilterSubPreference(props = {}) {
         Select the types of community groups you’re interested in.
       </Box>
       <Box mb="l">
+        {filtersState.options.subPreferences?.length === 0 && (
+          <Loader mx="auto" />
+        )}
         {filtersState.options.subPreferences.map(value => (
           <Checkbox
             key={value}

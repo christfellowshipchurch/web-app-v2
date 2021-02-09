@@ -8,7 +8,6 @@ import {
 } from 'providers/GroupFiltersProvider';
 import { useModalDispatch, hideModal } from 'providers/ModalProvider';
 import { Box, Button } from 'ui-kit';
-
 import { FilterField } from 'components';
 
 function GroupFilterAll(props = {}) {
@@ -24,7 +23,6 @@ function GroupFilterAll(props = {}) {
     event.preventDefault();
 
     const { name } = event.target;
-    console.log('🚦 name:', name);
     filtersDispatch(update({ [name]: [] }));
   };
 

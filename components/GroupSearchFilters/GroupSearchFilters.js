@@ -12,7 +12,8 @@ function GroupSearchFilters(props = {}) {
   const { campuses, preferences, subPreferences, days } = filtersState.values;
 
   function handleChangeClick() {
-    modalDispatch(showModal('GroupFilter', { step: 2 }));
+    // Show all filters modal
+    modalDispatch(showModal('GroupFilter', { step: 3 }));
   }
 
   function handleClearClick() {
