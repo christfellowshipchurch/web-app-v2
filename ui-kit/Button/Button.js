@@ -20,8 +20,12 @@ function Button(props = {}) {
 Button.propTypes = {
   ...systemPropTypes,
   size: PropTypes.oneOf(['s', 'l']),
-  status: PropTypes.oneOf(['IDLE', 'LOADING', 'ERROR', 'SUCCESS']),
-  variant: PropTypes.oneOf(['link', 'secondary', 'tertiary']),
+  status: PropTypes.oneOf(['IDLE', 'LOADING', 'ERROR', 'SUCCESS', 'SELECTED']),
+  variant: PropTypes.oneOf(['link', 'secondary', 'tertiary', 'chip']),
+};
+
+Button.defaultProps = {
+  status: 'IDLE',
 };
 
 export default Button;

@@ -10,6 +10,33 @@ const rounded = ({ rounded }) => props => {
     `;
   }
 };
+
+const chipPseudoStyles = ({ status }) => props => {
+  if (status === 'IDLE') {
+    return css`
+      &:active,
+      &:focus,
+      &:hover {
+        background-color: ${themeGet('colors.neutrals.200')};
+        border-color: ${themeGet('colors.fg')};
+        color: ${themeGet('colors.fg')};
+      }
+    `;
+  }
+
+  if (status === 'SELECTED') {
+    return css`
+      &:active,
+      &:focus,
+      &:hover {
+        background-color: ${themeGet('colors.primarySubduedHover')};
+        border-color: ${themeGet('colors.primaryHover')};
+        color: ${themeGet('colors.primaryHover')};
+      }
+    `;
+  }
+};
+
 const variant = ({ variant }) => props => {
   if (variant === 'secondary') {
     return css`
@@ -18,10 +45,12 @@ const variant = ({ variant }) => props => {
       color: ${themeGet('colors.fg')};
     `;
   }
+
   if (variant === 'link') {
     return css`
       background-color: transparent;
       color: ${themeGet('colors.primary')};
+
       &:active,
       &:focus,
       &:hover {
@@ -31,10 +60,20 @@ const variant = ({ variant }) => props => {
       }
     `;
   }
+
   if (variant === 'tertiary') {
     return css`
       background-color: ${themeGet('colors.paper')};
       color: ${themeGet('colors.secondary')};
+    `;
+  }
+
+  if (variant === 'chip') {
+    return css`
+      background-color: ${themeGet('colors.screen')};
+      color: ${themeGet('colors.tertiary')};
+      border-color: ${themeGet('colors.tertiary')};
+      ${chipPseudoStyles}
     `;
   }
 };
@@ -69,6 +108,14 @@ const status = ({ status }) => props => {
       }
     `;
   }
+
+  if (status === 'SELECTED') {
+    return css`
+      color: ${themeGet('colors.primary')};
+      background-color: ${themeGet('colors.primarySubdued')};
+      border-color: ${themeGet('colors.primary')};
+    `;
+  }
 };
 
 const Button = styled.button`
@@ -100,8 +147,8 @@ const Button = styled.button`
   }
 
   ${size}
-  ${status}
   ${variant}
+  ${status}
   ${rounded}
   ${system}
 `;
