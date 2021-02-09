@@ -4,6 +4,7 @@ import {
   Box,
   CardGrid,
   Cell,
+  Divider,
   GroupCard,
   Loader,
   utils,
@@ -62,6 +63,7 @@ export default function CommunitySearch() {
               Need help?
             </Button>
           </Box>
+          <Divider mb="l" />
           <GroupSearchFilters loading={loading} resultsCount={groups?.length} />
 
           {loading && (
