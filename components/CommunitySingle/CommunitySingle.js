@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import { rem } from 'ui-kit/_utils';
-import { Box, Button, DefaultCard } from 'ui-kit';
+import { Box, Button, DefaultCard, utils } from 'ui-kit';
 import { SEO, CommunityActionSection } from 'components';
 import { update as updateAuth, useAuth } from 'providers/AuthProvider';
 import { useGroupFilters, toggleValue } from 'providers/GroupFiltersProvider';
@@ -17,19 +16,24 @@ function CommunitySingle(props = {}) {
 
   useEffect(() => {
     // Pre-populate this Group Preference on the group search filters
-    if (!filtersState.values.preferences?.includes(props.slug)) {
-      filtersDispatch(toggleValue({ name: 'preferences', value: props.slug }));
+    if (!filtersState.values.preferences?.includes(props.data?.title)) {
+      filtersDispatch(
+        toggleValue({ name: 'preferences', value: props.data?.title })
+      );
     }
-  }, [filtersState.values.preferences, filtersDispatch, props.slug]);
+  }, [filtersState.values.preferences, filtersDispatch, props.data?.title]);
+
+  function showGroupFilterModal() {
+    // Skip the Preference screen, go one after
+    modalDispatch(showModal('GroupFilter', { step: 1 }));
+  }
 
   function handleOnClick() {
     if (!authenticated) {
       modalDispatch(showModal('Auth'));
-      authDispatch(
-        updateAuth({ onSuccess: () => modalDispatch(showModal('GroupFilter')) })
-      );
+      authDispatch(updateAuth({ onSuccess: showGroupFilterModal }));
     } else {
-      modalDispatch(showModal('GroupFilter'));
+      showGroupFilterModal();
     }
   }
 
@@ -70,9 +74,9 @@ function CommunitySingle(props = {}) {
                 as="a"
                 key={i}
                 flex={{
-                  _: `0 0 calc(100% - ${rem('20px')})`,
-                  sm: `0 0 calc(50% - ${rem('20px')})`,
-                  lg: `0 0 calc(33.333% - ${rem('20px')})`,
+                  _: `0 0 calc(100% - ${utils.rem('20px')})`,
+                  sm: `0 0 calc(50% - ${utils.rem('20px')})`,
+                  lg: `0 0 calc(33.333% - ${utils.rem('20px')})`,
                 }}
                 m="s"
                 coverImage={item?.coverImage?.sources[0]?.uri}
