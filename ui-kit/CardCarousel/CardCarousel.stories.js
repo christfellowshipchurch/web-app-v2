@@ -9,21 +9,24 @@ export default {
   component: CardCarousel,
 };
 
-const cardProps = {
-  mx: 'xs',
-  coverImage: 'https://source.unsplash.com/random/1000x1000',
-  description: 'This is a card in a carousel',
-  title: 'DefaultCard',
-  coverImageOverlay: true,
+const cardProps = number => {
+  return {
+    mx: 'xs',
+    coverImage: 'https://source.unsplash.com/random/1000x1000',
+    description: 'This is a card in a carousel',
+    title: `Card ${number}`,
+    coverImageOverlay: true,
+    boxShadow: 'none',
+  };
 };
 
 const carouselDemo = ({ cardsDisplayed, Card }) => (
   <Box mx="auto" maxWidth={1000}>
     <CardCarousel cardsDisplayed={cardsDisplayed}>
-      <Card {...cardProps} />
-      <Card {...cardProps} />
-      <Card {...cardProps} />
-      <Card {...cardProps} />
+      <Card {...cardProps(1)} />
+      <Card {...cardProps(2)} />
+      <Card {...cardProps(3)} />
+      <Card {...cardProps(4)} />
     </CardCarousel>
   </Box>
 );

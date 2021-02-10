@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
@@ -31,22 +31,48 @@ const CardCarousel = (props = {}) => {
     },
   };
 
+  const lastIndex = props.children.length - 1;
+
   const CustomArrows = ({ next, previous, goToSlide, ...rest }) => {
     const {
       carouselState: { currentSlide },
     } = rest;
     return (
       <Styled.ArrowsGroup>
-        <Styled.Arrow onClick={() => previous()}>
+        <Styled.Arrow
+          onClick={() => (currentSlide === 0 ? goToSlide(0) : previous())}
+        >
           <Icon name="angleLeft" size="24" />
         </Styled.Arrow>
-        <Box padding="xs" />
-        <Styled.Arrow onClick={() => goToSlide(currentSlide + 1)}>
+        <Box padding="s" />
+        <Styled.Arrow
+          onClick={() => (currentSlide === lastIndex ? goToSlide(0) : next())}
+        >
           <Icon name="angleRight" size="24" />
         </Styled.Arrow>
       </Styled.ArrowsGroup>
     );
   };
+
+  /**
+   * note : custom autoloop function to fix popping reset
+   */
+
+  let carousel = useRef(null);
+
+  useEffect(() => {
+    const autoloop = setInterval(() => {
+      if (
+        carousel.state.currentSlide ===
+        lastIndex - (props.cardsDisplayed - 1)
+      ) {
+        carousel.goToSlide(0);
+      } else {
+        carousel.next();
+      }
+    }, props.slideInterval); // Your custom auto loop delay in ms
+    return () => clearInterval(autoloop);
+  }, []);
 
   /**
    * note : when child items exceed the amount of items being displayed, the carousel will be disabled and arrows hidden
@@ -57,12 +83,10 @@ const CardCarousel = (props = {}) => {
     <Carousel
       ssr
       responsive={responsive}
-      infinite={true}
-      autoPlay={isCarousel}
-      autoPlaySpeed={props.slideInterval}
       arrows={false}
       customTransition={`transform ${props.animationSpeed}ms ease-in-out`}
-      renderButtonGroupOutside={isCarousel}
+      ref={el => (carousel = el)}
+      renderButtonGroupOutside={isCarousel && !props.hideArrows}
       customButtonGroup={<CustomArrows />}
     >
       {props.children}
@@ -73,6 +97,7 @@ const CardCarousel = (props = {}) => {
 CardCarousel.propTypes = {
   animationSpeed: PropTypes.number,
   cardsDisplayed: PropTypes.number,
+  hideArrows: PropTypes.bool,
   isCarousel: PropTypes.bool,
   noArrows: PropTypes.bool,
   slideInterval: PropTypes.number,
@@ -81,6 +106,7 @@ CardCarousel.propTypes = {
 CardCarousel.defaultProps = {
   animationSpeed: 900,
   cardsDisplayed: 2,
+  hideArrows: false,
   isCarousel: false,
   noArrows: false,
   slideInterval: 4000,

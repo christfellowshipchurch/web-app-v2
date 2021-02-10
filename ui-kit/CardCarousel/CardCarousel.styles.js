@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
 const CardCarousel = styled.div;
@@ -10,10 +10,15 @@ const ArrowsGroup = styled.div`
 `;
 
 const Arrow = styled.div`
-  color: ${themeGet('colors.neutrals.200')};
+  color: ${themeGet('colors.white')};
   background-color: ${themeGet('colors.primary')};
   border-radius: ${themeGet('radii.xl')};
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  height: ${themeGet('fontSizes.xl')};
+  width: ${themeGet('fontSizes.xl')};
+  padding: ${themeGet('space.xs')};
 `;
 
 CardCarousel.Arrow = Arrow;
