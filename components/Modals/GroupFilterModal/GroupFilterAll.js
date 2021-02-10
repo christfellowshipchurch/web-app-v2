@@ -7,6 +7,7 @@ import {
   update,
 } from 'providers/GroupFiltersProvider';
 import { useModalDispatch, hideModal } from 'providers/ModalProvider';
+import { resetValues } from 'providers/GroupFiltersProvider';
 import { Box, Button } from 'ui-kit';
 import { FilterField } from 'components';
 
@@ -36,6 +37,10 @@ function GroupFilterAll(props = {}) {
     });
     modalDispatch(hideModal());
   };
+
+  function handleClearClick() {
+    filtersDispatch(resetValues());
+  }
 
   return (
     <Box
@@ -84,7 +89,12 @@ function GroupFilterAll(props = {}) {
           mb="base"
         />
       </Box>
-      <Button type="submit">Continue</Button>
+      <Box display="flex" justifyContent="space-between">
+        <Button variant="secondary" onClick={handleClearClick}>
+          Clear All
+        </Button>
+        <Button type="submit">Apply</Button>
+      </Box>
     </Box>
   );
 }
