@@ -144,7 +144,6 @@ function updateAndSerialize(state) {
     queryData: getQueryData(state.values),
   };
 
-  console.log('[GroupFiltersProvider] newState: ', newState);
   return newState;
 }
 
