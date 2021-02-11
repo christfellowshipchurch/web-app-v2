@@ -218,18 +218,26 @@ function GroupFiltersProvider(props = {}) {
 
   const [state, dispatch] = useReducer(reducer, initialState);
   const optionsData = useGroupFilterOptions();
+  const isClient = typeof window !== 'undefined';
 
-  // Next.js won't have the hydrated state query string available when
-  // rendering server-side, so watch for changes to `router.query` and
-  // hydrate when it becomes available.
+  // 👇 This effect hydrates the state from URL search params on page load.
+  // When rendered server-side, the URL query string is unknown.
+  // So when running client side, pull values from `router.query`.
+  // There's a brief moment/render cycle where the `router.asPath` shows
+  // that query search params are present, but Next for some reason hasn't
+  // parsed them to `router.query` yet. We'll skip that cycle with some logic.
   useEffect(() => {
-    if (!isEmpty(router?.query) && !state.hydrated) {
+    const paramsPresent = router?.asPath.includes('?');
+    const canHydrate =
+      paramsPresent && !(isEmpty(router?.query) || state.hydrated);
+
+    if (isClient && (!paramsPresent || canHydrate)) {
       // Next's dynamic page route mechanism for routes like `[title].js`
       // will get appended in router.query as `title`. Remove those.
       const { title, ...rest } = router?.query;
       dispatch(hydrate({ ...rest }));
     }
-  }, [router?.query, state.hydrated]);
+  }, [router?.asPath, router?.query, isClient, state.hydrated]);
 
   // To be simplified/removed when we lift group options definitions to API
   // ✂️ -------------------------------------------------------------------
