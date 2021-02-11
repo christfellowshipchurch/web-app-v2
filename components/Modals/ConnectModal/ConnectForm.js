@@ -10,15 +10,20 @@ import { Avatar, Box, Button, TextInput } from 'ui-kit';
 function ConnectForm(props = {}) {
   const modalDispatch = useModalDispatch();
   const [contactGroupLeader] = useContactGroupLeader();
-  const { values, handleChange, handleSubmit, setValues } = useForm(() => {
-    contactGroupLeader({
-      variables: {
-        groupId: props.groupId,
-        message: values.message,
-      },
-    });
-    modalDispatch(showStep(1));
-  });
+  const { values, handleChange, handleSubmit, setValues } = useForm(
+    async () => {
+      const { data } = await contactGroupLeader({
+        variables: {
+          groupId: 'Group:3deb8bbfda5d713df49929ce78c61bb7', // TODO: use this in production `props.groupId`. We are hard-coding a test group id to avoid blasting group leaders.
+          message: values.message,
+        },
+      });
+      const status = data.contactGroupLeader;
+      if (status === 'Active') {
+        modalDispatch(showStep(1));
+      }
+    }
+  );
 
   const defaultMessage = `Hey ${props.leaderName}, I’m interested in joining your Crew group!`;
 
@@ -39,7 +44,12 @@ function ConnectForm(props = {}) {
       pr="l"
     >
       <Box display="flex" alignItems="center" flexDirection="column" mb="base">
-        <Avatar src={props.leaderAvatar} height="100px" width="100px" />
+        <Avatar
+          src={props.leaderAvatar}
+          name={props.leaderName}
+          height="100px"
+          width="100px"
+        />
       </Box>
 
       <Box textAlign="center" as="h2">
