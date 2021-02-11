@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 
 import {
@@ -10,7 +9,6 @@ import {
 import { useModalDispatch, hideModal } from 'providers/ModalProvider';
 import { resetValues } from 'providers/GroupFiltersProvider';
 import { Box, Button } from 'ui-kit';
-
 import { FilterField } from 'components';
 
 function GroupFilterAll(props = {}) {
@@ -26,7 +24,6 @@ function GroupFilterAll(props = {}) {
     event.preventDefault();
 
     const { name } = event.target;
-    console.log('🚦 name:', name);
     filtersDispatch(update({ [name]: [] }));
   };
 
@@ -102,9 +99,6 @@ function GroupFilterAll(props = {}) {
   );
 }
 
-GroupFilterAll.propTypes = {
-  initialValue: PropTypes.string,
-  onChange: PropTypes.func,
-};
+GroupFilterAll.propTypes = {};
 
 export default GroupFilterAll;

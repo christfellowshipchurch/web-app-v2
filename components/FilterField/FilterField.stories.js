@@ -27,7 +27,7 @@ export const MultiSelect = () => {
     <FilterField
       filterType="multi-select"
       label="Toppings"
-      name="Toppings"
+      name="toppings"
       options={[
         'Lettuce',
         'Mayo',
@@ -63,7 +63,7 @@ export const SingleSelect = () => {
     <FilterField
       filterType="select"
       label="Protein"
-      name="Protein"
+      name="protein"
       options={['Chicken', 'Beef', 'Pork', 'Vegan']}
       values={value}
       onChange={handleChange}
