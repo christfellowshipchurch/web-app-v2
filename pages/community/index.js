@@ -18,16 +18,20 @@ export default function Community(props = {}) {
   const [{ authenticated }, authDispatch] = useAuth();
   const modalDispatch = useModalDispatch();
 
+  function showGroupFilterModal() {
+    modalDispatch(showModal('GroupFilter'));
+  }
+
   function handleOnClick() {
     if (!authenticated) {
       modalDispatch(showModal('Auth'));
       authDispatch(
         updateAuth({
-          onSuccess: () => modalDispatch(showModal('GroupFilter')),
+          onSuccess: showGroupFilterModal,
         })
       );
     } else {
-      modalDispatch(showModal('GroupFilter'));
+      showGroupFilterModal();
     }
   }
 

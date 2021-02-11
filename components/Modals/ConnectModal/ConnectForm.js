@@ -10,8 +10,7 @@ import { Avatar, Box, Button, TextInput } from 'ui-kit';
 function ConnectForm(props = {}) {
   const modalDispatch = useModalDispatch();
 
-  const { values, handleChange, handleSubmit, setValues } = useForm(() => {
-    console.log('Show me Results', values);
+  const { handleChange, handleSubmit, setValues } = useForm(() => {
     modalDispatch(showStep(1));
   });
 
