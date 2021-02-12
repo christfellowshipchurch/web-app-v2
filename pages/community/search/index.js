@@ -15,13 +15,19 @@ import { useSearchGroups } from 'hooks';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
 const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
+const PAGE_SIZE = 21;
 
 export default function CommunitySearch() {
   const [filtersState] = useGroupFilters();
   const modalDispatch = useModalDispatch();
-  const [searchGroups, { loading, groups }] = useSearchGroups({
-    fetchPolicy: 'cache-and-network',
+  const [searchGroups, { loading, groups, data, fetchMore }] = useSearchGroups({
+    notifyOnNetworkStatusChange: true,
   });
+
+  // Logical shorthands
+  const hasResults = groups?.length > 0;
+  const showEmptyState = !loading && !hasResults;
+  const hasMorePages = groups?.length < data?.searchGroups?.totalResults;
 
   useEffect(() => {
     if (!filtersState.hydrated) {
@@ -31,9 +37,21 @@ export default function CommunitySearch() {
     searchGroups({
       variables: {
         query: filtersState.queryData,
+        first: PAGE_SIZE,
       },
     });
   }, [searchGroups, filtersState.hydrated, filtersState.queryData]);
+
+  const handleLoadMore = () => {
+    if (!loading && hasMorePages) {
+      fetchMore({
+        variables: {
+          first: PAGE_SIZE,
+          after: data?.searchGroups?.pageInfo?.endCursor,
+        },
+      });
+    }
+  };
 
   return (
     <>
@@ -64,17 +82,24 @@ export default function CommunitySearch() {
               Need help?
             </Button>
           </Box>
-          <Divider mb="l" />
-          <GroupSearchFilters loading={loading} resultsCount={groups?.length} />
 
-          {loading && (
-            <Box>
-              <Loader />
+          <Divider mb="l" />
+
+          <GroupSearchFilters
+            loading={loading}
+            visibleResults={groups?.length}
+            totalResults={data?.searchGroups?.totalResults}
+          />
+
+          {showEmptyState && (
+            <Box display="flex" justifyContent="center" my="xxl" pb="xxl">
+              <Box>No Groups matched your search criteria.</Box>
             </Box>
           )}
-          {!loading && Boolean(groups?.length) && (
+
+          {hasResults && (
             <CardGrid>
-              {groups.map((group, index) => {
+              {groups.map(group => {
                 const callToAction = {
                   call: 'Contact',
                   action: () =>
@@ -108,11 +133,22 @@ export default function CommunitySearch() {
               })}
             </CardGrid>
           )}
-          {!loading && !Boolean(groups?.length) && (
-            <Box>No Groups matched your search criteria.</Box>
+
+          {loading && (
+            <Box display="flex" justifyContent="center" my="xxl">
+              <Loader />
+            </Box>
+          )}
+
+          {!loading && hasMorePages && (
+            <Box display="flex" justifyContent="center" mt="xl">
+              <Button variant="tertiary" onClick={handleLoadMore}>
+                Load more
+              </Button>
+            </Box>
           )}
         </Cell>
-        <Footer />
+        <Footer mt="xxl" />
       </Box>
     </>
   );
