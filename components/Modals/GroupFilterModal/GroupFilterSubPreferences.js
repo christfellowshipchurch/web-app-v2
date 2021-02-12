@@ -3,7 +3,7 @@ import { useGroupFilters, toggleValue } from 'providers/GroupFiltersProvider';
 import { showStep, useModalDispatch } from 'providers/ModalProvider';
 import { Box, Button, Loader } from 'ui-kit';
 
-function GroupFilterSubPreference(props = {}) {
+function GroupFilterSubPreferences(props = {}) {
   const modalDispatch = useModalDispatch();
   const [filtersState, filtersDispatch] = useGroupFilters();
 
@@ -57,6 +57,6 @@ function GroupFilterSubPreference(props = {}) {
   );
 }
 
-GroupFilterSubPreference.propTypes = {};
+GroupFilterSubPreferences.propTypes = {};
 
-export default GroupFilterSubPreference;
+export default GroupFilterSubPreferences;
