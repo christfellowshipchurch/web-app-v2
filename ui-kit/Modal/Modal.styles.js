@@ -25,12 +25,21 @@ const Content = styled.div`
   box-shadow: ${themeGet('shadows.xl')};
   left: 50%;
   margin-top: -${themeGet('space.xxl')};
+  max-height: 100vh;
+  max-width: 100vw;
   padding: ${themeGet('space.l')};
   position: fixed;
   top: 50%;
   transform: translate(-50%, -50%);
   width: ${props => props.width};
   z-index: 10;
+
+  /* Small Only */
+  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+    width: 100vw;
+    padding: ${themeGet('space.base')};
+    padding-bottom: ${themeGet('space.l')};
+  }
 `;
 
 const Overlay = styled.div`
@@ -39,6 +48,7 @@ const Overlay = styled.div`
   height: 100%;
   left: 0;
   opacity: 0.5;
+  pointer-events: none;
   position: fixed;
   right: 0;
   top: 0;
