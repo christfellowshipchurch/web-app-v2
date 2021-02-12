@@ -214,9 +214,9 @@ function reducer(state, action) {
 
 function GroupFiltersProvider(props = {}) {
   const router = useRouter();
+  const optionsData = useGroupFilterOptions();
 
   const [state, dispatch] = useReducer(reducer, initialState);
-  const optionsData = useGroupFilterOptions();
 
   // Next.js won't have the hydrated state query string available when
   // rendering server-side, so watch for changes to `router.query` and
@@ -230,29 +230,15 @@ function GroupFiltersProvider(props = {}) {
     }
   }, [router?.query, state.hydrated]);
 
-  // To be simplified/removed when we lift group options definitions to API
-  // ✂️ -------------------------------------------------------------------
   useEffect(() => {
-    if (optionsData.campuses?.length) {
       dispatch(
         updateOptions({
-          campuses: optionsData.campuses.map(({ name }) => name),
+        campuses: get(optionsData, 'campusName', []),
+        preferences: get(optionsData, 'preference', []),
+        subPreferences: get(optionsData, 'subPreference', []),
         })
       );
-    }
-  }, [optionsData.campuses]);
-
-  useEffect(() => {
-    if (optionsData.preferences?.length && optionsData.subPreferences?.length) {
-      dispatch(
-        updateOptions({
-          preferences: optionsData.preferences.map(({ title }) => title),
-          subPreferences: optionsData.subPreferences.map(({ title }) => title),
-        })
-      );
-    }
-  }, [optionsData.preferences, optionsData.subPreferences]);
-  // ✂️ -------------------------------------------------------------------
+  }, [optionsData]);
 
   return (
     <GroupFiltersProviderStateContext.Provider value={state}>

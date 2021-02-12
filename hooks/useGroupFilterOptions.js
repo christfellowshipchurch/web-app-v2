@@ -15,11 +15,7 @@ export const GET_GROUP_OPTIONS = gql`
 function useGroupFilterOptions(options = {}) {
   const query = useQuery(GET_GROUP_OPTIONS, options);
 
-  return {
-    campuses: query?.data?.groupSearchOptions?.campusName || [],
-    preferences: query?.data?.groupSearchOptions?.preference || [],
-    subPreferences: query?.data?.groupSearchOptions?.subPreference || [],
-  };
+  return query?.data?.groupSearchOptions;
 }
 
 export default useGroupFilterOptions;
