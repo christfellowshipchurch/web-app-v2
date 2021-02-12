@@ -13,7 +13,11 @@ function GroupFilterPreferences(props = {}) {
 
   const handleSubmit = event => {
     event.preventDefault();
-    modalDispatch(showStep(1));
+    if (filtersState.options.subPreferences.length !== 0) {
+      modalDispatch(showStep(1));
+    } else {
+      modalDispatch(showStep(2));
+    }
   };
 
   return (
