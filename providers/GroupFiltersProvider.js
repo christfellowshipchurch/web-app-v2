@@ -217,7 +217,6 @@ function GroupFiltersProvider(props = {}) {
   const optionsData = useGroupFilterOptions();
 
   const [state, dispatch] = useReducer(reducer, initialState);
-  const optionsData = useGroupFilterOptions();
   const isClient = typeof window !== 'undefined';
 
   // 👇 This effect hydrates the state from URL search params on page load.
