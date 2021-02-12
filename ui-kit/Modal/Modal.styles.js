@@ -50,7 +50,6 @@ const Overlay = styled.div`
   height: 100%;
   left: 0;
   opacity: 0.5;
-  pointer-events: none;
   position: fixed;
   right: 0;
   top: 0;
