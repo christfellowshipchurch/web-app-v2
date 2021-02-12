@@ -37,7 +37,7 @@ function GroupFilterPreferences(props = {}) {
         display="flex"
         flexDirection="column"
         width="100%"
-        px={{ _: 'base', md: 'l' }}
+        px={{ _: 'base', md: 'xl' }}
         mx="auto"
         mb="l"
       >
