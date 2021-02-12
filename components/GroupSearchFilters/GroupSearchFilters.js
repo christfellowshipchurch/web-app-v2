@@ -63,18 +63,23 @@ function GroupSearchFilters(props = {}) {
           />
         )}
       </Box>
+      {!props.loading && props.visibleResults > 0 && (
+        <Box as="h4">
+          Showing {props.visibleResults} of {props.totalResults} results
+        </Box>
+      )}
     </Box>
   );
 }
 
 GroupSearchFilters.propTypes = {
   loading: PropTypes.bool,
-  resultsCount: PropTypes.number,
+  visibleResults: PropTypes.number,
+  totalResults: PropTypes.number,
 };
 
 GroupSearchFilters.defaultProps = {
   loading: false,
-  resultsCount: 0,
 };
 
 export default GroupSearchFilters;

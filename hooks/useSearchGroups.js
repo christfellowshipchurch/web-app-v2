@@ -3,6 +3,7 @@ import { gql, useLazyQuery } from '@apollo/client';
 export const SEARCH_GROUPS = gql`
   query searchGroups($query: SearchQueryInput!, $first: Int, $after: String) {
     searchGroups(query: $query, first: $first, after: $after) {
+      totalResults
       pageInfo {
         startCursor
         endCursor
@@ -39,7 +40,7 @@ export const SEARCH_GROUPS = gql`
       members: people(first: 1) {
         totalCount
       }
-      leaders: people(first: 20, isLeader: true) {
+      leaders: people(first: 3, isLeader: true) {
         totalCount
         edges {
           node {
