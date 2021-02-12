@@ -28,6 +28,7 @@ const Content = styled.div`
   max-height: 100vh;
   max-width: 100vw;
   padding: ${themeGet('space.l')};
+  padding-top: ${themeGet('space.xl')};
   position: fixed;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -36,9 +37,10 @@ const Content = styled.div`
 
   /* Small Only */
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
-    width: 100vw;
+    margin-top: -${themeGet('space.l')};
     padding: ${themeGet('space.base')};
-    padding-bottom: ${themeGet('space.l')};
+    padding-top: ${themeGet('space.xl')};
+    width: calc(100vw - ${themeGet('space.base')});
   }
 `;
 
