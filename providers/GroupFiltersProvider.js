@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import useGroupFilterOptions from 'hooks/useGroupFilterOptions';
 import isEmpty from 'lodash/isEmpty';
+import get from 'lodash/get';
 import { useRouter } from 'next/router';
 
 const GroupFiltersProviderStateContext = createContext();
@@ -153,7 +154,6 @@ function reducer(state, action) {
   switch (action.type) {
     case actionTypes.hydrate: {
       return updateAndSerialize({
-        ...initialState,
         hydrated: true,
         values: {
           ...initialState.values,
@@ -231,13 +231,13 @@ function GroupFiltersProvider(props = {}) {
   }, [router?.query, state.hydrated]);
 
   useEffect(() => {
-      dispatch(
-        updateOptions({
+    dispatch(
+      updateOptions({
         campuses: get(optionsData, 'campusName', []),
         preferences: get(optionsData, 'preference', []),
         subPreferences: get(optionsData, 'subPreference', []),
-        })
-      );
+      })
+    );
   }, [optionsData]);
 
   return (
