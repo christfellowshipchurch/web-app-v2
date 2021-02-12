@@ -18,7 +18,7 @@ function ConnectSuccess() {
         🚀
       </Box>
       <Box as="h1">Success!</Box>
-      <Box as="p" color="subdued" mb="l" px="120px">
+      <Box as="p" color="subdued" mb="l" px="base">
         Your message was sent. Someone will reach out to you soon.
       </Box>
       <Button onClick={handleClose}>Continue</Button>

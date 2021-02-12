@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import useGroupFilterOptions from 'hooks/useGroupFilterOptions';
 import isEmpty from 'lodash/isEmpty';
+import get from 'lodash/get';
 import { useRouter } from 'next/router';
 
 const GroupFiltersProviderStateContext = createContext();
@@ -153,7 +154,6 @@ function reducer(state, action) {
   switch (action.type) {
     case actionTypes.hydrate: {
       return updateAndSerialize({
-        ...initialState,
         hydrated: true,
         values: {
           ...initialState.values,
@@ -214,6 +214,7 @@ function reducer(state, action) {
 
 function GroupFiltersProvider(props = {}) {
   const router = useRouter();
+  const optionsData = useGroupFilterOptions();
 
   const [state, dispatch] = useReducer(reducer, initialState);
   const optionsData = useGroupFilterOptions();
@@ -238,29 +239,15 @@ function GroupFiltersProvider(props = {}) {
     }
   }, [router?.asPath, router?.query, isClient, state.hydrated]);
 
-  // To be simplified/removed when we lift group options definitions to API
-  // ✂️ -------------------------------------------------------------------
   useEffect(() => {
-    if (optionsData.campuses?.length) {
-      dispatch(
-        updateOptions({
-          campuses: optionsData.campuses.map(({ name }) => name),
-        })
-      );
-    }
-  }, [optionsData.campuses]);
-
-  useEffect(() => {
-    if (optionsData.preferences?.length && optionsData.subPreferences?.length) {
-      dispatch(
-        updateOptions({
-          preferences: optionsData.preferences.map(({ title }) => title),
-          subPreferences: optionsData.subPreferences.map(({ title }) => title),
-        })
-      );
-    }
-  }, [optionsData.preferences, optionsData.subPreferences]);
-  // ✂️ -------------------------------------------------------------------
+    dispatch(
+      updateOptions({
+        campuses: get(optionsData, 'campusName', []),
+        preferences: get(optionsData, 'preference', []),
+        subPreferences: get(optionsData, 'subPreference', []),
+      })
+    );
+  }, [optionsData]);
 
   return (
     <GroupFiltersProviderStateContext.Provider value={state}>

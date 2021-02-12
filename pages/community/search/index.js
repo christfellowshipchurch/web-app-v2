@@ -107,6 +107,8 @@ export default function CommunitySearch() {
                         leaderName: group.node?.leaders?.edges[0].node.nickName,
                         leaderAvatar:
                           group.node?.leaders?.edges[0].node.photo.uri,
+                        groupId: group.node?.id,
+                        width: utils.rem('450px'),
                       })
                     ),
                 };
