@@ -24,8 +24,10 @@ function CommunitySingle(props = {}) {
   }, [filtersState.values.preferences, filtersDispatch, props.data?.title]);
 
   function showGroupFilterModal() {
-    // Skip the Preference screen, go one after
-    modalDispatch(showModal('GroupFilter', { step: 1 }));
+    // If there are subPreferences available, show that step.
+    // Else skip it and go to the one after.
+    const step = filtersState.options.subPreferences.length > 0 ? 1 : 2;
+    modalDispatch(showModal('GroupFilter', { step }));
   }
 
   function handleOnClick() {
