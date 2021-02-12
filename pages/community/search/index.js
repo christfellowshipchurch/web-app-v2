@@ -41,7 +41,7 @@ export default function CommunitySearch() {
       <Box display="grid" gridTemplateRows="auto 1fr auto" height="100vh">
         <Header />
         <Cell
-          width={DEFAULT_CONTENT_WIDTH}
+          width="100%"
           maxWidth={DEFAULT_CONTENT_WIDTH}
           px="base"
           py={{ _: 'l', lg: 'xl' }}
@@ -59,6 +59,7 @@ export default function CommunitySearch() {
               size="s"
               variant="secondary"
               href="https://rock.gocf.org/page/2113"
+              display={{ _: 'none', md: 'inline-block' }}
             >
               Need help?
             </Button>
