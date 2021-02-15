@@ -28,7 +28,14 @@ function GroupFilterSubPreferences(props = {}) {
       <Box as="p" color="subdued" mb="l">
         Select the activities you're interested in doing with a group.
       </Box>
-      <Box display="flex" flexDirection="column" width="80%" mx="auto" mb="l">
+      <Box
+        display="flex"
+        flexDirection="column"
+        width="100%"
+        px={{ _: 'base', md: 'xl' }}
+        mx="auto"
+        mb="l"
+      >
         {filtersState.options.subPreferences?.length === 0 && (
           <Loader mx="auto" my="l" />
         )}

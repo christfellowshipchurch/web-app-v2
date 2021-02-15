@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { useGroupFilters, toggleValue } from 'providers/GroupFiltersProvider';
 import { showStep, useModalDispatch } from 'providers/ModalProvider';
 import { Box, Button, Loader } from 'ui-kit';
@@ -32,7 +33,14 @@ function GroupFilterPreferences(props = {}) {
       <Box as="p" color="subdued" mb="l">
         Select the types of community groups you’re interested in.
       </Box>
-      <Box display="flex" flexDirection="column" width="80%" mx="auto" mb="l">
+      <Box
+        display="flex"
+        flexDirection="column"
+        width="100%"
+        px={{ _: 'base', md: 'xl' }}
+        mx="auto"
+        mb="l"
+      >
         {filtersState.options.preferences?.length === 0 && (
           <Loader mx="auto" my="l" />
         )}
@@ -40,7 +48,6 @@ function GroupFilterPreferences(props = {}) {
           <Button
             key={value}
             variant="secondary"
-            size="s"
             status={
               filtersState.values.preferences.includes(value)
                 ? 'SELECTED'
@@ -50,7 +57,7 @@ function GroupFilterPreferences(props = {}) {
               event.preventDefault();
               handleChange(value);
             }}
-            mb="xs"
+            mb="s"
           >
             {value}
           </Button>
