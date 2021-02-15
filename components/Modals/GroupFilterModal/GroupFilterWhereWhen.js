@@ -56,7 +56,7 @@ function GroupFilterWhereWhen(props = {}) {
           onChange={handleCampusChange}
           defaultValue={filtersState.values.campuses[0] || ''}
         >
-          <Select.Option value="">Select...</Select.Option>
+          <Select.Option value="">Select your campus...</Select.Option>
           {filtersState.options.campuses.map(value => (
             <Select.Option key={value} value={value}>
               {value}
