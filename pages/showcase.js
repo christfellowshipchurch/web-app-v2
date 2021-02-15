@@ -25,7 +25,7 @@ import {
 import { Box, Button, CardGrid, Heading, Icon, Text, theme } from 'ui-kit';
 import { addHours, addMinutes } from 'date-fns';
 
-export default function About() {
+export default function Showcase() {
   const router = useRouter();
   return (
     <Layout title="Showcase">

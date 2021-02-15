@@ -14,15 +14,11 @@ function Quote({
   actionLink,
   actionLabel,
   avatar,
+  alignment = 'center',
 } = {}) {
   return (
     <Box width="100%" display="flex" justifyContent="center">
-      <Box
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-        maxWidth="556px"
-      >
+      <Box display="flex" flexDirection="column" justifyContent="center">
         <Box display="flex">
           <Heading fontSize="48px" lineHeight="72px" fontWeight="700">
             “
@@ -34,12 +30,12 @@ function Quote({
           )}
         </Box>
         <Heading
+          px="36px"
           color="neutrals.900"
           fontSize="h3"
           lineHeight="34px"
           fontWeight="700"
-          textAlign="center"
-          px="m"
+          textAlign={alignment}
         >
           {text}
         </Heading>
@@ -53,7 +49,7 @@ function Quote({
           ”
         </Heading>
         {(attribution || actionLink || avatar) && (
-          <Box display="flex" justifyContent="center" mt="-36px">
+          <Box display="flex" justifyContent={alignment} mt="-36px" px="36px">
             <StyledAvatar src={avatar} rounded="xl" mr="s" />
             {(attribution || actionLink) && (
               <Box

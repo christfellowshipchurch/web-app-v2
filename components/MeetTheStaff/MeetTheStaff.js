@@ -7,7 +7,7 @@ import Styled, { StyledImage } from './MeetTheStaff.styles';
 function MeetTheStaff({ name, description, src, ...props }) {
   return (
     <Styled>
-      <StyledImage rounded src={src} />
+      <StyledImage rounded src={src} width="100%" />
       <Box
         display="flex"
         flexDirection="column"

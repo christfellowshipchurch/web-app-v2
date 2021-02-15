@@ -5,6 +5,7 @@ import { Box, Text, theme } from 'ui-kit';
 import Link from 'next/link';
 
 import { StyledImage } from './ArticleLink.styles';
+import { splitString } from 'utils';
 
 function ArticleLink({
   title,
@@ -29,7 +30,7 @@ function ArticleLink({
             {title}
           </Text>
           <Text fontWeight="400" variant="s">
-            {description}
+            {splitString(description)}
           </Text>
           <Link href={url}>
             <a
