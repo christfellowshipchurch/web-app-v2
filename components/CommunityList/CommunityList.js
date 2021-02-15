@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 
 import { rem } from 'ui-kit/_utils';
 import { slugify } from 'utils';
-import { DefaultCard, Box, Loader } from 'ui-kit';
+import { Box, Loader } from 'ui-kit';
 import { CustomLink } from 'components';
+
+import CommunityListCard from './CommunityListCard';
 
 function CommunityList(props = {}) {
   if (props.loading) return <Loader text="Loading" />;
@@ -66,6 +68,6 @@ CommunityList.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
 };
 
-CommunityList.defaultProps = { component: DefaultCard };
+CommunityList.defaultProps = { component: CommunityListCard };
 
 export default CommunityList;
