@@ -48,10 +48,7 @@ export default function Community(props = {}) {
             There’s community for everyone.
           </Box>
           <Box display="flex">
-            <Button variant="tertiary" rounded={true}>
-              Watch
-            </Button>
-            <Button onClick={handleOnClick} variant="link">
+            <Button onClick={handleOnClick} rounded={true}>
               Find your community
             </Button>
           </Box>
