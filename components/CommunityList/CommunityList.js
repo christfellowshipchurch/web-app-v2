@@ -22,6 +22,8 @@ function CommunityList(props = {}) {
     item => !item.featured && item?.coverImage?.sources[0]?.uri
   );
 
+  // Note: most of the props between featured items and non-featured
+  // items are the same, except `flex`.
   return (
     <Box display="flex" flexWrap="wrap" justifyContent="center" margin="-8px">
       {featuredItems.map((item, i) => (
