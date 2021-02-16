@@ -6,7 +6,8 @@ import getComponent from './getComponent';
 import getURLFromType from './getURLFromType';
 import normalizeUserData from './normalizeUserData';
 import slugify from './slugify';
-import textTrimmer from './textTrimmer'
+import textTrimmer from './textTrimmer';
+import transformImageUrl from './transformImageUrl';
 import validateEmail from './validateEmail';
 import validatePhoneNumber from './validatePhoneNumber';
 
@@ -20,6 +21,7 @@ export {
   normalizeUserData,
   slugify,
   textTrimmer,
+  transformImageUrl,
   validateEmail,
   validatePhoneNumber,
 };
