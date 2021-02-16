@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { Box, Button, Select } from 'ui-kit';
 
 export default function FilterField(props = {}) {
+  if (!props.options || !props.options.length) return null;
+
   return (
     <Box mb={props.mb || 'xl'} textAlign="left">
       <Box

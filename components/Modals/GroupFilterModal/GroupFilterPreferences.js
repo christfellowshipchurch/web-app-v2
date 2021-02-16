@@ -1,19 +1,24 @@
 import React from 'react';
+
 import { useGroupFilters, toggleValue } from 'providers/GroupFiltersProvider';
 import { showStep, useModalDispatch } from 'providers/ModalProvider';
 import { Box, Button, Loader } from 'ui-kit';
 
-function GroupFilterSubPreferences(props = {}) {
+function GroupFilterPreferences(props = {}) {
   const modalDispatch = useModalDispatch();
   const [filtersState, filtersDispatch] = useGroupFilters();
 
   const handleChange = value => {
-    filtersDispatch(toggleValue({ name: 'subPreferences', value }));
+    filtersDispatch(toggleValue({ name: 'preferences', value }));
   };
 
   const handleSubmit = event => {
     event.preventDefault();
-    modalDispatch(showStep(2));
+    if (filtersState.options.subPreferences.length !== 0) {
+      modalDispatch(showStep(1));
+    } else {
+      modalDispatch(showStep(2));
+    }
   };
 
   return (
@@ -26,7 +31,7 @@ function GroupFilterSubPreferences(props = {}) {
     >
       <Box as="h2">Find your Community</Box>
       <Box as="p" color="subdued" mb="l">
-        Select the activities you're interested in doing with a group.
+        Select the types of community groups you’re interested in.
       </Box>
       <Box
         display="flex"
@@ -36,16 +41,15 @@ function GroupFilterSubPreferences(props = {}) {
         mx="auto"
         mb="l"
       >
-        {filtersState.options.subPreferences?.length === 0 && (
+        {filtersState.options.preferences?.length === 0 && (
           <Loader mx="auto" my="l" />
         )}
-        {filtersState.options.subPreferences.map(value => (
+        {filtersState.options.preferences.map(value => (
           <Button
             key={value}
             variant="secondary"
-            size="s"
             status={
-              filtersState.values.subPreferences.includes(value)
+              filtersState.values.preferences.includes(value)
                 ? 'SELECTED'
                 : 'IDLE'
             }
@@ -53,7 +57,7 @@ function GroupFilterSubPreferences(props = {}) {
               event.preventDefault();
               handleChange(value);
             }}
-            mb="xs"
+            mb="s"
           >
             {value}
           </Button>
@@ -64,6 +68,6 @@ function GroupFilterSubPreferences(props = {}) {
   );
 }
 
-GroupFilterSubPreferences.propTypes = {};
+GroupFilterPreferences.propTypes = {};
 
-export default GroupFilterSubPreferences;
+export default GroupFilterPreferences;

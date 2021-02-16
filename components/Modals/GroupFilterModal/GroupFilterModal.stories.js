@@ -16,7 +16,7 @@ export const Default = () => {
   );
 };
 
-export const SubPreferences = () => {
+export const Preferences = () => {
   return (
     <AppProvider>
       <GroupFilterModal step={0} />
@@ -24,7 +24,7 @@ export const SubPreferences = () => {
   );
 };
 
-export const WhereAndWhen = () => {
+export const SubPreferences = () => {
   return (
     <AppProvider>
       <GroupFilterModal step={1} />
@@ -32,10 +32,18 @@ export const WhereAndWhen = () => {
   );
 };
 
-export const AllFilters = () => {
+export const WhereAndWhen = () => {
   return (
     <AppProvider>
       <GroupFilterModal step={2} />
+    </AppProvider>
+  );
+};
+
+export const AllFilters = () => {
+  return (
+    <AppProvider>
+      <GroupFilterModal step={3} />
     </AppProvider>
   );
 };

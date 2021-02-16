@@ -12,7 +12,8 @@ function GroupSearchFilters(props = {}) {
   const { campuses, preferences, subPreferences, days } = filtersState.values;
 
   function handleChangeClick() {
-    modalDispatch(showModal('GroupFilter', { step: 2 }));
+    // Show all filters modal
+    modalDispatch(showModal('GroupFilter', { step: 3 }));
   }
 
   return (
@@ -23,7 +24,12 @@ function GroupSearchFilters(props = {}) {
       alignItems="flex-end"
       mb="l"
     >
-      <Box display="flex">
+      <Box
+        display="flex"
+        flexDirection="row"
+        width="100%"
+        justifyContent={{ _: 'space-between', md: 'flex-start' }}
+      >
         <Button
           onClick={handleChangeClick}
           display="flex"
@@ -33,47 +39,63 @@ function GroupSearchFilters(props = {}) {
           <Icon name="filter" size="14" mr={utils.rem('8px')} />
           <Box as="span">Filter</Box>
         </Button>
-        {campuses.length > 0 && (
-          <FilterButton
-            label="Campus"
-            labelDetail={campuses[0]}
-            onClick={handleChangeClick}
-          />
-        )}
-        {preferences.length > 0 && (
-          <FilterButton
-            label="Group Types"
-            labelDetail={preferences.length}
-            onClick={handleChangeClick}
-          />
-        )}
-        {subPreferences.length > 0 && (
-          <FilterButton
-            label="Lineups"
-            labelDetail={subPreferences.length}
-            onClick={handleChangeClick}
-          />
-        )}
-        {days.length > 0 && (
-          <FilterButton
-            label="Meeting Days"
-            labelDetail={days.length}
-            onClick={handleChangeClick}
-          />
-        )}
+        <Button
+          as="a"
+          rounded={true}
+          variant="secondary"
+          href="https://rock.gocf.org/page/2113"
+          display={{ _: 'inline', md: 'none' }}
+        >
+          Need help?
+        </Button>
+        <Box display={{ _: 'none', md: 'block' }}>
+          {campuses.length > 0 && (
+            <FilterButton
+              label="Campus"
+              labelDetail={campuses[0]}
+              onClick={handleChangeClick}
+            />
+          )}
+          {preferences.length > 0 && (
+            <FilterButton
+              label="Group Types"
+              labelDetail={preferences.length}
+              onClick={handleChangeClick}
+            />
+          )}
+          {subPreferences.length > 0 && (
+            <FilterButton
+              label="Lineups"
+              labelDetail={subPreferences.length}
+              onClick={handleChangeClick}
+            />
+          )}
+          {days.length > 0 && (
+            <FilterButton
+              label="Meeting Days"
+              labelDetail={days.length}
+              onClick={handleChangeClick}
+            />
+          )}
+        </Box>
       </Box>
+      {!props.loading && props.visibleResults > 0 && (
+        <Box as="h4">
+          Showing {props.visibleResults} of {props.totalResults} results
+        </Box>
+      )}
     </Box>
   );
 }
 
 GroupSearchFilters.propTypes = {
   loading: PropTypes.bool,
-  resultsCount: PropTypes.number,
+  visibleResults: PropTypes.number,
+  totalResults: PropTypes.number,
 };
 
 GroupSearchFilters.defaultProps = {
   loading: false,
-  resultsCount: 0,
 };
 
 export default GroupSearchFilters;

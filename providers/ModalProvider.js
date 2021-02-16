@@ -49,6 +49,10 @@ function modalReducer(state, action) {
         ...state,
         activeModal: {
           ...state.activeModal,
+          props: {
+            ...state.activeModal.props,
+            step: action.payload.step,
+          },
           step: action.payload.step,
         },
       };

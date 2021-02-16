@@ -23,7 +23,7 @@ function Modal(props = {}) {
             Close
           </Box>
         </Styled.Close>
-        <Box as="h2">{props.title}</Box>
+        {props.title && <Box as="h2">{props.title}</Box>}
         {typeof props.children === 'function'
           ? props.children(props.step)
           : props.children}
