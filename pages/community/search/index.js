@@ -9,10 +9,15 @@ import {
   Divider,
   GroupCard,
   Loader,
-  TextInput,
   utils,
 } from 'ui-kit';
-import { Footer, GroupSearchFilters, Header, SEO } from 'components';
+import {
+  Footer,
+  GroupSearchFilters,
+  Header,
+  SEO,
+  SearchField,
+} from 'components';
 import { useGroupFilters, update } from 'providers/GroupFiltersProvider';
 import { useSearchGroups, useForm } from 'hooks';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
@@ -100,18 +105,16 @@ export default function CommunitySearch() {
           </Box>
 
           <Divider mb="l" />
-          <Box as="form" action="" onSubmit={handleSubmit} display="flex">
-            <TextInput
-              id="text"
-              placeholder="Find a Group"
-              onChange={handleChange}
-              containerProps={{ flex: 1 }}
-              value={values.text || ''}
-            />
-            <Button type="submit" onClick={handleClick} mb="base" ml="base">
-              Search
-            </Button>
-          </Box>
+          <SearchField
+            placeholder="Find a Group"
+            handleSubmit={handleSubmit}
+            handleClick={handleClick}
+            handleChange={handleChange}
+            value={values.text || ''}
+            mb="base"
+          >
+            Search
+          </SearchField>
           <GroupSearchFilters
             loading={loading}
             visibleResults={groups?.length}

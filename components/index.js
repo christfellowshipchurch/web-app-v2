@@ -25,6 +25,7 @@ import Layout from './Layout';
 import Logo from './Logo';
 import Nav from './Nav';
 import SEO from './SEO';
+import SearchField from './SearchField';
 import UserAvatar from './UserAvatar';
 import UserProfile from './UserProfile';
 import VerticalCardListFeature from './VerticalCardListFeature';
@@ -41,8 +42,8 @@ export {
   CustomLink,
   EventSingle,
   EventsList,
-  FilterField,
   FeatureFeed,
+  FilterField,
   Footer,
   GenderField,
   GroupSearchFilters,
@@ -54,10 +55,11 @@ export {
   HorizontalCardListFeature,
   Layout,
   Logo,
-  modals,
   Nav,
   SEO,
+  SearchField,
   UserAvatar,
   UserProfile,
   VerticalCardListFeature,
+  modals,
 };
