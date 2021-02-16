@@ -16,11 +16,11 @@ const DefaultCard = (props = {}) => {
           hasContent={hasContent}
           overlay={props.coverImageOverlay}
         >
-          <Styled.CoverContent position={props.coverImageContentPosition}>
+          <Styled.CoverContent position={props.coverImageContentPosition} size={props.cardSize}>
             {props.coverImageTitle || props.coverImageDescription ? (
               <Box color="white">
                 {props.coverImageTitle ? (
-                  <Box as="h2" mb="xs">
+                  <Box as={props.cardSize === 's' ? 'h3' : 'h2'} mb="xs">
                     {props.coverImageTitle}
                   </Box>
                 ) : null}
