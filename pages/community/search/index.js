@@ -1,4 +1,6 @@
 import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+
 import {
   Button,
   Box,
@@ -7,19 +9,22 @@ import {
   Divider,
   GroupCard,
   Loader,
+  TextInput,
   utils,
 } from 'ui-kit';
 import { Footer, GroupSearchFilters, Header, SEO } from 'components';
-import { useGroupFilters } from 'providers/GroupFiltersProvider';
-import { useSearchGroups } from 'hooks';
+import { useGroupFilters, update } from 'providers/GroupFiltersProvider';
+import { useSearchGroups, useForm } from 'hooks';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
 const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
 const PAGE_SIZE = 21;
 
 export default function CommunitySearch() {
-  const [filtersState] = useGroupFilters();
+  const [filtersState, filtersDispatch] = useGroupFilters();
   const modalDispatch = useModalDispatch();
+  const router = useRouter();
+
   const [searchGroups, { loading, groups, data, fetchMore }] = useSearchGroups({
     notifyOnNetworkStatusChange: true,
   });
@@ -53,6 +58,17 @@ export default function CommunitySearch() {
     }
   };
 
+  const { values, handleSubmit, handleChange } = useForm(() => {
+    router.push({
+      pathname: `/community/search`,
+      query: filtersState.valuesSerialized,
+    });
+  });
+
+  const handleClick = event => {
+    filtersDispatch(update({ text: [values.text] }));
+  };
+
   return (
     <>
       <SEO title="Find your Community" />
@@ -84,7 +100,18 @@ export default function CommunitySearch() {
           </Box>
 
           <Divider mb="l" />
-
+          <Box as="form" action="" onSubmit={handleSubmit} display="flex">
+            <TextInput
+              id="text"
+              placeholder="Find a Group"
+              onChange={handleChange}
+              containerProps={{ flex: 1 }}
+              value={values.text || ''}
+            />
+            <Button type="submit" onClick={handleClick} mb="base" ml="base">
+              Search
+            </Button>
+          </Box>
           <GroupSearchFilters
             loading={loading}
             visibleResults={groups?.length}
