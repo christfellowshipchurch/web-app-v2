@@ -1,6 +1,7 @@
 import { Box, Button, Cell, utils } from 'ui-kit';
 import {
   CommunityActionSection,
+  CommunityLeaderActions,
   CommunityList,
   Footer,
   Header,
@@ -68,6 +69,7 @@ export default function Community(props = {}) {
           </Cell>
         </Box>
         <CommunityActionSection handleOnClick={handleOnClick} />
+        <CommunityLeaderActions />
         <Footer />
       </Box>
     </>
