@@ -19,7 +19,6 @@ import DefaultCard from './DefaultCard';
 import Divider from './Divider';
 import FormLabel from './FormLabel';
 import GroupCard from './GroupCard';
-import HeroCardGrid from './HeroCardGrid';
 import HorizontalHighlightCard from './HorizontalHighlightCard';
 import Icon from './Icon';
 import List from './List';
@@ -51,7 +50,6 @@ export {
   Divider,
   FormLabel,
   GroupCard,
-  HeroCardGrid,
   HorizontalHighlightCard,
   Icon,
   List,
