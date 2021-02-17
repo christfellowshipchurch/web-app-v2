@@ -2,12 +2,18 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { Box, Button, DefaultCard, utils } from 'ui-kit';
-import { SEO, CommunityActionSection } from 'components';
+import {
+  CommunityActionSection,
+  CommunityLeaderActions,
+  Footer,
+  Header,
+  SEO,
+} from 'components';
 import { update as updateAuth, useAuth } from 'providers/AuthProvider';
 import { useGroupFilters, toggleValue } from 'providers/GroupFiltersProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
-import Header from './CommunitySingle.styles';
+import Hero from './CommunitySingle.styles';
 
 function CommunitySingle(props = {}) {
   const [{ authenticated }, authDispatch] = useAuth();
@@ -42,7 +48,8 @@ function CommunitySingle(props = {}) {
   return (
     <>
       <SEO title={props.data?.title} />
-      <Header src={props.data?.coverImage?.sources[0]?.uri}>
+      <Header />
+      <Hero src={props.data?.coverImage?.sources[0]?.uri}>
         <Box
           display="flex"
           flexDirection="column"
@@ -61,7 +68,7 @@ function CommunitySingle(props = {}) {
             {`Find your ${props.data?.title}`}
           </Button>
         </Box>
-      </Header>
+      </Hero>
       <Box textAlign="center" alignItems="center" mb="l" px={{ md: 'xxl' }}>
         <Box as="h1" mb="0">{`The ${props.data?.title} Lineup`}</Box>
         <Box
@@ -89,6 +96,8 @@ function CommunitySingle(props = {}) {
         </Box>
       </Box>
       <CommunityActionSection handleOnClick={handleOnClick} />
+      <CommunityLeaderActions />
+      <Footer />
     </>
   );
 }
