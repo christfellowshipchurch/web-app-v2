@@ -20,11 +20,9 @@ export default function Community(props) {
   );
 
   return (
-    <Layout title={title}>
-      <CommunitiesProvider
-        Component={CommunitySingle}
-        data={{ ...preference, subPreferences }}
-      />
-    </Layout>
+    <CommunitiesProvider
+      Component={CommunitySingle}
+      data={{ ...preference, subPreferences }}
+    />
   );
 }
