@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Box, Button, DefaultCard, utils } from 'ui-kit';
 import {
   CommunityActionSection,
-  CommunityBeLeaderSection,
+  CommunityLeaderActions,
   Footer,
   Header,
   SEO,
@@ -96,7 +96,7 @@ function CommunitySingle(props = {}) {
         </Box>
       </Box>
       <CommunityActionSection handleOnClick={handleOnClick} />
-      <CommunityBeLeaderSection />
+      <CommunityLeaderActions />
       <Footer />
     </>
   );
