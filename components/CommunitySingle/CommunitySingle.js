@@ -1,16 +1,13 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
+import { Box, Button, DefaultCard, utils } from 'ui-kit';
 import { SEO, CommunityActionSection } from 'components';
 import { update as updateAuth, useAuth } from 'providers/AuthProvider';
 import { useGroupFilters, toggleValue } from 'providers/GroupFiltersProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
-import { Box, Button, DefaultCard, utils } from 'ui-kit';
-import { transformImageUrl } from 'utils';
 
 import Header from './CommunitySingle.styles';
-
-const CARD_IMAGE_TRANSFORM = { w: 768 };
 
 function CommunitySingle(props = {}) {
   const [{ authenticated }, authDispatch] = useAuth();
@@ -83,10 +80,7 @@ function CommunitySingle(props = {}) {
                   lg: `0 0 calc(33.333% - ${utils.rem('20px')})`,
                 }}
                 m="s"
-                coverImage={transformImageUrl(
-                  item?.coverImage?.sources[0]?.uri,
-                  CARD_IMAGE_TRANSFORM
-                )}
+                coverImage={item?.coverImage?.sources[0]?.uri}
                 coverImageOverlay={true}
                 coverImageTitle={item?.title}
                 height="250px"
