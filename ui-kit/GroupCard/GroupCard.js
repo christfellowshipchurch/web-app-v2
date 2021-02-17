@@ -2,20 +2,31 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 
-import { systemPropTypes } from 'ui-kit';
-import { Box, Avatar, SquareAvatar, Button } from 'ui-kit';
-import Styled from './GroupCard.styles';
+import {
+  Avatar,
+  Box,
+  Button,
+  Icon,
+  SquareAvatar,
+  systemPropTypes,
+} from 'ui-kit';
 import { textTrimmer } from 'utils';
+
+import Styled from './GroupCard.styles';
 
 const GroupCard = (props = {}) => {
   const summaryLength = props?.summary?.length || 0;
-  const maxChar = 130;
+  const maxChar = 240;
   const maxAvatars = 4;
 
   // Option if we want to add a Avatar Count label for leaders
   // const heroAvatarsDiff = props.totalHeroAvatars - props.heroAvatars.length;
   const avatarsDiff =
     props.totalAvatars - Math.min(props.avatars.length, maxAvatars);
+
+  const handleSeeMore = event => {
+    event.preventDefault();
+  };
 
   return (
     <Styled {...props}>
@@ -59,19 +70,29 @@ const GroupCard = (props = {}) => {
       </Box>
       <Styled.GroupCardContent>
         {props.campus && (
-          <Styled.DateTimeLabel>📍 {props.campus}</Styled.DateTimeLabel>
+          <Styled.DateTimeLabel>
+            <Icon name="map" size="16" mr="xs" />
+            {props.campus}
+          </Styled.DateTimeLabel>
         )}
         {props.dateTime && (
           <Styled.DateTimeLabel>
-            🗓️ {format(new Date(props.dateTime), "EEEE 'at' h:mm a")}
+            <Icon name="calendar" size="16" mr="xs" />
+            {format(new Date(props.dateTime), "EEEE 'at' h:mm a")}
           </Styled.DateTimeLabel>
         )}
         {props.summary && (
-          <Box as="p" fontSize="xs">
+          <Box as="p" fontSize="s" mt="s">
             {summaryLength > maxChar ? (
               <>
                 {textTrimmer(props.summary, maxChar)}
-                <Box as="a" pl="xs" textDecoration="none">
+                <Box
+                  as="a"
+                  pl="xs"
+                  textDecoration="none"
+                  href="#"
+                  onClick={handleSeeMore}
+                >
                   See More...
                 </Box>
               </>
