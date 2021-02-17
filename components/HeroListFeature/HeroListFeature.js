@@ -2,57 +2,70 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { CustomLink } from '..';
-import { DefaultCard, HeroCardGrid } from 'ui-kit';
+import { Box, CardGrid, DefaultCard, RowCard } from 'ui-kit';
 import { getURLFromType } from 'utils';
+import { dropRight } from 'lodash';
 
 function HeroListFeature(props = {}) {
   const heroCard = props?.data?.heroCard;
-  let actions = props?.data?.actions || [];
-  const cards = [heroCard, ...actions];
+  let cards = props?.data?.actions || [];
+
+  let col = '1';
+  if (cards.length > 1) {
+    col = '2';
+  }
+
+  /**
+   * note : if uneven amount of cards a bottom card will be made to fill the rest of the screen
+   */
+  let bottomCard = false;
+  if (cards.length > 2 && cards.length % 2 !== 0) {
+    bottomCard = cards.slice(cards.length - 1, cards.length)[0];
+    cards = dropRight(cards, 1);
+  }
+
   return (
-    <HeroCardGrid>
-      {cards.map((card, i) => {
-        // NOTE:
-        //  title is missing from related node inside feature
-        //  so it has been added here to work with 'getURLFromType()'
-        //  may need to refactor getURLFromType in the future
-        const relatedNode = {
-          ...card.relatedNode,
-          title: card.title,
-        };
-        // HeroCard
-        if (i < 1)
+    <Box>
+      <CustomLink
+        as="a"
+        href={getURLFromType(heroCard?.relatedNode, heroCard?.title)}
+        Component={DefaultCard}
+        coverImage={heroCard?.coverImage?.sources[0]?.uri}
+        coverImageOverlay={true}
+        coverImageTitle={heroCard?.title}
+        coverImageDescription={heroCard?.summary}
+        height={{ _: '250px', md: '450px' }}
+        display="block"
+        marginBottom="base"
+      />
+      <CardGrid columns={col} marginBottom="l">
+        {cards.map((card, i) => {
           return (
             <CustomLink
               as="a"
               key={i}
-              href={getURLFromType(relatedNode)}
-              Component={DefaultCard}
-              coverImage={card?.coverImage?.sources[0]?.uri}
-              coverImageOverlay={true}
-              coverImageTitle={card?.title}
-              coverImageDescription={card?.summary}
-              height={{ _: '250px', md: '450px' }}
-              display="block"
-            />
-          );
-        // Addtional actions
-        else
-          return (
-            <CustomLink
-              as="a"
-              key={i}
-              href={getURLFromType(relatedNode)}
-              Component={DefaultCard}
+              href={getURLFromType(card?.relatedNode, card?.title)}
+              Component={RowCard}
               coverImage={card?.image?.sources[0]?.uri}
               coverImageOverlay={true}
               title={card?.title}
-              description={card?.summary}
-              display="block"
+              description={card?.subtitle}
             />
           );
-      })}
-    </HeroCardGrid>
+        })}
+      </CardGrid>
+      {bottomCard && (
+        <CustomLink
+          as="a"
+          href={getURLFromType(bottomCard?.relatedNode, bottomCard?.title)}
+          Component={RowCard}
+          coverImage={bottomCard?.coverImage?.sources[0]?.uri}
+          coverImageOverlay={true}
+          title={bottomCard?.title}
+          description={bottomCard?.summary}
+        />
+      )}
+    </Box>
   );
 }
 

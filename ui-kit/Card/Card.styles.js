@@ -3,7 +3,8 @@ import { themeGet } from '@styled-system/theme-get';
 
 import { system } from 'ui-kit';
 
-const DEFAULT_COVER_HEIGHT = '195px';
+const DEFAULT_COVER_HEIGHT = '250px';
+const HERO_COVER_HEIGHT = '350px';
 
 const link = ({ as }) => props => {
   if (as === 'a') {
@@ -51,7 +52,9 @@ const content = ({ hasContent }) => props => {
     return css`
       border-top-left-radius: ${themeGet('radii.base')};
       border-top-right-radius: ${themeGet('radii.base')};
-      height: ${props => props.height || DEFAULT_COVER_HEIGHT};
+      height: ${props =>
+        props.height ||
+        (props.largeCard ? HERO_COVER_HEIGHT : DEFAULT_COVER_HEIGHT)};
     `;
   }
 
@@ -101,7 +104,7 @@ const Cover = styled.div`
 
 const position = ({ position, size }) => props => {
   if (position === 'bottomLeft') {
-    if (size === 's'){
+    if (size === 's') {
       return css`
         bottom: ${themeGet('space.base')};
         left: ${themeGet('space.s')};

@@ -28,6 +28,7 @@ import Longform from './Longform';
 import Menu from './Menu';
 import Modal from './Modal';
 import Radio from './Radio';
+import RowCard from './RowCard';
 import Select from './Select';
 import SquareAvatar from './SquareAvatar';
 import TextInput from './TextInput';
@@ -59,6 +60,7 @@ export {
   Menu,
   Modal,
   Radio,
+  RowCard,
   Select,
   SquareAvatar,
   TextInput,

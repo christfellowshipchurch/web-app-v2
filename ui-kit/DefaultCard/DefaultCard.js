@@ -15,8 +15,12 @@ const DefaultCard = (props = {}) => {
           src={props.coverImage}
           hasContent={hasContent}
           overlay={props.coverImageOverlay}
+          largeCard={props.largeCard}
         >
-          <Styled.CoverContent position={props.coverImageContentPosition} size={props.cardSize}>
+          <Styled.CoverContent
+            position={props.coverImageContentPosition}
+            size={props.cardSize}
+          >
             {props.coverImageTitle || props.coverImageDescription ? (
               <Box color="white">
                 {props.coverImageTitle ? (
@@ -64,12 +68,14 @@ DefaultCard.propTypes = {
   coverImageOverlay: PropTypes.bool,
   coverImageTitle: PropTypes.string,
   description: PropTypes.string,
+  largeCard: PropTypes.bool,
   title: PropTypes.string,
 };
 
 DefaultCard.defaultProps = {
   coverImageContentPosition: 'bottomLeft',
   coverImageOverlay: false,
+  largeCard: false,
 };
 
 export default DefaultCard;
