@@ -1,6 +1,6 @@
 import { Box, Button, Icon } from 'ui-kit';
 
-export default function CommunityBeLeaderSection(props) {
+export default function CommunityLeaderActions(props) {
   return (
     <Box backgroundColor="white">
       <Box

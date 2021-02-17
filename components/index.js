@@ -2,7 +2,7 @@ import * as modals from './Modals';
 import BirthDateField from './BirthDateField';
 import ClientSideComponent from './ClientSideComponent';
 import CommunityActionSection from './CommunityActionSection';
-import CommunityBeLeaderSection from './CommunityBeLeaderSection';
+import CommunityLeaderActions from './CommunityLeaderActions';
 import CommunityList from './CommunityList';
 import CommunitySingle from './CommunitySingle';
 import ContentLayout from './ContentLayout';
@@ -34,7 +34,7 @@ export {
   BirthDateField,
   ClientSideComponent,
   CommunityActionSection,
-  CommunityBeLeaderSection,
+  CommunityLeaderActions,
   CommunityList,
   CommunitySingle,
   ContentLayout,
