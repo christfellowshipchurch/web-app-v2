@@ -13,6 +13,7 @@ const AvatarCount = styled.p`
   bottom: ${themeGet('space.base')};
   color: ${themeGet('colors.white')};
   font-size: ${themeGet('fontSizes.xs')};
+  font-weight: ${themeGet('fontWeights.bold')};
   margin-bottom: auto;
   padding: ${themeGet('space.xs')};
   position: relative;
@@ -22,7 +23,7 @@ const AvatarCount = styled.p`
 const DateTimeLabel = styled.p`
   align-items: center;
   display: flex;
-  font-size: ${themeGet('fontSizes.xs')};
+  font-size: ${themeGet('fontSizes.s')};
   font-weight: ${themeGet('fontWeights.bold')};
   padding-bottom: ${themeGet('space.xs')};
 `;
