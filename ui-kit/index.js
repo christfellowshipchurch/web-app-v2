@@ -11,6 +11,7 @@ import Avatar from './Avatar';
 import Box from './Box';
 import Button from './Button';
 import Card from './Card';
+import CardCarousel from './CardCarousel';
 import CardGrid from './CardGrid';
 import Cell from './Cell';
 import Checkbox from './Checkbox';
@@ -19,6 +20,7 @@ import Divider from './Divider';
 import FormLabel from './FormLabel';
 import GroupCard from './GroupCard';
 import HeroCardGrid from './HeroCardGrid';
+import HorizontalHighlightCard from './HorizontalHighlightCard';
 import Icon from './Icon';
 import List from './List';
 import Loader from './Loader';
@@ -40,6 +42,7 @@ export {
   Box,
   Button,
   Card,
+  CardCarousel,
   CardGrid,
   Cell,
   Checkbox,
@@ -48,6 +51,7 @@ export {
   FormLabel,
   GroupCard,
   HeroCardGrid,
+  HorizontalHighlightCard,
   Icon,
   List,
   Loader,
