@@ -19,6 +19,9 @@ function GroupFilterAll(props = {}) {
   const handleMultiSelectChange = ({ name, value }) => {
     filtersDispatch(toggleValue({ name, value }));
   };
+  const handleSelectChange = ({ name, value }) => {
+    filtersDispatch(update({ [name]: [value] }));
+  };
 
   const handleClear = event => {
     event.preventDefault();
@@ -60,8 +63,9 @@ function GroupFilterAll(props = {}) {
           name="campuses"
           options={filtersState.options.campuses}
           values={filtersState.values.campuses}
-          onChange={handleMultiSelectChange}
+          onChange={handleSelectChange}
           onClear={handleClear}
+          defaultValue={filtersState.values.campuses[0] || ''}
         />
         <FilterField
           label="Group Types"

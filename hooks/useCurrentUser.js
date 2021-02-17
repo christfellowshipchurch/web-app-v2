@@ -11,6 +11,10 @@ export const GET_CURRENT_USER = gql`
         photo {
           uri
         }
+        campus {
+          id
+          name
+        }
       }
     }
   }
