@@ -89,6 +89,7 @@ export default function CommunitySearch() {
             loading={loading}
             visibleResults={groups?.length}
             totalResults={data?.searchGroups?.totalResults}
+            pageSize={PAGE_SIZE}
           />
 
           {showEmptyState && (

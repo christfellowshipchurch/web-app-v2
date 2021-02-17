@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 
 import { rem } from 'ui-kit/_utils';
 import { slugify } from 'utils';
-import { DefaultCard, Box, Loader } from 'ui-kit';
+import { Box, Loader } from 'ui-kit';
 import { CustomLink } from 'components';
+
+import CommunityListCard from './CommunityListCard';
 
 function CommunityList(props = {}) {
   if (props.loading) return <Loader text="Loading" />;
@@ -20,6 +22,8 @@ function CommunityList(props = {}) {
     item => !item.featured && item?.coverImage?.sources[0]?.uri
   );
 
+  // Note: most of the props between featured items and non-featured
+  // items are the same, except `flex`.
   return (
     <Box display="flex" flexWrap="wrap" justifyContent="center" margin="-8px">
       {featuredItems.map((item, i) => (
@@ -66,6 +70,6 @@ CommunityList.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
 };
 
-CommunityList.defaultProps = { component: DefaultCard };
+CommunityList.defaultProps = { component: CommunityListCard };
 
 export default CommunityList;
