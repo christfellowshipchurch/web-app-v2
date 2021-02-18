@@ -1,4 +1,3 @@
-import { Box } from 'ui-kit';
 import { Layout } from 'components';
 import DropdownAbout from 'components/Dropdowns/DropdownAbout';
 
