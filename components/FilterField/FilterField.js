@@ -57,6 +57,7 @@ export default function FilterField(props = {}) {
               const { value } = event.target;
               props.onChange({ name: props.name, value });
             }}
+            defaultValue={props.defaultValue}
           >
             <Select.Option
               value=""
