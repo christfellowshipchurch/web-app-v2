@@ -11,8 +11,6 @@ import FlagCTA from './FlagCTA';
 import Footer from './Footer';
 import FullWidthCTA from './FullWidthCTA';
 import FullWidthText from './FullWidthText';
-import GroupsList from './GroupsList';
-import GroupSingle from './GroupSingle';
 import Header from './Header';
 import HomeFeed from './HomeFeed';
 import HorizontalRow from './HorizontalRow';
@@ -49,8 +47,6 @@ export {
   Footer,
   FullWidthCTA,
   FullWidthText,
-  GroupsList,
-  GroupSingle,
   Header,
   HomeFeed,
   HorizontalRow,

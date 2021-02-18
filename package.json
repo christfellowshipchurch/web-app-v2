@@ -1,7 +1,10 @@
 {
-  "name": "web-app-v2",
+  "name": "longhollow-web",
   "version": "0.1.0",
   "private": true,
+  "engine": {
+    "node": ">=12"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -10,7 +13,6 @@
     "lint": "npx eslint ./",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "new-component": "bash scripts/new-component.sh",
     "test": "jest --watch"
   },
   "dependencies": {
