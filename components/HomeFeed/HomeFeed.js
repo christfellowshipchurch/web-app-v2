@@ -42,7 +42,7 @@ function DefaultMainPhotoHeader(props = {}) {
   return (
     <>
       <MainPhotoHeader
-        src="https://s3-alpha-sig.figma.com/img/7c6e/6ecd/be76f176bb348ac07aa36e836250027f?Expires=1612742400&Signature=JmBv6MGtG4RTwmtkxO84zF0o7ogYwR~hm2VczDi4J1IPFp7qlsDH7JSQUqZ1JH6ICty5J5LkJLae1SbrtA6sgymJUOqTRjlPccBlbfGhP25dMzHEl3fzrxY-Cw-25FxR--MHdMS~96c352X6nrdzgai-dcruYnmu3a1ZDCQK3V0E5fXNR6ClgJOqkjvN3ljpySeSWKocHrMjbbYn7AaQ1XcQocCd4ayxCXfI03zRzt3GqB8jOBMtazQv5hm9VbLbIPuPwOR03TnkRe~v2REb7cUSlLRlANoDreKIPk4Wzcn34Xe7Qf1ywaIzCmqMVvIFtB4PLNWEPkpgEzlg6~Rbjg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+        src="https://s3-alpha-sig.figma.com/img/8842/4c68/4e45dbafdc563dce6b086f70e0d4b358?Expires=1614556800&Signature=Z7pkiqqsgiptnBuBvC~-FiuPPMT2YvWy2dmuexln1jOdlpGP9q3SF0U7wqkiu0UQksRoj3swc94NQGdN5dBSP~YLlSrUD5tHMkNQFCUz8yHcqQmNFxPjnBxA-5~Q07Q9rdt9WfJasyJgpBFPlMZPB7wivPTi1ntSegx5YjtYVgD5oxgsw-zN3g7UgSEIU5QNFIoDMoXIh1lHKUoTWthDo3iVXGIjhzgbDQzsJjjX4norSiRM5VFxRYM3MMz7wQkcChLM3PBSQbH5LJy2M8UozptwZwG55cvZWT1CQv3Py4gkC-vVUDIdDjDMIwKfRxCshR1y5jAmIeygs09Li89rCA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
         overlay="linear-gradient(89.49deg, #1c1617 -16.61%, rgba(28, 22, 23, 0) 99.62%)"
         content={
           <>
