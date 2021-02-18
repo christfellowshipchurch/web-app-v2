@@ -5,9 +5,9 @@ import {
   useGroupFilters,
   toggleValue,
   update,
+  resetValues,
 } from 'providers/GroupFiltersProvider';
 import { useModalDispatch, hideModal } from 'providers/ModalProvider';
-import { resetValues } from 'providers/GroupFiltersProvider';
 import { Box, Button } from 'ui-kit';
 import { FilterField } from 'components';
 

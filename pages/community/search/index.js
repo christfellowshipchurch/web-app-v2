@@ -1,4 +1,6 @@
 import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+
 import {
   Button,
   Box,
@@ -9,17 +11,25 @@ import {
   Loader,
   utils,
 } from 'ui-kit';
-import { Footer, GroupSearchFilters, Header, SEO } from 'components';
-import { useGroupFilters } from 'providers/GroupFiltersProvider';
-import { useSearchGroups } from 'hooks';
+import {
+  Footer,
+  GroupSearchFilters,
+  Header,
+  SEO,
+  SearchField,
+} from 'components';
+import { useGroupFilters, update } from 'providers/GroupFiltersProvider';
+import { useSearchGroups, useForm } from 'hooks';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
 const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
 const PAGE_SIZE = 21;
 
 export default function CommunitySearch() {
-  const [filtersState] = useGroupFilters();
+  const [filtersState, filtersDispatch] = useGroupFilters();
   const modalDispatch = useModalDispatch();
+  const router = useRouter();
+
   const [searchGroups, { loading, groups, data, fetchMore }] = useSearchGroups({
     notifyOnNetworkStatusChange: true,
   });
@@ -53,6 +63,17 @@ export default function CommunitySearch() {
     }
   };
 
+  const { values, handleSubmit, handleChange } = useForm(() => {
+    router.push({
+      pathname: `/community/search`,
+      query: filtersState.valuesSerialized,
+    });
+  });
+
+  const handleClick = event => {
+    filtersDispatch(update({ text: [values.text] }));
+  };
+
   return (
     <>
       <SEO title="Find your Community" />
@@ -84,11 +105,21 @@ export default function CommunitySearch() {
           </Box>
 
           <Divider mb="l" />
-
+          <SearchField
+            placeholder="Find a Group"
+            handleSubmit={handleSubmit}
+            handleClick={handleClick}
+            handleChange={handleChange}
+            value={values.text || ''}
+            mb="base"
+          >
+            Search
+          </SearchField>
           <GroupSearchFilters
             loading={loading}
             visibleResults={groups?.length}
             totalResults={data?.searchGroups?.totalResults}
+            pageSize={PAGE_SIZE}
           />
 
           {showEmptyState && (
