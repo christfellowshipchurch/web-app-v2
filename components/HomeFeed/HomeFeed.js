@@ -143,7 +143,7 @@ function DefaultMainPhotoHeader(props = {}) {
   );
 }
 
-const DefaultHorizontalRow = () => {
+const ConnectTiles = () => {
   const router = useRouter();
   return (
     <HorizontalRow
@@ -457,7 +457,7 @@ function LoggedInHomeFeed(props = {}) {
           />
         </Text>
       </Box>
-      <DefaultHorizontalRow />
+      <ConnectTiles />
     </>
   );
 }
@@ -584,7 +584,7 @@ function LoggedOutHomeFeed(props = {}) {
           />
         </Text>
       </FullWidthCTA>
-      <DefaultHorizontalRow />
+      <ConnectTiles />
     </>
   );
 }

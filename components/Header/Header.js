@@ -17,7 +17,7 @@ function Header(props = {}) {
             <Logo withText />
           </a>
         </Link>
-        {/* TODO: Add onChange event */}
+        {/*
         <Select
           border="none"
           backgroundColor="inherit"
@@ -37,6 +37,7 @@ function Header(props = {}) {
             />
           ))}
         </Select>
+        */}
       </Box>
       <NavigationProvider Component={Nav} />
     </Styled>
