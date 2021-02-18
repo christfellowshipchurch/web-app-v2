@@ -96,6 +96,9 @@ const Cover = styled.div`
   background-size: cover;
   overflow: hidden;
   position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
 
   ${content}
   ${overlay}
@@ -107,18 +110,16 @@ const position = ({ position, size }) => props => {
     if (size === 's') {
       return css`
         bottom: ${themeGet('space.base')};
-        left: ${themeGet('space.s')};
         padding: ${themeGet('space.s')};
       `;
     }
     return css`
       bottom: ${themeGet('space.s')};
-      left: ${themeGet('space.s')};
       padding: ${themeGet('space.s')};
 
       @media screen and (min-width: ${themeGet('breakpoints.md')}) {
         bottom: ${themeGet('space.l')};
-        left: ${themeGet('space.l')};
+        padding: ${themeGet('space.base')};
       }
     `;
   }
@@ -127,8 +128,12 @@ const position = ({ position, size }) => props => {
 const CoverContent = styled.div`
   position: absolute;
   z-index: 2;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(30px);
+  border-radius: ${themeGet('radii.base')};
+  width: 90%;
 
-  ${position}
+  ${position};
 `;
 
 const CoverLabel = styled.b`

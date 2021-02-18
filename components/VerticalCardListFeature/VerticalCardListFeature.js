@@ -42,11 +42,12 @@ function VerticalCardListFeature(props = {}) {
         href={getURLFromType(heroCard.relatedNode, heroCard?.title)}
         Component={DefaultCard}
         coverImage={heroCard?.coverImage?.sources[0]?.uri}
+        coverImageTitle={heroCard?.title}
+        coverImageDescription={heroCard?.summary}
         coverImageOverlay={true}
-        title={heroCard?.title}
-        description={heroCard?.summary}
         marginBottom="l"
-        largeCard
+        height={{ __: 250, md: 450 }}
+        display="block"
       />
       <CardGrid marginBottom="base" columns={col}>
         {cards.map((card, i) => (

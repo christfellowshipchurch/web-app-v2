@@ -58,7 +58,7 @@ const CardCarousel = (props = {}) => {
    * note : custom autoloop function to fix popping reset
    */
 
-  let carousel = useRef(null);
+  let carousel = useRef();
 
   useEffect(() => {
     const autoloop = setInterval(() => {
