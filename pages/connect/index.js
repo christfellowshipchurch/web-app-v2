@@ -1,9 +1,9 @@
 import { Layout } from 'components';
 import DropdownConnect from 'components/Dropdowns/DropdownConnect';
 
-export default function About() {
+export default function Connect() {
   return (
-    <Layout title="About">
+    <Layout title="Connect">
       <DropdownConnect />
     </Layout>
   );

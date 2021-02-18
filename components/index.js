@@ -31,6 +31,7 @@ import SEO from './SEO';
 import ValuesRow from './ValuesRow';
 import VideoPlayer from './VideoPlayer';
 import { EventsCallout, EventCallout } from './EventCallout';
+import ConnectTiles from './ConnectTiles';
 
 export {
   ArticleLink,
@@ -67,4 +68,5 @@ export {
   SEO,
   ValuesRow,
   VideoPlayer,
+  ConnectTiles,
 };

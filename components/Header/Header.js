@@ -5,10 +5,10 @@ import { NavigationProvider } from 'providers';
 import { Box, Select, systemPropTypes } from 'ui-kit';
 import { Logo, Nav } from 'components';
 import Styled from './Header.styles';
-import { useCampuses } from 'hooks';
+//import { useCampuses } from 'hooks';
 
 function Header(props = {}) {
-  const { campuses } = useCampuses();
+  //const { campuses } = useCampuses();
   return (
     <Styled bg="bg_alt" height="90px">
       <Box display="flex" py="base" px="xl" alignSelf="center">
