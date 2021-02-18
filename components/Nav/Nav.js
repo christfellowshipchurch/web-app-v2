@@ -19,7 +19,8 @@ function getMenuItem(menuItem) {
     case 'search':
       return Dropdowns.Search;
     case 'auth':
-    // return Dropdowns.Auth;
+      // return Dropdowns.Auth;
+      break;
     default:
       return null;
   }

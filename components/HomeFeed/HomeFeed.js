@@ -553,7 +553,7 @@ function LoggedOutHomeFeed(props = {}) {
 }
 
 function HomeFeed(props = {}) {
-  const loggedIn = true;
+  const loggedIn = false;
   const fullSermon = loggedIn && true;
   return (
     <>
