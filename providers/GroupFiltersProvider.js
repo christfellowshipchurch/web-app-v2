@@ -23,6 +23,7 @@ const initialState = {
     days: [],
     preferences: [],
     subPreferences: [],
+    text: [],
   },
   queryData: {
     attributes: [],
@@ -125,7 +126,8 @@ function getQueryData(values) {
     { key: 'preferences', values: getValidValues('preferences') },
     { key: 'subPreferences', values: getValidValues('subPreferences') },
     { key: 'days', values: getValidValues('days') },
-  ].filter(({ values }) => values.length > 0);
+    { key: 'text', values: getValidValues('text') },
+  ].filter(({ values }) => values.length > 0 && values !== '');
 
   return {
     attributes,
