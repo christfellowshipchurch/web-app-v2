@@ -11,11 +11,11 @@ const RowCover = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  position: relative;
-  min-width: 110px;
-  height: 100%;
-  border-top-left-radius: ${themeGet('radii.base')};
   border-bottom-left-radius: ${themeGet('radii.base')};
+  border-top-left-radius: ${themeGet('radii.base')};
+  height: 100%;
+  min-width: 110px;
+  position: relative;
 `;
 
 RowCard.RowCover = RowCover;

@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 
 import { Divider, systemPropTypes } from 'ui-kit';
 import { Box } from 'ui-kit';
-// import Styled from 'ui-kit/Card/Card.styles';
 import Styled from './RowCard.styles';
 
 const RowCard = (props = {}) => {
   return (
-    <Styled display="flex" {...props} minHeight={100}>
+    <Styled display="flex" minHeight={100} {...props}>
       <Box>
         {props.coverImage ? <Styled.RowCover src={props.coverImage} /> : null}
       </Box>

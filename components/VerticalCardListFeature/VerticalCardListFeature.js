@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { dropRight, head, slice } from 'lodash';
+import dropRight from 'lodash/dropRight';
+import head from 'lodash/head';
+import slice from 'lodash/slice';
 
 import { CustomLink } from 'components';
 import { CardGrid, DefaultCard, HorizontalHighlightCard } from 'ui-kit';

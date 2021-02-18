@@ -4,16 +4,13 @@ import PropTypes from 'prop-types';
 import { CustomLink } from '..';
 import { Box, CardGrid, DefaultCard, RowCard } from 'ui-kit';
 import { getURLFromType } from 'utils';
-import { dropRight } from 'lodash';
+import dropRight from 'lodash/dropRight';
 
 function HeroListFeature(props = {}) {
   const heroCard = props?.data?.heroCard;
   let cards = props?.data?.actions || [];
 
-  let col = '1';
-  if (cards.length > 1) {
-    col = '2';
-  }
+  let col = cards.length > 1 ? '2' : '1';
 
   /**
    * note : if uneven amount of cards a bottom card will be made to fill the rest of the screen
