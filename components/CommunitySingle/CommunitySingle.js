@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import { Box, Button, DefaultCard, utils } from 'ui-kit';
+import { Box, Button, HorizontalHighlightCard, utils } from 'ui-kit';
 import {
   CommunityActionSection,
   CommunityLeaderActions,
@@ -78,7 +78,7 @@ function CommunitySingle(props = {}) {
         <Box display="flex" flexWrap="wrap" justifyContent="center" m="s">
           {props.data?.subPreferences &&
             props.data?.subPreferences.map((item, i) => (
-              <DefaultCard
+              <HorizontalHighlightCard
                 as="a"
                 key={i}
                 flex={{
@@ -90,7 +90,7 @@ function CommunitySingle(props = {}) {
                 coverImage={item?.coverImage?.sources[0]?.uri}
                 coverImageOverlay={true}
                 coverImageTitle={item?.title}
-                height="250px"
+                type="HIGHLIGHT_SMALL"
               />
             ))}
         </Box>
