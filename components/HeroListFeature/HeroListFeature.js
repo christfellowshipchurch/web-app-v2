@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import dropRight from 'lodash/dropRight';
 
 import { CustomLink } from '..';
 import { Box, CardGrid, DefaultCard, RowCard } from 'ui-kit';
 import { getURLFromType } from 'utils';
-import dropRight from 'lodash/dropRight';
 
 function HeroListFeature(props = {}) {
   const heroCard = props?.data?.heroCard;
@@ -59,7 +59,7 @@ function HeroListFeature(props = {}) {
           coverImage={bottomCard?.coverImage?.sources[0]?.uri}
           coverImageOverlay={true}
           title={bottomCard?.title}
-          description={bottomCard?.summary}
+          description={bottomCard?.subtitle}
         />
       )}
     </Box>
