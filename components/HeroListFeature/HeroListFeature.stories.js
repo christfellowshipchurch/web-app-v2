@@ -13,6 +13,7 @@ const cardData = altTitle => {
   return {
     title: altTitle ? altTitle : 'This is a Card',
     subtitle: 'CardListFeature test',
+    summary: 'CardListFeature test',
     coverImage: {
       sources: [
         {

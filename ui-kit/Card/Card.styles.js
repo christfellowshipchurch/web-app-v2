@@ -109,18 +109,15 @@ const position = ({ position, size }) => props => {
   if (position === 'bottomLeft') {
     if (size === 's') {
       return css`
-        bottom: ${themeGet('space.base')};
-        padding: ${themeGet('space.s')};
+        padding: ${themeGet('space.base')};
       `;
     }
     return css`
       backdrop-filter: blur(30px);
       background-color: rgba(255, 255, 255, 0.15);
-      bottom: ${themeGet('space.s')};
       padding: ${themeGet('space.s')};
 
       @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-        bottom: ${themeGet('space.l')};
         padding: ${themeGet('space.base')};
       }
     `;
@@ -128,9 +125,10 @@ const position = ({ position, size }) => props => {
 };
 
 const CoverContent = styled.div`
-  border-radius: ${themeGet('radii.base')};
+  border-bottom-left-radius: ${themeGet('radii.base')};
+  border-bottom-right-radius: ${themeGet('radii.base')};
   position: absolute;
-  width: 90%;
+  width: 100%;
   z-index: 2;
 
   ${position};
