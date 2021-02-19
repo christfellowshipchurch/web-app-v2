@@ -114,6 +114,8 @@ const position = ({ position, size }) => props => {
       `;
     }
     return css`
+      backdrop-filter: blur(30px);
+      background-color: rgba(255, 255, 255, 0.15);
       bottom: ${themeGet('space.s')};
       padding: ${themeGet('space.s')};
 
@@ -126,12 +128,10 @@ const position = ({ position, size }) => props => {
 };
 
 const CoverContent = styled.div`
-  position: absolute;
-  z-index: 2;
-  background-color: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(30px);
   border-radius: ${themeGet('radii.base')};
+  position: absolute;
   width: 90%;
+  z-index: 2;
 
   ${position};
 `;
