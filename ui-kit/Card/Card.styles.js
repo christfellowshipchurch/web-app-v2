@@ -89,16 +89,16 @@ const overlay = ({ overlay }) => props => {
 };
 
 const Cover = styled.div`
+  align-items: flex-end;
   background-color: ${themeGet('colors.fg')};
   background-image: url(${props => props.src});
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  display: flex;
+  justify-content: center;
   overflow: hidden;
   position: relative;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
 
   ${content}
   ${overlay}
