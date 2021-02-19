@@ -5,9 +5,9 @@ import {
   useGroupFilters,
   toggleValue,
   update,
+  resetValues,
 } from 'providers/GroupFiltersProvider';
 import { useModalDispatch, hideModal } from 'providers/ModalProvider';
-import { resetValues } from 'providers/GroupFiltersProvider';
 import { Box, Button } from 'ui-kit';
 import { FilterField } from 'components';
 
@@ -18,6 +18,9 @@ function GroupFilterAll(props = {}) {
 
   const handleMultiSelectChange = ({ name, value }) => {
     filtersDispatch(toggleValue({ name, value }));
+  };
+  const handleSelectChange = ({ name, value }) => {
+    filtersDispatch(update({ [name]: [value] }));
   };
 
   const handleClear = event => {
@@ -60,8 +63,9 @@ function GroupFilterAll(props = {}) {
           name="campuses"
           options={filtersState.options.campuses}
           values={filtersState.values.campuses}
-          onChange={handleMultiSelectChange}
+          onChange={handleSelectChange}
           onClear={handleClear}
+          defaultValue={filtersState.values.campuses[0] || ''}
         />
         <FilterField
           label="Group Types"

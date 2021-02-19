@@ -10,6 +10,11 @@ import {
 import { CommunitiesProvider } from 'providers';
 import { update as updateAuth, useAuth } from 'providers/AuthProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
+import {
+  useGroupFiltersDispatch,
+  update,
+} from 'providers/GroupFiltersProvider';
+import { useCurrentUser } from 'hooks';
 
 import Styled from './Community.styles';
 
@@ -18,8 +23,11 @@ const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
 export default function Community(props = {}) {
   const [{ authenticated }, authDispatch] = useAuth();
   const modalDispatch = useModalDispatch();
+  const filtersDispatch = useGroupFiltersDispatch();
+  const { currentUser } = useCurrentUser();
 
   function showGroupFilterModal() {
+    filtersDispatch(update({ campuses: [currentUser?.profile?.campus?.name] }));
     modalDispatch(showModal('GroupFilter'));
   }
 
@@ -49,10 +57,7 @@ export default function Community(props = {}) {
             There’s community for everyone.
           </Box>
           <Box display="flex">
-            <Button variant="tertiary" rounded={true}>
-              Watch
-            </Button>
-            <Button onClick={handleOnClick} variant="link">
+            <Button onClick={handleOnClick} rounded={true}>
               Find your community
             </Button>
           </Box>

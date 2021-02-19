@@ -17,6 +17,10 @@ const Input = styled.input`
   padding: ${themeGet('space.s')};
   width: 100%;
 
+  &::placeholder {
+    color: ${themeGet('colors.border')};
+  }
+
   &:focus {
     border-color: ${themeGet('colors.primary')};
     outline: none;
