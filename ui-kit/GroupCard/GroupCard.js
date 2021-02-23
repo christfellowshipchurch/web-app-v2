@@ -145,7 +145,7 @@ GroupCard.propTypes = {
     action: PropTypes.func,
   }),
   campus: PropTypes.string,
-  preference: PropTypes.string,
+  preference: PropTypes.array,
   subPreference: PropTypes.string,
   coverImage: PropTypes.string,
   dateTime: PropTypes.string,
