@@ -9,14 +9,10 @@ import {
   Header,
   SEO,
 } from 'components';
-import { update as updateAuth, useAuth } from 'providers/AuthProvider';
-import {
-  useGroupFilters,
-  toggleValue,
-  update,
-} from 'providers/GroupFiltersProvider';
-import { useModalDispatch, showModal } from 'providers/ModalProvider';
 import { useCurrentUser } from 'hooks';
+import { update as updateAuth, useAuth } from 'providers/AuthProvider';
+import { useGroupFilters, update } from 'providers/GroupFiltersProvider';
+import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
 import Hero from './CommunitySingle.styles';
 
@@ -26,30 +22,36 @@ function CommunitySingle(props = {}) {
   const modalDispatch = useModalDispatch();
   const { currentUser } = useCurrentUser();
 
+  // Pre-populate the Preference filter from the URL
   useEffect(() => {
-    // Pre-populate this Group Preference on the group search filters
     if (!filtersState.values.preferences?.includes(props.data?.title)) {
-      filtersDispatch(
-        toggleValue({ name: 'preferences', value: props.data?.title })
-      );
+      filtersDispatch(update({ preferences: [props.data?.title] }));
     }
   }, [filtersState.values.preferences, filtersDispatch, props.data?.title]);
 
-  function showGroupFilterModal() {
-    filtersDispatch(update({ campuses: [currentUser?.profile?.campus?.name] }));
-    // If there are subPreferences available, show that step.
-    // Else skip it and go to the one after.
-    const step = filtersState.options.subPreferences.length > 0 ? 1 : 2;
-    modalDispatch(showModal('GroupFilter', { step }));
-  }
+  function handleFindCommunityClick() {
+    const showFilterModal = () => {
+      const userCampus = currentUser?.profile?.campus?.name;
+      filtersDispatch(update({ campuses: [userCampus] }));
 
-  function handleOnClick() {
+      // If there are subPreferences available, show that step.
+      // Else skip it and go to the one after.
+      const step = filtersState.options.subPreferences.length > 0 ? 1 : 2;
+      modalDispatch(showModal('GroupFilter', { step }));
+    };
+
     if (!authenticated) {
       modalDispatch(showModal('Auth'));
-      authDispatch(updateAuth({ onSuccess: showGroupFilterModal }));
+      authDispatch(updateAuth({ onSuccess: showFilterModal }));
     } else {
-      showGroupFilterModal();
+      showFilterModal();
     }
+  }
+
+  function handleSubPreferenceSelect(subPreference) {
+    filtersDispatch(update({ subPreferences: [subPreference.title] }));
+    // Skip subPreferences step
+    modalDispatch(showModal('GroupFilter', { step: 2 }));
   }
 
   return (
@@ -71,7 +73,11 @@ function CommunitySingle(props = {}) {
           </Box>
         </Box>
         <Box display="flex" mb="l">
-          <Button variant="tertiary" rounded={true} onClick={handleOnClick}>
+          <Button
+            variant="tertiary"
+            rounded={true}
+            onClick={handleFindCommunityClick}
+          >
             {`Find your ${props.data?.title}`}
           </Button>
         </Box>
@@ -98,11 +104,12 @@ function CommunitySingle(props = {}) {
                 coverImageOverlay={true}
                 coverImageTitle={item?.title}
                 height="250px"
+                onClick={() => handleSubPreferenceSelect(item)}
               />
             ))}
         </Box>
       </Box>
-      <CommunityActionSection handleOnClick={handleOnClick} />
+      <CommunityActionSection handleOnClick={handleFindCommunityClick} />
       <CommunityLeaderActions />
       <Footer />
     </>
