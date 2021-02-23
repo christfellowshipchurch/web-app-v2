@@ -42,6 +42,7 @@ function useGroupPreferences(options = {}) {
   return {
     preferences: queryPreferences?.data?.allPreferences || [],
     subPreferences: querySubPreferences?.data?.allSubPreferences || [],
+    loading: queryPreferences?.loading || querySubPreferences?.loading,
   };
 }
 
