@@ -1,33 +1,26 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-import {
-  Button,
-  Box,
-  CardGrid,
-  Cell,
-  Divider,
-  GroupCard,
-  Loader,
-  utils,
-} from 'ui-kit';
+import { Button, Box, Cell, Divider, Loader, utils } from 'ui-kit';
 import {
   Footer,
   GroupSearchFilters,
   Header,
   SEO,
   SearchField,
+  GroupsResultsList,
 } from 'components';
+
 import { useGroupFilters, update } from 'providers/GroupFiltersProvider';
+import { GroupsProvider } from 'providers';
 import { useSearchGroups, useForm } from 'hooks';
-import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
 const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
 const PAGE_SIZE = 21;
 
 export default function CommunitySearch() {
   const [filtersState, filtersDispatch] = useGroupFilters();
-  const modalDispatch = useModalDispatch();
+
   const router = useRouter();
 
   const [searchGroups, { loading, groups, data, fetchMore }] = useSearchGroups({
@@ -129,40 +122,7 @@ export default function CommunitySearch() {
           )}
 
           {hasResults && (
-            <CardGrid>
-              {groups.map(group => {
-                const callToAction = {
-                  call: 'Contact',
-                  action: () =>
-                    modalDispatch(
-                      showModal('ConnectModal', {
-                        leaderName: group.node?.leaders?.edges[0].node.nickName,
-                        leaderAvatar:
-                          group.node?.leaders?.edges[0].node.photo.uri,
-                        groupId: group.node?.id,
-                        width: utils.rem('450px'),
-                      })
-                    ),
-                };
-
-                return (
-                  <GroupCard
-                    key={group.node?.id}
-                    callToAction={callToAction}
-                    campus={group.node?.campus?.name}
-                    coverImage={group.coverImage?.sources[0]?.uri}
-                    dateTime={group.node?.dateTime?.start}
-                    groupType={group.type}
-                    heroAvatars={group.node?.leaders?.edges}
-                    preference={group.node?.preference}
-                    subPreference={group.node?.subPreference}
-                    summary={group.summary}
-                    title={group.title}
-                    totalAvatars={group.node?.members?.totalCount}
-                  />
-                );
-              })}
-            </CardGrid>
+            <GroupsProvider data={groups} Component={GroupsResultsList} />
           )}
 
           {loading && (

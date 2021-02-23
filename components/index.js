@@ -18,6 +18,7 @@ import GenderField from './GenderField';
 import GroupSearchFilters from './GroupSearchFilters';
 import GroupSingle from './GroupSingle';
 import GroupsList from './GroupsList';
+import GroupsResultsList from './GroupsResultsList';
 import Header from './Header';
 import HeroListFeature from './HeroListFeature';
 import HomeFeed from './HomeFeed';
@@ -51,6 +52,7 @@ export {
   GroupSearchFilters,
   GroupSingle,
   GroupsList,
+  GroupsResultsList,
   Header,
   HeroListFeature,
   HomeFeed,
