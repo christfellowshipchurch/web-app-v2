@@ -16,7 +16,7 @@ function ConnectSuccess() {
     <Box textAlign="center" display="flex" flexDirection="column">
       <Icon name="checkCirle" size="95" mb="base" color="primary" />
 
-      <Box as="h1">Your message was sent.</Box>
+      <Box as="h2">Your message was sent.</Box>
       <Box as="p" color="subdued" mb="l" px="base">
         Someone will reach out to you soon.
       </Box>
