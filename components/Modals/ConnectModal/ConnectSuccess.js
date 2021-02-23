@@ -2,7 +2,7 @@ import React from 'react';
 
 import { hideModal, useModalDispatch } from 'providers/ModalProvider';
 
-import { Box, Button } from 'ui-kit';
+import { Box, Button, Icon } from 'ui-kit';
 
 function ConnectSuccess() {
   const dispatch = useModalDispatch();
@@ -14,12 +14,11 @@ function ConnectSuccess() {
 
   return (
     <Box textAlign="center" display="flex" flexDirection="column">
-      <Box as="p" fontSize="90px">
-        🚀
-      </Box>
-      <Box as="h1">Success!</Box>
+      <Icon name="checkCirle" size="95" mb="base" color="primary" />
+
+      <Box as="h1">Your message was sent.</Box>
       <Box as="p" color="subdued" mb="l" px="base">
-        Your message was sent. Someone will reach out to you soon.
+        Someone will reach out to you soon.
       </Box>
       <Button onClick={handleClose}>Continue</Button>
     </Box>
