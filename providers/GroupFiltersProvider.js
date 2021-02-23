@@ -135,16 +135,26 @@ function getQueryData(values) {
 }
 
 /**
- * Appends serialized properties representing the state values.
+ * Appends serialized properties for the state values. All reducer actions
+ * should apply their updates via this function, so the serialized data
+ * always reflects the state values.
+ *
+ * This lets the provider be fully responsible for the state as it gets
+ * hydrated from the URL, modified, and serialized into API query params.
  * @param {Object} state
  * @param {Object} updatedState
  */
 function updateAndSerialize(state) {
   const newState = {
     ...state,
+    // URL String version of values
     valuesSerialized: serializeFilterValues(state.values),
+    // Object for use as a variable in API search queries
     queryData: getQueryData(state.values),
   };
+
+  // Uncomment to see log all state updates
+  // console.log('[ 🎛️ GroupFiltersProvider ] newState:', newState);
 
   return newState;
 }
