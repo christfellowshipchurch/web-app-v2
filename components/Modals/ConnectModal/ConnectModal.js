@@ -14,7 +14,7 @@ function ConnectModal(props = {}) {
         return <Success />;
       }
       default: {
-        return <Form />;
+        return <Form {...props} />;
       }
     }
   }
