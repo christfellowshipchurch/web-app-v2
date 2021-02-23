@@ -10,8 +10,13 @@ import {
   SEO,
 } from 'components';
 import { update as updateAuth, useAuth } from 'providers/AuthProvider';
-import { useGroupFilters, toggleValue } from 'providers/GroupFiltersProvider';
+import {
+  useGroupFilters,
+  toggleValue,
+  update,
+} from 'providers/GroupFiltersProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
+import { useCurrentUser } from 'hooks';
 
 import Hero from './CommunitySingle.styles';
 
@@ -19,6 +24,7 @@ function CommunitySingle(props = {}) {
   const [{ authenticated }, authDispatch] = useAuth();
   const [filtersState, filtersDispatch] = useGroupFilters();
   const modalDispatch = useModalDispatch();
+  const { currentUser } = useCurrentUser();
 
   useEffect(() => {
     // Pre-populate this Group Preference on the group search filters
@@ -30,6 +36,7 @@ function CommunitySingle(props = {}) {
   }, [filtersState.values.preferences, filtersDispatch, props.data?.title]);
 
   function showGroupFilterModal() {
+    filtersDispatch(update({ campuses: [currentUser?.profile?.campus?.name] }));
     // If there are subPreferences available, show that step.
     // Else skip it and go to the one after.
     const step = filtersState.options.subPreferences.length > 0 ? 1 : 2;

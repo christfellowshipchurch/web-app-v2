@@ -1,15 +1,21 @@
 import PropTypes from 'prop-types';
 
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
-import { useGroupFilters } from 'providers/GroupFiltersProvider';
+import { useGroupFilters, update } from 'providers/GroupFiltersProvider';
+import { useAuth } from 'providers/AuthProvider';
+
+import { useCurrentUser } from 'hooks';
+
 import { Box, Button, Icon, utils } from 'ui-kit';
 
 import FilterButton from './FilterButton';
 import Styled from './GroupSearchFilters.styles';
 
 function GroupSearchFilters(props = {}) {
-  const [filtersState] = useGroupFilters();
+  const [{ authenticated }] = useAuth();
+  const [filtersState, filtersDispatch] = useGroupFilters();
   const modalDispatch = useModalDispatch();
+  const { currentUser } = useCurrentUser();
 
   const { campuses, preferences, subPreferences, days } = filtersState.values;
   const showResultsCount =
@@ -17,6 +23,12 @@ function GroupSearchFilters(props = {}) {
 
   function handleChangeClick() {
     // Show all filters modal
+
+    if (authenticated && campuses[0] === undefined) {
+      filtersDispatch(
+        update({ campuses: [currentUser?.profile?.campus?.name] })
+      );
+    }
     modalDispatch(showModal('GroupFilter', { step: 3 }));
   }
 
