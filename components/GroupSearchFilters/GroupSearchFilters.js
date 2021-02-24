@@ -17,7 +17,13 @@ function GroupSearchFilters(props = {}) {
   const modalDispatch = useModalDispatch();
   const { currentUser } = useCurrentUser();
 
-  const { campuses, preferences, subPreferences, days } = filtersState.values;
+  const {
+    campuses,
+    preferences,
+    subPreferences,
+    days,
+    meetingType,
+  } = filtersState.values;
   const showResultsCount =
     props.visibleResults > 0 && props.totalResults > props.pageSize;
 
@@ -91,6 +97,13 @@ function GroupSearchFilters(props = {}) {
               <FilterButton
                 label="Meeting Days"
                 labelDetail={days.length}
+                onClick={handleChangeClick}
+              />
+            )}
+            {meetingType.length > 0 && (
+              <FilterButton
+                label="Meeting Type"
+                labelDetail={meetingType.length}
                 onClick={handleChangeClick}
               />
             )}

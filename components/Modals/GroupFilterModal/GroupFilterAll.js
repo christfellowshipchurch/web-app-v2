@@ -92,6 +92,15 @@ function GroupFilterAll(props = {}) {
           onClear={handleClear}
           mb="base"
         />
+        <FilterField
+          label="Meeting Type"
+          name="meetingType"
+          options={filtersState.options.meetingType}
+          values={filtersState.values.meetingType}
+          onChange={handleMultiSelectChange}
+          onClear={handleClear}
+          mb="base"
+        />
       </Box>
       <Box display="flex" justifyContent="space-between">
         <Button variant="secondary" onClick={handleClearClick}>

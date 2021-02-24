@@ -64,6 +64,26 @@ function GroupFilterWhereWhen(props = {}) {
           ))}
         </Select>
       </Box>
+      <Box mb="base">
+        <Box as="p" color="subdued" mb="base" textAlign="center">
+          Where do you prefer to meet?
+        </Box>
+        <Select
+          id="meetingType"
+          name="meetingType"
+          onChange={handleCampusChange}
+          defaultValue={filtersState.values.meetingType[0] || ''}
+        >
+          <Select.Option value="">
+            Select your meeting perference...
+          </Select.Option>
+          {filtersState.options.meetingType.map(value => (
+            <Select.Option key={value} value={value}>
+              {value}
+            </Select.Option>
+          ))}
+        </Select>
+      </Box>
       <Box mb="l">
         <Box as="p" color="subdued" mb="base" textAlign="center">
           What days can you meet?

@@ -52,6 +52,7 @@ function GroupsResultsList(props = {}) {
             heroAvatars={group.node?.leaders?.edges}
             preference={group.node?.preference}
             subPreference={group.node?.subPreference}
+            meetingType={group.node?.meetingType}
             summary={group.summary}
             title={group.title}
             totalAvatars={group.node?.members?.totalCount}

@@ -13,6 +13,7 @@ const options = Object.freeze({
   days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
   preferences: [],
   subPreferences: [],
+  meetingType: [],
 });
 
 const initialState = {
@@ -23,6 +24,7 @@ const initialState = {
     days: [],
     preferences: [],
     subPreferences: [],
+    meetingType: [],
     text: [],
   },
   queryData: {
@@ -126,6 +128,7 @@ function getQueryData(values) {
     { key: 'preferences', values: getValidValues('preferences') },
     { key: 'subPreferences', values: getValidValues('subPreferences') },
     { key: 'days', values: getValidValues('days') },
+    { key: 'meetingType', values: getValidValues('meetingType') },
     { key: 'text', values: getValidValues('text') },
   ].filter(({ values }) => values.length > 0 && values !== '');
 
@@ -246,6 +249,7 @@ function GroupFiltersProvider(props = {}) {
         campuses: optionsData?.campusName || [],
         preferences: optionsData?.preference || [],
         subPreferences: optionsData?.subPreference || [],
+        meetingType: optionsData?.meetingType || [],
       })
     );
   }, [optionsData]);
