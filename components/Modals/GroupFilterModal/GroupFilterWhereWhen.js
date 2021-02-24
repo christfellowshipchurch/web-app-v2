@@ -77,11 +77,20 @@ function GroupFilterWhereWhen(props = {}) {
           <Select.Option value="">
             Select your meeting perference...
           </Select.Option>
-          {filtersState.options.meetingType.map(value => (
-            <Select.Option key={value} value={value}>
-              {value}
-            </Select.Option>
-          ))}
+          {filtersState.options.meetingType.map(value => {
+            return (
+              <Select.Option
+                key={value}
+                disabled={
+                  value === 'In Person' &&
+                  filtersState.values.campuses[0] === 'Online'
+                }
+                value={value}
+              >
+                {value}
+              </Select.Option>
+            );
+          })}
         </Select>
       </Box>
       <Box mb="l">
