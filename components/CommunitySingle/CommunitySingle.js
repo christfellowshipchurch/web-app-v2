@@ -16,6 +16,12 @@ import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
 import Hero from './CommunitySingle.styles';
 
+// Redundant (and brittle) mapping, but easier to read than integers
+const ModalSteps = Object.freeze({
+  SUB_PREFERENCES: 1,
+  WHERE_WHEN: 2,
+});
+
 function CommunitySingle(props = {}) {
   const [{ authenticated }, authDispatch] = useAuth();
   const [filtersState, filtersDispatch] = useGroupFilters();
@@ -29,29 +35,39 @@ function CommunitySingle(props = {}) {
     }
   }, [filtersState.values.preferences, filtersDispatch, props.data?.title]);
 
+  function ensureAuthentication(onSuccess) {
+    if (!authenticated) {
+      modalDispatch(showModal('Auth'));
+      authDispatch(updateAuth({ onSuccess }));
+    } else {
+      onSuccess();
+    }
+  }
+
   function handleFindCommunityClick() {
     const showFilterModal = () => {
       const userCampus = currentUser?.profile?.campus?.name;
       filtersDispatch(update({ campuses: [userCampus] }));
-
-      // If there are subPreferences available, show that step.
-      // Else skip it and go to the one after.
-      const step = filtersState.options.subPreferences.length > 0 ? 1 : 2;
-      modalDispatch(showModal('GroupFilter', { step }));
+      modalDispatch(
+        showModal('GroupFilter', {
+          step:
+            filtersState.options.subPreferences.length > 0
+              ? ModalSteps.SUB_PREFERENCES
+              : ModalSteps.WHERE_WHEN,
+        })
+      );
     };
 
-    if (!authenticated) {
-      modalDispatch(showModal('Auth'));
-      authDispatch(updateAuth({ onSuccess: showFilterModal }));
-    } else {
-      showFilterModal();
-    }
+    ensureAuthentication(showFilterModal);
   }
 
   function handleSubPreferenceSelect(subPreference) {
-    filtersDispatch(update({ subPreferences: [subPreference.title] }));
-    // Skip subPreferences step
-    modalDispatch(showModal('GroupFilter', { step: 2 }));
+    const showFilterModal = () => {
+      filtersDispatch(update({ subPreferences: [subPreference.title] }));
+      modalDispatch(showModal('GroupFilter', { step: ModalSteps.WHERE_WHEN }));
+    };
+
+    ensureAuthentication(showFilterModal);
   }
 
   return (
