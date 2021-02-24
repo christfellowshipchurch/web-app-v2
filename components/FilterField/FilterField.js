@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import includes from 'lodash/includes';
 
 import { Box, Button, Select } from 'ui-kit';
 
@@ -65,15 +66,14 @@ export default function FilterField(props = {}) {
             >
               Select...
             </Select.Option>
-            {props.options.map(value => (
-              <Select.Option
-                key={value}
-                value={value}
-                selected={props.values[0] === value}
-              >
-                {value}
-              </Select.Option>
-            ))}
+            {props.options.map(value => {
+              const isDisabled = includes(props.disabledValues, value);
+              return (
+                <Select.Option key={value} value={value} disabled={isDisabled}>
+                  {value}
+                </Select.Option>
+              );
+            })}
           </Select>
         )}
       </Box>
@@ -92,6 +92,7 @@ FilterField.propTypes = {
   // Will be given an object with a `name` and `value` prop
   onChange: PropTypes.func.isRequired,
   onClear: PropTypes.func.isRequired,
+  disabledValues: PropTypes.array,
 };
 
 FilterField.defaultProps = {
