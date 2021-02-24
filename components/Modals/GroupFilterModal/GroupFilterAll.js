@@ -93,6 +93,7 @@ function GroupFilterAll(props = {}) {
           mb="base"
         />
         <FilterField
+          filterType="select"
           label="Meeting Type"
           name="meetingType"
           options={filtersState.options.meetingType}
