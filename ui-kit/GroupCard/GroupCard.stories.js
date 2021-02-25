@@ -120,6 +120,7 @@ export const GridView = () => (
     <GroupCard
       title="Group Title"
       groupType="Group Type"
+      preferences={['Preference']}
       campus="Orlando"
       summary={groupSummary}
       heroAvatars={heroAvatars}
@@ -131,7 +132,7 @@ export const GridView = () => (
     <GroupCard
       title="A Group That Does Not Contain Summary Text"
       groupType="Group Type"
-      preference="Preference"
+      preferences={['Preference 1', 'Preference 2']}
       campus="Royal Palm Beach"
       heroAvatars={heroAvatars}
       avatars={blankAvatars}

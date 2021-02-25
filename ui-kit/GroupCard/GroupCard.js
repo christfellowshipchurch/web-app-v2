@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
+import isEmpty from 'lodash/isEmpty';
 
 import {
   Avatar,
@@ -62,9 +63,9 @@ const GroupCard = (props = {}) => {
         {props.groupType && (
           <Styled.GroupCardSubTitle>{props.groupType}</Styled.GroupCardSubTitle>
         )}
-        {props.preference && (
+        {!isEmpty(props.preferences) && (
           <Styled.GroupCardSubTitle>
-            {props.preference}
+            {props.preferences.join(', ')}
           </Styled.GroupCardSubTitle>
         )}
       </Box>
@@ -145,7 +146,7 @@ GroupCard.propTypes = {
     action: PropTypes.func,
   }),
   campus: PropTypes.string,
-  preference: PropTypes.array,
+  preferences: PropTypes.array,
   subPreference: PropTypes.string,
   coverImage: PropTypes.string,
   dateTime: PropTypes.string,
