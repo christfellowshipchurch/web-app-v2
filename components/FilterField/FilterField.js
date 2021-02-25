@@ -8,7 +8,7 @@ export default function FilterField(props = {}) {
   if (!props.options || !props.options.length) return null;
 
   return (
-    <Box mb={props.mb || 'xl'} textAlign="left">
+    <Box mb={props.mb || 'l'} textAlign="left">
       <Box
         display="flex"
         flexDirection="row"

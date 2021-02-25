@@ -12,6 +12,7 @@ import {
 } from 'components';
 
 import { useGroupFilters, update } from 'providers/GroupFiltersProvider';
+import { useModalState } from 'providers/ModalProvider';
 import { GroupsProvider } from 'providers';
 import { useSearchGroups, useForm } from 'hooks';
 
@@ -19,10 +20,9 @@ const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
 const PAGE_SIZE = 21;
 
 export default function CommunitySearch() {
-  const [filtersState, filtersDispatch] = useGroupFilters();
-
   const router = useRouter();
-
+  const modalState = useModalState();
+  const [filtersState, filtersDispatch] = useGroupFilters();
   const [searchGroups, { loading, groups, data, fetchMore }] = useSearchGroups({
     notifyOnNetworkStatusChange: true,
   });
@@ -33,7 +33,8 @@ export default function CommunitySearch() {
   const hasMorePages = groups?.length < data?.searchGroups?.totalResults;
 
   useEffect(() => {
-    if (!filtersState.hydrated) {
+    // Don't execute search if state hasn't been hydrated OR a modal is open
+    if (!filtersState.hydrated || modalState.activeModal.component) {
       return;
     }
 
@@ -43,7 +44,12 @@ export default function CommunitySearch() {
         first: PAGE_SIZE,
       },
     });
-  }, [searchGroups, filtersState.hydrated, filtersState.queryData]);
+  }, [
+    searchGroups,
+    filtersState.hydrated,
+    filtersState.queryData,
+    modalState.activeModal.component,
+  ]);
 
   const handleLoadMore = () => {
     if (!loading && hasMorePages) {
@@ -99,7 +105,7 @@ export default function CommunitySearch() {
 
           <Divider mb="l" />
           <SearchField
-            placeholder="Find a Group"
+            placeholder="Search for groups..."
             handleSubmit={handleSubmit}
             handleClick={handleClick}
             handleChange={handleChange}

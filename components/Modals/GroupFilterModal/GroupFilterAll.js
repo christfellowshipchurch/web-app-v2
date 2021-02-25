@@ -35,7 +35,7 @@ function GroupFilterAll(props = {}) {
   const handleSubmit = event => {
     event.preventDefault();
 
-    // Go to Search page
+    // Update search page URL
     router.push({
       pathname: `/community/search`,
       query: filtersState.valuesSerialized,
@@ -43,7 +43,8 @@ function GroupFilterAll(props = {}) {
     modalDispatch(hideModal());
   };
 
-  function handleClearClick() {
+  function handleClearAllClick(event) {
+    event.preventDefault();
     filtersDispatch(resetValues());
   }
 
@@ -110,10 +111,10 @@ function GroupFilterAll(props = {}) {
         />
       </Box>
       <Box display="flex" justifyContent="space-between">
-        <Button variant="secondary" onClick={handleClearClick}>
+        <Button variant="secondary" onClick={handleClearAllClick}>
           Clear All
         </Button>
-        <Button type="submit">Apply</Button>
+        <Button type="submit">Done</Button>
       </Box>
     </Box>
   );
