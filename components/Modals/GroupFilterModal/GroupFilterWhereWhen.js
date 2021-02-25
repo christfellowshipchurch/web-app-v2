@@ -6,9 +6,9 @@ import {
   update,
   toggleValue,
 } from 'providers/GroupFiltersProvider';
-import { hideModal, useModalDispatch } from 'providers/ModalProvider';
+import { showStep, hideModal, useModalDispatch } from 'providers/ModalProvider';
 
-import { Box, Button, Select } from 'ui-kit';
+import { Box, Button, Select, Icon } from 'ui-kit';
 
 function GroupFilterWhereWhen(props = {}) {
   const router = useRouter();
@@ -34,6 +34,15 @@ function GroupFilterWhereWhen(props = {}) {
       query: filtersState.valuesSerialized,
     });
     modalDispatch(hideModal());
+  };
+
+  const handleGoBack = event => {
+    event.preventDefault();
+    if (filtersState.options.subPreferences.length !== 0) {
+      modalDispatch(showStep(1));
+    } else {
+      modalDispatch(showStep(0));
+    }
   };
 
   return (
@@ -97,7 +106,13 @@ function GroupFilterWhereWhen(props = {}) {
           ))}
         </Box>
       </Box>
-      <Button type="submit">Continue</Button>
+      <Box display="flex" alignItems="center" justifyContent="space-between">
+        <Button variant="secondary" onClick={handleGoBack}>
+          <Icon name="angleLeft" />
+          Back
+        </Button>
+        <Button type="submit">Continue</Button>
+      </Box>
     </Box>
   );
 }
