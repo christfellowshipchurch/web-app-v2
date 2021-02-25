@@ -69,7 +69,12 @@ export default function FilterField(props = {}) {
             {props.options.map(value => {
               const isDisabled = includes(props.disabledValues, value);
               return (
-                <Select.Option key={value} value={value} disabled={isDisabled}>
+                <Select.Option
+                  key={value}
+                  value={value}
+                  selected={props.values[0] === value}
+                  disabled={isDisabled}
+                >
                   {value}
                 </Select.Option>
               );
