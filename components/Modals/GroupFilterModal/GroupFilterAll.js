@@ -8,13 +8,15 @@ import {
   resetValues,
 } from 'providers/GroupFiltersProvider';
 import { useModalDispatch, hideModal } from 'providers/ModalProvider';
-import { Box, Button } from 'ui-kit';
+import { useGroupPreferences } from 'hooks';
 import { FilterField } from 'components';
+import { Box, Button } from 'ui-kit';
 
 function GroupFilterAll(props = {}) {
   const router = useRouter();
   const modalDispatch = useModalDispatch();
   const [filtersState, filtersDispatch] = useGroupFilters();
+  const { preferences, subPreferences } = useGroupPreferences();
 
   const handleMultiSelectChange = ({ name, value }) => {
     filtersDispatch(toggleValue({ name, value }));
@@ -73,7 +75,7 @@ function GroupFilterAll(props = {}) {
         <FilterField
           label="Group Types"
           name="preferences"
-          options={filtersState.options.preferences}
+          options={preferences?.map(({ title }) => title)}
           values={filtersState.values.preferences}
           onChange={handleMultiSelectChange}
           onClear={handleClear}
@@ -81,7 +83,7 @@ function GroupFilterAll(props = {}) {
         <FilterField
           label="Lineups"
           name="subPreferences"
-          options={filtersState.options.subPreferences}
+          options={subPreferences?.map(({ title }) => title)}
           values={filtersState.values.subPreferences}
           onChange={handleMultiSelectChange}
           onClear={handleClear}

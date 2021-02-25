@@ -138,16 +138,26 @@ function getQueryData(values) {
 }
 
 /**
- * Appends serialized properties representing the state values.
+ * Appends serialized properties for the state values. All reducer actions
+ * should apply their updates via this function, so the serialized data
+ * always reflects the state values.
+ *
+ * This lets the provider be fully responsible for the state as it gets
+ * hydrated from the URL, modified, and serialized into API query params.
  * @param {Object} state
  * @param {Object} updatedState
  */
 function updateAndSerialize(state) {
   const newState = {
     ...state,
+    // URL String version of values
     valuesSerialized: serializeFilterValues(state.values),
+    // Object for use as a variable in API search queries
     queryData: getQueryData(state.values),
   };
+
+  // Uncomment to see log all state updates
+  // console.log('[ 🎛️ GroupFiltersProvider ] 🆕 newState:', newState);
 
   return newState;
 }
@@ -155,6 +165,9 @@ function updateAndSerialize(state) {
 // REDUCER
 
 function reducer(state, action) {
+  // Uncomment to see log all actions
+  // console.log('[ 🎛️ GroupFiltersProvider ] 🎬 action: ', action);
+
   switch (action.type) {
     case actionTypes.hydrate: {
       return updateAndSerialize({
@@ -224,18 +237,18 @@ function GroupFiltersProvider(props = {}) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const isClient = typeof window !== 'undefined';
 
-  // 👇 This effect hydrates the state from URL search params on page load.
-  // When rendered server-side, the URL query string is unknown.
-  // So when running client side, pull values from `router.query`.
-  // There's a brief moment/render cycle where the `router.asPath` shows
-  // that query search params are present, but Next for some reason hasn't
-  // parsed them to `router.query` yet. We'll skip that cycle with some logic.
+  // :: Hydrate the state values from URL search params.
   useEffect(() => {
-    const paramsPresent = router?.asPath.includes('?');
-    const canHydrate =
-      paramsPresent && !(isEmpty(router?.query) || state.hydrated);
+    if (state.hydrated || !isClient) {
+      return;
+    }
 
-    if (isClient && (!paramsPresent || canHydrate)) {
+    // There's a brief moment/render cycle where `router.asPath` shows that
+    // query search params are present, but Next hasn't parsed them onto
+    // the `router.query` object yet. We'll wait until `router.query` is ready.
+    const ready = router?.asPath.includes('?') && !isEmpty(router?.query);
+
+    if (ready) {
       // Next's dynamic page route mechanism for routes like `[title].js`
       // will get appended in router.query as `title`. Remove those.
       const { title, ...rest } = router?.query;
@@ -243,6 +256,7 @@ function GroupFiltersProvider(props = {}) {
     }
   }, [router?.asPath, router?.query, isClient, state.hydrated]);
 
+  // :: Update filter options.
   useEffect(() => {
     dispatch(
       updateOptions({
