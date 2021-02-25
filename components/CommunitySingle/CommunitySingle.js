@@ -9,16 +9,18 @@ import {
   Header,
   SEO,
 } from 'components';
-import { update as updateAuth, useAuth } from 'providers/AuthProvider';
-import {
-  useGroupFilters,
-  toggleValue,
-  update,
-} from 'providers/GroupFiltersProvider';
-import { useModalDispatch, showModal } from 'providers/ModalProvider';
 import { useCurrentUser } from 'hooks';
+import { update as updateAuth, useAuth } from 'providers/AuthProvider';
+import { useGroupFilters, update } from 'providers/GroupFiltersProvider';
+import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
 import Hero from './CommunitySingle.styles';
+
+// Redundant (and brittle) mapping, but easier to read than integers
+const ModalSteps = Object.freeze({
+  SUB_PREFERENCES: 1,
+  WHERE_WHEN: 2,
+});
 
 function CommunitySingle(props = {}) {
   const [{ authenticated }, authDispatch] = useAuth();
@@ -26,30 +28,46 @@ function CommunitySingle(props = {}) {
   const modalDispatch = useModalDispatch();
   const { currentUser } = useCurrentUser();
 
+  // Pre-populate the Preference filter from the URL
   useEffect(() => {
-    // Pre-populate this Group Preference on the group search filters
     if (!filtersState.values.preferences?.includes(props.data?.title)) {
-      filtersDispatch(
-        toggleValue({ name: 'preferences', value: props.data?.title })
-      );
+      filtersDispatch(update({ preferences: [props.data?.title] }));
     }
   }, [filtersState.values.preferences, filtersDispatch, props.data?.title]);
 
-  function showGroupFilterModal() {
-    filtersDispatch(update({ campuses: [currentUser?.profile?.campus?.name] }));
-    // If there are subPreferences available, show that step.
-    // Else skip it and go to the one after.
-    const step = filtersState.options.subPreferences.length > 0 ? 1 : 2;
-    modalDispatch(showModal('GroupFilter', { step }));
-  }
-
-  function handleOnClick() {
+  function ensureAuthentication(onSuccess) {
     if (!authenticated) {
       modalDispatch(showModal('Auth'));
-      authDispatch(updateAuth({ onSuccess: showGroupFilterModal }));
+      authDispatch(updateAuth({ onSuccess }));
     } else {
-      showGroupFilterModal();
+      onSuccess();
     }
+  }
+
+  function handleFindCommunityClick() {
+    const showFilterModal = () => {
+      const userCampus = currentUser?.profile?.campus?.name;
+      filtersDispatch(update({ campuses: [userCampus] }));
+      modalDispatch(
+        showModal('GroupFilter', {
+          step:
+            filtersState.options.subPreferences.length > 0
+              ? ModalSteps.SUB_PREFERENCES
+              : ModalSteps.WHERE_WHEN,
+        })
+      );
+    };
+
+    ensureAuthentication(showFilterModal);
+  }
+
+  function handleSubPreferenceSelect(subPreference) {
+    const showFilterModal = () => {
+      filtersDispatch(update({ subPreferences: [subPreference.title] }));
+      modalDispatch(showModal('GroupFilter', { step: ModalSteps.WHERE_WHEN }));
+    };
+
+    ensureAuthentication(showFilterModal);
   }
 
   return (
@@ -71,7 +89,11 @@ function CommunitySingle(props = {}) {
           </Box>
         </Box>
         <Box display="flex" mb="l">
-          <Button variant="tertiary" rounded={true} onClick={handleOnClick}>
+          <Button
+            variant="tertiary"
+            rounded={true}
+            onClick={handleFindCommunityClick}
+          >
             {`Find your ${props.data?.title}`}
           </Button>
         </Box>
@@ -98,11 +120,13 @@ function CommunitySingle(props = {}) {
                 coverImageOverlay={true}
                 coverImageTitle={item?.title}
                 type="HIGHLIGHT_SMALL"
+                height="250px"
+                onClick={() => handleSubPreferenceSelect(item)}
               />
             ))}
         </Box>
       </Box>
-      <CommunityActionSection handleOnClick={handleOnClick} />
+      <CommunityActionSection handleOnClick={handleFindCommunityClick} />
       <CommunityLeaderActions />
       <Footer />
     </>
