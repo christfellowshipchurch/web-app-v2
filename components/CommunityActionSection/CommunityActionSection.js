@@ -16,8 +16,18 @@ export default function CommunityActionSection(props) {
       <Box as="p" mb="l" color="subdued">
         There are hundreds of communities at CF. We’ll help find yours.
       </Box>
-      <Button onClick={props.handleOnClick} rounded={true}>
+      <Button onClick={props.handleOnClick} rounded={true} mb="base">
         Find your community
+      </Button>
+
+      <Button
+        as="a"
+        rounded={true}
+        size="s"
+        variant="secondary"
+        href="https://rock.gocf.org/page/2113"
+      >
+        Need help?
       </Button>
     </Box>
   );
