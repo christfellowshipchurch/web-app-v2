@@ -8,7 +8,7 @@ import {
 } from 'providers/GroupFiltersProvider';
 import { showStep, hideModal, useModalDispatch } from 'providers/ModalProvider';
 
-import { Box, Button, Select, Icon } from 'ui-kit';
+import { Box, Button, Select, Icon, FormLabel } from 'ui-kit';
 
 function GroupFilterWhereWhen(props = {}) {
   const router = useRouter();
@@ -56,9 +56,7 @@ function GroupFilterWhereWhen(props = {}) {
         <Box as="h2">Find your Community</Box>
       </Box>
       <Box mb="base">
-        <Box as="p" color="subdued" mb="base" textAlign="center">
-          What campus do you prefer?
-        </Box>
+        <FormLabel color="subdued">What campus do you prefer?</FormLabel>
         <Select
           id="campuses"
           name="campuses"
@@ -74,9 +72,7 @@ function GroupFilterWhereWhen(props = {}) {
         </Select>
       </Box>
       <Box mb="base">
-        <Box as="p" color="subdued" mb="base" textAlign="center">
-          Where do you prefer to meet?
-        </Box>
+        <FormLabel color="subdued">Where do you prefer to meet?</FormLabel>
         <Select
           id="meetingType"
           name="meetingType"
@@ -103,9 +99,7 @@ function GroupFilterWhereWhen(props = {}) {
         </Select>
       </Box>
       <Box mb="l">
-        <Box as="p" color="subdued" mb="base" textAlign="center">
-          What days can you meet?
-        </Box>
+        <FormLabel color="subdued">What days can you meet?</FormLabel>
         <Box
           display="grid"
           width="100%"
