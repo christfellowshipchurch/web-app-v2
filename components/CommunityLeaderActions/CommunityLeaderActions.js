@@ -9,7 +9,7 @@ export default function CommunityLeaderActions(props) {
         py={{ _: 'l', md: 'xxl' }}
         gridTemplateColumns={{ _: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)' }}
         gridColumnGap="l"
-        textAlign={{ _: 'center', md: 'left' }}
+        textAlign="center"
       >
         <Box mb={{ _: 'xl', md: 0 }}>
           <Icon name="users" size="40" mb="s" color="subdued" />
