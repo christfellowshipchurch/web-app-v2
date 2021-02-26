@@ -42,15 +42,17 @@ function GroupSearchFilters(props = {}) {
           width="100%"
           justifyContent={{ _: 'space-between', md: 'flex-start' }}
         >
-          <Button
-            onClick={handleChangeClick}
-            display="flex"
-            rounded={true}
-            mr="s"
-          >
-            <Icon name="filter" size="14" mr={utils.rem('8px')} />
-            <Box as="span">Filter</Box>
-          </Button>
+          <Box>
+            <Button
+              onClick={handleChangeClick}
+              display="flex"
+              rounded={true}
+              mr="s"
+            >
+              <Icon name="filter" size="14" mr={utils.rem('8px')} />
+              <Box as="span">Filter</Box>
+            </Button>
+          </Box>
           <Button
             as="a"
             rounded={true}
@@ -66,6 +68,13 @@ function GroupSearchFilters(props = {}) {
                 <FilterButton
                   label="Campus"
                   labelDetail={campuses[0]}
+                  onClick={handleChangeClick}
+                />
+              )}
+              {meetingType.length > 0 && (
+                <FilterButton
+                  label="Meeting Type"
+                  labelDetail={meetingType.length}
                   onClick={handleChangeClick}
                 />
               )}
@@ -85,15 +94,8 @@ function GroupSearchFilters(props = {}) {
               )}
               {days.length > 0 && (
                 <FilterButton
-                  label="Meeting Days"
+                  label="Days"
                   labelDetail={days.length}
-                  onClick={handleChangeClick}
-                />
-              )}
-              {meetingType.length > 0 && (
-                <FilterButton
-                  label="Meeting Type"
-                  labelDetail={meetingType.length}
                   onClick={handleChangeClick}
                 />
               )}
