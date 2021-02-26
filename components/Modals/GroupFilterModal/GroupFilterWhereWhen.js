@@ -72,7 +72,7 @@ function GroupFilterWhereWhen(props = {}) {
         </Select>
       </Box>
       <Box mb="base">
-        <FormLabel color="subdued">Where do you prefer to meet?</FormLabel>
+        <FormLabel color="subdued">How do you prefer to meet?</FormLabel>
         <Select
           id="meetingType"
           name="meetingType"
@@ -80,7 +80,7 @@ function GroupFilterWhereWhen(props = {}) {
           defaultValue={filtersState.values.meetingType[0] || ''}
         >
           <Select.Option value="">
-            Select your meeting perference...
+            Select how you'd like to meet...
           </Select.Option>
           {filtersState.options.meetingType.map(value => {
             return (
