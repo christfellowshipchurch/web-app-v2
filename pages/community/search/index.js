@@ -9,9 +9,14 @@ import {
   SEO,
   SearchField,
   GroupsResultsList,
+  CustomLink,
 } from 'components';
 
-import { useGroupFilters, update } from 'providers/GroupFiltersProvider';
+import {
+  useGroupFilters,
+  update,
+  resetValues,
+} from 'providers/GroupFiltersProvider';
 import { useModalState } from 'providers/ModalProvider';
 import { GroupsProvider } from 'providers';
 import { useSearchGroups, useForm } from 'hooks';
@@ -62,7 +67,7 @@ export default function CommunitySearch() {
     }
   };
 
-  const { values, handleSubmit, handleChange } = useForm(() => {
+  const { reset, values, handleSubmit, handleChange } = useForm(() => {
     router.push({
       pathname: `/community/search`,
       query: filtersState.valuesSerialized,
@@ -72,6 +77,15 @@ export default function CommunitySearch() {
   const handleClick = event => {
     filtersDispatch(update({ text: [values.text] }));
   };
+
+  function handleClearAllClick(event) {
+    event.preventDefault();
+    // Update search page URL
+    router.push({
+      pathname: `/community/search`,
+    });
+    filtersDispatch(resetValues(), reset());
+  }
 
   return (
     <>
@@ -122,8 +136,30 @@ export default function CommunitySearch() {
           />
 
           {showEmptyState && (
-            <Box display="flex" justifyContent="center" my="xxl" pb="xxl">
-              <Box>No Groups matched your search criteria.</Box>
+            <Box my="xxl" pb="xxl" textAlign="center">
+              <Box as="h2">Looks like we couldn't find any results</Box>
+              <Box mb="base">
+                Consider reducing the number of filters or modifing your search
+                criteria.
+              </Box>
+              <Box
+                display="flex"
+                alignItems="center"
+                flexDirection="column"
+                mt="l"
+                textAlign="center"
+              >
+                <Button
+                  variant="secondary"
+                  onClick={handleClearAllClick}
+                  mb="s"
+                >
+                  Clear Search
+                </Button>
+                <CustomLink href="https://rock.gocf.org/page/2113">
+                  Need help?
+                </CustomLink>
+              </Box>
             </Box>
           )}
 
