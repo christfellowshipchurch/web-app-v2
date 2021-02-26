@@ -1,4 +1,5 @@
 import { Box, Button } from 'ui-kit';
+import { CustomLink } from 'components';
 
 export default function CommunityActionSection(props) {
   return (
@@ -20,15 +21,7 @@ export default function CommunityActionSection(props) {
         Find your community
       </Button>
 
-      <Button
-        as="a"
-        rounded={true}
-        size="s"
-        variant="secondary"
-        href="https://rock.gocf.org/page/2113"
-      >
-        Need help?
-      </Button>
+      <CustomLink href="https://rock.gocf.org/page/2113">Need help?</CustomLink>
     </Box>
   );
 }
