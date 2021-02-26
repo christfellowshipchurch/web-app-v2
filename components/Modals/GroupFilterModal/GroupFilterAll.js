@@ -69,9 +69,21 @@ function GroupFilterAll(props = {}) {
           name="campuses"
           options={filtersState.options.campuses}
           values={filtersState.values.campuses}
+          defaultValue={filtersState.values.campuses[0] || ''}
+          placeholder="Select a campus..."
           onChange={handleSelectChange}
           onClear={handleClear}
-          defaultValue={filtersState.values.campuses[0] || ''}
+        />
+        <FilterField
+          filterType="select"
+          label="Meeting Type"
+          name="meetingType"
+          options={filtersState.options.meetingType}
+          values={filtersState.values.meetingType}
+          disabledValues={disableInPerson}
+          placeholder="Select how you'd like to meet..."
+          onChange={handleMultiSelectChange}
+          onClear={handleClear}
         />
         <FilterField
           label="Group Types"
@@ -94,17 +106,6 @@ function GroupFilterAll(props = {}) {
           name="days"
           options={filtersState.options.days}
           values={filtersState.values.days}
-          onChange={handleMultiSelectChange}
-          onClear={handleClear}
-          mb="base"
-        />
-        <FilterField
-          filterType="select"
-          label="Meeting Type"
-          name="meetingType"
-          options={filtersState.options.meetingType}
-          values={filtersState.values.meetingType}
-          disabledValues={disableInPerson}
           onChange={handleMultiSelectChange}
           onClear={handleClear}
           mb="base"

@@ -64,7 +64,7 @@ export default function FilterField(props = {}) {
               value=""
               selected={props.values.length === 0 || props.values[0] === ''}
             >
-              Select...
+              {props.placeholder}
             </Select.Option>
             {props.options.map(value => {
               const isDisabled = includes(props.disabledValues, value);
@@ -94,12 +94,16 @@ FilterField.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
   // Currently selected options
   values: PropTypes.arrayOf(PropTypes.string).isRequired,
+  disabledValues: PropTypes.arrayOf(PropTypes.string),
+  defaultValue: PropTypes.string,
+  placeholder: PropTypes.string,
   // Will be given an object with a `name` and `value` prop
   onChange: PropTypes.func.isRequired,
   onClear: PropTypes.func.isRequired,
-  disabledValues: PropTypes.array,
 };
 
 FilterField.defaultProps = {
   filterType: 'multi-select',
+  placeholder: 'Select...',
+  disabledValues: [],
 };
