@@ -11,7 +11,11 @@ function GroupDetailsModal(props = {}) {
       case 0:
       default: {
         return (
-          <GroupSummary title={props.groupTitle} summary={props.groupSummary} />
+          <GroupSummary
+            title={props.groupTitle}
+            summary={props.groupSummary}
+            callToAction={props.groupCallToAction}
+          />
         );
       }
     }
@@ -24,6 +28,10 @@ GroupDetailsModal.propTypes = {
   ...Modal.propTypes,
   groupTitle: PropTypes.string,
   groupSummary: PropTypes.string,
+  groupCallToAction: PropTypes.shape({
+    call: PropTypes.string,
+    action: PropTypes.func,
+  }),
 };
 
 GroupDetailsModal.defaultProps = {};

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Box } from 'ui-kit';
+import { Box, Button } from 'ui-kit';
 
 function GroupSummary(props = {}) {
   return (
@@ -19,6 +19,16 @@ function GroupSummary(props = {}) {
       >
         {props.summary}
       </Box>
+      {props.callToAction && (
+        <Button
+          onClick={props.callToAction?.action}
+          mt="base"
+          size="l"
+          width="100%"
+        >
+          {props.callToAction?.call}
+        </Button>
+      )}
     </Box>
   );
 }
@@ -26,6 +36,10 @@ function GroupSummary(props = {}) {
 GroupSummary.propTypes = {
   title: PropTypes.string,
   summary: PropTypes.string.isRequired,
+  callToAction: PropTypes.shape({
+    call: PropTypes.string,
+    action: PropTypes.func,
+  }),
 };
 
 GroupSummary.defaultProps = {

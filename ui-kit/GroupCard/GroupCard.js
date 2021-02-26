@@ -35,6 +35,7 @@ const GroupCard = (props = {}) => {
       showModal('GroupDetails', {
         groupTitle: props.title,
         groupSummary: props.summary,
+        groupCallToAction: props.callToAction,
       })
     );
   };
