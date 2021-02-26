@@ -1,7 +1,7 @@
 import React from 'react';
 import { useGroupFilters, toggleValue } from 'providers/GroupFiltersProvider';
 import { showStep, useModalDispatch } from 'providers/ModalProvider';
-import { Box, Button, Loader } from 'ui-kit';
+import { Box, Button, Loader, Icon } from 'ui-kit';
 
 function GroupFilterSubPreferences(props = {}) {
   const modalDispatch = useModalDispatch();
@@ -14,6 +14,10 @@ function GroupFilterSubPreferences(props = {}) {
   const handleSubmit = event => {
     event.preventDefault();
     modalDispatch(showStep(2));
+  };
+  const handleGoBack = event => {
+    event.preventDefault();
+    modalDispatch(showStep(1));
   };
 
   return (
@@ -59,7 +63,13 @@ function GroupFilterSubPreferences(props = {}) {
           </Button>
         ))}
       </Box>
-      <Button type="submit">Continue</Button>
+      <Box display="flex" alignItems="center" justifyContent="space-between">
+        <Button variant="secondary" onClick={handleGoBack}>
+          <Icon name="angleLeft" />
+          Back
+        </Button>
+        <Button type="submit">Continue</Button>
+      </Box>
     </Box>
   );
 }

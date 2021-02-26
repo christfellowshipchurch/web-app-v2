@@ -13,6 +13,7 @@ const options = Object.freeze({
   days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
   preferences: [],
   subPreferences: [],
+  meetingType: [],
 });
 
 const initialState = {
@@ -23,6 +24,7 @@ const initialState = {
     days: [],
     preferences: [],
     subPreferences: [],
+    meetingType: [],
     text: [],
   },
   queryData: {
@@ -126,6 +128,7 @@ function getQueryData(values) {
     { key: 'preferences', values: getValidValues('preferences') },
     { key: 'subPreferences', values: getValidValues('subPreferences') },
     { key: 'days', values: getValidValues('days') },
+    { key: 'meetingType', values: getValidValues('meetingType') },
     { key: 'text', values: getValidValues('text') },
   ].filter(({ values }) => values.length > 0 && values !== '');
 
@@ -170,10 +173,12 @@ function reducer(state, action) {
       return updateAndSerialize({
         ...state,
         hydrated: true,
-        values: {
-          ...initialState.values,
-          ...parseFilterValues(action.payload),
-        },
+        values: action.payload
+          ? {
+              ...initialState.values,
+              ...parseFilterValues(action.payload),
+            }
+          : state.values,
       });
     }
     case actionTypes.resetValues: {
@@ -240,14 +245,20 @@ function GroupFiltersProvider(props = {}) {
       return;
     }
 
-    // There's a brief moment/render cycle where `router.asPath` shows that
-    // query search params are present, but Next hasn't parsed them onto
-    // the `router.query` object yet. We'll wait until `router.query` is ready.
-    const ready = router?.asPath.includes('?') && !isEmpty(router?.query);
+    const shouldHydrate = router?.asPath.includes('?');
 
-    if (ready) {
-      // Next's dynamic page route mechanism for routes like `[title].js`
-      // will get appended in router.query as `title`. Remove those.
+    if (!shouldHydrate) {
+      dispatch(hydrate());
+      return;
+    }
+
+    // For a brief moment/render cycle, we see URL search params are present, but
+    // Next.js hasn't parsed them onto `router.query` yet. Wait until it's ready.
+    const readyToHydrate = !isEmpty(router?.query);
+
+    if (readyToHydrate) {
+      // Remove extra "hidden" query params that Next.js adds to `router.query`,
+      // that don't exist in the URL search (which is all we care about, here).
       const { title, ...rest } = router?.query;
       dispatch(hydrate({ ...rest }));
     }
@@ -260,6 +271,7 @@ function GroupFiltersProvider(props = {}) {
         campuses: optionsData?.campusName || [],
         preferences: optionsData?.preference || [],
         subPreferences: optionsData?.subPreference || [],
+        meetingType: optionsData?.meetingType || [],
       })
     );
   }, [optionsData]);

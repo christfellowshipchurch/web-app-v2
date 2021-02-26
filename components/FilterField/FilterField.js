@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import includes from 'lodash/includes';
 
 import { Box, Button, Select } from 'ui-kit';
 
@@ -7,7 +8,7 @@ export default function FilterField(props = {}) {
   if (!props.options || !props.options.length) return null;
 
   return (
-    <Box mb={props.mb || 'xl'} textAlign="left">
+    <Box mb={props.mb || 'l'} textAlign="left">
       <Box
         display="flex"
         flexDirection="row"
@@ -63,17 +64,21 @@ export default function FilterField(props = {}) {
               value=""
               selected={props.values.length === 0 || props.values[0] === ''}
             >
-              Select...
+              {props.placeholder}
             </Select.Option>
-            {props.options.map(value => (
-              <Select.Option
-                key={value}
-                value={value}
-                selected={props.values[0] === value}
-              >
-                {value}
-              </Select.Option>
-            ))}
+            {props.options.map(value => {
+              const isDisabled = includes(props.disabledValues, value);
+              return (
+                <Select.Option
+                  key={value}
+                  value={value}
+                  selected={props.values[0] === value}
+                  disabled={isDisabled}
+                >
+                  {value}
+                </Select.Option>
+              );
+            })}
           </Select>
         )}
       </Box>
@@ -89,6 +94,9 @@ FilterField.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
   // Currently selected options
   values: PropTypes.arrayOf(PropTypes.string).isRequired,
+  disabledValues: PropTypes.arrayOf(PropTypes.string),
+  defaultValue: PropTypes.string,
+  placeholder: PropTypes.string,
   // Will be given an object with a `name` and `value` prop
   onChange: PropTypes.func.isRequired,
   onClear: PropTypes.func.isRequired,
@@ -96,4 +104,6 @@ FilterField.propTypes = {
 
 FilterField.defaultProps = {
   filterType: 'multi-select',
+  placeholder: 'Select...',
+  disabledValues: [],
 };

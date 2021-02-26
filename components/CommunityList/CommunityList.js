@@ -28,7 +28,6 @@ function CommunityList(props = {}) {
     <Box display="flex" flexWrap="wrap" justifyContent="center" margin="-8px">
       {featuredItems.map((item, i) => (
         <CustomLink
-          as="a"
           key={i}
           href={item?.url ? item?.url : `/community/${slugify(item?.title)}`}
           Component={props.component}
@@ -38,13 +37,11 @@ function CommunityList(props = {}) {
           coverImageDescription={item?.summary}
           flex={`0 0 calc(50% - ${rem('20px')})`}
           m="s"
-          height="250px"
           display="block"
         />
       ))}
       {notFeaturedItems.map((item, i) => (
         <CustomLink
-          as="a"
           key={i}
           href={item?.url ? item?.url : `/community/${slugify(item?.title)}`}
           Component={props.component}
@@ -58,7 +55,6 @@ function CommunityList(props = {}) {
             lg: `0 0 calc(33.333% - ${rem('20px')})`,
           }}
           m="s"
-          height="250px"
           display="block"
         />
       ))}

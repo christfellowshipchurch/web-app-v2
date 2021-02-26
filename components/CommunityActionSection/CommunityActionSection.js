@@ -1,4 +1,5 @@
 import { Box, Button } from 'ui-kit';
+import { CustomLink } from 'components';
 
 export default function CommunityActionSection(props) {
   return (
@@ -16,9 +17,11 @@ export default function CommunityActionSection(props) {
       <Box as="p" mb="l" color="subdued">
         There are hundreds of communities at CF. We’ll help find yours.
       </Box>
-      <Button onClick={props.handleOnClick} rounded={true}>
+      <Button onClick={props.handleOnClick} rounded={true} mb="base">
         Find your community
       </Button>
+
+      <CustomLink href="https://rock.gocf.org/page/2113">Need help?</CustomLink>
     </Box>
   );
 }

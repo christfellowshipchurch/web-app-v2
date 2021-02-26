@@ -1,10 +1,7 @@
 import PropTypes from 'prop-types';
 
-import { useModalDispatch, showModal } from 'providers/ModalProvider';
-import { useGroupFilters, update } from 'providers/GroupFiltersProvider';
-import { useAuth } from 'providers/AuthProvider';
-
-import { useCurrentUser } from 'hooks';
+import { useModal, showModal } from 'providers/ModalProvider';
+import { useGroupFilters } from 'providers/GroupFiltersProvider';
 
 import { Box, Button, Icon, utils } from 'ui-kit';
 
@@ -12,23 +9,21 @@ import FilterButton from './FilterButton';
 import Styled from './GroupSearchFilters.styles';
 
 function GroupSearchFilters(props = {}) {
-  const [{ authenticated }] = useAuth();
-  const [filtersState, filtersDispatch] = useGroupFilters();
-  const modalDispatch = useModalDispatch();
-  const { currentUser } = useCurrentUser();
+  const [filtersState] = useGroupFilters();
+  const [modalState, modalDispatch] = useModal();
 
-  const { campuses, preferences, subPreferences, days } = filtersState.values;
+  const {
+    campuses,
+    preferences,
+    subPreferences,
+    days,
+    meetingType,
+  } = filtersState.values;
   const showResultsCount =
     props.visibleResults > 0 && props.totalResults > props.pageSize;
 
   function handleChangeClick() {
     // Show all filters modal
-
-    if (authenticated && campuses[0] === undefined) {
-      filtersDispatch(
-        update({ campuses: [currentUser?.profile?.campus?.name] })
-      );
-    }
     modalDispatch(showModal('GroupFilter', { step: 3 }));
   }
 
@@ -47,15 +42,17 @@ function GroupSearchFilters(props = {}) {
           width="100%"
           justifyContent={{ _: 'space-between', md: 'flex-start' }}
         >
-          <Button
-            onClick={handleChangeClick}
-            display="flex"
-            rounded={true}
-            mr="s"
-          >
-            <Icon name="filter" size="14" mr={utils.rem('8px')} />
-            <Box as="span">Filter</Box>
-          </Button>
+          <Box>
+            <Button
+              onClick={handleChangeClick}
+              display="flex"
+              rounded={true}
+              mr="s"
+            >
+              <Icon name="filter" size="14" mr={utils.rem('8px')} />
+              <Box as="span">Filter</Box>
+            </Button>
+          </Box>
           <Button
             as="a"
             rounded={true}
@@ -65,36 +62,45 @@ function GroupSearchFilters(props = {}) {
           >
             Need help?
           </Button>
-          <Box display={{ _: 'none', md: 'block' }}>
-            {campuses.length > 0 && (
-              <FilterButton
-                label="Campus"
-                labelDetail={campuses[0]}
-                onClick={handleChangeClick}
-              />
-            )}
-            {preferences.length > 0 && (
-              <FilterButton
-                label="Group Types"
-                labelDetail={preferences.length}
-                onClick={handleChangeClick}
-              />
-            )}
-            {subPreferences.length > 0 && (
-              <FilterButton
-                label="Lineups"
-                labelDetail={subPreferences.length}
-                onClick={handleChangeClick}
-              />
-            )}
-            {days.length > 0 && (
-              <FilterButton
-                label="Meeting Days"
-                labelDetail={days.length}
-                onClick={handleChangeClick}
-              />
-            )}
-          </Box>
+          {!modalState.activeModal.component && (
+            <Box display={{ _: 'none', md: 'block' }}>
+              {campuses.length > 0 && (
+                <FilterButton
+                  label="Campus"
+                  labelDetail={campuses[0]}
+                  onClick={handleChangeClick}
+                />
+              )}
+              {meetingType.length > 0 && (
+                <FilterButton
+                  label="Meeting Type"
+                  labelDetail={meetingType.length}
+                  onClick={handleChangeClick}
+                />
+              )}
+              {preferences.length > 0 && (
+                <FilterButton
+                  label="Group Types"
+                  labelDetail={preferences.length}
+                  onClick={handleChangeClick}
+                />
+              )}
+              {subPreferences.length > 0 && (
+                <FilterButton
+                  label="Lineups"
+                  labelDetail={subPreferences.length}
+                  onClick={handleChangeClick}
+                />
+              )}
+              {days.length > 0 && (
+                <FilterButton
+                  label="Days"
+                  labelDetail={days.length}
+                  onClick={handleChangeClick}
+                />
+              )}
+            </Box>
+          )}
         </Box>
       </Box>
 
