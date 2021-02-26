@@ -53,6 +53,7 @@ export const GROUP_FRAGMENT = gql`
     title
     groupType
     summary
+    meetingType
     schedule {
       friendlyScheduleText
     }

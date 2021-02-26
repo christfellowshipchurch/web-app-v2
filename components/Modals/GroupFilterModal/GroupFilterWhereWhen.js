@@ -8,7 +8,7 @@ import {
 } from 'providers/GroupFiltersProvider';
 import { showStep, hideModal, useModalDispatch } from 'providers/ModalProvider';
 
-import { Box, Button, Select, Icon } from 'ui-kit';
+import { Box, Button, Select, Icon, FormLabel } from 'ui-kit';
 
 function GroupFilterWhereWhen(props = {}) {
   const router = useRouter();
@@ -56,16 +56,14 @@ function GroupFilterWhereWhen(props = {}) {
         <Box as="h2">Find your Community</Box>
       </Box>
       <Box mb="base">
-        <Box as="p" color="subdued" mb="base" textAlign="center">
-          What campus do you prefer?
-        </Box>
+        <FormLabel color="subdued">What campus do you prefer?</FormLabel>
         <Select
           id="campuses"
           name="campuses"
           onChange={handleCampusChange}
           defaultValue={filtersState.values.campuses[0] || ''}
         >
-          <Select.Option value="">Select your campus...</Select.Option>
+          <Select.Option value="">Select a campus...</Select.Option>
           {filtersState.options.campuses.map(value => (
             <Select.Option key={value} value={value}>
               {value}
@@ -73,10 +71,35 @@ function GroupFilterWhereWhen(props = {}) {
           ))}
         </Select>
       </Box>
+      <Box mb="base">
+        <FormLabel color="subdued">How do you prefer to meet?</FormLabel>
+        <Select
+          id="meetingType"
+          name="meetingType"
+          onChange={handleCampusChange}
+          defaultValue={filtersState.values.meetingType[0] || ''}
+        >
+          <Select.Option value="">
+            Select how you'd like to meet...
+          </Select.Option>
+          {filtersState.options.meetingType.map(value => {
+            return (
+              <Select.Option
+                key={value}
+                disabled={
+                  value === 'In Person' &&
+                  filtersState.values.campuses[0] === 'Online'
+                }
+                value={value}
+              >
+                {value}
+              </Select.Option>
+            );
+          })}
+        </Select>
+      </Box>
       <Box mb="l">
-        <Box as="p" color="subdued" mb="base" textAlign="center">
-          What days can you meet?
-        </Box>
+        <FormLabel color="subdued">What days can you meet?</FormLabel>
         <Box
           display="grid"
           width="100%"
