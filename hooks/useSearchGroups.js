@@ -29,6 +29,7 @@ export const SEARCH_GROUPS = gql`
     ... on Group {
       preference
       subPreference
+      meetingType
       campus {
         name
       }

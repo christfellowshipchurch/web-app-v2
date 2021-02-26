@@ -48,6 +48,9 @@ function GroupFilterAll(props = {}) {
     filtersDispatch(resetValues());
   }
 
+  const disableInPerson =
+    filtersState.values.campuses[0] === 'Online' ? ['In Person'] : null;
+
   return (
     <Box
       as="form"
@@ -66,9 +69,21 @@ function GroupFilterAll(props = {}) {
           name="campuses"
           options={filtersState.options.campuses}
           values={filtersState.values.campuses}
+          defaultValue={filtersState.values.campuses[0] || ''}
+          placeholder="Select a campus..."
           onChange={handleSelectChange}
           onClear={handleClear}
-          defaultValue={filtersState.values.campuses[0] || ''}
+        />
+        <FilterField
+          filterType="select"
+          label="Meeting Type"
+          name="meetingType"
+          options={filtersState.options.meetingType}
+          values={filtersState.values.meetingType}
+          disabledValues={disableInPerson}
+          placeholder="Select how you'd like to meet..."
+          onChange={handleMultiSelectChange}
+          onClear={handleClear}
         />
         <FilterField
           label="Group Types"

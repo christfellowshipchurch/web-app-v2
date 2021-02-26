@@ -7,6 +7,7 @@ export const GET_GROUP_OPTIONS = gql`
       preference
       campusName
       subPreference
+      meetingType
     }
   }
 `;
