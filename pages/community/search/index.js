@@ -32,10 +32,21 @@ export default function CommunitySearch() {
   const showEmptyState = !loading && !hasResults;
   const hasMorePages = groups?.length < data?.searchGroups?.totalResults;
 
+  const { values, handleSubmit, handleChange, setValues } = useForm(() => {
+    router.push({
+      pathname: `/community/search`,
+      query: filtersState.valuesSerialized,
+    });
+  });
+
   useEffect(() => {
     // Don't execute search if state hasn't been hydrated OR a modal is open
     if (!filtersState.hydrated || modalState.activeModal.component) {
       return;
+    }
+
+    if (filtersState.values.text.length) {
+      setValues({ text: filtersState.values.text[0] });
     }
 
     searchGroups({
@@ -45,10 +56,12 @@ export default function CommunitySearch() {
       },
     });
   }, [
-    searchGroups,
     filtersState.hydrated,
     filtersState.queryData,
+    filtersState.values.text,
     modalState.activeModal.component,
+    searchGroups,
+    setValues,
   ]);
 
   const handleLoadMore = () => {
@@ -61,13 +74,6 @@ export default function CommunitySearch() {
       });
     }
   };
-
-  const { values, handleSubmit, handleChange } = useForm(() => {
-    router.push({
-      pathname: `/community/search`,
-      query: filtersState.valuesSerialized,
-    });
-  });
 
   const handleClick = event => {
     filtersDispatch(update({ text: [values.text] }));

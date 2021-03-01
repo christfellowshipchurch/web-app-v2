@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 import isEmpty from 'lodash/isEmpty';
 
+import { useModalDispatch, showModal } from 'providers/ModalProvider';
+
 import {
   Avatar,
   Box,
@@ -16,6 +18,8 @@ import { textTrimmer } from 'utils';
 import Styled from './GroupCard.styles';
 
 const GroupCard = (props = {}) => {
+  const modalDispatch = useModalDispatch();
+
   const summaryLength = props?.summary?.length || 0;
   const maxChar = 240;
   const maxAvatars = 4;
@@ -27,6 +31,13 @@ const GroupCard = (props = {}) => {
 
   const handleSeeMore = event => {
     event.preventDefault();
+    modalDispatch(
+      showModal('GroupDetails', {
+        groupTitle: props.title,
+        groupSummary: props.summary,
+        groupCallToAction: props.callToAction,
+      })
+    );
   };
 
   return (
