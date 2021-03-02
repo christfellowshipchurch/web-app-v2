@@ -12,10 +12,22 @@ import { getComponent } from 'utils';
 
 // This component is created to map the features by type and send them.
 const FeatureFeed = (props = {}) => {
-  const CardListComponents = {
+  const FEATURE_COMPONENTS = {
     HeroListFeature,
     HorizontalCardListFeature,
     VerticalCardListFeature,
+    ActionListFeature: () => null,
+    ActionBarFeature: () => null,
+    // TODO: HMW set this up so that features that depend on other packages,
+    // like Prayer, don't all get stuck here, forcing all church apps to have
+    // them all installed?
+    PrayerListFeature: () => null,
+    VerticalPrayerListFeature: () => null,
+    CommentListFeature: () => null,
+    AddCommentFeature: () => null,
+    ScriptureFeature: () => null,
+    TextFeature: () => null,
+    WebviewFeature: () => null,
   };
 
   const isLastItem = i => i < props.data.length - 1;
@@ -26,7 +38,7 @@ const FeatureFeed = (props = {}) => {
         {edge.title}
       </Box>
       <FeatureProvider
-        Component={getComponent(edge, CardListComponents)}
+        Component={getComponent(edge, FEATURE_COMPONENTS)}
         options={{
           variables: {
             featureId: edge?.id,
