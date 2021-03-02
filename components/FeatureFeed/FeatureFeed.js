@@ -10,25 +10,25 @@ import { FeatureProvider } from 'providers';
 import { Box, Divider } from 'ui-kit';
 import { getComponent } from 'utils';
 
+const FEATURE_COMPONENTS = {
+  HeroListFeature,
+  HorizontalCardListFeature,
+  VerticalCardListFeature,
+
+  // TODO: Implement all Features needed for web
+  // ActionListFeature: () => null,
+  // ActionBarFeature: () => null,
+  // PrayerListFeature: () => null,
+  // VerticalPrayerListFeature: () => null,
+  // CommentListFeature: () => null,
+  // AddCommentFeature: () => null,
+  // ScriptureFeature: () => null,
+  // TextFeature: () => null,
+  // WebviewFeature: () => null,
+};
+
 // This component is created to map the features by type and send them.
 const FeatureFeed = (props = {}) => {
-  const FEATURE_COMPONENTS = {
-    HeroListFeature,
-    HorizontalCardListFeature,
-    VerticalCardListFeature,
-
-    // TODO: Implement all Features needed for web
-    // ActionListFeature: () => null,
-    // ActionBarFeature: () => null,
-    // PrayerListFeature: () => null,
-    // VerticalPrayerListFeature: () => null,
-    // CommentListFeature: () => null,
-    // AddCommentFeature: () => null,
-    // ScriptureFeature: () => null,
-    // TextFeature: () => null,
-    // WebviewFeature: () => null,
-  };
-
   const isLastItem = i => i < props.data.length - 1;
 
   return props.data?.map((edge, i) => (
