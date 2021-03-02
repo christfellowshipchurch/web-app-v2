@@ -15,22 +15,28 @@ const DefaultCard = (props = {}) => {
           src={props.coverImage}
           hasContent={hasContent}
           overlay={props.coverImageOverlay}
+          largeCard={props.largeCard}
         >
-          <Styled.CoverContent position={props.coverImageContentPosition} size={props.cardSize}>
-            {props.coverImageTitle || props.coverImageDescription ? (
-              <Box color="white">
-                {props.coverImageTitle ? (
-                  <Box as={props.cardSize === 's' ? 'h3' : 'h2'} mb="xs">
-                    {props.coverImageTitle}
-                  </Box>
-                ) : null}
-                {props.coverImageDescription ? (
-                  <Box as="p">{props.coverImageDescription}</Box>
-                ) : null}
-              </Box>
-            ) : null}
-            {props.coverImageContent ? props.coverImageContent() : null}
-          </Styled.CoverContent>
+          {props.coverImageTitle || props.coverImageDescription ? (
+            <Styled.CoverContent
+              position={props.coverImageContentPosition}
+              size={props.cardSize}
+            >
+              {props.coverImageTitle || props.coverImageDescription ? (
+                <Box color="white">
+                  {props.coverImageTitle ? (
+                    <Box as={props.cardSize === 's' ? 'h3' : 'h2'} mb="xs">
+                      {props.coverImageTitle}
+                    </Box>
+                  ) : null}
+                  {props.coverImageDescription ? (
+                    <Box as="p">{props.coverImageDescription}</Box>
+                  ) : null}
+                </Box>
+              ) : null}
+              {props.coverImageContent ? props.coverImageContent() : null}
+            </Styled.CoverContent>
+          ) : null}
           {props.coverImageLabel ? (
             <Styled.CoverLabel>{props.coverImageLabel}</Styled.CoverLabel>
           ) : null}
@@ -64,12 +70,14 @@ DefaultCard.propTypes = {
   coverImageOverlay: PropTypes.bool,
   coverImageTitle: PropTypes.string,
   description: PropTypes.string,
+  largeCard: PropTypes.bool,
   title: PropTypes.string,
 };
 
 DefaultCard.defaultProps = {
   coverImageContentPosition: 'bottomLeft',
   coverImageOverlay: false,
+  largeCard: false,
 };
 
 export default DefaultCard;

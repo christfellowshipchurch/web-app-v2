@@ -19,7 +19,6 @@ import DefaultCard from './DefaultCard';
 import Divider from './Divider';
 import FormLabel from './FormLabel';
 import GroupCard from './GroupCard';
-import HeroCardGrid from './HeroCardGrid';
 import HorizontalHighlightCard from './HorizontalHighlightCard';
 import Icon from './Icon';
 import List from './List';
@@ -28,6 +27,7 @@ import Longform from './Longform';
 import Menu from './Menu';
 import Modal from './Modal';
 import Radio from './Radio';
+import RowCard from './RowCard';
 import Select from './Select';
 import SquareAvatar from './SquareAvatar';
 import TextInput from './TextInput';
@@ -50,7 +50,6 @@ export {
   Divider,
   FormLabel,
   GroupCard,
-  HeroCardGrid,
   HorizontalHighlightCard,
   Icon,
   List,
@@ -59,6 +58,7 @@ export {
   Menu,
   Modal,
   Radio,
+  RowCard,
   Select,
   SquareAvatar,
   TextInput,

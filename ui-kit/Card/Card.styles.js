@@ -3,7 +3,8 @@ import { themeGet } from '@styled-system/theme-get';
 
 import { system } from 'ui-kit';
 
-const DEFAULT_COVER_HEIGHT = '195px';
+const DEFAULT_COVER_HEIGHT = '250px';
+const HERO_COVER_HEIGHT = '350px';
 
 const link = ({ as }) => props => {
   if (as === 'a') {
@@ -51,7 +52,9 @@ const content = ({ hasContent }) => props => {
     return css`
       border-top-left-radius: ${themeGet('radii.base')};
       border-top-right-radius: ${themeGet('radii.base')};
-      height: ${props => props.height || DEFAULT_COVER_HEIGHT};
+      height: ${props =>
+        props.height ||
+        (props.largeCard ? HERO_COVER_HEIGHT : DEFAULT_COVER_HEIGHT)};
     `;
   }
 
@@ -86,11 +89,14 @@ const overlay = ({ overlay }) => props => {
 };
 
 const Cover = styled.div`
+  align-items: flex-end;
   background-color: ${themeGet('colors.fg')};
   background-image: url(${props => props.src});
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  display: flex;
+  justify-content: center;
   overflow: hidden;
   position: relative;
 
@@ -101,31 +107,31 @@ const Cover = styled.div`
 
 const position = ({ position, size }) => props => {
   if (position === 'bottomLeft') {
-    if (size === 's'){
+    if (size === 's') {
       return css`
-        bottom: ${themeGet('space.base')};
-        left: ${themeGet('space.s')};
-        padding: ${themeGet('space.s')};
+        padding: ${themeGet('space.base')};
       `;
     }
     return css`
-      bottom: ${themeGet('space.s')};
-      left: ${themeGet('space.s')};
+      backdrop-filter: blur(30px);
+      background-color: rgba(255, 255, 255, 0.15);
       padding: ${themeGet('space.s')};
 
       @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-        bottom: ${themeGet('space.l')};
-        left: ${themeGet('space.l')};
+        padding: ${themeGet('space.base')};
       }
     `;
   }
 };
 
 const CoverContent = styled.div`
+  border-bottom-left-radius: ${themeGet('radii.base')};
+  border-bottom-right-radius: ${themeGet('radii.base')};
   position: absolute;
+  width: 100%;
   z-index: 2;
 
-  ${position}
+  ${position};
 `;
 
 const CoverLabel = styled.b`

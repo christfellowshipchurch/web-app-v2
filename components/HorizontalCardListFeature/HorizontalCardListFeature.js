@@ -8,40 +8,30 @@ import { getURLFromType } from 'utils';
 function HorizontalCardListFeature(props = {}) {
   const cards = props?.data?.cards || [];
   const cardType = props?.data?.cardType;
-  let cardsDisplayed = 2;
+  let cardsDisplayed;
 
-  if (!!cardType) {
-    switch (cardType) {
-      case 'HIGHLIGHT_SMALL':
-        cardsDisplayed = 4;
-        break;
-      case 'HIGHLIGHT_MEDIUM':
-        cardsDisplayed = 3;
-        break;
-      default:
-        cardsDisplayed = 2;
-        break;
-    }
+  switch (cardType) {
+    case 'HIGHLIGHT_SMALL':
+      cardsDisplayed = 4;
+      break;
+    case 'HIGHLIGHT_MEDIUM':
+      cardsDisplayed = 3;
+      break;
+    default:
+      cardsDisplayed = cards.length < 2 ? 1 : 2;
+      break;
   }
 
   return (
-    <CardCarousel cardsDisplayed={cardsDisplayed}>
+    <CardCarousel cardsDisplayed={cardsDisplayed} hideArrows={cards.length < 2}>
       {cards.map((card, i) => {
-        // NOTE:
-        //  title is missing from related node inside feature
-        //  so it has been added here to work with 'getURLFromType()'
-        //  may need to refactor getURLFromType in the future
-        const relatedNode = {
-          ...card.relatedNode,
-          title: card.title,
-        };
         return (
           <CustomLink
             as="a"
             key={i}
             mx="s"
             boxShadow="none"
-            href={getURLFromType(relatedNode)}
+            href={getURLFromType(card.relatedNode, card.title)}
             Component={HorizontalHighlightCard}
             coverImage={card?.coverImage?.sources[0]?.uri}
             coverImageOverlay={true}

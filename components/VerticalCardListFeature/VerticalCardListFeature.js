@@ -1,63 +1,87 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import dropRight from 'lodash/dropRight';
+import head from 'lodash/head';
+import slice from 'lodash/slice';
 
 import { CustomLink } from 'components';
-import { CardGrid, DefaultCard, HeroCardGrid } from 'ui-kit';
+import { CardGrid, DefaultCard, HorizontalHighlightCard } from 'ui-kit';
 import { getURLFromType } from 'utils';
 
-function VerticalCardListFeature(props = {}) {
-  const cards = props?.data?.cards || [];
+const getCardColumns = cards => {
+  let col = '1';
+  if (cards.length > 2) {
+    if (cards.length > 3) {
+      return (col = '2');
+    }
+    return (col = '2');
+  }
+  return col;
+};
 
-  return cards.length < 2 ? (
-    <HeroCardGrid>
-      {cards.map((card, i) => {
-        // NOTE:
-        //  title is missing from related node inside feature
-        //  so it has been added here to work with 'getURLFromType()'
-        //  may need to refactor getURLFromType in the future
-        const relatedNode = {
-          ...card.relatedNode,
-          title: card.title,
-        };
-        return (
+function VerticalCardListFeature(props = {}) {
+  let cards = props?.data?.cards || [];
+  const heroCard = head(cards);
+  cards = slice(cards, 1);
+
+  const col = getCardColumns(cards);
+
+  /**
+   * note : if the bottom highlight cards are uneven, the last three cards will be moved down to a 'bottomRow' in a CardGrid with 3 columns to fill the space
+   */
+  let bottomRow = false;
+  if (cards.length > 4 && cards.length % 2 !== 0) {
+    bottomRow = cards.slice(cards.length - 3, cards.length);
+    cards = dropRight(cards, 3);
+  }
+
+  return (
+    <>
+      <CustomLink
+        as="a"
+        href={getURLFromType(heroCard.relatedNode, heroCard?.title)}
+        Component={DefaultCard}
+        coverImage={heroCard?.coverImage?.sources[0]?.uri}
+        coverImageTitle={heroCard?.title}
+        coverImageDescription={heroCard?.summary}
+        coverImageOverlay={true}
+        marginBottom="l"
+        height={{ __: 250, md: 450 }}
+        display="block"
+      />
+      <CardGrid marginBottom="base" columns={col}>
+        {cards.map((card, i) => (
           <CustomLink
             as="a"
             key={i}
-            href={getURLFromType(relatedNode)}
-            Component={DefaultCard}
-            coverImage={card?.coverImage?.sources[0]?.uri}
-            coverImageOverlay={true}
-            coverImageTitle={card?.title}
-            coverImageDescription={card?.summary}
-            height={{ _: '250px', md: '450px' }}
-            display="block"
-          />
-        );
-      })}
-    </HeroCardGrid>
-  ) : (
-    <CardGrid>
-      {cards.map((card, i) => {
-        const relatedNode = {
-          ...card.relatedNode,
-          //title is missing from related node
-          title: card.title,
-        };
-        return (
-          <CustomLink
-            as="a"
-            key={i}
-            href={getURLFromType(relatedNode)}
-            Component={DefaultCard}
+            href={getURLFromType(card?.relatedNode, card?.title)}
+            Component={HorizontalHighlightCard}
             coverImage={card?.coverImage?.sources[0]?.uri}
             coverImageOverlay={true}
             title={card?.title}
             description={card?.summary}
-            display="block"
+            type="HIGHLIGHT_SMALL"
           />
-        );
-      })}
-    </CardGrid>
+        ))}
+      </CardGrid>
+      {bottomRow && (
+        <CardGrid columns={3}>
+          {bottomRow.map((card, i) => (
+            <CustomLink
+              as="a"
+              key={i}
+              href={getURLFromType(card?.relatedNode, card?.title)}
+              Component={HorizontalHighlightCard}
+              coverImage={card?.coverImage?.sources[0]?.uri}
+              coverImageOverlay={true}
+              title={card?.title}
+              description={card?.summary}
+              type="HIGHLIGHT_SMALL"
+            />
+          ))}
+        </CardGrid>
+      )}
+    </>
   );
 }
 
