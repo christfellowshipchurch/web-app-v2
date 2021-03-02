@@ -1,5 +1,9 @@
 // https://gist.github.com/merolhack/3b242fac97e4167ec2be#gistcomment-3371764
 function slugify(text) {
+  if (!text) {
+    return null;
+  }
+
   const from = 'ãàáäâẽèéëêìíïîõòóöôùúüûñç·/_,:;';
   const to = 'aaaaaeeeeeiiiiooooouuuunc------';
 

@@ -8,4 +8,5 @@ test('it should turn a string into a slug', () => {
   expect(slugify('Night of Prayer & Worship')).toEqual(
     'night-of-prayer-worship'
   );
+  expect(slugify()).toEqual(null);
 });
