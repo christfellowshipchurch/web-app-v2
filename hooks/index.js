@@ -17,6 +17,9 @@ import useGroup from './useGroup';
 import useGroupContentId from './useGroupContentId';
 import useGroupPreferences from './useGroupPreferences';
 import useGroups from './useGroups';
+import useLiveStream from './useLiveStream';
+import useLiveStreams from './useLiveStreams';
+import useLiveStreamsQuery from './useLiveStreamsQuery';
 import useRegisterWithEmail from './useRegisterWithEmail';
 import useRegisterWithSms from './useRegisterWithSms';
 import useRequestPin from './useRequestPin';
@@ -42,6 +45,9 @@ export {
   useFeedFeatures,
   useForm,
   useGroup,
+  useLiveStream,
+  useLiveStreams,
+  useLiveStreamsQuery,
   useGroupContentId,
   useGroupPreferences,
   useGroups,
