@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  HeroListFeature,
-  HorizontalCardListFeature,
-  VerticalCardListFeature,
-} from '../';
+import HeroListFeature from '../HeroListFeature';
+import HorizontalCardListFeature from '../HorizontalCardListFeature';
+import VerticalCardListFeature from '../VerticalCardListFeature';
 import { FeatureProvider } from 'providers';
 import { Box, Divider } from 'ui-kit';
 import { getComponent } from 'utils';
