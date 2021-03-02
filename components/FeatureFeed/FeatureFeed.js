@@ -16,18 +16,17 @@ const FeatureFeed = (props = {}) => {
     HeroListFeature,
     HorizontalCardListFeature,
     VerticalCardListFeature,
-    ActionListFeature: () => null,
-    ActionBarFeature: () => null,
-    // TODO: HMW set this up so that features that depend on other packages,
-    // like Prayer, don't all get stuck here, forcing all church apps to have
-    // them all installed?
-    PrayerListFeature: () => null,
-    VerticalPrayerListFeature: () => null,
-    CommentListFeature: () => null,
-    AddCommentFeature: () => null,
-    ScriptureFeature: () => null,
-    TextFeature: () => null,
-    WebviewFeature: () => null,
+
+    // TODO: Implement all Features needed for web
+    // ActionListFeature: () => null,
+    // ActionBarFeature: () => null,
+    // PrayerListFeature: () => null,
+    // VerticalPrayerListFeature: () => null,
+    // CommentListFeature: () => null,
+    // AddCommentFeature: () => null,
+    // ScriptureFeature: () => null,
+    // TextFeature: () => null,
+    // WebviewFeature: () => null,
   };
 
   const isLastItem = i => i < props.data.length - 1;
