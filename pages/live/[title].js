@@ -32,13 +32,10 @@ export async function getStaticProps(context) {
 
   const query = await apolloClient.query({ query: GET_LIVE_STREAMS });
   const liveStreams = query.data?.liveStreams || [];
-  console.log('[getStaticProps] liveStreams liveStreams:', liveStreams);
 
   const matchedLiveStream = liveStreams.find(
     liveStream => slugify(liveStream.relatedNode?.title) === title
   );
-
-  console.log('matchedLiveStream:', matchedLiveStream);
 
   if (matchedLiveStream) {
     await apolloClient.query({
@@ -63,13 +60,10 @@ export async function getStaticPaths() {
 
   const query = await apolloClient.query({ query: GET_LIVE_STREAMS });
   const liveStreams = query.data?.liveStreams || [];
-  console.log('[getStaticPaths] liveStreams:', liveStreams);
 
   const paths = liveStreams.map(liveStream => ({
     params: { title: slugify(liveStream.relatedNode.title) },
   }));
-
-  console.log('paths:', paths);
 
   return { paths, fallback: false };
 }
