@@ -100,7 +100,7 @@ const useLiveStream = ({ liveStreamId }) => {
     useQuery(GET_LIVE_STREAM, {
       variables: { id: liveStreamId || '' },
       skip,
-      fetchPolicy: skip ? 'cache-only' : 'network-only',
+      fetchPolicy: skip ? 'cache-only' : 'cache-and-network',
 
       onCompleted: ({ data }) => {
         const startDate = data?.node?.eventStartTime
