@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/client';
+import gql from 'graphql-tag';
 import { isEmpty } from 'lodash';
 import {
   differenceInSeconds,
@@ -10,9 +11,8 @@ import {
   differenceInMilliseconds,
   subSeconds,
 } from 'date-fns';
-import gql from 'graphql-tag';
 
-const GET_LIVE_STREAM = gql`
+export const GET_LIVE_STREAM = gql`
   query getLiveStream($id: ID!) {
     node(id: $id) {
       __typename
@@ -38,6 +38,14 @@ const GET_LIVE_STREAM = gql`
     relatedNode {
       id
       ... on ContentNode {
+        title
+        coverImage {
+          sources {
+            uri
+          }
+        }
+      }
+      ... on EventContentItem {
         title
         coverImage {
           sources {
@@ -88,36 +96,37 @@ const useLiveStream = ({ liveStreamId }) => {
   console.groupEnd();
 
   // Fetch
-  const { data, loading, error, refetch } = useQuery(GET_LIVE_STREAM, {
-    variables: { id: liveStreamId || '' },
-    skip,
-    fetchPolicy: skip ? 'cache-only' : 'network-only',
+  const { data, loading, error, refetch } =
+    useQuery(GET_LIVE_STREAM, {
+      variables: { id: liveStreamId || '' },
+      skip,
+      fetchPolicy: skip ? 'cache-only' : 'network-only',
 
-    onCompleted: ({ data }) => {
-      const startDate = data?.node?.eventStartTime
-        ? parseISO(data?.node?.eventStartTime)
-        : null;
-      const endDate = data?.node?.eventEndTime
-        ? parseISO(data?.node?.eventEndTime)
-        : null;
+      onCompleted: ({ data }) => {
+        const startDate = data?.node?.eventStartTime
+          ? parseISO(data?.node?.eventStartTime)
+          : null;
+        const endDate = data?.node?.eventEndTime
+          ? parseISO(data?.node?.eventEndTime)
+          : null;
 
-      if (startDate) setNowIsBefore(isBefore(new Date(), startDate));
-      if (endDate) {
-        setNowIsAfter(isAfter(new Date(), endDate));
+        if (startDate) setNowIsBefore(isBefore(new Date(), startDate));
+        if (endDate) {
+          setNowIsAfter(isAfter(new Date(), endDate));
 
-        /**
-         * If right now is more than 5 minutes out from the end of the stream, set the next refetch of data to be 5 minutes before the stream ends
-         */
+          /**
+           * If right now is more than 5 minutes out from the end of the stream, set the next refetch of data to be 5 minutes before the stream ends
+           */
 
-        if (differenceInSeconds(endDate, new Date()) >= fiveMins) {
-          const fiveMinsBeforeEnd = subSeconds(endDate, fiveMins);
-          setNextRefetch(
-            differenceInMilliseconds(fiveMinsBeforeEnd, new Date())
-          );
+          if (differenceInSeconds(endDate, new Date()) >= fiveMins) {
+            const fiveMinsBeforeEnd = subSeconds(endDate, fiveMins);
+            setNextRefetch(
+              differenceInMilliseconds(fiveMinsBeforeEnd, new Date())
+            );
+          }
         }
-      }
-    },
-  });
+      },
+    }) || {};
 
   // Effects
   useEffect(() => {
@@ -140,7 +149,7 @@ const useLiveStream = ({ liveStreamId }) => {
     return function cleanup() {
       if (refetchTimer) clearTimeout(refetchTimer);
     };
-  }, [nextRefetch, fiveMins, refetch, data?.node]);
+  }, [nextRefetch, refetch, fiveMins, data?.node]);
 
   useEffect(() => {}, [data]);
 
@@ -171,28 +180,24 @@ const useLiveStream = ({ liveStreamId }) => {
   }, [nowIsBefore, nowIsAfter, data?.node]);
 
   return {
-    id: data?.node?.id,
-    loadingWithData: loading && !data?.node?.id,
     loading,
     error,
-    isLive: data?.node?.isLive,
-    isBefore: nowIsBefore,
-    isAfter: data?.node?.eventEndTime
-      ? isAfter(new Date(), parseISO(data?.node?.eventEndTime))
-      : false,
-    startTime: data?.node?.eventStartTime,
-    endTime: data?.node?.eventEndTime,
-    startDate: data?.node?.eventStartTime
-      ? parseISO(data?.node?.eventStartTime)
-      : null,
-    endDate: data?.node?.eventEndTime
-      ? parseISO(data?.node?.eventEndTime)
-      : null,
-    coverImage: data?.node?.relatedNode?.coverImage?.sources[0],
-    uri: data?.node?.media?.sources[0],
-    title: data?.node?.relatedNode?.title,
-    theme: data?.node?.theme,
-    streamChatChannel: data?.node?.streamChatChannel,
+    liveStream: data?.node,
+    metaData: {
+      isLive: data?.node?.isLive,
+      isBefore: nowIsBefore,
+      isAfter: data?.node?.eventEndTime
+        ? isAfter(new Date(), parseISO(data?.node?.eventEndTime))
+        : false,
+      startTime: data?.node?.eventStartTime,
+      endTime: data?.node?.eventEndTime,
+      startDate: data?.node?.eventStartTime
+        ? parseISO(data?.node?.eventStartTime)
+        : null,
+      endDate: data?.node?.eventEndTime
+        ? parseISO(data?.node?.eventEndTime)
+        : null,
+    },
   };
 };
 
