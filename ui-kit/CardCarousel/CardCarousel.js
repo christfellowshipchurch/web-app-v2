@@ -87,7 +87,7 @@ const CardCarousel = (props = {}) => {
       customTransition={`transform ${props.animationSpeed}ms ease-in-out`}
       ref={el => (carousel = el)}
       renderButtonGroupOutside={isCarousel && !props.hideArrows}
-      customButtonGroup={<CustomArrows />}
+      customButtonGroup={!props.hideArrows ? <CustomArrows /> : null}
     >
       {props.children}
     </Carousel>
