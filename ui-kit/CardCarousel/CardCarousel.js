@@ -68,7 +68,7 @@ const CardCarousel = (props = {}) => {
       ) {
         carousel.goToSlide(0);
       } else {
-        carousel.next();
+        carousel?.next();
       }
     }, props.slideInterval); // Your custom auto loop delay in ms
     return () => clearInterval(autoloop);
