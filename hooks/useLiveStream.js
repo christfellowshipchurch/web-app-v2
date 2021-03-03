@@ -88,19 +88,12 @@ const useLiveStream = ({ liveStreamId }) => {
   const [nowIsAfter, setNowIsAfter] = useState(false);
   const [nextRefetch, setNextRefetch] = useState(null);
 
-  console.group('🎥⚓ useLiveStream()');
-  console.log('skip:', skip);
-  console.log('nowIsBefore:', nowIsBefore);
-  console.log('nowIsAfter:', nowIsAfter);
-  console.log('nextRefetch:', nextRefetch);
-  console.groupEnd();
-
   // Fetch
   const { data, loading, error, refetch } =
     useQuery(GET_LIVE_STREAM, {
       variables: { id: liveStreamId || '' },
       skip,
-      fetchPolicy: skip ? 'cache-only' : 'cache-and-network',
+      fetchPolicy: 'network-only',
 
       onCompleted: ({ data }) => {
         const startDate = data?.node?.eventStartTime
