@@ -9,6 +9,7 @@ import useCurrentPerson from './useCurrentPerson';
 import useCurrentUser from './useCurrentUser';
 import useEvent from './useEvent';
 import useEvents from './useEvents';
+import useEventsFeedFeatures from './useEventsFeedFeatures';
 import useFeature from './useFeature';
 import useFeatureFeed from './useFeatureFeed';
 import useFeedFeatures from './useFeedFeatures';
@@ -24,7 +25,6 @@ import useSearchGroups from './useSearchGroups';
 import useUpdateCurrentUser from './useUpdateCurrentUser';
 import useUserExists from './useUserExists';
 import useVerifyPin from './useVerifyPin';
-
 export {
   useAuthIdentity,
   useAuthQuery,
@@ -37,13 +37,14 @@ export {
   useCurrentUser,
   useEvent,
   useEvents,
+  useEventsFeedFeatures,
   useFeature,
   useFeatureFeed,
   useFeedFeatures,
   useForm,
   useGroup,
-  useGroupContentId,
   useGroups,
+  useGroupContentId,
   useGroupPreferences,
   useRegisterWithEmail,
   useRegisterWithSms,

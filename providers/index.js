@@ -7,7 +7,7 @@ import ContentItemProvider from './ContentItemProvider';
 import CurrentPersonProvider from './CurrentPersonProvider';
 import CurrentUserProvider from './CurrentUserProvider';
 import EventProvider from './EventProvider';
-import EventsProvider from './EventsProvider';
+import EventsFeedProvider from './EventsFeedProvider';
 import FeatureFeedProvider from './FeatureFeedProvider';
 import FeatureProvider from './FeatureProvider';
 import GroupFiltersProvider from './GroupFiltersProvider';
@@ -27,7 +27,7 @@ export {
   CurrentPersonProvider,
   CurrentUserProvider,
   EventProvider,
-  EventsProvider,
+  EventsFeedProvider,
   FeatureFeedProvider,
   FeatureProvider,
   GroupFiltersProvider,
