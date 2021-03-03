@@ -32,6 +32,7 @@ import SEO from './SEO';
 import UserAvatar from './UserAvatar';
 import UserProfile from './UserProfile';
 import VerticalCardListFeature from './VerticalCardListFeature';
+import Video from './Video';
 
 export {
   BirthDateField,
@@ -67,5 +68,6 @@ export {
   UserAvatar,
   UserProfile,
   VerticalCardListFeature,
+  Video,
   modals,
 };
