@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight, Circle } from 'phosphor-react';
+import { gql, useQuery } from '@apollo/client';
 
 import {
   ArticleLink,
@@ -143,37 +144,67 @@ function DefaultMainPhotoHeader(props = {}) {
   );
 }
 
-const SarahQuote = () => (
-  <Quote
-    color="primary"
-    title={
-      <Box display="flex">
-        <Heading
-          color="primary"
-          fontSize="18px"
-          lineHeight="27px"
-          fontWeight="700"
-        >
-          LH&nbsp;
-        </Heading>
-        <Heading
-          textTransform="uppercase"
-          color="primary"
-          fontSize="18px"
-          lineHeight="27px"
-          fontWeight="400"
-        >
-          Story
-        </Heading>
-      </Box>
+const SarahQuote = () => {
+  const { data } = useQuery(gql`
+    {
+      node(id: "ContentChannel:173eb3b93fa2684ae69a30f42fdcea3c") {
+        id
+        ... on ContentChannel {
+          childContentItemsConnection {
+            edges {
+              node {
+                title
+                summary
+                coverImage {
+                  sources {
+                    uri
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
-    attribution="Sarah Connor"
-    actionLabel="Full story"
-    actionLink="/lh-story-quote"
-    text="When trauma and loss left me adrift and disoriented, God provided faithful believers to remind me that He is good, His Word can be trusted, and He will never leave or forsake us."
-    avatar="https://s3-alpha-sig.figma.com/img/157c/c6d9/8fb9cd71abfce81ea46bb9375e44af18?Expires=1613347200&Signature=HiOgZ~jpjA~DOj-bhrOgmm74SGv67nvKBbiyIOZpd-s6v~JhFxY9OogyqJLb-ovpD-qRR9X1kK8DeXevNZ5uZ28cZKrPLV6OktP7tNvbaez1Hd986iMhv8RN5-yBlpWLGSGKCVaTzkknc2Pgr~BPzy-wRWTNtbIlf3cr76HWiFfFtb8EopuDX8QrFd8NBUV-CIF8vz5g7bqWsBDB1e~mVCcF9yg22vdl2bX96q4vMZvA8KAKpZFUCUnNTtj6ygys-mwrhMNzQLJVwnVmmmR6sNveZeEoRyGK-Or4OQnytlUC1-fmO8RcedvdgIfbsRh4uQ93QUWh3g9~QZA2--bq7g__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
-  />
-);
+  `);
+
+  return (
+    <Quote
+      color="primary"
+      title={
+        <Box display="flex">
+          <Heading
+            color="primary"
+            fontSize="18px"
+            lineHeight="27px"
+            fontWeight="700"
+          >
+            LH&nbsp;
+          </Heading>
+          <Heading
+            textTransform="uppercase"
+            color="primary"
+            fontSize="18px"
+            lineHeight="27px"
+            fontWeight="400"
+          >
+            Story
+          </Heading>
+        </Box>
+      }
+      attribution={
+        data?.node?.childContentItemsConnection?.edges[0]?.node?.title
+      }
+      actionLabel="Full story"
+      actionLink="/lh-story-quote"
+      text={data?.node?.childContentItemsConnection?.edges[0]?.node?.summary}
+      avatar={
+        data?.node?.childContentItemsConnection?.edges[0]?.node?.coverImage
+          ?.sources[0]?.uri
+      }
+    />
+  );
+};
 
 function FullLengthSermon(props = {}) {
   return (
