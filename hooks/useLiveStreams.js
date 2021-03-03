@@ -102,10 +102,6 @@ const evaluateNextRefetch = liveStreams => {
 const useLiveStreams = liveStreams => {
   const skip = !Array.isArray(liveStreams) || liveStreams.length === 0;
   const [nextRefetch, setNextRefetch] = useState(null);
-  console.group('🎥🎥🎥⚓ useLiveStreams()');
-  console.log('skip:', skip);
-  console.log('nextRefetch:', nextRefetch);
-  console.groupEnd();
 
   // Effects
   useEffect(() => {
