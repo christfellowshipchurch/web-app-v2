@@ -1,23 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  HeroListFeature,
-  HorizontalCardListFeature,
-  VerticalCardListFeature,
-} from '../';
+import HeroListFeature from '../HeroListFeature';
+import HorizontalCardListFeature from '../HorizontalCardListFeature';
+import VerticalCardListFeature from '../VerticalCardListFeature';
 import { FeatureProvider } from 'providers';
 import { Box, Divider } from 'ui-kit';
 import { getComponent } from 'utils';
 
+const FEATURE_COMPONENTS = {
+  HeroListFeature,
+  HorizontalCardListFeature,
+  VerticalCardListFeature,
+
+  // TODO: Implement all Features needed for web
+  // ActionListFeature: () => null,
+  // ActionBarFeature: () => null,
+  // PrayerListFeature: () => null,
+  // VerticalPrayerListFeature: () => null,
+  // CommentListFeature: () => null,
+  // AddCommentFeature: () => null,
+  // ScriptureFeature: () => null,
+  // TextFeature: () => null,
+  // WebviewFeature: () => null,
+};
+
 // This component is created to map the features by type and send them.
 const FeatureFeed = (props = {}) => {
-  const CardListComponents = {
-    HeroListFeature,
-    HorizontalCardListFeature,
-    VerticalCardListFeature,
-  };
-
   const isLastItem = i => i < props.data.length - 1;
 
   return props.data?.map((edge, i) => (
@@ -26,7 +35,7 @@ const FeatureFeed = (props = {}) => {
         {edge.title}
       </Box>
       <FeatureProvider
-        Component={getComponent(edge, CardListComponents)}
+        Component={getComponent(edge, FEATURE_COMPONENTS)}
         options={{
           variables: {
             featureId: edge?.id,

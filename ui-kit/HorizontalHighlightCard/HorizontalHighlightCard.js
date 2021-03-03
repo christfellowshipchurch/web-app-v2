@@ -14,7 +14,7 @@ const HorizontalHighlightCard = (props = {}) => {
     switch (props.type) {
       case 'HIGHLIGHT_SMALL':
         height = 250;
-        props.description.length > 40
+        props.description?.length > 40
           ? (trimmedDescription = `${textTrimmer(props.description, 40)}...`)
           : null;
         break;

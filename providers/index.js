@@ -10,7 +10,6 @@ import EventProvider from './EventProvider';
 import EventsProvider from './EventsProvider';
 import FeatureFeedProvider from './FeatureFeedProvider';
 import FeatureProvider from './FeatureProvider';
-import FeedFeaturesProvider from './FeedFeaturesProvider';
 import GroupFiltersProvider from './GroupFiltersProvider';
 import GroupProvider from './GroupProvider';
 import GroupsProvider from './GroupsProvider';
@@ -32,7 +31,6 @@ export {
   EventsProvider,
   FeatureFeedProvider,
   FeatureProvider,
-  FeedFeaturesProvider,
   GroupFiltersProvider,
   GroupProvider,
   GroupsProvider,
