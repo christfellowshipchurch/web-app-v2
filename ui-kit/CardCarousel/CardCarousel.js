@@ -63,12 +63,12 @@ const CardCarousel = (props = {}) => {
   useEffect(() => {
     const autoloop = setInterval(() => {
       if (
-        carousel.state.currentSlide ===
+        carousel?.state?.currentSlide ===
         lastIndex - (props.cardsDisplayed - 1)
       ) {
         carousel.goToSlide(0);
       } else {
-        carousel.next();
+        carousel?.next();
       }
     }, props.slideInterval); // Your custom auto loop delay in ms
     return () => clearInterval(autoloop);
