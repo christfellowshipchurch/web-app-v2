@@ -1,8 +1,8 @@
 import { initializeApollo } from 'lib/apolloClient';
-import { EventsProvider } from 'providers';
+import { EventsFeedProvider } from 'providers';
 import { GET_EVENTS } from 'hooks/useEvents';
 import { Box } from 'ui-kit';
-import { EventsList, Layout } from 'components';
+import { Layout, FeatureFeed } from 'components';
 
 export default function Events() {
   return (
@@ -10,7 +10,7 @@ export default function Events() {
       <Box as="h1" mb="l">
         Events
       </Box>
-      <EventsProvider Component={EventsList} />
+      <EventsFeedProvider Component={FeatureFeed} />
     </Layout>
   );
 }

@@ -21,18 +21,18 @@ const card = cardType => {
 
 export const Small = () => (
   <>
-    <CardGrid columns={'4'} maxWidth={1000} mb="xl">
+    <CardGrid columns="4" maxWidth={1000} mb="xl">
       <HorizontalHighlightCard {...card('HIGHLIGHT_SMALL')} />
       <HorizontalHighlightCard {...card('HIGHLIGHT_SMALL')} />
       <HorizontalHighlightCard {...card('HIGHLIGHT_SMALL')} />
       <HorizontalHighlightCard {...card('HIGHLIGHT_SMALL')} />
     </CardGrid>
-    <CardGrid columns={'3'} maxWidth={1000} mb="xl">
+    <CardGrid columns="3" maxWidth={1000} mb="xl">
       <HorizontalHighlightCard {...card('HIGHLIGHT_SMALL')} />
       <HorizontalHighlightCard {...card('HIGHLIGHT_SMALL')} />
       <HorizontalHighlightCard {...card('HIGHLIGHT_SMALL')} />
     </CardGrid>
-    <CardGrid columns={'2'} maxWidth={1000} mb="xl">
+    <CardGrid columns="2" maxWidth={1000} mb="xl">
       <HorizontalHighlightCard {...card('HIGHLIGHT_SMALL')} />
       <HorizontalHighlightCard {...card('HIGHLIGHT_SMALL')} />
     </CardGrid>
@@ -40,7 +40,7 @@ export const Small = () => (
 );
 
 export const Medium = () => (
-  <CardGrid columns={'3'} maxWidth={1000}>
+  <CardGrid columns="3" maxWidth={1000}>
     <HorizontalHighlightCard {...card('HIGHLIGHT_MEDIUM')} />
     <HorizontalHighlightCard {...card('HIGHLIGHT_MEDIUM')} />
     <HorizontalHighlightCard {...card('HIGHLIGHT_MEDIUM')} />
@@ -48,7 +48,7 @@ export const Medium = () => (
 );
 
 export const Default = () => (
-  <CardGrid columns={'2'} maxWidth={1000}>
+  <CardGrid columns="2" maxWidth={1000}>
     <HorizontalHighlightCard {...card()} />
     <HorizontalHighlightCard {...card()} />
   </CardGrid>

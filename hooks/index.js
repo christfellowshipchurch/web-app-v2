@@ -9,6 +9,7 @@ import useCurrentPerson from './useCurrentPerson';
 import useCurrentUser from './useCurrentUser';
 import useEvent from './useEvent';
 import useEvents from './useEvents';
+import useEventsFeedFeatures from './useEventsFeedFeatures';
 import useFeature from './useFeature';
 import useFeatureFeed from './useFeatureFeed';
 import useFeedFeatures from './useFeedFeatures';
@@ -27,7 +28,6 @@ import useSearchGroups from './useSearchGroups';
 import useUpdateCurrentUser from './useUpdateCurrentUser';
 import useUserExists from './useUserExists';
 import useVerifyPin from './useVerifyPin';
-
 export {
   useAuthenticateCredentials,
   useAuthIdentity,
@@ -40,17 +40,18 @@ export {
   useCurrentUser,
   useEvent,
   useEvents,
+  useEventsFeedFeatures,
   useFeature,
   useFeatureFeed,
   useFeedFeatures,
   useForm,
   useGroup,
-  useLiveStream,
-  useLiveStreams,
-  useLiveStreamsQuery,
   useGroupContentId,
   useGroupPreferences,
   useGroups,
+  useLiveStream,
+  useLiveStreams,
+  useLiveStreamsQuery,
   useRegisterWithEmail,
   useRegisterWithSms,
   useRequestPin,

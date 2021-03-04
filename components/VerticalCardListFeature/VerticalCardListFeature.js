@@ -65,7 +65,7 @@ function VerticalCardListFeature(props = {}) {
         ))}
       </CardGrid>
       {bottomRow && (
-        <CardGrid columns={3}>
+        <CardGrid columns="3">
           {bottomRow.map((card, i) => (
             <CustomLink
               as="a"
