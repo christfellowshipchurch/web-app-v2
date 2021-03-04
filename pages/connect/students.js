@@ -1,9 +1,6 @@
-import { ArrowRight } from 'phosphor-react';
 import {
   ArticleLinks,
   ArticleLink,
-  Countdown,
-  FlagCTA,
   Layout,
   MainPhotoHeader,
   MarketingHeadline,
@@ -12,7 +9,6 @@ import {
   Quote,
 } from 'components';
 import { Box, CardGrid, Heading, Text } from 'ui-kit';
-import { addDays } from 'date-fns';
 import { noop } from 'utils';
 import { initializeApollo } from 'lib/apolloClient';
 import { GET_CONTENT_ITEM } from 'hooks/useContentItem';

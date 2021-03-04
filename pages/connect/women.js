@@ -1,9 +1,12 @@
+
 import {
   ArticleLinks,
   ArticleLink,
   Layout,
   MainPhotoHeader,
   MarketingHeadline,
+  MeetTheStaff,
+  PageSplit,
   Quote,
 } from 'components';
 import { Box, CardGrid, Heading, Text } from 'ui-kit';
@@ -26,7 +29,7 @@ export default function Kids(props) {
               fontWeight="800"
               textTransform="uppercase"
             >
-              LH Young Adults
+              LH Women
             </Heading>
             <Heading
               color="neutrals.100"
@@ -93,19 +96,14 @@ export default function Kids(props) {
         >
           <MarketingHeadline
             title={
-              <Heading color="neutrals.900" variant="h2" fontWeight="800">Student Resources.</Heading>
+              <Heading color="neutrals.900" variant="h2" fontWeight="800">Women Resources.</Heading>
             }
-            supertitle="LH YOUNG ADULTS"
+            supertitle="LH WOMEN"
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit, arcu consequat vestibulum amet. Velit nunc augue a blandit diam. Malesuada eget faucibus amet hac aliquam aliquet neque in. Nam felis viverra ornare non tortor odio rhoncus."
             actions={[
               {
                 color: 'primary',
-                label: 'New',
-              },
-              {
-                color: 'quaternary',
-                label: 'Events',
-                variant: 'outlined',
+                label: 'Media',
               },
             ]}
           />
@@ -129,7 +127,7 @@ export default function Kids(props) {
                   lineHeight="27px"
                   fontWeight="400"
                 >
-                  Young Adult Story
+                  Woman Story
                 </Heading>
               </Box>
             }
@@ -152,6 +150,38 @@ export default function Kids(props) {
             avatar={props.quote?.coverImage?.sources?.[0]?.uri}
           />
         </CardGrid>
+      </CardGrid>
+      <PageSplit title="Meet the Staff" variant="h3" mt="m" mb="xl" />
+      <CardGrid
+        px="xl"
+        gridColumnGap="l"
+        columns="4"
+        breakpoints={[
+          { breakpoint: 'xl', columns: 2 },
+          { breakpoint: 'lg', columns: 1 },
+        ]}
+        justifyItems="center"
+      >
+        <MeetTheStaff
+          src="/staff/009.png"
+          name="Amet minim"
+          description="Nonn deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet."
+        />
+        <MeetTheStaff
+          src="/staff/010.png"
+          name="Amet minim"
+          description="Nonn deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet."
+        />
+        <MeetTheStaff
+          src="/staff/011.png"
+          name="Amet minim"
+          description="Nonn deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet."
+        />
+        <MeetTheStaff
+          src="/staff/012.png"
+          name="Amet minim"
+          description="Nonn deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet."
+        />
       </CardGrid>
       <MarketingHeadline
         px="184px"
@@ -186,7 +216,7 @@ export async function getServerSideProps() {
   const apolloClient = initializeApollo();
 
   const pageResponse = await apolloClient.query({ query: GET_CONTENT_ITEM, variables: {
-    itemId: "UniversalContentItem:3e72f693d0ef710f5c807b48203e2e31"
+    itemId: "UniversalContentItem:d77977392013b39f84d88dbb5a988484"
   } });
 
   const articleQueries = ['e07dbf80297d466a1a44ac37c6c8f261'].map(async (id) => {
