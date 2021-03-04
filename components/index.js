@@ -1,4 +1,4 @@
-import ArticleLink from './ArticleLink';
+import ArticleLink, { ArticleLinks } from './ArticleLink';
 import Carousel from './Carousel';
 import ClientSideComponent from './ClientSideComponent';
 import ContentLayout from './ContentLayout';
@@ -33,6 +33,7 @@ import ConnectTiles from './ConnectTiles';
 
 export {
   ArticleLink,
+  ArticleLinks,
   Carousel,
   ClientSideComponent,
   ContentLayout,

@@ -1,3 +1,4 @@
+import ArticleLinks from './ArticleLinks';
 import ArticleLink from './ArticleLink';
 
-export default ArticleLink;
+export { ArticleLink as default, ArticleLinks};

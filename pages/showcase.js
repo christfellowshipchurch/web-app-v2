@@ -274,22 +274,22 @@ export default function Showcase() {
         justifyItems="center"
       >
         <MeetTheStaff
-          src="https://s3-alpha-sig.figma.com/img/810e/a9cb/028675aba90fb0c25e1f84801b2b4e3f?Expires=1612742400&Signature=WhbSYarVW0uQ8Au1zqrG5VRP5z6SaPrVDrcCaW1tFDBWWratO1FTXdZrkHnXdKLM3Ee3-CXV98EOasoupndHYG33NnnKgz0pG5HjCEJsG~YFk2XX~4HClhWbdsY7hVZ~tPQEj0lQCZ4rx8sypp0mitV8gt~t27NQD5mUOevdbmFkcywyVJZUcMPkMWRcEekHGgykfB88BFsH1IVp5j7hL2PAlKXHfWdqbT22uLm-SwLi3dJwL~brtHvacaWfgFPaP3SWwHpdIZZHdKpR2dSDKJGpYZbkljTAXDp-wqEVuxJu-Z-xEMLhO24sQg66y9pBINulvvH3Gh4K1d8u40nhWw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+          src="/staff/001.png"
           name="Amet minim"
           description="Nonn deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet."
         />
         <MeetTheStaff
-          src="https://s3-alpha-sig.figma.com/img/5be1/75c3/313059fa178ec19969b1d4a4db71f5fa?Expires=1612742400&Signature=gI8t6mxgtd~eeJBNIrh457ZJeX~rOA68UlpJZG7pRYVfIOLfAxLcu8t9aLnhBllg9FxA2jsWH1cEw3mXMvVo5TsV-KfYUh1tN~mUqZ1~ZcaSuQ7fynJPgneiBeHe7lh2h7RXae89TltAO73MlOxgDYYET2QEBiJGL3UWB9hfxRgREWC0OtdLdGoV47h1hE6LXWQ5nTWAPB-UQ3QcWJAWUjwQu2bmLCl2ngXyp7K6RbXG2Hu2EFRnNFjPnsz9q~WQjXd4~WfjImNDT8u-5uR~vig3AWMS~wLkPJWz2F~LKaZ2Q0RSsygiLlyHd~puTdAGpTRIy~EXEbGOxdP9B-VFdA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+          src="/staff/002.png"
           name="Amet minim"
           description="Nonn deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet."
         />
         <MeetTheStaff
-          src="https://s3-alpha-sig.figma.com/img/3699/04e5/fa86e779b7c749638f38b96e066913c3?Expires=1612742400&Signature=At3Yv8fSCokLu0CRS2jqv8R4k7dw5ZQSIFwvl51nUnMGMckZs04NzBvWhAAECdv1FFdEqjAHlytiuckroEWtBdbL1DoH9ykw3SBCg0EifkaKguo8i6wR2BEjSjU~BCVC60oxKnKgkY6oPnjQXBHchHTaHVNOu1I-1qyLzvnM7URS3TWoizGnEnJqlJ3jVPtQcJzDy8fipYSGjeOELtITL9vJOcHZVR2jNh0Y45gccRQ0ZgvSWJQtPqZJje4308ucDjXVGhjqCpTN9DnxrsxHF3efmm1VtzofCFINdNgaylGfHoGM1RrZJyrfML~3ssL-OX-2KIAEVZKiGhXMC-pkqA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+          src="/staff/003.png"
           name="Amet minim"
           description="Nonn deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet."
         />
         <MeetTheStaff
-          src="https://s3-alpha-sig.figma.com/img/aa09/110e/bd10ceabb7e15ad1c9342d94d6d4c75f?Expires=1612742400&Signature=ZcWGh14SE4CrjeY7yJoorLpEqhFQM5KPepDx3swNBbTmlcKi8oRxQhMZWKCEIRFWv45tXeNCjiI1ujiZEn0ffoxsTn2ZT2kj2LgH4NIH-Mnio-ZKXJLDMku4kWNnF4dRG5VGD31vHDsUZf2W60bd-ulaJ5O~uhbbNwwSlsmTb8mdROqtdz3ClWijPBK~r2Qtb68794N6vharY5tAFS3CvnqONRrnIDfPP5krhFfGxOH5zDhKxP9-E2a1UmYOMDKxQ~7W~A~cjU3kMcxPAyN8zagiK7jiwYsqWLxfHTPRieAaVT4UDAOIg3sbeKKqr86-wJAuQeliWpMaNOKBy6t~FQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+          src="/staff/004.png"
           name="Amet minim"
           description="Nonn deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet."
         />
