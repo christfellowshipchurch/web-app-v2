@@ -5,6 +5,10 @@ export const GET_CONTENT_ITEM = gql`
     node(id: $itemId) {
       __typename
       ... on ContentItem {
+        title
+        sharing {
+          url
+        }
         coverImage {
           sources {
             uri
