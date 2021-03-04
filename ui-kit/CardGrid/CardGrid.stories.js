@@ -29,7 +29,7 @@ export const Default = () => (
 
 export const TwoColumns = () => (
   <Box maxWidth={1060} margin="auto">
-    <CardGrid columns={'2'}>
+    <CardGrid columns="2">
       <DefaultCard {...cardProps} />
       <DefaultCard {...cardProps} />
       <DefaultCard {...cardProps} />
