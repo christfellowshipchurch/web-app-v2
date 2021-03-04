@@ -24,13 +24,15 @@ import HeroListFeature from './HeroListFeature';
 import HomeFeed from './HomeFeed';
 import HorizontalCardListFeature from './HorizontalCardListFeature';
 import Layout from './Layout';
+import LiveStreamSingle from './LiveStreamSingle';
 import Logo from './Logo';
 import Nav from './Nav';
-import SEO from './SEO';
 import SearchField from './SearchField';
+import SEO from './SEO';
 import UserAvatar from './UserAvatar';
 import UserProfile from './UserProfile';
 import VerticalCardListFeature from './VerticalCardListFeature';
+import Video from './Video';
 
 export {
   BirthDateField,
@@ -58,12 +60,14 @@ export {
   HomeFeed,
   HorizontalCardListFeature,
   Layout,
+  LiveStreamSingle,
   Logo,
   Nav,
-  SEO,
   SearchField,
+  SEO,
   UserAvatar,
   UserProfile,
   VerticalCardListFeature,
+  Video,
   modals,
 };

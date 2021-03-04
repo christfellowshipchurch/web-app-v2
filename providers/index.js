@@ -13,6 +13,7 @@ import FeatureProvider from './FeatureProvider';
 import GroupFiltersProvider from './GroupFiltersProvider';
 import GroupProvider from './GroupProvider';
 import GroupsProvider from './GroupsProvider';
+import LiveStreamProvider from './LiveStreamProvider';
 import ModalProvider from './ModalProvider';
 import NavigationProvider from './NavigationProvider';
 import UserProfileProvider from './UserProfileProvider';
@@ -33,6 +34,7 @@ export {
   GroupFiltersProvider,
   GroupProvider,
   GroupsProvider,
+  LiveStreamProvider,
   ModalProvider,
   NavigationProvider,
   UserProfileProvider,

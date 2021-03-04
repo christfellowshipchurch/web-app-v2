@@ -1,6 +1,6 @@
+import useAuthenticateCredentials from './useAuthenticateCredentials';
 import useAuthIdentity from './useAuthIdentity';
 import useAuthQuery from './useAuthQuery';
-import useAuthenticateCredentials from './useAuthenticateCredentials';
 import useCampuses from './useCampuses';
 import useContactGroupLeader from './useContactGroupLeader';
 import useContentFeed from './useContentFeed';
@@ -15,8 +15,11 @@ import useFeedFeatures from './useFeedFeatures';
 import useForm from './useForm';
 import useGroup from './useGroup';
 import useGroupContentId from './useGroupContentId';
-import useGroups from './useGroups';
 import useGroupPreferences from './useGroupPreferences';
+import useGroups from './useGroups';
+import useLiveStream from './useLiveStream';
+import useLiveStreams from './useLiveStreams';
+import useLiveStreamsQuery from './useLiveStreamsQuery';
 import useRegisterWithEmail from './useRegisterWithEmail';
 import useRegisterWithSms from './useRegisterWithSms';
 import useRequestPin from './useRequestPin';
@@ -26,9 +29,9 @@ import useUserExists from './useUserExists';
 import useVerifyPin from './useVerifyPin';
 
 export {
+  useAuthenticateCredentials,
   useAuthIdentity,
   useAuthQuery,
-  useAuthenticateCredentials,
   useCampuses,
   useContactGroupLeader,
   useContentFeed,
@@ -42,9 +45,12 @@ export {
   useFeedFeatures,
   useForm,
   useGroup,
+  useLiveStream,
+  useLiveStreams,
+  useLiveStreamsQuery,
   useGroupContentId,
-  useGroups,
   useGroupPreferences,
+  useGroups,
   useRegisterWithEmail,
   useRegisterWithSms,
   useRequestPin,
