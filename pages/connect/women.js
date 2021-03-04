@@ -14,10 +14,10 @@ import { noop } from 'utils';
 import { initializeApollo } from 'lib/apolloClient';
 import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
 
-export default function Kids(props) {
+export default function Women(props) {
   const article = props.articles?.[0];
   return (
-    <Layout title="Connect - Young Adults">
+    <Layout title="Connect - Women">
       <MainPhotoHeader
         src={props.page?.coverImage?.sources?.[0]?.uri}
         content={
