@@ -11,10 +11,15 @@ import {
   MarketingHeadline,
   Quote,
   ConnectTiles,
+  Countdown,
+  ArticleLinks,
 } from 'components';
 import { Box, CardGrid, Heading, Icon, Text, theme } from 'ui-kit';
 import VideoPlayer from 'components/VideoPlayer';
 import { useRouter } from 'next/router';
+import { addHours, addMinutes } from 'date-fns';
+import { initializeApollo } from 'lib/apolloClient';
+import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
 
 function DefaultMainPhotoHeader(props = {}) {
   const videoPlayers = [
@@ -43,7 +48,7 @@ function DefaultMainPhotoHeader(props = {}) {
   return (
     <>
       <MainPhotoHeader
-        src="https://s3-alpha-sig.figma.com/img/8842/4c68/4e45dbafdc563dce6b086f70e0d4b358?Expires=1614556800&Signature=Z7pkiqqsgiptnBuBvC~-FiuPPMT2YvWy2dmuexln1jOdlpGP9q3SF0U7wqkiu0UQksRoj3swc94NQGdN5dBSP~YLlSrUD5tHMkNQFCUz8yHcqQmNFxPjnBxA-5~Q07Q9rdt9WfJasyJgpBFPlMZPB7wivPTi1ntSegx5YjtYVgD5oxgsw-zN3g7UgSEIU5QNFIoDMoXIh1lHKUoTWthDo3iVXGIjhzgbDQzsJjjX4norSiRM5VFxRYM3MMz7wQkcChLM3PBSQbH5LJy2M8UozptwZwG55cvZWT1CQv3Py4gkC-vVUDIdDjDMIwKfRxCshR1y5jAmIeygs09Li89rCA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+        src="/about/schedule.jpeg"
         overlay="linear-gradient(89.49deg, #1c1617 -16.61%, rgba(28, 22, 23, 0) 99.62%)"
         content={
           <>
@@ -210,7 +215,7 @@ function FullLengthSermon(props = {}) {
   return (
     <>
       <MainPhotoHeader
-        src="https://s3-alpha-sig.figma.com/img/8842/4c68/4e45dbafdc563dce6b086f70e0d4b358?Expires=1613347200&Signature=KeU0~IxuHxeYwSOVDWKCyeJXKzBls-2S~r0nV40ykGcKLQ86mEr53wRSiG2y~kLK4RlOUZkzf33HmXu7wDXnGcckxt6BqqmlCB8i8176HCPeJXj4OEbsTZnEyXmuXURhwkVxNkC1apGOyBb4rW4-MdD9Azn5EXAKFsHjpQcpBj-wxMb5kqtcZo6xyMV7HD3tyRvldpX4NMwsDyVFsdn9BJLZCLx00tOpdduTv-iN9sCiWV35zMum3DnMpEzqfRqDxOfKwBqlZhpdRt~fTl4HJdDFL6x~RpX4gW~YTCzRknoJ3uuJ~LdC~p~UqNrLUvcYqBqixflP51v7FWIaer4WSg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+        src="/home/good-news.jpeg"
         overlay="linear-gradient(89.49deg, #1c1617 -16.61%, rgba(28, 22, 23, 0) 99.62%)"
         content={
           <>
@@ -286,34 +291,13 @@ function FullLengthSermon(props = {}) {
           </>
         }
       />
-      <Box
-        display="flex"
-        flexDirection="column"
-        alignItems="flex-start"
-        ml="xl"
-        mt="-110px"
-      >
-        <Heading
-          fontSize="18px"
-          lineHeight="16.2px"
-          textTransform="uppercase"
-          color="neutrals.100"
-          opacity="33%"
-        >
-          Full Message
-        </Heading>
-        <VideoPlayer
-          src="https://player.vimeo.com/video/457496548"
-          title="GOD"
-          height="185px"
-        />
-      </Box>
     </>
   );
 }
 
 function LoggedInHomeFeed(props = {}) {
   const router = useRouter();
+  const article = props.articles?.[0];
   return (
     <>
       <CardGrid
@@ -323,32 +307,22 @@ function LoggedInHomeFeed(props = {}) {
         px="xxl"
         my="xxl"
       >
-        <Box>
-          <ArticleLink
-            title="Lorem ipsum doler sit itmut this is a title of this story article or news something or thing."
-            url="/"
-            urlText="Learn more"
-            imageSrc="https://s3-alpha-sig.figma.com/img/d503/cf1e/51e2f4afe7a9d1befea1d404776bce58?Expires=1612742400&Signature=CRak1QZFV30oWYfOmofyDhPZYYUSuYLx5PM7veQNCK-J6VdCBLLnh8eNG-gzZHSVnxHkr0W-DVRrRtvGBahERez2kJ~HCg1IQSsXl73m1yvGvBDoXNLHXly67ZJlfHxcKKgYk5iw1uwU3ditcGV1vxpiVdFFBIECr58qlnIbSRmrgWqHBZtWsC16IIuNt68NW~43iIcWUMmqxtM3~EsLRm8XyPqylh37St-e2KNBa22gDFhz2kz5uub7iYR5nZLiYXOoMYI0FeRXXNV0Oj~79pyGCOOi5-xVIRaqlFQhIKrV0I0oO~D2ZDXo2QdXWdqH9Ek6QKG3RlhIzE2ayQQ-Xg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
-            mb="s"
-          />
-          <ArticleLink
-            title="Lorem ipsum doler sit itmut this is a title of this story article or news something or thing."
-            url="/"
-            urlText="Learn more"
-            imageSrc="https://s3-alpha-sig.figma.com/img/d222/5e20/7026f0d2db6b662bd925005ed3d78375?Expires=1612742400&Signature=gAWCBTp4D7KbI8TALUxCNMI21NhB08Mu5O-BaA~wM5CMp6jlRdy-Q52YMSGw6vZ60EilqDTbxyJ1INP4xrgD5MbdMprqR6D1xu7dbpeZnu72yavDCj26VaShkz62FAM8Y6cPUDzhGJKTxM40EgElerZ0qsFEIuSTNl9y40ZeJWiXa2WwKBKgb2dGmSw5WCVTsARUCYJ1iXiGsOsbY57SZL5m1xVZxFJnl28ioFHOFTmKqvcjpk-xPuk287igAOGSOVEm5psTZ71hjrv9AUGf-s8RrQiDd1ZzcrF1y5Ul6oBQYmBxuhjkCjK2u4RFUcGhOqMokzja4TqpyxCj6rB1SQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
-            mb="s"
-          />
-          <ArticleLink
-            title="Lorem ipsum doler sit itmut this is a title of this story article or news something or thing."
-            url="/"
-            urlText="Learn more"
-            imageSrc="https://s3-alpha-sig.figma.com/img/493d/14c0/d6d582397dad7960aa07123f3af3ec17?Expires=1612742400&Signature=SpddFW9DyeXdpNgbU~5HczCH8qWgjJ3kjUx7ItiFFtUrZLSZpcPEZRaRpaeIukzmAMW12aHq6w4SDR5lBYAlNSN-ICni49wl1OxXKfzRDB1uQAALGwFzUHYiPMCrLUChsMD1J5OBvDKU2PcapV1sCydekg57fxQSUUsUQ15C5tppmGDLLfrikXSmABnJ3Y70344V3CyNO4Y6CN6CnBoGm5YVPkyLC84FTle0a~YAuSD8rrBAlTMTuJQi8jaB6qG6OcXt93WkXvpAWKQhOZhUIKAapn6er4kOra27v~VQweYGd8a4afbbE98pd2fnknsWqZkKsdLZfGuPMokwvSYEng__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
-          />
-        </Box>
+        <ArticleLinks>
+          {Array.from(Array(3)).map((_, i) => (
+            <ArticleLink
+              key={i}
+              description="Lorem ipsum doler sit itmut this is a title of this story article or news something or thing."
+              url="/"
+              urlText="Learn More"
+              imageSrc={article?.coverImage?.sources?.[0]?.uri}
+              mb="s"
+            />
+          ))}
+        </ArticleLinks>
         <LargeImage
           text="Celebrate the Hope of Christ with us."
           color="white"
-          src="https://s3-alpha-sig.figma.com/img/819d/924a/5b523972e95961c459d926736ea2f611?Expires=1612742400&Signature=KRqft30qRfZq4MpUq27xME4hIEj4gFYr4s~lXEFpUwlDGfVCXfUsCu~JNXBicN9MnQYNW84z84g6RwRkDxQsrYlRGGeE~0wBdHAbSEWx~lZIG9k7JK8iCoVEWSsryT-xrQY-o4rO7AaN0WrZwNClqcEG9x0~VAvEUzLqTfi5hegv4F9I1kCTpY545Qzh-gYhy7IUBOfLW8Eip3E5Y7c-m0tj4Cmk50KQB1DIAyJXuaF0DaM4pfjA4HBt1SM8-EkudX9ciRXJfJwx-ctTNOD~CCYZ8kCLgq-nV-NEj2xrJ9ijau0npbxA-PKPbq5VifVBGZnw3xfTkKvBjWsdIvkNIg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+          src="/home/christmas-together.png"
           action={() => router.push('/christmas')}
         />
       </CardGrid>
@@ -381,6 +355,27 @@ function LoggedInHomeFeed(props = {}) {
           ]}
         />
         <SarahQuote />
+      </CardGrid>
+      <CardGrid
+        px="xxl"
+        py="l"
+        columns="2"
+        gridRowGap="xxl"
+        gridColumnGap="xl"
+        breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
+      >
+        <Countdown
+          src="https://www.figma.com/file/zlluMsbAFPmWX6Z50iG86s/image/2c35a9fea98b9a3404dfaca24537e5a91c123c48"
+          width="595px"
+          height="451px"
+          borderRadius="image"
+          alignItems="flex-end"
+          date={addHours(addMinutes(new Date(), 2), 15)}
+        />
+        <MarketingHeadline
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tellus massa aliquam volutpat in integer aliquam. Convallis tempor quis sed et vestibulum sed. Hendrerit consequat praesent sit neque. Felis in donec sit nisl feugiat cursus dictum velit"
+          details="ipsum dolor sit amet, consectetur adipiscing elit. Tellus massa aliquam volutpat in integer aliquam. Convallis tempor quis sed et vestibulum sed. Hendrerit consequat praesent sit neque. Felis in donec sit nisl feugiat cursus dictum velit."
+        />
       </CardGrid>
       <Box
         background={`linear-gradient(to bottom right, ${theme.colors.gradient.join(
@@ -458,6 +453,7 @@ function LoggedInHomeFeed(props = {}) {
 
 function LoggedOutHomeFeed(props = {}) {
   const router = useRouter();
+  const article = props.articles?.[0];
 
   return (
     <>
@@ -502,27 +498,24 @@ function LoggedOutHomeFeed(props = {}) {
         <LargeImage
           text="Celebrate the Hope of Christ with us."
           color="white"
-          src="https://s3-alpha-sig.figma.com/img/819d/924a/5b523972e95961c459d926736ea2f611?Expires=1612742400&Signature=KRqft30qRfZq4MpUq27xME4hIEj4gFYr4s~lXEFpUwlDGfVCXfUsCu~JNXBicN9MnQYNW84z84g6RwRkDxQsrYlRGGeE~0wBdHAbSEWx~lZIG9k7JK8iCoVEWSsryT-xrQY-o4rO7AaN0WrZwNClqcEG9x0~VAvEUzLqTfi5hegv4F9I1kCTpY545Qzh-gYhy7IUBOfLW8Eip3E5Y7c-m0tj4Cmk50KQB1DIAyJXuaF0DaM4pfjA4HBt1SM8-EkudX9ciRXJfJwx-ctTNOD~CCYZ8kCLgq-nV-NEj2xrJ9ijau0npbxA-PKPbq5VifVBGZnw3xfTkKvBjWsdIvkNIg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+          src="/home/christmas-together.png"
           action={() => router.push('/christmas')}
         />
-        <Box>
-          <ArticleLink
-            title="Lorem ipsum doler sit itmut this is a title of this story article or news something or thing."
-            url="/"
-            urlText="Learn more"
-            imageSrc="https://s3-alpha-sig.figma.com/img/d222/5e20/7026f0d2db6b662bd925005ed3d78375?Expires=1612742400&Signature=gAWCBTp4D7KbI8TALUxCNMI21NhB08Mu5O-BaA~wM5CMp6jlRdy-Q52YMSGw6vZ60EilqDTbxyJ1INP4xrgD5MbdMprqR6D1xu7dbpeZnu72yavDCj26VaShkz62FAM8Y6cPUDzhGJKTxM40EgElerZ0qsFEIuSTNl9y40ZeJWiXa2WwKBKgb2dGmSw5WCVTsARUCYJ1iXiGsOsbY57SZL5m1xVZxFJnl28ioFHOFTmKqvcjpk-xPuk287igAOGSOVEm5psTZ71hjrv9AUGf-s8RrQiDd1ZzcrF1y5Ul6oBQYmBxuhjkCjK2u4RFUcGhOqMokzja4TqpyxCj6rB1SQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
-            mb="s"
-          />
-          <ArticleLink
-            title="Lorem ipsum doler sit itmut this is a title of this story article or news something or thing."
-            url="/"
-            urlText="Learn more"
-            imageSrc="https://s3-alpha-sig.figma.com/img/d503/cf1e/51e2f4afe7a9d1befea1d404776bce58?Expires=1612742400&Signature=CRak1QZFV30oWYfOmofyDhPZYYUSuYLx5PM7veQNCK-J6VdCBLLnh8eNG-gzZHSVnxHkr0W-DVRrRtvGBahERez2kJ~HCg1IQSsXl73m1yvGvBDoXNLHXly67ZJlfHxcKKgYk5iw1uwU3ditcGV1vxpiVdFFBIECr58qlnIbSRmrgWqHBZtWsC16IIuNt68NW~43iIcWUMmqxtM3~EsLRm8XyPqylh37St-e2KNBa22gDFhz2kz5uub7iYR5nZLiYXOoMYI0FeRXXNV0Oj~79pyGCOOi5-xVIRaqlFQhIKrV0I0oO~D2ZDXo2QdXWdqH9Ek6QKG3RlhIzE2ayQQ-Xg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
-          />
-        </Box>
+        <ArticleLinks>
+          {Array.from(Array(3)).map((_, i) => (
+            <ArticleLink
+              key={i}
+              description="Lorem ipsum doler sit itmut this is a title of this story article or news something or thing."
+              url="/"
+              urlText="Learn More"
+              imageSrc={article?.coverImage?.sources?.[0]?.uri}
+              mb="s"
+            />
+          ))}
+        </ArticleLinks>
       </CardGrid>
       <FullWidthCTA height="434px" pt="171px">
-        <Box display="flex" alignItems="flex-end" mb="s" mt="l">
+        <Box display="flex" alignItems="flex-end" mb="s">
           <Icon
             name="godLoves"
             width="532px"
@@ -584,12 +577,16 @@ function LoggedOutHomeFeed(props = {}) {
 }
 
 function HomeFeed(props = {}) {
-  const loggedIn = false;
+  const loggedIn = true;
   const fullSermon = loggedIn && true;
   return (
     <>
       {fullSermon ? <FullLengthSermon /> : <DefaultMainPhotoHeader />}
-      {loggedIn ? <LoggedInHomeFeed /> : <LoggedOutHomeFeed />}
+      {loggedIn ? (
+        <LoggedInHomeFeed {...props} />
+      ) : (
+        <LoggedOutHomeFeed {...props} />
+      )}
     </>
   );
 }

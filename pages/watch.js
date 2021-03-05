@@ -121,8 +121,9 @@ export default function Watch(props) {
             ]}
           />
           <ArticleLinks>
-            {Array.from(Array(2)).map(() => (
+            {Array.from(Array(2)).map(i => (
               <ArticleLink
+                key={i}
                 title={article?.title}
                 description="At Long Hollow Weekday Preschool, we are committed to creating a nurturing environment for preschoolers to grow."
                 url="/"

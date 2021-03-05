@@ -1,17 +1,14 @@
-import flatten from 'lodash/flatten';
-
 import { initializeApollo } from 'lib/apolloClient';
-import { GET_CONTENT_FEED } from 'hooks/useContentFeed';
-import { GET_HOME_FEED_FEATURES } from 'hooks/useHomeFeedFeatures';
 import { Layout } from 'components';
 
 import { FeedFeaturesProvider } from 'providers';
 import { HomeFeed } from 'components';
+import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
 
 export default function Home(props = {}) {
   return (
     <Layout title="Home">
-      <FeedFeaturesProvider Component={HomeFeed} />
+      <FeedFeaturesProvider Component={HomeFeed} {...props} />
     </Layout>
   );
 }
@@ -19,29 +16,23 @@ export default function Home(props = {}) {
 export async function getServerSideProps() {
   const apolloClient = initializeApollo();
 
-  // const features = await apolloClient.query({ query: GET_HOME_FEED_FEATURES });
-  // const data = features?.data?.homeFeedFeatures;
-  // const actions = flatten(data.features.map(({ actions }) => actions));
-  // let promises = [];
-  // actions
-  //   .filter(action => Boolean(action))
-  //   .map(item =>
-  //     promises.push(
-  //       apolloClient.query({
-  //         query: GET_CONTENT_FEED,
-  //         variables: {
-  //           itemId: item?.relatedNode?.id,
-  //           child: true,
-  //           sibling: false,
-  //         },
-  //       })
-  //     )
-  //   );
-  // await Promise.all(promises);
+  const articleQueries = ['e07dbf80297d466a1a44ac37c6c8f261'].map(async id => {
+    const article = await apolloClient.query({
+      query: GET_CONTENT_ITEM,
+      variables: {
+        itemId: `UniversalContentItem:${id}`,
+      },
+    });
+
+    return article?.data?.node;
+  });
+
+  const articles = await Promise.all(articleQueries);
 
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
+      articles,
     },
   };
 }
