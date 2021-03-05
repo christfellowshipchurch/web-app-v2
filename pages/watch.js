@@ -6,8 +6,9 @@ import {
   MarketingHeadline,
   Carousel,
   VideoPlayer,
+  Search,
 } from 'components';
-import { Box, CardGrid, Heading } from 'ui-kit';
+import { Box, CardGrid, Heading, Text } from 'ui-kit';
 import { noop } from 'utils';
 import { initializeApollo } from 'lib/apolloClient';
 import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
@@ -48,34 +49,44 @@ export default function Watch(props) {
           </Box>
         }
       />
-      <CardGrid
-        px="xxl"
-        py="xl"
-        gridColumnGap="xl"
-        columns="1"
-      >
-      <Carousel
-        labels={[
-          'Sunday Messages',
-          "Robby's Wed Night Studies",
-          'Archives',
-          'Baptism Videos',
-          'Watch Live',
-        ]}
-        px="xxl"
-        py="xxl"
-      >
-        <VideoPlayer
-          src="http://embed.wistia.com/deliveries/0e364f7e6f6604384ece8a35905a53a864386e9f.bin"
-          title="What Happens When God Shows Up"
-          details="In this message from January 3rd, 2021, Pastor Robby discusses how one moment in the presence of God can alter your life for eternity."
+      <CardGrid px="xxl" py="xl" gridColumnGap="xl" columns="1">
+        <Heading
+          color="neutrals.900"
+          variant="h2"
+          fontWeight="800"
+          textAlign="center"
+        >
+          The Video Archives
+        </Heading>
+        <Text maxWidth="600px" textAlign="center">
+          Looking for a message or video that impacted you? Browse through our
+          archives below. Looking for something specific? Try searching it
+          below!
+        </Text>
+        <Search
+          width="640px"
+          button={{ color: 'primary', label: 'Search', size: 's' }}
         />
-        <Box height="200px" width="600px" backgroundColor="orange" />
-        <Box height="600px" width="500px" backgroundColor="yellow" />
-        <Box height="400px" width="800px" backgroundColor="green" />
-        <Box height="400px" width="500px" backgroundColor="blue" />
-      </Carousel>
-
+        <Carousel
+          labels={[
+            'Sunday Messages',
+            "Robby's Wed Night Studies",
+            'Archives',
+            'Baptism Videos',
+            'Watch Live',
+          ]}
+          px="xxl"
+        >
+          <VideoPlayer
+            src="http://embed.wistia.com/deliveries/0e364f7e6f6604384ece8a35905a53a864386e9f.bin"
+            title="What Happens When God Shows Up"
+            details="In this message from January 3rd, 2021, Pastor Robby discusses how one moment in the presence of God can alter your life for eternity."
+          />
+          <Box height="200px" width="600px" backgroundColor="orange" />
+          <Box height="600px" width="500px" backgroundColor="yellow" />
+          <Box height="400px" width="800px" backgroundColor="green" />
+          <Box height="400px" width="500px" backgroundColor="blue" />
+        </Carousel>
       </CardGrid>
       <CardGrid
         px="xxl"
