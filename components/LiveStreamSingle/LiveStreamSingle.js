@@ -6,6 +6,8 @@ import Live from './Live';
 import PostLive from './PostLive';
 
 function LiveStreamSingle(props = {}) {
+  console.log('🔬 <LiveStreamSingle> props:', props);
+
   if (props.metaData?.isLive) {
     return <Live {...props} />;
   }
