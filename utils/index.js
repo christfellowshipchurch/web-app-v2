@@ -5,8 +5,9 @@ import getAge from './getAge';
 import getComponent from './getComponent';
 import getURLFromType from './getURLFromType';
 import normalizeUserData from './normalizeUserData';
+import parseLiveStreamDates from './parseLiveStreamDates';
 import slugify from './slugify';
-import textTrimmer from './textTrimmer'
+import textTrimmer from './textTrimmer';
 import validateEmail from './validateEmail';
 import validatePhoneNumber from './validatePhoneNumber';
 
@@ -18,6 +19,7 @@ export {
   getComponent,
   getURLFromType,
   normalizeUserData,
+  parseLiveStreamDates,
   slugify,
   textTrimmer,
   validateEmail,
