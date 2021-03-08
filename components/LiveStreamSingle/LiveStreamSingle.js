@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { ContentLayout } from 'components';
+import { Box } from 'ui-kit';
+
 import PreLive from './PreLive';
 import Live from './Live';
 import PostLive from './PostLive';
 
 function LiveStreamSingle(props = {}) {
-  console.log('🔬 <LiveStreamSingle> props:', props);
-
   if (props.metaData?.isLive) {
     return <Live {...props} />;
   }
@@ -20,9 +21,34 @@ function LiveStreamSingle(props = {}) {
     return <PostLive {...props} />;
   }
 
+  if (!props.data) {
+    return null;
+  }
+
   // Most likely an error?
   // Redirect to somewhere else ?
-  return null;
+  return (
+    <ContentLayout
+      title={props.data?.relatedNode?.title}
+      summary={props.data?.relatedNode?.summary}
+      coverImage={props.data?.relatedNode?.coverImage?.sources[0]?.uri}
+      renderD={() => (
+        <Box>
+          <Box as="p" color="alert" mb="l">
+            ⚠️ Unhandled livestream state. It is not currently live, upcoming,
+            or recently ended.
+            <br />
+            This most likely means one or both of the <code>
+              start
+            </code> and <code>end</code> dates were <code>null</code>.
+          </Box>
+          <Box as="pre" fontSize="xs">
+            {JSON.stringify(props, null, 2)}
+          </Box>
+        </Box>
+      )}
+    />
+  );
 }
 
 LiveStreamSingle.propTypes = {
