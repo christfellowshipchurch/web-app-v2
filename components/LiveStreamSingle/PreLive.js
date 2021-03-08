@@ -16,20 +16,18 @@ function PreLive(props = {}) {
     : 'null';
 
   return (
-    <>
-      <ContentLayout
-        title={props.data?.relatedNode?.title}
-        summary="Coming Soon"
-        coverImage={props.data?.relatedNode?.coverImage?.sources[0]?.uri}
-        renderD={() => (
-          <Box as="p">
-            <b>Starts:</b> {startFormatted}
-            <br />
-            <b>Ends:</b> {endFormatted}
-          </Box>
-        )}
-      />
-    </>
+    <ContentLayout
+      title={props.data?.relatedNode?.title}
+      summary="Coming Soon"
+      coverImage={props.data?.relatedNode?.coverImage?.sources[0]?.uri}
+      renderD={() => (
+        <Box as="p">
+          <b>Starts:</b> {startFormatted}
+          <br />
+          <b>Ends:</b> {endFormatted}
+        </Box>
+      )}
+    />
   );
 }
 
