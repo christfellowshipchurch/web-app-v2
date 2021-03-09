@@ -3,6 +3,7 @@ import { gql, useLazyQuery } from '@apollo/client';
 export const SEARCH_CONTENT_ITEMS = gql`
   query search($query: String!, $first: Int, $after: String) {
     search(query: $query, first: $first, after: $after) {
+      totalResults
       pageInfo {
         startCursor
         endCursor
@@ -29,6 +30,7 @@ export const SEARCH_CONTENT_ITEMS = gql`
 
 function useSearchContentItems(options = {}) {
   const [search, query] = useLazyQuery(SEARCH_CONTENT_ITEMS, options);
+
   return [
     search,
     {

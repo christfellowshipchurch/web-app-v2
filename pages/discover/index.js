@@ -26,6 +26,7 @@ const Discover = () => {
   ] = useSearchContentItems({
     notifyOnNetworkStatusChange: true,
   });
+
   const hasResults = contentItems?.length > 0;
   const showEmptyState = !loading && !hasResults;
   const hasMorePages = contentItems?.length < data?.search?.totalResults;
@@ -123,6 +124,13 @@ const Discover = () => {
           {loading && (
             <Box display="flex" justifyContent="center" my="xxl">
               <Loader />
+            </Box>
+          )}
+          {!loading && hasMorePages && (
+            <Box display="flex" justifyContent="center" mt="xl">
+              <Button variant="tertiary" onClick={handleLoadMore}>
+                Load more
+              </Button>
             </Box>
           )}
         </Cell>
