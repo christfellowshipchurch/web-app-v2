@@ -4,6 +4,7 @@ const BATTLESHIP = '#818181';
 const PICTON = '#00aeef';
 const TUATARA = '#353535';
 const WHITE_SMOKE = '#f6f6f6';
+const RUBY = '#cb045b';
 
 const colors = {
   // LIGHT THEME
@@ -29,9 +30,10 @@ const colors = {
       900: TUATARA,
     },
 
-    alert: '#fe5f55',
+    alert: RUBY,
     warning: '#ffc527',
     success: '#8acb88',
+    live: RUBY,
     wordOfChrist: TUATARA,
 
     screen: WHITE_SMOKE,
@@ -65,9 +67,10 @@ const colors = {
       900: TUATARA,
     },
 
-    alert: '#fe5f55',
+    alert: RUBY,
     warning: '#ffc527',
     success: '#8acb88',
+    live: RUBY,
     wordOfChrist: TUATARA,
 
     screen: TUATARA,

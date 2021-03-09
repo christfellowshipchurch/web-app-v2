@@ -89,37 +89,35 @@ const useLiveStream = ({ liveStreamId }) => {
   const [nextRefetch, setNextRefetch] = useState(null);
 
   // Fetch
-  const { data, loading, error, refetch } =
-    useQuery(GET_LIVE_STREAM, {
-      variables: { id: liveStreamId || '' },
-      skip,
-      fetchPolicy: 'network-only',
+  const { data, loading, error, refetch } = useQuery(GET_LIVE_STREAM, {
+    variables: { id: liveStreamId || '' },
+    skip,
+    fetchPolicy: 'network-only',
 
-      onCompleted: ({ data }) => {
-        const startDate = data?.node?.eventStartTime
-          ? parseISO(data?.node?.eventStartTime)
-          : null;
-        const endDate = data?.node?.eventEndTime
-          ? parseISO(data?.node?.eventEndTime)
-          : null;
+    onCompleted: data => {
+      const startDate = data?.node?.eventStartTime
+        ? parseISO(data?.node?.eventStartTime)
+        : null;
+      const endDate = data?.node?.eventEndTime
+        ? parseISO(data?.node?.eventEndTime)
+        : null;
 
-        if (startDate) setNowIsBefore(isBefore(new Date(), startDate));
-        if (endDate) {
-          setNowIsAfter(isAfter(new Date(), endDate));
+      if (startDate) setNowIsBefore(isBefore(new Date(), startDate));
+      if (endDate) {
+        setNowIsAfter(isAfter(new Date(), endDate));
 
-          /**
-           * If right now is more than 5 minutes out from the end of the stream, set the next refetch of data to be 5 minutes before the stream ends
-           */
-
-          if (differenceInSeconds(endDate, new Date()) >= fiveMins) {
-            const fiveMinsBeforeEnd = subSeconds(endDate, fiveMins);
-            setNextRefetch(
-              differenceInMilliseconds(fiveMinsBeforeEnd, new Date())
-            );
-          }
+        /**
+         * If right now is more than 5 minutes out from the end of the stream, set the next refetch of data to be 5 minutes before the stream ends
+         */
+        if (differenceInSeconds(endDate, new Date()) >= fiveMins) {
+          const fiveMinsBeforeEnd = subSeconds(endDate, fiveMins);
+          setNextRefetch(
+            differenceInMilliseconds(fiveMinsBeforeEnd, new Date())
+          );
         }
-      },
-    }) || {};
+      }
+    },
+  });
 
   // Effects
   useEffect(() => {
@@ -172,6 +170,11 @@ const useLiveStream = ({ liveStreamId }) => {
     };
   }, [nowIsBefore, nowIsAfter, data?.node]);
 
+  const __DEV_OVERRIDES__ = {
+    // isLive: false,
+    // isBefore: true,
+  };
+
   return {
     loading,
     error,
@@ -190,6 +193,7 @@ const useLiveStream = ({ liveStreamId }) => {
       endDate: data?.node?.eventEndTime
         ? parseISO(data?.node?.eventEndTime)
         : null,
+      ...__DEV_OVERRIDES__,
     },
   };
 };
