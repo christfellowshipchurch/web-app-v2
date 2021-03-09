@@ -14,6 +14,27 @@ export const GET_CONTENT_ITEM = gql`
             uri
           }
         }
+        childContentItemsConnection {
+          edges {
+            node {
+              title
+              summary
+              coverImage {
+                sources {
+                  uri
+                }
+              }
+              images {
+                sources {
+                  uri
+                }
+              }
+              parentChannel {
+                id
+              }
+            }
+          }
+        }
       }
     }
   }

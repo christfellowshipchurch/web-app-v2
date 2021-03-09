@@ -16,7 +16,7 @@ import { noop } from 'utils';
 export default function About() {
   const mainHeaderData = {
     src:
-      'https://s3-alpha-sig.figma.com/img/6659/ad92/fb04005f1cb2a3c1663476bb83aaefa9?Expires=1613347200&Signature=dESopVpCZusfI9PSgPkK0pXDH0mkr~Ljmg1nHAhZXAzTY2m0qbBowLrlZwujw2-PUB4UH8zx9XbbBhmbDpLRdUun4vqEYnBBZCfu4Jh5JTtQSoMz0Fvid7NNFrBnyGmjw2295keiWuB2SuhpR-9NZHTms2rb~DTFlWD3NBkW7dD3IuJkrx3zgY4qh-lu8Jp9KggGycs6w8A8ro1MxNe1ioVvgXrh1BqmTG7QsdxuCKYFhmFc2i4y8hQkESy12xXYwWsxMOz38IimxXayt5EZTP1VheiONT9cndx2YnsjdNy1Ip2a-GjE8YNzAqnQx3GbJtzJL0AMc6VJjIOWVuH5IQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
+      '/about/story.jpeg',
     title: 'LH Story',
     description: 'Lorem ipsum doler sit itmut del fal some big bold header.',
     details: 'Lorem ipsum doler sit itmut del fal some big bold header.',

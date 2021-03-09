@@ -15,14 +15,17 @@ import {
 } from 'components';
 import { Box, CardGrid, Heading, Text, theme } from 'ui-kit';
 import { addDays } from 'date-fns';
-import { noop } from 'utils';
+import { getChildrenByType, noop } from 'utils';
 import { initializeApollo } from 'lib/apolloClient';
 import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
+import IDS from 'config/ids';
 
 export default function Kids(props) {
-  const article = props.articles?.[0];
+  const pageChildren = props.page?.childContentItemsConnection?.edges;
+  const quotes = getChildrenByType(pageChildren, IDS.QUOTES);
+  const articles = getChildrenByType(pageChildren, IDS.ARTICLES);
   return (
-    <Layout title="Connect - Kids">
+    <Layout title={`Connect - ${props.page?.title}`}>
       <MainPhotoHeader
         src={props.page?.coverImage?.sources?.[0]?.uri}
         content={
@@ -34,7 +37,7 @@ export default function Kids(props) {
               fontWeight="800"
               textTransform="uppercase"
             >
-              LH Kids
+              {`LH ${props.page?.title}`}
             </Heading>
             <Heading
               color="neutrals.100"
@@ -63,16 +66,18 @@ export default function Kids(props) {
         breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
       >
         <ArticleLinks>
-          {Array.from(Array(6)).map(() => (
-            <ArticleLink
-              title={article?.title}
-              description="At Long Hollow Weekday Preschool, we are committed to creating a nurturing environment for preschoolers to grow."
-              url="/"
-              urlText="Learn More"
-              imageSrc={article?.coverImage?.sources?.[0]?.uri}
-              mb="s"
-            />
-          ))}
+          {articles.map(
+            ({ node: article }) =>(
+                <ArticleLink
+                  title={article.title}
+                  description={article.summary}
+                  url="/"
+                  urlText="Learn More"
+                  imageSrc={article.images?.[0]?.sources?.[0]?.uri}
+                  mb="s"
+                />
+              )
+          )}
         </ArticleLinks>
         <Box zIndex="2">
           <EventsCallout
@@ -141,48 +146,48 @@ export default function Kids(props) {
               },
             ]}
           />
-          <Quote
-            alignment="left"
-            color="quaternary"
-            title={
-              <Box display="flex">
-                <Heading
-                  color="quaternary"
+          {quotes?.[0] && (
+            <Quote
+              alignment="left"
+              color="quaternary"
+              title={
+                <Box display="flex">
+                  <Heading
+                    color="quaternary"
+                    fontSize="18px"
+                    lineHeight="27px"
+                    fontWeight="700"
+                  >
+                    LH&nbsp;
+                  </Heading>
+                  <Heading
+                    textTransform="uppercase"
+                    color="quaternary"
+                    fontSize="18px"
+                    lineHeight="27px"
+                    fontWeight="400"
+                  >
+                    Voluntary Story
+                  </Heading>
+                </Box>
+              }
+              attribution={quotes[0].node.title}
+              actionLabel="Full story"
+              actionLink="/"
+              text={
+                <Text
+                  lineHeight="h3"
                   fontSize="18px"
-                  lineHeight="27px"
-                  fontWeight="700"
+                  color="neutrals.900"
+                  opacity="60%"
+                  textAlign="left"
                 >
-                  LH&nbsp;
-                </Heading>
-                <Heading
-                  textTransform="uppercase"
-                  color="quaternary"
-                  fontSize="18px"
-                  lineHeight="27px"
-                  fontWeight="400"
-                >
-                  Voluntary Story
-                </Heading>
-              </Box>
-            }
-            attribution={props.quote?.attribution}
-            actionLabel="Full story"
-            actionLink="/"
-            text={
-              <Text
-                lineHeight="h3"
-                fontSize="18px"
-                color="neutrals.900"
-                opacity="60%"
-                textAlign="left"
-              >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit,
-                arcu consequat vestibulum amet. Velit nunc augue a blandit diam.
-                Malesuada eget faucibus amet hac.
-              </Text>
-            }
-            avatar={props.quote?.coverImage?.sources?.[0]?.uri}
-          />
+                  {quotes[0].node.summary}
+                </Text>
+              }
+              avatar={quotes[0].node.coverImage.sources?.[0]?.uri}
+            />
+          )}
         </CardGrid>
       </CardGrid>
       <CardGrid
@@ -291,25 +296,25 @@ export default function Kids(props) {
         />
       </CardGrid>
       <Box m="xl">
-        <Quote
-          color="quaternary"
-          attribution={props.quote?.attribution}
-          actionLabel="Full story"
-          actionLink="/lh-story-quote"
-          text={
-            <Heading
-              fontSize="xl"
-              lineHeight="xl"
-              fontWeight="600"
-              color="neutrals.900"
-            >
-              When trauma and loss left me adrift and disoriented, God provided
-              faithful believers to remind me that He is good, His Word can be
-              trusted, and He will never leave or forsake us.
-            </Heading>
-          }
-          avatar={props.quote?.coverImage?.sources?.[0]?.uri}
-        />
+        {quotes?.[1] && (
+          <Quote
+            color="quaternary"
+            attribution={quotes[1].attribution}
+            actionLabel="Full story"
+            actionLink="/lh-story-quote"
+            text={
+              <Heading
+                fontSize="xl"
+                lineHeight="xl"
+                fontWeight="600"
+                color="neutrals.900"
+              >
+                {quotes[1].summary}
+              </Heading>
+            }
+            avatar={quotes[1].coverImage?.sources?.[0]?.uri}
+          />
+        )}
       </Box>
       <MarketingHeadline
         px="184px"
@@ -343,30 +348,17 @@ export default function Kids(props) {
 export async function getServerSideProps() {
   const apolloClient = initializeApollo();
 
-  const pageResponse = await apolloClient.query({ query: GET_CONTENT_ITEM, variables: {
-    itemId: "UniversalContentItem:3d0cad78547aa696d2adb63ba094010b"
-  } });
-
-  const articleQueries = ['e07dbf80297d466a1a44ac37c6c8f261'].map(async (id) => {
-    const article = await apolloClient.query({ query: GET_CONTENT_ITEM, variables: {
-      itemId: `UniversalContentItem:${id}`
-    }});
-
-    return article?.data?.node;
+  const pageResponse = await apolloClient.query({
+    query: GET_CONTENT_ITEM,
+    variables: {
+      itemId: 'UniversalContentItem:3d0cad78547aa696d2adb63ba094010b',
+    },
   });
-
-  const articles = await Promise.all(articleQueries);
-
-  const quoteResponse = await apolloClient.query({ query: GET_CONTENT_ITEM, variables: {
-    itemId: "UniversalContentItem:2ad5fbc93b17ac149e740a7ee11a5329"
-  } });
 
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
       page: pageResponse?.data?.node,
-      articles,
-      quote: quoteResponse?.data?.node,
     },
   };
 }

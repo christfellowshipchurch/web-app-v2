@@ -4,22 +4,16 @@ import {
   MarketingHeadline,
   ValuesRow,
 } from 'components';
+import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
+import { initializeApollo } from 'lib/apolloClient';
 import { Box, CardGrid, Heading, Icon } from 'ui-kit';
 import { noop } from 'utils';
 
-export default function Baptism() {
-  const mainHeaderData = {
-    src:
-      'https://s3-alpha-sig.figma.com/img/091b/b983/74c95b9550a49519df5dfe5208a7ac95?Expires=1613347200&Signature=L7xO38zvPLY36Xocb3DM2VU2MJXKQVaD8UxcVBzyBFtKCE~~DBDye6KMNcZZPVkW-HtY8GrmXyWuLiGz~s1JyBVVvwl39odr0B4s6WwXu4HMKcMrNMQ6e5jpOyaV04GMAWnnGw4VS7Lgbx8aVoVBcEr8bVBZzAzCFn21TRlg0AAG-6811BLzJR87xVgatvk1WFU7F6WgjpW4od4X9jM6eA87H06IauSeu7DMiTPKmOTqFiqJcAfYc7D2NA4HzbuzwH1DR43~Dxl45Uw1mJy4kozSWpdFDYrCcOJvpiUe78eZ3I9oAatQDtI-OufO5-BLX3-boXQzPhEmzZymzPWI2A__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
-    title: 'LH Baptism',
-    description: 'Lorem ipsum doler sit itmut del fal some big bold header.',
-    details: 'Lorem ipsum doler sit itmut del fal some big bold header.',
-  };
-
+export default function Baptism(props) {
   return (
     <Layout title="Next Steps - Baptism" bg="bg_alt">
       <MainPhotoHeader
-        src={mainHeaderData.src}
+        src={props.page?.coverImage?.sources?.[0]?.uri}
         content={
           <Box position="absolute" left="97px" bottom="73px" maxWidth="440px">
             <Heading
@@ -28,23 +22,21 @@ export default function Baptism() {
               opacity="50%"
               fontWeight="800"
             >
-              {mainHeaderData.title}
+              {`LH ${props.page?.title}`}
             </Heading>
             <Heading
               color="neutrals.100"
               variant="h1"
               fontWeight="800"
               textTransform="uppercase"
-            >
-              {mainHeaderData.description}
+            >Lorem ipsum doler sit itmut del fal some big bold header.
             </Heading>
             <Heading
               color="neutrals.100"
               variant="h3"
               fontWeight="700"
               maxWidth="360px"
-            >
-              {mainHeaderData.details}
+            >Lorem ipsum doler sit itmut del fal some big bold header.
             </Heading>
           </Box>
         }
@@ -53,7 +45,7 @@ export default function Baptism() {
         <MarketingHeadline
           image={{
             src:
-              'https://s3-alpha-sig.figma.com/img/0f99/2372/92a308153196f78e3e371d567cf8c01e?Expires=1613347200&Signature=MaG~2sEFbpsPayiNCW9FQRBR7npDmL5Rt0hTeB1cgipLSy9-mJkkM7~V6FAuZY6pEk~ZUxcdW3d1ZYVGJCof5nqQZHt9~mEhqcjEsClXss1cDQxIG13IH0x4acX535UTFYHUPG9Bv5DILWHYTD~KeoeJURaHJ4dIlgb7wK0rp-BBdI-87QgzL-SaGvWHRio1vHYrKlFiOpS4Y9Cra13uGMvX5ffuZUn86xZnPNeBYHS4iFYS5gzJ8Z~lj5F8ESyXPaGrLppLQuwCSLS8Fgj-1xgEDDrAVDQ~gX13sxQeC2ESfN45dMTegczhd2ivxN9xCGWcupWRD9k4ThMLG0GR0Q__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
+              '/next-steps/baptize-01.png',
           }}
           title={
             <>
@@ -70,7 +62,7 @@ export default function Baptism() {
         <MarketingHeadline
           image={{
             src:
-              'https://s3-alpha-sig.figma.com/img/8688/4842/db5a433818ef7b5e55fd48645ee17c72?Expires=1613347200&Signature=OR6hPqBR3YSdLo7D0cGnO3S1IvIbU0ATpqW7XUUoaD9AdDDU5gw5Q4En8SQsiuNZhNoD8qUnid9UVdo3lAGGxrjJjL-E3OzESU-NAymuSgBh~Ke3j76Da4DERmRWFroo~jUqgiwQMHqB9T80zwkNG1cqHt3ZOg34Vs5VKm66RKkQadbuW7KRf~03QvtKNjz214WoAtsy8tFw29-06uaVT8Mb4ev3ziCumwyZA8GpMcHbP70Fvp3czEPTEibYRx3dFSqAZ75M7I5UvXu9YIonIeFKlRxd4chTkMywpHh1Bc05eVwVCDkCHvUHqJtuH5YPa~glmdKUENUJnFh3af57sg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
+              '/next-steps/baptize-02.jpeg',
           }}
           justify="right"
           title={
@@ -165,4 +157,19 @@ export default function Baptism() {
       </CardGrid>
     </Layout>
   );
+}
+
+export async function getServerSideProps() {
+  const apolloClient = initializeApollo();
+
+  const pageResponse = await apolloClient.query({ query: GET_CONTENT_ITEM, variables: {
+    itemId: "UniversalContentItem:e4a37c6d9d38958d23d986340fb1c129"
+  } });
+
+  return {
+    props: {
+      initialApolloState: apolloClient.cache.extract(),
+      page: pageResponse?.data?.node,
+    },
+  };
 }

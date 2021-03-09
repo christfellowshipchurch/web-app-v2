@@ -18,8 +18,6 @@ import { Box, CardGrid, Heading, Icon, Text, theme } from 'ui-kit';
 import VideoPlayer from 'components/VideoPlayer';
 import { useRouter } from 'next/router';
 import { addHours, addMinutes } from 'date-fns';
-import { initializeApollo } from 'lib/apolloClient';
-import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
 
 function DefaultMainPhotoHeader(props = {}) {
   const videoPlayers = [

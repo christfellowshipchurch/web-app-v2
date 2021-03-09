@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import HorizontalRow from './HorizontalRow';
 
-const ConnectTiles = () => {
+const ConnectTiles = (props) => {
   const router = useRouter();
   return (
     <HorizontalRow
@@ -11,11 +11,11 @@ const ConnectTiles = () => {
       items={[
         {
           src: '/home/kids.png',
-          action: () => router.push('/lh-kids'),
+          action: () => router.push('/connect/kids'),
         },
         {
           src: '/home/students.png',
-          action: () => router.push('/lh-students'),
+          action: () => router.push('/connect/students'),
         },
         {
           src: '/home/support.png',
@@ -27,13 +27,14 @@ const ConnectTiles = () => {
         },
         {
           src: '/home/watch-parties.png',
-          action: () => router.push('/watch-groups'),
+          action: () => router.push('/watch'),
         },
         {
           src: '/home/help.png',
           action: () => router.push('/get-give-help'),
         },
       ]}
+      {...props}
     />
   );
 };

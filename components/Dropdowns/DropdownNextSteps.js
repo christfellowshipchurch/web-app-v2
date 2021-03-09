@@ -15,7 +15,7 @@ export default function DropdownAbout() {
     <Box bg="bg" p="l">
       <CardGrid columns="3" gridColumnGap="base" mb="l">
         <Photo
-          src="https://s3-alpha-sig.figma.com/img/7c6e/6ecd/be76f176bb348ac07aa36e836250027f?Expires=1613347200&Signature=GXUKO1f28VIGEwFQIG7sEdxjmXaK21Uh3z1ScL5MkaGagARcdWEM7ylGuXXmm04Aqx305zGf49DGHYvx2hbXLQ78YsMfk~el1TOwNT60dLRQcKQSz6BzGJuhAe2aHQSdK4HdzKyarHHSt1DXCB2PIv3dp7ItcKsTpUa1uFXxl7Wr4~dGFFORpK42Jc5-Xekm7OuuOuX4IeMnVxNSt5VR~kHzboy7oijb98eJYpEj5kFvt14LB4qA4l4CQ2YwMjCVrdVUV6p5eN~MxvvjrG71HM1HpBuqnEIwwkdAu5Q8ZOlygs~oO7naD2Xjt7mEia6Vfjb7jBe7wXLUeZHmizfs6A__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+          src="/about/schedule.jpeg"
           height="223px"
           inner={
             <Heading fontWeight="600" variant="h2" color="white">
@@ -25,7 +25,7 @@ export default function DropdownAbout() {
           overlay={{ color: theme.colors.almost_black, opacity: '30%' }}
         />
         <Photo
-          src="https://s3-alpha-sig.figma.com/img/71f9/baf1/416afa39e8be322ed5155e0934ef0e5a?Expires=1613347200&Signature=a9N8VJeppVW4oT7ngmJMZHQB6TTk6-sgZXA~FolBWHNimOiUUpk1JJOFUp3HAJZ5DgZ0IxVJbeeJadf1HpJN39Pl31uTaoynrj6suHJCPJ4U0KWDcIWgr2agTf0LYqsszgqqJw9JIAylQblhY10PBabeY8jGXkiz7EKM5C-0BVts3hRLOkODFraqHlKnWUqnGTbZgFKlhJhCAFB~s7HXWDNUhE1D~v3Bfs-PulTElar-GoUvMAuoHbYdu05F0Ss2mk0CVl5j7YXKMsL2JhR3-zKSmNhM68vbWQ9Sq5g11aNwy9AypC4oSJWZGB-odRR50xU~o0aODeie9t0MV0quVQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+          src="/about/who.jpeg"
           height="223px"
           inner={
             <Heading fontWeight="600" variant="h2" color="white">

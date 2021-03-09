@@ -2,6 +2,7 @@ import cleanMarkup from './cleanMarkup';
 import createMarkup from './createMarkup';
 import formatPhoneNumber from './formatPhoneNumber';
 import getAge from './getAge';
+import getChildrenByType from './getChildrenByType';
 import getURLFromType from './getURLFromType';
 import noop from './noop';
 import normalizeUserData from './normalizeUserData';
@@ -16,6 +17,7 @@ export {
   createMarkup,
   formatPhoneNumber,
   getAge,
+  getChildrenByType,
   getURLFromType,
   noop,
   normalizeUserData,
