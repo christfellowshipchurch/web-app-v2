@@ -56,8 +56,8 @@ Live.propTypes = {
     isAfter: PropTypes.bool,
     startTime: PropTypes.string,
     endTime: PropTypes.string,
-    startDate: PropTypes.string,
-    endDate: PropTypes.string,
+    startDate: PropTypes.instanceOf(Date),
+    endDate: PropTypes.instanceOf(Date),
   }),
 };
 
