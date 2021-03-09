@@ -1,32 +1,53 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { ContentLayout, Video } from 'components';
+import { ContentLayout } from 'components';
 import { Box } from 'ui-kit';
 
+import PreLive from './PreLive';
+import Live from './Live';
+import PostLive from './PostLive';
+
 function LiveStreamSingle(props = {}) {
-  // const videoSrc = props.data?.media?.sources[0].uri;
+  if (props.metaData?.isLive) {
+    return <Live {...props} />;
+  }
 
-  // 👇 OVERRIDE FOR TESTING
-  const videoSrc =
-    'http://amssamples.streaming.mediaservices.windows.net/91492735-c523-432b-ba01-faba6c2206a2/AzureMediaServicesPromo.ism/manifest(format=m3u8-aapl)';
+  if (props.metaData?.isBefore) {
+    return <PreLive {...props} />;
+  }
 
+  if (props.metaData?.isAfter) {
+    return <PostLive {...props} />;
+  }
+
+  if (!props.data) {
+    return null;
+  }
+
+  // Most likely an error?
+  // Redirect to somewhere else ?
   return (
-    <>
-      <ContentLayout
-        title={props.data?.relatedNode?.title}
-        summary={props.data?.relatedNode?.summary}
-        renderA={() => (
-          <Box
-            mb="l"
-            background={`url(${props.data?.relatedNode?.coverImage?.sources[0]?.uri}) center center no-repeat`}
-            backgroundSize="cover"
-          >
-            <Video autoPlay={true} src={videoSrc} />
+    <ContentLayout
+      title={props.data?.relatedNode?.title}
+      summary={props.data?.relatedNode?.summary}
+      coverImage={props.data?.relatedNode?.coverImage?.sources[0]?.uri}
+      renderD={() => (
+        <Box>
+          <Box as="p" color="alert" mb="l">
+            ⚠️ Unhandled livestream state. It is not currently live, upcoming,
+            or recently ended.
+            <br />
+            This most likely means one or both of the <code>
+              start
+            </code> and <code>end</code> dates were <code>null</code>.
           </Box>
-        )}
-      />
-    </>
+          <Box as="pre" fontSize="xs">
+            {JSON.stringify(props, null, 2)}
+          </Box>
+        </Box>
+      )}
+    />
   );
 }
 
