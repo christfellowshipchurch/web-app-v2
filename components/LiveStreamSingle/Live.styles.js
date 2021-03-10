@@ -85,7 +85,7 @@ const LiveIndicator = styled.div`
   background-color: ${themeGet('colors.live')};
   border-radius: ${themeGet('radii.base')};
   font-size: ${themeGet('fontSizes.xs')};
-  font-weight: ${themeGet('fontWeights.extrabold')};
+  font-weight: ${themeGet('fontWeights.bold')};
   text-transform: uppercase;
   letter-spacing: 1px;
 

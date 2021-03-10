@@ -30,7 +30,6 @@ const theme = {
   fontWeights: {
     normal: 'normal',
     bold: 'bold',
-    extrabold: '800',
   },
   lineHeights: {
     base: '1.5',
