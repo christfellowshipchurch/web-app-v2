@@ -8,7 +8,7 @@ import Styled from './Footer.styles';
 function Footer(props = {}) {
   return (
     <Styled {...props}>
-      <Box bg="fg" color="white" p={{ _: 'base', md: 'l', lg: 'xl' }}>
+      <Box bg="screen" color="white" p={{ _: 'base', md: 'l', lg: 'xl' }}>
         <Cell>
           <Box
             display={{ lg: 'grid' }}
@@ -22,7 +22,7 @@ function Footer(props = {}) {
           </Box>
         </Cell>
       </Box>
-      <Box bg="white" p="xl" textAlign="center">
+      <Box bg="paper" p="xl" textAlign="center">
         <Cell>
           <Copyright />
         </Cell>

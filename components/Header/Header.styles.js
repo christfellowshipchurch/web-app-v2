@@ -4,10 +4,12 @@ import { themeGet } from '@styled-system/theme-get';
 import { system } from 'ui-kit';
 
 const Header = styled.header`
-  background-color: ${themeGet('colors.white')};
+  background-color: ${themeGet('colors.paper')};
+  color: ${themeGet('colors.fg')};
   box-shadow: ${themeGet('shadows.base')};
   align-items: center;
   justify-content: center;
+
   grid-template-columns: auto 1fr;
   padding: ${themeGet('space.base')};
 

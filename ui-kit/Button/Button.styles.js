@@ -44,7 +44,7 @@ const variant = ({ variant }) => props => {
 
   if (variant === 'chip') {
     return css`
-      background-color: ${themeGet('colors.screen')};
+      background-color: ${themeGet('colors.paper')};
       color: ${themeGet('colors.tertiary')};
       border-color: ${themeGet('colors.tertiary')};
 

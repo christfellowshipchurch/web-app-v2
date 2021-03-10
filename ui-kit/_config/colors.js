@@ -36,7 +36,7 @@ const colors = {
     live: RUBY,
     wordOfChrist: TUATARA,
 
-    screen: WHITE_SMOKE,
+    screen: TUATARA,
     paper: '#fff',
 
     black: '#000',
@@ -73,8 +73,8 @@ const colors = {
     live: RUBY,
     wordOfChrist: TUATARA,
 
-    screen: TUATARA,
-    paper: BATTLESHIP,
+    screen: '#111010',
+    paper: '#202021',
 
     black: '#000',
     white: '#fff',
