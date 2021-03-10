@@ -16,8 +16,8 @@ function Layout(props = {}) {
           <Cell
             as="main"
             maxWidth={props.contentMaxWidth}
-            px="base"
-            py={{ _: 'l', lg: props.contentVerticalPadding }}
+            px={props.contentHorizontalPadding}
+            py={props.contentVerticalPadding}
           >
             {props.children}
           </Cell>
@@ -36,13 +36,21 @@ Layout.propTypes = {
     PropTypes.node,
   ]),
   contentMaxWidth: PropTypes.string,
-  contentVerticalPadding: PropTypes.string,
+  contentHorizontalPadding: PropTypes.oneOfType(
+    PropTypes.string,
+    PropTypes.object
+  ),
+  contentVerticalPadding: PropTypes.oneOfType(
+    PropTypes.string,
+    PropTypes.object
+  ),
   title: PropTypes.string,
 };
 
 Layout.defaultProps = {
   contentMaxWidth: DEFAULT_CONTENT_WIDTH,
-  contentVerticalPadding: 'xl',
+  contentHorizontalPadding: 'base',
+  contentVerticalPadding: { _: 'l', lg: 'xl' },
 };
 
 export default Layout;
