@@ -1,5 +1,4 @@
 import {
-  ArticleLinks,
   ArticleLink,
   Layout,
   MainPhotoHeader,
@@ -9,12 +8,36 @@ import {
   Quote,
 } from 'components';
 import { Box, CardGrid, Heading, Text } from 'ui-kit';
-import { noop } from 'utils';
+import { getChildrenByType, noop } from 'utils';
 import { initializeApollo } from 'lib/apolloClient';
 import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
+import IDS from 'config/ids';
 
 export default function Students(props) {
-  const article = props.articles?.[0];
+  const pageChildren = props.page?.childContentItemsConnection?.edges;
+  const quote = getChildrenByType(pageChildren, IDS.QUOTES)[0];
+  const articles = getChildrenByType(pageChildren, IDS.ARTICLES);
+
+  const explorations = articles.map(({ node: article }) => ({
+    title: article.title,
+    description: article.summary,
+    url: '/',
+    urlText: 'Learn More',
+    imageSrc: article.images?.[0]?.sources?.[0]?.uri,
+  }));
+
+  const exploreColumns = [[], []];
+
+  for (let i = 0; i < explorations.length; ++i) {
+    if (i < explorations.length / 2) {
+      exploreColumns[0].push(explorations[i]);
+    } else {
+      exploreColumns[1].push(explorations[i]);
+    }
+  }
+
+  const exploreRowCount = exploreColumns[0].length;
+
   return (
     <Layout title="Connect - Students">
       <MainPhotoHeader
@@ -56,30 +79,18 @@ export default function Students(props) {
         columns="2"
         breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
       >
-        <ArticleLinks>
-          {Array.from(Array(3)).map(() => (
-            <ArticleLink
-              title={article?.title}
-              description="At Long Hollow Weekday Preschool, we are committed to creating a nurturing environment for preschoolers to grow."
-              url="/"
-              urlText="Learn More"
-              imageSrc={article?.coverImage?.sources?.[0]?.uri}
-              mb="s"
-            />
-          ))}
-        </ArticleLinks>
-        <ArticleLinks>
-          {Array.from(Array(3)).map(() => (
-            <ArticleLink
-              title={article?.title}
-              description="At Long Hollow Weekday Preschool, we are committed to creating a nurturing environment for preschoolers to grow."
-              url="/"
-              urlText="Learn More"
-              imageSrc={article?.coverImage?.sources?.[0]?.uri}
-              mb="s"
-            />
-          ))}
-        </ArticleLinks>
+        {exploreColumns.map((exploreColumn, i) => (
+          <CardGrid
+            key={i}
+            gridRowGap="xs"
+            columns="1"
+            gridTemplateRows={`repeat(${exploreRowCount}, 1fr)`}
+          >
+            {exploreColumn.map((explore, j) => (
+              <ArticleLink key={i + j} {...explore} />
+            ))}
+          </CardGrid>
+        ))}
       </CardGrid>
       <CardGrid
         px="xxl"
@@ -95,7 +106,9 @@ export default function Students(props) {
         >
           <MarketingHeadline
             title={
-              <Heading color="neutrals.900" variant="h2" fontWeight="800">Student Resources.</Heading>
+              <Heading color="neutrals.900" variant="h2" fontWeight="800">
+                Student Resources.
+              </Heading>
             }
             supertitle="LH STUDENTS"
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit, arcu consequat vestibulum amet. Velit nunc augue a blandit diam. Malesuada eget faucibus amet hac aliquam aliquet neque in. Nam felis viverra ornare non tortor odio rhoncus."
@@ -131,7 +144,7 @@ export default function Students(props) {
                   lineHeight="27px"
                   fontWeight="400"
                 >
-                  Student Story
+                  {quote?.node?.title}
                 </Heading>
               </Box>
             }
@@ -146,12 +159,10 @@ export default function Students(props) {
                 opacity="60%"
                 textAlign="left"
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit,
-                arcu consequat vestibulum amet. Velit nunc augue a blandit diam.
-                Malesuada eget faucibus amet hac.
+                {quote?.node?.summary}
               </Text>
             }
-            avatar={props.quote?.coverImage?.sources?.[0]?.uri}
+            avatar={quote?.node?.coverImage?.sources?.[0]?.uri}
           />
         </CardGrid>
       </CardGrid>
@@ -219,31 +230,17 @@ export default function Students(props) {
 export async function getServerSideProps() {
   const apolloClient = initializeApollo();
 
-  const pageResponse = await apolloClient.query({ query: GET_CONTENT_ITEM, variables: {
-    itemId: "UniversalContentItem:f43f7c114373a624608817e080e2f114"
-  } });
-
-  const articleQueries = ['e07dbf80297d466a1a44ac37c6c8f261'].map(async (id) => {
-    const article = await apolloClient.query({ query: GET_CONTENT_ITEM, variables: {
-      itemId: `UniversalContentItem:${id}`
-    }});
-
-    return article?.data?.node;
+  const pageResponse = await apolloClient.query({
+    query: GET_CONTENT_ITEM,
+    variables: {
+      itemId: 'UniversalContentItem:f43f7c114373a624608817e080e2f114',
+    },
   });
-
-  const articles = await Promise.all(articleQueries);
-
-  const quoteResponse = await apolloClient.query({ query: GET_CONTENT_ITEM, variables: {
-    itemId: "UniversalContentItem:2ad5fbc93b17ac149e740a7ee11a5329"
-  } });
-
 
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
       page: pageResponse?.data?.node,
-      articles,
-      quote: quoteResponse?.data?.node,
     },
   };
 }
