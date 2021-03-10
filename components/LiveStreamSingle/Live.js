@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { format } from 'date-fns';
 
-import { ContentLayout, Video } from 'components';
-import { Box } from 'ui-kit';
+import { Video } from 'components';
+import { Box, Loader } from 'ui-kit';
+
+import Styled from './Live.styles';
 
 function Live(props = {}) {
   const videoSrc = props.data?.media?.sources[0].uri;
@@ -10,40 +13,35 @@ function Live(props = {}) {
   // 👇 OVERRIDE FOR TESTING
   // const videoSrc =
   //   'http://amssamples.streaming.mediaservices.windows.net/91492735-c523-432b-ba01-faba6c2206a2/AzureMediaServicesPromo.ism/manifest(format=m3u8-aapl)';
+  if (props.loading) {
+    return (
+      <Box display="flex" flexDirection="row" justifyContent="center" my="xxl">
+        <Loader />
+      </Box>
+    );
+  }
+  console.log('props:', props);
 
   return (
-    <ContentLayout
-      title={props.data?.relatedNode?.title}
-      summary={props.data?.relatedNode?.summary}
-      renderA={() => (
-        <Box
-          mb="l"
-          background={`url(${props.data?.relatedNode?.coverImage?.sources[0]?.uri}) center center no-repeat`}
-          backgroundSize="cover"
-        >
-          <Video src={videoSrc} />
+    <Styled.Container>
+      <Styled.Video>
+        <Video src={videoSrc} autoPlay={false} muted={true} />
+      </Styled.Video>
+      <Styled.MastHead>
+        <Box as="h1">{props.data.relatedNode?.title}</Box>
+        {props.data.relatedNode?.summary && (
+          <Box as="h3">{props.data.relatedNode?.summary}</Box>
+        )}
+        <Box as="p" color="black">
+          Starts: {format(props.metaData?.startDate, "EEEE M/dd 'at' H:mm a")}
+          <br />
+          Ends: {format(props.metaData?.startDate, "EEEE M/dd 'at' H:mm a")}
         </Box>
-      )}
-      renderC={() => (
-        <Box
-          as="h4"
-          display="inline-block"
-          bg="live"
-          color="white"
-          px="s"
-          borderRadius="s"
-          fontWeight="bold"
-        >
-          Live Now
-        </Box>
-      )}
-      renderD={() => (
-        <Box as="pre" fontSize="s">
-          {JSON.stringify(props.data, null, 2)}
-          {JSON.stringify(props.metaData, null, 2)}
-        </Box>
-      )}
-    />
+      </Styled.MastHead>
+      <Styled.Chat>
+        <h1>Chat</h1>
+      </Styled.Chat>
+    </Styled.Container>
   );
 }
 
