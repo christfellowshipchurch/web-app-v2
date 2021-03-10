@@ -30,14 +30,17 @@ const Video = styled.div`
 
 const MastHead = styled.div`
   grid-area: mastHead;
-  background: rgba(255, 128, 0, 0.45);
   padding: ${themeGet('space.base')};
   padding-bottom: ${themeGet('space.xxl')};
 `;
 
 const Chat = styled.div`
   grid-area: chat;
-  background: purple;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  border: 1px orange dashed;
   padding: ${themeGet('space.base')};
   padding-bottom: ${themeGet('space.xxl')};
 `;

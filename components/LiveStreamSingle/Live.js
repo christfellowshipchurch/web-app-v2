@@ -32,7 +32,7 @@ function Live(props = {}) {
         {props.data.relatedNode?.summary && (
           <Box as="h3">{props.data.relatedNode?.summary}</Box>
         )}
-        <Box as="p" color="black">
+        <Box as="p" color="subdued">
           Starts: {format(props.metaData?.startDate, "EEEE M/dd 'at' H:mm a")}
           <br />
           Ends: {format(props.metaData?.startDate, "EEEE M/dd 'at' H:mm a")}
