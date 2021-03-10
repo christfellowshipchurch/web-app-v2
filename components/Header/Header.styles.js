@@ -9,7 +9,6 @@ const Header = styled.header`
   box-shadow: ${themeGet('shadows.base')};
   align-items: center;
   justify-content: center;
-
   grid-template-columns: auto 1fr;
   padding: ${themeGet('space.base')};
 
