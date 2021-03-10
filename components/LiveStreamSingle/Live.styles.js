@@ -100,6 +100,7 @@ const Details = styled.div`
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     display: block;
+    padding: 0 ${themeGet('space.base')};
     padding-bottom: ${themeGet('space.xxl')};
     margin-bottom: ${themeGet('space.xxl')};
   }
