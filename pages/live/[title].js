@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import { useRouter } from 'next/router';
 
 import { initializeApollo } from 'lib/apolloClient';
 import { slugify } from 'utils';
@@ -9,11 +8,13 @@ import { GET_LIVE_STREAMS } from 'hooks/useLiveStreamsQuery';
 import { Layout, LiveStreamSingle } from 'components';
 
 export default function LiveStream(props) {
-  const router = useRouter();
-  const { title } = router.query;
-
   return (
-    <Layout title={title}>
+    <Layout
+      title={props.liveStreamTitle}
+      contentMaxWidth="100%"
+      contentVerticalPadding="0"
+      contentHorizontalPadding="0"
+    >
       <LiveStreamProvider
         Component={LiveStreamSingle}
         options={{ liveStreamId: props.liveStreamId }}
@@ -50,6 +51,7 @@ export async function getStaticProps(context) {
     props: {
       initialApolloState: apolloClient.cache.extract(),
       liveStreamId: matchedLiveStream.id,
+      liveStreamTitle: matchedLiveStream.relatedNode?.title,
     },
     revalidate: 1,
   };
