@@ -4,6 +4,7 @@ import CampusesProvider from './CampusesProvider';
 import CommunitiesProvider from './CommunitiesProvider';
 import ContentFeedProvider from './ContentFeedProvider';
 import ContentItemProvider from './ContentItemProvider';
+import ContentItemsSearchProvider from './ContentItemsSearchProvider';
 import CurrentPersonProvider from './CurrentPersonProvider';
 import CurrentUserProvider from './CurrentUserProvider';
 import EventProvider from './EventProvider';
@@ -25,6 +26,7 @@ export {
   CommunitiesProvider,
   ContentFeedProvider,
   ContentItemProvider,
+  ContentItemsSearchProvider,
   CurrentPersonProvider,
   CurrentUserProvider,
   EventProvider,
