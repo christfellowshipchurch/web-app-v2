@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
 import { system } from 'ui-kit';
@@ -12,26 +12,98 @@ const Container = styled.div`
   grid-template-areas:
     'video'
     'mastHead'
+    'details'
     'chat';
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     grid-template-areas:
       'video chat'
-      'mastHead chat';
+      'mastHead chat'
+      'details details';
     grid-template-columns: 75fr 25fr;
   }
 
   ${system}
 `;
 
+const videoPoster = css`
+  & video {
+    background-size: cover;
+  }
+`;
+
+const videoContainer = css`
+  /*
+  Clumsy way to force 16/9 aspect ratio on shaka player.
+  Some issue makes iOS / Safari add tons of space vertically
+  around the video, and poster images break the aspect ratio
+  during loading regardless if they're not 16/9.
+  */
+  & > .shaka-video-container {
+    /* Assumes 16/9 aspect ratio in full width/bleed player container */
+    height: 56.25vw;
+  }
+
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    & > .shaka-video-container {
+      /*
+      Assumes 16/9 aspect ratio in whatever the grid area width is.
+      Ex:
+        Grid width: 100vw
+        Grid Video area width: 75fr (75vw)
+        Height: (16/9) / 75vw = 42.1875vw
+      */
+      height: 42.1875vw;
+    }
+  }
+`;
+
 const Video = styled.div`
   grid-area: video;
+
+  ${videoPoster}
+  ${videoContainer}
 `;
 
 const MastHead = styled.div`
   grid-area: mastHead;
+  display: flex;
+  flex-direction: column-reverse;
   padding: ${themeGet('space.base')};
-  padding-bottom: ${themeGet('space.xxl')};
+
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: ${themeGet('space.l')} ${themeGet('space.base')};
+  }
+`;
+
+const LiveIndicator = styled.div`
+  display: inline-block;
+  padding: 0 ${themeGet('space.s')};
+  margin-top: ${themeGet('space.s')};
+  margin-bottom: ${themeGet('space.s')};
+  background-color: ${themeGet('colors.live')};
+  border-radius: ${themeGet('radii.base')};
+  font-size: ${themeGet('fontSizes.s')};
+  font-weight: ${themeGet('fontWeights.bold')};
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    padding: 0 ${themeGet('space.base')};
+    font-size: ${themeGet('fontSizes.base')};
+  }
+`;
+
+const Details = styled.div`
+  padding: 0 ${themeGet('space.base')};
+  margin-bottom: ${themeGet('space.l')};
+
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    padding-bottom: ${themeGet('space.xxl')};
+    margin-bottom: ${themeGet('space.xxl')};
+  }
 `;
 
 const Chat = styled.div`
@@ -48,6 +120,8 @@ const Chat = styled.div`
 Live.Container = Container;
 Live.Video = Video;
 Live.MastHead = MastHead;
+Live.LiveIndicator = LiveIndicator;
+Live.Details = Details;
 Live.Chat = Chat;
 
 export default Live;

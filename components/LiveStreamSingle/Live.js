@@ -25,10 +25,24 @@ function Live(props = {}) {
   return (
     <Styled.Container>
       <Styled.Video>
-        <Video src={videoSrc} autoPlay={false} muted={true} />
+        <Video
+          src={videoSrc}
+          autoPlay={true}
+          muted={true}
+          poster={props.data?.relatedNode?.coverImage?.sources[0]?.uri}
+          playsInline={true}
+          controls={false}
+        />
       </Styled.Video>
       <Styled.MastHead>
-        <Box as="h1">{props.data.relatedNode?.title}</Box>
+        <Box mr="s">
+          <Box as="h1">{props.data.relatedNode?.title}</Box>
+        </Box>
+        <Box>
+          <Styled.LiveIndicator>Live</Styled.LiveIndicator>
+        </Box>
+      </Styled.MastHead>
+      <Styled.Details>
         {props.data.relatedNode?.summary && (
           <Box as="h3">{props.data.relatedNode?.summary}</Box>
         )}
@@ -37,7 +51,7 @@ function Live(props = {}) {
           <br />
           Ends: {format(props.metaData?.startDate, "EEEE M/dd 'at' H:mm a")}
         </Box>
-      </Styled.MastHead>
+      </Styled.Details>
       <Styled.Chat>
         <h1>Chat</h1>
       </Styled.Chat>
