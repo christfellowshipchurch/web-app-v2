@@ -20,18 +20,15 @@ function Live(props = {}) {
       </Box>
     );
   }
-  console.log('props:', props);
 
   return (
     <Styled.Container>
       <Styled.Video>
         <Video
           src={videoSrc}
-          autoPlay={true}
-          muted={true}
           poster={props.data?.relatedNode?.coverImage?.sources[0]?.uri}
+          autoPlay={true}
           playsInline={true}
-          controls={false}
         />
       </Styled.Video>
       <Styled.MastHead>
