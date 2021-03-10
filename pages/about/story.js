@@ -11,37 +11,29 @@ import {
   ValuesRow,
 } from 'components';
 import { Box, CardGrid, Heading, theme } from 'ui-kit';
-import { noop } from 'utils';
+import { getChildrenByType, noop } from 'utils';
+import { initializeApollo } from 'lib/apolloClient';
+import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
+import IDS from 'config/ids';
 
-export default function About() {
+export default function Story(props) {
   const mainHeaderData = {
-    src:
-      '/about/story.jpeg',
-    title: 'LH Story',
+    src: props.page?.coverImage?.sources?.[0]?.uri,
+    title: `LH ${props.page?.title}`,
     description: 'Lorem ipsum doler sit itmut del fal some big bold header.',
     details: 'Lorem ipsum doler sit itmut del fal some big bold header.',
   };
 
-  const articleLinks = [
-    {
-      title: 'Our Mission and Values',
-      description:
-        'We exist to be disciples who make disciples of all nations.',
+  const pageChildren = props.page?.childContentItemsConnection?.edges;
+  const articles = getChildrenByType(pageChildren, IDS.ARTICLES);
+
+  const articleLinks = articles.map(({ node: article }) => ({
+      title: article.title,
+      description: article.summary,
       url: '/',
       urlText: 'Learn More',
-      imageSrc:
-        'https://s3-alpha-sig.figma.com/img/e4e0/182f/139c67a4b60d88a28db02f3033c9c8b9?Expires=1613347200&Signature=DqjKpIIpzMMfbizt4w3UYI-voiP7jCqz38ENTM3kzyWuzSCjQkBXTNHoY49XBKhB0ptClJSVM5PV2Nte77MC0LPXsfJPnSQwvlaEm-ahH8Shuj9uTnzoaps8qF1PO1~9CB46Enow4RKoAyCWOO1FQfMjGquRZAIzq0bAMrt0yNLdGgaAwa99mWD4XlhHXoK1GdToyodyUkIkAsDftoPKmo3HVB2soDrbKmjp8f709gaYEbtGYxIwWXJZpPBwAQvwm-bOES5j9l9qqVHTXMcjc0Gb2pORcoLBmxNc6WqAhisi4K-UHVjli9~7wNye0daKh20s8AQmZ-qvPuzDcyJeQQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
-    },
-    {
-      title: 'LH Stories',
-      description:
-        'Lorem ipsum doler sit itmut this is a title of this story article or news something or thing.',
-      url: '/',
-      urlText: 'RSVP',
-      imageSrc:
-        'https://s3-alpha-sig.figma.com/img/d8a9/c9c7/de8d0ddc23a069321a9db4194d978f82?Expires=1613347200&Signature=CypaDdT8o8kjLg4KQ2Qv9lCXuPByAdRMS7uKO~N1qyuPCvxOxY8JLxQp84sD3-cV3~NPAT20c-2bnoamql-~63OEscBCd3NfpP95ivobLbS9z~itPzeun3SGjzQjTC7oNoaT7beunr4PLZNe5mpUGfE27jkQl-uMb5kSHFWsMoeQFPj9--O~M6fk3ksO6DxA4HECNcNFeu~iPoGn2qNFdM~QC7MitXR~rIQ7GMpYe-6dYS8szNRGjlY78llxE93Z0qSA66pbkANpKqSzFkC1ipi~JoNk068pbnTe2oc2-ujC43pHSYWfBOEX4XoElMVZzrY2lh04rw6G1ogntpRz1g__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
-    },
-  ];
+      imageSrc: article.images?.[0]?.sources?.[0]?.uri,
+  }));
 
   const eventsData = {
     title: 'General LH Info',
@@ -231,4 +223,22 @@ export default function About() {
       </CardGrid>
     </Layout>
   );
+}
+
+export async function getServerSideProps() {
+  const apolloClient = initializeApollo();
+
+  const pageResponse = await apolloClient.query({
+    query: GET_CONTENT_ITEM,
+    variables: {
+      itemId: 'UniversalContentItem:16e8b0e37cd4106b15aff27d7470589a',
+    },
+  });
+
+  return {
+    props: {
+      initialApolloState: apolloClient.cache.extract(),
+      page: pageResponse?.data?.node,
+    },
+  };
 }

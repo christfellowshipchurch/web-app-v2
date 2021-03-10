@@ -1,11 +1,12 @@
 import { Layout, MainPhotoHeader, MarketingHeadline } from 'components';
+import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
+import { initializeApollo } from 'lib/apolloClient';
 import { Box, CardGrid, Heading, Text } from 'ui-kit';
 
-export default function About() {
+export default function Beliefs(props) {
   const mainHeaderData = {
-    src:
-      'https://www.figma.com/file/zlluMsbAFPmWX6Z50iG86s/image/71f9baf1416afa39e8be322ed5155e0934ef0e5a',
-    title: 'LH Beliefs',
+    src: props.page?.coverImage?.sources?.[0]?.uri,
+    title: `LH ${props.page?.title}`,
     description: 'Lorem ipsum doler sit itmut del fal some big bold header.',
     details: 'Lorem ipsum doler sit itmut del fal some big bold header.',
   };
@@ -250,4 +251,22 @@ export default function About() {
       </CardGrid>
     </Layout>
   );
+}
+
+export async function getServerSideProps() {
+  const apolloClient = initializeApollo();
+
+  const pageResponse = await apolloClient.query({
+    query: GET_CONTENT_ITEM,
+    variables: {
+      itemId: 'UniversalContentItem:bd6137b9fe13bf2b8efdaea3a9e1d107',
+    },
+  });
+
+  return {
+    props: {
+      initialApolloState: apolloClient.cache.extract(),
+      page: pageResponse?.data?.node,
+    },
+  };
 }
