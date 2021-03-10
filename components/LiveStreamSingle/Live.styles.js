@@ -10,9 +10,8 @@ const Container = styled.div`
   max-width: 100%;
   display: grid;
   grid-template-areas:
-    'video'
     'mastHead'
-    'details'
+    'video'
     'chat';
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
@@ -85,8 +84,8 @@ const LiveIndicator = styled.div`
   margin-bottom: ${themeGet('space.s')};
   background-color: ${themeGet('colors.live')};
   border-radius: ${themeGet('radii.base')};
-  font-size: ${themeGet('fontSizes.s')};
-  font-weight: ${themeGet('fontWeights.bold')};
+  font-size: ${themeGet('fontSizes.xs')};
+  font-weight: ${themeGet('fontWeights.extrabold')};
   text-transform: uppercase;
   letter-spacing: 1px;
 
@@ -97,10 +96,10 @@ const LiveIndicator = styled.div`
 `;
 
 const Details = styled.div`
-  padding: 0 ${themeGet('space.base')};
-  margin-bottom: ${themeGet('space.l')};
+  display: none;
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    display: block;
     padding-bottom: ${themeGet('space.xxl')};
     margin-bottom: ${themeGet('space.xxl')};
   }

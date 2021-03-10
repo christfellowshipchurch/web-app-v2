@@ -3,29 +3,16 @@ import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 
 import { Video } from 'components';
-import { Box, Loader } from 'ui-kit';
+import { Box } from 'ui-kit';
 
 import Styled from './Live.styles';
 
 function Live(props = {}) {
-  const videoSrc = props.data?.media?.sources[0].uri;
-
-  // 👇 OVERRIDE FOR TESTING
-  // const videoSrc =
-  //   'http://amssamples.streaming.mediaservices.windows.net/91492735-c523-432b-ba01-faba6c2206a2/AzureMediaServicesPromo.ism/manifest(format=m3u8-aapl)';
-  if (props.loading) {
-    return (
-      <Box display="flex" flexDirection="row" justifyContent="center" my="xxl">
-        <Loader />
-      </Box>
-    );
-  }
-
   return (
     <Styled.Container>
       <Styled.Video>
         <Video
-          src={videoSrc}
+          src={props.data?.media?.sources[0].uri}
           poster={props.data?.relatedNode?.coverImage?.sources[0]?.uri}
           autoPlay={true}
           playsInline={true}
@@ -33,7 +20,9 @@ function Live(props = {}) {
       </Styled.Video>
       <Styled.MastHead>
         <Box mr="s">
-          <Box as="h1">{props.data.relatedNode?.title}</Box>
+          <Box as="h1" fontSize={{ _: 'h3', md: 'h1' }}>
+            {props.data.relatedNode?.title}
+          </Box>
         </Box>
         <Box>
           <Styled.LiveIndicator>Live</Styled.LiveIndicator>
