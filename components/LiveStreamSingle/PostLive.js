@@ -2,16 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { ContentLayout } from 'components';
-import { Box } from 'ui-kit';
+import { Cell } from 'ui-kit';
 
 function PostLive(props = {}) {
   return (
-    <ContentLayout
-      title={props.data?.relatedNode?.title}
-      summary={props.data?.relatedNode?.summary}
-      coverImage={props.data?.relatedNode?.coverImage?.sources[0]?.uri}
-      renderD={() => <Box as="p">Thanks for Watching!</Box>}
-    />
+    <Cell px="base" pt={{ _: 'l', lg: 'xl' }}>
+      <ContentLayout
+        title={props.data?.relatedNode?.title}
+        summary={'Thanks for joining us!'}
+        coverImage={props.data?.relatedNode?.coverImage?.sources[0]?.uri}
+      />
+    </Cell>
   );
 }
 

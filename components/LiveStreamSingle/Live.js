@@ -1,49 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { format } from 'date-fns';
 
-import { ContentLayout, Video } from 'components';
-import { Box } from 'ui-kit';
+import { Video } from 'components';
+import { Box, LiveIndicator } from 'ui-kit';
+
+import Styled from './Live.styles';
 
 function Live(props = {}) {
-  const videoSrc = props.data?.media?.sources[0].uri;
-
-  // 👇 OVERRIDE FOR TESTING
-  // const videoSrc =
-  //   'http://amssamples.streaming.mediaservices.windows.net/91492735-c523-432b-ba01-faba6c2206a2/AzureMediaServicesPromo.ism/manifest(format=m3u8-aapl)';
-
   return (
-    <ContentLayout
-      title={props.data?.relatedNode?.title}
-      summary={props.data?.relatedNode?.summary}
-      renderA={() => (
-        <Box
-          mb="l"
-          background={`url(${props.data?.relatedNode?.coverImage?.sources[0]?.uri}) center center no-repeat`}
-          backgroundSize="cover"
-        >
-          <Video src={videoSrc} />
+    <Styled.Container>
+      <Styled.Video>
+        <Video
+          src={props.data?.media?.sources[0].uri}
+          poster={props.data?.relatedNode?.coverImage?.sources[0]?.uri}
+          autoPlay={true}
+          playsInline={true}
+        />
+      </Styled.Video>
+      <Styled.MastHead>
+        <Box mr="s">
+          <Box as="h1" fontSize={{ _: 'h3', md: 'h1' }}>
+            {props.data.relatedNode?.title}
+          </Box>
         </Box>
-      )}
-      renderC={() => (
-        <Box
-          as="h4"
-          display="inline-block"
-          bg="live"
-          color="white"
-          px="s"
-          borderRadius="s"
-          fontWeight="bold"
-        >
-          Live Now
+        <Box>
+          <LiveIndicator />
         </Box>
-      )}
-      renderD={() => (
-        <Box as="pre" fontSize="s">
-          {JSON.stringify(props.data, null, 2)}
-          {JSON.stringify(props.metaData, null, 2)}
-        </Box>
-      )}
-    />
+      </Styled.MastHead>
+      <Styled.Details>
+        {props.data.relatedNode?.summary && (
+          <Box as="h3">{props.data.relatedNode?.summary}</Box>
+        )}
+      </Styled.Details>
+      <Styled.Chat>
+        <h1>Chat</h1>
+      </Styled.Chat>
+    </Styled.Container>
   );
 }
 
@@ -56,8 +49,8 @@ Live.propTypes = {
     isAfter: PropTypes.bool,
     startTime: PropTypes.string,
     endTime: PropTypes.string,
-    startDate: PropTypes.string,
-    endDate: PropTypes.string,
+    startDate: PropTypes.instanceOf(Date),
+    endDate: PropTypes.instanceOf(Date),
   }),
 };
 
