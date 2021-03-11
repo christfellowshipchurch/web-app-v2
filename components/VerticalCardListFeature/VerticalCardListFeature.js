@@ -39,7 +39,7 @@ function VerticalCardListFeature(props = {}) {
     <>
       <CustomLink
         as="a"
-        href={getURLFromType(heroCard.relatedNode, heroCard?.title)}
+        href={getURLFromType(heroCard?.relatedNode, heroCard?.title)}
         Component={DefaultCard}
         coverImage={heroCard?.coverImage?.sources[0]?.uri}
         coverImageTitle={heroCard?.title}
