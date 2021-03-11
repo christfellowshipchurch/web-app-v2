@@ -3,28 +3,23 @@ import { format } from 'date-fns';
 import { useLiveStreamsQuery } from 'hooks';
 import { slugify, parseLiveStreamDates } from 'utils';
 
-import { Box, DefaultCard } from 'ui-kit';
+import { Box, CardGrid, HorizontalHighlightCard } from 'ui-kit';
 import { CustomLink, Layout } from 'components';
 
 function getDescription(liveStream) {
   const parsed = parseLiveStreamDates(liveStream);
 
   let startFormatted = parsed.startDate
-    ? format(parsed.startDate, `EEE M/dd 'from' h:mm a`)
+    ? format(parsed.startDate, `EEEE, MMMM dd 'at' h:mm a`)
     : 'null';
 
-  let endFormatted = parsed.endDate ? format(parsed.endDate, `h:mm a`) : 'null';
-  let status;
-
   if (parsed.isBefore) {
-    status = 'Upcoming';
+    return `${startFormatted}`;
   } else if (liveStream.isLive) {
-    status = 'LIVE';
+    return 'LIVE';
   } else if (parsed.isAfter) {
-    status = 'After';
+    return 'Just ended';
   }
-
-  return `DATE: ${startFormatted} – ${endFormatted} (${status})`;
 }
 
 export default function Live() {
@@ -33,30 +28,28 @@ export default function Live() {
   return (
     <Layout title="Live">
       <Box as="h1" mb="l">
-        LiveStreams
+        Live Events
       </Box>
-      <Box display="grid" gridTemplateColumns={{ __: '1fr', md: '1fr 1fr' }}>
-        {!liveStreamsData.length && <Box as="p">No livestreams</Box>}
-        {liveStreamsData.length &&
-          liveStreamsData.map(liveStream => {
+      {!liveStreamsData.length && <Box as="p">No livestreams</Box>}
+      {liveStreamsData.length && (
+        <CardGrid columns="2" mb="xl">
+          {liveStreamsData.map(liveStream => {
             return (
               <CustomLink
                 key={liveStream.id}
                 as="a"
                 href={`/live/${slugify(liveStream.relatedNode?.title)}`}
-                Component={DefaultCard}
+                Component={HorizontalHighlightCard}
                 coverImage={liveStream.relatedNode?.coverImage?.sources[0]?.uri}
+                title={liveStream.relatedNode?.title}
+                description={getDescription(liveStream)}
                 coverImageOverlay={true}
-                coverImageTitle={liveStream.relatedNode?.title}
-                coverImageDescription={getDescription(liveStream)}
-                m="base"
-                display="block"
-                height={{ __: 256, md: 384 }}
-                maxWidth={{ __: 384, md: 512 }}
+                type="HIGHLIGHT_SMALL"
               />
             );
           })}
-      </Box>
+        </CardGrid>
+      )}
     </Layout>
   );
 }
