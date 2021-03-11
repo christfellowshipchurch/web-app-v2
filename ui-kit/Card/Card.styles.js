@@ -26,14 +26,32 @@ const link = ({ as }) => props => {
   }
 };
 
+const scaleLink = ({ scaleCard }) => props => {
+  if (scaleCard === false) {
+    return css`
+      &:focus,
+      &:hover {
+        box-shadow: none;
+        transform: none;
+      }
+
+      &:active {
+        transform: none;
+      }
+    `;
+  }
+};
+
 const Card = styled.div`
   background-color: ${themeGet('colors.white')};
   border-radius: ${themeGet('radii.base')};
   box-shadow: ${themeGet('shadows.xl')};
   color: ${themeGet('colors.fg')};
   display: block;
+  overflow: ${props => (props.scaleCoverImage ? 'hidden' : 'initial')};
 
   ${link}
+  ${scaleLink}
   ${system}
 `;
 
@@ -88,6 +106,26 @@ const overlay = ({ overlay }) => props => {
   }
 };
 
+const scaleCover = ({ scaleCoverImage }) => props => {
+  if (scaleCoverImage) {
+    return css`
+      transform: scale(1);
+      transition: 0.2s ease-in-out;
+
+      &:focus,
+      &:hover {
+        transform: scale(1.02);
+        transition: 0.2s ease-out;
+      }
+
+      &:active {
+        transform: scale(1);
+        transition: 0.2s ease-out;
+      }
+    `;
+  }
+};
+
 const Cover = styled.div`
   align-items: flex-end;
   background-color: ${themeGet('colors.fg')};
@@ -102,6 +140,7 @@ const Cover = styled.div`
 
   ${content}
   ${overlay}
+  ${scaleCover}
   ${system}
 `;
 
