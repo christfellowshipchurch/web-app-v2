@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
 import { system } from 'ui-kit';
@@ -25,13 +25,14 @@ const Container = styled.div`
   ${system}
 `;
 
-const videoPoster = css`
+const Video = styled.div`
+  grid-area: video;
+
+  /* Fix poster image sizing */
   & video {
     background-size: cover;
   }
-`;
 
-const videoContainer = css`
   /*
   Clumsy way to force 16/9 aspect ratio on shaka player.
   Some issue makes iOS / Safari add tons of space vertically
@@ -55,13 +56,6 @@ const videoContainer = css`
       height: 42.1875vw;
     }
   }
-`;
-
-const Video = styled.div`
-  grid-area: video;
-
-  ${videoPoster}
-  ${videoContainer}
 `;
 
 const MastHead = styled.div`
