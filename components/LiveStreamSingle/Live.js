@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { format } from 'date-fns';
 
 import { Video } from 'components';
 import { Box, LiveIndicator } from 'ui-kit';
@@ -19,13 +18,11 @@ function Live(props = {}) {
         />
       </Styled.Video>
       <Styled.MastHead>
-        <Box mr="s">
-          <Box as="h1" fontSize={{ _: 'h3', md: 'h1' }}>
-            {props.data.relatedNode?.title}
-          </Box>
-        </Box>
-        <Box>
+        <Styled.LiveIndicatorContainer>
           <LiveIndicator />
+        </Styled.LiveIndicatorContainer>
+        <Box>
+          <Styled.Title>{props.data.relatedNode?.title}</Styled.Title>
         </Box>
       </Styled.MastHead>
       <Styled.Details>

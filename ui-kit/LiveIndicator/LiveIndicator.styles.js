@@ -4,10 +4,8 @@ import { themeGet } from '@styled-system/theme-get';
 import { system } from 'ui-kit';
 
 const LiveIndicator = styled.div`
-  display: inline-block;
+  display: block;
   padding: 0 ${themeGet('space.s')};
-  margin-top: ${themeGet('space.s')};
-  margin-bottom: ${themeGet('space.s')};
   color: ${themeGet('colors.white')};
   background-color: ${themeGet('colors.live')};
   border-radius: ${themeGet('radii.base')};
@@ -17,7 +15,7 @@ const LiveIndicator = styled.div`
   letter-spacing: 1px;
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-    padding: 0 ${themeGet('space.base')};
+    padding: ${themeGet('space.xs')} ${themeGet('space.base')};
     font-size: ${themeGet('fontSizes.base')};
   }
 

@@ -61,31 +61,35 @@ const Video = styled.div`
 const MastHead = styled.div`
   grid-area: mastHead;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   padding: ${themeGet('space.base')};
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     flex-direction: row;
-    justify-content: space-between;
-    padding: ${themeGet('space.l')} ${themeGet('space.base')};
+    padding: ${themeGet('space.base')} ${themeGet('space.base')};
+    margin-bottom: ${themeGet('space.l')};
   }
 `;
 
-const LiveIndicator = styled.div`
-  display: inline-block;
-  padding: 0 ${themeGet('space.s')};
-  margin-top: ${themeGet('space.s')};
-  margin-bottom: ${themeGet('space.s')};
-  background-color: ${themeGet('colors.live')};
-  border-radius: ${themeGet('radii.base')};
-  font-size: ${themeGet('fontSizes.xs')};
-  font-weight: ${themeGet('fontWeights.bold')};
-  text-transform: uppercase;
-  letter-spacing: 1px;
+const LiveIndicatorContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-right: ${themeGet('space.base')};
+  margin-bottom: ${themeGet('space.xs')};
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-    padding: 0 ${themeGet('space.base')};
-    font-size: ${themeGet('fontSizes.base')};
+    margin-bottom: 0;
+  }
+`;
+
+const Title = styled.h1`
+  font-size: ${themeGet('fontSizes.h3')};
+  margin-bottom: 0;
+
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    font-size: ${themeGet('fontSizes.h1')};
   }
 `;
 
@@ -114,7 +118,8 @@ const Chat = styled.div`
 Live.Container = Container;
 Live.Video = Video;
 Live.MastHead = MastHead;
-Live.LiveIndicator = LiveIndicator;
+Live.LiveIndicatorContainer = LiveIndicatorContainer;
+Live.Title = Title;
 Live.Details = Details;
 Live.Chat = Chat;
 
