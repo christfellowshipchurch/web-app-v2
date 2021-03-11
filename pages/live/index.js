@@ -3,7 +3,7 @@ import { format } from 'date-fns';
 import { useLiveStreamsQuery } from 'hooks';
 import { slugify, parseLiveStreamDates } from 'utils';
 
-import { Box, CardGrid, HorizontalHighlightCard } from 'ui-kit';
+import { Box, CardGrid, DefaultCard } from 'ui-kit';
 import { CustomLink, Layout } from 'components';
 
 function getDescription(liveStream) {
@@ -40,13 +40,12 @@ export default function Live() {
                 key={liveStream.id}
                 as="a"
                 href={`/live/${slugify(liveStream.relatedNode?.title)}`}
-                Component={HorizontalHighlightCard}
+                Component={DefaultCard}
                 coverImage={liveStream.relatedNode?.coverImage?.sources[0]?.uri}
                 title={liveStream.relatedNode?.title}
                 description={getDescription(liveStream)}
-                coverImageOverlay={true}
-                type="HIGHLIGHT_SMALL"
-                live={liveStream.isLive}
+                coverImageLabel={liveStream.isLive ? 'Live' : null}
+                coverImageLabelBgColor={liveStream.isLive ? 'live' : null}
               />
             );
           })}
