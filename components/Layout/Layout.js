@@ -36,14 +36,14 @@ Layout.propTypes = {
     PropTypes.node,
   ]),
   contentMaxWidth: PropTypes.string,
-  contentHorizontalPadding: PropTypes.oneOfType(
+  contentHorizontalPadding: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.object
-  ),
-  contentVerticalPadding: PropTypes.oneOfType(
+    PropTypes.object,
+  ]),
+  contentVerticalPadding: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.object
-  ),
+    PropTypes.object,
+  ]),
   title: PropTypes.string,
 };
 
