@@ -12,11 +12,12 @@ function getDescription(liveStream) {
   let startFormatted = parsed.startDate
     ? format(parsed.startDate, `EEEE, MMMM dd 'at' h:mm a`)
     : 'null';
+  let endFormatted = parsed.endDate ? format(parsed.endDate, `h:mm a`) : 'null';
 
   if (parsed.isBefore) {
     return `${startFormatted}`;
   } else if (liveStream.isLive) {
-    return 'LIVE';
+    return `Live now until ${endFormatted}`;
   } else if (parsed.isAfter) {
     return 'Just ended';
   }
@@ -45,6 +46,7 @@ export default function Live() {
                 description={getDescription(liveStream)}
                 coverImageOverlay={true}
                 type="HIGHLIGHT_SMALL"
+                live={liveStream.isLive}
               />
             );
           })}
