@@ -16,9 +16,21 @@ const Container = styled.div`
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     grid-template-areas:
-      'video chat'
+      'video video'
+      'mastHead chat'
+      'details chat';
+    grid-template-columns: 67fr 33fr;
+  }
+
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    grid-template-areas:
+      'video chat' /* Chat on right */
       'mastHead chat'
       'details details';
+    grid-template-columns: 67fr 33fr;
+  }
+
+  @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
     grid-template-columns: 75fr 25fr;
   }
 
@@ -41,19 +53,15 @@ const Video = styled.div`
   */
   & > .shaka-video-container {
     /* Assumes 16/9 aspect ratio in full width/bleed player container */
-    height: 56.25vw;
-  }
+    height: calc((9 / 16) * 100vw);
 
-  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-    & > .shaka-video-container {
-      /*
-      Assumes 16/9 aspect ratio in whatever the grid area width is.
-      Ex:
-        Grid width: 100vw
-        Grid Video area width: 75fr (75vw)
-        Height: (16/9) / 75vw = 42.1875vw
-      */
-      height: 42.1875vw;
+    /* Breakpoint adjustments must be in sync with root Container grid-template-columns.*/
+    @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+      height: calc((9 / 16) * 67vw);
+    }
+
+    @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
+      height: calc((9 / 16) * 75vw);
     }
   }
 `;
@@ -64,10 +72,9 @@ const MastHead = styled.div`
   flex-direction: column;
   padding: ${themeGet('space.base')};
 
-  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+  @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
     flex-direction: row;
-    padding: ${themeGet('space.base')} ${themeGet('space.base')};
-    margin-bottom: ${themeGet('space.l')};
+    padding: ${themeGet('space.l')} ${themeGet('space.base')};
   }
 `;
 
@@ -79,8 +86,25 @@ const LiveIndicatorContainer = styled.div`
   margin-right: ${themeGet('space.base')};
   margin-bottom: ${themeGet('space.xs')};
 
-  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+  @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
     margin-bottom: 0;
+  }
+`;
+
+const LiveIndicator = styled.div`
+  display: block;
+  padding: 0 ${themeGet('space.s')};
+  color: ${themeGet('colors.white')};
+  background-color: ${themeGet('colors.live')};
+  border-radius: ${themeGet('radii.base')};
+  font-size: ${themeGet('fontSizes.xs')};
+  font-weight: ${themeGet('fontWeights.bold')};
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    padding: ${themeGet('space.xs')} ${themeGet('space.base')};
+    font-size: ${themeGet('fontSizes.base')};
   }
 `;
 
@@ -89,6 +113,10 @@ const Title = styled.h1`
   margin-bottom: 0;
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    font-size: ${themeGet('fontSizes.h2')};
+  }
+
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     font-size: ${themeGet('fontSizes.h1')};
   }
 `;
@@ -119,6 +147,7 @@ Live.Container = Container;
 Live.Video = Video;
 Live.MastHead = MastHead;
 Live.LiveIndicatorContainer = LiveIndicatorContainer;
+Live.LiveIndicator = LiveIndicator;
 Live.Title = Title;
 Live.Details = Details;
 Live.Chat = Chat;

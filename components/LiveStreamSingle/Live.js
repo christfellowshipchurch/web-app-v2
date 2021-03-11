@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Video } from 'components';
-import { Box, LiveIndicator } from 'ui-kit';
+import { Box } from 'ui-kit';
 
 import Styled from './Live.styles';
 
@@ -19,7 +19,7 @@ function Live(props = {}) {
       </Styled.Video>
       <Styled.MastHead>
         <Styled.LiveIndicatorContainer>
-          <LiveIndicator />
+          <Styled.LiveIndicator>Live</Styled.LiveIndicator>
         </Styled.LiveIndicatorContainer>
         <Box>
           <Styled.Title>{props.data.relatedNode?.title}</Styled.Title>
@@ -27,7 +27,7 @@ function Live(props = {}) {
       </Styled.MastHead>
       <Styled.Details>
         {props.data.relatedNode?.summary && (
-          <Box as="h3">{props.data.relatedNode?.summary}</Box>
+          <Box as="p">{props.data.relatedNode?.summary}</Box>
         )}
       </Styled.Details>
       <Styled.Chat>
