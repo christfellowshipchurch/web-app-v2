@@ -22,6 +22,7 @@ import GroupCard from './GroupCard';
 import HorizontalHighlightCard from './HorizontalHighlightCard';
 import Icon from './Icon';
 import List from './List';
+import LiveIndicator from './LiveIndicator';
 import Loader from './Loader';
 import Longform from './Longform';
 import Menu from './Menu';
@@ -53,6 +54,7 @@ export {
   HorizontalHighlightCard,
   Icon,
   List,
+  LiveIndicator,
   Loader,
   Longform,
   Menu,

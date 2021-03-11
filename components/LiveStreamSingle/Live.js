@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 
 import { Video } from 'components';
-import { Box } from 'ui-kit';
+import { Box, LiveIndicator } from 'ui-kit';
 
 import Styled from './Live.styles';
 
@@ -25,18 +25,13 @@ function Live(props = {}) {
           </Box>
         </Box>
         <Box>
-          <Styled.LiveIndicator>Live</Styled.LiveIndicator>
+          <LiveIndicator />
         </Box>
       </Styled.MastHead>
       <Styled.Details>
         {props.data.relatedNode?.summary && (
           <Box as="h3">{props.data.relatedNode?.summary}</Box>
         )}
-        <Box as="p" color="subdued">
-          Starts: {format(props.metaData?.startDate, "EEEE M/dd 'at' H:mm a")}
-          <br />
-          Ends: {format(props.metaData?.startDate, "EEEE M/dd 'at' H:mm a")}
-        </Box>
       </Styled.Details>
       <Styled.Chat>
         <h1>Chat</h1>

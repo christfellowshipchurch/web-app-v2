@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { systemPropTypes } from 'ui-kit';
-import { Box } from 'ui-kit';
+import { Box, LiveIndicator } from 'ui-kit';
 import Styled from 'ui-kit/Card/Card.styles';
 
 const DefaultCard = (props = {}) => {
@@ -24,6 +24,7 @@ const DefaultCard = (props = {}) => {
             >
               {props.coverImageTitle || props.coverImageDescription ? (
                 <Box color="white">
+                  {props.live && <LiveIndicator />}
                   {props.coverImageTitle ? (
                     <Box as={props.cardSize === 's' ? 'h3' : 'h2'} mb="xs">
                       {props.coverImageTitle}
