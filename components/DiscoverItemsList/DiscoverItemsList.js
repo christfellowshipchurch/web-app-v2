@@ -5,7 +5,7 @@ import { getURLFromType } from 'utils';
 import { Box, CardGrid, DefaultCard, Loader } from 'ui-kit';
 import { CustomLink } from 'components';
 
-function ContentItemsList(props = {}) {
+function DiscoverItemsList(props = {}) {
   if (props.loading) return <Loader text="Loading your Content Items" />;
 
   const noContentItems = props.data.length === 0;
@@ -23,14 +23,17 @@ function ContentItemsList(props = {}) {
           coverImage={contentItem?.coverImage?.sources[0]?.uri}
           title={contentItem?.title}
           description={contentItem?.summary}
+          scaleCard={false}
+          scaleCoverImage={true}
+          boxShadow="none"
         />
       ))}
     </CardGrid>
   );
 }
 
-ContentItemsList.propTypes = {
+DiscoverItemsList.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
 };
 
-export default ContentItemsList;
+export default DiscoverItemsList;
