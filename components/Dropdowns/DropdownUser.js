@@ -53,11 +53,19 @@ function Profile() {
       >
         Groups
       </Button>
-      <Button width="300px" borderRadius="base">
-        Link 3
+      <Button
+        width="300px"
+        borderRadius="base"
+        onClick={() => router.push('/events')}
+      >
+        Events
       </Button>
-      <Button width="300px" borderRadius="base">
-        Link 4
+      <Button
+        width="300px"
+        borderRadius="base"
+        onClick={() => router.push('/serve')}
+      >
+        Serve
       </Button>
     </Box>
   );
@@ -66,7 +74,7 @@ function Profile() {
 function Login() {
   const [values, setValues] = useState({});
   const dispatch = useAuthDispatch();
-  const [authenticate, { loading, error }] = useAuthenticateCredentials({
+  const [authenticate, { loading }] = useAuthenticateCredentials({
     onCompleted: data => {
       dispatch(update({ token: data.authenticate.token }));
     },
