@@ -3,7 +3,7 @@ import { format } from 'date-fns';
 import { useLiveStreamsQuery } from 'hooks';
 import { slugify, parseLiveStreamDates } from 'utils';
 
-import { Box, CardGrid, DefaultCard } from 'ui-kit';
+import { Box, CardGrid, DefaultCard, Loader } from 'ui-kit';
 import { CustomLink, Layout } from 'components';
 
 function getDescription(liveStream) {
@@ -23,16 +23,24 @@ function getDescription(liveStream) {
   }
 }
 
-export default function Live() {
-  const { liveStreams: liveStreamsData } = useLiveStreamsQuery();
+export default function Live(props = {}) {
+  const { liveStreams: liveStreamsData, loading } = useLiveStreamsQuery();
 
   return (
     <Layout title="Live">
       <Box as="h1" mb="l">
         Live Events
       </Box>
-      {!liveStreamsData.length && <Box as="p">No livestreams</Box>}
-      {liveStreamsData.length && (
+
+      {loading && (
+        <Box display="flex" justifyContent="center" pt="xl">
+          <Loader />
+        </Box>
+      )}
+      {!loading && !liveStreamsData.length && (
+        <Box as="p">No livestreams scheduled</Box>
+      )}
+      {liveStreamsData.length > 0 && (
         <CardGrid columns="2" mb="xl">
           {liveStreamsData.map(liveStream => {
             return (
