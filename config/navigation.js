@@ -29,8 +29,8 @@ const navigation = {
       call: <MagnifyingGlass color={theme.colors.fg} size="22" />,
     },
     {
-      id: 'auth',
-      action: '/auth',
+      id: 'user',
+      action: '/user',
       call: <UserCircle color={theme.colors.fg} size="22" />,
     },
   ],

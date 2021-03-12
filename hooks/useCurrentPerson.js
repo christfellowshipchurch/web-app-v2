@@ -11,30 +11,14 @@ export const GET_CURRENT_PERSON = gql`
         firstName
         lastName
         email
-        phoneNumber
         gender
-        ethnicity
         birthDate
-        communicationPreferences {
-          allowPushNotification
-          allowSMS
-          allowEmail
-        }
         campus {
           id
-          featuredImage {
-            uri
-          }
           name
         }
         photo {
           uri
-        }
-        address {
-          street1
-          city
-          state
-          postalCode
         }
       }
     }

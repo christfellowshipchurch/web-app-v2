@@ -12,14 +12,14 @@ function AppProvider(props = {}) {
   const apolloClient = useApollo(props.initialApolloState);
   return (
     <ApolloProvider client={apolloClient}>
-      <AuthProvider>
-        <ThemeProvider>
+      <ThemeProvider>
+        <AuthProvider>
           <ModalProvider modals={modals}>
             {props.children}
             <ModalManager />
           </ModalProvider>
-        </ThemeProvider>
-      </AuthProvider>
+        </AuthProvider>
+      </ThemeProvider>
     </ApolloProvider>
   );
 }
