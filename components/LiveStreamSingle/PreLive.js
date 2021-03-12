@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { formatDistanceToNow } from 'date-fns';
+import { formatDistanceToNow, format } from 'date-fns';
 
 import { parseLiveStreamDates } from 'utils';
 import { ContentLayout } from 'components';
@@ -8,7 +8,10 @@ import { Cell } from 'ui-kit';
 
 function PreLive(props = {}) {
   const parsed = parseLiveStreamDates(props.data);
-  let startsIn = parsed?.startDate
+  const startFormatted = parsed.startDate
+    ? format(parsed.startDate, `EEEE, MMMM dd 'at' h:mm a`)
+    : null;
+  const distance = parsed?.startDate
     ? formatDistanceToNow(parsed.startDate)
     : null;
 
@@ -16,7 +19,7 @@ function PreLive(props = {}) {
     <Cell px="base" pt={{ _: 'l', lg: 'xl' }}>
       <ContentLayout
         title={props.data?.relatedNode?.title}
-        summary={`Starts in ${startsIn}`}
+        summary={`Scheduled for ${startFormatted} (${distance})`}
         coverImage={props.data?.relatedNode?.coverImage?.sources[0]?.uri}
       />
     </Cell>
