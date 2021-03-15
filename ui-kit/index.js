@@ -15,12 +15,14 @@ import CardCarousel from './CardCarousel';
 import CardGrid from './CardGrid';
 import Cell from './Cell';
 import Checkbox from './Checkbox';
+import ContentBlock from './ContentBlock';
 import DefaultCard from './DefaultCard';
 import Divider from './Divider';
 import FormLabel from './FormLabel';
 import GroupCard from './GroupCard';
 import HorizontalHighlightCard from './HorizontalHighlightCard';
 import Icon from './Icon';
+import Image from './Image';
 import List from './List';
 import LiveIndicator from './LiveIndicator';
 import Loader from './Loader';
@@ -47,12 +49,14 @@ export {
   CardGrid,
   Cell,
   Checkbox,
+  ContentBlock,
   DefaultCard,
   Divider,
   FormLabel,
   GroupCard,
   HorizontalHighlightCard,
   Icon,
+  Image,
   List,
   LiveIndicator,
   Loader,
