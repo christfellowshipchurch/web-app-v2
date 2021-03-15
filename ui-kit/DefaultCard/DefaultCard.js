@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { systemPropTypes } from 'ui-kit';
-import { Box, LiveIndicator } from 'ui-kit';
+import { Box } from 'ui-kit';
 import Styled from 'ui-kit/Card/Card.styles';
 
 const DefaultCard = (props = {}) => {
@@ -24,7 +24,6 @@ const DefaultCard = (props = {}) => {
             >
               {props.coverImageTitle || props.coverImageDescription ? (
                 <Box color="white">
-                  {props.live && <LiveIndicator />}
                   {props.coverImageTitle ? (
                     <Box as={props.cardSize === 's' ? 'h3' : 'h2'} mb="xs">
                       {props.coverImageTitle}
@@ -39,7 +38,11 @@ const DefaultCard = (props = {}) => {
             </Styled.CoverContent>
           ) : null}
           {props.coverImageLabel ? (
-            <Styled.CoverLabel>{props.coverImageLabel}</Styled.CoverLabel>
+            <Styled.CoverLabel
+              coverImageLabelBgColor={props.coverImageLabelBgColor}
+            >
+              {props.coverImageLabel}
+            </Styled.CoverLabel>
           ) : null}
         </Styled.Cover>
       ) : null}
@@ -68,6 +71,7 @@ DefaultCard.propTypes = {
   coverImageContentPosition: PropTypes.oneOf(['bottomLeft']),
   coverImageDescription: PropTypes.string,
   coverImageLabel: PropTypes.string,
+  coverImageLabelBgColor: PropTypes.string,
   coverImageOverlay: PropTypes.bool,
   coverImageTitle: PropTypes.string,
   description: PropTypes.string,

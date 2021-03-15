@@ -134,8 +134,14 @@ const CoverContent = styled.div`
   ${position};
 `;
 
+const coverLabelBackground = ({
+  coverImageLabelBgColor = 'fg',
+}) => props => css`
+  background-color: ${themeGet(`colors.${coverImageLabelBgColor}`)};
+`;
+
 const CoverLabel = styled.b`
-  background-color: ${themeGet('colors.fg')};
+  ${coverLabelBackground}
   color: ${themeGet('colors.white')};
   bottom: 0;
   font-size: ${themeGet('fontSizes.xs')};

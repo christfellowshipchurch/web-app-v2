@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { format } from 'date-fns';
 
 import { Video } from 'components';
-import { Box, LiveIndicator } from 'ui-kit';
+import { Box } from 'ui-kit';
 
 import Styled from './Live.styles';
 
@@ -19,18 +18,16 @@ function Live(props = {}) {
         />
       </Styled.Video>
       <Styled.MastHead>
-        <Box mr="s">
-          <Box as="h1" fontSize={{ _: 'h3', md: 'h1' }}>
-            {props.data.relatedNode?.title}
-          </Box>
-        </Box>
+        <Styled.LiveIndicatorContainer>
+          <Styled.LiveIndicator>Live</Styled.LiveIndicator>
+        </Styled.LiveIndicatorContainer>
         <Box>
-          <LiveIndicator />
+          <Styled.Title>{props.data.relatedNode?.title}</Styled.Title>
         </Box>
       </Styled.MastHead>
       <Styled.Details>
         {props.data.relatedNode?.summary && (
-          <Box as="h3">{props.data.relatedNode?.summary}</Box>
+          <Box as="p">{props.data.relatedNode?.summary}</Box>
         )}
       </Styled.Details>
       <Styled.Chat>

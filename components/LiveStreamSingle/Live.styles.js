@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
 import { system } from 'ui-kit';
@@ -16,22 +16,35 @@ const Container = styled.div`
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     grid-template-areas:
-      'video chat'
+      'video video'
+      'mastHead chat'
+      'details chat';
+    grid-template-columns: 67fr 33fr;
+  }
+
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    grid-template-areas:
+      'video chat' /* Chat on right */
       'mastHead chat'
       'details details';
+    grid-template-columns: 67fr 33fr;
+  }
+
+  @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
     grid-template-columns: 75fr 25fr;
   }
 
   ${system}
 `;
 
-const videoPoster = css`
+const Video = styled.div`
+  grid-area: video;
+
+  /* Fix poster image sizing */
   & video {
     background-size: cover;
   }
-`;
 
-const videoContainer = css`
   /*
   Clumsy way to force 16/9 aspect ratio on shaka player.
   Some issue makes iOS / Safari add tons of space vertically
@@ -40,48 +53,48 @@ const videoContainer = css`
   */
   & > .shaka-video-container {
     /* Assumes 16/9 aspect ratio in full width/bleed player container */
-    height: 56.25vw;
-  }
+    height: calc((9 / 16) * 100vw);
 
-  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-    & > .shaka-video-container {
-      /*
-      Assumes 16/9 aspect ratio in whatever the grid area width is.
-      Ex:
-        Grid width: 100vw
-        Grid Video area width: 75fr (75vw)
-        Height: (16/9) / 75vw = 42.1875vw
-      */
-      height: 42.1875vw;
+    /* Breakpoint adjustments must be in sync with root Container grid-template-columns.*/
+    @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+      height: calc((9 / 16) * 67vw);
+    }
+
+    @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
+      height: calc((9 / 16) * 75vw);
     }
   }
-`;
-
-const Video = styled.div`
-  grid-area: video;
-
-  ${videoPoster}
-  ${videoContainer}
 `;
 
 const MastHead = styled.div`
   grid-area: mastHead;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   padding: ${themeGet('space.base')};
 
-  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+  @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
     flex-direction: row;
-    justify-content: space-between;
     padding: ${themeGet('space.l')} ${themeGet('space.base')};
   }
 `;
 
+const LiveIndicatorContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-right: ${themeGet('space.base')};
+  margin-bottom: ${themeGet('space.xs')};
+
+  @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
+    margin-bottom: 0;
+  }
+`;
+
 const LiveIndicator = styled.div`
-  display: inline-block;
+  display: block;
   padding: 0 ${themeGet('space.s')};
-  margin-top: ${themeGet('space.s')};
-  margin-bottom: ${themeGet('space.s')};
+  color: ${themeGet('colors.white')};
   background-color: ${themeGet('colors.live')};
   border-radius: ${themeGet('radii.base')};
   font-size: ${themeGet('fontSizes.xs')};
@@ -89,9 +102,22 @@ const LiveIndicator = styled.div`
   text-transform: uppercase;
   letter-spacing: 1px;
 
-  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-    padding: 0 ${themeGet('space.base')};
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    padding: ${themeGet('space.xs')} ${themeGet('space.base')};
     font-size: ${themeGet('fontSizes.base')};
+  }
+`;
+
+const Title = styled.h1`
+  font-size: ${themeGet('fontSizes.h3')};
+  margin-bottom: 0;
+
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    font-size: ${themeGet('fontSizes.h2')};
+  }
+
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    font-size: ${themeGet('fontSizes.h1')};
   }
 `;
 
@@ -120,7 +146,9 @@ const Chat = styled.div`
 Live.Container = Container;
 Live.Video = Video;
 Live.MastHead = MastHead;
+Live.LiveIndicatorContainer = LiveIndicatorContainer;
 Live.LiveIndicator = LiveIndicator;
+Live.Title = Title;
 Live.Details = Details;
 Live.Chat = Chat;
 
