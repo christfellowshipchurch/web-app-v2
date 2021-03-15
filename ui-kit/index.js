@@ -24,7 +24,6 @@ import HorizontalHighlightCard from './HorizontalHighlightCard';
 import Icon from './Icon';
 import Image from './Image';
 import List from './List';
-import LiveIndicator from './LiveIndicator';
 import Loader from './Loader';
 import Longform from './Longform';
 import Menu from './Menu';
@@ -58,7 +57,6 @@ export {
   Icon,
   Image,
   List,
-  LiveIndicator,
   Loader,
   Longform,
   Menu,
