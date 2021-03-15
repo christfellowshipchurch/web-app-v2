@@ -18,6 +18,7 @@ import { Box, CardGrid, Heading, Icon, Text, theme } from 'ui-kit';
 import VideoPlayer from 'components/VideoPlayer';
 import { useRouter } from 'next/router';
 import { addHours, addMinutes } from 'date-fns';
+import { useCurrentUser } from 'hooks';
 
 function DefaultMainPhotoHeader(props = {}) {
   const videoPlayers = [
@@ -305,7 +306,7 @@ function LoggedInHomeFeed(props = {}) {
         px="xxl"
         my="xxl"
       >
-        <ArticleLinks>
+        <Box>
           {Array.from(Array(3)).map((_, i) => (
             <ArticleLink
               key={i}
@@ -316,7 +317,7 @@ function LoggedInHomeFeed(props = {}) {
               mb="s"
             />
           ))}
-        </ArticleLinks>
+        </Box>
         <LargeImage
           text="Celebrate the Hope of Christ with us."
           color="white"
@@ -575,8 +576,12 @@ function LoggedOutHomeFeed(props = {}) {
 }
 
 function HomeFeed(props = {}) {
-  const loggedIn = true;
+  const { authenticated: loggedIn, loading } = useCurrentUser();
   const fullSermon = loggedIn && true;
+
+  if (loading) {
+    return null;
+  }
   return (
     <>
       {fullSermon ? <FullLengthSermon /> : <DefaultMainPhotoHeader />}

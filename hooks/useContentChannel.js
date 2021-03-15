@@ -1,24 +1,29 @@
-
 import { gql, useQuery } from '@apollo/client';
 
 export const GET_CONTENT_CHANNEL = gql`
   query getContentChannel($itemId: ID!) {
-      node(id: $itemId) {
-        ... on ContentChannel {
-          childContentItemsConnection {
-            edges {
-              node {
-                title
-                id
-                sharing {
-                  url
+    node(id: $itemId) {
+      ... on ContentChannel {
+        childContentItemsConnection {
+          edges {
+            node {
+              title
+              id
+              sharing {
+                url
+              }
+              coverImage {
+                sources {
+                  uri
                 }
               }
             }
           }
         }
       }
-    }`;
+    }
+  }
+`;
 
 function useContentChannel(options = {}) {
   const query = useQuery(GET_CONTENT_CHANNEL, options);

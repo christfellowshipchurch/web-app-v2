@@ -1,7 +1,7 @@
 import { themeGet } from '@styled-system/theme-get';
 import styled from 'styled-components';
 
-import { Button as _Button, system } from 'ui-kit';
+import { Box, Button as _Button, system } from 'ui-kit';
 
 const Dropdowns = {};
 
@@ -30,7 +30,26 @@ export const Button = styled(_Button)`
   ${system}
 `;
 
+export const NonFeaturedItem = styled(Box)`
+  width: 100%;
+  background: ${themeGet('colors.primary')};
+  border-radius: ${themeGet('radii.image')};
+  height: 66px;
+  display: flex;
+  padding: 0 ${themeGet('space.l')};
+  align-items: center;
+  margin-bottom: ${themeGet('space.s')};
+  justify-content: space-between;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+
+  ${system}
+`;
+
 Dropdowns.Input = Input;
 Dropdowns.Button = Button;
+Dropdowns.NonFeaturedItem = NonFeaturedItem;
 
 export default Dropdowns;

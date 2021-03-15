@@ -57,6 +57,7 @@ function Nav(props = {}) {
                   selected={action.action === router.pathname}
                   hovered={action.id === hoveredItem}
                   onClick={() => {
+                    console.log(hoveredItem, action.id, action.action);
                     if (hoveredItem === action.id) {
                       router.push(action.action);
                     }
@@ -92,6 +93,7 @@ function QuickAction(props = {}) {
       px="s"
       hovered={props.hovered}
       selected={props.selected}
+      onClick={props.onClick}
     >
       <Heading variant="base" color="fg">
         {props.data.call}
