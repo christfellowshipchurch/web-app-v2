@@ -42,15 +42,7 @@ function LiveStreamSingle(props = {}) {
         summary={props.data?.relatedNode?.summary}
         coverImage={props.data?.relatedNode?.coverImage?.sources[0]?.uri}
         renderD={() => (
-          <Box>
-            <Box as="p" color="alert" mb="l">
-              ⚠️ Unhandled livestream state. It is not currently live, upcoming,
-              or recently ended.
-              <br />
-              This most likely means one or both of the start and end dates were
-              null.
-            </Box>
-          </Box>
+          <Box mb="l">Stay tuned for updates to this event's schedule.</Box>
         )}
       />
     </Cell>
