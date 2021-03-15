@@ -1,13 +1,13 @@
 import { gql, useQuery } from '@apollo/client';
 
 export const GET_CATEGORIES_FILTER_PREVIEW = gql`
-  query getFilterCategories($id: ID!) {
+  query getFilterCategories($id: ID!, $first: Int) {
     node(id: $id) {
       id
       ... on ContentItem {
         title
 
-        childContentItemsConnection(first: 3) {
+        childContentItemsConnection(first: $first) {
           edges {
             node {
               id

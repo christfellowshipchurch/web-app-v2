@@ -60,6 +60,7 @@ const Discover = () => {
 
   function handleClearAllClick(event) {
     event.preventDefault();
+    setSearchVisible(false);
     reset();
   }
 
@@ -79,37 +80,14 @@ const Discover = () => {
         handleSubmit={handleSubmit}
         handleClick={handleClick}
         handleChange={handleChange}
+        handleClear={handleClearAllClick}
         value={values.text || ''}
         mb="base"
       >
         Search
       </SearchField>
-      <Box mb="l">
-        {filters?.map(filter => (
-          <Button
-            key={filter.id}
-            mb="s"
-            mr="xs"
-            onClick={event => {
-              event.preventDefault();
-              setFilterValues({
-                title: filter.title,
-                contentId: filter.id,
-              });
-              setSearchVisible(false);
-              reset();
-            }}
-            rounded={true}
-            size="s"
-            status={filterValues.title === filter.title ? 'SELECTED' : 'IDLE'}
-            variant="chip"
-          >
-            {filter.title}
-          </Button>
-        ))}
-      </Box>
 
-      {showEmptyState && (
+      {showEmptyState && searchVisible && (
         <Box my="xxl" pb="xxl" textAlign="center">
           <Box as="h2">Looks like we couldn't find any results</Box>
           <Box mb="base">
@@ -153,15 +131,43 @@ const Discover = () => {
       )}
 
       {!loading && !searchVisible && (
-        <DiscoverFiltersCategoriesProvider
-          options={{
-            variables: {
-              id: filterValues?.contentId || filters[0]?.id,
-            },
-            fetchPolicy: 'cache-and-network',
-          }}
-          Component={DiscoverFiltersMap}
-        />
+        <Box>
+          <Box mb="l">
+            {filters?.map(filter => (
+              <Button
+                key={filter.id}
+                mb="s"
+                mr="xs"
+                onClick={event => {
+                  event.preventDefault();
+                  setFilterValues({
+                    title: filter.title,
+                    contentId: filter.id,
+                  });
+                  setSearchVisible(false);
+                  reset();
+                }}
+                rounded={true}
+                size="s"
+                status={
+                  filterValues.title === filter.title ? 'SELECTED' : 'IDLE'
+                }
+                variant="chip"
+              >
+                {filter.title}
+              </Button>
+            ))}
+          </Box>
+          <DiscoverFiltersCategoriesProvider
+            options={{
+              variables: {
+                id: filterValues?.contentId || filters[0]?.id,
+              },
+              fetchPolicy: 'cache-and-network',
+            }}
+            Component={DiscoverFiltersMap}
+          />
+        </Box>
       )}
     </Layout>
   );
