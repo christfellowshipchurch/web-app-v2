@@ -7,14 +7,18 @@ export const GET_CONTENT_CHANNEL = gql`
         childContentItemsConnection {
           edges {
             node {
-              title
-              id
-              sharing {
-                url
-              }
-              coverImage {
-                sources {
-                  uri
+              ...on UniversalContentItem {
+                title
+                subtitle
+                isFeatured
+                id
+                sharing {
+                  url
+                }
+                coverImage {
+                  sources {
+                    uri
+                  }
                 }
               }
             }

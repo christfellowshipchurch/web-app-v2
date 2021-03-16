@@ -10,12 +10,13 @@ export default function Photo({
   borderRadius = theme.radii.image,
   alignItems = 'center',
   justifyContent = 'center',
+  onClick = () => {},
   ...props
 }) {
   const [hovered, setHovered] = useState(false);
 
   return (
-    <Box position="relative">
+    <Box position="relative" onClick={onClick}>
       <Image
         src={src}
         objectFit="cover"
@@ -63,4 +64,5 @@ Photo.propTypes = {
   overlay: PropTypes.object,
   inner: PropTypes.node,
   hover: PropTypes.bool,
+  onClick: PropTypes.func,
 };

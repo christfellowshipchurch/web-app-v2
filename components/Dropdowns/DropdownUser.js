@@ -26,7 +26,7 @@ function Profile() {
         <UserCircle
           color={theme.colors.fg}
           size="200"
-          marginTop={theme.space.m}
+          style={{marginTop: theme.space.m}}
         />
       )}
       <Heading mb="m">

@@ -68,11 +68,16 @@ function MarketingHeadline({
             {supertitle}
           </Heading>
         )}
-        {title && (
-          <Box display="flex" mb="xs" alignItems="baseline">
-            {title}
-          </Box>
-        )}
+        {title &&
+          (title instanceof String ? (
+            <Heading color="neutrals.900" variant="h2" fontWeight="800">
+              {title}
+            </Heading>
+          ) : (
+            <Box display="flex" mb="xs" alignItems="baseline">
+              {title}
+            </Box>
+          ))}
         {description && (
           <Text
             variant="s"
@@ -114,7 +119,7 @@ MarketingHeadline.propTypes = {
     inner: PropTypes.node,
     hover: PropTypes.bool,
   }),
-  title: PropTypes.node,
+  title: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
   description: PropTypes.string,
   details: PropTypes.string,
   justify: PropTypes.oneOf(['left', 'right']),

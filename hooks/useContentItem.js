@@ -4,8 +4,11 @@ export const GET_CONTENT_ITEM = gql`
   query getContentItem($itemId: ID!) {
     node(id: $itemId) {
       __typename
-      ... on ContentItem {
+      ... on UniversalContentItem {
         title
+        summary
+        subtitle
+        htmlContent
         sharing {
           url
         }

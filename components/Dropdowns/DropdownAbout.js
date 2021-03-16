@@ -8,9 +8,8 @@ export default function DropdownAbout() {
       itemId: `ContentChannel:${IDS.ABOUT_PAGES}`,
     },
   });
-  console.log(content);
 
-  if (loading) {
+  if (loading || !content.edges) {
     return null;
   }
 
