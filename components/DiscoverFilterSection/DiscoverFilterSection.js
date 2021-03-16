@@ -17,9 +17,12 @@ const DiscoverFilterSection = ({ contentId, title }) => {
   const content = categories?.map(edge => edge.node);
 
   const handleSeeMore = event => {
+    const [type, randomId] = contentId.split(':');
+
     event.preventDefault();
     router.push({
       pathname: `/discover/${slugify(title)}`,
+      query: { id: slugify(randomId) },
     });
   };
 
