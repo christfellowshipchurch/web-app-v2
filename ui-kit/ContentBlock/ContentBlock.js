@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Video } from 'components';
+// import { Video } from 'components';
 import { Box, Image, systemPropTypes } from 'ui-kit';
 import { htmlToReactParser } from 'utils';
 
@@ -16,15 +16,15 @@ function ContentBlock(props = {}) {
   return (
     <Styled.Container gridLayout={props.contentLayout}>
       <Styled.Media>
-        {props.video ? (
+        {/* {props.video ? (
           <Video src={props.video} />
-        ) : (
-          <Image
-            maxWidth="800px"
-            source={props.image}
-            aspectRatio={props.imageRatio}
-          />
-        )}
+        ) : ( */}
+        <Image
+          maxWidth="800px"
+          source={props.image}
+          aspectRatio={props.imageRatio}
+        />
+        {/* )} */}
       </Styled.Media>
       <Styled.Content textAlign={horizontalLayout ? 'flex-start' : 'center'}>
         <Styled.Subtitle>{props.subtitle}</Styled.Subtitle>

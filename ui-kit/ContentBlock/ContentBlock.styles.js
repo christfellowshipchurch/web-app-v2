@@ -18,13 +18,17 @@ const gridLayout = ({ gridLayout }) => props => {
       break;
     case 'inverted':
       return css`
-        grid-template-areas: 'content' 'media';
+        grid-template-areas:
+          'content'
+          'media';
       `;
       break;
     case 'default':
     default:
       return css`
-        grid-template-areas: 'media' 'content';
+        grid-template-areas:
+          'media'
+          'content';
       `;
   }
 };
