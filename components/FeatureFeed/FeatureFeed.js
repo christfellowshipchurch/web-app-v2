@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import ActionBarFeature from '../ActionBarFeature';
 import HeroListFeature from '../HeroListFeature';
 import HorizontalCardListFeature from '../HorizontalCardListFeature';
 import VerticalCardListFeature from '../VerticalCardListFeature';
@@ -9,13 +10,13 @@ import { Box, Divider } from 'ui-kit';
 import { getComponent } from 'utils';
 
 const FEATURE_COMPONENTS = {
+  ActionBarFeature,
   HeroListFeature,
   HorizontalCardListFeature,
   VerticalCardListFeature,
 
   // TODO: Implement all Features needed for web
   // ActionListFeature: () => null,
-  // ActionBarFeature: () => null,
   // PrayerListFeature: () => null,
   // VerticalPrayerListFeature: () => null,
   // CommentListFeature: () => null,

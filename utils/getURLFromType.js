@@ -5,7 +5,7 @@ import slugify from './slugify';
  */
 
 function getURLFromType(node, title) {
-  const [type, randomId] = node.id.split(':');
+  const [type, randomId] = node?.id?.split(':');
   switch (type) {
     case 'EventContentItem': {
       return `/events/${slugify(node.title ? node.title : title)}`;

@@ -56,10 +56,15 @@ const LITE_FEATURES_FRAGMENT = gql`
 const ACTION_BAR_FEATURE_FRAGMENT = gql`
   fragment ActionBarFeatureFragment on ActionBarFeature {
     id
+    order
+
     actions {
       title
-      icon
       action
+      icon
+      theme {
+        ...ThemeFragment
+      }
       relatedNode {
         ...RelatedFeatureNodeFragment
       }

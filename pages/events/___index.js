@@ -6,15 +6,15 @@ import { GET_FEATURE } from 'hooks/useFeature';
 import { FeatureFeedProvider } from 'providers';
 import { Layout, FeatureFeed } from 'components';
 
-export default function Home(props = {}) {
+export default function Events(props = {}) {
   const options = {
     variables: {
-      pathname: 'home',
+      pathname: 'events',
     },
   };
 
   return (
-    <Layout title="Home">
+    <Layout title="Events">
       <FeatureFeedProvider Component={FeatureFeed} options={options} />
     </Layout>
   );
@@ -25,7 +25,7 @@ export async function getServerSideProps() {
 
   const featureFeed = await apolloClient.query({
     query: GET_FEATURE_FEED,
-    variables: { pathname: 'home' },
+    variables: { pathname: 'events' },
   });
   const features = featureFeed?.data?.featuresFeed?.features || [];
 

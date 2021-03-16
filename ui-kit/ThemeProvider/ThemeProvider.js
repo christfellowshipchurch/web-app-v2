@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider as SCThemeProvider } from 'styled-components';
+import merge from 'lodash/merge';
 
 import {
   GlobalStyles as DefaultGlobalStyles,
@@ -16,7 +17,7 @@ function ThemeProvider(props = {}) {
   };
 
   return (
-    <SCThemeProvider theme={theme}>
+    <SCThemeProvider theme={merge(theme, props?.themeMixin || {})}>
       <>
         {props.children}
         {props.renderGlobalStyles ? (

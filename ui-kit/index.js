@@ -7,6 +7,7 @@ import * as utils from './_utils';
 import ThemeProvider from './ThemeProvider';
 import GlobalStyles, { styles as globalStyles } from './GlobalStyles';
 
+import ActionBar, { ActionBarItem } from './ActionBar';
 import Avatar from './Avatar';
 import Box from './Box';
 import Button from './Button';
@@ -38,6 +39,8 @@ export {
   GlobalStyles,
   globalStyles,
   // ====================
+  ActionBar,
+  ActionBarItem,
   Avatar,
   Box,
   Button,
