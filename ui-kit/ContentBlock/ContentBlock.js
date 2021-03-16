@@ -8,27 +8,31 @@ import { htmlToReactParser } from 'utils';
 import Styled from './ContentBlock.styles';
 
 function ContentBlock(props = {}) {
-  const mediaType = props.videos;
-
   const horizontalLayout =
     props.contentLayout === 'left' || props.contentLayout === 'right';
 
+  /**
+   * todo : We eventually want to add the Video.js componenet to the Media wrapper
+   */
+
   return (
     <Styled.Container gridLayout={props.contentLayout}>
-      <Styled.Media>
-        {/* {props.video ? (
-          <Video src={props.video} />
-        ) : ( */}
-        <Image
-          maxWidth="800px"
-          source={props.image}
-          aspectRatio={props.imageRatio}
-        />
-        {/* )} */}
-      </Styled.Media>
+      {(props.image || props.image !== '') && (
+        <Styled.Media>
+          <Image
+            maxWidth="800px"
+            source={props.image}
+            aspectRatio={props.imageRatio}
+          />
+        </Styled.Media>
+      )}
       <Styled.Content textAlign={horizontalLayout ? 'flex-start' : 'center'}>
-        <Styled.Subtitle>{props.subtitle}</Styled.Subtitle>
-        <Styled.Title>{props.title}</Styled.Title>
+        {(props.title || props.subtitle) && (
+          <>
+            <Styled.Subtitle>{props.subtitle}</Styled.Subtitle>
+            <Styled.Title>{props.title}</Styled.Title>
+          </>
+        )}
         <Box>{htmlToReactParser.parse(props.htmlContent)}</Box>
       </Styled.Content>
     </Styled.Container>
@@ -57,7 +61,7 @@ ContentBlock.propTypes = {
 };
 
 ContentBlock.defaultProps = {
-  image: 'https://source.unsplash.com/random/1000x1000',
+  image: '',
 };
 
 export default ContentBlock;
