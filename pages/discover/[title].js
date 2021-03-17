@@ -1,15 +1,16 @@
 import { useRouter } from 'next/router';
+import capitalize from 'lodash/capitalize';
 import { useDiscoverFilterCategoriesPreview } from 'hooks';
 import { Layout, CustomLink } from 'components';
-import { getURLFromType, slugify } from 'utils';
-import { DefaultCard, CardGrid } from 'ui-kit';
+import { getURLFromType } from 'utils';
+import { Box, DefaultCard, CardGrid } from 'ui-kit';
 
 export default function Content(props) {
   const { query } = useRouter();
   const type = 'UniversalContentItem';
   const contentId = type.concat(':', query?.id);
 
-  const { loading, error, categories } = useDiscoverFilterCategoriesPreview({
+  const { categories } = useDiscoverFilterCategoriesPreview({
     variables: { id: contentId },
     fetchPolicy: 'cache-and-network',
   });
@@ -17,6 +18,9 @@ export default function Content(props) {
 
   return (
     <Layout title={query?.title}>
+      <Box as="h1" mb="l">
+        {capitalize(query?.title)}
+      </Box>
       <CardGrid columns="3" mb="xl">
         {content.map((n, i) => (
           <CustomLink
