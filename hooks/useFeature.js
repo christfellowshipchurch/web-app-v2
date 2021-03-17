@@ -3,8 +3,11 @@ import { gql, useQuery } from '@apollo/client';
 import {
   ACTION_BAR_FEATURE_FRAGMENT,
   CONTENT_BLOCK_FEATURE_FRAGMENT,
+  HERO_LIST_FEATURE_FRAGMENT,
+  HORIZONTAL_CARD_LIST_FEATURE_FRAGMENT,
   THEME_FRAGMENT,
   RELATED_FEATURE_NODE_FRAGMENT,
+  VERTICAL_CARD_LIST_FEATURE_FRAGMENT,
 } from '../fragments';
 
 export const GET_FEATURE = gql`
@@ -15,146 +18,18 @@ export const GET_FEATURE = gql`
 
       ...ActionBarFeatureFragment
       ...ContentBlockFeatureFragment
-
-      ... on HeroListFeature {
-        id
-        title
-        subtitle
-        actions {
-          id
-          title
-          subtitle
-          action
-          image {
-            sources {
-              uri
-            }
-          }
-          relatedNode {
-            id
-            ... on Url {
-              url
-            }
-            ... on ContentChannel {
-              name
-            }
-          }
-        }
-        primaryAction {
-          title
-          action
-          relatedNode {
-            id
-            ... on Url {
-              url
-            }
-            ... on ContentChannel {
-              name
-            }
-          }
-        }
-        heroCard {
-          action
-          title
-          hasAction
-          actionIcon
-          labelText
-          summary
-          coverImage {
-            sources {
-              uri
-            }
-          }
-          relatedNode {
-            id
-            ... on Url {
-              url
-            }
-            ... on ContentChannel {
-              name
-            }
-          }
-        }
-      }
-
-      ... on HorizontalCardListFeature {
-        id
-        title
-        subtitle
-        cards {
-          action
-          title
-          hyphenatedTitle: title(hyphenated: true)
-          hasAction
-          actionIcon
-          labelText
-          summary
-          coverImage {
-            sources {
-              uri
-            }
-          }
-          relatedNode {
-            id
-            ... on Url {
-              url
-            }
-            ... on ContentChannel {
-              name
-            }
-          }
-        }
-        cardType
-        primaryAction {
-          title
-          action
-          relatedNode {
-            id
-            ... on Url {
-              url
-            }
-            ... on ContentChannel {
-              name
-            }
-          }
-        }
-      }
-
-      ... on VerticalCardListFeature {
-        id
-        isFeatured
-        title
-        subtitle
-        cards {
-          id
-          action
-          title
-          hasAction
-          actionIcon
-          labelText
-          summary
-          coverImage {
-            sources {
-              uri
-            }
-          }
-          relatedNode {
-            id
-            ... on Url {
-              url
-            }
-            ... on ContentChannel {
-              name
-            }
-          }
-        }
-      }
+      ...HeroListFeatureFragment
+      ...HorizontalCardListFeatureFragment
+      ...VerticalCardListFeatureFragment
     }
   }
   ${ACTION_BAR_FEATURE_FRAGMENT}
   ${CONTENT_BLOCK_FEATURE_FRAGMENT}
+  ${HERO_LIST_FEATURE_FRAGMENT}
+  ${HORIZONTAL_CARD_LIST_FEATURE_FRAGMENT}
   ${THEME_FRAGMENT}
   ${RELATED_FEATURE_NODE_FRAGMENT}
+  ${VERTICAL_CARD_LIST_FEATURE_FRAGMENT}
 `;
 
 function useFeature(options = {}) {

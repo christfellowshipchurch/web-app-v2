@@ -15,8 +15,6 @@ import { Box, ContentBlock } from 'ui-kit';
 const ContentBlockFeature = props => {
   const content = props?.data;
 
-  console.log({ content });
-
   return (
     <Box maxWidth={1100} mx="auto">
       <ContentBlock

@@ -117,6 +117,84 @@ const CONTENT_BLOCK_FEATURE_FRAGMENT = gql`
   }
 `;
 
+const HERO_LIST_FEATURE_FRAGMENT = gql`
+  fragment HeroListFeatureFragment on HeroListFeature {
+    id
+    title
+    subtitle
+    actions {
+      id
+      title
+      subtitle
+      action
+      image {
+        sources {
+          uri
+        }
+      }
+      relatedNode {
+        ...RelatedFeatureNodeFragment
+      }
+    }
+    primaryAction {
+      title
+      action
+      relatedNode {
+        ...RelatedFeatureNodeFragment
+      }
+    }
+    heroCard {
+      action
+      title
+      hasAction
+      actionIcon
+      labelText
+      summary
+      coverImage {
+        sources {
+          uri
+        }
+      }
+      relatedNode {
+        ...RelatedFeatureNodeFragment
+      }
+    }
+  }
+`;
+
+const HORIZONTAL_CARD_LIST_FEATURE_FRAGMENT = gql`
+  fragment HorizontalCardListFeatureFragment on HorizontalCardListFeature {
+    id
+    title
+    subtitle
+    cards {
+      action
+      title
+      hyphenatedTitle: title(hyphenated: true)
+      hasAction
+      actionIcon
+      labelText
+      summary
+      coverImage {
+        sources {
+          uri
+        }
+      }
+      relatedNode {
+        ...RelatedFeatureNodeFragment
+      }
+    }
+    cardType
+    primaryAction {
+      title
+      action
+      relatedNode {
+        ...RelatedFeatureNodeFragment
+      }
+    }
+  }
+`;
+
 const THEME_FRAGMENT = gql`
   fragment ThemeFragment on Theme {
     type
@@ -142,11 +220,40 @@ const RELATED_FEATURE_NODE_FRAGMENT = gql`
   }
 `;
 
+const VERTICAL_CARD_LIST_FEATURE_FRAGMENT = gql`
+  fragment VerticalCardListFeatureFragment on VerticalCardListFeature {
+    id
+    isFeatured
+    title
+    subtitle
+    cards {
+      id
+      action
+      title
+      hasAction
+      actionIcon
+      labelText
+      summary
+      coverImage {
+        sources {
+          uri
+        }
+      }
+      relatedNode {
+        ...RelatedFeatureNodeFragment
+      }
+    }
+  }
+`;
+
 export {
   ACTION_BAR_FEATURE_FRAGMENT,
   AVATAR_LIST_FEATURE_FRAGMENT,
   CONTENT_BLOCK_FEATURE_FRAGMENT,
+  HERO_LIST_FEATURE_FRAGMENT,
+  HORIZONTAL_CARD_LIST_FEATURE_FRAGMENT,
   LITE_FEATURES_FRAGMENT,
   RELATED_FEATURE_NODE_FRAGMENT,
   THEME_FRAGMENT,
+  VERTICAL_CARD_LIST_FEATURE_FRAGMENT,
 };
