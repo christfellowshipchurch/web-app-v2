@@ -4,6 +4,7 @@ import formatPhoneNumber from './formatPhoneNumber';
 import getAge from './getAge';
 import getComponent from './getComponent';
 import getURLFromType from './getURLFromType';
+import htmlToReactParser from './htmlToReactParser';
 import normalizeUserData from './normalizeUserData';
 import parseLiveStreamDates from './parseLiveStreamDates';
 import slugify from './slugify';
@@ -18,6 +19,7 @@ export {
   getAge,
   getComponent,
   getURLFromType,
+  htmlToReactParser,
   normalizeUserData,
   parseLiveStreamDates,
   slugify,
