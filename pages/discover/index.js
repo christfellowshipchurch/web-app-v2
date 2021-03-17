@@ -136,8 +136,14 @@ const Discover = () => {
                 onClick={event => {
                   event.preventDefault();
                   setFilterValues({
-                    title: filter.title,
-                    contentId: filter.id,
+                    title:
+                      filterValues.title === filter.title
+                        ? filters[0]?.title
+                        : filter.title,
+                    contentId:
+                      filterValues.contentId === filter.id
+                        ? filters[0]?.id
+                        : filter.id,
                   });
                   setSearchVisible(false);
                   reset();
