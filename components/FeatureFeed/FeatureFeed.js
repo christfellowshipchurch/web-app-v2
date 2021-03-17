@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ActionBarFeature from '../ActionBarFeature';
+import ContentBlockFeature from '../ContentBlockFeature';
 import HeroListFeature from '../HeroListFeature';
 import HorizontalCardListFeature from '../HorizontalCardListFeature';
 import VerticalCardListFeature from '../VerticalCardListFeature';
@@ -11,6 +12,7 @@ import { getComponent } from 'utils';
 
 const FEATURE_COMPONENTS = {
   ActionBarFeature,
+  ContentBlockFeature,
   HeroListFeature,
   HorizontalCardListFeature,
   VerticalCardListFeature,

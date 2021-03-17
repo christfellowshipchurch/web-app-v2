@@ -22,6 +22,7 @@ export const GET_FEATURE_FEED = gql`
     featuresFeed(pathname: $pathname) {
       id
       features {
+        id
         ...LiteFeaturesFragment
         ...ActionBarFeatureFragment
         ...AvatarListFeatureFragment

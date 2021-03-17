@@ -2,6 +2,7 @@ import { gql, useQuery } from '@apollo/client';
 
 import {
   ACTION_BAR_FEATURE_FRAGMENT,
+  CONTENT_BLOCK_FEATURE_FRAGMENT,
   THEME_FRAGMENT,
   RELATED_FEATURE_NODE_FRAGMENT,
 } from '../fragments';
@@ -13,6 +14,7 @@ export const GET_FEATURE = gql`
       __typename
 
       ...ActionBarFeatureFragment
+      ...ContentBlockFeatureFragment
 
       ... on HeroListFeature {
         id
@@ -150,12 +152,16 @@ export const GET_FEATURE = gql`
     }
   }
   ${ACTION_BAR_FEATURE_FRAGMENT}
+  ${CONTENT_BLOCK_FEATURE_FRAGMENT}
   ${THEME_FRAGMENT}
   ${RELATED_FEATURE_NODE_FRAGMENT}
 `;
 
 function useFeature(options = {}) {
-  const query = useQuery(GET_FEATURE, options);
+  const query = useQuery(GET_FEATURE, {
+    fetchPolicy: 'cache-and-network',
+    ...options,
+  });
 
   return {
     feature: query?.data?.node || [],
