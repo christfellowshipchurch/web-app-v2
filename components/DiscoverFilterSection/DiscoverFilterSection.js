@@ -29,7 +29,7 @@ const DiscoverFilterSection = ({ contentId, title }) => {
 
   return (
     <Box my="s">
-      <Box display="flex" justifyContent="space-between">
+      <Box display="flex" justifyContent="space-between" mb="s">
         <Box as="h3">{title}</Box>
         <Button variant="link" paddingRight={0} onClick={handleSeeMore}>
           See more
@@ -45,7 +45,6 @@ const DiscoverFilterSection = ({ contentId, title }) => {
             description={n?.summary}
             href={getURLFromType(n, n?.title)}
             key={n?.id}
-            mx="s"
             scaleCard={false}
             scaleCoverImage={true}
             title={n?.title}

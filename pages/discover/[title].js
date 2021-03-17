@@ -34,7 +34,6 @@ export default function Content(props) {
             description={n?.summary}
             href={getURLFromType(n, n?.title)}
             key={n?.id}
-            mx="s"
             scaleCard={false}
             scaleCoverImage={true}
             title={n?.title}
