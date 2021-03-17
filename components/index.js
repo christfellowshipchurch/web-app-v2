@@ -1,5 +1,6 @@
 import * as modals from './Modals';
 import BirthDateField from './BirthDateField';
+import Chat from './Chat';
 import ClientSideComponent from './ClientSideComponent';
 import CommunityActionSection from './CommunityActionSection';
 import CommunityLeaderActions from './CommunityLeaderActions';
@@ -37,6 +38,7 @@ import Video from './Video';
 
 export {
   BirthDateField,
+  Chat,
   ClientSideComponent,
   CommunityActionSection,
   CommunityLeaderActions,

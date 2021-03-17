@@ -25,7 +25,7 @@ const Container = styled.div`
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     grid-template-areas:
       'video chat' /* Chat on right */
-      'mastHead chat'
+      'mastHead mastHead'
       'details details';
     grid-template-columns: 67fr 33fr;
   }
@@ -135,12 +135,7 @@ const Details = styled.div`
 const Chat = styled.div`
   grid-area: chat;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  border: 1px orange dashed;
-  padding: ${themeGet('space.base')};
-  padding-bottom: ${themeGet('space.xxl')};
+  align-items: stretch;
 `;
 
 Live.Container = Container;

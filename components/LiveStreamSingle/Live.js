@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Video } from 'components';
+import { Chat, Video } from 'components';
 import { Box } from 'ui-kit';
 
 import Styled from './Live.styles';
@@ -31,7 +31,7 @@ function Live(props = {}) {
         )}
       </Styled.Details>
       <Styled.Chat>
-        <h1>Chat</h1>
+        <Chat />
       </Styled.Chat>
     </Styled.Container>
   );
