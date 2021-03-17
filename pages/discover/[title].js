@@ -1,9 +1,11 @@
 import { useRouter } from 'next/router';
 import capitalize from 'lodash/capitalize';
-import { useDiscoverFilterCategoriesPreview } from 'hooks';
-import { Layout, CustomLink } from 'components';
+
 import { getURLFromType } from 'utils';
+import { useDiscoverFilterCategoriesPreview } from 'hooks';
+
 import { Box, DefaultCard, CardGrid } from 'ui-kit';
+import { Layout, CustomLink } from 'components';
 
 export default function Content(props) {
   const { query } = useRouter();
@@ -14,6 +16,7 @@ export default function Content(props) {
     variables: { id: contentId },
     fetchPolicy: 'cache-and-network',
   });
+
   const content = categories?.map(edge => edge.node);
 
   return (
@@ -24,17 +27,17 @@ export default function Content(props) {
       <CardGrid columns="3" mb="xl">
         {content.map((n, i) => (
           <CustomLink
+            Component={DefaultCard}
             as="a"
-            key={n?.id}
-            href={getURLFromType(n, n?.title)}
-            mx="s"
             boxShadow="none"
+            coverImage={n?.coverImage?.sources[0]?.uri}
+            description={n?.summary}
+            href={getURLFromType(n, n?.title)}
+            key={n?.id}
+            mx="s"
             scaleCard={false}
             scaleCoverImage={true}
-            Component={DefaultCard}
-            coverImage={n?.coverImage?.sources[0]?.uri}
             title={n?.title}
-            description={n?.summary}
           />
         ))}
       </CardGrid>

@@ -1,8 +1,7 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
-import { utils } from 'ui-kit';
 
-import { system } from 'ui-kit';
+import { system, utils } from 'ui-kit';
 
 const SearchField = {};
 

@@ -27,16 +27,28 @@ const link = ({ as }) => props => {
 };
 
 const scaleLink = ({ scaleCard }) => props => {
+  // Does not scale card if prop set to false
   if (scaleCard === false) {
     return css`
       &:focus,
       &:hover {
-        box-shadow: none;
         transform: none;
       }
 
       &:active {
         transform: none;
+      }
+    `;
+  }
+};
+
+const removeBoxShadow = ({ boxShadow }) => props => {
+  // Removes box-shadow on hover if box-shadow is set to none
+  if (boxShadow === 'none') {
+    return css`
+      &:focus,
+      &:hover {
+        box-shadow: none;
       }
     `;
   }
@@ -52,6 +64,8 @@ const Card = styled.div`
 
   ${link}
   ${scaleLink}
+  ${removeBoxShadow}
+
   ${system}
 `;
 
@@ -107,6 +121,7 @@ const overlay = ({ overlay }) => props => {
 };
 
 const scaleCover = ({ scaleCoverImage }) => props => {
+  // Scales Cover Image of card if prop set to true
   if (scaleCoverImage) {
     return css`
       transform: scale(1);
@@ -141,6 +156,7 @@ const Cover = styled.div`
   ${content}
   ${overlay}
   ${scaleCover}
+
   ${system}
 `;
 

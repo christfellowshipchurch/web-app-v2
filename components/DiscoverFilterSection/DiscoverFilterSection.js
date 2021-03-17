@@ -2,14 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 
-import { Button, Box, DefaultCard, CardGrid } from 'ui-kit';
-import { CustomLink } from 'components';
 import { getURLFromType, slugify } from 'utils';
 import { useDiscoverFilterCategoriesPreview } from 'hooks';
 
+import { Button, Box, DefaultCard, CardGrid } from 'ui-kit';
+import { CustomLink } from 'components';
+
 const DiscoverFilterSection = ({ contentId, title }) => {
   const router = useRouter();
-  const { loading, error, categories } = useDiscoverFilterCategoriesPreview({
+  const { categories } = useDiscoverFilterCategoriesPreview({
     variables: { id: contentId, first: 3 },
     fetchPolicy: 'cache-and-network',
   });
@@ -17,12 +18,12 @@ const DiscoverFilterSection = ({ contentId, title }) => {
   const content = categories?.map(edge => edge.node);
 
   const handleSeeMore = event => {
-    const [type, randomId] = contentId.split(':');
+    const [type, id] = contentId.split(':');
 
     event.preventDefault();
     router.push({
       pathname: `/discover/${slugify(title)}`,
-      query: { id: slugify(randomId) },
+      query: { id: slugify(id) },
     });
   };
 
@@ -37,17 +38,17 @@ const DiscoverFilterSection = ({ contentId, title }) => {
       <CardGrid columns="3" mb="xl">
         {content.map((n, i) => (
           <CustomLink
+            Component={DefaultCard}
             as="a"
-            key={n?.id}
-            href={getURLFromType(n, n?.title)}
-            mx="s"
             boxShadow="none"
+            coverImage={n?.coverImage?.sources[0]?.uri}
+            description={n?.summary}
+            href={getURLFromType(n, n?.title)}
+            key={n?.id}
+            mx="s"
             scaleCard={false}
             scaleCoverImage={true}
-            Component={DefaultCard}
-            coverImage={n?.coverImage?.sources[0]?.uri}
             title={n?.title}
-            description={n?.summary}
           />
         ))}
       </CardGrid>

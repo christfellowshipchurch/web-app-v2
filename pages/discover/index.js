@@ -20,17 +20,18 @@ const PAGE_SIZE = 21;
 const Discover = () => {
   const [searchVisible, setSearchVisible] = useState(false);
   const { values, handleSubmit, handleChange, reset } = useForm();
-  const { loading: loadingFilters, filters } = useDiscoverFilters();
 
-  const [filterValues, setFilterValues] = useState({
-    title: filters[0]?.title,
-    contentId: filters[0]?.id,
-  });
+  const { loading: loadingFilters, filters } = useDiscoverFilters();
   const [
     search,
     { loading, contentItems, data, fetchMore },
   ] = useSearchContentItems({
     notifyOnNetworkStatusChange: true,
+  });
+
+  const [filterValues, setFilterValues] = useState({
+    title: filters[0]?.title,
+    contentId: filters[0]?.id,
   });
 
   const hasResults = contentItems?.length > 0;
@@ -76,13 +77,13 @@ const Discover = () => {
   return (
     <Layout title="Discover">
       <SearchField
-        placeholder="Search..."
-        handleSubmit={handleSubmit}
-        handleClick={handleClick}
         handleChange={handleChange}
         handleClear={handleClearAllClick}
-        value={values.text || ''}
+        handleClick={handleClick}
+        handleSubmit={handleSubmit}
         mb="base"
+        placeholder="Search..."
+        value={values.text || ''}
       >
         Search
       </SearchField>
@@ -90,10 +91,7 @@ const Discover = () => {
       {showEmptyState && searchVisible && (
         <Box my="xxl" pb="xxl" textAlign="center">
           <Box as="h2">Looks like we couldn't find any results</Box>
-          <Box mb="base">
-            Consider reducing the number of filters or modifing your search
-            criteria.
-          </Box>
+          <Box mb="base">Consider modifing your search criteria.</Box>
           <Box
             display="flex"
             alignItems="center"
@@ -104,9 +102,6 @@ const Discover = () => {
             <Button variant="secondary" onClick={handleClearAllClick} mb="s">
               Clear Search
             </Button>
-            <CustomLink href="https://rock.gocf.org/page/2113">
-              Need help?
-            </CustomLink>
           </Box>
         </Box>
       )}
