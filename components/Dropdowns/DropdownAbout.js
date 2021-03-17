@@ -17,6 +17,6 @@ export default function DropdownAbout() {
   const nonFeaturedItems = content.edges.filter(({ node }) => !node.isFeatured).map(({ node }) => node);
 
   return (
-    <PageDropdown featuredItems={featuredItems} nonFeaturedItems={nonFeaturedItems} />
+    <PageDropdown featuredItems={featuredItems} nonFeaturedItems={nonFeaturedItems} baseRoute="/about" />
   );
 }

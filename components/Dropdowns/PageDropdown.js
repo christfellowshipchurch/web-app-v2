@@ -4,7 +4,7 @@ import { Photo } from 'components';
 import { NonFeaturedItem } from './Dropdowns.styles';
 import { Box, CardGrid, Heading, theme } from 'ui-kit';
 
-export default function PageDropdown({ featuredItems, nonFeaturedItems }) {
+export default function PageDropdown({ featuredItems, nonFeaturedItems, baseRoute }) {
   const router = useRouter();
 
   const numColumns = Math.ceil(featuredItems.length / 2) + 1;
@@ -44,7 +44,7 @@ export default function PageDropdown({ featuredItems, nonFeaturedItems }) {
           : null}
         <Box display="flex" flexDirection="column" width="100%">
           {nonFeaturedItems.map((item, i) => (
-            <NonFeaturedItem key={i} onClick={() => router.push(item.id.split(':')[1])}>
+            <NonFeaturedItem key={i} onClick={() => router.push(`${baseRoute}/${item.id.split(':')[1]}`)}>
               <Heading
                 fontSize="l"
                 lineHeight="h2"

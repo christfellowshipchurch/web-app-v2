@@ -69,7 +69,7 @@ function MarketingHeadline({
           </Heading>
         )}
         {title &&
-          (title instanceof String ? (
+          (typeof title === 'string' ? (
             <Heading color="neutrals.900" variant="h2" fontWeight="800">
               {title}
             </Heading>

@@ -19,19 +19,41 @@ export default function Page({ data }) {
   if (loading) {
     return null;
   } else if (error) {
-    router.push('/about');
+    router.push('/next-steps');
   }
 
-  const generalChildren = getChildrenByType(node.childContentItemsConnection, IDS.GENERAL);
+  const generalChildren = getChildrenByType(
+    node.childContentItemsConnection?.edges,
+    IDS.GENERAL
+  );
 
   return (
-    <Layout title={`About - ${node.title}`} bg="bg_alt">
+    <Layout title={`Next Steps - ${node.title}`} bg="bg_alt">
       <MainPhotoHeader
         src={node.coverImage?.sources?.[0].uri || ''}
         title={node.title}
         subtitle={node.subtitle}
         summary={node.summary}
       />
+      <CardGrid px="xxl" py="xl" columns="1">
+        {node.ctaLinks?.map((cta, i) => (
+          <MarketingHeadline
+            key={i}
+            image={{
+              src: cta.image?.sources?.[0]?.uri,
+            }}
+            justify={i % 2 === 0 ? 'left' : 'right'}
+            title={cta.title}
+            description={cta.body}
+            actions={[
+              {
+                label: cta.buttonText,
+                onClick: () => router.push(cta.buttonLink),
+              },
+            ]}
+          />
+        ))}
+      </CardGrid>
       {node.htmlContent && (
         <Box
           px="xxl"
@@ -43,6 +65,7 @@ export default function Page({ data }) {
         <CardGrid px="xxl" py="xl" columns="1">
           {generalChildren.map(({ node }, i) => (
             <MarketingHeadline
+              key={node.id}
               image={{
                 src: node.coverImage?.sources?.[0]?.uri,
               }}
@@ -78,7 +101,7 @@ export async function getServerSideProps(context) {
       initialApolloState: apolloClient.cache.extract(),
       data: pageResponse?.data,
       redirect: pageResponse.error
-        ? { destination: '/about', permanent: false }
+        ? { destination: '/next-steps', permanent: false }
         : null,
     },
   };

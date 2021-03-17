@@ -9,6 +9,17 @@ export const GET_CONTENT_ITEM = gql`
         summary
         subtitle
         htmlContent
+        ctaLinks {
+          title
+          body
+          image {
+            sources {
+              uri
+            }
+          }
+          buttonText
+          buttonLink
+        }
         sharing {
           url
         }
