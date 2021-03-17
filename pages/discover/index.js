@@ -91,7 +91,7 @@ const Discover = () => {
       {showEmptyState && searchVisible && (
         <Box my="xxl" pb="xxl" textAlign="center">
           <Box as="h2">Looks like we couldn't find any results</Box>
-          <Box mb="base">Consider modifing your search criteria.</Box>
+          <Box mb="base">Consider modifying your search criteria.</Box>
           <Box
             display="flex"
             alignItems="center"

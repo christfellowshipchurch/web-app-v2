@@ -37,12 +37,14 @@ export default function CommunitySearch() {
   const showEmptyState = !loading && !hasResults;
   const hasMorePages = groups?.length < data?.searchGroups?.totalResults;
 
-  const { values, handleSubmit, handleChange, setValues, reset } = useForm(() => {
-    router.push({
-      pathname: `/community/search`,
-      query: filtersState.valuesSerialized,
-    });
-  });
+  const { values, handleSubmit, handleChange, setValues, reset } = useForm(
+    () => {
+      router.push({
+        pathname: `/community/search`,
+        query: filtersState.valuesSerialized,
+      });
+    }
+  );
 
   useEffect(() => {
     // Don't execute search if state hasn't been hydrated OR a modal is open
@@ -145,7 +147,7 @@ export default function CommunitySearch() {
             <Box my="xxl" pb="xxl" textAlign="center">
               <Box as="h2">Looks like we couldn't find any results</Box>
               <Box mb="base">
-                Consider reducing the number of filters or modifing your search
+                Consider reducing the number of filters or modifying your search
                 criteria.
               </Box>
               <Box
