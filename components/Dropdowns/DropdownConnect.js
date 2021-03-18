@@ -1,10 +1,22 @@
-import { ConnectTiles } from 'components';
-import { Box } from 'ui-kit';
+import PageDropdown from './PageDropdown';
+import useContentChannel from 'hooks/useContentChannel';
+import IDS from 'config/ids';
 
 export default function DropdownConnect() {
+  const { content, loading } = useContentChannel({
+    variables: {
+      itemId: `ContentChannel:${IDS.CONNECT_PAGES}`,
+    },
+  });
+
+  if (loading || !content.edges) {
+    return null;
+  }
+
+  const featuredItems = content.edges.filter(({ node }) => node.isFeatured).map(({ node }) => node);
+  const nonFeaturedItems = content.edges.filter(({ node }) => !node.isFeatured).map(({ node }) => node);
+
   return (
-    <Box bg="bg" p="l">
-      <ConnectTiles py="0" backgroundColor="bg" />
-    </Box>
+    <PageDropdown featuredItems={featuredItems} nonFeaturedItems={nonFeaturedItems} baseRoute="/connect" />
   );
 }
