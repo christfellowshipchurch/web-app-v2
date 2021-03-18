@@ -23,7 +23,7 @@ export default function Page({ data }) {
   }
 
   const generalChildren = getChildrenByType(
-    node.childContentItemsConnection,
+    node.childContentItemsConnection?.edges,
     IDS.GENERAL
   );
 
@@ -54,8 +54,12 @@ export default function Page({ data }) {
               description={node.summary}
               actions={[
                 {
-                  label: 'Connect',
-                  onClick: () => {},
+                  label: node.featureFeed?.features[0].action.title,
+                  onClick: () => {
+                    router.push(
+                      node.featureFeed?.features[0].action.relatedNode.url
+                    );
+                  },
                 },
               ]}
             />
@@ -69,20 +73,23 @@ export default function Page({ data }) {
 export async function getServerSideProps(context) {
   const apolloClient = initializeApollo();
 
-  const pageResponse = await apolloClient.query({
-    query: GET_CONTENT_ITEM,
-    variables: {
-      itemId: getItemId(context.params.page),
-    },
-  });
+  try {
+    const pageResponse = await apolloClient.query({
+      query: GET_CONTENT_ITEM,
+      variables: {
+        itemId: getItemId(context.params.page),
+      },
+    });
 
-  return {
-    props: {
-      initialApolloState: apolloClient.cache.extract(),
-      data: pageResponse?.data,
-      redirect: pageResponse.error
-        ? { destination: '/about', permanent: false }
-        : null,
-    },
-  };
+    return {
+      props: {
+        initialApolloState: apolloClient.cache.extract(),
+        data: pageResponse?.data,
+      },
+    };
+  } catch (e) {
+    return {
+      redirect: { destination: '/about', permanent: false },
+    };
+  }
 }

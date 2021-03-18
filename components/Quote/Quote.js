@@ -23,18 +23,28 @@ function Quote({
           <Heading fontSize="48px" lineHeight="72px" fontWeight="700">
             “
           </Heading>
-          {title && (
+          {title && (typeof title === 'string' ? (
+          <Heading
+            textTransform="uppercase"
+            color={color}
+            fontSize="18px"
+            lineHeight="27px"
+            fontWeight="400"
+            padding="12px"
+          >
+            {title}
+          </Heading> ) :
+            (
             <Box ml="12px" pt="12px">
               {title}
             </Box>
-          )}
+          ))}
         </Box>
         <Heading
           px="36px"
           color="neutrals.900"
-          fontSize="h3"
-          lineHeight="34px"
-          fontWeight="700"
+          fontSize="18px"
+          lineHeight="h3"
           textAlign={alignment}
         >
           {text}
@@ -98,7 +108,7 @@ function Quote({
 }
 
 Quote.propTypes = {
-  title: PropTypes.node,
+  title: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
   text: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   attribution: PropTypes.string,
   actionLink: PropTypes.string,

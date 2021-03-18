@@ -40,7 +40,6 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&display=swap"
             rel="stylesheet"
           />
-          <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
         </Head>
         <body>
           <Main />

@@ -19,7 +19,7 @@ function getItemId(id) {
 export default function Page({ data }) {
   const router = useRouter();
 
-  const { loading, error, node } = data;
+  const { loading, error, node = {} } = data;
 
   if (loading) {
     return null;
@@ -88,22 +88,25 @@ export default function Page({ data }) {
 export async function getServerSideProps(context) {
   const apolloClient = initializeApollo();
 
-  const pageResponse = await apolloClient.query({
-    query: GET_CONTENT_ITEM,
-    variables: {
-      itemId: getItemId(context.params.page),
-    },
-    skip: !context.params.page,
-    fetchPolicy: 'no-cache',
-  });
+  try {
+    const pageResponse = await apolloClient.query({
+      query: GET_CONTENT_ITEM,
+      variables: {
+        itemId: getItemId(context.params.page),
+      },
+      skip: !context.params.page,
+      fetchPolicy: 'no-cache',
+    });
 
-  return {
-    props: {
-      initialApolloState: apolloClient.cache.extract(),
-      data: pageResponse?.data,
-      redirect: pageResponse.error
-        ? { destination: '/next-steps', permanent: false }
-        : null,
-    },
-  };
+    return {
+      props: {
+        initialApolloState: apolloClient.cache.extract(),
+        data: pageResponse?.data,
+      },
+    };
+  } catch (e) {
+    return {
+      redirect: { destination: '/next-steps', permanent: false },
+    };
+  }
 }

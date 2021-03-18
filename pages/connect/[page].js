@@ -1,11 +1,14 @@
 import { useRouter } from 'next/router';
 
-import useContentItem, { GET_CONTENT_ITEM } from 'hooks/useContentItem';
+import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
 import {
   ArticleLink,
   Layout,
   MainPhotoHeader,
   MarketingHeadline,
+  MeetTheStaff,
+  PageSplit,
+  Quote,
 } from 'components';
 import { Box, CardGrid } from 'ui-kit';
 import { getChildrenByType } from 'utils';
@@ -32,22 +35,48 @@ export default function Page({ data }) {
     IDS.GENERAL
   );
 
+  const stories = getChildrenByType(
+    node.childContentItemsConnection?.edges,
+    IDS.STORIES
+  );
+
+  const story = stories.length ? stories[0] : null;
+  const cta = node.ctaLinks?.length ? node.ctaLinks?.[0] : null;
+  const staff = node.staff?.members || [];
+
   return (
-    <Layout title={`Next Steps - ${node.title}`} bg="bg_alt">
+    <Layout title={`Connect - ${node.title}`} bg="bg_alt">
       <MainPhotoHeader
         src={node.coverImage?.sources?.[0].uri || ''}
         title={node.title}
         subtitle={node.subtitle}
         summary={node.summary}
       />
-      <CardGrid px="xxl" py="xl" columns="1">
-        {node.ctaLinks?.map((cta, i) => (
+      {generalChildren.length ? (
+        <CardGrid px="xxl" py="xl" columns="2" gridColumnGap="xl">
+          {generalChildren.map(({ node }, i) => (
+            <ArticleLink
+              key={node.id}
+              imageSrc={node.coverImage?.sources?.[0]?.uri}
+              justify={i % 2 === 0 ? 'left' : 'right'}
+              title={node.title}
+              description={node.summary}
+              urlText={node.featureFeed?.features[0].action.title}
+              url={node.featureFeed?.features[0].action.relatedNode.url}
+            />
+          ))}
+        </CardGrid>
+      ) : null}
+      <CardGrid px="xxl" py="xl" columns={story ? 2 : 1}>
+        {cta ? (
           <MarketingHeadline
-            key={i}
-            image={{
-              src: cta.image?.sources?.[0]?.uri,
-            }}
-            justify={i % 2 === 0 ? 'left' : 'right'}
+            image={
+              story
+                ? null
+                : {
+                    src: cta.image?.sources?.[0]?.uri,
+                  }
+            }
             title={cta.title}
             description={cta.body}
             actions={[
@@ -57,7 +86,19 @@ export default function Page({ data }) {
               },
             ]}
           />
-        ))}
+        ) : null}
+        {story ? (
+          <Quote
+            color="quaternary"
+            title={story.node.title}
+            attribution={story.node.attribution}
+            actionLabel="Full story"
+            actionLink="/lh-story-quote"
+            text={story.node.summary}
+            avatar={story.node.coverImage?.sources[0]?.uri}
+            alignment="left"
+          />
+        ) : null}
       </CardGrid>
       {node.htmlContent && (
         <Box
@@ -66,22 +107,29 @@ export default function Page({ data }) {
           dangerouslySetInnerHTML={{ __html: node.htmlContent }}
         />
       )}
-      {generalChildren.length ? (
-        <CardGrid px="xxl" py="xl" columns="1">
-          {generalChildren.map(({ node }, i) => (
-            <ArticleLink
-              key={node.id}
-              image={{
-                src: node.coverImage?.sources?.[0]?.uri,
-              }}
-              justify={i % 2 === 0 ? 'left' : 'right'}
-              title={node.title}
-              description={node.summary}
-              urlText={node.buttonText}
-              url={node.buttonLink}
-            />
-          ))}
-        </CardGrid>
+      {staff?.length ? (
+        <>
+          <PageSplit title="Meet the Staff" />
+          <CardGrid
+            px="xl"
+            py="l"
+            gridColumnGap="l"
+            columns="4"
+            breakpoints={[
+              { breakpoint: 'xl', columns: 2 },
+              { breakpoint: 'lg', columns: 1 },
+            ]}
+            justifyItems="center"
+          >
+            {staff.map(person => (
+              <MeetTheStaff
+                src={person.photo?.uri}
+                name={`${person.firstName} ${person.lastName}`}
+                description={person.campus?.name}
+              />
+            ))}
+          </CardGrid>
+        </>
       ) : null}
     </Layout>
   );
@@ -90,20 +138,25 @@ export default function Page({ data }) {
 export async function getServerSideProps(context) {
   const apolloClient = initializeApollo();
 
-  const pageResponse = await apolloClient.query({
-    query: GET_CONTENT_ITEM,
-    variables: {
-      itemId: getItemId(context.params.page),
-    },
-  });
+  try {
+    const pageResponse = await apolloClient.query({
+      query: GET_CONTENT_ITEM,
+      variables: {
+        itemId: getItemId(context.params.page),
+      },
+      skip: !context.params.page,
+      fetchPolicy: 'no-cache',
+    });
 
-  return {
-    props: {
-      initialApolloState: apolloClient.cache.extract(),
-      data: pageResponse?.data,
-      redirect: pageResponse.error
-        ? { destination: '/connect', permanent: false }
-        : null,
-    },
-  };
+    return {
+      props: {
+        initialApolloState: apolloClient.cache.extract(),
+        data: pageResponse?.data,
+      },
+    };
+  } catch (e) {
+    return {
+      redirect: { destination: '/connect', permanent: false },
+    };
+  }
 }

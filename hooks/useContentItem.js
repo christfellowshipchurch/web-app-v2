@@ -20,6 +20,18 @@ export const GET_CONTENT_ITEM = gql`
           buttonText
           buttonLink
         }
+        staff {
+          members {
+            firstName
+            lastName
+            photo {
+              uri
+            }
+            campus {
+              name
+            }
+          }
+        }
         sharing {
           url
         }
@@ -31,6 +43,21 @@ export const GET_CONTENT_ITEM = gql`
         childContentItemsConnection {
           edges {
             node {
+              title
+              summary
+              coverImage {
+                sources {
+                  uri
+                }
+              }
+              images {
+                sources {
+                  uri
+                }
+              }
+              parentChannel {
+                id
+              }
               ... on FeaturesNode {
                 featureFeed {
                   features {
@@ -46,21 +73,6 @@ export const GET_CONTENT_ITEM = gql`
                     }
                   }
                 }
-              }
-              title
-              summary
-              coverImage {
-                sources {
-                  uri
-                }
-              }
-              images {
-                sources {
-                  uri
-                }
-              }
-              parentChannel {
-                id
               }
             }
           }
