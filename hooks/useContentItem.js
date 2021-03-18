@@ -1,7 +1,7 @@
 import { gql, useQuery } from '@apollo/client';
 
 export const GET_CONTENT_ITEM = gql`
-  query getContentItem($itemId: ID!) {
+  query getUniversalContentItem($itemId: ID!) {
     node(id: $itemId) {
       __typename
       ... on UniversalContentItem {
@@ -31,6 +31,22 @@ export const GET_CONTENT_ITEM = gql`
         childContentItemsConnection {
           edges {
             node {
+              ... on FeaturesNode {
+                featureFeed {
+                  features {
+                    ... on ButtonFeature {
+                      action {
+                        relatedNode {
+                          ... on Url {
+                            url
+                          }
+                        }
+                        title
+                      }
+                    }
+                  }
+                }
+              }
               title
               summary
               coverImage {

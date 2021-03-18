@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 
-import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
+import useContentItem, { GET_CONTENT_ITEM } from 'hooks/useContentItem';
 import {
   ArticleLink,
   Layout,
@@ -24,13 +24,15 @@ export default function Page({ data }) {
   if (loading) {
     return null;
   } else if (error) {
-    router.push('/next-steps');
+    router.push('/connect');
   }
 
   const generalChildren = getChildrenByType(
     node.childContentItemsConnection?.edges,
     IDS.GENERAL
   );
+
+  console.log(generalChildren);
 
   return (
     <Layout title={`Next Steps - ${node.title}`} bg="bg_alt">
@@ -67,18 +69,23 @@ export default function Page({ data }) {
         />
       )}
       {generalChildren.length ? (
-        <CardGrid px="xxl" py="xl" columns="2" gridColumnGap="xl">
-          {generalChildren.map(({ node }, i) => (
-            <ArticleLink
-              key={node.id}
-              imageSrc={node.coverImage?.sources?.[0]?.uri}
-              justify={i % 2 === 0 ? 'left' : 'right'}
-              title={node.title}
-              description={node.summary}
-              urlText={node.featureFeed?.features[0].action.title}
-              url={node.featureFeed?.features[0].action.relatedNode.url}
-            />
-          ))}
+        <CardGrid px="xxl" py="xl" columns="1">
+          {generalChildren.map(
+            ({ node }, i) =>
+              console.log(node) || (
+                <ArticleLink
+                  key={node.id}
+                  image={{
+                    src: node.coverImage?.sources?.[0]?.uri,
+                  }}
+                  justify={i % 2 === 0 ? 'left' : 'right'}
+                  title={node.title}
+                  description={node.summary}
+                  urlText={node.buttonText}
+                  url={node.buttonLink}
+                />
+              )
+          )}
         </CardGrid>
       ) : null}
     </Layout>
@@ -93,8 +100,6 @@ export async function getServerSideProps(context) {
     variables: {
       itemId: getItemId(context.params.page),
     },
-    skip: !context.params.page,
-    fetchPolicy: 'no-cache',
   });
 
   return {
@@ -102,7 +107,7 @@ export async function getServerSideProps(context) {
       initialApolloState: apolloClient.cache.extract(),
       data: pageResponse?.data,
       redirect: pageResponse.error
-        ? { destination: '/next-steps', permanent: false }
+        ? { destination: '/connect', permanent: false }
         : null,
     },
   };

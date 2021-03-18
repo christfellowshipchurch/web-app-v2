@@ -22,7 +22,10 @@ export default function Page({ data }) {
     router.push('/about');
   }
 
-  const generalChildren = getChildrenByType(node.childContentItemsConnection, IDS.GENERAL);
+  const generalChildren = getChildrenByType(
+    node.childContentItemsConnection,
+    IDS.GENERAL
+  );
 
   return (
     <Layout title={`About - ${node.title}`} bg="bg_alt">

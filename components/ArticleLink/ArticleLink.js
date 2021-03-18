@@ -32,26 +32,28 @@ function ArticleLink({
           <Text fontWeight="400" variant="s">
             {splitString(description)}
           </Text>
-          <Link href={url}>
-            <a
-              style={{
-                display: 'flex',
-                textDecoration: 'none',
-                alignItems: 'center',
-                marginTop: theme.space.xxs,
-              }}
-            >
-              <Text fontWeight="600" variant="s" color={color} mr="4px">
-                {urlText}
-              </Text>
-              <ArrowRight
-                alt={title}
-                weight="bold"
-                size={18}
-                color={theme.colors[color]}
-              />
-            </a>
-          </Link>
+          {url && (
+            <Link href={url}>
+              <a
+                style={{
+                  display: 'flex',
+                  textDecoration: 'none',
+                  alignItems: 'center',
+                  marginTop: theme.space.xxs,
+                }}
+              >
+                <Text fontWeight="600" variant="s" color={color} mr="4px">
+                  {urlText}
+                </Text>
+                <ArrowRight
+                  alt={title}
+                  weight="bold"
+                  size={18}
+                  color={theme.colors[color]}
+                />
+              </a>
+            </Link>
+          )}
         </Box>
         <StyledImage rounded src={imageSrc} />
       </Box>
