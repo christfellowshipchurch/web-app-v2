@@ -57,7 +57,6 @@ function Nav(props = {}) {
                   selected={action.action === router.pathname}
                   hovered={action.id === hoveredItem}
                   onClick={() => {
-                    console.log(hoveredItem, action.id, action.action);
                     if (hoveredItem === action.id) {
                       router.push(action.action);
                     }

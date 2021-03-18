@@ -32,8 +32,6 @@ export default function Page({ data }) {
     IDS.GENERAL
   );
 
-  console.log(generalChildren);
-
   return (
     <Layout title={`Next Steps - ${node.title}`} bg="bg_alt">
       <MainPhotoHeader
@@ -70,22 +68,19 @@ export default function Page({ data }) {
       )}
       {generalChildren.length ? (
         <CardGrid px="xxl" py="xl" columns="1">
-          {generalChildren.map(
-            ({ node }, i) =>
-              console.log(node) || (
-                <ArticleLink
-                  key={node.id}
-                  image={{
-                    src: node.coverImage?.sources?.[0]?.uri,
-                  }}
-                  justify={i % 2 === 0 ? 'left' : 'right'}
-                  title={node.title}
-                  description={node.summary}
-                  urlText={node.buttonText}
-                  url={node.buttonLink}
-                />
-              )
-          )}
+          {generalChildren.map(({ node }, i) => (
+            <ArticleLink
+              key={node.id}
+              image={{
+                src: node.coverImage?.sources?.[0]?.uri,
+              }}
+              justify={i % 2 === 0 ? 'left' : 'right'}
+              title={node.title}
+              description={node.summary}
+              urlText={node.buttonText}
+              url={node.buttonLink}
+            />
+          ))}
         </CardGrid>
       ) : null}
     </Layout>
