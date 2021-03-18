@@ -2,9 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import navigation from 'config/navigation';
+import { useLiveStreams } from 'hooks';
 
 function NavigationProvider({ Component, ...props }) {
-  return <Component data={navigation} {...props} />;
+  const liveStreams = useLiveStreams();
+
+  return <Component data={navigation} callData={{liveStreams}} {...props} />;
 }
 
 NavigationProvider.propTypes = {

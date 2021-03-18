@@ -13,6 +13,7 @@ import useForm from './useForm';
 import useGroup from './useGroup';
 import useGroupContentId from './useGroupContentId';
 import useGroups from './useGroups';
+import useLiveStreams from './useLiveStreams';
 import useRegisterWithEmail from './useRegisterWithEmail';
 import useRegisterWithSms from './useRegisterWithSms';
 import useRequestPin from './useRequestPin';
@@ -36,6 +37,7 @@ export {
   useGroup,
   useGroupContentId,
   useGroups,
+  useLiveStreams,
   useRegisterWithEmail,
   useRegisterWithSms,
   useRequestPin,

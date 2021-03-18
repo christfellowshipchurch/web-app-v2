@@ -53,6 +53,7 @@ function Nav(props = {}) {
               >
                 <QuickAction
                   data={action}
+                  callData={props.callData}
                   id={action.id}
                   selected={action.action === router.pathname}
                   hovered={action.id === hoveredItem}
@@ -84,6 +85,10 @@ function Nav(props = {}) {
 }
 
 function QuickAction(props = {}) {
+  let content = props.data.call;
+  if (typeof content === 'function') {
+    content = content(props.callData);
+  }
   return (
     <Styled.QuickAction
       mt="s"
@@ -95,7 +100,7 @@ function QuickAction(props = {}) {
       onClick={props.onClick}
     >
       <Heading variant="base" color="fg">
-        {props.data.call}
+        {content}
       </Heading>
     </Styled.QuickAction>
   );
@@ -104,6 +109,7 @@ function QuickAction(props = {}) {
 Nav.propTypes = {
   ...systemPropTypes,
   data: PropTypes.object,
+  callData: PropTypes.object,
 };
 
 export default Nav;
