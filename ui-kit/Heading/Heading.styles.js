@@ -12,6 +12,7 @@ const variant = ({ variant }) => props => {
 
 const Heading = styled.div`
   font-family: ${themeGet('fonts.heading')};
+  ${props => props.cursor ? `cursor: ${props.cursor}` : null};
 
   ${variant}
   ${system}

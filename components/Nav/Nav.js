@@ -14,8 +14,6 @@ function getMenuItem(menuItem) {
       return Dropdowns.NextSteps;
     case 'connect':
       return Dropdowns.Connect;
-    case 'watch':
-      return Dropdowns.Watch;
     case 'search':
       return Dropdowns.Search;
     case 'user':

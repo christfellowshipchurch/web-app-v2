@@ -14,6 +14,9 @@ import useGroup from './useGroup';
 import useGroupContentId from './useGroupContentId';
 import useGroups from './useGroups';
 import useLiveStreams from './useLiveStreams';
+import useMediaContentItem from './useMediaContentItem';
+import useMessageChannel from './useMessageChannel';
+import useMessageSeries from './useMessageSeries';
 import useRegisterWithEmail from './useRegisterWithEmail';
 import useRegisterWithSms from './useRegisterWithSms';
 import useRequestPin from './useRequestPin';
@@ -38,6 +41,9 @@ export {
   useGroupContentId,
   useGroups,
   useLiveStreams,
+  useMediaContentItem,
+  useMessageChannel,
+  useMessageSeries,
   useRegisterWithEmail,
   useRegisterWithSms,
   useRequestPin,

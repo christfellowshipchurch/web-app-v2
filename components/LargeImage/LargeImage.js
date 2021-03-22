@@ -7,18 +7,23 @@ import { noop } from 'utils';
 
 import Styled, { StyledImage } from './LargeImage.styles';
 
-function LargeImage({ src, color, text, action } = {}) {
+function LargeImage({ src, color, text, action, ...props } = {}) {
   return (
-    <Styled onClick={action ? action : noop} clickable={Boolean(action)}>
+    <Styled
+      onClick={action ? action : noop}
+      clickable={Boolean(action)}
+      {...props}
+    >
       <StyledImage src={src} rounded />
       <Box
         display="flex"
-        alignItems="flex-end"
+        alignItems="center"
         justifyContent="space-between"
         position="absolute"
-        bottom="26px"
-        left="34px"
-        right="34px"
+        padding="10px 34px 25px"
+        backgroundColor="rgba(0, 0, 0, 0.75)"
+        width="100%"
+        borderRadius="0 0 24px 24px"
       >
         {text && (
           <Heading
@@ -27,10 +32,16 @@ function LargeImage({ src, color, text, action } = {}) {
             lineHeight="35px"
             fontWeight="700"
           >
-            {text}
+            <span style={{ marginRight: '36px' }}>{text}</span>
+            {action && (
+              <ArrowCircleRight
+                style={{ float: 'right' }}
+                size={36}
+                color={color}
+              />
+            )}
           </Heading>
         )}
-        {action && <ArrowCircleRight size={48} color={color} />}
       </Box>
     </Styled>
   );

@@ -1,28 +1,30 @@
 import { gql, useQuery } from '@apollo/client';
 
-export const GET_CONTENT_CHANNEL = gql`
-  query getContentChannel($itemId: ID!) {
+export const GET_MESSAGE_SERIES = gql`
+  query getMediaContentItem($itemId: ID!) {
     node(id: $itemId) {
+      id
       ... on ContentChannel {
         childContentItemsConnection {
           edges {
             node {
               id
               title
-              ...on UniversalContentItem {
+              ... on UniversalContentItem {
+                childContentItemsConnection {
+                  edges {
+                    node {
+                      id
+                      title
+                    }
+                  }
+                }
                 subtitle
                 isFeatured
                 sharing {
                   url
                 }
                 coverImage {
-                  sources {
-                    uri
-                  }
-                }
-              }
-              ...on MediaContentItem {
-                videos {
                   sources {
                     uri
                   }
@@ -36,13 +38,13 @@ export const GET_CONTENT_CHANNEL = gql`
   }
 `;
 
-function useContentChannel(options = {}) {
-  const query = useQuery(GET_CONTENT_CHANNEL, options);
+function useMessageSeries(options = {}) {
+  const query = useQuery(GET_MESSAGE_SERIES, options);
 
   return {
-    content: query?.data?.node?.childContentItemsConnection || [],
+    series: query?.data?.node,
     ...query,
   };
 }
 
-export default useContentChannel;
+export default useMessageSeries;
