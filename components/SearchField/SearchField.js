@@ -3,6 +3,7 @@ import React from 'react';
 import { Box, Button, Icon, systemPropTypes, TextInput, utils } from 'ui-kit';
 
 import Styled from './SearchField.styles';
+
 function SearchField(props = {}) {
   return (
     <Box
