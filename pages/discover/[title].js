@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import capitalize from 'lodash/capitalize';
+import startCase from 'lodash/startCase';
 
 import { getURLFromType } from 'utils';
 import { useDiscoverFilterCategoriesPreview } from 'hooks';
@@ -20,9 +20,9 @@ export default function Content(props) {
   const content = categories?.map(edge => edge.node);
 
   return (
-    <Layout title={query?.title}>
+    <Layout title={startCase(query?.title)}>
       <Box as="h1" mb="l">
-        {capitalize(query?.title)}
+        {startCase(query?.title)}
       </Box>
       <CardGrid columns="3" mb="xl">
         {content.map((n, i) => (
