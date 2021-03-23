@@ -10,7 +10,7 @@ import {
   PageSplit,
   Quote,
 } from 'components';
-import { Box, CardGrid } from 'ui-kit';
+import { Box, Button, CardGrid } from 'ui-kit';
 import { getChildrenByType } from 'utils';
 import IDS from 'config/ids';
 import { initializeApollo } from 'lib/apolloClient';
@@ -42,6 +42,7 @@ export default function Page({ data }) {
 
   const story = stories.length ? stories[0] : null;
   const cta = node.ctaLinks?.length ? node.ctaLinks?.[0] : null;
+  const extraCTA = node.ctaLinks?.length ? node.ctaLinks?.slice(1) : null;
   const staff = node.staff?.members || [];
 
   return (
@@ -110,16 +111,13 @@ export default function Page({ data }) {
       {staff?.length ? (
         <>
           <PageSplit title="Meet the Staff" />
-          <CardGrid
+          <Box
             px="xl"
             py="l"
-            gridColumnGap="l"
-            columns="4"
-            breakpoints={[
-              { breakpoint: 'xl', columns: 2 },
-              { breakpoint: 'lg', columns: 1 },
-            ]}
-            justifyItems="center"
+            display="flex"
+            flexWrap="wrap"
+            justifyContent="center"
+            alignItems="center"
           >
             {staff.map(person => (
               <MeetTheStaff
@@ -128,7 +126,24 @@ export default function Page({ data }) {
                 description={person.campus?.name}
               />
             ))}
-          </CardGrid>
+          </Box>
+        </>
+      ) : null}
+      {extraCTA?.length ? (
+        <>
+          <PageSplit title="Connect" />
+          <Box
+            px="xl"
+            py="l"
+            display="flex"
+            flexWrap="wrap"
+            justifyContent="center"
+            alignItems="center"
+          >
+            {extraCTA.map(cta => (
+              <Button onClick={() => router.push(cta.buttonLink)}>{cta.buttonText}</Button>
+            ))}
+          </Box>
         </>
       ) : null}
     </Layout>
