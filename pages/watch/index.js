@@ -84,6 +84,7 @@ export default function Watch({ series, watch }) {
           >
             {ctas.map((cta, i) => (
               <MarketingHeadline
+                key={i}
                 src={cta.coverImage?.sources?.[0]?.uri}
                 title={cta.title}
                 description={cta.description}
