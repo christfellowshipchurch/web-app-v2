@@ -125,7 +125,7 @@ export async function getServerSideProps() {
       series: series.map(
         serie => serie?.data?.node?.childContentItemsConnection?.edges
       ),
-      watch: watchRequest?.data?.node?.childContentItemsConnection?.edges?.[0]
+      watch: watchRequest?.data?.node?.childContentItemsConnection?.edges?.[0] || {}
     },
   };
 }
