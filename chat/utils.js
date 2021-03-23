@@ -1,8 +1,15 @@
-// import memoize from 'fast-memoize';
-import { isString, get, isEmpty } from 'lodash';
+import { isString, get } from 'lodash';
 
 // :: General
 
+/**
+ * Removes the typed prefix from an Apollos global ID.
+ * @param {String} string
+ * @returns String
+ * @example
+ * stripPrefix("SomeType:abc123");
+ * // --> "abc123"
+ */
 export function stripPrefix(string) {
   if (!isString(string)) {
     return undefined;
@@ -11,7 +18,12 @@ export function stripPrefix(string) {
   return string.split(':')[1];
 }
 
-// Maps a user object from our API to a format required/optimized for Chat
+/**
+ * Maps an AuthenticatedUser or Person from our API to a format suitable
+ * for use in Chat context.
+ * @param user An `AuthenticatedUser` or `Person` type
+ * @returns Object
+ */
 export function getStreamUser(user) {
   if (!user) {
     return;
@@ -27,8 +39,3 @@ export function getStreamUser(user) {
     image: get(user, 'profile.photo.uri', ''),
   };
 }
-
-// Memoized to allow shallow equality checks in hooks, etc.
-// export const getStreamUser = memoize(_getStreamUser, {
-//   serializer: user => user?.id,
-// });
