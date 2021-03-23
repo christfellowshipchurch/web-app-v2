@@ -136,6 +136,17 @@ const Chat = styled.div`
   grid-area: chat;
   display: flex;
   align-items: stretch;
+  height: 50vh;
+  z-index: 1;
+
+  /* Breakpoint adjustments must be in sync with root Container grid-template-columns.*/
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    height: calc((9 / 16) * 67vw);
+  }
+
+  @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
+    height: calc((9 / 16) * 75vw);
+  }
 `;
 
 Live.Container = Container;
