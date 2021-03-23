@@ -15,10 +15,10 @@ export default function Item({ item }) {
     <Layout title="Watch">
       <MainPhotoHeader src={item.coverImage?.sources?.[0]?.uri} />
       <Box mx="xxl" my="xl">
-        <Heading variant="h2" fontWeight="800" textTransform="uppercase">
+        <Heading variant="h2" fontWeight="800" mb="m">
           {item.title}
         </Heading>
-        <Heading variant="h4" fontWeight="800">
+        <Heading variant="h4" fontWeight="500" mb="m">
           {item.summary}
         </Heading>
         {src ? <VideoPlayer my="l" src={src} /> : null}

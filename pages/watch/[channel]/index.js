@@ -24,6 +24,7 @@ export default function Channel({ item }) {
       >
         {item.childContentItemsConnection?.edges.map(({ node }) => (
           <LargeImage
+            key={node.id}
             text={node.title}
             color="white"
             src={item.coverImage.sources?.[0].uri}

@@ -19,7 +19,7 @@ export default function Watch({ series }) {
   return (
     <Layout title="Watch">
       <MainPhotoHeader src="/watch.jpeg" title="LH Watch" subtitle="" />
-      <CardGrid px="xxl" py="xl" gridRowGap="l" columns="1">
+      <CardGrid px="l" py="xl" gridRowGap="l" columns="1">
         {allSeries.map(({ node: seriesNode }) => (
           <Box display="flex" flexDirection="column">
             <Box display="flex" justifyContent="space-between" width="100%">
@@ -43,10 +43,10 @@ export default function Watch({ series }) {
             </Box>
             <CardGrid
               columns="3"
-              gridColumnGap="l"
+              gridColumnGap="m"
               breakpoints={[
-                { breakpoint: 'lg', columns: 1 },
                 { breakpoint: 'xl', columns: 2 },
+                { breakpoint: 'lg', columns: 1 },
               ]}
               my="m"
             >
