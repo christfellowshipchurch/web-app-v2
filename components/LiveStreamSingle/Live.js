@@ -2,38 +2,41 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Chat, Video } from 'components';
+import { ChatProvider } from 'chat';
 import { Box } from 'ui-kit';
 
 import Styled from './Live.styles';
 
 function Live(props = {}) {
   return (
-    <Styled.Container>
-      <Styled.Video>
-        <Video
-          src={props.data?.media?.sources[0].uri}
-          poster={props.data?.relatedNode?.coverImage?.sources[0]?.uri}
-          autoPlay={true}
-          playsInline={true}
-        />
-      </Styled.Video>
-      <Styled.MastHead>
-        <Styled.LiveIndicatorContainer>
-          <Styled.LiveIndicator>Live</Styled.LiveIndicator>
-        </Styled.LiveIndicatorContainer>
-        <Box>
-          <Styled.Title>{props.data.relatedNode?.title}</Styled.Title>
-        </Box>
-      </Styled.MastHead>
-      <Styled.Details>
-        {props.data.relatedNode?.summary && (
-          <Box as="p">{props.data.relatedNode?.summary}</Box>
-        )}
-      </Styled.Details>
-      <Styled.Chat>
-        <Chat />
-      </Styled.Chat>
-    </Styled.Container>
+    <ChatProvider>
+      <Styled.Container>
+        <Styled.Video>
+          <Video
+            src={props.data?.media?.sources[0].uri}
+            poster={props.data?.relatedNode?.coverImage?.sources[0]?.uri}
+            autoPlay={false}
+            playsInline={true}
+          />
+        </Styled.Video>
+        <Styled.MastHead>
+          <Styled.LiveIndicatorContainer>
+            <Styled.LiveIndicator>Live</Styled.LiveIndicator>
+          </Styled.LiveIndicatorContainer>
+          <Box>
+            <Styled.Title>{props.data.relatedNode?.title}</Styled.Title>
+          </Box>
+        </Styled.MastHead>
+        <Styled.Details>
+          {props.data.relatedNode?.summary && (
+            <Box as="p">{props.data.relatedNode?.summary}</Box>
+          )}
+        </Styled.Details>
+        <Styled.Chat>
+          <Chat />
+        </Styled.Chat>
+      </Styled.Container>
+    </ChatProvider>
   );
 }
 

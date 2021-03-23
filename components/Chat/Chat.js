@@ -8,13 +8,16 @@ import {
   Window,
 } from 'stream-chat-react';
 
-import { useChat } from 'hooks';
+import { Streami18n } from 'chat';
+import { useChat } from 'chat/ChatProvider';
 import { Box } from 'ui-kit';
 
 export default function Chat(props = {}) {
-  const chatClient = useChat();
+  const [chatClient, chatState] = useChat();
 
+  console.group('💬 %c<Chat>', 'color: magenta');
   console.log('chatClient:', chatClient);
+  console.log('chatState:', chatState);
 
   const channel = chatClient.channel(
     'livestream',
@@ -27,13 +30,17 @@ export default function Chat(props = {}) {
   );
 
   console.log('channel:', channel);
+  console.groupEnd();
 
   return (
     <Box width="100%">
-      <StreamChat client={chatClient} theme="livestream light">
+      <StreamChat
+        client={chatClient}
+        i18nInstance={Streami18n}
+        theme="livestream light"
+      >
         <Channel channel={channel}>
           <Window>
-            <ChannelHeader />
             <MessageList />
             <MessageInput />
           </Window>
