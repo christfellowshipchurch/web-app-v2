@@ -29,27 +29,36 @@ const ChatProvider = ({ children }) => {
 
   console.group('📡%c [ChatProvider]', 'color: orange');
   console.log('connectionStatus:', connectionStatus);
-  console.log('authenticated:', authenticated);
-  console.log('chatUser:', chatUser);
-  console.log('chatToken:', chatToken);
+  // console.log('authenticated:', authenticated);
+  // console.log('chatUser:', chatUser);
+  // console.log('chatToken:', chatToken);
   console.groupEnd();
 
   // Initialize user with Stream Chat client, and respond to changes in authentication state
   useEffect(() => {
-    if (!isClient) {
+    if (!isClient || connectionStatus === ConnectionStatus.CONNECTING) {
       return;
     }
+
+    console.group('📡%c [ChatProvider] ✨ useEffect', 'color: orange');
+    console.log('connectionStatus:', connectionStatus);
+    // console.log('authenticated:', authenticated);
+    // console.log('chatUser:', chatUser?.id);
+    // console.log('chatToken:', chatToken);
+    console.groupEnd();
 
     async function connectUser() {
       setConnectionStatus(ConnectionStatus.CONNECTING);
       await StreamChatClient.connectUser(chatUser, chatToken);
       setConnectionStatus(ConnectionStatus.CONNECTED);
+      console.log('CONNECTED AS USER ✅✅✅');
     }
 
     async function connectAnonymously() {
       setConnectionStatus(ConnectionStatus.CONNECTING);
       await StreamChatClient.connectAnonymousUser();
       setConnectionStatus(ConnectionStatus.CONNECTED);
+      console.log('CONNECTED ANONYMOUSLY ✅✅✅');
     }
 
     async function connect() {
@@ -81,7 +90,7 @@ const ChatProvider = ({ children }) => {
         await StreamChatClient.disconnectUser();
       }
     };
-  }, [authenticated, chatUser, chatToken, connectionStatus]);
+  }, [isClient, authenticated, chatUser, chatToken, connectionStatus]);
 
   return (
     <ChatStateContext.Provider value={connectionStatus}>
