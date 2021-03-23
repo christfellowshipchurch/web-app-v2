@@ -15,19 +15,19 @@ export default function Page({ data }) {
   return (
     <Layout title={data.title} bg="bg_alt">
       <MainPhotoHeader src={data.coverImage?.sources?.[0].uri || ''} />
-      <Box px="xxl" py="l">
+      <Box px="xxl" pt="xl" pb="m">
         {data.subtitle && (
-          <Heading fontSize="h2" lineHeight="h2" color="fg" opacity="50%">
+          <Heading fontSize="h2" lineHeight="h2" color="fg" fontWeight="800" opacity="50%">
             {data.subtitle}
           </Heading>
         )}
         {data.title && (
-          <Heading fontSize="h1" lineHeight="h1" color="fg" fontWeight="700" textTransform="uppercase">
+          <Heading fontSize="h1" lineHeight="h1" color="fg" fontWeight="800" textTransform="uppercase">
             {data.title}
           </Heading>
         )}
         {data.summary && (
-          <Heading fontSize="h3" lineHeight="h3" color="fg">
+          <Heading fontSize="h3" lineHeight="h3" color="fg" fontWeight="700">
             {data.summary}
           </Heading>
         )}
@@ -35,7 +35,8 @@ export default function Page({ data }) {
       {data.htmlContent && (
         <Box
           px="xxl"
-          py="l"
+          pt="m"
+          pb="l"
           dangerouslySetInnerHTML={{ __html: data.htmlContent }}
         />
       )}
