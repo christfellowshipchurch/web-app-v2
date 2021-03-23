@@ -33,7 +33,10 @@ function Live(props = {}) {
           )}
         </Styled.Details>
         <Styled.Chat>
-          <Chat streamChatChannel={props.data?.streamChatChannel} />
+          <Chat
+            streamChatChannel={props.data?.streamChatChannel}
+            relatedNode={props.data?.relatedNode}
+          />
         </Styled.Chat>
       </Styled.Container>
     </ChatProvider>

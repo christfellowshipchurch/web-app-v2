@@ -3,9 +3,12 @@ import PropTypes from 'prop-types';
 
 import {
   Chat as StreamChat,
+  ChannelHeader,
   Channel,
-  MessageInput,
+  MessageInputSmall,
+  MessageSimple,
   MessageList,
+  MessageLivestream,
   Thread,
   Window,
 } from 'stream-chat-react';
@@ -44,20 +47,22 @@ export default function Chat(props = {}) {
   if (error) {
     return (
       <Styled.CenteredContent>
-        <Box as="p" color="alert" textAlign="center">
+        <Box as="p" color="alert" textAlign="center" px="l">
           Sorry, something went wrong!
+          <br />
+          Please refresh the page and try again if you'd like to chat during the
+          livestream.
         </Box>
       </Styled.CenteredContent>
     );
   }
 
-  const channel = chatClient.channel(
-    'livestream',
-    '4a8da06088feb865617a3ccd6eafb0701d106fb4',
-    {
-      name: "Test Event - 24 Hour Live Stream (St. Patrick's Day 2021)",
-    }
-  );
+  const { channelId, channelType } = props.streamChatChannel;
+
+  const channel = chatClient.channel(channelType, channelId, {
+    name: props.relatedNode?.title || 'Chat',
+    relatedNodeId: props.relatedNode.id,
+  });
 
   return (
     <Box width="100%">
@@ -66,10 +71,19 @@ export default function Chat(props = {}) {
         i18nInstance={Streami18n}
         theme="livestream light"
       >
-        <Channel channel={channel}>
+        <Channel
+          channel={channel}
+          Message={
+            channelType === 'livestream' ? MessageLivestream : MessageSimple
+          }
+        >
           <Window>
+            <ChannelHeader
+              image={props.relatedNode?.coverImage?.sources[0].uri}
+              live={channelType === 'livestream'}
+            />
             <MessageList />
-            {authenticated && <MessageInput />}
+            {authenticated && <MessageInputSmall noFiles={true} />}
           </Window>
           <Thread />
         </Channel>
@@ -84,4 +98,5 @@ Chat.propTypes = {
     channelId: PropTypes.string.isRequired,
     channelType: PropTypes.string.isRequired,
   }),
+  relatedNode: PropTypes.object,
 };
