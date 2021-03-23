@@ -44,15 +44,16 @@ const ChatProvider = ({ children }) => {
       setConnectionStatus(ConnectionStatus.CONNECTED);
     }
 
+    // Attempt to initialize chat
     async function connect() {
       try {
-        // Connect as authenticated user if we're ready to do so
         if (authenticated && chatUser && chatToken) {
+          // Connect as authenticated user if we're ready to do so
           await connectUser();
         }
 
-        // Connect as anonymous user if unauthenticated
         if (!authenticated) {
+          // Connect as anonymous user if unauthenticated
           await connectAnonymously();
         }
       } catch (error) {
