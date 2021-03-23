@@ -13,22 +13,48 @@ import { Streami18n } from 'chat';
 import { ConnectionStatus, useChat } from 'chat/ChatProvider';
 import { Box, Loader } from 'ui-kit';
 
+// Shortcuts
+const { CONNECTING, DISCONNECTED, ERROR } = ConnectionStatus;
+
 export default function Chat(props = {}) {
   const { channelId, channelType } = props;
   const [chatClient, connectionStatus] = useChat();
 
-  const connecting = connectionStatus === ConnectionStatus.CONNECTING;
-  const disconnected = connectionStatus === ConnectionStatus.DISCONNECTED;
+  const connecting = connectionStatus === CONNECTING;
+  const disconnected = connectionStatus === DISCONNECTED;
   const loading = connecting || disconnected;
-  const error =
-    !channelId || !channelType || connectionStatus === ConnectionStatus.ERROR;
+  const error = !channelId || !channelType || connectionStatus === ERROR;
 
   useEffect(() => {
     console.log('Connection Status changed');
   }, [connectionStatus]);
 
   if (loading) {
-    return <Loader />;
+    return (
+      <Box
+        width="100%"
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+      >
+        <Loader />
+      </Box>
+    );
+  }
+
+  if (error) {
+    return (
+      <Box
+        width="100%"
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+      >
+        <Box as="p" color="alert" textAlign="center">
+          Sorry, something went wrong!
+        </Box>
+      </Box>
+    );
   }
 
   const channel = chatClient.channel(
