@@ -23,19 +23,11 @@ export default function Chat(props = {}) {
   const error =
     !channelId || !channelType || connectionStatus === ConnectionStatus.ERROR;
 
-  console.group('💬 %c<Chat>', 'color: magenta');
-  // console.log('channelId:', channelId);
-  // console.log('channelType:', channelType);
-  // console.log('---');
-  // console.log('🪝 chatClient:', chatClient);
-  console.log('🪝 connectionStatus:', connectionStatus);
-
   useEffect(() => {
-    console.log('');
+    console.log('Connection Status changed');
   }, [connectionStatus]);
 
   if (loading) {
-    console.groupEnd();
     return <Loader />;
   }
 
@@ -46,8 +38,6 @@ export default function Chat(props = {}) {
       name: "Test Event - 24 Hour Live Stream (St. Patrick's Day 2021)",
     }
   );
-
-  console.groupEnd();
 
   return (
     <Box width="100%">
