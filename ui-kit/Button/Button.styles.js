@@ -131,7 +131,7 @@ const Button = styled.button`
   &:active,
   &:focus,
   &:hover {
-    background-color: ${themeGet('colors.fg')};
+    background-color: ${themeGet('colors.primaryHover')};
     color: ${themeGet('colors.white')};
   }
 

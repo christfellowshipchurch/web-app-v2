@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 import { createMarkup } from 'utils';
 import { Box, Card, DefaultCard, Longform } from 'ui-kit';
-import { SEO } from 'components';
+import { SEO, FeatureFeed } from 'components';
+import { FeatureFeedProvider } from 'providers';
 
 function ContentLayout(props = {}) {
   function renderA() {
@@ -117,6 +118,9 @@ function ContentLayout(props = {}) {
       >
         {renderD()}
         {renderE()}
+      </Box>
+      <Box>
+        <FeatureFeed data={props?.features} />
       </Box>
     </>
   );

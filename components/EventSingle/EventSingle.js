@@ -15,6 +15,7 @@ function EventSingle(props = {}) {
       htmlContent={props.data.htmlContent}
       contentTitleE="Schedule"
       renderContentE={() => <Box as="p">The schedule will go here&hellip;</Box>}
+      features={props?.data?.featureFeed?.features}
     />
   );
 }
