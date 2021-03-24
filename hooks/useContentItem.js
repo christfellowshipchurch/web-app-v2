@@ -43,6 +43,7 @@ export const GET_CONTENT_ITEM = gql`
         childContentItemsConnection {
           edges {
             node {
+              id
               title
               summary
               coverImage {
