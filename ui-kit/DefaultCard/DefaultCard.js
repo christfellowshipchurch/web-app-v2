@@ -16,6 +16,7 @@ const DefaultCard = (props = {}) => {
           hasContent={hasContent}
           overlay={props.coverImageOverlay}
           largeCard={props.largeCard}
+          scaleCoverImage={props.scaleCoverImage}
         >
           {props.coverImageTitle || props.coverImageDescription ? (
             <Styled.CoverContent

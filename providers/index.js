@@ -18,12 +18,16 @@ import LiveStreamProvider from './LiveStreamProvider';
 import ModalProvider from './ModalProvider';
 import NavigationProvider from './NavigationProvider';
 import UserProfileProvider from './UserProfileProvider';
+import DiscoverFiltersCategoriesProvider from './DiscoverFiltersCategoriesProvider';
+import DiscoverFiltersProvider from './DiscoverFiltersProvider';
 
 export {
   AppProvider,
   AuthProvider,
   CampusesProvider,
   CommunitiesProvider,
+  DiscoverFiltersCategoriesProvider,
+  DiscoverFiltersProvider,
   ContentFeedProvider,
   ContentItemProvider,
   ContentItemsSearchProvider,
