@@ -11,32 +11,32 @@ export default function PageDropdown({ featuredItems, nonFeaturedItems, baseRout
 
   return (
     <Box bg="bg" p="l">
-      <CardGrid columns={numColumns} gridColumnGap="base" mb="l" height="450px">
+      <CardGrid columns={numColumns} gridColumnGap="base">
         {numColumns > 1
           ? [...Array(numColumns - 1).keys()].map(i => {
-              const items =
-                featuredItems.length >= i * 3
-                  ? featuredItems.slice(i * 2, i * 2 + 1)
-                  : [featuredItems[i * 2]];
+              const items = featuredItems.slice(i * 2, i * 2 + 2)
 
               // Since we use 2 items each iteration, skip odd-numbered iterations 
               return i % 2 === 0 ? (
                 <Box key={i} display="flex" flexDirection="column">
                   {items.map((item, i) => (
-                    <Photo
-                      key={item.id}
-                      src={item.coverImage?.sources[0]?.uri}
-                      inner={
-                        <Heading fontWeight="600" variant="h2" color="white">
-                          {item.title}
-                        </Heading>
-                      }
-                      overlay={{
-                        color: theme.colors.almost_black,
-                        opacity: '30%',
-                      }}
-                      onClick={() => router.push(item.id.split(':')[1])}
-                    />
+                    <Box height="226px" mb="s">
+                      <Photo
+                        height="226px"
+                        key={item.id}
+                        src={item.coverImage?.sources[0]?.uri}
+                        inner={
+                          <Heading fontWeight="600" variant="h2" color="white">
+                            {item.title}
+                          </Heading>
+                        }
+                        overlay={{
+                          color: theme.colors.almost_black,
+                          opacity: '30%',
+                        }}
+                        onClick={() => router.push(item.id.split(':')[1])}
+                      />
+                    </Box>
                   ))}
                 </Box>
               ) : null;
