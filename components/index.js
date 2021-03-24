@@ -1,4 +1,5 @@
 import * as modals from './Modals';
+import AvatarListFeature from './AvatarListFeature';
 import BirthDateField from './BirthDateField';
 import ClientSideComponent from './ClientSideComponent';
 import CommunityActionSection from './CommunityActionSection';
@@ -36,6 +37,7 @@ import VerticalCardListFeature from './VerticalCardListFeature';
 import Video from './Video';
 
 export {
+  AvatarListFeature,
   BirthDateField,
   ClientSideComponent,
   CommunityActionSection,

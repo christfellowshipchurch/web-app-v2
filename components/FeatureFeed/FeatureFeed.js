@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import AvatarListFeature from '../AvatarListFeature';
 import HeroListFeature from '../HeroListFeature';
 import HorizontalCardListFeature from '../HorizontalCardListFeature';
 import VerticalCardListFeature from '../VerticalCardListFeature';
@@ -9,6 +10,7 @@ import { Box, Divider } from 'ui-kit';
 import { getComponent } from 'utils';
 
 const FEATURE_COMPONENTS = {
+  AvatarListFeature,
   HeroListFeature,
   HorizontalCardListFeature,
   VerticalCardListFeature,
