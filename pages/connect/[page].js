@@ -63,7 +63,7 @@ export default function Page({ data }) {
               title={node.title}
               description={node.summary}
               urlText={node.featureFeed?.features[0].action.title}
-              url={node.featureFeed?.features[0].action.relatedNode.url}
+              url={`/page/${node.id.split(':')[1]}`}
             />
           ))}
         </CardGrid>
