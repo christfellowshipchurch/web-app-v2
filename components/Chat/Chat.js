@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import {
@@ -35,10 +34,6 @@ export default function Chat(props = {}) {
   const disconnected = connectionStatus === DISCONNECTED;
   const loading = connecting || disconnected;
   const error = !props.streamChatChannel || connectionStatus === ERROR;
-
-  useEffect(() => {
-    console.log('Connection Status changed');
-  }, [connectionStatus]);
 
   if (loading) {
     return (
