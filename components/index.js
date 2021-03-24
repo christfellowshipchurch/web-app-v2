@@ -6,7 +6,7 @@ import CommunityActionSection from './CommunityActionSection';
 import CommunityLeaderActions from './CommunityLeaderActions';
 import CommunityList from './CommunityList';
 import CommunitySingle from './CommunitySingle';
-import ContentItemsList from './ContentItemsList';
+import DiscoverItemsList from './DiscoverItemsList';
 import ContentLayout from './ContentLayout';
 import ContentList from './ContentList';
 import ContentSingle from './ContentSingle';
@@ -35,16 +35,20 @@ import UserAvatar from './UserAvatar';
 import UserProfile from './UserProfile';
 import VerticalCardListFeature from './VerticalCardListFeature';
 import Video from './Video';
+import DiscoverFilterSection from './DiscoverFilterSection';
+import DiscoverFiltersMap from './DiscoverFiltersMap';
 
 export {
   AvatarListFeature,
   BirthDateField,
+  DiscoverFilterSection,
+  DiscoverFiltersMap,
   ClientSideComponent,
   CommunityActionSection,
   CommunityLeaderActions,
   CommunityList,
   CommunitySingle,
-  ContentItemsList,
+  DiscoverItemsList,
   ContentLayout,
   ContentList,
   ContentSingle,

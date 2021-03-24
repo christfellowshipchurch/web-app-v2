@@ -10,9 +10,9 @@ function Layout(props = {}) {
   return (
     <>
       <SEO title={props.title} />
-      <Box display="grid" gridTemplateRows="auto 1fr auto" height="100vh">
+      <Box display="flex" flexDirection="column" height="100vh">
         <Header />
-        <Box>
+        <Box flexGrow="1">
           <Cell
             as="main"
             maxWidth={props.contentMaxWidth}
