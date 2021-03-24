@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { system } from 'ui-kit';
+
 const Chat = {};
 
 const CenteredContent = styled.div`
@@ -7,6 +9,8 @@ const CenteredContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  ${system}
 `;
 
 Chat.CenteredContent = CenteredContent;

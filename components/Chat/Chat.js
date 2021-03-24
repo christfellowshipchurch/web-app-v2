@@ -13,10 +13,13 @@ import {
   Window,
 } from 'stream-chat-react';
 
-import { useAuth } from 'providers/AuthProvider';
 import { Streami18n } from 'chat';
 import { ConnectionStatus, useChat } from 'chat/ChatProvider';
-import { Box, Loader } from 'ui-kit';
+
+import { useAuth } from 'providers/AuthProvider';
+import { useModalDispatch, showModal } from 'providers/ModalProvider';
+
+import { Box, Button, Loader } from 'ui-kit';
 
 import Styled from './Chat.styles';
 
@@ -26,6 +29,7 @@ const { CONNECTING, DISCONNECTED, ERROR } = ConnectionStatus;
 export default function Chat(props = {}) {
   const [chatClient, connectionStatus] = useChat();
   const [{ authenticated }] = useAuth();
+  const modalDispatch = useModalDispatch();
 
   const connecting = connectionStatus === CONNECTING;
   const disconnected = connectionStatus === DISCONNECTED;
@@ -39,7 +43,11 @@ export default function Chat(props = {}) {
   if (loading) {
     return (
       <Styled.CenteredContent>
-        <Loader />
+        <Loader
+          alignSelf="center"
+          alignContent="center"
+          text="Connecting chat"
+        />
       </Styled.CenteredContent>
     );
   }
@@ -47,11 +55,12 @@ export default function Chat(props = {}) {
   if (error) {
     return (
       <Styled.CenteredContent>
-        <Box as="p" color="alert" textAlign="center" px="l">
+        <Box as="p" color="alert" textAlign="center" px="base">
           Sorry, something went wrong!
           <br />
-          Please refresh the page and try again if you'd like to chat during the
-          livestream.
+          <br />
+          If you'd like to chat during the livestream, please refresh the page
+          to try again.
         </Box>
       </Styled.CenteredContent>
     );
@@ -63,6 +72,11 @@ export default function Chat(props = {}) {
     name: props.relatedNode?.title || 'Chat',
     relatedNodeId: props.relatedNode.id,
   });
+
+  const handleLoginClick = event => {
+    event.preventDefault();
+    modalDispatch(showModal('Auth'));
+  };
 
   return (
     <Box width="100%">
@@ -84,6 +98,13 @@ export default function Chat(props = {}) {
             />
             <MessageList />
             {authenticated && <MessageInputSmall noFiles={true} />}
+            {!authenticated && (
+              <Styled.CenteredContent p="base">
+                <Button variant="secondary" onClick={handleLoginClick}>
+                  Sign in to chat
+                </Button>
+              </Styled.CenteredContent>
+            )}
           </Window>
           <Thread />
         </Channel>

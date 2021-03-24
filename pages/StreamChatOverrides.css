@@ -2,8 +2,17 @@
   height: 100%;
 }
 
+.str-chat__header-livestream {
+  padding: 12px 18px;
+}
+
 .str-chat__date-separator {
   padding: 15px 18px;
+}
+
+.str-chat__message--me .str-chat__message-inner,
+.str-chat__message-simple--me .str-chat__message-inner {
+  margin-left: 0;
 }
 
 .str-chat__message-livestream {
