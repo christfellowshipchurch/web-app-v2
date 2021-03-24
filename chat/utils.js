@@ -1,7 +1,5 @@
 import { isString, get } from 'lodash';
 
-// :: General
-
 /**
  * Removes the typed prefix from an Apollos global ID.
  * @param {String} string
