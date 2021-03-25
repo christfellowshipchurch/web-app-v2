@@ -36,7 +36,7 @@ export default function PageDropdown({
                           color: theme.colors.almost_black,
                           opacity: '30%',
                         }}
-                        onClick={() => router.push(item.id.split(':')[1])}
+                        onClick={() => router.push(`${baseRoute}/${item.id.split(':')[1]}`)}
                       />
                     </Box>
                   ))}
