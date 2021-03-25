@@ -1,20 +1,18 @@
 import PropTypes from 'prop-types';
 
 import {
-  Chat as StreamChat,
-  ChannelHeader,
   Channel,
+  ChannelHeader,
+  Chat as StreamChat,
   MessageInputSmall,
-  MessageSimple,
   MessageList,
-  MessageLivestream,
   Thread,
   Window,
 } from 'stream-chat-react';
 
 import { Streami18n } from 'chat';
+import { MessageLivestream, MessageSimple } from 'chat/CustomMessages';
 import { ConnectionStatus, useChat } from 'chat/ChatProvider';
-
 import { useAuth } from 'providers/AuthProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
