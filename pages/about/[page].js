@@ -2,14 +2,9 @@ import { useRouter } from 'next/router';
 
 import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
 import { Layout, MainPhotoHeader, MarketingHeadline } from 'components';
-import { Box, CardGrid } from 'ui-kit';
-import { getChildrenByType } from 'utils';
+import { getChannelId, getChildrenByType, getItemId } from 'utils';
 import IDS from 'config/ids';
 import { initializeApollo } from 'lib/apolloClient';
-
-function getItemId(id) {
-  return `UniversalContentItem:${id}`;
-}
 
 export default function Page({ data }) {
   const router = useRouter();

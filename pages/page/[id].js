@@ -1,13 +1,10 @@
 import { useRouter } from 'next/router';
 
 import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
-import { Layout, MainPhotoHeader, PageSplit } from 'components';
+import { Layout, MainPhotoHeader } from 'components';
 import { Box, Button, Heading } from 'ui-kit';
 import { initializeApollo } from 'lib/apolloClient';
-
-function getItemId(id) {
-  return `UniversalContentItem:${id}`;
-}
+import { getItemId } from 'utils';
 
 export default function Page({ data }) {
   const router = useRouter();
