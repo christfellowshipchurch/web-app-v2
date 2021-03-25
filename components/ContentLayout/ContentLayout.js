@@ -88,11 +88,7 @@ function ContentLayout(props = {}) {
             {props.contentTitleE}
           </Box>
         ) : null}
-        {props.renderContentE && (
-          <Card boxShadow="base" p={{ _: 's', md: 'base' }}>
-            {props.renderContentE()}
-          </Card>
-        )}
+        {props.renderContentE && props.renderContentE()}
       </Box>
     );
   }

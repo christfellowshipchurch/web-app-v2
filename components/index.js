@@ -1,4 +1,5 @@
 import * as modals from './Modals';
+import AddToCalendar from './AddToCalendar';
 import BirthDateField from './BirthDateField';
 import ClientSideComponent from './ClientSideComponent';
 import CommunityActionSection from './CommunityActionSection';
@@ -38,6 +39,7 @@ import DiscoverFilterSection from './DiscoverFilterSection';
 import DiscoverFiltersMap from './DiscoverFiltersMap';
 
 export {
+  AddToCalendar,
   BirthDateField,
   DiscoverFilterSection,
   DiscoverFiltersMap,
