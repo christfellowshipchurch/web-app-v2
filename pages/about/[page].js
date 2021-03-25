@@ -41,7 +41,7 @@ export default function Page({ data }) {
               justify={i % 2 === 0 ? 'left' : 'right'}
               title={node.title}
               description={node.summary}
-              actions={[
+              actions={node.featureFeed?.features?.length ? [
                 {
                   label: node.featureFeed?.features[0].action.title,
                   onClick: () => {
@@ -50,7 +50,7 @@ export default function Page({ data }) {
                     );
                   },
                 },
-              ]}
+              ] : []}
             />
           ))}
         </CardGrid>
