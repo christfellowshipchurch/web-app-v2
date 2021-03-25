@@ -10,12 +10,14 @@ const initialState = {
   activeModal: {
     component: null,
     props: {},
+    step: null,
   },
 };
 
 const actionTypes = {
   show: 'show',
   hide: 'hide',
+  showStep: 'showStep',
 };
 
 function findModal(state, action) {
@@ -41,6 +43,19 @@ function modalReducer(state, action) {
         };
       }
       return state;
+    }
+    case actionTypes.showStep: {
+      return {
+        ...state,
+        activeModal: {
+          ...state.activeModal,
+          props: {
+            ...state.activeModal.props,
+            step: action.payload.step,
+          },
+          step: action.payload.step,
+        },
+      };
     }
     case actionTypes.hide: {
       return {
@@ -73,7 +88,7 @@ function ModalManager() {
 
   if (!modal || !modal.component) return null;
 
-  return <modal.component {...modal.props} />;
+  return <modal.component step={modal.step || 0} {...modal.props} />;
 }
 
 const showModal = (modal, modalProps = {}) => ({
@@ -81,6 +96,13 @@ const showModal = (modal, modalProps = {}) => ({
   payload: {
     component: modal,
     props: modalProps,
+  },
+});
+
+const showStep = step => ({
+  type: actionTypes.showStep,
+  payload: {
+    step,
   },
 });
 
@@ -130,4 +152,5 @@ export {
   useModalDispatch,
   showModal,
   hideModal,
+  showStep,
 };

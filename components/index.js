@@ -1,4 +1,5 @@
 import ArticleLink, { ArticleLinks } from './ArticleLink';
+import BirthDateField from './BirthDateField';
 import Carousel from './Carousel';
 import ClientSideComponent from './ClientSideComponent';
 import ContentLayout from './ContentLayout';
@@ -11,6 +12,7 @@ import FlagCTA from './FlagCTA';
 import Footer from './Footer';
 import FullWidthCTA from './FullWidthCTA';
 import FullWidthText from './FullWidthText';
+import GenderField from './GenderField';
 import Header from './Header';
 import HomeFeed from './HomeFeed';
 import HorizontalRow from './HorizontalRow';
@@ -26,14 +28,17 @@ import Photo from './Photo';
 import Quote from './Quote';
 import Search from './Search';
 import SEO from './SEO';
+import UserProfile from './UserProfile';
 import ValuesRow from './ValuesRow';
 import VideoPlayer from './VideoPlayer';
 import { EventsCallout, EventCallout } from './EventCallout';
 import ConnectTiles from './ConnectTiles';
+import * as modals from './Modals';
 
 export {
   ArticleLink,
   ArticleLinks,
+  BirthDateField,
   Carousel,
   ClientSideComponent,
   ContentLayout,
@@ -48,6 +53,7 @@ export {
   Footer,
   FullWidthCTA,
   FullWidthText,
+  GenderField,
   Header,
   HomeFeed,
   HorizontalRow,
@@ -57,12 +63,14 @@ export {
   MainPhotoHeader,
   MarketingHeadline,
   MeetTheStaff,
+  modals,
   Nav,
   PageSplit,
   Photo,
   Quote,
   Search,
   SEO,
+  UserProfile,
   ValuesRow,
   VideoPlayer,
   ConnectTiles,

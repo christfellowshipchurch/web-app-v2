@@ -13,6 +13,7 @@ const initialState = {
   token: null,
   type: null,
   userExists: false,
+  onSuccess: () => false,
 };
 
 const actionTypes = {

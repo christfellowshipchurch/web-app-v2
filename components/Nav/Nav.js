@@ -5,6 +5,8 @@ import { useRouter } from 'next/router';
 import { Box, Heading, systemPropTypes } from 'ui-kit';
 import { ClientSideComponent, Dropdowns } from 'components';
 import Styled from './Nav.styles';
+import { useModalDispatch } from 'providers/ModalProvider';
+import { useCurrentUser } from 'hooks';
 
 function getMenuItem(menuItem) {
   switch (menuItem) {
@@ -16,8 +18,6 @@ function getMenuItem(menuItem) {
       return Dropdowns.Connect;
     case 'search':
       return Dropdowns.Search;
-    case 'user':
-      return Dropdowns.User;
     default:
       return null;
   }
@@ -26,6 +26,8 @@ function getMenuItem(menuItem) {
 function Nav(props = {}) {
   const router = useRouter();
   const [hoveredItem, setHoveredItem] = useState(null);
+  const modalDispatch = useModalDispatch();
+  const { authenticated } = useCurrentUser();
 
   return (
     <Styled px="s">
@@ -55,11 +57,15 @@ function Nav(props = {}) {
                   id={action.id}
                   selected={action.action === router.pathname}
                   hovered={action.id === hoveredItem}
-                  onClick={() => {
-                    if (hoveredItem === action.id) {
-                      router.push(action.action);
-                    }
-                  }}
+                  onClick={
+                    typeof action.action === 'string'
+                      ? () => {
+                          if (hoveredItem === action.id) {
+                            router.push(action.action);
+                          }
+                        }
+                      : () => action.action?.({ modalDispatch, router, authenticated })
+                  }
                 />
                 {Component && (
                   <Box
@@ -87,11 +93,14 @@ function QuickAction(props = {}) {
   if (typeof content === 'function') {
     content = content(props.callData);
   }
+  const hasDropdown = getMenuItem(props.id);
+
   return (
     <Styled.QuickAction
       mt="s"
+      mb={hasDropdown ? '0' : '14px'}
       pt="21px"
-      pb="35px"
+      pb={hasDropdown ? '35px' : '21px'}
       px="s"
       hovered={props.hovered}
       selected={props.selected}
