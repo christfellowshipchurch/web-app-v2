@@ -19,6 +19,7 @@ const Footer = styled.footer`
 `;
 
 const Link = styled.a`
+  cursor: pointer;
   color: ${themeGet('colors.neutrals.100')};
   font-size: ${themeGet('fontSizes.h4')};
   line-height: ${themeGet('lineHeights.h4')};

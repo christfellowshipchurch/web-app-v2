@@ -1,7 +1,7 @@
 import { ArrowCircleRight } from 'phosphor-react';
 import { useRouter } from 'next/router';
 import { Photo } from 'components';
-import { NonFeaturedItem } from './Dropdowns.styles';
+import { FeaturedItem, NonFeaturedItem } from './Dropdowns.styles';
 import { Box, CardGrid, Heading, theme } from 'ui-kit';
 import { getIdSuffix } from 'utils';
 
@@ -24,7 +24,7 @@ export default function PageDropdown({
               return (
                 <Box key={i} display="flex" flexDirection="column">
                   {items.map((item, i) => (
-                    <Box height="226px" mb="s" key={item.id}>
+                    <FeaturedItem key={item.id}>
                       <Photo
                         height="226px"
                         src={item.coverImage?.sources[0]?.uri}
@@ -39,7 +39,7 @@ export default function PageDropdown({
                         }}
                         onClick={() => router.push(`${baseRoute}/${getIdSuffix(item.id)}`)}
                       />
-                    </Box>
+                    </FeaturedItem>
                   ))}
                 </Box>
               );
@@ -50,12 +50,12 @@ export default function PageDropdown({
             <NonFeaturedItem
               key={i}
               onClick={() =>
-                router.push(`${baseRoute}/${getIdSuffix(item.id.split)}`)
+                router.push(`${baseRoute}/${getIdSuffix(item.id)}`)
               }
             >
               <Heading
                 fontSize="l"
-                lineHeight="h2"
+                lineHeight="s"
                 fontWeight="500"
                 color="white"
               >

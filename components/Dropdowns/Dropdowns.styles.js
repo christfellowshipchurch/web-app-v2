@@ -30,7 +30,15 @@ export const Button = styled(_Button)`
   ${system}
 `;
 
+export const FeaturedItem = styled(Box)`
+  cursor: pointer;
+  height: 226px;
+  margin-bottom: ${themeGet('space.s')};
+  ${system}
+`;
+
 export const NonFeaturedItem = styled(Box)`
+  cursor: pointer;
   width: 100%;
   background: ${themeGet('colors.primary')};
   border-radius: ${themeGet('radii.image')};
@@ -50,6 +58,7 @@ export const NonFeaturedItem = styled(Box)`
 
 Dropdowns.Input = Input;
 Dropdowns.Button = Button;
+Dropdowns.FeaturedItem = FeaturedItem;
 Dropdowns.NonFeaturedItem = NonFeaturedItem;
 
 export default Dropdowns;
