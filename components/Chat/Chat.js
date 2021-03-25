@@ -50,8 +50,8 @@ export default function Chat(props = {}) {
       <Styled.CenteredContent>
         <Box as="p" color="alert" textAlign="center" px="base">
           Sorry, something went wrong!
-          <br />
-          <br />
+        </Box>
+        <Box as="p" color="alert" textAlign="center" px="base">
           If you'd like to chat during the livestream, please refresh the page
           to try again.
         </Box>
