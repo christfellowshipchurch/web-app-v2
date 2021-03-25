@@ -95,6 +95,11 @@ const textTransform = style({
   cssProperty: 'text-transform',
 });
 
+const cursor = style({
+  prop: 'cursor',
+  cssProperty: 'cursor',
+});
+
 export const core = compose(color, fontSize, space, width);
 
 export const typography = compose(
@@ -168,6 +173,7 @@ export const misc = compose(
   backgroundRepeat,
   backgroundSize,
   boxShadow,
+  cursor,
   opacity,
   overflow
 );
