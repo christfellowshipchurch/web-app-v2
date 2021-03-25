@@ -20,7 +20,11 @@ const getCardColumns = cards => {
 };
 
 function VerticalCardListFeature(props = {}) {
-  let cards = props?.data?.cards || [];
+  if (!props?.data?.cards) {
+    return null;
+  }
+
+  let cards = props?.data?.cards;
   const heroCard = head(cards);
   cards = slice(cards, 1);
 
@@ -39,7 +43,7 @@ function VerticalCardListFeature(props = {}) {
     <>
       <CustomLink
         as="a"
-        href={getURLFromType(heroCard?.relatedNode, heroCard?.title)}
+        href={getURLFromType(heroCard.relatedNode, heroCard.title)}
         Component={DefaultCard}
         coverImage={heroCard?.coverImage?.sources[0]?.uri}
         coverImageTitle={heroCard?.title}

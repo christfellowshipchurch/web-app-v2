@@ -7,6 +7,10 @@ import { Box, CardGrid, DefaultCard, RowCard } from 'ui-kit';
 import { getURLFromType } from 'utils';
 
 function HeroListFeature(props = {}) {
+  if (!props?.data?.cards) {
+    return null;
+  }
+
   const heroCard = props?.data?.heroCard;
   let cards = props?.data?.actions || [];
 
@@ -25,7 +29,7 @@ function HeroListFeature(props = {}) {
     <Box>
       <CustomLink
         as="a"
-        href={getURLFromType(heroCard?.relatedNode, heroCard?.title)}
+        href={getURLFromType(heroCard.relatedNode, heroCard.title)}
         Component={DefaultCard}
         coverImage={heroCard?.coverImage?.sources[0]?.uri}
         coverImageOverlay={true}
