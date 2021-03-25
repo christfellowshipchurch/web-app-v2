@@ -10,38 +10,31 @@ import { Box, CardGrid } from 'ui-kit';
 export default function Page({ data }) {
   const router = useRouter();
 
-  const { loading, error, node } = data;
-
-  if (loading) {
-    return null;
-  } else if (error) {
-    router.push('/about');
-  }
-
   const generalChildren = getChildrenByType(
-    node.childContentItemsConnection?.edges,
+    data.childContentItemsConnection?.edges,
     IDS.GENERAL
   );
 
   return (
-    <Layout title={`About - ${node.title}`} bg="bg_alt">
+    <Layout title={`About - ${data.title}`} bg="bg_alt">
       <MainPhotoHeader
-        src={node.coverImage?.sources?.[0].uri || ''}
-        title={node.title}
-        subtitle={node.subtitle}
-        summary={node.summary}
+        src={data.coverImage?.sources?.[0].uri || ''}
+        title={data.title}
+        subtitle={data.subtitle}
+        summary={data.summary}
       />
-      {node.htmlContent && (
+      {data.htmlContent && (
         <Box
           px="xxl"
           py="xl"
-          dangerouslySetInnerHTML={{ __html: node.htmlContent }}
+          dangerouslySetInnerHTML={{ __html: data.htmlContent }}
         />
       )}
       {generalChildren.length ? (
         <CardGrid px="xxl" py="xl" columns="1">
           {generalChildren.map(({ node }, i) => (
             <MarketingHeadline
+              key={node.id}
               image={{
                 src: node.coverImage?.sources?.[0]?.uri,
               }}
@@ -80,7 +73,7 @@ export async function getServerSideProps(context) {
     return {
       props: {
         initialApolloState: apolloClient.cache.extract(),
-        data: pageResponse?.data,
+        data: pageResponse?.data?.node,
       },
     };
   } catch (e) {

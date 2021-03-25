@@ -59,10 +59,12 @@ export const GET_CONTENT_ITEM = gql`
               parentChannel {
                 id
               }
-              ... on FeaturesNode {
+              ... on UniversalContentItem {
+                id
                 featureFeed {
                   features {
                     ... on ButtonFeature {
+                      id
                       action {
                         relatedNode {
                           ... on Url {
