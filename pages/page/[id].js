@@ -50,8 +50,8 @@ export default function Page({ data }) {
             justifyContent="center"
             alignItems="center"
           >
-            {data.ctaLinks?.map(cta => (
-              <Button onClick={() => router.push(cta.buttonLink)}>
+            {data.ctaLinks?.map((cta, i) => (
+              <Button key={i} onClick={() => router.push(cta.buttonLink)}>
                 {cta.buttonText}
               </Button>
             ))}

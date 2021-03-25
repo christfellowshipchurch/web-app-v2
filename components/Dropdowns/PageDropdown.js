@@ -20,8 +20,7 @@ export default function PageDropdown({
           ? [...Array(numColumns - 1).keys()].map(i => {
               const items = featuredItems.slice(i * 2, i * 2 + 2);
 
-              // Since we use 2 items each iteration, skip odd-numbered iterations
-              return i % 2 === 0 ? (
+              return (
                 <Box key={i} display="flex" flexDirection="column">
                   {items.map((item, i) => (
                     <Box height="226px" mb="s" key={item.id}>
@@ -42,7 +41,7 @@ export default function PageDropdown({
                     </Box>
                   ))}
                 </Box>
-              ) : null;
+              );
             })
           : null}
         <Box display="flex" flexDirection="column" width="100%">
