@@ -5,6 +5,8 @@ import { links } from 'config/metadata';
 import { Box, CardGrid, List, systemPropTypes, Text, theme } from 'ui-kit';
 import { Logo } from 'components';
 import Styled from './Footer.styles';
+import IDS from 'config/ids';
+import FooterLinks from './FooterLinks';
 
 function Footer(props = {}) {
   return (
@@ -30,9 +32,9 @@ function Footer(props = {}) {
           gridTemplateColumns="repeat(4, 1fr)"
           gridColumnGap="l"
         >
-          <About />
-          <NextSteps />
-          <Connect />
+          <FooterLinks channelId={IDS.ABOUT_PAGES} baseRoute="/about" title="About" />
+          <FooterLinks channelId={IDS.NEXT_STEPS_PAGES} baseRoute="/next-steps" title="Next Steps" />
+          <FooterLinks channelId={IDS.CONNECT_PAGES} baseRoute="/connect" title="Connect" />
           <QuickLinks />
         </CardGrid>
       </Styled.Grid>
@@ -86,95 +88,6 @@ function Contact() {
         </Box>
       </Box>
     </Styled.Contact>
-  );
-}
-
-function About() {
-  return (
-    <Box>
-      <Text variant="h4" color="white" fontWeight="600" mb="xs">
-        About
-      </Text>
-      <List as="ul" space="xs">
-        <Box as="li">
-          <Styled.Link href={links.schedule}>Schedule</Styled.Link>
-        </Box>
-        <Box as="li">
-          <Styled.Link href={links.ourBeliefs}>Our beliefs</Styled.Link>
-        </Box>
-        <Box as="li">
-          <Styled.Link href={links.ourStory}>Our story</Styled.Link>
-        </Box>
-        <Box as="li">
-          <Styled.Link href={links.ourStaff}>Meet our staff</Styled.Link>
-        </Box>
-      </List>
-    </Box>
-  );
-}
-
-function NextSteps() {
-  return (
-    <Box>
-      <Text variant="h4" color="white" fontWeight="600" mb="xs">
-        Next Steps
-      </Text>
-      <List as="ul" space="xs">
-        <Box as="li">
-          <Styled.Link href={links.join}>
-            Join us (online or in-person)
-          </Styled.Link>
-        </Box>
-        <Box as="li">
-          <Styled.Link href={links.talk}>Talk to someone</Styled.Link>
-        </Box>
-        <Box as="li">
-          <Styled.Link href={links.baptize}>Get baptized</Styled.Link>
-        </Box>
-        <Box as="li">
-          <Styled.Link href={links.findCommunity}>Find community</Styled.Link>
-        </Box>
-        <Box as="li">
-          <Styled.Link href={links.volunteer}>Volunteer with us</Styled.Link>
-        </Box>
-        <Box as="li">
-          <Styled.Link href={links.missions}>Mission trips</Styled.Link>
-        </Box>
-      </List>
-    </Box>
-  );
-}
-
-function Connect() {
-  return (
-    <Box>
-      <Text variant="h4" color="white" fontWeight="600" mb="xs">
-        Connect
-      </Text>
-      <List as="ul" space="xs">
-        <Box as="li">
-          <Styled.Link href={links.preschool}>Weekday preschool</Styled.Link>
-        </Box>
-        <Box as="li">
-          <Styled.Link href={links.kids}>Kids</Styled.Link>
-        </Box>
-        <Box as="li">
-          <Styled.Link href={links.students}>Students</Styled.Link>
-        </Box>
-        <Box as="li">
-          <Styled.Link href={links.youngAdults}>Young adults</Styled.Link>
-        </Box>
-        <Box as="li">
-          <Styled.Link href={links.women}>Women</Styled.Link>
-        </Box>
-        <Box as="li">
-          <Styled.Link href={links.recovery}>Support and recovery</Styled.Link>
-        </Box>
-        <Box as="li">
-          <Styled.Link href={links.prayer}>Prayer</Styled.Link>
-        </Box>
-      </List>
-    </Box>
   );
 }
 

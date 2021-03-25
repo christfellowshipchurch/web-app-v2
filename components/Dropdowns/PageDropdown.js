@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { Photo } from 'components';
 import { NonFeaturedItem } from './Dropdowns.styles';
 import { Box, CardGrid, Heading, theme } from 'ui-kit';
+import { getIdSuffix } from 'utils';
 
 export default function PageDropdown({
   featuredItems,
@@ -36,7 +37,7 @@ export default function PageDropdown({
                           color: theme.colors.almost_black,
                           opacity: '30%',
                         }}
-                        onClick={() => router.push(`${baseRoute}/${item.id.split(':')[1]}`)}
+                        onClick={() => router.push(`${baseRoute}/${getIdSuffix(item.id)}`)}
                       />
                     </Box>
                   ))}
@@ -49,7 +50,7 @@ export default function PageDropdown({
             <NonFeaturedItem
               key={i}
               onClick={() =>
-                router.push(`${baseRoute}/${item.id.split(':')[1]}`)
+                router.push(`${baseRoute}/${getIdSuffix(item.id.split)}`)
               }
             >
               <Heading

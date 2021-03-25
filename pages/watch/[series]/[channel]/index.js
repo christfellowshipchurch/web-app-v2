@@ -3,7 +3,7 @@ import { initializeApollo } from 'lib/apolloClient';
 import { GET_MESSAGE_CHANNEL } from 'hooks/useMessageChannel';
 import { Box } from 'ui-kit';
 import { useRouter } from 'next/router';
-import { getItemId } from 'utils';
+import { getIdSuffix, getItemId } from 'utils';
 import { useTheme } from 'styled-components';
 
 export default function Channel({ item }) {
@@ -33,7 +33,7 @@ export default function Channel({ item }) {
             mb="m"
             action={() =>
               router.push(
-                `/watch/${router.query.series}/${router.query.channel}/${node.id.split(':')[1]}`
+                `/watch/${router.query.series}/${router.query.channel}/${getIdSuffix(node.id)}`
               )
             }
           />

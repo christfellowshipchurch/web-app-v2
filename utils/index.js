@@ -4,6 +4,7 @@ import formatPhoneNumber from './formatPhoneNumber';
 import getAge from './getAge';
 import getChannelId from './getChannelId';
 import getChildrenByType from './getChildrenByType';
+import getIdSuffix from './getIdSuffix';
 import getItemId from './getItemId';
 import getURLFromType from './getURLFromType';
 import noop from './noop';
@@ -21,6 +22,7 @@ export {
   getAge,
   getChannelId,
   getChildrenByType,
+  getIdSuffix,
   getItemId,
   getURLFromType,
   noop,

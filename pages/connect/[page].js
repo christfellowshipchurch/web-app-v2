@@ -11,7 +11,7 @@ import {
   Quote,
 } from 'components';
 import { Box, Button, CardGrid } from 'ui-kit';
-import { getChildrenByType, getItemId } from 'utils';
+import { getChildrenByType, getIdSuffix, getItemId } from 'utils';
 import IDS from 'config/ids';
 import { initializeApollo } from 'lib/apolloClient';
 
@@ -59,7 +59,7 @@ export default function Page({ data }) {
               title={node.title}
               description={node.summary}
               urlText={node.featureFeed?.features[0].action.title}
-              url={`/page/${node.id.split(':')[1]}`}
+              url={`/page/${getIdSuffix(node.id)}`}
             />
           ))}
         </CardGrid>
