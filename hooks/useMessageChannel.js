@@ -15,10 +15,6 @@ export const GET_MESSAGE_CHANNEL = gql`
           }
         }
         subtitle
-        isFeatured
-        sharing {
-          url
-        }
         coverImage {
           sources {
             uri

@@ -1,26 +1,25 @@
 import { LargeImage, Layout, MainPhotoHeader } from 'components';
 import { initializeApollo } from 'lib/apolloClient';
 import { GET_MESSAGE_CHANNEL } from 'hooks/useMessageChannel';
-import { CardGrid } from 'ui-kit';
+import { Box } from 'ui-kit';
 import { useRouter } from 'next/router';
-
-function getItemId(id) {
-  return `UniversalContentItem:${id}`;
-}
+import { getItemId } from 'utils';
+import { useTheme } from 'styled-components';
 
 export default function Channel({ item }) {
   const router = useRouter();
+  const theme = useTheme();
+
   return (
     <Layout title="Watch">
       <MainPhotoHeader src={item?.coverImage.sources?.[0]?.uri} />
-      <CardGrid
-        columns="3"
-        gridColumnGap="l"
-        breakpoints={[
-          { breakpoint: 'lg', columns: 1 },
-          { breakpoint: 'xl', columns: 2 },
-        ]}
+      <Box
+        display="flex"
         my="m"
+        mr={`-${theme.space.m}`}
+        px="xxl"
+        flexWrap="wrap"
+        justifyContent="center"
       >
         {item.childContentItemsConnection?.edges.map(({ node }) => (
           <LargeImage
@@ -29,15 +28,17 @@ export default function Channel({ item }) {
             color="white"
             src={item.coverImage.sources?.[0].uri}
             height="350px"
-            width="400px"
+            flex="1 0 400px"
+            mr="m"
+            mb="m"
             action={() =>
               router.push(
-                `/watch/${item.id.split(':')[1]}/${node.id.split(':')[1]}`
+                `/watch/${router.query.series}/${router.query.channel}/${node.id.split(':')[1]}`
               )
             }
           />
         ))}
-      </CardGrid>
+      </Box>
     </Layout>
   );
 }

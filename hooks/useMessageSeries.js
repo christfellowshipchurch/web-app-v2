@@ -1,33 +1,19 @@
 import { gql, useQuery } from '@apollo/client';
 
 export const GET_MESSAGE_SERIES = gql`
-  query getMediaContentItem($itemId: ID!) {
+  query getMessageSeries($itemId: ID!) {
     node(id: $itemId) {
       id
       ... on ContentChannel {
+        name
         childContentItemsConnection {
           edges {
             node {
               id
               title
-              ... on UniversalContentItem {
-                childContentItemsConnection {
-                  edges {
-                    node {
-                      id
-                      title
-                    }
-                  }
-                }
-                subtitle
-                isFeatured
-                sharing {
-                  url
-                }
-                coverImage {
-                  sources {
-                    uri
-                  }
+              coverImage {
+                sources {
+                  uri
                 }
               }
             }
