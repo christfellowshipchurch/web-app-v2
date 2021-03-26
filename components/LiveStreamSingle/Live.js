@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { ChatProvider } from 'providers';
+import { ChatConnectionProvider } from 'providers';
 import { Chat, Video } from 'components';
 import { Box } from 'ui-kit';
 
@@ -9,7 +9,7 @@ import Styled from './Live.styles';
 
 function Live(props = {}) {
   return (
-    <ChatProvider>
+    <ChatConnectionProvider>
       <Styled.Container>
         <Styled.Video>
           <Video
@@ -39,7 +39,7 @@ function Live(props = {}) {
           />
         </Styled.Chat>
       </Styled.Container>
-    </ChatProvider>
+    </ChatConnectionProvider>
   );
 }
 

@@ -1,7 +1,7 @@
 import AppProvider from './AppProvider';
 import AuthProvider from './AuthProvider';
 import CampusesProvider from './CampusesProvider';
-import ChatProvider from './ChatProvider';
+import ChatConnectionProvider from './ChatConnectionProvider';
 import CommunitiesProvider from './CommunitiesProvider';
 import ContentFeedProvider from './ContentFeedProvider';
 import ContentItemProvider from './ContentItemProvider';
@@ -24,7 +24,7 @@ export {
   AppProvider,
   AuthProvider,
   CampusesProvider,
-  ChatProvider,
+  ChatConnectionProvider,
   CommunitiesProvider,
   ContentFeedProvider,
   ContentItemProvider,

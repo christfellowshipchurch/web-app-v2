@@ -10,9 +10,12 @@ import {
   Window,
 } from 'stream-chat-react';
 
-import { Streami18n } from 'lib/chat';
+import { StreamChatClient, Streami18n } from 'lib/chat';
 import { useAuth } from 'providers/AuthProvider';
-import { ConnectionStatus, useChat } from 'providers/ChatProvider';
+import {
+  ConnectionStatus,
+  useChatConnection,
+} from 'providers/ChatConnectionProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
 import { Box, Button, Loader } from 'ui-kit';
@@ -24,7 +27,7 @@ import Styled from './Chat.styles';
 const { CONNECTING, DISCONNECTED, ERROR } = ConnectionStatus;
 
 export default function Chat(props = {}) {
-  const [chatClient, connectionStatus] = useChat();
+  const connectionStatus = useChatConnection();
   const [{ authenticated }] = useAuth();
   const modalDispatch = useModalDispatch();
 
@@ -61,7 +64,7 @@ export default function Chat(props = {}) {
 
   const { channelId, channelType } = props.streamChatChannel;
 
-  const channel = chatClient.channel(channelType, channelId, {
+  const channel = StreamChatClient.channel(channelType, channelId, {
     name: props.relatedNode?.title || 'Chat',
     relatedNodeId: props.relatedNode.id,
   });
@@ -74,7 +77,7 @@ export default function Chat(props = {}) {
   return (
     <Box width="100%">
       <StreamChat
-        client={chatClient}
+        client={StreamChatClient}
         i18nInstance={Streami18n}
         theme="livestream light"
       >

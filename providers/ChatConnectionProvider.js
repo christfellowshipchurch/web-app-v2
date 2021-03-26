@@ -13,10 +13,10 @@ const ConnectionStatus = Object.freeze({
 });
 
 // :: Contexts
-const ChatStateContext = createContext(null);
+const ChatConnectionStateContext = createContext(null);
 
 // :: Providers
-const ChatProvider = ({ children }) => {
+const ChatConnectionProvider = ({ children }) => {
   const [{ authenticated }] = useAuth();
   const { chatUser, chatToken } = useCurrentChatUser();
   const isClient = typeof window !== 'undefined';
@@ -76,21 +76,27 @@ const ChatProvider = ({ children }) => {
   }, [isClient, authenticated, chatUser, chatToken, connectionStatus]);
 
   return (
-    <ChatStateContext.Provider value={connectionStatus}>
+    <ChatConnectionStateContext.Provider value={connectionStatus}>
       {children}
-    </ChatStateContext.Provider>
+    </ChatConnectionStateContext.Provider>
   );
 };
 
 // :: Hook
-function useChat() {
-  const context = useContext(ChatStateContext);
+function useChatConnection() {
+  const context = useContext(ChatConnectionStateContext);
 
   if (context === undefined) {
-    throw new Error(`useChat must be used within a ChatProvider`);
+    throw new Error(
+      `useChatConnection must be used within a ChatConnectionProvider`
+    );
   }
 
-  return [StreamChatClient, context];
+  return context;
 }
 
-export { ChatProvider as default, useChat, ConnectionStatus };
+export {
+  ChatConnectionProvider as default,
+  useChatConnection,
+  ConnectionStatus,
+};
