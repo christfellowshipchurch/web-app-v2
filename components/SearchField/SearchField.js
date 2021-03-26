@@ -2,9 +2,17 @@ import React from 'react';
 
 import { Box, Button, Icon, systemPropTypes, TextInput, utils } from 'ui-kit';
 
+import Styled from './SearchField.styles';
+
 function SearchField(props = {}) {
   return (
-    <Box as="form" onSubmit={props.handleSubmit} display="flex" {...props}>
+    <Box
+      as="form"
+      onSubmit={props.handleSubmit}
+      display="flex"
+      position="relative"
+      {...props}
+    >
       <Icon
         name="search"
         color="border"
@@ -24,6 +32,11 @@ function SearchField(props = {}) {
         paddingLeft={utils.rem('38px')}
         borderRight="none"
       />
+      {props.value !== '' && props.handleClear && (
+        <Styled.ClearButton onClick={props.handleClear}>
+          <Icon name="x" color="border" size="20" />
+        </Styled.ClearButton>
+      )}
       <Button
         type="submit"
         onClick={props.handleClick}

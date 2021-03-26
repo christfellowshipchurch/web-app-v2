@@ -30,6 +30,9 @@ import useSearchGroups from './useSearchGroups';
 import useUpdateCurrentUser from './useUpdateCurrentUser';
 import useUserExists from './useUserExists';
 import useVerifyPin from './useVerifyPin';
+import useDiscoverFilterCategories from './useDiscoverFilterCategories';
+import useDiscoverFilters from './useDiscoverFilters';
+import useDiscoverFilterCategoriesPreview from './useDiscoverFilterCategoriesPreview';
 
 export {
   useAuthIdentity,
@@ -64,4 +67,7 @@ export {
   useUpdateCurrentUser,
   useUserExists,
   useVerifyPin,
+  useDiscoverFilterCategories,
+  useDiscoverFilters,
+  useDiscoverFilterCategoriesPreview,
 };
