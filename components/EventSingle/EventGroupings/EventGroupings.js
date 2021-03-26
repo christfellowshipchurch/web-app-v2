@@ -25,6 +25,7 @@ const EventGroupings = (props = {}) => {
         p={{ _: 's', md: 'base' }}
         display="flex"
         flexDirection="column"
+        mb="base"
       >
         {props.data.eventGroupings?.length > 0 && (
           <Select
@@ -34,7 +35,9 @@ const EventGroupings = (props = {}) => {
             defaultValue={props.data.eventGroupings[0]?.name}
             mb="base"
           >
-            <Select.Option value="">Select a campus</Select.Option>
+            <Select.Option value="" disabled={true}>
+              Select a campus...
+            </Select.Option>
             {props.data.eventGroupings.map(({ name }) => {
               return (
                 <Select.Option key={name} value={name}>
@@ -55,7 +58,8 @@ const EventGroupings = (props = {}) => {
               group={selectedGroup.name}
             />
           ))}
-
+      </Card>
+      <Card p={{ _: 's', md: 'base' }} display="flex" flexDirection="column">
         {props.data.callsToAction?.map((n, i) => (
           <Button
             as="a"
@@ -69,7 +73,7 @@ const EventGroupings = (props = {}) => {
             //     label: `${title} - ${n.call} Button`,
             //   })
             // }
-            mb="s"
+            mb={i === props.data.callsToAction.length - 1 ? 'none' : 's'}
           >
             {n.call}
           </Button>
