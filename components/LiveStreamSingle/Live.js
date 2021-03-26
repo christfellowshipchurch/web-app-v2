@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { ChatProvider } from 'providers';
 import { Chat, Video } from 'components';
-import { ChatProvider } from 'chat';
 import { Box } from 'ui-kit';
 
 import Styled from './Live.styles';

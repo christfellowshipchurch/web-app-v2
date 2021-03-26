@@ -1,5 +1,10 @@
 import React from 'react';
-import { ReactionSelector, SimpleReactionsList } from 'stream-chat-react';
+import {
+  MessageLivestream as MessageLivestreamCore,
+  MessageSimple as MessageSimpleCore,
+  ReactionSelector,
+  SimpleReactionsList,
+} from 'stream-chat-react';
 
 // @see https://getstream.github.io/stream-chat-react/#message-1
 // @see https://getstream.github.io/stream-chat-react/#reactionselector
@@ -76,7 +81,7 @@ const CustomReactionsList = props => (
   <SimpleReactionsList reactionOptions={reactionOptions} {...props} />
 );
 
-export default function withCustomReactions(MessageComponent) {
+function withCustomReactions(MessageComponent) {
   return props => (
     <MessageComponent
       ReactionSelector={CustomReactionSelector}
@@ -85,3 +90,6 @@ export default function withCustomReactions(MessageComponent) {
     />
   );
 }
+
+export const MessageSimple = withCustomReactions(MessageSimpleCore);
+export const MessageLivestream = withCustomReactions(MessageLivestreamCore);

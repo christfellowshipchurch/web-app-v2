@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getStreamUser } from './utils';
+import { getStreamUser } from 'utils/chat';
 
 import { useCurrentUser } from 'hooks';
 

@@ -1,9 +1,8 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 import { useAuth } from 'providers/AuthProvider';
-
-import StreamChatClient from './StreamChatClient';
-import useCurrentChatUser from './useCurrentChatUser';
+import { StreamChatClient } from 'lib/chat';
+import { useCurrentChatUser } from 'hooks';
 
 // :: Constants
 const ConnectionStatus = Object.freeze({

@@ -10,14 +10,14 @@ import {
   Window,
 } from 'stream-chat-react';
 
-import { Streami18n } from 'chat';
-import { MessageLivestream, MessageSimple } from 'chat/CustomMessages';
-import { ConnectionStatus, useChat } from 'chat/ChatProvider';
+import { Streami18n } from 'lib/chat';
 import { useAuth } from 'providers/AuthProvider';
+import { ConnectionStatus, useChat } from 'providers/ChatProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
 import { Box, Button, Loader } from 'ui-kit';
 
+import { MessageLivestream, MessageSimple } from './CustomChatMessage';
 import Styled from './Chat.styles';
 
 // Shortcuts
