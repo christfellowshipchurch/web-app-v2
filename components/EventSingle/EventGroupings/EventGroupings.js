@@ -12,7 +12,7 @@ const EventGroupings = (props = {}) => {
   );
 
   useEffect(() => {
-    if (props.data.eventGroupings[0]?.name) {
+    if (props.data?.eventGroupings && props.data?.eventGroupings[0]?.name) {
       setValues({ campusSelect: props.data.eventGroupings[0]?.name });
     }
   }, [setValues, props.data.eventGroupings]);
@@ -31,7 +31,7 @@ const EventGroupings = (props = {}) => {
           <Select
             defaultValue={props.data.eventGroupings[0]?.name}
             id="campusSelect"
-            mb="base"
+            mb={selectedGroup?.instances?.length > 0 ? 'base' : '0'}
             name="campusSelect"
             onChange={handleChange}
           >
@@ -48,35 +48,37 @@ const EventGroupings = (props = {}) => {
           </Select>
 
           {selectedGroup?.instances?.length > 0 &&
-            selectedGroup.instances.map(({ id, start, end }) => (
+            selectedGroup.instances.map((n, i) => (
               <DateTime
-                end={end}
-                group={selectedGroup.name}
-                key={id}
-                start={start}
+                end={n.end}
+                key={n.id}
+                start={n.start}
                 title={props.data.title}
+                mb={i === selectedGroup?.instances?.length - 1 ? '0' : 'base'}
               />
             ))}
         </Card>
       )}
-      <Card
-        boxShadow="base"
-        display="flex"
-        flexDirection="column"
-        p={{ _: 's', md: 'base' }}
-      >
-        {props.data.callsToAction?.map((n, i) => (
-          <Button
-            as="a"
-            href={n.action}
-            key={i}
-            mb={i === props.data.callsToAction.length - 1 ? 'none' : 's'}
-            target={n.action.includes('http') ? '_blank' : ''}
-          >
-            {n.call}
-          </Button>
-        ))}
-      </Card>
+      {props.data.callsToAction.length > 0 && (
+        <Card
+          boxShadow="base"
+          display="flex"
+          flexDirection="column"
+          p={{ _: 's', md: 'base' }}
+        >
+          {props.data.callsToAction?.map((n, i) => (
+            <Button
+              as="a"
+              href={n.action}
+              key={i}
+              mb={i === props.data.callsToAction.length - 1 ? '0' : 's'}
+              target={n.action.includes('http') ? '_blank' : ''}
+            >
+              {n.call}
+            </Button>
+          ))}
+        </Card>
+      )}
     </Box>
   );
 };

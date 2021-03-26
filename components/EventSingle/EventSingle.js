@@ -14,7 +14,7 @@ function EventSingle(props = {}) {
       coverImage={props.data?.coverImage?.sources[0]?.uri}
       renderC={() => <Button variant="secondary">Invite</Button>}
       htmlContent={props.data.htmlContent}
-      renderContentE={() => <EventGroupings data={props.data} />}
+      renderContentE={() => props.data && <EventGroupings data={props.data} />}
     />
   );
 }

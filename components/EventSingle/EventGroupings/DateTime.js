@@ -5,7 +5,7 @@ import { format } from 'date-fns';
 import { AddToCalendar } from 'components';
 import { Box, Icon } from 'ui-kit';
 
-const DateTime = ({ start, end, title }) => {
+const DateTime = ({ start, end, title, ...props }) => {
   const event = {
     title: `${title} - Christ Fellowship Church`,
     alternateDescription: `Join us for ${title} at Christ Fellowship!`,
@@ -14,16 +14,16 @@ const DateTime = ({ start, end, title }) => {
   };
 
   return (
-    <Box display="flex" justifyContent="space-between">
+    <Box display="flex" justifyContent="space-between" {...props}>
       <Box>
-        <Box display="flex" alignItems="center" mb="s">
-          <Icon name="calendar" mr="s" />
+        <Box display="flex" alignItems="center" mb="xs">
+          <Icon name="calendar" mr="s" size="20" />
           <Box as="h3" m={0}>
             {format(new Date(start), 'eee LLL d')}
           </Box>
         </Box>
-        <Box display="flex" alignItems="center">
-          <Icon name="clock" mr="s" />
+        <Box display="flex" alignItems="center" color="subdued">
+          <Icon name="clock" mr="s" size="20" />
           <Box as="p" m={0}>
             {format(new Date(start), 'p')}
           </Box>
