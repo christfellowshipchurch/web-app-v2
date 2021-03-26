@@ -20,14 +20,14 @@ const EventGroupings = (props = {}) => {
 
   return (
     <Box as="form" onSubmit={handleSubmit}>
-      <Card
-        key="EventOccurrences"
-        p={{ _: 's', md: 'base' }}
-        display="flex"
-        flexDirection="column"
-        mb="base"
-      >
-        {props.data.eventGroupings?.length > 0 && (
+      {props.data.eventGroupings?.length > 0 && (
+        <Card
+          key="EventOccurrences"
+          p={{ _: 's', md: 'base' }}
+          display="flex"
+          flexDirection="column"
+          mb="base"
+        >
           <Select
             id="campusSelect"
             name="campusSelect"
@@ -46,19 +46,19 @@ const EventGroupings = (props = {}) => {
               );
             })}
           </Select>
-        )}
 
-        {selectedGroup?.instances?.length > 0 &&
-          selectedGroup.instances.map(({ id, start, end }) => (
-            <DateTime
-              key={id}
-              start={start}
-              end={end}
-              title={props.data.title}
-              group={selectedGroup.name}
-            />
-          ))}
-      </Card>
+          {selectedGroup?.instances?.length > 0 &&
+            selectedGroup.instances.map(({ id, start, end }) => (
+              <DateTime
+                key={id}
+                start={start}
+                end={end}
+                title={props.data.title}
+                group={selectedGroup.name}
+              />
+            ))}
+        </Card>
+      )}
       <Card p={{ _: 's', md: 'base' }} display="flex" flexDirection="column">
         {props.data.callsToAction?.map((n, i) => (
           <Button
