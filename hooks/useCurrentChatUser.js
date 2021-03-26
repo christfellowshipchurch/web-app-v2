@@ -15,8 +15,8 @@ export default function useCurrentChatUser() {
   const [chatUser, setChatUser] = useState(null);
 
   useEffect(() => {
-    // Only update the `chatUser` value if a change occurred and
-    // the value is out-of-sync with current user auth state.
+    // Update the `chatUser` value if a change occurred to the user
+    // authentication state, and its value is out-of-sync.
     if (currentUser && chatUser === null) {
       setChatUser(getStreamUser(currentUser));
     } else if (!currentUser && chatUser !== null) {
