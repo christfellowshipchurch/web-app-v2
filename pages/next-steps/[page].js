@@ -80,11 +80,7 @@ export default function Page({ data }) {
                   title={node.title}
                   description={node.summary}
                   urlText={node.featureFeed?.features[0]?.action.title}
-                  url={
-                    node.featureFeed?.features[0]?.action.title
-                      ? `/page/${getIdSuffix(node.id)}`
-                      : null
-                  }
+                  url={`/page/${getIdSuffix(node.id)}`}
                 />
               ))}
             </CardGrid>

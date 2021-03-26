@@ -32,7 +32,7 @@ function ArticleLink({
           <Text fontWeight="400" variant="s">
             {splitString(description)}
           </Text>
-          {url && (
+          {url && urlText ? (
             <Link href={url}>
               <a
                 style={{
@@ -53,7 +53,7 @@ function ArticleLink({
                 />
               </a>
             </Link>
-          )}
+          ) : null}
         </Box>
         <StyledImage rounded src={imageSrc} />
       </Box>
