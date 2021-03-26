@@ -11,8 +11,6 @@ const EventGroupings = (props = {}) => {
   const selectedGroup = props.data.eventGroupings?.find(
     i => i.name === values.campusSelect
   );
-  console.log('values', values);
-  console.log('selectedGroup', selectedGroup);
 
   useEffect(() => {
     if (props.data.eventGroupings[0]?.name) {
