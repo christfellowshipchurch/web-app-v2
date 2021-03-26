@@ -13,7 +13,7 @@ export default function CampusFilter({
   const [campus, setCampus] = useState(userData?.currentUser?.profile?.campus);
 
   // We want to show the filter only if the data has campus options
-  const hasCampuses = data.find(datum => !!datum.campus) || true;
+  const hasCampuses = data.find(datum => !!datum.campus);
 
   // If the data has campus options, filter by the selected campus, otherwise show all data
   const filteredData = hasCampuses
