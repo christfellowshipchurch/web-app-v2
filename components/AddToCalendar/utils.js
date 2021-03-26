@@ -1,6 +1,5 @@
 import { includes, replace } from 'lodash';
-import { add, parseISO, format } from 'date-fns';
-
+import { add, parseISO, format, formatISO } from 'date-fns';
 const formatEvent = event => ({
   title: event?.title || 'Christ Fellowship Church Event',
   description: event?.description || '',
@@ -16,7 +15,7 @@ const formatEvent = event => ({
 const formatTime = (date, allDay) => {
   let formattedDate = allDay
     ? format(date, 'yyyyMMdd')
-    : format(date, 'yyyyMMdd');
+    : formatISO(date, { format: 'basic', representation: 'complete' });
   return formattedDate.replace('+00:00', 'Z');
 };
 
