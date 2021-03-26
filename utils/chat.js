@@ -1,4 +1,4 @@
-import { isString, get } from 'lodash';
+import { isString } from 'lodash/isString';
 
 /**
  * Removes the typed prefix from an Apollos global ID.
@@ -34,6 +34,6 @@ export function getStreamUser(user) {
   return {
     id: stripPrefix(user.id),
     name,
-    image: get(user, 'profile.photo.uri', ''),
+    image: user?.profile?.photo?.uri,
   };
 }
