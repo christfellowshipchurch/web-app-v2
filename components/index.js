@@ -1,5 +1,7 @@
 import ArticleLink, { ArticleLinks } from './ArticleLink';
 import BirthDateField from './BirthDateField';
+import CampusFilter from './CampusFilter';
+import CampusSelector from './CampusSelector';
 import Carousel from './Carousel';
 import ClientSideComponent from './ClientSideComponent';
 import ContentLayout from './ContentLayout';
@@ -39,6 +41,8 @@ export {
   ArticleLink,
   ArticleLinks,
   BirthDateField,
+  CampusFilter,
+  CampusSelector,
   Carousel,
   ClientSideComponent,
   ContentLayout,
