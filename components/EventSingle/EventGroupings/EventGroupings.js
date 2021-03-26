@@ -22,18 +22,19 @@ const EventGroupings = (props = {}) => {
     <Box as="form" onSubmit={handleSubmit}>
       {props.data.eventGroupings?.length > 0 && (
         <Card
-          key="EventOccurrences"
-          p={{ _: 's', md: 'base' }}
+          boxShadow="base"
           display="flex"
           flexDirection="column"
+          key="EventOccurrences"
           mb="base"
+          p={{ _: 's', md: 'base' }}
         >
           <Select
+            defaultValue={props.data.eventGroupings[0]?.name}
             id="campusSelect"
+            mb="base"
             name="campusSelect"
             onChange={handleChange}
-            defaultValue={props.data.eventGroupings[0]?.name}
-            mb="base"
           >
             <Select.Option value="" disabled={true}>
               Select a campus...
@@ -50,30 +51,28 @@ const EventGroupings = (props = {}) => {
           {selectedGroup?.instances?.length > 0 &&
             selectedGroup.instances.map(({ id, start, end }) => (
               <DateTime
+                end={end}
+                group={selectedGroup.name}
                 key={id}
                 start={start}
-                end={end}
                 title={props.data.title}
-                group={selectedGroup.name}
               />
             ))}
         </Card>
       )}
-      <Card p={{ _: 's', md: 'base' }} display="flex" flexDirection="column">
+      <Card
+        boxShadow="base"
+        display="flex"
+        flexDirection="column"
+        p={{ _: 's', md: 'base' }}
+      >
         {props.data.callsToAction?.map((n, i) => (
           <Button
             as="a"
-            key={i}
             href={n.action}
-            target={n.action.includes('http') ? '_blank' : ''}
-            // onClick={() =>
-            //   GoogleAnalytics.trackEvent({
-            //     category: 'Event Item',
-            //     action: `${title} Call to Action`,
-            //     label: `${title} - ${n.call} Button`,
-            //   })
-            // }
+            key={i}
             mb={i === props.data.callsToAction.length - 1 ? 'none' : 's'}
+            target={n.action.includes('http') ? '_blank' : ''}
           >
             {n.call}
           </Button>
