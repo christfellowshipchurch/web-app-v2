@@ -14,22 +14,23 @@ const DateTime = ({ start, end, title }) => {
   };
 
   return (
-    <>
+    <Box display="flex" justifyContent="space-between">
       <Box>
-        <Box as="h3">
-          <Icon name="calendar-alt" />
-          {format(new Date(start), 'eee LLL d')}
+        <Box display="flex" alignItems="center" mb="s">
+          <Icon name="calendar" mr="s" />
+          <Box as="h3" m={0}>
+            {format(new Date(start), 'eee LLL d')}
+          </Box>
         </Box>
-
-        <Box as="p">
-          <Icon name="clock" />
-          {format(new Date(start), 'p')}
+        <Box display="flex" alignItems="center">
+          <Icon name="clock" mr="s" />
+          <Box as="p" m={0}>
+            {format(new Date(start), 'p')}
+          </Box>
         </Box>
       </Box>
-      <AddToCalendar title={null} event={event} mb="base">
-        <Icon name="calendar-plus" />
-      </AddToCalendar>
-    </>
+      <AddToCalendar event={event} mb="base" />
+    </Box>
   );
 };
 

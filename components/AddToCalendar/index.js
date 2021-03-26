@@ -6,11 +6,21 @@ import { Box, Menu, List, Button, Icon } from 'ui-kit';
 import { CustomLink } from 'components';
 import { googleCalLink, icsLink } from './utils';
 
-const AddToCalendar = ({ event, alternateDescription }, props) => (
+const AddToCalendar = (
+  { event, alternateDescription, title, children },
+  props
+) => (
   <Menu
-    renderTrigger={({ toggle }) => (
-      <Button display="flex" id={uniqueId('add-to-calendar-')} onClick={toggle}>
-        Add to Calendar
+    space="0"
+    side="right"
+    renderTrigger={({ toggle, title, children }) => (
+      <Button
+        variant="link"
+        p={0}
+        id={uniqueId('add-to-calendar-')}
+        onClick={toggle}
+      >
+        <Icon name="calendarPlus" />
       </Button>
     )}
     {...props}
@@ -23,7 +33,7 @@ const AddToCalendar = ({ event, alternateDescription }, props) => (
           px="base"
           py="xs"
         >
-          <Icon name="apple" size={30} />
+          <Icon name="apple" size="30" mr="s" />
           Apple
         </CustomLink>
       </Box>
@@ -34,7 +44,7 @@ const AddToCalendar = ({ event, alternateDescription }, props) => (
           px="base"
           py="xs"
         >
-          <Icon name="google" />
+          <Icon name="google" mr="s" />
           Google
         </CustomLink>
       </Box>
@@ -45,7 +55,7 @@ const AddToCalendar = ({ event, alternateDescription }, props) => (
           px="base"
           py="xs"
         >
-          <Icon name="microsoft" />
+          <Icon name="microsoft" mr="s" />
           Outlook
         </CustomLink>
       </Box>
