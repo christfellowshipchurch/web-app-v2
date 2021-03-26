@@ -1,11 +1,11 @@
-import { Button, Input } from './Dropdowns.styles';
-import { useAuthenticateCredentials, useCurrentPerson } from 'hooks';
-import { logout, update, useAuthDispatch } from 'providers/AuthProvider';
-import { useState } from 'react';
+import { Button } from './Dropdowns.styles';
+import { useCurrentPerson } from 'hooks';
+import { logout, useAuthDispatch } from 'providers/AuthProvider';
 import { Avatar, Box, Heading } from 'ui-kit';
 import { useRouter } from 'next/router';
 import { useTheme } from 'styled-components';
 import { UserCircle } from 'phosphor-react';
+import { showModal, useModalDispatch } from 'providers/ModalProvider';
 
 function Profile() {
   const theme = useTheme();
@@ -26,7 +26,7 @@ function Profile() {
         <UserCircle
           color={theme.colors.fg}
           size="200"
-          style={{marginTop: theme.space.m}}
+          style={{ marginTop: theme.space.m }}
         />
       )}
       <Heading mb="m">
@@ -35,7 +35,13 @@ function Profile() {
           currentPerson.profile?.lastName,
         ].join(' ')}
       </Heading>
-      <Button onClick={() => {}}>Edit Profile</Button>
+      <Button
+        onClick={() => {
+          router.push('/profile');
+        }}
+      >
+        Profile
+      </Button>
       <Button mb="xl" onClick={() => dispatch(logout())}>
         Log Out
       </Button>
@@ -72,42 +78,12 @@ function Profile() {
 }
 
 function Login() {
-  const [values, setValues] = useState({});
-  const dispatch = useAuthDispatch();
-  const [authenticate, { loading }] = useAuthenticateCredentials({
-    onCompleted: data => {
-      dispatch(update({ token: data.authenticate.token }));
-    },
-    onError: error => {
-      console.log('error', error);
-    },
-  });
+  const modalDispatch = useModalDispatch();
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
-      <Heading textAlign="center" fontSize="h3">
+      <Button mb="xl" onClick={() => modalDispatch(showModal('Auth'))}>
         Sign In
-      </Heading>
-      <Heading width="100%">Email</Heading>
-      <Input
-        onChange={event => setValues({ ...values, email: event.target.value })}
-        disabled={loading}
-        mb="base"
-      ></Input>
-      <Heading width="100%">Password</Heading>
-      <Input
-        type="password"
-        disabled={loading}
-        onChange={event =>
-          setValues({ ...values, password: event.target.value })
-        }
-        mb="base"
-      ></Input>
-      <Button
-        onClick={async () => await authenticate({ variables: values })}
-        disabled={loading}
-      >
-        Submit
       </Button>
     </Box>
   );

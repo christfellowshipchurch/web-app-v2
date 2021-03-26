@@ -6,7 +6,7 @@ import { Box, Button, Cell, Loader } from 'ui-kit';
 import UserProfileContent from './UserProfileContent';
 import UserProfileHeader from './UserProfileHeader';
 import { useRouter } from 'next/router';
-import { logout, useAuth, useAuthDispatch } from 'providers/AuthProvider';
+import { logout, useAuthDispatch } from 'providers/AuthProvider';
 import { showModal, useModalDispatch } from 'providers/ModalProvider';
 
 function UserProfile(props = {}) {

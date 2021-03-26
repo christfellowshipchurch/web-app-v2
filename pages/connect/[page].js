@@ -117,6 +117,7 @@ export default function Page({ data }) {
           >
             {staff.map(person => (
               <MeetTheStaff
+                key={person.id}
                 src={person.photo?.uri}
                 name={`${person.firstName} ${person.lastName}`}
                 description={person.campus?.name}

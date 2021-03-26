@@ -18,6 +18,8 @@ function getMenuItem(menuItem) {
       return Dropdowns.Connect;
     case 'search':
       return Dropdowns.Search;
+    case 'user':
+      return Dropdowns.User;
     default:
       return null;
   }
