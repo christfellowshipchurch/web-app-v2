@@ -38,7 +38,6 @@ DateTime.propTypes = {
   start: PropTypes.string,
   end: PropTypes.string,
   title: PropTypes.string,
-  group: PropTypes.string,
 };
 
 export default DateTime;

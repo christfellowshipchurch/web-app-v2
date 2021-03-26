@@ -1,5 +1,7 @@
-import { includes, replace } from 'lodash';
+import replace from 'lodash/replace';
+import includes from 'lodash/includes';
 import { add, parseISO, format, formatISO } from 'date-fns';
+
 const formatEvent = event => ({
   title: event?.title || 'Christ Fellowship Church Event',
   description: event?.description || '',

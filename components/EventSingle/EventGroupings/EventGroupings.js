@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
 
 import { Box, Button, Card, Select } from 'ui-kit';
 import { useForm } from 'hooks';

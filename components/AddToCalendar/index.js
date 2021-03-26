@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { uniqueId } from 'lodash';
+import uniqueId from 'lodash/uniqueId';
 
 import { Box, Menu, List, Button, Icon } from 'ui-kit';
 import { CustomLink } from 'components';
