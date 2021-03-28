@@ -1,4 +1,4 @@
-import { isString } from 'lodash/isString';
+import isString from 'lodash/isString';
 
 /**
  * Removes the typed prefix from an Apollos global ID.
