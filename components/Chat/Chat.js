@@ -74,26 +74,29 @@ export default function Chat(props = {}) {
     modalDispatch(showModal('Auth'));
   };
 
+  const showHeader = channelType === 'livestream';
+  const messageComponent =
+    channelType === 'livestream' ? MessageLivestream : MessageSimple;
+  const noFileUploads = channelType !== 'group';
+
   return (
-    <Box width="100%">
+    <Box width="100%" height="100%">
       <StreamChat
         client={StreamChatClient}
         i18nInstance={Streami18n}
         theme="livestream light"
       >
-        <Channel
-          channel={channel}
-          Message={
-            channelType === 'livestream' ? MessageLivestream : MessageSimple
-          }
-        >
+        <Channel channel={channel} Message={messageComponent}>
           <Window>
-            <ChannelHeader
-              image={props.relatedNode?.coverImage?.sources[0].uri}
-              live={channelType === 'livestream'}
-            />
+            {showHeader && (
+              <ChannelHeader
+                title={props.relatedNode?.title}
+                image={props.relatedNode?.coverImage?.sources[0].uri}
+                live={channelType === 'livestream'}
+              />
+            )}
             <MessageList />
-            {authenticated && <MessageInputSmall noFiles={true} />}
+            {authenticated && <MessageInputSmall noFiles={noFileUploads} />}
             {!authenticated && (
               <Styled.CenteredContent p="base">
                 <Button variant="secondary" onClick={handleLoginClick}>
