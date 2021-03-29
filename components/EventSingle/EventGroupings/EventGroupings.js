@@ -7,7 +7,7 @@ import DateTime from './DateTime';
 
 const EventGroupings = (props = {}) => {
   const { values, handleSubmit, setValues, handleChange } = useForm();
-  const selectedGroup = props.data.eventGroupings?.find(
+  const selectedGroup = props.data?.eventGroupings?.find(
     i => i.name === values.campusSelect
   );
 
@@ -19,7 +19,7 @@ const EventGroupings = (props = {}) => {
 
   return (
     <Box as="form" onSubmit={handleSubmit}>
-      {props.data.eventGroupings?.length > 0 && (
+      {props.data?.eventGroupings?.length > 0 && (
         <Card
           boxShadow="base"
           display="flex"
@@ -29,7 +29,7 @@ const EventGroupings = (props = {}) => {
           p={{ _: 's', md: 'base' }}
         >
           <Select
-            defaultValue={props.data.eventGroupings[0]?.name}
+            defaultValue={props.data?.eventGroupings[0]?.name}
             id="campusSelect"
             mb={selectedGroup?.instances?.length > 0 ? 'base' : '0'}
             name="campusSelect"
@@ -38,7 +38,7 @@ const EventGroupings = (props = {}) => {
             <Select.Option value="" disabled={true}>
               Select a campus...
             </Select.Option>
-            {props.data.eventGroupings.map(({ name }) => {
+            {props.data?.eventGroupings?.map(({ name }) => {
               return (
                 <Select.Option key={name} value={name}>
                   {name}
@@ -48,7 +48,7 @@ const EventGroupings = (props = {}) => {
           </Select>
 
           {selectedGroup?.instances?.length > 0 &&
-            selectedGroup.instances.map((n, i) => (
+            selectedGroup?.instances?.map((n, i) => (
               <DateTime
                 end={n.end}
                 key={n.id}
@@ -59,19 +59,19 @@ const EventGroupings = (props = {}) => {
             ))}
         </Card>
       )}
-      {props.data.callsToAction.length > 0 && (
+      {props.data?.callsToAction?.length > 0 && (
         <Card
           boxShadow="base"
           display="flex"
           flexDirection="column"
           p={{ _: 's', md: 'base' }}
         >
-          {props.data.callsToAction?.map((n, i) => (
+          {props.data?.callsToAction?.map((n, i) => (
             <Button
               as="a"
               href={n.action}
               key={i}
-              mb={i === props.data.callsToAction.length - 1 ? '0' : 's'}
+              mb={i === props.data?.callsToAction?.length - 1 ? '0' : 's'}
               target={n.action.includes('http') ? '_blank' : ''}
             >
               {n.call}
