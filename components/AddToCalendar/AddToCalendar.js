@@ -13,15 +13,13 @@ const AddToCalendar = (
   <Menu
     space="0"
     side="right"
-    renderTrigger={({ toggle, title, children }) => (
-      <Button
-        variant="link"
-        p={0}
-        id={uniqueId('add-to-calendar-')}
-        onClick={toggle}
-      >
+    renderTrigger={({ toggle }) => (
+      <Box as="a" href="#0" id={uniqueId('add-to-calendar-')} onClick={toggle}>
         <Icon name="calendarPlus" />
-      </Button>
+        <Box as="span" className="srt">
+          Add To Calendar
+        </Box>
+      </Box>
     )}
     {...props}
   >

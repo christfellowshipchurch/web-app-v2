@@ -14,7 +14,12 @@ const DateTime = ({ start, end, title, ...props }) => {
   };
 
   return (
-    <Box display="flex" justifyContent="space-between" {...props}>
+    <Box
+      display="flex"
+      justifyContent="space-between"
+      alignItems="center"
+      {...props}
+    >
       <Box>
         <Box display="flex" alignItems="center" mb="xs">
           <Icon name="calendar" mr="s" size="20" />
