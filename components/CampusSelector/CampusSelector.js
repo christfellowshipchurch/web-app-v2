@@ -1,9 +1,15 @@
 import { useCampuses } from 'hooks';
+import { useEffect } from 'react';
 import { Box, Loader, Select } from 'ui-kit';
 
 export default function CampusSelector({ onChange, selected, ...props }) {
   const { loading, campuses } = useCampuses();
-  const selectedCampus = selected || campuses?.[0] || {};
+
+  useEffect(() => {
+    if (!selected && campuses) {
+      onChange(campuses?.[0]);
+    }
+  }, [campuses, selected, onChange]);
 
   if (loading) {
     return <Loader />;
@@ -17,8 +23,8 @@ export default function CampusSelector({ onChange, selected, ...props }) {
       >
         {campuses.map(campus => (
           <Select.Option
+            key={campus.id}
             value={campus.id}
-            selected={selectedCampus.id === campus.id}
           >
             {campus.name}
           </Select.Option>

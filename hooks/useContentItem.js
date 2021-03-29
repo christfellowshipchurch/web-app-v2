@@ -61,6 +61,10 @@ export const GET_CONTENT_ITEM = gql`
               }
               ... on UniversalContentItem {
                 id
+                campus {
+                  id
+                  name
+                }
                 featureFeed {
                   features {
                     ... on ButtonFeature {
