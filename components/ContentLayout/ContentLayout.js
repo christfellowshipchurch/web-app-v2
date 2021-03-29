@@ -50,8 +50,7 @@ function ContentLayout(props = {}) {
 
   function renderD() {
     if (props.renderD) return props.renderD();
-    const noContent =
-      !props.contentTitleD || !props.htmlContent || props.htmlContent === '';
+    const noContent = !props.htmlContent || props.htmlContent === '';
     if (noContent && !props.renderContentD) return null;
     return (
       <Box mb={{ _: 'l', md: '' }}>
@@ -88,11 +87,7 @@ function ContentLayout(props = {}) {
             {props.contentTitleE}
           </Box>
         ) : null}
-        {props.renderContentE && (
-          <Card boxShadow="base" p={{ _: 's', md: 'base' }}>
-            {props.renderContentE()}
-          </Card>
-        )}
+        {props.renderContentE && props.renderContentE()}
       </Box>
     );
   }
