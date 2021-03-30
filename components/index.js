@@ -18,6 +18,7 @@ import FeatureFeed from './FeatureFeed';
 import FilterField from './FilterField';
 import Footer from './Footer';
 import GenderField from './GenderField';
+import GoogleAnalytics from './GoogleAnalytics';
 import GroupSearchFilters from './GroupSearchFilters';
 import GroupSingle from './GroupSingle';
 import GroupsList from './GroupsList';
@@ -61,6 +62,7 @@ export {
   FilterField,
   Footer,
   GenderField,
+  GoogleAnalytics,
   GroupSearchFilters,
   GroupSingle,
   GroupsList,
