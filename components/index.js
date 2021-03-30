@@ -1,5 +1,6 @@
 import * as modals from './Modals';
 import AddToCalendar from './AddToCalendar';
+import Analytics from './Analytics.js';
 import AvatarListFeature from './AvatarListFeature';
 import BirthDateField from './BirthDateField';
 import ClientSideComponent from './ClientSideComponent';
@@ -7,18 +8,19 @@ import CommunityActionSection from './CommunityActionSection';
 import CommunityLeaderActions from './CommunityLeaderActions';
 import CommunityList from './CommunityList';
 import CommunitySingle from './CommunitySingle';
-import DiscoverItemsList from './DiscoverItemsList';
 import ContentLayout from './ContentLayout';
 import ContentList from './ContentList';
 import ContentSingle from './ContentSingle';
 import CustomLink from './CustomLink';
+import DiscoverFilterSection from './DiscoverFilterSection';
+import DiscoverFiltersMap from './DiscoverFiltersMap';
+import DiscoverItemsList from './DiscoverItemsList';
 import EventSingle from './EventSingle';
 import EventsList from './EventsList';
 import FeatureFeed from './FeatureFeed';
 import FilterField from './FilterField';
 import Footer from './Footer';
 import GenderField from './GenderField';
-import GoogleAnalytics from './GoogleAnalytics';
 import GroupSearchFilters from './GroupSearchFilters';
 import GroupSingle from './GroupSingle';
 import GroupsList from './GroupsList';
@@ -37,32 +39,30 @@ import UserAvatar from './UserAvatar';
 import UserProfile from './UserProfile';
 import VerticalCardListFeature from './VerticalCardListFeature';
 import Video from './Video';
-import DiscoverFilterSection from './DiscoverFilterSection';
-import DiscoverFiltersMap from './DiscoverFiltersMap';
 
 export {
   AddToCalendar,
+  Analytics,
   AvatarListFeature,
   BirthDateField,
-  DiscoverFilterSection,
-  DiscoverFiltersMap,
   ClientSideComponent,
   CommunityActionSection,
   CommunityLeaderActions,
   CommunityList,
   CommunitySingle,
-  DiscoverItemsList,
   ContentLayout,
   ContentList,
   ContentSingle,
   CustomLink,
+  DiscoverFilterSection,
+  DiscoverFiltersMap,
+  DiscoverItemsList,
   EventSingle,
   EventsList,
   FeatureFeed,
   FilterField,
   Footer,
   GenderField,
-  GoogleAnalytics,
   GroupSearchFilters,
   GroupSingle,
   GroupsList,
@@ -75,8 +75,8 @@ export {
   LiveStreamSingle,
   Logo,
   Nav,
-  SearchField,
   SEO,
+  SearchField,
   UserAvatar,
   UserProfile,
   VerticalCardListFeature,

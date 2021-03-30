@@ -1,12 +1,18 @@
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 
 import configureNProgress from 'config/nprogress';
+import { Analytics } from 'components';
 import { AppProvider } from 'providers';
 
 // Tracks the route changes and adds a bar to the top.
 configureNProgress();
 
 function App({ Component, pageProps }) {
+  useEffect(() => {
+    Analytics.initGA(process.env.NEXT_PUBLIC_GA_CODE);
+  });
+
   return (
     <>
       <Head>
