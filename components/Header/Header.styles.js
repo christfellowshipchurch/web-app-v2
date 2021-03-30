@@ -4,11 +4,13 @@ import { themeGet } from '@styled-system/theme-get';
 import { system } from 'ui-kit';
 
 const Header = styled.header`
+  align-items: center;
   background-color: ${themeGet('colors.white')};
   box-shadow: ${themeGet('shadows.base')};
-  align-items: center;
-  justify-content: center;
   grid-template-columns: auto 1fr;
+  height: 90px;
+  justify-content: center;
+  width: 100%;
 
   > *:last-child {
     justify-self: flex-end;

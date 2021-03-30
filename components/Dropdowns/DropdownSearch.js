@@ -1,9 +1,10 @@
 import { Search } from 'components';
 import { Heading, Text, Box } from 'ui-kit';
+import Dropdowns from './Dropdowns.styles';
 
 export default function DropdownAbout() {
   return (
-    <Box bg="bg" px="l" py="xxl">
+    <Dropdowns.Container py="xxl">
       <Box display="flex" flexDirection="column" alignItems="center">
         <Heading variant="h2" color="neutrals.900" fontWeight="800" mb="s">
           Need to find something?
@@ -27,6 +28,6 @@ export default function DropdownAbout() {
           button={{ color: 'primary', label: 'Search', size: 's' }}
         />
       </Box>
-    </Box>
+    </Dropdowns.Container>
   );
 }

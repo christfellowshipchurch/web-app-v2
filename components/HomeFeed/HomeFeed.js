@@ -13,6 +13,7 @@ import {
   ConnectTiles,
   Countdown,
   ArticleLinks,
+  Layout,
 } from 'components';
 import { Box, CardGrid, Heading, Icon, Text, theme } from 'ui-kit';
 import VideoPlayer from 'components/VideoPlayer';
@@ -45,11 +46,12 @@ function DefaultMainPhotoHeader(props = {}) {
   ];
 
   return (
-    <>
-      <MainPhotoHeader
-        src="/about/schedule.jpeg"
-        overlay="linear-gradient(89.49deg, #1c1617 -16.61%, rgba(28, 22, 23, 0) 99.62%)"
-        content={
+    <Layout
+      headerPhoto={{
+        src: '/about/schedule.jpeg',
+        overlay:
+          'linear-gradient(89.49deg, #1c1617 -16.61%, rgba(28, 22, 23, 0) 99.62%)',
+        content: (
           <>
             <Box
               position="absolute"
@@ -120,8 +122,9 @@ function DefaultMainPhotoHeader(props = {}) {
               </Text>
             </Box>
           </>
-        }
-      />
+        ),
+      }}
+    >
       <Box
         display="flex"
         flexDirection="column"
@@ -144,7 +147,7 @@ function DefaultMainPhotoHeader(props = {}) {
           height="185px"
         />
       </Box>
-    </>
+    </Layout>
   );
 }
 
@@ -212,11 +215,12 @@ const SarahQuote = () => {
 
 function FullLengthSermon(props = {}) {
   return (
-    <>
-      <MainPhotoHeader
-        src="/home/good-news.jpeg"
-        overlay="linear-gradient(89.49deg, #1c1617 -16.61%, rgba(28, 22, 23, 0) 99.62%)"
-        content={
+    <Layout
+      headerPhoto={{
+        src: '/home/good-news.jpeg',
+        overlay:
+          'linear-gradient(89.49deg, #1c1617 -16.61%, rgba(28, 22, 23, 0) 99.62%)',
+        content: (
           <>
             <Box
               position="absolute"
@@ -288,9 +292,9 @@ function FullLengthSermon(props = {}) {
               </Text>
             </Box>
           </>
-        }
-      />
-    </>
+        ),
+      }}
+    ></Layout>
   );
 }
 

@@ -5,6 +5,16 @@ import { Box, Button as _Button, system } from 'ui-kit';
 
 const Dropdowns = {};
 
+export const Container = styled(Box)`
+  background: ${themeGet('colors.bg')};
+  max-width: ${themeGet('breakpoints.xl')};
+  padding: ${themeGet('space.l')};
+  float: right;
+  width: 100%;
+
+  ${system}
+`;
+
 export const Input = styled.input`
   border-radius: ${themeGet('radii.base')};
   font-size: ${themeGet('fontSizes.h4')};
@@ -56,6 +66,7 @@ export const NonFeaturedItem = styled(Box)`
   ${system}
 `;
 
+Dropdowns.Container = Container;
 Dropdowns.Input = Input;
 Dropdowns.Button = Button;
 Dropdowns.FeaturedItem = FeaturedItem;

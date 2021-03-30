@@ -6,7 +6,7 @@ import { StyledImage } from './MainPhotoHeader.styles';
 
 function MainPhotoHeader({ src, title, subtitle, summary, overlay } = {}) {
   return (
-    <Box position="relative">
+    <Box position="relative" width="100%">
       <StyledImage as="img" src={src} name="main-photo-header" />
       {overlay && (
         <Box

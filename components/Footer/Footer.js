@@ -11,12 +11,6 @@ import FooterLinks from './FooterLinks';
 function Footer(props = {}) {
   return (
     <Styled
-      bg="fg"
-      color="white"
-      px="xl"
-      pb="l"
-      display="flex"
-      flexDirection="column"
       {...props}
     >
       <Styled.Grid

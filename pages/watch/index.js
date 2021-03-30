@@ -1,7 +1,6 @@
 import {
   LargeImage,
   Layout,
-  MainPhotoHeader,
   MarketingHeadline,
   PageSplit,
 } from 'components';
@@ -19,8 +18,14 @@ export default function Watch({ series, watch }) {
   const ctas = watch?.node?.ctaLinks;
 
   return (
-    <Layout title="Watch">
-      <MainPhotoHeader src="/watch.jpeg" title="LH Watch" subtitle="" />
+    <Layout
+      title="Watch"
+      headerPhoto={{
+        src: '/watch.jpeg',
+        title: 'LH Watch',
+        subtitle: '',
+      }}
+    >
       <CardGrid px="l" py="xl" gridRowGap="l" columns="1">
         {series.map(seriesNode => (
           <Box key={seriesNode.id} display="flex" flexDirection="column">

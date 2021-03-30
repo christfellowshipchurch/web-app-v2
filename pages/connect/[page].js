@@ -5,13 +5,12 @@ import {
   ArticleLink,
   CampusFilter,
   Layout,
-  MainPhotoHeader,
   MarketingHeadline,
   MeetTheStaff,
   PageSplit,
   Quote,
 } from 'components';
-import { Box, Button, CardGrid } from 'ui-kit';
+import { Box, Button, CardGrid, Longform } from 'ui-kit';
 import { getChildrenByType, getIdSuffix, getItemId } from 'utils';
 import IDS from 'config/ids';
 import { initializeApollo } from 'lib/apolloClient';
@@ -43,13 +42,16 @@ export default function Page({ data }) {
   const staff = node.staff?.members || [];
 
   return (
-    <Layout title={`Connect - ${node.title}`} bg="bg_alt">
-      <MainPhotoHeader
-        src={node.coverImage?.sources?.[0].uri || ''}
-        title={node.title}
-        subtitle={node.subtitle}
-        summary={node.summary}
-      />
+    <Layout
+      title={`Connect - ${node.title}`}
+      bg="bg_alt"
+      headerPhoto={{
+        src: node.coverImage?.sources?.[0].uri || '',
+        title: node.title,
+        subtitle: node.subtitle,
+        summary: node.summary,
+      }}
+    >
       {generalChildren.length ? (
         <CampusFilter
           px="xxl"
@@ -108,7 +110,7 @@ export default function Page({ data }) {
         ) : null}
       </CardGrid>
       {node.htmlContent && (
-        <Box
+        <Longform
           px="xxl"
           py="xl"
           dangerouslySetInnerHTML={{ __html: node.htmlContent }}

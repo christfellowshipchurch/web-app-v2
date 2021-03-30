@@ -1,16 +1,11 @@
 import { useRouter } from 'next/router';
 
 import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
-import {
-  CampusFilter,
-  Layout,
-  MainPhotoHeader,
-  MarketingHeadline,
-} from 'components';
+import { CampusFilter, Layout, MarketingHeadline } from 'components';
 import { getChildrenByType, getItemId } from 'utils';
 import IDS from 'config/ids';
 import { initializeApollo } from 'lib/apolloClient';
-import { Box, CardGrid } from 'ui-kit';
+import { CardGrid, Longform } from 'ui-kit';
 
 export default function Page({ data }) {
   const router = useRouter();
@@ -21,15 +16,18 @@ export default function Page({ data }) {
   );
 
   return (
-    <Layout title={`About - ${data.title}`} bg="bg_alt">
-      <MainPhotoHeader
-        src={data.coverImage?.sources?.[0].uri || ''}
-        title={data.title}
-        subtitle={data.subtitle}
-        summary={data.summary}
-      />
+    <Layout
+      title={`About - ${data.title}`}
+      bg="bg_alt"
+      headerPhoto={{
+        src: data.coverImage?.sources?.[0].uri || '',
+        title: data.title,
+        subtitle: data.subtitle,
+        summary: data.summary,
+      }}
+    >
       {data.htmlContent && (
-        <Box
+        <Longform
           px="xxl"
           py="xl"
           dangerouslySetInnerHTML={{ __html: data.htmlContent }}

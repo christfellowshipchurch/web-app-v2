@@ -4,8 +4,15 @@ import { themeGet } from '@styled-system/theme-get';
 import { system, CardGrid } from 'ui-kit';
 
 const Footer = styled.footer`
+  background: ${themeGet('colors.fg')};
+  color: white;
+  display: flex;
+  flex-direction: column;
   min-height: 554px;
+  padding: 0 ${themeGet('space.xl')};
   padding-top: 128px;
+  padding-bottom: ${themeGet('space.l')};
+  width: 100%;
 
   @media screen and (max-width: ${themeGet('breakpoints.lg')}) {
     align-items: center;

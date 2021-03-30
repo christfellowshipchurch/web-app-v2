@@ -1,7 +1,7 @@
 import { ArrowCircleRight } from 'phosphor-react';
 import { useRouter } from 'next/router';
 import { Photo } from 'components';
-import { FeaturedItem, NonFeaturedItem } from './Dropdowns.styles';
+import Dropdowns from './Dropdowns.styles';
 import { Box, CardGrid, Heading, theme } from 'ui-kit';
 import { getIdSuffix } from 'utils';
 
@@ -15,7 +15,7 @@ export default function PageDropdown({
   const numColumns = Math.ceil(featuredItems.length / 2) + 1;
 
   return (
-    <Box bg="bg" p="l">
+    <Dropdowns.Container>
       <CardGrid columns={numColumns} gridColumnGap="base">
         {numColumns > 1
           ? [...Array(numColumns - 1).keys()].map(i => {
@@ -24,7 +24,7 @@ export default function PageDropdown({
               return (
                 <Box key={i} display="flex" flexDirection="column">
                   {items.map((item, i) => (
-                    <FeaturedItem key={item.id}>
+                    <Dropdowns.FeaturedItem key={item.id}>
                       <Photo
                         height="226px"
                         src={item.coverImage?.sources[0]?.uri}
@@ -39,7 +39,7 @@ export default function PageDropdown({
                         }}
                         onClick={() => router.push(`${baseRoute}/${getIdSuffix(item.id)}`)}
                       />
-                    </FeaturedItem>
+                    </Dropdowns.FeaturedItem>
                   ))}
                 </Box>
               );
@@ -47,7 +47,7 @@ export default function PageDropdown({
           : null}
         <Box display="flex" flexDirection="column" width="100%">
           {nonFeaturedItems.map((item, i) => (
-            <NonFeaturedItem
+            <Dropdowns.NonFeaturedItem
               key={i}
               onClick={() =>
                 router.push(`${baseRoute}/${getIdSuffix(item.id)}`)
@@ -62,10 +62,10 @@ export default function PageDropdown({
                 {item.title}
               </Heading>
               <ArrowCircleRight size="32" color="white" />
-            </NonFeaturedItem>
+            </Dropdowns.NonFeaturedItem>
           ))}
         </Box>
       </CardGrid>
-    </Box>
+    </Dropdowns.Container>
   );
 }

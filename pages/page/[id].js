@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
 
 import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
-import { Layout, MainPhotoHeader } from 'components';
-import { Box, Button, Heading } from 'ui-kit';
+import { Layout } from 'components';
+import { Box, Button, Heading, Longform } from 'ui-kit';
 import { initializeApollo } from 'lib/apolloClient';
 import { getItemId } from 'utils';
 
@@ -10,16 +10,33 @@ export default function Page({ data }) {
   const router = useRouter();
 
   return (
-    <Layout title={data.title} bg="bg_alt">
-      <MainPhotoHeader src={data.coverImage?.sources?.[0].uri || ''} />
+    <Layout
+      title={data.title}
+      bg="bg_alt"
+      headerPhoto={{
+        src: data.coverImage?.sources?.[0].uri || '',
+      }}
+    >
       <Box px="xxl" pt="xl" pb="m">
         {data.subtitle && (
-          <Heading fontSize="h2" lineHeight="h2" color="fg" fontWeight="800" opacity="50%">
+          <Heading
+            fontSize="h2"
+            lineHeight="h2"
+            color="fg"
+            fontWeight="800"
+            opacity="50%"
+          >
             {data.subtitle}
           </Heading>
         )}
         {data.title && (
-          <Heading fontSize="h1" lineHeight="h1" color="fg" fontWeight="800" textTransform="uppercase">
+          <Heading
+            fontSize="h1"
+            lineHeight="h1"
+            color="fg"
+            fontWeight="800"
+            textTransform="uppercase"
+          >
             {data.title}
           </Heading>
         )}
@@ -30,7 +47,7 @@ export default function Page({ data }) {
         )}
       </Box>
       {data.htmlContent && (
-        <Box
+        <Longform
           px="xxl"
           pt="m"
           pb="l"

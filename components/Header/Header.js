@@ -8,7 +8,7 @@ import Styled from './Header.styles';
 
 function Header(props = {}) {
   return (
-    <Styled bg="bg_alt" height="90px">
+    <Styled bg="bg_alt">
       <Box display="flex" py="base" px="xl" alignSelf="center">
         <Link href="/">
           <a>

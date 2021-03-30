@@ -5,10 +5,9 @@ import {
   ArticleLink,
   CampusFilter,
   Layout,
-  MainPhotoHeader,
   MarketingHeadline,
 } from 'components';
-import { Box, CardGrid } from 'ui-kit';
+import { CardGrid, Longform } from 'ui-kit';
 import { getChildrenByType, getIdSuffix, getItemId } from 'utils';
 import IDS from 'config/ids';
 import { initializeApollo } from 'lib/apolloClient';
@@ -30,13 +29,16 @@ export default function Page({ data }) {
   );
 
   return (
-    <Layout title={`Next Steps - ${node.title}`} bg="bg_alt">
-      <MainPhotoHeader
-        src={node.coverImage?.sources?.[0].uri || ''}
-        title={node.title}
-        subtitle={node.subtitle}
-        summary={node.summary}
-      />
+    <Layout
+      title={`Next Steps - ${node.title}`}
+      bg="bg_alt"
+      headerPhoto={{
+        src: node.coverImage?.sources?.[0].uri || '',
+        title: node.title,
+        subtitle: node.subtitle,
+        summary: node.summary,
+      }}
+    >
       <CardGrid px="xxl" py="xl" columns="1">
         {node.ctaLinks?.map((cta, i) => (
           <MarketingHeadline
@@ -57,7 +59,7 @@ export default function Page({ data }) {
         ))}
       </CardGrid>
       {node.htmlContent && (
-        <Box
+        <Longform
           px="xxl"
           py="xl"
           dangerouslySetInnerHTML={{ __html: node.htmlContent }}

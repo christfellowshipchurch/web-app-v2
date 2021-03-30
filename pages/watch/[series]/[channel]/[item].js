@@ -1,4 +1,4 @@
-import { Layout, MainPhotoHeader } from 'components';
+import { Layout } from 'components';
 import { initializeApollo } from 'lib/apolloClient';
 import { GET_MEDIA_CONTENT_ITEM } from 'hooks/useMediaContentItem';
 import VideoPlayer from 'components/VideoPlayer/VideoJSPlayer';
@@ -12,8 +12,10 @@ export default function Item({ item }) {
   const src = item.videos?.[0]?.sources?.[0]?.uri;
 
   return (
-    <Layout title="Watch">
-      <MainPhotoHeader src={item.coverImage?.sources?.[0]?.uri} />
+    <Layout
+      title="Watch"
+      headerPhoto={{ src: item.coverImage?.sources?.[0]?.uri }}
+    >
       <Box mx="xxl" my="xl">
         <Heading variant="h2" fontWeight="800" mb="m">
           {item.title}

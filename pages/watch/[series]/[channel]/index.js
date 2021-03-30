@@ -1,7 +1,5 @@
-import { LargeImage, Layout, MainPhotoHeader } from 'components';
-import {
-  GET_MESSAGE_CHANNEL,
-} from 'hooks/useMessageChannel';
+import { LargeImage, Layout } from 'components';
+import { GET_MESSAGE_CHANNEL } from 'hooks/useMessageChannel';
 import { Box, Button, Loader } from 'ui-kit';
 import { useRouter } from 'next/router';
 import { getIdSuffix, getItemId } from 'utils';
@@ -35,8 +33,12 @@ export default function Channel({ item }) {
   }
 
   return (
-    <Layout title="Watch">
-      <MainPhotoHeader src={item?.coverImage.sources?.[0]?.uri} />
+    <Layout
+      title="Watch"
+      headerPhoto={{
+        src: item?.coverImage.sources?.[0]?.uri,
+      }}
+    >
       <Box
         display="flex"
         my="m"
