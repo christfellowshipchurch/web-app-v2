@@ -62,7 +62,16 @@ function VideoPlayer({ src, title, details, stopPropagation, ...props } = {}) {
           {...props}>
             <source src={src} type="application/x-mpegURL" />
         </StyledVideo> */}
-        <iframe src={src} width="{video_width}" height="{video_height}" frameborder="0" title="{video_title}" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        <iframe
+          src={src}
+          width="{video_width}"
+          height="{video_height}"
+          frameBorder="0"
+          title="{video_title}"
+          webkitallowfullscreen="true"
+          mozallowfullscreen="true"
+          allowfullscreen="true"
+        ></iframe>
         <Box position="absolute" width="100%" height="100%">
           {showControls && (
             <>

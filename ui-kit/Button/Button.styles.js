@@ -61,6 +61,9 @@ const border = ({ color }) => props => {
 };
 
 const Button = styled.button`
+  align-items: center;
+  justify-content: center;
+  position: relative;
   border: 1px solid transparent;
   cursor: pointer;
   display: inline-block;
