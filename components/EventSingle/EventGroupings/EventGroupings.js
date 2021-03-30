@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 
 import { Box, Button, Card, Select } from 'ui-kit';
 import { useForm } from 'hooks';
+import { Analytics } from 'components';
 
 import DateTime from './DateTime';
 
@@ -73,6 +74,13 @@ const EventGroupings = (props = {}) => {
               key={i}
               mb={i === props.data?.callsToAction?.length - 1 ? '0' : 's'}
               target={n.action.includes('http') ? '_blank' : ''}
+              onClick={() =>
+                Analytics.logEvent({
+                  category: 'Event Item',
+                  action: `${props.data.title} Call to Action`,
+                  label: `${props.data.title} - ${n.call} Button`,
+                })
+              }
             >
               {n.call}
             </Button>
