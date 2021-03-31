@@ -66,7 +66,7 @@ export default function Chat(props = {}) {
 
   const channel = StreamChatClient.channel(channelType, channelId, {
     name: props.relatedNode?.title || 'Chat',
-    relatedNodeId: props.relatedNode.id,
+    relatedNodeId: props.relatedNode?.id,
   });
 
   const handleLoginClick = event => {
