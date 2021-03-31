@@ -9,6 +9,12 @@ export default function FullWidthCTA({ children, ...props }) {
       display="flex"
       alignItems="center"
       flexDirection="column"
+      contentProps={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        flexDirection: 'column',
+      }}
       {...props}
     >
       {children}

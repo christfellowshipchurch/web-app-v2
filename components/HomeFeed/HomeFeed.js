@@ -381,7 +381,7 @@ function LoggedInHomeFeed(props = {}) {
         </CardGrid>
       </Section>
       <FullWidthCTA height="434px" pt="171px" justifyContent="flex-start">
-        <Box display="flex" alignItems="flex-end" mb="s" mt="l">
+        <Box display="flex" alignItems="flex-end" mb="s">
           <Icon
             name="godLoves"
             width="532px"
@@ -510,7 +510,7 @@ function LoggedOutHomeFeed(props = {}) {
         </CardGrid>
       </Section>
       <FullWidthCTA height="434px" pt="171px" justifyContent="flex-start">
-        <Box display="flex" alignItems="flex-start" mb="s">
+        <Box display="flex" alignItems="flex-end" mb="s">
           <Icon
             name="godLoves"
             width="532px"
