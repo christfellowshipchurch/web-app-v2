@@ -6,8 +6,9 @@ import { HorizontalHighlightCard, CardCarousel } from 'ui-kit';
 import { getURLFromType } from 'utils';
 
 function HorizontalCardListFeature(props = {}) {
-  const cards = props?.data?.cards || [];
-  const cardType = props?.data?.cardType;
+  const cards = props?.data?.cards;
+
+  const cardType = props?.data?.cardType || 'default';
   let cardsDisplayed;
 
   switch (cardType) {
@@ -33,7 +34,7 @@ function HorizontalCardListFeature(props = {}) {
             boxShadow="none"
             href={getURLFromType(card.relatedNode, card.title)}
             Component={HorizontalHighlightCard}
-            coverImage={card?.coverImage?.sources[0]?.uri}
+            coverImage={card?.coverImage?.sources[0]?.uri || '/cf-logo.png'}
             coverImageOverlay={true}
             title={card?.title}
             description={card?.summary}

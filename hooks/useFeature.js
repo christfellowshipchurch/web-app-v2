@@ -2,6 +2,7 @@ import { gql, useQuery } from '@apollo/client';
 
 import {
   ACTION_BAR_FEATURE_FRAGMENT,
+  AVATAR_LIST_FEATURE_FRAGMENT,
   CONTENT_BLOCK_FEATURE_FRAGMENT,
   HERO_LIST_FEATURE_FRAGMENT,
   HORIZONTAL_CARD_LIST_FEATURE_FRAGMENT,
@@ -17,6 +18,7 @@ export const GET_FEATURE = gql`
       __typename
 
       ...ActionBarFeatureFragment
+      ...AvatarListFeatureFragment
       ...ContentBlockFeatureFragment
       ...HeroListFeatureFragment
       ...HorizontalCardListFeatureFragment
@@ -24,6 +26,7 @@ export const GET_FEATURE = gql`
     }
   }
   ${ACTION_BAR_FEATURE_FRAGMENT}
+  ${AVATAR_LIST_FEATURE_FRAGMENT}
   ${CONTENT_BLOCK_FEATURE_FRAGMENT}
   ${HERO_LIST_FEATURE_FRAGMENT}
   ${HORIZONTAL_CARD_LIST_FEATURE_FRAGMENT}

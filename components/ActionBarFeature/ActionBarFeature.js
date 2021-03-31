@@ -33,8 +33,11 @@ const ActionBarFeature = props => {
       {chunkedActions.map((actionChunk, i) => (
         <ActionBar key={`${id}:${i}`}>
           {actionChunk.map(
-            ({ action, icon, title, theme, relatedNode, ...actionProps }) => (
-              <ThemeProvider themeMixin={theme}>
+            (
+              { action, icon, title, theme, relatedNode, ...actionProps },
+              i
+            ) => (
+              <ThemeProvider key={i} themeMixin={theme}>
                 <ActionBarItem
                   // onPress={() => {
                   //   onPressItem({

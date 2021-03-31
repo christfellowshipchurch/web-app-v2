@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ActionBarFeature from '../ActionBarFeature';
+import AvatarListFeature from '../AvatarListFeature';
 import ContentBlockFeature from '../ContentBlockFeature';
 import HeroListFeature from '../HeroListFeature';
 import HorizontalCardListFeature from '../HorizontalCardListFeature';
@@ -12,6 +13,7 @@ import { getComponent } from 'utils';
 
 const FEATURE_COMPONENTS = {
   ActionBarFeature,
+  AvatarListFeature,
   ContentBlockFeature,
   HeroListFeature,
   HorizontalCardListFeature,
@@ -31,6 +33,12 @@ const FEATURE_COMPONENTS = {
 // This component is created to map the features by type and send them.
 const FeatureFeed = (props = {}) => {
   const isLastItem = i => i < props.data.length - 1;
+
+  const error = props?.error?.toString();
+
+  if (error && error === 'Error: Must be logged in') {
+    return <Box as="h1">Please Log In to View Page</Box>;
+  }
 
   return props.data?.map((edge, i) => (
     <Box key={edge?.id} pb="xl">

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
+import { kebabCase, toLower, camelCase, capitalize } from 'lodash';
 
 import { initializeApollo } from 'lib/apolloClient';
 import { GET_FEATURE_FEED } from 'hooks/useFeatureFeed';
@@ -19,7 +20,7 @@ export default function PageBuilder(props = {}) {
   };
 
   return (
-    <Layout title={formatTitleAsUrl}>
+    <Layout title={capitalize(title)}>
       <FeatureFeedProvider Component={FeatureFeed} options={options} />
     </Layout>
   );
