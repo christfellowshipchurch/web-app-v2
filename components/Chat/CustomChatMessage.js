@@ -23,14 +23,14 @@ const sharedConfig = {
 };
 
 const reactionOptions = [
-  // {
-  //   id: 'clap',
-  //   name: 'clap',
-  //   colons: ':clap:',
-  //   sheet_x: 0,
-  //   sheet_y: 0,
-  //   ...sharedConfig,
-  // },
+  {
+    id: 'clap',
+    name: 'clap',
+    colons: ':clap:',
+    sheet_x: 0,
+    sheet_y: 0,
+    ...sharedConfig,
+  },
   {
     id: 'haha',
     name: 'haha',
