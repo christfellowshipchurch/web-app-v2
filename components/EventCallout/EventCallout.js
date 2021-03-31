@@ -2,9 +2,22 @@ import React from 'react';
 import { Box, Image, Text } from 'ui-kit';
 import PropTypes from 'prop-types';
 
-function EventCallout({ title, description, imageSrc, ...props } = {}) {
+function EventCallout({
+  title,
+  description,
+  imageSrc,
+  onClick,
+  ...props
+} = {}) {
   return (
-    <Box mt="s" display="flex" alignItems="center">
+    <Box
+      mt="s"
+      display="flex"
+      alignItems="center"
+      onClick={onClick}
+      style={{ cursor: onClick ? 'pointer' : 'initial' }}
+      {...props}
+    >
       <Image
         mr="s"
         height="80px"
