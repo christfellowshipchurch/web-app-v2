@@ -1,4 +1,5 @@
 import * as modals from './Modals';
+import AddToCalendar from './AddToCalendar';
 import AvatarListFeature from './AvatarListFeature';
 import BirthDateField from './BirthDateField';
 import Chat from './Chat';
@@ -40,6 +41,7 @@ import DiscoverFilterSection from './DiscoverFilterSection';
 import DiscoverFiltersMap from './DiscoverFiltersMap';
 
 export {
+  AddToCalendar,
   AvatarListFeature,
   BirthDateField,
   Chat,

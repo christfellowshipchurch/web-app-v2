@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Box, Button } from 'ui-kit';
+import { Button } from 'ui-kit';
 import { ContentLayout } from 'components';
+
+import EventGroupings from './EventGroupings';
 
 function EventSingle(props = {}) {
   return (
@@ -11,10 +13,8 @@ function EventSingle(props = {}) {
       summary={props.data.summary}
       coverImage={props.data?.coverImage?.sources[0]?.uri}
       renderC={() => <Button variant="secondary">Invite</Button>}
-      contentTitleD="About"
       htmlContent={props.data.htmlContent}
-      contentTitleE="Schedule"
-      renderContentE={() => <Box as="p">The schedule will go here&hellip;</Box>}
+      renderContentE={() => props.data && <EventGroupings data={props.data} />}
     />
   );
 }
