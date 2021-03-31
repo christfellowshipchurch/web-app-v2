@@ -1,8 +1,8 @@
-import { Box, theme } from 'ui-kit';
+import { Section, theme } from 'ui-kit';
 
 export default function FullWidthCTA({ children, ...props }) {
   return (
-    <Box
+    <Section
       background={`linear-gradient(to bottom right, ${theme.colors.gradient.join(
         ', '
       )})`}
@@ -12,6 +12,6 @@ export default function FullWidthCTA({ children, ...props }) {
       {...props}
     >
       {children}
-    </Box>
+    </Section>
   );
 }

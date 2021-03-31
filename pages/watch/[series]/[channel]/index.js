@@ -1,6 +1,6 @@
-import { LargeImage, Layout } from 'components';
+import { LargeImage, Layout, MainPhotoHeader } from 'components';
 import { GET_MESSAGE_CHANNEL } from 'hooks/useMessageChannel';
-import { Box, Button, Loader } from 'ui-kit';
+import { Box, Button, Loader, Section } from 'ui-kit';
 import { useRouter } from 'next/router';
 import { getIdSuffix, getItemId } from 'utils';
 import { useTheme } from 'styled-components';
@@ -32,20 +32,16 @@ export default function Channel({ item }) {
     return <Loader />;
   }
 
+  const totalVideoCount = item?.childContentItemsConnection?.totalCount || 0;
+
   return (
-    <Layout
-      title="Watch"
-      headerPhoto={{
-        src: item?.coverImage.sources?.[0]?.uri,
-      }}
-    >
-      <Box
-        display="flex"
+    <Layout title="Watch">
+      <MainPhotoHeader src={item?.coverImage.sources?.[0]?.uri} />
+      <Section
         my="m"
         mr={`-${theme.space.m}`}
         px="xxl"
-        flexWrap="wrap"
-        justifyContent="center"
+        contentProps={{ flexWrap: 'wrap', display: 'flex', justifyContent: 'center' }}
       >
         {videos.map(({ node }) => (
           <LargeImage
@@ -54,8 +50,8 @@ export default function Channel({ item }) {
             color="white"
             src={item.coverImage.sources?.[0].uri}
             height="350px"
-            flex="1 0 400px"
-            mr="m"
+            flex="0 0 400px"
+            mx="s"
             mb="m"
             action={() =>
               router.push(
@@ -66,6 +62,8 @@ export default function Channel({ item }) {
             }
           />
         ))}
+      </Section>
+      {totalVideoCount > videos.length ? (
         <Button
           onClick={() => {
             setLoadingMore(true);
@@ -74,10 +72,12 @@ export default function Channel({ item }) {
             });
           }}
           status={loadingMore ? 'LOADING' : 'SUCCESS'}
+          mx="auto"
+          mb="l"
         >
           {loadingMore ? 'Loading More' : 'Load More'}
         </Button>
-      </Box>
+      ) : null}
     </Layout>
   );
 }

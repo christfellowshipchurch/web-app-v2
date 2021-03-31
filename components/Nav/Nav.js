@@ -7,6 +7,7 @@ import { ClientSideComponent, Dropdowns } from 'components';
 import Styled from './Nav.styles';
 import { useModalDispatch } from 'providers/ModalProvider';
 import { useCurrentUser } from 'hooks';
+import { useTheme } from 'styled-components';
 
 function getMenuItem(menuItem) {
   switch (menuItem) {
@@ -27,6 +28,7 @@ function getMenuItem(menuItem) {
 
 function Nav(props = {}) {
   const router = useRouter();
+  const theme = useTheme();
   const [hoveredItem, setHoveredItem] = useState(null);
   const modalDispatch = useModalDispatch();
   const { authenticated } = useCurrentUser();
@@ -66,7 +68,12 @@ function Nav(props = {}) {
                             router.push(action.action);
                           }
                         }
-                      : () => action.action?.({ modalDispatch, router, authenticated })
+                      : () =>
+                          action.action?.({
+                            modalDispatch,
+                            router,
+                            authenticated,
+                          })
                   }
                 />
                 {Component && (
@@ -99,14 +106,10 @@ function QuickAction(props = {}) {
 
   return (
     <Styled.QuickAction
-      mt="s"
-      mb={hasDropdown ? '0' : '14px'}
-      pt="21px"
-      pb={hasDropdown ? '35px' : '21px'}
-      px="s"
       hovered={props.hovered}
       selected={props.selected}
       onClick={props.onClick}
+      hasDropdown={hasDropdown}
     >
       <Heading variant="base" color="fg">
         {content}

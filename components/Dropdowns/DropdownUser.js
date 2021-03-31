@@ -98,8 +98,9 @@ export default function DropdownUser() {
       position="fixed"
       width="400px"
       right="0"
-      top="0"
+      top="90px"
       height="100vh"
+      boxShadow="0px 0px 2px 2px rgb(0 0 0 / 20%)"
     >
       {authenticated ? <Profile /> : <Login />}
     </Box>

@@ -11,6 +11,7 @@ const Header = styled.header`
   height: 90px;
   justify-content: center;
   width: 100%;
+  z-index: 999;
 
   > *:last-child {
     justify-self: flex-end;

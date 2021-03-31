@@ -47,19 +47,30 @@ const selected = ({ selected }) => props => {
   `;
 };
 
-const hovered = ({ hovered }) => props => {
+const hovered = ({ hovered, hasDropdown }) => props => {
   const color = hovered ? themeGet('colors.white') : 'inherit';
+
   return css`
     background-color: ${color};
+    ${hovered && 'box-shadow: 0px 0px 2px 2px rgb(0 0 0 / 20%);'}
+    ${hovered && hasDropdown ? 'clip-path: inset(-5px -5px 0 -5px);' : null}
   `;
 };
 
 const QuickAction = styled.div`
-  height: 100%;
-  display: flex;
   align-items: center;
   cursor: pointer;
+  display: flex;
+  height: 100%;
+  margin-top: ${themeGet('space.s')};
+  margin-bottom: ${props => (props.hasDropdown ? '0' : '14px')};
+  padding: 0 ${themeGet('space.s')};
+  padding-top: 21px;
+  padding-bottom: ${props => (props.hasDropdown ? '35px' : '21px')};
+  position: relative;
   text-transform: uppercase;
+  z-index: 1000;
+
 
   ${hovered}
   ${selected}

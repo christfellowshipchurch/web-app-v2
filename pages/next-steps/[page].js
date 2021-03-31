@@ -5,9 +5,10 @@ import {
   ArticleLink,
   CampusFilter,
   Layout,
+  MainPhotoHeader,
   MarketingHeadline,
 } from 'components';
-import { CardGrid, Longform } from 'ui-kit';
+import { CardGrid, Longform, Section } from 'ui-kit';
 import { getChildrenByType, getIdSuffix, getItemId } from 'utils';
 import IDS from 'config/ids';
 import { initializeApollo } from 'lib/apolloClient';
@@ -29,65 +30,68 @@ export default function Page({ data }) {
   );
 
   return (
-    <Layout
-      title={`Next Steps - ${node.title}`}
-      bg="bg_alt"
-      headerPhoto={{
-        src: node.coverImage?.sources?.[0].uri || '',
-        title: node.title,
-        subtitle: node.subtitle,
-        summary: node.summary,
-      }}
-    >
-      <CardGrid px="xxl" py="xl" columns="1">
-        {node.ctaLinks?.map((cta, i) => (
-          <MarketingHeadline
-            key={i}
-            image={{
-              src: cta.image?.sources?.[0]?.uri,
-            }}
-            justify={i % 2 === 0 ? 'left' : 'right'}
-            title={cta.title}
-            description={cta.body}
-            actions={[
-              {
-                label: cta.buttonText,
-                onClick: () => router.push(cta.buttonLink),
-              },
-            ]}
-          />
-        ))}
-      </CardGrid>
+    <Layout title={`Next Steps - ${node.title}`} bg="bg_alt">
+      <MainPhotoHeader
+        src={node.coverImage?.sources?.[0].uri || ''}
+        title={node.title}
+        subtitle={node.subtitle}
+        summary={node.summary}
+      />
+      <Section>
+        <CardGrid px="xxl" py="xl" columns="1">
+          {node.ctaLinks?.map((cta, i) => (
+            <MarketingHeadline
+              key={i}
+              image={{
+                src: cta.image?.sources?.[0]?.uri,
+              }}
+              justify={i % 2 === 0 ? 'left' : 'right'}
+              title={cta.title}
+              description={cta.body}
+              actions={[
+                {
+                  label: cta.buttonText,
+                  onClick: () => router.push(cta.buttonLink),
+                },
+              ]}
+            />
+          ))}
+        </CardGrid>
+      </Section>
       {node.htmlContent && (
-        <Longform
-          px="xxl"
-          py="xl"
-          dangerouslySetInnerHTML={{ __html: node.htmlContent }}
-        />
+        <Section>
+          <Longform
+            px="xxl"
+            py="xl"
+            dangerouslySetInnerHTML={{ __html: node.htmlContent }}
+          />
+        </Section>
       )}
       {generalChildren.length ? (
-        <CampusFilter
-          px="xxl"
-          py="xl"
-          filterWidth="200px"
-          data={generalChildren}
-        >
-          {({ filteredData }) => (
-            <CardGrid columns="2" gridColumnGap="xl">
-              {filteredData.map(({ node }, i) => (
-                <ArticleLink
-                  key={node.id}
-                  imageSrc={node.coverImage?.sources?.[0]?.uri}
-                  justify={i % 2 === 0 ? 'left' : 'right'}
-                  title={node.title}
-                  description={node.summary}
-                  urlText={node.featureFeed?.features[0]?.action.title}
-                  url={`/page/${getIdSuffix(node.id)}`}
-                />
-              ))}
-            </CardGrid>
-          )}
-        </CampusFilter>
+        <Section>
+          <CampusFilter
+            px="xxl"
+            py="xl"
+            filterWidth="200px"
+            data={generalChildren}
+          >
+            {({ filteredData }) => (
+              <CardGrid columns="2" gridColumnGap="xl">
+                {filteredData.map(({ node }, i) => (
+                  <ArticleLink
+                    key={node.id}
+                    imageSrc={node.coverImage?.sources?.[0]?.uri}
+                    justify={i % 2 === 0 ? 'left' : 'right'}
+                    title={node.title}
+                    description={node.summary}
+                    urlText={node.featureFeed?.features[0]?.action.title}
+                    url={`/page/${getIdSuffix(node.id)}`}
+                  />
+                ))}
+              </CardGrid>
+            )}
+          </CampusFilter>
+        </Section>
       ) : null}
     </Layout>
   );

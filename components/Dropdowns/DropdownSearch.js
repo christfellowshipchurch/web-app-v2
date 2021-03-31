@@ -2,7 +2,7 @@ import { Search } from 'components';
 import { Heading, Text, Box } from 'ui-kit';
 import Dropdowns from './Dropdowns.styles';
 
-export default function DropdownAbout() {
+export default function DropdownSearch() {
   return (
     <Dropdowns.Container py="xxl">
       <Box display="flex" flexDirection="column" alignItems="center">

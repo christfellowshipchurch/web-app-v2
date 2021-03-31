@@ -9,13 +9,14 @@ export default function PageDropdown({
   featuredItems,
   nonFeaturedItems,
   baseRoute,
+  ...props
 }) {
   const router = useRouter();
 
   const numColumns = Math.ceil(featuredItems.length / 2) + 1;
 
   return (
-    <Dropdowns.Container>
+    <Dropdowns.Container {...props}>
       <CardGrid columns={numColumns} gridColumnGap="base">
         {numColumns > 1
           ? [...Array(numColumns - 1).keys()].map(i => {
@@ -37,7 +38,9 @@ export default function PageDropdown({
                           color: theme.colors.almost_black,
                           opacity: '30%',
                         }}
-                        onClick={() => router.push(`${baseRoute}/${getIdSuffix(item.id)}`)}
+                        onClick={() =>
+                          router.push(`${baseRoute}/${getIdSuffix(item.id)}`)
+                        }
                       />
                     </Dropdowns.FeaturedItem>
                   ))}

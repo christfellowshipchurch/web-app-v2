@@ -5,12 +5,13 @@ import {
   ArticleLink,
   CampusFilter,
   Layout,
+  MainPhotoHeader,
   MarketingHeadline,
   MeetTheStaff,
   PageSplit,
   Quote,
 } from 'components';
-import { Box, Button, CardGrid, Longform } from 'ui-kit';
+import { Box, Button, CardGrid, Longform, Section } from 'ui-kit';
 import { getChildrenByType, getIdSuffix, getItemId } from 'utils';
 import IDS from 'config/ids';
 import { initializeApollo } from 'lib/apolloClient';
@@ -42,84 +43,87 @@ export default function Page({ data }) {
   const staff = node.staff?.members || [];
 
   return (
-    <Layout
-      title={`Connect - ${node.title}`}
-      bg="bg_alt"
-      headerPhoto={{
-        src: node.coverImage?.sources?.[0].uri || '',
-        title: node.title,
-        subtitle: node.subtitle,
-        summary: node.summary,
-      }}
-    >
+    <Layout title={`Connect - ${node.title}`} bg="bg_alt">
+      <MainPhotoHeader
+        src={node.coverImage?.sources?.[0].uri || ''}
+        title={node.title}
+        subtitle={node.subtitle}
+        summary={node.summary}
+      />
       {generalChildren.length ? (
-        <CampusFilter
-          px="xxl"
-          py="xl"
-          filterWidth="200px"
-          data={generalChildren}
-        >
-          {({ filteredData }) => (
-            <CardGrid columns="2" gridColumnGap="xl">
-              {generalChildren.map(({ node }, i) => (
-                <ArticleLink
-                  key={node.id}
-                  imageSrc={node.coverImage?.sources?.[0]?.uri}
-                  justify={i % 2 === 0 ? 'left' : 'right'}
-                  title={node.title}
-                  description={node.summary}
-                  urlText={node.featureFeed?.features[0]?.action.title}
-                  url={`/page/${getIdSuffix(node.id)}`}
-                />
-              ))}
-            </CardGrid>
-          )}
-        </CampusFilter>
+        <Section>
+          <CampusFilter
+            px="xxl"
+            py="xl"
+            filterWidth="200px"
+            data={generalChildren}
+          >
+            {({ filteredData }) => (
+              <CardGrid columns="2" gridColumnGap="xl">
+                {generalChildren.map(({ node }, i) => (
+                  <ArticleLink
+                    key={node.id}
+                    imageSrc={node.coverImage?.sources?.[0]?.uri}
+                    justify={i % 2 === 0 ? 'left' : 'right'}
+                    title={node.title}
+                    description={node.summary}
+                    urlText={node.featureFeed?.features[0]?.action.title}
+                    url={`/page/${getIdSuffix(node.id)}`}
+                  />
+                ))}
+              </CardGrid>
+            )}
+          </CampusFilter>
+        </Section>
       ) : null}
-      <CardGrid px="xxl" py="xl" columns={story ? 2 : 1}>
-        {cta ? (
-          <MarketingHeadline
-            image={
-              story
-                ? null
-                : {
-                    src: cta.image?.sources?.[0]?.uri,
-                  }
-            }
-            title={cta.title}
-            description={cta.body}
-            actions={[
-              {
-                label: cta.buttonText,
-                onClick: () => router.push(cta.buttonLink),
-              },
-            ]}
-          />
-        ) : null}
-        {story ? (
-          <Quote
-            color="quaternary"
-            title={story.node.title}
-            attribution={story.node.attribution}
-            actionLabel="Full story"
-            actionLink="/lh-story-quote"
-            text={story.node.summary}
-            avatar={story.node.coverImage?.sources[0]?.uri}
-            alignment="left"
-          />
-        ) : null}
-      </CardGrid>
+      <Section>
+        <CardGrid px="xxl" py="xl" columns={story ? 2 : 1}>
+          {cta ? (
+            <MarketingHeadline
+              image={
+                story
+                  ? null
+                  : {
+                      src: cta.image?.sources?.[0]?.uri,
+                    }
+              }
+              title={cta.title}
+              description={cta.body}
+              actions={[
+                {
+                  label: cta.buttonText,
+                  onClick: () => router.push(cta.buttonLink),
+                },
+              ]}
+            />
+          ) : null}
+          {story ? (
+            <Quote
+              color="quaternary"
+              title={story.node.title}
+              attribution={story.node.attribution}
+              actionLabel="Full story"
+              actionLink="/lh-story-quote"
+              text={story.node.summary}
+              avatar={story.node.coverImage?.sources[0]?.uri}
+              alignment="left"
+            />
+          ) : null}
+        </CardGrid>
+      </Section>
       {node.htmlContent && (
-        <Longform
-          px="xxl"
-          py="xl"
-          dangerouslySetInnerHTML={{ __html: node.htmlContent }}
-        />
+        <Section>
+          <Longform
+            px="xxl"
+            py="xl"
+            dangerouslySetInnerHTML={{ __html: node.htmlContent }}
+          />
+        </Section>
       )}
       {staff?.length ? (
         <>
           <PageSplit title="Meet the Staff" />
-          <Box
+          <Section
             px="xl"
             py="l"
             display="flex"
@@ -135,13 +139,13 @@ export default function Page({ data }) {
                 description={person.campus?.name}
               />
             ))}
-          </Box>
+          </Section>
         </>
       ) : null}
       {extraCTA?.length ? (
         <>
           <PageSplit title="Connect" />
-          <Box
+          <Section
             px="xl"
             py="l"
             display="flex"
@@ -154,7 +158,7 @@ export default function Page({ data }) {
                 {cta.buttonText}
               </Button>
             ))}
-          </Box>
+          </Section>
         </>
       ) : null}
     </Layout>

@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 
 import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
-import { Layout } from 'components';
+import { Layout, MainPhotoHeader } from 'components';
 import { Box, Button, Heading, Longform } from 'ui-kit';
 import { initializeApollo } from 'lib/apolloClient';
 import { getItemId } from 'utils';
@@ -10,13 +10,8 @@ export default function Page({ data }) {
   const router = useRouter();
 
   return (
-    <Layout
-      title={data.title}
-      bg="bg_alt"
-      headerPhoto={{
-        src: data.coverImage?.sources?.[0].uri || '',
-      }}
-    >
+    <Layout title={data.title} bg="bg_alt">
+      <MainPhotoHeader src={data.coverImage?.sources?.[0].uri || ''} />
       <Box px="xxl" pt="xl" pb="m">
         {data.subtitle && (
           <Heading

@@ -1,13 +1,14 @@
 import {
   LargeImage,
   Layout,
+  MainPhotoHeader,
   MarketingHeadline,
   PageSplit,
 } from 'components';
 import { initializeApollo } from 'lib/apolloClient';
 import { useRouter } from 'next/router';
 import IDS from 'config/ids';
-import { Box, CardGrid, Heading } from 'ui-kit';
+import { Box, CardGrid, Heading, Section } from 'ui-kit';
 import { GET_MESSAGE_SERIES } from 'hooks/useMessageSeries';
 import { GET_CONTENT_CHANNEL } from 'hooks/useContentChannel';
 import { getChannelId, getIdSuffix } from 'utils';
@@ -18,88 +19,86 @@ export default function Watch({ series, watch }) {
   const ctas = watch?.node?.ctaLinks;
 
   return (
-    <Layout
-      title="Watch"
-      headerPhoto={{
-        src: '/watch.jpeg',
-        title: 'LH Watch',
-        subtitle: '',
-      }}
-    >
-      <CardGrid px="l" py="xl" gridRowGap="l" columns="1">
-        {series.map(seriesNode => (
-          <Box key={seriesNode.id} display="flex" flexDirection="column">
-            <Box display="flex" justifyContent="space-between" width="100%">
-              <Heading fontSize="xl" lineHeight="xl" fontWeight="700">
-                {seriesNode.name}
-              </Heading>
-              {seriesNode.childContentItemsConnection?.edges.length > 3 ? (
-                <Heading
-                  fontSize="xl"
-                  lineHeight="xl"
-                  fontWeight="700"
-                  color="primary"
-                  cursor="pointer"
-                  onClick={() =>
-                    router.push(`/watch/${getIdSuffix(seriesNode.id)}`)
-                  }
-                >
-                  See More
+    <Layout title="Watch">
+      <MainPhotoHeader src="/watch.jpeg'" title="LH Watch" />
+      <Section>
+        <CardGrid px="l" py="xl" gridRowGap="l" columns="1">
+          {series.map(seriesNode => (
+            <Box key={seriesNode.id} display="flex" flexDirection="column">
+              <Box display="flex" justifyContent="space-between" width="100%">
+                <Heading fontSize="xl" lineHeight="xl" fontWeight="700">
+                  {seriesNode.name}
                 </Heading>
-              ) : null}
-            </Box>
-            <CardGrid
-              columns="3"
-              gridColumnGap="m"
-              breakpoints={[
-                { breakpoint: 'xl', columns: 2 },
-                { breakpoint: 'lg', columns: 1 },
-              ]}
-              my="m"
-            >
-              {seriesNode.childContentItemsConnection?.edges
-                ?.slice(0, 3)
-                .map(({ node }) => (
-                  <LargeImage
-                    key={node.id}
-                    text={node.title}
-                    color="white"
-                    src={node.coverImage?.sources?.[0].uri}
-                    height="350px"
-                    width="400px"
-                    action={() =>
-                      router.push(
-                        `/watch/${getIdSuffix(seriesNode.id)}/${getIdSuffix(
-                          node.id
-                        )}`
-                      )
+                {seriesNode.childContentItemsConnection?.edges.length > 3 ? (
+                  <Heading
+                    fontSize="xl"
+                    lineHeight="xl"
+                    fontWeight="700"
+                    color="primary"
+                    cursor="pointer"
+                    onClick={() =>
+                      router.push(`/watch/${getIdSuffix(seriesNode.id)}`)
                     }
-                  />
-                ))}
-            </CardGrid>
-          </Box>
-        ))}
-      </CardGrid>
+                  >
+                    See More
+                  </Heading>
+                ) : null}
+              </Box>
+              <CardGrid
+                columns="3"
+                gridColumnGap="m"
+                breakpoints={[
+                  { breakpoint: 'xl', columns: 2 },
+                  { breakpoint: 'lg', columns: 1 },
+                ]}
+                my="m"
+              >
+                {seriesNode.childContentItemsConnection?.edges
+                  ?.slice(0, 3)
+                  .map(({ node }) => (
+                    <LargeImage
+                      key={node.id}
+                      text={node.title}
+                      color="white"
+                      src={node.coverImage?.sources?.[0].uri}
+                      height="350px"
+                      width="400px"
+                      action={() =>
+                        router.push(
+                          `/watch/${getIdSuffix(seriesNode.id)}/${getIdSuffix(
+                            node.id
+                          )}`
+                        )
+                      }
+                    />
+                  ))}
+              </CardGrid>
+            </Box>
+          ))}
+        </CardGrid>
+      </Section>
       {ctas?.length ? (
         <>
           <PageSplit title="Other ways to watch" />
-          <CardGrid columns="1" gridRowGap="m">
-            {ctas.map((cta, i) => (
-              <MarketingHeadline
-                key={i}
-                src={cta.coverImage?.sources?.[0]?.uri}
-                title={cta.title}
-                description={cta.description}
-                justify={i % 2 ? 'left' : 'right'}
-                actions={[
-                  {
-                    label: cta.buttonText,
-                    onClick: () => router.push(cta.buttonLink),
-                  },
-                ]}
-              />
-            ))}
-          </CardGrid>
+          <Section>
+            <CardGrid columns="1" gridRowGap="m">
+              {ctas.map((cta, i) => (
+                <MarketingHeadline
+                  key={i}
+                  src={cta.coverImage?.sources?.[0]?.uri}
+                  title={cta.title}
+                  description={cta.description}
+                  justify={i % 2 ? 'left' : 'right'}
+                  actions={[
+                    {
+                      label: cta.buttonText,
+                      onClick: () => router.push(cta.buttonLink),
+                    },
+                  ]}
+                />
+              ))}
+            </CardGrid>
+          </Section>
         </>
       ) : null}
     </Layout>

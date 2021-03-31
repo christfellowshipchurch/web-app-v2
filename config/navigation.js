@@ -89,7 +89,11 @@ const navigation = {
     {
       id: 'search',
       action: '/search',
-      call: <MagnifyingGlass color={theme.colors.fg} size="22" />,
+      call: (
+        <Box lineHeight={0.875}>
+          <MagnifyingGlass color={theme.colors.fg} size="20" />
+        </Box>
+      ),
     },
     {
       id: 'user',
@@ -97,12 +101,20 @@ const navigation = {
         authenticated
           ? router.push('/profile')
           : modalDispatch(showModal('Auth')),
-      call: ({ user }) =>
-        user?.src ? (
-          <Avatar src={user.src} name={user.name} height="22px" width="22px" />
-        ) : (
-          <UserCircle color={theme.colors.fg} size="22" />
-        ),
+      call: ({ user }) => (
+        <Box lineHeight={0.875}>
+          {user?.src ? (
+            <Avatar
+              src={user.src}
+              name={user.name}
+              height="20px"
+              width="20px"
+            />
+          ) : (
+            <UserCircle color={theme.colors.fg} size="20" />
+          )}
+        </Box>
+      ),
     },
   ],
 };
