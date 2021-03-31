@@ -9,6 +9,7 @@ import { Layout, FeatureFeed } from 'components';
 export default function Home(props = {}) {
   return (
     <Layout title="Home">
+      <h1>Testing Netlify Build</h1>
       <FeatureFeedProvider Component={FeatureFeed} />
     </Layout>
   );
