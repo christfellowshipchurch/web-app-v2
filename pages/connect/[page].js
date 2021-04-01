@@ -4,6 +4,8 @@ import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
 import {
   ArticleLink,
   CampusFilter,
+  EventCallout,
+  EventsCallout,
   Layout,
   MainPhotoHeader,
   MarketingHeadline,
@@ -11,13 +13,16 @@ import {
   PageSplit,
   Quote,
 } from 'components';
-import { Box, Button, CardGrid, Longform, Section } from 'ui-kit';
+import { Button, CardGrid, Longform, Section } from 'ui-kit';
 import { getChildrenByType, getIdSuffix, getItemId } from 'utils';
 import IDS from 'config/ids';
 import { initializeApollo } from 'lib/apolloClient';
+import { Info } from 'phosphor-react';
+import { useTheme } from 'styled-components';
 
 export default function Page({ data }) {
   const router = useRouter();
+  const theme = useTheme();
 
   const { loading, error, node } = data;
 
@@ -42,6 +47,8 @@ export default function Page({ data }) {
   const extraCTA = node.ctaLinks?.length ? node.ctaLinks?.slice(1) : null;
   const ministry = node.ministry?.members || [];
 
+  const links = node?.relatedContent?.length ? node.relatedContent.splice(0, 4) : null;
+
   return (
     <Layout title={`Connect - ${node.title}`} bg="bg_alt">
       <MainPhotoHeader
@@ -50,6 +57,33 @@ export default function Page({ data }) {
         subtitle={node.subtitle}
         summary={node.summary}
       />
+      {links?.length ? (
+        <Section>
+          <EventsCallout
+            title="News & Events"
+            icon={
+              <Info
+                size={24}
+                style={{
+                  color: theme.colors.neutrals[900],
+                  opacity: '60%',
+                  marginRight: theme.space.xxs,
+                }}
+              />
+            }
+          >
+            {links.splice(0, 4).map(({ node: link }) => (
+              <EventCallout
+                key={link.id}
+                title={link.title}
+                description={link.subtitle}
+                imageSrc={link.coverImage?.sources?.[0]?.uri}
+                onClick={() => router.push(`/page/${getIdSuffix(link.id)}`)}
+              />
+            ))}
+          </EventsCallout>
+        </Section>
+      ) : null}
       {generalChildren.length ? (
         <Section>
           <CampusFilter
