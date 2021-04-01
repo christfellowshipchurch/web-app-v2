@@ -7,6 +7,9 @@ import useContentFeed from './useContentFeed';
 import useContentItem from './useContentItem';
 import useCurrentPerson from './useCurrentPerson';
 import useCurrentUser from './useCurrentUser';
+import useDiscoverFilterCategories from './useDiscoverFilterCategories';
+import useDiscoverFilterCategoriesPreview from './useDiscoverFilterCategoriesPreview';
+import useDiscoverFilters from './useDiscoverFilters';
 import useEvent from './useEvent';
 import useEvents from './useEvents';
 import useEventsFeedFeatures from './useEventsFeedFeatures';
@@ -26,12 +29,10 @@ import useRegisterWithSms from './useRegisterWithSms';
 import useRequestPin from './useRequestPin';
 import useSearchContentItems from './useSearchContentItems';
 import useSearchGroups from './useSearchGroups';
+import useTrackEvent from './useTrackEvent';
 import useUpdateCurrentUser from './useUpdateCurrentUser';
 import useUserExists from './useUserExists';
 import useVerifyPin from './useVerifyPin';
-import useDiscoverFilterCategories from './useDiscoverFilterCategories';
-import useDiscoverFilters from './useDiscoverFilters';
-import useDiscoverFilterCategoriesPreview from './useDiscoverFilterCategoriesPreview';
 
 export {
   useAuthIdentity,
@@ -43,6 +44,9 @@ export {
   useContentItem,
   useCurrentPerson,
   useCurrentUser,
+  useDiscoverFilterCategories,
+  useDiscoverFilterCategoriesPreview,
+  useDiscoverFilters,
   useEvent,
   useEvents,
   useEventsFeedFeatures,
@@ -62,10 +66,8 @@ export {
   useRequestPin,
   useSearchContentItems,
   useSearchGroups,
+  useTrackEvent,
   useUpdateCurrentUser,
   useUserExists,
   useVerifyPin,
-  useDiscoverFilterCategories,
-  useDiscoverFilters,
-  useDiscoverFilterCategoriesPreview,
 };
