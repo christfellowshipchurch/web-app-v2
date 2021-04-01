@@ -65,21 +65,8 @@ export const GET_CONTENT_ITEM = gql`
                   id
                   name
                 }
-                featureFeed {
-                  features {
-                    ... on ButtonFeature {
-                      id
-                      action {
-                        relatedNode {
-                          ... on Url {
-                            url
-                          }
-                        }
-                        title
-                      }
-                    }
-                  }
-                }
+                linkText
+                linkURL
               }
             }
           }

@@ -9,8 +9,7 @@ import {
   MarketingHeadline,
 } from 'components';
 import { CardGrid, Longform, Section } from 'ui-kit';
-import { getChildrenByType, getIdSuffix, getItemId } from 'utils';
-import IDS from 'config/ids';
+import { getIdSuffix, getItemId } from 'utils';
 import { initializeApollo } from 'lib/apolloClient';
 
 export default function Page({ data }) {
@@ -24,10 +23,7 @@ export default function Page({ data }) {
     router.push('/next-steps');
   }
 
-  const generalChildren = getChildrenByType(
-    node.childContentItemsConnection?.edges,
-    IDS.GENERAL
-  );
+  const childContent = node.childContentItemsConnection?.edges;
 
   return (
     <Layout title={`Next Steps - ${node.title}`} bg="bg_alt">
@@ -67,13 +63,13 @@ export default function Page({ data }) {
           />
         </Section>
       )}
-      {generalChildren.length ? (
+      {childContent?.length ? (
         <Section>
           <CampusFilter
             px="xxl"
             py="xl"
             filterWidth="200px"
-            data={generalChildren}
+            data={childContent}
           >
             {({ filteredData }) => (
               <CardGrid columns="2" gridColumnGap="xl">
@@ -84,8 +80,8 @@ export default function Page({ data }) {
                     justify={i % 2 === 0 ? 'left' : 'right'}
                     title={node.title}
                     description={node.summary}
-                    urlText={node.featureFeed?.features[0]?.action.title}
-                    url={`/page/${getIdSuffix(node.id)}`}
+                    urlText={node.linkText}
+                    url={node.linkURL || `/page/${getIdSuffix(node.id)}`}
                   />
                 ))}
               </CardGrid>

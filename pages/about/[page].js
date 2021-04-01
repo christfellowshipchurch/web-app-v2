@@ -9,7 +9,7 @@ import {
   MainPhotoHeader,
   MarketingHeadline,
 } from 'components';
-import { getChannelId, getChildrenByType, getIdSuffix, getItemId } from 'utils';
+import { getChannelId, getIdSuffix, getItemId } from 'utils';
 import IDS from 'config/ids';
 import { initializeApollo } from 'lib/apolloClient';
 import { CardGrid, Longform, Section, theme } from 'ui-kit';
@@ -19,15 +19,12 @@ import { Info } from 'phosphor-react';
 export default function Page({ data, submenuLinks }) {
   const router = useRouter();
 
-  const generalChildren = getChildrenByType(
-    data.childContentItemsConnection?.edges,
-    IDS.GENERAL
-  );
-
   const links = submenuLinks.filter(
     ({ node: link }) =>
       link.isFeatured && getIdSuffix(link.id) !== router.query.page
   );
+
+  const childContent = data.childContentItemsConnection?.edges;
 
   return (
     <Layout title={`About - ${data.title}`} bg="bg_alt">
@@ -73,13 +70,13 @@ export default function Page({ data, submenuLinks }) {
           />
         </Section>
       )}
-      {generalChildren.length ? (
+      {childContent?.length ? (
         <Section>
           <CampusFilter
             px="xxl"
             py="xl"
             filterWidth="200px"
-            data={generalChildren}
+            data={childContent}
           >
             {({ filteredData }) => (
               <CardGrid columns="1">
@@ -93,15 +90,12 @@ export default function Page({ data, submenuLinks }) {
                     title={node.title}
                     description={node.summary}
                     actions={
-                      node.featureFeed?.features?.length
+                      node.linkText
                         ? [
                             {
-                              label: node.featureFeed?.features[0].action.title,
+                              label: node.linkText,
                               onClick: () => {
-                                router.push(
-                                  node.featureFeed?.features[0].action
-                                    .relatedNode.url
-                                );
+                                router.push(node.linkURL || `/page/${getIdSuffix(node.id)}`);
                               },
                             },
                           ]

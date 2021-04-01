@@ -36,11 +36,12 @@ function UserProfile(props = {}) {
       </Box>
     );
 
-
   if (props.currentPerson?.length === 0) {
-      return (<Box display="flex" justifyContent="center" my="xxl">
+    return (
+      <Box display="flex" justifyContent="center" my="xxl">
         <Button onClick={handleSignInClick}>Sign in</Button>
-      </Box>);
+      </Box>
+    );
   }
 
   return (

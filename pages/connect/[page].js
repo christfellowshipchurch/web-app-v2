@@ -32,10 +32,7 @@ export default function Page({ data }) {
     router.push('/connect');
   }
 
-  const generalChildren = getChildrenByType(
-    node.childContentItemsConnection?.edges,
-    IDS.GENERAL
-  );
+  const childContent = node.childContentItemsConnection?.edges;
 
   const stories = getChildrenByType(
     node.childContentItemsConnection?.edges,
@@ -84,25 +81,25 @@ export default function Page({ data }) {
           </EventsCallout>
         </Section>
       ) : null}
-      {generalChildren.length ? (
+      {childContent?.length ? (
         <Section>
           <CampusFilter
             px="xxl"
             py="xl"
             filterWidth="200px"
-            data={generalChildren}
+            data={childContent}
           >
             {({ filteredData }) => (
               <CardGrid columns="2" gridColumnGap="xl">
-                {generalChildren.map(({ node }, i) => (
+                {filteredData.map(({ node }, i) => (
                   <ArticleLink
                     key={node.id}
                     imageSrc={node.coverImage?.sources?.[0]?.uri}
                     justify={i % 2 === 0 ? 'left' : 'right'}
                     title={node.title}
                     description={node.summary}
-                    urlText={node.featureFeed?.features[0]?.action.title}
-                    url={`/page/${getIdSuffix(node.id)}`}
+                    urlText={node.linkText}
+                    url={node.linkURL || `/page/${getIdSuffix(node.id)}`}
                   />
                 ))}
               </CardGrid>
