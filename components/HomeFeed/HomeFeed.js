@@ -122,28 +122,6 @@ function DefaultMainPhotoHeader(props = {}) {
           </>
         }
       />
-      <Box
-        display="flex"
-        flexDirection="column"
-        alignItems="flex-start"
-        ml="xl"
-        mt="-110px"
-      >
-        <Heading
-          fontSize="18px"
-          lineHeight="16.2px"
-          textTransform="uppercase"
-          color="neutrals.100"
-          opacity="33%"
-        >
-          Full Message
-        </Heading>
-        <VideoPlayer
-          src="https://player.vimeo.com/video/457496548"
-          title="GOD"
-          height="185px"
-        />
-      </Box>
     </>
   );
 }
