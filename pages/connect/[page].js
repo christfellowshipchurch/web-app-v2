@@ -40,7 +40,7 @@ export default function Page({ data }) {
   const story = stories.length ? stories[0] : null;
   const cta = node.ctaLinks?.length ? node.ctaLinks?.[0] : null;
   const extraCTA = node.ctaLinks?.length ? node.ctaLinks?.slice(1) : null;
-  const staff = node.staff?.members || [];
+  const ministry = node.ministry?.members || [];
 
   return (
     <Layout title={`Connect - ${node.title}`} bg="bg_alt">
@@ -120,7 +120,7 @@ export default function Page({ data }) {
           />
         </Section>
       )}
-      {staff?.length ? (
+      {ministry?.length ? (
         <>
           <PageSplit title="Meet the Staff" />
           <Section
@@ -131,7 +131,7 @@ export default function Page({ data }) {
             justifyContent="center"
             alignItems="center"
           >
-            {staff.map(person => (
+            {ministry.map(person => (
               <MeetTheStaff
                 key={person.id}
                 src={person.photo?.uri}

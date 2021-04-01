@@ -20,7 +20,7 @@ export const GET_CONTENT_ITEM = gql`
           buttonText
           buttonLink
         }
-        staff {
+        ministry {
           members {
             firstName
             lastName
