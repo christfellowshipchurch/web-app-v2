@@ -13,7 +13,7 @@ function GroupSingle(props = {}) {
   return (
     <ChatConnectionProvider>
       <ContentLayout
-        title={props.data.title}
+        title={props.data?.title}
         summary={props.data.schedule?.friendlyScheduleText}
         coverImage={props.data?.coverImage?.sources[0]?.uri}
         renderC={() => <Button>Join Meeting</Button>}
@@ -27,12 +27,12 @@ function GroupSingle(props = {}) {
         )}
         renderContentE={() => (
           <GroupDateTime
-            title={props.data.title}
-            summary={props.data.summary}
+            title={props.data?.title}
+            summary={props.data?.summary}
             address={document.URL}
-            dateTime={props.data.dateTime}
-            parentVideoCall={props.data.parentVideoCall}
-            videoCall={props.data.videoCall}
+            dateTime={props.data?.dateTime}
+            parentVideoCall={props.data?.parentVideoCall}
+            videoCall={props.data?.videoCall}
           />
         )}
       />
