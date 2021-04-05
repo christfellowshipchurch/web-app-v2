@@ -10,11 +10,13 @@ function Carousel({
   labels,
   color,
   children,
+  childProps,
   showSides,
   showArrows,
   neighbors,
   contentWidth,
   contentHeight,
+  onClick,
   ...props
 }) {
   const [selectedItem, setSelectedItem] = useState(0);
@@ -27,6 +29,7 @@ function Carousel({
       flexDirection="column"
       justifyContent="center"
       alignItems="center"
+      height="100%"
       style={{ overflowX: 'hidden' }}
       {...props}
     >
@@ -39,7 +42,10 @@ function Carousel({
                 variant="s"
                 backgroundColor={selectedItem === i ? color : 'transparent'}
                 color={selectedItem === i ? 'white' : 'black'}
-                onClick={() => setSelectedItem(i)}
+                onClick={() => {
+                  setSelectedItem(i);
+                  onClick?.(i);
+                }}
               >
                 {label}
               </StyledText>
@@ -71,11 +77,12 @@ function Carousel({
               onClick={event => {
                 if (selectedItem !== i) {
                   setSelectedItem(i);
+                  onClick?.(i);
                 }
               }}
             >
               <Box display="flex" justifyContent="center" height="100%">
-                {cloneElement(child, { stopPropagation: i !== selectedItem })}
+                {child ? cloneElement(child, childProps(i)) : null}
               </Box>
             </StyledContainer>
           );
@@ -98,6 +105,7 @@ Carousel.propTypes = {
   neighbors: PropTypes.oneOf(['3d', 'hidden', 'flat']),
   contentHeight: PropTypes.string,
   contentWidth: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 export default Carousel;

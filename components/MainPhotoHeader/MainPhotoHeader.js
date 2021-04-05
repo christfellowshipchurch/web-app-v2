@@ -4,7 +4,14 @@ import PropTypes from 'prop-types';
 import { Box, Heading } from 'ui-kit';
 import { StyledImage } from './MainPhotoHeader.styles';
 
-function MainPhotoHeader({ src, title, subtitle, summary, overlay } = {}) {
+function MainPhotoHeader({
+  src,
+  title,
+  subtitle,
+  summary,
+  overlay,
+  content,
+} = {}) {
   return (
     <Box position="relative" width="100%">
       <StyledImage as="img" src={src} name="main-photo-header" />
@@ -50,6 +57,7 @@ function MainPhotoHeader({ src, title, subtitle, summary, overlay } = {}) {
           </Heading>
         )}
       </Box>
+      {content}
     </Box>
   );
 }
@@ -57,6 +65,9 @@ function MainPhotoHeader({ src, title, subtitle, summary, overlay } = {}) {
 MainPhotoHeader.propTypes = {
   src: PropTypes.string.isRequired,
   overlay: PropTypes.string,
+  title: PropTypes.string,
+  subtitle: PropTypes.string,
+  summary: PropTypes.string,
   content: PropTypes.node,
 };
 

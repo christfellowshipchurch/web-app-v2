@@ -115,7 +115,7 @@ export async function getServerSideProps() {
     },
   });
 
-  const seriesRequests = Object.values(IDS.MESSAGES).map(async id =>
+  const seriesRequests = Object.values(IDS.SERIES).map(async id =>
     apolloClient.query({
       query: GET_MESSAGE_SERIES,
       variables: {

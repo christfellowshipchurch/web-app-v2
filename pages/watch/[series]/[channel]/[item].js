@@ -21,7 +21,13 @@ export default function Item({ item }) {
         <Heading variant="h4" fontWeight="500" mb="m">
           {item.summary}
         </Heading>
-        {src ? <VideoPlayer my="l" src={src} /> : null}
+        {src ? (
+          <VideoPlayer
+            my="l"
+            src={src}
+            poster={item?.coverImage?.sources?.[0]?.uri}
+          />
+        ) : null}
       </Section>
     </Layout>
   );

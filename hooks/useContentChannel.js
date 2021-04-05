@@ -9,7 +9,18 @@ export const GET_CONTENT_CHANNEL = gql`
             node {
               id
               title
-              ...on UniversalContentItem {
+              summary
+              videos {
+                sources {
+                  uri
+                }
+              }
+              coverImage {
+                sources {
+                  uri
+                }
+              }
+              ... on UniversalContentItem {
                 subtitle
                 isFeatured
                 sharing {
@@ -21,7 +32,7 @@ export const GET_CONTENT_CHANNEL = gql`
                   }
                 }
               }
-              ...on MediaContentItem {
+              ... on MediaContentItem {
                 videos {
                   sources {
                     uri

@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
+import { Heading } from 'ui-kit';
 
 // eslint-disable-next-line import/prefer-default-export
 const usePlayer = ({ src, controls, autoplay, fluid }) => {
@@ -43,9 +44,26 @@ const VideoPlayer = ({ src, controls, autoplay, fluid, ...props }) => {
   const playerRef = usePlayer({ src, controls, autoplay, fluid });
 
   return (
-    <div {...props}>
+    <div position="relative" {...props}>
+      {props.title ? (
+        <Heading
+          fontSize="h2"
+          position="absolute"
+          bottom="s"
+          left="m"
+          color="white"
+          zIndex="1"
+        >
+          {props.title}
+        </Heading>
+      ) : null}
       <div data-vjs-player>
-        <video ref={playerRef} className="video-js" />
+        <video
+          ref={playerRef}
+          className="video-js"
+          title={props.title}
+          poster={props.poster}
+        />
       </div>
     </div>
   );

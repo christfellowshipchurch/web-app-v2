@@ -6,7 +6,7 @@ const IDS = {
   NEXT_STEPS_PAGES: 'd357530c1558357f7c418bdfaca71c56',
   CONNECT_PAGES: '5d14e485d7bcbd0dff353c5d715f8934',
   WATCH_PAGES: 'cceb75eb1d10b58fce44fc17a4d67676',
-  MESSAGES: {
+  SERIES: {
     SUNDAY: '71ec2079298288ea22cabf29ff907d73',
     BAPTISMS: 'c9e92fca115eee4b50f2428f86c140a9',
     // EVERYDAY_LIFE_AND_SERIES_PODCAST: '1dcc17cbb15a65f21d52930e9ee276c9',
@@ -18,7 +18,10 @@ const IDS = {
     // TRAINING: '449fd48d4c8bdf5eda07029da55f07eb',
     // WEDNESDAY: '14b04d90d9370a344d4899e5c97cab28',
     // WOMENS_MINISTRY: '22c861a5d54d09634018f7eb132c452e',
-  }
+  },
+  MESSAGES: {
+    SUNDAY: '6151ae4f3c9d99e5eebecc966502d004',
+  },
 };
 
 export default IDS;

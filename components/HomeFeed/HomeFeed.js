@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ArrowRight, Circle } from 'phosphor-react';
 import { gql, useQuery } from '@apollo/client';
 
@@ -11,130 +11,25 @@ import {
   MarketingHeadline,
   Quote,
   ConnectTiles,
-  Countdown,
   ArticleLinks,
   VideoPlayer,
 } from 'components';
 import { Box, CardGrid, Heading, Icon, Section, Text, theme } from 'ui-kit';
 import { useRouter } from 'next/router';
-import { addHours, addMinutes } from 'date-fns';
 import { useCurrentUser } from 'hooks';
+import IDS from 'config/ids';
+import { getIdSuffix } from 'utils';
 
-function DefaultMainPhotoHeader(props = {}) {
-  const videoPlayers = [
-    {
-      src:
-        'http://embed.wistia.com/deliveries/0e364f7e6f6604384ece8a35905a53a864386e9f.bin',
-      title: 'INTRO',
-    },
-    {
-      src:
-        'http://embed.wistia.com/deliveries/0e364f7e6f6604384ece8a35905a53a864386e9f.bin',
-      title: 'GOOD NEWS',
-    },
-    {
-      src:
-        'http://embed.wistia.com/deliveries/0e364f7e6f6604384ece8a35905a53a864386e9f.bin',
-      title: 'EVERYONE',
-    },
-    {
-      src:
-        'http://embed.wistia.com/deliveries/0e364f7e6f6604384ece8a35905a53a864386e9f.bin',
-      title: 'GOD',
-    },
-  ];
-
-  return (
-    <>
-      <MainPhotoHeader
-        src="/about/schedule.jpeg"
-        overlay="linear-gradient(89.49deg, #1c1617 -16.61%, rgba(28, 22, 23, 0) 99.62%)"
-        content={
-          <>
-            <Box
-              position="absolute"
-              top="0"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-              height="100%"
-              width="100%"
-            >
-              <Carousel neighbors="3d" contentWidth="681px" pl="xxl">
-                {videoPlayers.map((vp, i) => (
-                  <VideoPlayer key={i} {...vp} />
-                ))}
-              </Carousel>
-            </Box>
-            <Box
-              position="absolute"
-              ml="xl"
-              top="0"
-              maxWidth="576px"
-              height="100%"
-              display="flex"
-              flexDirection="column"
-              justifyContent="center"
-              style={{ pointerEvents: 'none' }}
-            >
-              <Heading
-                color="neutrals.100"
-                opacity="33%"
-                fontWeight="400"
-                fontSize="18px"
-                lineHeight="16.2px"
-                textTransform="uppercase"
-                mb="16px"
-              >
-                Highlights From
-              </Heading>
-              <Heading
-                color="white"
-                fontSize="86px"
-                lineHeight="77.4px"
-                fontWeight="800"
-                textTransform="uppercase"
-                mb="16px"
-              >
-                Waiting to enjoy God.
-              </Heading>
-              <Text
-                color="neutrals.100"
-                opacity="60%"
-                maxWidth="297px"
-                fontSize="18px"
-                lineHeight="22.5px"
-                mb="4px"
-              >
-                God is never in a rush to do anything, so we need to wait to
-                enjoy Him.
-              </Text>
-              <Text
-                color="neutrals.100"
-                opacity="33%"
-                maxWidth="297px"
-                fontSize="14px"
-                lineHeight="17.5px"
-              >
-                Last Sunday | November 19, 2020
-              </Text>
-            </Box>
-          </>
-        }
-      />
-    </>
-  );
-}
-
-const SarahQuote = () => {
+const HomeQuote = () => {
   const { data } = useQuery(gql`
     {
-      node(id: "ContentChannel:173eb3b93fa2684ae69a30f42fdcea3c") {
+      node(id: "ContentChannel:${IDS.STORIES}") {
         id
         ... on ContentChannel {
           childContentItemsConnection {
             edges {
               node {
+                id
                 title
                 summary
                 coverImage {
@@ -150,48 +45,30 @@ const SarahQuote = () => {
     }
   `);
 
-  return (
+  const quote = data?.node?.childContentItemsConnection?.edges[0]?.node;
+
+  return quote ? (
     <Quote
-      color="primary"
-      title={
-        <Box display="flex">
-          <Heading
-            color="primary"
-            fontSize="18px"
-            lineHeight="27px"
-            fontWeight="700"
-          >
-            LH&nbsp;
-          </Heading>
-          <Heading
-            textTransform="uppercase"
-            color="primary"
-            fontSize="18px"
-            lineHeight="27px"
-            fontWeight="400"
-          >
-            Story
-          </Heading>
-        </Box>
-      }
-      attribution={
-        data?.node?.childContentItemsConnection?.edges[0]?.node?.title
-      }
+      color="quaternary"
+      alignment="left"
+      title={quote.title}
+      attribution={quote.attribution}
       actionLabel="Full story"
-      actionLink="/lh-story-quote"
-      text={data?.node?.childContentItemsConnection?.edges[0]?.node?.summary}
-      avatar={
-        data?.node?.childContentItemsConnection?.edges[0]?.node?.coverImage
-          ?.sources[0]?.uri
-      }
+      actionLink={`/page/${getIdSuffix(quote.id)}`}
+      text={quote.summary}
+      avatar={quote.coverImage?.sources[0]?.uri}
     />
-  );
+  ) : null;
 };
 
 function FullLengthSermon(props = {}) {
+  const [selectedSermon, setSelectedSermon] = useState(0);
+
+  const sermon = props.sermons[selectedSermon];
+
   return (
     <MainPhotoHeader
-      src="/home/good-news.jpeg"
+      src="/about/schedule.jpeg"
       overlay="linear-gradient(89.49deg, #1c1617 -16.61%, rgba(28, 22, 23, 0) 99.62%)"
       content={
         <>
@@ -204,68 +81,35 @@ function FullLengthSermon(props = {}) {
             height="100%"
             width="100%"
           >
-            <Carousel neighbors="3d" contentWidth="681px" pl="xxl">
-              <VideoPlayer
-                src="http://embed.wistia.com/deliveries/0e364f7e6f6604384ece8a35905a53a864386e9f.bin"
-                title="INTRO"
-                width="681px"
-              />
+            <Carousel
+              neighbors="3d"
+              contentWidth="681px"
+              pl="xxl"
+              onClick={i => setSelectedSermon(i)}
+              childProps={i => ({
+                style: {
+                  pointerEvents: i !== selectedSermon ? 'none' : 'initial',
+                  width: '100%',
+                },
+              })}
+            >
+              {props.sermons.map(sermon =>
+                sermon?.node?.videos?.[0]?.sources?.[0]?.uri ? (
+                  <VideoPlayer
+                    key={sermon.node?.id}
+                    src={sermon.node?.videos?.[0]?.sources?.[0]?.uri}
+                    title={sermon.node?.title}
+                    poster={sermon.node?.coverImage?.sources?.[0]?.uri}
+                    style={{ width: '100%' }}
+                  />
+                ) : null
+              )}
             </Carousel>
-          </Box>
-          <Box
-            position="absolute"
-            ml="xl"
-            top="0"
-            maxWidth="576px"
-            height="100%"
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
-            style={{ pointerEvents: 'none' }}
-          >
-            <Heading
-              color="neutrals.100"
-              opacity="33%"
-              fontWeight="400"
-              fontSize="18px"
-              lineHeight="16.2px"
-              textTransform="uppercase"
-              mb="16px"
-            >
-              Watch Now
-            </Heading>
-            <Heading
-              color="white"
-              fontSize="86px"
-              lineHeight="77.4px"
-              fontWeight="800"
-              textTransform="uppercase"
-              mb="16px"
-            >
-              Good News
-            </Heading>
-            <Text
-              color="neutrals.100"
-              opacity="60%"
-              maxWidth="297px"
-              fontSize="18px"
-              lineHeight="22.5px"
-              mb="4px"
-            >
-              Paul shows us that God has given us a new perspective on life.
-            </Text>
-            <Text
-              color="neutrals.100"
-              opacity="33%"
-              maxWidth="297px"
-              fontSize="14px"
-              lineHeight="17.5px"
-            >
-              Last Sunday | November 19, 2020
-            </Text>
           </Box>
         </>
       }
+      title={sermon.node?.title}
+      summary={sermon.node?.summary}
     />
   );
 }
@@ -283,39 +127,11 @@ function LoggedInHomeFeed(props = {}) {
           px="xxl"
           my="xxl"
         >
-          <Box>
-            {Array.from(Array(3)).map((_, i) => (
-              <ArticleLink
-                key={i}
-                description="Lorem ipsum doler sit itmut this is a title of this story article or news something or thing."
-                url="/"
-                urlText="Learn More"
-                imageSrc={article?.coverImage?.sources?.[0]?.uri}
-                mb="s"
-              />
-            ))}
-          </Box>
-          <LargeImage
-            text="Celebrate the Hope of Christ with us."
-            color="white"
-            src="/home/christmas-together.png"
-            action={() => router.push('/christmas')}
-          />
-        </CardGrid>
-      </Section>
-      <Section>
-        <CardGrid
-          gridColumnGap="l"
-          columns="2"
-          breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
-          px="xxl"
-          my="xxl"
-        >
           <MarketingHeadline
             title={
               <>
                 <Heading color="neutrals.900" variant="h2" fontWeight="800">
-                  They're welcome here.
+                  You're welcome here.
                 </Heading>
               </>
             }
@@ -327,35 +143,42 @@ function LoggedInHomeFeed(props = {}) {
                 label: 'Primary Call',
               },
               {
-                color: 'secondary',
+                color: 'quaternary',
+                variant: 'outlined',
                 label: 'Secondary Call',
               },
             ]}
           />
-          <SarahQuote />
+          <HomeQuote />
         </CardGrid>
       </Section>
       <Section>
         <CardGrid
+          gridColumnGap="l"
+          columns="2"
+          breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
           px="xxl"
           my="xxl"
-          columns="2"
-          gridRowGap="xxl"
-          gridColumnGap="xl"
-          breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
         >
-          <Countdown
-            src="https://www.figma.com/file/zlluMsbAFPmWX6Z50iG86s/image/2c35a9fea98b9a3404dfaca24537e5a91c123c48"
-            width="595px"
-            height="451px"
-            borderRadius="image"
-            alignItems="flex-end"
-            date={addHours(addMinutes(new Date(), 2), 15)}
+          <LargeImage
+            text="Celebrate the Hope of Christ with us."
+            color="white"
+            src="/home/christmas-together.png"
+            action={() => router.push('/christmas')}
           />
-          <MarketingHeadline
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tellus massa aliquam volutpat in integer aliquam. Convallis tempor quis sed et vestibulum sed. Hendrerit consequat praesent sit neque. Felis in donec sit nisl feugiat cursus dictum velit"
-            details="ipsum dolor sit amet, consectetur adipiscing elit. Tellus massa aliquam volutpat in integer aliquam. Convallis tempor quis sed et vestibulum sed. Hendrerit consequat praesent sit neque. Felis in donec sit nisl feugiat cursus dictum velit."
-          />
+          <Box>
+            {Array.from(Array(3)).map((_, i) => (
+              <ArticleLink
+                key={i}
+                color="quaternary"
+                description="Lorem ipsum doler sit itmut this is a title of this story article or news something or thing."
+                url="/"
+                urlText="Learn More"
+                imageSrc={article?.coverImage?.sources?.[0]?.uri}
+                mb="s"
+              />
+            ))}
+          </Box>
         </CardGrid>
       </Section>
       <FullWidthCTA height="434px" pt="171px" justifyContent="flex-start">
@@ -456,7 +279,7 @@ function LoggedOutHomeFeed(props = {}) {
               },
             ]}
           />
-          <SarahQuote />
+          <HomeQuote />
         </CardGrid>
       </Section>
       <Section>
@@ -551,14 +374,13 @@ function LoggedOutHomeFeed(props = {}) {
 
 function HomeFeed(props = {}) {
   const { authenticated: loggedIn, loading } = useCurrentUser();
-  const fullSermon = loggedIn && true;
 
   if (loading) {
     return null;
   }
   return (
     <>
-      {fullSermon ? <FullLengthSermon /> : <DefaultMainPhotoHeader />}
+      <FullLengthSermon {...props} />
       {loggedIn ? (
         <LoggedInHomeFeed {...props} />
       ) : (
