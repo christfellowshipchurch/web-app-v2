@@ -4,7 +4,6 @@ import { format, isValid, isSameWeek, isSameYear } from 'date-fns';
 const dateTextFormat = date => {
   const fnsDate = new Date(date);
 
-  console.log(isValid(fnsDate));
   if (!isValid(fnsDate)) return '';
 
   const now = new Date();
