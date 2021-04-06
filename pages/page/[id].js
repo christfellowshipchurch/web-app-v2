@@ -37,7 +37,7 @@ export default function Page({ data }) {
             </Heading>
           )}
           {data.summary && (
-            <Heading fontSize="h3" lineHeight="h3" color="fg" fontWeight="700">
+            <Heading fontSize="h3" lineHeight="h3" color="fg" fontWeight="700" my="m">
               {data.summary}
             </Heading>
           )}

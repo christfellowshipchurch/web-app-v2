@@ -1,44 +1,36 @@
+import IDS from 'config/ids';
+import useContentChannel from 'hooks/useContentChannel';
 import { useRouter } from 'next/router';
 import { Section } from 'ui-kit';
 import HorizontalRow from './HorizontalRow';
 
 const ConnectTiles = props => {
   const router = useRouter();
-  return (
+  const { content, loading } = useContentChannel({
+    variables: {
+      itemId: `ContentChannel:${IDS.CONNECT_PAGES}`,
+    },
+  });
+
+  if (loading || !content.edges) {
+    return null;
+  }
+
+  const featuredItems = content.edges.filter(({ node }) => node.isFeatured).map(({ node }) => node);
+
+  return featuredItems.length ? (
     <Section backgroundColor="neutrals.800">
       <HorizontalRow
         py="186px"
         width="100%"
-        items={[
-          {
-            src: '/home/kids.png',
-            action: () => router.push('/connect/kids'),
-          },
-          {
-            src: '/home/students.png',
-            action: () => router.push('/connect/students'),
-          },
-          {
-            src: '/home/support.png',
-            action: () => router.push('/cr-support'),
-          },
-          {
-            src: '/home/groups.png',
-            action: () => router.push('/life-groups'),
-          },
-          {
-            src: '/home/watch-parties.png',
-            action: () => router.push('/watch'),
-          },
-          {
-            src: '/home/help.png',
-            action: () => router.push('/get-give-help'),
-          },
-        ]}
+        items={featuredItems.map(item => ({
+          src: item.coverImage?.sources?.[0]?.uri,
+          action: () => router.push(`/connect/${item.id}`),
+        }))}
         {...props}
       />
     </Section>
-  );
+  ) : null;
 };
 
 export default ConnectTiles;

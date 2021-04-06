@@ -11,10 +11,18 @@ import {
   MarketingHeadline,
   Quote,
   ConnectTiles,
-  ArticleLinks,
   VideoPlayer,
 } from 'components';
-import { Box, CardGrid, Heading, Icon, Section, Text, theme } from 'ui-kit';
+import {
+  Box,
+  CardGrid,
+  Heading,
+  Icon,
+  Loader,
+  Section,
+  Text,
+  theme,
+} from 'ui-kit';
 import { useRouter } from 'next/router';
 import { useCurrentUser } from 'hooks';
 import IDS from 'config/ids';
@@ -114,9 +122,18 @@ function FullLengthSermon(props = {}) {
   );
 }
 
-function LoggedInHomeFeed(props = {}) {
+function HomeFeedContent(props = {}) {
   const router = useRouter();
-  const article = props.articles?.[0];
+  const { authenticated: loggedIn, loading } = useCurrentUser();
+
+  if (loading) {
+    return <Loader />;
+  }
+
+  const largeArticle = props.articles?.[0]?.node;
+  const miniArticles = props.articles?.slice(1, 4);
+  console.log(largeArticle, miniArticles);
+
   return (
     <>
       <Section>
@@ -161,19 +178,24 @@ function LoggedInHomeFeed(props = {}) {
           my="xxl"
         >
           <LargeImage
-            text="Celebrate the Hope of Christ with us."
+            text={largeArticle?.title}
             color="white"
-            src="/home/christmas-together.png"
-            action={() => router.push('/christmas')}
+            src={largeArticle?.coverImage?.sources?.[0]?.uri}
+            action={() =>
+              router.push(
+                largeArticle?.linkURL ||
+                  `/page/${getIdSuffix(largeArticle?.id)}`
+              )
+            }
           />
           <Box>
-            {Array.from(Array(3)).map((_, i) => (
+            {miniArticles.map(({ node: article }, i) => (
               <ArticleLink
                 key={i}
                 color="quaternary"
-                description="Lorem ipsum doler sit itmut this is a title of this story article or news something or thing."
-                url="/"
-                urlText="Learn More"
+                description={article?.summary}
+                url={article?.linkURL || `/page/${getIdSuffix(article?.id)}`}
+                urlText={article?.linkText || 'Learn More'}
                 imageSrc={article?.coverImage?.sources?.[0]?.uri}
                 mb="s"
               />
@@ -243,149 +265,11 @@ function LoggedInHomeFeed(props = {}) {
   );
 }
 
-function LoggedOutHomeFeed(props = {}) {
-  const router = useRouter();
-  const article = props.articles?.[0];
-
-  return (
-    <>
-      <Section>
-        <CardGrid
-          gridColumnGap="l"
-          columns="2"
-          breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
-          px="xxl"
-          my="xxl"
-        >
-          <MarketingHeadline
-            title={
-              <>
-                <Heading color="neutrals.900" variant="h2" fontWeight="800">
-                  You're welcome here.
-                </Heading>
-              </>
-            }
-            supertitle="We'd like to know you"
-            description="Long Hollow is one church that meets in two locations just north of Nashville. We’re a community of believers with something for everyone. Whether you’re checking out Christ for the first time or are looking for a place to call home, you’re invited to discover your purpose and live it out at Long Hollow."
-            actions={[
-              {
-                color: 'primary',
-                label: 'Primary Call',
-              },
-              {
-                color: 'quaternary',
-                label: 'Secondary Call',
-                variant: 'outlined',
-              },
-            ]}
-          />
-          <HomeQuote />
-        </CardGrid>
-      </Section>
-      <Section>
-        <CardGrid
-          gridColumnGap="l"
-          columns="2"
-          breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
-          px="xxl"
-          my="xxl"
-        >
-          <LargeImage
-            text="Celebrate the Hope of Christ with us."
-            color="white"
-            src="/home/christmas-together.png"
-            action={() => router.push('/christmas')}
-          />
-          <ArticleLinks>
-            {Array.from(Array(3)).map((_, i) => (
-              <ArticleLink
-                key={i}
-                description="Lorem ipsum doler sit itmut this is a title of this story article or news something or thing."
-                url="/"
-                urlText="Learn More"
-                imageSrc={article?.coverImage?.sources?.[0]?.uri}
-                mb="s"
-              />
-            ))}
-          </ArticleLinks>
-        </CardGrid>
-      </Section>
-      <FullWidthCTA height="434px" pt="171px" justifyContent="flex-start">
-        <Box display="flex" alignItems="flex-end" mb="s">
-          <Icon
-            name="godLoves"
-            width="532px"
-            height="67px"
-            viewBox="0 0 532 67"
-            stroke="white"
-            fill="white"
-            mr="m"
-          />
-          <Icon
-            name="you"
-            width="200px"
-            height="67px"
-            viewBox="0 0 200 67"
-            stroke="white"
-          />
-          <Circle color="white" size={20} weight="fill" />
-        </Box>
-        <Text
-          color="white"
-          variant="h4"
-          width="530px"
-          textAlign="center"
-          display="inline"
-          fontWeight="600"
-          mb="s"
-        >
-          For God so loved the world, that he gave his only Son, that whoever
-          believes in him should not perish but have eternal life.&nbsp;
-          <Text
-            color="neutrals.100"
-            variant="h4"
-            opacity="60%"
-            display="inline"
-            fontWeight="600"
-          >
-            John 3.16
-          </Text>
-        </Text>
-        <Text
-          color="neutrals.100"
-          opacity="60%"
-          display="flex"
-          fontWeight="600"
-          alignItems="center"
-        >
-          The good news&nbsp;
-          <ArrowRight
-            size="18"
-            color={`${theme.colors.neutrals[100]}`}
-            opacity="60%"
-            weight="bold"
-          />
-        </Text>
-      </FullWidthCTA>
-      <ConnectTiles />
-    </>
-  );
-}
-
 function HomeFeed(props = {}) {
-  const { authenticated: loggedIn, loading } = useCurrentUser();
-
-  if (loading) {
-    return null;
-  }
   return (
     <>
       <FullLengthSermon {...props} />
-      {loggedIn ? (
-        <LoggedInHomeFeed {...props} />
-      ) : (
-        <LoggedOutHomeFeed {...props} />
-      )}
+      <HomeFeedContent {...props} />
     </>
   );
 }

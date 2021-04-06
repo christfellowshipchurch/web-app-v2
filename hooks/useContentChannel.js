@@ -23,6 +23,8 @@ export const GET_CONTENT_CHANNEL = gql`
               ... on UniversalContentItem {
                 subtitle
                 isFeatured
+                linkURL
+                linkText
                 sharing {
                   url
                 }
