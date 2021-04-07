@@ -17,7 +17,6 @@ export default function useCurrentBreakpoint() {
       return null;
     }
 
-    console.group('Initializing matchers');
     matchers.current = [];
     let initialBreakpointName = breakpointNames[0];
     let cleanupFunctions = [];
@@ -25,30 +24,20 @@ export default function useCurrentBreakpoint() {
     // For each breakpoint (after the first)...
     for (let index = 1; index < breakpointNames.length; index++) {
       const name = breakpointNames[index];
-      console.log(`- index: ${index} => ${name} => ${breakpoints[name]}`);
 
       const matcher = window.matchMedia(`(min-width: ${breakpoints[name]})`);
 
       // Is this breakpoint active?
       if (matcher.matches) {
-        console.log(`breakpoint ${name} matched!`);
         initialBreakpointName = name;
       }
 
       // Listen for changes to this breakpoint `matches` status
       const handleMatchesChange = () => {
         if (matcher.matches) {
-          console.log(
-            `%cMOVED UP -----> name: ${name} (${matcher.matches})`,
-            'color: orange'
-          );
           // Moved up a breakpoint
           setCurrentBreakpoint(name);
         } else {
-          console.log(
-            `%cMOVED DOWN <----- name: ${name} (${matcher.matches})`,
-            'color: orange'
-          );
           // Moved down a breakpoint
           setCurrentBreakpoint(breakpointNames[Math.max(0, index - 1)]);
         }
@@ -63,8 +52,6 @@ export default function useCurrentBreakpoint() {
     }
 
     setCurrentBreakpoint(initialBreakpointName);
-    console.log('--> initialBreakpointName:', initialBreakpointName);
-    console.groupEnd();
 
     return () => {
       cleanupFunctions.forEach(cleanupFunction => cleanupFunction());
