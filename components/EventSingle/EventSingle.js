@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Button } from 'ui-kit';
 import { ContentLayout, Share } from 'components';
 
 import EventGroupings from './EventGroupings';
