@@ -51,6 +51,7 @@ const Content = styled.div`
 
 const Link = styled.a`
   color: ${themeGet('colors.fg')};
+  cursor: pointer;
   display: block;
   font-weight: ${themeGet('fontWeights.bold')};
   text-decoration: none;

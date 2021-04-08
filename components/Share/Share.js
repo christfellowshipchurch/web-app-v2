@@ -79,7 +79,6 @@ const Share = props => {
       <List py="xs" space="0">
         <Box as="li">
           <Menu.Link
-            cursor="pointer"
             onClick={() => handleSocialShare('facebook')}
             px="base"
             py="xs"
@@ -90,7 +89,6 @@ const Share = props => {
         </Box>
         <Box as="li">
           <Menu.Link
-            cursor="pointer"
             onClick={() => handleSocialShare('twitter')}
             px="base"
             py="xs"
@@ -101,7 +99,6 @@ const Share = props => {
         </Box>
         <Box as="li">
           <Menu.Link
-            cursor="pointer"
             onClick={() => handleSocialShare('email')}
             px="base"
             py="xs"
@@ -112,7 +109,6 @@ const Share = props => {
         </Box>
         <Box as="li">
           <Menu.Link
-            cursor="pointer"
             onClick={() => handleSocialShare('sms')}
             display={{ md: 'none' }}
             px="base"
