@@ -7,7 +7,6 @@ import { ClientSideComponent, Dropdowns } from 'components';
 import Styled from './Nav.styles';
 import { useModalDispatch } from 'providers/ModalProvider';
 import { useCurrentUser } from 'hooks';
-import { useTheme } from 'styled-components';
 
 function getMenuItem(menuItem) {
   switch (menuItem) {
@@ -28,15 +27,14 @@ function getMenuItem(menuItem) {
 
 function Nav(props = {}) {
   const router = useRouter();
-  const theme = useTheme();
   const [hoveredItem, setHoveredItem] = useState(null);
   const modalDispatch = useModalDispatch();
   const { authenticated } = useCurrentUser();
 
   return (
-    <Styled px="s">
-      <ClientSideComponent height="100%">
-        <Styled.QuickActions>
+    <Styled.Nav active={props.active}>
+      <ClientSideComponent height="100%" width="100%">
+        <Styled.QuickActions active={props.active}>
           {props.data.quickActions.map(action => {
             const Component = getMenuItem(action.id);
             return (
@@ -44,7 +42,7 @@ function Nav(props = {}) {
                 key={action.action}
                 // Don't show hover state on mobile
                 onTouchEnd={() => {
-                  setHoveredItem(action.id);
+                  setHoveredItem(null);
                 }}
                 onMouseEnter={() => {
                   if (action.id === hoveredItem) {
@@ -93,7 +91,7 @@ function Nav(props = {}) {
           })}
         </Styled.QuickActions>
       </ClientSideComponent>
-    </Styled>
+    </Styled.Nav>
   );
 }
 
@@ -122,6 +120,7 @@ Nav.propTypes = {
   ...systemPropTypes,
   data: PropTypes.object,
   callData: PropTypes.object,
+  active: PropTypes.bool,
 };
 
 export default Nav;

@@ -25,7 +25,13 @@ function MainPhotoHeader({
           background={overlay}
         />
       )}
-      <Box position="absolute" left="97px" bottom="73px" maxWidth="440px">
+      <Box
+        position="absolute"
+        left="97px"
+        bottom="73px"
+        maxWidth="440px"
+        display={{ _: 'none', md: 'block' }}
+      >
         {subtitle && (
           <Heading
             color="neutrals.100"

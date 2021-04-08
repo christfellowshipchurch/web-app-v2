@@ -25,6 +25,7 @@ function MarketingHeadline({
       mt="l"
       width="100%"
       justifyContent={justify === 'right' ? 'flex-end' : 'flex-start'}
+      flexWrap="wrap"
     >
       {actions.map(({ variant, color, onClick, label }, i) => (
         <StyledButton
@@ -34,6 +35,7 @@ function MarketingHeadline({
           onClick={onClick}
           mr={justify === 'left' && 's'}
           ml={justify === 'right' && 's'}
+          mt="s"
         >
           {label}
         </StyledButton>

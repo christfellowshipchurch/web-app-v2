@@ -13,20 +13,11 @@ import {
   ConnectTiles,
   VideoPlayer,
 } from 'components';
-import {
-  Box,
-  CardGrid,
-  Heading,
-  Icon,
-  Loader,
-  Section,
-  Text,
-  theme,
-} from 'ui-kit';
+import { Box, CardGrid, Heading, Icon, Section, Text, theme } from 'ui-kit';
 import { useRouter } from 'next/router';
-import { useCurrentUser } from 'hooks';
 import IDS from 'config/ids';
 import { getIdSuffix } from 'utils';
+import Styled from './HomeFeed.styles';
 
 const HomeQuote = () => {
   const { data } = useQuery(gql`
@@ -83,11 +74,11 @@ function FullLengthSermon(props = {}) {
           <Box
             position="absolute"
             top="0"
-            display="flex"
             alignItems="center"
             justifyContent="center"
             height="100%"
             width="100%"
+            display={{ _: 'none', md: 'flex' }}
           >
             <Carousel
               neighbors="3d"
@@ -124,15 +115,9 @@ function FullLengthSermon(props = {}) {
 
 function HomeFeedContent(props = {}) {
   const router = useRouter();
-  const { authenticated: loggedIn, loading } = useCurrentUser();
-
-  if (loading) {
-    return <Loader />;
-  }
 
   const largeArticle = props.articles?.[0]?.node;
   const miniArticles = props.articles?.slice(1, 4);
-  console.log(largeArticle, miniArticles);
 
   return (
     <>
@@ -141,8 +126,8 @@ function HomeFeedContent(props = {}) {
           gridColumnGap="l"
           columns="2"
           breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
-          px="xxl"
-          my="xxl"
+          px={{ _: 'l', md: 'xxl' }}
+          my={{ _: 'l', md: 'xxl' }}
         >
           <MarketingHeadline
             title={
@@ -174,13 +159,15 @@ function HomeFeedContent(props = {}) {
           gridColumnGap="l"
           columns="2"
           breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
-          px="xxl"
-          my="xxl"
+          px={{ _: 'l', md: 'xxl' }}
+          my={{ _: 'l', md: 'xxl' }}
         >
           <LargeImage
+            minHeight="200px"
             text={largeArticle?.title}
             color="white"
             src={largeArticle?.coverImage?.sources?.[0]?.uri}
+            width="100%"
             action={() =>
               router.push(
                 largeArticle?.linkURL ||
@@ -197,40 +184,41 @@ function HomeFeedContent(props = {}) {
                 url={article?.linkURL || `/page/${getIdSuffix(article?.id)}`}
                 urlText={article?.linkText || 'Learn More'}
                 imageSrc={article?.coverImage?.sources?.[0]?.uri}
-                mb="s"
+                mb={{ _: 'm', md: 's' }}
               />
             ))}
           </Box>
         </CardGrid>
       </Section>
-      <FullWidthCTA height="434px" pt="171px" justifyContent="flex-start">
-        <Box display="flex" alignItems="flex-end" mb="s">
+      <FullWidthCTA pt="171px" pb="77px" justifyContent="flex-start">
+        <Styled.GodLovesYou>
           <Icon
             name="godLoves"
-            width="532px"
-            height="67px"
-            viewBox="0 0 532 67"
+            width={{ _: '266px', md: '532px' }}
+            height={{ _: '50px', md: '66px' }}
+            viewBox="0 0 532 66"
             stroke="white"
             fill="white"
-            mr="m"
+            mr={{ _: "xs", md: "m" }}
           />
           <Icon
             name="you"
-            width="200px"
-            height="67px"
-            viewBox="0 0 200 67"
+            width={{ _: '100px', md: '200px' }}
+            height={{ _: '33px', md: '66px' }}
+            viewBox="0 0 200 66"
             stroke="white"
           />
-          <Circle color="white" size={20} weight="fill" />
-        </Box>
+          <Styled.Circle color="white" weight="fill" />
+        </Styled.GodLovesYou>
         <Text
           color="white"
           variant="h4"
-          width="530px"
+          maxWidth="530px"
           textAlign="center"
           display="inline"
           fontWeight="600"
           mb="s"
+          px="m"
         >
           For God so loved the world, that he gave his only Son, that whoever
           believes in him should not perish but have eternal life.&nbsp;

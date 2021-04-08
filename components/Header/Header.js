@@ -1,23 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 
 import { NavigationProvider } from 'providers';
-import { Box, systemPropTypes } from 'ui-kit';
+import { systemPropTypes } from 'ui-kit';
 import { Logo, Nav } from 'components';
 import Styled from './Header.styles';
 
 function Header(props = {}) {
+  const [active, setActive] = useState(false);
+
   return (
-    <Styled bg="bg_alt">
-      <Box display="flex" py="base" px="xl" alignSelf="center">
+    <Styled.Header bg="bg_alt">
+      <Styled.LogoContainer bg="bg_alt" active={active}>
         <Link href="/">
-          <a>
-            <Logo withText />
-          </a>
+          <Logo withText />
         </Link>
-      </Box>
-      <NavigationProvider Component={Nav} />
-    </Styled>
+        <Styled.ListIcon
+          size="22"
+          onClick={() => setActive(!active)}
+        />
+      </Styled.LogoContainer>
+      <NavigationProvider Component={Nav} active={active} />
+    </Styled.Header>
   );
 }
 

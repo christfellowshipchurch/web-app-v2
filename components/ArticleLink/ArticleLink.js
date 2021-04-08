@@ -4,7 +4,7 @@ import { ArrowRight } from 'phosphor-react';
 import { Box, Text, theme } from 'ui-kit';
 import Link from 'next/link';
 
-import { StyledImage } from './ArticleLink.styles';
+import Styled from './ArticleLink.styles';
 import { splitString } from 'utils';
 
 function ArticleLink({
@@ -17,47 +17,39 @@ function ArticleLink({
   ...props
 }) {
   return (
-    <Box>
-      <Box
-        display="flex"
-        alignItems="center"
-        flexDirection="row"
-        justifyContent="space-between"
-        {...props}
-      >
-        <Box mr="l">
-          <Text fontWeight="700" variant="s">
-            {title}
-          </Text>
-          <Text fontWeight="400" variant="s">
-            {splitString(description)}
-          </Text>
-          {url && urlText ? (
-            <Link href={url}>
-              <a
-                style={{
-                  display: 'flex',
-                  textDecoration: 'none',
-                  alignItems: 'center',
-                  marginTop: theme.space.xxs,
-                }}
-              >
-                <Text fontWeight="600" variant="s" color={color} mr="4px">
-                  {urlText}
-                </Text>
-                <ArrowRight
-                  alt={title}
-                  weight="bold"
-                  size={18}
-                  color={theme.colors[color]}
-                />
-              </a>
-            </Link>
-          ) : null}
-        </Box>
-        <StyledImage rounded src={imageSrc} />
+    <Styled.Container {...props}>
+      <Styled.Image rounded src={imageSrc} float="right" />
+      <Box mr="l">
+        <Text fontWeight="700" variant="s">
+          {title}
+        </Text>
+        <Text fontWeight="400" variant="s">
+          {splitString(description)}
+        </Text>
+        {url && urlText ? (
+          <Link href={url}>
+            <a
+              style={{
+                display: 'flex',
+                textDecoration: 'none',
+                alignItems: 'center',
+                marginTop: theme.space.xxs,
+              }}
+            >
+              <Text fontWeight="600" variant="s" color={color} mr="4px">
+                {urlText}
+              </Text>
+              <ArrowRight
+                alt={title}
+                weight="bold"
+                size={18}
+                color={theme.colors[color]}
+              />
+            </a>
+          </Link>
+        ) : null}
       </Box>
-    </Box>
+    </Styled.Container>
   );
 }
 
