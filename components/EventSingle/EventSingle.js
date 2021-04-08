@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Box, Button } from 'ui-kit';
-import { ContentLayout } from 'components';
+import { ContentLayout, Share } from 'components';
 
 import EventGroupings from './EventGroupings';
 
@@ -14,9 +14,8 @@ function EventSingle(props = {}) {
       coverImage={props.data?.coverImage?.sources[0]?.uri}
       renderC={() => (
         <Box justifySelf="flex-end">
-          <Button variant="secondary">Invite</Button>
+          <Share title={props.data.title} shareTitle="Invite" />
         </Box>
-      )}
       htmlContent={props.data.htmlContent}
       renderContentE={() => props.data && <EventGroupings data={props.data} />}
     />

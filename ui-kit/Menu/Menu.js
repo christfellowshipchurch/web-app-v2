@@ -50,7 +50,7 @@ Menu.propTypes = {
   closeOnDocumentClick: PropTypes.bool,
   menuWidth: PropTypes.string,
   renderTrigger: PropTypes.func.isRequired,
-  side: PropTypes.string,
+  side: PropTypes.oneOfType([PropTypes.string, PropTypes.shape({})]),
 };
 
 Menu.defaultProps = {
