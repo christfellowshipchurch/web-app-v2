@@ -15,11 +15,10 @@ export default function GroupChat(props = {}) {
   }
 
   return (
-    <Styled.ChatContainer>
+    <Styled.ChatContainer pt="0">
       <Chat
         streamChatChannel={props.streamChatChannel}
         relatedNode={props.relatedNode}
-        showHeader={true}
       />
     </Styled.ChatContainer>
   );

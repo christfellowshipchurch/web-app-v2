@@ -22,7 +22,7 @@ function ContentLayout(props = {}) {
 
   function renderB() {
     if (props.renderB) return props.renderB();
-    if (props.title || props.summary) {
+    if (props.title || props.summary || props.renderContentB) {
       return (
         <Box mb={{ _: 'base', md: '' }}>
           {props.title ? (
@@ -35,6 +35,7 @@ function ContentLayout(props = {}) {
               {props.summary}
             </Box>
           ) : null}
+          {props.renderContentB ? props.renderContentB() : null}
         </Box>
       );
     }
@@ -43,8 +44,9 @@ function ContentLayout(props = {}) {
 
   function renderC() {
     if (props.renderC) {
-      return <Box justifySelf="flex-end">{props.renderC()}</Box>;
+      return props.renderC();
     }
+
     return null;
   }
 
@@ -124,6 +126,7 @@ ContentLayout.propTypes = {
   htmlContent: PropTypes.string,
   renderA: PropTypes.func,
   renderB: PropTypes.func,
+  renderContentB: PropTypes.func,
   renderC: PropTypes.func,
   renderContentD: PropTypes.func,
   renderContentE: PropTypes.func,

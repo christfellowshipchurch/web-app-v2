@@ -39,6 +39,7 @@ export const GROUP_ITEM_FRAGMENT = gql`
       edges {
         node {
           id
+          firstName
           photo {
             uri
           }
@@ -46,10 +47,11 @@ export const GROUP_ITEM_FRAGMENT = gql`
       }
       totalCount
     }
-    members: people(isLeader: false, first: 4) {
+    members: people(isLeader: false, first: 10) {
       edges {
         node {
           id
+          firstName
           photo {
             uri
           }
@@ -86,6 +88,8 @@ export const GROUP_FRAGMENT = gql`
       edges {
         node {
           id
+          firstName
+          lastName
           photo {
             uri
           }
@@ -93,10 +97,12 @@ export const GROUP_FRAGMENT = gql`
       }
       totalCount
     }
-    members: people(isLeader: false, first: 4) {
+    members: people(isLeader: false, first: 10) {
       edges {
         node {
           id
+          firstName
+          lastName
           photo {
             uri
           }

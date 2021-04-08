@@ -16,7 +16,7 @@ export default function GroupResources(props = {}) {
   // whether it's an `OPEN_URL` or `READ_CONTENT` etc action.
 
   return (
-    <CardGrid columns="2" gridRowGap={{ _: 's', md: 'base' }}>
+    <CardGrid columns="1" gridRowGap={{ _: 's', md: 'base' }}>
       {props.resources.map(resource => (
         <CustomLink
           as="a"
