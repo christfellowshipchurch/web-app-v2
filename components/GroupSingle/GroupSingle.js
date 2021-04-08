@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { ContentLayout } from 'components';
 import { useCurrentBreakpoint } from 'hooks';
 import { ChatConnectionProvider } from 'providers';
-import { Box, Button, Card, SquareAvatar } from 'ui-kit';
+import { Box, Button, Card } from 'ui-kit';
 
 import GroupChat from './GroupChat';
 import GroupDateTime from './GroupDateTime';
