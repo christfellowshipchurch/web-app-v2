@@ -16,6 +16,7 @@ function EventSingle(props = {}) {
         <Box justifySelf="flex-end">
           <Share title={props.data.title} shareTitle="Invite" />
         </Box>
+      )}
       htmlContent={props.data.htmlContent}
       renderContentE={() => props.data && <EventGroupings data={props.data} />}
     />
