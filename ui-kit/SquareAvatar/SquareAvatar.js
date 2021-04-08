@@ -15,8 +15,8 @@ function SquareAvatar(props = {}) {
     return (
       <Box
         {...props}
-        bg="neutrals.300"
-        borderRadius="15%"
+        bg="subdued"
+        borderRadius="l"
         display="flex"
         alignItems="center"
         height={props.height}
