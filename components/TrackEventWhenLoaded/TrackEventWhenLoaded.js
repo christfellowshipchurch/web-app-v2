@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { useAuthState } from 'providers/AuthProvider';
-import { useTrackEvent } from 'hooks';
+import { trackEvent } from 'lib/amplitude';
 
 const objectToGqlInput = (props = {}) =>
   Object.keys(props).map(key => ({
@@ -11,21 +11,16 @@ const objectToGqlInput = (props = {}) =>
   }));
 
 const TrackEventWhenLoaded = ({ loaded, eventName, properties }) => {
-  const [track] = useTrackEvent();
   const { authenticated } = useAuthState();
 
   useEffect(() => {
     if (loaded && authenticated) {
-      track({
-        variables: {
-          input: {
-            eventName,
-            properties: objectToGqlInput(properties),
-          },
-        },
+      trackEvent({
+        eventName,
+        properties: objectToGqlInput(properties),
       });
     }
-  }, [loaded, authenticated, properties, eventName, track]);
+  }, [loaded, authenticated, properties, eventName]);
 
   return null;
 };

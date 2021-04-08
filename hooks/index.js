@@ -29,7 +29,6 @@ import useRegisterWithSms from './useRegisterWithSms';
 import useRequestPin from './useRequestPin';
 import useSearchContentItems from './useSearchContentItems';
 import useSearchGroups from './useSearchGroups';
-import useTrackEvent from './useTrackEvent';
 import useUpdateCurrentUser from './useUpdateCurrentUser';
 import useUserExists from './useUserExists';
 import useVerifyPin from './useVerifyPin';
@@ -66,7 +65,6 @@ export {
   useRequestPin,
   useSearchContentItems,
   useSearchGroups,
-  useTrackEvent,
   useUpdateCurrentUser,
   useUserExists,
   useVerifyPin,
