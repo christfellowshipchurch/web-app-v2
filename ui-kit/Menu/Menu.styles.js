@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
-import { system } from 'ui-kit';
+import { theme, system } from 'ui-kit';
 
 const Menu = styled.div`
   position: relative;
@@ -10,9 +10,27 @@ const Menu = styled.div`
 `;
 
 const side = ({ side }) => props => {
-  if (side === 'right') {
+  if (typeof side === 'string') {
+    if (side === 'right') {
+      return css`
+        right: 0;
+      `;
+    }
+  }
+
+  if (typeof side === 'object') {
+    let styles = '';
+
+    for (const [key, value] of Object.entries(side)) {
+      const breakpoint = theme.breakpoints[key];
+      styles += `
+        @media screen and (min-width: ${breakpoint}) {
+          ${value}: 0;
+        }
+      `;
+    }
     return css`
-      right: 0;
+      ${styles}
     `;
   }
 
