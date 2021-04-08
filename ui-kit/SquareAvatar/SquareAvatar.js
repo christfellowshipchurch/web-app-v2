@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { Box, Icon, systemPropTypes } from 'ui-kit';
 import Styled from './SquareAvatar.styles';
 
 function SquareAvatar(props = {}) {
-  if (!props.src) {
+  const [error, setError] = useState(!props.src);
+
+  const handleError = event => {
+    setError(true);
+  };
+
+  if (error) {
     return (
       <Box
         {...props}
-        bg="subdued"
+        bg="neutrals.300"
         borderRadius="15%"
         display="flex"
         alignItems="center"
@@ -26,7 +32,11 @@ function SquareAvatar(props = {}) {
 
   return (
     <>
-      <Styled alt={`SquareAvatar of ${props.name}`} {...props} />
+      <Styled
+        alt={`SquareAvatar of ${props.name}`}
+        onError={handleError}
+        {...props}
+      />
       <Box as="span" className="srt">
         {props.name}
       </Box>
