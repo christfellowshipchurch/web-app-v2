@@ -93,6 +93,11 @@ export const GROUP_FRAGMENT = gql`
       }
       totalCount
     }
+    streamChatChannel {
+      id
+      channelId
+      channelType
+    }
   }
 `;
 

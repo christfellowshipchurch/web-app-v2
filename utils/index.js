@@ -1,5 +1,6 @@
 import cleanMarkup from './cleanMarkup';
 import createMarkup from './createMarkup';
+import dateTextFormat from './dateTextFormat';
 import formatPhoneNumber from './formatPhoneNumber';
 import getAge from './getAge';
 import getComponent from './getComponent';
@@ -15,6 +16,7 @@ import validatePhoneNumber from './validatePhoneNumber';
 export {
   cleanMarkup,
   createMarkup,
+  dateTextFormat,
   formatPhoneNumber,
   getAge,
   getComponent,

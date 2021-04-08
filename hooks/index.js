@@ -5,6 +5,7 @@ import useCampuses from './useCampuses';
 import useContactGroupLeader from './useContactGroupLeader';
 import useContentFeed from './useContentFeed';
 import useContentItem from './useContentItem';
+import useCurrentChatUser from './useCurrentChatUser';
 import useCurrentPerson from './useCurrentPerson';
 import useCurrentUser from './useCurrentUser';
 import useDiscoverFilterCategories from './useDiscoverFilterCategories';
@@ -41,6 +42,7 @@ export {
   useContactGroupLeader,
   useContentFeed,
   useContentItem,
+  useCurrentChatUser,
   useCurrentPerson,
   useCurrentUser,
   useDiscoverFilterCategories,

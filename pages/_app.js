@@ -9,6 +9,9 @@ import { AppProvider } from 'providers';
 import gtag from 'lib/gtag';
 import amplitude from 'lib/amplitude';
 
+import 'stream-chat-react/dist/css/index.css';
+import './StreamChatOverrides.css';
+
 // Tracks the route changes and adds a bar to the top.
 configureNProgress();
 

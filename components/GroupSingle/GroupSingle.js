@@ -1,21 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { ContentLayout } from 'components';
-import { Box, Button } from 'ui-kit';
+import { Chat, ContentLayout } from 'components';
+import { ChatConnectionProvider } from 'providers';
+import { Button } from 'ui-kit';
+
+import GroupDateTime from './GroupDateTime';
+
+import Styled from './GroupSingle.styles';
 
 function GroupSingle(props = {}) {
   return (
-    <ContentLayout
-      title={props.data.title}
-      summary={props.data.schedule?.friendlyScheduleText}
-      coverImage={props.data?.coverImage?.sources[0]?.uri}
-      renderC={() => <Button>Join Meeting</Button>}
-      contentTitleD="About"
-      renderContentD={() => <Box as="p">{props.data.summary}</Box>}
-      contentTitleE="Schedule"
-      renderContentE={() => <Box as="p">The schedule will go here&hellip;</Box>}
-    />
+    <ChatConnectionProvider>
+      <ContentLayout
+        title={props.data?.title}
+        summary={props.data.schedule?.friendlyScheduleText}
+        coverImage={props.data?.coverImage?.sources[0]?.uri}
+        renderC={() => <Button>Join Meeting</Button>}
+        renderContentD={() => (
+          <Styled.ChatContainer>
+            <Chat
+              streamChatChannel={props.data?.streamChatChannel}
+              relatedNode={props.data}
+            />
+          </Styled.ChatContainer>
+        )}
+        renderContentE={() => (
+          <GroupDateTime
+            title={props.data?.title}
+            summary={props.data?.summary}
+            address={document.URL}
+            dateTime={props.data?.dateTime}
+            parentVideoCall={props.data?.parentVideoCall}
+            videoCall={props.data?.videoCall}
+          />
+        )}
+      />
+    </ChatConnectionProvider>
   );
 }
 

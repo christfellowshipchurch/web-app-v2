@@ -7,15 +7,27 @@ import { CustomLink } from 'components';
 import { googleCalLink, icsLink } from './utils';
 
 const AddToCalendar = (
-  { event, alternateDescription, title, children },
+  { event, alternateDescription, title, children, label },
   props
 ) => (
   <Menu
     space="0"
     side="right"
     renderTrigger={({ toggle }) => (
-      <Box as="a" href="#0" id={uniqueId('add-to-calendar-')} onClick={toggle}>
-        <Icon name="calendarPlus" />
+      <Box
+        as="a"
+        href="#0"
+        id={uniqueId('add-to-calendar-')}
+        onClick={toggle}
+        textDecoration="none"
+        display="flex"
+      >
+        <Icon name="calendarPlus" mr={label && 'xs'} />
+        {label && (
+          <Box as="p" fontWeight="bold">
+            Add To Calendar
+          </Box>
+        )}
         <Box as="span" className="srt">
           Add To Calendar
         </Box>
@@ -70,6 +82,7 @@ AddToCalendar.propTypes = {
     endTime: PropTypes.string,
   }).isRequired,
   alternateDescription: PropTypes.string,
+  label: PropTypes.bool,
 };
 
 AddToCalendar.defaultProps = {
