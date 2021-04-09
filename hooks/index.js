@@ -9,6 +9,7 @@ import useCurrentBreakpoint from './useCurrentBreakpoint';
 import useCurrentChatUser from './useCurrentChatUser';
 import useCurrentPerson from './useCurrentPerson';
 import useCurrentUser from './useCurrentUser';
+import useCurrentUserRoleForChatChannel from './useCurrentUserRoleForChatChannel';
 import useEvent from './useEvent';
 import useEvents from './useEvents';
 import useEventsFeedFeatures from './useEventsFeedFeatures';
@@ -47,6 +48,7 @@ export {
   useCurrentChatUser,
   useCurrentPerson,
   useCurrentUser,
+  useCurrentUserRoleForChatChannel,
   useEvent,
   useEvents,
   useEventsFeedFeatures,
