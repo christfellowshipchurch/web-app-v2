@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Button, Box, ContentBlock, List, Image } from 'ui-kit';
+import { Button, Box, Card, ContentBlock, List, Image, CardGrid } from 'ui-kit';
+import { rem } from 'ui-kit/_utils';
 import { SEO, Header, Footer } from 'components';
 
 import Styled from './About.styles';
@@ -11,7 +12,7 @@ export default function About() {
   const [active, setActive] = useState('leadership');
   return (
     <>
-      <SEO title="Community" />
+      <SEO title="About" />
       <Box display="grid" gridTemplateRows="auto 1fr auto" height="100vh">
         <Header />
         <Styled.Hero>
@@ -68,8 +69,77 @@ export default function About() {
               maxWidth=" 1100px"
               justifySelf="center"
               p="l"
+              mb="xl"
             />
           ))}
+        {active === 'beliefs' && (
+          <Box
+            display="flex"
+            flexWrap="wrap"
+            justifyContent="center"
+            maxWidth="1000px"
+            mx="base"
+            justifySelf="center"
+            mb="xl"
+          >
+            {data.beliefs.map(item => (
+              <Card
+                px={{ _: 'l', md: 'xl' }}
+                py={{ _: 'base', md: 'l' }}
+                textAlign="center"
+                justifyContent="center"
+                display="flex"
+                alignItems="center"
+                flexDirection="column"
+                m="10px"
+                flex={{
+                  _: `0 0 calc(100% - ${rem('20px')})`,
+                  sm: `0 0 calc(50% - ${rem('20px')})`,
+                }}
+              >
+                <Box as="h2">{item.title}</Box>
+                <Box as="p" color="subdued" mb="base">
+                  {item.subtitle}
+                </Box>
+                <Box as="p">{item.description}</Box>
+              </Card>
+            ))}
+          </Box>
+        )}
+        {active === 'values' && (
+          <Box
+            display="flex"
+            flexWrap="wrap"
+            justifyContent="center"
+            maxWidth="900px"
+            mx="base"
+            justifySelf="center"
+            mb="xl"
+          >
+            {data.values.map(item => (
+              <Card
+                px={{ _: 's', md: 'base' }}
+                py={{ _: 'l', md: 'xl' }}
+                textAlign="center"
+                justifyContent="center"
+                display="flex"
+                alignItems="center"
+                flexDirection="column"
+                m="10px"
+                flex={{
+                  _: `0 0 calc(100% - ${rem('20px')})`,
+                  sm: `0 0 calc(50% - ${rem('20px')})`,
+                  lg: `0 0 calc(33.333% - ${rem('20px')})`,
+                }}
+              >
+                <Box as="h2">{item.title}</Box>
+                <Box as="p" color="subdued">
+                  {item.description}
+                </Box>
+              </Card>
+            ))}
+          </Box>
+        )}
         {active === 'history' && (
           <Box pb="xl" maxWidth="800px" justifySelf="center">
             <Box as="h1" textAlign="center">
