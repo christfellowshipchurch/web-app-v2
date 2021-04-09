@@ -18,7 +18,7 @@ import {
   useChatConnection,
 } from 'providers/ChatConnectionProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
-import { useChatChannel } from 'hooks';
+import { useCurrentUserRoleForChatChannel } from 'hooks';
 
 import { Box, Button, Loader } from 'ui-kit';
 
@@ -26,34 +26,46 @@ import { MessageLivestream, MessageSimple } from './CustomChatMessage';
 import Styled from './Chat.styles';
 
 // Shortcuts
-const { CONNECTING, DISCONNECTED, ERROR } = ConnectionStatus;
+const { CONNECTED, CONNECTING, DISCONNECTED, ERROR } = ConnectionStatus;
 
 export default function Chat(props = {}) {
   const connectionStatus = useChatConnection();
   const [{ authenticated }] = useAuth();
   const modalDispatch = useModalDispatch();
 
-  const { channel, userRole } = useChatChannel({
-    streamChatChannel: props.streamChatChannel,
-    options: {
-      name: props.relatedNode?.title || 'Chat',
-      relatedNodeId: props.relatedNode?.id,
+  const { channelType, channelId } = props.streamChatChannel;
+  const isLivestream = channelType === 'livestream';
+
+  const {
+    getCurrentUserRoleForChatChannel,
+    streamChatRole,
+  } = useCurrentUserRoleForChatChannel({
+    variables: {
+      channelId,
     },
   });
 
-  console.log('userRole:', userRole);
-
   // Semantic shortcuts
+  const connected = connectionStatus === CONNECTED;
   const connecting = connectionStatus === CONNECTING;
   const disconnected = connectionStatus === DISCONNECTED;
   const loading = connecting || disconnected;
   const error = !props.streamChatChannel || connectionStatus === ERROR;
 
-  const { channelType } = props.streamChatChannel;
-  const isLivestream = channelType === 'livestream';
+  // Get authenticated livestream channel users' chat role
+  useEffect(() => {
+    if (connected && authenticated && channelId && isLivestream) {
+      getCurrentUserRoleForChatChannel(channelId);
+    }
+  }, [
+    authenticated,
+    channelId,
+    connected,
+    getCurrentUserRoleForChatChannel,
+    isLivestream,
+  ]);
 
-  console.log('🧡 channel?.id:', channel?.id);
-  if (loading || !channel) {
+  if (loading) {
     return (
       <Styled.CenteredContent>
         <Loader
@@ -78,6 +90,11 @@ export default function Chat(props = {}) {
       </Styled.CenteredContent>
     );
   }
+
+  const channel = StreamChatClient.channel(channelType, channelId, {
+    name: props.relatedNode?.title || 'Chat',
+    relatedNodeId: props.relatedNode?.id,
+  });
 
   const handleLoginClick = event => {
     event.preventDefault();
@@ -105,7 +122,7 @@ export default function Chat(props = {}) {
               />
             )}
 
-            {userRole === 'MODERATOR' && (
+            {streamChatRole === 'MODERATOR' && (
               <Box
                 as="p"
                 color="primary"

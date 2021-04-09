@@ -2,7 +2,6 @@ import useAuthIdentity from './useAuthIdentity';
 import useAuthQuery from './useAuthQuery';
 import useAuthenticateCredentials from './useAuthenticateCredentials';
 import useCampuses from './useCampuses';
-import useChatChannel from './useChatChannel';
 import useContactGroupLeader from './useContactGroupLeader';
 import useContentFeed from './useContentFeed';
 import useContentItem from './useContentItem';
@@ -41,7 +40,6 @@ export {
   useAuthQuery,
   useAuthenticateCredentials,
   useCampuses,
-  useChatChannel,
   useContactGroupLeader,
   useContentFeed,
   useContentItem,
