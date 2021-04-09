@@ -16,7 +16,7 @@ function ContentBlock(props = {}) {
    */
 
   return (
-    <Styled.Container gridLayout={props.contentLayout}>
+    <Styled.Container gridLayout={props.contentLayout} {...props}>
       {(props.image || props.image !== '') && (
         <Styled.Media>
           <Image
