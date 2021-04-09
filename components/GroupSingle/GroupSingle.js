@@ -1,39 +1,86 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Chat, ContentLayout } from 'components';
+import { ContentLayout } from 'components';
+import { useCurrentBreakpoint } from 'hooks';
 import { ChatConnectionProvider } from 'providers';
-import { Button } from 'ui-kit';
+import { Box, Button, Card } from 'ui-kit';
 
+import GroupChat from './GroupChat';
 import GroupDateTime from './GroupDateTime';
-
-import Styled from './GroupSingle.styles';
+import GroupMembers from './GroupMembers';
+import GroupResources from './GroupResources';
 
 function GroupSingle(props = {}) {
+  const currentBreakpoint = useCurrentBreakpoint();
+
+  const totalMembers =
+    (props.data?.leaders.totalCount || 0) +
+    (props.data?.members.totalCount || 0);
+
   return (
     <ChatConnectionProvider>
       <ContentLayout
         title={props.data?.title}
         summary={props.data.schedule?.friendlyScheduleText}
         coverImage={props.data?.coverImage?.sources[0]?.uri}
-        renderC={() => <Button>Join Meeting</Button>}
-        renderContentD={() => (
-          <Styled.ChatContainer>
-            <Chat
-              streamChatChannel={props.data?.streamChatChannel}
-              relatedNode={props.data}
+        renderContentB={() => (
+          <Box display="flex" flexDirection="column" mt="l" pb="base">
+            <Box as="h2" fontSize="h3" mb="base">
+              {totalMembers} Members
+            </Box>
+            <GroupMembers
+              showCount={currentBreakpoint.isSmall ? 5 : 7}
+              leaders={props.data?.leaders}
+              members={props.data?.members}
             />
-          </Styled.ChatContainer>
+          </Box>
         )}
-        renderContentE={() => (
-          <GroupDateTime
-            title={props.data?.title}
-            summary={props.data?.summary}
-            address={document.URL}
-            dateTime={props.data?.dateTime}
-            parentVideoCall={props.data?.parentVideoCall}
-            videoCall={props.data?.videoCall}
-          />
+        renderC={() => (
+          <Box
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+            alignItems="center"
+            pb="l"
+            mt={{ _: 'l', md: '0' }}
+          >
+            <Box>
+              <GroupDateTime
+                title={props.data?.title}
+                summary={props.data?.summary}
+                address={document.URL}
+                dateTime={props.data?.dateTime}
+                parentVideoCall={props.data?.parentVideoCall}
+                videoCall={props.data?.videoCall}
+              />
+              <Button width="100%">Join Meeting</Button>
+            </Box>
+          </Box>
+        )}
+        renderD={() => (
+          <Box>
+            <Card>
+              <GroupChat
+                streamChatChannel={props.data?.streamChatChannel}
+                relatedNode={props.data}
+                pt="s"
+              />
+            </Card>
+          </Box>
+        )}
+        renderE={() => (
+          <Card p="base">
+            <Box as="h2" fontSize="h3">
+              About
+            </Box>
+            <Box as="p">{props.data?.summary}</Box>
+
+            <Box as="h2" fontSize="h3" mt="l" mb="base">
+              Resources
+            </Box>
+            <GroupResources resources={props.data?.resources} />
+          </Card>
         )}
       />
     </ChatConnectionProvider>
