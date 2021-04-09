@@ -189,11 +189,9 @@ const beliefs = [
   },
 ];
 
-const data = {
+export const data = {
   beliefs,
   history,
   leadership,
   values,
 };
-
-export default data;

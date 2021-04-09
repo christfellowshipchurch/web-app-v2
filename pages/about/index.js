@@ -5,7 +5,7 @@ import { SEO, Header, Footer } from 'components';
 
 import Styled from './About.styles';
 
-import data from './data';
+import { data } from './data';
 import { htmlToReactParser } from 'utils';
 
 export default function About() {
