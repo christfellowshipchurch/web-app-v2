@@ -36,8 +36,7 @@ const GroupDateTime = ({
   const notes = getNotes();
 
   return (
-    <Card
-      boxShadow="base"
+    <Box
       display="flex"
       flexDirection="column"
       alignItems="center"
@@ -65,7 +64,7 @@ const GroupDateTime = ({
         alternateDescription={notes}
         label={true}
       />
-    </Card>
+    </Box>
   );
 };
 

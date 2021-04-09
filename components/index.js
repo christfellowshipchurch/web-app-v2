@@ -35,6 +35,7 @@ import Logo from './Logo';
 import Nav from './Nav';
 import SEO from './SEO';
 import SearchField from './SearchField';
+import Share from './Share';
 import TrackEventWhenLoaded from './TrackEventWhenLoaded';
 import UserAvatar from './UserAvatar';
 import UserProfile from './UserProfile';
@@ -78,6 +79,7 @@ export {
   Nav,
   SEO,
   SearchField,
+  Share,
   TrackEventWhenLoaded,
   UserAvatar,
   UserProfile,

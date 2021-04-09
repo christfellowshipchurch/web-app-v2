@@ -51,12 +51,17 @@ export default function Chat(props = {}) {
   if (error) {
     return (
       <Styled.CenteredContent>
-        <Box as="p" color="alert" textAlign="center" px="base">
+        <Box
+          as="p"
+          color="alert"
+          fontWeight="bold"
+          textAlign="center"
+          px="base"
+        >
           Sorry, something went wrong!
         </Box>
         <Box as="p" color="alert" textAlign="center" px="base">
-          If you'd like to chat during the livestream, please refresh the page
-          to try again.
+          Please refresh the page to try again.
         </Box>
       </Styled.CenteredContent>
     );
@@ -74,7 +79,6 @@ export default function Chat(props = {}) {
     modalDispatch(showModal('Auth'));
   };
 
-  const showHeader = channelType === 'livestream';
   const messageComponent =
     channelType === 'livestream' ? MessageLivestream : MessageSimple;
   const noFileUploads = channelType !== 'group';
@@ -88,13 +92,11 @@ export default function Chat(props = {}) {
       >
         <Channel channel={channel} Message={messageComponent}>
           <Window>
-            {showHeader && (
-              <ChannelHeader
-                title={props.relatedNode?.title}
-                image={props.relatedNode?.coverImage?.sources[0].uri}
-                live={channelType === 'livestream'}
-              />
-            )}
+            <ChannelHeader
+              title={props.relatedNode?.title}
+              image={props.relatedNode?.coverImage?.sources[0].uri}
+              live={channelType === 'livestream'}
+            />
             <MessageList />
             {authenticated && <MessageInputSmall noFiles={noFileUploads} />}
             {!authenticated && (
