@@ -9,6 +9,7 @@ import useCurrentBreakpoint from './useCurrentBreakpoint';
 import useCurrentChatUser from './useCurrentChatUser';
 import useCurrentPerson from './useCurrentPerson';
 import useCurrentUser from './useCurrentUser';
+import useCurrentUserRoleForChatChannel from './useCurrentUserRoleForChatChannel';
 import useDiscoverFilterCategories from './useDiscoverFilterCategories';
 import useDiscoverFilterCategoriesPreview from './useDiscoverFilterCategoriesPreview';
 import useDiscoverFilters from './useDiscoverFilters';
@@ -47,6 +48,7 @@ export {
   useCurrentChatUser,
   useCurrentPerson,
   useCurrentUser,
+  useCurrentUserRoleForChatChannel,
   useDiscoverFilterCategories,
   useDiscoverFilterCategoriesPreview,
   useDiscoverFilters,
