@@ -5,13 +5,13 @@ import { Box, Icon, systemPropTypes } from 'ui-kit';
 import Styled from './Avatar.styles';
 
 function Avatar(props = {}) {
-  const [error, setError] = useState(!props.src);
+  const [error, setError] = useState(false);
 
-  const handleError = event => {
+  const handleError = () => {
     setError(true);
   };
 
-  if (error) {
+  if (!props.src || error) {
     return (
       <Box
         bg="subdued"
