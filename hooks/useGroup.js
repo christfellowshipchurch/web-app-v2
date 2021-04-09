@@ -1,20 +1,33 @@
 import { gql, useQuery } from '@apollo/client';
 
+export const GROUP_RESOURCE_FRAGMENT = gql`
+  fragment GroupResourceFragment on FeatureAction {
+    title
+    action
+    relatedNode {
+      id
+      ... on ContentItem {
+        coverImage {
+          sources {
+            uri
+          }
+        }
+      }
+      ... on Url {
+        url
+      }
+    }
+  }
+`;
+
 export const GROUP_ITEM_FRAGMENT = gql`
   fragment GroupItemFragment on VolunteerGroup {
     id
     title
     summary
     groupType
-    groupResources {
-      title
-      action
-      relatedNode {
-        id
-        ... on Url {
-          url
-        }
-      }
+    resources {
+      ...GroupResourceFragment
     }
     coverImage {
       sources {
@@ -26,6 +39,7 @@ export const GROUP_ITEM_FRAGMENT = gql`
       edges {
         node {
           id
+          firstName
           photo {
             uri
           }
@@ -33,10 +47,11 @@ export const GROUP_ITEM_FRAGMENT = gql`
       }
       totalCount
     }
-    members: people(isLeader: false, first: 4) {
+    members: people(isLeader: false, first: 10) {
       edges {
         node {
           id
+          firstName
           photo {
             uri
           }
@@ -62,19 +77,19 @@ export const GROUP_FRAGMENT = gql`
         uri
       }
     }
-    groupResources {
-      title
-      url
-      contentChannelItem
-    }
     dateTime {
       start
       end
+    }
+    resources {
+      ...GroupResourceFragment
     }
     leaders: people(isLeader: true, first: 3) {
       edges {
         node {
           id
+          firstName
+          lastName
           photo {
             uri
           }
@@ -82,10 +97,12 @@ export const GROUP_FRAGMENT = gql`
       }
       totalCount
     }
-    members: people(isLeader: false, first: 4) {
+    members: people(isLeader: false, first: 10) {
       edges {
         node {
           id
+          firstName
+          lastName
           photo {
             uri
           }
@@ -113,6 +130,7 @@ export const GET_GROUP = gql`
       }
     }
   }
+  ${GROUP_RESOURCE_FRAGMENT}
   ${GROUP_ITEM_FRAGMENT}
   ${GROUP_FRAGMENT}
 `;

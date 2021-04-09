@@ -5,6 +5,7 @@ import useCampuses from './useCampuses';
 import useContactGroupLeader from './useContactGroupLeader';
 import useContentFeed from './useContentFeed';
 import useContentItem from './useContentItem';
+import useCurrentBreakpoint from './useCurrentBreakpoint';
 import useCurrentChatUser from './useCurrentChatUser';
 import useCurrentPerson from './useCurrentPerson';
 import useCurrentUser from './useCurrentUser';
@@ -43,6 +44,7 @@ export {
   useContactGroupLeader,
   useContentFeed,
   useContentItem,
+  useCurrentBreakpoint,
   useCurrentChatUser,
   useCurrentPerson,
   useCurrentUser,

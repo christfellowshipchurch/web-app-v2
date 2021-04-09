@@ -80,17 +80,24 @@ function useGroupContentId({ title, id }) {
   useEffect(() => {
     if (state.contentId) return;
     const hasGroups = state.groups.length > 0;
-    const shouldRun = hasGroups && state.status === 'RECEIVED';
+    const shouldRun = hasGroups && title && state.status === 'RECEIVED';
+    const match = state.groups.find(group => slugify(group.title) === title);
+
     if (shouldRun) {
-      const match = state.groups.find(group => slugify(group.title) === title);
-      dispatch({
-        type: 'CONTENT_ID_SET',
-        payload: {
-          contentId: match.id,
-        },
-      });
+      if (match) {
+        dispatch({
+          type: 'CONTENT_ID_SET',
+          payload: {
+            contentId: match.id,
+          },
+        });
+      } else {
+        router.push({
+          pathname: `/groups`,
+        });
+      }
     }
-  }, [state, dispatch, title]);
+  }, [state, dispatch, title, router]);
 
   return state;
 }

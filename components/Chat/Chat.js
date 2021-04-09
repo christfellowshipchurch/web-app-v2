@@ -80,12 +80,17 @@ export default function Chat(props = {}) {
   if (error) {
     return (
       <Styled.CenteredContent>
-        <Box as="p" color="alert" textAlign="center" px="base">
+        <Box
+          as="p"
+          color="alert"
+          fontWeight="bold"
+          textAlign="center"
+          px="base"
+        >
           Sorry, something went wrong!
         </Box>
         <Box as="p" color="alert" textAlign="center" px="base">
-          If you'd like to chat during the livestream, please refresh the page
-          to try again.
+          Please refresh the page to try again.
         </Box>
       </Styled.CenteredContent>
     );
@@ -101,9 +106,8 @@ export default function Chat(props = {}) {
     modalDispatch(showModal('Auth'));
   };
 
-  const showHeader = isLivestream;
   const messageComponent = isLivestream ? MessageLivestream : MessageSimple;
-  const noFileUploads = channelType !== 'group';
+  const noFileUploads = isLivestream;
 
   return (
     <Box width="100%" height="100%">
@@ -114,13 +118,11 @@ export default function Chat(props = {}) {
       >
         <Channel channel={channel} Message={messageComponent}>
           <Window>
-            {showHeader && (
-              <ChannelHeader
-                title={props.relatedNode?.title}
-                image={props.relatedNode?.coverImage?.sources[0].uri}
-                live={isLivestream}
-              />
-            )}
+            <ChannelHeader
+              title={props.relatedNode?.title}
+              image={props.relatedNode?.coverImage?.sources[0].uri}
+              live={isLivestream}
+            />
 
             {streamChatRole === 'MODERATOR' && (
               <Box
@@ -136,7 +138,6 @@ export default function Chat(props = {}) {
                 You are moderating this livestream chat.
               </Box>
             )}
-
             <MessageList />
             {authenticated && <MessageInputSmall noFiles={noFileUploads} />}
             {!authenticated && (
