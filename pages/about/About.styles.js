@@ -9,12 +9,12 @@ const About = styled.div`
 `;
 
 const Hero = styled.div`
+  align-items: center;
   background-image: linear-gradient(
       rgba(000, 000, 000, 0.3) 0%,
       rgba(000, 000, 000, 0.6) 100%
     ),
     url(about-christ-fellowship-church.jpeg);
-  align-items: center;
   background-position: center;
   background-size: cover;
   color: ${themeGet('colors.white')} ${system};

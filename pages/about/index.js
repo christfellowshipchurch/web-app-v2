@@ -66,10 +66,10 @@ export default function About() {
           data.leadership.map(item => (
             <ContentBlock
               {...item}
-              maxWidth=" 1100px"
               justifySelf="center"
-              p="l"
+              maxWidth=" 1100px"
               mb="xl"
+              p="l"
             />
           ))}
         {active === 'beliefs' && (
@@ -77,25 +77,25 @@ export default function About() {
             display="flex"
             flexWrap="wrap"
             justifyContent="center"
-            maxWidth="1000px"
-            mx="base"
             justifySelf="center"
+            maxWidth="1000px"
             mb="xl"
+            mx="base"
           >
             {data.beliefs.map(item => (
               <Card
-                px={{ _: 'l', md: 'xl' }}
-                py={{ _: 'base', md: 'l' }}
-                textAlign="center"
-                justifyContent="center"
-                display="flex"
                 alignItems="center"
+                display="flex"
                 flexDirection="column"
-                m="10px"
                 flex={{
                   _: `0 0 calc(100% - ${rem('20px')})`,
                   sm: `0 0 calc(50% - ${rem('20px')})`,
                 }}
+                justifyContent="center"
+                m="10px"
+                px={{ _: 'l', md: 'xl' }}
+                py={{ _: 'base', md: 'l' }}
+                textAlign="center"
               >
                 <Box as="h2">{item.title}</Box>
                 <Box as="p" color="subdued" mb="base">
@@ -111,26 +111,26 @@ export default function About() {
             display="flex"
             flexWrap="wrap"
             justifyContent="center"
-            maxWidth="900px"
-            mx="base"
             justifySelf="center"
+            maxWidth="900px"
             mb="xl"
+            mx="base"
           >
             {data.values.map(item => (
               <Card
-                px={{ _: 's', md: 'base' }}
-                py={{ _: 'l', md: 'xl' }}
-                textAlign="center"
-                justifyContent="center"
-                display="flex"
                 alignItems="center"
+                display="flex"
                 flexDirection="column"
-                m="10px"
                 flex={{
                   _: `0 0 calc(100% - ${rem('20px')})`,
                   sm: `0 0 calc(50% - ${rem('20px')})`,
                   lg: `0 0 calc(33.333% - ${rem('20px')})`,
                 }}
+                justifyContent="center"
+                m="10px"
+                px={{ _: 's', md: 'base' }}
+                py={{ _: 'l', md: 'xl' }}
+                textAlign="center"
               >
                 <Box as="h2">{item.title}</Box>
                 <Box as="p" color="subdued">
