@@ -2,12 +2,14 @@ import useAuthIdentity from './useAuthIdentity';
 import useAuthQuery from './useAuthQuery';
 import useAuthenticateCredentials from './useAuthenticateCredentials';
 import useCampuses from './useCampuses';
+import useChatChannel from './useChatChannel';
 import useContactGroupLeader from './useContactGroupLeader';
 import useContentFeed from './useContentFeed';
 import useContentItem from './useContentItem';
 import useCurrentChatUser from './useCurrentChatUser';
 import useCurrentPerson from './useCurrentPerson';
 import useCurrentUser from './useCurrentUser';
+import useCurrentUserRoleForChatChannel from './useCurrentUserRoleForChatChannel';
 import useEvent from './useEvent';
 import useEvents from './useEvents';
 import useEventsFeedFeatures from './useEventsFeedFeatures';
@@ -39,12 +41,14 @@ export {
   useAuthQuery,
   useAuthenticateCredentials,
   useCampuses,
+  useChatChannel,
   useContactGroupLeader,
   useContentFeed,
   useContentItem,
   useCurrentChatUser,
   useCurrentPerson,
   useCurrentUser,
+  useCurrentUserRoleForChatChannel,
   useEvent,
   useEvents,
   useEventsFeedFeatures,

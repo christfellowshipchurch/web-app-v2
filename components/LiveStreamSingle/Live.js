@@ -8,6 +8,8 @@ import { Box } from 'ui-kit';
 import Styled from './Live.styles';
 
 function Live(props = {}) {
+  const isClient = typeof window !== undefined;
+
   return (
     <ChatConnectionProvider>
       <Styled.Container>
@@ -33,10 +35,12 @@ function Live(props = {}) {
           )}
         </Styled.Details>
         <Styled.Chat>
-          <Chat
-            streamChatChannel={props.data?.streamChatChannel}
-            relatedNode={props.data?.relatedNode}
-          />
+          {isClient && (
+            <Chat
+              streamChatChannel={props.data?.streamChatChannel}
+              relatedNode={props.data?.relatedNode}
+            />
+          )}
         </Styled.Chat>
       </Styled.Container>
     </ChatConnectionProvider>

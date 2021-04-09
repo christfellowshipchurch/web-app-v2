@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import {
@@ -17,6 +18,7 @@ import {
   useChatConnection,
 } from 'providers/ChatConnectionProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
+import { useChatChannel } from 'hooks';
 
 import { Box, Button, Loader } from 'ui-kit';
 
@@ -31,12 +33,27 @@ export default function Chat(props = {}) {
   const [{ authenticated }] = useAuth();
   const modalDispatch = useModalDispatch();
 
+  const { channel, userRole } = useChatChannel({
+    streamChatChannel: props.streamChatChannel,
+    options: {
+      name: props.relatedNode?.title || 'Chat',
+      relatedNodeId: props.relatedNode?.id,
+    },
+  });
+
+  console.log('userRole:', userRole);
+
+  // Semantic shortcuts
   const connecting = connectionStatus === CONNECTING;
   const disconnected = connectionStatus === DISCONNECTED;
   const loading = connecting || disconnected;
   const error = !props.streamChatChannel || connectionStatus === ERROR;
 
-  if (loading) {
+  const { channelType } = props.streamChatChannel;
+  const isLivestream = channelType === 'livestream';
+
+  console.log('🧡 channel?.id:', channel?.id);
+  if (loading || !channel) {
     return (
       <Styled.CenteredContent>
         <Loader
@@ -62,21 +79,13 @@ export default function Chat(props = {}) {
     );
   }
 
-  const { channelId, channelType } = props.streamChatChannel;
-
-  const channel = StreamChatClient.channel(channelType, channelId, {
-    name: props.relatedNode?.title || 'Chat',
-    relatedNodeId: props.relatedNode?.id,
-  });
-
   const handleLoginClick = event => {
     event.preventDefault();
     modalDispatch(showModal('Auth'));
   };
 
-  const showHeader = channelType === 'livestream';
-  const messageComponent =
-    channelType === 'livestream' ? MessageLivestream : MessageSimple;
+  const showHeader = isLivestream;
+  const messageComponent = isLivestream ? MessageLivestream : MessageSimple;
   const noFileUploads = channelType !== 'group';
 
   return (
@@ -92,9 +101,25 @@ export default function Chat(props = {}) {
               <ChannelHeader
                 title={props.relatedNode?.title}
                 image={props.relatedNode?.coverImage?.sources[0].uri}
-                live={channelType === 'livestream'}
+                live={isLivestream}
               />
             )}
+
+            {userRole === 'MODERATOR' && (
+              <Box
+                as="p"
+                color="primary"
+                textAlign="center"
+                mb="0"
+                fontSize="xs"
+                fontWeight="bold"
+                bg="primarySubdued"
+                py="s"
+              >
+                You are moderating this livestream chat.
+              </Box>
+            )}
+
             <MessageList />
             {authenticated && <MessageInputSmall noFiles={noFileUploads} />}
             {!authenticated && (
