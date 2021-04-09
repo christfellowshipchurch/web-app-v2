@@ -48,7 +48,7 @@ export const EVENT_ITEM_FRAGMENT = gql`
       }
       location
     }
-    labelText
+    label
     callsToAction {
       call
       action
