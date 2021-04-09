@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import {
@@ -17,6 +18,7 @@ import {
   useChatConnection,
 } from 'providers/ChatConnectionProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
+import { useCurrentUserRoleForChatChannel } from 'hooks';
 
 import { Box, Button, Loader } from 'ui-kit';
 
@@ -24,17 +26,44 @@ import { MessageLivestream, MessageSimple } from './CustomChatMessage';
 import Styled from './Chat.styles';
 
 // Shortcuts
-const { CONNECTING, DISCONNECTED, ERROR } = ConnectionStatus;
+const { CONNECTED, CONNECTING, DISCONNECTED, ERROR } = ConnectionStatus;
 
 export default function Chat(props = {}) {
   const connectionStatus = useChatConnection();
   const [{ authenticated }] = useAuth();
   const modalDispatch = useModalDispatch();
 
+  const { channelType, channelId } = props.streamChatChannel;
+  const isLivestream = channelType === 'livestream';
+
+  const {
+    getCurrentUserRoleForChatChannel,
+    streamChatRole,
+  } = useCurrentUserRoleForChatChannel({
+    variables: {
+      channelId,
+    },
+  });
+
+  // Semantic shortcuts
+  const connected = connectionStatus === CONNECTED;
   const connecting = connectionStatus === CONNECTING;
   const disconnected = connectionStatus === DISCONNECTED;
   const loading = connecting || disconnected;
   const error = !props.streamChatChannel || connectionStatus === ERROR;
+
+  // Get authenticated livestream channel users' chat role
+  useEffect(() => {
+    if (connected && authenticated && channelId && isLivestream) {
+      getCurrentUserRoleForChatChannel(channelId);
+    }
+  }, [
+    authenticated,
+    channelId,
+    connected,
+    getCurrentUserRoleForChatChannel,
+    isLivestream,
+  ]);
 
   if (loading) {
     return (
@@ -67,8 +96,6 @@ export default function Chat(props = {}) {
     );
   }
 
-  const { channelId, channelType } = props.streamChatChannel;
-
   const channel = StreamChatClient.channel(channelType, channelId, {
     name: props.relatedNode?.title || 'Chat',
     relatedNodeId: props.relatedNode?.id,
@@ -79,9 +106,8 @@ export default function Chat(props = {}) {
     modalDispatch(showModal('Auth'));
   };
 
-  const messageComponent =
-    channelType === 'livestream' ? MessageLivestream : MessageSimple;
-  const noFileUploads = channelType !== 'group';
+  const messageComponent = isLivestream ? MessageLivestream : MessageSimple;
+  const noFileUploads = isLivestream;
 
   return (
     <Box width="100%" height="100%">
@@ -95,8 +121,23 @@ export default function Chat(props = {}) {
             <ChannelHeader
               title={props.relatedNode?.title}
               image={props.relatedNode?.coverImage?.sources[0].uri}
-              live={channelType === 'livestream'}
+              live={isLivestream}
             />
+
+            {streamChatRole === 'MODERATOR' && (
+              <Box
+                as="p"
+                color="primary"
+                textAlign="center"
+                mb="0"
+                fontSize="xs"
+                fontWeight="bold"
+                bg="primarySubdued"
+                py="s"
+              >
+                You are moderating this livestream chat.
+              </Box>
+            )}
             <MessageList />
             {authenticated && <MessageInputSmall noFiles={noFileUploads} />}
             {!authenticated && (
