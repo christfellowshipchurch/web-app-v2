@@ -25,7 +25,7 @@ export default function About() {
             to—so whether you call one of our many locations home or join from
             home, church is wherever you are! Led by senior pastors Todd & Julie
             Mullins, our mission is to impact the world with the love and
-            message of Jesus Christ—everyone, everyday, everywhere.
+            message of Jesus Christ—everyone, everyday,&nbsp;everywhere.
           </Box>
         </Styled.Hero>
         <Styled.Section>
@@ -33,7 +33,7 @@ export default function About() {
           <Box as="p" mb="xl" fontSize="l" maxWidth="840px">
             We believe that church isn’t just a building you walk in to, but a
             family you can belong to—so whether you call one of our many
-            locations home or join from home, church is wherever you are!
+            locations home or join from home, church is wherever you&nbsp;are!
           </Box>
           <Image
             maxWidth="800px"
