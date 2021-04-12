@@ -14,15 +14,14 @@ const Hero = styled.div`
       rgba(000, 000, 000, 0.3) 0%,
       rgba(000, 000, 000, 0.6) 100%
     ),
-    url(about-christ-fellowship-church.jpeg);
+    url(about-christ-fellowship-church.jpg);
   background-position: center;
   background-size: cover;
   color: ${themeGet('colors.white')} ${system};
   display: flex;
   flex-direction: column;
-  height: ${rem('460px')};
   justify-content: center;
-  padding: ${themeGet('space.xl')} ${themeGet('space.l')};
+  padding: ${themeGet('space.xxl')} ${themeGet('space.l')};
   text-align: center;
 `;
 
