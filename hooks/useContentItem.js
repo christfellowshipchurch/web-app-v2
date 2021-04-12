@@ -20,18 +20,7 @@ export const GET_CONTENT_ITEM = gql`
           buttonText
           buttonLink
         }
-        ministry {
-          members {
-            firstName
-            lastName
-            photo {
-              uri
-            }
-            campus {
-              name
-            }
-          }
-        }
+        ministry
         sharing {
           url
         }
@@ -75,6 +64,18 @@ export const GET_CONTENT_ITEM = gql`
     }
   }
 `;
+        // ministry {
+        //   members {
+        //     firstName
+        //     lastName
+        //     photo {
+        //       uri
+        //     }
+        //     campus {
+        //       name
+        //     }
+        //   }
+        // }
 
 function useContentItem(options = {}) {
   const query = useQuery(GET_CONTENT_ITEM, options);

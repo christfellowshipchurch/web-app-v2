@@ -96,25 +96,19 @@ export default function Page({ data }) {
 export async function getServerSideProps(context) {
   const apolloClient = initializeApollo();
 
-  try {
-    const pageResponse = await apolloClient.query({
-      query: GET_CONTENT_ITEM,
-      variables: {
-        itemId: getItemId(context.params.page),
-      },
-      skip: !context.params.page,
-      fetchPolicy: 'no-cache',
-    });
+  const pageResponse = await apolloClient.query({
+    query: GET_CONTENT_ITEM,
+    variables: {
+      itemId: getItemId(context.params.page),
+    },
+    skip: !context.params.page,
+    fetchPolicy: 'no-cache',
+  });
 
-    return {
-      props: {
-        initialApolloState: apolloClient.cache.extract(),
-        data: pageResponse?.data,
-      },
-    };
-  } catch (e) {
-    return {
-      redirect: { destination: '/next-steps', permanent: false },
-    };
-  }
+  return {
+    props: {
+      initialApolloState: apolloClient.cache.extract(),
+      data: pageResponse?.data || {},
+    },
+  };
 }

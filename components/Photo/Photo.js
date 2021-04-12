@@ -11,19 +11,20 @@ export default function Photo({
   alignItems = 'center',
   justifyContent = 'center',
   onClick = () => {},
+  imageProps = {},
   ...props
 }) {
   const [hovered, setHovered] = useState(false);
 
   return (
-    <Box position="relative" onClick={onClick}>
+    <Box position="relative" onClick={onClick} {...props}>
       <Image
         src={src}
         objectFit="cover"
         width="100%"
         borderRadius={borderRadius}
         onMouseEnter={() => setHovered(true)}
-        {...props}
+        {...imageProps}
       />
       {overlay && (
         <Box
@@ -65,4 +66,5 @@ Photo.propTypes = {
   inner: PropTypes.node,
   hover: PropTypes.bool,
   onClick: PropTypes.func,
+  imageProps: PropTypes.object,
 };

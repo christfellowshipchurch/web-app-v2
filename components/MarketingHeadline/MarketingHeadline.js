@@ -17,7 +17,12 @@ function MarketingHeadline({
 } = {}) {
   let sideContent;
   if (image) {
-    sideContent = <Photo {...image} />;
+    sideContent = (
+      <Photo
+        justifySelf={justify === 'left' ? 'flex-end' : 'flex-start'}
+        {...image}
+      />
+    );
   }
   const buttons = actions?.length ? (
     <Box
@@ -56,6 +61,7 @@ function MarketingHeadline({
         display="flex"
         flexDirection="column"
         alignItems={justify === 'left' ? 'flex-start' : 'flex-end'}
+        justifySelf={justify === 'left' ? 'flex-start' : 'flex-end'}
         textAlign={justify}
       >
         {supertitle && (

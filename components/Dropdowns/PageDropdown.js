@@ -31,7 +31,7 @@ export default function PageDropdown({
                     {items.map((item, i) => (
                       <Dropdowns.FeaturedItem key={item.id}>
                         <Photo
-                          height="226px"
+                          imageProps={{ height: '226px' }}
                           src={item.coverImage?.sources[0]?.uri}
                           inner={
                             <Heading

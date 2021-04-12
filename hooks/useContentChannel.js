@@ -25,6 +25,17 @@ export const GET_CONTENT_CHANNEL = gql`
                 isFeatured
                 linkURL
                 linkText
+                ctaLinks {
+                  title
+                  body
+                  image {
+                    sources {
+                      uri
+                    }
+                  }
+                  buttonText
+                  buttonLink
+                }
                 sharing {
                   url
                 }

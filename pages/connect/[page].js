@@ -19,8 +19,9 @@ import IDS from 'config/ids';
 import { initializeApollo } from 'lib/apolloClient';
 import { Info } from 'phosphor-react';
 import { useTheme } from 'styled-components';
+import { GET_STAFF } from 'hooks/useStaff';
 
-export default function Page({ data }) {
+export default function Page({ data, staff }) {
   const router = useRouter();
   const theme = useTheme();
 
@@ -42,7 +43,6 @@ export default function Page({ data }) {
   const story = stories.length ? stories[0] : null;
   const cta = node.ctaLinks?.length ? node.ctaLinks?.[0] : null;
   const extraCTA = node.ctaLinks?.length ? node.ctaLinks?.slice(1) : null;
-  const ministry = node.ministry?.members || [];
 
   const links = node?.relatedContent?.length ? node.relatedContent.splice(0, 4) : null;
 
@@ -151,7 +151,7 @@ export default function Page({ data }) {
           />
         </Section>
       )}
-      {ministry?.length ? (
+      {staff?.length ? (
         <>
           <PageSplit title="Meet the Staff" />
           <Section
@@ -162,7 +162,7 @@ export default function Page({ data }) {
             justifyContent="center"
             alignItems="center"
           >
-            {ministry.map(person => (
+            {staff.map(person => (
               <MeetTheStaff
                 key={person.id}
                 src={person.photo?.uri}
@@ -209,10 +209,19 @@ export async function getServerSideProps(context) {
       fetchPolicy: 'no-cache',
     });
 
+    const staffResponse = await apolloClient.query({
+      query: GET_STAFF,
+      variables: {
+        ministry: pageResponse?.data?.node?.ministry,
+      },
+      fetchPolicy: 'no-cache',
+    });
+
     return {
       props: {
         initialApolloState: apolloClient.cache.extract(),
         data: pageResponse?.data,
+        staff: staffResponse?.data,
       },
     };
   } catch (e) {

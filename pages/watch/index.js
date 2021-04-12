@@ -10,7 +10,7 @@ import {
 import { initializeApollo } from 'lib/apolloClient';
 import { useRouter } from 'next/router';
 import IDS from 'config/ids';
-import { Box, CardGrid, Heading, Section } from 'ui-kit';
+import { Box, Button, CardGrid, Heading, Section } from 'ui-kit';
 import { GET_MESSAGE_SERIES } from 'hooks/useMessageSeries';
 import { GET_CONTENT_CHANNEL } from 'hooks/useContentChannel';
 import { getChannelId, getIdSuffix } from 'utils';
@@ -125,24 +125,31 @@ export default function Watch({ series, watch, sermons }) {
       {ctas?.length ? (
         <>
           <PageSplit title="Other ways to watch" />
-          <Section>
-            <CardGrid columns="1" gridRowGap="m">
-              {ctas.map((cta, i) => (
-                <MarketingHeadline
-                  key={i}
-                  src={cta.coverImage?.sources?.[0]?.uri}
-                  title={cta.title}
-                  description={cta.description}
-                  justify={i % 2 ? 'left' : 'right'}
-                  actions={[
-                    {
-                      label: cta.buttonText,
-                      onClick: () => router.push(cta.buttonLink),
-                    },
-                  ]}
-                />
-              ))}
-            </CardGrid>
+          <Section
+            px="xl"
+            py="l"
+            display="flex"
+            flexWrap="wrap"
+            justifyContent="center"
+            alignItems="center"
+          >
+            {ctas?.map((cta, i) => (
+              <MarketingHeadline
+                key={i}
+                image={{
+                  src: cta.image?.sources?.[0]?.uri,
+                }}
+                justify={i % 2 === 0 ? 'left' : 'right'}
+                title={cta.title}
+                description={cta.body}
+                actions={[
+                  {
+                    label: cta.buttonText,
+                    onClick: () => router.push(cta.buttonLink),
+                  },
+                ]}
+              />
+            ))}
           </Section>
         </>
       ) : null}
