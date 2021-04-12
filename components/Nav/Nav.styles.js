@@ -14,9 +14,11 @@ const hovered = ({ hovered, hasDropdown }) => props => {
   const color = hovered ? themeGet('colors.white') : 'inherit';
 
   return css`
-    background-color: ${color};
-    ${hovered && 'box-shadow: 0px 0px 2px 2px rgb(0 0 0 / 20%);'}
-    ${hovered && hasDropdown ? 'clip-path: inset(-5px -5px 0 -5px);' : null}
+    @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+      background-color: ${color};
+      ${hovered && 'box-shadow: 0px 0px 2px 2px rgb(0 0 0 / 20%);'}
+      ${hovered && hasDropdown ? 'clip-path: inset(-5px -5px 0 -5px);' : null}
+    }
   `;
 };
 
@@ -33,7 +35,7 @@ const Nav = styled.nav`
   position: ${props => props.active ? 'fixed' : 'relative'};
   width: ${props => props.active ? '100%' : 'auto'};
 
-  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     background: none;
     box-shadow: none;
     display: flex;
@@ -41,8 +43,7 @@ const Nav = styled.nav`
     justify-content: flex-start;
     margin-top: 0;
     padding: 0 ${themeGet('space.s')};
-    position: relative;
-    width: auto;
+    width: 100%;
   }
 
   ${system}
@@ -70,9 +71,10 @@ const QuickActions = styled.div`
 
   height: 100%;
 
-  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     background: none;
     display: flex;
+    justify-content: flex-end;
   }
 
   ${system}
@@ -80,7 +82,6 @@ const QuickActions = styled.div`
 
 const QuickAction = styled.div`
   align-items: center;
-  border: 1px 0 black;
   cursor: pointer;
   display: flex;
   height: 100%;
@@ -91,7 +92,7 @@ const QuickAction = styled.div`
   text-transform: uppercase;
   z-index: 1000;
 
-  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     padding: 0 ${themeGet('space.s')};
     padding-top: 21px;
     padding-bottom: ${props => props.hasDropdown ? '35px' : '21px'};

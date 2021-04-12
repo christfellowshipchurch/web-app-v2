@@ -19,7 +19,7 @@ Styled.Header = styled.header`
     justify-self: flex-end;
   }
 
-  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     display: grid;
     justify-content: flex-start;
     position: relative;
@@ -34,12 +34,12 @@ Styled.LogoContainer = styled(Box)`
   display: flex;
   height: 90px;
   justify-content: center;
+  min-width: 322px;
   padding: ${themeGet('space.base')} ${themeGet('space.xl')};
   position: ${props => props.active ? 'fixed' : 'relative'};
   width: ${props => props.active ? '100%' : 'auto'};
         
-  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-    align-items: initial;
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     justify-content: flex-start;
     position: relative;
     width: auto;
@@ -52,7 +52,7 @@ Styled.ListIcon = styled(List)`
   position: absolute;
   right: 20px;
 
-  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     display: none;
   }
 

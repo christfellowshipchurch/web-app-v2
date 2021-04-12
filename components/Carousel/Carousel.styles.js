@@ -1,9 +1,12 @@
 import { themeGet } from '@styled-system/theme-get';
+import { CaretLeft, CaretRight } from 'phosphor-react';
 import styled, { css } from 'styled-components';
 
 import { Image, Text, system } from 'ui-kit';
 
-export const StyledImage = styled(Image)`
+const Styled = {};
+
+Styled.Image = styled(Image)`
   min-width: 255px;
   height: 145px;
   object-fit: cover;
@@ -11,14 +14,13 @@ export const StyledImage = styled(Image)`
   ${system}
 `;
 
-export const StyledText = styled(Text)`
+Styled.Text = styled(Text)`
   border-radius: ${themeGet('radii.image')};
   padding: ${themeGet('space.xs')} ${themeGet('space.s')};
   white-space: nowrap;
 
   ${system}
 `;
-
 const neighbors = ({ neighbors, numItems }) => props => {
   switch (neighbors) {
     case 'flat':
@@ -55,7 +57,7 @@ const neighbors = ({ neighbors, numItems }) => props => {
   }
 };
 
-export const StyledContainer = styled.div`
+Styled.Container = styled.div`
   top: 0;
   transition-duration: 600ms;
 
@@ -63,7 +65,7 @@ export const StyledContainer = styled.div`
   ${system}
 `;
 
-export const StyledContent = styled.div`
+Styled.Content = styled.div`
   display: flex;
   position: relative;
   transform-style: preserve-3d;
@@ -71,3 +73,19 @@ export const StyledContent = styled.div`
 
   ${system}
 `;
+
+Styled.ArrowLeft = styled(CaretLeft)`
+  left: 0;
+  position: absolute;
+
+  ${system}
+`;
+
+Styled.ArrowRight = styled(CaretRight)`
+  position: absolute;
+  right: 0;
+
+  ${system}
+`;
+
+export default Styled;

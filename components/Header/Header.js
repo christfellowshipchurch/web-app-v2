@@ -13,12 +13,11 @@ function Header(props = {}) {
     <Styled.Header bg="bg_alt">
       <Styled.LogoContainer bg="bg_alt" active={active}>
         <Link href="/">
-          <Logo withText />
+          <a>
+            <Logo withText />
+          </a>
         </Link>
-        <Styled.ListIcon
-          size="22"
-          onClick={() => setActive(!active)}
-        />
+        <Styled.ListIcon size="22" onClick={() => setActive(!active)} />
       </Styled.LogoContainer>
       <NavigationProvider Component={Nav} active={active} />
     </Styled.Header>

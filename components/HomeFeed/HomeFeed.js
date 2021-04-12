@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRight, Circle } from 'phosphor-react';
+import { ArrowRight } from 'phosphor-react';
 import { gql, useQuery } from '@apollo/client';
 
 import {
@@ -13,7 +13,7 @@ import {
   ConnectTiles,
   VideoPlayer,
 } from 'components';
-import { Box, CardGrid, Heading, Icon, Section, Text, theme } from 'ui-kit';
+import { Box, CardGrid, Heading, Section, Text, theme } from 'ui-kit';
 import { useRouter } from 'next/router';
 import IDS from 'config/ids';
 import { getIdSuffix } from 'utils';
@@ -68,7 +68,7 @@ function FullLengthSermon(props = {}) {
   return (
     <MainPhotoHeader
       src="/about/schedule.jpeg"
-      overlay="linear-gradient(89.49deg, #1c1617 -16.61%, rgba(28, 22, 23, 0) 99.62%)"
+      overlay={{_: "rgba(0, 0, 0, 0.7)", lg: "linear-gradient(89.49deg, #1c1617 -16.61%, rgba(28, 22, 23, 0) 99.62%)"}}
       content={
         <>
           <Box
@@ -83,7 +83,7 @@ function FullLengthSermon(props = {}) {
             <Carousel
               neighbors="3d"
               contentWidth="681px"
-              pl="xxl"
+              pl={{ _: '0', lg: 'xxl' }}
               onClick={i => setSelectedSermon(i)}
               childProps={i => ({
                 style: {
@@ -192,19 +192,15 @@ function HomeFeedContent(props = {}) {
       </Section>
       <FullWidthCTA pt="171px" pb="77px" justifyContent="flex-start">
         <Styled.GodLovesYou>
-          <Icon
+          <Styled.GodLoves
             name="godLoves"
-            width={{ _: '266px', md: '532px' }}
-            height={{ _: '50px', md: '66px' }}
             viewBox="0 0 532 66"
             stroke="white"
             fill="white"
-            mr={{ _: "xs", md: "m" }}
+            mr={{ _: 'xs', md: 'm' }}
           />
-          <Icon
+          <Styled.You
             name="you"
-            width={{ _: '100px', md: '200px' }}
-            height={{ _: '33px', md: '66px' }}
             viewBox="0 0 200 66"
             stroke="white"
           />

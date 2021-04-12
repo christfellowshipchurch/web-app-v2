@@ -28,6 +28,7 @@ function getMenuItem(menuItem) {
 function Nav(props = {}) {
   const router = useRouter();
   const [hoveredItem, setHoveredItem] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
   const modalDispatch = useModalDispatch();
   const { authenticated } = useCurrentUser();
 
@@ -43,9 +44,11 @@ function Nav(props = {}) {
                 // Don't show hover state on mobile
                 onTouchEnd={() => {
                   setHoveredItem(null);
+                  setIsMobile(true);
                 }}
                 onMouseEnter={() => {
-                  if (action.id === hoveredItem) {
+                  // TODO: Need to disable this for touch devices
+                  if (action.id === hoveredItem || isMobile) {
                     setHoveredItem(null);
                   } else {
                     setHoveredItem(action.id);
@@ -59,28 +62,29 @@ function Nav(props = {}) {
                   id={action.id}
                   selected={action.action === router.pathname}
                   hovered={action.id === hoveredItem}
-                  onClick={
-                    typeof action.action === 'string'
-                      ? () => {
-                          if (hoveredItem === action.id) {
-                            router.push(action.action);
-                          }
-                        }
-                      : () =>
-                          action.action?.({
-                            modalDispatch,
-                            router,
-                            authenticated,
-                          })
-                  }
+                  onClick={() => {
+                    setHoveredItem(null);
+
+                    if (typeof action.action === 'string') {
+                      router.push(action.action);
+                    } else {
+                      action.action?.({
+                        modalDispatch,
+                        router,
+                        authenticated,
+                      })
+                    }
+                  }}
                 />
                 {Component && (
                   <Box
-                    display={action.id === hoveredItem ? 'block' : 'none'}
-                    width="100%"
+                    display={{
+                      _: 'none',
+                      lg: action.id === hoveredItem ? 'block' : 'none',
+                    }}
                     position="absolute"
                     top="90px"
-                    left="0"
+                    right="0"
                     zIndex="999"
                   >
                     <Component />

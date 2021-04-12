@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import { Box } from 'ui-kit';
 
-import { StyledContent, StyledContainer, StyledText } from './Carousel.styles';
+import Styled from './Carousel.styles';
 
 function Carousel({
   labels,
@@ -37,7 +37,7 @@ function Carousel({
         <Box display="flex" alignItems="center" flexWrap="nowrap" my="xl">
           {labels.map((label, i) => {
             const text = (
-              <StyledText
+              <Styled.Text
                 key={i}
                 variant="s"
                 backgroundColor={selectedItem === i ? color : 'transparent'}
@@ -48,7 +48,7 @@ function Carousel({
                 }}
               >
                 {label}
-              </StyledText>
+              </Styled.Text>
             );
             if (i === 0) {
               return text;
@@ -63,10 +63,10 @@ function Carousel({
           })}
         </Box>
       )}
-      <StyledContent>
+      <Styled.Content>
         {_children.map((child, i) => {
           return (
-            <StyledContainer
+            <Styled.Container
               key={i}
               index={i}
               selected={selectedItem}
@@ -84,10 +84,28 @@ function Carousel({
               <Box display="flex" justifyContent="center" height="100%">
                 {child ? cloneElement(child, childProps(i)) : null}
               </Box>
-            </StyledContainer>
+            </Styled.Container>
           );
         })}
-      </StyledContent>
+      </Styled.Content>
+      <Styled.ArrowLeft
+        color="white"
+        size="40"
+        display={selectedItem <= 0 ? 'none' : 'block'}
+        onClick={() => {
+          setSelectedItem(selectedItem - 1);
+          onClick?.(selectedItem - 1);
+        }}
+      />
+      <Styled.ArrowRight
+        color="white"
+        size="40"
+        display={selectedItem >= children.length - 1 ? 'none' : 'block'}
+        onClick={() => {
+          setSelectedItem(selectedItem + 1);
+          onClick?.(selectedItem + 1);
+        }}
+      />
     </Box>
   );
 }

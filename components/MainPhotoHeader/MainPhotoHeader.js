@@ -30,7 +30,7 @@ function MainPhotoHeader({
         left="97px"
         bottom="73px"
         maxWidth="440px"
-        display={{ _: 'none', md: 'block' }}
+        display={{ _: 'none', md: content ? 'none' : 'block', xl: 'block' }}
       >
         {subtitle && (
           <Heading
@@ -70,7 +70,7 @@ function MainPhotoHeader({
 
 MainPhotoHeader.propTypes = {
   src: PropTypes.string.isRequired,
-  overlay: PropTypes.string,
+  overlay: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   title: PropTypes.string,
   subtitle: PropTypes.string,
   summary: PropTypes.string,

@@ -11,7 +11,7 @@ Styled.Container = styled(Box)`
   flex-direction: column;
   justify-content: space-between;
 
-  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     flex-direction: row;
   }
 
@@ -23,7 +23,7 @@ Styled.Image = styled(Image)`
   object-fit: cover;
   order: initial;
 
-  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     height: 145px;
     margin-bottom: 0;
     min-width: 255px;
