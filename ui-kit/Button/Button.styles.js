@@ -24,6 +24,7 @@ const variant = ({ variant }) => props => {
     return css`
       background-color: transparent;
       color: ${themeGet('colors.primary')};
+      line-height: 1.5;
 
       &:active,
       &:focus,
