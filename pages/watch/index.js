@@ -1,9 +1,11 @@
 import {
+  Carousel,
   LargeImage,
   Layout,
   MainPhotoHeader,
   MarketingHeadline,
   PageSplit,
+  VideoPlayer,
 } from 'components';
 import { initializeApollo } from 'lib/apolloClient';
 import { useRouter } from 'next/router';
@@ -13,14 +15,57 @@ import { GET_MESSAGE_SERIES } from 'hooks/useMessageSeries';
 import { GET_CONTENT_CHANNEL } from 'hooks/useContentChannel';
 import { getChannelId, getIdSuffix } from 'utils';
 
-export default function Watch({ series, watch }) {
+export default function Watch({ series, watch, sermons }) {
   const router = useRouter();
 
   const ctas = watch?.node?.ctaLinks;
 
+  const coverVideo = sermons?.[0]?.node;
+
   return (
     <Layout title="Watch">
-      <MainPhotoHeader src="/watch.jpeg'" title="LH Watch" />
+      <MainPhotoHeader
+        src={coverVideo?.coverImage?.sources?.[0]?.uri}
+        title={coverVideo?.title}
+        subtitle={coverVideo?.subtitle}
+        summary={coverVideo?.summary}
+        content={
+          <>
+            <Box
+              position="absolute"
+              top="0"
+              alignItems="center"
+              justifyContent="center"
+              height="100%"
+              width="100%"
+              display={{ _: 'none', md: 'flex' }}
+            >
+              <Carousel
+                neighbors="3d"
+                contentWidth="681px"
+                pl={{ _: '0', lg: 'xxl' }}
+                childProps={i => ({
+                  style: {
+                    width: '100%',
+                  },
+                })}
+              >
+                {[coverVideo].map(sermon =>
+                  sermon?.videos?.[0]?.sources?.[0]?.uri ? (
+                    <VideoPlayer
+                      key={sermon?.id}
+                      src={sermon?.videos?.[0]?.sources?.[0]?.uri}
+                      title={sermon?.title}
+                      poster={sermon?.coverImage?.sources?.[0]?.uri}
+                      style={{ width: '100%' }}
+                    />
+                  ) : null
+                )}
+              </Carousel>
+            </Box>
+          </>
+        }
+      />
       <Section>
         <CardGrid px="l" py="xl" gridRowGap="l" columns="1">
           {series.map(seriesNode => (
@@ -108,6 +153,13 @@ export default function Watch({ series, watch }) {
 export async function getServerSideProps() {
   const apolloClient = initializeApollo();
 
+  const sermons = await apolloClient.query({
+    query: GET_CONTENT_CHANNEL,
+    variables: {
+      itemId: getChannelId(IDS.MESSAGES.SUNDAY),
+    },
+  });
+
   const watchRequest = await apolloClient.query({
     query: GET_CONTENT_CHANNEL,
     variables: {
@@ -132,6 +184,9 @@ export async function getServerSideProps() {
       series: series.map(serie => serie?.data?.node),
       watch:
         watchRequest?.data?.node?.childContentItemsConnection?.edges?.[0] || {},
+      sermons: sermons?.data?.node?.childContentItemsConnection?.edges.filter(
+        ({ node }) => node?.videos?.[0]?.sources?.[0]?.uri
+      ),
     },
   };
 }
