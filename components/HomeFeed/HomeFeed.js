@@ -18,6 +18,8 @@ import { useRouter } from 'next/router';
 import IDS from 'config/ids';
 import { getIdSuffix } from 'utils';
 import Styled from './HomeFeed.styles';
+import { useCurrentUser } from 'hooks';
+import usePersonaFeed from 'hooks/usePersonaFeed';
 
 const HomeQuote = () => {
   const { data } = useQuery(gql`
@@ -250,10 +252,13 @@ function HomeFeedContent(props = {}) {
 }
 
 function HomeFeed(props = {}) {
+  const { authenticated } = useCurrentUser();
+  const { articles } = usePersonaFeed({ skip: !authenticated });
+
   return (
     <>
       <FullLengthSermon {...props} />
-      <HomeFeedContent {...props} />
+      <HomeFeedContent {...props} articles={articles || props.articles} />
     </>
   );
 }
