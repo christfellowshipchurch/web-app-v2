@@ -24,7 +24,7 @@ const ConnectTiles = props => {
   return featuredItems.length ? (
     <Section backgroundColor="neutrals.800">
       <HorizontalRow
-        py="186px"
+        py={{ _: 'l', lg: 'xxl' }}
         width="100%"
         imageProps={{
           height: '226px',

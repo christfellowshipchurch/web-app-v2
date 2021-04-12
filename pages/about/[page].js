@@ -25,6 +25,7 @@ export default function Page({ data, submenuLinks }) {
   );
 
   const childContent = data.childContentItemsConnection?.edges;
+  const ctaLinks = data.ctaLinks;
 
   return (
     <Layout title={`About - ${data.title}`} bg="bg_alt">
@@ -95,7 +96,10 @@ export default function Page({ data, submenuLinks }) {
                             {
                               label: node.linkText,
                               onClick: () => {
-                                router.push(node.linkURL || `/page/${getIdSuffix(node.id)}`);
+                                router.push(
+                                  node.linkURL ||
+                                    `/page/${getIdSuffix(node.id)}`
+                                );
                               },
                             },
                           ]
@@ -106,6 +110,29 @@ export default function Page({ data, submenuLinks }) {
               </CardGrid>
             )}
           </CampusFilter>
+        </Section>
+      ) : null}
+      {ctaLinks.length ? (
+        <Section bg="rgba(142, 142, 147, 0.12)">
+          <CardGrid px="xxl" py="xl" columns="1">
+            {ctaLinks?.map((cta, i) => (
+              <MarketingHeadline
+                key={i}
+                image={{
+                  src: cta.image?.sources?.[0]?.uri,
+                }}
+                justify={i % 2 === 0 ? 'left' : 'right'}
+                title={cta.title}
+                description={cta.body}
+                actions={[
+                  {
+                    label: cta.buttonText,
+                    onClick: () => router.push(cta.buttonLink),
+                  },
+                ]}
+              />
+            ))}
+          </CardGrid>
         </Section>
       ) : null}
     </Layout>
