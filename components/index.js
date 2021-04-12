@@ -1,5 +1,6 @@
 import * as modals from './Modals';
 import AddToCalendar from './AddToCalendar';
+import AppHead from './AppHead';
 import AvatarListFeature from './AvatarListFeature';
 import BirthDateField from './BirthDateField';
 import Chat from './Chat';
@@ -44,6 +45,7 @@ import Video from './Video';
 
 export {
   AddToCalendar,
+  AppHead,
   AvatarListFeature,
   BirthDateField,
   Chat,
