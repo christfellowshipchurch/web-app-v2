@@ -13,6 +13,7 @@ function HorizontalRow({
   action,
   color,
   actionLabel,
+  imageProps,
   ...props
 } = {}) {
   return (
@@ -47,7 +48,7 @@ function HorizontalRow({
       <StyledCardGrid>
         {items.map((item, i) => {
           return (
-            <StyledImage key={i} src={item.src} onClick={item.action} rounded />
+            <StyledImage key={i} src={item.src} onClick={item.action} rounded {...imageProps} />
           );
         })}
       </StyledCardGrid>
@@ -66,6 +67,7 @@ HorizontalRow.propTypes = {
   color: PropTypes.string,
   action: PropTypes.func,
   actionLabel: PropTypes.string,
+  imageProps: PropTypes.object,
 };
 
 export default HorizontalRow;

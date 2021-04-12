@@ -2,6 +2,7 @@ import IDS from 'config/ids';
 import useContentChannel from 'hooks/useContentChannel';
 import { useRouter } from 'next/router';
 import { Section } from 'ui-kit';
+import { getIdSuffix } from 'utils';
 import HorizontalRow from './HorizontalRow';
 
 const ConnectTiles = props => {
@@ -16,16 +17,21 @@ const ConnectTiles = props => {
     return null;
   }
 
-  const featuredItems = content.edges.filter(({ node }) => node.isFeatured).map(({ node }) => node);
+  const featuredItems = content.edges
+    .filter(({ node }) => node.isFeatured)
+    .map(({ node }) => node);
 
   return featuredItems.length ? (
     <Section backgroundColor="neutrals.800">
       <HorizontalRow
         py="186px"
         width="100%"
+        imageProps={{
+          height: '226px',
+        }}
         items={featuredItems.map(item => ({
           src: item.coverImage?.sources?.[0]?.uri,
-          action: () => router.push(`/connect/${item.id}`),
+          action: () => router.push(`/connect/${getIdSuffix(item.id)}`),
         }))}
         {...props}
       />

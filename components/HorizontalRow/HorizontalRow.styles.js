@@ -8,6 +8,8 @@ export const StyledImage = styled(Image)`
   width: 310px;
   max-height: 218px;
 
+  ${props => props.onClick ? 'cursor: pointer;' : null}
+
   ${system}
 `;
 
