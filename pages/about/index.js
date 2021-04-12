@@ -40,7 +40,13 @@ export default function About() {
             source={'Christ-Fellowship-Church-Locations.jpeg'}
           />
         </Styled.Section>
-        <List display="flex" py="l" space="0" justifySelf="center">
+        <List
+          display="flex"
+          py="l"
+          space="0"
+          justifySelf="center"
+          alignItems="center"
+        >
           <Box as="li">
             <Button variant="link" onClick={() => setActive('leadership')}>
               Leadership
@@ -89,12 +95,11 @@ export default function About() {
                 flexDirection="column"
                 flex={{
                   _: `0 0 calc(100% - ${rem('20px')})`,
-                  sm: `0 0 calc(50% - ${rem('20px')})`,
+                  md: `0 0 calc(50% - ${rem('20px')})`,
                 }}
                 justifyContent="center"
                 m="10px"
-                px={{ _: 'l', md: 'xl' }}
-                py={{ _: 'base', md: 'l' }}
+                p="l"
                 textAlign="center"
               >
                 <Box as="h2">{item.title}</Box>
@@ -141,7 +146,12 @@ export default function About() {
           </Box>
         )}
         {active === 'history' && (
-          <Box pb="xl" maxWidth="800px" justifySelf="center">
+          <Box
+            px={{ _: 'l', md: '0' }}
+            pb="xl"
+            maxWidth="800px"
+            justifySelf="center"
+          >
             <Box as="h1" textAlign="center">
               Our History
             </Box>
