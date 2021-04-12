@@ -3,16 +3,15 @@ import { Layout } from 'components';
 
 import { htmlToReactParser } from 'utils';
 
-const policy = `<div class="max-width-800 mx-auto text-undefined"><h5 class="mt-3 subtitle text-secondary text-uppercase"></h5><h1 class="font-weight-bold text-dark">Privacy Policy</h1><div class="pb-3 text-dark"><div><i>Last Updated:  September 12th 2019
-</i></div><div><br></div><h3>Introduction to Our Privacy Policy
+const policy = `<div><h3>Introduction to Our Privacy Policy
 </h3><div>There are many different ways you can interact online with Christ Fellowship Church, Inc. and our affiliated legal entities (“Christ Fellowship“, “we“, “us” or “our“), like watching or reading content, being generous through giving, connecting with other people, or taking your next step.  We appreciate your interest in our church and respect your privacy as you interact with us online. Or on App
 </div><div>This Privacy Policy describes how we may treat your information that we have gathered from our websites, including christfellowship.church, gochristfellowship.com, christfellowshipcreative.com, ourheartforthehouse.com, cfspiritualgifts.com, churchunitedfl.com, viveconf.com, christfellowshipconference.com, hopehouseflorida.com, christfellowshipworship.shop, christfellowshipworship.com, cfbelleglade.com, cfseu.com, cfkaleo.com, realityrehab.tv, soallmayknow.com, live.gochristfellowship.com, rock.gocf.org, restorecoffeeroasters.com; (collectively, our “Websites”), and the services and tools related to the Websites (including, but not limited to, mobile and other software applications downloaded from the Websites or obtained elsewhere) (collectively, the “Services”).  Please read this Privacy Policy carefully.  We did our best to keep the document simple, but if you have any questions regarding this Privacy Policy or the use of your data, please contact our Marketing Team. By accessing or using any of our Websites, Mobile Application or Services you agree to this Privacy Policy and our Terms of Use.
 </div><div>NOTICE REGARDING DISPUTE RESOLUTION: In keeping with 1 Corinthians 6:1-8, all disputes or claims arising under this Privacy Policy, or relating in any way to your use of the Websites, Mobile App or Services, will be resolved by mediation, and, if not resolved by mediation, then by final and binding arbitration as provided for in Section 9 of our Terms of Use. Unless you opt out, you will only be able to pursue claims against Christ Fellowship Church, Inc. on an individual basis, not as part of any class or representative action or proceeding, and you will only be permitted to seek relief (including monetary, injunctive, and declaratory relief) on an individual basis.
-</div><div>
+</div><br><div>
 </div><h3>Application of Our Privacy Policy
 </h3><div>This Privacy Policy applies only to information collected by the Websites, Mobile App or Services. It does not apply to information either collected by us offline or collected by unaffiliated Websites, Mobile App or Services.  Furthermore, this Privacy Policy governs only information provided to and communicated from the Websites, Mobile App or Services directly and does not govern any other information or communications that may reference this Website, the Services or Christ Fellowship.
 </div><div>If you click “like” or make a comment on or about our Websites, Mobile App or Services using Facebook, Instagram, Twitter, Pinterest, or other social media plugins, your activity may be published on Facebook, Instagram, Twitter, Pinterest, or other social media website(s), and be shown to other individuals who visit our Websites.  We encourage you to read each social media site’s respective privacy policy for more information.
-</div><div>
+</div><br><div>
 </div><h3>Information We Collect About You and How We Collect It
 </h3><div>We collect several types of information from and about the users of our Websites and Services, including information by which you may be personally identified, such as your name, postal address, e-mail address, telephone number, credit card information or any other information the Websites, Mobile App and Services collect that is defined as personal or personally identifiable information under an applicable law or that may otherwise be used to identify you (collectively, your “Personal Information”).  We also may automatically collect information as you navigate the Websites and use the Services, including information such as usage details, IP addresses and information collected through the use of “cookies.”
 </div><div>Information You Provide to Us.  When you visit our Websites and Services, you may be asked to provide Personal Information to register for a Christ Fellowship Account or participate in other activities.  If you communicate with us by e-mail, post messages to any of our chat groups, blogs, or otherwise complete online forms or surveys, any information provided in such communications may be collected as Personal Information.  You also may publish or display information on public areas of the Websites, Services or related websites (“User Contributions”). Your User Contributions are posted and transmitted to others at your own risk.  No security measures are perfect, and we cannot control the actions of third parties with whom you share your User Contributions.  Therefore, we cannot and do not guarantee that your User Contributions will not be viewed by unauthorized persons.  We will only collect User Contributions and Personal Information which you voluntarily provide.  When you submit such User Contributions and Personal Information on our Websites and Services, you are giving your consent to the collection, use and disclosure of such information as set forth in this Privacy Policy.
@@ -72,7 +71,11 @@ const policy = `<div class="max-width-800 mx-auto text-undefined"><h5 class="mt-
 export default function PrivacyPolicy() {
   return (
     <Layout title="Privacy Policy">
-      <Box textAlign="center">{htmlToReactParser.parse(policy)}</Box>
+      <Box mb="base" textAlign="center">
+        <Box as="h1">Privacy Policy</Box>
+        <Box as="i">Last Updated: September 12th 2019</Box>
+      </Box>
+      <Box>{htmlToReactParser.parse(policy)}</Box>
     </Layout>
   );
 }

@@ -3,7 +3,7 @@ import { Layout } from 'components';
 
 import { htmlToReactParser } from 'utils';
 
-const policy = `<div><h5></h5><h1 class="font-weight-bold text-dark">Terms of Use</h1><div class="pb-3 text-dark"><div><i>Last Modified: September 20, 2019</i></div><div><br></div><div>
+const policy = `<div><div>
 </div><h3>Introduction to Our Terms of Use
 </h3><div>Thank you for visiting this website or app, offered by Christ Fellowship Church, Inc. and our affiliated legal entities (“Christ Fellowship“, “we“, “us” or “our“).  These terms of use (the “Terms of Use”) govern your access to and use of our websites, including christfellowship.church, gochristfellowship.com, christfellowshipcreative.com, ourheartforthehouse.com, cfspiritualgifts.com, churchunitedfl.com, viveconf.com, christfellowshipconference.com, hopehouseflorida.com, christfellowshipworship.shop, christfellowshipworship.com, cfbelleglade.com, cfseu.com, cfkaleo.com, realityrehab.tv, soallmayknow.com, live.gochristfellowship.com, rock.gocf.org, restorecoffeeroasters.com; (collectively, our “Websites”), Mobile App and the services and tools related to the Websites (including, but not limited to, any mobile and other software applications downloaded from this Websites or obtained elsewhere) (collectively, the “Services”).
 </div><div>The Websites, Mobile App and Services are available ONLY TO USERS 13 YEARS OF AGE OR OLDER. Please read these Terms of Use carefully.  We did our best to keep the document simple, but if you have any questions, please contact our Marketing Team. By accessing or using this Website or our Services you are agree to our Terms of Use, which includes our Privacy Policy incorporated herein by reference.
@@ -88,7 +88,11 @@ const policy = `<div><h5></h5><h1 class="font-weight-bold text-dark">Terms of Us
 export default function Terms() {
   return (
     <Layout title="Terms of Use">
-      <Box textAlign="center">{htmlToReactParser.parse(policy)}</Box>
+      <Box mb="base" textAlign="center">
+        <Box as="h1">Terms of Use</Box>
+        <Box as="i">Last Modified: September 20, 2019</Box>
+      </Box>
+      <Box>{htmlToReactParser.parse(policy)}</Box>
     </Layout>
   );
 }
