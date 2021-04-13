@@ -10,19 +10,16 @@ const gridLayout = ({ gridLayout }) => props => {
       return css`
         grid-template-areas: 'content media';
       `;
-      break;
     case 'right':
       return css`
         grid-template-areas: 'media content';
       `;
-      break;
     case 'inverted':
       return css`
         grid-template-areas:
           'content'
           'media';
       `;
-      break;
     case 'default':
     default:
       return css`

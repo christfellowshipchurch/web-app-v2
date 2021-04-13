@@ -18,7 +18,7 @@ function ContentSingle(props = {}) {
 }
 
 ContentSingle.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.array,
 };
 
 export default ContentSingle;

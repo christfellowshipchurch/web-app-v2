@@ -37,21 +37,21 @@ const ActionBarFeature = props => {
               { action, icon, title, theme, relatedNode, ...actionProps },
               i
             ) => (
-              <ThemeProvider key={i} themeMixin={theme}>
-                <ActionBarItem
-                  // onPress={() => {
-                  //   onPressItem({
-                  //     action,
-                  //     icon,
-                  //     title,
-                  //     relatedNode,
-                  //     ...actionProps,
-                  //   });
-                  // }}
-                  {...(!icon ? {} : { icon })}
-                  label={title}
-                />
-              </ThemeProvider>
+              // <ThemeProvider key={i} themeMixin={theme}>
+              <ActionBarItem
+                // onPress={() => {
+                //   onPressItem({
+                //     action,
+                //     icon,
+                //     title,
+                //     relatedNode,
+                //     ...actionProps,
+                //   });
+                // }}
+                {...(!icon ? {} : { icon })}
+                label={title}
+              />
+              // </ThemeProvider>
             )
           )}
         </ActionBar>

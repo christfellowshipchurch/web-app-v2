@@ -6,6 +6,10 @@ import { HorizontalHighlightCard, CardCarousel } from 'ui-kit';
 import { getURLFromType } from 'utils';
 
 function HorizontalCardListFeature(props = {}) {
+  if (!props?.data?.cards) {
+    return null;
+  }
+
   const cards = props?.data?.cards;
 
   const cardType = props?.data?.cardType || 'default';

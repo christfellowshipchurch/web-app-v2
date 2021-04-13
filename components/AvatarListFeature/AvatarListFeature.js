@@ -10,16 +10,18 @@ import { Box, RowCard } from 'ui-kit';
 function AvatarListFeature(props = {}) {
   const people = props?.data?.people;
 
-  return people.map((profile, i) => (
-    <Box key={i} maxWidth={400}>
-      <RowCard
-        coverImage={profile?.photo?.uri}
-        title={`${profile?.firstName} ${profile?.lastName}`}
-        description={profile?.campus?.name}
-        marginBottom="l"
-      />
-    </Box>
-  ));
+  if (people) {
+    return people.map((profile, i) => (
+      <Box key={i} maxWidth={400}>
+        <RowCard
+          coverImage={profile?.photo?.uri}
+          title={`${profile?.firstName} ${profile?.lastName}`}
+          description={profile?.campus?.name}
+          marginBottom="l"
+        />
+      </Box>
+    ));
+  }
 }
 
 AvatarListFeature.propTypes = {

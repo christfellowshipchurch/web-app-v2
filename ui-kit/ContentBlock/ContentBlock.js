@@ -6,6 +6,7 @@ import { Box, Image, systemPropTypes } from 'ui-kit';
 import { htmlToReactParser } from 'utils';
 
 import Styled from './ContentBlock.styles';
+import toLower from 'lodash/toLower';
 
 function ContentBlock(props = {}) {
   const horizontalLayout =
@@ -16,7 +17,7 @@ function ContentBlock(props = {}) {
    */
 
   return (
-    <Styled.Container gridLayout={props.contentLayout}>
+    <Styled.Container gridLayout={toLower(props.contentLayout)}>
       {(props.image || props.image !== '') && (
         <Styled.Media>
           <Image

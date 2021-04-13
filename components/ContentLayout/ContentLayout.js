@@ -119,9 +119,11 @@ function ContentLayout(props = {}) {
         {renderD()}
         {renderE()}
       </Box>
-      <Box>
-        <FeatureFeed data={props?.features} />
-      </Box>
+      {props?.features && (
+        <Box>
+          <FeatureFeed data={props?.features} />
+        </Box>
+      )}
     </>
   );
 }

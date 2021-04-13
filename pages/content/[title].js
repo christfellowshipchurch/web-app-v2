@@ -4,6 +4,7 @@ import { initializeApollo } from 'lib/apolloClient';
 import { ContentItemProvider } from 'providers';
 import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
 import { ContentSingle, Layout } from 'components';
+import { Box } from 'ui-kit';
 
 function getItemId(slug) {
   const id = slug.split('-').pop();
@@ -16,27 +17,33 @@ export default function Content(props) {
 
   return (
     <Layout title={title}>
-      <ContentItemProvider
-        Component={ContentSingle}
-        options={{
-          variables: { itemId: getItemId(title) },
-        }}
-      />
+      {title && (
+        <ContentItemProvider
+          Component={ContentSingle}
+          options={{
+            variables: { itemId: getItemId(title) },
+          }}
+        />
+      )}
     </Layout>
   );
 }
 
-export async function getServerSideProps(context) {
-  const apolloClient = initializeApollo();
+/**
+ * todo : Need to fix ServerSideProps, currenlty breaking page.
+ */
 
-  await apolloClient.query({
-    query: GET_CONTENT_ITEM,
-    variables: { itemId: getItemId(context.params.title) },
-  });
+// export async function getServerSideProps(context) {
+//   const apolloClient = initializeApollo();
 
-  return {
-    props: {
-      initialApolloState: apolloClient.cache.extract(),
-    },
-  };
-}
+//   await apolloClient.query({
+//     query: GET_CONTENT_ITEM,
+//     variables: { itemId: getItemId(context.params.title) },
+//   });
+
+//   return {
+//     props: {
+//       initialApolloState: apolloClient.cache.extract(),
+//     },
+//   };
+// }

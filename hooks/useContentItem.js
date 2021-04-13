@@ -125,21 +125,27 @@ export const GET_CONTENT_ITEM = gql`
         ...informationalContentItemFragment
         ...publishFragment
       }
+
+      ... on FeaturesNode {
+        featureFeed {
+          id
+        }
+      }
     }
     metadata(relatedNode: $itemId) {
       name
       content
     }
   }
-  ${CONTENT_ITEM_FRAGMENT}
+
   ${EVENT_ITEM_FRAGMENT}
+  ${CONTENT_ITEM_FRAGMENT}
   ${PUBLISH_FRAGMENT}
   ${INFORMATIONAL_ITEM_FRAGMENT}
 `;
 
 function useContentItem(options = {}) {
   const query = useQuery(GET_CONTENT_ITEM, options);
-
   return {
     item: query?.data?.node || [],
     ...query,
