@@ -15,17 +15,17 @@ import { Box, ContentBlock } from 'ui-kit';
 const ContentBlockFeature = props => {
   const content = props?.data;
 
-  console.log({ content });
-
   return (
     <Box maxWidth={1100} mx="auto">
       <ContentBlock
         title={content?.title}
+        subtitle={content?.subtitle}
         summary={content?.summary}
         htmlContent={content?.htmlContent}
         image={content?.coverImage?.sources[0]?.uri}
         contentLayout={content?.orientation}
         imageRatio={content?.imageRatio}
+        callToAction={content?.callToAction}
       />
     </Box>
   );

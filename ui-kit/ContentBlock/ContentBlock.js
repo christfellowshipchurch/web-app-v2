@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // import { Video } from 'components';
-import { Box, Image, systemPropTypes } from 'ui-kit';
+import { Box, Button, Image, systemPropTypes } from 'ui-kit';
 import { htmlToReactParser } from 'utils';
 
 import Styled from './ContentBlock.styles';
@@ -10,7 +10,8 @@ import toLower from 'lodash/toLower';
 
 function ContentBlock(props = {}) {
   const horizontalLayout =
-    props.contentLayout === 'left' || props.contentLayout === 'right';
+    toLower(props.contentLayout) === 'left' ||
+    toLower(props.contentLayout) === 'right';
 
   /**
    * todo : We eventually want to add the Video.js componenet to the Media wrapper
@@ -21,7 +22,7 @@ function ContentBlock(props = {}) {
       {(props.image || props.image !== '') && (
         <Styled.Media>
           <Image
-            maxWidth="800px"
+            maxWidth={horizontalLayout ? '500px' : '800px'}
             source={props.image}
             aspectRatio={props.imageRatio}
           />
@@ -35,6 +36,11 @@ function ContentBlock(props = {}) {
           </>
         )}
         <Box>{htmlToReactParser.parse(props.htmlContent)}</Box>
+        {props?.callToAction && (
+          <Button mt="l" href={props.callToAction.action}>
+            {props.callToAction.call}
+          </Button>
+        )}
       </Styled.Content>
     </Styled.Container>
   );

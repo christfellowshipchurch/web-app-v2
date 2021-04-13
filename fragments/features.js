@@ -113,6 +113,14 @@ const CONTENT_BLOCK_FEATURE_FRAGMENT = gql`
         uri
       }
     }
+    callToAction {
+      call
+      action
+    }
+    secondaryCallToAction {
+      call
+      action
+    }
     orientation
     imageRatio
     imageAlt
