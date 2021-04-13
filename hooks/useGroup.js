@@ -98,7 +98,6 @@ export const GROUP_FRAGMENT = gql`
 export const GET_GROUP = gql`
   query getGroup($itemId: ID!) {
     node(id: $itemId) {
-      __typename
       ... on Group {
         ...GroupFragment
       }

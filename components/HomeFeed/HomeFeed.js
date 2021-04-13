@@ -63,61 +63,83 @@ const HomeQuote = () => {
 };
 
 function FullLengthSermon(props = {}) {
+  const router = useRouter();
   const [selectedClip, setSelectedClip] = useState(0);
 
   const clips = props.sermon?.childContentItemsConnection?.edges;
 
   return (
-    <MainPhotoHeader
-      src="/about/schedule.jpeg"
-      overlay={{
-        _: 'rgba(0, 0, 0, 0.7)',
-        lg:
-          'linear-gradient(89.49deg, #1c1617 -16.61%, rgba(28, 22, 23, 0) 99.62%)',
-      }}
-      content={
-        <>
-          <Box
-            position="absolute"
-            top="0"
-            alignItems="center"
-            justifyContent="center"
-            height="100%"
-            width="100%"
-            display={{ _: 'none', md: 'flex' }}
-          >
-            <Carousel
+    <Box display="flex" flexDirection="column">
+      <MainPhotoHeader
+        src="/about/schedule.jpeg"
+        overlay={{
+          _: 'rgba(0, 0, 0, 0.7)',
+          lg:
+            'linear-gradient(89.49deg, #1c1617 -16.61%, rgba(28, 22, 23, 0) 99.62%)',
+        }}
+        content={
+          <>
+            <Box
+              position="absolute"
+              top="0"
+              alignItems="center"
+              justifyContent="center"
+              height="100%"
               width="100%"
-              neighbors="3d"
-              contentWidth="681px"
-              pl={{ _: '0', lg: 'xxl' }}
-              onClick={i => setSelectedClip(i)}
-              childProps={i => ({
-                style: {
-                  pointerEvents: i !== selectedClip ? 'none' : 'initial',
-                  width: '100%',
-                },
-              })}
+              display={{ _: 'none', md: 'flex' }}
             >
-              {clips.map(clip =>
-                clip?.node?.videos?.[0]?.sources?.[0]?.uri ? (
-                  <VideoPlayer
-                    key={clip.node?.id}
-                    src={clip.node?.videos?.[0]?.sources?.[0]?.uri}
-                    title={clip.node?.title}
-                    poster={clip.node?.coverImage?.sources?.[0]?.uri}
-                    style={{ width: '100%' }}
-                  />
-                ) : null
-              )}
-            </Carousel>
-          </Box>
-        </>
-      }
-      title={props.sermon?.title}
-      summary={props.sermon?.summary}
-      subtitle="HIGHLIGHTS FROM"
-    />
+              <Carousel
+                width="100%"
+                neighbors="3d"
+                contentWidth="681px"
+                pl={{ _: '0', lg: 'xxl' }}
+                onClick={i => setSelectedClip(i)}
+                childProps={i => ({
+                  style: {
+                    pointerEvents: i !== selectedClip ? 'none' : 'initial',
+                    width: '100%',
+                  },
+                })}
+              >
+                {clips.map(clip =>
+                  clip?.node?.videos?.[0]?.sources?.[0]?.uri ? (
+                    <VideoPlayer
+                      key={clip.node?.id}
+                      src={clip.node?.videos?.[0]?.sources?.[0]?.uri}
+                      title={clip.node?.title}
+                      poster={clip.node?.coverImage?.sources?.[0]?.uri}
+                      style={{ width: '100%' }}
+                    />
+                  ) : null
+                )}
+              </Carousel>
+            </Box>
+          </>
+        }
+        title={props.sermon?.title}
+        summary={props.sermon?.summary}
+        subtitle="HIGHLIGHTS FROM"
+      />
+      <Box
+        display="flex"
+        flexDirection="column"
+        ml="xxl"
+        mt="-130px"
+        zIndex="2"
+      >
+        <Heading variant="h5" color="neutrals.500">
+          FULL MESSAGE
+        </Heading>
+        <Styled.SermonImage
+          rounded
+          mt="s"
+          src={props.sermon?.coverImage?.sources?.[0]?.uri}
+          onClick={() =>
+            router.push(`/sermon/${getIdSuffix(props.sermon?.id)}`)
+          }
+        />
+      </Box>
+    </Box>
   );
 }
 

@@ -1,3 +1,4 @@
+import { themeGet } from '@styled-system/theme-get';
 import styled from 'styled-components';
 
 import { Box, Image, system } from 'ui-kit';
@@ -33,9 +34,10 @@ Styled.TextContainer = styled(Box)`
   height: 100%;
   justify-content: center;
   flex-direction: column;
-  left: 97px;
+  left: ${themeGet('space.xxl')};
   top: 0;
   max-width: 640px;
+  pointer-events: none;
   position: absolute;
   z-index: 1;
 
