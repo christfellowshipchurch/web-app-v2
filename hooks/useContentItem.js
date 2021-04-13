@@ -57,6 +57,13 @@ export const GET_CONTENT_ITEM = gql`
                 linkText
                 linkURL
               }
+              ... on MediaContentItem {
+                videos {
+                  sources {
+                    uri
+                  }
+                }
+              }
             }
           }
         }

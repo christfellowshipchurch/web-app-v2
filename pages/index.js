@@ -4,8 +4,9 @@ import { Layout } from 'components';
 import { FeedFeaturesProvider } from 'providers';
 import { HomeFeed } from 'components';
 import { GET_CONTENT_CHANNEL } from 'hooks/useContentChannel';
-import { getChannelId } from 'utils';
+import { getChannelId, getIdSuffix, getItemId } from 'utils';
 import IDS from 'config/ids';
+import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
 
 export default function Home(props = {}) {
   return (
@@ -18,11 +19,26 @@ export default function Home(props = {}) {
 export async function getServerSideProps() {
   const apolloClient = initializeApollo();
 
-  const sermons = await apolloClient.query({
+  const sermonsRequest = await apolloClient.query({
     query: GET_CONTENT_CHANNEL,
     variables: {
       itemId: getChannelId(IDS.MESSAGES.SUNDAY),
     },
+  });
+
+  const sermons =
+    sermonsRequest?.data?.node?.childContentItemsConnection?.edges;
+  const sermonVideos = sermons.filter(
+    ({ node }) => node?.videos?.[0]?.sources?.[0]?.uri
+  );
+  const latestSermon = sermonVideos[0]?.node;
+
+  const sermonRequest = await apolloClient.query({
+    query: GET_CONTENT_ITEM,
+    variables: {
+      itemId: getItemId(getIdSuffix(latestSermon?.id)),
+    },
+    skip: !latestSermon,
   });
 
   const articles = await apolloClient.query({
@@ -36,10 +52,7 @@ export async function getServerSideProps() {
     props: {
       initialApolloState: apolloClient.cache.extract(),
       articles: articles?.data?.node?.childContentItemsConnection?.edges,
-      // Filter out non-video sermons
-      sermons: sermons?.data?.node?.childContentItemsConnection?.edges.filter(
-        ({ node }) => node?.videos?.[0]?.sources?.[0]?.uri
-      ),
+      sermon: sermonRequest?.data?.node,
     },
   };
 }

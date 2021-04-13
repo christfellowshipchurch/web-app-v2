@@ -63,14 +63,18 @@ const HomeQuote = () => {
 };
 
 function FullLengthSermon(props = {}) {
-  const [selectedSermon, setSelectedSermon] = useState(0);
+  const [selectedClip, setSelectedClip] = useState(0);
 
-  const sermon = props.sermons[selectedSermon];
+  const clips = props.sermon?.childContentItemsConnection?.edges;
 
   return (
     <MainPhotoHeader
       src="/about/schedule.jpeg"
-      overlay={{_: "rgba(0, 0, 0, 0.7)", lg: "linear-gradient(89.49deg, #1c1617 -16.61%, rgba(28, 22, 23, 0) 99.62%)"}}
+      overlay={{
+        _: 'rgba(0, 0, 0, 0.7)',
+        lg:
+          'linear-gradient(89.49deg, #1c1617 -16.61%, rgba(28, 22, 23, 0) 99.62%)',
+      }}
       content={
         <>
           <Box
@@ -83,24 +87,25 @@ function FullLengthSermon(props = {}) {
             display={{ _: 'none', md: 'flex' }}
           >
             <Carousel
+              width="100%"
               neighbors="3d"
               contentWidth="681px"
               pl={{ _: '0', lg: 'xxl' }}
-              onClick={i => setSelectedSermon(i)}
+              onClick={i => setSelectedClip(i)}
               childProps={i => ({
                 style: {
-                  pointerEvents: i !== selectedSermon ? 'none' : 'initial',
+                  pointerEvents: i !== selectedClip ? 'none' : 'initial',
                   width: '100%',
                 },
               })}
             >
-              {props.sermons.map(sermon =>
-                sermon?.node?.videos?.[0]?.sources?.[0]?.uri ? (
+              {clips.map(clip =>
+                clip?.node?.videos?.[0]?.sources?.[0]?.uri ? (
                   <VideoPlayer
-                    key={sermon.node?.id}
-                    src={sermon.node?.videos?.[0]?.sources?.[0]?.uri}
-                    title={sermon.node?.title}
-                    poster={sermon.node?.coverImage?.sources?.[0]?.uri}
+                    key={clip.node?.id}
+                    src={clip.node?.videos?.[0]?.sources?.[0]?.uri}
+                    title={clip.node?.title}
+                    poster={clip.node?.coverImage?.sources?.[0]?.uri}
                     style={{ width: '100%' }}
                   />
                 ) : null
@@ -109,8 +114,9 @@ function FullLengthSermon(props = {}) {
           </Box>
         </>
       }
-      title={sermon.node?.title}
-      summary={sermon.node?.summary}
+      title={props.sermon?.title}
+      summary={props.sermon?.summary}
+      subtitle="HIGHLIGHTS FROM"
     />
   );
 }
@@ -201,11 +207,7 @@ function HomeFeedContent(props = {}) {
             fill="white"
             mr={{ _: 'xs', md: 'm' }}
           />
-          <Styled.You
-            name="you"
-            viewBox="0 0 200 66"
-            stroke="white"
-          />
+          <Styled.You name="you" viewBox="0 0 200 66" stroke="white" />
           <Styled.Circle color="white" weight="fill" />
         </Styled.GodLovesYou>
         <Text

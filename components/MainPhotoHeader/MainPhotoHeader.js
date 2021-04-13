@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Box, Heading } from 'ui-kit';
-import { StyledImage } from './MainPhotoHeader.styles';
+import { Heading } from 'ui-kit';
+import Styled from './MainPhotoHeader.styles';
 
 function MainPhotoHeader({
   src,
@@ -13,24 +13,11 @@ function MainPhotoHeader({
   content,
 } = {}) {
   return (
-    <Box position="relative" width="100%">
-      <StyledImage as="img" src={src} name="main-photo-header" />
-      {overlay && (
-        <Box
-          width="100%"
-          height="100%"
-          top="0"
-          left="0"
-          position="absolute"
-          background={overlay}
-        />
-      )}
-      <Box
-        position="absolute"
-        left="97px"
-        bottom="73px"
-        maxWidth="440px"
-        display={{ _: 'none', md: content ? 'none' : 'block', xl: 'block' }}
+    <Styled.Container>
+      <Styled.Image as="img" src={src} name="main-photo-header" />
+      {overlay && <Styled.Overlay background={overlay} />}
+      <Styled.TextContainer
+        display={{ _: 'none', md: content ? 'none' : 'block', xl: 'flex' }}
       >
         {subtitle && (
           <Heading
@@ -45,7 +32,8 @@ function MainPhotoHeader({
         {title && (
           <Heading
             color="neutrals.100"
-            variant="h1"
+            fontSize="86px"
+            lineHeight="77.4px"
             fontWeight="800"
             textTransform="uppercase"
           >
@@ -62,9 +50,9 @@ function MainPhotoHeader({
             {summary}
           </Heading>
         )}
-      </Box>
+      </Styled.TextContainer>
       {content}
-    </Box>
+    </Styled.Container>
   );
 }
 
