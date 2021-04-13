@@ -123,8 +123,8 @@ function FullLengthSermon(props = {}) {
       <Box
         display="flex"
         flexDirection="column"
-        ml="xxl"
-        mt="-130px"
+        ml={{ _: 'l', md: 'xxl' }}
+        mt={{ _: 'm', lg: '-130px' }}
         zIndex="2"
       >
         <Heading variant="h5" color="neutrals.500">
