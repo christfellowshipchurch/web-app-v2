@@ -11,10 +11,12 @@ function MainPhotoHeader({
   summary,
   overlay,
   content,
+  imageProps = {},
+  ...props
 } = {}) {
   return (
-    <Styled.Container>
-      <Styled.Image as="img" src={src} name="main-photo-header" />
+    <Styled.Container {...props}>
+      <Styled.Image as="img" src={src} name="main-photo-header" {...imageProps} />
       {overlay && <Styled.Overlay background={overlay} />}
       <Styled.TextContainer
         display={{ _: 'none', md: content ? 'none' : 'block', xl: 'flex' }}
@@ -63,6 +65,7 @@ MainPhotoHeader.propTypes = {
   subtitle: PropTypes.string,
   summary: PropTypes.string,
   content: PropTypes.node,
+  imageProps: PropTypes.object,
 };
 
 export default MainPhotoHeader;

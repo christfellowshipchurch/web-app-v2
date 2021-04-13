@@ -11,7 +11,13 @@ export default function Page({ data }) {
 
   return (
     <Layout title={data.title} bg="bg_alt">
-      <MainPhotoHeader src={data.coverImage?.sources?.[0].uri || ''} />
+      <MainPhotoHeader
+        src={data.coverImage?.sources?.[0].uri || ''}
+        mt="xl"
+        mx="xl"
+        width="auto"
+        imageProps={{ objectFit: 'contain', maxHeight: '40vh' }}
+      />
       <Section>
         <Box px="xxl" pt="xl" pb="m">
           {data.subtitle && (
@@ -37,7 +43,13 @@ export default function Page({ data }) {
             </Heading>
           )}
           {data.summary && (
-            <Heading fontSize="h3" lineHeight="h3" color="fg" fontWeight="700" my="m">
+            <Heading
+              fontSize="h3"
+              lineHeight="h3"
+              color="fg"
+              fontWeight="700"
+              my="m"
+            >
               {data.summary}
             </Heading>
           )}

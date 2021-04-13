@@ -9,14 +9,16 @@ Styled.Container = styled(Box)`
   max-height: 80vh;
   object-fit: cover;
   position: relative;
+  text-align: center;
   width: 100%;
 
   ${system}
 `;
 
 Styled.Image = styled(Image)`
+  margin: 0 auto;
   max-height: 80vh;
-  object-fit: cover;
+  object-fit: ${props => props.objectFit || 'cover'};
   width: 100%;
 
   ${system}
