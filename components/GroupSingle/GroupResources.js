@@ -4,7 +4,7 @@ import { CardGrid, HorizontalHighlightCard } from 'ui-kit';
 import { CustomLink } from 'components';
 
 import { getURLFromType } from 'utils';
-
+import amplitude from 'lib/amplitude';
 export default function GroupResources(props = {}) {
   if (!props.resources?.length) {
     return null;
@@ -29,6 +29,13 @@ export default function GroupResources(props = {}) {
           }
           coverImageTitle={resource.title || resource.relatedNode?.title}
           coverImageOverlay={true}
+          onClick={() => {
+            amplitude.trackEvent({
+              category: 'Group Item',
+              action: `${resource.title} - Group Resource Action`,
+              label: `${resource.title} Button`,
+            });
+          }}
         />
       ))}
     </CardGrid>
