@@ -2,21 +2,31 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { ContentLayout } from 'components';
-import { useCurrentBreakpoint } from 'hooks';
+import { useCurrentBreakpoint, useCurrentUser } from 'hooks';
 import { ChatConnectionProvider } from 'providers';
-import { Box, Button, Card } from 'ui-kit';
+import { Box, Card } from 'ui-kit';
 
 import GroupChat from './GroupChat';
 import GroupDateTime from './GroupDateTime';
 import GroupMembers from './GroupMembers';
 import GroupResources from './GroupResources';
+import GroupMeetingActions from './GroupActions';
 
 function GroupSingle(props = {}) {
   const currentBreakpoint = useCurrentBreakpoint();
+  const { currentUser } = useCurrentUser();
 
   const totalMembers =
     (props.data?.leaders.totalCount || 0) +
     (props.data?.members.totalCount || 0);
+
+  const handleOnClickVideoCall = action => {
+    // amplitude.trackEvent({
+    //   category: 'Groups',
+    //   action: action ? `${action} Video Call` : 'Video Call',
+    //   label: props.data?.title,
+    // });
+  };
 
   return (
     <ChatConnectionProvider>
@@ -54,7 +64,16 @@ function GroupSingle(props = {}) {
                 parentVideoCall={props.data?.parentVideoCall}
                 videoCall={props.data?.videoCall}
               />
-              <Button width="100%">Join Meeting</Button>
+              <GroupMeetingActions
+                userName={
+                  currentUser?.profile?.nickName ||
+                  currentUser?.profile?.firstName
+                }
+                parentVideoCall={props.data?.parentVideoCall}
+                videoCall={props.data?.videoCall}
+                onClickVideoCall={handleOnClickVideoCall}
+                onClickParentVideoCall={handleOnClickVideoCall}
+              />
             </Box>
           </Box>
         )}
