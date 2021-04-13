@@ -25,7 +25,7 @@ const Container = styled.div`
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     grid-template-areas:
       'video chat' /* Chat on right */
-      'mastHead chat'
+      'mastHead mastHead'
       'details details';
     grid-template-columns: 67fr 33fr;
   }
@@ -135,12 +135,18 @@ const Details = styled.div`
 const Chat = styled.div`
   grid-area: chat;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  border: 1px orange dashed;
-  padding: ${themeGet('space.base')};
-  padding-bottom: ${themeGet('space.xxl')};
+  align-items: stretch;
+  height: 50vh;
+  z-index: 1;
+
+  /* Breakpoint adjustments must be in sync with root Container grid-template-columns.*/
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    height: calc((9 / 16) * 67vw);
+  }
+
+  @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
+    height: calc((9 / 16) * 75vw);
+  }
 `;
 
 Live.Container = Container;

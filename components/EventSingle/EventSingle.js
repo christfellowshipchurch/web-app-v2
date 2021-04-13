@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Box, Button } from 'ui-kit';
-import { ContentLayout } from 'components';
+import { ContentLayout, Share } from 'components';
+
+import EventGroupings from './EventGroupings';
 
 function EventSingle(props = {}) {
   return (
@@ -10,12 +12,15 @@ function EventSingle(props = {}) {
       title={props.data.title}
       summary={props.data.summary}
       coverImage={props.data?.coverImage?.sources[0]?.uri}
-      renderC={() => <Button variant="secondary">Invite</Button>}
-      contentTitleD="About"
+      renderC={() => (
+        <Box justifySelf="flex-end">
+          <Share title={props.data.title} shareTitle="Invite" />
+        </Box>
+      )}
       htmlContent={props.data.htmlContent}
-      contentTitleE="Schedule"
-      renderContentE={() => <Box as="p">The schedule will go here&hellip;</Box>}
       features={props?.data?.featureFeed?.features}
+      contentTitleE="Schedule"
+      renderContentE={() => props.data && <EventGroupings data={props.data} />}
     />
   );
 }

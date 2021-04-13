@@ -23,7 +23,7 @@ function ContentLayout(props = {}) {
 
   function renderB() {
     if (props.renderB) return props.renderB();
-    if (props.title || props.summary) {
+    if (props.title || props.summary || props.renderContentB) {
       return (
         <Box mb={{ _: 'base', md: '' }}>
           {props.title ? (
@@ -36,6 +36,7 @@ function ContentLayout(props = {}) {
               {props.summary}
             </Box>
           ) : null}
+          {props.renderContentB ? props.renderContentB() : null}
         </Box>
       );
     }
@@ -44,15 +45,15 @@ function ContentLayout(props = {}) {
 
   function renderC() {
     if (props.renderC) {
-      return <Box justifySelf="flex-end">{props.renderC()}</Box>;
+      return props.renderC();
     }
+
     return null;
   }
 
   function renderD() {
     if (props.renderD) return props.renderD();
-    const noContent =
-      !props.contentTitleD || !props.htmlContent || props.htmlContent === '';
+    const noContent = !props.htmlContent || props.htmlContent === '';
     if (noContent && !props.renderContentD) return null;
     return (
       <Box mb={{ _: 'l', md: '' }}>
@@ -89,11 +90,7 @@ function ContentLayout(props = {}) {
             {props.contentTitleE}
           </Box>
         ) : null}
-        {props.renderContentE && (
-          <Card boxShadow="base" p={{ _: 's', md: 'base' }}>
-            {props.renderContentE()}
-          </Card>
-        )}
+        {props.renderContentE && props.renderContentE()}
       </Box>
     );
   }
@@ -135,6 +132,7 @@ ContentLayout.propTypes = {
   htmlContent: PropTypes.string,
   renderA: PropTypes.func,
   renderB: PropTypes.func,
+  renderContentB: PropTypes.func,
   renderC: PropTypes.func,
   renderContentD: PropTypes.func,
   renderContentE: PropTypes.func,

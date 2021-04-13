@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Button } from 'ui-kit';
-import { ContentLayout } from 'components';
+import { Box, Button } from 'ui-kit';
+import { ContentLayout, Share } from 'components';
 
 function ContentSingle(props = {}) {
   return (
@@ -10,7 +10,11 @@ function ContentSingle(props = {}) {
       title={props.data.title}
       summary={props.data.schedule?.friendlyScheduleText}
       coverImage={props.data?.coverImage?.sources[0]?.uri}
-      renderC={() => <Button variant="secondary">Share</Button>}
+      renderC={() => (
+        <Box justifySelf="flex-end">
+          <Share title={props.data.title} />
+        </Box>
+      )}
       contentTitleD="About"
       htmlContent={props.data.htmlContent}
     />

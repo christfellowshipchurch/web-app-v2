@@ -1,6 +1,7 @@
 import AppProvider from './AppProvider';
 import AuthProvider from './AuthProvider';
 import CampusesProvider from './CampusesProvider';
+import ChatConnectionProvider from './ChatConnectionProvider';
 import CommunitiesProvider from './CommunitiesProvider';
 import ContentFeedProvider from './ContentFeedProvider';
 import ContentItemProvider from './ContentItemProvider';
@@ -18,12 +19,17 @@ import LiveStreamProvider from './LiveStreamProvider';
 import ModalProvider from './ModalProvider';
 import NavigationProvider from './NavigationProvider';
 import UserProfileProvider from './UserProfileProvider';
+import DiscoverFiltersCategoriesProvider from './DiscoverFiltersCategoriesProvider';
+import DiscoverFiltersProvider from './DiscoverFiltersProvider';
 
 export {
   AppProvider,
   AuthProvider,
   CampusesProvider,
+  ChatConnectionProvider,
   CommunitiesProvider,
+  DiscoverFiltersCategoriesProvider,
+  DiscoverFiltersProvider,
   ContentFeedProvider,
   ContentItemProvider,
   ContentItemsSearchProvider,

@@ -26,14 +26,46 @@ const link = ({ as }) => props => {
   }
 };
 
+const scaleLink = ({ scaleCard }) => props => {
+  // Does not scale card if prop set to false
+  if (scaleCard === false) {
+    return css`
+      &:focus,
+      &:hover {
+        transform: none;
+      }
+
+      &:active {
+        transform: none;
+      }
+    `;
+  }
+};
+
+const removeBoxShadow = ({ boxShadow }) => props => {
+  // Removes box-shadow on hover if box-shadow is set to none
+  if (boxShadow === 'none') {
+    return css`
+      &:focus,
+      &:hover {
+        box-shadow: none;
+      }
+    `;
+  }
+};
+
 const Card = styled.div`
   background-color: ${themeGet('colors.white')};
   border-radius: ${themeGet('radii.base')};
   box-shadow: ${themeGet('shadows.xl')};
   color: ${themeGet('colors.fg')};
   display: block;
+  overflow: ${props => (props.scaleCoverImage ? 'hidden' : 'initial')};
 
   ${link}
+  ${scaleLink}
+  ${removeBoxShadow}
+
   ${system}
 `;
 
@@ -88,6 +120,27 @@ const overlay = ({ overlay }) => props => {
   }
 };
 
+const scaleCover = ({ scaleCoverImage }) => props => {
+  // Scales Cover Image of card if prop set to true
+  if (scaleCoverImage) {
+    return css`
+      transform: scale(1);
+      transition: 0.2s ease-in-out;
+
+      &:focus,
+      &:hover {
+        transform: scale(1.02);
+        transition: 0.2s ease-out;
+      }
+
+      &:active {
+        transform: scale(1);
+        transition: 0.2s ease-out;
+      }
+    `;
+  }
+};
+
 const Cover = styled.div`
   align-items: flex-end;
   background-color: ${themeGet('colors.fg')};
@@ -102,6 +155,8 @@ const Cover = styled.div`
 
   ${content}
   ${overlay}
+  ${scaleCover}
+
   ${system}
 `;
 

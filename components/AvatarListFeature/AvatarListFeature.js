@@ -1,31 +1,94 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Box, RowCard } from 'ui-kit';
+import { Box, Avatar, Icon } from 'ui-kit';
 
-/**
- * todo : Component still needs to be completed, this is just a temporary solution to render data from AvatarListFeature
- */
-
-function AvatarListFeature(props = {}) {
-  const people = props?.data?.people;
-
-  if (people) {
-    return people.map((profile, i) => (
-      <Box key={i} maxWidth={400}>
-        <RowCard
-          coverImage={profile?.photo?.uri}
-          title={`${profile?.firstName} ${profile?.lastName}`}
-          description={profile?.campus?.name}
-          marginBottom="l"
-        />
-      </Box>
-    ));
-  }
-}
+const AvatarListFeature = ({
+  data: { people, onPressItem, primaryAction, isLoading },
+}) => {
+  return (
+    <>
+      {people.map(person => (
+        <Box key={person.id} display="flex">
+          <Box
+            cursor="pointer"
+            mr="base"
+            onClick={() => onPressItem(primaryAction)}
+            position="relative"
+          >
+            <Avatar
+              name={person.firstName}
+              source={person.photo.uri}
+              height="80px"
+              width="80px"
+            />
+            {primaryAction?.icon && (
+              <Box
+                bg="paper"
+                borderRadius="9999px"
+                bottom={0}
+                boxShadow="base"
+                display="flex"
+                p="xs"
+                position="absolute"
+                right={0}
+              >
+                <Icon
+                  color={primaryAction?.theme?.color}
+                  name={primaryAction?.icon}
+                  size="18"
+                />
+              </Box>
+            )}
+          </Box>
+          <Box display="flex" justifyContent="center" flexDirection="column">
+            <Box
+              as="h4"
+              isLoading={isLoading}
+              mb={0}
+            >{`${person?.firstName} ${person?.lastName}`}</Box>
+            {person?.campus?.name && (
+              <Box as="p" fontSize="s" isLoading={isLoading}>
+                {person?.campus?.name}
+              </Box>
+            )}
+          </Box>
+        </Box>
+      ))}
+    </>
+  );
+};
 
 AvatarListFeature.propTypes = {
-  data: PropTypes.object,
+  onPressItem: PropTypes.func,
+  isLoading: PropTypes.bool,
+  primaryAction: PropTypes.shape({
+    action: PropTypes.string,
+    icon: PropTypes.string,
+    theme: PropTypes.shape({}),
+    relatedNode: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }),
+  people: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      firstName: PropTypes.string,
+      lastName: PropTypes.shape({}),
+      photo: PropTypes.shape({
+        uri: PropTypes.string,
+      }),
+      campus: PropTypes.shape({
+        id: PropTypes.string,
+        name: PropTypes.string,
+      }),
+    })
+  ),
+};
+
+AvatarListFeature.defaultProps = {
+  isLoading: false,
+  people: [],
 };
 
 export default AvatarListFeature;

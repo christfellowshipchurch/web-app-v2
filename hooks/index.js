@@ -5,8 +5,11 @@ import useCampuses from './useCampuses';
 import useContactGroupLeader from './useContactGroupLeader';
 import useContentFeed from './useContentFeed';
 import useContentItem from './useContentItem';
+import useCurrentBreakpoint from './useCurrentBreakpoint';
+import useCurrentChatUser from './useCurrentChatUser';
 import useCurrentPerson from './useCurrentPerson';
 import useCurrentUser from './useCurrentUser';
+import useCurrentUserRoleForChatChannel from './useCurrentUserRoleForChatChannel';
 import useEvent from './useEvent';
 import useEvents from './useEvents';
 import useEventsFeedFeatures from './useEventsFeedFeatures';
@@ -29,6 +32,9 @@ import useSearchGroups from './useSearchGroups';
 import useUpdateCurrentUser from './useUpdateCurrentUser';
 import useUserExists from './useUserExists';
 import useVerifyPin from './useVerifyPin';
+import useDiscoverFilterCategories from './useDiscoverFilterCategories';
+import useDiscoverFilters from './useDiscoverFilters';
+import useDiscoverFilterCategoriesPreview from './useDiscoverFilterCategoriesPreview';
 
 export {
   useAuthIdentity,
@@ -38,8 +44,11 @@ export {
   useContactGroupLeader,
   useContentFeed,
   useContentItem,
+  useCurrentBreakpoint,
+  useCurrentChatUser,
   useCurrentPerson,
   useCurrentUser,
+  useCurrentUserRoleForChatChannel,
   useEvent,
   useEvents,
   useEventsFeedFeatures,
@@ -62,4 +71,7 @@ export {
   useUpdateCurrentUser,
   useUserExists,
   useVerifyPin,
+  useDiscoverFilterCategories,
+  useDiscoverFilters,
+  useDiscoverFilterCategoriesPreview,
 };

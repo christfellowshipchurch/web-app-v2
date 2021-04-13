@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { Box, systemPropTypes } from 'ui-kit';
+import { Box, Icon, systemPropTypes } from 'ui-kit';
 import Styled from './Avatar.styles';
 
 function Avatar(props = {}) {
-  if (!props.src) {
+  const [error, setError] = useState(false);
+
+  const handleError = () => {
+    setError(true);
+  };
+
+  if (!props.src || error) {
     return (
       <Box
         bg="subdued"
@@ -13,6 +19,7 @@ function Avatar(props = {}) {
         height={props.height}
         width={props.width}
       >
+        <Icon color="white" name="user" padding="s" size={props.width} />
         <Box as="span" className="srt">
           User
         </Box>
@@ -22,7 +29,11 @@ function Avatar(props = {}) {
 
   return (
     <>
-      <Styled alt={`Avatar of ${props.name}`} {...props} />
+      <Styled
+        alt={`Avatar of ${props.name}`}
+        onError={handleError}
+        {...props}
+      />
       <Box as="span" className="srt">
         {props.name}
       </Box>

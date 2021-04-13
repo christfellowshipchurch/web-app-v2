@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { isEmpty, isNumber } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
+import isNumber from 'lodash/isNumber';
 import {
   isBefore,
   parseISO,

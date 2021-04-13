@@ -8,11 +8,21 @@ const gridLayout = ({ gridLayout }) => props => {
   switch (gridLayout) {
     case 'left':
       return css`
-        grid-template-areas: 'content media';
+        grid-template-areas:
+          'media'
+          'content';
+        @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+          grid-template-areas: 'content media';
+        }
       `;
     case 'right':
       return css`
-        grid-template-areas: 'media content';
+        grid-template-areas:
+          'media'
+          'content';
+        @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+          grid-template-areas: 'media content';
+        }
       `;
     case 'inverted':
       return css`
@@ -32,7 +42,8 @@ const gridLayout = ({ gridLayout }) => props => {
 
 const Container = styled.div`
   display: grid;
-  margin: ${themeGet('space.l')};
+  grid-column-gap: ${themeGet('space.l')};
+  grid-row-gap: ${themeGet('space.l')};
   width: 100%;
 
   ${gridLayout};
@@ -45,7 +56,6 @@ const Content = styled.div`
   flex-direction: column;
   grid-area: content;
   justify-content: center;
-  padding: ${themeGet('space.base')};
 
   ${system};
 `;
@@ -60,6 +70,7 @@ const Media = styled.div`
 const Subtitle = styled.h4`
   color: ${themeGet('colors.tertiary')};
   margin-bottom: 0px;
+  text-transform: uppercase;
 `;
 
 const Title = styled.h1``;
