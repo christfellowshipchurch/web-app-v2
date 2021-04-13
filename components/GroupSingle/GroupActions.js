@@ -25,7 +25,7 @@ const videoCallURLWithParameters = (videoURL, parameters) => {
 
 // :: Main Component
 // ------------------------
-const GroupMeetingActions = ({
+const GroupActions = ({
   userName,
   parentVideoCall,
   videoCall,
@@ -90,7 +90,7 @@ const GroupMeetingActions = ({
   );
 };
 
-GroupMeetingActions.propTypes = {
+GroupActions.propTypes = {
   userName: PropTypes.string,
   parentVideoCall: PropTypes.shape({
     link: PropTypes.string,
@@ -107,4 +107,4 @@ GroupMeetingActions.propTypes = {
   onClickVideoCall: PropTypes.func,
 };
 
-export default GroupMeetingActions;
+export default GroupActions;

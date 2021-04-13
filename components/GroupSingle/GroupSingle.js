@@ -10,7 +10,7 @@ import GroupChat from './GroupChat';
 import GroupDateTime from './GroupDateTime';
 import GroupMembers from './GroupMembers';
 import GroupResources from './GroupResources';
-import GroupMeetingActions from './GroupActions';
+import GroupActions from './GroupActions';
 
 function GroupSingle(props = {}) {
   const currentBreakpoint = useCurrentBreakpoint();
@@ -64,7 +64,7 @@ function GroupSingle(props = {}) {
                 parentVideoCall={props.data?.parentVideoCall}
                 videoCall={props.data?.videoCall}
               />
-              <GroupMeetingActions
+              <GroupActions
                 userName={
                   currentUser?.profile?.nickName ||
                   currentUser?.profile?.firstName
