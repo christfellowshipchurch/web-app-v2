@@ -1,5 +1,6 @@
 import { createGlobalStyle, css } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
+import algoliaStyles from './AlgoliaStyles.styles';
 
 export const styles = css`
   * {
@@ -106,6 +107,7 @@ export const styles = css`
 
 const GlobalStyles = createGlobalStyle`
   ${styles}
+  ${algoliaStyles}
 `;
 
 export default GlobalStyles;

@@ -18,19 +18,13 @@ export default function Channel({ item }) {
   const [cursor, setCursor] = useState(
     item?.childContentItemsConnection?.pageInfo?.endCursor
   );
-  const [loadingMore, setLoadingMore] = useState(false);
 
   const [fetchVideos, { loading }] = useLazyQuery(GET_MESSAGE_CHANNEL, {
     onCompleted: data => {
       setVideos([...videos, ...data?.node?.childContentItemsConnection?.edges]);
       setCursor(data?.node?.childContentItemsConnection?.pageInfo?.endCursor);
-      setLoadingMore(false);
     },
   });
-
-  if (loading) {
-    return <Loader />;
-  }
 
   const totalVideoCount = item?.childContentItemsConnection?.totalCount || 0;
 
@@ -66,16 +60,15 @@ export default function Channel({ item }) {
       {totalVideoCount > videos.length ? (
         <Button
           onClick={() => {
-            setLoadingMore(true);
             fetchVideos({
               variables: { itemId: item.id, after: cursor },
             });
           }}
-          status={loadingMore ? 'LOADING' : 'SUCCESS'}
+          status={loading ? 'LOADING' : 'SUCCESS'}
           mx="auto"
           mb="l"
         >
-          {loadingMore ? 'Loading More' : 'Load More'}
+          {loading ? 'Loading More' : 'Load More'}
         </Button>
       ) : null}
     </Layout>

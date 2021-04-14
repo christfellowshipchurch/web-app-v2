@@ -1,10 +1,11 @@
-import { Layout, Search } from 'components';
+import { Layout } from 'components';
+import { AlgoliaSearch } from 'components/Search/Search';
 import { CardGrid, Heading, Text } from 'ui-kit';
 
 export default function SearchPage() {
   return (
     <Layout title="Search">
-      <CardGrid px="xxl" py="xl" gridColumnGap="xl" columns="1">
+      <CardGrid px="xxl" py="xl" gridColumnGap="xl" columns="1" width="100%">
         <Heading
           color="neutrals.900"
           variant="h2"
@@ -19,10 +20,7 @@ export default function SearchPage() {
           Mus scelerisque mauris imperdiet scelerisque semper sed dignissim
           suscipit ullamcorper. Integer od
         </Text>
-        <Search
-          width="640px"
-          button={{ color: 'primary', label: 'Search', size: 's' }}
-        />
+        <AlgoliaSearch />
       </CardGrid>
     </Layout>
   );

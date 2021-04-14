@@ -60,7 +60,7 @@ const border = ({ color }) => props => {
   `;
 };
 
-const Button = styled.button`
+export const buttonStyles = css`
   align-items: center;
   justify-content: center;
   position: relative;
@@ -90,6 +90,10 @@ const Button = styled.button`
   ${status}
   ${system}
   ${color}
+`;
+
+const Button = styled.button`
+  ${buttonStyles}
 `;
 
 export default Button;
