@@ -12,7 +12,7 @@ export default function Item({ item }) {
   const src = item.videos?.[0]?.sources?.[0]?.uri;
 
   return (
-    <Layout title="Watch">
+    <Layout title="Sermon">
       <MainPhotoHeader src={item.coverImage?.sources?.[0]?.uri} />
       <Section my="xl">
         <Heading variant="h2" fontWeight="800" mb="m">

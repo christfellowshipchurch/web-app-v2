@@ -5,10 +5,10 @@ import { Box } from 'ui-kit';
 import { Footer, Header, SEO } from 'components';
 import Styled from './Layout.styles';
 
-function Layout({ children, title, ...props }) {
+function Layout({ children, title, meta, ...props }) {
   return (
     <>
-      <SEO title={title} />
+      <SEO title={title} meta={meta} />
       <Box
         minHeight="100vh"
         display="flex"
@@ -32,6 +32,12 @@ Layout.propTypes = {
     PropTypes.node,
   ]),
   title: PropTypes.string,
+  meta: PropTypes.shape({
+    description: PropTypes.string,
+    image: PropTypes.string,
+    keywords: PropTypes.string,
+    url: PropTypes.string,
+  }),
 };
 
 export default Layout;

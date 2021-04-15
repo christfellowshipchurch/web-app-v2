@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 const DEFAULT_DESCRIPTION = `Long Hollow is one church that meets in two locations just north of Nashville. We’re a community of believers with something for everyone; whether you’re checking out the claims of Christ for the first time, or are looking for a new place to call home, Long Hollow has a place for you!`;
 const DEFAULT_KEYWORDS = `Church, Long Hollow, Long Hollow Baptist, Long Hollow Baptist Church, Churches in Nashville`;
@@ -12,7 +13,9 @@ function getPageTitle(title) {
 }
 
 function SEO(props = {}) {
-  const title = getPageTitle(props.title);
+  const router = useRouter();
+  const title = getPageTitle(props.meta.title || props.title);
+  const url = `${process.env.BASE_URL}${router.asPath}`;
 
   return (
     <Head>
@@ -23,10 +26,10 @@ function SEO(props = {}) {
       <meta name="description" content={props.meta.description} />
       <meta property="og:description" content={props.meta.description} />
       <meta name="twitter:description" content={props.meta.description} />
-      <meta property="og:url" content={props.meta.url} />
-      <meta name="twitter:url" content={props.meta.url} />
-      <meta property="og:image" content={props.meta.url} />
-      <meta name="twitter:image" content={props.meta.url} />
+      <meta property="og:url" content={url} />
+      <meta name="twitter:url" content={url} />
+      <meta property="og:image" content={props.meta.image} />
+      <meta name="twitter:image" content={props.meta.image} />
       <meta
         name="viewport"
         content="width=device-width, initial-scale=1, shrink-to-fit=no"
@@ -38,20 +41,20 @@ function SEO(props = {}) {
 
 SEO.propTypes = {
   meta: PropTypes.shape({
+    title: PropTypes.string,
     description: PropTypes.string,
     image: PropTypes.string,
     keywords: PropTypes.string,
-    url: PropTypes.string,
   }),
   title: PropTypes.string,
 };
 
 SEO.defaultProps = {
   meta: {
+    title: '',
     description: DEFAULT_DESCRIPTION,
     image: '',
     keywords: DEFAULT_KEYWORDS,
-    url: '',
   },
   title: DEFAULT_TITLE,
 };

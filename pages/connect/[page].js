@@ -206,7 +206,6 @@ export async function getServerSideProps(context) {
         itemId: getItemId(context.params.page),
       },
       skip: !context.params.page,
-      fetchPolicy: 'no-cache',
     });
 
     const staffResponse = await apolloClient.query({
@@ -214,7 +213,6 @@ export async function getServerSideProps(context) {
       variables: {
         ministry: pageResponse?.data?.node?.ministry,
       },
-      fetchPolicy: 'no-cache',
     });
 
     return {

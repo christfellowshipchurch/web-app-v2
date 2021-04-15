@@ -56,6 +56,15 @@ export const GET_CONTENT_ITEM = gql`
                 }
                 linkText
                 linkURL
+                socialMedia {
+                  title
+                  image {
+                    sources {
+                      uri
+                    }
+                  }
+                  summary
+                }
               }
               ... on MediaContentItem {
                 videos {

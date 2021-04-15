@@ -102,7 +102,6 @@ export async function getServerSideProps(context) {
       itemId: getItemId(context.params.page),
     },
     skip: !context.params.page,
-    fetchPolicy: 'no-cache',
   });
 
   return {
