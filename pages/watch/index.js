@@ -15,10 +15,8 @@ import { GET_MESSAGE_SERIES } from 'hooks/useMessageSeries';
 import { GET_CONTENT_CHANNEL } from 'hooks/useContentChannel';
 import { getChannelId, getIdSuffix } from 'utils';
 
-export default function Watch({ series, watch, sermons }) {
+export default function Watch({ series, watchPages, sermons }) {
   const router = useRouter();
-
-  const ctas = watch?.node?.ctaLinks;
 
   const coverVideo = sermons?.[0]?.node;
 
@@ -122,7 +120,7 @@ export default function Watch({ series, watch, sermons }) {
           ))}
         </CardGrid>
       </Section>
-      {ctas?.length ? (
+      {watchPages?.length ? (
         <>
           <PageSplit title="Other ways to watch" />
           <Section
@@ -133,19 +131,19 @@ export default function Watch({ series, watch, sermons }) {
             justifyContent="center"
             alignItems="center"
           >
-            {ctas?.map((cta, i) => (
+            {watchPages?.map(({ node: page }, i) => (
               <MarketingHeadline
                 key={i}
                 image={{
-                  src: cta.image?.sources?.[0]?.uri,
+                  src: page.coverImage?.sources?.[0]?.uri,
                 }}
                 justify={i % 2 === 0 ? 'left' : 'right'}
-                title={cta.title}
-                description={cta.body}
+                title={page.title}
+                description={page.summary}
                 actions={[
                   {
-                    label: cta.buttonText,
-                    onClick: () => router.push(cta.buttonLink),
+                    label: page.buttonText,
+                    onClick: () => router.push(page.buttonLink || `/watch/page/${getIdSuffix(page.id)}`),
                   },
                 ]}
               />
@@ -189,8 +187,8 @@ export async function getServerSideProps() {
     props: {
       initialApolloState: apolloClient.cache.extract(),
       series: series.map(serie => serie?.data?.node),
-      watch:
-        watchRequest?.data?.node?.childContentItemsConnection?.edges?.[0] || {},
+      watchPages:
+        watchRequest?.data?.node?.childContentItemsConnection?.edges || [],
       sermons: sermons?.data?.node?.childContentItemsConnection?.edges.filter(
         ({ node }) => node?.videos?.[0]?.sources?.[0]?.uri
       ),

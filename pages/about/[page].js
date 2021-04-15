@@ -142,32 +142,26 @@ export default function Page({ data, submenuLinks }) {
 export async function getServerSideProps(context) {
   const apolloClient = initializeApollo();
 
-  try {
-    const pageResponse = await apolloClient.query({
-      query: GET_CONTENT_ITEM,
-      variables: {
-        itemId: getItemId(context.params.page),
-      },
-    });
+  const pageResponse = await apolloClient.query({
+    query: GET_CONTENT_ITEM,
+    variables: {
+      itemId: getItemId(context.params.page),
+    },
+  });
 
-    const submenuLinks = await apolloClient.query({
-      query: GET_CONTENT_CHANNEL,
-      variables: {
-        itemId: getChannelId(IDS.ABOUT_PAGES),
-      },
-    });
+  const submenuLinks = await apolloClient.query({
+    query: GET_CONTENT_CHANNEL,
+    variables: {
+      itemId: getChannelId(IDS.ABOUT_PAGES),
+    },
+  });
 
-    return {
-      props: {
-        initialApolloState: apolloClient.cache.extract(),
-        data: pageResponse?.data?.node,
-        submenuLinks:
-          submenuLinks?.data?.node?.childContentItemsConnection?.edges,
-      },
-    };
-  } catch (e) {
-    return {
-      redirect: { destination: '/about', permanent: false },
-    };
-  }
+  return {
+    props: {
+      initialApolloState: apolloClient.cache.extract(),
+      data: pageResponse?.data?.node,
+      submenuLinks:
+        submenuLinks?.data?.node?.childContentItemsConnection?.edges,
+    },
+  };
 }

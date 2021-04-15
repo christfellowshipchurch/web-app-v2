@@ -32,7 +32,7 @@ function MarketingHeadline({
       justifyContent={justify === 'right' ? 'flex-end' : 'flex-start'}
       flexWrap="wrap"
     >
-      {actions.map(({ variant, color, onClick, label }, i) => (
+      {actions.map(({ variant, color, onClick, label = 'Go' }, i) => (
         <StyledButton
           key={i}
           color={color}

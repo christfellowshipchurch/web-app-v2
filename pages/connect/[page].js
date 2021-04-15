@@ -44,7 +44,9 @@ export default function Page({ data, staff }) {
   const cta = node.ctaLinks?.length ? node.ctaLinks?.[0] : null;
   const extraCTA = node.ctaLinks?.length ? node.ctaLinks?.slice(1) : null;
 
-  const links = node?.relatedContent?.length ? node.relatedContent.splice(0, 4) : null;
+  const links = node?.relatedContent?.length
+    ? node.relatedContent.splice(0, 4)
+    : null;
 
   return (
     <Layout meta={getMetaData(node)} bg="bg_alt">
@@ -199,32 +201,26 @@ export default function Page({ data, staff }) {
 export async function getServerSideProps(context) {
   const apolloClient = initializeApollo();
 
-  try {
-    const pageResponse = await apolloClient.query({
-      query: GET_CONTENT_ITEM,
-      variables: {
-        itemId: getItemId(context.params.page),
-      },
-      skip: !context.params.page,
-    });
+  const pageResponse = await apolloClient.query({
+    query: GET_CONTENT_ITEM,
+    variables: {
+      itemId: getItemId(context.params.page),
+    },
+    skip: !context.params.page,
+  });
 
-    const staffResponse = await apolloClient.query({
-      query: GET_STAFF,
-      variables: {
-        ministry: pageResponse?.data?.node?.ministry,
-      },
-    });
+  const staffResponse = await apolloClient.query({
+    query: GET_STAFF,
+    variables: {
+      ministry: pageResponse?.data?.node?.ministry,
+    },
+  });
 
-    return {
-      props: {
-        initialApolloState: apolloClient.cache.extract(),
-        data: pageResponse?.data,
-        staff: staffResponse?.data,
-      },
-    };
-  } catch (e) {
-    return {
-      redirect: { destination: '/connect', permanent: false },
-    };
-  }
+  return {
+    props: {
+      initialApolloState: apolloClient.cache.extract(),
+      data: pageResponse?.data,
+      staff: staffResponse?.data,
+    },
+  };
 }
