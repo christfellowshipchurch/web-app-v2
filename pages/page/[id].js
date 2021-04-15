@@ -10,7 +10,7 @@ export default function Page({ data }) {
   const router = useRouter();
 
   return (
-    <Layout title={data.title} meta={getMetaData(data)} bg="bg_alt">
+    <Layout meta={getMetaData(data)} bg="bg_alt">
       <MainPhotoHeader
         src={data.coverImage?.sources?.[0].uri || ''}
         mt="xl"

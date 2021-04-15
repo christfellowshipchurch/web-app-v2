@@ -14,7 +14,7 @@ import {
   Quote,
 } from 'components';
 import { Button, CardGrid, Longform, Section } from 'ui-kit';
-import { getChildrenByType, getIdSuffix, getItemId } from 'utils';
+import { getChildrenByType, getIdSuffix, getItemId, getMetaData } from 'utils';
 import IDS from 'config/ids';
 import { initializeApollo } from 'lib/apolloClient';
 import { Info } from 'phosphor-react';
@@ -47,7 +47,7 @@ export default function Page({ data, staff }) {
   const links = node?.relatedContent?.length ? node.relatedContent.splice(0, 4) : null;
 
   return (
-    <Layout title={`Connect - ${node.title}`} bg="bg_alt">
+    <Layout meta={getMetaData(node)} bg="bg_alt">
       <MainPhotoHeader
         src={node.coverImage?.sources?.[0].uri || ''}
         title={node.title}

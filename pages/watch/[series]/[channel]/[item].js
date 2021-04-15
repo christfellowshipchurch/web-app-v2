@@ -3,6 +3,7 @@ import { initializeApollo } from 'lib/apolloClient';
 import { GET_MEDIA_CONTENT_ITEM } from 'hooks/useMediaContentItem';
 import VideoPlayer from 'components/VideoPlayer/VideoJSPlayer';
 import { Heading, Section } from 'ui-kit';
+import { getMetaData } from 'utils';
 
 function getItemId(id) {
   return `MediaContentItem:${id}`;
@@ -12,7 +13,7 @@ export default function Item({ item }) {
   const src = item.videos?.[0]?.sources?.[0]?.uri;
 
   return (
-    <Layout title="Watch">
+    <Layout meta={getMetaData(item)}>
       <MainPhotoHeader src={item.coverImage?.sources?.[0]?.uri} />
       <Section my="xl">
         <Heading variant="h2" fontWeight="800" mb="m">

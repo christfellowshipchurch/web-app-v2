@@ -3,7 +3,7 @@ import { initializeApollo } from 'lib/apolloClient';
 import { Box, Heading, Section } from 'ui-kit';
 import { useRouter } from 'next/router';
 import { GET_MESSAGE_SERIES } from 'hooks/useMessageSeries';
-import { getChannelId, getIdSuffix } from 'utils';
+import { getChannelId, getIdSuffix, getMetaData } from 'utils';
 import { useTheme } from 'styled-components';
 
 export default function Series({ series }) {
@@ -11,7 +11,7 @@ export default function Series({ series }) {
   const theme = useTheme();
 
   return (
-    <Layout title="Watch">
+    <Layout meta={getMetaData(series)}>
       <Section>
         <Heading
           mt="l"

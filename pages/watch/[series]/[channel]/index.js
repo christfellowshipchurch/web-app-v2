@@ -1,8 +1,8 @@
 import { LargeImage, Layout, MainPhotoHeader } from 'components';
 import { GET_MESSAGE_CHANNEL } from 'hooks/useMessageChannel';
-import { Box, Button, Loader, Section } from 'ui-kit';
+import { Button, Section } from 'ui-kit';
 import { useRouter } from 'next/router';
-import { getIdSuffix, getItemId } from 'utils';
+import { getIdSuffix, getItemId, getMetaData } from 'utils';
 import { useTheme } from 'styled-components';
 import { useState } from 'react';
 import { useLazyQuery } from '@apollo/client';
@@ -29,7 +29,7 @@ export default function Channel({ item }) {
   const totalVideoCount = item?.childContentItemsConnection?.totalCount || 0;
 
   return (
-    <Layout title="Watch">
+    <Layout meta={getMetaData(item)}>
       <MainPhotoHeader src={item?.coverImage.sources?.[0]?.uri} />
       <Section
         my="m"

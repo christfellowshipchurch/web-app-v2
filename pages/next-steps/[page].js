@@ -9,7 +9,7 @@ import {
   MarketingHeadline,
 } from 'components';
 import { CardGrid, Longform, Section } from 'ui-kit';
-import { getIdSuffix, getItemId } from 'utils';
+import { getIdSuffix, getItemId, getMetaData } from 'utils';
 import { initializeApollo } from 'lib/apolloClient';
 
 export default function Page({ data }) {
@@ -26,7 +26,7 @@ export default function Page({ data }) {
   const childContent = node.childContentItemsConnection?.edges;
 
   return (
-    <Layout title={`Next Steps - ${node.title}`} bg="bg_alt">
+    <Layout meta={getMetaData(node)} bg="bg_alt">
       <MainPhotoHeader
         src={node.coverImage?.sources?.[0].uri || ''}
         title={node.title}

@@ -9,7 +9,7 @@ import {
   MainPhotoHeader,
   MarketingHeadline,
 } from 'components';
-import { getChannelId, getIdSuffix, getItemId } from 'utils';
+import { getChannelId, getIdSuffix, getItemId, getMetaData } from 'utils';
 import IDS from 'config/ids';
 import { initializeApollo } from 'lib/apolloClient';
 import { CardGrid, Longform, Section, theme } from 'ui-kit';
@@ -28,7 +28,7 @@ export default function Page({ data, submenuLinks }) {
   const ctaLinks = data.ctaLinks;
 
   return (
-    <Layout title={`About - ${data.title}`} bg="bg_alt">
+    <Layout meta={getMetaData(data)} bg="bg_alt">
       <MainPhotoHeader
         src={data.coverImage?.sources?.[0].uri || ''}
         title={data.title}

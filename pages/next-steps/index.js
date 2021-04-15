@@ -4,7 +4,7 @@ import { Section } from 'ui-kit';
 
 export default function About() {
   return (
-    <Layout title="About">
+    <Layout title="Next Steps">
       <Section>
         <DropdownNextSteps hideShadow />
       </Section>

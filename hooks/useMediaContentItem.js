@@ -6,6 +6,7 @@ export const GET_MEDIA_CONTENT_ITEM = gql`
       id
       ... on MediaContentItem {
         title
+        summary
         coverImage {
           sources {
             uri
