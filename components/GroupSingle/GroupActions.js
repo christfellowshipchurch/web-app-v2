@@ -79,7 +79,7 @@ const GroupActions = ({
         <Button
           // allow to just checkin for in person groups
           mb="base"
-          href={'# '}
+          href={'#'}
           onClick={() => onClickVideoCall()}
           width="100%"
         >
