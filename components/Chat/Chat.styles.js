@@ -8,7 +8,7 @@ const CenteredContent = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  justify-content: center;
+  justify-content: flex-end;
   width: 100%;
 
   ${system}
