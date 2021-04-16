@@ -61,14 +61,19 @@ function AuthIdentity() {
             </Box>
           ) : null}
         </Box>
-        <Box mb="l">
-          <Checkbox
-            id="agreement"
-            label="I agree to the Terms of Use and Privacy Policy laid out by Christ Fellowship Church."
-            required
-            onChange={handleChange}
-            mr="s"
-          />
+        <Box mb="l" display="flex">
+          <Checkbox id="agreement" required onChange={handleChange} mr="s" />
+          <Box as="p" fontSize="s">
+            I agree to the&nbsp;
+            <a target="_blank" rel="noopener noreferrer" href="/terms-of-use">
+              Terms of Use
+            </a>
+            &nbsp;and&nbsp;
+            <a target="_blank" rel="noopener noreferrer" href="/privacy-policy">
+              Privacy Policy
+            </a>
+            &nbsp;laid out by Christ Fellowship Church.
+          </Box>
         </Box>
         <Box textAlign="center">
           <Button type="submit" status={status}>
