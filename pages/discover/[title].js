@@ -13,7 +13,7 @@ export default function Content(props) {
   const contentId = type.concat(':', query?.id);
 
   const { categories } = useDiscoverFilterCategoriesPreview({
-    variables: { id: contentId },
+    variables: { id: contentId, first: 21 },
     fetchPolicy: 'cache-and-network',
   });
 
@@ -28,8 +28,8 @@ export default function Content(props) {
         mb="l"
       >
         <Box as="h1" mb="0">
-        {startCase(query?.title)}
-      </Box>
+          {startCase(query?.title)}
+        </Box>
         <Button variant="link" onClick={() => back()} pr="0">
           <Icon name="angleLeft" /> Back
         </Button>
