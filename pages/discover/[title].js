@@ -4,11 +4,11 @@ import startCase from 'lodash/startCase';
 import { getURLFromType } from 'utils';
 import { useDiscoverFilterCategoriesPreview } from 'hooks';
 
-import { Box, DefaultCard, CardGrid } from 'ui-kit';
+import { Box, DefaultCard, CardGrid, Icon, Button } from 'ui-kit';
 import { Layout, CustomLink } from 'components';
 
 export default function Content(props) {
-  const { query } = useRouter();
+  const { query, back } = useRouter();
   const type = 'UniversalContentItem';
   const contentId = type.concat(':', query?.id);
 
@@ -21,8 +21,18 @@ export default function Content(props) {
 
   return (
     <Layout title={startCase(query?.title)}>
-      <Box as="h1" mb="l">
+      <Box
+        alignItems="center"
+        display="flex"
+        justifyContent="space-between"
+        mb="l"
+      >
+        <Box as="h1" mb="0">
         {startCase(query?.title)}
+      </Box>
+        <Button variant="link" onClick={() => back()} pr="0">
+          <Icon name="angleLeft" /> Back
+        </Button>
       </Box>
       <CardGrid columns="3" mb="xl">
         {content.map((n, i) => (
