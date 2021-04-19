@@ -143,11 +143,108 @@ function FullLengthSermon(props = {}) {
   );
 }
 
-function HomeFeedContent(props = {}) {
+function HomeFeedLargeArticle({ article }) {
   const router = useRouter();
+  return (
+    <LargeImage
+      minHeight="200px"
+      text={article?.title}
+      color="white"
+      src={article?.coverImage?.sources?.[0]?.uri}
+      width="100%"
+      action={() =>
+        router.push(article?.linkURL || `/page/${getIdSuffix(article?.id)}`)
+      }
+    />
+  );
+}
 
+function HomeFeedArticles({ articles }) {
+  return (
+    <Box>
+      {articles.map(({ node: article }, i) => (
+        <ArticleLink
+          key={i}
+          color="quaternary"
+          description={article?.summary}
+          url={article?.linkURL || `/page/${getIdSuffix(article?.id)}`}
+          urlText={article?.linkText || 'Learn More'}
+          imageSrc={article?.coverImage?.sources?.[0]?.uri}
+          mb={{ _: 'm', md: 's' }}
+        />
+      ))}
+    </Box>
+  );
+}
+
+function HomeFeedCTA({ authenticated }) {
+  return authenticated && false ? (
+    <MarketingHeadline
+      title={
+        <>
+          <Heading color="neutrals.900" variant="h2" fontWeight="800">
+            They're welcome here.
+          </Heading>
+        </>
+      }
+      supertitle="Know someone in need?"
+      description="Long Hollow is one church that meets in two locations just north of Nashville. We’re a community of believers with something for everyone. Whether you’re checking out Christ for the first time or are looking for a place to call home, you’re invited to discover your purpose and live it out at Long Hollow."
+      actions={[
+        {
+          color: 'primary',
+          label: 'Primary Call',
+        },
+        {
+          color: 'secondary',
+          label: 'Secondary Call',
+        },
+      ]}
+    />
+  ) : (
+    <MarketingHeadline
+      title={
+        <>
+          <Heading color="neutrals.900" variant="h2" fontWeight="800">
+            You're welcome here.
+          </Heading>
+        </>
+      }
+      supertitle="We'd like to know you"
+      description="Long Hollow is one church that meets in two locations just north of Nashville. We’re a community of believers with something for everyone. Whether you’re checking out Christ for the first time or are looking for a place to call home, you’re invited to discover your purpose and live it out at Long Hollow."
+      actions={[
+        {
+          color: 'primary',
+          label: 'Primary Call',
+        },
+        {
+          color: 'quaternary',
+          variant: 'outlined',
+          label: 'Secondary Call',
+        },
+      ]}
+    />
+  );
+}
+
+function HomeFeedContent(props = {}) {
   const largeArticle = props.articles?.[0]?.node;
   const miniArticles = props.articles?.slice(1, 4);
+
+  const content = props.authenticated
+    ? [
+        [
+          <HomeFeedArticles articles={miniArticles} />,
+          <HomeFeedLargeArticle article={largeArticle} />,
+        ],
+        [<HomeFeedCTA authenticated={props.authenticated} />, <HomeQuote />],
+      ]
+    : [
+        [<HomeFeedCTA authenticated={props.authenticated} />, <HomeQuote />],
+        [
+          <HomeFeedLargeArticle article={largeArticle} />,
+          <HomeFeedArticles articles={miniArticles} />,
+        ],
+      ];
 
   return (
     <>
@@ -159,29 +256,8 @@ function HomeFeedContent(props = {}) {
           px={{ _: 'l', md: 'xxl' }}
           my={{ _: 'l', md: 'xxl' }}
         >
-          <MarketingHeadline
-            title={
-              <>
-                <Heading color="neutrals.900" variant="h2" fontWeight="800">
-                  You're welcome here.
-                </Heading>
-              </>
-            }
-            supertitle="Know someone in need?"
-            description="Long Hollow is one church that meets in two locations just north of Nashville. We’re a community of believers with something for everyone. Whether you’re checking out Christ for the first time or are looking for a place to call home, you’re invited to discover your purpose and live it out at Long Hollow."
-            actions={[
-              {
-                color: 'primary',
-                label: 'Primary Call',
-              },
-              {
-                color: 'quaternary',
-                variant: 'outlined',
-                label: 'Secondary Call',
-              },
-            ]}
-          />
-          <HomeQuote />
+          {content[0][0]}
+          {content[0][1]}
         </CardGrid>
       </Section>
       <Section>
@@ -192,32 +268,8 @@ function HomeFeedContent(props = {}) {
           px={{ _: 'l', md: 'xxl' }}
           my={{ _: 'l', md: 'xxl' }}
         >
-          <LargeImage
-            minHeight="200px"
-            text={largeArticle?.title}
-            color="white"
-            src={largeArticle?.coverImage?.sources?.[0]?.uri}
-            width="100%"
-            action={() =>
-              router.push(
-                largeArticle?.linkURL ||
-                  `/page/${getIdSuffix(largeArticle?.id)}`
-              )
-            }
-          />
-          <Box>
-            {miniArticles.map(({ node: article }, i) => (
-              <ArticleLink
-                key={i}
-                color="quaternary"
-                description={article?.summary}
-                url={article?.linkURL || `/page/${getIdSuffix(article?.id)}`}
-                urlText={article?.linkText || 'Learn More'}
-                imageSrc={article?.coverImage?.sources?.[0]?.uri}
-                mb={{ _: 'm', md: 's' }}
-              />
-            ))}
-          </Box>
+          {content[1][0]}
+          {content[1][1]}
         </CardGrid>
       </Section>
       <FullWidthCTA pt="171px" pb="77px" justifyContent="flex-start">
@@ -282,7 +334,11 @@ function HomeFeed(props = {}) {
   return (
     <>
       <FullLengthSermon {...props} />
-      <HomeFeedContent {...props} articles={articles || props.articles} />
+      <HomeFeedContent
+        {...props}
+        articles={articles || props.articles}
+        authenticated={authenticated}
+      />
     </>
   );
 }

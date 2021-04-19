@@ -28,7 +28,7 @@ function usePersonaFeed(options = {}) {
 
   return {
     ...query,
-    articles: query?.data?.personaFeed.edges,
+    articles: query?.data?.personaFeed?.edges,
   };
 }
 
