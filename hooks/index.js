@@ -17,6 +17,7 @@ import useLiveStreams from './useLiveStreams';
 import useMediaContentItem from './useMediaContentItem';
 import useMessageChannel from './useMessageChannel';
 import useMessageSeries from './useMessageSeries';
+import useMinistryContent from './useMinistryContent';
 import useRegisterWithEmail from './useRegisterWithEmail';
 import useRegisterWithSms from './useRegisterWithSms';
 import useRequestPin from './useRequestPin';
@@ -44,6 +45,7 @@ export {
   useMediaContentItem,
   useMessageChannel,
   useMessageSeries,
+  useMinistryContent,
   useRegisterWithEmail,
   useRegisterWithSms,
   useRequestPin,

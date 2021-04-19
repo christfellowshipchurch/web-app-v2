@@ -20,8 +20,9 @@ import { initializeApollo } from 'lib/apolloClient';
 import { Info } from 'phosphor-react';
 import { useTheme } from 'styled-components';
 import { GET_STAFF } from 'hooks/useStaff';
+import { GET_MINISTRY_CONTENT } from 'hooks/useMinistryContent';
 
-export default function Page({ data, staff }) {
+export default function Page({ data, staff, relatedContent }) {
   const router = useRouter();
   const theme = useTheme();
 
@@ -43,9 +44,10 @@ export default function Page({ data, staff }) {
   const story = stories.length ? stories[0] : null;
   const cta = node.ctaLinks?.length ? node.ctaLinks?.[0] : null;
   const extraCTA = node.ctaLinks?.length ? node.ctaLinks?.slice(1) : null;
+  console.log(relatedContent);
 
-  const links = node?.relatedContent?.length
-    ? node.relatedContent.splice(0, 4)
+  const links = relatedContent?.node?.length
+    ? relatedContent.node.splice(0, 4)
     : null;
 
   return (
@@ -216,11 +218,19 @@ export async function getServerSideProps(context) {
     },
   });
 
+  const ministryResponse = await apolloClient.query({
+    query: GET_MINISTRY_CONTENT,
+    variables: {
+      ministry: pageResponse?.data?.node?.ministry,
+    }
+  });
+
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
       data: pageResponse?.data,
       staff: staffResponse?.data,
+      relatedContent: ministryResponse?.data,
     },
   };
 }
