@@ -36,7 +36,7 @@ function ArticleLink({
                 marginTop: theme.space.xxs,
               }}
             >
-              <Text fontWeight="600" variant="s" color={color} mr="4px">
+              <Text fontWeight="600" variant="s" color={color} mr="4px" style={{ whiteSpace: "nowrap"}}>
                 {urlText}
               </Text>
               <ArrowRight
