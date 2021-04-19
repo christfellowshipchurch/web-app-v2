@@ -8,7 +8,7 @@ import { Box } from 'ui-kit';
 
 function getItemId(slug) {
   const id = slug.split('-').pop();
-  return `InformationalContentItem:${id}`;
+  return `MediaContentItem:${id}`;
 }
 
 export default function Content(props) {
