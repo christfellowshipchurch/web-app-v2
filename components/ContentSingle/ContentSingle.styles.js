@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { themeGet } from '@styled-system/theme-get';
 
 import { system } from 'ui-kit';
 
@@ -7,13 +8,13 @@ const ContentSingle = styled.footer`
 `;
 
 const VideoContainer = styled.div`
-  width: 100%;
-  height: 100%;
   background: black;
+  height: 100%;
+  width: 100%;
 
   & > .shaka-video-container {
-    width: 100%;
     height: 100%;
+    width: 100%;
   }
 `;
 
