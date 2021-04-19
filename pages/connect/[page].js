@@ -212,12 +212,15 @@ export async function getServerSideProps(context) {
     skip: !context.params.page,
   });
 
-  const staffResponse = await apolloClient.query({
-    query: GET_STAFF,
-    variables: {
-      ministry: pageResponse?.data?.node?.ministry,
-    },
-  });
+  let staffResponse;
+  if (pageResponse?.data?.node?.ministry) {
+    staffResponse = await apolloClient.query({
+      query: GET_STAFF,
+      variables: {
+        ministry: pageResponse?.data?.node?.ministry,
+      },
+    });
+  }
 
   const ministryResponse = await apolloClient.query({
     query: GET_MINISTRY_CONTENT,
@@ -230,7 +233,7 @@ export async function getServerSideProps(context) {
     props: {
       initialApolloState: apolloClient.cache.extract(),
       data: pageResponse?.data,
-      staff: staffResponse?.data,
+      staff: staffResponse ? staffResponse.data : [],
       relatedContent: ministryResponse?.data,
     },
   };
