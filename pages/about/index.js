@@ -37,7 +37,7 @@ export default function About() {
           </Box>
           <Image
             maxWidth="800px"
-            source={'Christ-Fellowship-Church-Locations.jpeg'}
+            source={'about/Christ-Fellowship-Church-Locations.jpeg'}
           />
         </Styled.Section>
         <List
