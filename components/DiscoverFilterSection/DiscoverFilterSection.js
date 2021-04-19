@@ -21,10 +21,10 @@ const DiscoverFilterSection = ({ contentId, title }) => {
     const [type, id] = contentId.split(':');
 
     event.preventDefault();
-    router.push({
-      pathname: `/discover/${slugify(title)}`,
-      query: { id: slugify(id) },
-    });
+    router.push(
+      `/discover/${slugify(title)}?id=${slugify(id)}`,
+      `/discover/${slugify(title)}`
+    );
   };
 
   return (
