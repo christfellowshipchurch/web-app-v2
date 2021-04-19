@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { CardGrid, Box, Image } from 'ui-kit';
+import { List, Box, Image } from 'ui-kit';
 import { CustomLink } from 'components';
 
 import { getURLFromType } from 'utils';
@@ -16,26 +16,29 @@ export default function GroupResources(props = {}) {
   // whether it's an `OPEN_URL` or `READ_CONTENT` etc action.
 
   return (
-    <CardGrid columns="1" gridRowGap={{ _: 's', md: 'base' }}>
+    <List>
       {props.resources.map(resource => (
-        <CustomLink
-          key={resource.relatedNode?.id}
-          href={getURLFromType(resource.relatedNode)}
-          textDecoration="none"
-        >
-          <Box display="flex" alignItems="center">
-            <Image
-              maxWidth="50px"
-              source={
-                resource.relatedNode?.coverImage?.sources[0]?.uri || '/link.png'
-              }
-              mr="base"
-            />
-            <Box as="h4">{resource.title || resource.relatedNode?.title}</Box>
-          </Box>
-        </CustomLink>
+        <Box as="li">
+          <CustomLink
+            key={resource.relatedNode?.id}
+            href={getURLFromType(resource.relatedNode)}
+            textDecoration="none"
+          >
+            <Box display="flex" alignItems="center">
+              <Image
+                maxWidth="50px"
+                source={
+                  resource.relatedNode?.coverImage?.sources[0]?.uri ||
+                  '/link.png'
+                }
+                mr="base"
+              />
+              <Box as="h4">{resource.title || resource.relatedNode?.title}</Box>
+            </Box>
+          </CustomLink>
+        </Box>
       ))}
-    </CardGrid>
+    </List>
   );
 }
 
