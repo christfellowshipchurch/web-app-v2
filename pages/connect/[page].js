@@ -44,11 +44,12 @@ export default function Page({ data, staff, relatedContent }) {
   const story = stories.length ? stories[0] : null;
   const cta = node.ctaLinks?.length ? node.ctaLinks?.[0] : null;
   const extraCTA = node.ctaLinks?.length ? node.ctaLinks?.slice(1) : null;
-  console.log(relatedContent);
 
-  const links = relatedContent?.node?.length
-    ? relatedContent.node.splice(0, 4)
-    : null;
+  let links = relatedContent?.getMinistryContent?.length
+    ? relatedContent.getMinistryContent.slice(0, 4)
+    : [];
+
+  links = links.filter(link => getIdSuffix(link.id) !== router.query.page);
 
   return (
     <Layout meta={getMetaData(node)} bg="bg_alt">
@@ -73,7 +74,7 @@ export default function Page({ data, staff, relatedContent }) {
               />
             }
           >
-            {links.splice(0, 4).map(({ node: link }) => (
+            {links.map((link) => (
               <EventCallout
                 key={link.id}
                 title={link.title}

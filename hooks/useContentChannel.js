@@ -39,18 +39,6 @@ export const GET_CONTENT_CHANNEL = gql`
                 sharing {
                   url
                 }
-                coverImage {
-                  sources {
-                    uri
-                  }
-                }
-              }
-              ... on MediaContentItem {
-                videos {
-                  sources {
-                    uri
-                  }
-                }
               }
             }
           }

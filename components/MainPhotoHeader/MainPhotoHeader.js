@@ -27,6 +27,7 @@ function MainPhotoHeader({
             variant="h2"
             opacity="50%"
             fontWeight="800"
+            textAlign="left"
           >
             {subtitle}
           </Heading>
@@ -38,6 +39,7 @@ function MainPhotoHeader({
             lineHeight="77.4px"
             fontWeight="800"
             textTransform="uppercase"
+            textAlign="left"
           >
             {title}
           </Heading>
@@ -48,6 +50,7 @@ function MainPhotoHeader({
             variant="h3"
             fontWeight="700"
             maxWidth="360px"
+            textAlign="left"
           >
             {summary}
           </Heading>

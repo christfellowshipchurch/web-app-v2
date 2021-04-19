@@ -50,7 +50,7 @@ export default function Page({ data, submenuLinks }) {
               />
             }
           >
-            {links.splice(0, 4).map(({ node: link }) => (
+            {links.slice(0, 4).map(({ node: link }) => (
               <EventCallout
                 key={link.id}
                 title={link.title}

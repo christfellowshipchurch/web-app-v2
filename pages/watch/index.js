@@ -1,11 +1,11 @@
 import {
   Carousel,
+  Countdown,
   LargeImage,
   Layout,
   MainPhotoHeader,
   MarketingHeadline,
   PageSplit,
-  VideoPlayer,
 } from 'components';
 import { initializeApollo } from 'lib/apolloClient';
 import { useRouter } from 'next/router';
@@ -14,8 +14,9 @@ import { Box, CardGrid, Heading, Section } from 'ui-kit';
 import { GET_MESSAGE_SERIES } from 'hooks/useMessageSeries';
 import { GET_CONTENT_CHANNEL } from 'hooks/useContentChannel';
 import { getChannelId, getIdSuffix } from 'utils';
+import { GET_LIVE_STREAMS } from 'hooks/useLiveStreams';
 
-export default function Watch({ series, watchPages, sermons }) {
+export default function Watch({ series, watchPages, sermons, liveStreams }) {
   const router = useRouter();
 
   const coverVideo = sermons?.[0]?.node;
@@ -24,9 +25,14 @@ export default function Watch({ series, watchPages, sermons }) {
     <Layout title="Watch">
       <MainPhotoHeader
         src={coverVideo?.coverImage?.sources?.[0]?.uri}
-        title={coverVideo?.title}
-        subtitle={coverVideo?.subtitle}
-        summary={coverVideo?.summary}
+        title="Join us live"
+        subtitle="UPCOMING"
+        summary="Watch live on Sundays at 8:00, 9:30, and 11:15 a.m."
+        overlay={{
+          _: 'rgba(0, 0, 0, 0.7)',
+          lg:
+            'linear-gradient(89.49deg, #1c1617 -16.61%, rgba(28, 22, 23, 0) 99.62%)',
+        }}
         content={
           <>
             <Box
@@ -48,17 +54,19 @@ export default function Watch({ series, watchPages, sermons }) {
                   },
                 })}
               >
-                {[coverVideo].map(sermon =>
-                  sermon?.videos?.[0]?.sources?.[0]?.uri ? (
-                    <VideoPlayer
-                      key={sermon?.id}
-                      src={sermon?.videos?.[0]?.sources?.[0]?.uri}
-                      title={sermon?.title}
-                      poster={sermon?.coverImage?.sources?.[0]?.uri}
-                      style={{ width: '100%' }}
-                    />
-                  ) : null
-                )}
+                {liveStreams.map((liveStream, i) => (
+                  <Countdown
+                    key={i}
+                    onClick={() => router.push(liveStream.webViewUrl)}
+                    src={coverVideo?.coverImage?.sources?.[0]?.uri}
+                    date={
+                      liveStream.eventStartTime
+                        ? new Date(liveStream.eventStartTime)
+                        : null
+                    }
+                    buttonText="Church Online"
+                  />
+                ))}
               </Carousel>
             </Box>
           </>
@@ -143,7 +151,10 @@ export default function Watch({ series, watchPages, sermons }) {
                 actions={[
                   {
                     label: page.buttonText,
-                    onClick: () => router.push(page.buttonLink || `/watch/page/${getIdSuffix(page.id)}`),
+                    onClick: () =>
+                      router.push(
+                        page.buttonLink || `/watch/page/${getIdSuffix(page.id)}`
+                      ),
                   },
                 ]}
               />
@@ -183,6 +194,10 @@ export async function getServerSideProps() {
 
   const series = await Promise.all(seriesRequests);
 
+  const liveStreams = await apolloClient.query({
+    query: GET_LIVE_STREAMS,
+  });
+
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
@@ -192,6 +207,7 @@ export async function getServerSideProps() {
       sermons: sermons?.data?.node?.childContentItemsConnection?.edges.filter(
         ({ node }) => node?.videos?.[0]?.sources?.[0]?.uri
       ),
+      liveStreams: liveStreams?.data?.liveStreams,
     },
   };
 }

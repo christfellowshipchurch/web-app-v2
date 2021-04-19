@@ -12,7 +12,6 @@ import {
   Quote,
   ConnectTiles,
   VideoPlayer,
-  Countdown,
 } from 'components';
 import { Box, CardGrid, Heading, Section, Text, theme } from 'ui-kit';
 import { useRouter } from 'next/router';
