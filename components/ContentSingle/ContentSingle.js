@@ -69,7 +69,7 @@ function ContentSingle(props = {}) {
         </Box>
       )}
       contentTitleD="About"
-      contentTitleE="Videos"
+      contentTitleE={props.data?.videos?.length ? 'Videos' : null}
       renderContentE={() => (
         <ContentVideos
           thumbnail={coverImage}
