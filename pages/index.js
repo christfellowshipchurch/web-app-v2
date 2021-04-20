@@ -16,7 +16,7 @@ export default function Home(props = {}) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const apolloClient = initializeApollo();
 
   const sermonsRequest = await apolloClient.query({
@@ -54,5 +54,9 @@ export async function getServerSideProps() {
       articles: articles?.data?.node?.childContentItemsConnection?.edges,
       sermon: sermonRequest?.data?.node,
     },
+    // Next.js will attempt to re-generate the page:
+    // - When a request comes in
+    // - At most once every second
+    revalidate: 60, // In seconds
   };
 }
