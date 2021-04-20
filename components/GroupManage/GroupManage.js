@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { slugify } from 'utils';
-import { Box, List, utils } from 'ui-kit';
+import { Box, utils } from 'ui-kit';
 import { CustomLink } from 'components';
 
 import GroupManagePhoto from './GroupManagePhoto';
+import GroupManageResources from './GroupManageResources';
 
 function GroupManage(props = {}) {
   return (
@@ -31,37 +32,9 @@ function GroupManage(props = {}) {
         <GroupManagePhoto data={props.data} />
       </Box>
       <Box mb="l">
-        <Resources data={props.data} />
+        <GroupManageResources data={props.data} />
       </Box>
     </Box>
-  );
-}
-
-function Resources(props = {}) {
-  return (
-    <>
-      <Box alignItems="center" display="flex" mb="s">
-        <Box as="h2" flexGrow="1" mb="0">
-          Resources
-        </Box>
-        <CustomLink href="#0">Add</CustomLink>
-      </Box>
-      <List>
-        {props?.data?.resources.map((resource, idx) => (
-          <Box as="li" key={idx}>
-            <Box as="b" fontWeight="bold">
-              {resource?.title}
-            </Box>
-            {resource?.relatedNode.url ? (
-              // TODO: We need `word-break: break-word` for long links.
-              <Box as="span" color="subdued" display="block" fontSize="s">
-                {resource?.relatedNode.url}
-              </Box>
-            ) : null}
-          </Box>
-        ))}
-      </List>
-    </>
   );
 }
 
