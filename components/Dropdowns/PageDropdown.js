@@ -20,7 +20,16 @@ export default function PageDropdown({
 
   return (
     <Dropdowns.Container {...props}>
-      <CardGrid columns={numColumns} gridColumnGap="base">
+      <CardGrid
+        gridTemplateColumns={{
+          _: 'repeat(1, 1fr)',
+          md: `repeat(${numColumns > 2 ? 2 : numColumns}, 1fr)`,
+          lg: `repeat(${numColumns > 3 ? 3 : numColumns}, 1fr)`,
+          xl: `repeat(${numColumns > 4 ? 4 : numColumns}, 1fr)`,
+        }}
+        gridColumnGap="base"
+        gridRowGap={0}
+      >
         {featuredItems.length
           ? [...Array(numColumns - Number(hasNonFeaturedItems)).keys()].map(
               i => {
