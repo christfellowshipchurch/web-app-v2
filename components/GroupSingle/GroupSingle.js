@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { ContentLayout } from 'components';
 import { useCurrentBreakpoint, useCurrentUser } from 'hooks';
 import { ChatConnectionProvider } from 'providers';
+import { currentUserIsLeader } from 'utils';
 import { Box, Card, Icon } from 'ui-kit';
 import { CustomLink } from 'components';
 
@@ -16,6 +17,7 @@ import GroupActions from './GroupActions';
 function GroupSingle(props = {}) {
   const currentBreakpoint = useCurrentBreakpoint();
   const { currentUser } = useCurrentUser();
+  const isLeader = currentUserIsLeader(currentUser, props.data?.leaders?.edges);
 
   const totalMembers =
     (props.data?.leaders.totalCount || 0) +
@@ -35,13 +37,14 @@ function GroupSingle(props = {}) {
         title={props.data?.title}
         summary={props.data.schedule?.friendlyScheduleText}
         coverImage={props.data?.coverImage?.sources[0]?.uri}
-        titleIconLink={() => (
-          // NOTE: The `router.pathname` from `useRouter()` didn't work for some reason.
-          // TODO: This should only show if the current user is a group leader.
-          <CustomLink href={`${window.location.pathname}/manage`}>
-            <Icon name="gear" ml="xs" mt="xxs" />
-          </CustomLink>
-        )}
+        titleIconLink={() =>
+          isLeader ? (
+            // NOTE: The `router.pathname` from `useRouter()` didn't work for some reason.
+            <CustomLink href={`${window.location.pathname}/manage`}>
+              <Icon name="gear" ml="xs" mt="xxs" />
+            </CustomLink>
+          ) : null
+        }
         renderContentB={() => (
           <Box display="flex" flexDirection="column" mt="l" pb="base">
             <Box as="h2" fontSize="h3" mb="base">
