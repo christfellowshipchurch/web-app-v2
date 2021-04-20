@@ -28,6 +28,7 @@ function ContentLayout(props = {}) {
           {props.title ? (
             <Box as="h1" mb="0">
               {props.title}
+              {props.titleIconLink ? props.titleIconLink() : null}
             </Box>
           ) : null}
           {props.summary ? (
@@ -133,6 +134,7 @@ ContentLayout.propTypes = {
   renderD: PropTypes.func,
   renderE: PropTypes.func,
   title: PropTypes.string,
+  titleIconLink: PropTypes.func,
 };
 
 export default ContentLayout;

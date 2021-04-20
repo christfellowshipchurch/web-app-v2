@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import { ContentLayout } from 'components';
 import { useCurrentBreakpoint, useCurrentUser } from 'hooks';
 import { ChatConnectionProvider } from 'providers';
-import { Box, Card } from 'ui-kit';
+import { Box, Card, Icon } from 'ui-kit';
+import { CustomLink } from 'components';
 
 import GroupChat from './GroupChat';
 import GroupDateTime from './GroupDateTime';
@@ -34,6 +35,13 @@ function GroupSingle(props = {}) {
         title={props.data?.title}
         summary={props.data.schedule?.friendlyScheduleText}
         coverImage={props.data?.coverImage?.sources[0]?.uri}
+        titleIconLink={() => (
+          // NOTE: The `router.pathname` from `useRouter()` didn't work for some reason.
+          // TODO: This should only show if the current user is a group leader.
+          <CustomLink href={`${window.location.pathname}/manage`}>
+            <Icon name="gear" ml="xs" mt="xxs" />
+          </CustomLink>
+        )}
         renderContentB={() => (
           <Box display="flex" flexDirection="column" mt="l" pb="base">
             <Box as="h2" fontSize="h3" mb="base">
