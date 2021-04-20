@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-
+import { Box } from 'ui-kit';
 function CustomLink({ Component: _Component, href, ...props }) {
   if (!_Component) {
     return (
       <Link href={href}>
-        <a>{props.children}</a>
+        <Box as="a" cursor="pointer" {...props}>
+          {props.children}
+        </Box>
       </Link>
     );
   }
