@@ -62,7 +62,7 @@ function Nav(props = {}) {
                   id={action.id}
                   selected={action.action === router.pathname}
                   hovered={action.id === hoveredItem}
-                  onClick={() => {
+                  onTouchEnd={() => {
                     setHoveredItem(null);
 
                     if (typeof action.action === 'string') {
@@ -110,7 +110,7 @@ function QuickAction(props = {}) {
     <Styled.QuickAction
       hovered={props.hovered}
       selected={props.selected}
-      onClick={props.onClick}
+      onTouchEnd={props.onTouchEnd}
       hasDropdown={hasDropdown}
     >
       <Heading variant="base" color="fg">
