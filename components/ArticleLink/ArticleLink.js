@@ -18,7 +18,12 @@ function ArticleLink({
 }) {
   return (
     <Styled.Container {...props}>
-      <Styled.Image rounded src={imageSrc} float="right" />
+      <Styled.Image
+        rounded
+        src={imageSrc}
+        float="right"
+        width={{ _: '100%', lg: 'auto' }}
+      />
       <Box mr="l">
         <Text fontWeight="700" variant="s">
           {title}
@@ -36,7 +41,13 @@ function ArticleLink({
                 marginTop: theme.space.xxs,
               }}
             >
-              <Text fontWeight="600" variant="s" color={color} mr="4px" style={{ whiteSpace: "nowrap"}}>
+              <Text
+                fontWeight="600"
+                variant="s"
+                color={color}
+                mr="4px"
+                style={{ whiteSpace: 'nowrap' }}
+              >
                 {urlText}
               </Text>
               <ArrowRight

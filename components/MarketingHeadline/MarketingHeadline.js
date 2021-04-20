@@ -1,6 +1,6 @@
 import { Photo } from 'components';
 import PropTypes from 'prop-types';
-import { Box, CardGrid, Heading, Text } from 'ui-kit';
+import { Box, Heading, Text } from 'ui-kit';
 import { splitString } from 'utils';
 import { StyledButton } from './MarketingHeadline.styles';
 
@@ -20,6 +20,10 @@ function MarketingHeadline({
     sideContent = (
       <Photo
         justifySelf={justify === 'left' ? 'flex-end' : 'flex-start'}
+        flex="1 0 50%"
+        px={{ _: 0, lg: 's' }}
+        pb={{ _: 's', lg: 0 }}
+        width="100%"
         {...image}
       />
     );
@@ -27,7 +31,6 @@ function MarketingHeadline({
   const buttons = actions?.length ? (
     <Box
       display="flex"
-      mt="l"
       width="100%"
       justifyContent={justify === 'right' ? 'flex-end' : 'flex-start'}
       flexWrap="wrap"
@@ -48,12 +51,16 @@ function MarketingHeadline({
     </Box>
   ) : null;
   return (
-    <CardGrid
-      gridColumnGap="xl"
-      columns={sideContent ? '2' : '1'}
+    <Box
+      display="flex"
       breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
       alignItems="center"
       justifyItems={justify || 'left'}
+      flexDirection={
+        justify === 'left'
+          ? { _: 'column', lg: 'row' }
+          : { _: 'column-reverse', lg: 'row' }
+      }
       {...props}
     >
       {justify === 'left' && sideContent}
@@ -61,8 +68,9 @@ function MarketingHeadline({
         display="flex"
         flexDirection="column"
         alignItems={justify === 'left' ? 'flex-start' : 'flex-end'}
-        justifySelf={justify === 'left' ? 'flex-start' : 'flex-end'}
         textAlign={justify}
+        flex="1 0 50%"
+        px={{ _: 0, lg: 's' }}
       >
         {supertitle && (
           <Heading
@@ -111,7 +119,7 @@ function MarketingHeadline({
         {buttons}
       </Box>
       {justify === 'right' && sideContent}
-    </CardGrid>
+    </Box>
   );
 }
 

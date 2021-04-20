@@ -4,6 +4,7 @@ import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
 import { GET_CONTENT_CHANNEL } from 'hooks/useContentChannel';
 import {
   ArticleLink,
+  ArticleLinks,
   CampusFilter,
   Layout,
   MainPhotoHeader,
@@ -36,7 +37,11 @@ export default function Page({ data = {} }) {
         summary={node.summary}
       />
       <Section>
-        <CardGrid px="xxl" py="xl" columns="1">
+        <CardGrid
+          px={{ _: 'l', md: 'xxl' }}
+          my={{ _: 'l', md: 'xxl' }}
+          columns="1"
+        >
           {node.ctaLinks?.map((cta, i) => (
             <MarketingHeadline
               key={i}
@@ -59,8 +64,8 @@ export default function Page({ data = {} }) {
       {node.htmlContent && (
         <Section>
           <Longform
-            px="xxl"
-            py="xl"
+            px={{ _: 'l', md: 'xxl' }}
+            my={{ _: 'l', md: 'xxl' }}
             dangerouslySetInnerHTML={{ __html: node.htmlContent }}
           />
         </Section>
@@ -68,13 +73,13 @@ export default function Page({ data = {} }) {
       {childContent?.length ? (
         <Section>
           <CampusFilter
-            px="xxl"
-            py="xl"
+            px={{ _: 'l', md: 'xxl' }}
+            my={{ _: 'l', md: 'xxl' }}
             filterWidth="200px"
             data={childContent}
           >
             {({ filteredData }) => (
-              <CardGrid columns="2" gridColumnGap="xl">
+              <ArticleLinks>
                 {filteredData.map(({ node }, i) => (
                   <ArticleLink
                     key={node.id}
@@ -86,7 +91,7 @@ export default function Page({ data = {} }) {
                     url={node.linkURL || `/page/${getIdSuffix(node.id)}`}
                   />
                 ))}
-              </CardGrid>
+              </ArticleLinks>
             )}
           </CampusFilter>
         </Section>
@@ -114,7 +119,6 @@ export async function getStaticProps(context) {
   };
 }
 
-
 export async function getStaticPaths() {
   const apolloClient = initializeApollo();
 
@@ -123,15 +127,17 @@ export async function getStaticPaths() {
     variables: {
       itemId: `ContentChannel:${IDS.NEXT_STEPS_PAGES}`,
     },
-  })
+  });
 
-  const nextStepsPages = pagesResponse?.data?.node?.childContentItemsConnection?.edges?.map(({ node }) => node);
+  const nextStepsPages = pagesResponse?.data?.node?.childContentItemsConnection?.edges?.map(
+    ({ node }) => node
+  );
 
   // Get the paths we want to pre-render
   const paths = nextStepsPages.map(({ id }) => ({
     params: { page: getIdSuffix(id) },
-  }))
+  }));
 
   // Fallback true - if a page doesn't exist we will render it on the fly.
-  return { paths, fallback: true }
+  return { paths, fallback: true };
 }

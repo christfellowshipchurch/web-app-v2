@@ -12,6 +12,7 @@ import {
   Quote,
   ConnectTiles,
   VideoPlayer,
+  ArticleLinks,
 } from 'components';
 import { Box, CardGrid, Heading, Section, Text, theme } from 'ui-kit';
 import { useRouter } from 'next/router';
@@ -161,7 +162,7 @@ function HomeFeedLargeArticle({ article }) {
 
 function HomeFeedArticles({ articles }) {
   return (
-    <Box>
+    <ArticleLinks fullWidth={false}>
       {articles.map(({ node: article }, i) => (
         <ArticleLink
           key={i}
@@ -173,7 +174,7 @@ function HomeFeedArticles({ articles }) {
           mb={{ _: 'm', md: 's' }}
         />
       ))}
-    </Box>
+    </ArticleLinks>
   );
 }
 
