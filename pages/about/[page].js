@@ -69,8 +69,8 @@ export default function Page({ data = {}, submenuLinks }) {
       {data.htmlContent && (
         <Section>
           <Longform
-            px="xxl"
-            py="xl"
+            px={{ _: 'l', md: 'xxl' }}
+            my={{ _: 'l', md: 'xxl' }}
             dangerouslySetInnerHTML={{ __html: data.htmlContent }}
           />
         </Section>
@@ -78,8 +78,8 @@ export default function Page({ data = {}, submenuLinks }) {
       {childContent?.length ? (
         <Section>
           <CampusFilter
-            px="xxl"
-            py="xl"
+            px={{ _: 'l', md: 'xxl' }}
+            my={{ _: 'l', md: 'xxl' }}
             filterWidth="200px"
             data={childContent}
           >
@@ -118,7 +118,11 @@ export default function Page({ data = {}, submenuLinks }) {
       ) : null}
       {ctaLinks.length ? (
         <Section bg="rgba(142, 142, 147, 0.12)">
-          <CardGrid px="xxl" py="xl" columns="1">
+          <CardGrid
+            px={{ _: 'l', md: 'xxl' }}
+            my={{ _: 'l', md: 'xxl' }}
+            columns="1"
+          >
             {ctaLinks?.map((cta, i) => (
               <MarketingHeadline
                 key={i}
@@ -170,7 +174,6 @@ export async function getStaticProps(context) {
   };
 }
 
-
 export async function getStaticPaths() {
   const apolloClient = initializeApollo();
 
@@ -179,15 +182,17 @@ export async function getStaticPaths() {
     variables: {
       itemId: `ContentChannel:${IDS.ABOUT_PAGES}`,
     },
-  })
+  });
 
-  const aboutPages = pagesResponse?.data?.node?.childContentItemsConnection?.edges?.map(({ node }) => node);
+  const aboutPages = pagesResponse?.data?.node?.childContentItemsConnection?.edges?.map(
+    ({ node }) => node
+  );
 
   // Get the paths we want to pre-render
   const paths = aboutPages.map(({ id }) => ({
     params: { page: getIdSuffix(id) },
-  }))
+  }));
 
   // Fallback true - if a page doesn't exist we will render it on the fly.
-  return { paths, fallback: true }
+  return { paths, fallback: true };
 }

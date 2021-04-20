@@ -7,8 +7,16 @@ function EventsCallout({ icon, title, ...props } = {}) {
   const theme = useTheme();
 
   return (
-    <Box height={theme.space.xl} zIndex={1} position="relative">
-      <Styled floater width={theme.breakpoints.sm}>
+    <Box
+      height={{ _: 'auto', lg: theme.space.xl }}
+      zIndex={1}
+      position="relative"
+    >
+      <Styled
+        floater
+        width={{ _: 'auto', lg: theme.breakpoints.sm}}
+        position={{ _: 'initial', lg: 'absolute' }}
+      >
         <Box display="flex" alignItems="center" mb="m">
           {icon}
           <Text

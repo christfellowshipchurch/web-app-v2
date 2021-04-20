@@ -8,11 +8,11 @@ const EventsCallout = styled.div`
   border-radius: ${themeGet('radii.image')};
   box-shadow: 0px 20px 48px rgba(0, 0, 0, 0.04);
   padding: ${themeGet('space.m')};
-  position: absolute;
   right: 0;
   ${props => (props.floater ? 'bottom: 0' : 'top: 0')};
 
   @media screen and (max-width: ${themeGet('breakpoints.lg')}) {
+    border-radius: 0;
     margin-top: 0px;
   }
 
