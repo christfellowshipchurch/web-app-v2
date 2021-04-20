@@ -3,26 +3,38 @@ import { Circle, MagnifyingGlass, UserCircle } from 'phosphor-react';
 import { showModal } from 'providers/ModalProvider';
 import { Avatar, Box, Heading, Text, theme } from 'ui-kit';
 
+const profileAction = ({ modalDispatch, authenticated, router }) =>
+  authenticated ? router.push('/profile') : modalDispatch(showModal('Auth'));
+
 const navigation = {
   quickActions: [
     {
       id: 'about',
-      action: '/about',
+      action: {
+        mobile: '/about',
+      },
       call: 'About',
     },
     {
       id: 'next-steps',
-      action: '/next-steps',
+      action: {
+        mobile: '/next-steps',
+      },
       call: 'Next Steps',
     },
     {
       id: 'connect',
-      action: '/connect',
+      action: {
+        mobile: '/connect',
+      },
       call: 'Connect',
     },
     {
       id: 'watch',
-      action: '/watch',
+      action: {
+        mobile: '/watch',
+        web: '/watch',
+      },
       call: ({ liveStreams }) => {
         const isLive = liveStreams.liveStreams.find(ls => ls.isLive);
         const timeTilLive = Math.min(
@@ -88,7 +100,10 @@ const navigation = {
     },
     {
       id: 'search',
-      action: '/search',
+      action: {
+        mobile: '/search',
+        web: '/search',
+      },
       call: (
         <Box lineHeight={0.875}>
           <MagnifyingGlass color={theme.colors.fg} size="20" />
@@ -97,10 +112,10 @@ const navigation = {
     },
     {
       id: 'user',
-      action: ({ modalDispatch, authenticated, router }) =>
-        authenticated
-          ? router.push('/profile')
-          : modalDispatch(showModal('Auth')),
+      action: {
+        mobile: profileAction,
+        web: profileAction,
+      },
       call: ({ user }) => (
         <Box lineHeight={0.875}>
           {user?.src ? (

@@ -62,17 +62,32 @@ function Nav(props = {}) {
                   id={action.id}
                   selected={action.action === router.pathname}
                   hovered={action.id === hoveredItem}
-                  onTouchEnd={() => {
+                  onClick={() => {
                     setHoveredItem(null);
+                    const webAction = action.action?.web;
 
-                    if (typeof action.action === 'string') {
-                      router.push(action.action);
+                    if (typeof webAction === 'string') {
+                      router.push(webAction);
                     } else {
-                      action.action?.({
+                      webAction?.({
                         modalDispatch,
                         router,
                         authenticated,
-                      })
+                      });
+                    }
+                  }}
+                  onTouchEnd={() => {
+                    setHoveredItem(null);
+                    const mobileAction = action.action?.mobile;
+
+                    if (typeof mobileAction === 'string') {
+                      router.push(mobileAction);
+                    } else {
+                      mobileAction?.({
+                        modalDispatch,
+                        router,
+                        authenticated,
+                      });
                     }
                   }}
                 />
@@ -110,6 +125,7 @@ function QuickAction(props = {}) {
     <Styled.QuickAction
       hovered={props.hovered}
       selected={props.selected}
+      onClick={props.onClick}
       onTouchEnd={props.onTouchEnd}
       hasDropdown={hasDropdown}
     >
