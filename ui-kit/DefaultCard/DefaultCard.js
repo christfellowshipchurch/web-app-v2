@@ -18,7 +18,9 @@ const DefaultCard = (props = {}) => {
           largeCard={props.largeCard}
           scaleCoverImage={props.scaleCoverImage}
         >
-          {props.coverImageTitle || props.coverImageDescription ? (
+          {props.coverImageTitle ||
+          props.coverImageDescription ||
+          props.coverImageContent ? (
             <Styled.CoverContent
               position={props.coverImageContentPosition}
               size={props.cardSize}
@@ -69,7 +71,7 @@ DefaultCard.propTypes = {
   contentProps: PropTypes.object,
   coverImage: PropTypes.string,
   coverImageContent: PropTypes.func,
-  coverImageContentPosition: PropTypes.oneOf(['bottomLeft']),
+  coverImageContentPosition: PropTypes.oneOf(['bottomLeft', 'center']),
   coverImageDescription: PropTypes.string,
   coverImageLabel: PropTypes.string,
   coverImageLabelBgColor: PropTypes.string,
