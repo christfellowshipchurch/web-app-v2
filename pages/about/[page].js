@@ -16,8 +16,12 @@ import { CardGrid, Longform, Section, theme } from 'ui-kit';
 import { GET_CONTENT_CHANNEL } from 'hooks/useContentChannel';
 import { Info } from 'phosphor-react';
 
-export default function Page({ data, submenuLinks }) {
+export default function Page({ data = {}, submenuLinks }) {
   const router = useRouter();
+
+  if (data.loading || router.isFallback) {
+    return null;
+  }
 
   const links = submenuLinks.filter(
     ({ node: link }) =>
@@ -139,7 +143,7 @@ export default function Page({ data, submenuLinks }) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const apolloClient = initializeApollo();
 
   const pageResponse = await apolloClient.query({
@@ -164,4 +168,26 @@ export async function getServerSideProps(context) {
         submenuLinks?.data?.node?.childContentItemsConnection?.edges,
     },
   };
+}
+
+
+export async function getStaticPaths() {
+  const apolloClient = initializeApollo();
+
+  const pagesResponse = await apolloClient.query({
+    query: GET_CONTENT_CHANNEL,
+    variables: {
+      itemId: `ContentChannel:${IDS.ABOUT_PAGES}`,
+    },
+  })
+
+  const aboutPages = pagesResponse?.data?.node?.childContentItemsConnection?.edges?.map(({ node }) => node);
+
+  // Get the paths we want to pre-render
+  const paths = aboutPages.map(({ id }) => ({
+    params: { page: getIdSuffix(id) },
+  }))
+
+  // Fallback true - if a page doesn't exist we will render it on the fly.
+  return { paths, fallback: true }
 }
