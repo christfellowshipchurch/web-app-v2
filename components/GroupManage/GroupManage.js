@@ -5,6 +5,8 @@ import { slugify } from 'utils';
 import { Box, List, utils } from 'ui-kit';
 import { CustomLink } from 'components';
 
+import GroupManagePhoto from './GroupManagePhoto';
+
 function GroupManage(props = {}) {
   return (
     <Box maxWidth={utils.rem('600px')} mx="auto">
@@ -26,32 +28,12 @@ function GroupManage(props = {}) {
         <Box as="h1">{props?.data?.title}</Box>
       </Box>
       <Box mb="l">
-        <Photo data={props.data} />
+        <GroupManagePhoto data={props.data} />
       </Box>
       <Box mb="l">
         <Resources data={props.data} />
       </Box>
     </Box>
-  );
-}
-
-function Photo(props = {}) {
-  return (
-    <>
-      <Box alignItems="center" display="flex" mb="s">
-        <Box as="h2" flexGrow="1" mb="0">
-          Photo
-        </Box>
-        <CustomLink href="#0">Update</CustomLink>
-      </Box>
-      <Box
-        as="img"
-        src={props.data?.coverImage?.sources[0]?.uri}
-        alt={`${props?.data?.title} Photo`}
-        borderRadius="base"
-        boxShadow="base"
-      />
-    </>
   );
 }
 
