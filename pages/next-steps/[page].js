@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 
 import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
+import { GET_CONTENT_CHANNEL } from 'hooks/useContentChannel';
 import {
   ArticleLink,
   CampusFilter,
@@ -8,16 +9,17 @@ import {
   MainPhotoHeader,
   MarketingHeadline,
 } from 'components';
+import IDS from 'config/ids';
 import { CardGrid, Longform, Section } from 'ui-kit';
 import { getIdSuffix, getItemId, getMetaData } from 'utils';
 import { initializeApollo } from 'lib/apolloClient';
 
-export default function Page({ data }) {
+export default function Page({ data = {} }) {
   const router = useRouter();
 
   const { loading, error, node = {} } = data;
 
-  if (loading) {
+  if (loading || router.isFallback) {
     return null;
   } else if (error) {
     router.push('/next-steps');
@@ -93,7 +95,7 @@ export default function Page({ data }) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const apolloClient = initializeApollo();
 
   const pageResponse = await apolloClient.query({
@@ -110,4 +112,26 @@ export async function getServerSideProps(context) {
       data: pageResponse?.data || {},
     },
   };
+}
+
+
+export async function getStaticPaths() {
+  const apolloClient = initializeApollo();
+
+  const pagesResponse = await apolloClient.query({
+    query: GET_CONTENT_CHANNEL,
+    variables: {
+      itemId: `ContentChannel:${IDS.NEXT_STEPS_PAGES}`,
+    },
+  })
+
+  const nextStepsPages = pagesResponse?.data?.node?.childContentItemsConnection?.edges?.map(({ node }) => node);
+
+  // Get the paths we want to pre-render
+  const paths = nextStepsPages.map(({ id }) => ({
+    params: { page: getIdSuffix(id) },
+  }))
+
+  // Fallback true - if a page doesn't exist we will render it on the fly.
+  return { paths, fallback: true }
 }

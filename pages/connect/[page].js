@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 
 import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
+import { GET_CONTENT_CHANNEL } from 'hooks/useContentChannel';
 import {
   ArticleLink,
   CampusFilter,
@@ -22,13 +23,13 @@ import { useTheme } from 'styled-components';
 import { GET_STAFF } from 'hooks/useStaff';
 import { GET_MINISTRY_CONTENT } from 'hooks/useMinistryContent';
 
-export default function Page({ data, staff, relatedContent }) {
+export default function Page({ data = {}, staff = [], relatedContent = {} }) {
   const router = useRouter();
   const theme = useTheme();
 
   const { loading, error, node } = data;
 
-  if (loading) {
+  if (loading || router.isFallback) {
     return null;
   } else if (error) {
     router.push('/connect');
@@ -201,15 +202,15 @@ export default function Page({ data, staff, relatedContent }) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps({ params }) {
   const apolloClient = initializeApollo();
 
   const pageResponse = await apolloClient.query({
     query: GET_CONTENT_ITEM,
     variables: {
-      itemId: getItemId(context.params.page),
+      itemId: getItemId(params.page),
     },
-    skip: !context.params.page,
+    skip: !params.page,
   });
 
   let staffResponse;
@@ -237,4 +238,26 @@ export async function getServerSideProps(context) {
       relatedContent: ministryResponse?.data,
     },
   };
+}
+
+// This function gets called at build time
+export async function getStaticPaths() {
+  const apolloClient = initializeApollo();
+
+  const pagesResponse = await apolloClient.query({
+    query: GET_CONTENT_CHANNEL,
+    variables: {
+      itemId: `ContentChannel:${IDS.CONNECT_PAGES}`,
+    },
+  })
+
+  const connectPages = pagesResponse?.data?.node?.childContentItemsConnection?.edges?.map(({ node }) => node);
+
+  // Get the paths we want to pre-render
+  const paths = connectPages.map(({ id }) => ({
+    params: { page: getIdSuffix(id) },
+  }))
+
+  // Fallback true - if a page doesn't exist we will render it on the fly.
+  return { paths, fallback: true }
 }
