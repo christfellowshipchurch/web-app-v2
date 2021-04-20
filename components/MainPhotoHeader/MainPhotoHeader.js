@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { themeGet } from '@styled-system/theme-get';
 
 import { Heading } from 'ui-kit';
 import Styled from './MainPhotoHeader.styles';
@@ -13,13 +14,13 @@ function MainPhotoHeader({
   content,
   imageProps = {},
   ...props
-} = {}) {
+} = {}) {  
   return (
     <Styled.Container {...props}>
       <Styled.Image as="img" src={src} name="main-photo-header" {...imageProps} />
       {overlay && <Styled.Overlay background={overlay} />}
       <Styled.TextContainer
-        display={{ _: 'none', md: content ? 'none' : 'block', xl: 'flex' }}
+        display={"flex"}
       >
         {subtitle && (
           <Heading
@@ -28,6 +29,7 @@ function MainPhotoHeader({
             opacity="50%"
             fontWeight="800"
             textAlign="left"
+            fontSize={{_: 'h3', lg: 'h2'}}
           >
             {subtitle}
           </Heading>
@@ -35,11 +37,11 @@ function MainPhotoHeader({
         {title && (
           <Heading
             color="neutrals.100"
-            fontSize="86px"
-            lineHeight="77.4px"
             fontWeight="800"
             textTransform="uppercase"
             textAlign="left"
+            fontSize={{_: '40px', lg: '86px'}}
+            lineHeight={{_: '36px', lg: '77.4px'}}
           >
             {title}
           </Heading>
