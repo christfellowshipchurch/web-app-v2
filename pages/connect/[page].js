@@ -23,13 +23,13 @@ import { useTheme } from 'styled-components';
 import { GET_STAFF } from 'hooks/useStaff';
 import { GET_MINISTRY_CONTENT } from 'hooks/useMinistryContent';
 
-export default function Page({ data, staff, relatedContent }) {
+export default function Page({ data = {}, staff = [], relatedContent = {} }) {
   const router = useRouter();
   const theme = useTheme();
 
   const { loading, error, node } = data;
 
-  if (loading) {
+  if (loading || router.isFallback) {
     return null;
   } else if (error) {
     router.push('/connect');
