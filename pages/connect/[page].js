@@ -4,6 +4,7 @@ import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
 import { GET_CONTENT_CHANNEL } from 'hooks/useContentChannel';
 import {
   ArticleLink,
+  ArticleLinks,
   CampusFilter,
   EventCallout,
   EventsCallout,
@@ -75,7 +76,7 @@ export default function Page({ data = {}, staff = [], relatedContent = {} }) {
               />
             }
           >
-            {links.map((link) => (
+            {links.map(link => (
               <EventCallout
                 key={link.id}
                 title={link.title}
@@ -90,13 +91,13 @@ export default function Page({ data = {}, staff = [], relatedContent = {} }) {
       {childContent?.length ? (
         <Section>
           <CampusFilter
-            px="xxl"
-            py="xl"
+            px={{ _: 'l', md: 'xxl' }}
+            my={{ _: 'l', md: 'xxl' }}
             filterWidth="200px"
             data={childContent}
           >
             {({ filteredData }) => (
-              <CardGrid columns="2" gridColumnGap="xl">
+              <ArticleLinks>
                 {filteredData.map(({ node }, i) => (
                   <ArticleLink
                     key={node.id}
@@ -108,13 +109,21 @@ export default function Page({ data = {}, staff = [], relatedContent = {} }) {
                     url={node.linkURL || `/page/${getIdSuffix(node.id)}`}
                   />
                 ))}
-              </CardGrid>
+              </ArticleLinks>
             )}
           </CampusFilter>
         </Section>
       ) : null}
       <Section>
-        <CardGrid px="xxl" py="xl" columns={story ? 2 : 1}>
+        <CardGrid
+          px={{ _: 'l', md: 'xxl' }}
+          my={{ _: 'l', md: 'xxl' }}
+          gridTemplateColumns={
+            story
+              ? { _: 'repeat(1, 1fr)', lg: 'repeat(2, 1fr)' }
+              : 'repeat(1, 1fr)'
+          }
+        >
           {cta ? (
             <MarketingHeadline
               image={
@@ -151,8 +160,8 @@ export default function Page({ data = {}, staff = [], relatedContent = {} }) {
       {node.htmlContent && (
         <Section>
           <Longform
-            px="xxl"
-            py="xl"
+            px={{ _: 'l', md: 'xxl' }}
+            my={{ _: 'l', md: 'xxl' }}
             dangerouslySetInnerHTML={{ __html: node.htmlContent }}
           />
         </Section>
@@ -161,8 +170,8 @@ export default function Page({ data = {}, staff = [], relatedContent = {} }) {
         <>
           <PageSplit title="Meet the Staff" />
           <Section
-            px="xl"
-            py="l"
+            px={{ _: 'l', md: 'xxl' }}
+            my={{ _: 'l', md: 'xxl' }}
             display="flex"
             flexWrap="wrap"
             justifyContent="center"
@@ -183,8 +192,8 @@ export default function Page({ data = {}, staff = [], relatedContent = {} }) {
         <>
           <PageSplit title="Connect" />
           <Section
-            px="xl"
-            py="l"
+            px={{ _: 'l', md: 'xxl' }}
+            my={{ _: 'l', md: 'xxl' }}
             display="flex"
             flexWrap="wrap"
             justifyContent="center"
@@ -227,7 +236,7 @@ export async function getStaticProps({ params }) {
     query: GET_MINISTRY_CONTENT,
     variables: {
       ministry: pageResponse?.data?.node?.ministry,
-    }
+    },
   });
 
   return {
@@ -249,15 +258,17 @@ export async function getStaticPaths() {
     variables: {
       itemId: `ContentChannel:${IDS.CONNECT_PAGES}`,
     },
-  })
+  });
 
-  const connectPages = pagesResponse?.data?.node?.childContentItemsConnection?.edges?.map(({ node }) => node);
+  const connectPages = pagesResponse?.data?.node?.childContentItemsConnection?.edges?.map(
+    ({ node }) => node
+  );
 
   // Get the paths we want to pre-render
   const paths = connectPages.map(({ id }) => ({
     params: { page: getIdSuffix(id) },
-  }))
+  }));
 
   // Fallback true - if a page doesn't exist we will render it on the fly.
-  return { paths, fallback: true }
+  return { paths, fallback: true };
 }
