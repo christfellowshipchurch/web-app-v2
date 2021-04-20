@@ -30,7 +30,7 @@ const variant = ({ variant, active }) => props => {
       &:focus,
       &:hover {
         background: none;
-        color: ${themeGet('colors.primaryHover')};
+        color: ${themeGet('colors.neutrals.800')};
         outline: none;
       }
     `;
@@ -112,14 +112,14 @@ const active = ({ active, variant }) => props => {
   if (active && variant === 'link') {
     return css`
       background: none;
-      color: ${themeGet('colors.primaryHover')};
+      color: ${themeGet('colors.neutrals.800')};
       outline: none;
 
       &:active,
       &:focus,
       &:hover {
         background: none;
-        color: ${themeGet('colors.primaryHover')};
+        color: ${themeGet('colors.neutrals.800')};
         outline: none;
       }
     `;
