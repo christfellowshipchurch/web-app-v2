@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import gql from 'graphql-tag';
-import { get, uniq } from 'lodash';
+import uniq from 'lodash/uniq';
 
 const GET_CHECK_IN = gql`
   query getCheckIn($nodeId: ID!) {
@@ -42,8 +42,8 @@ const DO_CHECK_IN = gql`
  * @param {Function} props.onCheckInSuccess Id for the node that we want to check in for.
  */
 const useCheckIn = props => {
-  const nodeId = get(props, 'nodeId');
-  const onCheckInSuccess = get(props, 'onCheckInSuccess');
+  const nodeId = props?.nodeId;
+  const onCheckInSuccess = props?.onCheckInSuccess;
   /** Hooks */
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -96,16 +96,16 @@ const useCheckIn = props => {
     if (loading !== currentLoadState) {
       setLoading(queryLoading || mutationLoading);
     }
-  }, [queryLoading, mutationLoading]);
+  }, [loading, queryLoading, mutationLoading]);
 
   /** Just to be safe, we want to make sure that we always have some default values since
    *  we're deconstrucing this in the return object
    */
-  const checkInId = get(data, 'node.checkin.id');
+  const checkInId = data?.node?.checkin?.id;
   const checkInData = {
-    title: get(data, 'node.checkin.title', ''),
-    message: get(data, 'node.checkin.message', ''),
-    options: get(data, 'node.checkin.options', []),
+    title: data?.node?.checkin?.title || '',
+    message: data?.node?.checkin?.message || '',
+    options: data?.node?.checkin?.options || [],
   };
 
   /**
@@ -132,7 +132,7 @@ const useCheckIn = props => {
     checkInId,
     loading,
     error,
-    enabled: !!get(data, 'node') && !!get(data, 'node.checkin'),
+    enabled: !!data?.node && !!data?.node?.checkin,
     checkInCurrentUser,
     checkInCompleted:
       checkInData.options.filter(o => o.isCheckedIn).length ===
