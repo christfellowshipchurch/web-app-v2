@@ -10,6 +10,7 @@ export const GET_CURRENT_PERSON = gql`
         id
         firstName
         lastName
+        email
         gender
         birthDate
         campus {
