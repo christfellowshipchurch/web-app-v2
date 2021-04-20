@@ -81,6 +81,18 @@ export const GROUP_FRAGMENT = gql`
       start
       end
     }
+    videoCall {
+      labelText
+      link
+      meetingId
+      passcode
+    }
+    parentVideoCall {
+      labelText
+      link
+      meetingId
+      passcode
+    }
     resources {
       ...GroupResourceFragment
     }
