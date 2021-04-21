@@ -22,7 +22,6 @@ Styled.Header = styled.header`
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     display: grid;
     justify-content: flex-start;
-    position: relative;
   }
 
   ${system}
@@ -38,10 +37,9 @@ Styled.LogoContainer = styled(Box)`
   padding: ${themeGet('space.base')} ${themeGet('space.xl')};
   position: ${props => props.active ? 'fixed' : 'relative'};
   width: ${props => props.active ? '100%' : 'auto'};
-        
+
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     justify-content: flex-start;
-    position: relative;
     width: auto;
   }
 

@@ -72,7 +72,7 @@ function FullLengthSermon(props = {}) {
   return (
     <Box display="flex" flexDirection="column">
       <MainPhotoHeader
-        src="/about/schedule.jpeg"
+        src={props.sermon?.coverImage?.sources?.[0].uri || "/about/schedule.jpeg"}
         overlay={{
           _: 'rgba(0, 0, 0, 0.7)',
           lg:
