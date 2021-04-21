@@ -72,7 +72,9 @@ function FullLengthSermon(props = {}) {
   return (
     <Box display="flex" flexDirection="column">
       <MainPhotoHeader
-        src={props.sermon?.coverImage?.sources?.[0].uri || "/about/schedule.jpeg"}
+        src={
+          props.sermon?.coverImage?.sources?.[0].uri || '/about/schedule.jpeg'
+        }
         overlay={{
           _: 'rgba(0, 0, 0, 0.7)',
           lg:
@@ -102,44 +104,56 @@ function FullLengthSermon(props = {}) {
                   },
                 })}
               >
-                {clips.map(clip =>
-                  clip?.node?.videos?.[0]?.sources?.[0]?.uri ? (
-                    <VideoPlayer
-                      key={clip.node?.id}
-                      src={clip.node?.videos?.[0]?.sources?.[0]?.uri}
-                      title={clip.node?.title}
-                      poster={clip.node?.coverImage?.sources?.[0]?.uri}
-                      style={{ width: '100%' }}
-                    />
-                  ) : null
-                )}
+                {clips?.length
+                  ? clips.map(clip =>
+                      clip?.node?.videos?.[0]?.sources?.[0]?.uri ? (
+                        <VideoPlayer
+                          key={clip.node?.id}
+                          src={clip.node?.videos?.[0]?.sources?.[0]?.uri}
+                          title={clip.node?.title}
+                          poster={clip.node?.coverImage?.sources?.[0]?.uri}
+                          style={{ width: '100%' }}
+                        />
+                      ) : null
+                    )
+                  : [
+                      <VideoPlayer
+                        key={props.sermon?.id}
+                        src={props.sermon?.videos?.[0]?.sources?.[0]?.uri}
+                        title={props.sermon?.title}
+                        poster={props.sermon?.coverImage?.sources?.[0]?.uri}
+                        style={{ width: '100%' }}
+                      />,
+                    ]}
               </Carousel>
             </Box>
           </>
         }
         title={props.sermon?.title}
         summary={props.sermon?.summary}
-        subtitle="HIGHLIGHTS FROM"
+        subtitle={clips?.length ? 'HIGHLIGHTS FROM' : ''}
       />
-      <Box
-        display="flex"
-        flexDirection="column"
-        ml={{ _: 'l', md: 'xxl' }}
-        mt={{ _: 'm', lg: '-130px' }}
-        zIndex="2"
-      >
-        <Heading variant="h5" color="neutrals.500">
-          FULL MESSAGE
-        </Heading>
-        <Styled.SermonImage
-          rounded
-          mt="s"
-          src={props.sermon?.coverImage?.sources?.[0]?.uri}
-          onClick={() =>
-            router.push(`/sermon/${getIdSuffix(props.sermon?.id)}`)
-          }
-        />
-      </Box>
+      {clips?.length ? (
+        <Box
+          display="flex"
+          flexDirection="column"
+          ml={{ _: 'l', md: 'xxl' }}
+          mt={{ _: 'm', lg: '-130px' }}
+          zIndex="2"
+        >
+          <Heading variant="h5" color="neutrals.500">
+            FULL MESSAGE
+          </Heading>
+          <Styled.SermonImage
+            rounded
+            mt="s"
+            src={props.sermon?.coverImage?.sources?.[0]?.uri}
+            onClick={() =>
+              router.push(`/sermon/${getIdSuffix(props.sermon?.id)}`)
+            }
+          />
+        </Box>
+      ) : null}
     </Box>
   );
 }
