@@ -14,7 +14,7 @@ export default function Manage(props) {
   const isLoading = state.status === 'LOADING' || state.status === 'RECEIVED';
 
   return (
-    <Layout title={title}>
+    <Layout title={`Manage ${title}`}>
       {isLoading ? (
         <Loader text="Loading your Group" />
       ) : _id ? (
