@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import capitalize from 'lodash/capitalize';
 
 import { slugify } from 'utils';
+import { GroupCoverImagesProvider } from 'providers';
 import { Box, Card, List } from 'ui-kit';
 import { CustomLink } from 'components';
 
@@ -21,7 +22,12 @@ function GroupManage(props = {}) {
   function render() {
     switch (section) {
       case 'PHOTO': {
-        return <GroupManagePhoto data={props.data} />;
+        return (
+          <GroupCoverImagesProvider
+            Component={GroupManagePhoto}
+            groupData={props.data}
+          />
+        );
       }
       case 'RESOURCES': {
         return <GroupManageResources data={props.data} />;

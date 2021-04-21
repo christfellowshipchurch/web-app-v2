@@ -1,23 +1,106 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { Box } from 'ui-kit';
+import { useUpdateGroupCoverImage } from 'hooks';
+import { Box, DefaultCard, Loader } from 'ui-kit';
 import { CustomLink } from 'components';
 
 function GroupManagePhoto(props = {}) {
-  // IDLE, EDITING, SAVING
+  // IDLE, EDITING, SAVING, ERROR
   const [status, setStatus] = useState('IDLE');
+  const [
+    updateGroupCoverImage,
+    { loading: updating },
+  ] = useUpdateGroupCoverImage({
+    // TODO: Update the cache instead. But this works for now.
+    refetchQueries: ['getGroup'],
+    onCompleted: () => setStatus('IDLE'),
+  });
 
   function handleUpdateClick(event) {
     event.preventDefault();
-    setStatus(status === 'IDLE' ? 'SAVING' : 'IDLE');
+    setStatus(status === 'IDLE' ? 'EDITING' : 'IDLE');
   }
 
-  function handleUpdateImageClick(event) {
+  const handleUpdateImageClick = guid => event => {
     event.preventDefault();
     setStatus('SAVING');
-    console.log('Update Image!');
+    try {
+      updateGroupCoverImage({
+        variables: {
+          imageId: guid,
+          groupId: props.groupData.id,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+      setStatus('ERROR');
+    }
+  };
+
+  function render() {
+    if (status === 'IDLE') {
+      return (
+        <Box as="a" href="#0" onClick={handleUpdateClick}>
+          <Box
+            as="img"
+            src={props.groupData?.coverImage?.sources[0]?.uri}
+            alt={`${props.groupData?.title} Photo`}
+            borderRadius="base"
+            boxShadow="base"
+            width="100%"
+          />
+        </Box>
+      );
+    }
+
+    if (status === 'EDITING') {
+      return (
+        <Box>
+          <Box
+            as="h3"
+            color="subdued"
+            fontSize="base"
+            fontWeight="normal"
+            mb="base"
+          >
+            Select an image
+          </Box>
+          <Box
+            display="grid"
+            gridTemplateColumns="repeat(2, 50%)"
+            gridColumnGap="base"
+            gridRowGap="base"
+          >
+            {props.data.map(coverImage => (
+              <Box
+                key={coverImage.guid}
+                as="a"
+                href="#0"
+                onClick={handleUpdateImageClick(coverImage.guid)}
+              >
+                <DefaultCard
+                  coverImage={coverImage.image.sources[0].uri}
+                  coverImageLabel={
+                    currentImage === coverImage.image.sources[0].uri
+                      ? 'Current Image'
+                      : null
+                  }
+                  height="200px"
+                />
+              </Box>
+            ))}
+          </Box>
+        </Box>
+      );
+    }
+
+    return null;
   }
+
+  if (props.loading || updating) return <Loader />;
+
+  const currentImage = props.groupData?.coverImage?.sources[0]?.uri;
 
   return (
     <>
@@ -29,52 +112,14 @@ function GroupManagePhoto(props = {}) {
           {status === 'IDLE' ? 'Update' : 'Cancel'}
         </CustomLink>
       </Box>
-      {status === 'IDLE' ? (
-        <Box as="a" href="#0" onClick={handleUpdateClick}>
-          <Box
-            as="img"
-            src={props.data?.coverImage?.sources[0]?.uri}
-            alt={`${props?.data?.title} Photo`}
-            borderRadius="base"
-            boxShadow="base"
-            width="100%"
-          />
-        </Box>
-      ) : (
-        <Box>
-          <Box
-            as="h3"
-            color="subdued"
-            fontSize="base"
-            fontWeight="normal"
-            mb="s"
-          >
-            Select an image
-          </Box>
-          <Box
-            display="grid"
-            gridTemplateColumns="repeat(2, 50%)"
-            gridColumnGap="base"
-            gridRowGap="base"
-          >
-            <Box as="a" href="#0" onClick={handleUpdateImageClick}>
-              Select Image
-            </Box>
-            <Box as="a" href="#0" onClick={handleUpdateImageClick}>
-              Select Image
-            </Box>
-            <Box as="a" href="#0" onClick={handleUpdateImageClick}>
-              Select Image
-            </Box>
-          </Box>
-        </Box>
-      )}
+      {render()}
     </>
   );
 }
 
 GroupManagePhoto.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.array,
+  groupData: PropTypes.object,
 };
 
 export default GroupManagePhoto;

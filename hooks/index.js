@@ -19,6 +19,7 @@ import useFeedFeatures from './useFeedFeatures';
 import useForm from './useForm';
 import useGroup from './useGroup';
 import useGroupContentId from './useGroupContentId';
+import useGroupCoverImages from './useGroupCoverImages';
 import useGroupPreferences from './useGroupPreferences';
 import useGroups from './useGroups';
 import useLiveStream from './useLiveStream';
@@ -30,6 +31,7 @@ import useRequestPin from './useRequestPin';
 import useSearchContentItems from './useSearchContentItems';
 import useSearchGroups from './useSearchGroups';
 import useUpdateCurrentUser from './useUpdateCurrentUser';
+import useUpdateGroupCoverImage from './useUpdateGroupCoverImage';
 import useUserExists from './useUserExists';
 import useVerifyPin from './useVerifyPin';
 import useDiscoverFilterCategories from './useDiscoverFilterCategories';
@@ -58,6 +60,7 @@ export {
   useForm,
   useGroup,
   useGroupContentId,
+  useGroupCoverImages,
   useGroupPreferences,
   useGroups,
   useLiveStream,
@@ -69,6 +72,7 @@ export {
   useSearchContentItems,
   useSearchGroups,
   useUpdateCurrentUser,
+  useUpdateGroupCoverImage,
   useUserExists,
   useVerifyPin,
   useDiscoverFilterCategories,
