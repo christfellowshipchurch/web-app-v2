@@ -5,6 +5,7 @@ import { useContentItem } from 'hooks';
 
 function ContentItemProvider({ Component, options, ...props }) {
   const { loading, error, item } = useContentItem(options);
+
   return <Component data={item} loading={loading} error={error} {...props} />;
 }
 

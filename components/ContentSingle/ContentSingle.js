@@ -9,8 +9,11 @@ import ContentVideo from './ContentVideo';
 import ContentVideosList from './ContentVideosList';
 
 function ContentSingle(props = {}) {
-  const [currentVideo, setCurrentVideo] = useState(props.data?.videos[0]);
-  const hasMultipleVideos = props.data?.videos.length >= 2;
+  const videos = props.data?.videos || [];
+  const [currentVideo, setCurrentVideo] = useState(
+    Array.isArray(videos) ? videos[0] : null
+  );
+  const hasMultipleVideos = videos.length >= 2;
 
   const handleSelectVideo = video => {
     if (video !== currentVideo) {
@@ -64,6 +67,7 @@ function ContentSingle(props = {}) {
         />
       )}
       htmlContent={props.data.htmlContent}
+      features={props?.data?.featureFeed?.features}
     />
   );
 }

@@ -50,12 +50,11 @@ export const EVENT_ITEM_FRAGMENT = gql`
       }
       location
     }
-    label
+    labelText
     callsToAction {
       call
       action
     }
-    hideLabel
   }
 `;
 
@@ -118,8 +117,9 @@ export const INFORMATIONAL_ITEM_FRAGMENT = gql`
 `;
 
 export const GET_CONTENT_ITEM = gql`
-  query getContentItem($itemId: ID!) {
-    node(id: $itemId) {
+  query getContentItem($pathname: String) {
+    getNodeByPathname(pathname: $pathname) {
+      id
       __typename
       ... on ContentItem {
         ...contentItemFragment
@@ -131,12 +131,11 @@ export const GET_CONTENT_ITEM = gql`
       ... on FeaturesNode {
         featureFeed {
           id
+          features {
+            id
+          }
         }
       }
-    }
-    metadata(relatedNode: $itemId) {
-      name
-      content
     }
   }
 
@@ -148,8 +147,10 @@ export const GET_CONTENT_ITEM = gql`
 
 function useContentItem(options = {}) {
   const query = useQuery(GET_CONTENT_ITEM, options);
+
+  console.log({ query });
   return {
-    item: query?.data?.node || [],
+    item: query?.data?.getNodeByPathname || [],
     ...query,
   };
 }

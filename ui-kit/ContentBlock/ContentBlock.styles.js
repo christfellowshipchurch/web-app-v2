@@ -8,6 +8,7 @@ const gridLayout = ({ gridLayout }) => props => {
   switch (gridLayout) {
     case 'LEFT':
       return css`
+        grid-template-columns: 1fr 1fr;
         grid-template-areas:
           'media'
           'content';
@@ -17,6 +18,7 @@ const gridLayout = ({ gridLayout }) => props => {
       `;
     case 'RIGHT':
       return css`
+        grid-template-columns: 1fr 1fr;
         grid-template-areas:
           'media'
           'content';
@@ -26,6 +28,7 @@ const gridLayout = ({ gridLayout }) => props => {
       `;
     case 'INVERTED':
       return css`
+        grid-template-columns: 1fr;
         grid-template-areas:
           'content'
           'media';
@@ -33,6 +36,7 @@ const gridLayout = ({ gridLayout }) => props => {
     case 'default':
     default:
       return css`
+        grid-template-columns: 1fr;
         grid-template-areas:
           'media'
           'content';
@@ -52,6 +56,7 @@ const Container = styled.div`
 `;
 
 const Content = styled.div`
+  flex: 1;
   align-items: ${props => props.textAlign};
   display: flex;
   flex-direction: column;
@@ -62,6 +67,7 @@ const Content = styled.div`
 `;
 
 const Media = styled.div`
+  flex: 1;
   grid-area: media;
   margin: auto;
 

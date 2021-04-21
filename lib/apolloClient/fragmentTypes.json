@@ -266,6 +266,7 @@
         "name": "FeaturesNode",
         "possibleTypes": [
           { "name": "ContentSeriesContentItem" },
+          { "name": "MediaContentItem" },
           { "name": "WeekendContentItem" }
         ]
       },
