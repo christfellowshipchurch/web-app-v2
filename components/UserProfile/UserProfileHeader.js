@@ -16,7 +16,9 @@ function UserProfileHeader(props = {}) {
         width="150px"
         height="150px"
       />
-      <Box my="base" as="h1">{name}</Box>
+      <Box my="base" as="h1" textAlign={{ _: 'center', lg: 'unset' }}>
+        {name}
+      </Box>
       {/* <UserProfileControls /> */}
     </Box>
   );

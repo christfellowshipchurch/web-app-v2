@@ -16,7 +16,11 @@ function UserProfileContent(props = {}) {
   return (
     <Box
       display="grid"
-      gridTemplateColumns="repeat(3, 33%)"
+      gridTemplateColumns={{
+        _: 'repeat(1, 1fr)',
+        sm: 'repeat(2, 1fr)',
+        md: 'repeat(3, 1fr)',
+      }}
       gridColumnGap="s"
       gridRowGap="s"
       textAlign="center"
