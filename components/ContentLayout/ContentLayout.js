@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { createMarkup } from 'utils';
-import { Box, Card, DefaultCard, Longform } from 'ui-kit';
+import { Box, Card, DefaultCard, Longform, ThemeProvider } from 'ui-kit';
 import { SEO } from 'components';
 
 function ContentLayout(props = {}) {
@@ -95,7 +95,7 @@ function ContentLayout(props = {}) {
   }
 
   return (
-    <>
+    <ThemeProvider mode={props.mode}>
       <SEO title={props.title} />
       {renderA()}
       <Box
@@ -115,7 +115,7 @@ function ContentLayout(props = {}) {
         {renderD()}
         {renderE()}
       </Box>
-    </>
+    </ThemeProvider>
   );
 }
 
@@ -124,10 +124,11 @@ ContentLayout.propTypes = {
   contentTitleE: PropTypes.string,
   coverImage: PropTypes.string,
   htmlContent: PropTypes.string,
+  mode: PropTypes.string,
   renderA: PropTypes.func,
   renderB: PropTypes.func,
-  renderContentB: PropTypes.func,
   renderC: PropTypes.func,
+  renderContentB: PropTypes.func,
   renderContentD: PropTypes.func,
   renderContentE: PropTypes.func,
   renderD: PropTypes.func,

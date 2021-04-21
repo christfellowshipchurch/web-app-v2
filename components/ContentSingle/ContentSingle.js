@@ -22,6 +22,7 @@ function ContentSingle(props = {}) {
 
   return (
     <ContentLayout
+      mode={props.data.mode}
       title={props.data.title}
       summary={props.data.schedule?.friendlyScheduleText || props.data.summary}
       coverImage={currentVideo ? null : coverImage}
