@@ -73,15 +73,26 @@ export default function Watch({ series, watchPages, sermons, liveStreams }) {
         }
       />
       <Section>
-        <CardGrid px="l" py="xl" gridRowGap="l" columns="1">
+        <CardGrid
+          px={{ _: 'l', md: 'xxl' }}
+          my={{ _: 'l', md: 'xxl' }}
+          gridRowGap="l"
+          columns="1"
+        >
           {series.map(seriesNode => (
             <Box key={seriesNode.id} display="flex" flexDirection="column">
               <Box display="flex" justifyContent="space-between" width="100%">
-                <Heading fontSize="xl" lineHeight="xl" fontWeight="700">
+                <Heading
+                  fontSize="xl"
+                  lineHeight="xl"
+                  fontWeight="700"
+                  style={{ wordBreak: 'break-word' }}
+                >
                   {seriesNode.name}
                 </Heading>
                 {seriesNode.childContentItemsConnection?.edges.length > 3 ? (
                   <Heading
+                    ml="xs"
                     fontSize="xl"
                     lineHeight="xl"
                     fontWeight="700"
@@ -96,12 +107,12 @@ export default function Watch({ series, watchPages, sermons, liveStreams }) {
                 ) : null}
               </Box>
               <CardGrid
-                columns="3"
+                gridTemplateColumns={{
+                  _: 'repeat(1, 1fr)',
+                  md: `repeat(2, 1fr)`,
+                  lg: `repeat(3, 1fr)`,
+                }}
                 gridColumnGap="m"
-                breakpoints={[
-                  { breakpoint: 'xl', columns: 2 },
-                  { breakpoint: 'lg', columns: 1 },
-                ]}
                 my="m"
               >
                 {seriesNode.childContentItemsConnection?.edges
@@ -113,7 +124,7 @@ export default function Watch({ series, watchPages, sermons, liveStreams }) {
                       color="white"
                       src={node.coverImage?.sources?.[0].uri}
                       height="350px"
-                      width="400px"
+                      maxWidth="400px"
                       action={() =>
                         router.push(
                           `/watch/${getIdSuffix(seriesNode.id)}/${getIdSuffix(
@@ -132,8 +143,7 @@ export default function Watch({ series, watchPages, sermons, liveStreams }) {
         <>
           <PageSplit title="Other ways to watch" />
           <Section
-            px="xl"
-            py="l"
+            px={{ _: 'l', md: 'xxl' }}
             display="flex"
             flexWrap="wrap"
             justifyContent="center"
@@ -145,6 +155,7 @@ export default function Watch({ series, watchPages, sermons, liveStreams }) {
                 image={{
                   src: page.coverImage?.sources?.[0]?.uri,
                 }}
+                my="l"
                 justify={i % 2 === 0 ? 'left' : 'right'}
                 title={page.title}
                 description={page.summary}

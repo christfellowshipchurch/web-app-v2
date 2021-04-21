@@ -1,6 +1,6 @@
 import { LargeImage, Layout, MainPhotoHeader } from 'components';
 import { GET_MESSAGE_CHANNEL } from 'hooks/useMessageChannel';
-import { Button, Section } from 'ui-kit';
+import { Box, Button, Section } from 'ui-kit';
 import { useRouter } from 'next/router';
 import { getIdSuffix, getItemId, getMetaData } from 'utils';
 import { useTheme } from 'styled-components';
@@ -30,32 +30,39 @@ export default function Channel({ item }) {
 
   return (
     <Layout meta={getMetaData(item)}>
-      <MainPhotoHeader src={item?.coverImage.sources?.[0]?.uri} />
-      <Section
-        my="m"
-        mr={`-${theme.space.m}`}
-        px="xxl"
-        contentProps={{ flexWrap: 'wrap', display: 'flex', justifyContent: 'center' }}
-      >
-        {videos.map(({ node }) => (
-          <LargeImage
-            key={node.id}
-            text={node.title}
-            color="white"
-            src={item.coverImage.sources?.[0].uri}
-            height="350px"
-            flex="0 0 400px"
-            mx="s"
-            mb="m"
-            action={() =>
-              router.push(
-                `/watch/${router.query.series}/${
-                  router.query.channel
-                }/${getIdSuffix(node.id)}`
-              )
-            }
-          />
-        ))}
+      <MainPhotoHeader
+        src={item?.coverImage.sources?.[0]?.uri}
+        title={item?.title}
+      />
+      <Section>
+        <Box
+          display="flex"
+          my="m"
+          mr={`-${theme.space.m}`}
+          px={{ _: 'l', md: 'xxl' }}
+          flexWrap="wrap"
+          justifyContent="center"
+        >
+          {videos.map(({ node }) => (
+            <LargeImage
+              key={node.id}
+              text={node.title}
+              color="white"
+              src={item.coverImage.sources?.[0].uri}
+              height="350px"
+              maxWidth="400px"
+              mr="m"
+              mb="m"
+              action={() =>
+                router.push(
+                  `/watch/${router.query.series}/${
+                    router.query.channel
+                  }/${getIdSuffix(node.id)}`
+                )
+              }
+            />
+          ))}
+        </Box>
       </Section>
       {totalVideoCount > videos.length ? (
         <Button

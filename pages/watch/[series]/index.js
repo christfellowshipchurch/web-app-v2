@@ -26,7 +26,7 @@ export default function Series({ series }) {
           display="flex"
           my="m"
           mr={`-${theme.space.m}`}
-          px="xxl"
+          px={{ _: 'l', md: 'xxl' }}
           flexWrap="wrap"
           justifyContent="center"
         >
@@ -37,7 +37,7 @@ export default function Series({ series }) {
               color="white"
               src={node.coverImage.sources?.[0].uri}
               height="350px"
-              flex="1 0 400px"
+              maxWidth="400px"
               mr="m"
               mb="m"
               action={() =>

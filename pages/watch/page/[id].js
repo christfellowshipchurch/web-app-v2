@@ -28,8 +28,8 @@ export default function Page({ data }) {
       {node.htmlContent && (
         <Section>
           <Longform
-            px="xxl"
             py="xl"
+            px={{ _: 'l', md: 'xxl' }}
             dangerouslySetInnerHTML={{ __html: node.htmlContent }}
           />
         </Section>
