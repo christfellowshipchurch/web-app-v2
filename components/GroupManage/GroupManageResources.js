@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { Box, List } from 'ui-kit';
+import { Box, Button, List, TextInput } from 'ui-kit';
 import { CustomLink } from 'components';
 
 function GroupManageResources(props = {}) {
-  // IDLE, ADD, ADD_LINK, ADD_CONTENT
+  // IDLE, ADD, ADD_LINK, ADD_CONTENT, SAVING_LINK, SAVING_CONTENT
   const [status, setStatus] = useState('IDLE');
 
   function handleAddClick(event) {
@@ -21,6 +21,11 @@ function GroupManageResources(props = {}) {
   function handleAddContentClick(event) {
     event.preventDefault();
     setStatus('ADD_CONTENT');
+  }
+
+  function handleBackClick(event) {
+    event.preventDefault();
+    setStatus('ADD');
   }
 
   function render() {
@@ -39,7 +44,7 @@ function GroupManageResources(props = {}) {
                   display="block"
                   fontSize="s"
                   // TODO: This shouldn't be an inline style.
-                  style={{ 'word-break': 'break-word' }}
+                  style={{ wordBreak: 'break-word' }}
                 >
                   {resource?.relatedNode.url}
                 </Box>
@@ -52,19 +57,51 @@ function GroupManageResources(props = {}) {
 
     if (status === 'ADD') {
       return (
-        <Box display="grid" gridTemplateColumns="repeat(2, 50%)">
-          <Box as="a" href="#0" onClick={handleAddLinkClick}>
-            Link
-          </Box>
-          <Box as="a" href="#0" onClick={handleAddContentClick}>
-            Content
-          </Box>
+        <Box
+          display="grid"
+          gridTemplateColumns="repeat(2, 50%)"
+          gridColumnGap="l"
+        >
+          <Button
+            variant="secondary"
+            onClick={handleAddLinkClick}
+            display="block"
+          >
+            Add URL
+          </Button>
+          <Button
+            variant="secondary"
+            onClick={handleAddContentClick}
+            display="block"
+          >
+            Add Study
+          </Button>
         </Box>
       );
     }
 
     if (status === 'ADD_LINK') {
-      return <Box as="p">Add a link!</Box>;
+      return (
+        <Box as="form">
+          <Box mb="base">
+            <TextInput label="Title" id="title" />
+          </Box>
+          <Box mb="base">
+            <TextInput label="URL" id="url" />
+          </Box>
+          <Box alignItems="center" display="flex">
+            <Button
+              type="submit"
+              status={status === 'SAVING_LINK' ? 'LOADING' : null}
+            >
+              Add Link
+            </Button>
+            <Box as="a" href="#0" onClick={handleBackClick} ml="base">
+              Back
+            </Box>
+          </Box>
+        </Box>
+      );
     }
 
     if (status === 'ADD_CONTENT') {
