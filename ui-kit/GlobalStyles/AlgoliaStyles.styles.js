@@ -1,6 +1,6 @@
 import { css } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
-import Button, { buttonStyles } from 'ui-kit/Button/Button.styles';
+import { buttonStyles } from 'ui-kit/Button/Button.styles';
 
 export default css`
   .ais-InstantSearch {
@@ -9,12 +9,46 @@ export default css`
   }
 
   .ais-InstantSearch > .left-panel {
+    background: ${themeGet('colors.bg')};
+    display: none;
     flex-basis: 250px;
+    flex-shrink: 0;
+    left: 0;
     margin-right: ${themeGet('space.l')};
+    overflow-x: hidden;
+    z-index: 1;
+
+    @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+      display: block !important;
+      margin-right: 0 !important;
+      position: initial !important;
+      padding: 0 !important;
+      padding-bottom: 0 !important;
+    }
+
+    &.filtering {
+      bottom: 0;
+      display: block;
+      overflow-y: auto;
+      padding: ${themeGet('space.m')};
+      padding-bottom: ${themeGet('space.xxl')};
+      position: fixed;
+      top: ${themeGet('space.header')};
+      width: 100%;
+    }
+
   }
 
   .ais-InstantSearch > .right-panel {
     flex: 1;
+
+    &.filtering {
+      display: none;
+    }
+
+    @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+      display: block !important;
+    }
   }
 
   .ais-Panel {
@@ -34,6 +68,17 @@ export default css`
     list-style-type: none;
   }
 
+  .ais-RefinementList-item {
+    font-size: ${themeGet('fontSizes.l')};
+    margin: ${themeGet('space.s')} 0;
+   
+    @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+      display: block;
+      font-size: ${themeGet('fontSizes.s')};
+      margin: ${themeGet('space.xs')} 0;
+    }
+  }
+
   .ais-RefinementList-label {
     align-items: center;
     display: flex;
@@ -41,8 +86,19 @@ export default css`
     margin: ${themeGet('space.xxs')} 0;
   }
 
+  .ais-RefinementList-checkbox {
+    transform: scale(2);
+
+    @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+      transform: unset;
+    }
+  }
+
   .ais-RefinementList-labelText {
-    margin-left: ${themeGet('space.xxs')};
+    margin-left: ${themeGet('space.xs')};
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .ais-RefinementList-count {
@@ -53,13 +109,26 @@ export default css`
     padding: 0 ${themeGet('space.xxs')};
   }
 
+  .ais-ClearRefinements {
+    display: flex;
+    justify-content: center;
+
+    @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+      display: unset !important;
+    }
+  }
+
   .ais-ClearRefinements-button {
     ${buttonStyles}
   }
 
   .ais-SearchBox {
-    margin: 0 auto;
-    width: 700px;
+    margin: ${themeGet('space.m')} auto;
+    padding: 0 ${themeGet('space.m')};
+
+    @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+      width: 700px;
+    }
   }
 
   .ais-SearchBox-input {
@@ -83,6 +152,7 @@ export default css`
   .ais-Hits-list {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     list-style-type: none;
   }
 

@@ -27,6 +27,9 @@ import {
   minWidth,
   size,
   verticalAlign,
+  overflow,
+  overflowY,
+  overflowX,
 
   // Flexbox
   alignContent,
@@ -82,7 +85,6 @@ import {
   backgroundSize,
   boxShadow,
   opacity,
-  overflow,
 } from 'styled-system';
 
 const textDecoration = style({
@@ -115,7 +117,11 @@ export const layout = compose(
   maxWidth,
   minHeight,
   minWidth,
-  size
+  size,
+  verticalAlign,
+  overflow,
+  overflowY,
+  overflowX
 );
 
 export const flexbox = compose(

@@ -10,7 +10,7 @@ Styled.Header = styled.header`
   align-items: center;
   box-shadow: ${themeGet('shadows.base')};
   grid-template-columns: auto 1fr;
-  height: 90px;
+  height: ${themeGet('space.header')};
   justify-content: center;
   width: 100%;
   z-index: 999;
@@ -32,7 +32,7 @@ Styled.LogoContainer = styled(Box)`
   align-items: center;
   align-self: center;
   display: flex;
-  height: 90px;
+  height: ${themeGet('space.header')};
   justify-content: center;
   min-width: 322px;
   padding: ${themeGet('space.base')} ${themeGet('space.xl')};

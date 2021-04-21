@@ -1,4 +1,4 @@
-import { AlgoliaSearch } from 'components/Search/Search';
+import { Search } from 'components';
 import { Heading, Text, Box } from 'ui-kit';
 import Dropdowns from './Dropdowns.styles';
 
@@ -23,10 +23,7 @@ export default function DropdownSearch() {
           Mus scelerisque mauris imperdiet scelerisque semper sed dignissim
           suscipit ullamcorper. Integer od
         </Text>
-        <AlgoliaSearch 
-          width="640px"
-          button={{ color: 'primary', label: 'Search', size: 's' }}
-        />
+        <Search width="640px" />
       </Box>
     </Dropdowns.Container>
   );

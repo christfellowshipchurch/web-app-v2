@@ -7,6 +7,7 @@ import { ClientSideComponent, Dropdowns } from 'components';
 import Styled from './Nav.styles';
 import { useModalDispatch } from 'providers/ModalProvider';
 import { useCurrentUser } from 'hooks';
+import { useTheme } from 'styled-components';
 
 function getMenuItem(menuItem) {
   switch (menuItem) {
@@ -27,6 +28,7 @@ function getMenuItem(menuItem) {
 
 function Nav(props = {}) {
   const router = useRouter();
+  const theme = useTheme();
   const [hoveredItem, setHoveredItem] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const modalDispatch = useModalDispatch();
@@ -98,7 +100,7 @@ function Nav(props = {}) {
                       lg: action.id === hoveredItem ? 'block' : 'none',
                     }}
                     position="absolute"
-                    top="90px"
+                    top={theme.space.header}
                     right="0"
                     zIndex="999"
                   >

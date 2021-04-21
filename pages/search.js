@@ -1,11 +1,23 @@
 import { Layout } from 'components';
-import { AlgoliaSearch } from 'components/Search/Search';
+import { Search } from 'components';
+import { useState } from 'react';
 import { CardGrid, Heading, Text } from 'ui-kit';
 
 export default function SearchPage() {
+  const [filtering, setFiltering] = useState(false);
   return (
-    <Layout title="Search">
-      <CardGrid px="xxl" py="xl" gridColumnGap="xl" columns="1" width="100%">
+    <Layout
+      title="Search"
+      overflowY={filtering ? { _: 'hidden', lg: 'auto' } : 'auto'}
+      height={filtering ? { _: '100vh', lg: '100%' } : '100%'}
+    >
+      <CardGrid
+        px={{ _: 'l', md: 'xxl' }}
+        my={{ _: 'l', md: 'xxl' }}
+        gridColumnGap="xl"
+        columns="1"
+        width="100%"
+      >
         <Heading
           color="neutrals.900"
           variant="h2"
@@ -20,7 +32,7 @@ export default function SearchPage() {
           Mus scelerisque mauris imperdiet scelerisque semper sed dignissim
           suscipit ullamcorper. Integer od
         </Text>
-        <AlgoliaSearch />
+        <Search filtering={filtering} setFiltering={setFiltering} />
       </CardGrid>
     </Layout>
   );

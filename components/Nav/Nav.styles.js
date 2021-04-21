@@ -30,7 +30,7 @@ const Nav = styled.nav`
   box-shadow: ${themeGet('shadows.base')};
   display: ${props => props.active ? 'flex' : 'none'};
   justify-content: center;
-  margin-top: ${props => props.active ? '90px' : '0'};
+  margin-top: ${props => props.active ? themeGet('space.header') : '0'};
   padding: ${themeGet('space.m')} ${themeGet('space.s')};
   position: ${props => props.active ? 'fixed' : 'relative'};
   width: ${props => props.active ? '100%' : 'auto'};
@@ -39,7 +39,7 @@ const Nav = styled.nav`
     background: none;
     box-shadow: none;
     display: flex;
-    height: 90px;
+    height: ${themeGet('space.header')};
     justify-content: flex-start;
     margin-top: 0;
     padding: 0 ${themeGet('space.s')};

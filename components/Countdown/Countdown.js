@@ -1,11 +1,17 @@
 import PropTypes from 'prop-types';
 
 import { Photo } from 'components';
-import { Box, Button, Heading, Text } from 'ui-kit';
+import { Box, Button, Heading } from 'ui-kit';
 import { differenceInDays, differenceInSeconds } from 'date-fns';
 import { useEffect, useState } from 'react';
 
-export default function Countdown({ src, date, onClick, buttonText, ...props }) {
+export default function Countdown({
+  src,
+  date,
+  onClick,
+  buttonText,
+  ...props
+}) {
   const now = new Date();
 
   const [time, setTime] = useState(differenceInSeconds(date, now));
@@ -56,11 +62,7 @@ export default function Countdown({ src, date, onClick, buttonText, ...props }) 
                 >{`Live in ${countdown}`}</Heading>
               </>
             )}
-            <Button
-              size="l"
-              color="primary"
-              onClick={() => onClick?.()}
-            >
+            <Button size="l" color="primary" onClick={() => onClick?.()}>
               {buttonText || 'Join us!'}
             </Button>
           </Box>
