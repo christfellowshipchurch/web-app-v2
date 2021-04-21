@@ -48,22 +48,38 @@ export default function About() {
           alignItems="center"
         >
           <Box as="li">
-            <Button variant="link" onClick={() => setActive('leadership')}>
+            <Button
+              variant="link"
+              active={active === 'leadership'}
+              onClick={() => setActive('leadership')}
+            >
               Leadership
             </Button>
           </Box>
           <Box as="li">
-            <Button variant="link" onClick={() => setActive('beliefs')}>
+            <Button
+              variant="link"
+              active={active === 'beliefs'}
+              onClick={() => setActive('beliefs')}
+            >
               Our Beliefs
             </Button>
           </Box>
           <Box as="li">
-            <Button variant="link" onClick={() => setActive('values')}>
+            <Button
+              variant="link"
+              active={active === 'values'}
+              onClick={() => setActive('values')}
+            >
               Our Values
             </Button>
           </Box>
           <Box as="li">
-            <Button variant="link" onClick={() => setActive('history')}>
+            <Button
+              variant="link"
+              active={active === 'history'}
+              onClick={() => setActive('history')}
+            >
               Our History
             </Button>
           </Box>
