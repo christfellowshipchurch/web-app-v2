@@ -9,7 +9,7 @@ import HorizontalCardListFeature from '../HorizontalCardListFeature';
 import VerticalCardListFeature from '../VerticalCardListFeature';
 import { FeatureProvider } from 'providers';
 import { Box, Divider } from 'ui-kit';
-import { getComponent } from 'utils';
+import { getComponent, htmlToReactParser } from 'utils';
 
 const FEATURE_COMPONENTS = {
   ActionBarFeature,
@@ -17,6 +17,7 @@ const FEATURE_COMPONENTS = {
   ContentBlockFeature,
   HeroListFeature,
   HorizontalCardListFeature,
+  HtmlBlockFeature: ContentBlockFeature,
   VerticalCardListFeature,
 
   // TODO: Implement all Features needed for web

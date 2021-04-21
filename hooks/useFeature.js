@@ -23,6 +23,11 @@ export const GET_FEATURE = gql`
       ...HeroListFeatureFragment
       ...HorizontalCardListFeatureFragment
       ...VerticalCardListFeatureFragment
+
+      ... on HtmlBlockFeature {
+        id
+        htmlContent
+      }
     }
   }
   ${ACTION_BAR_FEATURE_FRAGMENT}

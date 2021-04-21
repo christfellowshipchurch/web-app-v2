@@ -18,7 +18,7 @@ function ContentBlock(props = {}) {
    */
 
   return (
-    <Styled.Container gridLayout={toLower(props.contentLayout)} {...props}>
+    <Styled.Container gridLayout={props.contentLayout} {...props}>
       {(props.image || props.image !== '') && (
         <Styled.Media>
           <Image
@@ -50,7 +50,7 @@ ContentBlock.propTypes = {
   ...systemPropTypes,
   callToAction: PropTypes.object,
   className: PropTypes.string,
-  contentLayout: PropTypes.oneOf(['default', 'inverted', 'left', 'right']),
+  contentLayout: PropTypes.oneOf(['DEFAULT', 'INVERTED', 'LEFT', 'RIGHT']),
   grouped: PropTypes.bool,
   hideTitle: PropTypes.bool,
   htmlContent: PropTypes.string,

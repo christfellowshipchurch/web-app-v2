@@ -6,7 +6,7 @@ const ContentBlock = styled.div``;
 
 const gridLayout = ({ gridLayout }) => props => {
   switch (gridLayout) {
-    case 'left':
+    case 'LEFT':
       return css`
         grid-template-areas:
           'media'
@@ -15,7 +15,7 @@ const gridLayout = ({ gridLayout }) => props => {
           grid-template-areas: 'content media';
         }
       `;
-    case 'right':
+    case 'RIGHT':
       return css`
         grid-template-areas:
           'media'
@@ -24,7 +24,7 @@ const gridLayout = ({ gridLayout }) => props => {
           grid-template-areas: 'media content';
         }
       `;
-    case 'inverted':
+    case 'INVERTED':
       return css`
         grid-template-areas:
           'content'
@@ -44,6 +44,7 @@ const Container = styled.div`
   display: grid;
   grid-column-gap: ${themeGet('space.l')};
   grid-row-gap: ${themeGet('space.l')};
+  justify-content: space-around;
   width: 100%;
 
   ${gridLayout};
