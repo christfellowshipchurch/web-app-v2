@@ -21,6 +21,8 @@ export default function PageDropdown({
   return (
     <Dropdowns.Container {...props}>
       <CardGrid
+        px="l"
+        py="l"
         gridTemplateColumns={{
           _: 'repeat(1, 1fr)',
           md: `repeat(${numColumns > 2 ? 2 : numColumns}, 1fr)`,

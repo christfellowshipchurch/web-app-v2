@@ -8,7 +8,6 @@ const Dropdowns = {};
 export const Container = styled(Box)`
   background: ${themeGet('colors.bg')};
   ${props => props.hideShadow ? null : 'box-shadow: 0px 0px 2px 2px rgb(0 0 0 / 20%);'}
-  padding: ${themeGet('space.l')};
   width: 100%;
 
   ${system}
