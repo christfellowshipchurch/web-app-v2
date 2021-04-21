@@ -7,11 +7,13 @@ function getURLFromType(node) {
     case 'MediaContentItem': {
       return `/sermon/${randomId}`;
     }
+    case 'Person': {
+      return `/staff/${randomId}`;
+    }
     case 'InformationalContentItem':
     case 'EventContentItem':
-    case 'Person':
     default: {
-      return null;
+      return `/page/${randomId}`;
     }
   }
 }
