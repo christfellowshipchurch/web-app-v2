@@ -87,7 +87,7 @@ function FullLengthSermon(props = {}) {
               justifyContent="center"
               height="100%"
               width="100%"
-              display={{ _: 'none', md: 'flex' }}
+              display={{ _: 'none', xl: 'flex' }}
             >
               <Carousel
                 width="100%"
