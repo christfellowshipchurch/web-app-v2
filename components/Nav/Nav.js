@@ -36,7 +36,7 @@ function Nav(props = {}) {
     <Styled.Nav active={props.active}>
       <ClientSideComponent height="100%" width="100%">
         <Styled.QuickActions active={props.active}>
-          {props.data.quickActions.map(action => {
+          {props.data.quickActions.map((action, i) => {
             const Component = getMenuItem(action.id);
             return (
               <Box
@@ -100,6 +100,7 @@ function Nav(props = {}) {
                     position="absolute"
                     top="90px"
                     right="0"
+                    left="0"
                     zIndex="999"
                   >
                     <Component />

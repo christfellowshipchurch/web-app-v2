@@ -32,7 +32,7 @@ const Nav = styled.nav`
   justify-content: center;
   margin-top: ${props => props.active ? '90px' : '0'};
   padding: ${themeGet('space.m')} ${themeGet('space.s')};
-  position: ${props => props.active ? 'fixed' : 'relative'};
+  ${props => props.active ? 'position: fixed;' : ''}
   width: ${props => props.active ? '100%' : 'auto'};
 
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
@@ -88,7 +88,6 @@ const QuickAction = styled.div`
   justify-content: center;
   padding-top: ${themeGet('space.m')};
   padding-bottom: ${themeGet('space.m')};
-  position: relative;
   text-transform: uppercase;
   z-index: 1000;
 
