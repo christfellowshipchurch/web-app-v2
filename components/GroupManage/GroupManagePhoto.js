@@ -21,7 +21,7 @@ function GroupManagePhoto(props = {}) {
 
   return (
     <>
-      <Box alignItems="center" display="flex" mb="s">
+      <Box alignItems="center" display="flex" mb="base">
         <Box as="h2" flexGrow="1" mb="0">
           Photo
         </Box>
@@ -37,6 +37,7 @@ function GroupManagePhoto(props = {}) {
             alt={`${props?.data?.title} Photo`}
             borderRadius="base"
             boxShadow="base"
+            width="100%"
           />
         </Box>
       ) : (

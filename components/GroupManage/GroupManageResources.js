@@ -33,8 +33,14 @@ function GroupManageResources(props = {}) {
                 {resource?.title}
               </Box>
               {resource?.relatedNode.url ? (
-                // TODO: We need `word-break: break-word` for long links.
-                <Box as="span" color="subdued" display="block" fontSize="s">
+                <Box
+                  as="span"
+                  color="subdued"
+                  display="block"
+                  fontSize="s"
+                  // TODO: This shouldn't be an inline style.
+                  style={{ 'word-break': 'break-word' }}
+                >
                   {resource?.relatedNode.url}
                 </Box>
               ) : null}
@@ -70,7 +76,7 @@ function GroupManageResources(props = {}) {
 
   return (
     <>
-      <Box alignItems="center" display="flex" mb="s">
+      <Box alignItems="center" display="flex" mb="base">
         <Box as="h2" flexGrow="1" mb="0">
           Resources
         </Box>
