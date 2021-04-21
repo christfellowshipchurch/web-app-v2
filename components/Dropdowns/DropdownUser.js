@@ -45,6 +45,38 @@ function Profile() {
       <Button mb="xl" onClick={() => dispatch(logout())}>
         Log Out
       </Button>
+    </Box>
+  );
+}
+
+function Login() {
+  const modalDispatch = useModalDispatch();
+
+  return (
+    <Box display="flex" flexDirection="column" alignItems="center">
+      <Button mb="xl" onClick={() => modalDispatch(showModal('Auth'))}>
+        Sign In
+      </Button>
+    </Box>
+  );
+}
+
+export default function DropdownUser() {
+  const router = useRouter();
+  const { authenticated } = useCurrentPerson();
+  return (
+    <Box
+      bg="bg"
+      p="l"
+      position="absolute"
+      width="400px"
+      right="0"
+      boxShadow="0px 0px 2px 2px rgb(0 0 0 / 20%)"
+      alignItems="center"
+      display="flex"
+      flexDirection="column"
+    >
+      {authenticated ? <Profile /> : <Login />}
       <Button
         width="300px"
         borderRadius="base"
@@ -73,34 +105,6 @@ function Profile() {
       >
         Serve
       </Button>
-    </Box>
-  );
-}
-
-function Login() {
-  const modalDispatch = useModalDispatch();
-
-  return (
-    <Box display="flex" flexDirection="column" alignItems="center">
-      <Button mb="xl" onClick={() => modalDispatch(showModal('Auth'))}>
-        Sign In
-      </Button>
-    </Box>
-  );
-}
-
-export default function DropdownUser() {
-  const { authenticated } = useCurrentPerson();
-  return (
-    <Box
-      bg="bg"
-      p="l"
-      position="absolute"
-      width="400px"
-      right="0"
-      boxShadow="0px 0px 2px 2px rgb(0 0 0 / 20%)"
-    >
-      {authenticated ? <Profile /> : <Login />}
     </Box>
   );
 }

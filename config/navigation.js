@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import { Circle, MagnifyingGlass, UserCircle } from 'phosphor-react';
+import { Circle, List, MagnifyingGlass, UserCircle } from 'phosphor-react';
 import { showModal } from 'providers/ModalProvider';
 import { Avatar, Box, Heading, Text, theme } from 'ui-kit';
 
@@ -114,20 +114,24 @@ const navigation = {
       id: 'user',
       action: {
         mobile: profileAction,
-        web: profileAction,
       },
       call: ({ user }) => (
         <Box lineHeight={0.875}>
-          {user?.src ? (
-            <Avatar
-              src={user.src}
-              name={user.name}
-              height="20px"
-              width="20px"
-            />
-          ) : (
-            <UserCircle color={theme.colors.fg} size="20" />
-          )}
+          <Box display={{ _: 'block', lg: 'none' }}>
+            {user?.src ? (
+              <Avatar
+                src={user.src}
+                name={user.name}
+                height="20px"
+                width="20px"
+              />
+            ) : (
+              <UserCircle color={theme.colors.fg} size="20" />
+            )}
+          </Box>
+          <Box display={{ _: 'none', lg: 'block' }}>
+            <List color={theme.colors.fg} size="20" />
+          </Box>
         </Box>
       ),
     },
