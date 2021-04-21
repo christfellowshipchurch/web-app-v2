@@ -19,7 +19,7 @@ function Header(props = {}) {
         </Link>
         <Styled.ListIcon size="22" onClick={() => setActive(!active)} />
       </Styled.LogoContainer>
-      <NavigationProvider Component={Nav} active={active} />
+      <NavigationProvider Component={Nav} active={active} setActive={setActive} />
     </Styled.Header>
   );
 }

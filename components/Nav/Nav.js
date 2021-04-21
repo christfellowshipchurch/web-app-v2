@@ -34,10 +34,12 @@ function Nav(props = {}) {
   const modalDispatch = useModalDispatch();
   const { authenticated } = useCurrentUser();
 
+  const { active, setActive } = props;
+
   return (
-    <Styled.Nav active={props.active}>
+    <Styled.Nav active={active}>
       <ClientSideComponent height="100%" width="100%">
-        <Styled.QuickActions active={props.active}>
+        <Styled.QuickActions active={active}>
           {props.data.quickActions.map((action, i) => {
             const Component = getMenuItem(action.id);
             return (
@@ -80,6 +82,7 @@ function Nav(props = {}) {
                   }}
                   onTouchEnd={() => {
                     setHoveredItem(null);
+                    setActive(false);
                     const mobileAction = action.action?.mobile;
 
                     if (typeof mobileAction === 'string') {

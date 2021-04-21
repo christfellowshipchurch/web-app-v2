@@ -16,9 +16,9 @@ function Modal(props = {}) {
 
   return (
     <Styled {...props}>
-      <Styled.Content width={props.width}>
+      <Styled.Content width={{ _: 'auto', lg: props.width }}>
         <Styled.Close onClick={handleClose}>
-          <Icon name="x" size="30" />
+          <Icon name="x" size="30" stroke="black" fill="black" />
           <Box as="span" className="srt">
             Close
           </Box>

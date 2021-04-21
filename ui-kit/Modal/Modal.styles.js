@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
-import { system } from 'ui-kit';
+import { Box, system } from 'ui-kit';
 
 const Modal = styled.div`
   position: relative;
@@ -19,18 +19,26 @@ const Close = styled.button`
   top: ${themeGet('space.base')};
 `;
 
-const Content = styled.div`
+const Content = styled(Box)`
   background-color: ${themeGet('colors.white')};
-  border-radius: ${themeGet('radii.base')};
+  bottom: 0;
   box-shadow: ${themeGet('shadows.xl')};
-  left: 50%;
-  margin-top: -${themeGet('space.xxl')};
+  left: 0;
   padding: ${themeGet('space.l')};
   position: fixed;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: ${props => props.width};
-  z-index: 10;
+  right: 0;
+  top: 0;
+  z-index: 999;
+
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    border-radius: ${themeGet('radii.base')};
+    left: 50%;
+    margin-top: -${themeGet('space.xxl')};
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  ${system}
 `;
 
 const Overlay = styled.div`
