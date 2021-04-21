@@ -1,9 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { themeGet } from '@styled-system/theme-get';
 
 import { createMarkup } from 'utils';
-import { Box, Card, DefaultCard, Longform, ThemeProvider } from 'ui-kit';
+import {
+  Box,
+  Card,
+  Cell,
+  DefaultCard,
+  Longform,
+  ThemeProvider,
+  utils,
+} from 'ui-kit';
 import { SEO } from 'components';
+
+const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
 
 function ContentLayout(props = {}) {
   function renderA() {
@@ -96,24 +107,33 @@ function ContentLayout(props = {}) {
 
   return (
     <ThemeProvider mode={props.mode}>
-      <SEO title={props.title} />
-      {renderA()}
-      <Box
-        alignItems="center"
-        display={{ lg: 'grid' }}
-        gridTemplateColumns="70% 30%"
-        mb="l"
-      >
-        {renderB()}
-        {renderC()}
-      </Box>
-      <Box
-        display={{ lg: 'grid' }}
-        gridTemplateColumns="65% 1fr"
-        gridColumnGap="l"
-      >
-        {renderD()}
-        {renderE()}
+      <Box backgroundColor={'bg'} color={'fg'}>
+        <Cell
+          as="main"
+          maxWidth={props.contentMaxWidth}
+          px={props.contentHorizontalPadding}
+          py={props.contentVerticalPadding}
+        >
+          <SEO title={props.title} />
+          {renderA()}
+          <Box
+            alignItems="center"
+            display={{ lg: 'grid' }}
+            gridTemplateColumns="70% 30%"
+            mb="l"
+          >
+            {renderB()}
+            {renderC()}
+          </Box>
+          <Box
+            display={{ lg: 'grid' }}
+            gridTemplateColumns="65% 1fr"
+            gridColumnGap="l"
+          >
+            {renderD()}
+            {renderE()}
+          </Box>
+        </Cell>
       </Box>
     </ThemeProvider>
   );
@@ -134,6 +154,12 @@ ContentLayout.propTypes = {
   renderD: PropTypes.func,
   renderE: PropTypes.func,
   title: PropTypes.string,
+};
+
+ContentLayout.defaultProps = {
+  contentMaxWidth: DEFAULT_CONTENT_WIDTH,
+  contentHorizontalPadding: 'base',
+  contentVerticalPadding: { _: 'l', lg: 'xl' },
 };
 
 export default ContentLayout;
