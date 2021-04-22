@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { CustomLink } from '..';
 import { HorizontalHighlightCard, CardCarousel } from 'ui-kit';
-import { getURLFromType } from 'utils';
+import { getUrlFromRelatedNode } from 'utils';
 
 function HorizontalCardListFeature(props = {}) {
   if (!props?.data?.cards) {
@@ -36,7 +36,7 @@ function HorizontalCardListFeature(props = {}) {
             key={i}
             mx="s"
             boxShadow="none"
-            href={getURLFromType(card.relatedNode, card.title)}
+            href={getUrlFromRelatedNode(card?.relatedNode)}
             Component={HorizontalHighlightCard}
             coverImage={card?.coverImage?.sources[0]?.uri || '/cf-logo.png'}
             coverImageOverlay={true}

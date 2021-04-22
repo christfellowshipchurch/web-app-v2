@@ -228,6 +228,11 @@ const RELATED_FEATURE_NODE_FRAGMENT = gql`
     ... on ContentChannel {
       name
     }
+    ... on NodeRoute {
+      routing {
+        pathname
+      }
+    }
   }
 `;
 

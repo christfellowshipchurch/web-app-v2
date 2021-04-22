@@ -4,7 +4,7 @@ import dropRight from 'lodash/dropRight';
 
 import { CustomLink } from '..';
 import { Box, CardGrid, DefaultCard, RowCard } from 'ui-kit';
-import { getURLFromType } from 'utils';
+import { getURLFromType, getUrlFromRelatedNode } from 'utils';
 
 function HeroListFeature(props = {}) {
   const heroCard = props?.data?.heroCard;
@@ -21,15 +21,21 @@ function HeroListFeature(props = {}) {
     cards = dropRight(cards, 1);
   }
 
+  let href = '/';
+
+  if (heroCard?.relatedNode.url) {
+    href = heroCard?.relatedNode.url;
+  }
+
+  if (heroCard?.relatedNode?.routing?.pathname) {
+    href = heroCard?.relatedNode?.routing?.pathname;
+  }
+
   return (
     <Box>
       <CustomLink
         as="a"
-        href={getURLFromType({
-          id: 'HeroListFeature:51290385701923875',
-          title: 'blah',
-        })}
-        // href={getURLFromType(heroCard.relatedNode, heroCard.title)}
+        href={getUrlFromRelatedNode(heroCard?.relatedNode)}
         Component={DefaultCard}
         coverImage={heroCard?.coverImage?.sources[0]?.uri}
         coverImageOverlay={true}
@@ -45,7 +51,7 @@ function HeroListFeature(props = {}) {
             <CustomLink
               as="a"
               key={i}
-              href={getURLFromType(card?.relatedNode, card?.title)}
+              href={getUrlFromRelatedNode(card?.relatedNode)}
               Component={RowCard}
               coverImage={card?.image?.sources[0]?.uri}
               coverImageOverlay={true}

@@ -233,6 +233,19 @@
       },
       {
         "kind": "INTERFACE",
+        "name": "NodeRoute",
+        "possibleTypes": [
+          { "name": "UniversalContentItem" },
+          { "name": "DevotionalContentItem" },
+          { "name": "MediaContentItem" },
+          { "name": "ContentSeriesContentItem" },
+          { "name": "WeekendContentItem" },
+          { "name": "EventContentItem" },
+          { "name": "InformationalContentItem" }
+        ]
+      },
+      {
+        "kind": "INTERFACE",
         "name": "ThemedNode",
         "possibleTypes": [
           { "name": "UniversalContentItem" },
