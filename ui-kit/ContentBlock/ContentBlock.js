@@ -29,9 +29,9 @@ function ContentBlock(props = {}) {
         </Styled.Media>
       )}
       <Styled.Content textAlign={horizontalLayout ? 'flex-start' : 'center'}>
-        {(props.title || props.subtitle) && (
+        {(props.title || props.summary) && (
           <>
-            <Styled.Subtitle>{props.subtitle}</Styled.Subtitle>
+            <Styled.Subtitle>{props.summary}</Styled.Subtitle>
             <Styled.Title>{props.title}</Styled.Title>
           </>
         )}
@@ -59,7 +59,7 @@ ContentBlock.propTypes = {
   images: PropTypes.array,
   openLinksInNewTab: PropTypes.bool,
   secondaryCallToAction: PropTypes.object,
-  subtitle: PropTypes.string,
+  summary: PropTypes.string,
   textAlignment: PropTypes.string,
   title: PropTypes.string,
   variant: PropTypes.oneOf(['light', 'dark']),

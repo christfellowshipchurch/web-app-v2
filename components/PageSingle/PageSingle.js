@@ -28,19 +28,33 @@ function PageSingle(props = {}) {
       contentHorizontalPadding={0}
       contentVerticalPadding={0}
     >
-      <Styled.Hero coverImage={props?.data?.coverImage?.sources[0]?.uri}>
-        <Box as="h1">{props?.data?.title}</Box>
-      </Styled.Hero>
+      {props?.data?.coverImage && (
+        <Styled.Hero
+          coverImage={props?.data?.coverImage?.sources[0]?.uri}
+          title={props?.data?.title}
+        ></Styled.Hero>
+      )}
 
       <ContentLayout
         summary={props?.data?.subtitle}
-        renderA={() => (
-          <Box as="p" fontSize="l" maxWidth="840px" margin="auto">
-            <Longform
-              dangerouslySetInnerHTML={createMarkup(props?.data?.htmlContent)}
-            />
-          </Box>
-        )}
+        renderA={() => {
+          return (
+            props?.data?.title && (
+              <Box fontSize="l" maxWidth="840px" margin="auto">
+                <Box as="h1" textAlign="center">
+                  {props?.data?.title}
+                </Box>
+                {props?.data?.htmlContent && (
+                  <Longform
+                    dangerouslySetInnerHTML={createMarkup(
+                      props?.data?.htmlContent
+                    )}
+                  />
+                )}
+              </Box>
+            )
+          );
+        }}
         features={props?.data?.featureFeed?.features}
       />
     </Layout>

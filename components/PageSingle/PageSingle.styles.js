@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
 import { system } from 'ui-kit';
@@ -9,20 +9,10 @@ const PageSingle = styled.div`
 `;
 
 const Hero = styled.div`
-  align-items: center;
-  background-image: linear-gradient(
-      rgba(000, 000, 000, 0.3) 0%,
-      rgba(000, 000, 000, 0.6) 100%
-    ),
-    url(${props => props.coverImage});
+  background-image: url(${props => props.coverImage});
   background-position: center;
   background-size: cover;
-  color: ${themeGet('colors.white')} ${system};
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: ${themeGet('space.xxl')} ${themeGet('space.l')};
-  text-align: center;
+  padding-top: 42.85%;
   margin-bottom: ${themeGet('space.l')};
 `;
 

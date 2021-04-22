@@ -19,7 +19,6 @@ const ContentBlockFeature = props => {
     <Box maxWidth={1100} mx="auto">
       <ContentBlock
         title={content?.title}
-        subtitle={content?.subtitle}
         summary={content?.summary}
         htmlContent={content?.htmlContent}
         image={content?.coverImage?.sources[0]?.uri}
