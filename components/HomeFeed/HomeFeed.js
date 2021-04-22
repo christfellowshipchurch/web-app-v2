@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { ArrowRight } from 'phosphor-react';
-import { gql, useQuery } from '@apollo/client';
 
 import {
   ArticleLink,
@@ -9,59 +8,16 @@ import {
   LargeImage,
   MainPhotoHeader,
   MarketingHeadline,
-  Quote,
   ConnectTiles,
   VideoPlayer,
   ArticleLinks,
 } from 'components';
 import { Box, CardGrid, Heading, Section, Text, theme } from 'ui-kit';
 import { useRouter } from 'next/router';
-import IDS from 'config/ids';
 import { getIdSuffix } from 'utils';
 import Styled from './HomeFeed.styles';
 import { useCurrentUser } from 'hooks';
 import usePersonaFeed from 'hooks/usePersonaFeed';
-
-const HomeQuote = () => {
-  const { data } = useQuery(gql`
-    {
-      node(id: "ContentChannel:${IDS.STORIES}") {
-        id
-        ... on ContentChannel {
-          childContentItemsConnection {
-            edges {
-              node {
-                id
-                title
-                summary
-                coverImage {
-                  sources {
-                    uri
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  `);
-
-  const quote = data?.node?.childContentItemsConnection?.edges[0]?.node;
-
-  return quote ? (
-    <Quote
-      color="quaternary"
-      alignment="left"
-      title={quote.title}
-      attribution={quote.attribution}
-      actionLabel="Full story"
-      actionLink={`/page/${getIdSuffix(quote.id)}`}
-      text={quote.summary}
-      avatar={quote.coverImage?.sources[0]?.uri}
-    />
-  ) : null;
-};
 
 function FullLengthSermon(props = {}) {
   const router = useRouter();
@@ -189,6 +145,9 @@ function HomeFeedArticles({ articles }) {
 function HomeFeedCTA({ authenticated }) {
   return authenticated && false ? (
     <MarketingHeadline
+      image={{
+        src: '/watch.jpeg',
+      }}
       title={
         <>
           <Heading color="neutrals.900" variant="h2" fontWeight="800">
@@ -211,6 +170,9 @@ function HomeFeedCTA({ authenticated }) {
     />
   ) : (
     <MarketingHeadline
+      image={{
+        src: '/watch.jpeg',
+      }}
       title={
         <>
           <Heading color="neutrals.900" variant="h2" fontWeight="800">
@@ -247,10 +209,10 @@ function HomeFeedContent(props = {}) {
           <HomeFeedArticles articles={miniArticles} />,
           <HomeFeedLargeArticle article={largeArticle} />,
         ],
-        [<HomeFeedCTA authenticated={props.authenticated} />, <HomeQuote />],
+        [<HomeFeedCTA authenticated={props.authenticated} />],
       ]
     : [
-        [<HomeFeedCTA authenticated={props.authenticated} />, <HomeQuote />],
+        [<HomeFeedCTA authenticated={props.authenticated} />],
         [
           <HomeFeedLargeArticle article={largeArticle} />,
           <HomeFeedArticles articles={miniArticles} />,
@@ -262,7 +224,7 @@ function HomeFeedContent(props = {}) {
       <Section>
         <CardGrid
           gridColumnGap="l"
-          columns="2"
+          columns={content[0].length}
           breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
           px={{ _: 'l', md: 'xxl' }}
           my={{ _: 'l', md: 'xxl' }}
@@ -274,7 +236,7 @@ function HomeFeedContent(props = {}) {
       <Section>
         <CardGrid
           gridColumnGap="l"
-          columns="2"
+          columns={content[1].length}
           breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
           px={{ _: 'l', md: 'xxl' }}
           my={{ _: 'l', md: 'xxl' }}

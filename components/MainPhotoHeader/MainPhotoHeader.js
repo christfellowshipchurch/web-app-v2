@@ -12,7 +12,7 @@ function MainPhotoHeader({
   overlay = {
     _: 'rgba(0, 0, 0, 0.7)',
     lg:
-      'linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%), url(.jpg);',
+      'linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);',
   },
   content,
   justifyText="flex-end",
