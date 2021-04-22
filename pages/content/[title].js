@@ -15,7 +15,7 @@ export default function Content(props) {
   const { title } = router.query;
 
   return (
-    <Layout title={title}>
+    <Layout>
       <ContentItemProvider
         Component={ContentSingle}
         options={{
