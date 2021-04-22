@@ -6,41 +6,59 @@ import { Box, Avatar } from 'ui-kit';
 import { ContentLayout, Share } from 'components';
 
 function ContentSingle(props = {}) {
+  const {
+    __typename,
+    author,
+    coverImage,
+    htmlContent,
+    publishDate,
+    schedule,
+    summary,
+    title,
+  } = props.data;
+
+  const coverImageUri = coverImage?.sources[0]?.uri;
+  const authorName = author
+    ? `${author?.firstName} ${author?.lastName}`
+    : undefined;
+
   return (
     <ContentLayout
-      title={props.data.title}
-      summary={props.data.schedule?.friendlyScheduleText}
-      coverImage={props.data?.coverImage?.sources[0]?.uri}
+      title={title}
+      seo={{
+        description: summary || schedule?.friendlyScheduleText,
+        image: coverImageUri,
+        author: authorName,
+      }}
+      summary={summary || schedule?.friendlyScheduleText}
+      coverImage={coverImageUri}
       renderC={() => (
         <Box justifySelf="flex-end" alignSelf="start">
-          <Share title={props.data?.title} />
+          <Share title={title} />
         </Box>
       )}
-      contentTitleD="About"
+      contentTitleD={__typename === 'EventContentItem' ? 'About' : null}
       renderContentB={() =>
-        props.data?.author?.firstName && (
+        author && (
           <Box display="flex" mt="base">
             <Box mr="base">
               <Avatar
-                name={props.data?.author?.firstName}
-                source={props.data?.author?.photo?.uri}
+                name={author.firstName}
+                source={author.photo?.uri}
                 height="60px"
                 width="60px"
               />
             </Box>
             <Box display="flex" justifyContent="center" flexDirection="column">
-              <Box
-                as="h4"
-                mb="0"
-              >{`${props.data?.author?.firstName} ${props.data?.author?.lastName}`}</Box>
-              <Box>
-                {format(new Date(props.data?.publishDate), 'MMM d, yyyy')}
+              <Box as="h4" mb="0">
+                {authorName}
               </Box>
+              <Box>{format(new Date(publishDate), 'MMMM d, yyyy')}</Box>
             </Box>
           </Box>
         )
       }
-      htmlContent={props.data.htmlContent}
+      htmlContent={htmlContent}
     />
   );
 }

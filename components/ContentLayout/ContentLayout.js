@@ -96,7 +96,7 @@ function ContentLayout(props = {}) {
 
   return (
     <>
-      <SEO title={props.title} />
+      <SEO title={props.title} meta={props.seo} />
       {renderA()}
       <Box
         alignItems="center"
@@ -132,6 +132,7 @@ ContentLayout.propTypes = {
   renderContentE: PropTypes.func,
   renderD: PropTypes.func,
   renderE: PropTypes.func,
+  seo: PropTypes.object,
   title: PropTypes.string,
 };
 
