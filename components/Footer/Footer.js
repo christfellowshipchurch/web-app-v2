@@ -10,9 +10,7 @@ import FooterLinks from './FooterLinks';
 
 function Footer(props = {}) {
   return (
-    <Styled
-      {...props}
-    >
+    <Styled {...props}>
       <Styled.Grid
         breakpoints={[{ breakpoint: 'md', columns: 1 }]}
         gridTemplateColumns="270px 1fr"
@@ -26,9 +24,21 @@ function Footer(props = {}) {
           gridTemplateColumns="repeat(4, 1fr)"
           gridColumnGap="l"
         >
-          <FooterLinks channelId={IDS.ABOUT_PAGES} baseRoute="/about" title="About" />
-          <FooterLinks channelId={IDS.NEXT_STEPS_PAGES} baseRoute="/next-steps" title="Next Steps" />
-          <FooterLinks channelId={IDS.CONNECT_PAGES} baseRoute="/connect" title="Connect" />
+          <FooterLinks
+            channelId={IDS.ABOUT_PAGES}
+            baseRoute="/about"
+            title="About"
+          />
+          <FooterLinks
+            channelId={IDS.NEXT_STEPS_PAGES}
+            baseRoute="/next-steps"
+            title="Next Steps"
+          />
+          <FooterLinks
+            channelId={IDS.CONNECT_PAGES}
+            baseRoute="/connect"
+            title="Connect"
+          />
           <QuickLinks />
         </CardGrid>
       </Styled.Grid>
@@ -61,24 +71,30 @@ function Contact() {
           (615) 824-4006
         </Styled.Link>
         <Box>
-          <FacebookLogo
-            size="32"
-            color={theme.colors.neutrals[100]}
-            style={{ opacity: '60%', marginRight: theme.space.s }}
-            weight="fill"
-          />
-          <TwitterLogo
-            size="32"
-            color={theme.colors.neutrals[100]}
-            style={{ opacity: '60%', marginRight: theme.space.s }}
-            weight="fill"
-          />
-          <InstagramLogo
-            size="32"
-            color={theme.colors.neutrals[100]}
-            style={{ opacity: '60%' }}
-            weight="fill"
-          />
+          <a href="https://www.facebook.com/longhollow">
+            <FacebookLogo
+              size="32"
+              color={theme.colors.neutrals[100]}
+              style={{ opacity: '60%', marginRight: theme.space.s }}
+              weight="fill"
+            />
+          </a>
+          <a href="https://twitter.com/longhollow">
+            <TwitterLogo
+              size="32"
+              color={theme.colors.neutrals[100]}
+              style={{ opacity: '60%', marginRight: theme.space.s }}
+              weight="fill"
+            />
+          </a>
+          <a href="https://www.instagram.com/longhollow/">
+            <InstagramLogo
+              size="32"
+              color={theme.colors.neutrals[100]}
+              style={{ opacity: '60%' }}
+              weight="fill"
+            />
+          </a>
         </Box>
       </Box>
     </Styled.Contact>
