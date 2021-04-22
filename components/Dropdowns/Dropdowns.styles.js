@@ -1,5 +1,5 @@
 import { themeGet } from '@styled-system/theme-get';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { Box, Button as _Button, system } from 'ui-kit';
 
@@ -7,7 +7,8 @@ const Dropdowns = {};
 
 export const Container = styled(Box)`
   background: ${themeGet('colors.bg')};
-  ${props => props.hideShadow ? null : 'box-shadow: 0px 0px 2px 2px rgb(0 0 0 / 20%);'}
+  ${props =>
+    props.hideShadow ? null : css`box-shadow: ${themeGet('shadows.nav')};`}
   width: 100%;
 
   ${system}

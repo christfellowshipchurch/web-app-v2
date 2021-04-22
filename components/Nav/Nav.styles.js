@@ -16,8 +16,6 @@ const hovered = ({ hovered, hasDropdown }) => props => {
   return css`
     @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
       background-color: ${color};
-      ${hovered && 'box-shadow: 0px 0px 2px 2px rgb(0 0 0 / 20%);'}
-      ${hovered && hasDropdown ? 'clip-path: inset(-5px -5px 0 -5px);' : null}
     }
   `;
 };
