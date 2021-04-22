@@ -32,13 +32,12 @@ Styled.ImageContainer = styled(Box)`
   ${props =>
     props.backdrop &&
     css`
-      border-radius: ${themeGet('radii.image')};
-      overflow: hidden;
+      bottom: 0;
       left: 50%;
       max-height: 60vh;
       position: absolute;
-      bottom: 0;
       transform: translate(-50%, 0);
+      width: 80vw;
 
       @media screen and (max-width: ${themeGet('breakpoints.lg')}) {
         width: 80vw;
@@ -57,6 +56,7 @@ Styled.Image = styled(Image)`
   ${props =>
     props.backdrop &&
     css`
+      border-radius: ${themeGet('radii.image')};
       max-height: 60vh;
       object-fit: contain;
       width: auto;
