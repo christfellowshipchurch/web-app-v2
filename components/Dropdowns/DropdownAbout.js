@@ -1,6 +1,7 @@
 import PageDropdown from './PageDropdown';
 import useContentChannel from 'hooks/useContentChannel';
 import IDS from 'config/ids';
+import { Loader } from 'ui-kit';
 
 export default function DropdownAbout({ ...props }) {
   const { content, loading } = useContentChannel({
@@ -9,16 +10,16 @@ export default function DropdownAbout({ ...props }) {
     },
   });
 
-  if (loading || !content.edges) {
-    return null;
+  if (loading) {
+    return <PageDropdown loading />;
   }
 
   const featuredItems = content.edges
-    .filter(({ node }) => node.isFeatured)
-    .map(({ node }) => node);
+    ?.filter(({ node }) => node.isFeatured)
+    ?.map(({ node }) => node);
   const nonFeaturedItems = content.edges
-    .filter(({ node }) => !node.isFeatured)
-    .map(({ node }) => node);
+    ?.filter(({ node }) => !node.isFeatured)
+    ?.map(({ node }) => node);
 
   return (
     <PageDropdown

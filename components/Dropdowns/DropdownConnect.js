@@ -9,14 +9,23 @@ export default function DropdownConnect({ ...props }) {
     },
   });
 
-  if (loading || !content.edges) {
-    return null;
+  if (loading) {
+    return <PageDropdown loading />;
   }
 
-  const featuredItems = content.edges.filter(({ node }) => node.isFeatured).map(({ node }) => node);
-  const nonFeaturedItems = content.edges.filter(({ node }) => !node.isFeatured).map(({ node }) => node);
+  const featuredItems = content.edges
+    ?.filter(({ node }) => node.isFeatured)
+    ?.map(({ node }) => node);
+  const nonFeaturedItems = content.edges
+    ?.filter(({ node }) => !node.isFeatured)
+    ?.map(({ node }) => node);
 
   return (
-    <PageDropdown featuredItems={featuredItems} nonFeaturedItems={nonFeaturedItems} baseRoute="/connect" {...props} />
+    <PageDropdown
+      featuredItems={featuredItems}
+      nonFeaturedItems={nonFeaturedItems}
+      baseRoute="/connect"
+      {...props}
+    />
   );
 }
