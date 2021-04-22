@@ -56,7 +56,7 @@ function Nav(props = {}) {
             const Component = getMenuItem(action.id);
             return (
               <Box
-                key={action.action}
+                key={action.id}
                 // Don't show hover state on mobile
                 onTouchEnd={() => {
                   setHoveredItem(null);
