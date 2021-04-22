@@ -21,16 +21,6 @@ function HeroListFeature(props = {}) {
     cards = dropRight(cards, 1);
   }
 
-  let href = '/';
-
-  if (heroCard?.relatedNode.url) {
-    href = heroCard?.relatedNode.url;
-  }
-
-  if (heroCard?.relatedNode?.routing?.pathname) {
-    href = heroCard?.relatedNode?.routing?.pathname;
-  }
-
   return (
     <Box>
       <CustomLink
