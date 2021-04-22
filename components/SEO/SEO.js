@@ -33,14 +33,24 @@ function SEO(props = {}) {
       <meta property="og:url" content={props.meta.url} />
       <meta name="twitter:url" content={props.meta.url} />
       {/* Author */}
-      <meta name="author" content={props.meta.author} />,
-      <meta property="og:article:author" content={props.meta.author} />
-      <meta name="twitter:creator" content={props.meta.author} />
+      {props.meta.author && (
+        <>
+          <meta name="author" content={props.meta.author} />,
+          <meta property="og:article:author" content={props.meta.author} />
+          <meta name="twitter:creator" content={props.meta.author} />
+        </>
+      )}
       {/* Image */}
-      <meta property="og:image" content={props.meta.image} />
-      <meta name="twitter:image" content={props.meta.image} />
+      {props.meta.image && (
+        <>
+          <meta property="og:image" content={props.meta.image} />
+          <meta name="twitter:image" content={props.meta.image} />
+        </>
+      )}
       {/* Video */}
-      <meta property="og:video" content={props.meta.video} />
+      {props.meta.video && (
+        <meta property="og:video" content={props.meta.video} />
+      )}
       {/* Misc. */}
       <meta
         name="viewport"

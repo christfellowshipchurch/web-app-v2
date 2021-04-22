@@ -9,7 +9,7 @@ const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
 function Layout(props = {}) {
   return (
     <>
-      <SEO title={props.title} />
+      {props.title && <SEO title={props.title} />}
       <Box display="flex" flexDirection="column" height="100vh">
         <Header />
         <Box flexGrow="1">
