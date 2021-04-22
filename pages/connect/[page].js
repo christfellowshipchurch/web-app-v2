@@ -64,6 +64,7 @@ export default function Page({ data = {}, staff = [], relatedContent = {} }) {
       {links?.length ? (
         <Section>
           <EventsCallout
+            mx={{ _: 0, lg: 'xl' }}
             title="News & Events"
             icon={
               <Info

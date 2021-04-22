@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Styled from './EventsCallout.styles';
 import { useTheme } from 'styled-components';
 
-function EventsCallout({ icon, title, ...props } = {}) {
+function EventsCallout({ icon, title, children, ...props } = {}) {
   const theme = useTheme();
 
   return (
@@ -11,10 +11,11 @@ function EventsCallout({ icon, title, ...props } = {}) {
       height={{ _: 'auto', lg: theme.space.xl }}
       zIndex={1}
       position="relative"
+      {...props}
     >
       <Styled
         floater
-        width={{ _: 'auto', lg: theme.breakpoints.sm}}
+        width={{ _: 'auto', lg: theme.breakpoints.sm }}
         position={{ _: 'initial', lg: 'absolute' }}
       >
         <Box display="flex" alignItems="center" mb="m">
@@ -28,7 +29,7 @@ function EventsCallout({ icon, title, ...props } = {}) {
             {title}
           </Text>
         </Box>
-        {props.children}
+        {children}
       </Styled>
     </Box>
   );

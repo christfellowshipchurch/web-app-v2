@@ -42,6 +42,7 @@ export default function Page({ data = {}, submenuLinks }) {
       {links.length ? (
         <Section>
           <EventsCallout
+            mx={{ _: 0, lg: 'xl' }}
             title="About Long Hollow"
             icon={
               <Info
