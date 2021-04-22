@@ -285,7 +285,7 @@ function HomeFeedContent(props = {}) {
           {content[1][1]}
         </CardGrid>
       </Section>
-      <FullWidthCTA pt="171px" pb="77px" justifyContent="flex-start">
+      <FullWidthCTA pt="171px" pb="171px" justifyContent="flex-start">
         <Heading fontSize="66px" color="bg" fontWeight="bold">
           Take Your Next Step
         </Heading>
