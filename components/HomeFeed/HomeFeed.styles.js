@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
-import { Image, system } from 'ui-kit';
+import { Box, Image, system } from 'ui-kit';
 import { Circle } from 'phosphor-react';
 
 const Styled = {};
@@ -18,12 +18,17 @@ Styled.Circle = styled(Circle)`
   ${system}
 `;
 
-Styled.SermonImage = styled(Image)`
+Styled.SermonContainer = styled(Box)`
   cursor: pointer;
+  position: relative;
+  width: 300px;
+`;
+
+Styled.SermonImage = styled(Image)`
   height: 200px;
   // This is causing the image to disappear in Chrome
   // object-fit: cover;
-  width: 300px;
+  width: 100%;
 
   ${system}
 `;
