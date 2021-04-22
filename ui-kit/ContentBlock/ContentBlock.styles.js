@@ -46,7 +46,6 @@ const gridLayout = ({ gridLayout }) => props => {
 
 const Container = styled.div`
   display: grid;
-  grid-column-gap: ${themeGet('space.l')};
   grid-row-gap: ${themeGet('space.l')};
   justify-content: space-around;
   width: 100%;
@@ -62,6 +61,7 @@ const Content = styled.div`
   flex-direction: column;
   grid-area: content;
   justify-content: center;
+  padding: ${themeGet('space.l')};
 
   ${system};
 `;
