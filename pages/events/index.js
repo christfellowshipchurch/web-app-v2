@@ -13,6 +13,8 @@ export default function Events(props = {}) {
     },
   };
 
+  console.log('HELLO');
+
   return (
     <Layout title="Events">
       <FeatureFeedProvider Component={FeatureFeed} options={options} />

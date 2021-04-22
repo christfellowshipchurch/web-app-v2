@@ -6,6 +6,8 @@ import { Box, Avatar, Icon } from 'ui-kit';
 const AvatarListFeature = ({
   data: { people, onPressItem, primaryAction, isLoading },
 }) => {
+  console.log({ people });
+
   return (
     <>
       {people.map(person => (
@@ -18,7 +20,7 @@ const AvatarListFeature = ({
           >
             <Avatar
               name={person.firstName}
-              source={person.photo.uri}
+              src={person.photo.uri}
               height="80px"
               width="80px"
             />
