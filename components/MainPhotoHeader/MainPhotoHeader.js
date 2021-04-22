@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { themeGet } from '@styled-system/theme-get';
 
 import { Heading } from 'ui-kit';
 import Styled from './MainPhotoHeader.styles';
@@ -10,18 +9,26 @@ function MainPhotoHeader({
   title,
   subtitle,
   summary,
-  overlay,
+  overlay = {
+    _: 'rgba(0, 0, 0, 0.7)',
+    lg:
+      'linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%), url(.jpg);',
+  },
   content,
+  justifyText="flex-end",
   imageProps = {},
   ...props
-} = {}) {  
+} = {}) {
   return (
     <Styled.Container {...props}>
-      <Styled.Image as="img" src={src} name="main-photo-header" {...imageProps} />
+      <Styled.Image
+        as="img"
+        src={src}
+        name="main-photo-header"
+        {...imageProps}
+      />
       {overlay && <Styled.Overlay background={overlay} />}
-      <Styled.TextContainer
-        display={"flex"}
-      >
+      <Styled.TextContainer display={'flex'} justifyContent={justifyText}>
         {subtitle && (
           <Heading
             color="neutrals.100"
@@ -29,7 +36,7 @@ function MainPhotoHeader({
             opacity="50%"
             fontWeight="800"
             textAlign="left"
-            fontSize={{_: 'h3', lg: 'h2'}}
+            fontSize={{ _: 'h3', lg: 'h2' }}
           >
             {subtitle}
           </Heading>
@@ -40,8 +47,8 @@ function MainPhotoHeader({
             fontWeight="800"
             textTransform="uppercase"
             textAlign="left"
-            fontSize={{_: '40px', lg: '86px'}}
-            lineHeight={{_: '36px', lg: '77.4px'}}
+            fontSize={{ _: '40px', lg: '86px' }}
+            lineHeight={{ _: '36px', lg: '77.4px' }}
           >
             {title}
           </Heading>

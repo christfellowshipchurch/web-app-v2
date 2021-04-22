@@ -34,11 +34,11 @@ Styled.Overlay = styled(Box)`
 
 Styled.TextContainer = styled(Box)`
   height: 100%;
-  justify-content: center;
   flex-direction: column;
   left: ${themeGet('space.s')};
   top: 0;
   max-width: 640px;
+  padding-bottom: ${themeGet('space.xl')};
   pointer-events: none;
   position: absolute;
   z-index: 1;

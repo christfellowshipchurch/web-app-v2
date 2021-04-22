@@ -28,11 +28,7 @@ export default function Watch({ series, watchPages, sermons, liveStreams }) {
         title="Join us live"
         subtitle="UPCOMING"
         summary="Watch live on Sundays at 8:00, 9:30, and 11:15 a.m."
-        overlay={{
-          _: 'rgba(0, 0, 0, 0.7)',
-          lg:
-            'linear-gradient(89.49deg, #1c1617 -16.61%, rgba(28, 22, 23, 0) 99.62%)',
-        }}
+        justifyText="center"
         content={
           <>
             <Box
