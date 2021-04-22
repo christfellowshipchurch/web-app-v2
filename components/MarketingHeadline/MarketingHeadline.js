@@ -34,6 +34,7 @@ function MarketingHeadline({
       width="100%"
       justifyContent={justify === 'right' ? 'flex-end' : 'flex-start'}
       flexWrap="wrap"
+      mt="s"
     >
       {actions.map(({ variant, color, onClick, label = 'Go' }, i) => (
         <StyledButton
@@ -43,7 +44,6 @@ function MarketingHeadline({
           onClick={onClick}
           mr={justify === 'left' && 's'}
           ml={justify === 'right' && 's'}
-          mt="s"
         >
           {label}
         </StyledButton>
@@ -101,6 +101,7 @@ function MarketingHeadline({
             opacity="60%"
             width={sideContent ? '85%' : '66%'}
             whiteSpace="pre"
+            mt="xs"
           >
             {splitString(description)}
           </Text>
@@ -111,7 +112,7 @@ function MarketingHeadline({
             color="neutrals.900"
             opacity="30%"
             width="66%"
-            mt="m"
+            mt="xs"
           >
             {splitString(details)}
           </Text>

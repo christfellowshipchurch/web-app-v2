@@ -1,7 +1,6 @@
 import PageDropdown from './PageDropdown';
 import useContentChannel from 'hooks/useContentChannel';
 import IDS from 'config/ids';
-import { Loader } from 'ui-kit';
 
 export default function DropdownAbout({ ...props }) {
   const { content, loading } = useContentChannel({

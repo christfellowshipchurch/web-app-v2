@@ -2,8 +2,9 @@ import { ArrowCircleRight } from 'phosphor-react';
 import { useRouter } from 'next/router';
 import { Photo } from 'components';
 import Dropdowns from './Dropdowns.styles';
-import { Box, CardGrid, Heading, Loader, theme } from 'ui-kit';
+import { Box, CardGrid, Heading, Loader } from 'ui-kit';
 import { getIdSuffix } from 'utils';
+import { useTheme } from 'styled-components';
 
 export default function PageDropdown({
   featuredItems = [],
@@ -13,6 +14,7 @@ export default function PageDropdown({
   ...props
 }) {
   const router = useRouter();
+  const theme = useTheme();
 
   const hasNonFeaturedItems = Boolean(nonFeaturedItems.length);
 
@@ -91,7 +93,11 @@ export default function PageDropdown({
                   >
                     {item.title}
                   </Heading>
-                  <ArrowCircleRight size="32" color="white" />
+                  <ArrowCircleRight
+                    size="32"
+                    color="white"
+                    style={{ minWidth: '32px', marginLeft: theme.space.xs }}
+                  />
                 </Dropdowns.NonFeaturedItem>
               ))}
             </Box>
