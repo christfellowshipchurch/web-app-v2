@@ -13,7 +13,7 @@ const Longform = styled.div`
   > ul,
   > ol {
     margin-left: ${themeGet('space.base')};
-
+    font-size: 1rem;
     > li:not(:last-child) {
       margin-bottom: ${themeGet('space.xs')};
     }
@@ -26,6 +26,21 @@ const Longform = styled.div`
 
   img {
     border-radius: ${themeGet('radii.image')};
+  }
+
+  h1 {
+    font-size: ${themeGet('fontSizes.h1')};
+    line-height: ${themeGet('lineHeights.h1')};
+  }
+
+  h2 {
+    font-size: ${themeGet('fontSizes.h2')};
+    line-height: ${themeGet('lineHeights.h2')};
+  }
+
+  h3 {
+    font-size: ${themeGet('fontSizes.h3')};
+    line-height: ${themeGet('lineHeights.h3')};
   }
 
   h4 {

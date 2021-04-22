@@ -20,18 +20,18 @@ function EventCallout({
     >
       <Image
         mr="s"
-        height="80px"
-        width="80px"
+        height="60px"
+        width="60px"
         src={imageSrc}
         rounded
         bg="neutrals.300"
         style={{ objectFit: 'cover' }}
       />
       <Box display="flex" flexDirection="column">
-        <Text color="neutrals.900" variant="h4" fontWeight="700">
+        <Text color="neutrals.900" fontWeight="700">
           {title}
         </Text>
-        <Text color="neutrals.900" variant="h4" fontWeight="400">
+        <Text color="neutrals.900" fontWeight="400">
           {description}
         </Text>
       </Box>

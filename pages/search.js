@@ -30,10 +30,8 @@ export function SearchPageContent({ filtering, setFiltering }) {
         maxWidth="700px"
         textAlign="center"
       >
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Blandit lectus
-        elementum montes, ut fringilla dignissim donec massa interdum. Mus
-        scelerisque mauris imperdiet scelerisque semper sed dignissim suscipit
-        ullamcorper. Integer od
+        Search for sermons and events. Filter by categories such as campus or
+        schedule. You can even search for staff!
       </Text>
       <Search filtering={filtering} setFiltering={setFiltering} />
     </CardGrid>
