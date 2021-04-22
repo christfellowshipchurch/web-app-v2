@@ -51,7 +51,7 @@ export const NonFeaturedItem = styled(Box)`
   width: 100%;
   background: ${themeGet('colors.primary')};
   border-radius: ${themeGet('radii.image')};
-  height: 66px;
+  height: 106px;
   display: flex;
   padding: 0 ${themeGet('space.l')};
   align-items: center;
