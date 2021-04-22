@@ -72,9 +72,7 @@ function FullLengthSermon(props = {}) {
   return (
     <Box display="flex" flexDirection="column">
       <MainPhotoHeader
-        src={
-          props.sermon?.coverImage?.sources?.[0].uri || '/about/schedule.jpeg'
-        }
+        src={props.sermon?.coverImage?.sources?.[0].uri || '/schedule.jpeg'}
         justifyText="center"
         content={
           <>
