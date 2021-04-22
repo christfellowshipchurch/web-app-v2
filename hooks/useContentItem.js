@@ -148,7 +148,6 @@ export const GET_CONTENT_ITEM = gql`
 function useContentItem(options = {}) {
   const query = useQuery(GET_CONTENT_ITEM, options);
 
-  console.log({ query });
   return {
     item: query?.data?.getNodeByPathname || [],
     ...query,
