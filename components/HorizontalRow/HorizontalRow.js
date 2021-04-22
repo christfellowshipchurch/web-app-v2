@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { ArrowRight } from 'phosphor-react';
 
 import { Box, Heading, Text, theme } from 'ui-kit';
+import { Photo } from 'components';
 import { noop } from 'utils';
 
-import Styled, { StyledCardGrid, StyledImage } from './HorizontalRow.styles';
+import Styled, { StyledCardGrid, RowItem } from './HorizontalRow.styles';
 
 function HorizontalRow({
   title,
@@ -48,7 +49,30 @@ function HorizontalRow({
       <StyledCardGrid>
         {items.map((item, i) => {
           return (
-            <StyledImage key={i} src={item.src} onClick={item.action} rounded {...imageProps} />
+            <RowItem>
+              <Photo
+                key={i}
+                src={item.src}
+                onClick={item.action}
+                rounded
+                imageProps={{
+                  width: '310px',
+                  height: '226px',
+                  objectFit: 'cover',
+                  cursor: 'pointer',
+                }}
+                inner={
+                  <Heading fontWeight="600" variant="h2" color="white">
+                    {item.title}
+                  </Heading>
+                }
+                overlay={{
+                  color: theme.colors.almost_black,
+                  opacity: '30%',
+                }}
+                {...imageProps}
+              />
+            </RowItem>
           );
         })}
       </StyledCardGrid>

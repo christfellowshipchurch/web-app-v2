@@ -1,17 +1,7 @@
 import { themeGet } from '@styled-system/theme-get';
 import styled from 'styled-components';
 
-import { CardGrid, Image, system } from 'ui-kit';
-
-export const StyledImage = styled(Image)`
-  object-fit: cover;
-  width: 310px;
-  max-height: 218px;
-
-  ${props => props.onClick ? 'cursor: pointer;' : null}
-
-  ${system}
-`;
+import { CardGrid, system } from 'ui-kit';
 
 export const StyledCardGrid = styled(CardGrid)`
   @media screen and (max-width: 1200px) {
@@ -30,6 +20,12 @@ const Styled = styled.div`
   margin-left: auto;
   margin-right: auto;
 
+  ${system}
+`;
+
+export const RowItem = styled.div`
+  cursor: pointer;
+  text-align: center;
   ${system}
 `;
 
