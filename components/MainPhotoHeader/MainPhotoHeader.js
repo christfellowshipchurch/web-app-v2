@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Heading } from 'ui-kit';
+import { Box, Heading } from 'ui-kit';
 import Styled from './MainPhotoHeader.styles';
 
 function MainPhotoHeader({
@@ -23,54 +23,65 @@ function MainPhotoHeader({
   return (
     <Styled.Container {...props}>
       {backdrop && <Styled.Backdrop src={src} />}
-      <Styled.ImageContainer backdrop={backdrop}>
+      {backdrop ? (
         <Styled.Image
           as="img"
           src={src}
           name="main-photo-header"
-          backdrop={backdrop}
-          rounded={backdrop}
+          backdrop
+          rounded
           {...imageProps}
         />
-        {overlay && <Styled.Overlay background={overlay} />}
-      </Styled.ImageContainer>
-      <Styled.TextContainer display={'flex'} justifyContent={justifyText}>
-        {subtitle && (
-          <Heading
-            color="neutrals.100"
-            variant="h2"
-            opacity="50%"
-            fontWeight="800"
-            textAlign="left"
-            fontSize={{ _: 'h3', lg: 'h2' }}
-          >
-            {subtitle}
-          </Heading>
-        )}
-        {title && (
-          <Heading
-            color="neutrals.100"
-            fontWeight="800"
-            textTransform="uppercase"
-            textAlign="left"
-            fontSize={{ _: '40px', lg: '86px' }}
-            lineHeight={{ _: '36px', lg: '77.4px' }}
-          >
-            {title}
-          </Heading>
-        )}
-        {summary && (
-          <Heading
-            color="neutrals.100"
-            variant="h3"
-            fontWeight="700"
-            maxWidth="360px"
-            textAlign="left"
-          >
-            {summary}
-          </Heading>
-        )}
-      </Styled.TextContainer>
+      ) : (
+        <Styled.ImageContainer>
+          <Styled.Image
+            as="img"
+            src={src}
+            name="main-photo-header"
+            {...imageProps}
+          />
+          {overlay && <Styled.Overlay background={overlay} />}
+        </Styled.ImageContainer>
+      )}
+      {(subtitle || title || summary) && (
+        <Styled.TextContainer display={'flex'} justifyContent={justifyText}>
+          {subtitle && (
+            <Heading
+              color="neutrals.100"
+              variant="h2"
+              opacity="50%"
+              fontWeight="800"
+              textAlign="left"
+              fontSize={{ _: 'h3', lg: 'h2' }}
+            >
+              {subtitle}
+            </Heading>
+          )}
+          {title && (
+            <Heading
+              color="neutrals.100"
+              fontWeight="800"
+              textTransform="uppercase"
+              textAlign="left"
+              fontSize={{ _: '40px', lg: '86px' }}
+              lineHeight={{ _: '36px', lg: '77.4px' }}
+            >
+              {title}
+            </Heading>
+          )}
+          {summary && (
+            <Heading
+              color="neutrals.100"
+              variant="h3"
+              fontWeight="700"
+              maxWidth="360px"
+              textAlign="left"
+            >
+              {summary}
+            </Heading>
+          )}
+        </Styled.TextContainer>
+      )}
       {content}
     </Styled.Container>
   );

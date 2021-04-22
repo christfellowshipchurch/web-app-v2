@@ -23,26 +23,19 @@ Styled.Backdrop = styled(Box)`
   margin-bottom: ${themeGet('space.xl')};
   width: 100%;
 
+  @media screen and (max-width: ${themeGet('breakpoints.lg')}) {
+    height: 40vh;
+  }
+
+  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+    height: 20vh;
+  }
+
   ${system}
 `;
 
 Styled.ImageContainer = styled(Box)`
   max-height: 80vh;
-
-  ${props =>
-    props.backdrop &&
-    css`
-      bottom: 0;
-      left: 50%;
-      max-height: 60vh;
-      position: absolute;
-      transform: translate(-50%, 0);
-      width: 80vw;
-
-      @media screen and (max-width: ${themeGet('breakpoints.lg')}) {
-        width: 80vw;
-      }
-    `}
 
   ${system}
 `;
@@ -57,9 +50,23 @@ Styled.Image = styled(Image)`
     props.backdrop &&
     css`
       border-radius: ${themeGet('radii.image')};
+      bottom: 0;
+      height: 100%;
+      left: 50%;
       max-height: 60vh;
       object-fit: contain;
+      margin: 0 ${themeGet('space.xl')};
+      position: absolute;
+      transform: translate(calc(-50% - ${themeGet('space.xl')}), 0);
       width: auto;
+
+      @media screen and (max-width: ${themeGet('breakpoints.lg')}) {
+        height: 40vh;
+      }
+
+      @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+        height: 20vh;
+      }
     `}
 
   ${system}

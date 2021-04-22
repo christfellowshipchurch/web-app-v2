@@ -17,8 +17,8 @@ export default function Page({ data }) {
         backdrop
         overlay=""
       />
-      <Section>
-        <Box px="xxl" pt="xl" pb="m">
+      <Section px={{ _: 'l', lg: 'xxl' }} my={{ _: 'l', lg: 'xxl' }}>
+        <Box>
           {data.subtitle && (
             <Heading
               fontSize="h2"
@@ -47,7 +47,7 @@ export default function Page({ data }) {
               lineHeight="h3"
               color="fg"
               fontWeight="700"
-              my="m"
+              mt="m"
             >
               {data.summary}
             </Heading>
@@ -55,32 +55,27 @@ export default function Page({ data }) {
         </Box>
       </Section>
       {data.htmlContent && (
-        <Section>
-          <Longform
-            px="xxl"
-            pt="m"
-            pb="l"
-            dangerouslySetInnerHTML={{ __html: data.htmlContent }}
-          />
+        <Section px={{ _: 'l', lg: 'xxl' }} my={{ _: 'l', lg: 'xxl' }}>
+          <Longform dangerouslySetInnerHTML={{ __html: data.htmlContent }} />
         </Section>
       )}
       {data.ctaLinks?.length ? (
-        <Section>
-          <Box px="xl" py="l">
-            <Box
-              px="xl"
-              py="l"
-              display="flex"
-              flexWrap="wrap"
-              justifyContent="center"
-              alignItems="center"
-            >
-              {data.ctaLinks?.map((cta, i) => (
-                <Button key={i} onClick={() => router.push(cta.buttonLink)}>
-                  {cta.buttonText}
-                </Button>
-              ))}
-            </Box>
+        <Section px={{ _: 'l', lg: 'xxl' }} my={{ _: 'l', lg: 'xxl' }}>
+          <Box
+            display="flex"
+            flexWrap="wrap"
+            justifyContent="center"
+            alignItems="center"
+          >
+            {data.ctaLinks?.map((cta, i) => (
+              <Button
+                key={i}
+                onClick={() => router.push(cta.buttonLink)}
+                m="xs"
+              >
+                {cta.buttonText}
+              </Button>
+            ))}
           </Box>
         </Section>
       ) : null}
