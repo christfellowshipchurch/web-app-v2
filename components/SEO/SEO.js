@@ -16,7 +16,7 @@ function getPageTitle(title) {
 
 function SEO(props = {}) {
   const pageTitle = getPageTitle(props.title);
-
+  console.log('props.meta:', props.meta);
   return (
     <Head>
       {/* Title */}
@@ -24,33 +24,31 @@ function SEO(props = {}) {
       <meta property="og:title" content={props.title} />
       <meta name="twitter:title" content={props.title} />
       {/* Keywords */}
-      <meta name="keywords" content={props.meta.keywords} />
+      <meta name="keywords" content={props.keywords} />
       {/* Description */}
-      <meta name="description" content={props.meta.description} />
-      <meta property="og:description" content={props.meta.description} />
-      <meta name="twitter:description" content={props.meta.description} />
+      <meta name="description" content={props.description} />
+      <meta property="og:description" content={props.description} />
+      <meta name="twitter:description" content={props.description} />
       {/* URL */}
-      <meta property="og:url" content={props.meta.url} />
-      <meta name="twitter:url" content={props.meta.url} />
+      <meta property="og:url" content={props.url} />
+      <meta name="twitter:url" content={props.url} />
       {/* Author */}
-      {props.meta.author && (
+      {props.author && (
         <>
-          <meta name="author" content={props.meta.author} />,
-          <meta property="og:article:author" content={props.meta.author} />
-          <meta name="twitter:creator" content={props.meta.author} />
+          <meta name="author" content={props.author} />,
+          <meta property="og:article:author" content={props.author} />
+          <meta name="twitter:creator" content={props.author} />
         </>
       )}
       {/* Image */}
-      {props.meta.image && (
+      {props.image && (
         <>
-          <meta property="og:image" content={props.meta.image} />
-          <meta name="twitter:image" content={props.meta.image} />
+          <meta property="og:image" content={props.image} />
+          <meta name="twitter:image" content={props.image} />
         </>
       )}
       {/* Video */}
-      {props.meta.video && (
-        <meta property="og:video" content={props.meta.video} />
-      )}
+      {props.video && <meta property="og:video" content={props.video} />}
       {/* Misc. */}
       <meta
         name="viewport"
@@ -62,25 +60,21 @@ function SEO(props = {}) {
 }
 
 SEO.propTypes = {
-  meta: PropTypes.shape({
-    author: PropTypes.string,
-    description: PropTypes.string,
-    image: PropTypes.string,
-    keywords: PropTypes.string,
-    url: PropTypes.string,
-    video: PropTypes.string,
-  }),
+  author: PropTypes.string,
+  description: PropTypes.string,
+  image: PropTypes.string,
+  keywords: PropTypes.string,
   title: PropTypes.string,
+  url: PropTypes.string,
+  video: PropTypes.string,
 };
 
 SEO.defaultProps = {
-  meta: {
-    description: DEFAULT_DESCRIPTION,
-    image: DEFAULT_IMAGE,
-    keywords: DEFAULT_KEYWORDS,
-    url: DEFAULT_URL,
-  },
+  description: DEFAULT_DESCRIPTION,
+  image: DEFAULT_IMAGE,
+  keywords: DEFAULT_KEYWORDS,
   title: DEFAULT_TITLE,
+  url: DEFAULT_URL,
 };
 
 export default SEO;

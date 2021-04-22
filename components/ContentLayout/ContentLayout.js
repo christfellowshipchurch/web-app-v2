@@ -96,7 +96,7 @@ function ContentLayout(props = {}) {
 
   return (
     <>
-      <SEO title={props.title} meta={props.seo} />
+      <SEO title={props.title} {...props.seoMetaTags} />
       {renderA()}
       <Box
         alignItems="center"
@@ -134,6 +134,10 @@ ContentLayout.propTypes = {
   renderE: PropTypes.func,
   seo: PropTypes.object,
   title: PropTypes.string,
+};
+
+ContentLayout.defaultProps = {
+  seoMetaTags: {},
 };
 
 export default ContentLayout;

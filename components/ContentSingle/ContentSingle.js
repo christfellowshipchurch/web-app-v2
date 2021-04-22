@@ -9,15 +9,6 @@ import ContentVideo from './ContentVideo';
 import ContentVideosList from './ContentVideosList';
 
 function ContentSingle(props = {}) {
-  const [currentVideo, setCurrentVideo] = useState(props.data?.videos[0]);
-  const hasMultipleVideos = props.data?.videos.length >= 2;
-
-  const handleSelectVideo = video => {
-    if (video !== currentVideo) {
-      setCurrentVideo(video);
-    }
-  };
-
   const {
     __typename,
     author,
@@ -27,20 +18,32 @@ function ContentSingle(props = {}) {
     schedule,
     summary,
     title,
+    videos = [],
   } = props.data;
 
   const coverImageUri = coverImage?.sources[0]?.uri;
   const authorName = author
-    ? `${author?.firstName} ${author?.lastName}`
+    ? `${author.firstName} ${author.lastName}`
     : undefined;
+
+  const [currentVideo, setCurrentVideo] = useState(videos[0]);
+  const hasMultipleVideos = videos?.length >= 2;
+
+  const handleSelectVideo = video => {
+    if (video !== currentVideo) {
+      setCurrentVideo(video);
+    }
+  };
 
   return (
     <ContentLayout
       title={title}
-      seo={{
+      seoMetaTags={{
         description: schedule?.friendlyScheduleText || summary,
         image: coverImageUri,
         author: authorName,
+        url: typeof window !== 'undefined' ? window.location.href : undefined,
+        video: videos[0].sources[0].uri,
       }}
       summary={schedule?.friendlyScheduleText || summary}
       coverImage={currentVideo ? null : coverImageUri}
@@ -56,8 +59,8 @@ function ContentSingle(props = {}) {
       contentTitleE={hasMultipleVideos ? 'Videos' : null}
       renderContentE={() => (
         <ContentVideosList
-          thumbnail={coverImage}
-          videos={props.data?.videos}
+          thumbnail={coverImageUri}
+          videos={videos}
           onSelectVideo={handleSelectVideo}
         />
       )}
