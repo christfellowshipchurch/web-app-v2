@@ -28,12 +28,12 @@ const Nav = styled.nav`
   align-items: center;
   background-color: ${themeGet('colors.bg')};
   box-shadow: ${themeGet('shadows.base')};
-  display: ${props => props.active ? 'flex' : 'none'};
+  display: ${props => (props.active ? 'flex' : 'none')};
   justify-content: center;
-  margin-top: ${props => props.active ? themeGet('space.header') : '0'};
+  margin-top: ${props => (props.active ? themeGet('space.header') : '0')};
   padding: ${themeGet('space.m')} ${themeGet('space.s')};
-  ${props => props.active ? 'position: fixed;' : ''}
-  width: ${props => props.active ? '100%' : 'auto'};
+  ${props => (props.active ? 'position: fixed;' : '')}
+  width: ${props => (props.active ? '100%' : 'auto')};
 
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     background: none;
@@ -67,7 +67,7 @@ const Link = styled.a`
 const QuickActions = styled.div`
   align-items: center;
   background-color: ${themeGet('colors.bg')};
-  display: ${props => props.active ? 'block' : 'none'};
+  display: ${props => (props.active ? 'block' : 'none')};
 
   height: 100%;
 
@@ -94,7 +94,7 @@ const QuickAction = styled.div`
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     padding: 0 ${themeGet('space.s')};
     padding-top: 21px;
-    padding-bottom: ${props => props.hasDropdown ? '35px' : '21px'};
+    padding-bottom: ${props => (props.hasDropdown ? '35px' : '21px')};
     margin-top: ${themeGet('space.s')};
     margin-bottom: ${props => (props.hasDropdown ? '0' : '14px')};
   }

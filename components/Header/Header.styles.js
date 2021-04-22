@@ -35,8 +35,8 @@ Styled.LogoContainer = styled(Box)`
   justify-content: center;
   min-width: 322px;
   padding: ${themeGet('space.base')} ${themeGet('space.xl')};
-  position: ${props => props.active ? 'fixed' : 'relative'};
-  width: ${props => props.active ? '100%' : 'auto'};
+  position: ${props => (props.active ? 'fixed' : 'relative')};
+  width: ${props => (props.active ? '100%' : 'auto')};
 
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     justify-content: flex-start;
@@ -44,7 +44,7 @@ Styled.LogoContainer = styled(Box)`
   }
 
   ${system}
-`
+`;
 
 Styled.ListIcon = styled(List)`
   position: absolute;
