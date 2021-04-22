@@ -28,7 +28,18 @@ function ArticleLink({
         <Text fontWeight="700" variant="s">
           {title}
         </Text>
-        <Text fontWeight="400" variant="s">
+        <Text
+          fontWeight="400"
+          variant="s"
+          css={`
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            display: -webkit-box;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            // https://caniuse.com/css-line-clamp
+          `}
+        >
           {splitString(description)}
         </Text>
         {url && urlText ? (
