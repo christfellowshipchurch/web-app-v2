@@ -13,10 +13,9 @@ export default function Page({ data }) {
     <Layout meta={getMetaData(data)} bg="bg_alt">
       <MainPhotoHeader
         src={data.coverImage?.sources?.[0].uri || ''}
-        mt="xl"
-        mx="xl"
         width="auto"
-        imageProps={{ objectFit: 'contain', maxHeight: '40vh' }}
+        backdrop
+        overlay=""
       />
       <Section>
         <Box px="xxl" pt="xl" pb="m">

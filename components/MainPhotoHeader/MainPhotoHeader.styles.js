@@ -1,5 +1,5 @@
 import { themeGet } from '@styled-system/theme-get';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { Box, Image, system } from 'ui-kit';
 
@@ -15,11 +15,52 @@ Styled.Container = styled(Box)`
   ${system}
 `;
 
+Styled.Backdrop = styled(Box)`
+  background-image: url(${props => props.src});
+  background-size: cover;
+  filter: blur(5px);
+  height: 60vh;
+  margin-bottom: ${themeGet('space.xl')};
+  width: 100%;
+
+  ${system}
+`;
+
+Styled.ImageContainer = styled(Box)`
+  max-height: 80vh;
+
+  ${props =>
+    props.backdrop &&
+    css`
+      border-radius: ${themeGet('radii.image')};
+      overflow: hidden;
+      left: 50%;
+      max-height: 60vh;
+      position: absolute;
+      bottom: 0;
+      transform: translate(-50%, 0);
+
+      @media screen and (max-width: ${themeGet('breakpoints.lg')}) {
+        width: 80vw;
+      }
+    `}
+
+  ${system}
+`;
+
 Styled.Image = styled(Image)`
   margin: 0 auto;
   max-height: 80vh;
   object-fit: ${props => props.objectFit || 'cover'};
   width: 100%;
+
+  ${props =>
+    props.backdrop &&
+    css`
+      max-height: 60vh;
+      object-fit: contain;
+      width: auto;
+    `}
 
   ${system}
 `;
@@ -43,12 +84,9 @@ Styled.TextContainer = styled(Box)`
   position: absolute;
   z-index: 1;
 
-
-
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     left: ${themeGet('space.xxl')};
   }
-
 
   ${system}
 `;

@@ -9,25 +9,31 @@ function MainPhotoHeader({
   title,
   subtitle,
   summary,
+  backdrop,
   overlay = {
     _: 'rgba(0, 0, 0, 0.7)',
     lg:
       'linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);',
   },
   content,
-  justifyText="flex-end",
+  justifyText = 'flex-end',
   imageProps = {},
   ...props
 } = {}) {
   return (
     <Styled.Container {...props}>
-      <Styled.Image
-        as="img"
-        src={src}
-        name="main-photo-header"
-        {...imageProps}
-      />
-      {overlay && <Styled.Overlay background={overlay} />}
+      {backdrop && <Styled.Backdrop src={src} />}
+      <Styled.ImageContainer backdrop={backdrop}>
+        <Styled.Image
+          as="img"
+          src={src}
+          name="main-photo-header"
+          backdrop={backdrop}
+          rounded={backdrop}
+          {...imageProps}
+        />
+        {overlay && <Styled.Overlay background={overlay} />}
+      </Styled.ImageContainer>
       <Styled.TextContainer display={'flex'} justifyContent={justifyText}>
         {subtitle && (
           <Heading
