@@ -172,6 +172,7 @@ export async function getStaticProps(context) {
       submenuLinks:
         submenuLinks?.data?.node?.childContentItemsConnection?.edges,
     },
+    revalidate: 60, // In seconds
   };
 }
 

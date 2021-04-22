@@ -247,6 +247,7 @@ export async function getStaticProps({ params }) {
       staff: staffResponse ? staffResponse.data : [],
       relatedContent: ministryResponse?.data,
     },
+    revalidate: 60, // In seconds
   };
 }
 

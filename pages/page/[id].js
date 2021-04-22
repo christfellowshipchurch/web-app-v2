@@ -1,13 +1,19 @@
 import { useRouter } from 'next/router';
 
+import IDS from 'config/ids';
 import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
+import { GET_CONTENT_CHANNEL } from 'hooks/useContentChannel';
 import { Layout, MainPhotoHeader } from 'components';
 import { Box, Button, Heading, Longform, Section } from 'ui-kit';
 import { initializeApollo } from 'lib/apolloClient';
-import { getItemId, getMetaData } from 'utils';
+import { getItemId, getMetaData, getIdSuffix } from 'utils';
 
-export default function Page({ data }) {
+export default function Page({ data } = {}) {
   const router = useRouter();
+
+  if (data?.loading || router.isFallback) {
+    return null;
+  }
 
   return (
     <Layout meta={getMetaData(data)} bg="bg_alt">
@@ -88,7 +94,7 @@ export default function Page({ data }) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const apolloClient = initializeApollo();
 
   const pageResponse = await apolloClient.query({
@@ -105,4 +111,46 @@ export async function getServerSideProps(context) {
       data: pageResponse?.data?.node,
     },
   };
+}
+
+const getChannelIds = mapping => {
+  return Object.values(mapping).flatMap(value => {
+    if (typeof value === 'object') {
+      return getChannelIds(value);
+    }
+    return value;
+  });
+};
+
+export async function getStaticPaths() {
+  const apolloClient = initializeApollo();
+
+  const channelIds = getChannelIds(IDS);
+
+  const channelResponse = await Promise.all(
+    channelIds.map(id =>
+      apolloClient.query({
+        query: GET_CONTENT_CHANNEL,
+        variables: {
+          itemId: `ContentChannel:${id}`,
+        },
+      })
+    )
+  );
+
+  const pages = channelResponse
+    .flatMap(response =>
+      response?.data?.node?.childContentItemsConnection?.edges?.map(
+        ({ node }) => node
+      )
+    )
+    .filter(p => !!p);
+
+  // Get the paths we want to pre-render
+  const paths = pages.map(({ id }) => ({
+    params: { id: getIdSuffix(id) },
+  }));
+
+  // Fallback blocking - if a page doesn't exist we will render it on the fly and then return it.
+  return { paths, fallback: 'blocking' };
 }
