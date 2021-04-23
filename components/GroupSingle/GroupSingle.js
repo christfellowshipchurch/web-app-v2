@@ -39,6 +39,7 @@ function GroupSingle(props = {}) {
   return (
     <ChatConnectionProvider>
       <ContentLayout
+        mode={props.data.mode}
         title={props.data?.title}
         summary={props.data.schedule?.friendlyScheduleText}
         coverImage={props.data?.coverImage?.sources[0]?.uri}

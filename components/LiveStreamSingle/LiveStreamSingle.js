@@ -38,6 +38,7 @@ function LiveStreamSingle(props = {}) {
   return (
     <Cell px="base" pt={{ _: 'l', lg: 'xl' }}>
       <ContentLayout
+        mode={props.data.mode}
         title={props.data?.relatedNode?.title}
         summary={props.data?.relatedNode?.summary}
         coverImage={props.data?.relatedNode?.coverImage?.sources[0]?.uri}

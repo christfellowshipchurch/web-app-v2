@@ -7,7 +7,7 @@ import toLower from 'lodash/toLower';
 import { CommunitiesProvider } from 'providers';
 import { useGroupPreferences } from 'hooks';
 import { CommunitySingle, Layout } from 'components';
-import { Box, Loader } from 'ui-kit';
+import { Box, Cell, Loader, utils } from 'ui-kit';
 
 export default function Community(props) {
   const { preferences, subPreferences, loading } = useGroupPreferences();
@@ -30,9 +30,16 @@ export default function Community(props) {
 
     return (
       <Layout>
-        <Box mt="xl" mb="xxl" display="flex" justifyContent="center">
-          <Loader my="xl" />
-        </Box>
+        <Cell
+          as="main"
+          maxWidth={utils.rem('1100px')}
+          px="base"
+          py={{ _: 'l', lg: 'xl' }}
+        >
+          <Box mt="xl" mb="xxl" display="flex" justifyContent="center">
+            <Loader my="xl" />
+          </Box>
+        </Cell>
       </Layout>
     );
   }

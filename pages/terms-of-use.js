@@ -1,4 +1,4 @@
-import { Box } from 'ui-kit';
+import { Box, Cell, utils } from 'ui-kit';
 import { Layout } from 'components';
 
 import { htmlToReactParser } from 'utils';
@@ -88,11 +88,18 @@ const policy = `<div><div>
 export default function Terms() {
   return (
     <Layout title="Terms of Use">
-      <Box mb="base" textAlign="center">
-        <Box as="h1">Terms of Use</Box>
-        <Box as="i">Last Modified: September 20, 2019</Box>
-      </Box>
-      <Box>{htmlToReactParser.parse(policy)}</Box>
+      <Cell
+        as="main"
+        maxWidth={utils.rem('1100px')}
+        px="base"
+        py={{ _: 'l', lg: 'xl' }}
+      >
+        <Box mb="base" textAlign="center">
+          <Box as="h1">Terms of Use</Box>
+          <Box as="i">Last Modified: September 20, 2019</Box>
+        </Box>
+        <Box>{htmlToReactParser.parse(policy)}</Box>
+      </Cell>
     </Layout>
   );
 }

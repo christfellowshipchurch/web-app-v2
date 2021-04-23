@@ -1,4 +1,4 @@
-import { Box } from 'ui-kit';
+import { Box, Cell, utils } from 'ui-kit';
 import { Layout } from 'components';
 
 import { htmlToReactParser } from 'utils';
@@ -71,11 +71,18 @@ const policy = `<div><h3>Introduction to Our Privacy Policy
 export default function PrivacyPolicy() {
   return (
     <Layout title="Privacy Policy">
-      <Box mb="base" textAlign="center">
-        <Box as="h1">Privacy Policy</Box>
-        <Box as="i">Last Updated: September 12th 2019</Box>
-      </Box>
-      <Box>{htmlToReactParser.parse(policy)}</Box>
+      <Cell
+        as="main"
+        maxWidth={utils.rem('1100px')}
+        px="base"
+        py={{ _: 'l', lg: 'xl' }}
+      >
+        <Box mb="base" textAlign="center">
+          <Box as="h1">Privacy Policy</Box>
+          <Box as="i">Last Updated: September 12th 2019</Box>
+        </Box>
+        <Box>{htmlToReactParser.parse(policy)}</Box>
+      </Cell>
     </Layout>
   );
 }

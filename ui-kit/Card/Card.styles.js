@@ -55,7 +55,7 @@ const removeBoxShadow = ({ boxShadow }) => props => {
 };
 
 const Card = styled.div`
-  background-color: ${themeGet('colors.white')};
+  background-color: ${themeGet('colors.paper')};
   border-radius: ${themeGet('radii.base')};
   box-shadow: ${themeGet('shadows.xl')};
   color: ${themeGet('colors.fg')};

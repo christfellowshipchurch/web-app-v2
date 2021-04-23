@@ -3,7 +3,7 @@ import { format } from 'date-fns';
 import { useLiveStreamsQuery } from 'hooks';
 import { slugify, parseLiveStreamDates } from 'utils';
 
-import { Box, CardGrid, DefaultCard, Loader } from 'ui-kit';
+import { Box, CardGrid, Cell, DefaultCard, Loader, utils } from 'ui-kit';
 import { CustomLink, Layout } from 'components';
 
 function getDescription(liveStream) {
@@ -28,37 +28,46 @@ export default function Live(props = {}) {
 
   return (
     <Layout title="Live">
-      <Box as="h1" mb="l">
-        Live Events
-      </Box>
-
-      {loading && (
-        <Box display="flex" justifyContent="center" pt="xl">
-          <Loader />
+      <Cell
+        as="main"
+        maxWidth={utils.rem('1100px')}
+        px="base"
+        py={{ _: 'l', lg: 'xl' }}
+      >
+        <Box as="h1" mb="l">
+          Live Events
         </Box>
-      )}
-      {!loading && !liveStreamsData.length && (
-        <Box as="p">No livestreams scheduled</Box>
-      )}
-      {liveStreamsData.length > 0 && (
-        <CardGrid columns="2" mb="xl">
-          {liveStreamsData.map(liveStream => {
-            return (
-              <CustomLink
-                key={liveStream.id}
-                as="a"
-                href={`/live/${slugify(liveStream.relatedNode?.title)}`}
-                Component={DefaultCard}
-                coverImage={liveStream.relatedNode?.coverImage?.sources[0]?.uri}
-                title={liveStream.relatedNode?.title}
-                description={getDescription(liveStream)}
-                coverImageLabel={liveStream.isLive ? 'Live' : null}
-                coverImageLabelBgColor={liveStream.isLive ? 'live' : null}
-              />
-            );
-          })}
-        </CardGrid>
-      )}
+
+        {loading && (
+          <Box display="flex" justifyContent="center" pt="xl">
+            <Loader />
+          </Box>
+        )}
+        {!loading && !liveStreamsData.length && (
+          <Box as="p">No livestreams scheduled</Box>
+        )}
+        {liveStreamsData.length > 0 && (
+          <CardGrid columns="2" mb="xl">
+            {liveStreamsData.map(liveStream => {
+              return (
+                <CustomLink
+                  key={liveStream.id}
+                  as="a"
+                  href={`/live/${slugify(liveStream.relatedNode?.title)}`}
+                  Component={DefaultCard}
+                  coverImage={
+                    liveStream.relatedNode?.coverImage?.sources[0]?.uri
+                  }
+                  title={liveStream.relatedNode?.title}
+                  description={getDescription(liveStream)}
+                  coverImageLabel={liveStream.isLive ? 'Live' : null}
+                  coverImageLabelBgColor={liveStream.isLive ? 'live' : null}
+                />
+              );
+            })}
+          </CardGrid>
+        )}
+      </Cell>
     </Layout>
   );
 }
