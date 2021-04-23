@@ -5,6 +5,7 @@ import { useGroupManage, update } from 'providers/GroupManageProvider';
 import { Box, Button, List } from 'ui-kit';
 import { CustomLink } from 'components';
 
+import AddResourceContent from './AddResourceContent';
 import AddResourceLink from './AddResourceLink';
 import RemoveResourceLink from './RemoveResourceLink';
 
@@ -87,7 +88,7 @@ function GroupManageResources(props = {}) {
     }
 
     if (status === 'ADD_CONTENT') {
-      return <Box as="p">Add content!</Box>;
+      return <AddResourceContent />;
     }
 
     return null;
