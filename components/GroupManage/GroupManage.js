@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import capitalize from 'lodash/capitalize';
 
 import { slugify } from 'utils';
-import { GroupCoverImagesProvider, GroupManageProvider } from 'providers';
+import { GroupManageProvider } from 'providers';
 import { initialState } from 'providers/GroupManageProvider';
 import { Box, Card, List } from 'ui-kit';
 import { CustomLink } from 'components';
@@ -22,12 +22,7 @@ function GroupManage(props = {}) {
   function render() {
     switch (section) {
       case initialState.sections.photo: {
-        return (
-          <GroupCoverImagesProvider
-            Component={GroupManagePhoto}
-            groupData={props.data}
-          />
-        );
+        return <GroupManagePhoto data={props.data} />;
       }
       case initialState.sections.resources: {
         return <GroupManageResources data={props.data} />;
@@ -40,8 +35,12 @@ function GroupManage(props = {}) {
 
   return (
     <GroupManageProvider>
-      <Box display="grid" gridTemplateColumns="25% 1fr" gridColumnGap="xl">
-        <Box>
+      <Box
+        display={{ lg: 'grid' }}
+        gridTemplateColumns="25% 1fr"
+        gridColumnGap="xl"
+      >
+        <Box mb={{ _: 'l', lg: '0' }}>
           <CustomLink href={`/groups/${slugify(props?.data?.title)}`}>
             &larr; Back
           </CustomLink>

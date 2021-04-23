@@ -1,44 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { useUpdateGroupCoverImage } from 'hooks';
-import { Box, DefaultCard, Loader } from 'ui-kit';
-import { CustomLink } from 'components';
+import { GroupCoverImagesProvider } from 'providers';
 import { useGroupManage, update } from 'providers/GroupManageProvider';
+import { Box, Loader } from 'ui-kit';
+import { CustomLink } from 'components';
+import CoverImagesList from './CoverImagesList';
 
 function GroupManagePhoto(props = {}) {
   const [{ photoStatus: status }, dispatch] = useGroupManage();
   const setStatus = s => dispatch(update({ photoStatus: s }));
 
-  const [
-    updateGroupCoverImage,
-    { loading: updating },
-  ] = useUpdateGroupCoverImage({
-    // TODO: Update the cache instead. But this works for now.
-    refetchQueries: ['getGroup'],
-    onCompleted: () => setStatus('IDLE'),
-  });
-
   function handleUpdateClick(event) {
     event.preventDefault();
     setStatus(status === 'IDLE' ? 'EDITING' : 'IDLE');
   }
-
-  const handleUpdateImageClick = guid => event => {
-    event.preventDefault();
-    setStatus('SAVING');
-    try {
-      updateGroupCoverImage({
-        variables: {
-          imageId: guid,
-          groupId: props.groupData.id,
-        },
-      });
-    } catch (error) {
-      console.log(error);
-      setStatus('ERROR');
-    }
-  };
 
   function render() {
     if (status === 'IDLE') {
@@ -46,8 +22,8 @@ function GroupManagePhoto(props = {}) {
         <Box as="a" href="#0" onClick={handleUpdateClick}>
           <Box
             as="img"
-            src={props.groupData?.coverImage?.sources[0]?.uri}
-            alt={`${props.groupData?.title} Photo`}
+            src={props.data?.coverImage?.sources[0]?.uri}
+            alt={`${props.data?.title} Photo`}
             borderRadius="base"
             boxShadow="base"
             width="100%"
@@ -58,51 +34,17 @@ function GroupManagePhoto(props = {}) {
 
     if (status === 'EDITING') {
       return (
-        <Box>
-          <Box
-            as="h3"
-            color="subdued"
-            fontSize="base"
-            fontWeight="normal"
-            mb="base"
-          >
-            Select an image
-          </Box>
-          <Box
-            display="grid"
-            gridTemplateColumns="repeat(2, 50%)"
-            gridColumnGap="base"
-            gridRowGap="base"
-          >
-            {props.data.map(coverImage => (
-              <Box
-                key={coverImage.guid}
-                as="a"
-                href="#0"
-                onClick={handleUpdateImageClick(coverImage.guid)}
-              >
-                <DefaultCard
-                  coverImage={coverImage.image.sources[0].uri}
-                  coverImageLabel={
-                    currentImage === coverImage.image.sources[0].uri
-                      ? 'Current Image'
-                      : null
-                  }
-                  height="200px"
-                />
-              </Box>
-            ))}
-          </Box>
-        </Box>
+        <GroupCoverImagesProvider
+          Component={CoverImagesList}
+          groupData={props.data}
+        />
       );
     }
 
     return null;
   }
 
-  if (props.loading || updating) return <Loader />;
-
-  const currentImage = props.groupData?.coverImage?.sources[0]?.uri;
+  if (props.loading) return <Loader />;
 
   return (
     <>
@@ -120,8 +62,7 @@ function GroupManagePhoto(props = {}) {
 }
 
 GroupManagePhoto.propTypes = {
-  data: PropTypes.array,
-  groupData: PropTypes.object,
+  data: PropTypes.object,
 };
 
 export default GroupManagePhoto;
