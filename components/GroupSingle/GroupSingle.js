@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { ContentLayout } from 'components';
-import { useCurrentBreakpoint, useCurrentUser } from 'hooks';
+import { useCurrentBreakpoint, useCurrentUser, useCheckIn } from 'hooks';
+
 import { ChatConnectionProvider } from 'providers';
 import { currentUserIsLeader } from 'utils';
 import { Box, Card, Icon } from 'ui-kit';
@@ -19,6 +20,10 @@ function GroupSingle(props = {}) {
   const { currentUser } = useCurrentUser();
   const isLeader = currentUserIsLeader(currentUser, props.data?.leaders?.edges);
 
+  const { checkInCompleted, options, checkInCurrentUser } = useCheckIn({
+    nodeId: props.data.id,
+  });
+
   const totalMembers =
     (props.data?.leaders.totalCount || 0) +
     (props.data?.members.totalCount || 0);
@@ -29,11 +34,15 @@ function GroupSingle(props = {}) {
     //   action: action ? `${action} Video Call` : 'Video Call',
     //   label: props.data?.title,
     // });
+    if (options.length > 0) {
+      checkInCurrentUser({ optionIds: options.map(({ id }) => id) });
+    }
   };
 
   return (
     <ChatConnectionProvider>
       <ContentLayout
+        mode={props.data.mode}
         title={props.data?.title}
         summary={props.data.schedule?.friendlyScheduleText}
         coverImage={props.data?.coverImage?.sources[0]?.uri}
@@ -84,6 +93,7 @@ function GroupSingle(props = {}) {
                 videoCall={props.data?.videoCall}
                 onClickVideoCall={handleOnClickVideoCall}
                 onClickParentVideoCall={handleOnClickVideoCall}
+                checkInCompleted={checkInCompleted}
               />
             </Box>
           </Box>

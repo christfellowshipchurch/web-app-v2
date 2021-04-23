@@ -9,6 +9,7 @@ import EventGroupings from './EventGroupings';
 function EventSingle(props = {}) {
   return (
     <ContentLayout
+      mode={props.data.mode}
       title={props.data.title}
       summary={props.data.summary}
       coverImage={props.data?.coverImage?.sources[0]?.uri}

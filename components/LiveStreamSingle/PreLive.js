@@ -18,6 +18,7 @@ function PreLive(props = {}) {
   return (
     <Cell px="base" pt={{ _: 'l', lg: 'xl' }}>
       <ContentLayout
+        mode={props.data.mode}
         title={props.data?.relatedNode?.title}
         summary={`Scheduled for ${startFormatted} (${distance})`}
         coverImage={props.data?.relatedNode?.coverImage?.sources[0]?.uri}

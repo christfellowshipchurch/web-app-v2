@@ -2,6 +2,7 @@ import useAuthIdentity from './useAuthIdentity';
 import useAuthQuery from './useAuthQuery';
 import useAuthenticateCredentials from './useAuthenticateCredentials';
 import useCampuses from './useCampuses';
+import useCheckIn from './useCheckIn';
 import useContactGroupLeader from './useContactGroupLeader';
 import useContentFeed from './useContentFeed';
 import useContentItem from './useContentItem';
@@ -10,6 +11,9 @@ import useCurrentChatUser from './useCurrentChatUser';
 import useCurrentPerson from './useCurrentPerson';
 import useCurrentUser from './useCurrentUser';
 import useCurrentUserRoleForChatChannel from './useCurrentUserRoleForChatChannel';
+import useDiscoverFilterCategories from './useDiscoverFilterCategories';
+import useDiscoverFilterCategoriesPreview from './useDiscoverFilterCategoriesPreview';
+import useDiscoverFilters from './useDiscoverFilters';
 import useEvent from './useEvent';
 import useEvents from './useEvents';
 import useEventsFeedFeatures from './useEventsFeedFeatures';
@@ -38,15 +42,13 @@ import useUpdateGroupResourceContentItem from './useUpdateGroupResourceContentIt
 import useUpdateGroupResourceUrl from './useUpdateGroupResourceUrl';
 import useUserExists from './useUserExists';
 import useVerifyPin from './useVerifyPin';
-import useDiscoverFilterCategories from './useDiscoverFilterCategories';
-import useDiscoverFilters from './useDiscoverFilters';
-import useDiscoverFilterCategoriesPreview from './useDiscoverFilterCategoriesPreview';
 
 export {
   useAuthIdentity,
   useAuthQuery,
   useAuthenticateCredentials,
   useCampuses,
+  useCheckIn,
   useContactGroupLeader,
   useContentFeed,
   useContentItem,
@@ -55,6 +57,9 @@ export {
   useCurrentPerson,
   useCurrentUser,
   useCurrentUserRoleForChatChannel,
+  useDiscoverFilterCategories,
+  useDiscoverFilterCategoriesPreview,
+  useDiscoverFilters,
   useEvent,
   useEvents,
   useEventsFeedFeatures,
@@ -83,7 +88,4 @@ export {
   useUpdateGroupResourceUrl,
   useUserExists,
   useVerifyPin,
-  useDiscoverFilterCategories,
-  useDiscoverFilters,
-  useDiscoverFilterCategoriesPreview,
 };
