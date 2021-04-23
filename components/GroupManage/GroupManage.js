@@ -33,7 +33,7 @@ function GroupManage(props = {}) {
         return <GroupManageResources data={props.data} />;
       }
       default: {
-        return <GroupManagePhoto data={props.data} />;
+        return null;
       }
     }
   }
