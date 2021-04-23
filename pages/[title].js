@@ -23,6 +23,7 @@ export default function PageBuilder(props = {}) {
   if (title && title.length) {
     return <ContentItemProvider Component={PageSingle} options={options} />;
   }
+
   return (
     <Layout title={capitalize(title)}>
       <FeatureFeedProvider Component={FeatureFeed} options={options} />

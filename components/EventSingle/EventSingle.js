@@ -25,8 +25,6 @@ function EventSingle(props = {}) {
   );
 }
 
-EventSingle.propTypes = {
-  data: PropTypes.object,
-};
+EventSingle.propTypes = {};
 
 export default EventSingle;
