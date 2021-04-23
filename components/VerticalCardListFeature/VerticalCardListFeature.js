@@ -1,23 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import dropRight from 'lodash/dropRight';
-import head from 'lodash/head';
-import slice from 'lodash/slice';
 
 import { CustomLink } from 'components';
-import { CardGrid, DefaultCard, HorizontalHighlightCard } from 'ui-kit';
-import { getURLFromType, getUrlFromRelatedNode } from 'utils';
-
-const getCardColumns = cards => {
-  let col = '1';
-  if (cards.length > 2) {
-    if (cards.length > 3) {
-      return (col = '2');
-    }
-    return (col = '2');
-  }
-  return col;
-};
+import { CardGrid, HorizontalHighlightCard } from 'ui-kit';
+import { getUrlFromRelatedNode } from 'utils';
 
 function VerticalCardListFeature(props = {}) {
   if (!props?.data?.cards) {
@@ -25,54 +11,40 @@ function VerticalCardListFeature(props = {}) {
   }
 
   let cards = props?.data?.cards;
-  const heroCard = cards.length > 0 ? null : head(cards);
-  cards = heroCard ? [] : cards;
-
-  const col = getCardColumns(cards);
-
-  /**
-   * note : if the bottom highlight cards are uneven, the last three cards will be moved down to a 'bottomRow' in a CardGrid with 3 columns to fill the space
-   */
-  let bottomRow = false;
-  if (cards.length > 4 && cards.length % 2 !== 0) {
-    bottomRow = cards.slice(cards.length - 3, cards.length);
-    cards = dropRight(cards, 3);
-  }
 
   return (
-    <>
-      {!!heroCard && (
-        <CustomLink
-          as="a"
-          href={getUrlFromRelatedNode(heroCard?.relatedNode)}
-          Component={DefaultCard}
-          coverImage={heroCard?.coverImage?.sources[0]?.uri}
-          coverImageTitle={heroCard?.title}
-          coverImageDescription={heroCard?.summary}
-          coverImageOverlay={true}
-          marginBottom="l"
-          height={{ __: 250, md: 450 }}
-          display="block"
-        />
-      )}
-      <CardGrid marginBottom="base" columns={col}>
-        {cards.map((card, i) => (
-          <CustomLink
-            as="a"
-            key={i}
-            href={getUrlFromRelatedNode(card?.relatedNode)}
-            Component={HorizontalHighlightCard}
-            coverImage={card?.coverImage?.sources[0]?.uri}
-            coverImageOverlay={true}
-            title={card?.title}
-            description={card?.summary}
-            type="HIGHLIGHT_SMALL"
-          />
-        ))}
-      </CardGrid>
-      {bottomRow && (
-        <CardGrid columns="3">
-          {bottomRow.map((card, i) => (
+    <CardGrid marginBottom="base" columns={12}>
+      {cards.map((card, i) => {
+        /**
+         * The Vertical Card List Feature should not show any blank caps in between cards.
+         *
+         * In order to compensate for when there is not an even row of 3 cards, we'll calculate the first handlful of cards in order to have them fill the gap.
+         *
+         * For Example:
+         * [____]
+         * [][][]
+         *
+         * [_][_]
+         * [][][]
+         *
+         * [][][]
+         * [][][]
+         *
+         * ? Is there a more "styled component-ish" way to handle this?
+         */
+        let remainder = cards.length % 3;
+        let span = 4;
+
+        if (remainder < span && i < remainder) {
+          span = 12 / remainder;
+        }
+
+        return (
+          <div
+            style={{
+              gridColumnEnd: `span ${span}`,
+            }}
+          >
             <CustomLink
               as="a"
               key={i}
@@ -84,10 +56,10 @@ function VerticalCardListFeature(props = {}) {
               description={card?.summary}
               type="HIGHLIGHT_SMALL"
             />
-          ))}
-        </CardGrid>
-      )}
-    </>
+          </div>
+        );
+      })}
+    </CardGrid>
   );
 }
 
