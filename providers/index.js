@@ -11,8 +11,11 @@ import CurrentUserProvider from './CurrentUserProvider';
 import EventProvider from './EventProvider';
 import FeatureFeedProvider from './FeatureFeedProvider';
 import FeatureProvider from './FeatureProvider';
+import GroupCoverImagesProvider from './GroupCoverImagesProvider';
 import GroupFiltersProvider from './GroupFiltersProvider';
+import GroupManageProvider from './GroupManageProvider';
 import GroupProvider from './GroupProvider';
+import GroupResourceOptionsProvider from './GroupResourceOptionsProvider';
 import GroupsProvider from './GroupsProvider';
 import LiveStreamProvider from './LiveStreamProvider';
 import ModalProvider from './ModalProvider';
@@ -37,8 +40,11 @@ export {
   EventProvider,
   FeatureFeedProvider,
   FeatureProvider,
+  GroupCoverImagesProvider,
   GroupFiltersProvider,
+  GroupManageProvider,
   GroupProvider,
+  GroupResourceOptionsProvider,
   GroupsProvider,
   LiveStreamProvider,
   ModalProvider,

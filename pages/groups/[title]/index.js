@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 
 import { useGroupContentId } from 'hooks';
 import { GroupProvider } from 'providers';
-import { Loader } from 'ui-kit';
+import { Cell, Loader, utils } from 'ui-kit';
 import { GroupSingle, Layout } from 'components';
 
 export default function Group(props) {
@@ -16,7 +16,16 @@ export default function Group(props) {
   return (
     <Layout title={title}>
       {isLoading ? (
-        <Loader text="Loading your Group" />
+        <Cell
+          as="main"
+          maxWidth={utils.rem('1100px')}
+          px="base"
+          py={{ _: 'l', lg: 'xl' }}
+          display="flex"
+          justifyContent="center"
+        >
+          <Loader text="Loading your Group" />
+        </Cell>
       ) : _id ? (
         <GroupProvider
           Component={GroupSingle}

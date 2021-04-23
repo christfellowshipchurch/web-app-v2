@@ -5,7 +5,9 @@ import { ContentLayout } from 'components';
 import { useCurrentBreakpoint, useCurrentUser, useCheckIn } from 'hooks';
 
 import { ChatConnectionProvider } from 'providers';
-import { Box, Card } from 'ui-kit';
+import { currentUserIsLeader } from 'utils';
+import { Box, Card, Icon } from 'ui-kit';
+import { CustomLink } from 'components';
 
 import GroupChat from './GroupChat';
 import GroupDateTime from './GroupDateTime';
@@ -16,14 +18,15 @@ import GroupActions from './GroupActions';
 function GroupSingle(props = {}) {
   const currentBreakpoint = useCurrentBreakpoint();
   const { currentUser } = useCurrentUser();
+  const isLeader = currentUserIsLeader(currentUser, props.data?.leaders?.edges);
 
   const { checkInCompleted, options, checkInCurrentUser } = useCheckIn({
     nodeId: props.data.id,
   });
 
   const totalMembers =
-    (props.data?.leaders.totalCount || 0) +
-    (props.data?.members.totalCount || 0);
+    (props.data?.leaders?.totalCount || 0) +
+    (props.data?.members?.totalCount || 0);
 
   const handleOnClickVideoCall = action => {
     // amplitude.trackEvent({
@@ -43,6 +46,14 @@ function GroupSingle(props = {}) {
         title={props.data?.title}
         summary={props.data.schedule?.friendlyScheduleText}
         coverImage={props.data?.coverImage?.sources[0]?.uri}
+        titleIconLink={() =>
+          isLeader ? (
+            // NOTE: The `router.pathname` from `useRouter()` didn't work for some reason.
+            <CustomLink href={`${window.location.pathname}/manage`}>
+              <Icon name="gear" ml="xs" mt="xxs" />
+            </CustomLink>
+          ) : null
+        }
         renderContentB={() => (
           <Box display="flex" flexDirection="column" mt="l" pb="base">
             <Box as="h2" fontSize="h3" mb="base">
