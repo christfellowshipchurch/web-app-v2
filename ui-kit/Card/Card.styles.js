@@ -176,6 +176,14 @@ const position = ({ position, size }) => props => {
         padding: ${themeGet('space.base')};
       }
     `;
+  } else if (position === 'center') {
+    return css`
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+      height: 100%;
+    `;
   }
 };
 

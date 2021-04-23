@@ -11,7 +11,7 @@ const rounded = ({ rounded }) => props => {
   }
 };
 
-const variant = ({ variant }) => props => {
+const variant = ({ variant, active }) => props => {
   if (variant === 'secondary') {
     return css`
       background-color: transparent;
@@ -30,7 +30,7 @@ const variant = ({ variant }) => props => {
       &:focus,
       &:hover {
         background: none;
-        color: ${themeGet('colors.primaryHover')};
+        color: ${themeGet('colors.neutrals.800')};
         outline: none;
       }
     `;
@@ -108,6 +108,24 @@ const status = ({ status }) => props => {
   }
 };
 
+const active = ({ active, variant }) => props => {
+  if (active && variant === 'link') {
+    return css`
+      background: none;
+      color: ${themeGet('colors.neutrals.800')};
+      outline: none;
+
+      &:active,
+      &:focus,
+      &:hover {
+        background: none;
+        color: ${themeGet('colors.neutrals.800')};
+        outline: none;
+      }
+    `;
+  }
+};
+
 const Button = styled.button`
   background-color: ${themeGet('colors.primary')};
   border: 1px solid transparent;
@@ -140,6 +158,7 @@ const Button = styled.button`
   ${variant}
   ${status}
   ${rounded}
+  ${active}
   ${system}
 `;
 

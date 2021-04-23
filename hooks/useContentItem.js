@@ -26,6 +26,8 @@ export const CONTENT_ITEM_FRAGMENT = gql`
       name
     }
     videos {
+      key
+      name
       sources {
         uri
       }
