@@ -13,15 +13,17 @@ function GroupManageResources(props = {}) {
   const [{ resourceStatus: status }, dispatch] = useGroupManage();
   const setStatus = s => dispatch(update({ resourceStatus: s }));
 
-  function handleAddLinkClick(event) {
+  const handleAddLinkClick = toggle => event => {
     event.preventDefault();
     setStatus('ADD_LINK');
-  }
+    toggle(event);
+  };
 
-  function handleAddContentClick(event) {
+  const handleAddContentClick = toggle => event => {
     event.preventDefault();
     setStatus('ADD_CONTENT');
-  }
+    toggle(event);
+  };
 
   function render() {
     if (status === 'IDLE') {
@@ -64,32 +66,34 @@ function GroupManageResources(props = {}) {
           )}
           side="right"
         >
-          <List py="s">
-            <Box as="li">
-              <Box
-                as="a"
-                href="#0"
-                onClick={handleAddLinkClick}
-                display="block"
-                px="s"
-                textDecoration="none"
-              >
-                Add URL
+          {toggle => (
+            <List py="s">
+              <Box as="li">
+                <Box
+                  as="a"
+                  href="#0"
+                  onClick={handleAddLinkClick(toggle)}
+                  display="block"
+                  px="s"
+                  textDecoration="none"
+                >
+                  Add URL
+                </Box>
               </Box>
-            </Box>
-            <Box as="li">
-              <Box
-                as="a"
-                href="#0"
-                onClick={handleAddContentClick}
-                display="block"
-                px="s"
-                textDecoration="none"
-              >
-                Add Content
+              <Box as="li">
+                <Box
+                  as="a"
+                  href="#0"
+                  onClick={handleAddContentClick(toggle)}
+                  display="block"
+                  px="s"
+                  textDecoration="none"
+                >
+                  Add Content
+                </Box>
               </Box>
-            </Box>
-          </List>
+            </List>
+          )}
         </Menu>
       </Box>
       {render()}

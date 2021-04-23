@@ -31,7 +31,7 @@ function Menu(props = {}) {
       {visible ? (
         <Styled.Content side={props.side} width={props.menuWidth}>
           <Card {...props.cardProps} contentProps={props.cardContentProps}>
-            {props.children}
+            {props.children(toggle)}
           </Card>
         </Styled.Content>
       ) : null}
