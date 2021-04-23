@@ -14,6 +14,7 @@ function ContentSingle(props = {}) {
     author,
     coverImage,
     htmlContent,
+    mode,
     publishDate,
     schedule,
     summary,
@@ -37,6 +38,7 @@ function ContentSingle(props = {}) {
 
   return (
     <ContentLayout
+      mode={mode}
       title={title}
       seoMetaTags={{
         description: schedule?.friendlyScheduleText || summary,
