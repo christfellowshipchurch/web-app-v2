@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { Box, Loader, Button } from 'ui-kit';
+import { Box, Loader, Button, Cell, utils } from 'ui-kit';
 import {
   SearchField,
   Layout,
@@ -82,94 +82,101 @@ const Discover = () => {
 
   return (
     <Layout title="Discover">
-      <SearchField
-        handleChange={handleChange}
-        handleClear={handleClearAllClick}
-        handleClick={handleClick}
-        handleSubmit={handleSubmit}
-        mb="base"
-        placeholder="Search..."
-        value={values.text || ''}
+      <Cell
+        as="main"
+        maxWidth={utils.rem('1100px')}
+        px="base"
+        py={{ _: 'l', lg: 'xl' }}
       >
-        Search
-      </SearchField>
+        <SearchField
+          handleChange={handleChange}
+          handleClear={handleClearAllClick}
+          handleClick={handleClick}
+          handleSubmit={handleSubmit}
+          mb="base"
+          placeholder="Search..."
+          value={values.text || ''}
+        >
+          Search
+        </SearchField>
 
-      {showEmptyState && searchVisible && (
-        <Box my="xxl" pb="xxl" textAlign="center">
-          <Box as="h2">Looks like we couldn't find any results</Box>
-          <Box mb="base">Consider modifying your search criteria.</Box>
-          <Box
-            display="flex"
-            alignItems="center"
-            flexDirection="column"
-            mt="l"
-            textAlign="center"
-          >
-            <Button variant="secondary" onClick={handleClearAllClick} mb="s">
-              Clear Search
+        {showEmptyState && searchVisible && (
+          <Box my="xxl" pb="xxl" textAlign="center">
+            <Box as="h2">Looks like we couldn't find any results</Box>
+            <Box mb="base">Consider modifying your search criteria.</Box>
+            <Box
+              display="flex"
+              alignItems="center"
+              flexDirection="column"
+              mt="l"
+              textAlign="center"
+            >
+              <Button variant="secondary" onClick={handleClearAllClick} mb="s">
+                Clear Search
+              </Button>
+            </Box>
+          </Box>
+        )}
+        {hasResults && searchVisible && (
+          <ContentItemsSearchProvider
+            data={contentItems}
+            Component={DiscoverItemsList}
+          />
+        )}
+
+        {loading && (
+          <Box display="flex" justifyContent="center" my="xxl">
+            <Loader />
+          </Box>
+        )}
+        {!loading && hasMorePages && searchVisible && (
+          <Box display="flex" justifyContent="center" mt="xl">
+            <Button variant="tertiary" onClick={handleLoadMore}>
+              Load more
             </Button>
           </Box>
-        </Box>
-      )}
-      {hasResults && searchVisible && (
-        <ContentItemsSearchProvider
-          data={contentItems}
-          Component={DiscoverItemsList}
-        />
-      )}
+        )}
 
-      {loading && (
-        <Box display="flex" justifyContent="center" my="xxl">
-          <Loader />
-        </Box>
-      )}
-      {!loading && hasMorePages && searchVisible && (
-        <Box display="flex" justifyContent="center" mt="xl">
-          <Button variant="tertiary" onClick={handleLoadMore}>
-            Load more
-          </Button>
-        </Box>
-      )}
-
-      {!loading && !searchVisible && (
-        <Box>
-          <Box mb="l">
-            {filters?.map(filter => (
-              <Button
-                key={filter.id}
-                mb="s"
-                mr="xs"
-                onClick={event => {
-                  event.preventDefault();
-                  setFilterValues({
-                    title: setFilterTitle(filter.title),
-                    contentId: setFilterId(filter.id),
-                  });
-                  setSearchVisible(false);
-                  reset();
-                }}
-                rounded={true}
-                size="s"
-                status={
-                  filterValues.title === filter.title ? 'SELECTED' : 'IDLE'
-                }
-                variant="chip"
-              >
-                {filter.title}
-              </Button>
-            ))}
+        {!loading && !searchVisible && (
+          <Box>
+            <Box mb="l">
+              {filters?.map(filter => (
+                <Button
+                  key={filter.id}
+                  mb="s"
+                  mr="xs"
+                  onClick={event => {
+                    event.preventDefault();
+                    setFilterValues({
+                      title: setFilterTitle(filter.title),
+                      contentId: setFilterId(filter.id),
+                    });
+                    setSearchVisible(false);
+                    reset();
+                  }}
+                  rounded={true}
+                  size="s"
+                  status={
+                    filterValues.title === filter.title ? 'SELECTED' : 'IDLE'
+                  }
+                  variant="chip"
+                >
+                  {filter.title}
+                </Button>
+              ))}
+            </Box>
+            <DiscoverFiltersCategoriesProvider
+              options={{
+                variables: {
+                  id: filterValues?.contentId || filters[0]?.id,
+                },
+                fetchPolicy: 'cache-and-network',
+              }}
+              Component={DiscoverFiltersMap}
+            />
           </Box>
-          <DiscoverFiltersCategoriesProvider
-            options={{
-              variables: {
-                id: filterValues?.contentId || filters[0]?.id,
-              },
-              fetchPolicy: 'cache-and-network',
-            }}
-            Component={DiscoverFiltersMap}
-          />
-        </Box>
-      )}
+        )}
+      </Cell>
     </Layout>
   );
 };

@@ -5,6 +5,7 @@ import { GET_FEATURE_FEED } from 'hooks/useFeatureFeed';
 import { GET_FEATURE } from 'hooks/useFeature';
 import { FeatureFeedProvider } from 'providers';
 import { Layout, FeatureFeed } from 'components';
+import { Cell, utils } from 'ui-kit';
 
 export default function Home(props = {}) {
   const options = {
@@ -15,7 +16,14 @@ export default function Home(props = {}) {
 
   return (
     <Layout title="Home">
-      <FeatureFeedProvider Component={FeatureFeed} options={options} />
+      <Cell
+        as="main"
+        maxWidth={utils.rem('1100px')}
+        px="base"
+        py={{ _: 'l', lg: 'xl' }}
+      >
+        <FeatureFeedProvider Component={FeatureFeed} options={options} />
+      </Cell>
     </Layout>
   );
 }

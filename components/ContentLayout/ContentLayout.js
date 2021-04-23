@@ -2,9 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { createMarkup } from 'utils';
-import { Box, Card, DefaultCard, Longform } from 'ui-kit';
 import { SEO, FeatureFeed } from 'components';
-import { FeatureFeedProvider } from 'providers';
+import {
+  Box,
+  Card,
+  Cell,
+  DefaultCard,
+  Longform,
+  ThemeProvider,
+  utils,
+} from 'ui-kit';
+
+const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
 
 function ContentLayout(props = {}) {
   function renderA() {
@@ -96,32 +105,41 @@ function ContentLayout(props = {}) {
   }
 
   return (
-    <>
-      <SEO title={props.title} />
-      {renderA()}
-      <Box
-        alignItems="center"
-        display={{ lg: 'grid' }}
-        gridTemplateColumns="70% 30%"
-        mb="l"
-      >
-        {renderB()}
-        {renderC()}
-      </Box>
-      <Box
-        display={{ lg: 'grid' }}
-        gridTemplateColumns="65% 1fr"
-        gridColumnGap="l"
-      >
-        {renderD()}
-        {renderE()}
+    <ThemeProvider mode={props.mode}>
+      <Box backgroundColor={'bg'} color={'fg'}>
+        <Cell
+          as="main"
+          maxWidth={props.contentMaxWidth}
+          px={props.contentHorizontalPadding}
+          py={props.contentVerticalPadding}
+        >
+          <SEO title={props.title} />
+          {renderA()}
+          <Box
+            alignItems="center"
+            display={{ lg: 'grid' }}
+            gridTemplateColumns="70% 30%"
+            mb="l"
+          >
+            {renderB()}
+            {renderC()}
+          </Box>
+          <Box
+            display={{ lg: 'grid' }}
+            gridTemplateColumns="65% 1fr"
+            gridColumnGap="l"
+          >
+            {renderD()}
+            {renderE()}
+          </Box>
+        </Cell>
       </Box>
       {props?.features && (
         <Box>
           <FeatureFeed data={props?.features} />
         </Box>
       )}
-    </>
+    </ThemeProvider>
   );
 }
 
@@ -130,15 +148,22 @@ ContentLayout.propTypes = {
   contentTitleE: PropTypes.string,
   coverImage: PropTypes.string,
   htmlContent: PropTypes.string,
+  mode: PropTypes.string,
   renderA: PropTypes.func,
   renderB: PropTypes.func,
-  renderContentB: PropTypes.func,
   renderC: PropTypes.func,
+  renderContentB: PropTypes.func,
   renderContentD: PropTypes.func,
   renderContentE: PropTypes.func,
   renderD: PropTypes.func,
   renderE: PropTypes.func,
   title: PropTypes.string,
+};
+
+ContentLayout.defaultProps = {
+  contentMaxWidth: DEFAULT_CONTENT_WIDTH,
+  contentHorizontalPadding: 'base',
+  contentVerticalPadding: { _: 'l', lg: 'xl' },
 };
 
 export default ContentLayout;
