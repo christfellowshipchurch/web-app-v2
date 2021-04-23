@@ -27,6 +27,7 @@ function AddResourceContent(props = {}) {
         groupId: props.groupId,
         relatedNodeId: selection,
       },
+      refetchQueries: ['getGroup'],
     });
 
     setStatus('IDLE');
