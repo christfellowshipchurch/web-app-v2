@@ -4,6 +4,7 @@ import capitalize from 'lodash/capitalize';
 
 import { slugify } from 'utils';
 import { GroupCoverImagesProvider, GroupManageProvider } from 'providers';
+import { initialState } from 'providers/GroupManageProvider';
 import { Box, Card, List } from 'ui-kit';
 import { CustomLink } from 'components';
 
@@ -11,8 +12,7 @@ import GroupManagePhoto from './GroupManagePhoto';
 import GroupManageResources from './GroupManageResources';
 
 function GroupManage(props = {}) {
-  const SECTIONS = ['PHOTO', 'RESOURCES'];
-  const [section, setSection] = useState(SECTIONS[0]);
+  const [section, setSection] = useState(initialState.sections.photo);
 
   const handleSectionClick = section => event => {
     event.preventDefault();
@@ -21,7 +21,7 @@ function GroupManage(props = {}) {
 
   function render() {
     switch (section) {
-      case 'PHOTO': {
+      case initialState.sections.photo: {
         return (
           <GroupCoverImagesProvider
             Component={GroupManagePhoto}
@@ -29,7 +29,7 @@ function GroupManage(props = {}) {
           />
         );
       }
-      case 'RESOURCES': {
+      case initialState.sections.resources: {
         return <GroupManageResources data={props.data} />;
       }
       default: {
@@ -63,7 +63,7 @@ function GroupManage(props = {}) {
           </Box>
           <Card boxShadow="base" p="base">
             <List>
-              {SECTIONS.map((_section, idx) => (
+              {Object.values(initialState.sections).map((_section, idx) => (
                 <Box as="li" key={idx}>
                   <Box
                     as="a"

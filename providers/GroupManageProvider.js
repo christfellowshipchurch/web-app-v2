@@ -5,7 +5,10 @@ const GroupManageProviderStateContext = createContext();
 const GroupManageProviderDispatchContext = createContext();
 
 const initialState = {
-  sections: ['PHOTO', 'RESOURCES'],
+  sections: {
+    photo: 'PHOTO',
+    resources: 'RESOURCES',
+  },
 
   // IDLE, EDITING, SAVING, ERROR
   photoStatus: 'IDLE',
@@ -98,4 +101,5 @@ export {
   useGroupManageDispatch,
   actionTypes,
   update,
+  initialState,
 };
