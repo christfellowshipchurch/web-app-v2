@@ -18,8 +18,8 @@ export const UPDATE_GROUP_RESOURCE_URL = gql`
   }
 `;
 
-function useUpdateResourceUrl(options = {}) {
+function useUpdateGroupResourceUrl(options = {}) {
   return useMutation(UPDATE_GROUP_RESOURCE_URL, options);
 }
 
-export default useUpdateResourceUrl;
+export default useUpdateGroupResourceUrl;

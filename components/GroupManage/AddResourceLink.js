@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { useGroupManage, update } from 'providers/GroupManageProvider';
-import { useForm, useUpdateResourceUrl } from 'hooks';
+import { useForm, useUpdateGroupResourceUrl } from 'hooks';
 import { Box, Button, TextInput } from 'ui-kit';
 
 function AddResourceLink(props = {}) {
   const [{ resourceStatus: status }, dispatch] = useGroupManage();
   const setStatus = s => dispatch(update({ resourceStatus: s }));
-  const [updateResourceUrl] = useUpdateResourceUrl();
+  const [updateResourceUrl] = useUpdateGroupResourceUrl();
 
   const {
     values: linkValues,
