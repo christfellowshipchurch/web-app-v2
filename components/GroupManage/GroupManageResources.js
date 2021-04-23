@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { GroupResourceOptionsProvider } from 'providers';
 import { useGroupManage, update } from 'providers/GroupManageProvider';
 import { Box, Icon, List, Menu } from 'ui-kit';
 
@@ -37,7 +38,13 @@ function GroupManageResources(props = {}) {
     }
 
     if (status === 'ADD_CONTENT') {
-      return <AddResourceContent />;
+      return (
+        <GroupResourceOptionsProvider
+          Component={AddResourceContent}
+          options={{ variables: { groupId: props.data.id } }}
+          groupId={props.data?.id}
+        />
+      );
     }
 
     return null;

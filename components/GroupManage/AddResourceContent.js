@@ -1,12 +1,80 @@
-import React from 'react';
-// import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
-import { Box } from 'ui-kit';
+import { useGroupManage, update } from 'providers/GroupManageProvider';
+import { useUpdateGroupResourceContentItem } from 'hooks';
+import { Box, Button, Select } from 'ui-kit';
 
 function AddResourceContent(props = {}) {
-  return <Box as="p">Add content!</Box>;
+  const [{ resourceStatus: status }, dispatch] = useGroupManage();
+  const setStatus = s => dispatch(update({ resourceStatus: s }));
+  const [selection, setSelection] = useState('');
+
+  const [updateGroupResourceContentItem] = useUpdateGroupResourceContentItem();
+
+  function handleChange(event) {
+    setSelection(event.target.value);
+  }
+
+  async function handleSave(event) {
+    event.preventDefault();
+
+    setStatus('SAVING_CONTENT');
+
+    await updateGroupResourceContentItem({
+      variables: {
+        contentItemId: selection,
+        groupId: props.groupId,
+        relatedNodeId: selection,
+      },
+    });
+
+    setStatus('IDLE');
+  }
+
+  function handleBackClick(event) {
+    event.preventDefault();
+    setStatus('IDLE');
+  }
+
+  return (
+    <>
+      <Select
+        defaultValue=""
+        id="contentOption"
+        name="contentOption"
+        onChange={handleChange}
+        mb="base"
+      >
+        <Select.Option value="" disabled={true}>
+          Select...
+        </Select.Option>
+        {props.data?.edges?.map(item => {
+          return (
+            <Select.Option key={item.node.id} value={item.node.id}>
+              {item.node.title}
+            </Select.Option>
+          );
+        })}
+      </Select>
+      <Box alignItems="center" display="flex">
+        <Button
+          onClick={handleSave}
+          status={status === 'SAVING_CONTENT' ? 'LOADING' : null}
+        >
+          Add Content
+        </Button>
+        <Box as="a" href="#0" onClick={handleBackClick} ml="base">
+          Back
+        </Box>
+      </Box>
+    </>
+  );
 }
 
-// AddResourceContent.propTypes = {};
+AddResourceContent.propTypes = {
+  data: PropTypes.object,
+  groupId: PropTypes.string,
+};
 
 export default AddResourceContent;

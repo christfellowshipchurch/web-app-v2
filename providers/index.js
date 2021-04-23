@@ -16,6 +16,7 @@ import GroupCoverImagesProvider from './GroupCoverImagesProvider';
 import GroupFiltersProvider from './GroupFiltersProvider';
 import GroupManageProvider from './GroupManageProvider';
 import GroupProvider from './GroupProvider';
+import GroupResourceOptionsProvider from './GroupResourceOptionsProvider';
 import GroupsProvider from './GroupsProvider';
 import LiveStreamProvider from './LiveStreamProvider';
 import ModalProvider from './ModalProvider';
@@ -45,6 +46,7 @@ export {
   GroupFiltersProvider,
   GroupManageProvider,
   GroupProvider,
+  GroupResourceOptionsProvider,
   GroupsProvider,
   LiveStreamProvider,
   ModalProvider,
