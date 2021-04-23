@@ -11,6 +11,7 @@ const Header = styled.header`
   justify-content: center;
   grid-template-columns: auto 1fr;
   padding: ${themeGet('space.base')};
+  z-index: 1;
 
   > *:last-child {
     justify-self: flex-end;
