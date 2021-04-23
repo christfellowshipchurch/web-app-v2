@@ -25,8 +25,8 @@ function GroupSingle(props = {}) {
   });
 
   const totalMembers =
-    (props.data?.leaders.totalCount || 0) +
-    (props.data?.members.totalCount || 0);
+    (props.data?.leaders?.totalCount || 0) +
+    (props.data?.members?.totalCount || 0);
 
   const handleOnClickVideoCall = action => {
     // amplitude.trackEvent({
