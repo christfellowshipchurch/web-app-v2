@@ -30,7 +30,7 @@ function Search({ filtering, setFiltering }) {
         indexName="prod_ContentItem"
         searchClient={searchClient}
         onSearchStateChange={state => {
-          setCategories(state.refinementList.category);
+          setCategories(state.refinementList?.category || []);
         }}
       >
         <div className={`left-panel ${filtering ? 'filtering' : ''}`}>
