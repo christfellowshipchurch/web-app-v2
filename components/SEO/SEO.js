@@ -16,7 +16,7 @@ function getPageTitle(title) {
 
 function SEO(props = {}) {
   const pageTitle = getPageTitle(props.title);
-  console.log('props.meta:', props.meta);
+
   return (
     <Head>
       {/* Title */}
