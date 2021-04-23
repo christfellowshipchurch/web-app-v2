@@ -6,7 +6,10 @@ import { useUpdateGroupResourceContentItem } from 'hooks';
 import { Box, Button, Select } from 'ui-kit';
 
 function AddResourceContent(props = {}) {
-  const [{ resourceStatus: status, groupData }, dispatch] = useGroupManage();
+  const [
+    { resourceStatus: status, groupData, message },
+    dispatch,
+  ] = useGroupManage();
   const setStatus = s => dispatch(update({ resourceStatus: s }));
   const [selection, setSelection] = useState('');
 
@@ -18,6 +21,16 @@ function AddResourceContent(props = {}) {
 
   async function handleSave(event) {
     event.preventDefault();
+
+    const noSelection = selection === '';
+    if (noSelection) {
+      dispatch(
+        update({
+          message: `You need to select an item in the menu.`,
+        })
+      );
+      return;
+    }
 
     setStatus('SAVING_CONTENT');
 
@@ -40,6 +53,11 @@ function AddResourceContent(props = {}) {
 
   return (
     <>
+      {message && (
+        <Box as="p" color="alert" fontSize="s" mb="base">
+          {message}
+        </Box>
+      )}
       <Select
         defaultValue=""
         id="contentOption"

@@ -15,8 +15,10 @@ const initialState = {
   // IDLE, EDITING, SAVING, ERROR
   photoStatus: 'IDLE',
 
-  // IDLE, ADD, ADD_LINK, ADD_CONTENT, SAVING_LINK, SAVING_CONTENT
+  // IDLE, ADD, ADD_LINK, ADD_CONTENT, SAVING_LINK, SAVING_CONTENT, ERROR
   resourceStatus: 'IDLE',
+
+  message: null,
 };
 
 const actionTypes = {
@@ -26,6 +28,19 @@ const actionTypes = {
 function reducer(state, action) {
   switch (action.type) {
     case actionTypes.update: {
+      // We do this so that we reset the message whenever we're
+      // going back to the idle state.
+      if (
+        action.payload?.photoStatus === 'IDLE' ||
+        action.payload?.resourceStatus === 'IDLE'
+      ) {
+        return {
+          ...state,
+          message: null,
+          ...action.payload,
+        };
+      }
+
       return {
         ...state,
         ...action.payload,

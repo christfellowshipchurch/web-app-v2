@@ -38,10 +38,15 @@ function AddResourceLink(props = {}) {
   return (
     <Box as="form" onSubmit={handleLinkSubmit}>
       <Box mb="base">
-        <TextInput label="Title" id="title" onChange={handleLinkChange} />
+        <TextInput
+          label="Title"
+          id="title"
+          required
+          onChange={handleLinkChange}
+        />
       </Box>
       <Box mb="base">
-        <TextInput label="URL" id="url" onChange={handleLinkChange} />
+        <TextInput label="URL" id="url" required onChange={handleLinkChange} />
       </Box>
       <Box alignItems="center" display="flex">
         <Button
