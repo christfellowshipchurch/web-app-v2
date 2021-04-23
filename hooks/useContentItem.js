@@ -146,7 +146,10 @@ export const GET_CONTENT_ITEM = gql`
 `;
 
 function useContentItem(options = {}) {
-  const query = useQuery(GET_CONTENT_ITEM, options);
+  const query = useQuery(GET_CONTENT_ITEM, {
+    fetchPolicy: 'cache-and-network',
+    ...options,
+  });
 
   return {
     item: query?.data?.getNodeByPathname || [],

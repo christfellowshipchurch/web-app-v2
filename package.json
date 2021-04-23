@@ -11,7 +11,8 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "new-component": "bash scripts/new-component.sh",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "prestart": "node ./scripts/get-introspection-data.js"
   },
   "dependencies": {
     "@apollo/client": "^3.2.5",

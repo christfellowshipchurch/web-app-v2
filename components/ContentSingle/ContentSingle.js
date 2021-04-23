@@ -21,15 +21,15 @@ function ContentSingle(props = {}) {
     title,
     videos = [],
   } = props.data;
+  const [currentVideo, setCurrentVideo] = useState(
+    Array.isArray(videos) ? videos[0] : null
+  );
 
   const coverImageUri = coverImage?.sources[0]?.uri;
   const authorName = author
     ? `${author.firstName} ${author.lastName}`
     : undefined;
 
-  const [currentVideo, setCurrentVideo] = useState(
-    Array.isArray(videos) ? videos[0] : null
-  );
   const hasMultipleVideos = videos?.length >= 2;
 
   const handleSelectVideo = video => {
@@ -47,7 +47,7 @@ function ContentSingle(props = {}) {
         image: coverImageUri,
         author: authorName,
         url: typeof window !== 'undefined' ? window.location.href : undefined,
-        video: videos[0].sources[0].uri,
+        video: videos[0]?.sources[0]?.uri,
       }}
       summary={schedule?.friendlyScheduleText || summary}
       coverImage={currentVideo ? null : coverImageUri}
