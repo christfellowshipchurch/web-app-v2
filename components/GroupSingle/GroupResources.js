@@ -4,7 +4,7 @@ import { List, Box, Image } from 'ui-kit';
 import { CustomLink } from 'components';
 
 import { getURLFromType } from 'utils';
-
+import amplitude from 'lib/amplitude';
 export default function GroupResources(props = {}) {
   if (!props.resources?.length) {
     return null;
@@ -23,6 +23,13 @@ export default function GroupResources(props = {}) {
             key={resource.relatedNode?.id}
             href={getURLFromType(resource.relatedNode)}
             textDecoration="none"
+            onClick={() => {
+              amplitude.trackEvent({
+                category: 'Group Item',
+                action: `${resource.title} - Group Resource Action`,
+                label: `${resource.title} Button`,
+              });
+            }}
           >
             <Box display="flex" alignItems="center">
               <Image
