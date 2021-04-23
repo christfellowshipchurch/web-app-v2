@@ -14,7 +14,9 @@ export default function Manage(props) {
   const isLoading = state.status === 'LOADING' || state.status === 'RECEIVED';
 
   return (
-    <Layout title={`Manage ${title}`}>
+    // TODO: It should say the group's name here.
+    // Use `title` and then deal with the hyphened title.
+    <Layout title="Manage Group">
       {isLoading ? (
         <Loader text="Loading your Group" />
       ) : _id ? (
