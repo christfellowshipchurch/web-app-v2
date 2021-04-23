@@ -1,10 +1,12 @@
-import React, { createContext, useContext, useReducer } from 'react';
+import React, { createContext, useContext, useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 
 const GroupManageProviderStateContext = createContext();
 const GroupManageProviderDispatchContext = createContext();
 
 const initialState = {
+  groupData: null,
+
   sections: {
     photo: 'PHOTO',
     resources: 'RESOURCES',
@@ -36,7 +38,16 @@ function reducer(state, action) {
 }
 
 function GroupManageProvider(props = {}) {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const { groupData } = props;
+  const [state, dispatch] = useReducer(reducer, initialState, state => ({
+    ...state,
+    groupData,
+  }));
+
+  useEffect(() => {
+    dispatch({ type: actionTypes.update, payload: { groupData } });
+  }, [groupData]);
+
   return (
     <GroupManageProviderStateContext.Provider value={state}>
       <GroupManageProviderDispatchContext.Provider value={dispatch}>
@@ -92,6 +103,7 @@ const update = payload => ({
 
 GroupManageProvider.propTypes = {
   children: PropTypes.oneOfType([PropTypes.element, PropTypes.node]),
+  groupData: PropTypes.object,
 };
 
 export {

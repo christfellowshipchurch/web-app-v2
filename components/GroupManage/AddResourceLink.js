@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { useGroupManage, update } from 'providers/GroupManageProvider';
 import { useForm, useUpdateGroupResourceUrl } from 'hooks';
 import { Box, Button, TextInput } from 'ui-kit';
 
 function AddResourceLink(props = {}) {
-  const [{ resourceStatus: status }, dispatch] = useGroupManage();
+  const [{ resourceStatus: status, groupData }, dispatch] = useGroupManage();
   const setStatus = s => dispatch(update({ resourceStatus: s }));
   const [updateResourceUrl] = useUpdateGroupResourceUrl();
 
@@ -23,7 +22,7 @@ function AddResourceLink(props = {}) {
       variables: {
         url,
         title,
-        groupId: props.groupId,
+        groupId: groupData.id,
       },
       refetchQueries: ['getGroup'],
     });
@@ -58,9 +57,5 @@ function AddResourceLink(props = {}) {
     </Box>
   );
 }
-
-AddResourceLink.propTypes = {
-  groupId: PropTypes.string,
-};
 
 export default AddResourceLink;

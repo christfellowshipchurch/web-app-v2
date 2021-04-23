@@ -1,16 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
+import { useGroupManageState } from 'providers/GroupManageProvider';
 import { Box, List } from 'ui-kit';
 
 import RemoveResourceLink from './RemoveResourceLink';
 
 function ResourcesList(props = {}) {
+  const { groupData } = useGroupManageState();
+
   return (
     <List>
-      {props.resources.map((resource, idx) => (
+      {groupData.resources.map((resource, idx) => (
         <Box as="li" key={idx} display="flex">
-          <RemoveResourceLink groupId={props.groupId} resource={resource} />
+          <RemoveResourceLink resource={resource} />
           <Box flex="1">
             <Box as="b" fontWeight="bold">
               {resource?.title}
@@ -33,10 +35,5 @@ function ResourcesList(props = {}) {
     </List>
   );
 }
-
-ResourcesList.propTypes = {
-  groupId: PropTypes.string,
-  resources: PropTypes.array,
-};
 
 export default ResourcesList;

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { GroupResourceOptionsProvider } from 'providers';
 import { useGroupManage, update } from 'providers/GroupManageProvider';
@@ -10,7 +9,7 @@ import AddResourceLink from './AddResourceLink';
 import ResourcesList from './ResourcesList';
 
 function GroupManageResources(props = {}) {
-  const [{ resourceStatus: status }, dispatch] = useGroupManage();
+  const [{ resourceStatus: status, groupData }, dispatch] = useGroupManage();
   const setStatus = s => dispatch(update({ resourceStatus: s }));
 
   const handleAddLinkClick = toggle => event => {
@@ -27,24 +26,18 @@ function GroupManageResources(props = {}) {
 
   function render() {
     if (status === 'IDLE') {
-      return (
-        <ResourcesList
-          groupId={props.data?.id}
-          resources={props.data?.resources}
-        />
-      );
+      return <ResourcesList />;
     }
 
     if (status === 'ADD_LINK') {
-      return <AddResourceLink groupId={props.data.id} />;
+      return <AddResourceLink />;
     }
 
     if (status === 'ADD_CONTENT') {
       return (
         <GroupResourceOptionsProvider
           Component={AddResourceContent}
-          options={{ variables: { groupId: props.data.id } }}
-          groupId={props.data?.id}
+          options={{ variables: { groupId: groupData.id } }}
         />
       );
     }
@@ -100,9 +93,5 @@ function GroupManageResources(props = {}) {
     </>
   );
 }
-
-GroupManageResources.propTypes = {
-  data: PropTypes.object,
-};
 
 export default GroupManageResources;

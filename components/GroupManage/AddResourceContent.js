@@ -6,7 +6,7 @@ import { useUpdateGroupResourceContentItem } from 'hooks';
 import { Box, Button, Select } from 'ui-kit';
 
 function AddResourceContent(props = {}) {
-  const [{ resourceStatus: status }, dispatch] = useGroupManage();
+  const [{ resourceStatus: status, groupData }, dispatch] = useGroupManage();
   const setStatus = s => dispatch(update({ resourceStatus: s }));
   const [selection, setSelection] = useState('');
 
@@ -24,7 +24,7 @@ function AddResourceContent(props = {}) {
     await updateGroupResourceContentItem({
       variables: {
         contentItemId: selection,
-        groupId: props.groupId,
+        groupId: groupData.id,
         relatedNodeId: selection,
       },
       refetchQueries: ['getGroup'],
@@ -75,7 +75,6 @@ function AddResourceContent(props = {}) {
 
 AddResourceContent.propTypes = {
   data: PropTypes.object,
-  groupId: PropTypes.string,
 };
 
 export default AddResourceContent;

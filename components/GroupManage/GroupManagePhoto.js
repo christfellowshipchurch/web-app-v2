@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { GroupCoverImagesProvider } from 'providers';
 import { useGroupManage, update } from 'providers/GroupManageProvider';
@@ -8,7 +7,7 @@ import { CustomLink } from 'components';
 import CoverImagesList from './CoverImagesList';
 
 function GroupManagePhoto(props = {}) {
-  const [{ photoStatus: status }, dispatch] = useGroupManage();
+  const [{ photoStatus: status, groupData }, dispatch] = useGroupManage();
   const setStatus = s => dispatch(update({ photoStatus: s }));
 
   function handleUpdateClick(event) {
@@ -22,8 +21,8 @@ function GroupManagePhoto(props = {}) {
         <Box as="a" href="#0" onClick={handleUpdateClick}>
           <Box
             as="img"
-            src={props.data?.coverImage?.sources[0]?.uri}
-            alt={`${props.data?.title} Photo`}
+            src={groupData.coverImage?.sources[0]?.uri}
+            alt={`${groupData.title} Photo`}
             borderRadius="base"
             boxShadow="base"
             width="100%"
@@ -36,7 +35,7 @@ function GroupManagePhoto(props = {}) {
       return (
         <GroupCoverImagesProvider
           Component={CoverImagesList}
-          groupData={props.data}
+          groupData={groupData}
         />
       );
     }
@@ -60,9 +59,5 @@ function GroupManagePhoto(props = {}) {
     </>
   );
 }
-
-GroupManagePhoto.propTypes = {
-  data: PropTypes.object,
-};
 
 export default GroupManagePhoto;

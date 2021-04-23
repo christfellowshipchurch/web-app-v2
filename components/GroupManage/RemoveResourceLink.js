@@ -2,9 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { useRemoveGroupResource } from 'hooks';
+import { useGroupManageState } from 'providers/GroupManageProvider';
 import { Box, Icon } from 'ui-kit';
 
 function RemoveResourceLink(props = {}) {
+  const { groupData } = useGroupManageState();
   const [removeResource] = useRemoveGroupResource();
 
   async function handleRemoveClick(event) {
@@ -18,7 +20,7 @@ function RemoveResourceLink(props = {}) {
 
     await removeResource({
       variables: {
-        groupId: props.groupId,
+        groupId: groupData.id,
         relatedNodeId: props.resource.relatedNode.id,
       },
       refetchQueries: ['getGroup'],
@@ -40,7 +42,6 @@ function RemoveResourceLink(props = {}) {
 }
 
 RemoveResourceLink.propTypes = {
-  groupId: PropTypes.string,
   resource: PropTypes.object,
 };
 

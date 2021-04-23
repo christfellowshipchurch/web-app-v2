@@ -25,7 +25,6 @@ function CoverImagesList(props = {}) {
         },
       });
     } catch (error) {
-      console.log(error);
       setStatus('ERROR');
     }
   };

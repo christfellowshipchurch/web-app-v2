@@ -22,10 +22,10 @@ function GroupManage(props = {}) {
   function render() {
     switch (section) {
       case initialState.sections.photo: {
-        return <GroupManagePhoto data={props.data} />;
+        return <GroupManagePhoto />;
       }
       case initialState.sections.resources: {
-        return <GroupManageResources data={props.data} />;
+        return <GroupManageResources />;
       }
       default: {
         return null;
@@ -34,7 +34,7 @@ function GroupManage(props = {}) {
   }
 
   return (
-    <GroupManageProvider>
+    <GroupManageProvider groupData={props.data}>
       <Box
         display={{ lg: 'grid' }}
         gridTemplateColumns="25% 1fr"
