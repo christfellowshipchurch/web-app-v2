@@ -16,15 +16,13 @@ export default function Content(props) {
   const { title } = router.query;
 
   return (
-    <Layout title={title}>
-      {title && (
-        <ContentItemProvider
-          Component={ContentSingle}
-          options={{
-            variables: { itemId: getItemId(title) },
-          }}
-        />
-      )}
+    <Layout>
+      <ContentItemProvider
+        Component={ContentSingle}
+        options={{
+          variables: { itemId: getItemId(title) },
+        }}
+      />
     </Layout>
   );
 }
