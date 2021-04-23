@@ -33,7 +33,7 @@ function AddResourceLink(props = {}) {
 
   function handleBackClick(event) {
     event.preventDefault();
-    setStatus('ADD');
+    setStatus('IDLE');
   }
 
   return (

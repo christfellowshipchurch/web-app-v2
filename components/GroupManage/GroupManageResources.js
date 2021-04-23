@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { useGroupManage, update } from 'providers/GroupManageProvider';
-import { Box, Button } from 'ui-kit';
-import { CustomLink } from 'components';
+import { Box, Icon, List, Menu } from 'ui-kit';
 
 import AddResourceContent from './AddResourceContent';
 import AddResourceLink from './AddResourceLink';
@@ -12,11 +11,6 @@ import ResourcesList from './ResourcesList';
 function GroupManageResources(props = {}) {
   const [{ resourceStatus: status }, dispatch] = useGroupManage();
   const setStatus = s => dispatch(update({ resourceStatus: s }));
-
-  function handleAddClick(event) {
-    event.preventDefault();
-    setStatus(status === 'IDLE' ? 'ADD' : 'IDLE');
-  }
 
   function handleAddLinkClick(event) {
     event.preventDefault();
@@ -38,31 +32,6 @@ function GroupManageResources(props = {}) {
       );
     }
 
-    if (status === 'ADD') {
-      return (
-        <Box
-          display="grid"
-          gridTemplateColumns="repeat(2, 50%)"
-          gridColumnGap="l"
-        >
-          <Button
-            variant="secondary"
-            onClick={handleAddLinkClick}
-            display="block"
-          >
-            Add URL
-          </Button>
-          <Button
-            variant="secondary"
-            onClick={handleAddContentClick}
-            display="block"
-          >
-            Add Study
-          </Button>
-        </Box>
-      );
-    }
-
     if (status === 'ADD_LINK') {
       return <AddResourceLink groupId={props.data.id} />;
     }
@@ -80,9 +49,41 @@ function GroupManageResources(props = {}) {
         <Box as="h2" flexGrow="1" mb="0">
           Resources
         </Box>
-        <CustomLink href="#0" onClick={handleAddClick}>
-          {status === 'IDLE' ? 'Add' : 'Cancel'}
-        </CustomLink>
+        <Menu
+          renderTrigger={({ toggle }) => (
+            <Box as="a" href="#0" onClick={toggle} textDecoration="none">
+              Add <Icon name="caretDown" position="relative" top="2px" />
+            </Box>
+          )}
+          side="right"
+        >
+          <List py="s">
+            <Box as="li">
+              <Box
+                as="a"
+                href="#0"
+                onClick={handleAddLinkClick}
+                display="block"
+                px="s"
+                textDecoration="none"
+              >
+                Add URL
+              </Box>
+            </Box>
+            <Box as="li">
+              <Box
+                as="a"
+                href="#0"
+                onClick={handleAddContentClick}
+                display="block"
+                px="s"
+                textDecoration="none"
+              >
+                Add Content
+              </Box>
+            </Box>
+          </List>
+        </Menu>
       </Box>
       {render()}
     </>
