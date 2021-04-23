@@ -114,7 +114,7 @@ function ContentLayout(props = {}) {
           px={props.contentHorizontalPadding}
           py={props.contentVerticalPadding}
         >
-          <SEO title={props.title} />
+          <SEO title={props.title} {...props.seoMetaTags} />
           {renderA()}
           <Box
             alignItems="center"
@@ -153,10 +153,12 @@ ContentLayout.propTypes = {
   renderContentE: PropTypes.func,
   renderD: PropTypes.func,
   renderE: PropTypes.func,
+  seo: PropTypes.object,
   title: PropTypes.string,
 };
 
 ContentLayout.defaultProps = {
+  seoMetaTags: {},
   contentMaxWidth: DEFAULT_CONTENT_WIDTH,
   contentHorizontalPadding: 'base',
   contentVerticalPadding: { _: 'l', lg: 'xl' },

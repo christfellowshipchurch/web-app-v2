@@ -7,7 +7,7 @@ import { Footer, Header, SEO } from 'components';
 function Layout(props = {}) {
   return (
     <>
-      <SEO title={props.title} />
+      {props.title && <SEO title={props.title} />}
       <Box display="flex" flexDirection="column" height="100vh">
         <Header />
         <Box flexGrow="1">{props.children}</Box>
