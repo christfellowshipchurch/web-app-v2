@@ -2,13 +2,15 @@ import { LargeImage, Layout, MainPhotoHeader } from 'components';
 import { GET_MESSAGE_CHANNEL } from 'hooks/useMessageChannel';
 import { Box, Button, Section } from 'ui-kit';
 import { useRouter } from 'next/router';
-import { getIdSuffix, getItemId, getMetaData } from 'utils';
+import { getIdSuffix, getItemId, getMetaData, getChannelId } from 'utils';
 import { useTheme } from 'styled-components';
 import { useState } from 'react';
 import { useLazyQuery } from '@apollo/client';
 import { initializeApollo } from 'lib/apolloClient';
+import IDS from 'config/ids';
+import { GET_MESSAGE_SERIES } from 'hooks/useMessageSeries';
 
-export default function Channel({ item }) {
+export default function Channel({ item } = {}) {
   const router = useRouter();
   const theme = useTheme();
 
@@ -25,6 +27,10 @@ export default function Channel({ item }) {
       setCursor(data?.node?.childContentItemsConnection?.pageInfo?.endCursor);
     },
   });
+
+  if(router.isFallback){
+    return null;
+  }
 
   const totalVideoCount = item?.childContentItemsConnection?.totalCount || 0;
 
@@ -82,7 +88,7 @@ export default function Channel({ item }) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const apolloClient = initializeApollo();
 
   const itemResponse = await apolloClient.query({
@@ -99,3 +105,26 @@ export async function getServerSideProps(context) {
     },
   };
 }
+
+export async function getStaticPaths() {
+  const apolloClient = initializeApollo();
+  // Get the paths we want to pre-render
+  const series = Object.values(IDS.SERIES);
+
+  const channels = (await Promise.all(series.map(id => apolloClient.query({
+    query: GET_MESSAGE_SERIES,
+    variables: {
+      itemId: getChannelId(id),
+    },
+  })))).flatMap(({ data }) => data.node.childContentItemsConnection?.edges.map(({ node }) => ({ channelId: node.id, seriesId: data.node.id })));
+
+  console.log(channels)
+
+  const paths = channels.map(({ channelId, seriesId }) => ({
+    params: { channel: getIdSuffix(channelId), series: getIdSuffix(seriesId) },
+  }));
+
+  // Fallback true - if a page doesn't exist we will render it on the fly.
+  return { paths, fallback: true };
+}
+
