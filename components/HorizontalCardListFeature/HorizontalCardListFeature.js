@@ -3,11 +3,16 @@ import PropTypes from 'prop-types';
 
 import { CustomLink } from '..';
 import { HorizontalHighlightCard, CardCarousel } from 'ui-kit';
-import { getURLFromType } from 'utils';
+import { getUrlFromRelatedNode } from 'utils';
 
 function HorizontalCardListFeature(props = {}) {
-  const cards = props?.data?.cards || [];
-  const cardType = props?.data?.cardType;
+  if (!props?.data?.cards) {
+    return null;
+  }
+
+  const cards = props?.data?.cards;
+
+  const cardType = props?.data?.cardType || 'default';
   let cardsDisplayed;
 
   switch (cardType) {
@@ -31,9 +36,9 @@ function HorizontalCardListFeature(props = {}) {
             key={i}
             mx="s"
             boxShadow="none"
-            href={getURLFromType(card.relatedNode, card.title)}
+            href={getUrlFromRelatedNode(card?.relatedNode)}
             Component={HorizontalHighlightCard}
-            coverImage={card?.coverImage?.sources[0]?.uri}
+            coverImage={card?.coverImage?.sources[0]?.uri || '/cf-logo.png'}
             coverImageOverlay={true}
             title={card?.title}
             description={card?.summary}

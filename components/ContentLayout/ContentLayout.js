@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { themeGet } from '@styled-system/theme-get';
 
 import { createMarkup } from 'utils';
+import { SEO, FeatureFeed } from 'components';
 import {
   Box,
   Card,
@@ -12,7 +12,6 @@ import {
   ThemeProvider,
   utils,
 } from 'ui-kit';
-import { SEO } from 'components';
 
 const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
 
@@ -135,6 +134,11 @@ function ContentLayout(props = {}) {
           </Box>
         </Cell>
       </Box>
+      {props?.features && (
+        <Box>
+          <FeatureFeed data={props?.features} />
+        </Box>
+      )}
     </ThemeProvider>
   );
 }

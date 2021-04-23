@@ -6,8 +6,9 @@ const ContentBlock = styled.div``;
 
 const gridLayout = ({ gridLayout }) => props => {
   switch (gridLayout) {
-    case 'left':
+    case 'LEFT':
       return css`
+        grid-template-columns: 1fr 1fr;
         grid-template-areas:
           'media'
           'content';
@@ -15,9 +16,9 @@ const gridLayout = ({ gridLayout }) => props => {
           grid-template-areas: 'content media';
         }
       `;
-      break;
-    case 'right':
+    case 'RIGHT':
       return css`
+        grid-template-columns: 1fr 1fr;
         grid-template-areas:
           'media'
           'content';
@@ -25,17 +26,17 @@ const gridLayout = ({ gridLayout }) => props => {
           grid-template-areas: 'media content';
         }
       `;
-      break;
-    case 'inverted':
+    case 'INVERTED':
       return css`
+        grid-template-columns: 1fr;
         grid-template-areas:
           'content'
           'media';
       `;
-      break;
     case 'default':
     default:
       return css`
+        grid-template-columns: 1fr;
         grid-template-areas:
           'media'
           'content';
@@ -45,8 +46,8 @@ const gridLayout = ({ gridLayout }) => props => {
 
 const Container = styled.div`
   display: grid;
-  grid-column-gap: ${themeGet('space.l')};
   grid-row-gap: ${themeGet('space.l')};
+  justify-content: space-around;
   width: 100%;
 
   ${gridLayout};
@@ -54,16 +55,19 @@ const Container = styled.div`
 `;
 
 const Content = styled.div`
+  flex: 1;
   align-items: ${props => props.textAlign};
   display: flex;
   flex-direction: column;
   grid-area: content;
   justify-content: center;
+  padding: ${themeGet('space.l')};
 
   ${system};
 `;
 
 const Media = styled.div`
+  flex: 1;
   grid-area: media;
   margin: auto;
 

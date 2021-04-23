@@ -8,19 +8,32 @@ import {
   THEME_FRAGMENT,
 } from 'fragments';
 
+/**
+ * 1. On every Feature Feed page, first fetch the ID and then run this query
+ *
+ * 2. Create a new Endpoint (featureFeed(pathname: String)) which allows us to get a Feature Feed from the URL Pathname of a web page
+ * ex:  / ==> Home
+ *      /events ==> Events
+ *      /dannys-page ==> Page Builder
+ */
+
 export const GET_FEATURE_FEED = gql`
-  query getFeatureFeed {
-    userFeedFeatures {
-      ...LiteFeaturesFragment
-      ...ActionBarFeatureFragment
-      ...AvatarListFeatureFragment
-      ... on HorizontalCardListFeature {
-        cardType
-        primaryAction {
-          title
-          action
-          relatedNode {
-            ...RelatedFeatureNodeFragment
+  query getFeatureFeed($pathname: String!) {
+    featuresFeed(pathname: $pathname) {
+      id
+      features {
+        id
+        ...LiteFeaturesFragment
+        ...ActionBarFeatureFragment
+        ...AvatarListFeatureFragment
+        ... on HorizontalCardListFeature {
+          cardType
+          primaryAction {
+            title
+            action
+            relatedNode {
+              ...RelatedFeatureNodeFragment
+            }
           }
         }
       }
@@ -34,10 +47,13 @@ export const GET_FEATURE_FEED = gql`
 `;
 
 function useFeatureFeed(options = {}) {
-  const query = useQuery(GET_FEATURE_FEED, options);
+  const query = useQuery(GET_FEATURE_FEED, {
+    fetchPolicy: 'cache-and-network',
+    ...options,
+  });
 
   return {
-    features: query?.data?.userFeedFeatures || [],
+    features: query?.data?.featuresFeed?.features || [],
     ...query,
   };
 }

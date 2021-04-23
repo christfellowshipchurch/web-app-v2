@@ -1,10 +1,19 @@
-import { initializeApollo } from 'lib/apolloClient';
-import { EventsFeedProvider } from 'providers';
-import { GET_EVENTS } from 'hooks/useEvents';
-import { Box, Cell, utils } from 'ui-kit';
-import { Layout, FeatureFeed } from 'components';
+import React from 'react';
 
-export default function Events() {
+import { initializeApollo } from 'lib/apolloClient';
+import { GET_FEATURE_FEED } from 'hooks/useFeatureFeed';
+import { GET_FEATURE } from 'hooks/useFeature';
+import { FeatureFeedProvider } from 'providers';
+import { Layout, FeatureFeed } from 'components';
+import { Cell, utils } from 'ui-kit';
+
+export default function Events(props = {}) {
+  const options = {
+    variables: {
+      pathname: 'events',
+    },
+  };
+
   return (
     <Layout title="Events">
       <Cell
@@ -13,10 +22,7 @@ export default function Events() {
         px="base"
         py={{ _: 'l', lg: 'xl' }}
       >
-        <Box as="h1" mb="l">
-          Events
-        </Box>
-        <EventsFeedProvider Component={FeatureFeed} />
+        <FeatureFeedProvider Component={FeatureFeed} options={options} />
       </Cell>
     </Layout>
   );
@@ -25,7 +31,24 @@ export default function Events() {
 export async function getServerSideProps() {
   const apolloClient = initializeApollo();
 
-  await apolloClient.query({ query: GET_EVENTS });
+  const featureFeed = await apolloClient.query({
+    query: GET_FEATURE_FEED,
+    variables: { pathname: 'events' },
+  });
+  const features = featureFeed?.data?.featuresFeed?.features || [];
+
+  let promises = [];
+  features.map(item =>
+    promises.push(
+      apolloClient.query({
+        query: GET_FEATURE,
+        variables: {
+          featureId: item?.id,
+        },
+      })
+    )
+  );
+  await Promise.all(promises);
 
   return {
     props: {

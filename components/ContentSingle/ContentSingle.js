@@ -21,13 +21,15 @@ function ContentSingle(props = {}) {
     title,
     videos = [],
   } = props.data;
+  const [currentVideo, setCurrentVideo] = useState(
+    Array.isArray(videos) ? videos[0] : null
+  );
 
   const coverImageUri = coverImage?.sources[0]?.uri;
   const authorName = author
     ? `${author.firstName} ${author.lastName}`
     : undefined;
 
-  const [currentVideo, setCurrentVideo] = useState(videos[0]);
   const hasMultipleVideos = videos?.length >= 2;
 
   const handleSelectVideo = video => {
@@ -45,7 +47,7 @@ function ContentSingle(props = {}) {
         image: coverImageUri,
         author: authorName,
         url: typeof window !== 'undefined' ? window.location.href : undefined,
-        video: videos[0].sources[0].uri,
+        video: videos[0]?.sources[0]?.uri,
       }}
       summary={schedule?.friendlyScheduleText || summary}
       coverImage={currentVideo ? null : coverImageUri}
@@ -86,13 +88,28 @@ function ContentSingle(props = {}) {
           </Box>
         )
       }
-      htmlContent={htmlContent}
+      renderC={() => (
+        <Box justifySelf="flex-end" alignSelf="start">
+          <Share title={props.data?.title} />
+        </Box>
+      )}
+      contentTitleD="About"
+      contentTitleE={hasMultipleVideos ? 'Videos' : null}
+      renderContentE={() => (
+        <ContentVideosList
+          thumbnail={coverImage}
+          videos={props.data?.videos}
+          onSelectVideo={handleSelectVideo}
+        />
+      )}
+      htmlContent={props.data.htmlContent}
+      features={props?.data?.featureFeed?.features}
     />
   );
 }
 
 ContentSingle.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.array,
 };
 
 export default ContentSingle;

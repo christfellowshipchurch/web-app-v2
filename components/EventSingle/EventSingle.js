@@ -19,13 +19,13 @@ function EventSingle(props = {}) {
         </Box>
       )}
       htmlContent={props.data.htmlContent}
+      features={props?.data?.featureFeed?.features}
+      contentTitleE="Schedule"
       renderContentE={() => props.data && <EventGroupings data={props.data} />}
     />
   );
 }
 
-EventSingle.propTypes = {
-  data: PropTypes.object,
-};
+EventSingle.propTypes = {};
 
 export default EventSingle;

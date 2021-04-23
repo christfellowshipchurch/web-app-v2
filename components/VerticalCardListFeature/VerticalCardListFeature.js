@@ -6,7 +6,7 @@ import slice from 'lodash/slice';
 
 import { CustomLink } from 'components';
 import { CardGrid, DefaultCard, HorizontalHighlightCard } from 'ui-kit';
-import { getURLFromType } from 'utils';
+import { getURLFromType, getUrlFromRelatedNode } from 'utils';
 
 const getCardColumns = cards => {
   let col = '1';
@@ -20,9 +20,13 @@ const getCardColumns = cards => {
 };
 
 function VerticalCardListFeature(props = {}) {
-  let cards = props?.data?.cards || [];
-  const heroCard = head(cards);
-  cards = slice(cards, 1);
+  if (!props?.data?.cards) {
+    return null;
+  }
+
+  let cards = props?.data?.cards;
+  const heroCard = cards.length > 0 ? null : head(cards);
+  cards = heroCard ? [] : cards;
 
   const col = getCardColumns(cards);
 
@@ -37,24 +41,26 @@ function VerticalCardListFeature(props = {}) {
 
   return (
     <>
-      <CustomLink
-        as="a"
-        href={getURLFromType(heroCard?.relatedNode, heroCard?.title)}
-        Component={DefaultCard}
-        coverImage={heroCard?.coverImage?.sources[0]?.uri}
-        coverImageTitle={heroCard?.title}
-        coverImageDescription={heroCard?.summary}
-        coverImageOverlay={true}
-        marginBottom="l"
-        height={{ __: 250, md: 450 }}
-        display="block"
-      />
+      {!!heroCard && (
+        <CustomLink
+          as="a"
+          href={getUrlFromRelatedNode(heroCard?.relatedNode)}
+          Component={DefaultCard}
+          coverImage={heroCard?.coverImage?.sources[0]?.uri}
+          coverImageTitle={heroCard?.title}
+          coverImageDescription={heroCard?.summary}
+          coverImageOverlay={true}
+          marginBottom="l"
+          height={{ __: 250, md: 450 }}
+          display="block"
+        />
+      )}
       <CardGrid marginBottom="base" columns={col}>
         {cards.map((card, i) => (
           <CustomLink
             as="a"
             key={i}
-            href={getURLFromType(card?.relatedNode, card?.title)}
+            href={getUrlFromRelatedNode(card?.relatedNode)}
             Component={HorizontalHighlightCard}
             coverImage={card?.coverImage?.sources[0]?.uri}
             coverImageOverlay={true}
@@ -70,7 +76,7 @@ function VerticalCardListFeature(props = {}) {
             <CustomLink
               as="a"
               key={i}
-              href={getURLFromType(card?.relatedNode, card?.title)}
+              href={getUrlFromRelatedNode(card?.relatedNode)}
               Component={HorizontalHighlightCard}
               coverImage={card?.coverImage?.sources[0]?.uri}
               coverImageOverlay={true}

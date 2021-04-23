@@ -4,6 +4,7 @@ import dateTextFormat from './dateTextFormat';
 import formatPhoneNumber from './formatPhoneNumber';
 import getAge from './getAge';
 import getComponent from './getComponent';
+import getUrlFromRelatedNode from './getUrlFromRelatedNode';
 import getURLFromType from './getURLFromType';
 import htmlToReactParser from './htmlToReactParser';
 import normalizeUserData from './normalizeUserData';
@@ -20,6 +21,7 @@ export {
   formatPhoneNumber,
   getAge,
   getComponent,
+  getUrlFromRelatedNode,
   getURLFromType,
   htmlToReactParser,
   normalizeUserData,

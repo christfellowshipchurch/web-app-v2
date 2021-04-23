@@ -9,7 +9,6 @@ import ContentItemsSearchProvider from './ContentItemsSearchProvider';
 import CurrentPersonProvider from './CurrentPersonProvider';
 import CurrentUserProvider from './CurrentUserProvider';
 import EventProvider from './EventProvider';
-import EventsFeedProvider from './EventsFeedProvider';
 import FeatureFeedProvider from './FeatureFeedProvider';
 import FeatureProvider from './FeatureProvider';
 import GroupFiltersProvider from './GroupFiltersProvider';
@@ -36,7 +35,6 @@ export {
   CurrentPersonProvider,
   CurrentUserProvider,
   EventProvider,
-  EventsFeedProvider,
   FeatureFeedProvider,
   FeatureProvider,
   GroupFiltersProvider,

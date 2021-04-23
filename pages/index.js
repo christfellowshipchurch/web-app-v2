@@ -8,6 +8,12 @@ import { Layout, FeatureFeed } from 'components';
 import { Cell, utils } from 'ui-kit';
 
 export default function Home(props = {}) {
+  const options = {
+    variables: {
+      pathname: 'home',
+    },
+  };
+
   return (
     <Layout title="Home">
       <Cell
@@ -16,7 +22,7 @@ export default function Home(props = {}) {
         px="base"
         py={{ _: 'l', lg: 'xl' }}
       >
-        <FeatureFeedProvider Component={FeatureFeed} />
+        <FeatureFeedProvider Component={FeatureFeed} options={options} />
       </Cell>
     </Layout>
   );
@@ -25,8 +31,11 @@ export default function Home(props = {}) {
 export async function getServerSideProps() {
   const apolloClient = initializeApollo();
 
-  const featureFeed = await apolloClient.query({ query: GET_FEATURE_FEED });
-  const features = featureFeed?.data?.userFeedFeatures || [];
+  const featureFeed = await apolloClient.query({
+    query: GET_FEATURE_FEED,
+    variables: { pathname: 'home' },
+  });
+  const features = featureFeed?.data?.featuresFeed?.features || [];
 
   let promises = [];
   features.map(item =>
