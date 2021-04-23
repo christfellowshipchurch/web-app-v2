@@ -13,7 +13,7 @@ export default function Message(props) {
 
   const options = {
     variables: {
-      pathname: title,
+      pathname: `messages/${title}`,
     },
   };
 
