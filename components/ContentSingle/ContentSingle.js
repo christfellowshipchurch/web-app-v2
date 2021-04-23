@@ -9,11 +9,6 @@ import ContentVideo from './ContentVideo';
 import ContentVideosList from './ContentVideosList';
 
 function ContentSingle(props = {}) {
-  const videos = props.data?.videos || [];
-  const [currentVideo, setCurrentVideo] = useState(
-    Array.isArray(videos) ? videos[0] : null
-  );
-  const hasMultipleVideos = videos.length >= 2;
   const {
     __typename,
     author,
@@ -32,7 +27,9 @@ function ContentSingle(props = {}) {
     ? `${author.firstName} ${author.lastName}`
     : undefined;
 
-  const [currentVideo, setCurrentVideo] = useState(videos[0]);
+  const [currentVideo, setCurrentVideo] = useState(
+    Array.isArray(videos) ? videos[0] : null
+  );
   const hasMultipleVideos = videos?.length >= 2;
 
   const handleSelectVideo = video => {
