@@ -46,8 +46,6 @@ function useFeature(options = {}) {
     ...options,
   });
 
-  console.log({ query });
-
   return {
     feature: query?.data?.node || [],
     ...query,

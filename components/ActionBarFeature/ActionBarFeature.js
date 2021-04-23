@@ -11,13 +11,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import chunk from 'lodash/chunk';
 
+import { CustomLink } from 'components';
+
 import ThemeProvider from 'ui-kit/ThemeProvider';
 
 import { ActionBar, ActionBarItem } from 'ui-kit';
+import { getURLFromType, getUrlFromRelatedNode } from 'utils';
 
 const ActionBarFeature = props => {
   const id = props?.data?.id;
   const actions = props?.data?.actions || [];
+  const onPressActionItem = props?.onPressActionItem;
 
   if (!Array.isArray(actions) || !actions.length) return null;
 
@@ -38,18 +42,15 @@ const ActionBarFeature = props => {
               i
             ) => (
               // <ThemeProvider key={i} themeMixin={theme}>
-              <ActionBarItem
-                // onPress={() => {
-                //   onPressItem({
-                //     action,
-                //     icon,
-                //     title,
-                //     relatedNode,
-                //     ...actionProps,
-                //   });
-                // }}
+              <CustomLink
+                as="a"
+                href={getUrlFromRelatedNode(relatedNode)}
+                Component={ActionBarItem}
                 {...(!icon ? {} : { icon })}
                 label={title}
+                onPressActionItem={e =>
+                  onPressActionItem(e, { action, relatedNode })
+                }
               />
               // </ThemeProvider>
             )

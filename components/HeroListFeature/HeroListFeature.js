@@ -7,6 +7,7 @@ import { Box, CardGrid, DefaultCard, RowCard } from 'ui-kit';
 import { getURLFromType, getUrlFromRelatedNode } from 'utils';
 
 function HeroListFeature(props = {}) {
+  const onPressActionItem = props?.onPressActionItem;
   const heroCard = props?.data?.heroCard;
   let cards = props?.data?.actions || [];
 
@@ -34,6 +35,7 @@ function HeroListFeature(props = {}) {
         height={{ _: '250px', md: '450px' }}
         display="block"
         marginBottom="base"
+        onClick={e => onPressActionItem(e, heroCard)}
       />
       <CardGrid columns={col} marginBottom="l">
         {cards.map((card, i) => {

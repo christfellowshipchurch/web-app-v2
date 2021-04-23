@@ -6,7 +6,7 @@ import { Box, Avatar, Icon } from 'ui-kit';
 const AvatarListFeature = ({
   data: { people, onPressItem, primaryAction, isLoading },
 }) => {
-  console.log({ people });
+  if (!Array.isArray(people)) return null;
 
   return (
     <>
