@@ -36,7 +36,7 @@ function ResourcesList(props = {}) {
 
 ResourcesList.propTypes = {
   groupId: PropTypes.string,
-  resources: PropTypes.object,
+  resources: PropTypes.array,
 };
 
 export default ResourcesList;
