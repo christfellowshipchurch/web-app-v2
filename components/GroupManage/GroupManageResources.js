@@ -5,6 +5,8 @@ import { useForm, useUpdateResourceUrl } from 'hooks';
 import { Box, Button, List, TextInput } from 'ui-kit';
 import { CustomLink } from 'components';
 
+import RemoveResourceLink from './RemoveResourceLink';
+
 function GroupManageResources(props = {}) {
   // IDLE, ADD, ADD_LINK, ADD_CONTENT, SAVING_LINK, SAVING_CONTENT
   const [status, setStatus] = useState('IDLE');
@@ -55,22 +57,25 @@ function GroupManageResources(props = {}) {
       return (
         <List>
           {props?.data?.resources.map((resource, idx) => (
-            <Box as="li" key={idx}>
-              <Box as="b" fontWeight="bold">
-                {resource?.title}
-              </Box>
-              {resource?.relatedNode.url ? (
-                <Box
-                  as="span"
-                  color="subdued"
-                  display="block"
-                  fontSize="s"
-                  // TODO: This shouldn't be an inline style.
-                  style={{ wordBreak: 'break-word' }}
-                >
-                  {resource?.relatedNode.url}
+            <Box as="li" key={idx} display="flex">
+              <RemoveResourceLink groupId={props.data.id} resource={resource} />
+              <Box flex="1">
+                <Box as="b" fontWeight="bold">
+                  {resource?.title}
                 </Box>
-              ) : null}
+                {resource?.relatedNode.url ? (
+                  <Box
+                    as="span"
+                    color="subdued"
+                    display="block"
+                    fontSize="s"
+                    // TODO: This shouldn't be an inline style.
+                    style={{ wordBreak: 'break-word' }}
+                  >
+                    {resource?.relatedNode.url}
+                  </Box>
+                ) : null}
+              </Box>
             </Box>
           ))}
         </List>
