@@ -9,6 +9,7 @@ function AddResourceLink(props = {}) {
   const [{ resourceStatus: status }, dispatch] = useGroupManage();
   const setStatus = s => dispatch(update({ resourceStatus: s }));
   const [updateResourceUrl] = useUpdateResourceUrl();
+
   const {
     values: linkValues,
     handleChange: handleLinkChange,
@@ -29,6 +30,7 @@ function AddResourceLink(props = {}) {
 
     setStatus('IDLE');
   });
+
   function handleBackClick(event) {
     event.preventDefault();
     setStatus('ADD');
