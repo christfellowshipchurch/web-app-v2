@@ -2,14 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // import { Video } from 'components';
-import { Box, Image, systemPropTypes } from 'ui-kit';
+import { Box, Button, Image, systemPropTypes } from 'ui-kit';
 import { htmlToReactParser } from 'utils';
 
 import Styled from './ContentBlock.styles';
+import toLower from 'lodash/toLower';
 
 function ContentBlock(props = {}) {
   const horizontalLayout =
-    props.contentLayout === 'left' || props.contentLayout === 'right';
+    toLower(props.contentLayout) === 'left' ||
+    toLower(props.contentLayout) === 'right';
 
   /**
    * todo : We eventually want to add the Video.js componenet to the Media wrapper
@@ -20,20 +22,25 @@ function ContentBlock(props = {}) {
       {(props.image || props.image !== '') && (
         <Styled.Media>
           <Image
-            maxWidth="800px"
+            maxWidth={horizontalLayout ? '500px' : '800px'}
             source={props.image}
             aspectRatio={props.imageRatio}
           />
         </Styled.Media>
       )}
       <Styled.Content textAlign={horizontalLayout ? 'flex-start' : 'center'}>
-        {(props.title || props.subtitle) && (
+        {(props.title || props.summary) && (
           <>
-            <Styled.Subtitle>{props.subtitle}</Styled.Subtitle>
+            <Styled.Subtitle>{props.summary}</Styled.Subtitle>
             <Styled.Title>{props.title}</Styled.Title>
           </>
         )}
         <Box>{htmlToReactParser.parse(props.htmlContent)}</Box>
+        {props?.callToAction && (
+          <Button mt="l" href={props.callToAction.action}>
+            {props.callToAction.call}
+          </Button>
+        )}
       </Styled.Content>
     </Styled.Container>
   );
@@ -43,7 +50,7 @@ ContentBlock.propTypes = {
   ...systemPropTypes,
   callToAction: PropTypes.object,
   className: PropTypes.string,
-  contentLayout: PropTypes.oneOf(['default', 'inverted', 'left', 'right']),
+  contentLayout: PropTypes.oneOf(['DEFAULT', 'INVERTED', 'LEFT', 'RIGHT']),
   grouped: PropTypes.bool,
   hideTitle: PropTypes.bool,
   htmlContent: PropTypes.string,
@@ -52,7 +59,7 @@ ContentBlock.propTypes = {
   images: PropTypes.array,
   openLinksInNewTab: PropTypes.bool,
   secondaryCallToAction: PropTypes.object,
-  subtitle: PropTypes.string,
+  summary: PropTypes.string,
   textAlignment: PropTypes.string,
   title: PropTypes.string,
   variant: PropTypes.oneOf(['light', 'dark']),

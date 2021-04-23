@@ -53,19 +53,26 @@ const LITE_FEATURES_FRAGMENT = gql`
     }
   }
 `;
+
 const ACTION_BAR_FEATURE_FRAGMENT = gql`
   fragment ActionBarFeatureFragment on ActionBarFeature {
     id
+    order
+
     actions {
       title
-      icon
       action
+      icon
+      theme {
+        ...ThemeFragment
+      }
       relatedNode {
         ...RelatedFeatureNodeFragment
       }
     }
   }
 `;
+
 const AVATAR_LIST_FEATURE_FRAGMENT = gql`
   fragment AvatarListFeatureFragment on AvatarListFeature {
     id
@@ -95,6 +102,110 @@ const AVATAR_LIST_FEATURE_FRAGMENT = gql`
     }
   }
 `;
+
+const CONTENT_BLOCK_FEATURE_FRAGMENT = gql`
+  fragment ContentBlockFeatureFragment on ContentBlockFeature {
+    title
+    summary
+    htmlContent
+    coverImage {
+      sources {
+        uri
+      }
+    }
+    callToAction {
+      call
+      action
+    }
+    secondaryCallToAction {
+      call
+      action
+    }
+    orientation
+    imageRatio
+    imageAlt
+    subtitle
+  }
+`;
+
+const HERO_LIST_FEATURE_FRAGMENT = gql`
+  fragment HeroListFeatureFragment on HeroListFeature {
+    id
+    title
+    subtitle
+    actions {
+      id
+      title
+      subtitle
+      action
+      image {
+        sources {
+          uri
+        }
+      }
+      relatedNode {
+        ...RelatedFeatureNodeFragment
+      }
+    }
+    primaryAction {
+      title
+      action
+      relatedNode {
+        ...RelatedFeatureNodeFragment
+      }
+    }
+    heroCard {
+      action
+      title
+      hasAction
+      actionIcon
+      labelText
+      summary
+      coverImage {
+        sources {
+          uri
+        }
+      }
+      relatedNode {
+        ...RelatedFeatureNodeFragment
+      }
+    }
+  }
+`;
+
+const HORIZONTAL_CARD_LIST_FEATURE_FRAGMENT = gql`
+  fragment HorizontalCardListFeatureFragment on HorizontalCardListFeature {
+    id
+    title
+    subtitle
+    cards {
+      action
+      title
+      hyphenatedTitle: title(hyphenated: true)
+      hasAction
+      actionIcon
+      labelText
+      summary
+      coverImage {
+        sources {
+          uri
+        }
+      }
+      relatedNode {
+        ...RelatedFeatureNodeFragment
+      }
+    }
+    cardType
+    primaryAction {
+      title
+      action
+      relatedNode {
+        ...RelatedFeatureNodeFragment
+      }
+    }
+  }
+`;
+
 const THEME_FRAGMENT = gql`
   fragment ThemeFragment on Theme {
     type
@@ -107,6 +218,7 @@ const THEME_FRAGMENT = gql`
     }
   }
 `;
+
 const RELATED_FEATURE_NODE_FRAGMENT = gql`
   fragment RelatedFeatureNodeFragment on Node {
     id
@@ -116,13 +228,48 @@ const RELATED_FEATURE_NODE_FRAGMENT = gql`
     ... on ContentChannel {
       name
     }
+    ... on NodeRoute {
+      routing {
+        pathname
+      }
+    }
+  }
+`;
+
+const VERTICAL_CARD_LIST_FEATURE_FRAGMENT = gql`
+  fragment VerticalCardListFeatureFragment on VerticalCardListFeature {
+    id
+    isFeatured
+    title
+    subtitle
+    cards {
+      id
+      action
+      title
+      hasAction
+      actionIcon
+      labelText
+      summary
+      coverImage {
+        sources {
+          uri
+        }
+      }
+      relatedNode {
+        ...RelatedFeatureNodeFragment
+      }
+    }
   }
 `;
 
 export {
-  LITE_FEATURES_FRAGMENT,
   ACTION_BAR_FEATURE_FRAGMENT,
   AVATAR_LIST_FEATURE_FRAGMENT,
-  THEME_FRAGMENT,
+  CONTENT_BLOCK_FEATURE_FRAGMENT,
+  HERO_LIST_FEATURE_FRAGMENT,
+  HORIZONTAL_CARD_LIST_FEATURE_FRAGMENT,
+  LITE_FEATURES_FRAGMENT,
   RELATED_FEATURE_NODE_FRAGMENT,
+  THEME_FRAGMENT,
+  VERTICAL_CARD_LIST_FEATURE_FRAGMENT,
 };

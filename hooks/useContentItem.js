@@ -50,12 +50,11 @@ export const EVENT_ITEM_FRAGMENT = gql`
       }
       location
     }
-    label
+    labelText
     callsToAction {
       call
       action
     }
-    hideLabel
   }
 `;
 
@@ -118,8 +117,9 @@ export const INFORMATIONAL_ITEM_FRAGMENT = gql`
 `;
 
 export const GET_CONTENT_ITEM = gql`
-  query getContentItem($itemId: ID!) {
-    node(id: $itemId) {
+  query getContentItem($pathname: String) {
+    getNodeByPathname(pathname: $pathname) {
+      id
       __typename
       ... on ContentItem {
         ...contentItemFragment
@@ -127,23 +127,32 @@ export const GET_CONTENT_ITEM = gql`
         ...informationalContentItemFragment
         ...publishFragment
       }
-    }
-    metadata(relatedNode: $itemId) {
-      name
-      content
+
+      ... on FeaturesNode {
+        featureFeed {
+          id
+          features {
+            id
+          }
+        }
+      }
     }
   }
-  ${CONTENT_ITEM_FRAGMENT}
+
   ${EVENT_ITEM_FRAGMENT}
+  ${CONTENT_ITEM_FRAGMENT}
   ${PUBLISH_FRAGMENT}
   ${INFORMATIONAL_ITEM_FRAGMENT}
 `;
 
 function useContentItem(options = {}) {
-  const query = useQuery(GET_CONTENT_ITEM, options);
+  const query = useQuery(GET_CONTENT_ITEM, {
+    fetchPolicy: 'cache-and-network',
+    ...options,
+  });
 
   return {
-    item: query?.data?.node || [],
+    item: query?.data?.getNodeByPathname || [],
     ...query,
   };
 }

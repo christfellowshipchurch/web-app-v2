@@ -9,8 +9,28 @@ import ContentVideo from './ContentVideo';
 import ContentVideosList from './ContentVideosList';
 
 function ContentSingle(props = {}) {
-  const [currentVideo, setCurrentVideo] = useState(props.data?.videos[0]);
-  const hasMultipleVideos = props.data?.videos.length >= 2;
+  const {
+    __typename,
+    author,
+    coverImage,
+    htmlContent,
+    mode,
+    publishDate,
+    schedule,
+    summary,
+    title,
+    videos = [],
+  } = props.data;
+  const [currentVideo, setCurrentVideo] = useState(
+    Array.isArray(videos) ? videos[0] : null
+  );
+
+  const coverImageUri = coverImage?.sources[0]?.uri;
+  const authorName = author
+    ? `${author.firstName} ${author.lastName}`
+    : undefined;
+
+  const hasMultipleVideos = videos?.length >= 2;
 
   const handleSelectVideo = video => {
     if (video !== currentVideo) {
@@ -18,34 +38,52 @@ function ContentSingle(props = {}) {
     }
   };
 
-  const coverImage = props.data?.coverImage?.sources[0]?.uri;
-
   return (
     <ContentLayout
-      mode={props.data.mode}
-      title={props.data.title}
-      summary={props.data.schedule?.friendlyScheduleText || props.data.summary}
-      coverImage={currentVideo ? null : coverImage}
-      renderA={() => <ContentVideo video={currentVideo} poster={coverImage} />}
+      mode={mode}
+      title={title}
+      seoMetaTags={{
+        description: schedule?.friendlyScheduleText || summary,
+        image: coverImageUri,
+        author: authorName,
+        url: typeof window !== 'undefined' ? window.location.href : undefined,
+        video: videos[0]?.sources[0]?.uri,
+      }}
+      summary={schedule?.friendlyScheduleText || summary}
+      coverImage={currentVideo ? null : coverImageUri}
+      renderA={() => (
+        <ContentVideo video={currentVideo} poster={coverImageUri} />
+      )}
+      renderC={() => (
+        <Box justifySelf="flex-end" alignSelf="start">
+          <Share title={title} />
+        </Box>
+      )}
+      contentTitleD={__typename === 'EventContentItem' ? 'About' : null}
+      contentTitleE={hasMultipleVideos ? 'Videos' : null}
+      renderContentE={() => (
+        <ContentVideosList
+          thumbnail={coverImageUri}
+          videos={videos}
+          onSelectVideo={handleSelectVideo}
+        />
+      )}
       renderContentB={() =>
-        props.data?.author?.firstName && (
+        author && (
           <Box display="flex" mt="base">
             <Box mr="base">
               <Avatar
-                name={props.data?.author?.firstName}
-                source={props.data?.author?.photo?.uri}
+                name={author.firstName}
+                source={author.photo?.uri}
                 height="60px"
                 width="60px"
               />
             </Box>
             <Box display="flex" justifyContent="center" flexDirection="column">
-              <Box
-                as="h4"
-                mb="0"
-              >{`${props.data?.author?.firstName} ${props.data?.author?.lastName}`}</Box>
-              <Box>
-                {format(new Date(props.data?.publishDate), 'MMM d, yyyy')}
+              <Box as="h4" mb="0">
+                {authorName}
               </Box>
+              <Box>{format(new Date(publishDate), 'MMMM d, yyyy')}</Box>
             </Box>
           </Box>
         )
@@ -65,12 +103,13 @@ function ContentSingle(props = {}) {
         />
       )}
       htmlContent={props.data.htmlContent}
+      features={props?.data?.featureFeed?.features}
     />
   );
 }
 
 ContentSingle.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.array,
 };
 
 export default ContentSingle;

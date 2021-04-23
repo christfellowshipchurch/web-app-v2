@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { themeGet } from '@styled-system/theme-get';
 
 import { createMarkup } from 'utils';
+import { SEO, FeatureFeed } from 'components';
 import {
   Box,
   Card,
@@ -12,7 +12,6 @@ import {
   ThemeProvider,
   utils,
 } from 'ui-kit';
-import { SEO } from 'components';
 
 const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
 
@@ -115,7 +114,7 @@ function ContentLayout(props = {}) {
           px={props.contentHorizontalPadding}
           py={props.contentVerticalPadding}
         >
-          <SEO title={props.title} />
+          <SEO title={props.title} {...props.seoMetaTags} />
           {renderA()}
           <Box
             alignItems="center"
@@ -136,6 +135,11 @@ function ContentLayout(props = {}) {
           </Box>
         </Cell>
       </Box>
+      {props?.features && (
+        <Box>
+          <FeatureFeed data={props?.features} />
+        </Box>
+      )}
     </ThemeProvider>
   );
 }
@@ -154,11 +158,13 @@ ContentLayout.propTypes = {
   renderContentE: PropTypes.func,
   renderD: PropTypes.func,
   renderE: PropTypes.func,
+  seo: PropTypes.object,
   title: PropTypes.string,
   titleIconLink: PropTypes.func,
 };
 
 ContentLayout.defaultProps = {
+  seoMetaTags: {},
   contentMaxWidth: DEFAULT_CONTENT_WIDTH,
   contentHorizontalPadding: 'base',
   contentVerticalPadding: { _: 'l', lg: 'xl' },

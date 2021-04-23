@@ -5,7 +5,7 @@ import { useFeatureFeed } from '../hooks';
 
 function FeatureFeedProvider({ Component, options, ...props }) {
   const { loading, error, features } = useFeatureFeed(options);
-  
+
   return (
     <Component data={features} loading={loading} error={error} {...props} />
   );

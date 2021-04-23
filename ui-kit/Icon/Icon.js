@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withTheme } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
+import camelCase from 'lodash/camelCase';
 
 import { icons, systemPropTypes, theme } from 'ui-kit';
 import Styled from './Icon.styles';
@@ -13,7 +14,7 @@ function Icon({ color, height, name, size, width, ...rest }) {
   const newWidth = size || width || DEFAULT_ICON_SIZE;
   const newHeight = size || height || DEFAULT_ICON_SIZE;
   const iconName = name || DEFAULT_ICON_NAME;
-  const icon = icons[iconName];
+  const icon = icons[camelCase(iconName)];
 
   return (
     <Styled
