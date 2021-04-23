@@ -31,6 +31,7 @@ const GroupActions = ({
   videoCall,
   onClickParentVideoCall,
   onClickVideoCall,
+  checkInCompleted,
 }) => {
   return (
     <>
@@ -82,8 +83,9 @@ const GroupActions = ({
           href={'#'}
           onClick={() => onClickVideoCall()}
           width="100%"
+          disabled={checkInCompleted}
         >
-          Check In
+          {checkInCompleted ? 'Checked In' : 'Check In'}
         </Button>
       )}
     </>
