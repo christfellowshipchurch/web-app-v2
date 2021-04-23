@@ -32,6 +32,7 @@ import useSearchContentItems from './useSearchContentItems';
 import useSearchGroups from './useSearchGroups';
 import useUpdateCurrentUser from './useUpdateCurrentUser';
 import useUpdateGroupCoverImage from './useUpdateGroupCoverImage';
+import useUpdateResourceUrl from './useUpdateResourceUrl';
 import useUserExists from './useUserExists';
 import useVerifyPin from './useVerifyPin';
 import useDiscoverFilterCategories from './useDiscoverFilterCategories';
@@ -73,6 +74,7 @@ export {
   useSearchGroups,
   useUpdateCurrentUser,
   useUpdateGroupCoverImage,
+  useUpdateResourceUrl,
   useUserExists,
   useVerifyPin,
   useDiscoverFilterCategories,

@@ -1,12 +1,34 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
+import { useForm, useUpdateResourceUrl } from 'hooks';
 import { Box, Button, List, TextInput } from 'ui-kit';
 import { CustomLink } from 'components';
 
 function GroupManageResources(props = {}) {
   // IDLE, ADD, ADD_LINK, ADD_CONTENT, SAVING_LINK, SAVING_CONTENT
   const [status, setStatus] = useState('IDLE');
+  const [updateResourceUrl] = useUpdateResourceUrl();
+  const {
+    values: linkValues,
+    handleChange: handleLinkChange,
+    handleSubmit: handleLinkSubmit,
+  } = useForm(async () => {
+    const { url, title } = linkValues;
+
+    setStatus('SAVING_LINK');
+
+    await updateResourceUrl({
+      variables: {
+        url,
+        title,
+        groupId: props.data.id,
+      },
+      refetchQueries: ['getGroup'],
+    });
+
+    setStatus('IDLE');
+  });
 
   function handleAddClick(event) {
     event.preventDefault();
@@ -82,12 +104,12 @@ function GroupManageResources(props = {}) {
 
     if (status === 'ADD_LINK') {
       return (
-        <Box as="form">
+        <Box as="form" onSubmit={handleLinkSubmit}>
           <Box mb="base">
-            <TextInput label="Title" id="title" />
+            <TextInput label="Title" id="title" onChange={handleLinkChange} />
           </Box>
           <Box mb="base">
-            <TextInput label="URL" id="url" />
+            <TextInput label="URL" id="url" onChange={handleLinkChange} />
           </Box>
           <Box alignItems="center" display="flex">
             <Button
