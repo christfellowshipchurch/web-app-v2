@@ -5,8 +5,8 @@ import { Box } from 'ui-kit';
 function CustomLink({ Component: _Component, href, ...props }) {
   if (!_Component) {
     return (
-      <Link href={href}>
-        <Box as="a" cursor="pointer" {...props}>
+      <Link href={href} passHref={true}>
+        <Box as="a" cursor="pointer" textDecoration="none" {...props}>
           {props.children}
         </Box>
       </Link>
