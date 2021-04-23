@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import capitalize from 'lodash/capitalize';
 
 import { slugify } from 'utils';
-import { GroupCoverImagesProvider } from 'providers';
+import { GroupCoverImagesProvider, GroupManageProvider } from 'providers';
 import { Box, Card, List } from 'ui-kit';
 import { CustomLink } from 'components';
 
@@ -39,47 +39,49 @@ function GroupManage(props = {}) {
   }
 
   return (
-    <Box display="grid" gridTemplateColumns="25% 1fr" gridColumnGap="xl">
-      <Box>
-        <CustomLink href={`/groups/${slugify(props?.data?.title)}`}>
-          &larr; Back
-        </CustomLink>
-        <Box my="base">
-          {/* TODO: Make this a `<Label>` ui-kit component. */}
-          <Box
-            as="b"
-            color="subdued"
-            fontSize="xs"
-            fontWeight="bold"
-            letterSpacing="1px"
-            textTransform="uppercase"
-          >
-            Manage
+    <GroupManageProvider>
+      <Box display="grid" gridTemplateColumns="25% 1fr" gridColumnGap="xl">
+        <Box>
+          <CustomLink href={`/groups/${slugify(props?.data?.title)}`}>
+            &larr; Back
+          </CustomLink>
+          <Box my="base">
+            {/* TODO: Make this a `<Label>` ui-kit component. */}
+            <Box
+              as="b"
+              color="subdued"
+              fontSize="xs"
+              fontWeight="bold"
+              letterSpacing="1px"
+              textTransform="uppercase"
+            >
+              Manage
+            </Box>
+            <Box as="h1" fontSize="h3">
+              {props?.data?.title}
+            </Box>
           </Box>
-          <Box as="h1" fontSize="h3">
-            {props?.data?.title}
-          </Box>
-        </Box>
-        <Card boxShadow="base" p="base">
-          <List>
-            {SECTIONS.map((_section, idx) => (
-              <Box as="li" key={idx}>
-                <Box
-                  as="a"
-                  href="#0"
-                  onClick={handleSectionClick(_section)}
-                  color={section === _section ? 'fg' : 'primary'}
-                  textDecoration="none"
-                >
-                  Update {capitalize(_section)}
+          <Card boxShadow="base" p="base">
+            <List>
+              {SECTIONS.map((_section, idx) => (
+                <Box as="li" key={idx}>
+                  <Box
+                    as="a"
+                    href="#0"
+                    onClick={handleSectionClick(_section)}
+                    color={section === _section ? 'fg' : 'primary'}
+                    textDecoration="none"
+                  >
+                    Update {capitalize(_section)}
+                  </Box>
                 </Box>
-              </Box>
-            ))}
-          </List>
-        </Card>
+              ))}
+            </List>
+          </Card>
+        </Box>
+        <Box>{render()}</Box>
       </Box>
-      <Box>{render()}</Box>
-    </Box>
+    </GroupManageProvider>
   );
 }
 

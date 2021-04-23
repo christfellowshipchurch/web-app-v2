@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { useUpdateGroupCoverImage } from 'hooks';
 import { Box, DefaultCard, Loader } from 'ui-kit';
 import { CustomLink } from 'components';
+import { useGroupManage, update } from 'providers/GroupManageProvider';
 
 function GroupManagePhoto(props = {}) {
-  // IDLE, EDITING, SAVING, ERROR
-  const [status, setStatus] = useState('IDLE');
+  const [{ photoStatus: status }, dispatch] = useGroupManage();
+  const setStatus = s => dispatch(update({ photoStatus: s }));
+
   const [
     updateGroupCoverImage,
     { loading: updating },

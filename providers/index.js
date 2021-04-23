@@ -14,6 +14,7 @@ import FeatureFeedProvider from './FeatureFeedProvider';
 import FeatureProvider from './FeatureProvider';
 import GroupCoverImagesProvider from './GroupCoverImagesProvider';
 import GroupFiltersProvider from './GroupFiltersProvider';
+import GroupManageProvider from './GroupManageProvider';
 import GroupProvider from './GroupProvider';
 import GroupsProvider from './GroupsProvider';
 import LiveStreamProvider from './LiveStreamProvider';
@@ -42,6 +43,7 @@ export {
   FeatureProvider,
   GroupCoverImagesProvider,
   GroupFiltersProvider,
+  GroupManageProvider,
   GroupProvider,
   GroupsProvider,
   LiveStreamProvider,

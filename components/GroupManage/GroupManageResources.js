@@ -1,36 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-import { useForm, useUpdateResourceUrl } from 'hooks';
-import { Box, Button, List, TextInput } from 'ui-kit';
+import { useGroupManage, update } from 'providers/GroupManageProvider';
+import { Box, Button, List } from 'ui-kit';
 import { CustomLink } from 'components';
 
+import AddResourceLink from './AddResourceLink';
 import RemoveResourceLink from './RemoveResourceLink';
 
 function GroupManageResources(props = {}) {
-  // IDLE, ADD, ADD_LINK, ADD_CONTENT, SAVING_LINK, SAVING_CONTENT
-  const [status, setStatus] = useState('IDLE');
-  const [updateResourceUrl] = useUpdateResourceUrl();
-  const {
-    values: linkValues,
-    handleChange: handleLinkChange,
-    handleSubmit: handleLinkSubmit,
-  } = useForm(async () => {
-    const { url, title } = linkValues;
-
-    setStatus('SAVING_LINK');
-
-    await updateResourceUrl({
-      variables: {
-        url,
-        title,
-        groupId: props.data.id,
-      },
-      refetchQueries: ['getGroup'],
-    });
-
-    setStatus('IDLE');
-  });
+  const [{ resourceStatus: status }, dispatch] = useGroupManage();
+  const setStatus = s => dispatch(update({ resourceStatus: s }));
 
   function handleAddClick(event) {
     event.preventDefault();
@@ -45,11 +25,6 @@ function GroupManageResources(props = {}) {
   function handleAddContentClick(event) {
     event.preventDefault();
     setStatus('ADD_CONTENT');
-  }
-
-  function handleBackClick(event) {
-    event.preventDefault();
-    setStatus('ADD');
   }
 
   function render() {
@@ -108,27 +83,7 @@ function GroupManageResources(props = {}) {
     }
 
     if (status === 'ADD_LINK') {
-      return (
-        <Box as="form" onSubmit={handleLinkSubmit}>
-          <Box mb="base">
-            <TextInput label="Title" id="title" onChange={handleLinkChange} />
-          </Box>
-          <Box mb="base">
-            <TextInput label="URL" id="url" onChange={handleLinkChange} />
-          </Box>
-          <Box alignItems="center" display="flex">
-            <Button
-              type="submit"
-              status={status === 'SAVING_LINK' ? 'LOADING' : null}
-            >
-              Add Link
-            </Button>
-            <Box as="a" href="#0" onClick={handleBackClick} ml="base">
-              Back
-            </Box>
-          </Box>
-        </Box>
-      );
+      return <AddResourceLink groupId={props.data.id} />;
     }
 
     if (status === 'ADD_CONTENT') {
