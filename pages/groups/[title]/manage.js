@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 
 import { useGroupContentId } from 'hooks';
 import { GroupProvider } from 'providers';
-import { Loader } from 'ui-kit';
+import { Cell, Loader } from 'ui-kit';
 import { GroupManage, Layout } from 'components';
 
 export default function Manage(props) {
@@ -17,14 +17,16 @@ export default function Manage(props) {
     // TODO: It should say the group's name here.
     // Use `title` and then deal with the hyphened title.
     <Layout title="Manage Group">
-      {isLoading ? (
-        <Loader text="Loading your Group" />
-      ) : _id ? (
-        <GroupProvider
-          Component={GroupManage}
-          options={{ variables: { itemId: _id } }}
-        />
-      ) : null}
+      <Cell px="base" py={{ _: 'l', lg: 'xl' }}>
+        {isLoading ? (
+          <Loader text="Loading your Group" />
+        ) : _id ? (
+          <GroupProvider
+            Component={GroupManage}
+            options={{ variables: { itemId: _id } }}
+          />
+        ) : null}
+      </Cell>
     </Layout>
   );
 }
