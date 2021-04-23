@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { useGroupManage, update } from 'providers/GroupManageProvider';
-import { Box, Button, List } from 'ui-kit';
+import { Box, Button } from 'ui-kit';
 import { CustomLink } from 'components';
 
 import AddResourceContent from './AddResourceContent';
 import AddResourceLink from './AddResourceLink';
-import RemoveResourceLink from './RemoveResourceLink';
+import ResourcesList from './ResourcesList';
 
 function GroupManageResources(props = {}) {
   const [{ resourceStatus: status }, dispatch] = useGroupManage();
@@ -31,30 +31,10 @@ function GroupManageResources(props = {}) {
   function render() {
     if (status === 'IDLE') {
       return (
-        <List>
-          {props?.data?.resources.map((resource, idx) => (
-            <Box as="li" key={idx} display="flex">
-              <RemoveResourceLink groupId={props.data.id} resource={resource} />
-              <Box flex="1">
-                <Box as="b" fontWeight="bold">
-                  {resource?.title}
-                </Box>
-                {resource?.relatedNode.url ? (
-                  <Box
-                    as="span"
-                    color="subdued"
-                    display="block"
-                    fontSize="s"
-                    // TODO: This shouldn't be an inline style.
-                    style={{ wordBreak: 'break-word' }}
-                  >
-                    {resource?.relatedNode.url}
-                  </Box>
-                ) : null}
-              </Box>
-            </Box>
-          ))}
-        </List>
+        <ResourcesList
+          groupId={props.data?.id}
+          resources={props.data?.resources}
+        />
       );
     }
 
