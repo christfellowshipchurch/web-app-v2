@@ -13,7 +13,7 @@ export default function Event(props) {
 
   const options = {
     variables: {
-      pathname: title,
+      pathname: `events/${title}`,
     },
   };
 
