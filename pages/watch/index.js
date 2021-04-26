@@ -14,12 +14,14 @@ import { Box, CardGrid, Heading, Section } from 'ui-kit';
 import { GET_MESSAGE_SERIES } from 'hooks/useMessageSeries';
 import { GET_CONTENT_CHANNEL } from 'hooks/useContentChannel';
 import { getChannelId, getIdSuffix } from 'utils';
-import { GET_LIVE_STREAMS } from 'hooks/useLiveStreams';
+import useLiveStreams from 'hooks/useLiveStreams';
 
-export default function Watch({ series, watchPages, sermons, liveStreams }) {
+export default function Watch({ series, watchPages, sermons }) {
   const router = useRouter();
 
   const coverVideo = sermons?.[0]?.node;
+
+  const { liveStreams } = useLiveStreams();
 
   return (
     <Layout title="Watch">
@@ -173,7 +175,7 @@ export default function Watch({ series, watchPages, sermons, liveStreams }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const apolloClient = initializeApollo();
 
   const sermons = await apolloClient.query({
@@ -201,10 +203,6 @@ export async function getServerSideProps() {
 
   const series = await Promise.all(seriesRequests);
 
-  const liveStreams = await apolloClient.query({
-    query: GET_LIVE_STREAMS,
-  });
-
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
@@ -213,8 +211,8 @@ export async function getServerSideProps() {
         watchRequest?.data?.node?.childContentItemsConnection?.edges || [],
       sermons: sermons?.data?.node?.childContentItemsConnection?.edges.filter(
         ({ node }) => node?.videos?.[0]?.sources?.[0]?.uri
-      ),
-      liveStreams: liveStreams?.data?.liveStreams,
+      )
     },
+    revalidate: 60, // In seconds
   };
 }
