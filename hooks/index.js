@@ -23,17 +23,23 @@ import useFeedFeatures from './useFeedFeatures';
 import useForm from './useForm';
 import useGroup from './useGroup';
 import useGroupContentId from './useGroupContentId';
+import useGroupCoverImages from './useGroupCoverImages';
 import useGroupPreferences from './useGroupPreferences';
+import useGroupResourceOptions from './useGroupResourceOptions';
 import useGroups from './useGroups';
 import useLiveStream from './useLiveStream';
 import useLiveStreams from './useLiveStreams';
 import useLiveStreamsQuery from './useLiveStreamsQuery';
 import useRegisterWithEmail from './useRegisterWithEmail';
 import useRegisterWithSms from './useRegisterWithSms';
+import useRemoveGroupResource from './useRemoveGroupResource';
 import useRequestPin from './useRequestPin';
 import useSearchContentItems from './useSearchContentItems';
 import useSearchGroups from './useSearchGroups';
 import useUpdateCurrentUser from './useUpdateCurrentUser';
+import useUpdateGroupCoverImage from './useUpdateGroupCoverImage';
+import useUpdateGroupResourceContentItem from './useUpdateGroupResourceContentItem';
+import useUpdateGroupResourceUrl from './useUpdateGroupResourceUrl';
 import useUserExists from './useUserExists';
 import useVerifyPin from './useVerifyPin';
 
@@ -63,17 +69,23 @@ export {
   useForm,
   useGroup,
   useGroupContentId,
+  useGroupCoverImages,
   useGroupPreferences,
+  useGroupResourceOptions,
   useGroups,
   useLiveStream,
   useLiveStreams,
   useLiveStreamsQuery,
   useRegisterWithEmail,
   useRegisterWithSms,
+  useRemoveGroupResource,
   useRequestPin,
   useSearchContentItems,
   useSearchGroups,
   useUpdateCurrentUser,
+  useUpdateGroupCoverImage,
+  useUpdateGroupResourceContentItem,
+  useUpdateGroupResourceUrl,
   useUserExists,
   useVerifyPin,
 };

@@ -18,7 +18,7 @@ export default function GroupResources(props = {}) {
   return (
     <List>
       {props.resources.map(resource => (
-        <Box as="li">
+        <Box key={resource.relatedNode?.id} as="li">
           <CustomLink
             key={resource.relatedNode?.id}
             href={getURLFromType(resource.relatedNode)}

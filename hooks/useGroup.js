@@ -35,7 +35,7 @@ export const GROUP_ITEM_FRAGMENT = gql`
       }
     }
 
-    leaders: people(isLeader: true, first: 3) {
+    leaders: people(isLeader: true, first: 10) {
       edges {
         node {
           id
@@ -96,7 +96,7 @@ export const GROUP_FRAGMENT = gql`
     resources {
       ...GroupResourceFragment
     }
-    leaders: people(isLeader: true, first: 3) {
+    leaders: people(isLeader: true, first: 10) {
       edges {
         node {
           id
