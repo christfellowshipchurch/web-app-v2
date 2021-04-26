@@ -30,8 +30,7 @@ function FullLengthSermon(props = {}) {
       <MainPhotoHeader
         src={props.sermon?.coverImage?.sources?.[0].uri || '/schedule.jpeg'}
         justifyText="center"
-        content={
-          <>
+        content={!!(clips.length && clips.any(clip => clip?.node?.videos?.length)) && (<>
             <Box
               position="absolute"
               top="0"
@@ -77,7 +76,7 @@ function FullLengthSermon(props = {}) {
                     ]}
               </Carousel>
             </Box>
-          </>
+          </>)
         }
         title={props.sermon?.title}
         summary={props.sermon?.summary}
