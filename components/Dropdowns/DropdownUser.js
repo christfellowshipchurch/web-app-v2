@@ -62,6 +62,7 @@ function Login() {
 }
 
 export default function DropdownUser() {
+  const theme = useTheme();
   const router = useRouter();
   const { authenticated } = useCurrentPerson();
   return (
@@ -71,7 +72,7 @@ export default function DropdownUser() {
       position="absolute"
       width="400px"
       right="0"
-      boxShadow="nav"
+      boxShadow={theme.shadows.base}
       alignItems="center"
       display="flex"
       flexDirection="column"

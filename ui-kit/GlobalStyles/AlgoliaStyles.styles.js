@@ -36,7 +36,6 @@ export default css`
       top: ${themeGet('space.header')};
       width: 100%;
     }
-
   }
 
   .ais-InstantSearch > .right-panel {
@@ -71,7 +70,7 @@ export default css`
   .ais-RefinementList-item {
     font-size: ${themeGet('fontSizes.l')};
     margin: ${themeGet('space.s')} 0;
-   
+
     @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
       display: block;
       font-size: ${themeGet('fontSizes.s')};
@@ -132,7 +131,7 @@ export default css`
   }
 
   .ais-SearchBox-input {
-    border-width: 1;
+    border-width: 0;
     border-radius: ${themeGet('radii.button')};
     box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.25);
     font-size: ${themeGet('fontSizes.h4')};
@@ -145,7 +144,8 @@ export default css`
     }
   }
 
-  .ais-SearchBox-submit, .ais-SearchBox-reset {
+  .ais-SearchBox-submit,
+  .ais-SearchBox-reset {
     display: none;
   }
 
@@ -157,9 +157,8 @@ export default css`
   }
 
   .ais-Hits-item {
-    border: 1px solid black;
     border-radius: 10px;
-    box-shadow: 2px 2px 2px 0 ${themeGet('colors.neutrals.700')};
+    box-shadow: ${themeGet('shadows.xl')};
     margin: ${themeGet('space.s')};
     width: 250px;
   }
@@ -202,7 +201,8 @@ export default css`
   .ais-Pagination-link {
     text-decoration: unset;
 
-    &:active, &:focus {
+    &:active,
+    &:focus {
       color: ${themeGet('colors.primary')};
     }
 
@@ -215,5 +215,4 @@ export default css`
     color: ${themeGet('colors.tertiary')} !important;
     cursor: default;
   }
-
 `;

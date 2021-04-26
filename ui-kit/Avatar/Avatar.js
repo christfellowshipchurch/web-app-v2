@@ -1,22 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import { UserCircle } from 'phosphor-react';
 import { Box, systemPropTypes } from 'ui-kit';
 import Styled from './Avatar.styles';
+import { useTheme } from 'styled-components';
 
 function Avatar(props = {}) {
+  const theme = useTheme();
   if (!props.src) {
     return (
-      <Box
-        bg="subdued"
-        borderRadius="50%"
-        height={props.height}
-        width={props.width}
-      >
-        <Box as="span" className="srt">
-          User
-        </Box>
-      </Box>
+      <UserCircle
+        color={theme.colors.fg}
+        size={props.height}
+      />
     );
   }
 

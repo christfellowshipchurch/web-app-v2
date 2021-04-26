@@ -1,14 +1,19 @@
 import { LargeImage, Layout } from 'components';
 import { initializeApollo } from 'lib/apolloClient';
 import { Box, Heading, Section } from 'ui-kit';
+import IDS from 'config/ids';
 import { useRouter } from 'next/router';
 import { GET_MESSAGE_SERIES } from 'hooks/useMessageSeries';
 import { getChannelId, getIdSuffix, getMetaData } from 'utils';
 import { useTheme } from 'styled-components';
 
-export default function Series({ series }) {
+export default function Series({ series } = {}) {
   const router = useRouter();
   const theme = useTheme();
+
+  if (router.isFallback) {
+    return null;
+  }
 
   return (
     <Layout meta={getMetaData(series)}>
@@ -53,7 +58,7 @@ export default function Series({ series }) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const apolloClient = initializeApollo();
 
   const seriesResponse = await apolloClient.query({
@@ -68,5 +73,17 @@ export async function getServerSideProps(context) {
       initialApolloState: apolloClient.cache.extract(),
       series: seriesResponse?.data?.node,
     },
+    revalidate: 60, // In seconds
   };
+}
+
+
+export async function getStaticPaths() {
+  // Get the paths we want to pre-render
+  const paths = Object.values(IDS.SERIES).map((id) => ({
+    params: { series: id },
+  }));
+
+  // Fallback true - if a page doesn't exist we will render it on the fly.
+  return { paths, fallback: true };
 }

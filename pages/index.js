@@ -52,7 +52,10 @@ export async function getStaticProps() {
     props: {
       initialApolloState: apolloClient.cache.extract(),
       articles: articles?.data?.node?.childContentItemsConnection?.edges,
-      sermon: sermonRequest?.data?.node,
+      sermon: {
+        ...sermonRequest?.data?.node,
+        videos: latestSermon?.videos,
+      },
     },
     // Next.js will attempt to re-generate the page:
     // - When a request comes in
