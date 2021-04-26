@@ -25,9 +25,15 @@ const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
 const PAGE_SIZE = 21;
 
 export default function CommunitySearch() {
+  const router = useRouter();
+
+  // Redirect and return null until find a group launch
+  useEffect(() => {
+    router.push('/');
+  }, [router]);
+
   return null;
 
-  const router = useRouter();
   const modalState = useModalState();
   const [filtersState, filtersDispatch] = useGroupFilters();
   const [searchGroups, { loading, groups, data, fetchMore }] = useSearchGroups({
