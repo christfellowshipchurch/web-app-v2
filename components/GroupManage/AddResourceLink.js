@@ -5,7 +5,10 @@ import { useForm, useUpdateGroupResourceUrl } from 'hooks';
 import { Box, Button, TextInput } from 'ui-kit';
 
 function AddResourceLink(props = {}) {
-  const [{ resourceStatus: status, groupData }, dispatch] = useGroupManage();
+  const [
+    { resourceStatus: status, groupData, message },
+    dispatch,
+  ] = useGroupManage();
   const setStatus = s => dispatch(update({ resourceStatus: s }));
   const [updateResourceUrl] = useUpdateGroupResourceUrl();
 
@@ -18,16 +21,24 @@ function AddResourceLink(props = {}) {
 
     setStatus('SAVING_LINK');
 
-    await updateResourceUrl({
-      variables: {
-        url,
-        title,
-        groupId: groupData.id,
-      },
-      refetchQueries: ['getGroup'],
-    });
-
-    setStatus('IDLE');
+    try {
+      await updateResourceUrl({
+        variables: {
+          url,
+          title,
+          groupId: groupData.id,
+        },
+        refetchQueries: ['getGroup'],
+      });
+      setStatus('IDLE');
+    } catch (error) {
+      dispatch(
+        update({
+          message: 'Uh oh! Something went wrong.',
+          resourceStatus: 'ADD_LINK',
+        })
+      );
+    }
   });
 
   function handleBackClick(event) {
@@ -37,6 +48,11 @@ function AddResourceLink(props = {}) {
 
   return (
     <Box as="form" onSubmit={handleLinkSubmit}>
+      {message && (
+        <Box as="p" color="alert" fontSize="s" mb="base">
+          {message}
+        </Box>
+      )}
       <Box mb="base">
         <TextInput
           label="Title"
