@@ -15,6 +15,16 @@ module.exports = {
         destination: '/discover',
         permanent: true,
       },
+      {
+        source: '/community',
+        destination: '/',
+        permanent: false,
+      },
+      {
+        source: '/community/search',
+        destination: '/',
+        permanent: false,
+      },
     ];
   },
 };
