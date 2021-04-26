@@ -12,6 +12,9 @@ Styled.Header = styled.header`
   grid-template-columns: auto 1fr;
   height: ${themeGet('space.header')};
   justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   z-index: 999;
 
@@ -55,6 +58,25 @@ Styled.ListIcon = styled(List)`
   }
 
   ${system}
+`;
+
+Styled.Dropdown = styled(Box)`
+  display: none;
+
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    display: block;
+    left: 0;
+    margin-top: -100%;
+    position: absolute;
+    right: 0;
+    transition: margin-top 0.2s ease-in;
+    z-index: 998;
+
+    &.active {
+      margin-top: 0;
+      top: ${themeGet('space.header')};
+    }
+  }
 `;
 
 export default Styled;

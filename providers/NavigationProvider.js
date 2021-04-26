@@ -1,15 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import navigation from 'config/navigation';
 import { useCurrentUser, useLiveStreams } from 'hooks';
 import { normalizeUserData } from 'utils';
 
-function NavigationProvider({ Component, ...props }) {
+function NavigationProvider({ Component, data, ...props }) {
   const liveStreams = useLiveStreams();
   const { data: userData } = useCurrentUser();
 
-  return <Component data={navigation} callData={{ user: normalizeUserData(userData?.currentUser), liveStreams }} {...props} />;
+  return <Component data={data} callData={{ user: normalizeUserData(userData?.currentUser), liveStreams }} {...props} />;
 }
 
 NavigationProvider.propTypes = {

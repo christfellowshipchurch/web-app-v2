@@ -7,9 +7,8 @@ import { ClientSideComponent, Dropdowns } from 'components';
 import Styled from './Nav.styles';
 import { useModalDispatch } from 'providers/ModalProvider';
 import { useCurrentUser } from 'hooks';
-import { useTheme } from 'styled-components';
 
-function getMenuItem(menuItem) {
+export function getMenuItem(menuItem) {
   switch (menuItem) {
     case 'about':
       return Dropdowns.About;
@@ -26,15 +25,17 @@ function getMenuItem(menuItem) {
   }
 }
 
-function Nav(props = {}) {
+function Nav({
+  hoveredItem,
+  setHoveredItem,
+  active,
+  setActive,
+  ...props
+} = {}) {
   const router = useRouter();
-  const theme = useTheme();
-  const [hoveredItem, setHoveredItem] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const modalDispatch = useModalDispatch();
   const { authenticated } = useCurrentUser();
-
-  const { active, setActive } = props;
 
   useEffect(() => {
     function handleRouteChangeStart() {
@@ -53,7 +54,6 @@ function Nav(props = {}) {
       <ClientSideComponent height="100%" width="100%">
         <Styled.QuickActions active={active}>
           {props.data.quickActions.map((action, i) => {
-            const Component = getMenuItem(action.id);
             return (
               <Box
                 key={action.id}
@@ -63,13 +63,15 @@ function Nav(props = {}) {
                   setIsMobile(true);
                 }}
                 onMouseEnter={() => {
-                  if (action.id === hoveredItem || isMobile) {
+                  if (isMobile) {
                     setHoveredItem(null);
                   } else {
                     setHoveredItem(action.id);
                   }
                 }}
-                onMouseLeave={() => setHoveredItem(null)}
+                onMouseLeave={() => {
+                  setHoveredItem(null);
+                }}
               >
                 <QuickAction
                   data={action}
@@ -105,21 +107,6 @@ function Nav(props = {}) {
                     }
                   }}
                 />
-                {Component && (
-                  <Box
-                    display={{
-                      _: 'none',
-                      lg: action.id === hoveredItem ? 'block' : 'none',
-                    }}
-                    position="absolute"
-                    top={theme.space.header}
-                    right="0"
-                    left="0"
-                    zIndex="999"
-                  >
-                    <Component />
-                  </Box>
-                )}
               </Box>
             );
           })}
