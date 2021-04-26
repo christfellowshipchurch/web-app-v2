@@ -30,52 +30,59 @@ function FullLengthSermon(props = {}) {
       <MainPhotoHeader
         src={props.sermon?.coverImage?.sources?.[0].uri || '/schedule.jpeg'}
         justifyText="center"
+        backdrop={false}
         content={
           <>
             <Box
-              position="absolute"
+              position={{ lg: 'absolute' }}
               top="0"
               alignItems="center"
               justifyContent="center"
               height="100%"
               width="100%"
-              display={{ _: 'none', xl: 'flex' }}
+              display="flex"
             >
-              <Carousel
-                width="100%"
-                neighbors="3d"
-                contentWidth="681px"
-                pl={{ _: '0', lg: 'xxl' }}
-                onClick={i => setSelectedClip(i)}
-                childProps={i => ({
-                  style: {
-                    pointerEvents: i !== selectedClip ? 'none' : 'initial',
-                    width: '100%',
-                  },
-                })}
-              >
-                {clips?.length
-                  ? clips.map(clip =>
-                      clip?.node?.videos?.[0]?.sources?.[0]?.uri ? (
-                        <VideoPlayer
-                          key={clip.node?.id}
-                          src={clip.node?.videos?.[0]?.sources?.[0]?.uri}
-                          title={clip.node?.title}
-                          poster={clip.node?.coverImage?.sources?.[0]?.uri}
-                          style={{ width: '100%' }}
-                        />
-                      ) : null
-                    )
-                  : [
+              {clips?.length ? (
+                <Carousel
+                  display={{ _: 'none', lg: 'inherit' }}
+                  width="100%"
+                  neighbors="3d"
+                  contentWidth={{ _: '100vw', lg: '681px' }}
+                  pl={{ _: '0', lg: 'xxl' }}
+                  onClick={i => setSelectedClip(i)}
+                  childProps={i => ({
+                    style: {
+                      pointerEvents: i !== selectedClip ? 'none' : 'initial',
+                      width: '100%',
+                    },
+                  })}
+                >
+                  {clips.map(clip =>
+                    clip?.node?.videos?.[0]?.sources?.[0]?.uri || true ? (
                       <VideoPlayer
-                        key={props.sermon?.id}
-                        src={props.sermon?.videos?.[0]?.sources?.[0]?.uri}
-                        title={props.sermon?.title}
-                        poster={props.sermon?.coverImage?.sources?.[0]?.uri}
-                        style={{ width: '100%' }}
-                      />,
-                    ]}
-              </Carousel>
+                        key={clip.node?.id}
+                        src={clip.node?.videos?.[0]?.sources?.[0]?.uri}
+                        title={clip.node?.title}
+                        poster={clip.node?.coverImage?.sources?.[0]?.uri}
+                        style={{ width: '681px' }}
+                      />
+                    ) : null
+                  )}
+                </Carousel>
+              ) : (
+                <Box
+                  width={{ _: '100%', lg: '681px' }}
+                  px={{ _: 'l', md: 'xxl', lg: 0 }}
+                >
+                  <VideoPlayer
+                    key={props.sermon?.id}
+                    src={props.sermon?.videos?.[0]?.sources?.[0]?.uri}
+                    title={props.sermon?.title}
+                    poster={props.sermon?.coverImage?.sources?.[0]?.uri}
+                    style={{ width: '100%' }}
+                  />
+                </Box>
+              )}
             </Box>
           </>
         }
@@ -85,9 +92,8 @@ function FullLengthSermon(props = {}) {
       />
       {clips?.length ? (
         <Box
-          display="flex"
           flexDirection="column"
-          ml={{ _: 'l', md: 'xxl' }}
+          mx={{ _: 'l', md: 'xxl' }}
           mt={{ _: 'm', lg: '-130px' }}
           zIndex="2"
         >

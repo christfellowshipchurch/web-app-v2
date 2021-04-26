@@ -20,7 +20,6 @@ export default function Page({ data } = {}) {
       <MainPhotoHeader
         src={data.coverImage?.sources?.[0].uri || ''}
         width="auto"
-        backdrop
         overlay=""
       />
       <Section px={{ _: 'l', lg: 'xxl' }} my={{ _: 'l', lg: 'xxl' }}>

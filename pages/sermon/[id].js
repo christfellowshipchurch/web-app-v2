@@ -14,8 +14,8 @@ export default function Item({ item }) {
 
   return (
     <Layout meta={getMetaData(item)}>
-      <MainPhotoHeader src={item.coverImage?.sources?.[0]?.uri} />
-      <Section my="xl">
+      <MainPhotoHeader src={item.coverImage?.sources?.[0]?.uri} overlay="" />
+      <Section my="xl" px={{ _: 'l', md: 'xxl' }}>
         <Heading variant="h2" fontWeight="800" mb="m">
           {item.title}
         </Heading>

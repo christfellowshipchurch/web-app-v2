@@ -37,7 +37,7 @@ export default function Channel({ item }) {
       <Section>
         <Box
           display="flex"
-          my="m"
+          my="xl"
           mr={`-${theme.space.m}`}
           px={{ _: 'l', md: 'xxl' }}
           flexWrap="wrap"

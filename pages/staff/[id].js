@@ -1,14 +1,10 @@
-import { useRouter } from 'next/router';
-
 import { GET_STAFF_MEMBER } from 'hooks/useStaffMember';
 import { Layout, MainPhotoHeader } from 'components';
-import { Box, Button, Heading, Longform, Section } from 'ui-kit';
+import { Box, Heading, Longform, Section } from 'ui-kit';
 import { initializeApollo } from 'lib/apolloClient';
 import { getStaffId, getMetaData } from 'utils';
-import { compact } from 'lodash';
 
 export default function Page({ data }) {
-  const router = useRouter();
 
   return (
     <Layout meta={getMetaData(data)} bg="bg_alt">
