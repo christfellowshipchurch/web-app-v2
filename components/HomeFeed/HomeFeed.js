@@ -254,7 +254,15 @@ function HomeFeedContent(props = {}) {
         </CardGrid>
       </Section>
       <FullWidthCTA pt="171px" pb="171px" justifyContent="flex-start">
-        <Heading fontSize="66px" color="bg" fontWeight="bold">
+        <Heading
+          fontSize="66px"
+          textAlign="center"
+          lineHeight="1"
+          mb="l"
+          px="m"
+          color="bg"
+          fontWeight="bold"
+        >
           Take Your Next Step
         </Heading>
         <Text
