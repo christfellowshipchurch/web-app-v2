@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Box, FormLabel, Radio } from 'ui-kit';
 
 function GenderField(props = {}) {
-  const initialValue = props.initialValue.toLowerCase();
+  const initialValue = props.initialValue?.toLowerCase();
 
   return (
     <>
