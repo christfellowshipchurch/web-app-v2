@@ -5,6 +5,7 @@ import { ApolloProvider } from '@apollo/client';
 import { useApollo } from 'lib/apolloClient';
 import { AuthProvider, ModalProvider } from 'providers';
 import { ModalManager } from 'providers/ModalProvider';
+import TrackPageViewProvider from 'providers/TrackPageViewProvider';
 import modals from 'config/modals';
 import { ThemeProvider } from 'ui-kit';
 
@@ -15,7 +16,9 @@ function AppProvider(props = {}) {
       <ThemeProvider>
         <AuthProvider>
           <ModalProvider modals={modals}>
+            <TrackPageViewProvider>
             {props.children}
+            </TrackPageViewProvider>
             <ModalManager />
           </ModalProvider>
         </AuthProvider>
