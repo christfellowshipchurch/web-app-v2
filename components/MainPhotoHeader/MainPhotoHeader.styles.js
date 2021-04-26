@@ -21,7 +21,8 @@ Styled.Backdrop = styled(Box)`
   filter: blur(5px);
   height: 60vh;
   margin-bottom: ${themeGet('space.xl')};
-  width: 100%;
+  margin-left: -5px;
+  width: calc(100% + 10px);
 
   @media screen and (max-width: ${themeGet('breakpoints.lg')}) {
     height: 40vh;
