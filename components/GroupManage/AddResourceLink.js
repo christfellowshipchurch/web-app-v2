@@ -1,4 +1,5 @@
 import React from 'react';
+import find from 'lodash/find';
 
 import { useGroupManage, update } from 'providers/GroupManageProvider';
 import { useForm, useUpdateGroupResourceUrl } from 'hooks';
@@ -12,6 +13,21 @@ function AddResourceLink(props = {}) {
   const setStatus = s => dispatch(update({ resourceStatus: s }));
   const [updateResourceUrl] = useUpdateGroupResourceUrl();
 
+  function resourceAlreadyExists({ url, title }) {
+    const resources = groupData.resources.map(resource => ({
+      url: resource.relatedNode.url,
+      title: resource.title,
+    }));
+
+    const match = find(
+      resources,
+      resource => resource.url === url && resource.title === title
+    );
+
+    if (Boolean(match)) return true;
+    return false;
+  }
+
   const {
     values: linkValues,
     handleChange: handleLinkChange,
@@ -19,7 +35,14 @@ function AddResourceLink(props = {}) {
   } = useForm(async () => {
     const { url, title } = linkValues;
 
-    setStatus('SAVING_LINK');
+    if (resourceAlreadyExists({ url, title })) {
+      dispatch(
+        update({
+          message: 'That resource already exists.',
+        })
+      );
+      return;
+    }
 
     try {
       await updateResourceUrl({
@@ -35,7 +58,6 @@ function AddResourceLink(props = {}) {
       dispatch(
         update({
           message: 'Uh oh! Something went wrong.',
-          resourceStatus: 'ADD_LINK',
         })
       );
     }
