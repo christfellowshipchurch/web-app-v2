@@ -62,7 +62,8 @@ const theme = {
     xl:
       '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
     xxl: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-    nav: '0 0 5px -2px rgba(0, 0, 0, 0.2)',
+    nav:
+      '0 5px 5px -5px rgb(0 0 0 / 20%)',
   },
   space: {
     header: rem('90px'),
