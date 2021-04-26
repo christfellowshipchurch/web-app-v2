@@ -19,6 +19,7 @@ export default function GroupMembers(props = {}) {
     >
       {combinedMembers.slice(0, props.showCount).map(member => (
         <Box
+          key={member.id}
           display="flex"
           flexDirection="column"
           justifyContent="center"

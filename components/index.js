@@ -23,6 +23,7 @@ import FeatureFeed from './FeatureFeed';
 import FilterField from './FilterField';
 import Footer from './Footer';
 import GenderField from './GenderField';
+import GroupManage from './GroupManage';
 import GroupSearchFilters from './GroupSearchFilters';
 import GroupSingle from './GroupSingle';
 import GroupsList from './GroupsList';
@@ -71,6 +72,7 @@ export {
   FilterField,
   Footer,
   GenderField,
+  GroupManage,
   GroupSearchFilters,
   GroupSingle,
   GroupsList,

@@ -1,4 +1,5 @@
 import cleanMarkup from './cleanMarkup';
+import currentUserIsLeader from './currentUserIsLeader';
 import createMarkup from './createMarkup';
 import dateTextFormat from './dateTextFormat';
 import formatPhoneNumber from './formatPhoneNumber';
@@ -16,6 +17,7 @@ import validatePhoneNumber from './validatePhoneNumber';
 
 export {
   cleanMarkup,
+  currentUserIsLeader,
   createMarkup,
   dateTextFormat,
   formatPhoneNumber,
