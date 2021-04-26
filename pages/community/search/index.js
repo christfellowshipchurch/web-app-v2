@@ -25,6 +25,8 @@ const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
 const PAGE_SIZE = 21;
 
 export default function CommunitySearch() {
+  return null;
+
   const router = useRouter();
   const modalState = useModalState();
   const [filtersState, filtersDispatch] = useGroupFilters();
