@@ -5,8 +5,6 @@ import { system } from 'ui-kit';
 
 // Methods
 const cardSpan = ({ index, total }) => {
-  console.log({ index, total });
-
   /**
    * The Vertical Card List Feature should not show any blank caps in between cards.
    *
