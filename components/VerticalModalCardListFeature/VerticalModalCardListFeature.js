@@ -27,11 +27,7 @@ function VerticalModalCardListFeature(props = {}) {
 
               console.log('HI?');
 
-              modalDispatch(
-                showModal('Hello', {
-                  id: card?.relatedNode?.id,
-                })
-              );
+              modalDispatch(showModal('NodeSingleModal'));
             }}
           >
             <Styled.Content>

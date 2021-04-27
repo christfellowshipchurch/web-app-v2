@@ -7,8 +7,6 @@ import {
   NodeSingleModal,
 } from 'components/Modals';
 
-console.log({ NodeSingleModal });
-
 const modals = [
   {
     title: 'Default',
@@ -31,7 +29,7 @@ const modals = [
     component: GroupFilterModal,
   },
   {
-    title: 'NodeSingle',
+    title: 'NodeSingleModal',
     component: NodeSingleModal,
   },
 ];
