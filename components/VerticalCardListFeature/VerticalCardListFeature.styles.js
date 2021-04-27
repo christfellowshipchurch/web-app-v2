@@ -30,8 +30,6 @@ const cardSpan = ({ index, total }) => {
     span = 12 / remainder;
   }
 
-  console.log({ span });
-
   return css`
     grid-column-end: span ${span};
   `;
