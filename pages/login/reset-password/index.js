@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import { useForm } from 'hooks';
@@ -7,25 +7,26 @@ import { Box, Button, Card, Cell, TextInput, utils } from 'ui-kit';
 
 export default function ResetPassword(props) {
   const router = useRouter();
+  const [status, setStatus] = useState('IDLE');
+  const [error, setError] = useState({});
   const { values, setValues, handleSubmit, handleChange } = useForm(() => {
-    // const age = getAge(values.birthdate);
-    // // Make sure they are at least 13 years of age.
-    // if (age < 13) {
-    //   setError({
-    //     birthdate: 'You must be at least 13.',
-    //   });
-    // }
-    // if (!error) {
-    //   setStatus('LOADING');
-    //   handleAuthIdentity({ nextStep: 2 });
-    // }
     console.log('values:', values);
+    setStatus('IDLE');
+    setError({});
+
+    if (values.password !== values.confirmPassword) {
+      setStatus('ERROR');
+      setError({ confirmPassword: 'Passwords do not match' });
+      return;
+    }
+
+    setStatus('LOADING');
   });
   const queryEmail = router.query?.email || '';
 
+  // Hydrate email from URL query params
   useEffect(() => {
     if (queryEmail) {
-      console.log('set email:', queryEmail);
       setValues({ email: queryEmail });
     }
   }, [queryEmail, setValues]);
@@ -39,10 +40,11 @@ export default function ResetPassword(props) {
         py={{ _: 'l', lg: 'xl' }}
       >
         <Card maxWidth="62%" margin="auto" p="base" pb="l">
-          <Box mt="base" mb="l" textAlign="center">
+          <Box my="l" textAlign="center">
             <Box as="h1">Password Reset</Box>
             <Box as="p">Forgot your password? We’ve got you covered!</Box>
           </Box>
+
           <Box as="form" action="" onSubmit={handleSubmit} px="xxl">
             <Box as="section" mb="l">
               <Box
@@ -56,7 +58,6 @@ export default function ResetPassword(props) {
                 Enter your Email Address and the Confirmation Code that was sent
                 to your email.
               </Box>
-
               <Box mb="base">
                 <TextInput
                   id="email"
@@ -75,11 +76,11 @@ export default function ResetPassword(props) {
                 />
               </Box>
             </Box>
+
             <Box as="section">
               <Box as="h5" px="l" pb="s" color="subdued" textAlign="center">
                 Create a new password.
               </Box>
-
               <Box mb="base">
                 <TextInput
                   id="password"
@@ -99,10 +100,25 @@ export default function ResetPassword(props) {
                   required
                   autoComplete="off"
                 />
+                {error.confirmPassword && (
+                  <Box as="p" color="alert" fontSize="s" mt="s">
+                    Passwords do not match.
+                  </Box>
+                )}
               </Box>
             </Box>
+
             <Box as="section" mt="l" textAlign="center">
-              <Button type="submit">Set New Password</Button>
+              <Box as="p" color="alert" fontSize="s" mb="base">
+                This is an error!
+              </Box>
+              <Button
+                type="submit"
+                status={status}
+                disabled={status === 'LOADING'}
+              >
+                Set New Password
+              </Button>
             </Box>
           </Box>
         </Card>
