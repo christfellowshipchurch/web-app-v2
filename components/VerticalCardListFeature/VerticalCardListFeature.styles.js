@@ -5,8 +5,6 @@ import { system } from 'ui-kit';
 
 // Methods
 const cardSpan = ({ index, total }) => {
-  console.log({ index, total });
-
   /**
    * The Vertical Card List Feature should not show any blank caps in between cards.
    *
@@ -29,8 +27,6 @@ const cardSpan = ({ index, total }) => {
   if (remainder < span && index < remainder) {
     span = 12 / remainder;
   }
-
-  console.log({ span });
 
   return css`
     grid-column-end: span ${span};
