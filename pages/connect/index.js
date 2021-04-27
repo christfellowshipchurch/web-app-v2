@@ -2,6 +2,7 @@ import React from 'react';
 
 import { FeatureFeedProvider } from 'providers';
 import { Layout, FeatureFeed } from 'components';
+import { Cell, utils } from 'ui-kit';
 
 export default function Connect(props = {}) {
   const options = {
@@ -12,7 +13,14 @@ export default function Connect(props = {}) {
 
   return (
     <Layout title="Connect">
-      <FeatureFeedProvider Component={FeatureFeed} options={options} />
+      <Cell
+        as="main"
+        maxWidth={utils.rem('1100px')}
+        px="base"
+        py={{ _: 'l', lg: 'xl' }}
+      >
+        <FeatureFeedProvider Component={FeatureFeed} options={options} />
+      </Cell>
     </Layout>
   );
 }
