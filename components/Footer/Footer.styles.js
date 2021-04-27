@@ -28,7 +28,7 @@ const Footer = styled.footer`
 const Link = styled.a`
   cursor: pointer;
   color: ${themeGet('colors.neutrals.100')};
-  font-size: ${themeGet('fontSizes.h4')};
+  font-size: ${themeGet('fontSizes.base')};
   line-height: ${themeGet('lineHeights.h4')};
   opacity: 60%;
   display: block;
