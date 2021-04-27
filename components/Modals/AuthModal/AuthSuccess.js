@@ -1,9 +1,35 @@
-import React from 'react';
+import { CheckCircle } from 'phosphor-react';
+import { hideModal, useModalDispatch } from 'providers/ModalProvider';
+import React, { useEffect } from 'react';
+import { useTheme } from 'styled-components';
 
-import { Box } from 'ui-kit';
+import { Box, Heading } from 'ui-kit';
 
 function AuthSuccess() {
-  return <Box as="p">Success</Box>;
+  const modalDispatch = useModalDispatch();
+  const theme = useTheme();
+
+  useEffect(() => {
+    setTimeout(() => {
+      modalDispatch(hideModal());
+    }, 2000);
+  }, [modalDispatch]);
+
+  return (
+    <Box
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      pb="xl"
+      height="100%"
+      flexDirection="column"
+    >
+      <CheckCircle color={theme.colors.success} size={64} />
+      <Heading color="success" variant="h1" mb="s">
+        Success
+      </Heading>
+    </Box>
+  );
 }
 
 export default AuthSuccess;

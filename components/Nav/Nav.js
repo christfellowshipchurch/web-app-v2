@@ -87,6 +87,11 @@ function Nav({
                     );
                     const dropdownHidden =
                       getComputedStyle(dropdown).display === 'none';
+
+                    if (dropdownHidden) {
+                      setActive(false);
+                    }
+
                     const webAction = dropdownHidden
                       ? action.action?.mobile
                       : action.action?.web;
