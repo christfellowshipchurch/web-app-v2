@@ -118,7 +118,7 @@ const navigation = {
       action: {
         mobile: profileAction,
       },
-      call: ({ user }) => console.log(user) || (
+      call: ({ user }) => (
         <>
           <Box lineHeight={0.875} display={{ _: 'none', lg: 'inherit' }}>
             <Box display={{ _: 'block', lg: 'none' }}>
