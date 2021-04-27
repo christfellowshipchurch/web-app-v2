@@ -13,7 +13,7 @@ function Header(props = {}) {
   const [hoveredItem, setHoveredItem] = useState();
 
   return (
-    <Box>
+    <Box position="fixed" top={0} width="100%" zIndex={100}>
       <Styled.Header bg="bg_alt">
         <Styled.LogoContainer bg="bg_alt" active={active}>
           <Link href="/">
