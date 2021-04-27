@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import get from 'lodash/get';
 import find from 'lodash/find';
@@ -10,8 +11,17 @@ import { CommunitySingle, Layout } from 'components';
 import { Box, Cell, Loader, utils } from 'ui-kit';
 
 export default function Community(props) {
-  const { preferences, subPreferences, loading } = useGroupPreferences();
   const router = useRouter();
+
+  // Redirect and return null until find a group launch
+  useEffect(() => {
+    router.push('/');
+  }, [router]);
+
+  return null;
+
+  const { preferences, subPreferences, loading } = useGroupPreferences();
+
   const { title } = router.query;
 
   const formatTitleAsUrl = title => kebabCase(toLower(title));
