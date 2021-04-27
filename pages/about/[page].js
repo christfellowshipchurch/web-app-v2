@@ -68,7 +68,8 @@ export default function Page({ data = {}, submenuLinks }) {
         <Section>
           <Longform
             px={{ _: 'l', md: 'xxl' }}
-            my={{ _: 'l', md: 'xxl' }}
+            mt={{ _: 'l', md: 'xxl' }}
+            mb={{ _: 'l' }}
             dangerouslySetInnerHTML={{ __html: data.htmlContent }}
           />
         </Section>
