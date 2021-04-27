@@ -269,17 +269,16 @@ function HomeFeedContent(props = {}) {
         <Heading
           fontSize="66px"
           textAlign="center"
-          lineHeight="1"
-          mb="l"
+          lineHeight={theme.lineHeights.heading}
           px="m"
           color="bg"
-          fontWeight="bold"
+          fontWeight="900"
         >
-          Take Your Next Step
+          TAKE YOUR NEXT STEP
         </Heading>
         <Text
           color="white"
-          variant="h4"
+          lineHeight={theme.lineHeights.base}
           maxWidth="530px"
           textAlign="center"
           display="inline"
@@ -292,7 +291,6 @@ function HomeFeedContent(props = {}) {
           practical ways to take the next step on your&nbsp;
           <Text
             color="neutrals.100"
-            variant="h4"
             opacity="60%"
             display="inline"
             fontWeight="600"
