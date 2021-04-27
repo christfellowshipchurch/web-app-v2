@@ -33,6 +33,7 @@ import HeroListFeature from './HeroListFeature';
 import HomeFeed from './HomeFeed';
 import HorizontalCardListFeature from './HorizontalCardListFeature';
 import Layout from './Layout';
+import LocationSingle from './LocationSingle';
 import LiveStreamSingle from './LiveStreamSingle';
 import Logo from './Logo';
 import Nav from './Nav';
@@ -82,6 +83,7 @@ export {
   HomeFeed,
   HorizontalCardListFeature,
   Layout,
+  LocationSingle,
   LiveStreamSingle,
   Logo,
   Nav,

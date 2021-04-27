@@ -66,7 +66,10 @@ const FeatureFeed = (props = {}) => {
       </Box>
       <FeatureProvider
         onPressActionItem={props?.onPressActionItem}
-        Component={getComponent(edge, FEATURE_COMPONENTS)}
+        Component={getComponent(edge, {
+          ...FEATURE_COMPONENTS,
+          ...props?.additionalFeatures,
+        })}
         options={{
           variables: {
             featureId: edge?.id,
@@ -79,11 +82,13 @@ const FeatureFeed = (props = {}) => {
 };
 
 FeatureFeed.propTypes = {
+  additionalFeatures: PropTypes.object,
   data: PropTypes.arrayOf(PropTypes.object),
   onPressActionItem: PropTypes.func,
 };
 
 FeatureFeed.defaultProps = {
+  additionalFeatures: {},
   onPressActionItem: onPressActionItem,
 };
 
