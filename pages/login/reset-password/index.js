@@ -38,19 +38,26 @@ export default function ResetPassword(props) {
         px="base"
         py={{ _: 'l', lg: 'xl' }}
       >
-        <Card maxWidth="62%" margin="auto" p="base">
-          <Box as="form" action="" onSubmit={handleSubmit} px="xl">
-            <Box mt="base" mb="l" textAlign="center">
-              <Box as="h1">Password Reset</Box>
-              <Box as="p">Forgot your password? We’ve got you covered!</Box>
-            </Box>
-            <Box as="section" mb="l" px="l">
-              <Box as="h5">
+        <Card maxWidth="62%" margin="auto" p="base" pb="l">
+          <Box mt="base" mb="l" textAlign="center">
+            <Box as="h1">Password Reset</Box>
+            <Box as="p">Forgot your password? We’ve got you covered!</Box>
+          </Box>
+          <Box as="form" action="" onSubmit={handleSubmit} px="xxl">
+            <Box as="section" mb="l">
+              <Box
+                as="h5"
+                px="l"
+                pb="s"
+                mb="base"
+                color="subdued"
+                textAlign="center"
+              >
                 Enter your Email Address and the Confirmation Code that was sent
                 to your email.
               </Box>
 
-              <Box>
+              <Box mb="base">
                 <TextInput
                   id="email"
                   label="Email Address"
@@ -59,11 +66,42 @@ export default function ResetPassword(props) {
                   value={values.email || queryEmail || ''}
                 />
               </Box>
+              <Box>
+                <TextInput
+                  id="code"
+                  label="Confirmation Code"
+                  onChange={handleChange}
+                  required
+                />
+              </Box>
             </Box>
-            <Box as="section" px="l">
-              <Box as="h5">Choose a new password</Box>
+            <Box as="section">
+              <Box as="h5" px="l" pb="s" color="subdued" textAlign="center">
+                Create a new password.
+              </Box>
+
+              <Box mb="base">
+                <TextInput
+                  id="password"
+                  type="password"
+                  label="New Password"
+                  onChange={handleChange}
+                  required
+                  autoComplete="off"
+                />
+              </Box>
+              <Box>
+                <TextInput
+                  id="confirmPassword"
+                  type="password"
+                  label="Confirm New Password"
+                  onChange={handleChange}
+                  required
+                  autoComplete="off"
+                />
+              </Box>
             </Box>
-            <Box as="section" px="l">
+            <Box as="section" mt="l" textAlign="center">
               <Button type="submit">Set New Password</Button>
             </Box>
           </Box>
