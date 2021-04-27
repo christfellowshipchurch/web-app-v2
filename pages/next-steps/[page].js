@@ -37,31 +37,33 @@ export default function Page({ data = {}, campuses }) {
         subtitle={node.subtitle}
         summary={node.summary}
       />
-      <Section>
-        <CardGrid
-          px={{ _: 'l', md: 'xxl' }}
-          my={{ _: 'l', md: 'xxl' }}
-          columns="1"
-        >
-          {node.ctaLinks?.map((cta, i) => (
-            <MarketingHeadline
-              key={i}
-              image={{
-                src: cta.image?.sources?.[0]?.uri,
-              }}
-              justify={i % 2 === 0 ? 'left' : 'right'}
-              title={cta.title}
-              description={cta.body}
-              actions={[
-                {
-                  label: cta.buttonText,
-                  onClick: () => router.push(cta.buttonLink),
-                },
-              ]}
-            />
-          ))}
-        </CardGrid>
-      </Section>
+      {node.ctaLinks?.length ? (
+        <Section>
+          <CardGrid
+            px={{ _: 'l', md: 'xxl' }}
+            my={{ _: 'l', md: 'xxl' }}
+            columns="1"
+          >
+            {node.ctaLinks?.map((cta, i) => (
+              <MarketingHeadline
+                key={i}
+                image={{
+                  src: cta.image?.sources?.[0]?.uri,
+                }}
+                justify={i % 2 === 0 ? 'left' : 'right'}
+                title={cta.title}
+                description={cta.body}
+                actions={[
+                  {
+                    label: cta.buttonText,
+                    onClick: () => router.push(cta.buttonLink),
+                  },
+                ]}
+              />
+            ))}
+          </CardGrid>
+        </Section>
+      ) : null}
       {node.htmlContent && (
         <Section>
           <Longform

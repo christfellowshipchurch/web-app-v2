@@ -122,49 +122,51 @@ export default function Page({
           </CampusFilter>
         </Section>
       ) : null}
-      <Section>
-        <CardGrid
-          px={{ _: 'l', md: 'xxl' }}
-          my={{ _: 'l', md: 'xxl' }}
-          gridTemplateColumns={
-            story
-              ? { _: 'repeat(1, 1fr)', lg: 'repeat(2, 1fr)' }
-              : 'repeat(1, 1fr)'
-          }
-        >
-          {cta ? (
-            <MarketingHeadline
-              image={
-                story
-                  ? null
-                  : {
-                      src: cta.image?.sources?.[0]?.uri,
-                    }
-              }
-              title={cta.title}
-              description={cta.body}
-              actions={[
-                {
-                  label: cta.buttonText,
-                  onClick: () => router.push(cta.buttonLink),
-                },
-              ]}
-            />
-          ) : null}
-          {story ? (
-            <Quote
-              color="quaternary"
-              title={story.node.title}
-              attribution={story.node.attribution}
-              actionLabel="Full story"
-              actionLink="/lh-story-quote"
-              text={story.node.summary}
-              avatar={story.node.coverImage?.sources[0]?.uri}
-              alignment="left"
-            />
-          ) : null}
-        </CardGrid>
-      </Section>
+      {cta || story ? (
+        <Section>
+          <CardGrid
+            px={{ _: 'l', md: 'xxl' }}
+            my={{ _: 'l', md: 'xxl' }}
+            gridTemplateColumns={
+              story
+                ? { _: 'repeat(1, 1fr)', lg: 'repeat(2, 1fr)' }
+                : 'repeat(1, 1fr)'
+            }
+          >
+            {cta ? (
+              <MarketingHeadline
+                image={
+                  story
+                    ? null
+                    : {
+                        src: cta.image?.sources?.[0]?.uri,
+                      }
+                }
+                title={cta.title}
+                description={cta.body}
+                actions={[
+                  {
+                    label: cta.buttonText,
+                    onClick: () => router.push(cta.buttonLink),
+                  },
+                ]}
+              />
+            ) : null}
+            {story ? (
+              <Quote
+                color="quaternary"
+                title={story.node.title}
+                attribution={story.node.attribution}
+                actionLabel="Full story"
+                actionLink="/lh-story-quote"
+                text={story.node.summary}
+                avatar={story.node.coverImage?.sources[0]?.uri}
+                alignment="left"
+              />
+            ) : null}
+          </CardGrid>
+        </Section>
+      ) : null}
       {node.htmlContent && (
         <Section>
           <Longform
