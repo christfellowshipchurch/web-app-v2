@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import { Box, Avatar, Icon } from 'ui-kit';
 
 const AvatarListFeature = ({
-  data: { people, onPressItem, primaryAction, isLoading },
+  data: { people, primaryAction, isLoading },
+  onPressActionItem,
 }) => {
   if (!Array.isArray(people)) return null;
 
@@ -13,9 +14,11 @@ const AvatarListFeature = ({
       {people.map(person => (
         <Box key={person.id} display="flex">
           <Box
+            as="a"
+            href="profile"
             cursor="pointer"
             mr="base"
-            onClick={() => onPressItem(primaryAction)}
+            onClick={e => onPressActionItem(e, primaryAction)}
             position="relative"
           >
             <Avatar

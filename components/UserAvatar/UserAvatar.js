@@ -10,7 +10,7 @@ function UserAvatar(props = {}) {
   const { name, src } = normalizeUserData(currentUser);
 
   return (
-    <CustomLink href="/profile">
+    <CustomLink href="/connect">
       <UIAvatar name={name} src={src} height="45px" width="45px" />
     </CustomLink>
   );
