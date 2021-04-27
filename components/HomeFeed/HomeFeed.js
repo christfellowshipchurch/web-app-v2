@@ -82,7 +82,6 @@ function FullLengthSermon(props = {}) {
                     <VideoPlayer
                       key={props.sermon?.id}
                       src={props.sermon?.videos?.[0]?.sources?.[0]?.uri}
-                      title={props.sermon?.title}
                       poster={props.sermon?.coverImage?.sources?.[0]?.uri}
                       style={{ width: '100%' }}
                     />
