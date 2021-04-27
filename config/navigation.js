@@ -14,10 +14,11 @@ const navigation = {
       action: '/groups',
       call: 'Groups',
     },
-    {
-      action: '/community',
-      call: 'Community',
-    },
+    // Hide link until find a group launch
+    // {
+    //   action: '/community',
+    //   call: 'Community',
+    // },
   ],
   navigationLinks: [
     {
