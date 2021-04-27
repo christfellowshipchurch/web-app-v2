@@ -31,21 +31,23 @@ export default function Watch({ series, watchPages, sermons }) {
         subtitle="UPCOMING"
         summary="Watch live on Sundays at 8:00, 9:30, and 11:15 a.m."
         justifyText="center"
+        backdrop={false}
         content={
           <>
             <Box
-              position="absolute"
+              position={{ lg: 'absolute' }}
               top="0"
               alignItems="center"
               justifyContent="center"
               height="100%"
               width="100%"
-              display={{ _: 'none', md: 'flex' }}
+              display="flex"
             >
               <Carousel
                 neighbors="3d"
-                contentWidth="681px"
-                pl={{ _: '0', lg: 'xxl' }}
+                contentWidth={{ _: '100%', lg: '681px' }}
+                pl={{ _: 'l', md: 'xxl' }}
+                pr={{ _: 'l', md: 'xxl', lg: '0' }}
                 childProps={i => ({
                   style: {
                     width: '100%',

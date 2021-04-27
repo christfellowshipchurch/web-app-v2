@@ -21,14 +21,20 @@ Styled.Circle = styled(Circle)`
 Styled.SermonContainer = styled(Box)`
   cursor: pointer;
   position: relative;
-  width: 300px;
+
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    width: 300px;
+  }
 `;
 
 Styled.SermonImage = styled(Image)`
-  height: 200px;
   // This is causing the image to disappear in Chrome
   // object-fit: cover;
   width: 100%;
+
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    height: 200px;
+  }
 
   ${system}
 `;

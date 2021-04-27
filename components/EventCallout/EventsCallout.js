@@ -23,7 +23,6 @@ function EventsCallout({ icon, title, children, ...props } = {}) {
           <Text
             color="neutrals.900"
             opacity="60%"
-            variant="h4"
             fontWeight="600"
           >
             {title}

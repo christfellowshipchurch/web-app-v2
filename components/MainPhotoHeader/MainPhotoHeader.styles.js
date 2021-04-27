@@ -6,8 +6,6 @@ import { Box, Image, system } from 'ui-kit';
 const Styled = {};
 
 Styled.Container = styled(Box)`
-  max-height: 80vh;
-  object-fit: cover;
   position: relative;
   text-align: center;
   width: 100%;
@@ -16,83 +14,141 @@ Styled.Container = styled(Box)`
 `;
 
 Styled.Backdrop = styled(Box)`
-  background-image: url(${props => props.src});
-  background-size: cover;
-  filter: blur(5px);
-  height: 60vh;
-  margin-bottom: ${themeGet('space.xl')};
-  width: 100%;
+  display: none;
 
-  @media screen and (max-width: ${themeGet('breakpoints.lg')}) {
-    height: 40vh;
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    background-image: url(${props => props.src});
+    background-size: cover;
+    display: block;
+    filter: blur(5px);
+    height: calc(100vw * 0.5625);
+    margin-left: -5px;
+    width: calc(100% + 10px);
   }
 
-  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
-    height: 20vh;
+  @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
+    height: calc(${themeGet('breakpoints.lg')} * 0.5625);
+    margin-bottom: ${themeGet('space.m')};
   }
 
   ${system}
 `;
 
 Styled.ImageContainer = styled(Box)`
-  max-height: 80vh;
+  margin: 0 auto;
+  width: 100%;
+
+  ${props =>
+    props.backdrop
+      ? css`
+          @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+            height: calc(100vw * 0.5625);
+            left: 50%;
+            position: absolute;
+            top: 0;
+            transform: translate(-50%, 0);
+          }
+
+          @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
+            height: calc(${themeGet('breakpoints.lg')} * 0.5625);
+            padding-top: ${themeGet('space.l')};
+            width: ${themeGet('breakpoints.lg')};
+          }
+        `
+      : css`
+          height: auto;
+        `}
 
   ${system}
 `;
 
 Styled.Image = styled(Image)`
-  margin: 0 auto;
-  max-height: 80vh;
   object-fit: ${props => props.objectFit || 'cover'};
   width: 100%;
 
   ${props =>
-    props.backdrop &&
-    css`
-      border-radius: ${themeGet('radii.image')};
-      bottom: 0;
-      height: 100%;
-      left: 50%;
-      max-height: 60vh;
-      object-fit: contain;
-      margin: 0 ${themeGet('space.xl')};
-      position: absolute;
-      transform: translate(calc(-50% - ${themeGet('space.xl')}), 0);
-      width: auto;
+    props.backdrop
+      ? css`
+          height: calc(100vw * 0.5625);
 
-      @media screen and (max-width: ${themeGet('breakpoints.lg')}) {
-        height: 40vh;
-      }
-
-      @media screen and (max-width: ${themeGet('breakpoints.md')}) {
-        height: 20vh;
-      }
-    `}
+          @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
+            border-radius: ${themeGet('radii.image')};
+            height: calc(${themeGet('breakpoints.lg')} * 0.5625);
+          }
+        `
+      : css`
+          height: auto;
+        `}
 
   ${system}
 `;
 
-Styled.Overlay = styled(Box)`
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  position: absolute;
+Styled.BackdropOverlay = styled(Box)`
+  display: none;
+
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+`;
+
+Styled.ImageOverlay = styled(Box)`
+  display: none;
+
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    display: block;
+    height: calc(100vw * 0.5625);
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  ${props =>
+    props.backdrop
+      ? css`
+          @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
+            border-radius: ${themeGet('radii.image')};
+            height: calc(${themeGet('breakpoints.lg')} * 0.5625);
+            margin-top: ${themeGet('space.l')};
+            width: ${themeGet('breakpoints.lg')};
+          }
+        `
+      : null}
+
+  ${system}
 `;
 
 Styled.TextContainer = styled(Box)`
-  height: 100%;
   flex-direction: column;
-  left: ${themeGet('space.s')};
-  top: 0;
-  max-width: 640px;
-  padding-bottom: ${themeGet('space.xl')};
-  pointer-events: none;
-  position: absolute;
+  margin: ${themeGet('space.l')};
   z-index: 1;
 
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    bottom: unset;
+    height: auto;
+    left: 0;
+    margin: ${themeGet('space.l')} ${themeGet('space.xxl')};
+    max-width: unset;
+    position: relative;
+  }
+
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
-    left: ${themeGet('space.xxl')};
+    bottom: 0;
+    height: 100%;
+    max-width: 440px;
+    margin: ${themeGet('space.l')};
+    pointer-events: none;
+    position: absolute;
+  }
+
+  @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
+    margin-bottom: 0;
   }
 
   ${system}

@@ -12,7 +12,7 @@ const variant = ({ variant }) => props => {
 
 const Text = styled.div`
   font-family: ${themeGet('fonts.base')};
-  cursor: ${props => (props.onClick ? 'pointer' : 'initial')};
+  cursor: ${props => (props.onClick ? 'pointer' : 'inherit')};
 
   ${variant}
   ${system}

@@ -122,7 +122,7 @@ Carousel.propTypes = {
   color: PropTypes.string,
   neighbors: PropTypes.oneOf(['3d', 'hidden', 'flat']),
   contentHeight: PropTypes.string,
-  contentWidth: PropTypes.string,
+  contentWidth: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   onClick: PropTypes.func,
 };
 

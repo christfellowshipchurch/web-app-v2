@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
-import { Heading } from 'ui-kit';
+import { Box, Heading } from 'ui-kit';
 
 // eslint-disable-next-line import/prefer-default-export
 const usePlayer = ({ src, controls, autoplay, fluid }) => {
@@ -44,7 +44,7 @@ const VideoPlayer = ({ src, controls, autoplay, fluid, ...props }) => {
   const playerRef = usePlayer({ src, controls, autoplay, fluid });
 
   return (
-    <div position="relative" {...props}>
+    <Box position="relative" {...props}>
       {props.title ? (
         <Heading
           fontSize="h2"
@@ -63,9 +63,11 @@ const VideoPlayer = ({ src, controls, autoplay, fluid, ...props }) => {
           className="video-js"
           title={props.title}
           poster={props.poster}
+          width="100%"
+          height="auto"
         />
       </div>
-    </div>
+    </Box>
   );
 };
 
