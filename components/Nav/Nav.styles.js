@@ -92,9 +92,8 @@ const QuickAction = styled.div`
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     padding: 0 ${themeGet('space.s')};
     padding-top: 21px;
-    padding-bottom: ${props => (props.hasDropdown ? '35px' : '21px')};
+    padding-bottom: 35px;
     margin-top: ${themeGet('space.s')};
-    margin-bottom: ${props => (props.hasDropdown ? '0' : '14px')};
   }
 
   ${hovered}
