@@ -51,6 +51,8 @@ const onPressActionItem = (event, { action, relatedNode }) => {
 
 // This component is created to map the features by type and send them.
 const FeatureFeed = (props = {}) => {
+  console.log({ props });
+
   const isLastItem = i => i < props.data.length - 1;
 
   const error = props?.error?.toString();

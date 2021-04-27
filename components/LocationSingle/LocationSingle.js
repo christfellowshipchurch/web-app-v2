@@ -5,11 +5,9 @@ import { createMarkup } from 'utils';
 
 import {
   ContentLayout,
-  SEO,
-  Header,
-  Footer,
   Layout,
   NotFound,
+  VerticalModalCardListFeature,
 } from 'components';
 
 import { Box, Longform } from 'ui-kit';
@@ -57,6 +55,9 @@ function LocationSingle(props = {}) {
           );
         }}
         features={props?.data?.featureFeed?.features}
+        additionalFeatures={{
+          VerticalCardListFeature: VerticalModalCardListFeature,
+        }}
       />
     </Layout>
   );

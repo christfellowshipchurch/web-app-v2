@@ -1,98 +1,58 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import dropRight from 'lodash/dropRight';
-import head from 'lodash/head';
-import slice from 'lodash/slice';
 
 import { CustomLink } from 'components';
-import { CardGrid, DefaultCard, HorizontalHighlightCard } from 'ui-kit';
-import { getURLFromType, getUrlFromRelatedNode } from 'utils';
-
-const getCardColumns = cards => {
-  let col = '1';
-  if (cards.length > 2) {
-    if (cards.length > 3) {
-      return (col = '2');
-    }
-    return (col = '2');
-  }
-  return col;
-};
+import { useModalDispatch, showModal } from 'providers/ModalProvider';
+import { CardGrid, Icon } from 'ui-kit';
+import Styled from './VerticalModalCardListFeature.styles';
 
 function VerticalModalCardListFeature(props = {}) {
+  const modalDispatch = useModalDispatch();
+
   if (!props?.data?.cards) {
     return null;
   }
 
   let cards = props?.data?.cards;
-  const heroCard = cards.length > 0 ? null : head(cards);
-  cards = heroCard ? [] : cards;
-
-  const col = getCardColumns(cards);
-
-  /**
-   * note : if the bottom highlight cards are uneven, the last three cards will be moved down to a 'bottomRow' in a CardGrid with 3 columns to fill the space
-   */
-  let bottomRow = false;
-  if (cards.length > 4 && cards.length % 2 !== 0) {
-    bottomRow = cards.slice(cards.length - 3, cards.length);
-    cards = dropRight(cards, 3);
-  }
 
   return (
-    <>
-      {!!heroCard && (
-        <CustomLink
-          as="a"
-          href={getUrlFromRelatedNode(heroCard?.relatedNode)}
-          Component={DefaultCard}
-          coverImage={heroCard?.coverImage?.sources[0]?.uri}
-          coverImageTitle={heroCard?.title}
-          coverImageDescription={heroCard?.summary}
-          coverImageOverlay={true}
-          marginBottom="l"
-          height={{ __: 250, md: 450 }}
-          display="block"
-        />
-      )}
-      <CardGrid marginBottom="base" columns={col}>
-        {cards.map((card, i) => (
+    <CardGrid marginBottom="base" columns={'12'}>
+      {cards.map((card, i) => (
+        <Styled.Card key={i} index={i} total={cards.length}>
           <CustomLink
-            as="a"
-            key={i}
-            href={getUrlFromRelatedNode(card?.relatedNode)}
-            Component={HorizontalHighlightCard}
-            coverImage={card?.coverImage?.sources[0]?.uri}
-            coverImageOverlay={true}
-            title={card?.title}
-            description={card?.summary}
-            type="HIGHLIGHT_SMALL"
-          />
-        ))}
-      </CardGrid>
-      {bottomRow && (
-        <CardGrid columns="3">
-          {bottomRow.map((card, i) => (
-            <CustomLink
-              as="a"
-              key={i}
-              href={getUrlFromRelatedNode(card?.relatedNode)}
-              Component={HorizontalHighlightCard}
-              coverImage={card?.coverImage?.sources[0]?.uri}
-              coverImageOverlay={true}
-              title={card?.title}
-              description={card?.summary}
-              type="HIGHLIGHT_SMALL"
-            />
-          ))}
-        </CardGrid>
-      )}
-    </>
+            as="div"
+            href="#"
+            onClick={e => {
+              e.preventDefault();
+
+              console.log('HI?');
+
+              modalDispatch(
+                showModal('Hello', {
+                  id: card?.relatedNode?.id,
+                })
+              );
+            }}
+          >
+            <Styled.Content>
+              <div>
+                <h3>{card?.title}</h3>
+                <p>{card?.summary}</p>
+              </div>
+
+              <div>
+                <Icon name="expand" fill="none" />
+              </div>
+            </Styled.Content>
+          </CustomLink>
+        </Styled.Card>
+      ))}
+    </CardGrid>
   );
 }
 
-VerticalCardListFeature.propTypes = {
+VerticalModalCardListFeature.propTypes = {
   data: PropTypes.object,
 };
 
-export default VerticalCardListFeature;
+export default VerticalModalCardListFeature;

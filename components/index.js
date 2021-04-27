@@ -46,6 +46,7 @@ import TrackEventWhenLoaded from './TrackEventWhenLoaded';
 import UserAvatar from './UserAvatar';
 import UserProfile from './UserProfile';
 import VerticalCardListFeature from './VerticalCardListFeature';
+import VerticalModalCardListFeature from './VerticalModalCardListFeature';
 import Video from './Video';
 
 export {
@@ -96,6 +97,7 @@ export {
   UserAvatar,
   UserProfile,
   VerticalCardListFeature,
+  VerticalModalCardListFeature,
   Video,
   modals,
 };

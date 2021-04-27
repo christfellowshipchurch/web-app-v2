@@ -14,7 +14,7 @@ function VerticalCardListFeature(props = {}) {
   let cards = props?.data?.cards;
 
   return (
-    <CardGrid marginBottom="base" columns={12}>
+    <CardGrid marginBottom="base" columns={'12'}>
       {cards.map((card, i) => (
         <Styled.CardSpacing index={i} total={cards.length}>
           <CustomLink

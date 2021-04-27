@@ -20,6 +20,7 @@ import GroupsProvider from './GroupsProvider';
 import LiveStreamProvider from './LiveStreamProvider';
 import ModalProvider from './ModalProvider';
 import NavigationProvider from './NavigationProvider';
+import NodeProvider from './NodeProvider';
 import UserProfileProvider from './UserProfileProvider';
 import DiscoverFiltersCategoriesProvider from './DiscoverFiltersCategoriesProvider';
 import DiscoverFiltersProvider from './DiscoverFiltersProvider';
@@ -49,5 +50,6 @@ export {
   LiveStreamProvider,
   ModalProvider,
   NavigationProvider,
+  NodeProvider,
   UserProfileProvider,
 };
