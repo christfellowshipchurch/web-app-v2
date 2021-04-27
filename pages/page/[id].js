@@ -46,17 +46,6 @@ export default function Page({ data } = {}) {
               {data.title}
             </Heading>
           )}
-          {data.summary && (
-            <Heading
-              fontSize="h3"
-              lineHeight="h3"
-              color="fg"
-              fontWeight="700"
-              mt="m"
-            >
-              {data.summary}
-            </Heading>
-          )}
         </Box>
       </Section>
       {data.htmlContent && (

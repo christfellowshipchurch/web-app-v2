@@ -105,9 +105,12 @@ const navigation = {
         web: '/search',
       },
       call: (
-        <Box lineHeight={0.875}>
-          <MagnifyingGlass color={theme.colors.fg} size="20" />
-        </Box>
+        <>
+          <Box lineHeight={0.875} display={{ _: 'none', lg: 'block' }}>
+            <MagnifyingGlass color={theme.colors.fg} size="20" />
+          </Box>
+          <Box display={{_: 'block', lg: 'none'}}>Search</Box>
+        </>
       ),
     },
     {
@@ -116,23 +119,26 @@ const navigation = {
         mobile: profileAction,
       },
       call: ({ user }) => (
-        <Box lineHeight={0.875}>
-          <Box display={{ _: 'block', lg: 'none' }}>
-            {user?.src ? (
-              <Avatar
-                src={user.src}
-                name={user.name}
-                height="20px"
-                width="20px"
-              />
-            ) : (
-              <UserCircle color={theme.colors.fg} size="20" />
-            )}
+        <>
+          <Box lineHeight={0.875} display={{ _: 'none', lg: 'inherit' }}>
+            <Box display={{ _: 'block', lg: 'none' }}>
+              {user?.src ? (
+                <Avatar
+                  src={user.src}
+                  name={user.name}
+                  height="20px"
+                  width="20px"
+                />
+              ) : (
+                <UserCircle color={theme.colors.fg} size="20" />
+              )}
+            </Box>
+            <Box display={{ _: 'none', lg: 'block' }}>
+              <List color={theme.colors.fg} size="20" />
+            </Box>
           </Box>
-          <Box display={{ _: 'none', lg: 'block' }}>
-            <List color={theme.colors.fg} size="20" />
-          </Box>
-        </Box>
+          <Box display={{_: 'block', lg: 'none'}}>{'Profile'}</Box>
+        </>
       ),
     },
   ],
