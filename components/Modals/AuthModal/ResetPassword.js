@@ -14,6 +14,7 @@ function ResetPassword() {
 
   function handleClick(event) {
     event.preventDefault();
+
     setResetState('REQUESTED');
     requestEmailPin({
       variables: {
