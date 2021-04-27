@@ -69,9 +69,7 @@ export default function DropdownUser() {
     <Box
       bg="bg"
       p="l"
-      position="absolute"
       width="400px"
-      right="0"
       boxShadow={theme.shadows.base}
       alignItems="center"
       display="flex"

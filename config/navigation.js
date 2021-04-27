@@ -109,7 +109,7 @@ const navigation = {
           <Box lineHeight={0.875} display={{ _: 'none', lg: 'block' }}>
             <MagnifyingGlass color={theme.colors.fg} size="20" />
           </Box>
-          <Box display={{_: 'block', lg: 'none'}}>Search</Box>
+          <Box display={{ _: 'block', lg: 'none' }}>Search</Box>
         </>
       ),
     },
@@ -117,6 +117,9 @@ const navigation = {
       id: 'user',
       action: {
         mobile: profileAction,
+      },
+      dropdownProps: {
+        left: { lg: 'unset' },
       },
       call: ({ user }) => (
         <>
@@ -137,7 +140,7 @@ const navigation = {
               <List color={theme.colors.fg} size="20" />
             </Box>
           </Box>
-          <Box display={{_: 'block', lg: 'none'}}>{'Profile'}</Box>
+          <Box display={{ _: 'block', lg: 'none' }}>{'Profile'}</Box>
         </>
       ),
     },

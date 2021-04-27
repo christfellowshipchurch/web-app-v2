@@ -21,6 +21,9 @@ export default function PageDropdown({
   const numColumns =
     Math.ceil(featuredItems.length / 2) + Number(hasNonFeaturedItems);
 
+  const mdCols = numColumns > 1 ? (numColumns % 2 === 0 ? 2 : 3) : 1;
+  const xlCols = numColumns > 4 ? 4 : numColumns;
+
   return (
     <Dropdowns.Container {...props}>
       {loading ? (
@@ -31,9 +34,8 @@ export default function PageDropdown({
           py="l"
           gridTemplateColumns={{
             _: 'repeat(1, 1fr)',
-            md: `repeat(${numColumns > 2 ? 2 : numColumns}, 1fr)`,
-            lg: `repeat(${numColumns > 3 ? 3 : numColumns}, 1fr)`,
-            xl: `repeat(${numColumns > 4 ? 4 : numColumns}, 1fr)`,
+            md: `repeat(${mdCols}, 1fr)`,
+            xl: `repeat(${xlCols > 4 ? 4 : numColumns}, 1fr)`,
           }}
           gridColumnGap="base"
           gridRowGap={0}

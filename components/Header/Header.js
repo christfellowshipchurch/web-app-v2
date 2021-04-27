@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 
 import { NavigationProvider } from 'providers';
@@ -44,6 +44,7 @@ function Header(props = {}) {
             onMouseLeave={() => {
               setHoveredItem(null);
             }}
+            {...action.dropdownProps}
           >
             <Component />
           </Styled.Dropdown>

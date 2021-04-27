@@ -66,7 +66,9 @@ Styled.Dropdown = styled(Box)`
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     display: block;
     left: 0;
+    max-height: calc(100vh - ${themeGet('space.header')});
     margin-top: -100%;
+    overflow-y: auto;
     position: absolute;
     right: 0;
     transition: margin-top 0.2s ease-in;
@@ -77,6 +79,8 @@ Styled.Dropdown = styled(Box)`
       top: ${themeGet('space.header')};
     }
   }
+
+  ${system}
 `;
 
 export default Styled;
