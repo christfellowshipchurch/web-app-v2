@@ -14,8 +14,9 @@ import IDS from 'config/ids';
 import { CardGrid, Longform, Section } from 'ui-kit';
 import { getIdSuffix, getItemId, getMetaData } from 'utils';
 import { initializeApollo } from 'lib/apolloClient';
+import { GET_CAMPUSES } from 'hooks/useCampuses';
 
-export default function Page({ data = {} }) {
+export default function Page({ data = {}, campuses }) {
   const router = useRouter();
 
   const { loading, error, node = {} } = data;
@@ -77,6 +78,7 @@ export default function Page({ data = {} }) {
             my={{ _: 'l', md: 'xxl' }}
             filterWidth="200px"
             data={childContent}
+            campuses={campuses}
           >
             {({ filteredData }) => (
               <ArticleLinks>
@@ -111,10 +113,15 @@ export async function getStaticProps(context) {
     skip: !context.params.page,
   });
 
+  const campusesResponse = await apolloClient.query({
+    query: GET_CAMPUSES,
+  });
+
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
       data: pageResponse?.data || {},
+      campuses: campusesResponse?.data?.campuses || [],
     },
     revalidate: 60, // In seconds
   };

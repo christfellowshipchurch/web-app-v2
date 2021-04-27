@@ -23,8 +23,14 @@ import { Info } from 'phosphor-react';
 import { useTheme } from 'styled-components';
 import { GET_STAFF } from 'hooks/useStaff';
 import { GET_MINISTRY_CONTENT } from 'hooks/useMinistryContent';
+import { GET_CAMPUSES } from 'hooks/useCampuses';
 
-export default function Page({ data = {}, staff = [], relatedContent = {} }) {
+export default function Page({
+  data = {},
+  staff = [],
+  relatedContent = {},
+  campuses,
+}) {
   const router = useRouter();
   const theme = useTheme();
 
@@ -96,6 +102,7 @@ export default function Page({ data = {}, staff = [], relatedContent = {} }) {
             my={{ _: 'l', md: 'xxl' }}
             filterWidth="200px"
             data={childContent}
+            campuses={campuses}
           >
             {({ filteredData }) => (
               <ArticleLinks>
@@ -240,12 +247,17 @@ export async function getStaticProps({ params }) {
     },
   });
 
+  const campusesResponse = await apolloClient.query({
+    query: GET_CAMPUSES,
+  });
+
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
       data: pageResponse?.data,
       staff: staffResponse ? staffResponse.data : [],
       relatedContent: ministryResponse?.data,
+      campuses: campusesResponse?.data?.campuses || [],
     },
     revalidate: 60, // In seconds
   };

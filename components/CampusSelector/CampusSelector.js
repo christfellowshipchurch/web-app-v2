@@ -1,19 +1,18 @@
-import { useCampuses } from 'hooks';
 import { useEffect } from 'react';
-import { Box, Loader, Select } from 'ui-kit';
+import { Box, Select } from 'ui-kit';
 
-export default function CampusSelector({ onChange, selected, ...props }) {
-  const { loading, campuses } = useCampuses();
-
+export default function CampusSelector({
+  onChange,
+  selected,
+  campuses,
+  ...props
+}) {
   useEffect(() => {
     if (!selected && campuses) {
       onChange(campuses?.[0]);
     }
   }, [campuses, selected, onChange]);
 
-  if (loading) {
-    return <Loader />;
-  }
   return (
     <Box {...props}>
       <Select
@@ -22,10 +21,7 @@ export default function CampusSelector({ onChange, selected, ...props }) {
         }
       >
         {campuses.map(campus => (
-          <Select.Option
-            key={campus.id}
-            value={campus.id}
-          >
+          <Select.Option key={campus.id} value={campus.id}>
             {campus.name}
           </Select.Option>
         ))}

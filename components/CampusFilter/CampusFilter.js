@@ -7,6 +7,7 @@ export default function CampusFilter({
   children,
   data,
   filterWidth,
+  campuses,
   ...props
 }) {
   const { data: userData } = useCurrentUser();
@@ -25,6 +26,7 @@ export default function CampusFilter({
         <Box mb="m">
           <Text>Select Campus</Text>
           <CampusSelector
+            campuses={campuses}
             onChange={_campus => setCampus(_campus)}
             selected={campus}
             width={filterWidth}

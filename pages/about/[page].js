@@ -15,8 +15,9 @@ import { initializeApollo } from 'lib/apolloClient';
 import { CardGrid, Longform, Section, theme } from 'ui-kit';
 import { GET_CONTENT_CHANNEL } from 'hooks/useContentChannel';
 import { Info } from 'phosphor-react';
+import { GET_CAMPUSES } from 'hooks/useCampuses';
 
-export default function Page({ data = {}, submenuLinks }) {
+export default function Page({ data = {}, submenuLinks, campuses }) {
   const router = useRouter();
 
   if (data.loading || router.isFallback) {
@@ -80,6 +81,7 @@ export default function Page({ data = {}, submenuLinks }) {
             my={{ _: 'l', md: 'xxl' }}
             filterWidth="200px"
             data={childContent}
+            campuses={campuses}
           >
             {({ filteredData }) => (
               <CardGrid columns="1">
@@ -162,12 +164,17 @@ export async function getStaticProps(context) {
     },
   });
 
+  const campusesResponse = await apolloClient.query({
+    query: GET_CAMPUSES,
+  });
+
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
       data: pageResponse?.data?.node,
       submenuLinks:
         submenuLinks?.data?.node?.childContentItemsConnection?.edges,
+      campuses: campusesResponse?.data?.campuses || [],
     },
     revalidate: 60, // In seconds
   };
