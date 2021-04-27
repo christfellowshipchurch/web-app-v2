@@ -80,7 +80,16 @@ function Nav({
                   selected={action.action === router.pathname}
                   hovered={action.id === hoveredItem}
                   onClick={() => {
-                    const webAction = action.action?.web;
+                    // Figure out if the dropdown is hidden or not
+                    // This will tell us if we should use the web or mobile action
+                    const dropdown = document.getElementById(
+                      `dropdown-${action.id}`
+                    );
+                    const dropdownHidden =
+                      getComputedStyle(dropdown).display === 'none';
+                    const webAction = dropdownHidden
+                      ? action.action?.mobile
+                      : action.action?.web;
 
                     if (typeof webAction === 'string') {
                       router.push(webAction);

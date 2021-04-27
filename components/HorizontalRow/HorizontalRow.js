@@ -49,9 +49,8 @@ function HorizontalRow({
       <StyledCardGrid>
         {items.map((item, i) => {
           return (
-            <RowItem>
+            <RowItem key={i}>
               <Photo
-                key={i}
                 src={item.src}
                 onClick={item.action}
                 rounded

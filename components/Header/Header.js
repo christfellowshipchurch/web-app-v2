@@ -37,6 +37,7 @@ function Header(props = {}) {
         return Component ? (
           <Styled.Dropdown
             key={action.id}
+            id={`dropdown-${action.id}`}
             className={action.id === hoveredItem ? 'active' : ''}
             onMouseEnter={() => {
               setHoveredItem(action.id);
