@@ -20,6 +20,7 @@ Styled.Container = styled(Box)`
 
 Styled.Image = styled(Image)`
   margin-bottom: ${themeGet('space.m')};
+  box-shadow: ${themeGet('shadows.base')};
   object-fit: cover;
   order: initial;
 
