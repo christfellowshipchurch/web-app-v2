@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { system } from 'ui-kit';
+import { themeGet } from '@styled-system/theme-get';
 
 const ActionBarItem = styled.div`
   display: flex;
@@ -9,7 +10,7 @@ const ActionBarItem = styled.div`
   align-items: center;
 
   text-align: center;
-  color: ${({ theme }) => theme.colors.primary};
+  color: ${themeGet('colors.primary')};
 
   ${system};
 `;

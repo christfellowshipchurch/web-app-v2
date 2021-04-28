@@ -13,7 +13,7 @@ import chunk from 'lodash/chunk';
 
 import { CustomLink } from 'components';
 
-import ThemeProvider from 'ui-kit/ThemeProvider';
+import { ThemeProvider as SCThemeProvider } from 'styled-components';
 
 import { ActionBar, ActionBarItem } from 'ui-kit';
 import { getURLFromType, getUrlFromRelatedNode } from 'utils';
@@ -41,18 +41,21 @@ const ActionBarFeature = props => {
               { action, icon, title, theme, relatedNode, ...actionProps },
               i
             ) => (
-              // <ThemeProvider key={i} themeMixin={theme}>
-              <CustomLink
-                as="a"
-                href={getUrlFromRelatedNode(relatedNode)}
-                Component={ActionBarItem}
-                {...(!icon ? {} : { icon })}
-                label={title}
-                onPressActionItem={e =>
-                  onPressActionItem(e, { action, relatedNode })
-                }
-              />
-              // </ThemeProvider>
+              /**
+               * ! Our ThemeProvider component from /ui-kit is not working properly so we are using the orignal component from the 'style-components' package.
+               */
+              <SCThemeProvider key={i} theme={theme}>
+                <CustomLink
+                  as="a"
+                  href={getUrlFromRelatedNode(relatedNode)}
+                  Component={ActionBarItem}
+                  {...(!icon ? {} : { icon })}
+                  label={title}
+                  onPressActionItem={e =>
+                    onPressActionItem(e, { action, relatedNode })
+                  }
+                />
+              </SCThemeProvider>
             )
           )}
         </ActionBar>
