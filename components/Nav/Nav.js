@@ -22,7 +22,7 @@ function Nav(props = {}) {
   function handleLogoutClick(event) {
     event.preventDefault();
     authDispatch(logout());
-    router.reload();
+    router.push('/');
   }
 
   return (
