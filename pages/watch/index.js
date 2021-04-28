@@ -213,7 +213,7 @@ export async function getStaticProps() {
         watchRequest?.data?.node?.childContentItemsConnection?.edges || [],
       sermons: sermons?.data?.node?.childContentItemsConnection?.edges.filter(
         ({ node }) => node?.videos?.[0]?.sources?.[0]?.uri
-      )
+      ),
     },
     revalidate: 60, // In seconds
   };

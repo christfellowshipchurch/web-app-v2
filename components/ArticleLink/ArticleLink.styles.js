@@ -6,12 +6,14 @@ import { Box, Image, system } from 'ui-kit';
 const Styled = {};
 
 Styled.Container = styled(Box)`
+  align-items: flex-start;
   display: flex;
-  align-items: center;
   flex-direction: column;
   justify-content: space-between;
+  width: 100%;
 
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    align-items: center;
     flex-direction: row;
   }
 

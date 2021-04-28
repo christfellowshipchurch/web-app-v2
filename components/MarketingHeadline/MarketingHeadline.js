@@ -32,7 +32,10 @@ function MarketingHeadline({
     <Box
       display="flex"
       width="100%"
-      justifyContent={{ _: 'center', lg: justify === 'right' ? 'flex-end' : 'flex-start'}}
+      justifyContent={{
+        _: 'center',
+        lg: justify === 'right' ? 'flex-end' : 'flex-start',
+      }}
       flexWrap="wrap"
       mt="s"
     >
@@ -42,8 +45,8 @@ function MarketingHeadline({
           color={color}
           variant={variant}
           onClick={onClick}
-          mr={{ _: 's', lg: justify === 'left' ? 's' : 0}}
-          ml={{ _: 's', lg: justify === 'right' ? 's' : 0}}
+          mr={{ _: 's', lg: justify === 'left' ? 's' : 0 }}
+          ml={{ _: 's', lg: justify === 'right' ? 's' : 0 }}
           mt={{ _: 's', lg: 0 }}
         >
           {label}
@@ -68,8 +71,11 @@ function MarketingHeadline({
       <Box
         display="flex"
         flexDirection="column"
-        alignItems={{ _: 'center', lg: justify === 'right' ? 'flex-end' : 'flex-start' }}
-        textAlign={justify}
+        alignItems={{
+          _: 'center',
+          lg: justify === 'right' ? 'flex-end' : 'flex-start',
+        }}
+        textAlign={{ _: 'center', lg: justify }}
         flex="1 0 50%"
         px={{ _: 0, lg: 's' }}
       >
