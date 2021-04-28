@@ -83,7 +83,7 @@ export default function ResetPassword(props) {
         >
           <Card maxWidth="62%" margin="auto" p="base" pb="l">
             <Box my="l" textAlign="center">
-              <Icon name="checkCirle" color="success" size="64" mb="base" />
+              <Icon name="checkCircle" color="success" size="64" mb="base" />
               <Box as="h1" color="success">
                 Password Reset
               </Box>
