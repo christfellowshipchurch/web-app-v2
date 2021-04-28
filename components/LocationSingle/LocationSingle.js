@@ -10,7 +10,7 @@ import {
   VerticalModalCardListFeature,
 } from 'components';
 
-import { Box, Cell, Longform, utils } from 'ui-kit';
+import { Box, Cell, Icon, Longform, utils } from 'ui-kit';
 import Styled from './LocationSingle.styles';
 
 function LocationSingle(props = {}) {
@@ -28,22 +28,28 @@ function LocationSingle(props = {}) {
     >
       {props?.data?.coverImage && (
         <Styled.Hero coverImage={props?.data?.coverImage?.sources[0]?.uri}>
-          <Styled.Title>{props?.data?.title}</Styled.Title>
+          <Styled.Glass>
+            <Box as="h1">{props?.data?.title}</Box>
+          </Styled.Glass>
         </Styled.Hero>
       )}
 
-      <Cell maxWidth={utils.rem('1100px')} px="base" py={{ _: 'l', lg: 'xl' }}>
+      <Cell maxWidth={utils.rem('1100px')} px="base">
         <ContentLayout
-          summary={props?.data?.subtitle}
           renderA={() => {
             return (
-              props?.data?.title && (
+              (props?.data?.summary || props?.data?.htmlContent) && (
                 <Box
                   fontSize="l"
                   maxWidth="840px"
                   margin="auto"
                   textAlign="center"
                 >
+                  {props?.data?.summary && (
+                    <Box as="h2" paddingBottom="m">
+                      {props?.data?.summary}
+                    </Box>
+                  )}
                   {props?.data?.htmlContent && (
                     <Longform
                       dangerouslySetInnerHTML={createMarkup(

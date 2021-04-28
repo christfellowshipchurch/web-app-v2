@@ -19,15 +19,17 @@ const Hero = styled.div`
   display: flex;
 `;
 
-const Title = styled.h1`
+const Glass = styled.div`
   padding: ${themeGet('space.xl')} ${themeGet('space.l')};
   text-align: center;
   color: ${themeGet('colors.white')};
+  background-color: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
   border-radius: ${themeGet('radii.base')};
+  box-shadow: ${themeGet('shadows.l')};
 `;
 
 LocationSingle.Hero = Hero;
-LocationSingle.Title = Title;
+LocationSingle.Glass = Glass;
 
 export default LocationSingle;
