@@ -42,9 +42,9 @@ function MarketingHeadline({
           color={color}
           variant={variant}
           onClick={onClick}
-          mr={{ _: 's', lg: justify === 'left' && 's'}}
-          ml={{ _: 's', lg: justify === 'right' && 's'}}
-          mt={{ _: 's', 'lg': 0 }}
+          mr={{ _: 's', lg: justify === 'left' ? 's' : 0}}
+          ml={{ _: 's', lg: justify === 'right' ? 's' : 0}}
+          mt={{ _: 's', lg: 0 }}
         >
           {label}
         </StyledButton>
@@ -103,7 +103,7 @@ function MarketingHeadline({
             width={sideContent ? '85%' : '66%'}
             whiteSpace="pre"
             mt="xs"
-            textAlign={{ _: 'center', lg: 'left' }}
+            textAlign={{ _: 'center', lg: justify }}
           >
             {splitString(description)}
           </Text>
