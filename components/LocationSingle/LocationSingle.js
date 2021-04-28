@@ -10,7 +10,7 @@ import {
   VerticalModalCardListFeature,
 } from 'components';
 
-import { Box, Longform } from 'ui-kit';
+import { Box, Cell, Longform, utils } from 'ui-kit';
 import Styled from './LocationSingle.styles';
 
 function LocationSingle(props = {}) {
@@ -32,33 +32,35 @@ function LocationSingle(props = {}) {
         </Styled.Hero>
       )}
 
-      <ContentLayout
-        summary={props?.data?.subtitle}
-        renderA={() => {
-          return (
-            props?.data?.title && (
-              <Box
-                fontSize="l"
-                maxWidth="840px"
-                margin="auto"
-                textAlign="center"
-              >
-                {props?.data?.htmlContent && (
-                  <Longform
-                    dangerouslySetInnerHTML={createMarkup(
-                      props?.data?.htmlContent
-                    )}
-                  />
-                )}
-              </Box>
-            )
-          );
-        }}
-        features={props?.data?.featureFeed?.features}
-        additionalFeatures={{
-          VerticalCardListFeature: VerticalModalCardListFeature,
-        }}
-      />
+      <Cell maxWidth={utils.rem('1100px')} px="base" py={{ _: 'l', lg: 'xl' }}>
+        <ContentLayout
+          summary={props?.data?.subtitle}
+          renderA={() => {
+            return (
+              props?.data?.title && (
+                <Box
+                  fontSize="l"
+                  maxWidth="840px"
+                  margin="auto"
+                  textAlign="center"
+                >
+                  {props?.data?.htmlContent && (
+                    <Longform
+                      dangerouslySetInnerHTML={createMarkup(
+                        props?.data?.htmlContent
+                      )}
+                    />
+                  )}
+                </Box>
+              )
+            );
+          }}
+          features={props?.data?.featureFeed?.features}
+          additionalFeatures={{
+            VerticalCardListFeature: VerticalModalCardListFeature,
+          }}
+        />
+      </Cell>
     </Layout>
   );
 }

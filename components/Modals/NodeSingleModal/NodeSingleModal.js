@@ -1,11 +1,18 @@
 import React from 'react';
 import { Box, Modal } from 'ui-kit';
+import { NodeProvider } from 'providers';
+import NodeSingle from './NodeSingle';
 
 function NodeSingleModal(props = {}) {
-  console.log('NodeSingleModal props', props);
+  const options = {
+    variables: {
+      id: props?.id,
+    },
+  };
+
   return (
     <Modal {...props}>
-      <Box as="h1">HELLO THERE</Box>
+      <NodeProvider Component={NodeSingle} options={options} />
     </Modal>
   );
 }

@@ -1,39 +1,21 @@
 import { gql, useQuery } from '@apollo/client';
 
-import {
-  EVENT_ITEM_FRAGMENT,
-  CONTENT_ITEM_FRAGMENT,
-  PUBLISH_FRAGMENT,
-  INFORMATIONAL_ITEM_FRAGMENT,
-} from './useContentItem';
-
 export const GET_NODE = gql`
   query getNode($id: ID!) {
     node(id: $id) {
       id
       __typename
-      ... on ContentItem {
-        ...contentItemFragment
-        ...eventContentItemFragment
-        ...informationalContentItemFragment
-        ...publishFragment
-      }
-
-      ... on FeaturesNode {
-        featureFeed {
-          id
-          features {
-            id
+      ... on ContentNode {
+        title
+        coverImage {
+          sources {
+            uri
           }
         }
+        htmlContent
       }
     }
   }
-
-  ${EVENT_ITEM_FRAGMENT}
-  ${CONTENT_ITEM_FRAGMENT}
-  ${PUBLISH_FRAGMENT}
-  ${INFORMATIONAL_ITEM_FRAGMENT}
 `;
 
 function useNode(options = {}) {
