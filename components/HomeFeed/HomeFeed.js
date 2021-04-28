@@ -131,6 +131,7 @@ function HomeFeedLargeArticle({ article }) {
   return (
     <LargeImage
       minHeight="200px"
+      height="100%"
       text={article?.title}
       color="white"
       src={article?.coverImage?.sources?.[0]?.uri}
@@ -153,7 +154,6 @@ function HomeFeedArticles({ articles }) {
           url={article?.linkURL || `/page/${getIdSuffix(article?.id)}`}
           urlText={article?.linkText || 'Learn More'}
           imageSrc={article?.coverImage?.sources?.[0]?.uri}
-          mb={{ _: 'm', md: 's' }}
         />
       ))}
     </ArticleLinks>
@@ -221,7 +221,6 @@ function HomeFeedContent(props = {}) {
   const largeArticle = props.articles?.[0]?.node;
   const miniArticles = props.articles?.slice(1, 4);
 
-
   // Fixes a very strange static generation error I was running into.
   // In effect - when this page was rendered for an authed user
   // the authed html/content was mixed in with the unauthed content.
@@ -230,8 +229,7 @@ function HomeFeedContent(props = {}) {
 
   React.useEffect(() => {
     setServerSide(typeof window === 'undefined');
-  }, [])
-
+  }, []);
 
   const content = props.authenticated
     ? [
@@ -250,7 +248,7 @@ function HomeFeedContent(props = {}) {
       ];
 
   return (
-    <React.Fragment key={[props.authenticated, serverSide].join('-')} >
+    <React.Fragment key={[props.authenticated, serverSide].join('-')}>
       <Section>
         <CardGrid
           gridColumnGap="l"
