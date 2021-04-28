@@ -12,7 +12,7 @@ function useAuthIdentity() {
   const modalDispatch = useModalDispatch();
   const [requestPin] = useRequestPin();
 
-  function handleAuthIdentity({
+  async function handleAuthIdentity({
     identity: _identity,
     userExists = false,
     nextStep,
@@ -34,23 +34,32 @@ function useAuthIdentity() {
       modalDispatch(showStep(step));
     };
 
+    const onError = requestError => {
+      setStatus('ERROR');
+      setError({ identity: 'Invalid phone number or email address' });
+    };
+
     // If they used a phone number, we need to send a PIN.
     if (isValidPhoneNumber) {
-      requestPin({
-        variables: {
-          phone: identity,
-        },
-        update: (
-          cache,
-          {
-            data: {
-              requestSmsLoginPin: { success },
-            },
-          }
-        ) => {
-          if (success) onSuccess('sms');
-        },
-      });
+      try {
+        await requestPin({
+          variables: {
+            phone: identity,
+          },
+          update: (
+            cache,
+            {
+              data: {
+                requestSmsLoginPin: { success },
+              },
+            }
+          ) => {
+            if (success) onSuccess('sms');
+          },
+        });
+      } catch (requestPinError) {
+        onError(requestPinError);
+      }
     }
 
     // If they have a valid email, we need to set the type and
