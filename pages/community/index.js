@@ -42,16 +42,17 @@ export default function Community(props = {}) {
   }
 
   function handleOnClick() {
-    if (!authenticated) {
-      modalDispatch(showModal('Auth'));
-      authDispatch(
-        updateAuth({
-          onSuccess: showGroupFilterModal,
-        })
-      );
-    } else {
-      showGroupFilterModal();
-    }
+    router.push('/community/search');
+    // if (!authenticated) {
+    //   modalDispatch(showModal('Auth'));
+    //   authDispatch(
+    //     updateAuth({
+    //       onSuccess: showGroupFilterModal,
+    //     })
+    //   );
+    // } else {
+    //   showGroupFilterModal();
+    // }
   }
 
   if (!flags.GROUP_FINDER) return null;

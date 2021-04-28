@@ -1,20 +1,41 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 
-import { Box, Button, HorizontalHighlightCard, utils } from 'ui-kit';
+import {
+  Box,
+  Cell,
+  Button,
+  Divider,
+  HorizontalHighlightCard,
+  utils,
+  Loader,
+} from 'ui-kit';
 import {
   CommunityActionSection,
   CommunityLeaderActions,
   Footer,
   Header,
   SEO,
+  SearchField,
+  GroupSearchFilters,
+  CustomLink,
+  GroupsResultsList,
 } from 'components';
-import { useCurrentUser } from 'hooks';
+import { useCurrentUser, useSearchGroups, useForm } from 'hooks';
 import { update as updateAuth, useAuth } from 'providers/AuthProvider';
 import { useGroupFilters, update } from 'providers/GroupFiltersProvider';
-import { useModalDispatch, showModal } from 'providers/ModalProvider';
+import {
+  useModalDispatch,
+  showModal,
+  useModalState,
+} from 'providers/ModalProvider';
+import { GroupsProvider } from 'providers';
 
 import Hero from './CommunitySingle.styles';
+
+const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
+const PAGE_SIZE = 21;
 
 // Redundant (and brittle) mapping, but easier to read than integers
 const ModalSteps = Object.freeze({
@@ -23,6 +44,7 @@ const ModalSteps = Object.freeze({
 });
 
 function CommunitySingle(props = {}) {
+  const router = useRouter();
   const [{ authenticated }, authDispatch] = useAuth();
   const [filtersState, filtersDispatch] = useGroupFilters();
   const modalDispatch = useModalDispatch();
@@ -45,20 +67,7 @@ function CommunitySingle(props = {}) {
   }
 
   function handleFindCommunityClick() {
-    const showFilterModal = () => {
-      const userCampus = currentUser?.profile?.campus?.name;
-      filtersDispatch(update({ campuses: [userCampus] }));
-      modalDispatch(
-        showModal('GroupFilter', {
-          step:
-            filtersState.options.subPreferences.length > 0
-              ? ModalSteps.SUB_PREFERENCES
-              : ModalSteps.WHERE_WHEN,
-        })
-      );
-    };
-
-    ensureAuthentication(showFilterModal);
+    router.push('/community');
   }
 
   function handleSubPreferenceSelect(subPreference) {
@@ -68,6 +77,74 @@ function CommunitySingle(props = {}) {
     };
 
     ensureAuthentication(showFilterModal);
+  }
+
+  const modalState = useModalState();
+  const [searchGroups, { loading, groups, data, fetchMore }] = useSearchGroups({
+    notifyOnNetworkStatusChange: true,
+  });
+
+  // Logical shorthands
+  const hasResults = groups?.length > 0;
+  const showEmptyState = !loading && !hasResults;
+  const hasMorePages = groups?.length < data?.searchGroups?.totalResults;
+
+  const { values, handleSubmit, handleChange, setValues, reset } = useForm(
+    () => {
+      router.push({
+        pathname: `/community/search`,
+        query: filtersState.valuesSerialized,
+      });
+    }
+  );
+
+  useEffect(() => {
+    // Don't execute search if state hasn't been hydrated OR a modal is open
+    if (!filtersState.hydrated || modalState.activeModal.component) {
+      return;
+    }
+
+    if (filtersState.values.text.length) {
+      setValues({ text: filtersState.values.text[0] });
+    }
+
+    searchGroups({
+      variables: {
+        query: filtersState.queryData,
+        first: PAGE_SIZE,
+      },
+    });
+  }, [
+    filtersState.hydrated,
+    filtersState.queryData,
+    filtersState.values.text,
+    modalState.activeModal.component,
+    searchGroups,
+    setValues,
+  ]);
+
+  const handleLoadMore = () => {
+    if (!loading && hasMorePages) {
+      fetchMore({
+        variables: {
+          first: PAGE_SIZE,
+          after: data?.searchGroups?.pageInfo?.endCursor,
+        },
+      });
+    }
+  };
+
+  const handleClick = event => {
+    filtersDispatch(update({ text: [values.text] }));
+  };
+
+  function handleClearAllClick(event) {
+    event.preventDefault();
+    // Update search page URL
+    router.push({
+      pathname: `/community/search`,
+    });
+    filtersDispatch(resetValues(), reset());
   }
 
   return (
@@ -88,7 +165,7 @@ function CommunitySingle(props = {}) {
             {props.data?.summary}
           </Box>
         </Box>
-        <Box display="flex" mb="l">
+        {/* <Box display="flex" mb="l">
           <Button
             variant="tertiary"
             rounded={true}
@@ -96,35 +173,93 @@ function CommunitySingle(props = {}) {
           >
             {`Find your ${props.data?.title}`}
           </Button>
-        </Box>
+        </Box> */}
       </Hero>
       <Box textAlign="center" alignItems="center" mb="l" px={{ md: 'xxl' }}>
-        <Box as="h1" mb="0">{`The ${props.data?.title} Lineup`}</Box>
-        <Box
-          as="p"
-          mb="base"
-        >{`There's a ${props.data?.title} for everyone`}</Box>
-        <Box display="flex" flexWrap="wrap" justifyContent="center" m="s">
-          {props.data?.subPreferences &&
-            props.data?.subPreferences.map((item, i) => (
-              <HorizontalHighlightCard
-                as="a"
-                key={i}
-                flex={{
-                  _: `0 0 calc(100% - ${utils.rem('20px')})`,
-                  sm: `0 0 calc(50% - ${utils.rem('20px')})`,
-                  lg: `0 0 calc(33.333% - ${utils.rem('20px')})`,
-                }}
-                m="s"
-                coverImage={item?.coverImage?.sources[0]?.uri}
-                coverImageOverlay={true}
-                coverImageTitle={item?.title}
-                type="HIGHLIGHT_SMALL"
-                height="250px"
-                onClick={() => handleSubPreferenceSelect(item)}
-              />
-            ))}
-        </Box>
+        <Cell width="100%" maxWidth={DEFAULT_CONTENT_WIDTH} px="base">
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
+            mb="base"
+          >
+            <Box as="h1">{`Find your ${props.data?.title} Community`}</Box>
+            <Button
+              as="a"
+              rounded={true}
+              size="s"
+              variant="secondary"
+              href="https://rock.gocf.org/page/2113"
+              display={{ _: 'none', md: 'inline-block' }}
+            >
+              Need help?
+            </Button>
+          </Box>
+
+          <Divider mb="l" />
+          <SearchField
+            placeholder="Search for groups..."
+            handleSubmit={handleSubmit}
+            handleClick={handleClick}
+            handleChange={handleChange}
+            value={values.text || ''}
+            mb="base"
+          >
+            Search
+          </SearchField>
+          <GroupSearchFilters
+            loading={loading}
+            visibleResults={groups?.length}
+            totalResults={data?.searchGroups?.totalResults}
+            pageSize={PAGE_SIZE}
+          />
+
+          {showEmptyState && (
+            <Box my="xxl" pb="xxl" textAlign="center">
+              <Box as="h2">Looks like we couldn't find any results</Box>
+              <Box mb="base">
+                Consider reducing the number of filters or modifying your search
+                criteria.
+              </Box>
+              <Box
+                display="flex"
+                alignItems="center"
+                flexDirection="column"
+                mt="l"
+                textAlign="center"
+              >
+                <Button
+                  variant="secondary"
+                  onClick={handleClearAllClick}
+                  mb="s"
+                >
+                  Clear Search
+                </Button>
+                <CustomLink href="https://rock.gocf.org/page/2113">
+                  Need help?
+                </CustomLink>
+              </Box>
+            </Box>
+          )}
+
+          {hasResults && (
+            <GroupsProvider data={groups} Component={GroupsResultsList} />
+          )}
+
+          {loading && (
+            <Box display="flex" justifyContent="center" my="xxl">
+              <Loader />
+            </Box>
+          )}
+
+          {!loading && hasMorePages && (
+            <Box display="flex" justifyContent="center" mt="xl">
+              <Button variant="tertiary" onClick={handleLoadMore}>
+                Load more
+              </Button>
+            </Box>
+          )}
+        </Cell>
       </Box>
       <CommunityActionSection handleOnClick={handleFindCommunityClick} />
       <CommunityLeaderActions />
