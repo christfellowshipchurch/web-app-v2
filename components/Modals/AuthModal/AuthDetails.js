@@ -2,8 +2,9 @@ import React from 'react';
 
 import { getAge } from 'utils';
 import { useAuthIdentity, useForm } from 'hooks';
+
+import { BirthDateField, GenderField } from 'components';
 import { Box, Button, TextInput } from 'ui-kit';
-import { BirthDateField, GenderField } from '../..';
 
 function AuthDetails() {
   const {
@@ -80,7 +81,10 @@ function AuthDetails() {
             <BirthDateField onChange={handleChange} error={error?.birthdate} />
           </Box>
           <Box>
-            <GenderField onChange={handleChange} />
+            <GenderField
+              initialValue={values.gender || ''}
+              onChange={handleChange}
+            />
           </Box>
         </Box>
         <Box textAlign="center">
