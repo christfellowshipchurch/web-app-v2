@@ -51,18 +51,21 @@ function useGroupContentId({ title, id }) {
     if (!authenticated) router.push('/groups');
 
     async function getGroups() {
-      dispatch({ type: 'GROUPS_REQUESTED' });
-      const result = await apolloClient.query({ query: GET_GROUPS });
-      const groups = result?.data?.currentUser?.profile?.groups;
-      if (result.loading) dispatch({ type: 'GROUPS_REQUESTED' });
-      if (groups && state.status !== 'RECEIVED') {
-        dispatch({
-          type: 'GROUPS_RECEIVED',
-          payload: { groups },
-        });
+      try {
+        dispatch({ type: 'GROUPS_REQUESTED' });
+        const result = await apolloClient.query({ query: GET_GROUPS });
+        const groups = result?.data?.currentUser?.profile?.groups;
+        if (result.loading) dispatch({ type: 'GROUPS_REQUESTED' });
+        if (groups && state.status !== 'RECEIVED') {
+          dispatch({
+            type: 'GROUPS_RECEIVED',
+            payload: { groups },
+          });
+        }
+      } catch (error) {
+        console.error('useGroupContentId error: ', error);
       }
     }
-
     // We only want to fetch the user's groups when:
     // 1. There isn't an `id`.
     // 2. There isn't a `contentId`.
