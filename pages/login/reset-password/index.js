@@ -80,6 +80,7 @@ export default function ResetPassword(props) {
           maxWidth={utils.rem('1100px')}
           px="base"
           py={{ _: 'l', lg: 'xl' }}
+          mb="xxl"
         >
           <Card maxWidth="62%" margin="auto" p="base" pb="l">
             <Box my="l" textAlign="center">
@@ -102,6 +103,7 @@ export default function ResetPassword(props) {
         maxWidth={utils.rem('1100px')}
         px="base"
         py={{ _: 'l', lg: 'xl' }}
+        mb="xxl"
       >
         <Card maxWidth="62%" margin="auto" p="base" pb="l">
           {/* Form Header */}
@@ -139,6 +141,7 @@ export default function ResetPassword(props) {
                   label="Confirmation Code"
                   onChange={handleChange}
                   required
+                  autoFocus
                 />
               </Box>
             </Box>
