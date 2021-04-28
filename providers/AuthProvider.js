@@ -71,7 +71,12 @@ function AuthProvider(props = {}) {
       } else {
         if (!authenticated) {
           window.localStorage.removeItem(AUTH_TOKEN_KEY);
-          router.push('/');
+
+          // ! TODO Without this workaround, the Reset Password page redirects user to
+          // home when unauthenticated. Investigate why.
+          if (!router.pathname.startsWith('/login')) {
+            router.push('/');
+          }
         }
       }
     }
