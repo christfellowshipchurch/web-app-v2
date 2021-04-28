@@ -142,12 +142,12 @@ Styled.TextContainer = styled(Box)`
     bottom: 0;
     height: 100%;
     max-width: 440px;
-    margin: ${themeGet('space.l')};
     pointer-events: none;
     position: absolute;
   }
 
   @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
+    margin: ${themeGet('space.l')};
     margin-bottom: 0;
   }
 
