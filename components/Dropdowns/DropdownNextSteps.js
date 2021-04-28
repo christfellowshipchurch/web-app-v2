@@ -10,7 +10,7 @@ export default function DropdownNextSteps({ ...props }) {
   });
 
   if (loading) {
-    return <PageDropdown loading />;
+    return <PageDropdown loading {...props} />;
   }
 
   const featuredItems = content.edges
