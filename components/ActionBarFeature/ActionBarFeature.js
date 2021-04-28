@@ -11,12 +11,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import chunk from 'lodash/chunk';
 
-import { CustomLink } from 'components';
-
 import { ThemeProvider as SCThemeProvider } from 'styled-components';
 
-import { ActionBar, ActionBarItem } from 'ui-kit';
-import { getURLFromType, getUrlFromRelatedNode } from 'utils';
+import { ActionBar, ActionBarItem, Box } from 'ui-kit';
+import { getUrlFromRelatedNode } from 'utils';
 
 const ActionBarFeature = props => {
   const id = props?.data?.id;
@@ -45,16 +43,19 @@ const ActionBarFeature = props => {
                * ! Our ThemeProvider component from /ui-kit is not working properly so we are using the orignal component from the 'style-components' package.
                */
               <SCThemeProvider key={i} theme={theme}>
-                <CustomLink
+                <Box
                   as="a"
                   href={getUrlFromRelatedNode(relatedNode)}
-                  Component={ActionBarItem}
-                  {...(!icon ? {} : { icon })}
-                  label={title}
-                  onPressActionItem={e =>
-                    onPressActionItem(e, { action, relatedNode })
-                  }
-                />
+                  textDecoration="none"
+                >
+                  <ActionBarItem
+                    {...(!icon ? {} : { icon })}
+                    label={title}
+                    onPressActionItem={e =>
+                      onPressActionItem(e, { action, relatedNode })
+                    }
+                  />
+                </Box>
               </SCThemeProvider>
             )
           )}
