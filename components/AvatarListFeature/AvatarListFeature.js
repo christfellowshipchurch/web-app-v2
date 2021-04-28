@@ -24,8 +24,8 @@ const AvatarListFeature = ({
             <Avatar
               name={person.firstName}
               src={person.photo.uri}
-              height="80px"
-              width="80px"
+              height="150px"
+              width="150px"
             />
             {primaryAction?.icon && (
               <Box
@@ -41,7 +41,7 @@ const AvatarListFeature = ({
                 <Icon
                   color={primaryAction?.theme?.color}
                   name={primaryAction?.icon}
-                  size="18"
+                  size="36"
                 />
               </Box>
             )}
