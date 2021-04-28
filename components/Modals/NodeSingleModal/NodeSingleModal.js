@@ -1,18 +1,24 @@
 import React from 'react';
-import { Box, Modal } from 'ui-kit';
-import { NodeProvider } from 'providers';
-import NodeSingle from './NodeSingle';
+import isEmpty from 'lodash/isEmpty';
+
+import { useNode } from 'hooks';
+
+import { createMarkup } from 'utils';
+import { Box, Modal, Longform } from 'ui-kit';
 
 function NodeSingleModal(props = {}) {
-  const options = {
+  const { item } = useNode({
     variables: {
       id: props?.id,
     },
-  };
+  });
 
   return (
     <Modal {...props}>
-      <NodeProvider Component={NodeSingle} options={options} />
+      {!isEmpty(item?.title) && <Box as="h2">{item?.title}</Box>}
+      {!isEmpty(item?.htmlContent) && (
+        <Longform dangerouslySetInnerHTML={createMarkup(item?.htmlContent)} />
+      )}
     </Modal>
   );
 }
