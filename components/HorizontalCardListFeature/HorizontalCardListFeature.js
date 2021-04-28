@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { GroupsProvider } from 'providers';
 import { CustomLink, GroupsList } from '..';
-import { HorizontalHighlightCard, CardCarousel, RowCard } from 'ui-kit';
+import { HorizontalHighlightCard, CardCarousel, PrayerCard } from 'ui-kit';
 import { getUrlFromRelatedNode } from 'utils';
 
 function HorizontalCardListFeature(props = {}) {
@@ -29,27 +29,27 @@ function HorizontalCardListFeature(props = {}) {
   }
 
   /**
-   * todo : TEMP SOLUTION - Update how we pull in groups cards. Right now we switch to GroupsProvider to pull in all data for GroupCard, bypassing the CardCarousel.
+   * todo : TEMP SOLUTION - In the future we'll want to update how we pull in Group and Prayer cards. Right now for Groups we switch to GroupsProvider to pull in the required fields for GroupCard correctly, bypassing the CardCarousel. For Prayer we'll need to find a way to pull in the correct fields as well.
    */
   if (cards[0]?.action === 'READ_GROUP') {
     return <GroupsProvider Component={GroupsList} />;
   }
-
-  /**
-   * todo : Rethink how we want to display PrayerCards
-   */
   if (cards[0]?.action === 'READ_PRAYER') {
     return (
-      <CardCarousel cardsDisplayed={4} hideArrows={cards.length < 2}>
+      <CardCarousel
+        padding="base"
+        cardsDisplayed={4}
+        hideArrows={cards.length < 2}
+      >
         {cards.map((card, i) => (
-          <HorizontalHighlightCard
+          <PrayerCard
             key={i}
-            mx="s"
             boxShadow="none"
+            height="100%"
+            mr="base"
             coverImage={card?.coverImage?.sources[0]?.uri || '/cf-logo.png'}
             coverImageOverlay={true}
             description={card?.title}
-            type={'HIGHLIGHT_SMALL'}
           />
         ))}
       </CardCarousel>

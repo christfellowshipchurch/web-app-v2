@@ -29,6 +29,7 @@ import Loader from './Loader';
 import Longform from './Longform';
 import Menu from './Menu';
 import Modal from './Modal';
+import PrayerCard from './PrayerCard';
 import Radio from './Radio';
 import RowCard from './RowCard';
 import Select from './Select';
@@ -64,6 +65,7 @@ export {
   Longform,
   Menu,
   Modal,
+  PrayerCard,
   Radio,
   RowCard,
   Select,
