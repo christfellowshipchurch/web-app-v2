@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
+import flags from 'config/flags';
 import { Box, Button, Cell, utils } from 'ui-kit';
 import {
   CommunityActionSection,
@@ -24,13 +25,11 @@ import Styled from './Community.styles';
 const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
 
 export default function Community(props = {}) {
-  // Redirect and return null until find a group launch
   const router = useRouter();
-  useEffect(() => {
-    router.push('/');
-  }, [router]);
 
-  return null;
+  useEffect(() => {
+    if (!flags.GROUP_FINDER) router.push('/');
+  }, [router]);
 
   const [{ authenticated }, authDispatch] = useAuth();
   const modalDispatch = useModalDispatch();
@@ -54,6 +53,8 @@ export default function Community(props = {}) {
       showGroupFilterModal();
     }
   }
+
+  if (!flags.GROUP_FINDER) return null;
 
   return (
     <>

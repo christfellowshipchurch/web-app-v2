@@ -5,6 +5,7 @@ import find from 'lodash/find';
 import kebabCase from 'lodash/kebabCase';
 import toLower from 'lodash/toLower';
 
+import flags from 'config/flags';
 import { CommunitiesProvider } from 'providers';
 import { useGroupPreferences } from 'hooks';
 import { CommunitySingle, Layout } from 'components';
@@ -13,12 +14,9 @@ import { Box, Cell, Loader, utils } from 'ui-kit';
 export default function Community(props) {
   const router = useRouter();
 
-  // Redirect and return null until find a group launch
   useEffect(() => {
-    router.push('/');
+    if (!flags.GROUP_FINDER) router.push('/');
   }, [router]);
-
-  return null;
 
   const { preferences, subPreferences, loading } = useGroupPreferences();
 
@@ -32,6 +30,8 @@ export default function Community(props) {
     n => formatTitleAsUrl(get(n, 'title', '')) === slug
   );
   const unknownPreference = !loading && !preference;
+
+  if (!flags.GROUP_FINDER) return null;
 
   if (loading || unknownPreference) {
     if (unknownPreference) {
