@@ -24,8 +24,6 @@ function findModal(state, action) {
   const title = action.payload.component;
   const activeModal = find(state.modals, m => m.title === title);
 
-  console.log({ title, state });
-
   if (activeModal) return activeModal;
   return false;
 }

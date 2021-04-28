@@ -5,8 +5,13 @@ import slugify from './slugify';
  */
 
 function getUrlFromRelatedNode(relatedNode) {
-  if (relatedNode?.url) return relatedNode?.url;
-  if (relatedNode?.routing?.pathname) return relatedNode?.routing?.pathname;
+  if (relatedNode?.url) {
+    return relatedNode?.url;
+  }
+
+  if (relatedNode?.routing?.pathname) {
+    return `/${relatedNode?.routing?.pathname}`;
+  }
 
   return '/';
 }

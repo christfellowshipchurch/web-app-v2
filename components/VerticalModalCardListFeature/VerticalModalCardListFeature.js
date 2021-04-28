@@ -25,8 +25,6 @@ function VerticalModalCardListFeature(props = {}) {
             onClick={e => {
               e.preventDefault();
 
-              console.log('HI?');
-
               modalDispatch(
                 showModal('NodeSingle', { id: card?.relatedNode?.id })
               );

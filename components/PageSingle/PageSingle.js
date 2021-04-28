@@ -17,8 +17,6 @@ import Styled from './PageSingle.styles';
 import { propTypes } from 'ui-kit/_lib/system';
 
 function PageSingle(props = {}) {
-  console.log({ props });
-
   const data = props?.data;
   const loading = props?.loading || false;
 
