@@ -221,6 +221,18 @@ function HomeFeedContent(props = {}) {
   const largeArticle = props.articles?.[0]?.node;
   const miniArticles = props.articles?.slice(1, 4);
 
+
+  // Fixes a very strange static generation error I was running into.
+  // In effect - when this page was rendered for an authed user
+  // the authed html/content was mixed in with the unauthed content.
+  // Next.js needs a litle bit of nudging to properly hydrate the page, in this case.
+  const [serverSide, setServerSide] = React.useState();
+
+  React.useEffect(() => {
+    setServerSide(typeof window === 'undefined');
+  }, [])
+
+
   const content = props.authenticated
     ? [
         [
@@ -238,7 +250,7 @@ function HomeFeedContent(props = {}) {
       ];
 
   return (
-    <>
+    <React.Fragment key={[props.authenticated, serverSide].join('-')} >
       <Section>
         <CardGrid
           gridColumnGap="l"
@@ -318,7 +330,7 @@ function HomeFeedContent(props = {}) {
         </Text>
       </FullWidthCTA>
       <ConnectTiles />
-    </>
+    </React.Fragment>
   );
 }
 
