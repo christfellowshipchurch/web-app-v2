@@ -1,5 +1,7 @@
 import { links } from './metadata';
 
+import flags from './flags';
+
 const navigation = {
   menuLinks: [
     {
@@ -13,10 +15,6 @@ const navigation = {
     {
       action: '/groups',
       call: 'Groups',
-    },
-    {
-      action: '/community',
-      call: 'Community',
     },
   ],
   navigationLinks: [
@@ -42,5 +40,12 @@ const navigation = {
     call: 'Watch Online',
   },
 };
+
+if (flags.GROUP_FINDER) {
+  navigation.menuLinks.push({
+    action: '/community',
+    call: 'Community',
+  });
+}
 
 export default navigation;

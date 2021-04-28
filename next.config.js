@@ -15,6 +15,18 @@ module.exports = {
         destination: '/discover',
         permanent: true,
       },
+      // TODO: Uncomment these lines to hide Group Finder.
+      // NOTE: We can't get `config/flags` in this file.
+      // {
+      //   source: '/community',
+      //   destination: '/',
+      //   permanent: false,
+      // },
+      // {
+      //   source: '/community/search',
+      //   destination: '/',
+      //   permanent: false,
+      // },
     ];
   },
 };

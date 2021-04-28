@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
+import flags from 'config/flags';
 import { Button, Box, Cell, Divider, Loader, utils } from 'ui-kit';
 import {
   Footer,
@@ -26,6 +27,11 @@ const PAGE_SIZE = 21;
 
 export default function CommunitySearch() {
   const router = useRouter();
+
+  useEffect(() => {
+    if (!flags.GROUP_FINDER) router.push('/');
+  }, [router]);
+
   const modalState = useModalState();
   const [filtersState, filtersDispatch] = useGroupFilters();
   const [searchGroups, { loading, groups, data, fetchMore }] = useSearchGroups({
@@ -94,6 +100,8 @@ export default function CommunitySearch() {
     });
     filtersDispatch(resetValues(), reset());
   }
+
+  if (!flags.GROUP_FINDER) return null;
 
   return (
     <>

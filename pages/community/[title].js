@@ -1,17 +1,25 @@
+import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import get from 'lodash/get';
 import find from 'lodash/find';
 import kebabCase from 'lodash/kebabCase';
 import toLower from 'lodash/toLower';
 
+import flags from 'config/flags';
 import { CommunitiesProvider } from 'providers';
 import { useGroupPreferences } from 'hooks';
 import { CommunitySingle, Layout } from 'components';
 import { Box, Cell, Loader, utils } from 'ui-kit';
 
 export default function Community(props) {
-  const { preferences, subPreferences, loading } = useGroupPreferences();
   const router = useRouter();
+
+  useEffect(() => {
+    if (!flags.GROUP_FINDER) router.push('/');
+  }, [router]);
+
+  const { preferences, subPreferences, loading } = useGroupPreferences();
+
   const { title } = router.query;
 
   const formatTitleAsUrl = title => kebabCase(toLower(title));
@@ -22,6 +30,8 @@ export default function Community(props) {
     n => formatTitleAsUrl(get(n, 'title', '')) === slug
   );
   const unknownPreference = !loading && !preference;
+
+  if (!flags.GROUP_FINDER) return null;
 
   if (loading || unknownPreference) {
     if (unknownPreference) {
