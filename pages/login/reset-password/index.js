@@ -1,35 +1,99 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
-import { useForm } from 'hooks';
+import { useForm, useRequestPasswordChange } from 'hooks';
 import { Layout } from 'components';
-import { Box, Button, Card, Cell, TextInput, utils } from 'ui-kit';
+import { Box, Button, Card, Cell, Icon, TextInput, utils } from 'ui-kit';
 
 export default function ResetPassword(props) {
   const router = useRouter();
   const [status, setStatus] = useState('IDLE');
   const [error, setError] = useState({});
-  const { values, setValues, handleSubmit, handleChange } = useForm(() => {
-    console.log('values:', values);
-    setStatus('IDLE');
-    setError({});
+  const [requestPasswordChange] = useRequestPasswordChange();
 
-    if (values.password !== values.confirmPassword) {
-      setStatus('ERROR');
-      setError({ confirmPassword: 'Passwords do not match' });
-      return;
+  const { values, setValues, handleSubmit, handleChange } = useForm(
+    async () => {
+      // State reset
+      setStatus('IDLE');
+      setError({});
+
+      // Validate fields
+      if (values.password !== values.confirmPassword) {
+        setStatus('ERROR');
+        setError({ confirmPassword: 'Passwords do not match' });
+        return;
+      }
+
+      // Send request
+      setStatus('LOADING');
+
+      const handleServerError = () => {
+        setError({
+          server:
+            'We were unable to reset your password. Please double check the form and try again.',
+        });
+        setStatus('ERROR');
+      };
+
+      try {
+        await requestPasswordChange({
+          variables: {
+            email: values.email,
+            pin: values.confirmationCode,
+            newPassword: values.password,
+          },
+          update: (
+            _,
+            { data: { changePasswordWithPin }, error: updateError }
+          ) => {
+            const token = changePasswordWithPin?.token;
+
+            if (Boolean(token)) {
+              setStatus('SUCCESS');
+            } else {
+              console.error('Update error', updateError);
+              handleServerError();
+            }
+          },
+        });
+      } catch (requestError) {
+        console.error('Request error', requestError);
+        handleServerError();
+      }
     }
-
-    setStatus('LOADING');
-  });
-  const queryEmail = router.query?.email || '';
+  );
 
   // Hydrate email from URL query params
+  const queryEmail = router.query?.email || '';
+
   useEffect(() => {
     if (queryEmail) {
       setValues({ email: queryEmail });
     }
   }, [queryEmail, setValues]);
+
+  if (status === 'SUCCESS') {
+    return (
+      <Layout title="Password Reset">
+        <Cell
+          as="main"
+          maxWidth={utils.rem('1100px')}
+          px="base"
+          py={{ _: 'l', lg: 'xl' }}
+        >
+          <Card maxWidth="62%" margin="auto" p="base" pb="l">
+            <Box my="l" textAlign="center">
+              <Icon name="checkCirle" color="success" size="64" mb="base" />
+              <Box as="h1" color="success">
+                Password Reset
+              </Box>
+              <Box as="p">Your password has been successfully reset!</Box>
+            </Box>
+          </Card>
+        </Cell>
+      </Layout>
+    );
+  }
 
   return (
     <Layout title="Password Reset">
@@ -40,12 +104,14 @@ export default function ResetPassword(props) {
         py={{ _: 'l', lg: 'xl' }}
       >
         <Card maxWidth="62%" margin="auto" p="base" pb="l">
+          {/* Form Header */}
           <Box my="l" textAlign="center">
             <Box as="h1">Password Reset</Box>
             <Box as="p">Forgot your password? We’ve got you covered!</Box>
           </Box>
 
           <Box as="form" action="" onSubmit={handleSubmit} px="xxl">
+            {/* Email & Confirmation Code*/}
             <Box as="section" mb="l">
               <Box
                 as="h5"
@@ -69,7 +135,7 @@ export default function ResetPassword(props) {
               </Box>
               <Box>
                 <TextInput
-                  id="code"
+                  id="confirmationCode"
                   label="Confirmation Code"
                   onChange={handleChange}
                   required
@@ -77,6 +143,7 @@ export default function ResetPassword(props) {
               </Box>
             </Box>
 
+            {/* New Password Section */}
             <Box as="section">
               <Box as="h5" px="l" pb="s" color="subdued" textAlign="center">
                 Create a new password.
@@ -108,10 +175,13 @@ export default function ResetPassword(props) {
               </Box>
             </Box>
 
+            {/* Form Footer */}
             <Box as="section" mt="l" textAlign="center">
-              <Box as="p" color="alert" fontSize="s" mb="base">
-                This is an error!
-              </Box>
+              {error.server && (
+                <Box as="p" color="alert" fontSize="s" mb="base">
+                  {error.server}
+                </Box>
+              )}
               <Button
                 type="submit"
                 status={status}
