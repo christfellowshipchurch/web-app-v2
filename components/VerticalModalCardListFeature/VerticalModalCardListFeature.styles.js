@@ -48,7 +48,7 @@ const CardContent = styled.div`
   align-items: top;
   justify-content: space-between;
 
-  padding: ${themeGet('space.s')};
+  padding: ${themeGet('space.base')};
   color: ${themeGet('colors.black')};
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {

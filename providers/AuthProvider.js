@@ -71,7 +71,7 @@ function AuthProvider(props = {}) {
       } else {
         if (!authenticated) {
           window.localStorage.removeItem(AUTH_TOKEN_KEY);
-          router.push('/');
+          // router.push('/');
         }
       }
     }

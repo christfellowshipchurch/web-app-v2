@@ -12,7 +12,6 @@ const Hero = styled.div`
   background-image: url(${props => props.coverImage});
   background-position: center;
   background-size: cover;
-  margin-bottom: ${themeGet('space.l')};
   padding: ${themeGet('space.m')};
   min-height: 40vh;
   align-items: center;

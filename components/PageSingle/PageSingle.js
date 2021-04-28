@@ -14,29 +14,39 @@ import {
 
 import { Box, Longform } from 'ui-kit';
 import Styled from './PageSingle.styles';
+import { propTypes } from 'ui-kit/_lib/system';
 
 function PageSingle(props = {}) {
+  console.log({ props });
+
+  const data = props?.data;
+  const loading = props?.loading || false;
+
+  const id = data?.id;
+  const title = data?.title;
+  const summmary = data?.summmary;
+  const htmlContent = data?.htmlContent;
+  const coverImage = data?.coverImage?.sources[0]?.uri;
+  const features = data?.featureFeed?.features;
+
   // note : this means that there is not a valid page found on the API, so we'll render the 404 message
-  if (!props.loading && !props?.data?.id) {
+  if (!loading && !id) {
     return <NotFound />;
   }
 
   return (
     <Layout
-      title={props?.data?.title}
+      title={title}
       contentMaxWidth={'100vw'}
-      contentHorizontalPadding={0}
-      contentVerticalPadding={0}
+      contentHorizontalPadding={'0'}
+      contentVerticalPadding={'0'}
     >
       {props?.data?.coverImage && (
-        <Styled.Hero
-          coverImage={props?.data?.coverImage?.sources[0]?.uri}
-          title={props?.data?.title}
-        ></Styled.Hero>
+        <Styled.Hero coverImage={coverImage} title={title}></Styled.Hero>
       )}
 
       <ContentLayout
-        summary={props?.data?.subtitle}
+        summary={summmary}
         renderA={() => {
           return (
             props?.data?.title && (
@@ -44,25 +54,39 @@ function PageSingle(props = {}) {
                 <Box as="h1" textAlign="center">
                   {props?.data?.title}
                 </Box>
+                <Box as="p">{summmary}</Box>
                 {props?.data?.htmlContent && (
                   <Longform
-                    dangerouslySetInnerHTML={createMarkup(
-                      props?.data?.htmlContent
-                    )}
+                    dangerouslySetInnerHTML={createMarkup(htmlContent)}
                   />
                 )}
               </Box>
             )
           );
         }}
-        features={props?.data?.featureFeed?.features}
+        features={features}
       />
     </Layout>
   );
 }
 
 PageSingle.propTypes = {
-  data: PropTypes.array,
+  data: PropTypes.shape({
+    title: PropTypes.string,
+    summmary: PropTypes.string,
+    htmlContent: PropTypes.string,
+    coverImage: PropTypes.shape({
+      sources: PropTypes.arrayOf(
+        PropTypes.shape({
+          uri: PropTypes.string,
+        })
+      ),
+    }),
+    featureFeed: PropTypes.shape({
+      id: PropTypes.string,
+      features: PropTypes.array,
+    }),
+  }),
 };
 
 export default PageSingle;

@@ -23,8 +23,8 @@ function LocationSingle(props = {}) {
     <Layout
       title={props?.data?.title}
       contentMaxWidth={'100vw'}
-      contentHorizontalPadding={0}
-      contentVerticalPadding={0}
+      contentHorizontalPadding={'0'}
+      contentVerticalPadding={'0'}
     >
       {props?.data?.coverImage && (
         <Styled.Hero coverImage={props?.data?.coverImage?.sources[0]?.uri}>
@@ -56,9 +56,6 @@ function LocationSingle(props = {}) {
             );
           }}
           features={props?.data?.featureFeed?.features}
-          additionalFeatures={{
-            VerticalCardListFeature: VerticalModalCardListFeature,
-          }}
         />
       </Cell>
     </Layout>

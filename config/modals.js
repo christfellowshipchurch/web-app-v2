@@ -29,7 +29,7 @@ const modals = [
     component: GroupFilterModal,
   },
   {
-    title: 'NodeSingleModal',
+    title: 'NodeSingle',
     component: NodeSingleModal,
   },
 ];
