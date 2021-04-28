@@ -142,12 +142,26 @@ Styled.TextContainer = styled(Box)`
     bottom: 0;
     height: 100%;
     max-width: 440px;
+    ${props =>
+      props.justifyContent === 'center'
+        ? css`
+            margin: ${themeGet('space.l')};
+            margin-bottom: 0;
+          `
+        : null}
     pointer-events: none;
     position: absolute;
   }
 
   @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
-    margin: ${themeGet('space.l')};
+    ${props =>
+      props.justifyContent === 'center'
+        ? css`
+            margin: ${themeGet('space.xxl')};
+          `
+        : css`
+            margin: ${themeGet('space.l')};
+          `}
     margin-bottom: 0;
   }
 
