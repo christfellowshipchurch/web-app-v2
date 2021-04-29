@@ -1,3 +1,4 @@
+import { PlayCircle } from 'phosphor-react';
 import {
   Carousel,
   Countdown,
@@ -10,68 +11,54 @@ import {
 import { initializeApollo } from 'lib/apolloClient';
 import { useRouter } from 'next/router';
 import IDS from 'config/ids';
-import { Box, CardGrid, Heading, Section } from 'ui-kit';
+import { Box, CardGrid, Heading, Section, theme } from 'ui-kit';
 import { GET_MESSAGE_SERIES } from 'hooks/useMessageSeries';
 import { GET_CONTENT_CHANNEL } from 'hooks/useContentChannel';
 import { getChannelId, getIdSuffix } from 'utils';
 import useLiveStreams from 'hooks/useLiveStreams';
+import Styled from './index.styles';
 
 export default function Watch({ series, watchPages, sermons }) {
   const router = useRouter();
 
-  const coverVideo = sermons?.[0]?.node;
+  const sermon = sermons?.[0]?.node;
 
   const { liveStreams } = useLiveStreams();
+  const isLive = liveStreams.length && liveStreams[0].isLive;
 
   return (
     <Layout title="Watch">
       <MainPhotoHeader
-        src={coverVideo?.coverImage?.sources?.[0]?.uri}
+        src={sermon?.coverImage?.sources?.[0]?.uri}
         title="Join us live"
         subtitle="UPCOMING"
-        summary="Watch live on Sundays at 8:00, 9:30, and 11:15 a.m."
         justifyText="center"
         backdrop={false}
-        content={
-          <>
-            <Box
-              position={{ lg: 'absolute' }}
-              top="0"
-              alignItems="center"
-              justifyContent="center"
-              height="100%"
-              width="100%"
-              display="flex"
-            >
-              <Carousel
-                neighbors="3d"
-                contentWidth={{ _: '100%', lg: '681px' }}
-                pl={{ _: 'l', md: 'xxl' }}
-                pr={{ _: 'l', md: 'xxl', lg: '0' }}
-                childProps={i => ({
-                  style: {
-                    width: '100%',
-                  },
-                })}
-              >
-                {liveStreams.map((liveStream, i) => (
-                  <Countdown
-                    key={i}
-                    onClick={() => router.push(liveStream.webViewUrl)}
-                    src={coverVideo?.coverImage?.sources?.[0]?.uri}
-                    date={
-                      liveStream.eventStartTime
-                        ? new Date(liveStream.eventStartTime)
-                        : null
-                    }
-                    buttonText="Church Online"
-                  />
-                ))}
-              </Carousel>
-            </Box>
-          </>
-        }
       />
+      <Box
+        flexDirection="column"
+        mx={{ _: 'l', md: 'xxl' }}
+        mt={{ _: 'm', lg: '-130px' }}
+        zIndex="2"
+      >
+        <Heading variant="h5" color="neutrals.500">
+          LAST WEEK
+        </Heading>
+        <Styled.SermonContainer mt="s">
+          <Styled.SermonImage
+            rounded
+            src={sermon?.coverImage?.sources?.[0]?.uri}
+            onClick={() => router.push(`/sermon/${getIdSuffix(sermon?.id)}`)}
+          />
+          <Box position="absolute" right="10px" bottom="10px">
+            <PlayCircle
+              size="36"
+              color={`${theme.colors.neutrals[100]}`}
+              opacity="60%"
+            />
+          </Box>
+        </Styled.SermonContainer>
+      </Box>
       <Section>
         <CardGrid
           px={{ _: 'l', md: 'xxl' }}
