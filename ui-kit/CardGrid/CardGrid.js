@@ -10,7 +10,7 @@ function CardGrid(props = {}) {
 
 CardGrid.propTypes = {
   ...systemPropTypes,
-  columns: PropTypes.string,
+  columns: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 CardGrid.defaultProps = {
