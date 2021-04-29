@@ -8,9 +8,11 @@ function Checkbox(props = {}) {
   return (
     <Styled {...props.containerProps}>
       <Styled.Input id={props.id} name={props.id} {...props} />
-      <Styled.Label htmlFor={props.id} {...props.labelProps}>
-        {props.label}
-      </Styled.Label>
+      {props.label && (
+        <Styled.Label htmlFor={props.id} {...props.labelProps}>
+          {props.label}
+        </Styled.Label>
+      )}
     </Styled>
   );
 }
@@ -24,7 +26,7 @@ Checkbox.propTypes = {
     ...systemPropTypes,
   }),
   id: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
 };
 
 Checkbox.defaultProps = {
