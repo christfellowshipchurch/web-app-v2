@@ -9,11 +9,13 @@ const PageSingle = styled.div`
 `;
 
 const Hero = styled.div`
+  position: relative;
   background-image: url(${props => props.coverImage});
   background-position: center;
   background-size: cover;
-  padding-top: 42.85%;
-  margin-bottom: ${themeGet('space.l')};
+  min-height: 40vh;
+  overflow: hidden;
+  padding-top: ${themeGet('space.xxl')};
 `;
 
 const Section = styled.div`
@@ -26,7 +28,33 @@ const Section = styled.div`
   text-align: center;
 `;
 
+const Glass = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(50px);
+  box-shadow: ${themeGet('shadows.l')};
+  transform: translate(0px, 2px);
+`;
+
+const GlassContent = styled.div`
+  flex: 1;
+  color: ${themeGet('colors.white')};
+  text-align: left;
+  padding: ${themeGet('space.base')};
+  max-width: 1100px;
+`;
+
 PageSingle.Hero = Hero;
+PageSingle.Glass = Glass;
+PageSingle.GlassContent = GlassContent;
 PageSingle.Section = Section;
 
 export default PageSingle;
