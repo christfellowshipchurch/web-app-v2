@@ -33,6 +33,8 @@ import useLiveStreamsQuery from './useLiveStreamsQuery';
 import useRegisterWithEmail from './useRegisterWithEmail';
 import useRegisterWithSms from './useRegisterWithSms';
 import useRemoveGroupResource from './useRemoveGroupResource';
+import useRequestEmailPin from './useRequestEmailPin';
+import useRequestPasswordChange from './useRequestPasswordChange';
 import useRequestPin from './useRequestPin';
 import useSearchContentItems from './useSearchContentItems';
 import useSearchGroups from './useSearchGroups';
@@ -79,6 +81,8 @@ export {
   useRegisterWithEmail,
   useRegisterWithSms,
   useRemoveGroupResource,
+  useRequestEmailPin,
+  useRequestPasswordChange,
   useRequestPin,
   useSearchContentItems,
   useSearchGroups,
