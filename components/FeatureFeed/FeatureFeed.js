@@ -59,31 +59,34 @@ const FeatureFeed = (props = {}) => {
     return <Box as="h1">Please Log In to View Page</Box>;
   }
 
+  console.log({ props });
+
   return props.data?.map((edge, i) => (
-    <Box key={edge?.id} pb="xl">
-      <Box as="h2" pb="base">
-        {edge.title}
-      </Box>
+    <Box key={edge?.id} py="xl">
       <FeatureProvider
         onPressActionItem={props?.onPressActionItem}
-        Component={getComponent(edge, FEATURE_COMPONENTS)}
+        Component={getComponent(edge, {
+          ...FEATURE_COMPONENTS,
+          ...props?.additionalFeatures,
+        })}
         options={{
           variables: {
             featureId: edge?.id,
           },
         }}
       />
-      {/* {isLastItem(i) && <Divider maxWidth="50rem" mt="xl" />} */}
     </Box>
   ));
 };
 
 FeatureFeed.propTypes = {
+  additionalFeatures: PropTypes.object,
   data: PropTypes.arrayOf(PropTypes.object),
   onPressActionItem: PropTypes.func,
 };
 
 FeatureFeed.defaultProps = {
+  additionalFeatures: {},
   onPressActionItem: onPressActionItem,
 };
 

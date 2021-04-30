@@ -8,6 +8,7 @@ import { Layout, NotFound, FeatureFeed } from 'components';
 
 import { Box, Longform } from 'ui-kit';
 import Styled from './PageSingle.styles';
+import { propTypes } from 'ui-kit/_lib/system';
 
 const renderBody = ({ title, summary, htmlContent, coverImage }) => {
   const hasTitle = !isEmpty(title) && !coverImage?.sources?.length;
@@ -46,14 +47,17 @@ const renderBody = ({ title, summary, htmlContent, coverImage }) => {
 
 function PageSingle(props = {}) {
   const data = props?.data;
+  const loading = props?.loading || false;
+
+  const id = data?.id;
   const title = data?.title;
   const summary = data?.summary;
   const htmlContent = data?.htmlContent;
-  const coverImage = data?.coverImage;
+  const coverImage = data?.coverImage?.sources[0]?.uri;
   const features = data?.featureFeed?.features;
 
   // note : this means that there is not a valid page found on the API, so we'll render the 404 message
-  if (!props.loading && !props?.data?.id) {
+  if (!loading && !id) {
     return <NotFound />;
   }
 
@@ -61,8 +65,8 @@ function PageSingle(props = {}) {
     <Layout
       title={title}
       contentMaxWidth={'100vw'}
-      contentHorizontalPadding={0}
-      contentVerticalPadding={0}
+      contentHorizontalPadding={'0'}
+      contentVerticalPadding={'0'}
     >
       {coverImage?.sources?.length && (
         <Styled.Hero coverImage={coverImage?.sources[0]?.uri} title={title}>
@@ -91,7 +95,22 @@ function PageSingle(props = {}) {
 }
 
 PageSingle.propTypes = {
-  data: PropTypes.array,
+  data: PropTypes.shape({
+    title: PropTypes.string,
+    summmary: PropTypes.string,
+    htmlContent: PropTypes.string,
+    coverImage: PropTypes.shape({
+      sources: PropTypes.arrayOf(
+        PropTypes.shape({
+          uri: PropTypes.string,
+        })
+      ),
+    }),
+    featureFeed: PropTypes.shape({
+      id: PropTypes.string,
+      features: PropTypes.array,
+    }),
+  }),
 };
 
 export default PageSingle;

@@ -23,6 +23,7 @@ const actionTypes = {
 function findModal(state, action) {
   const title = action.payload.component;
   const activeModal = find(state.modals, m => m.title === title);
+
   if (activeModal) return activeModal;
   return false;
 }

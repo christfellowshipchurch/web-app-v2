@@ -4,6 +4,7 @@ import {
   ConnectModal,
   GroupDetailsModal,
   GroupFilterModal,
+  NodeSingleModal,
 } from 'components/Modals';
 
 const modals = [
@@ -26,6 +27,10 @@ const modals = [
   {
     title: 'GroupFilter',
     component: GroupFilterModal,
+  },
+  {
+    title: 'NodeSingle',
+    component: NodeSingleModal,
   },
 ];
 

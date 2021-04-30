@@ -33,6 +33,7 @@ import HeroListFeature from './HeroListFeature';
 import HomeFeed from './HomeFeed';
 import HorizontalCardListFeature from './HorizontalCardListFeature';
 import Layout from './Layout';
+import LocationSingle from './LocationSingle';
 import LiveStreamSingle from './LiveStreamSingle';
 import Logo from './Logo';
 import Nav from './Nav';
@@ -45,6 +46,7 @@ import TrackEventWhenLoaded from './TrackEventWhenLoaded';
 import UserAvatar from './UserAvatar';
 import UserProfile from './UserProfile';
 import VerticalCardListFeature from './VerticalCardListFeature';
+import VerticalModalCardListFeature from './VerticalModalCardListFeature';
 import Video from './Video';
 
 export {
@@ -82,6 +84,7 @@ export {
   HomeFeed,
   HorizontalCardListFeature,
   Layout,
+  LocationSingle,
   LiveStreamSingle,
   Logo,
   Nav,
@@ -94,6 +97,7 @@ export {
   UserAvatar,
   UserProfile,
   VerticalCardListFeature,
+  VerticalModalCardListFeature,
   Video,
   modals,
 };

@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
-import { system } from 'ui-kit';
+import { system, Card } from 'ui-kit';
 
 // Methods
 const cardSpan = ({ index, total }) => {
@@ -33,15 +33,32 @@ const cardSpan = ({ index, total }) => {
   `;
 };
 
-const VerticalModalCardListFeature = styled.div`
+const VerticalCardListFeature = styled.div`
   ${system}
 `;
 
-const CardSpacing = styled.div`
+const CardSpacing = styled(Card)`
   ${cardSpan}
   ${system}
 `;
 
-VerticalModalCardListFeature.CardSpacing = CardSpacing;
+const CardContent = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: top;
+  justify-content: space-between;
 
-export default VerticalModalCardListFeature;
+  padding: ${themeGet('space.base')};
+  color: ${themeGet('colors.black')};
+
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    padding: ${themeGet('space.l')};
+  }
+
+  ${system}
+`;
+
+VerticalCardListFeature.Card = CardSpacing;
+VerticalCardListFeature.Content = CardContent;
+
+export default VerticalCardListFeature;

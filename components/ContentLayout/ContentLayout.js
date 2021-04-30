@@ -137,7 +137,10 @@ function ContentLayout(props = {}) {
       </Box>
       {props?.features && (
         <Box>
-          <FeatureFeed data={props?.features} />
+          <FeatureFeed
+            data={props?.features}
+            additionalFeatures={props?.additionalFeatures}
+          />
         </Box>
       )}
     </ThemeProvider>
@@ -145,6 +148,7 @@ function ContentLayout(props = {}) {
 }
 
 ContentLayout.propTypes = {
+  additionalFeatures: PropTypes.object,
   contentTitleD: PropTypes.string,
   contentTitleE: PropTypes.string,
   coverImage: PropTypes.string,
@@ -164,10 +168,11 @@ ContentLayout.propTypes = {
 };
 
 ContentLayout.defaultProps = {
-  seoMetaTags: {},
+  additionalFeatures: {},
   contentMaxWidth: DEFAULT_CONTENT_WIDTH,
   contentHorizontalPadding: 'base',
   contentVerticalPadding: { _: 'l', lg: 'xl' },
+  seoMetaTags: {},
 };
 
 export default ContentLayout;
