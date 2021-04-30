@@ -10,6 +10,8 @@ function MainPhotoHeader({
   subtitle,
   summary,
   backdrop = true,
+  primaryButton,
+  secondaryButton,
   overlay = {
     lg:
       'linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);',
@@ -56,8 +58,8 @@ function MainPhotoHeader({
                 mt={{ _: 's', lg: 'xs' }}
                 textTransform="uppercase"
                 textAlign="left"
-                fontSize="40px"
-                lineHeight="36px"
+                fontSize="60px"
+                lineHeight="1"
               >
                 {title}
               </Heading>
@@ -74,6 +76,17 @@ function MainPhotoHeader({
                 {summary}
               </Heading>
             )}
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                marginTop: '32px',
+              }}
+            >
+              {primaryButton}
+              {secondaryButton}
+            </div>
           </Styled.TextContainer>
         )}
       </Styled.ImageContainer>

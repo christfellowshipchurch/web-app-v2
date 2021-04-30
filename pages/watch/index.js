@@ -1,7 +1,5 @@
 import { PlayCircle } from 'phosphor-react';
 import {
-  Carousel,
-  Countdown,
   LargeImage,
   Layout,
   MainPhotoHeader,
@@ -11,29 +9,72 @@ import {
 import { initializeApollo } from 'lib/apolloClient';
 import { useRouter } from 'next/router';
 import IDS from 'config/ids';
-import { Box, CardGrid, Heading, Section, theme } from 'ui-kit';
+import { Box, Image, system, CardGrid, Heading, Section, theme } from 'ui-kit';
 import { GET_MESSAGE_SERIES } from 'hooks/useMessageSeries';
 import { GET_CONTENT_CHANNEL } from 'hooks/useContentChannel';
 import { getChannelId, getIdSuffix } from 'utils';
 import useLiveStreams from 'hooks/useLiveStreams';
-import Styled from './index.styles';
+import styled from 'styled-components';
+import { themeGet } from '@styled-system/theme-get';
+
+const Styled = {};
+
+Styled.SermonContainer = styled(Box)`
+  cursor: pointer;
+  position: relative;
+
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    width: 300px;
+  }
+`;
+
+Styled.SermonImage = styled(Image)`
+  width: 100%;
+
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    height: 200px;
+  }
+
+  ${system}
+`;
 
 export default function Watch({ series, watchPages, sermons }) {
   const router = useRouter();
 
   const sermon = sermons?.[0]?.node;
 
-  const { liveStreams } = useLiveStreams();
-  const isLive = liveStreams.length && liveStreams[0].isLive;
+  const { prettyCountdown, liveStreams } = useLiveStreams();
+  const live = liveStreams?.[0]?.isLive;
 
   return (
     <Layout title="Watch">
       <MainPhotoHeader
         src={sermon?.coverImage?.sources?.[0]?.uri}
         title="Join us live"
-        subtitle="UPCOMING"
+        subtitle={prettyCountdown}
         justifyText="center"
         backdrop={false}
+        primaryButton={
+          <a
+            className="btn"
+            style={{ marginRight: '16px', zIndex: 100 }}
+            href={
+              live
+                ? liveStreams[0].webViewUrl
+                : 'about/34fa5fa56a33a230f3889b54e3f6c30e'
+            }
+          >
+            {live ? 'Watch now' : 'Our live schedule'}
+          </a>
+        }
+        secondaryButton={
+          <a
+            className="btn"
+            href="/next-steps/3644e32503017b6f2f19edfdff0eb28a"
+          >
+            {live ? 'Other ways to watch' : 'How to watch'}
+          </a>
+        }
       />
       <Box
         flexDirection="column"

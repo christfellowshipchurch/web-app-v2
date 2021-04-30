@@ -149,7 +149,6 @@ Styled.TextContainer = styled(Box)`
             margin-bottom: 0;
           `
         : null}
-    pointer-events: none;
     position: absolute;
   }
 
