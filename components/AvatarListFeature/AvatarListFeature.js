@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import { Box, Avatar, Icon } from 'ui-kit';
 
 const AvatarListFeature = ({
-  data: { people, onPressItem, primaryAction, isLoading },
+  data: { people, primaryAction, isLoading },
+  onPressActionItem,
 }) => {
   if (!Array.isArray(people)) return null;
 
@@ -13,16 +14,18 @@ const AvatarListFeature = ({
       {people.map(person => (
         <Box key={person.id} display="flex">
           <Box
+            as="a"
+            href="profile"
             cursor="pointer"
             mr="base"
-            onClick={() => onPressItem(primaryAction)}
+            onClick={e => onPressActionItem(e, primaryAction)}
             position="relative"
           >
             <Avatar
               name={person.firstName}
               src={person.photo.uri}
-              height="80px"
-              width="80px"
+              height="150px"
+              width="150px"
             />
             {primaryAction?.icon && (
               <Box
@@ -38,7 +41,7 @@ const AvatarListFeature = ({
                 <Icon
                   color={primaryAction?.theme?.color}
                   name={primaryAction?.icon}
-                  size="18"
+                  size="36"
                 />
               </Box>
             )}

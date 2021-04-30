@@ -11,12 +11,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import chunk from 'lodash/chunk';
 
-import { CustomLink } from 'components';
+import { ThemeProvider as SCThemeProvider } from 'styled-components';
 
-import ThemeProvider from 'ui-kit/ThemeProvider';
-
-import { ActionBar, ActionBarItem } from 'ui-kit';
-import { getURLFromType, getUrlFromRelatedNode } from 'utils';
+import { ActionBar, ActionBarItem, Box } from 'ui-kit';
+import { getUrlFromRelatedNode } from 'utils';
 
 const ActionBarFeature = props => {
   const id = props?.data?.id;
@@ -41,18 +39,24 @@ const ActionBarFeature = props => {
               { action, icon, title, theme, relatedNode, ...actionProps },
               i
             ) => (
-              // <ThemeProvider key={i} themeMixin={theme}>
-              <CustomLink
-                as="a"
-                href={getUrlFromRelatedNode(relatedNode)}
-                Component={ActionBarItem}
-                {...(!icon ? {} : { icon })}
-                label={title}
-                onPressActionItem={e =>
-                  onPressActionItem(e, { action, relatedNode })
-                }
-              />
-              // </ThemeProvider>
+              /**
+               * ! Our ThemeProvider component from /ui-kit is not working properly so we are using the orignal component from the 'style-components' package.
+               */
+              <SCThemeProvider key={i} theme={theme}>
+                <Box
+                  as="a"
+                  href={getUrlFromRelatedNode(relatedNode)}
+                  textDecoration="none"
+                >
+                  <ActionBarItem
+                    {...(!icon ? {} : { icon })}
+                    label={title}
+                    onPressActionItem={e =>
+                      onPressActionItem(e, { action, relatedNode })
+                    }
+                  />
+                </Box>
+              </SCThemeProvider>
             )
           )}
         </ActionBar>
