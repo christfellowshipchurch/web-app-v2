@@ -22,7 +22,7 @@ function VerticalCardListFeature(props = {}) {
     <Box textAlign="center">
       {!isEmpty(title) && <Box as="h2">{title}</Box>}
       {!isEmpty(subtitle) && <Box as="p">{subtitle}</Box>}
-      {cards.length > 0 && (
+      {cards && cards.length > 0 && (
         <CardGrid marginBottom="base" marginTop="base" columns={'12'}>
           {cards.map((card, i) => (
             <Styled.CardSpacing key={i} index={i} total={cards.length}>
