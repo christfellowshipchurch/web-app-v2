@@ -4,7 +4,7 @@ import useAuthenticateCredentials from './useAuthenticateCredentials';
 import useCampuses from './useCampuses';
 import useCheckIn from './useCheckIn';
 import useContactGroupLeader from './useContactGroupLeader';
-import useContentFeed from './useNode';
+import useContentFeed from './useNodeRoute';
 import useContentItem from './useContentItem';
 import useCurrentBreakpoint from './useCurrentBreakpoint';
 import useCurrentChatUser from './useCurrentChatUser';
@@ -31,6 +31,7 @@ import useLiveStream from './useLiveStream';
 import useLiveStreams from './useLiveStreams';
 import useLiveStreamsQuery from './useLiveStreamsQuery';
 import useNode from './useNode';
+import useNodeRoute from './useNodeRoute';
 import useRegisterWithEmail from './useRegisterWithEmail';
 import useRegisterWithSms from './useRegisterWithSms';
 import useRemoveGroupResource from './useRemoveGroupResource';
@@ -80,6 +81,7 @@ export {
   useLiveStreams,
   useLiveStreamsQuery,
   useNode,
+  useNodeRoute,
   useRegisterWithEmail,
   useRegisterWithSms,
   useRemoveGroupResource,
