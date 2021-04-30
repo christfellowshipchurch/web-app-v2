@@ -59,8 +59,6 @@ const FeatureFeed = (props = {}) => {
     return <Box as="h1">Please Log In to View Page</Box>;
   }
 
-  console.log({ props });
-
   return props.data?.map((edge, i) => (
     <Box key={edge?.id} py="xl">
       <FeatureProvider

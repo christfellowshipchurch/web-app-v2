@@ -33,6 +33,7 @@ import HeroListFeature from './HeroListFeature';
 import HomeFeed from './HomeFeed';
 import HorizontalCardListFeature from './HorizontalCardListFeature';
 import Layout from './Layout';
+import LegacyNodeRouter from './LegacyNodeRouter';
 import LocationSingle from './LocationSingle';
 import LiveStreamSingle from './LiveStreamSingle';
 import Logo from './Logo';
@@ -84,6 +85,7 @@ export {
   HomeFeed,
   HorizontalCardListFeature,
   Layout,
+  LegacyNodeRouter,
   LocationSingle,
   LiveStreamSingle,
   Logo,
