@@ -38,7 +38,7 @@ function HorizontalCardListFeature(props = {}) {
   /**
    * todo : TEMP SOLUTION - In the future we'll want to update how we pull in Group and Prayer cards. Right now for Groups we switch to GroupsProvider to pull in the required fields for GroupCard correctly, bypassing the CardCarousel. For Prayer we'll need to find a way to pull in the correct fields as well.
    */
-  if (cards[0]?.action === 'READ_GROUP') {
+  if (cards && cards[0]?.action === 'READ_GROUP') {
     return (
       <Box>
         {!isEmpty(title) && <Box as="h2">{title}</Box>}
@@ -47,7 +47,7 @@ function HorizontalCardListFeature(props = {}) {
       </Box>
     );
   }
-  if (cards[0]?.action === 'READ_PRAYER') {
+  if (cards && cards[0]?.action === 'READ_PRAYER') {
     return (
       <Box>
         {!isEmpty(title) && <Box as="h2">{title}</Box>}

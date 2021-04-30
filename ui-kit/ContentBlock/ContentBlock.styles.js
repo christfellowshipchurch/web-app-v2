@@ -8,22 +8,22 @@ const gridLayout = ({ gridLayout }) => props => {
   switch (gridLayout) {
     case 'LEFT':
       return css`
-        grid-template-columns: 1fr 1fr;
         grid-template-areas:
           'media'
           'content';
         @media screen and (min-width: ${themeGet('breakpoints.md')}) {
           grid-template-areas: 'content media';
+          grid-template-columns: 1fr 1fr;
         }
       `;
     case 'RIGHT':
       return css`
-        grid-template-columns: 1fr 1fr;
         grid-template-areas:
           'media'
           'content';
         @media screen and (min-width: ${themeGet('breakpoints.md')}) {
           grid-template-areas: 'media content';
+          grid-template-columns: 1fr 1fr;
         }
       `;
     case 'INVERTED':
