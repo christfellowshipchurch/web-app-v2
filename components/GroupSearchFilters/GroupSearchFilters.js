@@ -1,15 +1,38 @@
 import PropTypes from 'prop-types';
+import has from 'lodash/has';
 
 import { useModal, showModal } from 'providers/ModalProvider';
-import { useGroupFilters } from 'providers/GroupFiltersProvider';
+import { useGroupFilters, toggleValue } from 'providers/GroupFiltersProvider';
 
-import { Box, Button, Icon, utils } from 'ui-kit';
+import { Box, Button, Checkbox, Divider, Icon, utils } from 'ui-kit';
 
 import FilterButton from './FilterButton';
 import Styled from './GroupSearchFilters.styles';
 
+const CheckboxGroup = ({ title, options, selected, handleOnChange }) => {
+  return (
+    <Box my="s">
+      <Box as="h5">{title}</Box>
+      {options.map(o => (
+        <Box display="flex">
+          <Checkbox
+            id={o}
+            onChange={() => handleOnChange(o)}
+            mr="s"
+            checked={selected.includes(o)}
+          />
+          <Box as="p" fontSize="s">
+            {o}
+          </Box>
+        </Box>
+      ))}
+    </Box>
+  );
+};
+
 function GroupSearchFilters(props = {}) {
-  const [filtersState] = useGroupFilters();
+  const [filtersState, filtersDispatch] = useGroupFilters();
+  // const { preferences, subPreferences } = useGroupPreferences();
   const [modalState, modalDispatch] = useModal();
 
   const {
@@ -19,16 +42,23 @@ function GroupSearchFilters(props = {}) {
     days,
     meetingType,
   } = filtersState.values;
+  const {
+    campuses: campusOptions,
+    preferences: preferenceOptions,
+    subPreferences: subPreferenceOptions,
+    days: dayOptions,
+    meetingType: meetingTypeOptions,
+  } = filtersState.options;
+
   const showResultsCount =
     props.visibleResults > 0 && props.totalResults > props.pageSize;
 
-  function handleChangeClick() {
-    // Show all filters modal
-    modalDispatch(showModal('GroupFilter', { step: 3 }));
-  }
+  const handleChange = (name, value) => {
+    filtersDispatch(toggleValue({ name, value }));
+  };
 
   return (
-    <Box mb="l">
+    <Box mb="l" height="100%" overflowY="scroll">
       <Box
         display="flex"
         flexDirection="row"
@@ -38,68 +68,58 @@ function GroupSearchFilters(props = {}) {
       >
         <Box
           display="flex"
-          flexDirection="row"
+          flexDirection="column"
           width="100%"
-          justifyContent={{ _: 'space-between', md: 'flex-start' }}
+          justifyContent="flex-start"
         >
           <Box>
-            <Button
-              onClick={handleChangeClick}
-              display="flex"
-              rounded={true}
-              mr="s"
-            >
-              <Icon name="filter" size="14" mr={utils.rem('8px')} />
-              <Box as="span">Filter</Box>
-            </Button>
+            <Box as="h4">Filters</Box>
+            <Divider mb="s" />
           </Box>
-          <Button
-            as="a"
-            rounded={true}
-            variant="secondary"
-            href="https://rock.gocf.org/page/2113"
-            display={{ _: 'inline', md: 'none' }}
-          >
-            Need help?
-          </Button>
-          {!modalState.activeModal.component && (
-            <Box display={{ _: 'none', md: 'block' }}>
-              {campuses.length > 0 && (
-                <FilterButton
-                  label="Campus"
-                  labelDetail={campuses[0]}
-                  onClick={handleChangeClick}
-                />
-              )}
-              {meetingType.length > 0 && (
-                <FilterButton
-                  label="Meeting Type"
-                  labelDetail={meetingType.length}
-                  onClick={handleChangeClick}
-                />
-              )}
-              {preferences.length > 0 && (
-                <FilterButton
-                  label="Group Types"
-                  labelDetail={preferences.length}
-                  onClick={handleChangeClick}
-                />
-              )}
-              {subPreferences.length > 0 && (
-                <FilterButton
-                  label="Lineups"
-                  labelDetail={subPreferences.length}
-                  onClick={handleChangeClick}
-                />
-              )}
-              {days.length > 0 && (
-                <FilterButton
-                  label="Days"
-                  labelDetail={days.length}
-                  onClick={handleChangeClick}
-                />
-              )}
-            </Box>
+
+          {campusOptions.length > 0 && (
+            <CheckboxGroup
+              title="Campuses"
+              options={campusOptions}
+              selected={campuses}
+              handleOnChange={s => handleChange('campuses', s)}
+            />
+          )}
+
+          {dayOptions.length > 0 && (
+            <CheckboxGroup
+              title="Days"
+              options={dayOptions}
+              selected={days}
+              handleOnChange={s => handleChange('days', s)}
+            />
+          )}
+
+          {meetingTypeOptions.length > 0 && (
+            <CheckboxGroup
+              title="Meeting Type"
+              options={meetingTypeOptions}
+              selected={meetingType}
+              handleOnChange={s => handleChange('meetingType', s)}
+            />
+          )}
+
+          {preferenceOptions.length > 0 && (
+            <CheckboxGroup
+              title="Preferences"
+              options={preferenceOptions}
+              selected={preferences}
+              handleOnChange={s => handleChange('preferences', s)}
+            />
+          )}
+
+          {subPreferenceOptions.length > 0 && (
+            <CheckboxGroup
+              title="Sub Preferences"
+              options={subPreferenceOptions}
+              selected={subPreferences}
+              handleOnChange={s => handleChange('subPreferences', s)}
+            />
           )}
         </Box>
       </Box>

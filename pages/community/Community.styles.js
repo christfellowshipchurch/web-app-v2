@@ -20,7 +20,7 @@ const Hero = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
-  height: 600px;
+  height: 500px;
   justify-content: flex-end;
 
   ${system}
@@ -28,15 +28,15 @@ const Hero = styled.div`
 
 const Title = styled.h1`
   /* Fallback: Set a background color. */
-  background-color: red;
+  background-color: ${themeGet('colors.primary')};
   font-size: ${rem('50px')};
   /* Create the gradient. */
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
     90.83deg,
     #ecb772 1.32%,
     #aece6a 34.52%,
     #34639a 99.63%
-  );
+  ); */
 
   /* Set the background size and repeat properties. */
   background-size: 100%;

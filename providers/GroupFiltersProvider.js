@@ -216,6 +216,8 @@ function reducer(state, action) {
       }
       const valueExists = state.values[name]?.includes(value);
 
+      console.log({ name, value });
+
       return updateAndSerialize({
         ...state,
         values: {

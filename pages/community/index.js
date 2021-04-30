@@ -63,17 +63,7 @@ export default function Community(props = {}) {
       <Box display="grid" gridTemplateRows="auto 1fr auto" height="100vh">
         <Header />
         <Styled.Hero>
-          <Styled.Title>Live. Laugh. Together.</Styled.Title>
-          <Box as="p" mb="l" color="subdued">
-            Build the kind of friendships we all need to live out our faith.
-            <br />
-            There’s community for everyone.
-          </Box>
-          <Box display="flex">
-            <Button onClick={handleOnClick} rounded={true}>
-              Find your community
-            </Button>
-          </Box>
+          <Styled.Title>Life is Better Together!</Styled.Title>
         </Styled.Hero>
         <Box>
           <Cell

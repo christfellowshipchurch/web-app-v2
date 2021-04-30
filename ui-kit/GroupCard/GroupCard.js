@@ -21,7 +21,7 @@ const GroupCard = (props = {}) => {
   const modalDispatch = useModalDispatch();
 
   const summaryLength = props?.summary?.length || 0;
-  const maxChar = 240;
+  const maxChar = 100;
   const maxAvatars = 4;
 
   // Option if we want to add a Avatar Count label for leaders

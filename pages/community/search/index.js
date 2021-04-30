@@ -105,7 +105,7 @@ export default function CommunitySearch() {
 
   return (
     <>
-      <SEO title="Find your Community" />
+      <SEO title="Find your Community at Christ Fellowship Church" />
       <Box display="grid" gridTemplateRows="auto 1fr auto" height="100vh">
         <Header />
         <Cell
@@ -114,74 +114,87 @@ export default function CommunitySearch() {
           px="base"
           py={{ _: 'l', lg: 'xl' }}
         >
-          <Box
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-            mb="base"
-          >
-            <Box as="h1">Find your Community</Box>
-            <Button
-              as="a"
-              rounded={true}
-              size="s"
-              variant="secondary"
-              href="https://rock.gocf.org/page/2113"
-              display={{ _: 'none', md: 'inline-block' }}
+          <Box display="grid" gridTemplateColumns="100%" mb="base">
+            <Box
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+              mb="base"
             >
-              Need help?
-            </Button>
+              <Box as="h1">Find your Community</Box>
+              <Button
+                as="a"
+                rounded={true}
+                size="s"
+                variant="secondary"
+                href="https://rock.gocf.org/page/2113"
+                display={{ _: 'none', md: 'inline-block' }}
+              >
+                Need help?
+              </Button>
+            </Box>
+
+            <Divider mb="l" />
+            <SearchField
+              placeholder="Search for groups..."
+              handleSubmit={handleSubmit}
+              handleClick={handleClick}
+              handleChange={handleChange}
+              value={values.text || ''}
+              mb="base"
+            >
+              Search
+            </SearchField>
           </Box>
 
-          <Divider mb="l" />
-          <SearchField
-            placeholder="Search for groups..."
-            handleSubmit={handleSubmit}
-            handleClick={handleClick}
-            handleChange={handleChange}
-            value={values.text || ''}
-            mb="base"
-          >
-            Search
-          </SearchField>
-          <GroupSearchFilters
-            loading={loading}
-            visibleResults={groups?.length}
-            totalResults={data?.searchGroups?.totalResults}
-            pageSize={PAGE_SIZE}
-          />
-
-          {showEmptyState && (
-            <Box my="xxl" pb="xxl" textAlign="center">
-              <Box as="h2">Looks like we couldn't find any results</Box>
-              <Box mb="base">
-                Consider reducing the number of filters or modifying your search
-                criteria.
-              </Box>
-              <Box
-                display="flex"
-                alignItems="center"
-                flexDirection="column"
-                mt="l"
-                textAlign="center"
-              >
-                <Button
-                  variant="secondary"
-                  onClick={handleClearAllClick}
-                  mb="s"
-                >
-                  Clear Search
-                </Button>
-                <CustomLink href="https://rock.gocf.org/page/2113">
-                  Need help?
-                </CustomLink>
-              </Box>
+          <Box display="grid" gridTemplateColumns="25% 75%">
+            <Box mr="base">
+              <GroupSearchFilters
+                loading={loading}
+                visibleResults={groups?.length}
+                totalResults={data?.searchGroups?.totalResults}
+                pageSize={PAGE_SIZE}
+              />
             </Box>
-          )}
 
-          {hasResults && (
-            <GroupsProvider data={groups} Component={GroupsResultsList} />
-          )}
+            <Box>
+              {showEmptyState && (
+                <Box my="xxl" pb="xxl" textAlign="center">
+                  <Box as="h2">Looks like we couldn't find any results</Box>
+                  <Box mb="base">
+                    Consider reducing the number of filters or modifying your
+                    search criteria.
+                  </Box>
+                  <Box
+                    display="flex"
+                    alignItems="center"
+                    flexDirection="column"
+                    mt="l"
+                    textAlign="center"
+                  >
+                    <Button
+                      variant="secondary"
+                      onClick={handleClearAllClick}
+                      mb="s"
+                    >
+                      Clear Search
+                    </Button>
+                    <CustomLink href="https://rock.gocf.org/page/2113">
+                      Need help?
+                    </CustomLink>
+                  </Box>
+                </Box>
+              )}
+
+              {hasResults && (
+                <GroupsProvider
+                  data={groups}
+                  Component={GroupsResultsList}
+                  gridArea="results"
+                />
+              )}
+            </Box>
+          </Box>
 
           {loading && (
             <Box display="flex" justifyContent="center" my="xxl">

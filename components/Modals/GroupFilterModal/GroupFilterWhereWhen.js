@@ -98,7 +98,7 @@ function GroupFilterWhereWhen(props = {}) {
           })}
         </Select>
       </Box>
-      <Box mb="l">
+      {/* <Box mb="l">
         <FormLabel color="subdued">What days can you meet?</FormLabel>
         <Box
           display="grid"
@@ -121,20 +121,24 @@ function GroupFilterWhereWhen(props = {}) {
               px="0"
             >
               {value[0]}
-              {/* Gross, but quick way to abbreviate for mobile... */}
               <Box as="span" display={{ _: 'none', md: 'inline' }}>
                 {value.slice(1)}
               </Box>
             </Button>
           ))}
         </Box>
-      </Box>
+      </Box> */}
       <Box display="flex" alignItems="center" justifyContent="space-between">
         <Button variant="secondary" onClick={handleGoBack}>
           <Icon name="angleLeft" />
           Back
         </Button>
-        <Button type="submit">Continue</Button>
+        <Button type="submit">
+          {filtersState.values.campuses.length > 0 ||
+          filtersState.values.meetingType.length > 0
+            ? 'Continue'
+            : 'Skip'}
+        </Button>
       </Box>
     </Box>
   );
