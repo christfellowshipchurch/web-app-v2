@@ -80,17 +80,19 @@ const CardCarousel = (props = {}) => {
   let isCarousel = props.children.length > props.cardsDisplayed;
 
   return (
-    <Carousel
-      ssr
-      responsive={responsive}
-      arrows={false}
-      customTransition={`transform ${props.animationSpeed}ms ease-in-out`}
-      ref={el => (carousel = el)}
-      renderButtonGroupOutside={isCarousel && !props.hideArrows}
-      customButtonGroup={!props.hideArrows ? <CustomArrows /> : null}
-    >
-      {props.children}
-    </Carousel>
+    <Box {...props}>
+      <Carousel
+        ssr
+        responsive={responsive}
+        arrows={false}
+        customTransition={`transform ${props.animationSpeed}ms ease-in-out`}
+        ref={el => (carousel = el)}
+        renderButtonGroupOutside={isCarousel && !props.hideArrows}
+        customButtonGroup={!props.hideArrows ? <CustomArrows /> : null}
+      >
+        {props.children}
+      </Carousel>
+    </Box>
   );
 };
 

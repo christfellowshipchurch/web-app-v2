@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import dropRight from 'lodash/dropRight';
+import isEmpty from 'lodash/isEmpty';
 
 import { CustomLink } from '..';
 import { Box, CardGrid, DefaultCard, RowCard } from 'ui-kit';
@@ -9,6 +10,8 @@ import { getURLFromType, getUrlFromRelatedNode } from 'utils';
 function HeroListFeature(props = {}) {
   const onPressActionItem = props?.onPressActionItem;
   const heroCard = props?.data?.heroCard;
+  let title = props?.data?.title;
+  let subtitle = props?.data?.subtitle;
   let cards = props?.data?.actions || [];
 
   let col = cards.length > 1 ? '2' : '1';
@@ -24,6 +27,8 @@ function HeroListFeature(props = {}) {
 
   return (
     <Box>
+      {!isEmpty(title) && <Box as="h2">{title}</Box>}
+      {!isEmpty(subtitle) && <Box as="p">{subtitle}</Box>}
       <CustomLink
         as="a"
         href={getUrlFromRelatedNode(heroCard?.relatedNode)}
@@ -37,22 +42,24 @@ function HeroListFeature(props = {}) {
         marginBottom="base"
         onClick={e => onPressActionItem(e, heroCard)}
       />
-      <CardGrid columns={col} marginBottom="l">
-        {cards.map((card, i) => {
-          return (
-            <CustomLink
-              as="a"
-              key={i}
-              href={getUrlFromRelatedNode(card?.relatedNode)}
-              Component={RowCard}
-              coverImage={card?.image?.sources[0]?.uri}
-              coverImageOverlay={true}
-              title={card?.title}
-              description={card?.subtitle}
-            />
-          );
-        })}
-      </CardGrid>
+      {cards.length > 0 && (
+        <CardGrid columns={col} marginBottom="l">
+          {cards.map((card, i) => {
+            return (
+              <CustomLink
+                as="a"
+                key={i}
+                href={getUrlFromRelatedNode(card?.relatedNode)}
+                Component={RowCard}
+                coverImage={card?.image?.sources[0]?.uri}
+                coverImageOverlay={true}
+                title={card?.title}
+                description={card?.subtitle}
+              />
+            );
+          })}
+        </CardGrid>
+      )}
       {bottomCard && (
         <CustomLink
           as="a"

@@ -16,6 +16,49 @@ function Icon({ color, height, name, size, width, ...rest }) {
   const iconName = name || DEFAULT_ICON_NAME;
   const icon = icons[camelCase(iconName)];
 
+  // Render Methods
+  const getIconProps = iconProps => {
+    let pathProps = {};
+
+    if (typeof iconProps === 'string') {
+      pathProps = {
+        ...pathProps,
+        d: iconProps,
+        fill: themeGet(`colors.${color}`)(rest) || 'currentColor',
+      };
+    }
+
+    if (typeof iconProps === 'object') {
+      pathProps = {
+        ...pathProps,
+        ...iconProps,
+        ...(iconProps.fill
+          ? {
+              fill: themeGet(`colors.${color}`)(rest) || 'currentColor',
+            }
+          : { fill: 'none' }),
+        ...(iconProps.stroke
+          ? {
+              stroke: themeGet(`colors.${color}`)(rest) || 'currentColor',
+            }
+          : { stroke: 'none' }),
+      };
+    }
+
+    return pathProps;
+  };
+  const renderIcons = () => {
+    if (Array.isArray(icon)) {
+      return icon.map((config, i) => {
+        const iconProps = getIconProps(config);
+        return <path key={i} {...iconProps} />;
+      });
+    }
+
+    const iconProps = getIconProps(icon);
+    return <path {...iconProps} />;
+  };
+
   return (
     <Styled
       as="svg"
@@ -24,20 +67,7 @@ function Icon({ color, height, name, size, width, ...rest }) {
       viewBox={`0 0 ${DEFAULT_ICON_SIZE} ${DEFAULT_ICON_SIZE}`}
       {...rest}
     >
-      {Array.isArray(icon) ? (
-        icon.map((d, i) => (
-          <path
-            key={i}
-            d={d}
-            fill={themeGet(`colors.${color}`)(rest) || 'currentColor'}
-          />
-        ))
-      ) : (
-        <path
-          d={icon}
-          fill={themeGet(`colors.${color}`)(rest) || 'currentColor'}
-        />
-      )}
+      {renderIcons()}
     </Styled>
   );
 }
