@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
-import { useRouter } from 'next/router';
 
 import { AUTH_TOKEN_KEY } from 'config/keys';
 
@@ -59,7 +58,6 @@ function getInitialState(state) {
 }
 
 function AuthProvider(props = {}) {
-  const router = useRouter();
   const [state, dispatch] = useReducer(reducer, initialState, getInitialState);
   const { authenticated, token } = state;
 
@@ -71,7 +69,6 @@ function AuthProvider(props = {}) {
       } else {
         if (!authenticated) {
           window.localStorage.removeItem(AUTH_TOKEN_KEY);
-          // router.push('/');
         }
       }
     }
