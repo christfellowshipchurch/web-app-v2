@@ -20,16 +20,18 @@ function HorizontalCardListFeature(props = {}) {
   const cardType = props?.data?.cardType || 'default';
   let cardsDisplayed;
 
-  switch (cardType) {
-    case 'HIGHLIGHT_SMALL':
-      cardsDisplayed = 4;
-      break;
-    case 'HIGHLIGHT_MEDIUM':
-      cardsDisplayed = 3;
-      break;
-    default:
-      cardsDisplayed = cards.length < 2 ? 1 : 2;
-      break;
+  if (cards) {
+    switch (cardType) {
+      case 'HIGHLIGHT_SMALL':
+        cardsDisplayed = 4;
+        break;
+      case 'HIGHLIGHT_MEDIUM':
+        cardsDisplayed = 3;
+        break;
+      default:
+        cardsDisplayed = cards.length < 2 ? 1 : 2;
+        break;
+    }
   }
 
   return (
