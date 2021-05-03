@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { format } from 'date-fns';
 import { createMarkup } from 'utils';
 import isEmpty from 'lodash/isEmpty';
 
@@ -8,7 +7,6 @@ import { Layout, NotFound, FeatureFeed } from 'components';
 
 import { Box, Longform } from 'ui-kit';
 import Styled from './PageSingle.styles';
-import { propTypes } from 'ui-kit/_lib/system';
 
 const renderBody = ({ title, summary, htmlContent, coverImage }) => {
   const hasTitle = !isEmpty(title) && !coverImage?.sources?.length;
@@ -68,8 +66,8 @@ function PageSingle(props = {}) {
       contentHorizontalPadding={'0'}
       contentVerticalPadding={'0'}
     >
-      {coverImage?.sources?.length && (
-        <Styled.Hero coverImage={coverImage?.sources[0]?.uri} title={title}>
+      {!isEmpty(coverImage) && (
+        <Styled.Hero coverImage={coverImage} title={title}>
           {!isEmpty(title) && (
             <Styled.Glass>
               <Styled.GlassContent>
@@ -83,13 +81,17 @@ function PageSingle(props = {}) {
         </Styled.Hero>
       )}
 
-      {renderBody({ title, summary, htmlContent, coverImage })}
+      <Box maxWidth={1100} margin="auto" px="s">
+        {isEmpty(coverImage) &&
+          !isEmpty(title) &&
+          renderBody({ title, summary, htmlContent, coverImage })}
 
-      {features.length && (
-        <Box>
-          <FeatureFeed data={features} />
-        </Box>
-      )}
+        {features && features.length > 0 && (
+          <Box>
+            <FeatureFeed data={features} />
+          </Box>
+        )}
+      </Box>
     </Layout>
   );
 }
