@@ -1,49 +1,12 @@
-import { useRouter } from 'next/router';
-
-import { initializeApollo } from 'lib/apolloClient';
-import { ContentItemProvider } from 'providers';
-import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
-import { ContentSingle, Layout } from 'components';
-import { Box } from 'ui-kit';
-
-function getItemId(slug) {
-  const id = slug.split('-').pop();
-  return `InformationalContentItem:${id}`;
-}
-
-export default function Item(props) {
-  const router = useRouter();
-  const { title } = router.query;
-
-  return (
-    <Layout title={title}>
-      {title && (
-        <ContentItemProvider
-          Component={ContentSingle}
-          options={{
-            variables: { itemId: getItemId(title) },
-          }}
-        />
-      )}
-    </Layout>
-  );
-}
+import { LegacyNodeRouter } from 'components';
 
 /**
- * todo : Need to fix ServerSideProps, currenlty breaking page.
+ * note : This file exists for backwards compatibility
+ *
+ * /items/item-name-9f59c65055fec6cd0292deb993711bf5
+ * redirects to new, prettier content url
  */
 
-// export async function getServerSideProps(context) {
-//   const apolloClient = initializeApollo();
-
-//   await apolloClient.query({
-//     query: GET_CONTENT_ITEM,
-//     variables: { itemId: getItemId(context.params.title) },
-//   });
-
-//   return {
-//     props: {
-//       initialApolloState: apolloClient.cache.extract(),
-//     },
-//   };
-// }
+export default function Item() {
+  return <LegacyNodeRouter />;
+}
