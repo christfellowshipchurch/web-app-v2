@@ -24,6 +24,7 @@ function GroupSingle(props = {}) {
     nodeId: props.data.id,
   });
 
+  const enableChat = Boolean(props.data?.streamChatChannel);
   const totalMembers =
     (props.data?.leaders?.totalCount || 0) +
     (props.data?.members?.totalCount || 0);
@@ -38,6 +39,36 @@ function GroupSingle(props = {}) {
       checkInCurrentUser({ optionIds: options.map(({ id }) => id) });
     }
   };
+
+  function renderChat() {
+    return (
+      <Box mb="l">
+        <Card>
+          <GroupChat
+            streamChatChannel={props.data?.streamChatChannel}
+            relatedNode={props.data}
+            pt="s"
+          />
+        </Card>
+      </Box>
+    );
+  }
+
+  function renderAboutAndResources() {
+    return (
+      <Card p="base" mb="l">
+        <Box as="h2" fontSize="h3">
+          About
+        </Box>
+        <Box as="p">{props.data?.summary}</Box>
+
+        <Box as="h2" fontSize="h3" mt="l" mb="base">
+          Resources
+        </Box>
+        <GroupResources resources={props.data?.resources} />
+      </Card>
+    );
+  }
 
   return (
     <ChatConnectionProvider>
@@ -98,30 +129,8 @@ function GroupSingle(props = {}) {
             </Box>
           </Box>
         )}
-        renderD={() => (
-          <Box>
-            <Card>
-              <GroupChat
-                streamChatChannel={props.data?.streamChatChannel}
-                relatedNode={props.data}
-                pt="s"
-              />
-            </Card>
-          </Box>
-        )}
-        renderE={() => (
-          <Card p="base">
-            <Box as="h2" fontSize="h3">
-              About
-            </Box>
-            <Box as="p">{props.data?.summary}</Box>
-
-            <Box as="h2" fontSize="h3" mt="l" mb="base">
-              Resources
-            </Box>
-            <GroupResources resources={props.data?.resources} />
-          </Card>
-        )}
+        renderD={enableChat ? renderChat : renderAboutAndResources}
+        renderE={enableChat ? renderAboutAndResources : null}
       />
     </ChatConnectionProvider>
   );
