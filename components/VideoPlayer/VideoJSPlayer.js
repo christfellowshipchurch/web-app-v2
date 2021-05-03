@@ -49,7 +49,11 @@ const VideoStyles = styled.div`
   div[data-vjs-player=true]:not(.vjs-has-started),
   div[data-vjs-player=true]:not(.vjs-has-started) .vjs-poster,
   div[data-vjs-player=true]:not(.vjs-has-started) .vjs-tech {
-    border-radius: 25px;
+    border-radius: 24px;
+  }
+
+  .vjs-poster {
+    filter: drop-shadow(0px 20px 48px rgba(0, 0, 0, 0.25));
   }
 `;
 

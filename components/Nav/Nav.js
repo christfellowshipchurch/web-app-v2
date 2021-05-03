@@ -85,8 +85,9 @@ function Nav({
                     const dropdown = document.getElementById(
                       `dropdown-${action.id}`
                     );
+
                     const dropdownHidden =
-                      getComputedStyle(dropdown).display === 'none';
+                      dropdown && getComputedStyle(dropdown).display === 'none';
 
                     if (dropdownHidden) {
                       setActive(false);

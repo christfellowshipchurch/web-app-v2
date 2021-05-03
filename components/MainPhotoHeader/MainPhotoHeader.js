@@ -38,6 +38,7 @@ function MainPhotoHeader({
           <Styled.ImageOverlay background={overlay} backdrop={backdrop} />
         )}
         {(subtitle || title || summary) && (
+          <Styled.TextPosition>
           <Styled.TextContainer display={'flex'} justifyContent={justifyText}>
             {subtitle && (
               <Heading
@@ -47,6 +48,7 @@ function MainPhotoHeader({
                 fontWeight="800"
                 textAlign="left"
                 fontSize="h3"
+                maxWidth={{ lg: '440px' }}
               >
                 {subtitle}
               </Heading>
@@ -60,6 +62,7 @@ function MainPhotoHeader({
                 textAlign="left"
                 fontSize="60px"
                 lineHeight="1"
+                maxWidth={{ lg: '440px' }}
               >
                 {title}
               </Heading>
@@ -88,6 +91,7 @@ function MainPhotoHeader({
               {secondaryButton}
             </div>
           </Styled.TextContainer>
+          </Styled.TextPosition>
         )}
       </Styled.ImageContainer>
       {content}

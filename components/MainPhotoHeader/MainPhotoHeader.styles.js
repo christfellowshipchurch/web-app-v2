@@ -139,32 +139,25 @@ Styled.TextContainer = styled(Box)`
   }
 
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
-    bottom: 0;
+    padding: 0 ${themeGet('space.xxl')};
     height: 100%;
-    max-width: 440px;
-    ${props =>
-      props.justifyContent === 'center'
-        ? css`
-            margin: ${themeGet('space.l')};
-            margin-bottom: 0;
-          `
-        : null}
-    position: absolute;
-  }
-
-  @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
-    ${props =>
-      props.justifyContent === 'center'
-        ? css`
-            margin: ${themeGet('space.xxl')};
-          `
-        : css`
-            margin: ${themeGet('space.l')};
-          `}
-    margin-bottom: 0;
+    max-width: ${themeGet('breakpoints.xl')};
+    width: 100%;
   }
 
   ${system}
+`;
+
+Styled.TextPosition = styled(Box)`
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+  }
 `;
 
 export default Styled;

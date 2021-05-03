@@ -45,6 +45,7 @@ function FullLengthSermon(props = {}) {
               height="100%"
               width="100%"
               display={'flex'}
+              pl={{ _: '0', lg: '300px' }}
             >
               {clips?.length ? (
                 <Carousel
@@ -52,7 +53,7 @@ function FullLengthSermon(props = {}) {
                   width="100%"
                   neighbors="3d"
                   contentWidth={{ _: '100vw', lg: '681px' }}
-                  pl={{ _: '0', lg: 'xxl' }}
+                  pl={{ _: '0', lg: '300px' }}
                   onClick={i => setSelectedClip(i)}
                   childProps={i => ({
                     style: {
