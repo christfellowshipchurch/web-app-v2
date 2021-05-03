@@ -47,6 +47,9 @@ function ContentBlock(props = {}) {
                 Component={Button}
                 variant={i === 0 ? 'primary' : 'secondary'}
                 my="xs"
+                /**
+                 * todo : We want to eventually add functionality with the 'onPressActionItem' to be able to perform more actions in the future.
+                 */
                 // onClick={e => onPressActionItem(e, heroCard)}
               >
                 {action?.title}
