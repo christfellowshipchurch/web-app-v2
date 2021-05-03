@@ -15,8 +15,8 @@ const variant = ({ variant, active }) => props => {
   if (variant === 'secondary') {
     return css`
       background-color: transparent;
-      border-color: ${themeGet('colors.fg')};
-      color: ${themeGet('colors.fg')};
+      border-color: ${themeGet('colors.primary')};
+      color: ${themeGet('colors.primary')};
     `;
   }
 

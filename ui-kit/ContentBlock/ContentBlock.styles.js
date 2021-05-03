@@ -44,6 +44,15 @@ const gridLayout = ({ gridLayout }) => props => {
   }
 };
 
+const buttonType = ({ variant }) => props => {
+  if (variant === 'secondary') {
+    return css`
+      border-color: ${themeGet('colors.primary')};
+      color: ${themeGet('colors.primary')};
+    `;
+  }
+};
+
 const Container = styled.div`
   display: grid;
   grid-row-gap: ${themeGet('space.l')};
