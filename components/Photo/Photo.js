@@ -1,6 +1,11 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Box, Image, theme } from 'ui-kit';
+import styled from 'styled-components';
+
+const StyledImage = styled(Image)`
+  ${props => props.dropShadow ? 'filter: drop-shadow(0px 20px 48px rgba(0, 0, 0, 0.25));' : ''}
+`;
 
 export default function Photo({
   src,
@@ -12,18 +17,20 @@ export default function Photo({
   justifyContent = 'center',
   onClick = () => {},
   imageProps = {},
+  dropShadow = true,
   ...props
 }) {
   const [hovered, setHovered] = useState(false);
 
   return (
     <Box position="relative" onClick={onClick} {...props}>
-      <Image
+      <StyledImage
         src={src}
         objectFit="cover"
         width="100%"
         borderRadius={borderRadius}
         onMouseEnter={() => setHovered(true)}
+        dropShadow={dropShadow}
         {...imageProps}
       />
       {overlay && (

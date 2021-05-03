@@ -54,6 +54,7 @@ Styled.ImageContainer = styled(Box)`
             padding-top: ${themeGet('space.l')};
             width: ${themeGet('breakpoints.lg')};
           }
+          filter: drop-shadow(0px 20px 48px rgba(0, 0, 0, 0.25));
         `
       : css`
           height: auto;
@@ -139,6 +140,7 @@ Styled.TextContainer = styled(Box)`
   }
 
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    margin: 0;
     padding: 0 ${themeGet('space.xxl')};
     height: 100%;
     max-width: ${themeGet('breakpoints.xl')};

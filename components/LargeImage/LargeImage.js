@@ -7,7 +7,7 @@ import { noop } from 'utils';
 
 import Styled, { StyledImage } from './LargeImage.styles';
 
-function LargeImage({ src, color, text, action, dropShadow, ...props } = {}) {
+function LargeImage({ src, color, text, action, dropShadow=true, ...props } = {}) {
   return (
     <Styled
       onClick={action ? action : noop}

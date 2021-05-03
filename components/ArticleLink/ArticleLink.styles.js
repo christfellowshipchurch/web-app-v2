@@ -22,9 +22,9 @@ Styled.Container = styled(Box)`
 
 Styled.Image = styled(Image)`
   margin-bottom: ${themeGet('space.m')};
-  box-shadow: ${themeGet('shadows.base')};
   object-fit: cover;
   order: initial;
+  filter: drop-shadow(0px 20px 48px rgba(0, 0, 0, 0.25));
 
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     height: 145px;

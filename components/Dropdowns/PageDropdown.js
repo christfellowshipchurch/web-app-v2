@@ -65,6 +65,7 @@ export default function PageDropdown({
                               color: theme.colors.almost_black,
                               opacity: '30%',
                             }}
+                            dropShadow={false}
                             onClick={() =>
                               router.push(
                                 `${baseRoute}/${getIdSuffix(item.id)}`
