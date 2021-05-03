@@ -10,6 +10,10 @@ import Styled from './GroupSingle.styles';
 export default function GroupChat(props = {}) {
   const currentBreakpoint = useCurrentBreakpoint();
 
+  if (!props.streamChatChannel) {
+    return null;
+  }
+
   if (currentBreakpoint.isSmall || currentBreakpoint.isMedium) {
     return <GroupChatMobile />;
   }

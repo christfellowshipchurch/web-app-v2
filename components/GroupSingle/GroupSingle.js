@@ -39,6 +39,80 @@ function GroupSingle(props = {}) {
     }
   };
 
+  // Sub-render functions for clarity
+  // -----------------------------------
+  const renderMembers = () => (
+    <Box display="flex" flexDirection="column" mt="l" pb="base">
+      <Box as="h2" fontSize="h3" mb="base">
+        {totalMembers} Members
+      </Box>
+      <GroupMembers
+        showCount={currentBreakpoint.isSmall ? 5 : 7}
+        leaders={props.data?.leaders}
+        members={props.data?.members}
+      />
+    </Box>
+  );
+
+  const renderMeetingDetails = () => (
+    <Box
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+      pb="l"
+      mt={{ _: 'l', md: '0' }}
+    >
+      <Box>
+        <GroupDateTime
+          title={props.data?.title}
+          summary={props.data?.summary}
+          address={document.URL}
+          dateTime={props.data?.dateTime}
+          parentVideoCall={props.data?.parentVideoCall}
+          videoCall={props.data?.videoCall}
+        />
+        <GroupActions
+          userName={
+            currentUser?.profile?.nickName || currentUser?.profile?.firstName
+          }
+          parentVideoCall={props.data?.parentVideoCall}
+          videoCall={props.data?.videoCall}
+          onClickVideoCall={handleOnClickVideoCall}
+          onClickParentVideoCall={handleOnClickVideoCall}
+          checkInCompleted={checkInCompleted}
+        />
+      </Box>
+    </Box>
+  );
+
+  const renderChat = () => (
+    <Box mb="l">
+      <Card>
+        <GroupChat
+          streamChatChannel={props.data?.streamChatChannel}
+          relatedNode={props.data}
+          pt="s"
+        />
+      </Card>
+    </Box>
+  );
+
+  const renderAboutAndResources = () => (
+    <Card p="base" mb="l">
+      <Box as="h2" fontSize="h3">
+        About
+      </Box>
+      <Box as="p">{props.data?.summary}</Box>
+
+      <Box as="h2" fontSize="h3" mt="l" mb="base">
+        Resources
+      </Box>
+      <GroupResources resources={props.data?.resources} />
+    </Card>
+  );
+  // -----------------------------------
+
   return (
     <ChatConnectionProvider>
       <ContentLayout
@@ -54,74 +128,10 @@ function GroupSingle(props = {}) {
             </CustomLink>
           ) : null
         }
-        renderContentB={() => (
-          <Box display="flex" flexDirection="column" mt="l" pb="base">
-            <Box as="h2" fontSize="h3" mb="base">
-              {totalMembers} Members
-            </Box>
-            <GroupMembers
-              showCount={currentBreakpoint.isSmall ? 5 : 7}
-              leaders={props.data?.leaders}
-              members={props.data?.members}
-            />
-          </Box>
-        )}
-        renderC={() => (
-          <Box
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
-            pb="l"
-            mt={{ _: 'l', md: '0' }}
-          >
-            <Box>
-              <GroupDateTime
-                title={props.data?.title}
-                summary={props.data?.summary}
-                address={document.URL}
-                dateTime={props.data?.dateTime}
-                parentVideoCall={props.data?.parentVideoCall}
-                videoCall={props.data?.videoCall}
-              />
-              <GroupActions
-                userName={
-                  currentUser?.profile?.nickName ||
-                  currentUser?.profile?.firstName
-                }
-                parentVideoCall={props.data?.parentVideoCall}
-                videoCall={props.data?.videoCall}
-                onClickVideoCall={handleOnClickVideoCall}
-                onClickParentVideoCall={handleOnClickVideoCall}
-                checkInCompleted={checkInCompleted}
-              />
-            </Box>
-          </Box>
-        )}
-        renderD={() => (
-          <Box>
-            <Card>
-              <GroupChat
-                streamChatChannel={props.data?.streamChatChannel}
-                relatedNode={props.data}
-                pt="s"
-              />
-            </Card>
-          </Box>
-        )}
-        renderE={() => (
-          <Card p="base">
-            <Box as="h2" fontSize="h3">
-              About
-            </Box>
-            <Box as="p">{props.data?.summary}</Box>
-
-            <Box as="h2" fontSize="h3" mt="l" mb="base">
-              Resources
-            </Box>
-            <GroupResources resources={props.data?.resources} />
-          </Card>
-        )}
+        renderContentB={renderMembers}
+        renderC={renderMeetingDetails}
+        renderD={renderChat}
+        renderE={renderAboutAndResources}
       />
     </ChatConnectionProvider>
   );
