@@ -7,14 +7,14 @@ import { noop } from 'utils';
 
 import Styled, { StyledImage } from './LargeImage.styles';
 
-function LargeImage({ src, color, text, action, ...props } = {}) {
+function LargeImage({ src, color, text, action, dropShadow, ...props } = {}) {
   return (
     <Styled
       onClick={action ? action : noop}
       clickable={Boolean(action)}
       {...props}
     >
-      <StyledImage src={src} rounded />
+      <StyledImage src={src} rounded dropShadow={dropShadow} />
       <Box
         display="flex"
         alignItems="center"

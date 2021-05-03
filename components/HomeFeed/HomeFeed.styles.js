@@ -39,4 +39,8 @@ Styled.SermonImage = styled(Image)`
   ${system}
 `;
 
+Styled.LargeImageContainer = styled(Box)`
+  
+`
+
 export default Styled;

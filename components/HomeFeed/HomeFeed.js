@@ -129,17 +129,22 @@ function FullLengthSermon(props = {}) {
 function HomeFeedLargeArticle({ article }) {
   const router = useRouter();
   return (
-    <LargeImage
-      minHeight="200px"
-      height="100%"
-      text={article?.title}
-      color="white"
-      src={article?.coverImage?.sources?.[0]?.uri}
-      width="100%"
-      action={() =>
-        router.push(article?.linkURL || `/page/${getIdSuffix(article?.id)}`)
-      }
-    />
+    <Box position="relative" height="100%" width="100%">
+      <LargeImage
+        position={{ _: "relative", lg:"absolute" }}
+        minHeight="200px"
+        top={0}
+        dropShadow
+        bottom={-150}
+        text={article?.title}
+        color="white"
+        src={article?.coverImage?.sources?.[0]?.uri}
+        width="100%"
+        action={() =>
+          router.push(article?.linkURL || `/page/${getIdSuffix(article?.id)}`)
+        }
+      />
+    </Box>
   );
 }
 
@@ -219,7 +224,7 @@ function HomeFeedContent(props = {}) {
   const router = useRouter();
 
   const largeArticle = props.articles?.[0]?.node;
-  const miniArticles = props.articles?.slice(1, 4);
+  const miniArticles = props.articles?.slice(1, 3);
 
   // Fixes a very strange static generation error I was running into.
   // In effect - when this page was rendered for an authed user
@@ -240,10 +245,9 @@ function HomeFeedContent(props = {}) {
         [<HomeFeedCTA authenticated={props.authenticated} />],
       ]
     : [
-        [<HomeFeedCTA authenticated={props.authenticated} />],
+        [],
         [
-          <HomeFeedLargeArticle article={largeArticle} />,
-          <HomeFeedArticles articles={miniArticles} />,
+
         ],
       ];
 
@@ -252,25 +256,24 @@ function HomeFeedContent(props = {}) {
       <Section>
         <CardGrid
           gridColumnGap="l"
-          columns={content[0].length}
+          columns={1}
           breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
           px={{ _: 'l', md: 'xxl' }}
           my={{ _: 'l', md: 'xxl' }}
         >
-          {content[0][0]}
-          {content[0][1]}
+          <HomeFeedCTA authenticated={props.authenticated} />
         </CardGrid>
       </Section>
       <Section>
         <CardGrid
           gridColumnGap="l"
-          columns={content[1].length}
+          columns={2}
           breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
           px={{ _: 'l', md: 'xxl' }}
           mb={{ _: 'l', md: 'xxl' }}
         >
-          {content[1][0]}
-          {content[1][1]}
+          <HomeFeedLargeArticle article={largeArticle} />
+          <HomeFeedArticles articles={miniArticles} />
         </CardGrid>
       </Section>
       <FullWidthCTA pt="171px" pb="171px" justifyContent="flex-start">

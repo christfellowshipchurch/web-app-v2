@@ -7,6 +7,8 @@ export const StyledImage = styled(Image)`
   object-fit: cover;
   width: 100%;
 
+  ${props => props.dropShadow ? 'filter: drop-shadow(0px 20px 48px rgba(0, 0, 0, 0.25));' : ''}
+
   ${system}
 `;
 
