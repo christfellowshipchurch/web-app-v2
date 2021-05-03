@@ -267,7 +267,7 @@ function HomeFeedContent(props = {}) {
           columns={content[1].length}
           breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
           px={{ _: 'l', md: 'xxl' }}
-          my={{ _: 'l', md: 'xxl' }}
+          mb={{ _: 'l', md: 'xxl' }}
         >
           {content[1][0]}
           {content[1][1]}
