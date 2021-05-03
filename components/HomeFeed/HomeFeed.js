@@ -76,7 +76,6 @@ function FullLengthSermon(props = {}) {
               ) : (
                 <Box
                   width={{ _: '100%', lg: '681px' }}
-                  background="linear-gradient(89.49deg, #1C1617 -16.61%, rgba(28, 22, 23, 0) 99.62%);"
                   px={{ _: 'l', md: 'xxl', lg: 0 }}
                 >
                   <VideoPlayer

@@ -67,10 +67,10 @@ function MainPhotoHeader({
             {summary && (
               <Heading
                 color={{ _: 'fg', lg: 'neutrals.100' }}
-                variant="h3"
-                fontWeight="700"
+                variant="h5"
                 maxWidth={{ lg: '360px' }}
                 mt={{ _: 'm', lg: 'xs' }}
+                opacity="60%"
                 textAlign="left"
               >
                 {summary}

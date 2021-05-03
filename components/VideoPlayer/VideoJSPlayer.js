@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
+import styled from 'styled-components';
 import { Box, Heading } from 'ui-kit';
 
 // eslint-disable-next-line import/prefer-default-export
@@ -40,6 +41,18 @@ const usePlayer = ({ src, controls, autoplay, fluid }) => {
   return videoRef;
 };
 
+const VideoStyles = styled.div`
+  div[data-vjs-player=true], .vjs-poster, .vjs-tech {
+    transition: border-radius ease 0.5s;
+  }
+
+  div[data-vjs-player=true]:not(.vjs-has-started),
+  div[data-vjs-player=true]:not(.vjs-has-started) .vjs-poster,
+  div[data-vjs-player=true]:not(.vjs-has-started) .vjs-tech {
+    border-radius: 25px;
+  }
+`;
+
 const VideoPlayer = ({ src, controls, autoplay, fluid, ...props }) => {
   const playerRef = usePlayer({ src, controls, autoplay, fluid });
 
@@ -57,16 +70,18 @@ const VideoPlayer = ({ src, controls, autoplay, fluid, ...props }) => {
           {props.title}
         </Heading>
       ) : null}
-      <div data-vjs-player>
-        <video
-          ref={playerRef}
-          className="video-js"
-          title={props.title}
-          poster={props.poster}
-          width="100%"
-          height="auto"
-        />
-      </div>
+      <VideoStyles>
+        <div data-vjs-player>
+          <video
+            ref={playerRef}
+            className="video-js"
+            title={props.title}
+            poster={props.poster}
+            width="100%"
+            height="auto"
+          />
+        </div>
+      </VideoStyles>
     </Box>
   );
 };
