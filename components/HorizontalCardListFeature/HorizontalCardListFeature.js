@@ -54,7 +54,7 @@ function HorizontalCardListFeature(props = {}) {
         {!isEmpty(subtitle) && <Box as="p">{subtitle}</Box>}
         <CardCarousel
           cardsDisplayed={4}
-          hideArrows={cards.length < 2}
+          hideArrows={!cards || cards.length < 2}
           mx={'-0.625rem'}
         >
           {cards.map((card, i) => (
@@ -79,7 +79,7 @@ function HorizontalCardListFeature(props = {}) {
       {!isEmpty(subtitle) && <Box as="p">{subtitle}</Box>}
       <CardCarousel
         cardsDisplayed={cardsDisplayed}
-        hideArrows={cards.length < 2}
+        hideArrows={!cards || cards.length < 2}
         mx={'-0.625rem'}
       >
         {cards.map((card, i) => {
