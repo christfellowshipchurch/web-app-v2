@@ -14,7 +14,7 @@ export default function GroupResources(props = {}) {
   // Currently ignoring the `action` of resources, since we can
   // typically derive a URL from the `relatedNode` regardless of
   // whether it's an `OPEN_URL` or `READ_CONTENT` etc action.
-
+  console.log({ props });
   return (
     <List>
       {props.resources
