@@ -30,6 +30,14 @@ const navigation = {
       call: 'Connect',
     },
     {
+      id: 'give',
+      action: {
+        mobile: '/give',
+        web: '/give',
+      },
+      call: 'Give',
+    },    
+    {
       id: 'watch',
       action: {
         mobile: '/watch',
