@@ -266,12 +266,16 @@ function GroupFiltersProvider(props = {}) {
 
   // :: Update filter options.
   useEffect(() => {
+    const updateMeetingType = optionsData?.meetingType.map(type =>
+      type === 'Online' ? 'Virtual' : type
+    );
+
     dispatch(
       updateOptions({
         campuses: optionsData?.campusName || [],
         preferences: optionsData?.preference || [],
         subPreferences: optionsData?.subPreference || [],
-        meetingType: optionsData?.meetingType || [],
+        meetingType: updateMeetingType || [],
       })
     );
   }, [optionsData]);
