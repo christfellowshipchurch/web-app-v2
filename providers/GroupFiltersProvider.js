@@ -268,7 +268,9 @@ function GroupFiltersProvider(props = {}) {
   useEffect(() => {
     dispatch(
       updateOptions({
-        campuses: optionsData?.campusName || [],
+        campuses: optionsData?.campusName
+          ? [...optionsData?.campusName].sort()
+          : [],
         preferences: optionsData?.preference || [],
         subPreferences: optionsData?.subPreference || [],
         meetingType: optionsData?.meetingType || [],
