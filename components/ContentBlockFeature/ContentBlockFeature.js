@@ -19,12 +19,12 @@ const ContentBlockFeature = props => {
     <Box maxWidth={1100} mx="auto">
       <ContentBlock
         title={content?.title}
-        summary={content?.summary}
+        subtitle={content?.subtitle}
         htmlContent={content?.htmlContent}
         image={content?.coverImage?.sources[0]?.uri}
         contentLayout={content?.orientation}
         imageRatio={content?.imageRatio}
-        callToAction={content?.callToAction}
+        actions={content?.actions}
       />
     </Box>
   );
