@@ -106,20 +106,19 @@ const AVATAR_LIST_FEATURE_FRAGMENT = gql`
 const CONTENT_BLOCK_FEATURE_FRAGMENT = gql`
   fragment ContentBlockFeatureFragment on ContentBlockFeature {
     title
-    summary
+    subtitle
     htmlContent
     coverImage {
       sources {
         uri
       }
     }
-    callToAction {
-      call
+    actions {
+      title
       action
-    }
-    secondaryCallToAction {
-      call
-      action
+      relatedNode {
+        ...RelatedFeatureNodeFragment
+      }
     }
     orientation
     imageRatio
