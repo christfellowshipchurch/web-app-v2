@@ -10,6 +10,7 @@ function MainPhotoHeader({
   subtitle,
   summary,
   backdrop = true,
+  showImage = true,
   primaryButton,
   secondaryButton,
   overlay = {
@@ -26,14 +27,14 @@ function MainPhotoHeader({
       {backdrop && <Styled.Backdrop src={src} />}
       {backdrop && <Styled.BackdropOverlay bg="bg_alt" opacity="0.4" />}
       <Styled.ImageContainer backdrop={backdrop}>
-        <Styled.Image
+        { showImage && <Styled.Image
           as="img"
           src={src}
           name="main-photo-header"
           backdrop={backdrop}
           rounded
           {...imageProps}
-        />
+        />}
         {overlay && (
           <Styled.ImageOverlay background={overlay} backdrop={backdrop} />
         )}

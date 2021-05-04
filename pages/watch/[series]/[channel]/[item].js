@@ -29,14 +29,8 @@ export default function Item({ item } = {}) {
 
   return (
     <Layout meta={getMetaData(item)}>
-      <MainPhotoHeader src={item.coverImage?.sources?.[0]?.uri} />
-      <Section my="xl" px={{ _: 'l', md: 'xxl' }}>
-        <Heading variant="h2" fontWeight="800" mb="m">
-          {item.title}
-        </Heading>
-        <Heading variant="h4" fontWeight="500" mb="m">
-          {item.summary}
-        </Heading>
+      <MainPhotoHeader src={item.coverImage?.sources?.[0]?.uri} showImage={false} overlay="" />
+      <Section mb="xl" px={{ _: 'l', md: 'xxl' }} mt={{ lg: '-120px'}}>
         {src ? (
           <VideoPlayer
             my="l"
@@ -44,6 +38,12 @@ export default function Item({ item } = {}) {
             poster={item?.coverImage?.sources?.[0]?.uri}
           />
         ) : null}
+        <Heading variant="h2" fontWeight="800" mb="m">
+          {item.title}
+        </Heading>
+        <Heading variant="h4" fontWeight="500" mb="m">
+          {item.summary}
+        </Heading>
       </Section>
     </Layout>
   );
