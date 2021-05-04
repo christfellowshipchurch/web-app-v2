@@ -24,6 +24,7 @@ const searchClient = algoliasearch(
 
 function Search({ filtering, setFiltering }) {
   const [categories, setCategories] = useState([]);
+  const router = useRouter();
   return (
     <div className="ais-InstantSearch">
       <InstantSearch
@@ -31,12 +32,13 @@ function Search({ filtering, setFiltering }) {
         searchClient={searchClient}
         onSearchStateChange={state => {
           setCategories(state.refinementList?.category || []);
+          router.replace({ query: { categories: state.refinementList?.category }})
         }}
       >
         <div className={`left-panel ${filtering ? 'filtering' : ''}`}>
           <ClearRefinements />
           <Panel header="Category">
-            <RefinementList attribute="category" />
+            <RefinementList attribute="category" defaultRefinement={router.query.categories}/>
           </Panel>
           {categories.length ? (
             <div>
