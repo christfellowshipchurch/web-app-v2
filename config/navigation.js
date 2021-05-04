@@ -32,11 +32,11 @@ const navigation = {
     {
       id: 'give',
       action: {
-        mobile: '/give',
-        web: '/give',
+        mobile: 'https://my.longhollow.com/GiveNow',
+        web: 'https://my.longhollow.com/GiveNow',
       },
       call: 'Give',
-    },    
+    },
     {
       id: 'watch',
       action: {
