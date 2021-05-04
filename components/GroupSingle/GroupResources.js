@@ -17,34 +17,38 @@ export default function GroupResources(props = {}) {
 
   return (
     <List>
-      {props.resources.map(resource => (
-        <Box key={resource.relatedNode?.id} as="li">
-          <CustomLink
-            key={resource.relatedNode?.id}
-            href={getURLFromType(resource.relatedNode)}
-            textDecoration="none"
-            onClick={() => {
-              amplitude.trackEvent({
-                category: 'Group Item',
-                action: `${resource.title} - Group Resource Action`,
-                label: `${resource.title} Button`,
-              });
-            }}
-          >
-            <Box display="flex" alignItems="center">
-              <Image
-                maxWidth="50px"
-                source={
-                  resource.relatedNode?.coverImage?.sources[0]?.uri ||
-                  '/link.png'
-                }
-                mr="base"
-              />
-              <Box as="h4">{resource.title || resource.relatedNode?.title}</Box>
-            </Box>
-          </CustomLink>
-        </Box>
-      ))}
+      {props.resources
+        .filter(resource => resource.title || resource.relatedNode?.title)
+        .map(resource => (
+          <Box key={resource.relatedNode?.id} as="li">
+            <CustomLink
+              key={resource.relatedNode?.id}
+              href={getURLFromType(resource.relatedNode)}
+              textDecoration="none"
+              onClick={() => {
+                amplitude.trackEvent({
+                  category: 'Group Item',
+                  action: `${resource.title} - Group Resource Action`,
+                  label: `${resource.title} Button`,
+                });
+              }}
+            >
+              <Box display="flex" alignItems="center">
+                <Image
+                  maxWidth="50px"
+                  source={
+                    resource.relatedNode?.coverImage?.sources[0]?.uri ||
+                    '/link.png'
+                  }
+                  mr="base"
+                />
+                <Box as="h4">
+                  {resource.title || resource.relatedNode?.title}
+                </Box>
+              </Box>
+            </CustomLink>
+          </Box>
+        ))}
     </List>
   );
 }
