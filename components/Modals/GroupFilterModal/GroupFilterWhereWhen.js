@@ -98,37 +98,6 @@ function GroupFilterWhereWhen(props = {}) {
           })}
         </Select>
       </Box>
-      <Box mb="l">
-        <FormLabel color="subdued">What days can you meet?</FormLabel>
-        <Box
-          display="grid"
-          width="100%"
-          gridTemplateColumns="repeat(7, 1fr)"
-          gridColumnGap="xs"
-        >
-          {filtersState.options.days.map(value => (
-            <Button
-              key={value}
-              variant="secondary"
-              status={
-                filtersState.values.days.includes(value) ? 'SELECTED' : 'IDLE'
-              }
-              onClick={event => {
-                event.preventDefault();
-                handleDayChange(value);
-              }}
-              mb="xs"
-              px="0"
-            >
-              {value[0]}
-              {/* Gross, but quick way to abbreviate for mobile... */}
-              <Box as="span" display={{ _: 'none', md: 'inline' }}>
-                {value.slice(1)}
-              </Box>
-            </Button>
-          ))}
-        </Box>
-      </Box>
       <Box display="flex" alignItems="center" justifyContent="space-between">
         <Button variant="secondary" onClick={handleGoBack}>
           <Icon name="angleLeft" />
