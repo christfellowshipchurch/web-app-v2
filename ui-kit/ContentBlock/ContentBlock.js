@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 // import { Video } from 'components';
 import { Box, Button, Image, systemPropTypes } from 'ui-kit';
-import { htmlToReactParser } from 'utils';
+import { htmlToReactParser, getUrlFromRelatedNode } from 'utils';
+import { CustomLink } from 'components';
 
 import Styled from './ContentBlock.styles';
 import toLower from 'lodash/toLower';
@@ -29,17 +30,33 @@ function ContentBlock(props = {}) {
         </Styled.Media>
       )}
       <Styled.Content textAlign={horizontalLayout ? 'flex-start' : 'center'}>
-        {(props.title || props.summary) && (
+        {(props.title || props.subtitle) && (
           <>
-            <Styled.Subtitle>{props.summary}</Styled.Subtitle>
+            <Styled.Subtitle>{props.subtitle}</Styled.Subtitle>
             <Styled.Title>{props.title}</Styled.Title>
           </>
         )}
         <Box>{htmlToReactParser.parse(props.htmlContent)}</Box>
-        {props?.callToAction && (
-          <Button mt="l" href={props.callToAction.action}>
-            {props.callToAction.call}
-          </Button>
+
+        {props?.actions && props?.actions?.length > 0 && (
+          <Box my="base" flexDirection="column" display="flex">
+            {props?.actions.map((action, i) => (
+              <CustomLink
+                as="a"
+                href={getUrlFromRelatedNode(action?.relatedNode)}
+                Component={Button}
+                variant={i === 0 ? 'primary' : 'secondary'}
+                my="xs"
+                textTransform="capitalize!important"
+                /**
+                 * todo : We want to eventually add functionality with the 'onPressActionItem' to be able to perform more actions in the future.
+                 */
+                // onClick={e => onPressActionItem(e, heroCard)}
+              >
+                {action?.title}
+              </CustomLink>
+            ))}
+          </Box>
         )}
       </Styled.Content>
     </Styled.Container>
@@ -59,7 +76,7 @@ ContentBlock.propTypes = {
   images: PropTypes.array,
   openLinksInNewTab: PropTypes.bool,
   secondaryCallToAction: PropTypes.object,
-  summary: PropTypes.string,
+  subtitle: PropTypes.string,
   textAlignment: PropTypes.string,
   title: PropTypes.string,
   variant: PropTypes.oneOf(['light', 'dark']),
