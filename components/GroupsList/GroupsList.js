@@ -25,22 +25,26 @@ function GroupsList(props = {}) {
 
   return (
     <CardGrid>
-      {props.data.map(group => (
-        <CustomLink
-          as="a"
-          key={group.id}
-          onClick={handleClick(group)}
-          href={`/groups/${slugify(group.title)}`}
-          Component={GroupCard}
-          coverImage={group?.coverImage?.sources[0]?.uri}
-          title={group.title}
-          summary={group.summary}
-          heroAvatars={group?.leaders?.edges}
-          avatars={group?.members?.edges}
-          totalHeroAvatars={group?.leaders?.totalCount}
-          totalAvatars={group?.members?.totalCount}
-        />
-      ))}
+      {props.data.map(group => {
+        const totalMembers =
+          (group?.leaders?.totalCount || 0) + (group?.members?.totalCount || 0);
+        return (
+          <CustomLink
+            as="a"
+            key={group.id}
+            onClick={handleClick(group)}
+            href={`/groups/${slugify(group.title)}`}
+            Component={GroupCard}
+            coverImage={group?.coverImage?.sources[0]?.uri}
+            title={group.title}
+            summary={group.summary}
+            heroAvatars={group?.leaders?.edges}
+            avatars={group?.members?.edges}
+            totalHeroAvatars={group?.leaders?.totalCount}
+            totalAvatars={totalMembers}
+          />
+        );
+      })}
     </CardGrid>
   );
 }
