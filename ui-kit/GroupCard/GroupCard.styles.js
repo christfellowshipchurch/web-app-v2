@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 import Card from 'ui-kit/Card/Card.styles';
+import { rem } from 'ui-kit/_utils';
 
 const GroupCard = styled(Card)`
   display: flex;
@@ -8,16 +9,20 @@ const GroupCard = styled(Card)`
 `;
 
 const AvatarCount = styled.p`
+  align-items: center;
   background-color: ${themeGet('colors.tertiary')};
   border-radius: ${themeGet('radii.xl')};
   bottom: ${themeGet('space.base')};
   color: ${themeGet('colors.white')};
+  display: flex;
   font-size: ${themeGet('fontSizes.xs')};
   font-weight: ${themeGet('fontWeights.bold')};
+  height: ${rem('28px')};
+  justify-content: center;
   margin-bottom: auto;
-  padding: ${themeGet('space.xs')};
   position: relative;
   right: ${themeGet('space.base')};
+  width: ${rem('28px')};
 `;
 
 const DateTimeLabel = styled.p`
