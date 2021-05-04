@@ -27,20 +27,7 @@ const Hero = styled.div`
 `;
 
 const Title = styled.h1`
-  /* Fallback: Set a background color. */
-  background-color: ${themeGet('colors.primary')};
   font-size: ${rem('50px')};
-
-  /* Set the background size and repeat properties. */
-  background-size: 100%;
-  background-repeat: repeat;
-
-  /* Use the text as a mask for the background. */
-  /* This will show the gradient as a text color rather than element bg. */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-background-clip: text;
-  -moz-text-fill-color: transparent;
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     font-size: ${rem('65px')};

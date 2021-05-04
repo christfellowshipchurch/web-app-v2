@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 import flags from 'config/flags';
-import { Box, Button, Cell, utils } from 'ui-kit';
+import { Box, Button, Cell, Icon, utils } from 'ui-kit';
 import {
   CommunityActionSection,
   CommunityLeaderActions,
@@ -42,16 +42,7 @@ export default function Community(props = {}) {
   }
 
   function handleOnClick() {
-    if (!authenticated) {
-      modalDispatch(showModal('Auth'));
-      authDispatch(
-        updateAuth({
-          onSuccess: showGroupFilterModal,
-        })
-      );
-    } else {
-      showGroupFilterModal();
-    }
+    router.push('/community/search');
   }
 
   if (!flags.GROUP_FINDER) return null;
@@ -62,20 +53,16 @@ export default function Community(props = {}) {
       <Box display="grid" gridTemplateRows="auto 1fr auto" height="100vh">
         <Header />
         <Styled.Hero>
+          <Icon name="brand" size="96" color="primary" mb="base" />
           <Styled.Title>Life is Better Together</Styled.Title>
-          <Box mt="l" display="flex" >
-            <Button onClick={handleOnClick} rounded={true}>
-              Find your Groups and Classes
-            </Button>
-          </Box>
         </Styled.Hero>
         <Box>
           <Cell
             maxWidth={DEFAULT_CONTENT_WIDTH}
             px="base"
-            py={{ _: 'l', lg: 'xl' }}
+            py={{ _: 'm', lg: 'l' }}
           >
-            <Box as="section" py={{ _: 'l', lg: 'xl' }}>
+            <Box as="section">
               <CommunitiesProvider Component={CommunityList} />
             </Box>
           </Cell>
