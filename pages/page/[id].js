@@ -49,12 +49,12 @@ export default function Page({ data } = {}) {
         </Box>
       </Section>
       {data.htmlContent && (
-        <Section px={{ _: 'l', lg: 'xxl' }} my={{ _: 'l', lg: 'xxl' }}>
+        <Section px={{ _: 'l', lg: 'xxl' }} mb={{ _: 'l', lg: 'xxl' }}>
           <Longform dangerouslySetInnerHTML={{ __html: data.htmlContent }} />
         </Section>
       )}
       {data.ctaLinks?.length ? (
-        <Section px={{ _: 'l', lg: 'xxl' }} my={{ _: 'l', lg: 'xxl' }}>
+        <Section px={{ _: 'l', lg: 'xxl' }} mb={{ _: 'l', lg: 'xxl' }}>
           <Box
             display="flex"
             flexWrap="wrap"
