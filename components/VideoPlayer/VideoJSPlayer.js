@@ -55,6 +55,24 @@ const VideoStyles = styled.div`
   .vjs-poster {
     filter: drop-shadow(0px 20px 48px rgba(0, 0, 0, 0.25));
   }
+
+  .vjs-big-play-button {
+    line-height: 90px;
+    font-size: 20px;
+    height: 90px;
+    width: 90px;
+    top: calc(50% - 45px);
+    left: calc(50% - 45px);
+    padding: 0;
+    border: 2px solid #fff;
+    background-color: transparent;
+    border-radius: 50%;
+    z-index: 1;
+  }
+
+  .vjs-big-play-button .vjs-icon-placeholder:before {
+    font-size: 60px;
+  }
 `;
 
 const VideoPlayer = ({ src, controls, autoplay, fluid, ...props }) => {
