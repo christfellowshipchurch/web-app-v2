@@ -63,6 +63,10 @@ const Content = styled.div`
   justify-content: center;
   padding: ${themeGet('space.l')};
 
+  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+    padding: ${themeGet('space.xs')};
+  }
+
   ${system};
 `;
 
