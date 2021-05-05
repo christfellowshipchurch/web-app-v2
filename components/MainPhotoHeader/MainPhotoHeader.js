@@ -86,7 +86,7 @@ function MainPhotoHeader({
                 style={{
                   display: 'flex',
                   flexDirection: 'row',
-                  justifyContent: 'space-around',
+                  justifyContent: 'flex-start',
                   marginTop: '32px',
                 }}
               >

@@ -59,7 +59,7 @@ export default function Watch({ series, watchPages, sermons }) {
         primaryButton={
           <a
             className="btn"
-            style={{ marginRight: '16px', zIndex: 100 }}
+            style={{ pointerEvents: 'auto', marginRight: '16px', zIndex: 100, width: 'auto', padding: '14px 28px' }}
             href={
               live
                 ? liveStreams[0].webViewUrl
@@ -72,6 +72,7 @@ export default function Watch({ series, watchPages, sermons }) {
         secondaryButton={
           <a
             className="btn"
+            style={{width: 'auto', pointerEvents: 'auto', padding: '14px 28px' }}
             href="/next-steps/3644e32503017b6f2f19edfdff0eb28a"
           >
             {live ? 'Other ways to watch' : 'How to watch'}
