@@ -60,7 +60,7 @@ const FeatureFeed = (props = {}) => {
   }
 
   return props.data?.map((edge, i) => (
-    <Box key={edge?.id} py="xl">
+    <Box key={edge?.id} py="l">
       <FeatureProvider
         onPressActionItem={props?.onPressActionItem}
         Component={getComponent(edge, {
