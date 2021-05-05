@@ -272,7 +272,9 @@ function GroupFiltersProvider(props = {}) {
 
     dispatch(
       updateOptions({
-        campuses: optionsData?.campusName || [],
+        campuses: optionsData?.campusName
+          ? [...optionsData?.campusName].sort()
+          : [],
         preferences: optionsData?.preference || [],
         subPreferences: optionsData?.subPreference || [],
         meetingType: updateMeetingType || [],
