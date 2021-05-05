@@ -21,6 +21,7 @@ export const GET_CONTENT_CHANNEL = gql`
                 }
               }
               ... on UniversalContentItem {
+                showTitleOverImage
                 subtitle
                 isFeatured
                 linkURL

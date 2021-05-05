@@ -39,6 +39,7 @@ export default function Page({ data = {}, submenuLinks, campuses }) {
         title={data.title}
         subtitle={data.subtitle}
         summary={data.summary}
+        showTitleOverImage={data.showTitleOverImage}
       />
       {links.length ? (
         <EventsCallout

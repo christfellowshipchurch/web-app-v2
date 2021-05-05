@@ -52,7 +52,7 @@ export default function PageDropdown({
                           <Photo
                             imageProps={{ height: '226px' }}
                             src={item.coverImage?.sources[0]?.uri}
-                            inner={
+                            inner={item.showTitleOverImage &&
                               <Heading
                                 fontWeight="600"
                                 variant="h2"

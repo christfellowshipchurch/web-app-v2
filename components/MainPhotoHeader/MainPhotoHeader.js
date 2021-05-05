@@ -11,6 +11,7 @@ function MainPhotoHeader({
   summary,
   backdrop = true,
   showImage = true,
+  showTitleOverImage = true,
   primaryButton,
   secondaryButton,
   overlay = {
@@ -22,6 +23,7 @@ function MainPhotoHeader({
   imageProps = {},
   ...props
 } = {}) {
+
   return (
     <Styled.Container {...props}>
       {backdrop && <Styled.Backdrop src={src} />}
@@ -38,60 +40,60 @@ function MainPhotoHeader({
         {overlay && (
           <Styled.ImageOverlay background={overlay} backdrop={backdrop} />
         )}
-        {(subtitle || title || summary) && (
+        {(showTitleOverImage && (subtitle || title || summary)) && (
           <Styled.TextPosition>
-          <Styled.TextContainer display={'flex'} justifyContent={justifyText}>
-            {subtitle && (
-              <Heading
-                color={{ _: 'fg', lg: 'neutrals.100' }}
-                variant="h2"
-                opacity="50%"
-                fontWeight="800"
-                textAlign="left"
-                fontSize="h3"
-                maxWidth={{ lg: '440px' }}
+            <Styled.TextContainer display={'flex'} justifyContent={justifyText}>
+              {subtitle && (
+                <Heading
+                  color={{ _: 'fg', lg: 'neutrals.100' }}
+                  variant="h2"
+                  opacity="50%"
+                  fontWeight="800"
+                  textAlign="left"
+                  fontSize="h3"
+                  maxWidth={{ lg: '440px' }}
+                >
+                  {subtitle}
+                </Heading>
+              )}
+              {title && (
+                <Heading
+                  color={{ _: 'fg', lg: 'neutrals.100' }}
+                  fontWeight="800"
+                  mt={{ _: 's', lg: 'xs' }}
+                  textTransform="uppercase"
+                  textAlign="left"
+                  fontSize="60px"
+                  lineHeight="1"
+                  maxWidth={{ lg: '440px' }}
+                >
+                  {title}
+                </Heading>
+              )}
+              {summary && (
+                <Heading
+                  color={{ _: 'fg', lg: 'neutrals.100' }}
+                  variant="h5"
+                  maxWidth={{ lg: '360px' }}
+                  mt={{ _: 'm', lg: 'xs' }}
+                  opacity="60%"
+                  textAlign="left"
+                >
+                  {summary}
+                </Heading>
+              )}
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-around',
+                  marginTop: '32px',
+                }}
               >
-                {subtitle}
-              </Heading>
-            )}
-            {title && (
-              <Heading
-                color={{ _: 'fg', lg: 'neutrals.100' }}
-                fontWeight="800"
-                mt={{ _: 's', lg: 'xs' }}
-                textTransform="uppercase"
-                textAlign="left"
-                fontSize="60px"
-                lineHeight="1"
-                maxWidth={{ lg: '440px' }}
-              >
-                {title}
-              </Heading>
-            )}
-            {summary && (
-              <Heading
-                color={{ _: 'fg', lg: 'neutrals.100' }}
-                variant="h5"
-                maxWidth={{ lg: '360px' }}
-                mt={{ _: 'm', lg: 'xs' }}
-                opacity="60%"
-                textAlign="left"
-              >
-                {summary}
-              </Heading>
-            )}
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-around',
-                marginTop: '32px',
-              }}
-            >
-              {primaryButton}
-              {secondaryButton}
-            </div>
-          </Styled.TextContainer>
+                {primaryButton}
+                {secondaryButton}
+              </div>
+            </Styled.TextContainer>
           </Styled.TextPosition>
         )}
       </Styled.ImageContainer>
