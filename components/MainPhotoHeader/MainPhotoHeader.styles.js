@@ -152,6 +152,7 @@ Styled.TextContainer = styled(Box)`
 
 Styled.TextPosition = styled(Box)`
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+   pointer-events: none;
     position: absolute;
     display: flex;
     justify-content: center;

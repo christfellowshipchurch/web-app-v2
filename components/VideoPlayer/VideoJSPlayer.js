@@ -67,7 +67,6 @@ const VideoStyles = styled.div`
     border: 2px solid #fff;
     background-color: transparent;
     border-radius: 50%;
-    z-index: 1;
   }
 
   .vjs-big-play-button .vjs-icon-placeholder:before {
