@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import includes from 'lodash/includes';
 
-import { Box, Button, Select } from 'ui-kit';
+import { Box, Button, Select, systemPropTypes } from 'ui-kit';
 
 export default function FilterField(props = {}) {
   if (!props.options || !props.options.length) return null;
@@ -30,7 +30,7 @@ export default function FilterField(props = {}) {
           </Button>
         )}
       </Box>
-      <Box>
+      <Box {...props.optionsProps}>
         {props.filterType === 'multi-select' ? (
           props.options.map(value => (
             <Button
@@ -92,6 +92,9 @@ FilterField.propTypes = {
   name: PropTypes.string,
   // Possible Options
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  optionsProps: PropTypes.shape({
+    ...systemPropTypes,
+  }),
   // Currently selected options
   values: PropTypes.arrayOf(PropTypes.string).isRequired,
   disabledValues: PropTypes.arrayOf(PropTypes.string),
