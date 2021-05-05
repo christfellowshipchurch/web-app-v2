@@ -74,7 +74,7 @@ function ContentSingle(props = {}) {
             <Box mr="base">
               <Avatar
                 name={author.firstName}
-                source={author.photo?.uri}
+                src={author.photo?.uri}
                 height="60px"
                 width="60px"
               />
