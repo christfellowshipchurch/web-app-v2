@@ -85,7 +85,7 @@ export default function Watch({ series, watchPages, sermons }) {
         mt={{ _: 'm', lg: '-130px' }}
         zIndex="2"
       >
-        <Heading variant="h5" color="neutrals.500">
+        <Heading variant="h5" color={{_: 'fg', lg: "white"}} opacity="80%">
           LAST WEEK
         </Heading>
         <Styled.SermonContainer mt="s">

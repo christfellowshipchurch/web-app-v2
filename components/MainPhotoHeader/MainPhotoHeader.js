@@ -45,9 +45,9 @@ function MainPhotoHeader({
             <Styled.TextContainer display={'flex'} justifyContent={justifyText}>
               {subtitle && (
                 <Heading
-                  color={{ _: 'fg', lg: 'neutrals.100' }}
+                  color={{ _: 'fg', lg: 'white' }}
                   variant="h2"
-                  opacity="50%"
+                  opacity="80%"
                   fontWeight="800"
                   textAlign="left"
                   fontSize="h3"
