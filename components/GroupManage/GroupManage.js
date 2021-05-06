@@ -5,7 +5,7 @@ import capitalize from 'lodash/capitalize';
 import { slugify } from 'utils';
 import { GroupManageProvider } from 'providers';
 import { initialState } from 'providers/GroupManageProvider';
-import { Box, Card, List } from 'ui-kit';
+import { Box, Button, Card, List } from 'ui-kit';
 import { CustomLink } from 'components';
 
 import GroupManagePhoto from './GroupManagePhoto';
@@ -54,7 +54,7 @@ function GroupManage(props = {}) {
               letterSpacing="1px"
               textTransform="uppercase"
             >
-              Manage
+              Edit
             </Box>
             <Box as="h1" fontSize="h3">
               {props?.data?.title}
@@ -64,15 +64,15 @@ function GroupManage(props = {}) {
             <List>
               {Object.values(initialState.sections).map((_section, idx) => (
                 <Box as="li" key={idx}>
-                  <Box
-                    as="a"
+                  <Button
+                    rounded
+                    variant="chip"
                     href="#0"
                     onClick={handleSectionClick(_section)}
-                    color={section === _section ? 'fg' : 'primary'}
-                    textDecoration="none"
+                    status={section === _section ? 'SELECTED' : ''}
                   >
                     Update {capitalize(_section)}
-                  </Box>
+                  </Button>
                 </Box>
               ))}
             </List>
