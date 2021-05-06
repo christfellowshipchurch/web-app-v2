@@ -23,24 +23,26 @@ function MainPhotoHeader({
   imageProps = {},
   ...props
 } = {}) {
-
+  console.log(props);
   return (
     <Styled.Container {...props}>
       {backdrop && <Styled.Backdrop src={src} />}
       {backdrop && <Styled.BackdropOverlay bg="bg_alt" opacity="0.4" />}
       <Styled.ImageContainer backdrop={backdrop}>
-        { showImage && <Styled.Image
-          as="img"
-          src={src}
-          name="main-photo-header"
-          backdrop={backdrop}
-          rounded
-          {...imageProps}
-        />}
+        {showImage && (
+          <Styled.Image
+            as="img"
+            src={src}
+            name="main-photo-header"
+            backdrop={backdrop}
+            rounded
+            {...imageProps}
+          />
+        )}
         {showTitleOverImage && overlay && (
           <Styled.ImageOverlay background={overlay} backdrop={backdrop} />
         )}
-        {(showTitleOverImage && (subtitle || title || summary)) && (
+        {showTitleOverImage && (subtitle || title || summary) && (
           <Styled.TextPosition>
             <Styled.TextContainer display={'flex'} justifyContent={justifyText}>
               {subtitle && (
