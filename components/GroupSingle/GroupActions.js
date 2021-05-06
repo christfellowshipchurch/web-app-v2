@@ -36,46 +36,54 @@ const GroupActions = ({
   return (
     <>
       {parentVideoCall?.link && (
-        <CustomLink
+        <Button
           mb="base"
           Component={Button}
-          href={videoCallURLWithParameters(
-            parentVideoCall?.link,
-            userName
-              ? {
-                  uname: userName,
-                }
-              : null
-          )}
-          onClick={() => onClickParentVideoCall('parent')}
-          target="_blank"
-          rel="noopener noreferrer"
+          onClick={() => {
+            const href = videoCallURLWithParameters(
+              parentVideoCall?.link,
+              userName
+                ? {
+                    uname: userName,
+                  }
+                : null
+            )
+
+            if (href) {
+              onClickParentVideoCall('parent');
+              window.open(href);
+            }
+          }}
           width="100%"
         >
           {parentVideoCall?.labelText || `Join Meeting`}
-        </CustomLink>
+        </Button>
       )}
       {videoCall?.link ? (
-        <CustomLink
+        <Button
           mb="base"
           Component={Button}
-          href={videoCallURLWithParameters(
-            videoCall?.link,
-            userName
-              ? {
-                  uname: userName,
-                }
-              : null
-          )}
-          onClick={() => onClickVideoCall()}
-          target="_blank"
-          rel="noopener noreferrer"
+          onClick={() => {
+            const href = videoCallURLWithParameters(
+              videoCall?.link,
+              userName
+                ? {
+                    uname: userName,
+                  }
+                : null
+            )
+
+            if (href) {
+              onClickVideoCall();
+              window.open(href);
+            }
+          }}
           width="100%"
         >
           {videoCall?.label || parentVideoCall
             ? 'Join Discussion Group'
             : 'Join Meeting'}
-        </CustomLink>
+        </Button>
       ) : (
         <Button
           // allow to just checkin for in person groups
