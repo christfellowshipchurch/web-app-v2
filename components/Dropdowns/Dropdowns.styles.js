@@ -8,7 +8,11 @@ const Dropdowns = {};
 export const Container = styled(Box)`
   background: ${themeGet('colors.bg')};
   ${props =>
-    props.hideShadow ? null : css`box-shadow: ${themeGet('shadows.nav')};`}
+    props.hideShadow
+      ? null
+      : css`
+          box-shadow: ${themeGet('shadows.nav')};
+        `}
   width: 100%;
 
   ${system}
@@ -30,11 +34,18 @@ export const Input = styled.input`
 
 export const Button = styled(_Button)`
   align-items: center;
-  border-radius: ${themeGet('radii.xl')};
   display: flex;
-  height: 40px;
-  justify-content: center;
+  height: 30px;
+  justify-content: flex-start;
   margin-bottom: ${themeGet('space.xxs')};
+  background-color: transparent;
+  color: ${themeGet('colors.fg')};
+  border: 0;
+  font-weight: bold;
+
+  :hover {
+    background-color: ${themeGet('colors.grey')};
+  }
 
   ${system}
 `;

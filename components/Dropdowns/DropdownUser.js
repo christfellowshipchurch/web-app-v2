@@ -13,36 +13,34 @@ function Profile() {
   const dispatch = useAuthDispatch();
   const { currentPerson } = useCurrentPerson();
   return (
-    <Box display="flex" flexDirection="column" alignItems="center">
-      {currentPerson.profile?.photo?.uri ? (
-        <Box my="m">
-          <Avatar
-            src={currentPerson.profile?.photo?.uri}
-            height="150px"
-            width="150px"
-          />
-        </Box>
-      ) : (
-        <UserCircle
-          color={theme.colors.fg}
-          size="200"
-          style={{ marginTop: theme.space.m }}
-        />
-      )}
-      <Heading mb="m">
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="flex-start"
+      width="100%"
+      borderTop="1px solid grey"
+      pt="xxs"
+    >
+      <Heading width="100%" p="0.875rem">
         {[
           currentPerson.profile?.firstName,
           currentPerson.profile?.lastName,
         ].join(' ')}
       </Heading>
       <Button
+        borderRadius="base"
+        width="100%"
         onClick={() => {
           router.push('/profile');
         }}
       >
         Profile
       </Button>
-      <Button mb="xl" onClick={() => dispatch(logout())}>
+      <Button
+        borderRadius="base"
+        width="100%"
+        onClick={() => dispatch(logout())}
+      >
         Log Out
       </Button>
     </Box>
@@ -53,8 +51,19 @@ function Login() {
   const modalDispatch = useModalDispatch();
 
   return (
-    <Box display="flex" flexDirection="column" alignItems="center">
-      <Button mb="xl" onClick={() => modalDispatch(showModal('Auth'))}>
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="flex-start"
+      width="100%"
+      borderTop="1px solid grey"
+      pt="xxs"
+    >
+      <Button
+        borderRadius="base"
+        width="100%"
+        onClick={() => modalDispatch(showModal('Auth'))}
+      >
         Sign In
       </Button>
     </Box>
@@ -68,42 +77,42 @@ export default function DropdownUser() {
   return (
     <Box
       bg="bg"
-      p="l"
-      width="400px"
-      boxShadow={theme.shadows.base}
-      alignItems="center"
+      p="s"
+      width="230px"
+      alignItems="flex-start"
+      boxShadow="base"
       display="flex"
       flexDirection="column"
     >
-      {authenticated ? <Profile /> : <Login />}
       <Button
-        width="300px"
+        width="100%"
         borderRadius="base"
         onClick={() => router.push('/give')}
       >
         Give
       </Button>
       <Button
-        width="300px"
+        width="100%"
         borderRadius="base"
         onClick={() => router.push('/groups')}
       >
         Groups
       </Button>
       <Button
-        width="300px"
+        width="100%"
         borderRadius="base"
         onClick={() => router.push('/events')}
       >
         Events
       </Button>
       <Button
-        width="300px"
+        width="100%"
         borderRadius="base"
         onClick={() => router.push('/serve')}
       >
         Serve
       </Button>
+      {authenticated ? <Profile /> : <Login />}
     </Box>
   );
 }

@@ -73,6 +73,7 @@ Styled.Dropdown = styled(Box)`
     right: 0;
     transition: margin-top 0.2s ease-in;
     z-index: 998;
+    overflow: visible;
 
     &.active {
       margin-top: 0;
