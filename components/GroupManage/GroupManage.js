@@ -54,7 +54,7 @@ function GroupManage(props = {}) {
               letterSpacing="1px"
               textTransform="uppercase"
             >
-              Manage
+              Edit
             </Box>
             <Box as="h1" fontSize="h3">
               {props?.data?.title}

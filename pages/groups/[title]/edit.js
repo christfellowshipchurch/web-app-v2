@@ -5,7 +5,7 @@ import { GroupProvider } from 'providers';
 import { Cell, Loader } from 'ui-kit';
 import { GroupManage, Layout } from 'components';
 
-export default function Manage(props) {
+export default function Edit(props) {
   const router = useRouter();
   const { title, id } = router.query;
   const state = useGroupContentId({ title, id });
@@ -16,7 +16,7 @@ export default function Manage(props) {
   return (
     // TODO: It should say the group's name here.
     // Use `title` and then deal with the hyphened title.
-    <Layout title="Manage Group">
+    <Layout title="Edit Group">
       <Cell px="base" py={{ _: 'l', lg: 'xl' }}>
         {isLoading ? (
           <Loader text="Loading your Group" />
