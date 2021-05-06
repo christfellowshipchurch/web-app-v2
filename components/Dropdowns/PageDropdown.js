@@ -21,8 +21,7 @@ export default function PageDropdown({
   const numColumns =
     Math.ceil(featuredItems.length / 2) + Number(hasNonFeaturedItems);
 
-  const mdCols = numColumns > 1 ? (numColumns % 2 === 0 ? 2 : 3) : 1;
-  const xlCols = numColumns > 4 ? 4 : numColumns;
+  const mdColumns = numColumns > 1 ? (numColumns % 2 === 0 ? 2 : 3) : 1;
 
   return (
     <Dropdowns.Container {...props}>
@@ -34,8 +33,7 @@ export default function PageDropdown({
           py="l"
           gridTemplateColumns={{
             _: 'repeat(1, 1fr)',
-            md: `repeat(${mdCols}, 1fr)`,
-            xl: `repeat(${xlCols > 4 ? 4 : numColumns}, 1fr)`,
+            md: `repeat(${mdColumns > 4 ? 4 : numColumns}, 1fr)`,
           }}
           gridColumnGap="base"
           gridRowGap={0}
@@ -52,19 +50,25 @@ export default function PageDropdown({
                           <Photo
                             imageProps={{ height: '226px' }}
                             src={item.coverImage?.sources[0]?.uri}
-                            inner={item.showTitleOverImage &&
-                              <Heading
-                                fontWeight="600"
-                                variant="h2"
-                                color="white"
-                              >
-                                {item.title}
-                              </Heading>
+                            inner={
+                              item.showTitleOverImage && (
+                                <Heading
+                                  fontWeight="600"
+                                  variant="h2"
+                                  color="white"
+                                >
+                                  {item.title}
+                                </Heading>
+                              )
                             }
-                            overlay={item.showTitleOverImage ? {
-                              color: theme.colors.almost_black,
-                              opacity: '30%',
-                            } : undefined}
+                            overlay={
+                              item.showTitleOverImage
+                                ? {
+                                    color: theme.colors.almost_black,
+                                    opacity: '30%',
+                                  }
+                                : undefined
+                            }
                             dropShadow={false}
                             onClick={() =>
                               router.push(
