@@ -3,8 +3,9 @@ import { themeGet } from '@styled-system/theme-get';
 
 import { system } from 'ui-kit';
 
-const Search = {};
-
+const Search = styled.div`
+  ${system}
+`;
 const visibility = ({ visible }) => css`
   visibility: ${visible ? 'visible' : 'hidden'};
 `;
