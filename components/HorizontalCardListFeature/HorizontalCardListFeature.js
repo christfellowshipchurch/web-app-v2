@@ -4,7 +4,13 @@ import isEmpty from 'lodash/isEmpty';
 
 import { GroupsProvider } from 'providers';
 import { CustomLink, GroupsList } from '..';
-import { Box, HorizontalHighlightCard, CardCarousel, PrayerCard } from 'ui-kit';
+import {
+  Box,
+  CardCarousel,
+  HorizontalHighlightCard,
+  Loader,
+  PrayerCard,
+} from 'ui-kit';
 import { getUrlFromRelatedNode } from 'utils';
 
 function HorizontalCardListFeature(props = {}) {
@@ -48,7 +54,9 @@ function HorizontalCardListFeature(props = {}) {
     );
   }
   if (cards && cards[0]?.action === 'READ_PRAYER') {
-    return (
+    return props.loading ? (
+      <Loader text="Loading your prayers" />
+    ) : (
       <Box>
         {!isEmpty(title) && <Box as="h2">{title}</Box>}
         {!isEmpty(subtitle) && <Box as="p">{subtitle}</Box>}
@@ -74,33 +82,35 @@ function HorizontalCardListFeature(props = {}) {
   }
 
   return (
-    <Box>
-      {!isEmpty(title) && <Box as="h2">{title}</Box>}
-      {!isEmpty(subtitle) && <Box as="p">{subtitle}</Box>}
-      <CardCarousel
-        cardsDisplayed={cardsDisplayed}
-        hideArrows={!cards || cards.length < 2}
-        mx={'-0.625rem'}
-      >
-        {cards.map((card, i) => {
-          return (
-            <CustomLink
-              as="a"
-              key={i}
-              mx="s"
-              boxShadow="none"
-              href={getUrlFromRelatedNode(card?.relatedNode)}
-              Component={HorizontalHighlightCard}
-              coverImage={card?.coverImage?.sources[0]?.uri || '/cf-logo.png'}
-              coverImageOverlay={true}
-              title={card?.title}
-              description={card?.summary}
-              type={cardType}
-            />
-          );
-        })}
-      </CardCarousel>
-    </Box>
+    !props.loading && (
+      <Box>
+        {!isEmpty(title) && <Box as="h2">{title}</Box>}
+        {!isEmpty(subtitle) && <Box as="p">{subtitle}</Box>}
+        <CardCarousel
+          cardsDisplayed={cardsDisplayed}
+          hideArrows={!cards || cards.length < 2}
+          mx={'-0.625rem'}
+        >
+          {cards.map((card, i) => {
+            return (
+              <CustomLink
+                as="a"
+                key={i}
+                mx="s"
+                boxShadow="none"
+                href={getUrlFromRelatedNode(card?.relatedNode)}
+                Component={HorizontalHighlightCard}
+                coverImage={card?.coverImage?.sources[0]?.uri || '/cf-logo.png'}
+                coverImageOverlay={true}
+                title={card?.title}
+                description={card?.summary}
+                type={cardType}
+              />
+            );
+          })}
+        </CardCarousel>
+      </Box>
+    )
   );
 }
 
