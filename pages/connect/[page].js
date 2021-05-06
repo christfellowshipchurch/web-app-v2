@@ -67,11 +67,13 @@ export default function Page({
         subtitle={node.subtitle}
         summary={node.summary}
         showTitleOverImage={node.showTitleOverImage}
+        mb={{ _: 'l', md: 'xxl' }}
       />
       {links?.length ? (
         <Section>
           <EventsCallout
             mx={{ _: 0, lg: 'xl' }}
+            mb={{ _: 'l', md: 'xxl' }}
             title="News & Events"
             icon={
               <Info
@@ -100,7 +102,7 @@ export default function Page({
         <Section>
           <CampusFilter
             px={{ _: 'l', md: 'xxl' }}
-            my={{ _: 'l', md: 'xxl' }}
+            mb={{ _: 'l', md: 'xxl' }}
             filterWidth="200px"
             data={childContent}
             campuses={campuses}
@@ -127,7 +129,7 @@ export default function Page({
         <Section>
           <CardGrid
             px={{ _: 'l', md: 'xxl' }}
-            my={{ _: 'l', md: 'xxl' }}
+            mb={{ _: 'l', md: 'xxl' }}
             gridTemplateColumns={
               story
                 ? { _: 'repeat(1, 1fr)', lg: 'repeat(2, 1fr)' }
@@ -172,8 +174,7 @@ export default function Page({
         <Section>
           <Longform
             px={{ _: 'l', md: 'xxl' }}
-            mt={{ _: 'l', md: 'xxl' }}
-            mb={{ _: 'l' }}
+            mb={{ _: 'l', md: 'xxl' }}
             dangerouslySetInnerHTML={{ __html: node.htmlContent }}
           />
         </Section>
@@ -183,7 +184,7 @@ export default function Page({
           <PageSplit title="Meet the Staff" />
           <Section
             px={{ _: 'l', md: 'xxl' }}
-            my={{ _: 'l', md: 'xxl' }}
+            mb={{ _: 'l', md: 'xxl' }}
             display="flex"
             flexWrap="wrap"
             justifyContent="center"
@@ -205,7 +206,7 @@ export default function Page({
           <PageSplit title="Connect" />
           <Section
             px={{ _: 'l', md: 'xxl' }}
-            my={{ _: 'l', md: 'xxl' }}
+            mb={{ _: 'l', md: 'xxl' }}
             display="flex"
             flexWrap="wrap"
             justifyContent="center"

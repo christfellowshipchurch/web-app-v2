@@ -21,8 +21,9 @@ export default function Page({ data } = {}) {
         src={data.coverImage?.sources?.[0].uri || ''}
         width="auto"
         overlay=""
+        mb={{ _: 'l', xl: 'xxl' }}
       />
-      <Section px={{ _: 'l', lg: 'xxl' }} my={{ _: 'l', lg: 'xxl' }}>
+      <Section px={{ _: 'l', lg: 'xxl' }} mb={{ _: 'l' }}>
         <Box>
           {data.subtitle && (
             <Heading
