@@ -107,7 +107,7 @@ function Primary(props = {}) {
 
 function QuickAction(props = {}) {
   return (
-    <Button as="a" href={props.data.action}>
+    <Button as="a" href={props.data.action} target="_blank">
       {props.data.call}
     </Button>
   );
