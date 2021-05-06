@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import { systemPropTypes } from 'ui-kit';
 import Styled from './Checkbox.styles';
+// import { useCustomValidity } from 'device-agnostic-ui';
 
 function Checkbox(props = {}) {
+  /**
+   * todo : Need to find better solution updating Custom Validity text for checkboxes.
+   */
+  // const ref = useRef();
+  // useCustomValidity(ref, props.validationMessage);
+
   return (
     <Styled {...props.containerProps}>
       <Styled.Input id={props.id} name={props.id} {...props} />
@@ -31,6 +38,7 @@ Checkbox.propTypes = {
 
 Checkbox.defaultProps = {
   type: 'checkbox',
+  validationMessage: 'Select this checkbox to continue',
 };
 
 export default Checkbox;
