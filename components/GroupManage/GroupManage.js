@@ -5,7 +5,7 @@ import capitalize from 'lodash/capitalize';
 import { slugify } from 'utils';
 import { GroupManageProvider } from 'providers';
 import { initialState } from 'providers/GroupManageProvider';
-import { Box, Card, List } from 'ui-kit';
+import { Box, Card } from 'ui-kit';
 import { CustomLink } from 'components';
 
 import GroupManagePhoto from './GroupManagePhoto';
@@ -60,22 +60,46 @@ function GroupManage(props = {}) {
               {props?.data?.title}
             </Box>
           </Box>
-          <Card boxShadow="base" p="base">
-            <List>
-              {Object.values(initialState.sections).map((_section, idx) => (
-                <Box as="li" key={idx}>
-                  <Box
-                    as="a"
-                    href="#0"
-                    onClick={handleSectionClick(_section)}
-                    color={section === _section ? 'fg' : 'primary'}
-                    textDecoration="none"
-                  >
-                    Update {capitalize(_section)}
-                  </Box>
-                </Box>
-              ))}
-            </List>
+          <Card boxShadow="base">
+            <Box display="flex" flexDirection="column">
+              {Object.values(initialState.sections).map(
+                (_section, idx, arr) => {
+                  let borderRadius = {};
+
+                  if (idx === 0) {
+                    borderRadius = {
+                      borderTopLeftRadius: '0.375rem',
+                    };
+                  }
+
+                  if (idx === arr.length - 1) {
+                    borderRadius = {
+                      borderBottomLeftRadius: '0.375rem',
+                    };
+                  }
+
+                  return (
+                    <Box
+                      key={idx}
+                      width="100%"
+                      p="s"
+                      px="base"
+                      onClick={handleSectionClick(_section)}
+                      backgroundColor={
+                        section === _section ? 'primarySubduedHover' : ''
+                      }
+                      borderLeft={section === _section ? '5px solid' : ''}
+                      {...borderRadius}
+                      color={section === _section ? 'primary' : 'neutrals.700'}
+                      cursor="pointer"
+                      fontWeight="bold"
+                    >
+                      Update {capitalize(_section)}
+                    </Box>
+                  );
+                }
+              )}
+            </Box>
           </Card>
         </Box>
         <Box>{render()}</Box>
