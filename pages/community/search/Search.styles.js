@@ -3,7 +3,7 @@ import { themeGet } from '@styled-system/theme-get';
 
 import { system } from 'ui-kit';
 
-const GroupSearchFilters = {};
+const Search = {};
 
 const visibility = ({ visible }) => css`
   visibility: ${visible ? 'visible' : 'hidden'};
@@ -16,6 +16,6 @@ const ResultsCount = styled.p`
   ${system}
 `;
 
-GroupSearchFilters.ResultsCount = ResultsCount;
+Search.ResultsCount = ResultsCount;
 
-export default GroupSearchFilters;
+export default Search;
