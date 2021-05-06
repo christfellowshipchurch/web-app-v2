@@ -5,7 +5,7 @@ import capitalize from 'lodash/capitalize';
 import { slugify } from 'utils';
 import { GroupManageProvider } from 'providers';
 import { initialState } from 'providers/GroupManageProvider';
-import { Box, Button, Card, List } from 'ui-kit';
+import { Box, Card } from 'ui-kit';
 import { CustomLink } from 'components';
 
 import GroupManagePhoto from './GroupManagePhoto';
@@ -60,22 +60,26 @@ function GroupManage(props = {}) {
               {props?.data?.title}
             </Box>
           </Box>
-          <Card boxShadow="base" p="base">
-            <List>
+          <Card boxShadow="base">
+            <Box display="flex" flexDirection="column">
               {Object.values(initialState.sections).map((_section, idx) => (
-                <Box as="li" key={idx}>
-                  <Button
-                    rounded
-                    variant="chip"
-                    href="#0"
-                    onClick={handleSectionClick(_section)}
-                    status={section === _section ? 'SELECTED' : ''}
-                  >
-                    Update {capitalize(_section)}
-                  </Button>
+                <Box
+                  key={idx}
+                  width="100%"
+                  p="s"
+                  px="base"
+                  onClick={handleSectionClick(_section)}
+                  backgroundColor={
+                    section === _section ? 'primarySubduedHover' : ''
+                  }
+                  color={section === _section ? 'primary' : 'neutrals.700'}
+                  cursor="pointer"
+                  fontWeight="bold"
+                >
+                  Update {capitalize(_section)}
                 </Box>
               ))}
-            </List>
+            </Box>
           </Card>
         </Box>
         <Box>{render()}</Box>
