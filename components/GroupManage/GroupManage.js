@@ -62,24 +62,43 @@ function GroupManage(props = {}) {
           </Box>
           <Card boxShadow="base">
             <Box display="flex" flexDirection="column">
-              {Object.values(initialState.sections).map((_section, idx) => (
-                <Box
-                  key={idx}
-                  width="100%"
-                  p="s"
-                  px="base"
-                  onClick={handleSectionClick(_section)}
-                  backgroundColor={
-                    section === _section ? 'primarySubduedHover' : ''
+              {Object.values(initialState.sections).map(
+                (_section, idx, arr) => {
+                  let borderRadius = {};
+
+                  if (idx === 0) {
+                    borderRadius = {
+                      borderTopLeftRadius: '0.375rem',
+                    };
                   }
-                  borderLeft={section === _section ? '5px solid' : ''}
-                  color={section === _section ? 'primary' : 'neutrals.700'}
-                  cursor="pointer"
-                  fontWeight="bold"
-                >
-                  Update {capitalize(_section)}
-                </Box>
-              ))}
+
+                  if (idx === arr.length - 1) {
+                    borderRadius = {
+                      borderBottomLeftRadius: '0.375rem',
+                    };
+                  }
+
+                  return (
+                    <Box
+                      key={idx}
+                      width="100%"
+                      p="s"
+                      px="base"
+                      onClick={handleSectionClick(_section)}
+                      backgroundColor={
+                        section === _section ? 'primarySubduedHover' : ''
+                      }
+                      borderLeft={section === _section ? '5px solid' : ''}
+                      {...borderRadius}
+                      color={section === _section ? 'primary' : 'neutrals.700'}
+                      cursor="pointer"
+                      fontWeight="bold"
+                    >
+                      Update {capitalize(_section)}
+                    </Box>
+                  );
+                }
+              )}
             </Box>
           </Card>
         </Box>
