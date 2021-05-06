@@ -1,9 +1,8 @@
 function getURLFromType(node) {
   const [type, randomId] = node.id.split(':');
+  console.log(node);
   switch (type) {
-    case 'WeekendContentItem': {
-      return `/page/${randomId}`;
-    }
+    case 'WeekendContentItem':
     case 'MediaContentItem': {
       return `/sermon/${randomId}`;
     }
