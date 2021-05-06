@@ -31,9 +31,6 @@ const justify = ({ justifyItems }) => props => {
 };
 
 const CardGrid = styled.div`
-  > *:not(:last-child) {
-    margin-bottom: ${themeGet('space.l')};
-  }
 
   @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
     margin-left: auto;
@@ -43,11 +40,11 @@ const CardGrid = styled.div`
   display: grid;
   justify-items: center;
   grid-column-gap: ${themeGet('space.base')};
-  grid-row-gap: ${themeGet('space.l')};
+  grid-row-gap: ${props => themeGet(props.columns > 1 ? 'space.l' : 'space.xxl')};
   grid-template-columns: repeat(${props => props.columns}, 1fr);
 
   > *:not(:last-child) {
-    margin-bottom: 0;
+    margin-bottom: 0 !important;
   }
 
   ${collapse}

@@ -65,10 +65,10 @@ function HorizontalRow({
                     {item.title}
                   </Heading>
                 }
-                overlay={{
+                overlay={item.title ? {
                   color: theme.colors.almost_black,
                   opacity: '30%',
-                }}
+                } : undefined}
                 {...imageProps}
               />
             </RowItem>

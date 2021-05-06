@@ -17,17 +17,12 @@ import { GET_CONTENT_CHANNEL } from 'hooks/useContentChannel';
 import { Info } from 'phosphor-react';
 import { GET_CAMPUSES } from 'hooks/useCampuses';
 
-export default function Page({ data = {}, submenuLinks, campuses }) {
+export default function Page({ data = {}, campuses }) {
   const router = useRouter();
 
   if (data.loading || router.isFallback) {
     return null;
   }
-
-  const links = submenuLinks.filter(
-    ({ node: link }) =>
-      link.isFeatured && getIdSuffix(link.id) !== router.query.page
-  );
 
   const childContent = data.childContentItemsConnection?.edges;
   const ctaLinks = data.ctaLinks;
@@ -41,31 +36,6 @@ export default function Page({ data = {}, submenuLinks, campuses }) {
         summary={data.summary}
         showTitleOverImage={data.showTitleOverImage}
       />
-      {links.length ? (
-        <EventsCallout
-          title="About Long Hollow"
-          icon={
-            <Info
-              size={24}
-              style={{
-                color: theme.colors.neutrals[900],
-                opacity: '60%',
-                marginRight: theme.space.xxs,
-              }}
-            />
-          }
-        >
-          {links.slice(0, 4).map(({ node: link }) => (
-            <EventCallout
-              key={link.id}
-              title={link.title}
-              description={link.subtitle}
-              imageSrc={link.coverImage?.sources?.[0]?.uri}
-              onClick={() => router.push(`/about/${getIdSuffix(link.id)}`)}
-            />
-          ))}
-        </EventsCallout>
-      ) : null}
       {data.htmlContent && (
         <Section>
           <Longform

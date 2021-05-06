@@ -61,10 +61,10 @@ export default function PageDropdown({
                                 {item.title}
                               </Heading>
                             }
-                            overlay={{
+                            overlay={item.showTitleOverImage ? {
                               color: theme.colors.almost_black,
                               opacity: '30%',
-                            }}
+                            } : undefined}
                             dropShadow={false}
                             onClick={() =>
                               router.push(

@@ -53,6 +53,10 @@ const Longform = styled.div`
     line-height: ${themeGet('lineHeights.h5')};
   }
 
+  h1, h2, h3, h4, h5 { 
+    margin-top: ${themeGet('space.l')};
+  }
+
   blockquote {
     font-family: ${themeGet('fonts.heading')};
     font-size: ${themeGet('fontSizes.h4')};

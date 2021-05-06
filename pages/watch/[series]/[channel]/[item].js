@@ -29,8 +29,8 @@ export default function Item({ item } = {}) {
 
   return (
     <Layout meta={getMetaData(item)}>
-      <MainPhotoHeader src={item.coverImage?.sources?.[0]?.uri} showImage={false} overlay="" />
-      <Section mb="xl" px={{ _: 'l', md: 'xxl' }} mt={{ lg: '-120px'}}>
+      {!src ? <MainPhotoHeader src={item.coverImage?.sources?.[0]?.uri} showImage={false} overlay="" /> : null}
+      <Section mb="xl" px={{ _: 'l', md: 'xxl' }}>
         {src ? (
           <VideoPlayer
             my="l"

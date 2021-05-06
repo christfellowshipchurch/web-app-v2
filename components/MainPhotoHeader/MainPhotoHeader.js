@@ -37,7 +37,7 @@ function MainPhotoHeader({
           rounded
           {...imageProps}
         />}
-        {overlay && (
+        {showTitleOverImage && overlay && (
           <Styled.ImageOverlay background={overlay} backdrop={backdrop} />
         )}
         {(showTitleOverImage && (subtitle || title || summary)) && (
@@ -74,7 +74,7 @@ function MainPhotoHeader({
                 <Heading
                   color={{ _: 'fg', lg: 'neutrals.100' }}
                   variant="h5"
-                  maxWidth={{ lg: '360px' }}
+                  maxWidth={{ lg: '28%' }}
                   mt={{ _: 'm', lg: 'xs' }}
                   opacity="60%"
                   textAlign="left"

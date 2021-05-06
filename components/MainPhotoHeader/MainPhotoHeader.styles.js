@@ -20,7 +20,6 @@ Styled.Backdrop = styled(Box)`
     background-image: url(${props => props.src});
     background-size: cover;
     display: block;
-    filter: blur(5px);
     height: calc(100vw * 0.5625);
     margin-left: -5px;
     width: calc(100% + 10px);
@@ -28,7 +27,6 @@ Styled.Backdrop = styled(Box)`
 
   @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
     height: calc(${themeGet('breakpoints.lg')} * 0.5625);
-    margin-bottom: ${themeGet('space.m')};
   }
 
   ${system}
@@ -94,6 +92,9 @@ Styled.BackdropOverlay = styled(Box)`
     position: absolute;
     top: 0;
     width: 100%;
+    opacity: 1;
+    backdrop-filter: blur(25px);
+    background-color: rgba(255,255,255,0.33);
   }
 `;
 
@@ -129,6 +130,7 @@ Styled.TextContainer = styled(Box)`
   flex-direction: column;
   margin: ${themeGet('space.l')};
   z-index: 1;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.1);
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     bottom: unset;
