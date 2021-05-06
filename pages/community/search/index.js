@@ -210,24 +210,25 @@ export default function CommunitySearch() {
                 </Box>
               </Box>
             )}
-
-            {hasResults && (
-              <GroupsProvider data={groups} Component={GroupsResultsList} />
-            )}
             <Box>
-              {loading && (
-                <Box display="flex" justifyContent="center" my="xxl">
-                  <Loader />
-                </Box>
+              {hasResults && (
+                <GroupsProvider data={groups} Component={GroupsResultsList} />
               )}
+              <Box>
+                {loading && (
+                  <Box display="flex" justifyContent="center" my="xxl">
+                    <Loader />
+                  </Box>
+                )}
 
-              {!loading && hasMorePages && (
-                <Box display="flex" justifyContent="center" mt="xl">
-                  <Button variant="tertiary" onClick={handleLoadMore}>
-                    Load more
-                  </Button>
-                </Box>
-              )}
+                {!loading && hasMorePages && (
+                  <Box display="flex" justifyContent="center" mt="xl">
+                    <Button variant="tertiary" onClick={handleLoadMore}>
+                      Load more
+                    </Button>
+                  </Box>
+                )}
+              </Box>
             </Box>
           </Box>
         </Cell>
