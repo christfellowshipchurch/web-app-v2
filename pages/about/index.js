@@ -11,7 +11,7 @@ import { htmlToReactParser } from 'utils';
 export default function About() {
   const [active, setActive] = useState('leadership');
   return (
-    <>
+    <Box width="100%">
       <SEO title="About" />
       <Box display="grid" gridTemplateRows="auto 1fr auto" height="100vh">
         <Header />
@@ -176,6 +176,6 @@ export default function About() {
         )}
         <Footer />
       </Box>
-    </>
+    </Box>
   );
 }
