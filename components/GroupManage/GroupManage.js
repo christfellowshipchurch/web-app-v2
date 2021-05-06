@@ -72,6 +72,7 @@ function GroupManage(props = {}) {
                   backgroundColor={
                     section === _section ? 'primarySubduedHover' : ''
                   }
+                  borderLeft={section === _section ? '5px solid' : ''}
                   color={section === _section ? 'primary' : 'neutrals.700'}
                   cursor="pointer"
                   fontWeight="bold"
