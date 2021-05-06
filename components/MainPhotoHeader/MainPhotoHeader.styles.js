@@ -45,6 +45,7 @@ Styled.ImageContainer = styled(Box)`
             position: absolute;
             top: 0;
             transform: translate(-50%, 0);
+            filter: drop-shadow(0px 20px 48px rgba(0, 0, 0, 0.25));
           }
 
           @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
@@ -52,7 +53,6 @@ Styled.ImageContainer = styled(Box)`
             padding-top: ${themeGet('space.l')};
             width: ${themeGet('breakpoints.lg')};
           }
-          filter: drop-shadow(0px 20px 48px rgba(0, 0, 0, 0.25));
         `
       : css`
           height: auto;
@@ -94,7 +94,7 @@ Styled.BackdropOverlay = styled(Box)`
     width: 100%;
     opacity: 1;
     backdrop-filter: blur(25px);
-    background-color: rgba(255,255,255,0.33);
+    background-color: rgba(255, 255, 255, 0.33);
   }
 `;
 
@@ -130,7 +130,7 @@ Styled.TextContainer = styled(Box)`
   flex-direction: column;
   margin: ${themeGet('space.l')};
   z-index: 1;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     bottom: unset;
@@ -154,7 +154,7 @@ Styled.TextContainer = styled(Box)`
 
 Styled.TextPosition = styled(Box)`
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
-   pointer-events: none;
+    pointer-events: none;
     position: absolute;
     display: flex;
     justify-content: center;
