@@ -35,13 +35,13 @@ export default function Page({ data = {}, campuses }) {
         subtitle={data.subtitle}
         summary={data.summary}
         showTitleOverImage={data.showTitleOverImage}
+        mb={{ _: 'l', md: 'xxl' }}
       />
       {data.htmlContent && (
         <Section>
           <Longform
             px={{ _: 'l', md: 'xxl' }}
-            mt={{ _: 'l', md: 'xxl' }}
-            mb={{ _: 'l' }}
+            mb={{ _: 'l', md: 'xxl' }}
             dangerouslySetInnerHTML={{ __html: data.htmlContent }}
           />
         </Section>
@@ -50,7 +50,7 @@ export default function Page({ data = {}, campuses }) {
         <Section>
           <CampusFilter
             px={{ _: 'l', md: 'xxl' }}
-            my={{ _: 'l', md: 'xxl' }}
+            mb={{ _: 'l', md: 'xxl' }}
             filterWidth="200px"
             data={childContent}
             campuses={campuses}
@@ -92,7 +92,7 @@ export default function Page({ data = {}, campuses }) {
         <Section bg="rgba(142, 142, 147, 0.12)">
           <CardGrid
             px={{ _: 'l', md: 'xxl' }}
-            my={{ _: 'l', md: 'xxl' }}
+            mb={{ _: 'l', md: 'xxl' }}
             columns="1"
           >
             {ctaLinks?.map((cta, i) => (

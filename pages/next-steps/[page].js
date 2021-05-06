@@ -32,16 +32,17 @@ export default function Page({ data = {}, campuses }) {
   return (
     <Layout meta={getMetaData(node)} bg="bg_alt">
       <MainPhotoHeader
+        mb={{ _: 'l', md: 'xxl' }}
         src={node.coverImage?.sources?.[0].uri || ''}
         title={node.title}
         subtitle={node.subtitle}
         summary={node.summary}
       />
       {node.ctaLinks?.length ? (
-        <Section>
+        <Section mb={{ _: 0 }}>
           <CardGrid
             px={{ _: 'l', md: 'xxl' }}
-            my={{ _: 'l', md: 'xxl' }}
+            mb={{ _: 'l', md: 'xxl' }}
             columns="1"
           >
             {node.ctaLinks?.map((cta, i) => (
@@ -68,8 +69,7 @@ export default function Page({ data = {}, campuses }) {
         <Section>
           <Longform
             px={{ _: 'l', md: 'xxl' }}
-            mt={{ _: 'l', md: 'xxl' }}
-            mb={{ _: 'l' }}
+            mb={{ _: 'l', md: 'xxl' }}
             dangerouslySetInnerHTML={{ __html: node.htmlContent }}
           />
         </Section>
@@ -78,7 +78,7 @@ export default function Page({ data = {}, campuses }) {
         <Section>
           <CampusFilter
             px={{ _: 'l', md: 'xxl' }}
-            my={{ _: 'l', md: 'xxl' }}
+            mb={{ _: 'l', md: 'xxl' }}
             filterWidth="200px"
             data={childContent}
             campuses={campuses}
