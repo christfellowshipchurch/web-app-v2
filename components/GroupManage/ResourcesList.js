@@ -10,28 +10,31 @@ function ResourcesList(props = {}) {
 
   return (
     <List>
-      {groupData.resources.map((resource, idx) => (
-        <Box as="li" key={idx} display="flex">
-          <RemoveResourceLink resource={resource} />
-          <Box flex="1">
-            <Box as="b" fontWeight="bold">
-              {resource?.title}
-            </Box>
-            {resource?.relatedNode.url ? (
-              <Box
-                as="span"
-                color="subdued"
-                display="block"
-                fontSize="s"
-                // TODO: This shouldn't be an inline style.
-                style={{ wordBreak: 'break-word' }}
-              >
-                {resource?.relatedNode.url}
+      {groupData.resources.map(
+        (resource, idx) =>
+          resource?.title && (
+            <Box as="li" key={idx} display="flex">
+              <RemoveResourceLink resource={resource} />
+              <Box flex="1">
+                <Box as="b" fontWeight="bold">
+                  {resource?.title}
+                </Box>
+                {resource?.relatedNode.url ? (
+                  <Box
+                    as="span"
+                    color="subdued"
+                    display="block"
+                    fontSize="s"
+                    // TODO: This shouldn't be an inline style.
+                    style={{ wordBreak: 'break-word' }}
+                  >
+                    {resource?.relatedNode.url}
+                  </Box>
+                ) : null}
               </Box>
-            ) : null}
-          </Box>
-        </Box>
-      ))}
+            </Box>
+          )
+      )}
     </List>
   );
 }
