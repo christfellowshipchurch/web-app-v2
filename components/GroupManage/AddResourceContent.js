@@ -38,7 +38,6 @@ function AddResourceContent(props = {}) {
       variables: {
         contentItemId: selection,
         groupId: groupData.id,
-        relatedNodeId: selection,
       },
       refetchQueries: ['getGroup'],
     });
