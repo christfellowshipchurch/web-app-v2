@@ -1,14 +1,41 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 
-import { Box, Avatar } from 'ui-kit';
+import { Box, Avatar, Loader } from 'ui-kit';
 import { ContentLayout, Share } from 'components';
 
 import ContentVideo from './ContentVideo';
 import ContentVideosList from './ContentVideosList';
 
 function ContentSingle(props = {}) {
+  const [currentVideo, setCurrentVideo] = useState(
+    Array.isArray(props.data?.videos) ? props.data.videos[0] : null
+  );
+
+  useEffect(() => {
+    // Do we have videos now, when we didn't before?
+    // ( Loading just finished, so we can properly select the first video if present )
+    if (props.data?.videos?.length >= 1 && currentVideo === null) {
+      setCurrentVideo(props.data.videos[0]);
+    }
+  }, [props.data?.videos, currentVideo]);
+
+  if (props.loading) {
+    return (
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignContent="center"
+        alignItems="center"
+        width="100%"
+        minHeight="50vh"
+      >
+        <Loader />
+      </Box>
+    );
+  }
+
   const {
     author,
     coverImage,
@@ -21,16 +48,11 @@ function ContentSingle(props = {}) {
     title,
     videos = [],
   } = props.data;
-  const [currentVideo, setCurrentVideo] = useState(
-    Array.isArray(videos) ? videos[0] : null
-  );
 
   const coverImageUri = coverImage?.sources[0]?.uri;
   const authorName = author
     ? `${author.firstName} ${author.lastName}`
     : undefined;
-
-  const hasMultipleVideos = videos?.length >= 2;
 
   const handleSelectVideo = video => {
     if (video !== currentVideo) {
@@ -47,7 +69,7 @@ function ContentSingle(props = {}) {
         image: coverImageUri,
         author: authorName,
         url: typeof window !== 'undefined' ? window.location.href : undefined,
-        video: videos[0]?.sources[0]?.uri,
+        video: currentVideo?.sources[0]?.uri,
       }}
       summary={schedule?.friendlyScheduleText || summary}
       coverImage={currentVideo ? null : coverImageUri}
@@ -80,7 +102,7 @@ function ContentSingle(props = {}) {
         </Box>
       )}
       contentTitleD="About"
-      contentTitleE={hasMultipleVideos ? 'Videos' : null}
+      contentTitleE={videos?.length >= 2 ? 'Videos' : null}
       renderContentE={() => (
         <ContentVideosList
           thumbnail={coverImageUri}
@@ -96,6 +118,8 @@ function ContentSingle(props = {}) {
 
 ContentSingle.propTypes = {
   data: PropTypes.object,
+  error: PropTypes.any,
+  loading: PropTypes.bool,
 };
 
 export default ContentSingle;
