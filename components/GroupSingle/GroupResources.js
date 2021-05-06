@@ -25,6 +25,7 @@ export default function GroupResources(props = {}) {
               key={resource.relatedNode?.id}
               href={getURLFromType(resource.relatedNode)}
               textDecoration="none"
+              target="_blank"
               onClick={() => {
                 amplitude.trackEvent({
                   category: 'Group Item',
