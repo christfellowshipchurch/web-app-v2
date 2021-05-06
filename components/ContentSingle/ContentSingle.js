@@ -10,9 +10,9 @@ import ContentVideosList from './ContentVideosList';
 
 function ContentSingle(props = {}) {
   const {
-    __typename,
     author,
     coverImage,
+    featureFeed,
     htmlContent,
     mode,
     publishDate,
@@ -54,20 +54,6 @@ function ContentSingle(props = {}) {
       renderA={() => (
         <ContentVideo video={currentVideo} poster={coverImageUri} />
       )}
-      renderC={() => (
-        <Box justifySelf="flex-end" alignSelf="start">
-          <Share title={title} />
-        </Box>
-      )}
-      contentTitleD={__typename === 'EventContentItem' ? 'About' : null}
-      contentTitleE={hasMultipleVideos ? 'Videos' : null}
-      renderContentE={() => (
-        <ContentVideosList
-          thumbnail={coverImageUri}
-          videos={videos}
-          onSelectVideo={handleSelectVideo}
-        />
-      )}
       renderContentB={() =>
         author && (
           <Box display="flex" mt="base">
@@ -90,26 +76,26 @@ function ContentSingle(props = {}) {
       }
       renderC={() => (
         <Box justifySelf="flex-end" alignSelf="start">
-          <Share title={props.data?.title} />
+          <Share title={title} />
         </Box>
       )}
       contentTitleD="About"
       contentTitleE={hasMultipleVideos ? 'Videos' : null}
       renderContentE={() => (
         <ContentVideosList
-          thumbnail={coverImage}
-          videos={props.data?.videos}
+          thumbnail={coverImageUri}
+          videos={videos}
           onSelectVideo={handleSelectVideo}
         />
       )}
-      htmlContent={props.data.htmlContent}
-      features={props?.data?.featureFeed?.features}
+      htmlContent={htmlContent}
+      features={featureFeed?.features}
     />
   );
 }
 
 ContentSingle.propTypes = {
-  data: PropTypes.array,
+  data: PropTypes.object,
 };
 
 export default ContentSingle;
