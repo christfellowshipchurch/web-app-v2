@@ -35,7 +35,7 @@ const AddToCalendar = (
     )}
     {...props}
   >
-    <List py="xs" space="0">
+    <List textAlign="left" py="xs" space="0">
       <Box as="li">
         <CustomLink
           href={icsLink({ ...event, description: alternateDescription })}

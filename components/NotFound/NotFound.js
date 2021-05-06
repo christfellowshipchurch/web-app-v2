@@ -10,17 +10,20 @@ const NotFound = () => {
         <Box
           as="img"
           alt="Error Image"
+          width="90%%"
           maxWidth={750}
           src="/error.png"
           margin="auto"
         />
-        <Box as="h1" mt="base">Page Not Found</Box>
-        <Box as="p" fontSize="l" p="l">
+        <Box as="h1" mt="l">
+          Page Not Found
+        </Box>
+        <Box as="p" fontSize="l" mb="xxl">
           The page you’re looking for doesn’t exist, or is unavailable.
         </Box>
       </Box>
     </Layout>
   );
-}
+};
 
-export default NotFound
+export default NotFound;
