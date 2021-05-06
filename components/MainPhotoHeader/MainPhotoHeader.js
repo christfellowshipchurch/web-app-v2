@@ -23,7 +23,6 @@ function MainPhotoHeader({
   imageProps = {},
   ...props
 } = {}) {
-  console.log(props);
   return (
     <Styled.Container {...props}>
       {backdrop && <Styled.Backdrop src={src} />}
