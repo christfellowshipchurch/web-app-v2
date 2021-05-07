@@ -1,12 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Box, Button } from 'ui-kit';
+import { Box, Loader } from 'ui-kit';
 import { ContentLayout, Share } from 'components';
 
 import EventGroupings from './EventGroupings';
 
 function EventSingle(props = {}) {
+  if (props.loading) {
+    return (
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignContent="center"
+        alignItems="center"
+        width="100%"
+        minHeight="50vh"
+      >
+        <Loader />
+      </Box>
+    );
+  }
+
   return (
     <ContentLayout
       mode={props.data.mode}
@@ -26,6 +41,13 @@ function EventSingle(props = {}) {
   );
 }
 
-EventSingle.propTypes = {};
+EventSingle.propTypes = {
+  data: PropTypes.any,
+  loading: PropTypes.bool,
+};
+
+EventSingle.defaultProps = {
+  loading: true,
+};
 
 export default EventSingle;
