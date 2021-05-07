@@ -48,13 +48,14 @@ function Sidebar(props = {}) {
     filtersDispatch(resetValues());
   }
 
+  // Disables the 'In Person' meeting type if you have 'Online' selected as your campus
   const disableInPerson =
     filtersState.values.campuses[0] === 'Online' ? ['In Person'] : null;
 
-  const noFilters = Object.values(filtersState.values).every(item =>
+  const noFiltersSelected = Object.values(filtersState.values).every(item =>
     isEmpty(item)
   );
-  console.log('noFilters', noFilters);
+
   return (
     <Box
       as="form"
@@ -115,7 +116,7 @@ function Sidebar(props = {}) {
           optionsProps={{ display: 'flex', flexDirection: 'column' }}
         />
       </Box>
-      {!noFilters && (
+      {!noFiltersSelected && (
         <Button variant="secondary" onClick={handleClearAllClick}>
           Clear All
         </Button>
