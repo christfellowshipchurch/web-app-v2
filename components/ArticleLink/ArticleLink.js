@@ -24,7 +24,7 @@ function ArticleLink({
         float="right"
         width={{ _: '100%', lg: 'auto' }}
       />
-      <Box mr="l">
+      <Box mr="m">
         <Text fontWeight="700" variant="s">
           {title}
         </Text>
