@@ -123,7 +123,7 @@ function GroupSingle(props = {}) {
         titleIconLink={() =>
           isLeader ? (
             // NOTE: The `router.pathname` from `useRouter()` didn't work for some reason.
-            <CustomLink href={`${window.location.pathname}/manage`}>
+            <CustomLink href={`${window.location.pathname}/edit`}>
               <Icon name="gear" ml="xs" mt="xxs" />
             </CustomLink>
           ) : null
