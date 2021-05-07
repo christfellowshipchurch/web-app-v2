@@ -1,6 +1,6 @@
 import { GET_STAFF_MEMBER } from 'hooks/useStaffMember';
 import { Layout, MainPhotoHeader } from 'components';
-import { Box, Heading, Longform, Section } from 'ui-kit';
+import { Box, Heading, Longform, Section, Image } from 'ui-kit';
 import { initializeApollo } from 'lib/apolloClient';
 import { getStaffId, getMetaData } from 'utils';
 
@@ -8,48 +8,46 @@ export default function Page({ data }) {
 
   return (
     <Layout meta={getMetaData(data)} bg="bg_alt">
-      <MainPhotoHeader
-        src={data.photo?.uri || ''}
-        mt="xl"
-        mx="xl"
-        width="auto"
-        imageProps={{ objectFit: 'contain', maxHeight: '40vh' }}
-      />
       <Section>
-        <Box px="xxl" pt="xl" pb="m">
-          {(data.campus?.name) && (
-            <Heading
-              fontSize="h2"
-              lineHeight="h2"
-              color="fg"
-              fontWeight="800"
-              opacity="50%"
-            >
-              {data.campus?.name}
-            </Heading>
-          )}
-          {data.firstName && data.lastName && (
-            <Heading
-              fontSize="h1"
-              lineHeight="h1"
-              color="fg"
-              fontWeight="800"
-              textTransform="uppercase"
-            >
-              {`${data.firstName} ${data.lastName}`}
-            </Heading>
-          )}
-          {data.position && (
-            <Heading
-              fontSize="h3"
-              lineHeight="h3"
-              color="fg"
-              fontWeight="700"
-              my="m"
-            >
-              {data.position}
-            </Heading>
-          )}
+        <Box display={{md: 'block', lg: "flex"}} mt={{_: 'l'}} alignItems="column">
+          <Box flex="1" display="flex" justifyContent="center">
+            <Image src={data?.photo?.uri}/> 
+          </Box>
+          <Box flex="1" pt="xl" pb="m" display="flex" flexDirection="column" alignItems={{ _: "center", lg: 'flex-start'}}>
+            {(data.campus?.name) && (
+              <Heading
+                fontSize="h2"
+                lineHeight="h2"
+                color="fg"
+                fontWeight="800"
+                opacity="50%"
+              >
+                {data.campus?.name}
+              </Heading>
+            )}
+            {data.firstName && data.lastName && (
+              <Heading
+                fontSize="h1"
+                lineHeight="h1"
+                color="fg"
+                fontWeight="800"
+                textTransform="uppercase"
+              >
+                {`${data.firstName} ${data.lastName}`}
+              </Heading>
+            )}
+            {data.position && (
+              <Heading
+                fontSize="h3"
+                lineHeight="h3"
+                color="fg"
+                fontWeight="700"
+                // my="m"
+              >
+                {data.position}
+              </Heading>
+            )}
+          </Box>
         </Box>
       </Section>
       {data.htmlContent && (
