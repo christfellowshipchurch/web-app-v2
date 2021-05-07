@@ -54,7 +54,7 @@ function PageSingle(props = {}) {
   const coverImage = data?.coverImage?.sources[0]?.uri;
   const features = data?.featureFeed?.features;
 
-  if (true) {
+  if (loading) {
     return (
       <Box
         display="flex"
