@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { useCurrentBreakpoint } from 'hooks';
 import { Video } from 'components';
-import { Button, DefaultCard, Icon } from 'ui-kit';
+import { DefaultCard, Icon } from 'ui-kit';
 
 import Styled from './ContentSingle.styles';
 
@@ -47,7 +47,7 @@ export default function ContentVideo(props = {}) {
         )
       }
       mb="l"
-    ></DefaultCard>
+    />
   );
 }
 

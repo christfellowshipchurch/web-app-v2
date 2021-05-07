@@ -152,7 +152,7 @@ function useContentItem(options = {}) {
   });
 
   return {
-    item: query?.data?.getNodeByPathname || [],
+    item: query?.data?.getNodeByPathname || null,
     ...query,
   };
 }
