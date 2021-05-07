@@ -80,7 +80,7 @@ function AuthDetails() {
             <BirthDateField onChange={handleChange} error={error?.birthdate} />
           </Box>
           <Box>
-            <GenderField onChange={handleChange} />
+            <GenderField onChange={handleChange} initialValue={values.gender}/>
           </Box>
         </Box>
         <Box textAlign="center">

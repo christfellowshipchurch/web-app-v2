@@ -11,7 +11,7 @@ const useForm = callback => {
   function handleChange(event) {
     event.persist();
     const { name, value, type } = event.target;
-
+    console.log(values);
     // If we're dealing with a `<input type="checkbox">`, then we
     // need to pass along the `checked` value instead of `value`.
     if (type === 'checkbox') {
