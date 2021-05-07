@@ -92,7 +92,7 @@ export default function Page({ data = {}, campuses }) {
         <Section bg="rgba(142, 142, 147, 0.12)">
           <CardGrid
             px={{ _: 'l', md: 'xxl' }}
-            mb={{ _: 'l', md: 'xxl' }}
+            my={{ _: 'l', md: 'xxl' }}
             columns="1"
           >
             {ctaLinks?.map((cta, i) => (
