@@ -1,8 +1,15 @@
+import { themeGet } from '@styled-system/theme-get';
 import { GET_STAFF_MEMBER } from 'hooks/useStaffMember';
 import { Layout, MainPhotoHeader } from 'components';
 import { Box, Heading, Longform, Section, Image } from 'ui-kit';
 import { initializeApollo } from 'lib/apolloClient';
 import { getStaffId, getMetaData } from 'utils';
+import styled from 'styled-components';
+
+const ProfileImage = styled(Image)`
+  filter: drop-shadow(0px 20px 48px rgba(0, 0, 0, 0.25));
+  border-radius: ${themeGet('radii.image')};
+`;
 
 export default function Page({ data }) {
 
@@ -11,7 +18,7 @@ export default function Page({ data }) {
       <Section>
         <Box display={{md: 'block', lg: "flex"}} mt={{_: 'l'}} alignItems="column">
           <Box flex="1" display="flex" justifyContent="center">
-            <Image src={data?.photo?.uri}/> 
+            <ProfileImage src={data?.photo?.uri} /> 
           </Box>
           <Box flex="1" pt="xl" pb="m" display="flex" flexDirection="column" alignItems={{ _: "center", lg: 'flex-start'}}>
             {(data.campus?.name) && (

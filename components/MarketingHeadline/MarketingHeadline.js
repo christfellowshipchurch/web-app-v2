@@ -13,6 +13,7 @@ function MarketingHeadline({
   justify,
   actions,
   supertitle,
+  textProps,
   ...props
 } = {}) {
   let sideContent;
@@ -78,6 +79,7 @@ function MarketingHeadline({
         textAlign={{ _: 'center', lg: justify }}
         flex="1 0 50%"
         px={{ _: 0, lg: 'm' }}
+        {...textProps}
       >
         {supertitle && (
           <Heading

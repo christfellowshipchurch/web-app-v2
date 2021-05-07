@@ -186,10 +186,11 @@ export default function Watch({ series, watchPages, sermons }) {
                 image={{
                   src: page.coverImage?.sources?.[0]?.uri,
                 }}
-                my="l"
+                py="l"
                 justify={i % 2 === 0 ? 'left' : 'right'}
                 title={page.title}
                 description={page.summary}
+                textProps={{ px: 'xl' }}
                 actions={[
                   {
                     label: page.buttonText,
