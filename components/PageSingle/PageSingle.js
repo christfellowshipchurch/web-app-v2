@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { createMarkup } from 'utils';
 import isEmpty from 'lodash/isEmpty';
 
 import { Layout, NotFound, FeatureFeed } from 'components';
 
-import { Box, Longform } from 'ui-kit';
+import { Box, Loader, Longform } from 'ui-kit';
 import Styled from './PageSingle.styles';
 
 const renderBody = ({ title, summary, htmlContent, coverImage }) => {
@@ -45,7 +45,7 @@ const renderBody = ({ title, summary, htmlContent, coverImage }) => {
 
 function PageSingle(props = {}) {
   const data = props?.data;
-  const loading = props?.loading || false;
+  const loading = props?.loading;
 
   const id = data?.id;
   const title = data?.title;
@@ -53,6 +53,21 @@ function PageSingle(props = {}) {
   const htmlContent = data?.htmlContent;
   const coverImage = data?.coverImage?.sources[0]?.uri;
   const features = data?.featureFeed?.features;
+
+  if (true) {
+    return (
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignContent="center"
+        alignItems="center"
+        width="100%"
+        minHeight="50vh"
+      >
+        <Loader />
+      </Box>
+    );
+  }
 
   // note : this means that there is not a valid page found on the API, so we'll render the 404 message
   if (!loading && !id) {
@@ -99,7 +114,7 @@ function PageSingle(props = {}) {
 PageSingle.propTypes = {
   data: PropTypes.shape({
     title: PropTypes.string,
-    summmary: PropTypes.string,
+    summary: PropTypes.string,
     htmlContent: PropTypes.string,
     coverImage: PropTypes.shape({
       sources: PropTypes.arrayOf(
@@ -113,6 +128,10 @@ PageSingle.propTypes = {
       features: PropTypes.array,
     }),
   }),
+};
+
+PageSingle.defaultProps = {
+  loading: true,
 };
 
 export default PageSingle;
