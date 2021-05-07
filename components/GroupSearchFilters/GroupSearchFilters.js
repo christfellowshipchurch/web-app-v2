@@ -54,9 +54,10 @@ function GroupSearchFilters(props = {}) {
             rounded={true}
             variant="secondary"
             href="https://rock.gocf.org/page/2113"
-            display={{ _: 'inline', md: 'none' }}
+            display={{ _: 'block', md: 'none' }}
+            mr="s"
           >
-            Need help?
+            Help?
           </Button>
           {!modalState.activeModal.component && (
             <Box display={{ _: 'none', md: 'block' }}>

@@ -173,8 +173,8 @@ export default function CommunitySearch() {
               />
             )}
             <Styled.ResultsCount visible={showResultsCount}>
-              Showing {groups?.length} of {data?.searchGroups?.totalResults}{' '}
-              results
+              {!currentBreakpoint.isSmall ? 'Showing' : ''} {groups?.length} of{' '}
+              {data?.searchGroups?.totalResults} results
             </Styled.ResultsCount>
           </Box>
           <Box
