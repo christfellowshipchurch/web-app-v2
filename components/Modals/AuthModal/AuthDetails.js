@@ -4,6 +4,8 @@ import { getAge } from 'utils';
 import { useAuthIdentity, useForm } from 'hooks';
 import { Box, Button, TextInput } from 'ui-kit';
 import { BirthDateField, GenderField } from 'components';
+import { useAuth, update as updateAuth } from 'providers/AuthProvider';
+import { upperFirst } from 'lodash';
 
 function AuthDetails() {
   const {
@@ -13,8 +15,9 @@ function AuthDetails() {
     setStatus,
     handleAuthIdentity,
   } = useAuthIdentity();
+  const [_, dispatch] = useAuth();
   const { values, handleSubmit, handleChange } = useForm(() => {
-    const age = getAge(values.birthdate);
+    const age = getAge(values.birthDate);
     // Make sure they are at least 13 years of age.
     if (age < 13) {
       setError({
@@ -22,6 +25,11 @@ function AuthDetails() {
       });
     }
     if (!error) {
+      dispatch(updateAuth({ profile: {
+        ...values,
+        birthDate: new Date(values.birthDate),
+        gender: upperFirst(values.gender),
+      } }));
       setStatus('LOADING');
       handleAuthIdentity({ nextStep: 2 });
     }

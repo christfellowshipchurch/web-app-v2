@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 
-import { useAuthenticateCredentials, useForm, useVerifyPin } from 'hooks';
+import { useAuthenticateCredentials, useForm, useVerifyPin, useRegisterWithEmail, useRegisterWithSms } from 'hooks';
 import { useAuth, update as updateAuth } from 'providers/AuthProvider';
 import { showStep, useModalDispatch } from 'providers/ModalProvider';
 import { Box, Button, TextInput } from 'ui-kit';
 import ResendCode from './ResendCode';
 import ResetPassword from './ResetPassword';
+import { startCase, camelCase } from 'lodash';
 
 const COPY = {
   DESCRIPTION: {
@@ -26,6 +27,8 @@ function AuthConfirm() {
   const modalDispatch = useModalDispatch();
   const [verifyPin] = useVerifyPin();
   const [authenticateCredentials] = useAuthenticateCredentials();
+  const [registerWithSms] = useRegisterWithSms();
+  const [registerWithEmail] = useRegisterWithEmail();
   const onError = () => {
     setStatus('ERROR');
     setError({
@@ -38,21 +41,38 @@ function AuthConfirm() {
     modalDispatch(showStep(3));
     state?.onSuccess();
   };
-  const { values, handleChange, handleSubmit } = useForm(async () => {
+  const { values, handleChange, handleSubmit } = useForm(async (values) => {
     const passcode = values.passcode;
+    const profileFields = Object.keys(state?.profile || {}).map((key) => console.log(startCase(camelCase(key))) || ({
+      field: startCase(camelCase(key)).replace(/ /g, ''),
+      value: state?.profile[key],
+    }));
     setStatus('LOADING');
     if (state.type === 'sms') {
       try {
-        await verifyPin({
-          variables: { phone: state.identity, code: passcode },
-          update: (
-            cache,
-            { data: { authenticateWithSms: { token } = {} } = {} }
-          ) => {
-            onSuccess(token);
-          },
-          onError,
-        });
+        if (state.userExists) {
+          await verifyPin({
+            variables: { phone: state.identity, code: passcode },
+            update: (
+              cache,
+              { data: { authenticateWithSms: { token } = {} } = {} }
+            ) => {
+              onSuccess(token);
+            },
+            onError,
+          });
+        } else {
+          await registerWithSms({
+            variables: { identity: state.identity, password: passcode, userProfile: profileFields },
+            update: (
+              cache,
+              { data: { registerWithSms: { token } = {} } = {} }
+            ) => {
+              onSuccess(token);
+            },
+            onError,
+          });
+        }
       } catch (error) {
         onError();
         console.log(error);
@@ -60,13 +80,23 @@ function AuthConfirm() {
     }
     if (state.type === 'password') {
       try {
-        await authenticateCredentials({
-          variables: { email: state.identity, password: passcode },
-          update: (cache, { data: { authenticate: { token } = {} } = {} }) => {
-            onSuccess(token);
-          },
-          onError,
-        });
+        if (state.userExists){
+          await authenticateCredentials({
+            variables: { email: state.identity, password: passcode },
+            update: (cache, { data: { authenticate: { token } = {} } = {} }) => {
+              onSuccess(token);
+            },
+            onError,
+          });
+        } else {
+          await registerWithEmail({
+            variables: { identity: state.identity, password: passcode, userProfile: profileFields },
+            update: (cache, { data: { registerPerson: { token } = {} } = {} }) => {
+              onSuccess(token);
+            },
+            onError,
+          });
+        }
       } catch (error) {
         onError();
         console.log(error);

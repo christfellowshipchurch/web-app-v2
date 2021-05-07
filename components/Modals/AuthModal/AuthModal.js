@@ -21,7 +21,7 @@ function AuthModal(props = {}) {
       case 2: {
         return <Confirm />;
       }
-      case 3: {
+      case 3 : {
         return <Success />;
       }
       default: {

@@ -6,7 +6,7 @@ import { Box, TextInput } from 'ui-kit';
 function BirthDateField(props = {}) {
   return (
     <>
-      <TextInput id="birthdate" label="Birth Date" type="date" {...props} />
+      <TextInput id="birthDate" label="Birth Date" type="date" {...props} />
       {props.error ? (
         <Box as="p" color="alert" fontSize="s" mt="s">
           {props.error}

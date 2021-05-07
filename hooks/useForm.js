@@ -5,13 +5,12 @@ const useForm = callback => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    callback && callback();
+    callback && callback(values);
   }
 
   function handleChange(event) {
     event.persist();
     const { name, value, type } = event.target;
-    console.log(values);
     // If we're dealing with a `<input type="checkbox">`, then we
     // need to pass along the `checked` value instead of `value`.
     if (type === 'checkbox') {
