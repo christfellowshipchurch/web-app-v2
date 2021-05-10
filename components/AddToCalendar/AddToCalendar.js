@@ -53,6 +53,7 @@ const AddToCalendar = (
           Component={Menu.Link}
           px="base"
           py="xs"
+          target="_blank"
         >
           <Icon name="google" mr="s" />
           Google
