@@ -4,7 +4,7 @@ import colors from './colors';
 const theme = {
   breakpoints: {
     sm: rem('480px'),
-    md: rem('768px'),
+    md: rem('850px'),
     lg: rem('1024px'),
     xl: rem('1350px'),
   },
