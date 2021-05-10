@@ -1,12 +1,16 @@
 import { gql, useQuery } from '@apollo/client';
 
 export const GET_MESSAGE_CHANNEL = gql`
-  query getMessageChannel($itemId: ID!, $after: String) {
+  query getMessageChannel(
+    $itemId: ID!
+    $after: String
+    $orderBy: ContentItemsConnectionOrderInput
+  ) {
     node(id: $itemId) {
       id
       ... on UniversalContentItem {
         title
-        childContentItemsConnection(after: $after) {
+        childContentItemsConnection(after: $after, orderBy: $orderBy) {
           edges {
             node {
               id
