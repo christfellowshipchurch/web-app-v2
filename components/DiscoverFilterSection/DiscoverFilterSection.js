@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 
-import { getURLFromType, slugify } from 'utils';
+import { getUrlFromRelatedNode, getURLFromType, slugify } from 'utils';
 import { useDiscoverFilterCategoriesPreview } from 'hooks';
 
 import { Button, Box, DefaultCard, CardGrid } from 'ui-kit';
@@ -43,7 +43,7 @@ const DiscoverFilterSection = ({ contentId, title }) => {
             boxShadow="none"
             coverImage={n?.coverImage?.sources[0]?.uri}
             description={n?.summary}
-            href={getURLFromType(n, n?.title)}
+            href={getUrlFromRelatedNode(n)}
             key={n?.id}
             scaleCard={false}
             scaleCoverImage={true}
