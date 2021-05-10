@@ -4,6 +4,9 @@ import slugify from './slugify';
  * note : Added additional check for title. If no title exist in the related node, pass in a separate title
  */
 
+/**
+ * ! Deprecated: these URLs are not valid anymore, and won't be used when we launch the Web 2.0
+ */
 function getURLFromType(node, title) {
   const [type, randomId] = node?.id?.split(':');
 
