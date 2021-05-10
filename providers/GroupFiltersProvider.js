@@ -342,4 +342,5 @@ export {
   resetValues,
   toggleValue,
   update,
+  updateOptions,
 };
