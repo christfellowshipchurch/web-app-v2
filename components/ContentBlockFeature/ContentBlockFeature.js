@@ -8,23 +8,24 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { Box, ContentBlock } from 'ui-kit';
 
 const ContentBlockFeature = props => {
   const content = props?.data;
+  console.log('content.videos:', content.videos);
 
   return (
     <Box maxWidth={1100} mx="auto">
       <ContentBlock
         title={content?.title}
         subtitle={content?.subtitle}
+        actions={content?.actions}
+        contentLayout={content?.orientation}
         htmlContent={content?.htmlContent}
         image={content?.coverImage?.sources[0]?.uri}
-        contentLayout={content?.orientation}
         imageRatio={content?.imageRatio}
-        actions={content?.actions}
+        videos={content.videos}
       />
     </Box>
   );
