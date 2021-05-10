@@ -16,6 +16,11 @@ export const GET_CATEGORIES_FROM_FILTER = gql`
           }
         }
       }
+      ... on NodeRoute {
+        routing {
+          pathname
+        }
+      }
     }
   }
 `;
