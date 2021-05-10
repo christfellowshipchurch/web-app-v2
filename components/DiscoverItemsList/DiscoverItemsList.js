@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { getURLFromType } from 'utils';
+import { getUrlFromRelatedNode } from 'utils';
 
 import { Box, CardGrid, DefaultCard, Loader } from 'ui-kit';
 import { CustomLink } from 'components';
@@ -22,7 +22,7 @@ function DiscoverItemsList(props = {}) {
           boxShadow="none"
           coverImage={contentItem?.coverImage?.sources[0]?.uri}
           description={contentItem?.summary}
-          href={getURLFromType(contentItem?.node, contentItem?.title)}
+          href={getUrlFromRelatedNode(contentItem?.node)}
           key={contentItem?.id}
           scaleCard={false}
           scaleCoverImage={true}

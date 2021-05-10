@@ -6,7 +6,6 @@ export const GET_CATEGORIES_FILTER_PREVIEW = gql`
       id
       ... on ContentItem {
         title
-
         childContentItemsConnection(first: $first) {
           edges {
             node {
@@ -17,6 +16,11 @@ export const GET_CATEGORIES_FILTER_PREVIEW = gql`
                 name
                 sources {
                   uri
+                }
+              }
+              ... on NodeRoute {
+                routing {
+                  pathname
                 }
               }
             }

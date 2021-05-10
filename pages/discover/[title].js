@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import startCase from 'lodash/startCase';
 
-import { getURLFromType } from 'utils';
+import { getUrlFromRelatedNode } from 'utils';
 import { useDiscoverFilterCategoriesPreview } from 'hooks';
 
 import { Box, DefaultCard, CardGrid, Cell, Icon, Button, utils } from 'ui-kit';
@@ -48,7 +48,7 @@ export default function Content(props) {
               boxShadow="none"
               coverImage={n?.coverImage?.sources[0]?.uri}
               description={n?.summary}
-              href={getURLFromType(n, n?.title)}
+              href={getUrlFromRelatedNode(n)}
               key={n?.id}
               scaleCard={false}
               scaleCoverImage={true}

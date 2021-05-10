@@ -5,7 +5,7 @@ import isEmpty from 'lodash/isEmpty';
 
 import { CustomLink } from '..';
 import { Box, CardGrid, DefaultCard, RowCard } from 'ui-kit';
-import { getURLFromType, getUrlFromRelatedNode } from 'utils';
+import { getUrlFromRelatedNode } from 'utils';
 
 function HeroListFeature(props = {}) {
   const onPressActionItem = props?.onPressActionItem;
@@ -63,7 +63,7 @@ function HeroListFeature(props = {}) {
       {bottomCard && (
         <CustomLink
           as="a"
-          href={getURLFromType(bottomCard?.relatedNode, bottomCard?.title)}
+          href={getUrlFromRelatedNode(bottomCard?.relatedNode)}
           Component={RowCard}
           coverImage={bottomCard?.coverImage?.sources[0]?.uri}
           coverImageOverlay={true}

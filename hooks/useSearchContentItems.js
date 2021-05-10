@@ -22,6 +22,11 @@ export const SEARCH_CONTENT_ITEMS = gql`
             id
             __typename
           }
+          ... on NodeRoute {
+            routing {
+              pathname
+            }
+          }
         }
       }
     }
