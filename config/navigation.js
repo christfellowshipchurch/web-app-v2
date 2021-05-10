@@ -9,8 +9,8 @@ const navigation = {
       call: 'Events',
     },
     {
-      action: links.serve,
-      call: 'Serve',
+      action: links.volunteer,
+      call: 'Volunteer',
     },
     {
       action: '/groups',
