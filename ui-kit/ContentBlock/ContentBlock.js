@@ -14,13 +14,6 @@ function ContentBlock(props = {}) {
     toLower(props.contentLayout) === 'left' ||
     toLower(props.contentLayout) === 'right';
 
-  /**
-   * todo : We eventually want to add the Video.js component to the Media wrapper
-   */
-  console.group(props.title);
-  console.log('props.image:', props.image);
-  console.log('props.videos:', props.videos);
-  console.groupEnd();
   return (
     <Styled.Container gridLayout={props.contentLayout} {...props}>
       {(props.image || props.image !== '') && (

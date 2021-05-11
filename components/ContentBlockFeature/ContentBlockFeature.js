@@ -13,7 +13,6 @@ import { Box, ContentBlock } from 'ui-kit';
 
 const ContentBlockFeature = props => {
   const content = props?.data;
-  console.log('content.videos:', content.videos);
 
   return (
     <Box maxWidth={1100} mx="auto">
@@ -25,7 +24,7 @@ const ContentBlockFeature = props => {
         htmlContent={content?.htmlContent}
         image={content?.coverImage?.sources[0]?.uri}
         imageRatio={content?.imageRatio}
-        videos={content.videos}
+        videos={content?.videos}
       />
     </Box>
   );
