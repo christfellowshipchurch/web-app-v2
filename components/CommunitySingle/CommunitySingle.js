@@ -61,6 +61,14 @@ function CommunitySingle(props = {}) {
     ensureAuthentication(showFilterModal);
   }
 
+  function handleNotifyMeClick() {
+    const showNotifyMeModal = () => {
+      const userCampus = currentUser?.profile?.campus?.name;
+      console.log('userCampus: ', userCampus);
+    };
+    ensureAuthentication(showNotifyMeModal);
+  }
+
   function handleSubPreferenceSelect(subPreference) {
     const showFilterModal = () => {
       filtersDispatch(update({ subPreferences: [subPreference.title] }));
@@ -69,7 +77,6 @@ function CommunitySingle(props = {}) {
 
     ensureAuthentication(showFilterModal);
   }
-
   return (
     <>
       <SEO title={props.data?.title} />
@@ -95,6 +102,14 @@ function CommunitySingle(props = {}) {
             onClick={handleFindCommunityClick}
           >
             {`Find your ${props.data?.title}`}
+          </Button>
+          <Button
+            variant="tertiary"
+            rounded={true}
+            ml="base"
+            onClick={handleNotifyMeClick}
+          >
+            {`Notify Me`}
           </Button>
         </Box>
       </Hero>
