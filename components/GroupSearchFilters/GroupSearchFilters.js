@@ -6,7 +6,6 @@ import { useGroupFilters } from 'providers/GroupFiltersProvider';
 import { Box, Button, Icon, utils } from 'ui-kit';
 
 import FilterButton from './FilterButton';
-import Styled from './GroupSearchFilters.styles';
 
 function GroupSearchFilters(props = {}) {
   const [filtersState] = useGroupFilters();
@@ -19,8 +18,6 @@ function GroupSearchFilters(props = {}) {
     days,
     meetingType,
   } = filtersState.values;
-  const showResultsCount =
-    props.visibleResults > 0 && props.totalResults > props.pageSize;
 
   function handleChangeClick() {
     // Show all filters modal
@@ -28,13 +25,12 @@ function GroupSearchFilters(props = {}) {
   }
 
   return (
-    <Box mb="l">
+    <Box>
       <Box
         display="flex"
         flexDirection="row"
         justifyContent="space-between"
         alignItems="flex-end"
-        mb="base"
       >
         <Box
           display="flex"
@@ -58,9 +54,10 @@ function GroupSearchFilters(props = {}) {
             rounded={true}
             variant="secondary"
             href="https://rock.gocf.org/page/2113"
-            display={{ _: 'inline', md: 'none' }}
+            display={{ _: 'block', md: 'none' }}
+            mr="s"
           >
-            Need help?
+            Help?
           </Button>
           {!modalState.activeModal.component && (
             <Box display={{ _: 'none', md: 'block' }}>
@@ -103,29 +100,16 @@ function GroupSearchFilters(props = {}) {
           )}
         </Box>
       </Box>
-
-      <Styled.ResultsCount visible={showResultsCount}>
-        Showing {props.visibleResults} of {props.totalResults} results
-      </Styled.ResultsCount>
     </Box>
   );
 }
 
 GroupSearchFilters.propTypes = {
   loading: PropTypes.bool,
-  // How many results are currently visible/fetched
-  visibleResults: PropTypes.number,
-  // How many results there are in total (number of search hits)
-  totalResults: PropTypes.number,
-  // How many results are displayed per "page"
-  pageSize: PropTypes.number,
 };
 
 GroupSearchFilters.defaultProps = {
   loading: false,
-  visibleResults: 0,
-  totalResults: 0,
-  pageSize: 0,
 };
 
 export default GroupSearchFilters;
