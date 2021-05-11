@@ -20,13 +20,18 @@ import {
 } from 'providers/GroupFiltersProvider';
 import { useModalState } from 'providers/ModalProvider';
 import { GroupsProvider } from 'providers';
-import { useSearchGroups, useForm } from 'hooks';
+import { useSearchGroups, useForm, useCurrentBreakpoint } from 'hooks';
+
+import Styled from './Search.styles';
+import Sidebar from './Sidebar';
 
 const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
+const LARGE_SCREEN_CONTENT_WIDTH = utils.rem('1350px');
 const PAGE_SIZE = 21;
 
 export default function CommunitySearch() {
   const router = useRouter();
+  const currentBreakpoint = useCurrentBreakpoint();
 
   useEffect(() => {
     if (!flags.GROUP_FINDER) router.push('/');
@@ -103,6 +108,9 @@ export default function CommunitySearch() {
 
   if (!flags.GROUP_FINDER) return null;
 
+  const showResultsCount =
+    hasResults && data?.searchGroups?.totalResults > PAGE_SIZE;
+
   return (
     <>
       <SEO title="Find your Community" />
@@ -110,7 +118,11 @@ export default function CommunitySearch() {
         <Header />
         <Cell
           width="100%"
-          maxWidth={DEFAULT_CONTENT_WIDTH}
+          maxWidth={
+            !currentBreakpoint.isXLarge
+              ? DEFAULT_CONTENT_WIDTH
+              : LARGE_SCREEN_CONTENT_WIDTH
+          }
           px="base"
           py={{ _: 'l', lg: 'xl' }}
         >
@@ -144,58 +156,81 @@ export default function CommunitySearch() {
           >
             Search
           </SearchField>
-          <GroupSearchFilters
-            loading={loading}
-            visibleResults={groups?.length}
-            totalResults={data?.searchGroups?.totalResults}
-            pageSize={PAGE_SIZE}
-          />
-
-          {showEmptyState && (
-            <Box my="xxl" pb="xxl" textAlign="center">
-              <Box as="h2">Looks like we couldn't find any results</Box>
-              <Box mb="base">
-                Consider reducing the number of filters or modifying your search
-                criteria.
-              </Box>
-              <Box
-                display="flex"
-                alignItems="center"
-                flexDirection="column"
-                mt="l"
-                textAlign="center"
-              >
-                <Button
-                  variant="secondary"
-                  onClick={handleClearAllClick}
-                  mb="s"
+          <Box
+            display="flex"
+            justifyContent={
+              !currentBreakpoint.isXLarge ? 'space-between' : 'flex-end'
+            }
+            alignItems="center"
+            mb="base"
+          >
+            {!currentBreakpoint.isXLarge && (
+              <GroupSearchFilters
+                loading={loading}
+                visibleResults={groups?.length}
+                totalResults={data?.searchGroups?.totalResults}
+                pageSize={PAGE_SIZE}
+              />
+            )}
+            <Styled.ResultsCount visible={showResultsCount}>
+              {!currentBreakpoint.isSmall ? 'Showing' : ''} {groups?.length} of{' '}
+              {data?.searchGroups?.totalResults} results
+            </Styled.ResultsCount>
+          </Box>
+          <Box
+            display={currentBreakpoint.isXLarge && 'grid'}
+            gridTemplateColumns="250px 1fr"
+            gridGap="28px"
+          >
+            {currentBreakpoint.isXLarge && <Sidebar />}
+            {showEmptyState && (
+              <Box my="xxl" pb="xxl" textAlign="center">
+                <Box as="h2">Looks like we couldn't find any results</Box>
+                <Box mb="base">
+                  Consider reducing the number of filters or modifying your
+                  search criteria.
+                </Box>
+                <Box
+                  display="flex"
+                  alignItems="center"
+                  flexDirection="column"
+                  mt="l"
+                  textAlign="center"
                 >
-                  Clear Search
-                </Button>
-                <CustomLink href="https://rock.gocf.org/page/2113">
-                  Need help?
-                </CustomLink>
+                  <Button
+                    variant="secondary"
+                    onClick={handleClearAllClick}
+                    mb="s"
+                  >
+                    Clear Search
+                  </Button>
+                  <CustomLink href="https://rock.gocf.org/page/2113">
+                    Need help?
+                  </CustomLink>
+                </Box>
+              </Box>
+            )}
+            <Box>
+              {hasResults && (
+                <GroupsProvider data={groups} Component={GroupsResultsList} />
+              )}
+              <Box>
+                {loading && (
+                  <Box display="flex" justifyContent="center" my="xxl">
+                    <Loader />
+                  </Box>
+                )}
+
+                {!loading && hasMorePages && (
+                  <Box display="flex" justifyContent="center" mt="xl">
+                    <Button variant="tertiary" onClick={handleLoadMore}>
+                      Load more
+                    </Button>
+                  </Box>
+                )}
               </Box>
             </Box>
-          )}
-
-          {hasResults && (
-            <GroupsProvider data={groups} Component={GroupsResultsList} />
-          )}
-
-          {loading && (
-            <Box display="flex" justifyContent="center" my="xxl">
-              <Loader />
-            </Box>
-          )}
-
-          {!loading && hasMorePages && (
-            <Box display="flex" justifyContent="center" mt="xl">
-              <Button variant="tertiary" onClick={handleLoadMore}>
-                Load more
-              </Button>
-            </Box>
-          )}
+          </Box>
         </Cell>
         <Footer mt="xxl" />
       </Box>
