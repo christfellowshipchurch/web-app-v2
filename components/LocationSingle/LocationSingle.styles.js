@@ -13,7 +13,7 @@ const Hero = styled.div`
   background-position: center;
   background-size: cover;
   padding: ${themeGet('space.m')};
-  min-height: 50vh;
+  min-height: 45vh;
   align-items: center;
   justify-content: center;
   display: flex;
