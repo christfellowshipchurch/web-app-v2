@@ -5,13 +5,12 @@ import find from 'lodash/find';
 import isEmpty from 'lodash/isEmpty';
 
 import flags from 'config/flags';
-import { CommunityProvider } from 'providers';
 import { useGroupPreference, useGroupPreferences } from 'hooks';
-import { CommunitySingle, Layout } from 'components';
+import { CommunitySingle, Layout, NotFound } from 'components';
 import { Box, Cell, Loader, utils } from 'ui-kit';
 
 export default function Community(props) {
-  const [preference, setPreference] = useState(null);
+  const [preference, setPreference] = useState('');
   const router = useRouter();
 
   useEffect(() => {
@@ -20,14 +19,12 @@ export default function Community(props) {
 
   const { preferences, loading } = useGroupPreferences();
 
-  console.log({ preference, loading });
+  const { subPreferences } = useGroupPreference({
+    variables: { preferenceId: preference?.id },
+    skip: isEmpty(preference?.id),
+  });
 
-  const subPreferences = [];
-  // const { subPreferences } = useGroupPreference({
-  //   variables: { preferenceId: preference?.id },
-  //   skip: isEmpty(preference?.id),
-  // });
-
+  // if it can't find a preference that matches it will change the preference from empty string to undefined
   useEffect(() => {
     if (!loading) {
       setPreference(
@@ -37,17 +34,11 @@ export default function Community(props) {
         )
       );
     }
-  }, [preferences]);
-
-  const unknownPreference = !loading && !preference;
+  }, [loading]);
 
   if (!flags.GROUP_FINDER) return null;
 
-  if (loading || unknownPreference) {
-    // if (unknownPreference) {
-    //   router.push('/community');
-    // }
-
+  if (loading) {
     return (
       <Layout>
         <Cell
@@ -64,10 +55,9 @@ export default function Community(props) {
     );
   }
 
-  return (
-    <CommunityProvider
-      Component={CommunitySingle}
-      data={{ ...preference, subPreferences, loading }}
-    />
-  );
+  if (!loading && !preference) {
+    return <NotFound />;
+  }
+
+  return <CommunitySingle data={{ ...preference, subPreferences }} />;
 }

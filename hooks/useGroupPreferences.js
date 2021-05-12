@@ -44,8 +44,6 @@ function useGroupPreferences(options = {}) {
   const queryPreferences = useQuery(GET_PREFERENCES, options);
   const querySubPreferences = useQuery(GET_SUB_PREFERENCES, options);
 
-  console.log({ queryPreferences, querySubPreferences });
-
   return {
     preferences: queryPreferences?.data?.allPreferences || [],
     subPreferences: querySubPreferences?.data?.allSubPreferences || [],
