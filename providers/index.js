@@ -3,6 +3,7 @@ import AuthProvider from './AuthProvider';
 import CampusesProvider from './CampusesProvider';
 import ChatConnectionProvider from './ChatConnectionProvider';
 import CommunitiesProvider from './CommunitiesProvider';
+import CommunityProvider from './CommunityProvider';
 import ContentFeedProvider from './ContentFeedProvider';
 import ContentItemProvider from './ContentItemProvider';
 import ContentItemsSearchProvider from './ContentItemsSearchProvider';
@@ -30,6 +31,7 @@ export {
   CampusesProvider,
   ChatConnectionProvider,
   CommunitiesProvider,
+  CommunityProvider,
   DiscoverFiltersCategoriesProvider,
   DiscoverFiltersProvider,
   ContentFeedProvider,

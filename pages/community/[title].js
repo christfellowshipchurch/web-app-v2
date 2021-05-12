@@ -1,42 +1,52 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import get from 'lodash/get';
 import find from 'lodash/find';
-import kebabCase from 'lodash/kebabCase';
-import toLower from 'lodash/toLower';
+import isEmpty from 'lodash/isEmpty';
 
 import flags from 'config/flags';
-import { CommunitiesProvider } from 'providers';
-import { useGroupPreferences } from 'hooks';
+import { CommunityProvider } from 'providers';
+import { useGroupPreference, useGroupPreferences } from 'hooks';
 import { CommunitySingle, Layout } from 'components';
 import { Box, Cell, Loader, utils } from 'ui-kit';
 
 export default function Community(props) {
+  const [preference, setPreference] = useState(null);
   const router = useRouter();
 
   useEffect(() => {
     if (!flags.GROUP_FINDER) router.push('/');
   }, [router]);
 
-  const { preferences, subPreferences, loading } = useGroupPreferences();
+  const { preferences, loading } = useGroupPreferences();
 
-  const { title } = router.query;
+  console.log({ preference, loading });
 
-  const formatTitleAsUrl = title => kebabCase(toLower(title));
-  const slug = formatTitleAsUrl(title);
+  const subPreferences = [];
+  // const { subPreferences } = useGroupPreference({
+  //   variables: { preferenceId: preference?.id },
+  //   skip: isEmpty(preference?.id),
+  // });
 
-  const preference = find(
-    preferences,
-    n => formatTitleAsUrl(get(n, 'title', '')) === slug
-  );
+  useEffect(() => {
+    if (!loading) {
+      setPreference(
+        find(
+          preferences,
+          n => `/${get(n, 'routing.pathname', '')}` === router.asPath
+        )
+      );
+    }
+  }, [preferences]);
+
   const unknownPreference = !loading && !preference;
 
   if (!flags.GROUP_FINDER) return null;
 
   if (loading || unknownPreference) {
-    if (unknownPreference) {
-      router.push('/community');
-    }
+    // if (unknownPreference) {
+    //   router.push('/community');
+    // }
 
     return (
       <Layout>
@@ -55,7 +65,7 @@ export default function Community(props) {
   }
 
   return (
-    <CommunitiesProvider
+    <CommunityProvider
       Component={CommunitySingle}
       data={{ ...preference, subPreferences, loading }}
     />
