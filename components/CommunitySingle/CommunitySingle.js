@@ -14,7 +14,7 @@ import { update as updateAuth, useAuth } from 'providers/AuthProvider';
 import { useGroupFilters, update } from 'providers/GroupFiltersProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
-import Hero from './CommunitySingle.styles';
+import Styled from './CommunitySingle.styles';
 
 // Redundant (and brittle) mapping, but easier to read than integers
 const ModalSteps = Object.freeze({
@@ -27,6 +27,9 @@ function CommunitySingle(props = {}) {
   const [filtersState, filtersDispatch] = useGroupFilters();
   const modalDispatch = useModalDispatch();
   const { currentUser } = useCurrentUser();
+
+  // Todo — Insert real query here!
+  const showNotifyMe = true;
 
   // Pre-populate the Preference filter from the URL
   useEffect(() => {
@@ -81,7 +84,7 @@ function CommunitySingle(props = {}) {
     <>
       <SEO title={props.data?.title} />
       <Header />
-      <Hero src={props.data?.coverImage?.sources[0]?.uri}>
+      <Styled.Hero src={props.data?.coverImage?.sources[0]?.uri}>
         <Box
           display="flex"
           flexDirection="column"
@@ -103,16 +106,38 @@ function CommunitySingle(props = {}) {
           >
             {`Find your ${props.data?.title}`}
           </Button>
-          <Button
-            variant="tertiary"
-            rounded={true}
-            ml="base"
-            onClick={handleNotifyMeClick}
-          >
-            {`Notify Me`}
-          </Button>
         </Box>
-      </Hero>
+      </Styled.Hero>
+
+      {showNotifyMe && (
+        <Styled.NotifyMeSection>
+          <Box maxWidth="50%" mr="l">
+            <Box as="h2">Crew groups are closed for enrollment</Box>
+            <Box as="p" color="subdued">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ut
+              imperdiet erat, sed sodales lorem. Praesent quis turpis sit amet
+              nibh congue efficitur nec non sapien. Vivamus feugiat efficitur
+              nisl non vulputate.
+            </Box>
+          </Box>
+          <Box
+            display="flex"
+            flex={1}
+            flexDirection="row"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Button
+              variant="secondary"
+              rounded={true}
+              size="l"
+              onClick={handleNotifyMeClick}
+            >
+              {`Notify Me`}
+            </Button>
+          </Box>
+        </Styled.NotifyMeSection>
+      )}
       <Box textAlign="center" alignItems="center" mb="l" px={{ md: 'xxl' }}>
         <Box as="h1" mb="0">{`The ${props.data?.title} Lineup`}</Box>
         <Box
