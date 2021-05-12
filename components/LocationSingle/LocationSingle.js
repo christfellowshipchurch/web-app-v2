@@ -43,14 +43,13 @@ function LocationSingle(props = {}) {
       contentVerticalPadding={'0'}
     >
       {props?.data?.coverImage && (
-        <Styled.Hero coverImage={props?.data?.coverImage?.sources[0]?.uri}>
-          <Styled.Glass>
-            <Box as="h1">{props?.data?.title}</Box>
-          </Styled.Glass>
-        </Styled.Hero>
+        <Styled.Hero coverImage={props?.data?.coverImage?.sources[0]?.uri} />
       )}
 
       <Cell maxWidth={utils.rem('1100px')} px="base">
+        <Box as="h1" pt="l" textAlign="center">
+          {props?.data?.title}
+        </Box>
         <ContentLayout
           renderA={() => {
             return (
