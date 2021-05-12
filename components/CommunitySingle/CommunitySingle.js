@@ -111,13 +111,11 @@ function CommunitySingle(props = {}) {
 
       {showNotifyMe && (
         <Styled.NotifyMeSection>
-          <Box maxWidth="50%" mr="l">
-            <Box as="h2">Crew groups are closed for enrollment</Box>
+          <Box maxWidth={{ lg: '60%' }} mr={{ lg: 'l' }}>
+            <Box as="h3">Crew groups are closed for enrollment</Box>
             <Box as="p" color="subdued">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ut
-              imperdiet erat, sed sodales lorem. Praesent quis turpis sit amet
-              nibh congue efficitur nec non sapien. Vivamus feugiat efficitur
-              nisl non vulputate.
+              imperdiet erat, sed sodales lorem.
             </Box>
           </Box>
           <Box
@@ -126,6 +124,7 @@ function CommunitySingle(props = {}) {
             flexDirection="row"
             justifyContent="center"
             alignItems="center"
+            mt={{ _: 'base', lg: 0 }}
           >
             <Button
               variant="secondary"

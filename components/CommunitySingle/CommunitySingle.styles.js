@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
-import { system } from 'ui-kit';
+import { system, utils } from 'ui-kit';
 
 const CommunitySingle = {};
 
@@ -17,7 +17,7 @@ const Hero = styled.div`
   margin-bottom: ${themeGet('space.l')};
   text-align: center;
 
-  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     border-radius: ${themeGet('radii.base')};
     margin: ${themeGet('space.xl')} ${themeGet('space.xxl')};
     height: 596px;
@@ -28,15 +28,24 @@ const Hero = styled.div`
 
 const NotifyMeSection = styled.section`
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   border-radius: ${themeGet('radii.base')};
   border: 2px solid ${themeGet('colors.border')};
   margin: ${themeGet('space.l')} ${themeGet('space.base')};
   margin-bottom: ${themeGet('space.xl')};
-  padding: ${themeGet('space.xl')} ${themeGet('space.base')};
+  padding: ${themeGet('space.l')} ${themeGet('space.base')};
 
-  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+
     margin: ${themeGet('space.xl')} ${themeGet('space.xxl')};
-    padding: ${themeGet('space.xl')};
+    padding: ${themeGet('space.l')} ${themeGet('space.xl')};
   }
 `;
 
