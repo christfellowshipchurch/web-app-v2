@@ -19,7 +19,7 @@ import {
 } from 'providers/GroupFiltersProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
-import Hero from './CommunitySingle.styles';
+import Styled from './CommunitySingle.styles';
 
 // Redundant (and brittle) mapping, but easier to read than integers
 const ModalSteps = Object.freeze({
@@ -33,6 +33,9 @@ function CommunitySingle(props = {}) {
   const modalDispatch = useModalDispatch();
   const { currentUser } = useCurrentUser();
 
+  // Todo — Insert real query here!
+  const showNotifyMe = true;
+  
   // Filter subPreference lineups for current preference
   // Compares all subPreferences in Rock againist subPreferences in algolia
   const lineups = props.data?.subPreferences.filter(item =>
@@ -76,6 +79,22 @@ function CommunitySingle(props = {}) {
     ensureAuthentication(showFilterModal);
   }
 
+  function handleNotifyMeClick() {
+    const showNotifyMeModal = () => {
+      const userCampus = currentUser?.profile?.campus?.id;
+      const groupPreference = props.data;
+
+      modalDispatch(
+        showModal('GroupNotifyMe', {
+          step: 0,
+          initialCampusId: userCampus,
+          groupPreference,
+        })
+      );
+    };
+    ensureAuthentication(showNotifyMeModal);
+  }
+
   function handleSubPreferenceSelect(subPreference) {
     const showFilterModal = () => {
       filtersDispatch(update({ subPreferences: [subPreference.title] }));
@@ -84,12 +103,11 @@ function CommunitySingle(props = {}) {
 
     ensureAuthentication(showFilterModal);
   }
-
   return (
     <>
       <SEO title={props.data?.title} />
       <Header />
-      <Hero src={props.data?.coverImage?.sources[0]?.uri}>
+      <Styled.Hero src={props.data?.coverImage?.sources[0]?.uri}>
         <Box
           display="flex"
           flexDirection="column"
@@ -112,7 +130,37 @@ function CommunitySingle(props = {}) {
             {`Find your ${props.data?.title}`}
           </Button>
         </Box>
-      </Hero>
+      </Styled.Hero>
+
+      {showNotifyMe && (
+        <Styled.NotifyMeSection>
+          <Box maxWidth={{ lg: '60%' }} mr={{ lg: 'l' }}>
+            <Box as="h3">Crew groups are closed for enrollment</Box>
+            <Box as="p" color="subdued">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ut
+              imperdiet erat, sed sodales lorem.
+            </Box>
+          </Box>
+          <Box
+            display="flex"
+            flex={1}
+            flexDirection="row"
+            justifyContent={{ _: 'center', lg: 'flex-end' }}
+            alignItems="center"
+            mt={{ _: 'base', lg: 0 }}
+          >
+            <Button
+              variant="secondary"
+              rounded={true}
+              size="l"
+              onClick={handleNotifyMeClick}
+            >
+              {`Notify Me`}
+            </Button>
+          </Box>
+        </Styled.NotifyMeSection>
+      )}
+
       {lineups.length > 0 && (
         <Box textAlign="center" alignItems="center" mb="l" px={{ md: 'xxl' }}>
           <Box as="h1" mb="0">{`The ${props.data?.title} Lineup`}</Box>
