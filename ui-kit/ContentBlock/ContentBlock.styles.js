@@ -74,6 +74,7 @@ const Media = styled.div`
   flex: 1;
   grid-area: media;
   margin: auto;
+  width: 100%;
 
   ${system};
 `;
