@@ -22,7 +22,7 @@ export default function Events(props = {}) {
         px="base"
         py={{ _: 'l', lg: 'xl' }}
       >
-        <Box as="h1" mb="xs">
+        <Box as="h1" mb={'-2rem'}>
             Events
         </Box>
         <FeatureFeedProvider Component={FeatureFeed} options={options} />

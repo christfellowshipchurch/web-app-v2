@@ -32,7 +32,7 @@ export default function Connect(props = {}) {
         px="base"
         py={{ _: 'l', lg: 'xl' }}
       >
-        <Box as="h1" mb="s">
+        <Box as="h1" mb={'-1rem'}>
           Connect
         </Box>
         <FeatureFeedProvider Component={FeatureFeed} options={options} />

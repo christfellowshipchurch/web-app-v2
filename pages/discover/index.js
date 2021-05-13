@@ -88,7 +88,7 @@ const Discover = () => {
         px="base"
         py={{ _: 'l', lg: 'xl' }}
       >
-        <Box as="h1" mb="l">
+        <Box as="h1" mb="base">
           Discover
         </Box>
         <SearchField
