@@ -9,8 +9,8 @@ const navigation = {
       call: 'Events',
     },
     {
-      action: links.serve,
-      call: 'Serve',
+      action: links.volunteer,
+      call: 'Volunteer',
     },
     {
       action: '/groups',
@@ -31,7 +31,7 @@ const navigation = {
       call: 'Discover',
     },
     {
-      action: links.giveOnline,
+      action: '/give',
       call: 'Give',
     },
   ],

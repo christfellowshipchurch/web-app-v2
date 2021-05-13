@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // import { Video } from 'components';
 import { Box, Button, Image, systemPropTypes } from 'ui-kit';
 import { htmlToReactParser, getUrlFromRelatedNode } from 'utils';
-import { CustomLink } from 'components';
+import { CustomLink, Video } from 'components';
 
 import Styled from './ContentBlock.styles';
 import toLower from 'lodash/toLower';
@@ -14,18 +14,19 @@ function ContentBlock(props = {}) {
     toLower(props.contentLayout) === 'left' ||
     toLower(props.contentLayout) === 'right';
 
-  /**
-   * todo : We eventually want to add the Video.js componenet to the Media wrapper
-   */
-
   return (
     <Styled.Container gridLayout={props.contentLayout} {...props}>
       {(props.image || props.image !== '') && (
-        <Styled.Media>
-          <Image
-            maxWidth={horizontalLayout ? '500px' : '800px'}
-            source={props.image}
-            aspectRatio={props.imageRatio}
+        <Styled.Media maxWidth={horizontalLayout ? '500px' : '800px'}>
+          <Image source={props.image} aspectRatio={props.imageRatio} />
+        </Styled.Media>
+      )}
+      {props.videos?.length >= 1 && (
+        <Styled.Media maxWidth={horizontalLayout ? '500px' : '800px'}>
+          <Video
+            src={props.videos[0].sources[0].uri}
+            autoPlay={false}
+            playsInline={true}
           />
         </Styled.Media>
       )}
@@ -80,7 +81,17 @@ ContentBlock.propTypes = {
   textAlignment: PropTypes.string,
   title: PropTypes.string,
   variant: PropTypes.oneOf(['light', 'dark']),
-  videos: PropTypes.array,
+  videos: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      key: PropTypes.string,
+      sources: PropTypes.arrayOf(
+        PropTypes.shape({
+          uri: PropTypes.string,
+        })
+      ),
+    })
+  ),
   withAnimation: PropTypes.bool,
 };
 
