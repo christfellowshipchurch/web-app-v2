@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { useModalDispatch, showModal } from 'providers/ModalProvider';
+import { useModalDispatch, showStep } from 'providers/ModalProvider';
 import { useCampuses, useCurrentUser } from 'hooks';
 
 import { Box, Button, FormLabel, Select } from 'ui-kit';
@@ -40,16 +40,16 @@ function NotifyMeForm(props = {}) {
   };
 
   const handleSubmit = () => {
-    console.group('%cNotify Me form submitted', 'color: limegreen');
-    console.log('campusId:', campusId);
-    console.log('userId:', currentUser.id);
-    console.log('groupPreferenceId:', props.groupPreference.id);
-    console.groupEnd();
+    const valuesToSubmit = {
+      campusId,
+      userId: currentUser.id,
+      groupPreferenceId: props.groupPreference.id,
+    };
 
     // TODO Invoke mutation here
 
     // Show success state
-    modalDispatch(showModal('GroupNotifyMe', { step: 1 }));
+    modalDispatch(showStep(2));
   };
 
   return (

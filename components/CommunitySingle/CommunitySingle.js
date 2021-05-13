@@ -130,7 +130,7 @@ function CommunitySingle(props = {}) {
             display="flex"
             flex={1}
             flexDirection="row"
-            justifyContent="center"
+            justifyContent={{ _: 'center', lg: 'flex-end' }}
             alignItems="center"
             mt={{ _: 'base', lg: 0 }}
           >
