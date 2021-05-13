@@ -1,52 +1,53 @@
 import styled, { css } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
+import isEmpty from 'lodash/isEmpty';
 
 import { system } from 'ui-kit';
-import { rem } from 'ui-kit/_utils';
+
+const glassBackground = ({ coverImage }) => props => {
+  if (!isEmpty(coverImage)) {
+    return css`
+      color: ${themeGet('colors.white')};
+      background-image: linear-gradient(
+        rgba(0, 0, 0, 0),
+        rgba(0, 0, 0, 0.65),
+        rgba(0, 0, 0, 0.85)
+      );
+    `;
+  }
+};
 
 const LocationSingle = styled.div`
   ${system}
 `;
 
 const Hero = styled.div`
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+
   background-image: url(${props => props.coverImage});
-  background-position: center;
+  background-position: bottom;
   background-size: cover;
-  min-height: 80vh;
-  overflow: hidden;
-  padding-top: ${themeGet('space.xxl')};
-  position: relative;
+
+  padding: ${themeGet('space.m')};
+  min-height: ${props => (isEmpty(props.coverImage) ? '0' : '55vh')};
 `;
 
 const Glass = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 0;
   width: 100%;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding-bottom: ${themeGet('space.l')};
+  padding-top: ${themeGet('space.xl')};
+  padding-right: ${themeGet('space.s')};
+  padding-left: ${themeGet('space.s')};
 
-  background-color: rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(50px);
-  box-shadow: ${themeGet('shadows.l')};
-  transform: translate(0px, 2px);
-`;
-
-const GlassContent = styled.div`
-  flex: 1;
-  color: ${themeGet('colors.white')};
   text-align: center;
-  padding: ${themeGet('space.xl')};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 1100px;
+
+  ${glassBackground}
 `;
 
 LocationSingle.Hero = Hero;
 LocationSingle.Glass = Glass;
-LocationSingle.GlassContent = GlassContent;
 
 export default LocationSingle;
