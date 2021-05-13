@@ -7,7 +7,7 @@ export const GET_GROUP_FACET_FILTERS = gql`
 `;
 
 function useGroupFacetFilters(options = {}) {
-  const query = useQuery(GET_LINEUPS, options);
+  const query = useQuery(GET_GROUP_FACET_FILTERS, options);
 
   return {
     facets: query?.data?.groupFacetFilters || [],
