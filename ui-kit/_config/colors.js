@@ -13,9 +13,9 @@ const BACKGROUND_SECONDARY = '#F9F9FB';
 const BORDER = '#C4C4C4';
 
 const ALMOST_BLACK = '#1C1C1E';
-const BLACK = '#000';
-const GRAY = '#EBEBEF';
-const WHITE = '#FFF';
+const BLACK = '#000000';
+const GRAY = '#F2F2F7';
+const WHITE = '#FFFFFF';
 
 const universal = {
   primary: LH_GREEN,
