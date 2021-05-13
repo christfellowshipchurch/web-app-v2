@@ -88,6 +88,9 @@ const Discover = () => {
         px="base"
         py={{ _: 'l', lg: 'xl' }}
       >
+        <Box as="h1" mb="l">
+          Discover
+        </Box>
         <SearchField
           handleChange={handleChange}
           handleClear={handleClearAllClick}

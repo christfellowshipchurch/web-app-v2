@@ -5,7 +5,7 @@ import { FeatureFeedProvider } from 'providers';
 import { useAuth } from 'providers/AuthProvider';
 
 import { Layout, FeatureFeed } from 'components';
-import { Cell, utils } from 'ui-kit';
+import { Box, Cell, utils } from 'ui-kit';
 
 export default function Connect(props = {}) {
   const router = useRouter();
@@ -32,6 +32,9 @@ export default function Connect(props = {}) {
         px="base"
         py={{ _: 'l', lg: 'xl' }}
       >
+        <Box as="h1" mb="s">
+          Connect
+        </Box>
         <FeatureFeedProvider Component={FeatureFeed} options={options} />
       </Cell>
     </Layout>

@@ -5,7 +5,7 @@ import { GET_FEATURE_FEED } from 'hooks/useFeatureFeed';
 import { GET_FEATURE } from 'hooks/useFeature';
 import { FeatureFeedProvider } from 'providers';
 import { Layout, FeatureFeed } from 'components';
-import { Cell, utils } from 'ui-kit';
+import { Box, Cell, utils } from 'ui-kit';
 
 export default function Events(props = {}) {
   const options = {
@@ -22,6 +22,9 @@ export default function Events(props = {}) {
         px="base"
         py={{ _: 'l', lg: 'xl' }}
       >
+        <Box as="h1" mb="xs">
+            Events
+        </Box>
         <FeatureFeedProvider Component={FeatureFeed} options={options} />
       </Cell>
     </Layout>
