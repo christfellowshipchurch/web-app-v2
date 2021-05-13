@@ -14,15 +14,9 @@ const HorizontalHighlightCard = (props = {}) => {
     switch (props.type) {
       case 'HIGHLIGHT_X_SMALL':
         height = 141; // 16:9 of Small size
-        if (props.description?.length > 40) {
-          trimmedDescription = `${textTrimmer(props.description, 40)}...`;
-        }
         break;
       case 'HIGHLIGHT_SMALL':
         height = 250;
-        if (props.description?.length > 40) {
-          trimmedDescription = `${textTrimmer(props.description, 40)}...`;
-        }
         break;
       case 'HIGHLIGHT_MEDIUM':
         height = 450;
@@ -33,17 +27,15 @@ const HorizontalHighlightCard = (props = {}) => {
     }
   }
 
-  const description = trimmedDescription
-    ? trimmedDescription
-    : props.description;
-
   return (
     <Styled
       {...props}
       // Overriding the default props from DefaultCard
       // so that the component only uses the coverImage props
       coverImageDescription={
-        props.coverImageDescription ? props.coverImageDescription : description
+        props.coverImageDescription
+          ? props.coverImageDescription
+          : props.description
       }
       coverImageTitle={
         props.coverImageTitle ? props.coverImageTitle : props.title
