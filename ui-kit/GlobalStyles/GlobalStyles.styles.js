@@ -121,6 +121,12 @@ export const styles = css`
   a.btn {
     text-decoration: none;
   }
+
+  /* verse numbers in scripture (from bible.api) */
+  .v {
+    font-size: ${themeGet('fontSizes.xxs')};
+    margin-right: 2px;
+  }
 `;
 
 const GlobalStyles = createGlobalStyle`

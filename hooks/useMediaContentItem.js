@@ -17,6 +17,7 @@ export const GET_MEDIA_CONTENT_ITEM = gql`
             uri
           }
         }
+        htmlContent
       }
     }
   }

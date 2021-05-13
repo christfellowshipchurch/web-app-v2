@@ -3,7 +3,7 @@ import { initializeApollo } from 'lib/apolloClient';
 import { GET_MEDIA_CONTENT_ITEM } from 'hooks/useMediaContentItem';
 import { useRouter } from 'next/router';
 import VideoPlayer from 'components/VideoPlayer/VideoJSPlayer';
-import { Heading, Section } from 'ui-kit';
+import { Heading, Section, Longform } from 'ui-kit';
 import {
   getMetaData,
   getChannelId,
@@ -46,6 +46,7 @@ export default function Item({ item } = {}) {
         <Heading variant="h4" fontWeight="500" mb="m">
           {item.summary}
         </Heading>
+        <Longform dangerouslySetInnerHTML={{ __html: item.htmlContent }} />
       </Section>
     </Layout>
   );
