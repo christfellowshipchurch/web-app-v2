@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 import flags from 'config/flags';
-import { Box, Button, Cell, Icon, utils } from 'ui-kit';
+import { Box, Cell, Icon, utils } from 'ui-kit';
 import {
   CommunityActionSection,
   CommunityLeaderActions,
@@ -12,13 +12,6 @@ import {
   SEO,
 } from 'components';
 import { CommunitiesProvider } from 'providers';
-import { update as updateAuth, useAuth } from 'providers/AuthProvider';
-import { useModalDispatch, showModal } from 'providers/ModalProvider';
-import {
-  useGroupFiltersDispatch,
-  update,
-} from 'providers/GroupFiltersProvider';
-import { useCurrentUser } from 'hooks';
 
 import Styled from './Community.styles';
 
@@ -30,16 +23,6 @@ export default function Community(props = {}) {
   useEffect(() => {
     if (!flags.GROUP_FINDER) router.push('/');
   }, [router]);
-
-  const [{ authenticated }, authDispatch] = useAuth();
-  const modalDispatch = useModalDispatch();
-  const filtersDispatch = useGroupFiltersDispatch();
-  const { currentUser } = useCurrentUser();
-
-  function showGroupFilterModal() {
-    filtersDispatch(update({ campuses: [currentUser?.profile?.campus?.name] }));
-    modalDispatch(showModal('GroupFilter'));
-  }
 
   function handleOnClick() {
     router.push('/community/search');

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import includes from 'lodash/includes';
 
 import { Box, Button, HorizontalHighlightCard, utils } from 'ui-kit';
 import {
@@ -11,7 +12,11 @@ import {
 } from 'components';
 import { useCurrentUser } from 'hooks';
 import { update as updateAuth, useAuth } from 'providers/AuthProvider';
-import { useGroupFilters, update } from 'providers/GroupFiltersProvider';
+import {
+  useGroupFilters,
+  update,
+  updateOptions,
+} from 'providers/GroupFiltersProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
 import Styled from './CommunitySingle.styles';
@@ -30,6 +35,12 @@ function CommunitySingle(props = {}) {
 
   // Todo — Insert real query here!
   const showNotifyMe = true;
+  
+  // Filter subPreference lineups for current preference
+  // Compares all subPreferences in Rock againist subPreferences in algolia
+  const lineups = props.data?.subPreferences.filter(item =>
+    includes(props.data?.facets, item.title)
+  );
 
   // Pre-populate the Preference filter from the URL
   useEffect(() => {
@@ -51,10 +62,14 @@ function CommunitySingle(props = {}) {
     const showFilterModal = () => {
       const userCampus = currentUser?.profile?.campus?.name;
       filtersDispatch(update({ campuses: [userCampus] }));
+
+      // Update subPreferences to match Algolia for current preference
+      filtersDispatch(updateOptions({ subPreferences: props.data?.facets }));
+
       modalDispatch(
         showModal('GroupFilter', {
           step:
-            filtersState.options.subPreferences.length > 0
+            lineups.length > 0
               ? ModalSteps.SUB_PREFERENCES
               : ModalSteps.WHERE_WHEN,
         })
@@ -145,15 +160,16 @@ function CommunitySingle(props = {}) {
           </Box>
         </Styled.NotifyMeSection>
       )}
-      <Box textAlign="center" alignItems="center" mb="l" px={{ md: 'xxl' }}>
-        <Box as="h1" mb="0">{`The ${props.data?.title} Lineup`}</Box>
-        <Box
-          as="p"
-          mb="base"
-        >{`There's a ${props.data?.title} for everyone`}</Box>
-        <Box display="flex" flexWrap="wrap" justifyContent="center" m="s">
-          {props.data?.subPreferences &&
-            props.data?.subPreferences.map((item, i) => (
+
+      {lineups.length > 0 && (
+        <Box textAlign="center" alignItems="center" mb="l" px={{ md: 'xxl' }}>
+          <Box as="h1" mb="0">{`The ${props.data?.title} Lineup`}</Box>
+          <Box
+            as="p"
+            mb="base"
+          >{`There's a ${props.data?.title} for everyone`}</Box>
+          <Box display="flex" flexWrap="wrap" justifyContent="center" m="s">
+            {lineups.map((item, i) => (
               <HorizontalHighlightCard
                 as="a"
                 key={i}
@@ -171,8 +187,9 @@ function CommunitySingle(props = {}) {
                 onClick={() => handleSubPreferenceSelect(item)}
               />
             ))}
+          </Box>
         </Box>
-      </Box>
+      )}
       <CommunityActionSection handleOnClick={handleFindCommunityClick} />
       <CommunityLeaderActions />
       <Footer />
