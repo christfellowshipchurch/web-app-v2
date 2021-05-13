@@ -4,17 +4,35 @@ import PropTypes from 'prop-types';
 import { Modal } from 'ui-kit';
 
 import NotifyMeForm from './NotifyMeForm';
+import NotifyMeSuccess from './NotifyMeSuccess';
 
 function GroupNotifyMeModal(props = {}) {
-  return (
-    <Modal {...props}>
-      <NotifyMeForm />
-    </Modal>
-  );
+  function render(step) {
+    switch (step) {
+      default:
+      case 0: {
+        return (
+          <NotifyMeForm
+            initialCampusId={props.initialCampusId}
+            groupPreference={props.groupPreference}
+          />
+        );
+      }
+      case 1: {
+        return <NotifyMeSuccess />;
+      }
+    }
+  }
+  return <Modal {...props}>{render}</Modal>;
 }
 
 GroupNotifyMeModal.propTypes = {
   ...Modal.propTypes,
+  initialCampusId: PropTypes.string,
+  groupPreference: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 GroupNotifyMeModal.defaultProps = {};

@@ -1,45 +1,83 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { Box, Button } from 'ui-kit';
+import { useModalDispatch, showModal } from 'providers/ModalProvider';
+import { useCampuses, useCurrentUser } from 'hooks';
+
+import { Box, Button, FormLabel, Select } from 'ui-kit';
+
+function CampusSelect(props = {}) {
+  const { loading, campuses } = useCampuses();
+
+  return (
+    <>
+      <FormLabel>Select a Campus</FormLabel>
+      <Select
+        id="campus"
+        name="campus"
+        defaultValue={props.selectedCampusId}
+        onChange={props.onChange}
+        disabled={loading}
+      >
+        <Select.Option value="">Select...</Select.Option>
+        {campuses?.map(item => (
+          <Select.Option key={item.id} value={item.id}>
+            {item.name}
+          </Select.Option>
+        ))}
+      </Select>
+    </>
+  );
+}
 
 function NotifyMeForm(props = {}) {
+  const { currentUser } = useCurrentUser();
+  const [campusId, setCampusId] = useState(props.initialCampusId || '');
+  const modalDispatch = useModalDispatch();
+
+  const handleCampusSelect = event => {
+    setCampusId(event.target.value);
+  };
+
+  const handleSubmit = () => {
+    console.group('%cNotify Me form submitted', 'color: limegreen');
+    console.log('campusId:', campusId);
+    console.log('userId:', currentUser.id);
+    console.log('groupPreferenceId:', props.groupPreference.id);
+    console.groupEnd();
+
+    // TODO Invoke mutation here
+
+    // Show success state
+    modalDispatch(showModal('GroupNotifyMe', { step: 1 }));
+  };
+
   return (
     <Box display="flex" flexDirection="column">
-      <Box textAlign="center" as="h2" mb="l">
+      <Box textAlign="center" as="h2">
         {props.title}
       </Box>
-      <Box
-        textAlign="center"
-        as="p"
-        mb="l"
-        px="l"
-        maxHeight="40vh"
-        overflow="scroll"
-      >
-        {props.summary}
+      <Box textAlign="center" as="p" mb="l" px="l">
+        <Box as="p">
+          We'll let you know when {props.groupPreference?.title} groups open up
+          for enrollment at your preferred campus.
+        </Box>
       </Box>
-      {props.callToAction && (
-        <Button
-          onClick={props.callToAction?.action}
-          mt="base"
-          size="l"
-          width="100%"
-        >
-          {props.callToAction?.call}
-        </Button>
-      )}
+      <Box>
+        <CampusSelect
+          selectedCampusId={campusId}
+          onChange={handleCampusSelect}
+        />
+      </Box>
+      <Button onClick={handleSubmit} mt="l" size="l" width="100%">
+        Confirm
+      </Button>
     </Box>
   );
 }
 
 NotifyMeForm.propTypes = {
   title: PropTypes.string,
-  summary: PropTypes.string.isRequired,
-  callToAction: PropTypes.shape({
-    call: PropTypes.string,
-    action: PropTypes.func,
-  }),
 };
 
 NotifyMeForm.defaultProps = {
