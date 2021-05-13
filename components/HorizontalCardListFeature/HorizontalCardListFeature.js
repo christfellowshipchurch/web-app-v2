@@ -96,7 +96,7 @@ function HorizontalCardListFeature(props = {}) {
               <CustomLink
                 as="a"
                 key={i}
-                mx="s"
+                m="s"
                 boxShadow="none"
                 href={getUrlFromRelatedNode(card?.relatedNode)}
                 Component={HorizontalHighlightCard}

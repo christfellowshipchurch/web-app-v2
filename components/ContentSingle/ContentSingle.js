@@ -101,7 +101,6 @@ function ContentSingle(props = {}) {
           <Share title={title} />
         </Box>
       )}
-      contentTitleD="About"
       contentTitleE={videos?.length >= 2 ? 'Videos' : null}
       renderContentE={() => (
         <ContentVideosList
