@@ -23,9 +23,9 @@ const RowCard = (props = {}) => {
           </Box>
         ) : null}
         {props.description ? (
-          <Box as="p" color="neutrals.600" fontSize="s">
+          <Styled.Description color="neutrals.600" fontSize="s">
             {props.description}
-          </Box>
+          </Styled.Description>
         ) : null}
         {props.children ? props.children : null}
         <Divider />
