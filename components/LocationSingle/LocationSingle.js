@@ -37,9 +37,6 @@ function LocationSingle(props = {}) {
     return <NotFound />;
   }
 
-  const image = props.data.coverImage;
-  console.log({ image });
-
   return (
     <Layout
       title={props?.data?.title}
