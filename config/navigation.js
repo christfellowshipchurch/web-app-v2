@@ -31,7 +31,7 @@ const navigation = {
       call: 'Discover',
     },
     {
-      action: links.giveOnline,
+      action: '/give',
       call: 'Give',
     },
   ],
