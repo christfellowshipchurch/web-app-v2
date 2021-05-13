@@ -217,9 +217,19 @@ const CoverLabel = styled.b`
   z-index: 2;
 `;
 
+const Description = styled.p`
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  ${system}
+`;
+
 Card.Content = Content;
 Card.Cover = Cover;
 Card.CoverContent = CoverContent;
 Card.CoverLabel = CoverLabel;
+Card.Description = Description;
 
 export default Card;
