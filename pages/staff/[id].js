@@ -1,7 +1,8 @@
 import { themeGet } from '@styled-system/theme-get';
+import { FacebookLogo, InstagramLogo, TwitterLogo, Rss } from 'phosphor-react';
 import { GET_STAFF_MEMBER } from 'hooks/useStaffMember';
-import { Layout, MainPhotoHeader } from 'components';
-import { Box, Heading, Longform, Section, Image } from 'ui-kit';
+import { Layout } from 'components';
+import { Box, Heading, Longform, Section, Image, theme } from 'ui-kit';
 import { initializeApollo } from 'lib/apolloClient';
 import { getStaffId, getMetaData } from 'utils';
 import styled from 'styled-components';
@@ -12,16 +13,13 @@ const ProfileImage = styled(Image)`
 `;
 
 export default function Page({ data }) {
-
   return (
     <Layout meta={getMetaData(data)} bg="bg_alt">
       <Section>
-        <Box display={{md: 'block', lg: "flex"}} mt={{_: 'l'}} alignItems="column">
-          <Box flex="1" display="flex" justifyContent="center">
-            <ProfileImage src={data?.photo?.uri} /> 
-          </Box>
-          <Box flex="1" pt="xl" pb="m" display="flex" flexDirection="column" alignItems={{ _: "center", lg: 'flex-start'}}>
-            {(data.campus?.name) && (
+        <Box mt={{ _: 'l' }} px="l">
+          <ProfileImage width="400px" src={data?.photo?.uri} />
+          <Box pt="xl" pb="m">
+            {data.campus?.name && (
               <Heading
                 fontSize="h2"
                 lineHeight="h2"
@@ -59,12 +57,55 @@ export default function Page({ data }) {
       </Section>
       {data.htmlContent && (
         <Section>
-          <Longform
-            px="xxl"
-            pt="m"
-            pb="l"
-            dangerouslySetInnerHTML={{ __html: data.htmlContent }}
-          />
+          <Box pt="m" pb="l" px="l">
+            <Longform dangerouslySetInnerHTML={{ __html: data.htmlContent }} />
+          </Box>
+        </Section>
+      )}
+      {(data.facebook || data.twitter || data.instagram || data.website) && (
+        <Section>
+          <Box pb="l" px="l" display="flex" width="400px">
+            {data.facebook && (
+              <Box flex="1">
+                <a href={`"${data.facebook}"`}>
+                  <FacebookLogo
+                    size="48"
+                    style={{ opacity: '60%', marginRight: theme.space.s }}
+                    weight="fill"
+                  />
+                </a>
+              </Box>
+            )}
+            {data.twitter && (
+              <Box flex="1">
+                <a href={`"${data.twitter}"`}>
+                  <TwitterLogo
+                    size="48"
+                    style={{ opacity: '60%', marginRight: theme.space.s }}
+                    weight="fill"
+                  />
+                </a>
+              </Box>
+            )}
+            {data.instagram && (
+              <Box flex="1">
+                <a href={`"${data.instagram}"`}>
+                  <InstagramLogo
+                    size="48"
+                    style={{ opacity: '60%' }}
+                    weight="fill"
+                  />
+                </a>
+              </Box>
+            )}
+            {data.website && (
+              <Box flex="1">
+                <a href={`"${data.website}"`}>
+                  <Rss size="48" style={{ opacity: '60%' }} weight="fill" />
+                </a>
+              </Box>
+            )}
+          </Box>
         </Section>
       )}
     </Layout>

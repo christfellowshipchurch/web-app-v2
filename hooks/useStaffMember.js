@@ -15,6 +15,10 @@ export const GET_STAFF_MEMBER = gql`
         campus {
           name
         }
+        facebook
+        twitter
+        instagram
+        website
       }
     }
   }
