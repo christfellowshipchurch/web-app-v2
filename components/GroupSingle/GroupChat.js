@@ -14,7 +14,7 @@ export default function GroupChat(props = {}) {
     return null;
   }
 
-  if (currentBreakpoint.isSmall || currentBreakpoint.isMedium) {
+  if (currentBreakpoint.isSmall) {
     return <GroupChatMobile />;
   }
 

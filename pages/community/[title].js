@@ -7,20 +7,27 @@ import toLower from 'lodash/toLower';
 
 import flags from 'config/flags';
 import { CommunitiesProvider } from 'providers';
-import { useGroupPreferences } from 'hooks';
+import { useGroupPreferences, useGroupFacetFilters } from 'hooks';
 import { CommunitySingle, Layout } from 'components';
 import { Box, Cell, Loader, utils } from 'ui-kit';
 
 export default function Community(props) {
   const router = useRouter();
-
-  useEffect(() => {
-    if (!flags.GROUP_FINDER) router.push('/');
-  }, [router]);
-
-  const { preferences, subPreferences, loading } = useGroupPreferences();
-
   const { title } = router.query;
+  const {
+    preferences,
+    subPreferences,
+    loading: preferenceLoading,
+  } = useGroupPreferences();
+
+  const options = {
+    variables: {
+      facet: 'subPreference',
+      facetFilters: [`preference:${title}`],
+    },
+  };
+
+  const { loading: facetLoading, facets } = useGroupFacetFilters(options);
 
   const formatTitleAsUrl = title => kebabCase(toLower(title));
   const slug = formatTitleAsUrl(title);
@@ -29,7 +36,9 @@ export default function Community(props) {
     preferences,
     n => formatTitleAsUrl(get(n, 'title', '')) === slug
   );
-  const unknownPreference = !loading && !preference;
+  const unknownPreference = !preferenceLoading && !preference;
+
+  const loading = facetLoading || preferenceLoading;
 
   if (!flags.GROUP_FINDER) return null;
 
@@ -57,7 +66,7 @@ export default function Community(props) {
   return (
     <CommunitiesProvider
       Component={CommunitySingle}
-      data={{ ...preference, subPreferences, loading }}
+      data={{ ...preference, subPreferences, facets, loading }}
     />
   );
 }
