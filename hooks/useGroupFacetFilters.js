@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client';
 
-export const GET_LINEUPS = gql`
+export const GET_GROUP_FACET_FILTERS = gql`
   query getGroupFacetFilters($facet: String!, $facetFilters: [String]) {
     groupFacetFilters(facet: $facet, facetFilters: $facetFilters)
   }
