@@ -68,6 +68,7 @@ function CommunitySingle(props = {}) {
     const showNotifyMeModal = () => {
       const userCampus = currentUser?.profile?.campus?.name;
       console.log('userCampus: ', userCampus);
+      modalDispatch(showModal('GroupNotifyMe'));
     };
     ensureAuthentication(showNotifyMeModal);
   }
