@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createMarkup } from 'utils';
+import isEmpty from 'lodash/isEmpty';
 
 import { ContentLayout, Layout, NotFound } from 'components';
 
@@ -35,6 +36,9 @@ function LocationSingle(props = {}) {
     return <NotFound />;
   }
 
+  const image = props.data.coverImage;
+  console.log({ image });
+
   return (
     <Layout
       title={props?.data?.title}
@@ -42,8 +46,22 @@ function LocationSingle(props = {}) {
       contentHorizontalPadding={'0'}
       contentVerticalPadding={'0'}
     >
-      {props?.data?.coverImage && (
-        <Styled.Hero coverImage={props?.data?.coverImage?.sources[0]?.uri} />
+      {!isEmpty(props?.data?.coverImage) && (
+        <Styled.Hero
+          coverImage={props?.data?.coverImage?.sources[0]?.uri}
+          title={props?.data?.title}
+        >
+          {!isEmpty(props?.data?.title) && (
+            <Styled.Glass>
+              <Styled.GlassContent>
+                <Box as="h1">{props?.data?.title}</Box>
+                <Box as="h4" fontStyle="italic" fontWeight="normal">
+                  {props?.data?.summary}
+                </Box>
+              </Styled.GlassContent>
+            </Styled.Glass>
+          )}
+        </Styled.Hero>
       )}
 
       <Cell maxWidth={utils.rem('1100px')} px="base">
