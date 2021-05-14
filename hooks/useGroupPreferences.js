@@ -1,4 +1,6 @@
+import { useState, useEffect } from 'react';
 import { gql, useQuery } from '@apollo/client';
+import get from 'lodash/get';
 
 export const GET_PREFERENCES = gql`
   query getPreferences {
@@ -40,12 +42,37 @@ export const GET_SUB_PREFERENCES = gql`
   }
 `;
 
-function useGroupPreferences(options = {}) {
+function useGroupPreferences(props = {}) {
+  const { preferencePath = null, ...options } = props;
+  const [preference, setPreference] = useState(null);
+
   const queryPreferences = useQuery(GET_PREFERENCES, options);
   const querySubPreferences = useQuery(GET_SUB_PREFERENCES, options);
 
+  const preferences = queryPreferences?.data?.allPreferences || [];
+
+  console.log({ preferencePath });
+
+  useEffect(() => {
+    if (preferencePath && preferences) {
+      setPreference(
+        find(
+          preferences,
+          n => get(n, 'routing.pathname', '') === preferencePath
+        )
+      );
+    }
+  }, [queryPreferences]);
+
+  useEffect(() => {
+    if (preference && querySubPreferences.refetch) {
+      console.log('REFETCH');
+    }
+  }, [preference]);
+
   return {
-    preferences: queryPreferences?.data?.allPreferences || [],
+    preference,
+    preferences,
     subPreferences: querySubPreferences?.data?.allSubPreferences || [],
     loading: queryPreferences?.loading || querySubPreferences?.loading,
   };

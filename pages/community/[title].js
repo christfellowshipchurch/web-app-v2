@@ -10,31 +10,24 @@ import { CommunitySingle, Layout, NotFound } from 'components';
 import { Box, Cell, Loader, utils } from 'ui-kit';
 
 export default function Community(props) {
-  const [preference, setPreference] = useState('');
   const router = useRouter();
+
+  const { title } = router.query;
+
+  console.log({ router });
 
   useEffect(() => {
     if (!flags.GROUP_FINDER) router.push('/');
   }, [router]);
 
-  const { preferences, loading } = useGroupPreferences();
-
-  const { subPreferences } = useGroupPreference({
-    variables: { preferenceId: preference?.id },
-    skip: isEmpty(preference?.id),
+  const {
+    preferences,
+    preference,
+    subPreferences,
+    loading,
+  } = useGroupPreferences({
+    preferencePath: `community/${title}`,
   });
-
-  // if it can't find a preference that matches it will change the preference from empty string to undefined
-  useEffect(() => {
-    if (!loading) {
-      setPreference(
-        find(
-          preferences,
-          n => `/${get(n, 'routing.pathname', '')}` === router.asPath
-        )
-      );
-    }
-  }, [loading]);
 
   if (!flags.GROUP_FINDER) return null;
 
