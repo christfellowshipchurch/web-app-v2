@@ -60,9 +60,9 @@ function Nav(props = {}) {
           py: 's',
         }}
         renderTrigger={({ toggle }) => (
-          <Box as="a" href="#0" onClick={toggle}>
+          <Box as="a" textDecoration="none" href="#0" onClick={toggle}>
             <Icon name="menu" color="fg" />
-            <Box as="span" className="srt">
+            <Box as="span" p="xs" color="fg" >
               Menu
             </Box>
           </Box>
