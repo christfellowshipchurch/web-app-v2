@@ -5,8 +5,9 @@ import find from 'lodash/find';
 import isEmpty from 'lodash/isEmpty';
 
 import flags from 'config/flags';
-import { useGroupPreference, useGroupPreferences } from 'hooks';
-import { CommunitySingle, Layout, NotFound } from 'components';
+import { CommunitiesProvider } from 'providers';
+import { useGroupPreferences, useGroupFacetFilters } from 'hooks';
+import { CommunitySingle, Layout } from 'components';
 import { Box, Cell, Loader, utils } from 'ui-kit';
 
 export default function Community(props) {
@@ -14,20 +15,25 @@ export default function Community(props) {
 
   const { title } = router.query;
 
-  console.log({ router });
-
-  useEffect(() => {
-    if (!flags.GROUP_FINDER) router.push('/');
-  }, [router]);
-
+  const preferenceOptions = {
+    preferencePath: ['community', title].join('/'),
+  };
   const {
-    preferences,
     preference,
     subPreferences,
-    loading,
-  } = useGroupPreferences({
-    preferencePath: `community/${title}`,
-  });
+    loading: preferenceLoading,
+  } = useGroupPreferences(preferenceOptions);
+
+  const options = {
+    variables: {
+      facet: 'subPreference',
+      facetFilters: [`preference:${title}`],
+    },
+  };
+
+  const { loading: facetLoading, facets } = useGroupFacetFilters(options);
+
+  const loading = facetLoading || preferenceLoading;
 
   if (!flags.GROUP_FINDER) return null;
 
@@ -48,9 +54,10 @@ export default function Community(props) {
     );
   }
 
-  if (!loading && !preference) {
-    return <NotFound />;
-  }
-
-  return <CommunitySingle data={{ ...preference, subPreferences }} />;
+  return (
+    <CommunitiesProvider
+      Component={CommunitySingle}
+      data={{ ...preference, subPreferences, facets, loading }}
+    />
+  );
 }

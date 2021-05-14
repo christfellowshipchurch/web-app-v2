@@ -1,32 +1,50 @@
 import styled, { css } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
+import isEmpty from 'lodash/isEmpty';
 
 import { system } from 'ui-kit';
-import { rem } from 'ui-kit/_utils';
+
+const glassBackground = ({ coverImage }) => props => {
+  if (!isEmpty(coverImage)) {
+    return css`
+      color: ${themeGet('colors.white')};
+      background-image: linear-gradient(
+        rgba(0, 0, 0, 0),
+        rgba(0, 0, 0, 0.65),
+        rgba(0, 0, 0, 0.85)
+      );
+    `;
+  }
+};
 
 const LocationSingle = styled.div`
   ${system}
 `;
 
 const Hero = styled.div`
-  background-image: url(${props => props.coverImage});
-  background-position: center;
-  background-size: cover;
-  padding: ${themeGet('space.m')};
-  min-height: 40vh;
-  align-items: center;
-  justify-content: center;
   display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+
+  background-image: url(${props => props.coverImage});
+  background-position: bottom;
+  background-size: cover;
+
+  padding: ${themeGet('space.m')};
+  min-height: ${props => (isEmpty(props.coverImage) ? '0' : '55vh')};
 `;
 
 const Glass = styled.div`
-  padding: ${themeGet('space.xl')} ${themeGet('space.l')};
+  width: 100%;
+
+  padding-bottom: ${themeGet('space.l')};
+  padding-top: ${themeGet('space.xl')};
+  padding-right: ${themeGet('space.s')};
+  padding-left: ${themeGet('space.s')};
+
   text-align: center;
-  color: ${themeGet('colors.white')};
-  background-color: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  border-radius: ${themeGet('radii.base')};
-  box-shadow: ${themeGet('shadows.l')};
+
+  ${glassBackground}
 `;
 
 LocationSingle.Hero = Hero;

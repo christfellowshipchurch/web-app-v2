@@ -47,6 +47,7 @@ import useUpdateGroupResourceContentItem from './useUpdateGroupResourceContentIt
 import useUpdateGroupResourceUrl from './useUpdateGroupResourceUrl';
 import useUserExists from './useUserExists';
 import useVerifyPin from './useVerifyPin';
+import useGroupFacetFilters from './useGroupFacetFilters';
 
 export {
   useAuthIdentity,
@@ -69,6 +70,7 @@ export {
   useEvents,
   useEventsFeedFeatures,
   useFeature,
+  useGroupFacetFilters,
   useFeatureFeed,
   useFeedFeatures,
   useForm,

@@ -123,6 +123,13 @@ const CONTENT_BLOCK_FEATURE_FRAGMENT = gql`
     orientation
     imageRatio
     imageAlt
+    videos {
+      name
+      key
+      sources {
+        uri
+      }
+    }
     subtitle
   }
 `;
