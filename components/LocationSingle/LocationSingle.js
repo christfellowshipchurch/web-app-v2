@@ -8,6 +8,8 @@ import { Box, Cell, Loader, Longform, utils } from 'ui-kit';
 import Styled from './LocationSingle.styles';
 
 function LocationSingle(props = {}) {
+  const coverImage = props?.data?.coverImage?.sources[0]?.uri;
+
   if (props.loading) {
     return (
       <Layout
@@ -42,13 +44,14 @@ function LocationSingle(props = {}) {
       contentHorizontalPadding={'0'}
       contentVerticalPadding={'0'}
     >
-      {props?.data?.coverImage && (
-        <Styled.Hero coverImage={props?.data?.coverImage?.sources[0]?.uri}>
-          <Styled.Glass>
-            <Box as="h1">{props?.data?.title}</Box>
-          </Styled.Glass>
-        </Styled.Hero>
-      )}
+      <Styled.Hero coverImage={coverImage}>
+        <Styled.Glass coverImage={coverImage}>
+          <Box as="h1" pt="l" textAlign="center">
+            {props?.data?.title}
+          </Box>
+          {props?.data?.summary && <Box as="h3">{props?.data?.summary}</Box>}
+        </Styled.Glass>
+      </Styled.Hero>
 
       <Cell maxWidth={utils.rem('1100px')} px="base">
         <ContentLayout
@@ -61,11 +64,6 @@ function LocationSingle(props = {}) {
                   margin="auto"
                   textAlign="center"
                 >
-                  {props?.data?.summary && (
-                    <Box as="h2" paddingBottom="m">
-                      {props?.data?.summary}
-                    </Box>
-                  )}
                   {props?.data?.htmlContent && (
                     <Longform
                       dangerouslySetInnerHTML={createMarkup(
