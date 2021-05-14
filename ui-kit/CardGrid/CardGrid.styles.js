@@ -8,7 +8,7 @@ const CardGrid = styled.div`
     margin-bottom: ${themeGet('space.l')};
   }
 
-  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     display: grid;
     grid-column-gap: ${themeGet('space.base')};
     grid-row-gap: ${themeGet('space.l')};
