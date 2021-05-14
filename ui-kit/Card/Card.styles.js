@@ -168,8 +168,8 @@ const position = ({ position, size }) => props => {
       `;
     }
     return css`
-      backdrop-filter: blur(30px);
-      background-color: rgba(255, 255, 255, 0.15);
+      /* backdrop-filter: blur(30px);
+      background-color: rgba(255, 255, 255, 0.15); */
       padding: ${themeGet('space.s')};
 
       @media screen and (min-width: ${themeGet('breakpoints.md')}) {
