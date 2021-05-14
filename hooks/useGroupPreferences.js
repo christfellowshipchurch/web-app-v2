@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { gql, useQuery } from '@apollo/client';
 import get from 'lodash/get';
+import find from 'lodash/find';
 
 export const GET_PREFERENCES = gql`
   query getPreferences {
@@ -25,18 +26,14 @@ export const GET_PREFERENCES = gql`
 `;
 
 export const GET_SUB_PREFERENCES = gql`
-  query getSubPreferences {
+  query getSubPreferences($preferenceId: ID) {
     allSubPreferences {
-      ...subPreferencesFragment
-    }
-  }
-
-  fragment subPreferencesFragment on GroupPreference {
-    id
-    title
-    coverImage {
-      sources {
-        uri
+      id
+      title
+      coverImage(nodeId: $preferenceId) {
+        sources {
+          uri
+        }
       }
     }
   }
@@ -50,9 +47,9 @@ function useGroupPreferences(props = {}) {
   const querySubPreferences = useQuery(GET_SUB_PREFERENCES, options);
 
   const preferences = queryPreferences?.data?.allPreferences || [];
+  const subPreferences = querySubPreferences?.data?.allSubPreferences || [];
 
-  console.log({ preferencePath });
-
+  // note : If we have a preferencePath specified, that means that we want to be able to filter all preferences for a specific, single preference.
   useEffect(() => {
     if (preferencePath && preferences) {
       setPreference(
@@ -64,16 +61,21 @@ function useGroupPreferences(props = {}) {
     }
   }, [queryPreferences]);
 
+  // note : If a preference is specified, refetch the Sub Preferences with the Preference Id so that we can specify the type of cover image we want
   useEffect(() => {
     if (preference && querySubPreferences.refetch) {
-      console.log('REFETCH');
+      const { refetch } = querySubPreferences;
+
+      refetch({
+        preferenceId: preference.id,
+      });
     }
   }, [preference]);
 
   return {
     preference,
     preferences,
-    subPreferences: querySubPreferences?.data?.allSubPreferences || [],
+    subPreferences,
     loading: queryPreferences?.loading || querySubPreferences?.loading,
   };
 }
