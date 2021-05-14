@@ -1,124 +1,157 @@
-import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import algoliasearch from 'algoliasearch/lite';
 import {
   InstantSearch,
   Hits,
-  SearchBox,
   Pagination,
-  Highlight,
-  ClearRefinements,
-  RefinementList,
-  Configure,
   Panel,
 } from 'react-instantsearch-dom';
-import getURLFromType from 'utils/getURLFromType.js';
+import { isEqual } from 'lodash';
 import { useRouter } from 'next/router';
 import Styled from './Search.styles';
-import { Button, Heading } from 'ui-kit';
+import { Box, Button, Heading } from 'ui-kit';
+import CategoriesList from './CategoriesList';
+import SearchBox from './SearchBox';
+import Hit from './Hit';
+import RefinementsList from './RefinementsList';
 
 const searchClient = algoliasearch(
   'KXH2MCDDBD',
   '7938b74cef1ef3dd0722fe36e418d2c7'
 );
 
+const DEBOUNCE_TIME = 1000;
+
+const createURL = state => {
+  const queryParts = [];
+
+  if (state?.refinementList) {
+    Object.keys(state.refinementList).forEach(key => {
+      if (state.refinementList[key]) {
+        queryParts.push(`${key}=${state.refinementList[key]}`);
+      }
+    });
+  }
+
+  if (state?.query) {
+    queryParts.push(`q=${state.query}`);
+  }
+
+  if (state?.page) {
+    queryParts.push(`p=${state.page}`);
+  }
+
+  return queryParts.length ? `?${queryParts.join('&')}` : '';
+};
+
+const searchStateToUrl = searchState => `/search${createURL(searchState)}`;
+
+const urlToSearchState = path => {
+  const searchString = path?.split('?')?.[1];
+  if (!searchString) return {};
+
+  const queryParams = new URLSearchParams(`?${searchString}`);
+  let query;
+  let page;
+  const refinementList = {};
+  queryParams.forEach((value, key) => {
+    switch (key) {
+      case 'q':
+        query = value;
+        break;
+      case 'p':
+        page = value;
+        break;
+      default:
+        refinementList[key] = value?.split(',')?.filter(r => Boolean(r)) || [];
+        break;
+    }
+  });
+
+  return {
+    query,
+    page,
+    refinementList,
+  };
+};
+
 function Search({ filtering, setFiltering }) {
-  const [categories, setCategories] = useState([]);
   const router = useRouter();
+  const [searchState, setSearchState] = useState(
+    urlToSearchState(router.asPath)
+  );
+  const [debouncedSetState, setDebouncedSetState] = useState(null);
+
+  useEffect(() => {
+    if (!searchState.refinementList?.category?.length && filtering) {
+      setFiltering(false);
+    }
+  }, [searchState.refinementList?.category, filtering, setFiltering]);
+
+  // Something is causing this function (and then multiple rerenders)
+  // if a refinement is selected and then all categories are deselected
+  const onSearchStateChange = updatedSearchState => {
+    if (!isEqual(updatedSearchState, searchState)) {
+      clearTimeout(debouncedSetState);
+
+      const updatedUrl = searchStateToUrl(updatedSearchState);
+
+      setDebouncedSetState(
+        setTimeout(() => {
+          router.replace(updatedUrl, updatedUrl, { shallow: true });
+        }, DEBOUNCE_TIME)
+      );
+
+      setSearchState(updatedSearchState);
+    }
+  };
+
+  const selectedCategories = searchState.refinementList?.category || [];
+
   return (
     <div className="ais-InstantSearch">
       <InstantSearch
         indexName="prod_ContentItem"
         searchClient={searchClient}
-        onSearchStateChange={state => {
-          setCategories(state.refinementList?.category || []);
-          router.replace({ query: { categories: state.refinementList?.category }})
-        }}
+        searchState={searchState}
+        onSearchStateChange={onSearchStateChange}
+        createURL={createURL}
       >
-        <div className={`left-panel ${filtering ? 'filtering' : ''}`}>
-          <ClearRefinements />
-          <Panel header="Category">
-            <RefinementList attribute="category" defaultRefinement={router.query.categories}/>
+        <div className={`search-container ${filtering ? 'filtering' : ''}`}>
+          <SearchBox onSearchStateChange={onSearchStateChange} />
+          <Panel header="Category" className="categories">
+            <CategoriesList
+              attribute="category"
+              defaultRefinement={selectedCategories}
+            />
           </Panel>
-          {categories.length ? (
-            <div>
-              <Panel header="Location">
-                <RefinementList attribute="location" />
-              </Panel>
-              <Panel header="Ministry">
-                <RefinementList attribute="ministry" />
-              </Panel>
-              <Panel header="Trip Type">
-                <RefinementList attribute="tripType" />
-              </Panel>
-              <Panel header="Days Available">
-                <RefinementList attribute="daysAvailable" />
-              </Panel>
-              <Panel header="Service Area">
-                <RefinementList attribute="serviceArea" />
-              </Panel>
-              <Panel header="Opportunity Type">
-                <RefinementList attribute="opportunityType" />
-              </Panel>
-              <Panel header="Related Skills">
-                <RefinementList attribute="relatedSkills" />
-              </Panel>
-              <Panel header="Group Event">
-                <RefinementList attribute="isGroupEvent" />
-              </Panel>
-              <Panel header="Speaker">
-                <RefinementList attribute="speaker" />
-              </Panel>
-              <Panel header="Topics">
-                <RefinementList attribute="topics" />
-              </Panel>
-              <Panel header="Books of the Bible">
-                <RefinementList attribute="booksOfTheBible" />
-              </Panel>
-            </div>
+        </div>
+        <Box
+          display="flex"
+          flexDirection={{ _: 'column', lg: 'row' }}
+          position="relative"
+        >
+          {selectedCategories?.length ? (
+            <RefinementsList
+              categories={selectedCategories || []}
+              filtering={filtering}
+            />
           ) : null}
-          <Configure hitsPerPage={8} />
-        </div>
-        <div className={`right-panel ${filtering ? 'filtering' : ''}`}>
-          <SearchBox />
-          <Hits hitComponent={Hit} />
-          <Pagination />
-        </div>
+          <div className={`right-panel ${filtering ? 'filtering' : ''}`}>
+            <Hits hitComponent={Hit} />
+            <Pagination />
+          </div>
+        </Box>
       </InstantSearch>
-      <Styled.FilterButton>
-        <Button color="primary" onClick={() => setFiltering(!filtering)}>
-          <Heading fontSize="h4">{filtering ? 'Close' : 'Filter'}</Heading>
-        </Button>
-      </Styled.FilterButton>
+      {selectedCategories?.length ? (
+        <Styled.FilterButton>
+          <Button color="primary" onClick={() => setFiltering(!filtering)}>
+            <Heading fontSize="h4">{filtering ? 'Close' : 'Filter'}</Heading>
+          </Button>
+        </Styled.FilterButton>
+      ) : null}
     </div>
   );
 }
-
-function Hit(props) {
-  const router = useRouter();
-  const url = getURLFromType(props.hit);
-  return (
-    <div
-      onClick={url ? () => router.push(url) : null}
-      style={{ cursor: url ? 'pointer' : 'default' }}
-    >
-      <img
-        src={props.hit.coverImage ? props.hit.coverImage.sources[0].uri : null}
-        height="100px"
-        alt={props.hit.title}
-      />
-      <div className="hit-name">
-        <Highlight attribute="title" hit={props.hit} />
-      </div>
-      <div className="hit-description">
-        <Highlight attribute="summary" hit={props.hit} />
-      </div>
-    </div>
-  );
-}
-
-Hit.propTypes = {
-  hit: PropTypes.object.isRequired,
-};
 
 export default Search;
