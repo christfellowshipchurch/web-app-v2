@@ -74,11 +74,6 @@ function EditUserProfile(props = {}) {
               value: startCase(values.gender) || startCase(gender) || 'Unknown',
             },
             { field: 'BirthDate', value: values.birthdate || birthdate || '' },
-            {
-              field: 'PhoneNumber',
-              value: values.phone || phone || '',
-            },
-            { field: 'Email', value: values.email || email || '' },
           ],
           address: {
             street1: values.street || street || '',
@@ -131,8 +126,8 @@ function EditUserProfile(props = {}) {
               <TextInput
                 id="email"
                 label="Email"
-                onChange={handleChange}
                 value={values.email || email || ''}
+                disabled
                 mb="s"
               />
               <Checkbox
@@ -146,8 +141,8 @@ function EditUserProfile(props = {}) {
               <TextInput
                 id="phone"
                 label="Phone Number"
-                onChange={handleChange}
                 value={values.phone || phone || ''}
+                disabled
                 mb="s"
               />
               <Checkbox
