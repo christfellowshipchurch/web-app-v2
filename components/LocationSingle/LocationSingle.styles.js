@@ -31,7 +31,7 @@ const Hero = styled.div`
   background-size: cover;
 
   padding: ${themeGet('space.m')};
-  min-height: ${props => (isEmpty(props.coverImage) ? '0' : '55vh')};
+  min-height: ${props => (isEmpty(props.coverImage) ? '0' : '80vh')};
 `;
 
 const Glass = styled.div`

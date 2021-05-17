@@ -20,7 +20,7 @@ export default function Home(props = {}) {
         as="main"
         maxWidth={utils.rem('1100px')}
         px="base"
-        py={{ _: 'l', lg: 'xl' }}
+        py={{ _: 'xs', lg: 's' }}
       >
         <FeatureFeedProvider Component={FeatureFeed} options={options} />
       </Cell>
