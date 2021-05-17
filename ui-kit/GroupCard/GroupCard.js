@@ -118,7 +118,7 @@ const GroupCard = (props = {}) => {
           {props.totalAvatars === 1 ? `Group Member` : 'Group Members'}
         </Box>
         {props.avatars?.length > 0 && (
-          <Box display="flex" mb="l" position="relative">
+          <Box display="inline-flex" mb="l" position="relative">
             {props.avatars.slice(0, maxAvatars).map((n, i = 2) => (
               <SquareAvatar
                 height="90px"
