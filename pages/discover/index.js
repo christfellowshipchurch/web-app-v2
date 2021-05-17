@@ -86,7 +86,7 @@ const Discover = () => {
         as="main"
         maxWidth={utils.rem('1100px')}
         px="base"
-        py={{ _: 'l', lg: 'xl' }}
+        py={{ _: 's', lg: 'base' }}
       >
         <Box as="h1" mb="base">
           Discover
