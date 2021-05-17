@@ -1,1 +1,20 @@
-{"applinks":{"apps":[],"details":[{"appID":"6QZF6PFAQS.com.longhollow.churchapp","paths":["/app-link/*"]}]}}
+{
+  "applinks": {
+      "details": [
+           {
+             "appIDs": [ "6QZF6PFAQS.com.longhollow.churchapp" ],
+             "components": [
+               {
+                  "#": "no_universal_links",
+                  "exclude": true,
+                  "comment": "Matches any URL whose fragment equals no_universal_links and instructs the system not to open it as a universal link"
+               },
+               {
+                  "/": "/app-link/*",
+                  "comment": "Matches any URL whose path starts with /app-link/"
+               }
+             ]
+           }
+       ]
+   }
+}
