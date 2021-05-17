@@ -30,7 +30,7 @@ export default function Connect(props = {}) {
         as="main"
         maxWidth={utils.rem('1100px')}
         px="base"
-        py={{ _: 'l', lg: 'xl' }}
+        py={{ _: 's', lg: 'base' }}
       >
         <Box as="h1" mb={'-1rem'}>
           Connect
