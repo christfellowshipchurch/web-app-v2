@@ -27,9 +27,6 @@ function Nav(props = {}) {
 
   return (
     <Styled>
-      <CustomLink href="/discover" color="fg">
-        <Icon name="search" />
-      </CustomLink>
       <QuickAction data={props.data.quickAction} />
       <ClientSideComponent>
         {authenticated ? (
@@ -57,6 +54,9 @@ function Nav(props = {}) {
           </Box>
         )}
       </ClientSideComponent>
+      <CustomLink mr={'-5rem'} href="/discover" color="fg">
+        <Icon name="search" />
+      </CustomLink>
       <Menu
         cardContentProps={{
           p: '0',
