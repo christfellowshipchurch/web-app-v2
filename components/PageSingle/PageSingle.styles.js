@@ -13,7 +13,7 @@ const Hero = styled.div`
   background-image: url(${props => props.coverImage});
   background-position: center;
   background-size: cover;
-  min-height: 40vh;
+  min-height: 80vh;
   overflow: hidden;
   padding-top: ${themeGet('space.xxl')};
 `;
