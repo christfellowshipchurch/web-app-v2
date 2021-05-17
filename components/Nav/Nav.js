@@ -27,6 +27,9 @@ function Nav(props = {}) {
 
   return (
     <Styled>
+      <CustomLink href="/discover" color="fg">
+        <Icon name="search" />
+      </CustomLink>
       <QuickAction data={props.data.quickAction} />
       <ClientSideComponent>
         {authenticated ? (
