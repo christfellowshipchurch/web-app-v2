@@ -8,7 +8,7 @@ export default function Groups() {
       <Cell
         as="main"
         maxWidth={utils.rem('1100px')}
-        px="base"
+        px={{ _: 'base', lg: '0' }}
         py={{ _: 'l', lg: 'xl' }}
       >
         <Box as="h1" mb="l">
