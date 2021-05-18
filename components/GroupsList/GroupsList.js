@@ -32,7 +32,6 @@ function GroupsList(props = {}) {
       display={currentBreakpoint.isSmall ? 'block' : 'flex'}
       flexWrap="wrap"
       pb="base"
-      flex="1"
     >
       {props.data.map(group => {
         const totalMembers =
