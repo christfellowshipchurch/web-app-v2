@@ -85,7 +85,7 @@ Styled.Image = styled(Image)`
 Styled.BackdropOverlay = styled(Box)`
   display: none;
 
-  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+  @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
     display: block;
     height: 100%;
     left: 0;

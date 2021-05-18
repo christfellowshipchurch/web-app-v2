@@ -67,7 +67,7 @@ export default function Page({
         subtitle={node.subtitle}
         summary={node.summary}
         showTitleOverImage={node.showTitleOverImage}
-        mb={{ _: 0, lg: 'xxl' }}
+        mb={{ _: 'xl', lg: 'xxl' }}
       />
       {links?.length ? (
         <Section>
