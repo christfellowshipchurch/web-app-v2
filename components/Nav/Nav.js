@@ -54,6 +54,9 @@ function Nav(props = {}) {
           </Box>
         )}
       </ClientSideComponent>
+      <CustomLink mr={'-5rem'} href="/discover" color="fg">
+        <Icon name="search" />
+      </CustomLink>
       <Menu
         cardContentProps={{
           p: '0',
