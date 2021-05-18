@@ -9,7 +9,12 @@ import { CustomLink } from 'components';
 import CommunityListCard from './CommunityListCard';
 
 function CommunityList(props = {}) {
-  if (props.loading) return <Loader text="Loading" />;
+  if (props.loading)
+    return (
+      <Box mx="auto">
+        <Loader text="Loading" />
+      </Box>
+    );
 
   const noData = props.data.length === 0;
   if (noData)
@@ -29,7 +34,7 @@ function CommunityList(props = {}) {
       {featuredItems.map((item, i) => (
         <CustomLink
           key={i}
-          href={item?.url ? item?.url : `/community/${slugify(item?.title)}`}
+          href={item?.routing?.pathname || '/'}
           Component={props.component}
           coverImage={item?.coverImage?.sources[0]?.uri}
           coverImageOverlay={true}
@@ -43,7 +48,7 @@ function CommunityList(props = {}) {
       {notFeaturedItems.map((item, i) => (
         <CustomLink
           key={i}
-          href={item?.url ? item?.url : `/community/${slugify(item?.title)}`}
+          href={item?.routing?.pathname || '/'}
           Component={props.component}
           coverImage={item?.coverImage?.sources[0]?.uri}
           coverImageOverlay={true}
