@@ -1,9 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import get from 'lodash/get';
 import find from 'lodash/find';
-import kebabCase from 'lodash/kebabCase';
-import toLower from 'lodash/toLower';
+import isEmpty from 'lodash/isEmpty';
 
 import flags from 'config/flags';
 import { CommunitiesProvider } from 'providers';
@@ -13,12 +12,17 @@ import { Box, Cell, Loader, utils } from 'ui-kit';
 
 export default function Community(props) {
   const router = useRouter();
+
   const { title } = router.query;
+
+  const preferenceOptions = {
+    preferencePath: ['community', title].join('/'),
+  };
   const {
-    preferences,
+    preference,
     subPreferences,
     loading: preferenceLoading,
-  } = useGroupPreferences();
+  } = useGroupPreferences(preferenceOptions);
 
   const options = {
     variables: {
@@ -29,24 +33,11 @@ export default function Community(props) {
 
   const { loading: facetLoading, facets } = useGroupFacetFilters(options);
 
-  const formatTitleAsUrl = title => kebabCase(toLower(title));
-  const slug = formatTitleAsUrl(title);
-
-  const preference = find(
-    preferences,
-    n => formatTitleAsUrl(get(n, 'title', '')) === slug
-  );
-  const unknownPreference = !preferenceLoading && !preference;
-
   const loading = facetLoading || preferenceLoading;
 
   if (!flags.GROUP_FINDER) return null;
 
-  if (loading || unknownPreference) {
-    if (unknownPreference) {
-      router.push('/community');
-    }
-
+  if (loading) {
     return (
       <Layout>
         <Cell
