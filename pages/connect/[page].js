@@ -73,7 +73,7 @@ export default function Page({
         <Section>
           <EventsCallout
             mx={{ _: 0, lg: 'xl' }}
-            mb={{ _: 'l', md: 'xxl' }}
+            mb="l"
             title="News & Events"
             icon={
               <Info
