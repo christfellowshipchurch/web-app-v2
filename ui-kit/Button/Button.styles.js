@@ -136,7 +136,9 @@ const Button = styled.button`
   font-family: ${themeGet('fonts.base')};
   font-size: ${themeGet('fontSizes.base')};
   font-weight: ${themeGet('fontWeights.bold')};
-  line-height: 2.5;
+  line-height: 1.5;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   padding-left: ${themeGet('space.base')};
   padding-right: ${themeGet('space.base')};
   text-align: center;
