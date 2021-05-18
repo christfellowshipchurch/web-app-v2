@@ -12,7 +12,7 @@ const AvatarCount = styled.p`
   align-items: center;
   background-color: ${themeGet('colors.tertiary')};
   border-radius: ${themeGet('radii.xl')};
-  bottom: ${themeGet('space.base')};
+  top: ${rem('-14px')};
   color: ${themeGet('colors.white')};
   display: flex;
   font-size: ${themeGet('fontSizes.xs')};
@@ -20,8 +20,8 @@ const AvatarCount = styled.p`
   height: ${rem('28px')};
   justify-content: center;
   margin-bottom: auto;
-  position: relative;
-  right: ${themeGet('space.base')};
+  position: absolute;
+  right: ${rem('-8px')};
   width: ${rem('28px')};
 `;
 
