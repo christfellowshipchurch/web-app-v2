@@ -6,7 +6,7 @@ import { Longform, Section } from 'ui-kit';
 import { getItemId, getMetaData } from 'utils';
 import { initializeApollo } from 'lib/apolloClient';
 
-export default function Page({ data }) {
+export default function Page({ data, dropdownData }) {
   const router = useRouter();
 
   const { loading, error, node } = data;
@@ -18,7 +18,7 @@ export default function Page({ data }) {
   }
 
   return (
-    <Layout meta={getMetaData(node)} bg="bg_alt">
+    <Layout meta={getMetaData(node)} bg="bg_alt" dropdownData={dropdownData}>
       <MainPhotoHeader
         src={node.coverImage?.sources?.[0].uri || ''}
         title={node.title}

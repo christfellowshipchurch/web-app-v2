@@ -3,8 +3,6 @@ import { useRouter } from 'next/router';
 import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
 import {
   CampusFilter,
-  EventCallout,
-  EventsCallout,
   Layout,
   MainPhotoHeader,
   MarketingHeadline,
@@ -12,12 +10,11 @@ import {
 import { getChannelId, getIdSuffix, getItemId, getMetaData } from 'utils';
 import IDS from 'config/ids';
 import { initializeApollo } from 'lib/apolloClient';
-import { CardGrid, Longform, Section, theme } from 'ui-kit';
+import { CardGrid, Longform, Section } from 'ui-kit';
 import { GET_CONTENT_CHANNEL } from 'hooks/useContentChannel';
-import { Info } from 'phosphor-react';
 import { GET_CAMPUSES } from 'hooks/useCampuses';
 
-export default function Page({ data = {}, campuses }) {
+export default function Page({ data = {}, campuses, dropdownData }) {
   const router = useRouter();
 
   if (data.loading || router.isFallback) {
@@ -28,7 +25,7 @@ export default function Page({ data = {}, campuses }) {
   const ctaLinks = data.ctaLinks;
 
   return (
-    <Layout meta={getMetaData(data)} bg="bg_alt">
+    <Layout meta={getMetaData(data)} bg="bg_alt" dropdownData={dropdownData}>
       <MainPhotoHeader
         src={data.coverImage?.sources?.[0].uri || ''}
         title={data.title}

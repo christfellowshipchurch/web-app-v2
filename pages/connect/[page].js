@@ -30,6 +30,7 @@ export default function Page({
   staff = [],
   relatedContent = {},
   campuses,
+  dropdownData,
 }) {
   const router = useRouter();
   const theme = useTheme();
@@ -60,7 +61,7 @@ export default function Page({
   links = links.filter(link => getIdSuffix(link.id) !== router.query.page);
 
   return (
-    <Layout meta={getMetaData(node)} bg="bg_alt">
+    <Layout meta={getMetaData(node)} bg="bg_alt" dropdownData={dropdownData}>
       <MainPhotoHeader
         src={node.coverImage?.sources?.[0].uri || ''}
         title={node.title}

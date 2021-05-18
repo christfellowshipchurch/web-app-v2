@@ -1,14 +1,11 @@
 import { Button } from './Dropdowns.styles';
 import { useCurrentPerson } from 'hooks';
 import { logout, useAuthDispatch } from 'providers/AuthProvider';
-import { Avatar, Box, Heading } from 'ui-kit';
+import { Box, Heading } from 'ui-kit';
 import { useRouter } from 'next/router';
-import { useTheme } from 'styled-components';
-import { UserCircle } from 'phosphor-react';
 import { showModal, useModalDispatch } from 'providers/ModalProvider';
 
 function Profile() {
-  const theme = useTheme();
   const router = useRouter();
   const dispatch = useAuthDispatch();
   const { currentPerson } = useCurrentPerson();
@@ -71,7 +68,6 @@ function Login() {
 }
 
 export default function DropdownUser() {
-  const theme = useTheme();
   const router = useRouter();
   const { authenticated } = useCurrentPerson();
   return (

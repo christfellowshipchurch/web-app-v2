@@ -17,6 +17,7 @@ import { getChannelId, getIdSuffix, getItemId } from 'utils';
 import useLiveStreams from 'hooks/useLiveStreams';
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
+import getDropdownData from 'utils/getDropdownData';
 
 const Styled = {};
 
@@ -41,7 +42,13 @@ Styled.SermonImage = styled(Image)`
   ${system}
 `;
 
-export default function Watch({ series, watchPages, sermons, baptisms = [] }) {
+export default function Watch({
+  series,
+  watchPages,
+  sermons,
+  baptisms = [],
+  dropdownData,
+}) {
   const router = useRouter();
 
   const sermon = sermons?.[0]?.node;
@@ -50,7 +57,7 @@ export default function Watch({ series, watchPages, sermons, baptisms = [] }) {
   const live = liveStreams?.[0]?.isLive;
 
   return (
-    <Layout title="Watch">
+    <Layout dropdownData={dropdownData}>
       <MainPhotoHeader
         src={sermon?.coverImage?.sources?.[0]?.uri}
         title="Join us live"

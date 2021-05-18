@@ -18,7 +18,7 @@ function getItemId(id) {
   return `MediaContentItem:${id}`;
 }
 
-export default function Item({ item } = {}) {
+export default function Item({ item, dropdownData } = {}) {
   const router = useRouter();
   if (router.isFallback) {
     return null;
@@ -28,8 +28,14 @@ export default function Item({ item } = {}) {
     ?.sources[0].uri;
 
   return (
-    <Layout meta={getMetaData(item)}>
-      {!src ? <MainPhotoHeader src={item.coverImage?.sources?.[0]?.uri} showImage={false} overlay="" /> : null}
+    <Layout meta={getMetaData(item)} dropdownData={dropdownData}>
+      {!src ? (
+        <MainPhotoHeader
+          src={item.coverImage?.sources?.[0]?.uri}
+          showImage={false}
+          overlay=""
+        />
+      ) : null}
       <Section mb="xl" px={{ _: 'l', md: 'xxl' }}>
         {src ? (
           <VideoPlayer

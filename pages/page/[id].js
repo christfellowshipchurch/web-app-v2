@@ -8,7 +8,7 @@ import { Box, Button, Heading, Longform, Section } from 'ui-kit';
 import { initializeApollo } from 'lib/apolloClient';
 import { getItemId, getMetaData, getIdSuffix } from 'utils';
 
-export default function Page({ data } = {}) {
+export default function Page({ data, dropdownData } = {}) {
   const router = useRouter();
 
   if (data?.loading || router.isFallback) {
@@ -16,7 +16,7 @@ export default function Page({ data } = {}) {
   }
 
   return (
-    <Layout meta={getMetaData(data)} bg="bg_alt">
+    <Layout meta={getMetaData(data)} bg="bg_alt" dropdownData={dropdownData}>
       <MainPhotoHeader
         src={data.coverImage?.sources?.[0].uri || ''}
         width="auto"

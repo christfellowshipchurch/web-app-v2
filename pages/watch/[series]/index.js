@@ -7,7 +7,7 @@ import { GET_MESSAGE_SERIES } from 'hooks/useMessageSeries';
 import { getChannelId, getIdSuffix, getMetaData } from 'utils';
 import { useTheme } from 'styled-components';
 
-export default function Series({ series } = {}) {
+export default function Series({ series, dropdownData } = {}) {
   const router = useRouter();
   const theme = useTheme();
 
@@ -16,7 +16,7 @@ export default function Series({ series } = {}) {
   }
 
   return (
-    <Layout meta={getMetaData(series)}>
+    <Layout meta={getMetaData(series)} dropdownData={dropdownData}>
       <Section>
         <Heading
           mt="l"
@@ -77,10 +77,9 @@ export async function getStaticProps(context) {
   };
 }
 
-
 export async function getStaticPaths() {
   // Get the paths we want to pre-render
-  const paths = Object.values(IDS.SERIES).map((id) => ({
+  const paths = Object.values(IDS.SERIES).map(id => ({
     params: { series: id },
   }));
 

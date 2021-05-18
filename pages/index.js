@@ -1,16 +1,15 @@
 import { initializeApollo } from 'lib/apolloClient';
-import { Layout } from 'components';
 
 import { FeedFeaturesProvider } from 'providers';
-import { HomeFeed } from 'components';
+import { HomeFeed, Layout } from 'components';
 import { GET_CONTENT_CHANNEL } from 'hooks/useContentChannel';
 import { getChannelId, getIdSuffix, getItemId } from 'utils';
 import IDS from 'config/ids';
 import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
 
-export default function Home(props = {}) {
+export default function Home({ dropdownData, ...props } = {}) {
   return (
-    <Layout title="Home">
+    <Layout title="Home" dropdownData={dropdownData}>
       <FeedFeaturesProvider Component={HomeFeed} {...props} />
     </Layout>
   );

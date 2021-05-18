@@ -12,9 +12,9 @@ const ProfileImage = styled(Image)`
   border-radius: ${themeGet('radii.image')};
 `;
 
-export default function Page({ data }) {
+export default function Page({ data, dropdownData }) {
   return (
-    <Layout meta={getMetaData(data)} bg="bg_alt">
+    <Layout meta={getMetaData(data)} bg="bg_alt" dropdownData={dropdownData}>
       <Section>
         <Box mt={{ _: 'l' }} px="l">
           <ProfileImage width="400px" src={data?.photo?.uri} />
