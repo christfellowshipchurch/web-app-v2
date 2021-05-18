@@ -2,20 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Box, Card } from 'ui-kit';
+import Styled from './UserProfile.styles';
 
 function UserProfileAttribute(props = {}) {
   return (
-    <Card boxShadow="base" p="base">
+    <Card boxShadow="base" p={{ _: 's', m: 'base' }}>
       <Box as="h2" color="subdued" fontSize="s" fontWeight="bold">
         {props.title}
       </Box>
-      <Box as="p">
+      <Styled.AttributeValue>
         {props.data || (
           <Box as="span" color="subdued" fontSize="s" fontStyle="italic">
             No {props.label} specified
           </Box>
         )}
-      </Box>
+      </Styled.AttributeValue>
     </Card>
   );
 }
