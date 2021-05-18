@@ -13,9 +13,16 @@ const Hero = styled.div`
   background-image: url(${props => props.coverImage});
   background-position: center;
   background-size: cover;
-  min-height: 80vh;
   overflow: hidden;
-  padding-top: ${themeGet('space.xxl')};
+  padding-top: 100%;
+
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    padding-top: 56.25%;
+  }
+
+  @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
+    padding-top: 42.86%;
+  }
 `;
 
 const Section = styled.div`
