@@ -118,20 +118,28 @@ const GroupCard = (props = {}) => {
           {props.totalAvatars === 1 ? `Group Member` : 'Group Members'}
         </Box>
         {props.avatars?.length > 0 && (
-          <Box display="inline-flex" mb="l" position="relative">
+          <Box display="flex" gridColumnGap="s">
             {props.avatars.slice(0, maxAvatars).map((n, i = 2) => (
-              <SquareAvatar
-                height="90px"
+              <Box
                 key={i}
-                mr="xs"
-                name="Group Member"
-                src={n.node?.photo?.uri}
+                display="flex"
+                flexDirection="column"
+                justifyContent="center"
+                position="relative"
                 width="70px"
-              />
+                height="90px"
+              >
+                <SquareAvatar
+                  width="100%"
+                  height="100%"
+                  name="Group Member"
+                  src={n.node?.photo?.uri}
+                />
+                {avatarsDiff > 0 && props.avatars.length === i + 1 && (
+                  <Styled.AvatarCount>{`+${avatarsDiff}`}</Styled.AvatarCount>
+                )}
+              </Box>
             ))}
-            {avatarsDiff > 0 && (
-              <Styled.AvatarCount>{`+${avatarsDiff}`}</Styled.AvatarCount>
-            )}
           </Box>
         )}
         {props.callToAction && (
