@@ -94,32 +94,35 @@ export default function Watch({
           </a>
         }
       />
-      <Box
-        flexDirection="column"
-        mx={{ _: 'l', md: 'xxl' }}
-        mt={{ _: 'm', lg: '-130px' }}
-        zIndex="2"
+      <Section
+        px={{ _: 'l', md: 'xxl' }}
+        mt={{ _: 'l', md: 'xxl' }}
+        display="flex"
+        flexWrap="wrap"
+        justifyContent="center"
+        alignItems="center"
       >
-        <Heading variant="h5" color={{ _: 'fg', lg: 'white' }} opacity="80%">
-          LAST WEEK
-        </Heading>
-        <Styled.SermonContainer mt="s">
-          <Styled.SermonImage
-            rounded
-            src={sermon?.coverImage?.sources?.[0]?.uri}
-            onClick={() =>
-              router.push(`/sermon/${getSlugFromURL(sermon?.sharing?.url)}`)
-            }
-          />
-          <Box position="absolute" right="10px" bottom="10px">
-            <PlayCircle
-              size="36"
-              color={`${theme.colors.neutrals[100]}`}
-              opacity="60%"
-            />
-          </Box>
-        </Styled.SermonContainer>
-      </Box>
+        <MarketingHeadline
+          image={{
+            src: sermon?.coverImage?.sources?.[0]?.uri,
+          }}
+          py="l"
+          justify="left"
+          title={sermon?.title}
+          description={sermon?.summary}
+          textProps={{ px: 'xl' }}
+          actions={[
+            {
+              label: 'Watch now',
+              onClick: () =>
+                router.push(
+                  sermon?.buttonLink ||
+                    `/sermon/${getSlugFromURL(sermon?.sharing?.url)}`
+                ),
+            },
+          ]}
+        />
+      </Section>
       <Section>
         <CardGrid
           px={{ _: 'l', md: 'xxl' }}
