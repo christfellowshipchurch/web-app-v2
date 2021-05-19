@@ -8,8 +8,8 @@ import HeroListFeature from '../HeroListFeature';
 import HorizontalCardListFeature from '../HorizontalCardListFeature';
 import VerticalCardListFeature from '../VerticalCardListFeature';
 import { FeatureProvider } from 'providers';
-import { Box, Divider } from 'ui-kit';
-import { getComponent, htmlToReactParser } from 'utils';
+import { Box } from 'ui-kit';
+import { getComponent } from 'utils';
 
 const FEATURE_COMPONENTS = {
   ActionBarFeature,
@@ -51,8 +51,6 @@ const onPressActionItem = (event, { action, relatedNode }) => {
 
 // This component is created to map the features by type and send them.
 const FeatureFeed = (props = {}) => {
-  const isLastItem = i => i < props.data.length - 1;
-
   const error = props?.error?.toString();
 
   if (error && error === 'Error: Must be logged in') {
