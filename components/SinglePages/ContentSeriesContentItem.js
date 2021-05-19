@@ -2,7 +2,7 @@ import { LargeImage, Layout, MainPhotoHeader } from 'components';
 import { GET_MESSAGE_CHANNEL } from 'hooks/useMessageChannel';
 import { Box, Button, Section } from 'ui-kit';
 import { useRouter } from 'next/router';
-import { getMetaData, getSlugFromURL } from 'utils';
+import { getIdSuffix, getMetaData, getSlugFromURL } from 'utils';
 import { useTheme } from 'styled-components';
 import { useState } from 'react';
 import { useLazyQuery } from '@apollo/client';
@@ -57,7 +57,13 @@ export default function ContentSeriesContentItem({ item, dropdownData } = {}) {
               mr="m"
               mb="m"
               action={() =>
-                router.push(`/watch/${getSlugFromURL(node?.sharing?.url)}`)
+                router.push(
+                  `/watch/${getIdSuffix(
+                    item?.parentChannel?.id
+                  )}/${getSlugFromURL(item?.sharing?.url)}/${getSlugFromURL(
+                    node?.sharing?.url
+                  )}`
+                )
               }
             />
           ))}

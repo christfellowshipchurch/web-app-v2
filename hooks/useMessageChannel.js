@@ -4,6 +4,12 @@ export const CONTENT_SERIES_CONTENT_ITEM_FRAGMENT = gql`
   fragment ContentSeriesContentItemFragment on ContentSeriesContentItem {
     id
     title
+    parentChannel {
+      id
+    }
+    sharing {
+      url
+    }
     childContentItemsConnection(orderBy: { field: DATE, direction: DESC }) {
       edges {
         node {
