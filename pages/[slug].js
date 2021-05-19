@@ -1,4 +1,4 @@
-import { parseItemId } from 'utils';
+import { getIdSuffix, parseItemId } from 'utils';
 import { initializeApollo } from 'lib/apolloClient';
 import { GET_CONTENT_BY_SLUG } from 'hooks/useContentBySlug';
 import {
@@ -7,26 +7,20 @@ import {
   ContentSeriesContentItem,
   ContentChannel,
 } from 'components/SinglePages';
+import IDS from 'config/ids';
 
 export default function Page({ data, type, dropdownData }) {
   switch (type) {
     case 'UniversalContentItem':
       return <UniversalContentItem data={data} dropdownData={dropdownData} />;
     case 'ContentChannel':
-      return (
-        <ContentChannel series={data} dropdowndropdownData={dropdownData} />
-      );
+      return <ContentChannel series={data} dropdownData={dropdownData} />;
     case 'ContentSeriesContentItem':
       return (
-        <ContentSeriesContentItem
-          item={data}
-          dropdowndropdownData={dropdownData}
-        />
+        <ContentSeriesContentItem item={data} dropdownData={dropdownData} />
       );
     case 'WeekendContentItem':
-      return (
-        <WeekendContentItem item={data} dropdowndropdownData={dropdownData} />
-      );
+      return <WeekendContentItem item={data} dropdownData={dropdownData} />;
     default:
       return null;
   }
@@ -44,7 +38,38 @@ export async function getServerSideProps(context) {
     skip: !context.params.slug,
   });
 
-  const itemId = pageResponse?.data?.getContentBySlug?.id;
+  const data = pageResponse?.data?.getContentBySlug;
+  const itemId = data?.id;
+
+  if (data?.parentChannel?.id) {
+    const parentId = getIdSuffix(data?.parentChannel?.id);
+    switch (parentId) {
+      case IDS.ABOUT_PAGES:
+        return {
+          props: {},
+          redirect: {
+            destination: `/about/${context.params.slug}`,
+            permanent: false,
+          },
+        };
+      case IDS.CONNECT_PAGES:
+        return {
+          redirect: {
+            destination: `/connect/${context.params.slug}`,
+            permanent: false,
+          },
+        };
+      case IDS.NEXT_STEPS_PAGES:
+        return {
+          redirect: {
+            destination: `/next-steps/${context.params.slug}`,
+            permanent: false,
+          },
+        };
+      default:
+        break;
+    }
+  }
 
   if (itemId) {
     const { type } = parseItemId(itemId);

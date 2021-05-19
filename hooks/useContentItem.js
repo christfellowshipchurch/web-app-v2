@@ -8,6 +8,9 @@ export const UNIVERSAL_CONTENT_ITEM_FRAGMENT = gql`
     summary
     subtitle
     htmlContent
+    parentChannel {
+      id
+    }
     ctaLinks {
       title
       body
