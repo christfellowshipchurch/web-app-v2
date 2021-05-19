@@ -36,6 +36,42 @@ function Profile() {
       <Button
         borderRadius="base"
         width="100%"
+        onClick={() => {
+          router.push('https://my.longhollow.com/MyAccount');
+        }}
+      >
+        Update My Info
+      </Button>
+      <Button
+        borderRadius="base"
+        width="100%"
+        onClick={() => {
+          router.push('https://my.longhollow.com/GivingHistory');
+        }}
+      >
+        Giving History
+      </Button>
+      <Button
+        borderRadius="base"
+        width="100%"
+        onClick={() => {
+          router.push('https://my.longhollow.com/ManageGiving');
+        }}
+      >
+        Giving Schedules
+      </Button>
+      <Button
+        borderRadius="base"
+        width="100%"
+        onClick={() => {
+          router.push('https://my.longhollow.com/page/1091');
+        }}
+      >
+        Communication Preferences
+      </Button>
+      <Button
+        borderRadius="base"
+        width="100%"
         onClick={() => dispatch(logout())}
       >
         Log Out
@@ -74,7 +110,6 @@ export default function DropdownUser() {
     <Box
       bg="bg"
       p="s"
-      width="230px"
       alignItems="flex-start"
       boxShadow="base"
       display="flex"
@@ -107,6 +142,15 @@ export default function DropdownUser() {
         onClick={() => router.push('/serve')}
       >
         Serve
+      </Button>
+      <Button
+        borderRadius="base"
+        width="100%"
+        onClick={() => {
+          router.push('/connect-with-us');
+        }}
+      >
+        Talk to Someone
       </Button>
       {authenticated ? <Profile /> : <Login />}
     </Box>

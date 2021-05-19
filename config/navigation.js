@@ -88,7 +88,7 @@ const navigation = {
       call: ({ user }) => (
         <>
           <Box lineHeight={0.875} display={{ _: 'none', lg: 'inherit' }}>
-            <Box display={{ _: 'block', lg: 'none' }}>
+            <Box>
               {user?.src ? (
                 <Avatar
                   src={user.src}
@@ -99,9 +99,6 @@ const navigation = {
               ) : (
                 <UserCircle color={theme.colors.fg} size="20" />
               )}
-            </Box>
-            <Box display={{ _: 'none', lg: 'block' }}>
-              <List color={theme.colors.fg} size="20" />
             </Box>
           </Box>
           <Box display={{ _: 'block', lg: 'none' }}>{'Profile'}</Box>
