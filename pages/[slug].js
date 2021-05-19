@@ -8,16 +8,25 @@ import {
   ContentChannel,
 } from 'components/SinglePages';
 
-export default function Page({ data, type }) {
+export default function Page({ data, type, dropdownData }) {
   switch (type) {
     case 'UniversalContentItem':
-      return <UniversalContentItem data={data} />;
+      return <UniversalContentItem data={data} dropdownData={dropdownData} />;
     case 'ContentChannel':
-      return <ContentChannel series={data} />;
+      return (
+        <ContentChannel series={data} dropdowndropdownData={dropdownData} />
+      );
     case 'ContentSeriesContentItem':
-      return <ContentSeriesContentItem item={data} />;
+      return (
+        <ContentSeriesContentItem
+          item={data}
+          dropdowndropdownData={dropdownData}
+        />
+      );
     case 'WeekendContentItem':
-      return <WeekendContentItem item={data} />;
+      return (
+        <WeekendContentItem item={data} dropdowndropdownData={dropdownData} />
+      );
     default:
       return null;
   }

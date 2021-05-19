@@ -1,22 +1,13 @@
 import { Layout, MainPhotoHeader } from 'components';
 import { initializeApollo } from 'lib/apolloClient';
-import { GET_MEDIA_CONTENT_ITEM } from 'hooks/useMediaContentItem';
 import { useRouter } from 'next/router';
 import VideoPlayer from 'components/VideoPlayer/VideoJSPlayer';
 import { Heading, Section, Longform } from 'ui-kit';
-import {
-  getMetaData,
-  getChannelId,
-  getIdSuffix,
-  getItemId as getUniversalItemId,
-  getSlugFromURL,
-  getIdPrefix,
-} from 'utils';
+import { getMetaData, getChannelId, getSlugFromURL, getIdPrefix } from 'utils';
 import IDS from 'config/ids';
 import { GET_MESSAGE_SERIES } from 'hooks/useMessageSeries';
 import { GET_MESSAGE_CHANNEL } from 'hooks/useMessageChannel';
 import { GET_CONTENT_BY_SLUG } from 'hooks/useContentBySlug';
-import { ContentSeriesContentItem } from 'components/SinglePages';
 
 export default function Item({ item, dropdownData } = {}) {
   const router = useRouter();

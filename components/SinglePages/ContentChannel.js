@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { getMetaData, getSlugFromURL } from 'utils';
 import { useTheme } from 'styled-components';
 
-export default function Series({ series } = {}) {
+export default function Series({ series, dropdownData } = {}) {
   const router = useRouter();
   const theme = useTheme();
 
@@ -13,7 +13,7 @@ export default function Series({ series } = {}) {
   }
 
   return (
-    <Layout meta={getMetaData(series)}>
+    <Layout meta={getMetaData(series)} dropdownData={dropdownData}>
       <Section>
         <Heading
           mt="l"

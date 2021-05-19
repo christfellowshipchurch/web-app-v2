@@ -77,7 +77,7 @@ export default function Page({
           <EventsCallout
             mx={{ _: 0, lg: 'xl' }}
             mb={{ _: 'l', md: 'xxl' }}
-            my={{ lg: '-6.25rem' }}
+            my={{ lg: `-${theme.space.xxl}` }}
             title="News & Events"
             icon={
               <Info

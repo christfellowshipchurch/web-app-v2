@@ -7,7 +7,7 @@ import { useTheme } from 'styled-components';
 import { useState } from 'react';
 import { useLazyQuery } from '@apollo/client';
 
-export default function ContentSeriesContentItem({ item } = {}) {
+export default function ContentSeriesContentItem({ item, dropdownData } = {}) {
   const router = useRouter();
   const theme = useTheme();
 
@@ -32,7 +32,7 @@ export default function ContentSeriesContentItem({ item } = {}) {
   const totalVideoCount = item?.childContentItemsConnection?.totalCount || 0;
 
   return (
-    <Layout meta={getMetaData(item)}>
+    <Layout meta={getMetaData(item)} dropdownData={dropdownData}>
       <MainPhotoHeader
         src={item?.coverImage.sources?.[0]?.uri}
         title={item?.title}

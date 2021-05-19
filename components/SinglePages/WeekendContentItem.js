@@ -4,7 +4,7 @@ import VideoPlayer from 'components/VideoPlayer/VideoJSPlayer';
 import { Heading, Section } from 'ui-kit';
 import { getMetaData } from 'utils';
 
-export default function WeekendContentItem({ item } = {}) {
+export default function WeekendContentItem({ item, dropdownData } = {}) {
   const router = useRouter();
   if (router.isFallback) {
     return null;
@@ -14,7 +14,7 @@ export default function WeekendContentItem({ item } = {}) {
     ?.sources[0].uri;
 
   return (
-    <Layout meta={getMetaData(item)}>
+    <Layout meta={getMetaData(item)} dropdownData={dropdownData}>
       {!src ? (
         <MainPhotoHeader
           src={item.coverImage?.sources?.[0]?.uri}
