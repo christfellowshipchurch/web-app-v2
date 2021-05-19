@@ -32,6 +32,7 @@ function App({ Component, pageProps = {}, dropdownData }) {
       <Head>
         <link rel="icon" href="/favicon.png" />
         <link rel="stylesheet" type="text/css" href="/nprogress.css" />
+        <link rel="stylesheet" type="text/css" href="/font-awesome.css" />
       </Head>
       <AppProvider initialApolloState={initialApolloState}>
         <Component dropdownData={dropdownData} {...componentProps} />
