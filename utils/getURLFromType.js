@@ -1,8 +1,8 @@
-import getSlugFromURL from "./getSlugFromUrl";
+import getSlugFromURL from './getSlugFromUrl';
 
 function getURLFromType(node) {
   const [type, randomId] = node.id.split(':');
-  const url = node?.sharing?.url;
+  const url = node?.sharing?.url || node?.sharingUrl;
   switch (type) {
     case 'WeekendContentItem':
     case 'MediaContentItem': {
