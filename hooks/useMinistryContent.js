@@ -12,6 +12,9 @@ export const GET_MINISTRY_CONTENT = gql`
             uri
           }
         }
+        sharing {
+          url
+        }
       }
     }
   }

@@ -1,9 +1,9 @@
 import { Box } from 'ui-kit';
 import { Layout } from 'components';
 
-export default function NotFound() {
+export default function NotFound({ dropdownData }) {
   return (
-    <Layout title="404 Not Found">
+    <Layout title="404 Not Found" dropdownData={dropdownData}>
       <Box mt="xl" textAlign="center">
         <Box as="h1">Not Found</Box>
         <Box as="p" fontSize="l">

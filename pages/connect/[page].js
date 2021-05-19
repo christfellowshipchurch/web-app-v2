@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
 
-import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
 import { GET_CONTENT_CHANNEL } from 'hooks/useContentChannel';
 import {
   ArticleLink,
@@ -16,7 +15,7 @@ import {
   Quote,
 } from 'components';
 import { Button, CardGrid, Longform, Section } from 'ui-kit';
-import { getChildrenByType, getIdSuffix, getItemId, getMetaData } from 'utils';
+import { getChildrenByType, getMetaData, getSlugFromURL } from 'utils';
 import IDS from 'config/ids';
 import { initializeApollo } from 'lib/apolloClient';
 import { Info } from 'phosphor-react';
@@ -24,17 +23,19 @@ import { useTheme } from 'styled-components';
 import { GET_STAFF } from 'hooks/useStaff';
 import { GET_MINISTRY_CONTENT } from 'hooks/useMinistryContent';
 import { GET_CAMPUSES } from 'hooks/useCampuses';
+import { GET_CONTENT_BY_SLUG } from 'hooks/useContentBySlug';
 
 export default function Page({
   data = {},
   staff = [],
   relatedContent = {},
   campuses,
+  dropdownData,
 }) {
   const router = useRouter();
   const theme = useTheme();
 
-  const { loading, error, node } = data;
+  const { loading, error, getContentBySlug: node } = data;
 
   if (loading || router.isFallback) {
     return null;
@@ -57,10 +58,12 @@ export default function Page({
     ? relatedContent.getMinistryContent.slice(0, 4)
     : [];
 
-  links = links.filter(link => getIdSuffix(link.id) !== router.query.page);
+  links = links.filter(
+    link => getSlugFromURL(link?.sharing?.url) !== router.query.page
+  );
 
   return (
-    <Layout meta={getMetaData(node)} bg="bg_alt">
+    <Layout meta={getMetaData(node)} bg="bg_alt" dropdownData={dropdownData}>
       <MainPhotoHeader
         src={node.coverImage?.sources?.[0].uri || ''}
         title={node.title}
@@ -73,7 +76,8 @@ export default function Page({
         <Section>
           <EventsCallout
             mx={{ _: 0, lg: 'xl' }}
-            mb="l"
+            mb={{ _: 'l', md: 'xxl' }}
+            my={{ lg: '-6.25rem' }}
             title="News & Events"
             icon={
               <Info
@@ -92,7 +96,9 @@ export default function Page({
                 title={link.title}
                 description={link.subtitle}
                 imageSrc={link.coverImage?.sources?.[0]?.uri}
-                onClick={() => router.push(`/page/${getIdSuffix(link.id)}`)}
+                onClick={() =>
+                  router.push(`/${getSlugFromURL(link?.sharing?.url)}`)
+                }
               />
             ))}
           </EventsCallout>
@@ -117,7 +123,9 @@ export default function Page({
                     title={node.title}
                     description={node.summary}
                     urlText={node.linkText}
-                    url={node.linkURL || `/page/${getIdSuffix(node.id)}`}
+                    url={
+                      node.linkURL || `/${getSlugFromURL(node?.sharing?.url)}`
+                    }
                   />
                 ))}
               </ArticleLinks>
@@ -228,19 +236,21 @@ export async function getStaticProps({ params }) {
   const apolloClient = initializeApollo();
 
   const pageResponse = await apolloClient.query({
-    query: GET_CONTENT_ITEM,
+    query: GET_CONTENT_BY_SLUG,
     variables: {
-      itemId: getItemId(params.page),
+      slug: params.page,
     },
     skip: !params.page,
   });
 
+  const pageData = pageResponse?.data?.getContentBySlug;
+
   let staffResponse;
-  if (pageResponse?.data?.node?.ministry) {
+  if (pageData?.getContentBySlug?.ministry) {
     staffResponse = await apolloClient.query({
       query: GET_STAFF,
       variables: {
-        ministry: pageResponse?.data?.node?.ministry,
+        ministry: pageData?.ministry,
       },
     });
   }
@@ -248,7 +258,7 @@ export async function getStaticProps({ params }) {
   const ministryResponse = await apolloClient.query({
     query: GET_MINISTRY_CONTENT,
     variables: {
-      ministry: pageResponse?.data?.node?.ministry,
+      ministry: pageData?.ministry,
     },
   });
 
@@ -284,8 +294,8 @@ export async function getStaticPaths() {
   );
 
   // Get the paths we want to pre-render
-  const paths = connectPages.map(({ id }) => ({
-    params: { page: getIdSuffix(id) },
+  const paths = connectPages.map(({ sharing }) => ({
+    params: { page: getSlugFromURL(sharing?.url) },
   }));
 
   // Fallback true - if a page doesn't exist we will render it on the fly.

@@ -1,23 +1,20 @@
 import { useRouter } from 'next/router';
 
-import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
 import {
   CampusFilter,
-  EventCallout,
-  EventsCallout,
   Layout,
   MainPhotoHeader,
   MarketingHeadline,
 } from 'components';
-import { getChannelId, getIdSuffix, getItemId, getMetaData } from 'utils';
+import { getChannelId, getMetaData, getSlugFromURL } from 'utils';
 import IDS from 'config/ids';
 import { initializeApollo } from 'lib/apolloClient';
-import { CardGrid, Longform, Section, theme } from 'ui-kit';
+import { CardGrid, Longform, Section } from 'ui-kit';
 import { GET_CONTENT_CHANNEL } from 'hooks/useContentChannel';
-import { Info } from 'phosphor-react';
 import { GET_CAMPUSES } from 'hooks/useCampuses';
+import { GET_CONTENT_BY_SLUG } from 'hooks/useContentBySlug';
 
-export default function Page({ data = {}, campuses }) {
+export default function Page({ data = {}, campuses, dropdownData }) {
   const router = useRouter();
 
   if (data.loading || router.isFallback) {
@@ -28,7 +25,7 @@ export default function Page({ data = {}, campuses }) {
   const ctaLinks = data.ctaLinks;
 
   return (
-    <Layout meta={getMetaData(data)} bg="bg_alt">
+    <Layout meta={getMetaData(data)} bg="bg_alt" dropdownData={dropdownData}>
       <MainPhotoHeader
         src={data.coverImage?.sources?.[0].uri || ''}
         title={data.title}
@@ -74,7 +71,7 @@ export default function Page({ data = {}, campuses }) {
                               onClick: () => {
                                 router.push(
                                   node.linkURL ||
-                                    `/page/${getIdSuffix(node.id)}`
+                                    `/${getSlugFromURL(node?.sharing?.url)}`
                                 );
                               },
                             },
@@ -123,9 +120,9 @@ export async function getStaticProps(context) {
   const apolloClient = initializeApollo();
 
   const pageResponse = await apolloClient.query({
-    query: GET_CONTENT_ITEM,
+    query: GET_CONTENT_BY_SLUG,
     variables: {
-      itemId: getItemId(context.params.page),
+      slug: context.params.page,
     },
   });
 
@@ -143,7 +140,7 @@ export async function getStaticProps(context) {
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
-      data: pageResponse?.data?.node,
+      data: pageResponse?.data?.getContentBySlug,
       submenuLinks:
         submenuLinks?.data?.node?.childContentItemsConnection?.edges,
       campuses: campusesResponse?.data?.campuses || [],
@@ -167,8 +164,8 @@ export async function getStaticPaths() {
   );
 
   // Get the paths we want to pre-render
-  const paths = aboutPages.map(({ id }) => ({
-    params: { page: getIdSuffix(id) },
+  const paths = aboutPages.map(({ sharing }) => ({
+    params: { page: getSlugFromURL(sharing?.url) },
   }));
 
   // Fallback true - if a page doesn't exist we will render it on the fly.
