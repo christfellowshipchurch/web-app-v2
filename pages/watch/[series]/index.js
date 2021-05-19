@@ -4,7 +4,7 @@ import { Box, Heading, Section } from 'ui-kit';
 import IDS from 'config/ids';
 import { useRouter } from 'next/router';
 import { GET_MESSAGE_SERIES } from 'hooks/useMessageSeries';
-import { getChannelId, getIdSuffix, getMetaData } from 'utils';
+import { getChannelId, getMetaData, getSlugFromURL } from 'utils';
 import { useTheme } from 'styled-components';
 
 export default function Series({ series, dropdownData } = {}) {
@@ -47,7 +47,9 @@ export default function Series({ series, dropdownData } = {}) {
               mb="m"
               action={() =>
                 router.push(
-                  `/watch/${router.query.series}/${getIdSuffix(node.id)}`
+                  `/watch/${router.query.series}/${getSlugFromURL(
+                    node?.sharing?.url
+                  )}`
                 )
               }
             />

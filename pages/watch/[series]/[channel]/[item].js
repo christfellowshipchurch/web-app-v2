@@ -1,22 +1,12 @@
 import { Layout, MainPhotoHeader } from 'components';
 import { initializeApollo } from 'lib/apolloClient';
-import { GET_MEDIA_CONTENT_ITEM } from 'hooks/useMediaContentItem';
 import { useRouter } from 'next/router';
 import VideoPlayer from 'components/VideoPlayer/VideoJSPlayer';
 import { Heading, Section } from 'ui-kit';
-import {
-  getMetaData,
-  getChannelId,
-  getIdSuffix,
-  getItemId as getUniversalItemId,
-} from 'utils';
+import { getMetaData, getChannelId, getIdSuffix, getSlugFromURL } from 'utils';
 import IDS from 'config/ids';
 import { GET_MESSAGE_SERIES } from 'hooks/useMessageSeries';
-import { GET_MESSAGE_CHANNEL } from 'hooks/useMessageChannel';
-
-function getItemId(id) {
-  return `MediaContentItem:${id}`;
-}
+import { GET_CONTENT_BY_SLUG } from 'hooks/useContentBySlug';
 
 export default function Item({ item, dropdownData } = {}) {
   const router = useRouter();
@@ -59,16 +49,16 @@ export async function getStaticProps(context) {
   const apolloClient = initializeApollo();
 
   const itemResponse = await apolloClient.query({
-    query: GET_MEDIA_CONTENT_ITEM,
+    query: GET_CONTENT_BY_SLUG,
     variables: {
-      itemId: getItemId(context.params.item),
+      slug: context.params.item,
     },
   });
 
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
-      item: itemResponse?.data?.node,
+      item: itemResponse?.data?.getContentBySlug,
     },
   };
 }
@@ -91,30 +81,30 @@ export async function getStaticPaths() {
     )
   ).flatMap(({ data }) =>
     data.node.childContentItemsConnection?.edges.map(({ node }) => ({
-      channelId: node.id,
+      channel: node,
       seriesId: data.node.id,
     }))
   );
 
   const items = await Promise.all(
-    channels.flatMap(async ({ channelId, seriesId }) => {
+    channels.flatMap(async ({ channel, seriesId }) => {
       const series = await apolloClient.query({
-        query: GET_MESSAGE_CHANNEL,
+        query: GET_CONTENT_BY_SLUG,
         variables: {
-          itemId: getUniversalItemId(getIdSuffix(channelId)),
+          slug: getSlugFromURL(channel?.sharing?.url),
         },
       });
-      return series.data.node.childContentItemsConnection.edges.map(
-        ({ node }) => ({ channelId, seriesId, itemId: node.id })
+      return series.data.getContentBySlug.childContentItemsConnection.edges.map(
+        ({ node }) => ({ channel, seriesId, item: node })
       );
     })
   );
 
-  const paths = items.flat().map(({ channelId, seriesId, itemId }) => ({
+  const paths = items.flat().map(({ channel, seriesId, item }) => ({
     params: {
-      channel: getIdSuffix(channelId),
+      channel: getSlugFromURL(channel?.sharing?.url),
       series: getIdSuffix(seriesId),
-      item: getIdSuffix(itemId),
+      item: getSlugFromURL(item?.sharing?.url),
     },
   }));
 

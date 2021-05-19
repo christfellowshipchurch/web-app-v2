@@ -20,6 +20,9 @@ export const GET_CONTENT_CHANNEL = gql`
                   uri
                 }
               }
+              sharing {
+                url
+              }
               ... on UniversalContentItem {
                 showTitleOverImage
                 subtitle
@@ -36,9 +39,6 @@ export const GET_CONTENT_CHANNEL = gql`
                   }
                   buttonText
                   buttonLink
-                }
-                sharing {
-                  url
                 }
               }
             }

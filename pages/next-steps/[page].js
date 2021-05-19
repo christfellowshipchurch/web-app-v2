@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
 
-import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
 import { GET_CONTENT_CHANNEL } from 'hooks/useContentChannel';
 import {
   ArticleLink,
@@ -12,14 +11,15 @@ import {
 } from 'components';
 import IDS from 'config/ids';
 import { CardGrid, Longform, Section } from 'ui-kit';
-import { getIdSuffix, getItemId, getMetaData } from 'utils';
+import { getMetaData, getSlugFromURL } from 'utils';
 import { initializeApollo } from 'lib/apolloClient';
 import { GET_CAMPUSES } from 'hooks/useCampuses';
+import { GET_CONTENT_BY_SLUG } from 'hooks/useContentBySlug';
 
 export default function Page({ data = {}, campuses, dropdownData }) {
   const router = useRouter();
 
-  const { loading, error, node = {} } = data;
+  const { loading, error, getContentBySlug: node = {} } = data;
 
   if (loading || router.isFallback) {
     return null;
@@ -93,7 +93,9 @@ export default function Page({ data = {}, campuses, dropdownData }) {
                     title={node.title}
                     description={node.summary}
                     urlText={node.linkText}
-                    url={node.linkURL || `/page/${getIdSuffix(node.id)}`}
+                    url={
+                      node.linkURL || `/${getSlugFromURL(node?.sharing?.url)}`
+                    }
                   />
                 ))}
               </ArticleLinks>
@@ -109,9 +111,9 @@ export async function getStaticProps(context) {
   const apolloClient = initializeApollo();
 
   const pageResponse = await apolloClient.query({
-    query: GET_CONTENT_ITEM,
+    query: GET_CONTENT_BY_SLUG,
     variables: {
-      itemId: getItemId(context.params.page),
+      slug: context.params.page,
     },
     skip: !context.params.page,
   });
@@ -145,8 +147,8 @@ export async function getStaticPaths() {
   );
 
   // Get the paths we want to pre-render
-  const paths = nextStepsPages.map(({ id }) => ({
-    params: { page: getIdSuffix(id) },
+  const paths = nextStepsPages.map(({ sharing }) => ({
+    params: { page: getSlugFromURL(sharing?.url) },
   }));
 
   // Fallback true - if a page doesn't exist we will render it on the fly.

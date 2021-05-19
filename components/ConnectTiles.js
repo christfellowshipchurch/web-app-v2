@@ -2,7 +2,7 @@ import IDS from 'config/ids';
 import useContentChannel from 'hooks/useContentChannel';
 import { useRouter } from 'next/router';
 import { Section } from 'ui-kit';
-import { getIdSuffix } from 'utils';
+import { getSlugFromURL } from 'utils';
 import HorizontalRow from './HorizontalRow';
 
 const ConnectTiles = props => {
@@ -32,7 +32,8 @@ const ConnectTiles = props => {
         items={featuredItems.map(item => ({
           src: item.coverImage?.sources?.[0]?.uri,
           title: item?.showTitleOverImage && item?.title,
-          action: () => router.push(`/connect/${getIdSuffix(item.id)}`),
+          action: () =>
+            router.push(`/connect/${getSlugFromURL(item?.sharing?.url)}`),
         }))}
         {...props}
       />

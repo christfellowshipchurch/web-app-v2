@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 
-import { useAuthenticateCredentials, useForm, useVerifyPin, useRegisterWithEmail, useRegisterWithSms } from 'hooks';
+import {
+  useAuthenticateCredentials,
+  useForm,
+  useVerifyPin,
+  useRegisterWithEmail,
+  useRegisterWithSms,
+} from 'hooks';
 import { useAuth, update as updateAuth } from 'providers/AuthProvider';
 import { showStep, useModalDispatch } from 'providers/ModalProvider';
 import { Box, Button, TextInput } from 'ui-kit';
 import ResendCode from './ResendCode';
-import ResetPassword from './ResetPassword';
 import { startCase, camelCase } from 'lodash';
 
 const COPY = {
@@ -41,9 +46,9 @@ function AuthConfirm() {
     modalDispatch(showStep(3));
     state?.onSuccess();
   };
-  const { values, handleChange, handleSubmit } = useForm(async (values) => {
+  const { handleChange, handleSubmit } = useForm(async values => {
     const passcode = values.passcode;
-    const profileFields = Object.keys(state?.profile || {}).map((key) => console.log(startCase(camelCase(key))) || ({
+    const profileFields = Object.keys(state?.profile || {}).map(key => ({
       field: startCase(camelCase(key)).replace(/ /g, ''),
       value: state?.profile[key],
     }));
@@ -63,7 +68,11 @@ function AuthConfirm() {
           });
         } else {
           await registerWithSms({
-            variables: { identity: state.identity, password: passcode, userProfile: profileFields },
+            variables: {
+              identity: state.identity,
+              password: passcode,
+              userProfile: profileFields,
+            },
             update: (
               cache,
               { data: { registerWithSms: { token } = {} } = {} }
@@ -80,18 +89,28 @@ function AuthConfirm() {
     }
     if (state.type === 'password') {
       try {
-        if (state.userExists){
+        if (state.userExists) {
           await authenticateCredentials({
             variables: { email: state.identity, password: passcode },
-            update: (cache, { data: { authenticate: { token } = {} } = {} }) => {
+            update: (
+              cache,
+              { data: { authenticate: { token } = {} } = {} }
+            ) => {
               onSuccess(token);
             },
             onError,
           });
         } else {
           await registerWithEmail({
-            variables: { identity: state.identity, password: passcode, userProfile: profileFields },
-            update: (cache, { data: { registerPerson: { token } = {} } = {} }) => {
+            variables: {
+              identity: state.identity,
+              password: passcode,
+              userProfile: profileFields,
+            },
+            update: (
+              cache,
+              { data: { registerPerson: { token } = {} } = {} }
+            ) => {
               onSuccess(token);
             },
             onError,
@@ -132,7 +151,6 @@ function AuthConfirm() {
             Submit{isLoading ? 'ting...' : ''}
           </Button>
           <ResendCode />
-          {/* <ResetPassword /> */}
         </Box>
       </Box>
     </>

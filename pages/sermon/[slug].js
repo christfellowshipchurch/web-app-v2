@@ -9,10 +9,14 @@ import {
   getChannelId,
   getIdSuffix,
   getItemId as getUniversalItemId,
+  getSlugFromURL,
+  getIdPrefix,
 } from 'utils';
 import IDS from 'config/ids';
 import { GET_MESSAGE_SERIES } from 'hooks/useMessageSeries';
 import { GET_MESSAGE_CHANNEL } from 'hooks/useMessageChannel';
+import { GET_CONTENT_BY_SLUG } from 'hooks/useContentBySlug';
+import { ContentSeriesContentItem } from 'components/SinglePages';
 
 export default function Item({ item, dropdownData } = {}) {
   const router = useRouter();
@@ -52,24 +56,20 @@ export default function Item({ item, dropdownData } = {}) {
   );
 }
 
-function getItemId(id) {
-  return `MediaContentItem:${id}`;
-}
-
 export async function getStaticProps(context) {
   const apolloClient = initializeApollo();
 
   const itemResponse = await apolloClient.query({
-    query: GET_MEDIA_CONTENT_ITEM,
+    query: GET_CONTENT_BY_SLUG,
     variables: {
-      itemId: getItemId(context.params.id),
+      slug: context.params.slug,
     },
   });
 
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
-      item: itemResponse?.data?.node,
+      item: itemResponse?.data?.getContentBySlug,
     },
   };
 }
@@ -90,32 +90,32 @@ export async function getStaticPaths() {
         })
       )
     )
+  )
+    .flatMap(({ data }) =>
+      data.node.childContentItemsConnection?.edges.map(({ node }) => ({
+        channelId: node.id,
+      }))
+    )
+    .filter(
+      ({ channelId }) => getIdPrefix(channelId) === 'ContentSeriesContentItem'
+    );
+
+  const paths = (
+    await Promise.all(
+      channels.map(async ({ channelId }) => {
+        return apolloClient.query({
+          query: GET_MESSAGE_CHANNEL,
+          variables: {
+            itemId: channelId,
+          },
+        });
+      })
+    )
   ).flatMap(({ data }) =>
-    data.node.childContentItemsConnection?.edges.map(({ node }) => ({
-      channelId: node.id,
-      seriesId: data.node.id,
+    data.node.childContentItemsConnection.edges.map(({ node }) => ({
+      params: { slug: getSlugFromURL(node?.sharing?.url) },
     }))
   );
-
-  const items = await Promise.all(
-    channels.flatMap(async ({ channelId, seriesId }) => {
-      const series = await apolloClient.query({
-        query: GET_MESSAGE_CHANNEL,
-        variables: {
-          itemId: getUniversalItemId(getIdSuffix(channelId)),
-        },
-      });
-      return series.data.node.childContentItemsConnection.edges.map(
-        ({ node }) => ({ channelId, seriesId, itemId: node.id })
-      );
-    })
-  );
-
-  const paths = items.flat().map(({ itemId }) => ({
-    params: {
-      id: getIdSuffix(itemId),
-    },
-  }));
 
   // Fallback true - if a page doesn't exist we will render it on the fly.
   return { paths, fallback: true };

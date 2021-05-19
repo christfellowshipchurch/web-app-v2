@@ -1,5 +1,4 @@
-import { format } from 'date-fns';
-import { Circle, List, MagnifyingGlass, UserCircle } from 'phosphor-react';
+import { List, MagnifyingGlass, UserCircle } from 'phosphor-react';
 import { showModal } from 'providers/ModalProvider';
 import { Avatar, Box, Heading, Text, theme } from 'ui-kit';
 
