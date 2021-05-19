@@ -186,7 +186,7 @@ export default function Watch({
               </CardGrid>
             </Box>
           ))}
-          {baptisms.length || (
+          {baptisms.length && (
             <Box key={'baptisms'} display="flex" flexDirection="column">
               <Box display="flex" justifyContent="space-between" width="100%">
                 <Heading
