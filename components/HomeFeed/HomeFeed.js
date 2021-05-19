@@ -41,7 +41,11 @@ function FullLengthSermon(props = {}) {
               top="0"
               alignItems="center"
               justifyContent="center"
-              background="linear-gradient(89.49deg, #1C1617 -16.61%, rgba(28, 22, 23, 0) 99.62%);"
+              background={{
+                _: 'none',
+                lg:
+                  'linear-gradient(89.49deg, #1C1617 -16.61%, rgba(28, 22, 23, 0) 99.62%);',
+              }}
               height="100%"
               width="100%"
               display={'flex'}
