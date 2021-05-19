@@ -1,4 +1,4 @@
-import { List, MagnifyingGlass, UserCircle } from 'phosphor-react';
+import { MagnifyingGlass, UserCircle } from 'phosphor-react';
 import { showModal } from 'providers/ModalProvider';
 import { Avatar, Box, Heading, Text, theme } from 'ui-kit';
 

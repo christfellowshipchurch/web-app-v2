@@ -6,7 +6,7 @@ export default function Connect({ dropdownData }) {
   return (
     <Layout title="Connect" dropdownData={dropdownData}>
       <Section>
-        <DropdownConnect hideShadow />
+        <DropdownConnect hideShadow {...dropdownData.connect} />
       </Section>
     </Layout>
   );

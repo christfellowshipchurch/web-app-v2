@@ -6,7 +6,7 @@ export default function About({ dropdownData }) {
   return (
     <Layout title="About" dropdownData={dropdownData}>
       <Section>
-        <DropdownAbout hideShadow />
+        <DropdownAbout hideShadow {...dropdownData.about} />
       </Section>
     </Layout>
   );
