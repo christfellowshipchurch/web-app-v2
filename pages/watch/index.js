@@ -1,4 +1,3 @@
-import { PlayCircle } from 'phosphor-react';
 import {
   LargeImage,
   Layout,
@@ -9,39 +8,14 @@ import {
 import { initializeApollo } from 'lib/apolloClient';
 import { useRouter } from 'next/router';
 import IDS from 'config/ids';
-import { Box, Image, system, CardGrid, Heading, Section, theme } from 'ui-kit';
+import { Box, CardGrid, Heading, Section } from 'ui-kit';
 import { GET_MESSAGE_SERIES } from 'hooks/useMessageSeries';
 import { GET_CONTENT_CHANNEL } from 'hooks/useContentChannel';
 import { getChannelId, getIdSuffix, getSlugFromURL } from 'utils';
 import useLiveStreams from 'hooks/useLiveStreams';
-import styled from 'styled-components';
-import { themeGet } from '@styled-system/theme-get';
 import { GET_CONTENT_BY_SLUG } from 'hooks/useContentBySlug';
 
-const Styled = {};
-
-Styled.SermonContainer = styled(Box)`
-  cursor: pointer;
-  position: relative;
-
-  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
-    width: 300px;
-  }
-`;
-
 const BAPTISMS_CHANNEL_SLUG = 'baptisms';
-
-Styled.SermonImage = styled(Image)`
-  width: 100%;
-
-  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
-    height: 200px;
-  }
-
-  filter: drop-shadow(0px 20px 48px rgba(0, 0, 0, 0.25));
-
-  ${system}
-`;
 
 export default function Watch({
   series,
