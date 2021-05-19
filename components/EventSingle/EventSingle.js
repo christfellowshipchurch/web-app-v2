@@ -35,7 +35,6 @@ function EventSingle(props = {}) {
       )}
       htmlContent={props.data.htmlContent}
       features={props?.data?.featureFeed?.features}
-      contentTitleE="Schedule"
       renderContentE={() => props.data && <EventGroupings data={props.data} />}
     />
   );
