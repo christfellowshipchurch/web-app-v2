@@ -85,9 +85,10 @@ export default function About() {
           </Box>
         </List>
         {active === 'leadership' &&
-          data.leadership.map(item => (
+          data.leadership.map((item, i) => (
             <ContentBlock
               {...item}
+              key={i}
               justifySelf="center"
               maxWidth=" 1100px"
               mb="xl"
