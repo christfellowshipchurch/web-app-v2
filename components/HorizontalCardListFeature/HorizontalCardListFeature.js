@@ -82,35 +82,33 @@ function HorizontalCardListFeature(props = {}) {
   }
 
   return (
-    !props.loading && (
-      <Box>
-        {!isEmpty(title) && <Box as="h2">{title}</Box>}
-        {!isEmpty(subtitle) && <Box as="p">{subtitle}</Box>}
-        <CardCarousel
-          cardsDisplayed={cardsDisplayed}
-          hideArrows={!cards || cards.length < 2}
-          mx={'-0.625rem'}
-        >
-          {cards.map((card, i) => {
-            return (
-              <CustomLink
-                as="a"
-                key={i}
-                m="s"
-                boxShadow="none"
-                href={getUrlFromRelatedNode(card?.relatedNode)}
-                Component={HorizontalHighlightCard}
-                coverImage={card?.coverImage?.sources[0]?.uri || '/cf-logo.png'}
-                coverImageOverlay={true}
-                title={card?.title}
-                description={card?.summary}
-                type={cardType}
-              />
-            );
-          })}
-        </CardCarousel>
-      </Box>
-    )
+    <Box>
+      {!isEmpty(title) && <Box as="h2">{title}</Box>}
+      {!isEmpty(subtitle) && <Box as="p">{subtitle}</Box>}
+      <CardCarousel
+        cardsDisplayed={cardsDisplayed}
+        hideArrows={!cards || cards.length < 2}
+        mx={'-0.625rem'}
+      >
+        {cards.map((card, i) => {
+          return (
+            <CustomLink
+              as="a"
+              key={i}
+              m="s"
+              boxShadow="none"
+              href={getUrlFromRelatedNode(card?.relatedNode)}
+              Component={HorizontalHighlightCard}
+              coverImage={card?.coverImage?.sources[0]?.uri || '/cf-logo.png'}
+              coverImageOverlay={true}
+              title={card?.title}
+              description={card?.summary}
+              type={cardType}
+            />
+          );
+        })}
+      </CardCarousel>
+    </Box>
   );
 }
 

@@ -64,7 +64,7 @@ const size = ({ size }) => props => {
   if (size === 's') {
     return css`
       font-size: ${themeGet('fontSizes.s')};
-      line-height: 2.2;
+      line-height: 1;
       padding-left: ${themeGet('space.s')};
       padding-right: ${themeGet('space.s')};
     `;
@@ -72,7 +72,7 @@ const size = ({ size }) => props => {
 
   if (size === 'l') {
     return css`
-      line-height: 2.8;
+      line-height: 2.2;
       padding-left: ${themeGet('space.l')};
       padding-right: ${themeGet('space.l')};
     `;
@@ -136,7 +136,9 @@ const Button = styled.button`
   font-family: ${themeGet('fonts.base')};
   font-size: ${themeGet('fontSizes.base')};
   font-weight: ${themeGet('fontWeights.bold')};
-  line-height: 2.5;
+  line-height: 1.5;
+  padding-top: ${themeGet('space.s')};
+  padding-bottom: ${themeGet('space.s')};
   padding-left: ${themeGet('space.base')};
   padding-right: ${themeGet('space.base')};
   text-align: center;

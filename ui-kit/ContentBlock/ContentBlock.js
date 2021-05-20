@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import isEmpty from 'lodash/isEmpty';
 
 // import { Video } from 'components';
 import { Box, Button, Image, systemPropTypes } from 'ui-kit';
@@ -13,6 +14,16 @@ function ContentBlock(props = {}) {
   const horizontalLayout =
     toLower(props.contentLayout) === 'left' ||
     toLower(props.contentLayout) === 'right';
+  const title = props?.title;
+  const subtitle = props?.subtitle;
+  const htmlContent = props?.htmlContent;
+  const actions = props?.actions;
+
+  const hasContent =
+    !isEmpty(title) ||
+    !isEmpty(subtitle) ||
+    !isEmpty(htmlContent) ||
+    actions?.length > 0;
 
   return (
     <Styled.Container gridLayout={props.contentLayout} {...props}>
@@ -30,36 +41,38 @@ function ContentBlock(props = {}) {
           />
         </Styled.Media>
       )}
-      <Styled.Content textAlign={horizontalLayout ? 'flex-start' : 'center'}>
-        {(props.title || props.subtitle) && (
-          <>
-            <Styled.Subtitle>{props.subtitle}</Styled.Subtitle>
-            <Styled.Title>{props.title}</Styled.Title>
-          </>
-        )}
-        <Box>{htmlToReactParser.parse(props.htmlContent)}</Box>
+      {hasContent && (
+        <Styled.Content textAlign={horizontalLayout ? 'flex-start' : 'center'}>
+          {(title || subtitle) && (
+            <>
+              <Styled.Subtitle>{props.subtitle}</Styled.Subtitle>
+              <Styled.Title>{props.title}</Styled.Title>
+            </>
+          )}
+          <Box>{htmlToReactParser.parse(props.htmlContent)}</Box>
 
-        {props?.actions && props?.actions?.length > 0 && (
-          <Box my="base" flexDirection="column" display="flex">
-            {props?.actions.map((action, i) => (
-              <CustomLink
-                as="a"
-                href={getUrlFromRelatedNode(action?.relatedNode)}
-                Component={Button}
-                variant={i === 0 ? 'primary' : 'secondary'}
-                my="xs"
-                textTransform="capitalize!important"
-                /**
-                 * todo : We want to eventually add functionality with the 'onPressActionItem' to be able to perform more actions in the future.
-                 */
-                // onClick={e => onPressActionItem(e, heroCard)}
-              >
-                {action?.title}
-              </CustomLink>
-            ))}
-          </Box>
-        )}
-      </Styled.Content>
+          {actions && actions?.length > 0 && (
+            <Box my="base" flexDirection="column" display="flex">
+              {actions.map((action, i) => (
+                <CustomLink
+                  as="a"
+                  href={getUrlFromRelatedNode(action?.relatedNode)}
+                  Component={Button}
+                  variant={i === 0 ? 'primary' : 'secondary'}
+                  my="xs"
+                  textTransform="capitalize!important"
+                  /**
+                   * todo : We want to eventually add functionality with the 'onPressActionItem' to be able to perform more actions in the future.
+                   */
+                  // onClick={e => onPressActionItem(e, heroCard)}
+                >
+                  {action?.title}
+                </CustomLink>
+              ))}
+            </Box>
+          )}
+        </Styled.Content>
+      )}
     </Styled.Container>
   );
 }

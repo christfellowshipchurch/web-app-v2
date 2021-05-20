@@ -17,6 +17,22 @@ const glassBackground = ({ coverImage }) => props => {
   }
 };
 
+const heroImageRatios = ({ coverImage }) => props => {
+  if (!isEmpty(coverImage)) {
+    return css`
+      padding-top: 100%;
+
+      @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+        padding-top: 56.25%;
+      }
+
+      @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
+        padding-top: 42.86%;
+      }
+    `;
+  }
+};
+
 const LocationSingle = styled.div`
   ${system}
 `;
@@ -26,12 +42,16 @@ const Hero = styled.div`
   align-items: flex-end;
   justify-content: flex-end;
 
+  position: relative;
+  overflow: hidden;
+  padding-top: 100%;
+  height: 0;
+
   background-image: url(${props => props.coverImage});
   background-position: bottom;
   background-size: cover;
 
-  padding: ${themeGet('space.m')};
-  min-height: ${props => (isEmpty(props.coverImage) ? '0' : '80vh')};
+  ${heroImageRatios}
 `;
 
 const Glass = styled.div`

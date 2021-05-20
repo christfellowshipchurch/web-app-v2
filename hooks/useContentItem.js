@@ -42,13 +42,13 @@ export const CONTENT_ITEM_FRAGMENT = gql`
 
 export const EVENT_ITEM_FRAGMENT = gql`
   fragment eventContentItemFragment on EventContentItem {
-    events {
-      start
-      end
-      campuses {
-        name
+    eventGroupings {
+      name
+      instances {
+        id
+        start
+        end
       }
-      location
     }
     labelText
     callsToAction {

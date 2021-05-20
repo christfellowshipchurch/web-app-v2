@@ -43,6 +43,7 @@ function SearchField(props = {}) {
         borderTopLeftRadius="0"
         borderBottomLeftRadius="0"
         outline="none"
+        lineHeight="1"
       >
         {props.children}
       </Button>
