@@ -2,6 +2,7 @@ import useAuthenticateCredentials from './useAuthenticateCredentials';
 import useAuthIdentity from './useAuthIdentity';
 import useAuthQuery from './useAuthQuery';
 import useCampuses from './useCampuses';
+import useContentBySlug from './useContentBySlug';
 import useContentFeed from './useContentFeed';
 import useContentItem from './useContentItem';
 import useCurrentPerson from './useCurrentPerson';
@@ -30,6 +31,7 @@ export {
   useAuthIdentity,
   useAuthQuery,
   useCampuses,
+  useContentBySlug,
   useContentFeed,
   useContentItem,
   useCurrentPerson,

@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { useAuth } from 'providers/AuthProvider';
+import { useAuthState } from 'providers/AuthProvider';
 import { Box } from 'ui-kit';
 
 function ResetPassword() {
-  const [state, dispatch] = useAuth();
+  const state = useAuthState();
 
   if (state.type !== 'password') return null;
   if (!state.identity || state.identity === '') return null;

@@ -117,6 +117,10 @@ export const styles = css`
     color: ${themeGet('colors.bg')};
     border-radius: 52px;
     cursor: pointer;
+
+    @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+      display: inline-block;
+    }
   }
   a.btn {
     text-decoration: none;

@@ -4,13 +4,16 @@ import formatPhoneNumber from './formatPhoneNumber';
 import getAge from './getAge';
 import getChannelId from './getChannelId';
 import getChildrenByType from './getChildrenByType';
+import getIdPrefix from './getIdPrefix';
 import getIdSuffix from './getIdSuffix';
 import getItemId from './getItemId';
+import getSlugFromURL from './getSlugFromUrl';
 import getStaffId from './getStaffId';
 import getMetaData from './getMetaData';
 import getURLFromType from './getURLFromType';
 import noop from './noop';
 import normalizeUserData from './normalizeUserData';
+import parseItemId from './parseItemId';
 import splitString from './splitString';
 import slugify from './slugify';
 import textTrimmer from './textTrimmer';
@@ -24,13 +27,16 @@ export {
   getAge,
   getChannelId,
   getChildrenByType,
+  getIdPrefix,
   getIdSuffix,
   getItemId,
   getMetaData,
+  getSlugFromURL,
   getStaffId,
   getURLFromType,
   noop,
   normalizeUserData,
+  parseItemId,
   splitString,
   slugify,
   textTrimmer,

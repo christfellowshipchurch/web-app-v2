@@ -1,9 +1,12 @@
+import getSlugFromURL from './getSlugFromUrl';
+
 function getURLFromType(node) {
   const [type, randomId] = node.id.split(':');
+  const url = node?.sharing?.url || node?.sharingUrl;
   switch (type) {
     case 'WeekendContentItem':
     case 'MediaContentItem': {
-      return `/sermon/${randomId}`;
+      return `/sermon/${getSlugFromURL(url)}`;
     }
     case 'Person': {
       return `/staff/${randomId}`;
@@ -11,7 +14,7 @@ function getURLFromType(node) {
     case 'InformationalContentItem':
     case 'EventContentItem':
     default: {
-      return `/page/${randomId}`;
+      return `/${getSlugFromURL(url)}`;
     }
   }
 }

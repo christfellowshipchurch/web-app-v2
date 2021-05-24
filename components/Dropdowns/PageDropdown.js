@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { Photo } from 'components';
 import Dropdowns from './Dropdowns.styles';
 import { Box, CardGrid, Heading, Loader } from 'ui-kit';
-import { getIdSuffix } from 'utils';
+import { getSlugFromURL } from 'utils';
 import { useTheme } from 'styled-components';
 
 export default function PageDropdown({
@@ -72,7 +72,7 @@ export default function PageDropdown({
                             dropShadow={false}
                             onClick={() =>
                               router.push(
-                                `${baseRoute}/${getIdSuffix(item.id)}`
+                                `${baseRoute}/${getSlugFromURL(item?.sharing?.url)}`
                               )
                             }
                           />
@@ -89,7 +89,7 @@ export default function PageDropdown({
                 <Dropdowns.NonFeaturedItem
                   key={i}
                   onClick={() =>
-                    router.push(`${baseRoute}/${getIdSuffix(item.id)}`)
+                    router.push(`${baseRoute}/${getSlugFromURL(item?.sharing?.url)}`)
                   }
                 >
                   <Heading

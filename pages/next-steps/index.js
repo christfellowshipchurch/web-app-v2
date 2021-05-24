@@ -2,11 +2,11 @@ import { Layout } from 'components';
 import DropdownNextSteps from 'components/Dropdowns/DropdownNextSteps';
 import { Section } from 'ui-kit';
 
-export default function About() {
+export default function About({ dropdownData }) {
   return (
-    <Layout title="Next Steps">
+    <Layout title="Next Steps" dropdownData={dropdownData}>
       <Section>
-        <DropdownNextSteps hideShadow />
+        <DropdownNextSteps hideShadow {...dropdownData['next-steps']} />
       </Section>
     </Layout>
   );

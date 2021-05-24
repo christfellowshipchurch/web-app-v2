@@ -1,14 +1,11 @@
 import { Button } from './Dropdowns.styles';
 import { useCurrentPerson } from 'hooks';
 import { logout, useAuthDispatch } from 'providers/AuthProvider';
-import { Avatar, Box, Heading } from 'ui-kit';
+import { Box, Heading } from 'ui-kit';
 import { useRouter } from 'next/router';
-import { useTheme } from 'styled-components';
-import { UserCircle } from 'phosphor-react';
 import { showModal, useModalDispatch } from 'providers/ModalProvider';
 
 function Profile() {
-  const theme = useTheme();
   const router = useRouter();
   const dispatch = useAuthDispatch();
   const { currentPerson } = useCurrentPerson();
@@ -35,6 +32,42 @@ function Profile() {
         }}
       >
         Profile
+      </Button>
+      <Button
+        borderRadius="base"
+        width="100%"
+        onClick={() => {
+          router.push('https://my.longhollow.com/MyAccount');
+        }}
+      >
+        Update My Info
+      </Button>
+      <Button
+        borderRadius="base"
+        width="100%"
+        onClick={() => {
+          router.push('https://my.longhollow.com/GivingHistory');
+        }}
+      >
+        Giving History
+      </Button>
+      <Button
+        borderRadius="base"
+        width="100%"
+        onClick={() => {
+          router.push('https://my.longhollow.com/ManageGiving');
+        }}
+      >
+        Giving Schedules
+      </Button>
+      <Button
+        borderRadius="base"
+        width="100%"
+        onClick={() => {
+          router.push('https://my.longhollow.com/page/1091');
+        }}
+      >
+        Communication Preferences
       </Button>
       <Button
         borderRadius="base"
@@ -71,14 +104,12 @@ function Login() {
 }
 
 export default function DropdownUser() {
-  const theme = useTheme();
   const router = useRouter();
   const { authenticated } = useCurrentPerson();
   return (
     <Box
       bg="bg"
       p="s"
-      width="230px"
       alignItems="flex-start"
       boxShadow="base"
       display="flex"
@@ -111,6 +142,15 @@ export default function DropdownUser() {
         onClick={() => router.push('/serve')}
       >
         Serve
+      </Button>
+      <Button
+        borderRadius="base"
+        width="100%"
+        onClick={() => {
+          router.push('/connect-with-us');
+        }}
+      >
+        Talk to Someone
       </Button>
       {authenticated ? <Profile /> : <Login />}
     </Box>

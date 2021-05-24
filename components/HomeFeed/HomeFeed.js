@@ -14,7 +14,7 @@ import {
 } from 'components';
 import { Box, CardGrid, Heading, Section, Text, theme } from 'ui-kit';
 import { useRouter } from 'next/router';
-import { getIdSuffix } from 'utils';
+import { getSlugFromURL } from 'utils';
 import Styled from './HomeFeed.styles';
 import { useCurrentUser } from 'hooks';
 import usePersonaFeed from 'hooks/usePersonaFeed';
@@ -41,7 +41,11 @@ function FullLengthSermon(props = {}) {
               top="0"
               alignItems="center"
               justifyContent="center"
-              background="linear-gradient(89.49deg, #1C1617 -16.61%, rgba(28, 22, 23, 0) 99.62%);"
+              background={{
+                _: 'none',
+                lg:
+                  'linear-gradient(89.49deg, #1C1617 -16.61%, rgba(28, 22, 23, 0) 99.62%);',
+              }}
               height="100%"
               width="100%"
               display={'flex'}
@@ -109,7 +113,9 @@ function FullLengthSermon(props = {}) {
               rounded
               src={props.sermon?.coverImage?.sources?.[0]?.uri}
               onClick={() =>
-                router.push(`/sermon/${getIdSuffix(props.sermon?.id)}`)
+                router.push(
+                  `/sermon/${getSlugFromURL(props.sermon?.sharing?.url)}`
+                )
               }
             />
             <Box position="absolute" right="10px" bottom="10px">
@@ -141,7 +147,9 @@ function HomeFeedLargeArticle({ article }) {
         src={article?.coverImage?.sources?.[0]?.uri}
         width="100%"
         action={() =>
-          router.push(article?.linkURL || `/page/${getIdSuffix(article?.id)}`)
+          router.push(
+            article?.linkURL || `/${getSlugFromURL(article?.sharing?.url)}`
+          )
         }
       />
     </Box>
@@ -156,7 +164,7 @@ function HomeFeedArticles({ articles }) {
           key={i}
           color="quaternary"
           description={article?.summary}
-          url={article?.linkURL || `/page/${getIdSuffix(article?.id)}`}
+          url={article?.linkURL || `/${getSlugFromURL(article?.sharing?.url)}`}
           urlText={article?.linkText || 'Learn More'}
           imageSrc={article?.coverImage?.sources?.[0]?.uri}
         />
@@ -301,7 +309,7 @@ function HomeFeedContent(props = {}) {
             display="inline"
             fontWeight="600"
             onClick={() =>
-              router.push('/next-steps/876dd1736a5eb8b7cddd6b743609083d')
+              router.push('/next-steps/start-a-discipleship-group')
             }
           >
             Discipleship Journey
@@ -314,7 +322,7 @@ function HomeFeedContent(props = {}) {
           fontWeight="600"
           alignItems="center"
           cursor="pointer"
-          onClick={() => router.push('/about/cd0472a4ed38ecb9874c7fc55ee7c173')}
+          onClick={() => router.push('/about/starting-point')}
         >
           Get Started&nbsp;
           <ArrowRight

@@ -2,16 +2,12 @@ import { LargeImage, Layout, MainPhotoHeader } from 'components';
 import { GET_MESSAGE_CHANNEL } from 'hooks/useMessageChannel';
 import { Box, Button, Section } from 'ui-kit';
 import { useRouter } from 'next/router';
-import { getIdSuffix, getMetaData, getChannelId, getSlugFromURL } from 'utils';
+import { getIdSuffix, getMetaData, getSlugFromURL } from 'utils';
 import { useTheme } from 'styled-components';
 import { useState } from 'react';
 import { useLazyQuery } from '@apollo/client';
-import { initializeApollo } from 'lib/apolloClient';
-import IDS from 'config/ids';
-import { GET_MESSAGE_SERIES } from 'hooks/useMessageSeries';
-import { GET_CONTENT_BY_SLUG } from 'hooks/useContentBySlug';
 
-export default function Channel({ item, dropdownData } = {}) {
+export default function ContentSeriesContentItem({ item, dropdownData } = {}) {
   const router = useRouter();
   const theme = useTheme();
 
@@ -62,9 +58,11 @@ export default function Channel({ item, dropdownData } = {}) {
               mb="m"
               action={() =>
                 router.push(
-                  `/watch/${router.query.series}/${
-                    router.query.channel
-                  }/${getSlugFromURL(node?.sharing?.url)}`
+                  `/watch/${getIdSuffix(
+                    item?.parentChannel?.id
+                  )}/${getSlugFromURL(item?.sharing?.url)}/${getSlugFromURL(
+                    node?.sharing?.url
+                  )}`
                 )
               }
             />
@@ -87,56 +85,4 @@ export default function Channel({ item, dropdownData } = {}) {
       ) : null}
     </Layout>
   );
-}
-
-export async function getStaticProps(context) {
-  const apolloClient = initializeApollo();
-
-  const itemResponse = await apolloClient.query({
-    query: GET_CONTENT_BY_SLUG,
-    variables: {
-      slug: context.params.channel,
-    },
-  });
-
-  return {
-    props: {
-      initialApolloState: apolloClient.cache.extract(),
-      item: itemResponse?.data?.getContentBySlug,
-    },
-  };
-}
-
-export async function getStaticPaths() {
-  const apolloClient = initializeApollo();
-  // Get the paths we want to pre-render
-  const series = Object.values(IDS.SERIES);
-
-  const channels = (
-    await Promise.all(
-      series.map(id =>
-        apolloClient.query({
-          query: GET_MESSAGE_SERIES,
-          variables: {
-            itemId: getChannelId(id),
-          },
-        })
-      )
-    )
-  ).flatMap(({ data }) =>
-    data.node.childContentItemsConnection?.edges.map(({ node }) => ({
-      channel: node,
-      seriesId: data.node.id,
-    }))
-  );
-
-  const paths = channels.map(({ channel, seriesId }) => ({
-    params: {
-      channel: getSlugFromURL(channel?.sharing?.url),
-      series: getIdSuffix(seriesId),
-    },
-  }));
-
-  // Fallback true - if a page doesn't exist we will render it on the fly.
-  return { paths, fallback: true };
 }

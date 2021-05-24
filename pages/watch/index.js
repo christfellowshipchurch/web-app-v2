@@ -1,4 +1,3 @@
-import { PlayCircle } from 'phosphor-react';
 import {
   LargeImage,
   Layout,
@@ -9,39 +8,22 @@ import {
 import { initializeApollo } from 'lib/apolloClient';
 import { useRouter } from 'next/router';
 import IDS from 'config/ids';
-import { Box, Image, system, CardGrid, Heading, Section, theme } from 'ui-kit';
+import { Box, CardGrid, Heading, Section } from 'ui-kit';
 import { GET_MESSAGE_SERIES } from 'hooks/useMessageSeries';
 import { GET_CONTENT_CHANNEL } from 'hooks/useContentChannel';
-import { GET_MESSAGE_CHANNEL } from 'hooks/useMessageChannel';
-import { getChannelId, getIdSuffix, getItemId } from 'utils';
+import { getChannelId, getIdSuffix, getSlugFromURL } from 'utils';
 import useLiveStreams from 'hooks/useLiveStreams';
-import styled from 'styled-components';
-import { themeGet } from '@styled-system/theme-get';
+import { GET_CONTENT_BY_SLUG } from 'hooks/useContentBySlug';
 
-const Styled = {};
+const BAPTISMS_CHANNEL_SLUG = 'baptisms';
 
-Styled.SermonContainer = styled(Box)`
-  cursor: pointer;
-  position: relative;
-
-  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
-    width: 300px;
-  }
-`;
-
-Styled.SermonImage = styled(Image)`
-  width: 100%;
-
-  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
-    height: 200px;
-  }
-
-  filter: drop-shadow(0px 20px 48px rgba(0, 0, 0, 0.25));
-
-  ${system}
-`;
-
-export default function Watch({ series, watchPages, sermons, baptisms = [] }) {
+export default function Watch({
+  series,
+  watchPages,
+  sermons,
+  baptisms = [],
+  dropdownData,
+}) {
   const router = useRouter();
 
   const sermon = sermons?.[0]?.node;
@@ -50,7 +32,7 @@ export default function Watch({ series, watchPages, sermons, baptisms = [] }) {
   const live = liveStreams?.[0]?.isLive;
 
   return (
-    <Layout title="Watch">
+    <Layout dropdownData={dropdownData}>
       <MainPhotoHeader
         src={sermon?.coverImage?.sources?.[0]?.uri}
         title="Join us live"
@@ -67,11 +49,7 @@ export default function Watch({ series, watchPages, sermons, baptisms = [] }) {
               width: 'auto',
               padding: '14px 28px',
             }}
-            href={
-              live
-                ? liveStreams[0].webViewUrl
-                : 'about/34fa5fa56a33a230f3889b54e3f6c30e'
-            }
+            href={live ? liveStreams[0].webViewUrl : 'about/schedule'}
           >
             {live ? 'Watch now' : 'Our live schedule'}
           </a>
@@ -84,36 +62,41 @@ export default function Watch({ series, watchPages, sermons, baptisms = [] }) {
               pointerEvents: 'auto',
               padding: '14px 28px',
             }}
-            href="/next-steps/3644e32503017b6f2f19edfdff0eb28a"
+            href="/next-steps/join-us-online"
           >
             {live ? 'Other ways to watch' : 'How to watch'}
           </a>
         }
       />
-      <Box
-        flexDirection="column"
-        mx={{ _: 'l', md: 'xxl' }}
-        mt={{ _: 'm', lg: '-130px' }}
-        zIndex="2"
+      <Section
+        px={{ _: 'l', md: 'xxl' }}
+        mt={{ _: 'l', md: 'xxl' }}
+        display="flex"
+        flexWrap="wrap"
+        justifyContent="center"
+        alignItems="center"
       >
-        <Heading variant="h5" color={{ _: 'fg', lg: 'white' }} opacity="80%">
-          LAST WEEK
-        </Heading>
-        <Styled.SermonContainer mt="s">
-          <Styled.SermonImage
-            rounded
-            src={sermon?.coverImage?.sources?.[0]?.uri}
-            onClick={() => router.push(`/sermon/${getIdSuffix(sermon?.id)}`)}
-          />
-          <Box position="absolute" right="10px" bottom="10px">
-            <PlayCircle
-              size="36"
-              color={`${theme.colors.neutrals[100]}`}
-              opacity="60%"
-            />
-          </Box>
-        </Styled.SermonContainer>
-      </Box>
+        <MarketingHeadline
+          image={{
+            src: sermon?.coverImage?.sources?.[0]?.uri,
+          }}
+          py="l"
+          justify="left"
+          title={sermon?.title}
+          description={sermon?.summary}
+          textProps={{ px: 'xl' }}
+          actions={[
+            {
+              label: 'Watch now',
+              onClick: () =>
+                router.push(
+                  sermon?.buttonLink ||
+                    `/sermon/${getSlugFromURL(sermon?.sharing?.url)}`
+                ),
+            },
+          ]}
+        />
+      </Section>
       <Section>
         <CardGrid
           px={{ _: 'l', md: 'xxl' }}
@@ -169,9 +152,9 @@ export default function Watch({ series, watchPages, sermons, baptisms = [] }) {
                       maxWidth="400px"
                       action={() =>
                         router.push(
-                          `/watch/${getIdSuffix(seriesNode.id)}/${getIdSuffix(
-                            node.id
-                          )}`
+                          `/watch/${getIdSuffix(
+                            seriesNode.id
+                          )}/${getSlugFromURL(node?.sharing?.url)}`
                         )
                       }
                     />
@@ -179,7 +162,7 @@ export default function Watch({ series, watchPages, sermons, baptisms = [] }) {
               </CardGrid>
             </Box>
           ))}
-          {baptisms.length || (
+          {baptisms?.length ? (
             <Box key={'baptisms'} display="flex" flexDirection="column">
               <Box display="flex" justifyContent="space-between" width="100%">
                 <Heading
@@ -200,7 +183,7 @@ export default function Watch({ series, watchPages, sermons, baptisms = [] }) {
                     cursor="pointer"
                     onClick={() =>
                       router.push(
-                        `/watch/${IDS.SERIES.BAPTISMS}/${IDS.CHANNELS.BAPTISMS}`
+                        `/watch/${IDS.SERIES.BAPTISMS}/${BAPTISMS_CHANNEL_SLUG}`
                       )
                     }
                   >
@@ -227,16 +210,18 @@ export default function Watch({ series, watchPages, sermons, baptisms = [] }) {
                     maxWidth="400px"
                     action={() =>
                       router.push(
-                        `/watch/${IDS.SERIES.BAPTISMS}/${
-                          IDS.CHANNELS.BAPTISMS
-                        }/${getIdSuffix(node.id)}`
+                        `/watch/${
+                          IDS.SERIES.BAPTISMS
+                        }/${BAPTISMS_CHANNEL_SLUG}/${getSlugFromURL(
+                          node?.sharing?.url
+                        )}`
                       )
                     }
                   />
                 ))}
               </CardGrid>
             </Box>
-          )}
+          ) : null}
         </CardGrid>
       </Section>
       {watchPages?.length ? (
@@ -265,7 +250,8 @@ export default function Watch({ series, watchPages, sermons, baptisms = [] }) {
                     label: page.buttonText,
                     onClick: () =>
                       router.push(
-                        page.buttonLink || `/watch/page/${getIdSuffix(page.id)}`
+                        page.buttonLink ||
+                          `/watch/page/${getSlugFromURL(page?.sharing?.url)}`
                       ),
                   },
                 ]}
@@ -303,21 +289,18 @@ export async function getStaticProps() {
   });
 
   const baptismChannel = await apolloClient.query({
-    query: GET_MESSAGE_CHANNEL,
+    query: GET_CONTENT_BY_SLUG,
     variables: {
-      itemId: getItemId(IDS.CHANNELS.BAPTISMS),
-      orderBy: {
-        field: 'DATE',
-        direction: 'DESC',
-      },
+      slug: BAPTISMS_CHANNEL_SLUG,
     },
   });
   const baptisms = (
-    baptismChannel?.data?.node?.childContentItemsConnection?.edges || []
+    baptismChannel?.data?.getContentBySlug?.childContentItemsConnection
+      ?.edges || []
   ).map(node => ({
     node: {
       ...node.node,
-      coverImage: baptismChannel.data.node.coverImage,
+      coverImage: baptismChannel.data.getContentBySlug.coverImage,
     },
   }));
 

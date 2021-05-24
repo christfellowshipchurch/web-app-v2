@@ -5,7 +5,7 @@ import { Box } from 'ui-kit';
 import { Footer, Header, SEO } from 'components';
 import Styled from './Layout.styles';
 
-function Layout({ children, title, meta, ...props }) {
+function Layout({ children, title, meta, dropdownData, ...props }) {
   return (
     <>
       <SEO title={title} meta={meta} />
@@ -16,7 +16,7 @@ function Layout({ children, title, meta, ...props }) {
         alignItems="center"
         {...props}
       >
-        <Header />
+        <Header dropdownData={dropdownData} />
         <Styled.Content>{children}</Styled.Content>
         <Footer />
       </Box>

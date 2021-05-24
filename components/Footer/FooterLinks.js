@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { Box, List, Text} from 'ui-kit';
+import { Box, List, Text } from 'ui-kit';
 import Styled from './Footer.styles';
 import useContentChannel from 'hooks/useContentChannel';
-import { getIdSuffix } from 'utils';
+import { getSlugFromURL } from 'utils';
 
 export default function FooterLinks({ channelId, baseRoute, title }) {
   const { content, loading } = useContentChannel({
@@ -15,8 +15,12 @@ export default function FooterLinks({ channelId, baseRoute, title }) {
   if (loading || !content.edges) {
     return null;
   }
-  const featuredItems = content.edges.filter(({ node }) => node.isFeatured).map(({ node }) => node);
-  const nonFeaturedItems = content.edges.filter(({ node }) => !node.isFeatured).map(({ node }) => node);
+  const featuredItems = content.edges
+    .filter(({ node }) => node.isFeatured)
+    .map(({ node }) => node);
+  const nonFeaturedItems = content.edges
+    .filter(({ node }) => !node.isFeatured)
+    .map(({ node }) => node);
 
   const items = [...featuredItems, ...nonFeaturedItems];
 
@@ -28,7 +32,11 @@ export default function FooterLinks({ channelId, baseRoute, title }) {
       <List as="ul" space="xs">
         {items.map(node => (
           <Box as="li" key={node.id}>
-            <Styled.Link href={`${baseRoute}/${getIdSuffix(node.id)}`}>{node.title}</Styled.Link>
+            <Styled.Link
+              href={`${baseRoute}/${getSlugFromURL(node?.sharing?.url)}`}
+            >
+              {node.title}
+            </Styled.Link>
           </Box>
         ))}
       </List>

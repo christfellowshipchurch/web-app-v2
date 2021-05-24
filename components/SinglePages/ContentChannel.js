@@ -1,10 +1,7 @@
 import { LargeImage, Layout } from 'components';
-import { initializeApollo } from 'lib/apolloClient';
 import { Box, Heading, Section } from 'ui-kit';
-import IDS from 'config/ids';
 import { useRouter } from 'next/router';
-import { GET_MESSAGE_SERIES } from 'hooks/useMessageSeries';
-import { getChannelId, getMetaData, getSlugFromURL } from 'utils';
+import { getIdSuffix, getMetaData, getSlugFromURL } from 'utils';
 import { useTheme } from 'styled-components';
 
 export default function Series({ series, dropdownData } = {}) {
@@ -47,7 +44,7 @@ export default function Series({ series, dropdownData } = {}) {
               mb="m"
               action={() =>
                 router.push(
-                  `/watch/${router.query.series}/${getSlugFromURL(
+                  `/watch/${getIdSuffix(series?.id)}/${getSlugFromURL(
                     node?.sharing?.url
                   )}`
                 )
@@ -58,33 +55,4 @@ export default function Series({ series, dropdownData } = {}) {
       </Section>
     </Layout>
   );
-}
-
-export async function getStaticProps(context) {
-  const apolloClient = initializeApollo();
-
-  const seriesResponse = await apolloClient.query({
-    query: GET_MESSAGE_SERIES,
-    variables: {
-      itemId: getChannelId(context.params.series),
-    },
-  });
-
-  return {
-    props: {
-      initialApolloState: apolloClient.cache.extract(),
-      series: seriesResponse?.data?.node,
-    },
-    revalidate: 60, // In seconds
-  };
-}
-
-export async function getStaticPaths() {
-  // Get the paths we want to pre-render
-  const paths = Object.values(IDS.SERIES).map(id => ({
-    params: { series: id },
-  }));
-
-  // Fallback true - if a page doesn't exist we will render it on the fly.
-  return { paths, fallback: true };
 }

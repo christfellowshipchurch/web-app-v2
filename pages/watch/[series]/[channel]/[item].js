@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { Layout, MainPhotoHeader, Carousel, VideoPlayer } from 'components';
 import { PlayCircle } from 'phosphor-react';
 import { initializeApollo } from 'lib/apolloClient';
-import { GET_MEDIA_CONTENT_ITEM } from 'hooks/useMediaContentItem';
 import { useRouter } from 'next/router';
+<<<<<<< HEAD
 import { Heading, Section, Box, theme } from 'ui-kit';
 import {
   getMetaData,
@@ -11,16 +11,26 @@ import {
   getIdSuffix,
   getItemId as getUniversalItemId,
 } from 'utils';
+||||||| ede95df
+import VideoPlayer from 'components/VideoPlayer/VideoJSPlayer';
+import { Heading, Section } from 'ui-kit';
+import {
+  getMetaData,
+  getChannelId,
+  getIdSuffix,
+  getItemId as getUniversalItemId,
+} from 'utils';
+=======
+import VideoPlayer from 'components/VideoPlayer/VideoJSPlayer';
+import { Heading, Section } from 'ui-kit';
+import { getMetaData, getChannelId, getIdSuffix, getSlugFromURL } from 'utils';
+>>>>>>> 80224a6d9b29e94ce06585f912ce61d2a84cd844
 import IDS from 'config/ids';
 import Styled from 'components/HomeFeed/HomeFeed.styles';
 import { GET_MESSAGE_SERIES } from 'hooks/useMessageSeries';
-import { GET_MESSAGE_CHANNEL } from 'hooks/useMessageChannel';
+import { GET_CONTENT_BY_SLUG } from 'hooks/useContentBySlug';
 
-function getItemId(id) {
-  return `MediaContentItem:${id}`;
-}
-
-export default function Item({ item } = {}) {
+export default function Item({ item, dropdownData } = {}) {
   const router = useRouter();
   const [selectedClip, setSelectedClip] = useState(0);
 
@@ -30,7 +40,7 @@ export default function Item({ item } = {}) {
   }
 
   return (
-    <Layout meta={getMetaData(item)}>
+    <Layout meta={getMetaData(item)} dropdownData={dropdownData}>
       <Box display="flex" flexDirection="column">
         <MainPhotoHeader
           src={item.coverImage?.sources?.[0]?.uri}
@@ -140,16 +150,16 @@ export async function getStaticProps(context) {
   const apolloClient = initializeApollo();
 
   const itemResponse = await apolloClient.query({
-    query: GET_MEDIA_CONTENT_ITEM,
+    query: GET_CONTENT_BY_SLUG,
     variables: {
-      itemId: getItemId(context.params.item),
+      slug: context.params.item,
     },
   });
 
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
-      item: itemResponse?.data?.node,
+      item: itemResponse?.data?.getContentBySlug,
     },
   };
 }
@@ -172,30 +182,30 @@ export async function getStaticPaths() {
     )
   ).flatMap(({ data }) =>
     data.node.childContentItemsConnection?.edges.map(({ node }) => ({
-      channelId: node.id,
+      channel: node,
       seriesId: data.node.id,
     }))
   );
 
   const items = await Promise.all(
-    channels.flatMap(async ({ channelId, seriesId }) => {
+    channels.flatMap(async ({ channel, seriesId }) => {
       const series = await apolloClient.query({
-        query: GET_MESSAGE_CHANNEL,
+        query: GET_CONTENT_BY_SLUG,
         variables: {
-          itemId: getUniversalItemId(getIdSuffix(channelId)),
+          slug: getSlugFromURL(channel?.sharing?.url),
         },
       });
-      return series.data.node.childContentItemsConnection.edges.map(
-        ({ node }) => ({ channelId, seriesId, itemId: node.id })
+      return series.data.getContentBySlug.childContentItemsConnection.edges.map(
+        ({ node }) => ({ channel, seriesId, item: node })
       );
     })
   );
 
-  const paths = items.flat().map(({ channelId, seriesId, itemId }) => ({
+  const paths = items.flat().map(({ channel, seriesId, item }) => ({
     params: {
-      channel: getIdSuffix(channelId),
+      channel: getSlugFromURL(channel?.sharing?.url),
       series: getIdSuffix(seriesId),
-      item: getIdSuffix(itemId),
+      item: getSlugFromURL(item?.sharing?.url),
     },
   }));
 
