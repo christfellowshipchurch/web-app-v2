@@ -19,7 +19,7 @@ export default function Page({ data, dropdownData } = {}) {
         overlay=""
         mb={{ _: 'l', md: 'xxl' }}
       />
-      <Section px={{ _: 'l', lg: 'xxl' }} mb={{ _: 'l' }}>
+      <Section mb={{ _: 'l' }}>
         <Box>
           {data.subtitle && (
             <Heading
@@ -46,12 +46,12 @@ export default function Page({ data, dropdownData } = {}) {
         </Box>
       </Section>
       {data.htmlContent && (
-        <Section px={{ _: 'l', lg: 'xxl' }} mb={{ _: 'l', lg: 'xxl' }}>
+        <Section mb={{ _: 'l', lg: 'xxl' }}>
           <Longform dangerouslySetInnerHTML={{ __html: data.htmlContent }} />
         </Section>
       )}
       {data.ctaLinks?.length ? (
-        <Section px={{ _: 'l', lg: 'xxl' }} mb={{ _: 'l', lg: 'xxl' }}>
+        <Section mb={{ _: 'l', lg: 'xxl' }}>
           <Box
             display="flex"
             flexWrap="wrap"

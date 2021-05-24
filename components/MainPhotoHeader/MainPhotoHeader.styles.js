@@ -26,7 +26,7 @@ Styled.Backdrop = styled(Box)`
   }
 
   @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
-    height: calc(${themeGet('breakpoints.lg')} * 0.5625);
+    height: calc(${themeGet('space.content')} * 0.5625);
   }
 
   ${system}
@@ -49,9 +49,9 @@ Styled.ImageContainer = styled(Box)`
           }
 
           @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
-            height: calc(${themeGet('breakpoints.lg')} * 0.5625);
+            height: calc(${themeGet('space.content')} * 0.5625);
             padding-top: ${themeGet('space.l')};
-            width: ${themeGet('breakpoints.lg')};
+            width: ${themeGet('space.content')};
           }
         `
       : css`
@@ -72,7 +72,7 @@ Styled.Image = styled(Image)`
 
           @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
             border-radius: ${themeGet('radii.image')};
-            height: calc(${themeGet('breakpoints.lg')} * 0.5625);
+            height: calc(${themeGet('space.content')} * 0.5625);
           }
         `
       : css`
@@ -116,9 +116,9 @@ Styled.ImageOverlay = styled(Box)`
       ? css`
           @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
             border-radius: ${themeGet('radii.image')};
-            height: calc(${themeGet('breakpoints.lg')} * 0.5625);
+            height: calc(${themeGet('space.content')} * 0.5625);
             margin-top: ${themeGet('space.l')};
-            width: ${themeGet('breakpoints.lg')};
+            width: ${themeGet('space.content')};
           }
         `
       : null}
@@ -145,7 +145,7 @@ Styled.TextContainer = styled(Box)`
     margin: 0;
     padding: 0 ${themeGet('space.xxl')};
     height: 100%;
-    max-width: ${themeGet('breakpoints.xl')};
+    max-width: ${themeGet('space.content')};
     width: 100%;
   }
 

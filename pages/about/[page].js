@@ -37,7 +37,6 @@ export default function Page({ data = {}, campuses, dropdownData }) {
       {data.htmlContent && (
         <Section>
           <Longform
-            px={{ _: 'l', md: 'xxl' }}
             mb={{ _: 'l', md: 'xxl' }}
             dangerouslySetInnerHTML={{ __html: data.htmlContent }}
           />
@@ -46,7 +45,6 @@ export default function Page({ data = {}, campuses, dropdownData }) {
       {childContent?.length ? (
         <Section>
           <CampusFilter
-            px={{ _: 'l', md: 'xxl' }}
             mb={{ _: 'l', md: 'xxl' }}
             filterWidth="200px"
             data={childContent}
@@ -87,11 +85,7 @@ export default function Page({ data = {}, campuses, dropdownData }) {
       ) : null}
       {ctaLinks.length ? (
         <Section bg="rgba(142, 142, 147, 0.12)">
-          <CardGrid
-            px={{ _: 'l', md: 'xxl' }}
-            my={{ _: 'l', md: 'xxl' }}
-            columns="1"
-          >
+          <CardGrid my={{ _: 'l', md: 'xxl' }} columns="1">
             {ctaLinks?.map((cta, i) => (
               <MarketingHeadline
                 key={i}

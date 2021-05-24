@@ -244,16 +244,6 @@ function HomeFeedContent(props = {}) {
     setServerSide(typeof window === 'undefined');
   }, []);
 
-  const content = props.authenticated
-    ? [
-        [
-          <HomeFeedArticles articles={miniArticles} />,
-          <HomeFeedLargeArticle article={largeArticle} />,
-        ],
-        [<HomeFeedCTA authenticated={props.authenticated} />],
-      ]
-    : [[], []];
-
   return (
     <React.Fragment key={[props.authenticated, serverSide].join('-')}>
       <Section>
@@ -261,7 +251,6 @@ function HomeFeedContent(props = {}) {
           gridColumnGap="l"
           columns={1}
           breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
-          px={{ _: 'l', md: 'xxl' }}
           my={{ _: 'l', md: 'xxl' }}
         >
           <HomeFeedCTA authenticated={props.authenticated} />
@@ -272,7 +261,6 @@ function HomeFeedContent(props = {}) {
           gridColumnGap="l"
           columns={2}
           breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
-          px={{ _: 'l', md: 'xxl' }}
           mb={{ _: 'l', md: 'xxl' }}
         >
           <HomeFeedLargeArticle article={largeArticle} />

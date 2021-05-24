@@ -22,7 +22,7 @@ export default function WeekendContentItem({ item, dropdownData } = {}) {
           overlay=""
         />
       ) : null}
-      <Section mb="xl" px={{ _: 'l', md: 'xxl' }}>
+      <Section mb="xl">
         {src ? (
           <VideoPlayer
             my="l"

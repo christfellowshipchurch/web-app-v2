@@ -27,7 +27,7 @@ export default function Item({ item, dropdownData } = {}) {
           overlay=""
         />
       ) : null}
-      <Section mb="xl" px={{ _: 'l', md: 'xxl' }}>
+      <Section mb="xl">
         {src ? (
           <VideoPlayer
             my="l"
