@@ -16,6 +16,20 @@ export const WEEKEND_CONTENT_ITEM_FRAGMENT = gql`
       }
     }
     htmlContent
+    childContentItemsConnection {
+      edges {
+        node {
+          id
+          ... on ContentItem {
+            videos {
+              sources {
+                uri
+              }
+            }
+          }
+        }
+      }
+    }
     sharing {
       url
     }
