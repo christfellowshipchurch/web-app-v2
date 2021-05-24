@@ -7,7 +7,10 @@ export const GET_GROUP_FACET_FILTERS = gql`
 `;
 
 function useGroupFacetFilters(options = {}) {
-  const query = useQuery(GET_GROUP_FACET_FILTERS, options);
+  const query = useQuery(GET_GROUP_FACET_FILTERS, {
+    fetchPolicy: 'cache-and-network',
+    ...options,
+  });
 
   return {
     facets: query?.data?.groupFacetFilters || [],
