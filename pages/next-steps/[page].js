@@ -69,7 +69,7 @@ export default function Page({ data = {}, campuses, dropdownData }) {
         <Section>
           <Longform
             px={{ _: 'l', md: 'xxl' }}
-            mb={{ _: 'l', md: 'xxl' }}
+            mb="l"
             dangerouslySetInnerHTML={{ __html: node.htmlContent }}
           />
         </Section>
