@@ -3,28 +3,8 @@ import { Layout, MainPhotoHeader, Carousel, VideoPlayer } from 'components';
 import { PlayCircle } from 'phosphor-react';
 import { initializeApollo } from 'lib/apolloClient';
 import { useRouter } from 'next/router';
-<<<<<<< HEAD
 import { Heading, Section, Box, theme } from 'ui-kit';
-import {
-  getMetaData,
-  getChannelId,
-  getIdSuffix,
-  getItemId as getUniversalItemId,
-} from 'utils';
-||||||| ede95df
-import VideoPlayer from 'components/VideoPlayer/VideoJSPlayer';
-import { Heading, Section } from 'ui-kit';
-import {
-  getMetaData,
-  getChannelId,
-  getIdSuffix,
-  getItemId as getUniversalItemId,
-} from 'utils';
-=======
-import VideoPlayer from 'components/VideoPlayer/VideoJSPlayer';
-import { Heading, Section } from 'ui-kit';
 import { getMetaData, getChannelId, getIdSuffix, getSlugFromURL } from 'utils';
->>>>>>> 80224a6d9b29e94ce06585f912ce61d2a84cd844
 import IDS from 'config/ids';
 import Styled from 'components/HomeFeed/HomeFeed.styles';
 import { GET_MESSAGE_SERIES } from 'hooks/useMessageSeries';
