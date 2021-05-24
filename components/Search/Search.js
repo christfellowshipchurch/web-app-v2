@@ -6,7 +6,7 @@ import {
   Pagination,
   Panel,
 } from 'react-instantsearch-dom';
-import { isEqual } from 'lodash';
+import { isEqual, sum } from 'lodash';
 import { useRouter } from 'next/router';
 import Styled from './Search.styles';
 import { Box, Button, Heading } from 'ui-kit';
@@ -82,6 +82,15 @@ function Search({ filtering, setFiltering }) {
   );
   const [debouncedSetState, setDebouncedSetState] = useState(null);
 
+  // We need to find which refinements are available when categories are selected
+  // In order to hide the refinements list if there aren't any available
+  // The only way to do this appears to be by using connectRefinementList
+  // But that needs to be used for each refinement list
+  // So we wrap a custom RefinementList component, and pass the availableRefinements state
+  // to it in order to track the refinements count for each refinement list
+  const [availableRefinements, setAvailableRefinements] = useState({});
+  const numRefinements = sum(Object.values(availableRefinements));
+
   useEffect(() => {
     if (!searchState.refinementList?.category?.length && filtering) {
       setFiltering(false);
@@ -131,19 +140,18 @@ function Search({ filtering, setFiltering }) {
           flexDirection={{ _: 'column', lg: 'row' }}
           position="relative"
         >
-          {selectedCategories?.length ? (
-            <RefinementsList
-              categories={selectedCategories || []}
-              filtering={filtering}
-            />
-          ) : null}
+          <RefinementsList
+            filtering={filtering}
+            availableRefinements={availableRefinements}
+            setAvailableRefinements={setAvailableRefinements}
+          />
           <div className={`right-panel ${filtering ? 'filtering' : ''}`}>
             <Hits hitComponent={Hit} />
             <Pagination />
           </div>
         </Box>
       </InstantSearch>
-      {selectedCategories?.length ? (
+      {numRefinements ? (
         <Styled.FilterButton>
           <Button color="primary" onClick={() => setFiltering(!filtering)}>
             <Heading fontSize="h4">{filtering ? 'Close' : 'Filter'}</Heading>
