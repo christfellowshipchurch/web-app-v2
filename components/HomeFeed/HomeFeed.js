@@ -131,7 +131,7 @@ function HomeFeedLargeArticle({ article }) {
   return (
     <Box position="relative" height="100%" width="100%">
       <LargeImage
-        position={{ _: "relative", lg:"absolute" }}
+        position={{ _: 'relative', lg: 'absolute' }}
         minHeight="200px"
         top={0}
         dropShadow
@@ -244,12 +244,7 @@ function HomeFeedContent(props = {}) {
         ],
         [<HomeFeedCTA authenticated={props.authenticated} />],
       ]
-    : [
-        [],
-        [
-
-        ],
-      ];
+    : [[], []];
 
   return (
     <React.Fragment key={[props.authenticated, serverSide].join('-')}>

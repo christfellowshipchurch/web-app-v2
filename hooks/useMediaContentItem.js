@@ -18,6 +18,20 @@ export const GET_MEDIA_CONTENT_ITEM = gql`
           }
         }
         htmlContent
+        childContentItemsConnection {
+          edges {
+            node {
+              id
+              ... on ContentItem {
+                videos {
+                  sources {
+                    uri
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
