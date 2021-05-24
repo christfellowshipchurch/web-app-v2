@@ -25,8 +25,14 @@ function ContentBlock(props = {}) {
     !isEmpty(htmlContent) ||
     actions?.length > 0;
 
+  const noMedia =
+    !(props.image || props.image !== '') && !(props.videos?.length >= 1);
+
   return (
-    <Styled.Container gridLayout={props.contentLayout} {...props}>
+    <Styled.Container
+      gridLayout={noMedia ? 'NO_MEDIA' : props.contentLayout}
+      {...props}
+    >
       {(props.image || props.image !== '') && (
         <Styled.Media maxWidth={horizontalLayout ? '500px' : '800px'}>
           <Image source={props.image} aspectRatio={props.imageRatio} />

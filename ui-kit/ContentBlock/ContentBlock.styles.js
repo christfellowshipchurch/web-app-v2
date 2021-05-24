@@ -33,6 +33,10 @@ const gridLayout = ({ gridLayout }) => props => {
           'content'
           'media';
       `;
+    case 'NO_MEDIA':
+      return css`
+        grid-template-areas: 'content';
+      `;
     case 'default':
     default:
       return css`
