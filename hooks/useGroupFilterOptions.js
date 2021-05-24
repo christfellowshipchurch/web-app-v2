@@ -14,7 +14,10 @@ export const GET_GROUP_OPTIONS = gql`
 
 // NOTE: To be replaced by an API query that combines this data for us
 function useGroupFilterOptions(options = {}) {
-  const query = useQuery(GET_GROUP_OPTIONS, options);
+  const query = useQuery(GET_GROUP_OPTIONS, {
+    fetchPolicy: 'cache-and-network',
+    ...options,
+  });
 
   return query?.data?.groupSearchOptions;
 }
