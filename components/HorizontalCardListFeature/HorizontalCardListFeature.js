@@ -14,15 +14,11 @@ import {
 import { getUrlFromRelatedNode } from 'utils';
 
 function HorizontalCardListFeature(props = {}) {
-  let data = props?.data;
+  const { title, subtitle, cards } = props?.data;
 
-  if (!data) {
+  if (!props.data) {
     return null;
   }
-
-  let title = data?.title;
-  let subtitle = data?.subtitle;
-  let cards = data?.cards;
 
   const cardType = props?.data?.cardType || 'default';
   let cardsDisplayed;
@@ -113,7 +109,12 @@ function HorizontalCardListFeature(props = {}) {
 }
 
 HorizontalCardListFeature.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.shape({
+    cardType: PropTypes.string,
+    cards: PropTypes.arrayOf(PropTypes.shape({})),
+    subtitle: PropTypes.string,
+    title: PropTypes.string,
+  }),
 };
 
 export default HorizontalCardListFeature;
