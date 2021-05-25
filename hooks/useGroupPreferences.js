@@ -43,8 +43,14 @@ function useGroupPreferences(props = {}) {
   const { preferencePath = null, ...options } = props;
   const [preference, setPreference] = useState(null);
 
-  const queryPreferences = useQuery(GET_PREFERENCES, options);
-  const querySubPreferences = useQuery(GET_SUB_PREFERENCES, options);
+  const queryPreferences = useQuery(GET_PREFERENCES, {
+    fetchPolicy: 'cache-and-network',
+    ...options,
+  });
+  const querySubPreferences = useQuery(GET_SUB_PREFERENCES, {
+    fetchPolicy: 'cache-and-network',
+    ...options,
+  });
 
   const preferences = queryPreferences?.data?.allPreferences || [];
   const subPreferences = querySubPreferences?.data?.allSubPreferences || [];

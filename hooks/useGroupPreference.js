@@ -37,8 +37,14 @@ export const GET_SUB_PREFERENCES = gql`
 `;
 
 function useGroupPreference(options = {}) {
-  const queryPreference = useQuery(GET_PREFERENCES, options);
-  const querySubPreferences = useQuery(GET_SUB_PREFERENCES, options);
+  const queryPreference = useQuery(GET_PREFERENCES, {
+    fetchPolicy: 'cache-and-network',
+    ...options,
+  });
+  const querySubPreferences = useQuery(GET_SUB_PREFERENCES, {
+    fetchPolicy: 'cache-and-network',
+    ...options,
+  });
 
   return {
     preference: queryPreference?.data?.node || {},
