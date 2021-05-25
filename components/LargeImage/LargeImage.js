@@ -55,7 +55,7 @@ function LargeImage({
 }
 
 LargeImage.propTypes = {
-  src: PropTypes.string.isRequired,
+  src: PropTypes.string,
   text: PropTypes.string,
   color: PropTypes.string,
   action: PropTypes.func,
