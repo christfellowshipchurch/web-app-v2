@@ -86,23 +86,24 @@ function HorizontalCardListFeature(props = {}) {
         hideArrows={!cards || cards.length < 2}
         mx={'-0.625rem'}
       >
-        {cards.map((card, i) => {
-          return (
-            <CustomLink
-              as="a"
-              key={i}
-              m="s"
-              boxShadow="none"
-              href={getUrlFromRelatedNode(card?.relatedNode)}
-              Component={HorizontalHighlightCard}
-              coverImage={card?.coverImage?.sources[0]?.uri || '/cf-logo.png'}
-              coverImageOverlay={true}
-              title={card?.title}
-              description={card?.summary}
-              type={cardType}
-            />
-          );
-        })}
+        {!isEmpty(cards) &&
+          cards?.map((card, i) => {
+            return (
+              <CustomLink
+                as="a"
+                key={i}
+                m="s"
+                boxShadow="none"
+                href={getUrlFromRelatedNode(card?.relatedNode)}
+                Component={HorizontalHighlightCard}
+                coverImage={card?.coverImage?.sources[0]?.uri || '/cf-logo.png'}
+                coverImageOverlay={true}
+                title={card?.title}
+                description={card?.summary}
+                type={cardType}
+              />
+            );
+          })}
       </CardCarousel>
     </Box>
   );
