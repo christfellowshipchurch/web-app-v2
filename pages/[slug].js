@@ -22,6 +22,7 @@ export default function Page({ data, type, dropdownData }) {
       return (
         <ContentSeriesContentItem item={data} dropdownData={dropdownData} />
       );
+    case 'MediaContentItem':
     case 'WeekendContentItem':
       return <WeekendContentItem item={data} dropdownData={dropdownData} />;
     default:

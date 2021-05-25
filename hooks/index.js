@@ -7,6 +7,7 @@ import useContentFeed from './useContentFeed';
 import useContentItem from './useContentItem';
 import useCurrentPerson from './useCurrentPerson';
 import useCurrentUser from './useCurrentUser';
+import useDevotionalContentItem from './useDevotionalContentItem';
 import useEvent from './useEvent';
 import useEvents from './useEvents';
 import useFeedFeatures from './useFeedFeatures';
@@ -25,6 +26,7 @@ import useRequestPin from './useRequestPin';
 import useUpdateCurrentUser from './useUpdateCurrentUser';
 import useUserExists from './useUserExists';
 import useVerifyPin from './useVerifyPin';
+import useWeekendContentItem from './useWeekendContentItem';
 
 export {
   useAuthenticateCredentials,
@@ -36,6 +38,7 @@ export {
   useContentItem,
   useCurrentPerson,
   useCurrentUser,
+  useDevotionalContentItem,
   useEvent,
   useEvents,
   useFeedFeatures,
@@ -54,4 +57,5 @@ export {
   useUpdateCurrentUser,
   useUserExists,
   useVerifyPin,
+  useWeekendContentItem,
 };

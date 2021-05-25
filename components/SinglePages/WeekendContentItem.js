@@ -10,8 +10,13 @@ export default function WeekendContentItem({ item, dropdownData } = {}) {
     return null;
   }
 
-  const src = item.videos?.filter(({ sources }) => sources.length)[0]
-    ?.sources[0].uri;
+  let src = item.videos?.filter(({ sources }) => sources.length)[0]?.sources[0]
+    .uri;
+
+  if (!src) {
+    src = item.audios?.filter(({ sources }) => sources.length)[0]?.sources[0]
+      .uri;
+  }
 
   return (
     <Layout meta={getMetaData(item)} dropdownData={dropdownData}>

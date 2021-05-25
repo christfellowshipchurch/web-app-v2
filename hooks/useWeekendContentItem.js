@@ -1,7 +1,7 @@
 import { gql, useQuery } from '@apollo/client';
 
-export const MEDIA_CONTENT_ITEM_FRAGMENT = gql`
-  fragment MediaContentItemFragment on MediaContentItem {
+export const WEEKEND_CONTENT_ITEM_FRAGMENT = gql`
+  fragment WeekendContentItemFragment on WeekendContentItem {
     id
     title
     summary
@@ -11,11 +11,6 @@ export const MEDIA_CONTENT_ITEM_FRAGMENT = gql`
       }
     }
     videos {
-      sources {
-        uri
-      }
-    }
-    audios {
       sources {
         uri
       }
@@ -41,17 +36,17 @@ export const MEDIA_CONTENT_ITEM_FRAGMENT = gql`
   }
 `;
 
-export const GET_MEDIA_CONTENT_ITEM = gql`
-  query getMediaContentItem($itemId: ID!) {
+export const GET_WEEKEND_CONTENT_ITEM = gql`
+  query getWeekendContentItem($itemId: ID!) {
     node(id: $itemId) {
-      ...MediaContentItemFragment
+      ...WeekendContentItemFragment
     }
   }
-  ${MEDIA_CONTENT_ITEM_FRAGMENT}
+  ${WEEKEND_CONTENT_ITEM_FRAGMENT}
 `;
 
-function useMediaContentItem(options = {}) {
-  const query = useQuery(GET_MEDIA_CONTENT_ITEM, options);
+function useWeekendContentItem(options = {}) {
+  const query = useQuery(GET_WEEKEND_CONTENT_ITEM, options);
 
   return {
     item: query?.data?.node,
@@ -59,4 +54,4 @@ function useMediaContentItem(options = {}) {
   };
 }
 
-export default useMediaContentItem;
+export default useWeekendContentItem;
