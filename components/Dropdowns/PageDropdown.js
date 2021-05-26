@@ -49,7 +49,10 @@ export default function PageDropdown({
                         <Dropdowns.FeaturedItem key={item.id}>
                           <Photo
                             imageProps={{ height: '226px' }}
-                            src={item.coverImage?.sources[0]?.uri}
+                            src={
+                              item.navImage?.sources[0]?.uri ||
+                              item.coverImage?.sources[0]?.uri
+                            }
                             inner={
                               item.showTitleOverImage && (
                                 <Heading
@@ -72,7 +75,9 @@ export default function PageDropdown({
                             dropShadow={false}
                             onClick={() =>
                               router.push(
-                                `${baseRoute}/${getSlugFromURL(item?.sharing?.url)}`
+                                `${baseRoute}/${getSlugFromURL(
+                                  item?.sharing?.url
+                                )}`
                               )
                             }
                           />
@@ -89,7 +94,9 @@ export default function PageDropdown({
                 <Dropdowns.NonFeaturedItem
                   key={i}
                   onClick={() =>
-                    router.push(`${baseRoute}/${getSlugFromURL(item?.sharing?.url)}`)
+                    router.push(
+                      `${baseRoute}/${getSlugFromURL(item?.sharing?.url)}`
+                    )
                   }
                 >
                   <Heading

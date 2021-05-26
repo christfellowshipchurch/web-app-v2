@@ -96,6 +96,14 @@ export default function Page({ data = {}, campuses, dropdownData }) {
           </CampusFilter>
         </Section>
       ) : null}
+      {data.secondaryHTML && (
+        <Section>
+          <Longform
+            mb={{ _: 'l', md: 'xxl' }}
+            dangerouslySetInnerHTML={{ __html: data.secondaryHTML }}
+          />
+        </Section>
+      )}
     </Layout>
   );
 }

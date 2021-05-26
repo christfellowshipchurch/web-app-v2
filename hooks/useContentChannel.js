@@ -15,15 +15,20 @@ export const GET_CONTENT_CHANNEL = gql`
                   uri
                 }
               }
-              coverImage {
-                sources {
-                  uri
-                }
-              }
               sharing {
                 url
               }
               ... on UniversalContentItem {
+                coverImage {
+                  sources {
+                    uri
+                  }
+                }
+                navImage {
+                  sources {
+                    uri
+                  }
+                }
                 showTitleOverImage
                 subtitle
                 isFeatured

@@ -31,6 +31,7 @@ export const UNIVERSAL_CONTENT_ITEM_FRAGMENT = gql`
         uri
       }
     }
+    secondaryHTML
     childContentItemsConnection {
       edges {
         node {
