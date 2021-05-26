@@ -7,13 +7,13 @@ import Styled, { StyledImage } from './MeetTheStaff.styles';
 function MeetTheStaff({ name, description, src, ...props }) {
   return (
     <Styled>
-      <StyledImage rounded src={src} width="100%" />
       <Box
         display="flex"
         flexDirection="column"
         justifyContent="space-between"
         {...props}
       >
+        <StyledImage rounded src={src} width="100%" />
         <Text fontWeight="700" variant="s">
           {name}
         </Text>

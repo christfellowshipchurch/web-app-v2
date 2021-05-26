@@ -6,7 +6,7 @@ import { Image, system } from 'ui-kit';
 export const StyledImage = styled(Image)`
   border-radius: ${themeGet('radii.l')};
   height: 190px;
-  margin: 0 auto ${themeGet('space.s')};
+  margin: 0 0 ${themeGet('space.s')};
   max-width: 270px;
   object-fit: cover;
   filter: drop-shadow(0px 10.2536px 24.6087px rgba(0, 0, 0, 0.09));
