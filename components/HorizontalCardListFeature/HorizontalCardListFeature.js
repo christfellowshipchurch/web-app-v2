@@ -14,15 +14,11 @@ import {
 import { getUrlFromRelatedNode } from 'utils';
 
 function HorizontalCardListFeature(props = {}) {
-  let data = props?.data;
+  const { title, subtitle, cards } = props?.data;
 
-  if (!data) {
+  if (!props.data) {
     return null;
   }
-
-  let title = data?.title;
-  let subtitle = data?.subtitle;
-  let cards = data?.cards;
 
   const cardType = props?.data?.cardType || 'default';
   let cardsDisplayed;
@@ -90,30 +86,36 @@ function HorizontalCardListFeature(props = {}) {
         hideArrows={!cards || cards.length < 2}
         mx={'-0.625rem'}
       >
-        {cards.map((card, i) => {
-          return (
-            <CustomLink
-              as="a"
-              key={i}
-              m="s"
-              boxShadow="none"
-              href={getUrlFromRelatedNode(card?.relatedNode)}
-              Component={HorizontalHighlightCard}
-              coverImage={card?.coverImage?.sources[0]?.uri || '/cf-logo.png'}
-              coverImageOverlay={true}
-              title={card?.title}
-              description={card?.summary}
-              type={cardType}
-            />
-          );
-        })}
+        {!isEmpty(cards) &&
+          cards?.map((card, i) => {
+            return (
+              <CustomLink
+                as="a"
+                key={i}
+                m="s"
+                boxShadow="none"
+                href={getUrlFromRelatedNode(card?.relatedNode)}
+                Component={HorizontalHighlightCard}
+                coverImage={card?.coverImage?.sources[0]?.uri || '/cf-logo.png'}
+                coverImageOverlay={true}
+                title={card?.title}
+                description={card?.summary}
+                type={cardType}
+              />
+            );
+          })}
       </CardCarousel>
     </Box>
   );
 }
 
 HorizontalCardListFeature.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.shape({
+    cardType: PropTypes.string,
+    cards: PropTypes.arrayOf(PropTypes.shape({})),
+    subtitle: PropTypes.string,
+    title: PropTypes.string,
+  }),
 };
 
 export default HorizontalCardListFeature;
