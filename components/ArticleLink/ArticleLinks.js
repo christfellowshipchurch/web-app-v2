@@ -1,14 +1,9 @@
-import { CardGrid } from 'ui-kit';
+import Styled from './ArticleLinks.styles';
 
-export default function ArticleLinks({ fullWidth = true, children }) {
+export default function ArticleLinks({ fullWidth, zigZag, children }) {
   return (
-    <CardGrid
-      gridTemplateColumns={{
-        _: 'repeat(1, 1fr)',
-        lg: `repeat(${fullWidth ? 2 : 1}, 1fr)`,
-      }}
-    >
+    <Styled.ArticleLinks fullWidth={fullWidth} zigZag={zigZag}>
       {children}
-    </CardGrid>
+    </Styled.ArticleLinks>
   );
 }

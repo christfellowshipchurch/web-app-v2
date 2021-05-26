@@ -118,7 +118,6 @@ export default function Page({
                   <ArticleLink
                     key={node.id}
                     imageSrc={node.coverImage?.sources?.[0]?.uri}
-                    justify={i % 2 === 0 ? 'left' : 'right'}
                     title={node.title}
                     description={node.summary}
                     urlText={node.linkText}
