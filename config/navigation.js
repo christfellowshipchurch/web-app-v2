@@ -31,8 +31,8 @@ const navigation = {
     {
       id: 'give',
       action: {
-        mobile: 'https://my.longhollow.com/GiveNow',
-        web: 'https://my.longhollow.com/GiveNow',
+        mobile: '/online-giving',
+        web: '/online-giving',
       },
       call: 'Give',
     },
