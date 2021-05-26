@@ -69,7 +69,6 @@ export default function Watch({
         }
       />
       <Section
-        px={{ _: 'l', md: 'xxl' }}
         mt={{ _: 'l', md: 'xxl' }}
         display="flex"
         flexWrap="wrap"
@@ -98,12 +97,7 @@ export default function Watch({
         />
       </Section>
       <Section>
-        <CardGrid
-          px={{ _: 'l', md: 'xxl' }}
-          my={{ _: 'l', md: 'xxl' }}
-          gridRowGap="l"
-          columns="1"
-        >
+        <CardGrid my={{ _: 'l', md: 'xxl' }} gridRowGap="l" columns="1">
           {series.map(seriesNode => (
             <Box key={seriesNode.id} display="flex" flexDirection="column">
               <Box display="flex" justifyContent="space-between" width="100%">
@@ -228,7 +222,6 @@ export default function Watch({
         <>
           <PageSplit title="Other ways to watch" />
           <Section
-            px={{ _: 'l', md: 'xxl' }}
             display="flex"
             flexWrap="wrap"
             justifyContent="center"

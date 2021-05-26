@@ -15,12 +15,6 @@ Styled.Container = styled(Box)`
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     align-items: center;
     flex-direction: row;
-    :nth-child(even){
-      padding-left: ${themeGet('space.m')};
-    }
-    :nth-child(odd){
-      padding-right: ${themeGet('space.m')};
-    }
   }
 
   ${system}

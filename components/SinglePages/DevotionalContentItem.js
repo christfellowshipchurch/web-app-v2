@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 
 import { Layout, MainPhotoHeader } from 'components';
-import { Box, Button, Heading, Longform, Section } from 'ui-kit';
+import { Box, Heading, Longform, Section, Text } from 'ui-kit';
 import { getMetaData } from 'utils';
 
 export default function Page({ data, dropdownData } = {}) {
@@ -21,17 +21,6 @@ export default function Page({ data, dropdownData } = {}) {
       />
       <Section mb={{ _: 'l' }}>
         <Box>
-          {data.subtitle && (
-            <Heading
-              fontSize="h2"
-              lineHeight="h2"
-              color="fg"
-              fontWeight="800"
-              opacity="50%"
-            >
-              {data.subtitle}
-            </Heading>
-          )}
           {data.title && (
             <Heading
               fontSize="h1"
@@ -50,26 +39,18 @@ export default function Page({ data, dropdownData } = {}) {
           <Longform dangerouslySetInnerHTML={{ __html: data.htmlContent }} />
         </Section>
       )}
-      {data.ctaLinks?.length ? (
-        <Section mb={{ _: 'l', lg: 'xxl' }}>
-          <Box
-            display="flex"
-            flexWrap="wrap"
-            justifyContent="center"
-            alignItems="center"
-          >
-            {data.ctaLinks?.map((cta, i) => (
-              <Button
-                key={i}
-                onClick={() => router.push(cta.buttonLink)}
-                m="xs"
-              >
-                {cta.buttonText}
-              </Button>
-            ))}
+      {data.scriptures?.map(scripture => (
+        <Section key={scripture.reference} mb={{ _: 'l', lg: 'xxl' }}>
+          <Box mb="s" display="flex" alignItems="flex-end">
+            <Heading variant="h3" fontWeight="bold" mr="xs">
+              {scripture.reference}
+            </Heading>
+            <Heading variant="s">{scripture.version}</Heading>
           </Box>
+          <Longform dangerouslySetInnerHTML={{ __html: scripture.html }} />
+          <Text variant="xs">{scripture.copyright}</Text>
         </Section>
-      ) : null}
+      ))}
     </Layout>
   );
 }

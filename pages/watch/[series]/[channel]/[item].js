@@ -114,7 +114,7 @@ export default function Item({ item, dropdownData } = {}) {
           </Box>
         ) : null}
       </Box>
-      <Section mb="xl" px={{ _: 'l', md: 'xxl' }} py={'l'}>
+      <Section mb="xl" py={'l'}>
         <Heading variant="h2" fontWeight="800" mb="m">
           {item.title}
         </Heading>

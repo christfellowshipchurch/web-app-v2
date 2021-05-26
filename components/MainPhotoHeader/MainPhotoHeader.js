@@ -104,7 +104,7 @@ function MainPhotoHeader({
 }
 
 MainPhotoHeader.propTypes = {
-  src: PropTypes.string.isRequired,
+  src: PropTypes.string,
   overlay: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   title: PropTypes.string,
   subtitle: PropTypes.string,

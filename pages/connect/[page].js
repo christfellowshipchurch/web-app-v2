@@ -73,7 +73,7 @@ export default function Page({
         mb={{ _: 'xl', lg: 'xxl' }}
       />
       {links?.length ? (
-        <Section>
+        <Section contentProps={{ p: '0 !important' }}>
           <EventsCallout
             mx={{ _: 0, lg: 'xl' }}
             mb={{ _: 'l', md: 'xxl' }}
@@ -107,7 +107,6 @@ export default function Page({
       {childContent?.length ? (
         <Section>
           <CampusFilter
-            px={{ _: 'l', md: 'xxl' }}
             mb={{ _: 'l', md: 'xxl' }}
             filterWidth="200px"
             data={childContent}
@@ -136,7 +135,6 @@ export default function Page({
       {cta || story ? (
         <Section>
           <CardGrid
-            px={{ _: 'l', md: 'xxl' }}
             mb={{ _: 'l', md: 'xxl' }}
             gridTemplateColumns={
               story
@@ -181,7 +179,6 @@ export default function Page({
       {node.htmlContent && (
         <Section>
           <Longform
-            px={{ _: 'l', md: 'xxl' }}
             mb={{ _: 'l', md: 'xxl' }}
             dangerouslySetInnerHTML={{ __html: node.htmlContent }}
           />
@@ -191,7 +188,6 @@ export default function Page({
         <>
           <PageSplit title="Meet the Staff" />
           <Section
-            px={{ _: 'l', md: 'xxl' }}
             mb={{ _: 'l', md: 'xxl' }}
             display="flex"
             flexWrap="wrap"
@@ -213,7 +209,6 @@ export default function Page({
         <>
           <PageSplit title="Connect" />
           <Section
-            px={{ _: 'l', md: 'xxl' }}
             mb={{ _: 'l', md: 'xxl' }}
             display="flex"
             flexWrap="wrap"

@@ -107,7 +107,7 @@ Styled.CategoryItem = styled.a`
 `;
 
 Styled.RefinementsBackground = styled(Box)`
-  background ${themeGet('colors.bg')};
+  background: ${themeGet('colors.bg')};
   display: none;
   flex-shrink: 0;
   height: 100%;
@@ -119,7 +119,7 @@ Styled.RefinementsBackground = styled(Box)`
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     background: unset;
-    display: block !important;
+    display: ${props => (props.numRefinements ? 'block' : 'none')} !important;
     margin-right: 0 !important;
     position: initial !important;
     padding: 0 !important;
@@ -134,7 +134,8 @@ Styled.RefinementsBackground = styled(Box)`
     props.filtering
       ? css`
           bottom: 0;
-          display: block;
+          display: ${props =>
+            props.numRefinements ? 'block' : 'none'} !important;
           overflow-y: auto;
           padding: ${themeGet('space.m')};
           padding-bottom: ${themeGet('space.xxl')};

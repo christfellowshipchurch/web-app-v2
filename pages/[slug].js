@@ -6,11 +6,14 @@ import {
   WeekendContentItem,
   ContentSeriesContentItem,
   ContentChannel,
+  DevotionalContentItem,
 } from 'components/SinglePages';
 import IDS from 'config/ids';
 
 export default function Page({ data, type, dropdownData }) {
   switch (type) {
+    case 'DevotionalContentItem':
+      return <DevotionalContentItem data={data} dropdownData={dropdownData} />;
     case 'UniversalContentItem':
       return <UniversalContentItem data={data} dropdownData={dropdownData} />;
     case 'ContentChannel':
@@ -19,6 +22,7 @@ export default function Page({ data, type, dropdownData }) {
       return (
         <ContentSeriesContentItem item={data} dropdownData={dropdownData} />
       );
+    case 'MediaContentItem':
     case 'WeekendContentItem':
       return <WeekendContentItem item={data} dropdownData={dropdownData} />;
     default:

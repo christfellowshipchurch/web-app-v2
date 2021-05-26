@@ -22,7 +22,6 @@ function MarketingHeadline({
       <Photo
         justifySelf={justify === 'left' ? 'flex-end' : 'flex-start'}
         flex="1 0 50%"
-        px={{ _: 0, lg: 's' }}
         pb={{ _: 's', lg: 0 }}
         width="100%"
         {...image}

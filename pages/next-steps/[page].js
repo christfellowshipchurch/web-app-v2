@@ -40,11 +40,7 @@ export default function Page({ data = {}, campuses, dropdownData }) {
       />
       {node.ctaLinks?.length ? (
         <Section mb={{ _: 0 }}>
-          <CardGrid
-            px={{ _: 'l', md: 'xxl' }}
-            mb={{ _: 'l', md: 'xxl' }}
-            columns="1"
-          >
+          <CardGrid mb={{ _: 'l', md: 'xxl' }} columns="1">
             {node.ctaLinks?.map((cta, i) => (
               <MarketingHeadline
                 key={i}
@@ -68,7 +64,6 @@ export default function Page({ data = {}, campuses, dropdownData }) {
       {node.htmlContent && (
         <Section>
           <Longform
-            px={{ _: 'l', md: 'xxl' }}
             mb="l"
             dangerouslySetInnerHTML={{ __html: node.htmlContent }}
           />
@@ -77,7 +72,6 @@ export default function Page({ data = {}, campuses, dropdownData }) {
       {childContent?.length ? (
         <Section>
           <CampusFilter
-            px={{ _: 'l', md: 'xxl' }}
             mb={{ _: 'l', md: 'xxl' }}
             filterWidth="200px"
             data={childContent}

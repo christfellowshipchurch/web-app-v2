@@ -67,6 +67,7 @@ const theme = {
   },
   space: {
     header: rem('90px'),
+    content: rem('1200px'),
     base: rem('20px'),
     xxs: rem('5px'),
     xs: rem('10px'),
