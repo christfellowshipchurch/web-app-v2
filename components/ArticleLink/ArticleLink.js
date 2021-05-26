@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { ArrowRight } from 'phosphor-react';
 
-import { Box, Text, theme } from 'ui-kit';
+import { Text, theme } from 'ui-kit';
 import Link from 'next/link';
 
 import Styled from './ArticleLink.styles';
@@ -18,13 +18,10 @@ function ArticleLink({
 }) {
   return (
     <Styled.Container {...props}>
-      <Styled.Image
-        rounded
-        src={imageSrc}
-        float="right"
-        width={{ _: '100%', lg: 'auto' }}
-      />
-      <Box mr="m">
+      <Styled.ImageContainer>
+        <Styled.Image rounded src={imageSrc} float="right" />
+      </Styled.ImageContainer>
+      <Styled.TextContainer>
         <Text fontWeight="700" variant="s">
           {title}
         </Text>
@@ -70,7 +67,7 @@ function ArticleLink({
             </a>
           </Link>
         ) : null}
-      </Box>
+      </Styled.TextContainer>
     </Styled.Container>
   );
 }

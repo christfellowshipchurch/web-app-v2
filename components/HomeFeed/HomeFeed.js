@@ -158,7 +158,7 @@ function HomeFeedLargeArticle({ article }) {
 
 function HomeFeedArticles({ articles }) {
   return (
-    <ArticleLinks fullWidth={false}>
+    <ArticleLinks fullWidth>
       {articles.map(({ node: article }, i) => (
         <ArticleLink
           key={i}
