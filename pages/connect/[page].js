@@ -249,7 +249,7 @@ export async function getStaticProps({ params }) {
   const pageData = pageResponse?.data?.getContentBySlug;
 
   let staffResponse;
-  if (pageData?.getContentBySlug?.ministry) {
+  if (pageData?.ministry) {
     staffResponse = await apolloClient.query({
       query: GET_STAFF,
       variables: {
@@ -273,7 +273,7 @@ export async function getStaticProps({ params }) {
     props: {
       initialApolloState: apolloClient.cache.extract(),
       data: pageResponse?.data,
-      staff: staffResponse ? staffResponse.data : [],
+      staff: staffResponse ? staffResponse.data.getStaff : [],
       relatedContent: ministryResponse?.data,
       campuses: campusesResponse?.data?.campuses || [],
     },
