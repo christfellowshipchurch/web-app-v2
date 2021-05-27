@@ -10,6 +10,16 @@ import { CustomLink, Video } from 'components';
 import Styled from './ContentBlock.styles';
 import toLower from 'lodash/toLower';
 
+function titleFlexDirection(orientation) {
+  switch (orientation) {
+    case 'RIGHT':
+    case 'LEFT':
+      return 'column-reverse';
+    default:
+      return 'column';
+  }
+}
+
 function ContentBlock(props = {}) {
   const horizontalLayout =
     toLower(props.contentLayout) === 'left' ||
@@ -50,10 +60,13 @@ function ContentBlock(props = {}) {
       {hasContent && (
         <Styled.Content textAlign={horizontalLayout ? 'flex-start' : 'center'}>
           {(title || subtitle) && (
-            <>
-              <Styled.Subtitle>{props.subtitle}</Styled.Subtitle>
+            <Box
+              display="flex"
+              flexDirection={titleFlexDirection(props?.contentLayout)}
+            >
               <Styled.Title>{props.title}</Styled.Title>
-            </>
+              <Styled.Subtitle>{props.subtitle}</Styled.Subtitle>
+            </Box>
           )}
           <Box>{htmlToReactParser.parse(props.htmlContent)}</Box>
 

@@ -20,6 +20,11 @@ module.exports = {
         destination: '/groups/:title/edit',
         permanent: true,
       },
+      {
+        source: '/kingdom-builders-page',
+        destination: '/kingdom-builders',
+        permanent: true,
+      },
       // TODO: Uncomment these lines to hide Group Finder.
       // NOTE: We can't get `config/flags` in this file.
       // {
