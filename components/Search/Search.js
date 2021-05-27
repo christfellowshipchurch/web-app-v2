@@ -140,18 +140,20 @@ function Search({ filtering, setFiltering }) {
           flexDirection={{ _: 'column', lg: 'row' }}
           position="relative"
         >
-          <RefinementsList
-            filtering={filtering}
-            availableRefinements={availableRefinements}
-            setAvailableRefinements={setAvailableRefinements}
-          />
+          {selectedCategories?.length ? (
+            <RefinementsList
+              filtering={filtering}
+              availableRefinements={availableRefinements}
+              setAvailableRefinements={setAvailableRefinements}
+            />
+          ) : null}
           <div className={`right-panel ${filtering ? 'filtering' : ''}`}>
             <Hits hitComponent={Hit} />
             <Pagination />
           </div>
         </Box>
       </InstantSearch>
-      {numRefinements ? (
+      {selectedCategories?.length && numRefinements ? (
         <Styled.FilterButton>
           <Button color="primary" onClick={() => setFiltering(!filtering)}>
             <Heading fontSize="h4">{filtering ? 'Close' : 'Filter'}</Heading>
