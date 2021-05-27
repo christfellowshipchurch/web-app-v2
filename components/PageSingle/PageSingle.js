@@ -9,13 +9,13 @@ import { Box, Loader, Longform } from 'ui-kit';
 import Styled from './PageSingle.styles';
 
 const renderBody = ({ title, summary, htmlContent, coverImage }) => {
-  const hasTitle = !isEmpty(title) && !coverImage?.sources?.length;
-  const hasSummary = !isEmpty(summary) && !coverImage?.sources?.length;
+  const hasTitle = !isEmpty(title) && isEmpty(coverImage);
+  const hasSummary = !isEmpty(summary) && isEmpty(coverImage);
   const hasContent = hasTitle || hasSummary || !isEmpty(htmlContent);
 
   if (hasContent) {
     return (
-      <Box fontSize="l" maxWidth="840px" margin="auto" py="l">
+      <Box fontSize="l" margin="auto" py="l" px="s">
         {hasTitle && (
           <Box as="h1" textAlign="center">
             {title}
@@ -32,7 +32,6 @@ const renderBody = ({ title, summary, htmlContent, coverImage }) => {
             {summary}
           </Box>
         )}
-
         {htmlContent && (
           <Longform dangerouslySetInnerHTML={createMarkup(htmlContent)} />
         )}
@@ -97,9 +96,7 @@ function PageSingle(props = {}) {
       )}
 
       <Box maxWidth={1100} margin="auto" px="s">
-        {isEmpty(coverImage) &&
-          !isEmpty(title) &&
-          renderBody({ title, summary, htmlContent, coverImage })}
+        {renderBody({ title, summary, htmlContent, coverImage })}
 
         {features && features.length > 0 && (
           <Box>
