@@ -28,6 +28,7 @@ import useGroupPreference from './useGroupPreference';
 import useGroupPreferences from './useGroupPreferences';
 import useGroupResourceOptions from './useGroupResourceOptions';
 import useGroups from './useGroups';
+import useLinkTree from './useLinkTree';
 import useLiveStream from './useLiveStream';
 import useLiveStreams from './useLiveStreams';
 import useLiveStreamsQuery from './useLiveStreamsQuery';
@@ -81,6 +82,7 @@ export {
   useGroupPreferences,
   useGroupResourceOptions,
   useGroups,
+  useLinkTree,
   useLiveStream,
   useLiveStreams,
   useLiveStreamsQuery,
