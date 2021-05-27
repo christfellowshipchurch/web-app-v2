@@ -18,12 +18,12 @@ export const GET_CONTENT_CHANNEL = gql`
               sharing {
                 url
               }
-              ... on UniversalContentItem {
-                coverImage {
-                  sources {
-                    uri
-                  }
+              coverImage {
+                sources {
+                  uri
                 }
+              }
+              ... on UniversalContentItem {
                 navImage {
                   sources {
                     uri

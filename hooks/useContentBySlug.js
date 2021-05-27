@@ -1,25 +1,148 @@
 import { gql, useQuery } from '@apollo/client';
-import { UNIVERSAL_CONTENT_ITEM_FRAGMENT } from './useContentItem';
 import { MEDIA_CONTENT_ITEM_FRAGMENT } from './useMediaContentItem';
 import { WEEKEND_CONTENT_ITEM_FRAGMENT } from './useWeekendContentItem';
-import { CONTENT_SERIES_CONTENT_ITEM_FRAGMENT } from './useMessageChannel';
-import { DEVOTIONAL_CONTENT_ITEM_FRAGMENT } from './useDevotionalContentItem';
 
 export const GET_CONTENT_BY_SLUG = gql`
-  query getContentBySlug($slug: String!) {
-    getContentBySlug(slug: $slug) {
-      ...ContentSeriesContentItemFragment
-      ...UniversalContentItemFragment
-      ...DevotionalContentItemFragment
-      ...MediaContentItemFragment
-      ...WeekendContentItemFragment
+  fragment BaseContentItem on ContentItem {
+    id
+    title
+    summary
+    htmlContent
+    parentChannel {
+      id
+    }
+    coverImage {
+      sources {
+        uri
+      }
+    }
+    sharing {
+      url
     }
   }
-  ${CONTENT_SERIES_CONTENT_ITEM_FRAGMENT}
-  ${UNIVERSAL_CONTENT_ITEM_FRAGMENT}
-  ${DEVOTIONAL_CONTENT_ITEM_FRAGMENT}
-  ${MEDIA_CONTENT_ITEM_FRAGMENT}
-  ${WEEKEND_CONTENT_ITEM_FRAGMENT}
+  fragment WithMedia on MediaContentItem {
+    videos {
+      sources {
+        uri
+      }
+    }
+  }
+  query getContentBySlug($slug: String!) {
+    getContentBySlug(slug: $slug) {
+      ...BaseContentItem
+      ... on WeekendContentItem {
+        videos {
+          sources {
+            uri
+          }
+        }
+        childContentItemsConnection {
+          edges {
+            node {
+              id
+              ... on ContentItem {
+                videos {
+                  sources {
+                    uri
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      ... on MediaContentItem {
+        ...WithMedia
+        audios {
+          sources {
+            uri
+          }
+        }
+        childContentItemsConnection {
+          edges {
+            node {
+              id
+              ... on ContentItem {
+                videos {
+                  sources {
+                    uri
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      ... on DevotionalContentItem {
+        scriptures {
+          html
+          book
+          version
+          reference
+          copyright
+        }
+      }
+      ... on ContentSeriesContentItem {
+        childContentItemsConnection(orderBy: { field: DATE, direction: DESC }) {
+          edges {
+            node {
+              id
+              title
+              sharing {
+                url
+              }
+            }
+          }
+          pageInfo {
+            endCursor
+          }
+          totalCount
+        }
+      }
+      ... on UniversalContentItem {
+        subtitle
+        showTitleOverImage
+        ctaLinks {
+          title
+          body
+          image {
+            sources {
+              uri
+            }
+          }
+          buttonText
+          buttonLink
+        }
+        ministry
+        secondaryHTML
+        childContentItemsConnection {
+          edges {
+            node {
+              ...BaseContentItem
+              ... on UniversalContentItem {
+                campus {
+                  id
+                  name
+                }
+                linkText
+                linkURL
+                socialMedia {
+                  title
+                  image {
+                    sources {
+                      uri
+                    }
+                  }
+                  summary
+                }
+              }
+              ...WithMedia
+            }
+          }
+        }
+      }
+    }
+  }
 `;
 
 function useContentBySlug(options = {}) {
