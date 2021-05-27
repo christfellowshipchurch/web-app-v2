@@ -148,6 +148,14 @@ export async function getStaticProps(context) {
       campuses: campusesResponse?.data?.campuses || [],
     },
     revalidate: 60, // In seconds
+    redirect: pageResponse?.data?.getContentBySlug?.sharing.url.includes(
+      'meet-our-staff'
+    )
+      ? {
+          destination: '/search?category=Staff&p=1',
+          permanent: false,
+        }
+      : null,
   };
 }
 
