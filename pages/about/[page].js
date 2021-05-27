@@ -120,14 +120,6 @@ export default function Page({ data = {}, campuses, dropdownData }) {
 
 export async function getStaticProps(context) {
   const apolloClient = initializeApollo();
-  if (context.params.page === 'meet-our-staff') {
-    return {
-      redirect: {
-        destination: '/search?category=Staff&p=1',
-        permanent: false,
-      },
-    };
-  }
 
   const pageResponse = await apolloClient.query({
     query: GET_CONTENT_BY_SLUG,
