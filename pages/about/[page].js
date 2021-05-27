@@ -83,7 +83,7 @@ export default function Page({ data = {}, campuses, dropdownData }) {
           </CampusFilter>
         </Section>
       ) : null}
-      {ctaLinks.length ? (
+      {ctaLinks?.length ? (
         <Section bg="rgba(142, 142, 147, 0.12)">
           <CardGrid my={{ _: 'l', md: 'xxl' }} columns="1">
             {ctaLinks?.map((cta, i) => (
@@ -120,6 +120,14 @@ export default function Page({ data = {}, campuses, dropdownData }) {
 
 export async function getStaticProps(context) {
   const apolloClient = initializeApollo();
+  if (context.params.page === 'meet-our-staff') {
+    return {
+      redirect: {
+        destination: '/search?category=Staff&p=1',
+        permanent: false,
+      },
+    };
+  }
 
   const pageResponse = await apolloClient.query({
     query: GET_CONTENT_BY_SLUG,
@@ -148,14 +156,6 @@ export async function getStaticProps(context) {
       campuses: campusesResponse?.data?.campuses || [],
     },
     revalidate: 60, // In seconds
-    redirect: pageResponse?.data?.getContentBySlug?.sharing.url.includes(
-      'meet-our-staff'
-    )
-      ? {
-          destination: '/search?category=Staff&p=1',
-          permanent: false,
-        }
-      : null,
   };
 }
 
