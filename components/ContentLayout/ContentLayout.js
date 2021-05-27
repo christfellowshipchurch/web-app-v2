@@ -66,7 +66,7 @@ function ContentLayout(props = {}) {
     const noContent = !props.htmlContent || props.htmlContent === '';
     if (noContent && !props.renderContentD) return null;
     return (
-      <Box mb={{ _: 'l', md: '' }} mt={{ _: 'l', md: '0' }}>
+      <Box mb={{ _: 'l', md: '' }} mt={{ _: 'l', lg: '0' }}>
         {props.contentTitleD ? (
           <Box as="h2" fontSize="h3" mb="base">
             {props.contentTitleD}
