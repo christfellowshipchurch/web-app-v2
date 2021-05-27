@@ -1,5 +1,5 @@
 const flags = {
-  GROUP_FINDER: true,
+  GROUP_FINDER: false,
 };
 
 export default flags;
