@@ -1,3 +1,10 @@
+# Christ Fellowship Web App
+[![Package Version](https://img.shields.io/github/package-json/v/christfellowshipchurch/web-app.svg)](https://github.com/christfellowshipchurch/web-app)
+
+## Live Site
+[![Netlify Status](https://api.netlify.com/api/v1/badges/59817745-3a48-4020-9028-1630e394dc04/deploy-status)](https://app.netlify.com/sites/upbeat-pasteur-01cde4/deploys)
+
+## About
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
