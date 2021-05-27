@@ -130,7 +130,6 @@ const CONTENT_BLOCK_FEATURE_FRAGMENT = gql`
         uri
       }
     }
-    subtitle
   }
 `;
 
