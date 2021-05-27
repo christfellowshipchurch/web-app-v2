@@ -13,15 +13,12 @@ import {
   SquareAvatar,
   systemPropTypes,
 } from 'ui-kit';
-import { textTrimmer } from 'utils';
 
 import Styled from './GroupCard.styles';
 
 const GroupCard = (props = {}) => {
   const modalDispatch = useModalDispatch();
 
-  const summaryLength = props?.summary?.length || 0;
-  const maxChar = 240;
   const maxAvatars = 4;
 
   // Option if we want to add a Avatar Count label for leaders
@@ -94,24 +91,9 @@ const GroupCard = (props = {}) => {
           </Styled.DateTimeLabel>
         )}
         {props.summary && (
-          <Box as="p" fontSize="s" mt="s">
-            {summaryLength > maxChar ? (
-              <>
-                {textTrimmer(props.summary, maxChar)}
-                <Box
-                  as="a"
-                  pl="xs"
-                  textDecoration="none"
-                  href="#"
-                  onClick={handleSeeMore}
-                >
-                  See More...
-                </Box>
-              </>
-            ) : (
-              props.summary
-            )}
-          </Box>
+          <Styled.GroupDescription as="p" fontSize="s" mt="s">
+            {props?.summary}
+          </Styled.GroupDescription>
         )}
         <Box as="h5" mt="base">
           <Box as="span">{props.totalAvatars}</Box>{' '}
