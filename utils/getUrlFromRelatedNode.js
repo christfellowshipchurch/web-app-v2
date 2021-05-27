@@ -13,6 +13,12 @@ function getUrlFromRelatedNode(relatedNode) {
     return `/${relatedNode?.routing?.pathname}`;
   }
 
+  if (relatedNode?.__typename === 'InformationalContentItem') {
+    const { id } = relatedNode;
+
+    return `/items/${id.split(':')[1]}`;
+  }
+
   return '/';
 }
 
