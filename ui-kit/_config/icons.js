@@ -99,7 +99,7 @@ const icons = {
     {
       d: 'M3 12H21',
       strokeWidth: '1',
-      strokLinejoin: 'round',
+      strokeLinejoin: 'round',
       strokeLinecap: 'round',
       stroke: '#221b38',
     },
