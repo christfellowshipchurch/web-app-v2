@@ -112,10 +112,6 @@ export default function CommunitySearch() {
   const showResultsCount =
     hasResults && data?.searchGroups?.totalResults > PAGE_SIZE;
 
-  const goBack = () => {
-    window.history.back();
-  }
-  
   return (
     <>
       <SEO title="Find your Community" />
@@ -131,7 +127,7 @@ export default function CommunitySearch() {
           px="base"
           py={{ _: 'base', lg: 'l' }}
         >
-          <Box as="a" textDecoration="none" href="#0" onClick={goBack}>
+          <Box as="a" textDecoration="none" href="#0" onClick={() => router.back()}>
             <Icon name="arrowLeft" color="fg" />
             <Box as="span" p="xs" color="fg" >
               back
