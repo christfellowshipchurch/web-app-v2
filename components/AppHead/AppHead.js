@@ -6,19 +6,23 @@ import { useCurrentUser } from 'hooks';
 
 import gtag from 'lib/gtag';
 import amplitude from 'lib/amplitude';
+import fbq from 'lib/fbq';
 
 function AppHead({ Component, pageProps }) {
   const router = useRouter();
   const { currentUser } = useCurrentUser();
 
   useEffect(() => {
+    let gtagValid = true;
+    let fbqValid = true;
+
     // Do not run Google Analytics unless traffic is coming from a browser
     const _isNotBrowser =
       typeof window === 'undefined' || typeof document === 'undefined';
 
     if (_isNotBrowser) return null;
 
-    // Only run Google Analytics in production
+    // Only run Google Analytics and Facebook Pixels in production
     if (!process.env.NODE_ENV === 'production') return null;
 
     // NEXT_PUBLIC_GA_CODE  needs to be set in the .env
@@ -26,19 +30,46 @@ function AppHead({ Component, pageProps }) {
       console.warn(
         'GoogleAnalytics tracking code is required to initialize GoogleAnalytics'
       );
-      return null;
+
+      gtagValid = false;
     }
 
     if (!window.gtag) {
       console.warn(
         'GoogleAnalytics should be loaded manually before gtag is called.'
       );
-      return null;
+
+      gtagValid = false;
+    }
+
+    // NEXT_PUBLIC_FB_CODE  needs to be set in the .env
+    if (!process.env.NEXT_PUBLIC_FB_CODE) {
+      console.warn(
+        'Facebook Pixel code is required to initialize FacebookPixels'
+      );
+
+      fbqValid = false;
+    }
+
+    if (!window.gtag) {
+      console.warn(
+        'Facebook Pixels should be loaded manually before fbq is called.'
+      );
+
+      fbqValid = false;
     }
 
     const handleRouteChange = url => {
-      gtag.pageview(url);
+      if (gtagValid) {
+        gtag.pageview(url);
+      }
+
+      if (fbqValid) {
+        fbq.pageview();
+      }
     };
+
+    if (!gtagValid && !fbqValid) return null;
 
     router.events.on('routeChangeComplete', handleRouteChange);
 
@@ -99,6 +130,41 @@ function AppHead({ Component, pageProps }) {
   `,
             }}
           />
+        </>
+      ) : null}
+
+      {/* Global Site Code Pixel - Facebook Pixel */}
+      {/* Facebook meta-tag for new iOS 14 website verification */}
+      <meta
+        name="facebook-domain-verification"
+        content="n3r79t0v9g0j5ogkl0m9hzc9g5pdft"
+      />
+      {process.env.NODE_ENV === 'production' &&
+      process.env.NEXT_PUBLIC_FB_CODE ? (
+        <>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+              !function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window, document,'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init', ${process.env.NEXT_PUBLIC_FB_CODE});
+            `,
+            }}
+          />
+          <noscript>
+            <img
+              height="1"
+              width="1"
+              style={{ display: 'none' }}
+              src={`https://www.facebook.com/tr?id=${process.env.NEXT_PUBLIC_FB_CODE}&ev=PageView&noscript=1`}
+            />
+          </noscript>
         </>
       ) : null}
     </Head>
