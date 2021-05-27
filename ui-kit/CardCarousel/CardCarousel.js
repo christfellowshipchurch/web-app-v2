@@ -31,7 +31,7 @@ const CardCarousel = (props = {}) => {
     },
   };
 
-  const lastIndex = props.children.length - 1;
+  const lastIndex = props.children?.length - 1;
 
   const CustomArrows = ({ next, previous, goToSlide, ...rest }) => {
     const {
@@ -72,12 +72,12 @@ const CardCarousel = (props = {}) => {
       }
     }, props.slideInterval); // Your custom auto loop delay in ms
     return () => clearInterval(autoloop);
-  }, []);
+  }, [lastIndex, props.cardsDisplayed, props.slideInterval]);
 
   /**
    * note : when child items exceed the amount of items being displayed, the carousel will be disabled and arrows hidden
    */
-  let isCarousel = props.children.length > props.cardsDisplayed;
+  const isCarousel = props.children?.length > props.cardsDisplayed;
 
   return (
     <Box {...props}>
@@ -97,6 +97,7 @@ const CardCarousel = (props = {}) => {
 };
 
 CardCarousel.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.node]).isRequired,
   animationSpeed: PropTypes.number,
   cardsDisplayed: PropTypes.number,
   hideArrows: PropTypes.bool,

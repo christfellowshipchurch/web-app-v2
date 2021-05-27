@@ -266,7 +266,7 @@ function GroupFiltersProvider(props = {}) {
 
   // :: Update filter options.
   useEffect(() => {
-    const updateMeetingType = optionsData?.meetingType.map(type =>
+    const updateMeetingType = optionsData?.meetingType?.map(type =>
       type === 'Online' ? 'Virtual' : type
     );
 
