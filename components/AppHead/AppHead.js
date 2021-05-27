@@ -51,7 +51,7 @@ function AppHead({ Component, pageProps }) {
       fbqValid = false;
     }
 
-    if (!window.gtag) {
+    if (!window.fbq) {
       console.warn(
         'Facebook Pixels should be loaded manually before fbq is called.'
       );
@@ -70,6 +70,14 @@ function AppHead({ Component, pageProps }) {
     };
 
     if (!gtagValid && !fbqValid) return null;
+
+    if (gtagValid) {
+      gtag.pageview();
+    }
+
+    if (fbqValid) {
+      fbq.pageview();
+    }
 
     router.events.on('routeChangeComplete', handleRouteChange);
 
