@@ -36,6 +36,7 @@ function VerticalCardListFeature(props = {}) {
                 title={card?.title}
                 description={card?.summary}
                 type="HIGHLIGHT_SMALL"
+                label={card?.labelText}
               />
             </Styled.CardSpacing>
           ))}

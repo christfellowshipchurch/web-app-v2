@@ -55,15 +55,10 @@ function Resources() {
       </Box>
       <List as="ul" space="xs">
         <Box as="li">
-          <Styled.Link href={links.churchOnline}>Church Online</Styled.Link>
+          <Styled.Link target="_blank" href={links.churchOnline}>Church Online</Styled.Link>
         </Box>
         <Box as="li">
           <Styled.Link href={links.pastMessages}>Past Messages</Styled.Link>
-        </Box>
-        <Box as="li">
-          <Styled.Link as="a" href="#0">
-            Ministry Updates
-          </Styled.Link>
         </Box>
         <Box as="li">
           <Styled.Link href={links.giveOnline}>Give Online</Styled.Link>
@@ -88,12 +83,7 @@ function Connect() {
         </Box>
         <Box as="li">
           <Styled.Link href={links.submitPrayerRequest}>
-            Past Messages
-          </Styled.Link>
-        </Box>
-        <Box as="li">
-          <Styled.Link as="a" href="#0">
-            Join Us In Prayer
+            Request Prayer
           </Styled.Link>
         </Box>
         <Box as="li">
@@ -117,7 +107,9 @@ function About() {
       </Box>
       <List as="ul" space="xs">
         <Box as="li">
-          <Styled.Link href="#0">Our Leadership</Styled.Link>
+          <Styled.Link href="/about">
+            Our Leadership
+          </Styled.Link>
         </Box>
         <Box as="li">
           <Styled.Link href={links.careerOpportunities}>
