@@ -99,14 +99,14 @@ const icons = {
     {
       d: 'M3 12H21',
       strokeWidth: '1',
-      strokLinejoin: 'round',
+      strokeLinejoin: 'round',
       strokeLinecap: 'round',
       stroke: '#221b38',
     },
     {
       d: 'M9 6L3 12L9 18"',
       strokeWidth: '1',
-      strokLinejoin: 'round',
+      strokeLinejoin: 'round',
       strokeLinecap: 'round',
       stroke: '#221b38',
     },
