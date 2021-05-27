@@ -45,6 +45,7 @@ const HorizontalHighlightCard = (props = {}) => {
       title={null}
       display="block"
       cardSize={'s'}
+      coverImageLabel={props?.label}
     />
   );
 };
