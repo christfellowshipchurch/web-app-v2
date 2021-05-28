@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 import flags from 'config/flags';
-import { Button, Box, Cell, Divider, Loader, utils } from 'ui-kit';
+import { Button, Box, Cell, Icon, Divider, Loader, utils } from 'ui-kit';
 import {
   Footer,
   GroupSearchFilters,
@@ -125,15 +125,22 @@ export default function CommunitySearch() {
               : LARGE_SCREEN_CONTENT_WIDTH
           }
           px="base"
-          py={{ _: 'l', lg: 'xl' }}
+          py={{ _: 'base', lg: 'l' }}
         >
+          <Box as="a" textDecoration="none" href="#0" onClick={() => router.back()}>
+            <Icon name="arrowLeft" color="fg" />
+            <Box as="span" p="xs" color="fg" >
+              back
+            </Box>
+          </Box>
+
           <Box
             display="flex"
             justifyContent="space-between"
             alignItems="center"
             mb="base"
           >
-            <Box as="h1">Find your Community</Box>
+            <Box mt="base" as="h1">Find your Community</Box>
             <Button
               as="a"
               rounded={true}

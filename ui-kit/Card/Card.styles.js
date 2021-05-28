@@ -197,21 +197,19 @@ const CoverContent = styled.div`
   ${position};
 `;
 
-const coverLabelBackground = ({
-  coverImageLabelBgColor = 'fg',
-}) => props => css`
-  background-color: ${themeGet(`colors.${coverImageLabelBgColor}`)};
-`;
-
 const CoverLabel = styled.b`
-  ${coverLabelBackground}
+  background-color: rgb(6, 174, 238, 0.75);
+  backdrop-filter: blur(25px);
+  box-shadow: ${themeGet('shadows.l')};
+  border-radius: ${themeGet('radii.xxl')};
   color: ${themeGet('colors.white')};
-  bottom: 0;
+  top: 0;
   font-size: ${themeGet('fontSizes.xs')};
   font-weight: ${themeGet('fontWeights.bold')};
-  left: 0;
+  right: 0;
   letter-spacing: 0.125rem;
-  padding: ${themeGet('space.s')} ${themeGet('space.base')};
+  margin: 0.5rem ${themeGet('space.xs')};
+  padding: ${themeGet('space.xs')} ${themeGet('space.s')};
   position: absolute;
   text-transform: uppercase;
   z-index: 2;

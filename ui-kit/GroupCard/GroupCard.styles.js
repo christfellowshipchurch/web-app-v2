@@ -3,6 +3,8 @@ import { themeGet } from '@styled-system/theme-get';
 import Card from 'ui-kit/Card/Card.styles';
 import { rem } from 'ui-kit/_utils';
 
+import { system } from 'ui-kit';
+
 const GroupCard = styled(Card)`
   display: flex;
   flex-direction: column;
@@ -76,11 +78,21 @@ const GroupCardSubTitle = styled.div`
   color: ${themeGet('colors.subdued')};
 `;
 
+const GroupDescription = styled.p`
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  ${system}
+`;
+
 GroupCard.AvatarCount = AvatarCount;
 GroupCard.DateTimeLabel = DateTimeLabel;
 GroupCard.GradientBackground = GradientBackground;
 GroupCard.GroupCardContent = GroupCardContent;
 GroupCard.GroupCardTitle = GroupCardTitle;
 GroupCard.GroupCardSubTitle = GroupCardSubTitle;
+GroupCard.GroupDescription = GroupDescription;
 
 export default GroupCard;
