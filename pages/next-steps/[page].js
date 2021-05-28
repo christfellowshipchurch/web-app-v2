@@ -32,12 +32,20 @@ export default function Page({ data = {}, campuses, dropdownData }) {
   return (
     <Layout meta={getMetaData(node)} bg="bg_alt" dropdownData={dropdownData}>
       <MainPhotoHeader
-        mb={{ _: 'l', md: 'xxl' }}
+        mb={{ _: '0', lg: 'l' }}
         src={node.coverImage?.sources?.[0].uri || ''}
         title={node.title}
         subtitle={node.subtitle}
         summary={node.summary}
       />
+      {node.htmlContent && (
+        <Section>
+          <Longform
+            mb={{ _: 'l', md: 'xxl' }}
+            dangerouslySetInnerHTML={{ __html: node.htmlContent }}
+          />
+        </Section>
+      )}
       {node.ctaLinks?.length ? (
         <Section mb={{ _: 0 }}>
           <CardGrid mb={{ _: 'l', md: 'xxl' }} columns="1">
@@ -61,14 +69,6 @@ export default function Page({ data = {}, campuses, dropdownData }) {
           </CardGrid>
         </Section>
       ) : null}
-      {node.htmlContent && (
-        <Section>
-          <Longform
-            mb="l"
-            dangerouslySetInnerHTML={{ __html: node.htmlContent }}
-          />
-        </Section>
-      )}
       {childContent?.length ? (
         <Section>
           <CampusFilter
