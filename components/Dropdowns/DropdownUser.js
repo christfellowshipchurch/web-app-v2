@@ -11,6 +11,7 @@ export default function DropdownUser() {
   const { currentPerson, authenticated } = useCurrentPerson();
   const modalDispatch = useModalDispatch();
   const dispatch = useAuthDispatch();
+  const loggedInQuery = authenticated ? `?rckipid=${currentPerson?.rock?.authToken}` : ''
   return (
     <Box
       bg="bg"
@@ -39,7 +40,7 @@ export default function DropdownUser() {
         borderRadius="base"
         width="100%"
         onClick={() => {
-          router.push('https://my.longhollow.com/MyAccount');
+          router.push(`https://my.longhollow.com/MyAccount${loggedInQuery}`);
         }}
       >
         Update My Info
@@ -48,7 +49,7 @@ export default function DropdownUser() {
         borderRadius="base"
         width="100%"
         onClick={() => {
-          router.push('https://my.longhollow.com/GivingHistory');
+          router.push(`https://my.longhollow.com/GivingHistory${loggedInQuery}`);
         }}
       >
         Giving History
@@ -57,7 +58,7 @@ export default function DropdownUser() {
         borderRadius="base"
         width="100%"
         onClick={() => {
-          router.push('https://my.longhollow.com/ManageGiving');
+          router.push(`https://my.longhollow.com/ManageGiving${loggedInQuery}`);
         }}
       >
         Giving Schedules
@@ -66,7 +67,7 @@ export default function DropdownUser() {
         borderRadius="base"
         width="100%"
         onClick={() => {
-          router.push('https://my.longhollow.com/page/1091');
+          router.push(`https://my.longhollow.com/page/1091${loggedInQuery}`);
         }}
       >
         Communication Preferences
