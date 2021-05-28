@@ -40,6 +40,7 @@ export default function Channel({ item, dropdownData } = {}) {
       <MainPhotoHeader
         src={item?.coverImage.sources?.[0]?.uri}
         title={item?.title}
+        showTitleOverImage={false}
       />
       <Section>
         <Box
