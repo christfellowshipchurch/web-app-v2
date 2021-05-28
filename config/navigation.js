@@ -13,7 +13,8 @@ const navigation = {
       call: 'Volunteer',
     },
     {
-      action: '/groups',
+      // action: '/groups',
+      action: 'https://christfellowship.church/items/42eda0fe3fbf3f200a2872df727d4440',
       call: 'Groups',
     },
   ],
