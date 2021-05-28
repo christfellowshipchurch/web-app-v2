@@ -24,6 +24,11 @@ module.exports = {
         destination: '/search?category=Staff&p=1',
         permanent: false,
       },
+      {
+        source: '/app-link/:slug',
+        destination: '/:slug',
+        permanent: false,
+      },
     ];
   },
 };
