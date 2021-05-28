@@ -37,6 +37,7 @@ const Hero = styled.div`
 `;
 
 const Title = styled.h1`
+  color: ${themeGet('colors.primary')};
   font-size: ${rem('50px')};
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
