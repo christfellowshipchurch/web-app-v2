@@ -17,7 +17,7 @@ const Hero = styled.div`
   background-size: cover;
   background-position: center bottom;
 
-  height: 300px;
+  height: 200px;
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     height: 400px;

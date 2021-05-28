@@ -37,7 +37,11 @@ export default function Community(props = {}) {
         <Header />
         <Styled.Hero />
         <Box>
-          <Cell maxWidth={DEFAULT_CONTENT_WIDTH} p="base" textAlign="center">
+          <Cell
+            maxWidth={DEFAULT_CONTENT_WIDTH}
+            p={{ _: 'xs', md: 'base' }}
+            textAlign="center"
+          >
             <Styled.Title>Life is Better Together.</Styled.Title>
             <Styled.Summary>
               We want to help you find community, grow in your relationship with
