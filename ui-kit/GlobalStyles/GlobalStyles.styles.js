@@ -117,9 +117,12 @@ export const styles = css`
     color: ${themeGet('colors.bg')};
     border-radius: 52px;
     cursor: pointer;
+    margin-bottom: ${themeGet('space.s')};
 
     @media screen and (min-width: ${themeGet('breakpoints.md')}) {
       display: inline-block;
+      width: auto;
+      margin-bottom: 0;
     }
   }
   a.btn {
