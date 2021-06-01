@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import includes from 'lodash/includes';
 import { useRouter } from 'next/router';
 
-import { Box, Button, HorizontalHighlightCard, utils } from 'ui-kit';
+import { Box, Button, HorizontalHighlightCard, Icon, utils } from 'ui-kit';
 import {
   CommunityActionSection,
   CommunityLeaderActions,
@@ -21,6 +21,7 @@ import {
 } from 'providers/GroupFiltersProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
+import VideoPlayButton from './VideoPlayButton';
 import Styled from './CommunitySingle.styles';
 
 // Redundant (and brittle) mapping, but easier to read than integers
@@ -134,13 +135,10 @@ function CommunitySingle(props = {}) {
           </Box>
         </Box>
         <Box display="flex" mb="l">
-          <Button
-            variant="tertiary"
-            rounded={true}
-            onClick={handleFindCommunityClick}
-          >
-            {`Find your ${props.data?.title}`}
-          </Button>
+          <VideoPlayButton
+            poster={props.data?.coverImage?.sources[0]?.uri}
+            title={props.data?.title}
+          />
         </Box>
       </Styled.Hero>
 
