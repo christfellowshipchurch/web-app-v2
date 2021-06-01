@@ -24,6 +24,16 @@ module.exports = {
       { source: '/baptism', destination: '/', permanent: false },
       { source: '/support', destination: '/', permanent: false },
       { source: '/schedule', destination: '/', permanent: false },
+      {
+        source: '/about/meet-our-staff',
+        destination: '/search?category=Staff&p=1',
+        permanent: false,
+      },
+      {
+        source: '/app-link/:slug',
+        destination: '/:slug',
+        permanent: false,
+      },
     ];
   },
 };

@@ -40,6 +40,7 @@ export default function Channel({ item, dropdownData } = {}) {
       <MainPhotoHeader
         src={item?.coverImage.sources?.[0]?.uri}
         title={item?.title}
+        showTitleOverImage={false}
       />
       <Section>
         <Box
@@ -54,7 +55,7 @@ export default function Channel({ item, dropdownData } = {}) {
               key={node.id}
               text={node.title}
               color="white"
-              src={item.coverImage.sources?.[0].uri}
+              src={node?.coverImage?.sources?.[0].uri}
               height="350px"
               maxWidth="400px"
               mr="m"

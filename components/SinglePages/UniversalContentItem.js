@@ -2,7 +2,9 @@ import { useRouter } from 'next/router';
 
 import { Layout, MainPhotoHeader } from 'components';
 import { Box, Button, Heading, Longform, Section } from 'ui-kit';
-import { getMetaData } from 'utils';
+import { getIdSuffix, getMetaData } from 'utils';
+import IDS from 'config/ids';
+import MetadataCallout from 'components/MetadataCallout';
 
 export default function Page({ data, dropdownData } = {}) {
   const router = useRouter();
@@ -10,6 +12,8 @@ export default function Page({ data, dropdownData } = {}) {
   if (data?.loading || router.isFallback) {
     return null;
   }
+
+  const isEvent = getIdSuffix(data?.parentChannel?.id) === IDS.CHANNELS.EVENTS;
 
   return (
     <Layout meta={getMetaData(data)} bg="bg_alt" dropdownData={dropdownData}>
@@ -47,7 +51,11 @@ export default function Page({ data, dropdownData } = {}) {
       </Section>
       {data.htmlContent && (
         <Section mb={{ _: 'l', lg: 'xxl' }}>
-          <Longform dangerouslySetInnerHTML={{ __html: data.htmlContent }} />
+          {isEvent ? (
+            <MetadataCallout data={data} />
+          ) : (
+            <Longform dangerouslySetInnerHTML={{ __html: data.htmlContent }} />
+          )}
         </Section>
       )}
       {data.ctaLinks?.length ? (

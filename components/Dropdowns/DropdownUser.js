@@ -5,107 +5,13 @@ import { Box, Heading } from 'ui-kit';
 import { useRouter } from 'next/router';
 import { showModal, useModalDispatch } from 'providers/ModalProvider';
 
-function Profile() {
-  const router = useRouter();
-  const dispatch = useAuthDispatch();
-  const { currentPerson } = useCurrentPerson();
-  return (
-    <Box
-      display="flex"
-      flexDirection="column"
-      alignItems="flex-start"
-      width="100%"
-      borderTop="1px solid grey"
-      pt="xxs"
-    >
-      <Heading width="100%" p="0.875rem">
-        {[
-          currentPerson.profile?.firstName,
-          currentPerson.profile?.lastName,
-        ].join(' ')}
-      </Heading>
-      <Button
-        borderRadius="base"
-        width="100%"
-        onClick={() => {
-          router.push('/profile');
-        }}
-      >
-        Profile
-      </Button>
-      <Button
-        borderRadius="base"
-        width="100%"
-        onClick={() => {
-          router.push('https://my.longhollow.com/MyAccount');
-        }}
-      >
-        Update My Info
-      </Button>
-      <Button
-        borderRadius="base"
-        width="100%"
-        onClick={() => {
-          router.push('https://my.longhollow.com/GivingHistory');
-        }}
-      >
-        Giving History
-      </Button>
-      <Button
-        borderRadius="base"
-        width="100%"
-        onClick={() => {
-          router.push('https://my.longhollow.com/ManageGiving');
-        }}
-      >
-        Giving Schedules
-      </Button>
-      <Button
-        borderRadius="base"
-        width="100%"
-        onClick={() => {
-          router.push('https://my.longhollow.com/page/1091');
-        }}
-      >
-        Communication Preferences
-      </Button>
-      <Button
-        borderRadius="base"
-        width="100%"
-        onClick={() => dispatch(logout())}
-      >
-        Log Out
-      </Button>
-    </Box>
-  );
-}
-
-function Login() {
-  const modalDispatch = useModalDispatch();
-
-  return (
-    <Box
-      display="flex"
-      flexDirection="column"
-      alignItems="flex-start"
-      width="100%"
-      borderTop="1px solid grey"
-      pt="xxs"
-    >
-      <Button
-        borderRadius="base"
-        width="100%"
-        onClick={() => modalDispatch(showModal('Auth'))}
-      >
-        Sign In
-      </Button>
-    </Box>
-  );
-}
 
 export default function DropdownUser() {
   const router = useRouter();
-  const { authenticated } = useCurrentPerson();
+  const { currentPerson, authenticated } = useCurrentPerson();
+  const modalDispatch = useModalDispatch();
+  const dispatch = useAuthDispatch();
+  const loggedInQuery = authenticated ? `?rckipid=${currentPerson?.rock?.authToken}` : ''
   return (
     <Box
       bg="bg"
@@ -115,44 +21,70 @@ export default function DropdownUser() {
       display="flex"
       flexDirection="column"
     >
-      <Button
-        width="100%"
+      { authenticated && <Heading width="100%" p="0.875rem">
+        {[
+          currentPerson.profile?.firstName,
+          currentPerson.profile?.lastName,
+        ].join(' ')}
+      </Heading>}
+      { authenticated && <Button
         borderRadius="base"
-        onClick={() => router.push('/give')}
-      >
-        Give
-      </Button>
-      <Button
         width="100%"
-        borderRadius="base"
-        onClick={() => router.push('/groups')}
+        onClick={() => {
+          router.push('/profile');
+        }}
       >
-        Groups
-      </Button>
+        Profile
+      </Button>}
       <Button
-        width="100%"
         borderRadius="base"
-        onClick={() => router.push('/events')}
-      >
-        Events
-      </Button>
-      <Button
         width="100%"
-        borderRadius="base"
-        onClick={() => router.push('/serve')}
+        onClick={() => {
+          router.push(`https://my.longhollow.com/MyAccount${loggedInQuery}`);
+        }}
       >
-        Serve
+        Update My Info
       </Button>
       <Button
         borderRadius="base"
         width="100%"
         onClick={() => {
-          router.push('/connect-with-us');
+          router.push(`https://my.longhollow.com/GivingHistory${loggedInQuery}`);
         }}
       >
-        Talk to Someone
+        Giving History
       </Button>
-      {authenticated ? <Profile /> : <Login />}
+      <Button
+        borderRadius="base"
+        width="100%"
+        onClick={() => {
+          router.push(`https://my.longhollow.com/ManageGiving${loggedInQuery}`);
+        }}
+      >
+        Giving Schedules
+      </Button>
+      <Button
+        borderRadius="base"
+        width="100%"
+        onClick={() => {
+          router.push(`https://my.longhollow.com/page/1091${loggedInQuery}`);
+        }}
+      >
+        Communication Preferences
+      </Button>
+      {authenticated ?       <Button
+        borderRadius="base"
+        width="100%"
+        onClick={() => dispatch(logout())}
+      >
+        Log Out
+      </Button> :       <Button
+        borderRadius="base"
+        width="100%"
+        onClick={() => modalDispatch(showModal('Auth'))}
+      >
+        Sign In
+      </Button>}
     </Box>
   );
 }
