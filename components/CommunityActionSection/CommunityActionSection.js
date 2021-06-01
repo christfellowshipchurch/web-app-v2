@@ -15,11 +15,10 @@ export default function CommunityActionSection(props) {
         You were made for community.
       </Box>
       <Box as="p" mb="l" color="subdued">
-        With many choices to pick from, we’ll help you find a group or class
-        that’s right for you!
+        With many choices to pick from, we’ll help you find a group or class that’s right for you!
       </Box>
       <Button onClick={props.handleOnClick} rounded={true} mb="base">
-        Search ALL Groups &amp; Classes
+        FIND A GROUP OR CLASS
       </Button>
 
       <CustomLink target="_blank" href="https://rock.gocf.org/page/2113">
