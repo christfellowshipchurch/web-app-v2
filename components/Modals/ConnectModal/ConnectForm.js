@@ -14,7 +14,7 @@ function ConnectForm(props = {}) {
   const handleOnClick = async () => {
     const { data } = await contactGroupLeader({
       variables: {
-        groupId: 'Group:3deb8bbfda5d713df49929ce78c61bb7', // TODO: use this in production `props.groupId`. We are hard-coding a test group id to avoid blasting group leaders.
+        groupId: props.groupId,
       },
     });
     const status = data.contactGroupLeader;

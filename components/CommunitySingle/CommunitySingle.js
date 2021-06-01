@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import includes from 'lodash/includes';
+import { useRouter } from 'next/router';
 
 import { Box, Button, HorizontalHighlightCard, utils } from 'ui-kit';
 import {
@@ -10,7 +11,8 @@ import {
   Header,
   SEO,
 } from 'components';
-import { useCurrentUser } from 'hooks';
+import { useCurrentUser, useNotifyMeBanner } from 'hooks';
+import { htmlToReactParser } from 'utils';
 import { update as updateAuth, useAuth } from 'providers/AuthProvider';
 import {
   useGroupFilters,
@@ -32,10 +34,16 @@ function CommunitySingle(props = {}) {
   const [filtersState, filtersDispatch] = useGroupFilters();
   const modalDispatch = useModalDispatch();
   const { currentUser } = useCurrentUser();
+  const router = useRouter();
 
-  // Todo — Insert real query here!
-  const showNotifyMe = true;
-  
+  // Grabs NotifyMeBanner if exists for hub.
+  const { notifyMeBanner } = useNotifyMeBanner({
+    variables: {
+      preferenceId: props?.data?.id,
+    },
+  });
+  const showNotifyMe = notifyMeBanner;
+
   // Filter subPreference lineups for current preference
   // Compares all subPreferences in Rock againist subPreferences in algolia
   const lineups = props.data?.subPreferences.filter(item =>
@@ -56,6 +64,10 @@ function CommunitySingle(props = {}) {
     } else {
       onSuccess();
     }
+  }
+
+  function handleOnClick() {
+    router.push('/community/search');
   }
 
   function handleFindCommunityClick() {
@@ -135,10 +147,9 @@ function CommunitySingle(props = {}) {
       {showNotifyMe && (
         <Styled.NotifyMeSection>
           <Box maxWidth={{ lg: '60%' }} mr={{ lg: 'l' }}>
-            <Box as="h3">Crew groups are closed for enrollment</Box>
-            <Box as="p" color="subdued">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ut
-              imperdiet erat, sed sodales lorem.
+            <Box as="h3">{notifyMeBanner?.title}</Box>
+            <Box color="subdued">
+              {htmlToReactParser.parse(notifyMeBanner?.htmlContent)}
             </Box>
           </Box>
           <Box
@@ -190,7 +201,7 @@ function CommunitySingle(props = {}) {
           </Box>
         </Box>
       )}
-      <CommunityActionSection handleOnClick={handleFindCommunityClick} />
+      <CommunityActionSection handleOnClick={handleOnClick} />
       <CommunityLeaderActions />
       <Footer />
     </>

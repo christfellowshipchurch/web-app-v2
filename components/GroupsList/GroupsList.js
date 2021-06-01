@@ -55,7 +55,7 @@ function GroupsList(props = {}) {
               md: `0 0 calc(50% - ${rem('20px')})`,
               lg: `0 0 calc(33.333% - ${rem('20px')})`,
             }}
-            maxWidth={{ lg: '340px' }}
+            maxWidth={{ lg: '333px' }}
             m="s"
             display="block"
           />
