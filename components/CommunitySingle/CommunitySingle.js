@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import includes from 'lodash/includes';
+import { useRouter } from 'next/router';
 
 import { Box, Button, HorizontalHighlightCard, utils } from 'ui-kit';
 import {
@@ -32,10 +33,11 @@ function CommunitySingle(props = {}) {
   const [filtersState, filtersDispatch] = useGroupFilters();
   const modalDispatch = useModalDispatch();
   const { currentUser } = useCurrentUser();
+  const router = useRouter();
 
   // Todo — Insert real query here!
   const showNotifyMe = true;
-  
+
   // Filter subPreference lineups for current preference
   // Compares all subPreferences in Rock againist subPreferences in algolia
   const lineups = props.data?.subPreferences.filter(item =>
@@ -56,6 +58,10 @@ function CommunitySingle(props = {}) {
     } else {
       onSuccess();
     }
+  }
+
+  function handleOnClick() {
+    router.push('/community/search');
   }
 
   function handleFindCommunityClick() {
@@ -190,7 +196,7 @@ function CommunitySingle(props = {}) {
           </Box>
         </Box>
       )}
-      <CommunityActionSection handleOnClick={handleFindCommunityClick} />
+      <CommunityActionSection handleOnClick={handleOnClick} />
       <CommunityLeaderActions />
       <Footer />
     </>

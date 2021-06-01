@@ -18,7 +18,7 @@ export default function CommunityActionSection(props) {
         There are hundreds of communities at CF. We’ll help find yours.
       </Box>
       <Button onClick={props.handleOnClick} rounded={true} mb="base">
-        Search all Groups and Classes
+        Search All Groups &amp; Classes
       </Button>
 
       <CustomLink target="_blank" href="https://rock.gocf.org/page/2113">
