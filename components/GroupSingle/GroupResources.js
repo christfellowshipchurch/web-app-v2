@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { List, Box, Image } from 'ui-kit';
 import { CustomLink } from 'components';
 
-import { getURLFromType } from 'utils';
+import { getUrlFromRelatedNode } from 'utils';
 import amplitude from 'lib/amplitude';
 export default function GroupResources(props = {}) {
   if (!props.resources?.length) {
@@ -23,7 +23,7 @@ export default function GroupResources(props = {}) {
           <Box key={resource.relatedNode?.id} as="li">
             <CustomLink
               key={resource.relatedNode?.id}
-              href={getURLFromType(resource.relatedNode)}
+              href={getUrlFromRelatedNode(resource.relatedNode)}
               textDecoration="none"
               target="_blank"
               onClick={() => {
