@@ -8,7 +8,7 @@ const initialState = {
   groupData: null,
 
   sections: {
-    photo: 'PHOTO',
+    // photo: 'PHOTO',
     resources: 'RESOURCES',
   },
 
