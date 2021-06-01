@@ -17,4 +17,13 @@ module.exports = {
       },
     ];
   },
+  async redirects() {
+    return [
+      { source: '/contact', destination: '/', permanent: false },
+      { source: '/prayer', destination: '/', permanent: false },
+      { source: '/baptism', destination: '/', permanent: false },
+      { source: '/support', destination: '/', permanent: false },
+      { source: '/schedule', destination: '/', permanent: false },
+    ];
+  },
 };
