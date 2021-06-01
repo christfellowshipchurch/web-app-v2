@@ -95,10 +95,12 @@ const GroupCard = (props = {}) => {
             {props?.summary}
           </Styled.GroupDescription>
         )}
-        <Box as="h5" mt="base">
-          <Box as="span">{props.totalAvatars}</Box>{' '}
-          {props.totalAvatars === 1 ? `Group Member` : 'Group Members'}
-        </Box>
+        {Boolean(props.totalAvatars) && (
+          <Box as="h5" mt="base">
+            <Box as="span">{props.totalAvatars}</Box>{' '}
+            {props.totalAvatars === 1 ? `Group Member` : 'Group Members'}
+          </Box>
+        )}
         {props.avatars?.length > 0 && (
           <Box display="flex" gridColumnGap="s">
             {props.avatars.slice(0, maxAvatars).map((n, i = 2) => (

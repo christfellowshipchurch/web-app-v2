@@ -10,23 +10,34 @@ const Community = styled.div`
 
 const Hero = styled.div`
   background-image: linear-gradient(
-      rgba(246, 246, 246, 0) 15%,
-      rgba(246, 246, 246, 0.75) 50%,
-      rgba(246, 246, 246, 1) 80%
+      rgba(246, 246, 246, 0) 70%,
+      rgba(246, 246, 246, 1) 100%
     ),
-    url(https://images.unsplash.com/photo-1600416341002-5399971810a6?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80);
+    url(/groups-cover-image.jpg);
   background-size: cover;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  height: 600px;
-  justify-content: flex-end;
+  background-position: center bottom;
+
+  height: 200px;
+
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    height: 400px;
+    background-image: linear-gradient(
+        rgba(246, 246, 246, 0) 60%,
+        rgba(246, 246, 246, 0.5) 80%,
+        rgba(246, 246, 246, 1) 100%
+      ),
+      url(/groups-cover-image.jpg);
+  }
+
+  @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
+    height: 500px;
+  }
 
   ${system}
 `;
 
 const Title = styled.h1`
+  color: ${themeGet('colors.primary')};
   font-size: ${rem('50px')};
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
@@ -39,7 +50,15 @@ const Title = styled.h1`
   ${system}
 `;
 
+const Summary = styled.p`
+  padding: ${themeGet('space.l')};
+  padding-top: 0;
+
+  ${system}
+`;
+
 Community.Hero = Hero;
 Community.Title = Title;
+Community.Summary = Summary;
 
 export default Community;
