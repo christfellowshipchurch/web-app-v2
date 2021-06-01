@@ -16,6 +16,12 @@ export const GROUP_RESOURCE_FRAGMENT = gql`
       ... on Url {
         url
       }
+
+      ... on NodeRoute {
+        routing {
+          pathname
+        }
+      }
     }
   }
 `;
