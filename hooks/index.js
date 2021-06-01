@@ -34,6 +34,7 @@ import useLiveStreams from './useLiveStreams';
 import useLiveStreamsQuery from './useLiveStreamsQuery';
 import useNode from './useNode';
 import useNodeRoute from './useNodeRoute';
+import useNotifyMeBanner from './useNotifyMeBanner';
 import useRegisterWithEmail from './useRegisterWithEmail';
 import useRegisterWithSms from './useRegisterWithSms';
 import useRemoveGroupResource from './useRemoveGroupResource';
@@ -88,6 +89,7 @@ export {
   useLiveStreamsQuery,
   useNode,
   useNodeRoute,
+  useNotifyMeBanner,
   useRegisterWithEmail,
   useRegisterWithSms,
   useRemoveGroupResource,
