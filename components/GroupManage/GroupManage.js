@@ -12,7 +12,7 @@ import GroupManagePhoto from './GroupManagePhoto';
 import GroupManageResources from './GroupManageResources';
 
 function GroupManage(props = {}) {
-  const [section, setSection] = useState(initialState.sections.photo);
+  const [section, setSection] = useState(initialState.sections.resources);
 
   const handleSectionClick = section => event => {
     event.preventDefault();
