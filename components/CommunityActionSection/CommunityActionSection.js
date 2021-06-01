@@ -18,7 +18,7 @@ export default function CommunityActionSection(props) {
         With many choices to pick from, we’ll help you find a group or class that’s right for you!
       </Box>
       <Button onClick={props.handleOnClick} rounded={true} mb="base">
-        FIND A GROUP OR CLASS
+        Search ALL Groups and Classes
       </Button>
 
       <CustomLink target="_blank" href="https://rock.gocf.org/page/2113">
