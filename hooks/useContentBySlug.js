@@ -1,5 +1,6 @@
 import { gql, useQuery } from '@apollo/client';
 import { MEDIA_CONTENT_ITEM_FRAGMENT } from './useMediaContentItem';
+import METADATA_FRAGMENT from './useMetadataFragment';
 import { WEEKEND_CONTENT_ITEM_FRAGMENT } from './useWeekendContentItem';
 
 export const GET_CONTENT_BY_SLUG = gql`
@@ -20,7 +21,14 @@ export const GET_CONTENT_BY_SLUG = gql`
       url
     }
   }
-  fragment WithMedia on MediaContentItem {
+  fragment WithMedia on ContentItem {
+    videos {
+      sources {
+        uri
+      }
+    }
+  }
+  fragment WithChildMedia on ContentItem {
     videos {
       sources {
         uri
@@ -31,47 +39,17 @@ export const GET_CONTENT_BY_SLUG = gql`
     getContentBySlug(slug: $slug) {
       ...BaseContentItem
       ... on WeekendContentItem {
-        videos {
-          sources {
-            uri
-          }
-        }
-        childContentItemsConnection {
-          edges {
-            node {
-              id
-              ... on ContentItem {
-                videos {
-                  sources {
-                    uri
-                  }
-                }
-              }
-            }
-          }
-        }
+        ...WithMedia
+        ...WithChildMedia
       }
       ... on MediaContentItem {
-        ...WithMedia
         audios {
           sources {
             uri
           }
         }
-        childContentItemsConnection {
-          edges {
-            node {
-              id
-              ... on ContentItem {
-                videos {
-                  sources {
-                    uri
-                  }
-                }
-              }
-            }
-          }
-        }
+        ...WithMedia
+        ...WithChildMedia
       }
       ... on DevotionalContentItem {
         scriptures {
@@ -101,6 +79,7 @@ export const GET_CONTENT_BY_SLUG = gql`
         }
       }
       ... on UniversalContentItem {
+        ...MetadataFragment
         subtitle
         showTitleOverImage
         ctaLinks {
@@ -144,6 +123,7 @@ export const GET_CONTENT_BY_SLUG = gql`
       }
     }
   }
+  ${METADATA_FRAGMENT}
 `;
 
 function useContentBySlug(options = {}) {
