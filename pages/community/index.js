@@ -42,7 +42,7 @@ export default function Community(props = {}) {
             p={{ _: 'xs', md: 'base' }}
             textAlign="center"
           >
-            <Styled.Title>Life is Better Together.</Styled.Title>
+            <Styled.Title>Life is better together.</Styled.Title>
             <Styled.Summary>
               We want to help you find community, grow in your relationship with
               God, and build the kind of friendships we all need to live out our
