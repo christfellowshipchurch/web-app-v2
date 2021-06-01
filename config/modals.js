@@ -6,6 +6,7 @@ import {
   GroupFilterModal,
   GroupNotifyMeModal,
   NodeSingleModal,
+  VideoModal,
 } from 'components/Modals';
 
 const modals = [
@@ -36,6 +37,10 @@ const modals = [
   {
     title: 'NodeSingle',
     component: NodeSingleModal,
+  },
+  {
+    title: 'Video',
+    component: VideoModal,
   },
 ];
 
