@@ -35,6 +35,8 @@ export default function LegacyNodeRouter(props) {
   useEffect(() => {
     if (!isEmpty(node?.routing?.pathname)) {
       router.push(`/${node?.routing?.pathname}`);
+    } else {
+      router.push(`/items/${title}`);
     }
   }, [node]);
 
