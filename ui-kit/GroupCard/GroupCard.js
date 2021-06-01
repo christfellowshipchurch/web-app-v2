@@ -15,6 +15,8 @@ import {
 } from 'ui-kit';
 
 import Styled from './GroupCard.styles';
+import { themeGet } from '@styled-system/theme-get';
+import camelCase from 'lodash.camelcase';
 
 const GroupCard = (props = {}) => {
   const modalDispatch = useModalDispatch();
@@ -37,11 +39,29 @@ const GroupCard = (props = {}) => {
     );
   };
 
+  const showSeeMore = props?.summary?.length > 120;
+
+  const labelTypes = {
+    virtual: {
+      icon: 'computer',
+      color: themeGet('colors.success'),
+    },
+    inPerson: {
+      icon: 'users',
+      color: themeGet('colors.primary'),
+    },
+  };
+
+  const labelType = labelTypes[camelCase(props?.meetingType)];
+
   return (
     <Styled {...props}>
-      <Box flexGrow={1}>
+      <Box>
         {props.coverImage ? (
           <Styled.GradientBackground src={props.coverImage}>
+            <Styled.Label backgroundColor={labelType.color}>
+              <Icon name={labelType.icon} />
+            </Styled.Label>
             {props.heroAvatars ? (
               props.heroAvatars
                 .slice(0, 3)
@@ -91,9 +111,14 @@ const GroupCard = (props = {}) => {
           </Styled.DateTimeLabel>
         )}
         {props.summary && (
-          <Styled.GroupDescription as="p" fontSize="s" mt="s">
-            {props?.summary}
-          </Styled.GroupDescription>
+          <Box mb="base">
+            <Styled.GroupDescription>{props?.summary}</Styled.GroupDescription>
+            {showSeeMore && (
+              <Styled.SeeMore onClick={e => handleSeeMore(e)}>
+                See More
+              </Styled.SeeMore>
+            )}
+          </Box>
         )}
         {Boolean(props.totalAvatars) && (
           <Box as="h5" mt="base">
@@ -129,7 +154,7 @@ const GroupCard = (props = {}) => {
         {props.callToAction && (
           <Button
             onClick={props?.callToAction?.action}
-            mt="base"
+            mt="auto"
             size="l"
             width="100%"
           >
