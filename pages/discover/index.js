@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import kebabCase from 'lodash/kebabCase'
 
 import { Box, Loader, Button, Cell, utils } from 'ui-kit';
 import {
@@ -18,6 +20,7 @@ import {
 const PAGE_SIZE = 21;
 
 const Discover = () => {
+  const router = useRouter();
   const [searchVisible, setSearchVisible] = useState(false);
   const { values, handleSubmit, handleChange, reset } = useForm();
 
@@ -79,6 +82,42 @@ const Discover = () => {
       },
     });
   }, [search]);
+
+  useEffect(() => {
+    if (filterValues.title) {
+      router.push({
+        pathname: '/discover',
+        query: {
+          c: kebabCase(filterValues.title)
+        }
+      });
+    }
+  }, [filterValues]);
+
+  useEffect(() => {
+    if (filters.length && !loadingFilters) {
+      const preSelection = router?.query?.c;
+
+      if (preSelection) {
+        const filter = filters.find(({ title }) => kebabCase(title) === preSelection)
+
+        if (filter) {
+          setFilterValues({
+            title: setFilterTitle(filter.title),
+            contentId: setFilterId(filter.id),
+          });
+          setSearchVisible(false);
+          reset();
+        }
+      } else {
+        // note : default state if landing ont he page without a pre-selected category
+        setFilterValues({
+          title: filters[0]?.title,
+          contentId: filters[0]?.id,
+        });
+      }
+    }
+  }, [filters, loadingFilters]);
 
   return (
     <Layout title="Discover">
