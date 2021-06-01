@@ -12,13 +12,14 @@ export default function CommunityActionSection(props) {
       textAlign="center"
     >
       <Box as="h2" mb="s">
-        We’ll help you get connected.
+        You were made for community.
       </Box>
       <Box as="p" mb="l" color="subdued">
-        There are hundreds of communities at CF. We’ll help find yours.
+        With many choices to pick from, we’ll help you find a group or class
+        that’s right for you!
       </Box>
       <Button onClick={props.handleOnClick} rounded={true} mb="base">
-        Search All Groups &amp; Classes
+        Search ALL Groups &amp; Classes
       </Button>
 
       <CustomLink target="_blank" href="https://rock.gocf.org/page/2113">
