@@ -11,7 +11,8 @@ import {
   Header,
   SEO,
 } from 'components';
-import { useCurrentUser, useNotifyMeBanner } from 'hooks';
+import { useCurrentUser, useNotifyMeBanner, useGroupFacetFilters } from 'hooks';
+
 import { htmlToReactParser } from 'utils';
 import { update as updateAuth, useAuth } from 'providers/AuthProvider';
 import {
@@ -37,6 +38,15 @@ function CommunitySingle(props = {}) {
   const { currentUser } = useCurrentUser();
   const router = useRouter();
 
+  const options = {
+    variables: {
+      facet: 'subPreference',
+      facetFilters: [`preference:${props.data?.title}`],
+    },
+  };
+
+  const { facets } = useGroupFacetFilters(options);
+
   // Grabs NotifyMeBanner if exists for hub.
   const { notifyMeBanner } = useNotifyMeBanner({
     variables: {
@@ -48,7 +58,7 @@ function CommunitySingle(props = {}) {
   // Filter subPreference lineups for current preference
   // Compares all subPreferences in Rock againist subPreferences in algolia
   const lineups = props.data?.subPreferences.filter(item =>
-    includes(props.data?.facets, item.title)
+    includes(facets, item.title)
   );
 
   // Pre-populate the Preference filter from the URL
