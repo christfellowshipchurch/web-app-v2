@@ -32,7 +32,7 @@ const colors = {
 
     alert: RUBY,
     warning: '#ffc527',
-    success: '#8acb88',
+    success: '#1ec27f',
     live: RUBY,
     wordOfChrist: TUATARA,
 
