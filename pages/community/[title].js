@@ -6,7 +6,7 @@ import isEmpty from 'lodash/isEmpty';
 
 import flags from 'config/flags';
 import { CommunitiesProvider } from 'providers';
-import { useGroupPreferences, useGroupFacetFilters } from 'hooks';
+import { useGroupPreferences } from 'hooks';
 import { CommunitySingle, Layout } from 'components';
 import { Box, Cell, Loader, utils } from 'ui-kit';
 
@@ -18,22 +18,9 @@ export default function Community(props) {
   const preferenceOptions = {
     preferencePath: ['community', title].join('/'),
   };
-  const {
-    preference,
-    subPreferences,
-    loading: preferenceLoading,
-  } = useGroupPreferences(preferenceOptions);
-
-  const options = {
-    variables: {
-      facet: 'subPreference',
-      facetFilters: [`preference:${title}`],
-    },
-  };
-
-  const { loading: facetLoading, facets } = useGroupFacetFilters(options);
-
-  const loading = facetLoading || preferenceLoading;
+  const { preference, subPreferences, loading } = useGroupPreferences(
+    preferenceOptions
+  );
 
   if (!flags.GROUP_FINDER) return null;
 
@@ -57,7 +44,7 @@ export default function Community(props) {
   return (
     <CommunitiesProvider
       Component={CommunitySingle}
-      data={{ ...preference, subPreferences, facets, loading }}
+      data={{ ...preference, subPreferences, loading }}
     />
   );
 }
