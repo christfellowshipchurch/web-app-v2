@@ -157,6 +157,7 @@ export default function CommunitySearch() {
           <SearchField
             placeholder="Search for groups..."
             handleSubmit={handleSubmit}
+            handleClear={handleClearAllClick}
             handleClick={handleClick}
             handleChange={handleChange}
             value={values.text || ''}
