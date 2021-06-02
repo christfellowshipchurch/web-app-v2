@@ -12,6 +12,8 @@ import {
   SEO,
 } from 'components';
 import { CommunitiesProvider } from 'providers';
+import { update as updateAuth, useAuth } from 'providers/AuthProvider';
+import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
 import Styled from './Community.styles';
 
@@ -19,6 +21,26 @@ const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
 
 export default function Community(props = {}) {
   const router = useRouter();
+  const [{ authenticated }, authDispatch] = useAuth();
+  const modalDispatch = useModalDispatch();
+
+  function ensureAuthentication(onSuccess) {
+    if (!authenticated) {
+      modalDispatch(showModal('Auth'));
+      authDispatch(updateAuth({ onSuccess }));
+    } else {
+      onSuccess();
+    }
+  }
+
+  function handleMyGroups(e) {
+    const navigateToConnect = () => {
+      router.push('/connect');
+    };
+
+    e.preventDefault();
+    ensureAuthentication(navigateToConnect);
+  }
 
   useEffect(() => {
     if (!flags.GROUP_FINDER) router.push('/');
@@ -49,6 +71,13 @@ export default function Community(props = {}) {
               faith. Groups and classes help you know where to look for
               direction and have the right people encouraging you along the way.
             </Styled.Summary>
+            <Box as="p" fontStyle="italic">
+              Already in a group? View all of your groups{' '}
+              <Box as="a" onClick={handleMyGroups} href="/connect">
+                here
+              </Box>
+              .
+            </Box>
           </Cell>
           <Cell
             maxWidth={DEFAULT_CONTENT_WIDTH}
