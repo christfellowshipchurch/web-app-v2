@@ -207,7 +207,10 @@ function CommunitySingle(props = {}) {
             </Box>
           </Box>
         )}
-        <CommunityActionSection handleOnClick={handleOnClick} />
+        <CommunityActionSection
+          title={props?.data?.title}
+          handleOnClick={handleOnClick}
+        />
         <CommunityLeaderActions />
       </Box>
       <Footer />
