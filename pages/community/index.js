@@ -12,6 +12,7 @@ import {
   SEO,
 } from 'components';
 import { CommunitiesProvider } from 'providers';
+import { useGroupFilters, resetValues } from 'providers/GroupFiltersProvider';
 
 import Styled from './Community.styles';
 
@@ -19,8 +20,10 @@ const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
 
 export default function Community(props = {}) {
   const router = useRouter();
+  const [filtersState, filtersDispatch] = useGroupFilters();
 
   useEffect(() => {
+    filtersDispatch(resetValues());
     if (!flags.GROUP_FINDER) router.push('/');
   }, [router]);
 
