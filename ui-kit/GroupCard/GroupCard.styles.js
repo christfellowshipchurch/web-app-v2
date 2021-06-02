@@ -49,24 +49,28 @@ const DateTimeLabel = styled.p`
 `;
 
 const GradientBackground = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+
+  padding-bottom: ${themeGet('space.xl')};
+  padding-top: ${themeGet('space.xl')};
+  min-height: 200px;
+
   background-image: linear-gradient(
       to top,
       rgb(255, 255, 255, 1),
-      rgba(255, 255, 255, 0.6)
+      rgba(255, 255, 255, 0.4)
     ),
     url(${props => props.src});
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+
   border-top-left-radius: ${themeGet('radii.base')};
   border-top-right-radius: ${themeGet('radii.base')};
-  display: flex;
-  justify-content: center;
-  min-height: 200px;
-  overflow: hidden;
-  padding-bottom: ${themeGet('space.xl')};
-  padding-top: ${themeGet('space.xl')};
-  position: relative;
 `;
 
 const GroupCardContent = styled.div`
@@ -115,20 +119,26 @@ const SeeMore = styled.a`
 `;
 
 const Label = styled.b`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  margin: 1rem;
+  padding: ${themeGet('space.xs')} ${themeGet('space.s')};
+
   background-color: ${props => props?.backgroundColor};
   backdrop-filter: blur(25px);
   box-shadow: ${themeGet('shadows.l')};
   border-radius: ${themeGet('radii.xxl')};
   color: ${themeGet('colors.white')};
-  top: 0;
+
   font-size: ${themeGet('fontSizes.xs')};
   font-weight: ${themeGet('fontWeights.bold')};
-  right: 0;
-  letter-spacing: 0.125rem;
-  margin: 0.5rem ${themeGet('space.xs')};
-  padding: ${themeGet('space.xs')} ${themeGet('space.s')};
-  position: absolute;
-  text-transform: uppercase;
+
   z-index: 2;
 `;
 
