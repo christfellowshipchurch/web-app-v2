@@ -1,13 +1,26 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 import Card from 'ui-kit/Card/Card.styles';
 import { rem } from 'ui-kit/_utils';
 
 import { system } from 'ui-kit';
 
+const labelColor = props => {
+  if (props?.type === 'Virtual') {
+    return css`
+      background-color: ${themeGet('colors.success')};
+    `;
+  }
+  return css`
+    background-color: ${themeGet('colors.primary')};
+  `;
+};
+
 const GroupCard = styled(Card)`
   display: flex;
   flex-direction: column;
+
+  ${system}
 `;
 
 const AvatarCount = styled.p`
@@ -57,7 +70,12 @@ const GradientBackground = styled.div`
 `;
 
 const GroupCardContent = styled.div`
+  display: flex;
+  flex-direction: column;
   padding: ${themeGet('space.base')};
+  height: 100%;
+
+  ${system}
 `;
 
 const GroupCardTitle = styled.div`
@@ -80,11 +98,38 @@ const GroupCardSubTitle = styled.div`
 
 const GroupDescription = styled.p`
   display: -webkit-box;
+  font-size: ${themeGet('fontSizes.s')};
+  margin-top: ${themeGet('space.s')};
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 
   ${system}
+`;
+
+const SeeMore = styled.a`
+  font-size: ${themeGet('fontSizes.s')};
+  cursor: pointer;
+  padding: 0px;
+  margin: 0px;
+`;
+
+const Label = styled.b`
+  background-color: ${props => props?.backgroundColor};
+  backdrop-filter: blur(25px);
+  box-shadow: ${themeGet('shadows.l')};
+  border-radius: ${themeGet('radii.xxl')};
+  color: ${themeGet('colors.white')};
+  top: 0;
+  font-size: ${themeGet('fontSizes.xs')};
+  font-weight: ${themeGet('fontWeights.bold')};
+  right: 0;
+  letter-spacing: 0.125rem;
+  margin: 0.5rem ${themeGet('space.xs')};
+  padding: ${themeGet('space.xs')} ${themeGet('space.s')};
+  position: absolute;
+  text-transform: uppercase;
+  z-index: 2;
 `;
 
 GroupCard.AvatarCount = AvatarCount;
@@ -94,5 +139,7 @@ GroupCard.GroupCardContent = GroupCardContent;
 GroupCard.GroupCardTitle = GroupCardTitle;
 GroupCard.GroupCardSubTitle = GroupCardSubTitle;
 GroupCard.GroupDescription = GroupDescription;
+GroupCard.Label = Label;
+GroupCard.SeeMore = SeeMore;
 
 export default GroupCard;
