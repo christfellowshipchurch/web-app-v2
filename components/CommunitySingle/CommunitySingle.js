@@ -71,27 +71,6 @@ function CommunitySingle(props = {}) {
     router.push('/community/search');
   }
 
-  function handleFindCommunityClick() {
-    const showFilterModal = () => {
-      const userCampus = currentUser?.profile?.campus?.name;
-      filtersDispatch(update({ campuses: [userCampus] }));
-
-      // Update subPreferences to match Algolia for current preference
-      filtersDispatch(updateOptions({ subPreferences: props.data?.facets }));
-
-      modalDispatch(
-        showModal('GroupFilter', {
-          step:
-            lineups.length > 0
-              ? ModalSteps.SUB_PREFERENCES
-              : ModalSteps.WHERE_WHEN,
-        })
-      );
-    };
-
-    ensureAuthentication(showFilterModal);
-  }
-
   function handleNotifyMeClick() {
     const showNotifyMeModal = () => {
       const userCampus = currentUser?.profile?.campus?.id;
@@ -114,7 +93,7 @@ function CommunitySingle(props = {}) {
       modalDispatch(showModal('GroupFilter', { step: ModalSteps.WHERE_WHEN }));
     };
 
-    ensureAuthentication(showFilterModal);
+    showFilterModal();
   }
   return (
     <>
