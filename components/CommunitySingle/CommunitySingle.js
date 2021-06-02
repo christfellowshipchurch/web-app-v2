@@ -71,27 +71,6 @@ function CommunitySingle(props = {}) {
     router.push('/community/search');
   }
 
-  function handleFindCommunityClick() {
-    const showFilterModal = () => {
-      const userCampus = currentUser?.profile?.campus?.name;
-      filtersDispatch(update({ campuses: [userCampus] }));
-
-      // Update subPreferences to match Algolia for current preference
-      filtersDispatch(updateOptions({ subPreferences: props.data?.facets }));
-
-      modalDispatch(
-        showModal('GroupFilter', {
-          step:
-            lineups.length > 0
-              ? ModalSteps.SUB_PREFERENCES
-              : ModalSteps.WHERE_WHEN,
-        })
-      );
-    };
-
-    ensureAuthentication(showFilterModal);
-  }
-
   function handleNotifyMeClick() {
     const showNotifyMeModal = () => {
       const userCampus = currentUser?.profile?.campus?.id;
@@ -114,32 +93,31 @@ function CommunitySingle(props = {}) {
       modalDispatch(showModal('GroupFilter', { step: ModalSteps.WHERE_WHEN }));
     };
 
-    ensureAuthentication(showFilterModal);
+    showFilterModal();
   }
   return (
     <>
       <SEO title={props.data?.title} />
       <Header />
-      <Box
-        width="100%"
-        px="xxs"
-        py={{ _: 's', lg: 'base' }}
-      >
-        <Box 
-          as="a" 
-          textDecoration="none" 
+      <Box width="100%" px="xxs" py={{ _: 's', lg: 'base' }}>
+        <Box
+          as="a"
+          textDecoration="none"
           px="xxl"
-          href="#0" 
+          href="#0"
           onClick={() => router.back()}
         >
           <Icon name="arrowLeft" color="fg" />
-          <Box as="span" p="xs" color="fg" >
+          <Box as="span" p="xs" color="fg">
             back
           </Box>
         </Box>
-        
+
         <Box my={'-2.5rem'}>
-          <Styled.Hero my={'-1.5rem'}src={props.data?.coverImage?.sources[0]?.uri}>
+          <Styled.Hero
+            my={'-1.5rem'}
+            src={props.data?.coverImage?.sources[0]?.uri}
+          >
             <Box
               display="flex"
               flexDirection="column"
