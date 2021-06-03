@@ -13,9 +13,17 @@ import { CardGrid, Longform, Section } from 'ui-kit';
 import { GET_CONTENT_CHANNEL } from 'hooks/useContentChannel';
 import { GET_CAMPUSES } from 'hooks/useCampuses';
 import { GET_CONTENT_BY_SLUG } from 'hooks/useContentBySlug';
+import { useEffect } from 'react';
 
 export default function Page({ data = {}, campuses, dropdownData }) {
   const router = useRouter();
+
+  // next.config.js isn't working for redirects when clicking on the link to redirect from
+  useEffect(() => {
+    if (router.query?.page === 'meet-our-staff') {
+      router.replace('/search?category=Staff&p=1');
+    }
+  }, [router]);
 
   if (data.loading || router.isFallback) {
     return null;
