@@ -125,7 +125,7 @@ const icons = {
       stroke: '#221b38',
     },
     {
-      d: 'M9 6L3 12L9 18"',
+      d: 'M9 6L3 12L9 18',
       strokeWidth: '1',
       strokeLinejoin: 'round',
       strokeLinecap: 'round',
