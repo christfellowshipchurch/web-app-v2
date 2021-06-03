@@ -116,7 +116,7 @@ function GroupsResultsList(props = {}) {
             meetingType={group.node?.meetingType}
             summary={group.summary}
             title={group.title}
-            handleConnectClick={handleConnectClick}
+            handleConnectClick={() => handleConnectClick(group)}
           />
         );
       })}
