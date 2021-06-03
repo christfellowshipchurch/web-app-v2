@@ -36,6 +36,7 @@ export default function Page({ data = {}, campuses, dropdownData }) {
         src={node.coverImage?.sources?.[0].uri || ''}
         title={node.title}
         subtitle={node.subtitle}
+        showTitleOverImage={node.showTitleOverImage}
         summary={node.summary}
       />
       {node.htmlContent && (
