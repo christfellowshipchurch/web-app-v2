@@ -3,7 +3,7 @@ import { initializeApollo } from 'lib/apolloClient';
 import { FeedFeaturesProvider } from 'providers';
 import { HomeFeed, Layout } from 'components';
 import { GET_CONTENT_CHANNEL } from 'hooks/useContentChannel';
-import { getChannelId, getIdSuffix, getItemId } from 'utils';
+import { getChannelId, getIdSuffix, getItemId, getMediaSource } from 'utils';
 import IDS from 'config/ids';
 import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
 
@@ -27,9 +27,7 @@ export async function getStaticProps() {
 
   const sermons =
     sermonsRequest?.data?.node?.childContentItemsConnection?.edges;
-  const sermonVideos = sermons.filter(
-    ({ node }) => node?.videos?.[0]?.sources?.[0]?.uri
-  );
+  const sermonVideos = sermons.filter(({ node }) => getMediaSource(node));
   const latestSermon = sermonVideos[0]?.node;
 
   const sermonRequest = await apolloClient.query({

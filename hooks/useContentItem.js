@@ -1,81 +1,85 @@
 import { gql, useQuery } from '@apollo/client';
 
-export const UNIVERSAL_CONTENT_ITEM_FRAGMENT = gql`
-  fragment UniversalContentItemFragment on UniversalContentItem {
-    id
-    showTitleOverImage
-    title
-    summary
-    subtitle
-    htmlContent
-    parentChannel {
+export const GET_CONTENT_ITEM = gql`
+  query getUniversalContentItem($itemId: ID!) {
+    node(id: $itemId) {
       id
-    }
-    ctaLinks {
-      title
-      body
-      image {
-        sources {
-          uri
-        }
-      }
-      buttonText
-      buttonLink
-    }
-    ministry
-    sharing {
-      url
-    }
-    coverImage {
-      sources {
-        uri
-      }
-    }
-    secondaryHTML
-    childContentItemsConnection {
-      edges {
-        node {
+      ... on UniversalContentItem {
+        showTitleOverImage
+        title
+        summary
+        subtitle
+        htmlContent
+        parentChannel {
           id
+        }
+        ctaLinks {
           title
-          summary
-          coverImage {
+          body
+          image {
             sources {
               uri
             }
           }
-          images {
-            sources {
-              uri
-            }
+          buttonText
+          buttonLink
+        }
+        ministry
+        sharing {
+          url
+        }
+        coverImage {
+          sources {
+            uri
           }
-          parentChannel {
-            id
-          }
-          sharing {
-            url
-          }
-          ... on UniversalContentItem {
-            id
-            campus {
+        }
+        secondaryHTML
+        childContentItemsConnection {
+          edges {
+            node {
               id
-              name
-            }
-            linkText
-            linkURL
-            socialMedia {
               title
-              image {
+              summary
+              coverImage {
                 sources {
                   uri
                 }
               }
-              summary
-            }
-          }
-          ... on MediaContentItem {
-            videos {
-              sources {
-                uri
+              images {
+                sources {
+                  uri
+                }
+              }
+              parentChannel {
+                id
+              }
+              sharing {
+                url
+              }
+              ... on UniversalContentItem {
+                id
+                campus {
+                  id
+                  name
+                }
+                linkText
+                linkURL
+                socialMedia {
+                  title
+                  image {
+                    sources {
+                      uri
+                    }
+                  }
+                  summary
+                }
+              }
+              ... on MediaContentItem {
+                videos {
+                  sources {
+                    uri
+                  }
+                }
               }
             }
           }
@@ -83,15 +87,6 @@ export const UNIVERSAL_CONTENT_ITEM_FRAGMENT = gql`
       }
     }
   }
-`;
-
-export const GET_CONTENT_ITEM = gql`
-  query getUniversalContentItem($itemId: ID!) {
-    node(id: $itemId) {
-      ...UniversalContentItemFragment
-    }
-  }
-  ${UNIVERSAL_CONTENT_ITEM_FRAGMENT}
 `;
 
 function useContentItem(options = {}) {

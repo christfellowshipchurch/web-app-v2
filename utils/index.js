@@ -7,6 +7,7 @@ import getChildrenByType from './getChildrenByType';
 import getIdPrefix from './getIdPrefix';
 import getIdSuffix from './getIdSuffix';
 import getItemId from './getItemId';
+import getMediaSource from './getMediaSource';
 import getSlugFromURL from './getSlugFromUrl';
 import getStaffId from './getStaffId';
 import getMetaData from './getMetaData';
@@ -30,6 +31,7 @@ export {
   getIdPrefix,
   getIdSuffix,
   getItemId,
+  getMediaSource,
   getMetaData,
   getSlugFromURL,
   getStaffId,

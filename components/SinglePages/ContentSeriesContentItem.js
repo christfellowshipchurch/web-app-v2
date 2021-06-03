@@ -57,13 +57,7 @@ export default function ContentSeriesContentItem({ item, dropdownData } = {}) {
               mr="m"
               mb="m"
               action={() =>
-                router.push(
-                  `/watch/${getIdSuffix(
-                    item?.parentChannel?.id
-                  )}/${getSlugFromURL(item?.sharing?.url)}/${getSlugFromURL(
-                    node?.sharing?.url
-                  )}`
-                )
+                router.push(`/${getSlugFromURL(node?.sharing?.url)}`)
               }
             />
           ))}

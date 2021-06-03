@@ -14,16 +14,23 @@ import {
 } from 'components';
 import { Box, CardGrid, Heading, Section, Text, theme } from 'ui-kit';
 import { useRouter } from 'next/router';
-import { getSlugFromURL } from 'utils';
+import { getMediaSource, getSlugFromURL } from 'utils';
 import Styled from './HomeFeed.styles';
 import { useCurrentUser } from 'hooks';
 import usePersonaFeed from 'hooks/usePersonaFeed';
 
 function FullLengthSermon(props = {}) {
   const router = useRouter();
+  const [playerError, setPlayerError] = useState(false);
   const [selectedClip, setSelectedClip] = useState(0);
 
   const clips = props.sermon?.childContentItemsConnection?.edges;
+
+  let src = getMediaSource(props.sermon);
+
+  if (!src || playerError) {
+    src = getMediaSource(props.sermon, 'audios') || src;
+  }
 
   return (
     <Box display="flex" flexDirection="column">
@@ -33,8 +40,8 @@ function FullLengthSermon(props = {}) {
         backdrop={false}
         content={
           !!(
-            (clips.length && clips.any(clip => clip?.node?.videos?.length)) ||
-            props?.sermon?.videos?.[0]?.sources?.[0]?.uri
+            (clips?.length && clips.any(clip => clip?.node?.videos?.length)) ||
+            src
           ) && (
             <Box
               position={{ lg: 'absolute' }}
@@ -66,17 +73,18 @@ function FullLengthSermon(props = {}) {
                     },
                   })}
                 >
-                  {clips.map(clip =>
-                    clip?.node?.videos?.[0]?.sources?.[0]?.uri || true ? (
+                  {clips.map(clip => {
+                    const clipSrc = getMediaSource(clip?.node);
+                    return clipSrc ? (
                       <VideoPlayer
                         key={clip.node?.id}
-                        src={clip.node?.videos?.[0]?.sources?.[0]?.uri}
+                        src={clipSrc}
                         title={clip.node?.title}
                         poster={clip.node?.coverImage?.sources?.[0]?.uri}
                         style={{ width: '681px' }}
                       />
-                    ) : null
-                  )}
+                    ) : null;
+                  })}
                 </Carousel>
               ) : (
                 <Box
@@ -85,9 +93,10 @@ function FullLengthSermon(props = {}) {
                 >
                   <VideoPlayer
                     key={props.sermon?.id}
-                    src={props.sermon?.videos?.[0]?.sources?.[0]?.uri}
+                    src={src}
                     poster={props.sermon?.coverImage?.sources?.[0]?.uri}
                     style={{ width: '100%' }}
+                    onError={() => setPlayerError(true)}
                   />
                 </Box>
               )}
@@ -113,9 +122,7 @@ function FullLengthSermon(props = {}) {
               rounded
               src={props.sermon?.coverImage?.sources?.[0]?.uri}
               onClick={() =>
-                router.push(
-                  `/sermon/${getSlugFromURL(props.sermon?.sharing?.url)}`
-                )
+                router.push(`/${getSlugFromURL(props.sermon?.sharing?.url)}`)
               }
             />
             <Box position="absolute" right="10px" bottom="10px">

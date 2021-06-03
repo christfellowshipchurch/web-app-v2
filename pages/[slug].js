@@ -3,10 +3,10 @@ import { initializeApollo } from 'lib/apolloClient';
 import { GET_CONTENT_BY_SLUG } from 'hooks/useContentBySlug';
 import {
   UniversalContentItem,
-  WeekendContentItem,
   ContentSeriesContentItem,
   ContentChannel,
   DevotionalContentItem,
+  MediaContentItem,
 } from 'components/SinglePages';
 import IDS from 'config/ids';
 
@@ -24,7 +24,7 @@ export default function Page({ data, type, dropdownData }) {
       );
     case 'MediaContentItem':
     case 'WeekendContentItem':
-      return <WeekendContentItem item={data} dropdownData={dropdownData} />;
+      return <MediaContentItem item={data} dropdownData={dropdownData} />;
     default:
       return null;
   }

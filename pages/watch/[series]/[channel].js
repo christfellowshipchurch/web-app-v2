@@ -61,11 +61,7 @@ export default function Channel({ item, dropdownData } = {}) {
               mr="m"
               mb="m"
               action={() =>
-                router.push(
-                  `/watch/${router.query.series}/${
-                    router.query.channel
-                  }/${getSlugFromURL(node?.sharing?.url)}`
-                )
+                router.push(`/${getSlugFromURL(node?.sharing?.url)}`)
               }
             />
           ))}

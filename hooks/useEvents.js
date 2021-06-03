@@ -3,28 +3,25 @@ import { gql, useQuery } from '@apollo/client';
 export const GET_EVENTS = gql`
   query getEvents {
     allEvents {
-      ...eventsFragment
-    }
-  }
-  fragment eventsFragment on EventContentItem {
-    id
-    title
-    summary
-    hideLabel
-    nextOccurrence
-    coverImage {
-      name
-      sources {
-        uri
-      }
-    }
-    sharing {
-      url
+      id
       title
-      message
-    }
-    events {
-      start
+      summary
+      hideLabel
+      nextOccurrence
+      coverImage {
+        name
+        sources {
+          uri
+        }
+      }
+      sharing {
+        url
+        title
+        message
+      }
+      events {
+        start
+      }
     }
   }
 `;

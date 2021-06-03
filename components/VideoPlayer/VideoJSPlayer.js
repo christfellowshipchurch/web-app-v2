@@ -2,11 +2,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Box, Heading } from 'ui-kit';
+import { themeGet } from '@styled-system/theme-get';
 
 // eslint-disable-next-line import/prefer-default-export
-const usePlayer = ({ src, controls, autoplay, fluid }) => {
+const usePlayer = ({ src, controls, autoplay, fluid, onError }) => {
   const options = {
     fill: true,
     preload: 'auto',
@@ -30,6 +31,9 @@ const usePlayer = ({ src, controls, autoplay, fluid }) => {
         autoplay,
         sources: [src],
       });
+      vjsPlayer.on('error', () => {
+        onError?.();
+      });
       setPlayer(vjsPlayer);
     } else if (player) {
       player.src({ src });
@@ -42,14 +46,45 @@ const usePlayer = ({ src, controls, autoplay, fluid }) => {
 };
 
 const VideoStyles = styled.div`
-  div[data-vjs-player=true], .vjs-poster, .vjs-tech {
+  div[data-vjs-player='true'],
+  .vjs-poster,
+  .vjs-tech {
     transition: border-radius ease 0.5s;
   }
 
-  div[data-vjs-player=true]:not(.vjs-has-started),
-  div[data-vjs-player=true]:not(.vjs-has-started) .vjs-poster,
-  div[data-vjs-player=true]:not(.vjs-has-started) .vjs-tech {
-    border-radius: 24px;
+  div[data-vjs-player='true']:not(.vjs-has-started),
+  div[data-vjs-player='true']:not(.vjs-has-started) .vjs-poster,
+  div[data-vjs-player='true']:not(.vjs-has-started) .vjs-tech {
+    ${props => {
+      if (!props.rounded) return '';
+
+      if (Object.values(props.rounded)?.length > 0) {
+        const rounded = { ...props.rounded };
+        delete rounded._;
+
+        return css`
+          ${props.rounded?._
+            ? css`
+                border-radius: ${themeGet(`radii.${props.rounded?._}`)};
+              `
+            : ''}
+
+          ${Object.entries(rounded).map(
+            ([breakpoint, radius]) => css`
+              @media screen and (min-width: ${themeGet(
+                  `breakpoints.${breakpoint}`
+                )}) {
+                border-radius: ${themeGet(`radii.${radius}`)};
+              }
+            `
+          )}
+        `;
+      }
+
+      return css`
+        border-radius: ${props.rounded};
+      `;
+    }}
   }
 
   .vjs-poster {
@@ -74,8 +109,8 @@ const VideoStyles = styled.div`
   }
 `;
 
-const VideoPlayer = ({ src, controls, autoplay, fluid, ...props }) => {
-  const playerRef = usePlayer({ src, controls, autoplay, fluid });
+const VideoPlayer = ({ src, controls, autoplay, fluid, onError, ...props }) => {
+  const playerRef = usePlayer({ src, controls, autoplay, fluid, onError });
 
   return (
     <Box position="relative" {...props}>
