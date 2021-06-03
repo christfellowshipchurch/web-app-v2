@@ -11,6 +11,7 @@ import {
   Header,
   SEO,
 } from 'components';
+import { useGroupFilters, resetValues } from 'providers/GroupFiltersProvider';
 import { CommunitiesProvider } from 'providers';
 import { update as updateAuth, useAuth } from 'providers/AuthProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
@@ -22,6 +23,7 @@ const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
 export default function Community(props = {}) {
   const router = useRouter();
   const [{ authenticated }, authDispatch] = useAuth();
+  const [filtersDispatch] = useGroupFilters();
   const modalDispatch = useModalDispatch();
 
   function ensureAuthentication(onSuccess) {
@@ -41,6 +43,11 @@ export default function Community(props = {}) {
     e.preventDefault();
     ensureAuthentication(navigateToConnect);
   }
+
+  // Reset Filter State
+  useEffect(() => {
+    filtersDispatch(resetValues());
+  }, [filtersDispatch]);
 
   useEffect(() => {
     if (!flags.GROUP_FINDER) router.push('/');
