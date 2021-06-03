@@ -41,7 +41,7 @@ function GroupCardWithMember(props) {
           break;
         case 'PENDING':
           setCallToAction({
-            call: 'Group Status Pending',
+            call: 'Message Sent to Leader',
             action: null,
             buttonProps: {
               disabled: true,
