@@ -11,7 +11,10 @@ import {
   Header,
   SEO,
 } from 'components';
-import { useGroupFilters, resetValues } from 'providers/GroupFiltersProvider';
+import {
+  useGroupFiltersDispatch,
+  resetValues,
+} from 'providers/GroupFiltersProvider';
 import { CommunitiesProvider } from 'providers';
 import { update as updateAuth, useAuth } from 'providers/AuthProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
@@ -23,7 +26,7 @@ const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
 export default function Community(props = {}) {
   const router = useRouter();
   const [{ authenticated }, authDispatch] = useAuth();
-  const [filtersDispatch] = useGroupFilters();
+  const filtersDispatch = useGroupFiltersDispatch();
   const modalDispatch = useModalDispatch();
 
   function ensureAuthentication(onSuccess) {
@@ -54,14 +57,14 @@ export default function Community(props = {}) {
   }, [router]);
 
   function handleOnClick() {
-    router.push('/community/search');
+    router.push('/groups/search');
   }
 
   if (!flags.GROUP_FINDER) return null;
 
   return (
     <>
-      <SEO title="Community" />
+      <SEO title="Christ Fellowship Church Groups" />
       <Box display="grid" gridTemplateRows="auto 1fr auto" height="100vh">
         <Header />
         <Styled.Hero />

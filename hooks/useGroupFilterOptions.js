@@ -19,7 +19,7 @@ function useGroupFilterOptions(options = {}) {
 
   const query = useQuery(GET_GROUP_OPTIONS, {
     fetchPolicy: 'cache-and-network',
-    skip: !router?.asPath.includes('/community'),
+    skip: !router?.asPath.includes('/groups'),
     ...options,
   });
 

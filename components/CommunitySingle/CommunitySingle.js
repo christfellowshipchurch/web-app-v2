@@ -78,7 +78,7 @@ function CommunitySingle(props = {}) {
   }
 
   function handleOnClick() {
-    router.push('/community/search');
+    router.push('/groups/search');
   }
 
   function handleNotifyMeClick() {

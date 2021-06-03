@@ -13,8 +13,7 @@ const navigation = {
       call: 'Volunteer',
     },
     {
-      // action: '/groups',
-      action: 'https://christfellowship.church/items/42eda0fe3fbf3f200a2872df727d4440',
+      action: '/groups',
       call: 'Groups',
     },
   ],
@@ -42,11 +41,11 @@ const navigation = {
   },
 };
 
-if (flags.GROUP_FINDER) {
-  navigation.menuLinks.push({
-    action: '/community',
-    call: 'Community',
-  });
-}
+// if (flags.GROUP_FINDER) {
+//   navigation.menuLinks.push({
+//     action: '/community',
+//     call: 'Community',
+//   });
+// }
 
 export default navigation;
