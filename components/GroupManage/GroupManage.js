@@ -41,7 +41,7 @@ function GroupManage(props = {}) {
         gridColumnGap="xl"
       >
         <Box mb={{ _: 'l', lg: '0' }}>
-          <CustomLink href={`/groups/${slugify(props?.data?.title)}`}>
+          <CustomLink href={`/group/${slugify(props?.data?.title)}`}>
             &larr; Back
           </CustomLink>
           <Box my="base">

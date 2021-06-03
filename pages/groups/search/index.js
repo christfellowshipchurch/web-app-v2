@@ -52,7 +52,7 @@ export default function CommunitySearch() {
   const { values, handleSubmit, handleChange, setValues, reset } = useForm(
     () => {
       router.push({
-        pathname: `/community/search`,
+        pathname: `/groups/search`,
         query: filtersState.valuesSerialized,
       });
     }
@@ -102,7 +102,7 @@ export default function CommunitySearch() {
     event.preventDefault();
     // Update search page URL
     router.push({
-      pathname: `/community/search`,
+      pathname: `/groups/search`,
     });
     filtersDispatch(resetValues(), reset());
   }
@@ -127,9 +127,14 @@ export default function CommunitySearch() {
           px="base"
           py={{ _: 'base', lg: 'l' }}
         >
-          <Box as="a" textDecoration="none" href="#0" onClick={() => router.back()}>
+          <Box
+            as="a"
+            textDecoration="none"
+            href="#0"
+            onClick={() => router.back()}
+          >
             <Icon name="arrowLeft" color="fg" />
-            <Box as="span" p="xs" color="fg" >
+            <Box as="span" p="xs" color="fg">
               back
             </Box>
           </Box>
@@ -140,7 +145,9 @@ export default function CommunitySearch() {
             alignItems="center"
             mb="base"
           >
-            <Box mt="base" as="h1">Find your Community</Box>
+            <Box mt="base" as="h1">
+              Find your Community
+            </Box>
             <Button
               as="a"
               rounded={true}

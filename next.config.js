@@ -16,13 +16,23 @@ module.exports = {
         permanent: true,
       },
       {
-        source: '/groups/:title/manage',
-        destination: '/groups/:title/edit',
+        source: '/group/:title/manage',
+        destination: '/group/:title/edit',
         permanent: true,
       },
       {
         source: '/kingdom-builders-page',
         destination: '/kingdom-builders',
+        permanent: true,
+      },
+      {
+        source: '/group',
+        destination: '/groups',
+        permanent: true,
+      },
+      {
+        source: '/community/:title',
+        destination: '/groups/:title',
         permanent: true,
       },
       // TODO: Uncomment these lines to hide Group Finder.

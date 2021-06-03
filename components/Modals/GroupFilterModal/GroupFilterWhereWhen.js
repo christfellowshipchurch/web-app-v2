@@ -30,7 +30,7 @@ function GroupFilterWhereWhen(props = {}) {
   const handleSubmit = event => {
     event.preventDefault();
     router.push({
-      pathname: `/community/search`,
+      pathname: `/groups/search`,
       query: filtersState.valuesSerialized,
     });
     modalDispatch(hideModal());
