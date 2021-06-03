@@ -84,7 +84,7 @@ function Sidebar(props = {}) {
           values={filtersState.values.meetingType}
           disabledValues={disableInPerson}
           placeholder="Select a meeting type..."
-          onChange={handleMultiSelectChange}
+          onChange={handleSelectChange}
           onClear={handleClear}
         />
         <FilterField

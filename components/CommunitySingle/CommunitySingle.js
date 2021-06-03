@@ -11,7 +11,8 @@ import {
   Header,
   SEO,
 } from 'components';
-import { useCurrentUser, useNotifyMeBanner } from 'hooks';
+import { useCurrentUser, useNotifyMeBanner, useGroupFacetFilters } from 'hooks';
+
 import { htmlToReactParser } from 'utils';
 import { update as updateAuth, useAuth } from 'providers/AuthProvider';
 import {
@@ -37,6 +38,15 @@ function CommunitySingle(props = {}) {
   const { currentUser } = useCurrentUser();
   const router = useRouter();
 
+  const options = {
+    variables: {
+      facet: 'subPreference',
+      facetFilters: [`preference:${props.data?.title}`],
+    },
+  };
+
+  const { facets } = useGroupFacetFilters(options);
+
   // Grabs NotifyMeBanner if exists for hub.
   const { notifyMeBanner } = useNotifyMeBanner({
     variables: {
@@ -48,7 +58,7 @@ function CommunitySingle(props = {}) {
   // Filter subPreference lineups for current preference
   // Compares all subPreferences in Rock againist subPreferences in algolia
   const lineups = props.data?.subPreferences.filter(item =>
-    includes(props.data?.facets, item.title)
+    includes(facets, item.title)
   );
 
   // Pre-populate the Preference filter from the URL
@@ -69,27 +79,6 @@ function CommunitySingle(props = {}) {
 
   function handleOnClick() {
     router.push('/community/search');
-  }
-
-  function handleFindCommunityClick() {
-    const showFilterModal = () => {
-      const userCampus = currentUser?.profile?.campus?.name;
-      filtersDispatch(update({ campuses: [userCampus] }));
-
-      // Update subPreferences to match Algolia for current preference
-      filtersDispatch(updateOptions({ subPreferences: props.data?.facets }));
-
-      modalDispatch(
-        showModal('GroupFilter', {
-          step:
-            lineups.length > 0
-              ? ModalSteps.SUB_PREFERENCES
-              : ModalSteps.WHERE_WHEN,
-        })
-      );
-    };
-
-    ensureAuthentication(showFilterModal);
   }
 
   function handleNotifyMeClick() {
@@ -114,93 +103,116 @@ function CommunitySingle(props = {}) {
       modalDispatch(showModal('GroupFilter', { step: ModalSteps.WHERE_WHEN }));
     };
 
-    ensureAuthentication(showFilterModal);
+    showFilterModal();
   }
   return (
     <>
       <SEO title={props.data?.title} />
       <Header />
-      <Styled.Hero src={props.data?.coverImage?.sources[0]?.uri}>
+      <Box width="100%" px="xxs" py={{ _: 's', lg: 'base' }}>
         <Box
-          display="flex"
-          flexDirection="column"
-          flex="1"
-          justifyContent="center"
+          as="a"
+          textDecoration="none"
+          px="xxl"
+          href="#0"
+          onClick={() => router.back()}
         >
-          <Box as="h1" fontSize={{ md: '95px' }}>
-            {props.data?.title}
-          </Box>
-          <Box as="p" px={{ _: 's', sm: '80px', md: '140px', lg: '190px' }}>
-            {props.data?.summary}
+          <Icon name="arrowLeft" color="fg" />
+          <Box as="span" p="xs" color="fg">
+            back
           </Box>
         </Box>
-        <Box display="flex" mb="l">
-          <VideoPlayButton
-            poster={props.data?.coverImage?.sources[0]?.uri}
-            title={props.data?.title}
-          />
-        </Box>
-      </Styled.Hero>
 
-      {showNotifyMe && (
-        <Styled.NotifyMeSection>
-          <Box maxWidth={{ lg: '60%' }} mr={{ lg: 'l' }}>
-            <Box as="h3">{notifyMeBanner?.title}</Box>
-            <Box color="subdued">
-              {htmlToReactParser.parse(notifyMeBanner?.htmlContent)}
+        <Box my={'-2.5rem'}>
+          <Styled.Hero
+            my={'-1.5rem'}
+            src={props.data?.coverImage?.sources[0]?.uri}
+          >
+            <Box
+              display="flex"
+              flexDirection="column"
+              flex="1"
+              justifyContent="center"
+            >
+              <Box as="h1" fontSize={{ md: '95px' }}>
+                {props.data?.title}
+              </Box>
+              <Box as="p" px={{ _: 's', sm: '80px', md: '140px', lg: '190px' }}>
+                {props.data?.summary}
+              </Box>
+            </Box>
+            <Box display="flex" mb="l">
+              <VideoPlayButton
+                poster={props.data?.coverImage?.sources[0]?.uri}
+                title={props.data?.title}
+              />
+            </Box>
+          </Styled.Hero>
+        </Box>
+
+        {showNotifyMe && (
+          <Styled.NotifyMeSection>
+            <Box maxWidth={{ lg: '60%' }} mr={{ lg: 'l' }}>
+              <Box as="h3">{notifyMeBanner?.title}</Box>
+              <Box color="subdued">
+                {htmlToReactParser.parse(notifyMeBanner?.htmlContent)}
+              </Box>
+            </Box>
+            <Box
+              display="flex"
+              flex={1}
+              flexDirection="row"
+              justifyContent={{ _: 'center', lg: 'flex-end' }}
+              alignItems="center"
+              mt={{ _: 'base', lg: 0 }}
+            >
+              <Button
+                variant="secondary"
+                rounded={true}
+                size="l"
+                onClick={handleNotifyMeClick}
+              >
+                {`Notify Me`}
+              </Button>
+            </Box>
+          </Styled.NotifyMeSection>
+        )}
+
+        {lineups.length > 0 && (
+          <Box textAlign="center" alignItems="center" mb="l" px={{ md: 'xxl' }}>
+            <Box as="h1" mb="0">{`The ${props.data?.title} Lineup`}</Box>
+            <Box
+              as="p"
+              mb="base"
+            >{`There's a ${props.data?.title} for everyone`}</Box>
+            <Box display="flex" flexWrap="wrap" justifyContent="center" m="s">
+              {lineups.map((item, i) => (
+                <HorizontalHighlightCard
+                  as="a"
+                  key={i}
+                  flex={{
+                    _: `0 0 calc(100% - ${utils.rem('20px')})`,
+                    sm: `0 0 calc(50% - ${utils.rem('20px')})`,
+                    lg: `0 0 calc(33.333% - ${utils.rem('20px')})`,
+                  }}
+                  m="s"
+                  coverImage={item?.coverImage?.sources[0]?.uri}
+                  coverImageOverlay={true}
+                  coverImageTitle={item?.title}
+                  type="HIGHLIGHT_SMALL"
+                  height="250px"
+                  onClick={() => handleSubPreferenceSelect(item)}
+                />
+              ))}
             </Box>
           </Box>
-          <Box
-            display="flex"
-            flex={1}
-            flexDirection="row"
-            justifyContent={{ _: 'center', lg: 'flex-end' }}
-            alignItems="center"
-            mt={{ _: 'base', lg: 0 }}
-          >
-            <Button
-              variant="secondary"
-              rounded={true}
-              size="l"
-              onClick={handleNotifyMeClick}
-            >
-              {`Notify Me`}
-            </Button>
-          </Box>
-        </Styled.NotifyMeSection>
-      )}
-
-      {lineups.length > 0 && (
-        <Box textAlign="center" alignItems="center" mb="l" px={{ md: 'xxl' }}>
-          <Box as="h1" mb="0">{`The ${props.data?.title} Lineup`}</Box>
-          <Box
-            as="p"
-            mb="base"
-          >{`There's a ${props.data?.title} for everyone`}</Box>
-          <Box display="flex" flexWrap="wrap" justifyContent="center" m="s">
-            {lineups.map((item, i) => (
-              <HorizontalHighlightCard
-                as="a"
-                key={i}
-                flex={{
-                  _: `0 0 calc(100% - ${utils.rem('20px')})`,
-                  sm: `0 0 calc(50% - ${utils.rem('20px')})`,
-                  lg: `0 0 calc(33.333% - ${utils.rem('20px')})`,
-                }}
-                m="s"
-                coverImage={item?.coverImage?.sources[0]?.uri}
-                coverImageOverlay={true}
-                coverImageTitle={item?.title}
-                type="HIGHLIGHT_SMALL"
-                height="250px"
-                onClick={() => handleSubPreferenceSelect(item)}
-              />
-            ))}
-          </Box>
-        </Box>
-      )}
-      <CommunityActionSection handleOnClick={handleOnClick} />
-      <CommunityLeaderActions />
+        )}
+        <CommunityActionSection
+          title={props?.data?.title}
+          handleOnClick={handleOnClick}
+        />
+        <CommunityLeaderActions />
+      </Box>
       <Footer />
     </>
   );

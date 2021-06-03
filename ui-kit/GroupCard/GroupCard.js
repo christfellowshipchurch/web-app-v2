@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 import isEmpty from 'lodash/isEmpty';
+import get from 'lodash/get';
 
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
@@ -52,27 +53,31 @@ const GroupCard = (props = {}) => {
     },
   };
 
-  const labelType = labelTypes[camelCase(props?.meetingType)];
+  const labelType = get(labelTypes, camelCase(props?.meetingType));
+  const heroAvatars = props.heroAvatars.slice(0, maxAvatars);
 
   return (
     <Styled {...props}>
       <Box>
         {props.coverImage ? (
           <Styled.GradientBackground src={props.coverImage}>
-            <Styled.Label backgroundColor={labelType.color}>
-              <Icon name={labelType.icon} />
-            </Styled.Label>
-            {props.heroAvatars ? (
-              props.heroAvatars
-                .slice(0, 3)
+            {!isEmpty(labelType) && (
+              <Styled.Label backgroundColor={labelType.color}>
+                {props?.meetingType}
+                <Icon size={18} name={labelType.icon} ml="xs" />
+              </Styled.Label>
+            )}
+            {heroAvatars ? (
+              heroAvatars
+                .slice(0, maxAvatars)
                 .map((n, i) => (
                   <Avatar
-                    height="80px"
+                    height={heroAvatars.length > 3 ? '60px' : '80px'}
+                    width={heroAvatars.length > 3 ? '60px' : '80px'}
                     key={i}
                     mr={props.heroAvatars.length > 1 ? 'xs' : null}
                     name={`${n.node?.firstName} ${n.node?.lastName}`}
                     src={n.node?.photo?.uri}
-                    width="80px"
                   />
                 ))
             ) : (
