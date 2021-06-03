@@ -97,11 +97,11 @@ export default function Page({ data = {}, campuses, dropdownData }) {
           </CampusFilter>
         </Section>
       ) : null}
-      {data.secondaryHTML && (
+      {node.secondaryHTML && (
         <Section>
           <Longform
             mb={{ _: 'l', md: 'xxl' }}
-            dangerouslySetInnerHTML={{ __html: data.secondaryHTML }}
+            dangerouslySetInnerHTML={{ __html: node.secondaryHTML }}
           />
         </Section>
       )}
