@@ -1,10 +1,75 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import isEmpty from 'lodash/isEmpty';
 
 import { CardGrid, GroupCard, utils } from 'ui-kit';
 
 import { update as updateAuth, useAuth } from 'providers/AuthProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
+import useGroupMemberStatus from 'hooks/useGroupMemberStatus';
+
+// note : This breaks convention a little bit, but we need to create the CTA for the Group based on the status of the group for the current member.
+function GroupCardWithMember(props) {
+  const { data, loading } = useGroupMemberStatus({
+    skip: isEmpty(props?.id),
+    variables: {
+      groupId: props?.id,
+    },
+  });
+  const [callToAction, setCallToAction] = useState({
+    call: 'Loading',
+    action: null,
+    buttonProps: {
+      status: 'LOADING',
+      disabled: true,
+    },
+  });
+
+  useEffect(() => {
+    if (!loading && data?.groupMemberStatus) {
+      const { groupMemberStatus } = data;
+
+      switch (groupMemberStatus) {
+        case 'MEMBER':
+          setCallToAction({
+            call: 'You Are in This Group',
+            action: null,
+            buttonProps: {
+              disabled: true,
+            },
+          });
+          break;
+        case 'PENDING':
+          setCallToAction({
+            call: 'Group Status Pending',
+            action: null,
+            buttonProps: {
+              disabled: true,
+            },
+          });
+          break;
+        case 'FULL':
+          setCallToAction({
+            call: 'This Group is Full',
+            action: null,
+            buttonProps: {
+              disabled: true,
+            },
+          });
+          break;
+        case 'OPEN':
+        default:
+          setCallToAction({
+            call: 'Contact',
+            action: () => props?.handleConnectClick(props),
+          });
+          break;
+      }
+    }
+  }, [data, loading]);
+
+  return <GroupCard {...props} callToAction={callToAction} />;
+}
 
 function GroupsResultsList(props = {}) {
   const modalDispatch = useModalDispatch();
@@ -37,14 +102,10 @@ function GroupsResultsList(props = {}) {
   return (
     <CardGrid>
       {props.data.map(group => {
-        const callToAction = {
-          call: 'Contact',
-          action: () => handleConnectClick(group),
-        };
         return (
-          <GroupCard
+          <GroupCardWithMember
             key={group.node?.id}
-            callToAction={callToAction}
+            id={group.node?.id}
             campus={group.node?.campus?.name}
             coverImage={group.coverImage?.sources[0]?.uri}
             dateTime={group.node?.dateTime?.start}
@@ -55,6 +116,7 @@ function GroupsResultsList(props = {}) {
             meetingType={group.node?.meetingType}
             summary={group.summary}
             title={group.title}
+            handleConnectClick={handleConnectClick}
           />
         );
       })}
