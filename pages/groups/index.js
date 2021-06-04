@@ -67,28 +67,22 @@ export default function Community(props = {}) {
       <SEO title="Christ Fellowship Church Groups" />
       <Box display="grid" gridTemplateRows="auto 1fr auto" height="100vh">
         <Header />
-        <Styled.Hero />
-        <Box>
+        <Styled.Hero>
           <Cell
-            maxWidth={DEFAULT_CONTENT_WIDTH}
-            p={{ _: 'xs', md: 'base' }}
-            textAlign="center"
-          >
-            <Styled.Title>Life is better together.</Styled.Title>
-            <Styled.Summary>
-              We want to help you find community, grow in your relationship with
-              God, and build the kind of friendships we all need to live out our
-              faith. Groups and classes help you know where to look for
-              direction and have the right people encouraging you along the way.
-            </Styled.Summary>
-            <Box as="p" fontStyle="italic">
-              Already in a group? View all of your groups{' '}
-              <Box as="a" onClick={handleMyGroups} href="/connect">
-                here
-              </Box>
-              .
-            </Box>
-          </Cell>
+              maxWidth={DEFAULT_CONTENT_WIDTH}
+              p={{ _: 'xs', md: 'base' }}
+              textAlign="center"
+            >
+              <Styled.Title>Life is better together.</Styled.Title>
+              <Styled.Summary>
+                We want to help you find community, grow in your relationship with
+                God, and build the kind of friendships we all need to live out our
+                faith. Groups and classes help you know where to look for
+                direction and have the right people encouraging you along the way.
+              </Styled.Summary>
+            </Cell>
+        </Styled.Hero>
+        <Box>
           <Cell
             maxWidth={DEFAULT_CONTENT_WIDTH}
             px="base"
@@ -98,6 +92,15 @@ export default function Community(props = {}) {
               <CommunitiesProvider Component={CommunityList} />
             </Box>
           </Cell>
+
+          <Box textAlign="center" as="p" fontStyle="italic">
+            Already in a group? View all of your groups{' '}
+            <Box as="a" onClick={handleMyGroups} href="/connect">
+              here
+            </Box>
+              .
+          </Box>
+
         </Box>
         <CommunityActionSection handleOnClick={handleOnClick} />
         <CommunityLeaderActions />
