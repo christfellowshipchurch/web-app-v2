@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import isEmpty from 'lodash/isEmpty';
 import {
@@ -17,6 +17,16 @@ function Sidebar(props = {}) {
   const modalDispatch = useModalDispatch();
   const [filtersState, filtersDispatch] = useGroupFilters();
   const { preferences, subPreferences } = useGroupPreferences();
+
+  useEffect(() => {
+    // Update the URL to include new search params if it doesn't already
+    if (!router.asPath.includes(filtersState.valuesSerialized)) {
+      router.replace({
+        pathname: `/groups/search`,
+        query: filtersState.valuesSerialized,
+      });
+    }
+  }, [filtersState.valuesSerialized, router]);
 
   const handleMultiSelectChange = ({ name, value }) => {
     filtersDispatch(toggleValue({ name, value }));

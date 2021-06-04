@@ -22,7 +22,11 @@ import { useCurrentUser, useNotifyMeBanner, useGroupFacetFilters } from 'hooks';
 
 import { htmlToReactParser } from 'utils';
 import { update as updateAuth, useAuth } from 'providers/AuthProvider';
-import { useGroupFilters, update } from 'providers/GroupFiltersProvider';
+import {
+  useGroupFilters,
+  update,
+  resetValues,
+} from 'providers/GroupFiltersProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
 import VideoPlayButton from './VideoPlayButton';
@@ -67,6 +71,7 @@ function CommunitySingle(props = {}) {
   // Pre-populate the Preference filter from the URL
   useEffect(() => {
     if (!filtersState.values.preferences?.includes(props.data?.title)) {
+      filtersDispatch(resetValues());
       filtersDispatch(update({ preferences: [props.data?.title] }));
     }
   }, [filtersState.values.preferences, filtersDispatch, props.data?.title]);
@@ -81,7 +86,10 @@ function CommunitySingle(props = {}) {
   }
 
   function handleOnClick() {
-    router.push('/groups/search');
+    router.push({
+      pathname: `/groups/search`,
+      query: filtersState.valuesSerialized,
+    });
   }
 
   function handleNotifyMeClick() {
@@ -184,11 +192,11 @@ function CommunitySingle(props = {}) {
 
         {lineups.length > 0 && (
           <Box textAlign="center" alignItems="center" mb="l" px={{ md: 'xxl' }}>
-            <Box as="h1" mb="0">{`Types of Groups for ${props.data?.title}`}</Box>
             <Box
-              as="p"
-              mb="base"
-            >{`There's a group for everyone!`}</Box>
+              as="h1"
+              mb="0"
+            >{`Types of Groups for ${props.data?.title}`}</Box>
+            <Box as="p" mb="base">{`There's a group for everyone!`}</Box>
             <Box display="flex" flexWrap="wrap" justifyContent="center" m="s">
               {lineups.map((item, i) => (
                 <HorizontalHighlightCard
