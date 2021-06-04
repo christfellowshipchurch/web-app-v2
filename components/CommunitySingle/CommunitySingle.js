@@ -3,10 +3,17 @@ import PropTypes from 'prop-types';
 import includes from 'lodash/includes';
 import { useRouter } from 'next/router';
 
-import { Box, Button, HorizontalHighlightCard, Icon, utils } from 'ui-kit';
+import {
+  BackButton,
+  Box,
+  Button,
+  HorizontalHighlightCard,
+  utils,
+} from 'ui-kit';
 import {
   CommunityActionSection,
   CommunityLeaderActions,
+  CustomLink,
   Footer,
   Header,
   SEO,
@@ -15,11 +22,7 @@ import { useCurrentUser, useNotifyMeBanner, useGroupFacetFilters } from 'hooks';
 
 import { htmlToReactParser } from 'utils';
 import { update as updateAuth, useAuth } from 'providers/AuthProvider';
-import {
-  useGroupFilters,
-  update,
-  updateOptions,
-} from 'providers/GroupFiltersProvider';
+import { useGroupFilters, update } from 'providers/GroupFiltersProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
 import VideoPlayButton from './VideoPlayButton';
@@ -105,27 +108,24 @@ function CommunitySingle(props = {}) {
 
     showFilterModal();
   }
+
+
   return (
     <>
       <SEO title={props.data?.title} />
       <Header />
       <Box width="100%" px="xxs" py={{ _: 's', lg: 'base' }}>
-        <Box
-          as="a"
-          textDecoration="none"
-          px="xxl"
-          href="#0"
-          onClick={() => router.back()}
-        >
-          <Icon name="arrowLeft" color="fg" />
-          <Box as="span" p="xs" color="fg">
-            back
-          </Box>
-        </Box>
+        <Styled.BackButton>
+          <CustomLink
+            Component={BackButton}
+            color={{ _: 'white', lg: 'black' }}
+            href="/groups"
+          />
+        </Styled.BackButton>
 
-        <Box my={'-2.5rem'}>
+        <Box mt={'-2.5rem'}>
           <Styled.Hero
-            my={'-1.5rem'}
+            mt={'-1.5rem'}
             src={props.data?.coverImage?.sources[0]?.uri}
           >
             <Box
@@ -137,11 +137,15 @@ function CommunitySingle(props = {}) {
               <Box as="h1" fontSize={{ md: '95px' }}>
                 {props.data?.title}
               </Box>
-              <Box as="p" px={{ _: 's', sm: '80px', md: '140px', lg: '190px' }}>
+              <Box
+                as="p"
+                px={{ _: 's', sm: '80px', md: '140px', lg: '190px' }}
+                mb="s"
+              >
                 {props.data?.summary}
               </Box>
             </Box>
-            <Box display="flex" mb="l">
+            <Box display="flex" mb={{ _: 's', lg: 'l' }}>
               <VideoPlayButton
                 poster={props.data?.coverImage?.sources[0]?.uri}
                 title={props.data?.title}
@@ -180,11 +184,11 @@ function CommunitySingle(props = {}) {
 
         {lineups.length > 0 && (
           <Box textAlign="center" alignItems="center" mb="l" px={{ md: 'xxl' }}>
-            <Box as="h1" mb="0">{`Types of ${props.data?.title} Groups`}</Box>
+            <Box as="h1" mb="0">{`Types of Groups for ${props.data?.title}`}</Box>
             <Box
               as="p"
               mb="base"
-            >{`There's a ${props.data?.title} group for everyone`}</Box>
+            >{`There's a group for everyone!`}</Box>
             <Box display="flex" flexWrap="wrap" justifyContent="center" m="s">
               {lineups.map((item, i) => (
                 <HorizontalHighlightCard
