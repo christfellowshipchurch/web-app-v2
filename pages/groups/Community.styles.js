@@ -18,16 +18,15 @@ const Hero = styled.div`
   background-size: cover;
   background-position: center bottom;
 
-  min-height: 200px;
+  min-height: 70vh;
+
+  padding-right: ${themeGet('space.base')};
+  padding-left: ${themeGet('space.base')};
   padding-bottom: ${themeGet('space.s')};
+  margin-bottom: ${themeGet('space.m')};
 
-  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-    min-height: 400px;
-    background-image: url(/groups-cover-image-new.jpg);
-  }
-
-  @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
-    min-height: 500px;
+  @media screen and (min-width: ${themeGet('breakpoints.sm')}) {
+    min-height: 50vh;
   }
 
   ${system}
@@ -35,7 +34,7 @@ const Hero = styled.div`
 
 const Title = styled.h1`
   color: white;
-  font-size: ${rem('20px')};
+  font-size: ${rem('45px')};
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     font-size: ${rem('65px')};
@@ -50,15 +49,15 @@ const Title = styled.h1`
 const Summary = styled.p`
   color: white;
   padding-top: 0;
-  font-size: ${rem('10px')};
 
-  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-    font-size: ${rem('65px')};
-  }
+  padding-left: ${themeGet('space.base')};
+  padding-right: ${themeGet('space.base')};
 
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
-    font-size: ${rem('75px')};
+    padding-left: ${themeGet('space.l')};
+    padding-right: ${themeGet('space.l')};
   }
+
   ${system}
 `;
 
