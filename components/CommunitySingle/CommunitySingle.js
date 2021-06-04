@@ -109,7 +109,6 @@ function CommunitySingle(props = {}) {
     showFilterModal();
   }
 
-  console.log({ history: window.history });
 
   return (
     <>
