@@ -3,7 +3,6 @@ import ActionBarFeature from './ActionBarFeature';
 import AddToCalendar from './AddToCalendar';
 import AppHead from './AppHead';
 import AvatarListFeature from './AvatarListFeature';
-import BackButton from './BackButton';
 import BirthDateField from './BirthDateField';
 import Chat from './Chat';
 import ClientSideComponent from './ClientSideComponent';
@@ -56,7 +55,6 @@ export {
   AddToCalendar,
   AppHead,
   AvatarListFeature,
-  BackButton,
   BirthDateField,
   Chat,
   ClientSideComponent,

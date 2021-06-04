@@ -12,15 +12,16 @@ const Hero = styled.div`
   color: white;
   display: flex;
   flex-direction: column;
-  height: 298px;
+  min-height: 350px;
   justify-content: center;
   margin-bottom: ${themeGet('space.l')};
   text-align: center;
+  padding: ${themeGet('space.l')} ${themeGet('space.s')};
 
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     border-radius: ${themeGet('radii.base')};
     margin: ${themeGet('space.xl')} ${themeGet('space.xxl')};
-    height: 596px;
+    min-height: 596px;
   }
 
   ${system}
@@ -49,6 +50,17 @@ const NotifyMeSection = styled.section`
   }
 `;
 
+const BackButton = styled.div`
+  color: white;
+  margin-left: ${themeGet('space.s')};
+
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    margin-left: ${themeGet('space.xxl')};
+    color: black;
+  }
+`;
+
+CommunitySingle.BackButton = BackButton;
 CommunitySingle.Hero = Hero;
 CommunitySingle.NotifyMeSection = NotifyMeSection;
 
