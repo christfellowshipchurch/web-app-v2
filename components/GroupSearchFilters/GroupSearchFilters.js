@@ -77,14 +77,14 @@ function GroupSearchFilters(props = {}) {
               )}
               {preferences.length > 0 && (
                 <FilterButton
-                  label="Group Types"
+                  label="Hubs"
                   labelDetail={preferences.length}
                   onClick={handleChangeClick}
                 />
               )}
               {subPreferences.length > 0 && (
                 <FilterButton
-                  label="Lineups"
+                  label="Types of Groups"
                   labelDetail={subPreferences.length}
                   onClick={handleChangeClick}
                 />
