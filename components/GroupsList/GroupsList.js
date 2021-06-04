@@ -22,8 +22,8 @@ function GroupsList(props = {}) {
   const handleClick = group => event => {
     event.preventDefault();
     router.push(
-      `/groups/${slugify(group.title)}?id=${group.id}`,
-      `/groups/${slugify(group.title)}`
+      `/group/${slugify(group.title)}?id=${group.id}`,
+      `/group/${slugify(group.title)}`
     );
   };
 
@@ -41,7 +41,7 @@ function GroupsList(props = {}) {
             as="a"
             key={group.id}
             onClick={handleClick(group)}
-            href={`/groups/${slugify(group.title)}`}
+            href={`/group/${slugify(group.title)}`}
             Component={GroupCard}
             coverImage={group?.coverImage?.sources[0]?.uri}
             title={group.title}

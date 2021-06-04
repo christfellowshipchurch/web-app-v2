@@ -16,7 +16,7 @@ export default function Community(props) {
   const { title } = router.query;
 
   const preferenceOptions = {
-    preferencePath: ['community', title].join('/'),
+    preferencePath: ['groups', title].join('/'),
   };
   const { preference, subPreferences, loading } = useGroupPreferences(
     preferenceOptions

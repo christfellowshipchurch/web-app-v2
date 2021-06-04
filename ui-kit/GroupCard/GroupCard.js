@@ -162,6 +162,7 @@ const GroupCard = (props = {}) => {
             mt="auto"
             size="l"
             width="100%"
+            {...props?.callToAction?.buttonProps}
           >
             {props?.callToAction?.call}
           </Button>

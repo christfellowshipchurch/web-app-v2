@@ -37,7 +37,7 @@ function Sidebar(props = {}) {
 
     // Update search page URL
     router.push({
-      pathname: `/community/search`,
+      pathname: `/groups/search`,
       query: filtersState.valuesSerialized,
     });
     modalDispatch(hideModal());
