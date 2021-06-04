@@ -18,7 +18,7 @@ import { update as updateAuth, useAuth } from 'providers/AuthProvider';
 import {
   useGroupFilters,
   update,
-  updateOptions,
+  hydrate,
 } from 'providers/GroupFiltersProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
@@ -64,6 +64,7 @@ function CommunitySingle(props = {}) {
   // Pre-populate the Preference filter from the URL
   useEffect(() => {
     if (!filtersState.values.preferences?.includes(props.data?.title)) {
+      filtersDispatch(hydrate());
       filtersDispatch(update({ preferences: [props.data?.title] }));
     }
   }, [filtersState.values.preferences, filtersDispatch, props.data?.title]);
@@ -78,7 +79,10 @@ function CommunitySingle(props = {}) {
   }
 
   function handleOnClick() {
-    router.push('/groups/search');
+    router.push({
+      pathname: `/groups/search`,
+      query: filtersState.valuesSerialized,
+    });
   }
 
   function handleNotifyMeClick() {
