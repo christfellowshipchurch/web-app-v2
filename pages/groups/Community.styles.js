@@ -14,11 +14,7 @@ const Hero = styled.div`
   justify-content: space-between;
   flex-direction: column;
 
-  background-image: linear-gradient(
-      rgba(246, 246, 246, 0) 70%,
-      rgba(246, 246, 246, 1) 100%
-    ),
-    url(/groups-cover-image-new.jpg);
+  background-image: url(/groups-cover-image-new.jpg);
   background-size: cover;
   background-position: center bottom;
 
@@ -39,7 +35,7 @@ const Hero = styled.div`
 
 const Title = styled.h1`
   color: white;
-  font-size: ${rem('50px')};
+  font-size: ${rem('20px')};
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     font-size: ${rem('65px')};
@@ -54,7 +50,15 @@ const Title = styled.h1`
 const Summary = styled.p`
   color: white;
   padding-top: 0;
+  font-size: ${rem('10px')};
 
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    font-size: ${rem('65px')};
+  }
+
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    font-size: ${rem('75px')};
+  }
   ${system}
 `;
 
