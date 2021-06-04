@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowRight, PlayCircle } from 'phosphor-react';
+import { useTheme } from 'styled-components';
 
 import {
   ArticleLink,
@@ -144,11 +145,8 @@ function HomeFeedLargeArticle({ article }) {
   return (
     <Box position="relative" height="100%" width="100%">
       <LargeImage
-        position={{ _: 'relative', lg: 'absolute' }}
-        minHeight="200px"
-        top={0}
+        height="100%"
         dropShadow
-        bottom={-150}
         text={article?.title}
         color="white"
         src={article?.coverImage?.sources?.[0]?.uri}
@@ -185,6 +183,10 @@ function HomeFeedCTA({ authenticated }) {
     <MarketingHeadline
       image={{
         src: '/watch.jpeg',
+        height: '100%',
+        imageProps: {
+          height: '100%',
+        },
       }}
       title={
         <>
@@ -193,6 +195,10 @@ function HomeFeedCTA({ authenticated }) {
           </Heading>
         </>
       }
+      textProps={{
+        mb: 'xxl',
+        mt: 'l',
+      }}
       supertitle="Know someone in need?"
       description="Long Hollow is one church that meets in two locations just north of Nashville. We’re a community of believers with something for everyone. Whether you’re checking out Christ for the first time or are looking for a place to call home, you’re invited to discover your purpose and live it out at Long Hollow."
       actions={[
@@ -210,6 +216,10 @@ function HomeFeedCTA({ authenticated }) {
     <MarketingHeadline
       image={{
         src: '/watch.jpeg',
+        height: '100%',
+        imageProps: {
+          height: '100%',
+        },
       }}
       title={
         <>
@@ -218,6 +228,10 @@ function HomeFeedCTA({ authenticated }) {
           </Heading>
         </>
       }
+      textProps={{
+        mb: 'xxl',
+        mt: 'l',
+      }}
       supertitle="We'd like to know you"
       description="Long Hollow is one church that meets in two locations just north of Nashville. We’re a community of believers with something for everyone. Whether you’re checking out Christ for the first time or are looking for a place to call home, you’re invited to discover your purpose and live it out at Long Hollow."
       actions={[
@@ -237,6 +251,7 @@ function HomeFeedCTA({ authenticated }) {
 
 function HomeFeedContent(props = {}) {
   const router = useRouter();
+  const theme = useTheme();
 
   const largeArticle = props.articles?.[0]?.node;
   const miniArticles = props.articles?.slice(1, 3);
@@ -256,25 +271,25 @@ function HomeFeedContent(props = {}) {
       <Section>
         <CardGrid
           gridColumnGap="l"
-          columns={1}
-          breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
-          my={{ _: 'l', md: 'xxl' }}
-        >
-          <HomeFeedCTA authenticated={props.authenticated} />
-        </CardGrid>
-      </Section>
-      <Section>
-        <CardGrid
-          gridColumnGap="l"
           columns={2}
           breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
-          mb={{ _: 'l', md: 'xxl' }}
+          my={{ _: 'l', md: 'xxl' }}
         >
           <HomeFeedLargeArticle article={largeArticle} />
           <HomeFeedArticles articles={miniArticles} />
         </CardGrid>
       </Section>
-      <FullWidthCTA py="xxl" justifyContent="flex-start">
+      <Section>
+        <CardGrid
+          gridColumnGap="l"
+          columns={1}
+          breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
+          mb={{ _: 'l', md: 'xxl' }}
+        >
+          <HomeFeedCTA authenticated={props.authenticated} />
+        </CardGrid>
+      </Section>
+      <FullWidthCTA mt="-150px" py="xxl" justifyContent="flex-start">
         <Heading
           fontSize="66px"
           textAlign="center"
