@@ -35,6 +35,11 @@ module.exports = {
         destination: '/groups/:title',
         permanent: true,
       },
+      {
+        source: '/items/42eda0fe3fbf3f200a2872df727d4440',
+        destination: '/groups',
+        permanent: true,
+      },
       // TODO: Uncomment these lines to hide Group Finder.
       // NOTE: We can't get `config/flags` in this file.
       // {
