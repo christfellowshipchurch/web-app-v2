@@ -170,12 +170,6 @@ export default function Item() {
   const { title } = router.query;
   const itemId = getItemId(title);
 
-  // ! WARNING: this is a very temporary fix for a bad email that was sent out.
-  /** This is a redirect for Group Finder */
-  if (itemId === 'InformationalContentItem:42eda0fe3fbf3f200a2872df727d4440') {
-    router.push('/groups');
-  }
-
   const { loading, data } = useQuery(GET_CONTENT_ITEM, {
     variables: { id: itemId },
     fetchPolicy: 'cache-and-network',
