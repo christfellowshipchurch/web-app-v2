@@ -5,13 +5,19 @@ import { useRouter } from 'next/router';
 
 import { Box, Button, HorizontalHighlightCard, Icon, utils } from 'ui-kit';
 import {
+  BackButton,
   CommunityActionSection,
   CommunityLeaderActions,
   Footer,
   Header,
   SEO,
 } from 'components';
-import { useCurrentUser, useNotifyMeBanner, useGroupFacetFilters } from 'hooks';
+import {
+  useCurrentBreakpoint,
+  useCurrentUser,
+  useNotifyMeBanner,
+  useGroupFacetFilters,
+} from 'hooks';
 
 import { htmlToReactParser } from 'utils';
 import { update as updateAuth, useAuth } from 'providers/AuthProvider';
@@ -105,27 +111,17 @@ function CommunitySingle(props = {}) {
 
     showFilterModal();
   }
+
   return (
     <>
       <SEO title={props.data?.title} />
       <Header />
       <Box width="100%" px="xxs" py={{ _: 's', lg: 'base' }}>
-        <Box
-          as="a"
-          textDecoration="none"
-          px="xxl"
-          href="#0"
-          onClick={() => router.back()}
-        >
-          <Icon name="arrowLeft" color="fg" />
-          <Box as="span" p="xs" color="fg">
-            back
-          </Box>
-        </Box>
+        <BackButton />
 
-        <Box my={'-2.5rem'}>
+        <Box mt={'-2.5rem'}>
           <Styled.Hero
-            my={'-1.5rem'}
+            mt={'-1.5rem'}
             src={props.data?.coverImage?.sources[0]?.uri}
           >
             <Box
