@@ -18,7 +18,7 @@ import { update as updateAuth, useAuth } from 'providers/AuthProvider';
 import {
   useGroupFilters,
   update,
-  hydrate,
+  resetValues,
 } from 'providers/GroupFiltersProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
@@ -64,7 +64,7 @@ function CommunitySingle(props = {}) {
   // Pre-populate the Preference filter from the URL
   useEffect(() => {
     if (!filtersState.values.preferences?.includes(props.data?.title)) {
-      filtersDispatch(hydrate());
+      filtersDispatch(resetValues());
       filtersDispatch(update({ preferences: [props.data?.title] }));
     }
   }, [filtersState.values.preferences, filtersDispatch, props.data?.title]);
@@ -184,11 +184,11 @@ function CommunitySingle(props = {}) {
 
         {lineups.length > 0 && (
           <Box textAlign="center" alignItems="center" mb="l" px={{ md: 'xxl' }}>
-            <Box as="h1" mb="0">{`Types of Groups for ${props.data?.title}`}</Box>
             <Box
-              as="p"
-              mb="base"
-            >{`There's a group for everyone!`}</Box>
+              as="h1"
+              mb="0"
+            >{`Types of Groups for ${props.data?.title}`}</Box>
+            <Box as="p" mb="base">{`There's a group for everyone!`}</Box>
             <Box display="flex" flexWrap="wrap" justifyContent="center" m="s">
               {lineups.map((item, i) => (
                 <HorizontalHighlightCard

@@ -351,5 +351,4 @@ export {
   toggleValue,
   update,
   updateOptions,
-  hydrate,
 };
