@@ -274,7 +274,7 @@ function HomeFeedContent(props = {}) {
           <HomeFeedArticles articles={miniArticles} />
         </CardGrid>
       </Section>
-      <FullWidthCTA pt="171px" pb="171px" justifyContent="flex-start">
+      <FullWidthCTA py="xxl" justifyContent="flex-start">
         <Heading
           fontSize="66px"
           textAlign="center"
