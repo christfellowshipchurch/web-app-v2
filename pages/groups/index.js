@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 import flags from 'config/flags';
-import { Box, Cell, Icon, utils } from 'ui-kit';
+import { Box, Button, Cell, Icon, utils } from 'ui-kit';
 import {
   CommunityActionSection,
   CommunityLeaderActions,
@@ -68,19 +68,31 @@ export default function Community(props = {}) {
       <Box display="grid" gridTemplateRows="auto 1fr auto" height="100vh">
         <Header />
         <Styled.Hero>
+          <Box />
           <Cell
-              maxWidth={DEFAULT_CONTENT_WIDTH}
-              p={{ _: 'xs', md: 'base' }}
-              textAlign="center"
-            >
-              <Styled.Title>Life is better together.</Styled.Title>
-              <Styled.Summary>
-                We want to help you find community, grow in your relationship with
-                God, and build the kind of friendships we all need to live out our
-                faith. Groups and classes help you know where to look for
-                direction and have the right people encouraging you along the way.
-              </Styled.Summary>
-            </Cell>
+            maxWidth={DEFAULT_CONTENT_WIDTH}
+            p={{ _: 'xs', md: 'base' }}
+            textAlign="center"
+            display="flex"
+            alignContent="center"
+            flexDirection="column"
+          >
+            <Styled.Title>Life is better together.</Styled.Title>
+            <Styled.Summary>
+              We want to help you find community, grow in your relationship with
+              God, and build the kind of friendships we all need to live out our
+              faith. Groups and classes help you know where to look for
+              direction and have the right people encouraging you along the way.
+            </Styled.Summary>
+          </Cell>
+
+          <Box textAlign="center" as="p" fontStyle="italic" color="white">
+            Already in a group? View all of your groups{' '}
+            <Box as="a" onClick={handleMyGroups} href="/connect" color="white">
+              here
+            </Box>
+            .
+          </Box>
         </Styled.Hero>
         <Box>
           <Cell
@@ -92,15 +104,6 @@ export default function Community(props = {}) {
               <CommunitiesProvider Component={CommunityList} />
             </Box>
           </Cell>
-
-          <Box textAlign="center" as="p" fontStyle="italic">
-            Already in a group? View all of your groups{' '}
-            <Box as="a" onClick={handleMyGroups} href="/connect">
-              here
-            </Box>
-              .
-          </Box>
-
         </Box>
         <CommunityActionSection handleOnClick={handleOnClick} />
         <CommunityLeaderActions />

@@ -9,6 +9,11 @@ const Community = styled.div`
 `;
 
 const Hero = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+
   background-image: linear-gradient(
       rgba(246, 246, 246, 0) 70%,
       rgba(246, 246, 246, 1) 100%
@@ -17,22 +22,16 @@ const Hero = styled.div`
   background-size: cover;
   background-position: center bottom;
 
-  height: 200px;
-
-  // linear-gradient(
-  //   rgba(246, 246, 246, 0) 60%,
-  //   rgba(246, 246, 246, 0.5) 80%,
-  //   rgba(246, 246, 246, 1) 100%
-  // ),
+  min-height: 200px;
+  padding-bottom: ${themeGet('space.s')};
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-    height: 400px;
-    background-image: 
-      url(/groups-cover-image-new.jpg);
+    min-height: 400px;
+    background-image: url(/groups-cover-image-new.jpg);
   }
 
   @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
-    height: 500px;
+    min-height: 500px;
   }
 
   ${system}
@@ -41,7 +40,6 @@ const Hero = styled.div`
 const Title = styled.h1`
   color: white;
   font-size: ${rem('50px')};
-  display: flex;
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     font-size: ${rem('65px')};
@@ -55,7 +53,6 @@ const Title = styled.h1`
 
 const Summary = styled.p`
   color: white;
-  padding: ${themeGet('space.l')};
   padding-top: 0;
 
   ${system}
