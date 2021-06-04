@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 import flags from 'config/flags';
-import { Button, Box, Cell, Icon, Divider, Loader, utils } from 'ui-kit';
+import { BackButton, Button, Box, Cell, Divider, Loader, utils } from 'ui-kit';
 import {
   Footer,
   GroupSearchFilters,
@@ -127,17 +127,7 @@ export default function CommunitySearch() {
           px="base"
           py={{ _: 'base', lg: 'l' }}
         >
-          <Box
-            as="a"
-            textDecoration="none"
-            href="#0"
-            onClick={() => router.back()}
-          >
-            <Icon name="arrowLeft" color="fg" />
-            <Box as="span" p="xs" color="fg">
-              back
-            </Box>
-          </Box>
+          <CustomLink Component={BackButton} color="black" href="/groups" />
 
           <Box
             display="flex"

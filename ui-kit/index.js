@@ -9,6 +9,7 @@ import GlobalStyles, { styles as globalStyles } from './GlobalStyles';
 
 import ActionBar, { ActionBarItem } from './ActionBar';
 import Avatar from './Avatar';
+import BackButton from './BackButton';
 import Box from './Box';
 import Button from './Button';
 import Card from './Card';
@@ -45,6 +46,7 @@ export {
   ActionBar,
   ActionBarItem,
   Avatar,
+  BackButton,
   Box,
   Button,
   Card,
