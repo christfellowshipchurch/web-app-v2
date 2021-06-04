@@ -13,6 +13,7 @@ export default function FilterField(props = {}) {
         display="flex"
         flexDirection="row"
         justifyContent="space-between"
+        alignItems="center"
         mb="base"
       >
         <Box as="h4" mb="0">

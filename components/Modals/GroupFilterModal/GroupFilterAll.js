@@ -86,7 +86,7 @@ function GroupFilterAll(props = {}) {
           onClear={handleClear}
         />
         <FilterField
-          label="Group Types"
+          label="Hubs"
           name="preferences"
           options={preferences?.map(({ title }) => title)}
           values={filtersState.values.preferences}
@@ -94,7 +94,7 @@ function GroupFilterAll(props = {}) {
           onClear={handleClear}
         />
         <FilterField
-          label="Lineups"
+          label="Type of Group"
           name="subPreferences"
           options={subPreferences?.map(({ title }) => title)}
           values={filtersState.values.subPreferences}
