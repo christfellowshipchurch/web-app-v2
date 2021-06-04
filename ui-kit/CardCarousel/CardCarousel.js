@@ -6,6 +6,7 @@ import 'react-multi-carousel/lib/styles.css';
 import { Box, Icon } from 'ui-kit';
 
 import Styled from './CardCarousel.styles';
+import { useCurrentBreakpoint } from 'hooks';
 
 const CardCarousel = (props = {}) => {
   const responsive = {
@@ -79,16 +80,22 @@ const CardCarousel = (props = {}) => {
    */
   const isCarousel = props.children?.length > props.cardsDisplayed;
 
+  const currentBreakpoint = useCurrentBreakpoint();
+
   return (
     <Box {...props}>
       <Carousel
         ssr
         responsive={responsive}
-        arrows={false}
+        arrows={currentBreakpoint.isMedium || currentBreakpoint.isSmall}
         customTransition={`transform ${props.animationSpeed}ms ease-in-out`}
         ref={el => (carousel = el)}
         renderButtonGroupOutside={isCarousel && !props.hideArrows}
-        customButtonGroup={!props.hideArrows ? <CustomArrows /> : null}
+        customButtonGroup={
+          !props.hideArrows && currentBreakpoint.isLarge ? (
+            <CustomArrows />
+          ) : null
+        }
       >
         {props.children}
       </Carousel>
