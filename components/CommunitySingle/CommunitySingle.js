@@ -184,11 +184,11 @@ function CommunitySingle(props = {}) {
 
         {lineups.length > 0 && (
           <Box textAlign="center" alignItems="center" mb="l" px={{ md: 'xxl' }}>
-            <Box as="h1" mb="0">{`Types of ${props.data?.title} Groups`}</Box>
+            <Box as="h1" mb="0">{`Types of Groups for ${props.data?.title}`}</Box>
             <Box
               as="p"
               mb="base"
-            >{`There's a ${props.data?.title} group for everyone`}</Box>
+            >{`There's a group for everyone!`}</Box>
             <Box display="flex" flexWrap="wrap" justifyContent="center" m="s">
               {lineups.map((item, i) => (
                 <HorizontalHighlightCard
