@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 
-import { useAuthenticateCredentials, useForm, useVerifyPin } from 'hooks';
+import {
+  useAuthenticateCredentials,
+  useForm,
+  useVerifyPin,
+  useRegisterWithEmail,
+  useRegisterWithSms,
+} from 'hooks';
 import { useAuth, update as updateAuth } from 'providers/AuthProvider';
 import { hideModal, useModalDispatch } from 'providers/ModalProvider';
 import { Box, Button, TextInput } from 'ui-kit';
@@ -9,9 +15,12 @@ import ResetPassword from './ResetPassword';
 
 const COPY = {
   DESCRIPTION: {
-    sms:
+    smsNew:
       'Enter in the Confirmation Code that was texted to your mobile phone number.',
-    password: 'Enter in your existing password or create your password below.',
+    smsExisting:
+      'Enter in the Confirmation Code that was texted to your mobile phone number.',
+    passwordExisting: 'Enter in your existing password below.',
+    passwordNew: 'Create your password below.',
   },
   LABEL: {
     sms: 'Confirmation Code',
@@ -24,8 +33,12 @@ function AuthConfirm() {
   const [error, setError] = useState(null);
   const [state, dispatch] = useAuth();
   const modalDispatch = useModalDispatch();
+
+  const [registerUserWithSms] = useRegisterWithSms();
+  const [registerUserWithEmail] = useRegisterWithEmail();
   const [verifyPin] = useVerifyPin();
   const [authenticateCredentials] = useAuthenticateCredentials();
+
   const onError = () => {
     setStatus('ERROR');
     setError({
@@ -43,16 +56,33 @@ function AuthConfirm() {
     setStatus('LOADING');
     if (state.type === 'sms') {
       try {
-        await verifyPin({
-          variables: { phone: state.identity, code: passcode },
-          update: (
-            cache,
-            { data: { authenticateWithSms: { token } = {} } = {} }
-          ) => {
-            onSuccess(token);
-          },
-          onError,
-        });
+        if (state.userExists) {
+          await verifyPin({
+            variables: { phone: state.identity, code: passcode },
+            update: (
+              cache,
+              { data: { authenticateWithSms: { token } = {} } = {} }
+            ) => {
+              onSuccess(token);
+            },
+            onError,
+          });
+        } else {
+          await registerUserWithSms({
+            variables: {
+              identity: state.identity,
+              password: passcode,
+              userProfile: state.userProfile,
+            },
+            update: (
+              cache,
+              { data: { registerWithSms: { token } = {} } = {} }
+            ) => {
+              onSuccess(token);
+            },
+            onError,
+          });
+        }
       } catch (error) {
         onError();
         console.log(error);
@@ -60,13 +90,33 @@ function AuthConfirm() {
     }
     if (state.type === 'password') {
       try {
-        await authenticateCredentials({
-          variables: { email: state.identity, password: passcode },
-          update: (cache, { data: { authenticate: { token } = {} } = {} }) => {
-            onSuccess(token);
-          },
-          onError,
-        });
+        if (state.userExists) {
+          await authenticateCredentials({
+            variables: { email: state.identity, password: passcode },
+            update: (
+              cache,
+              { data: { authenticate: { token } = {} } = {} }
+            ) => {
+              onSuccess(token);
+            },
+            onError,
+          });
+        } else {
+          await registerUserWithEmail({
+            variables: {
+              identity: state.identity,
+              password: passcode,
+              userProfile: state.userProfile,
+            },
+            update: (
+              cache,
+              { data: { registerPerson: { token } = {} } = {} }
+            ) => {
+              onSuccess(token);
+            },
+            onError,
+          });
+        }
       } catch (error) {
         onError();
         console.log(error);
@@ -75,11 +125,14 @@ function AuthConfirm() {
   });
 
   const isLoading = status === 'LOADING';
+  const descriptionKey = `${state.type}${
+    state.userExists ? 'Existing' : 'New'
+  }`;
 
   return (
     <>
       <Box as="p" color="subdued" mb="l">
-        {COPY.DESCRIPTION[state.type]}
+        {COPY.DESCRIPTION[descriptionKey]}
       </Box>
       <Box as="form" action="" onSubmit={handleSubmit} px="xl">
         <Box mb="l">
