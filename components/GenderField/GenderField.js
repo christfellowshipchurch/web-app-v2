@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Box, FormLabel, Radio } from 'ui-kit';
 
 function GenderField(props = {}) {
-  const initialValue = props.initialValue?.toLowerCase();
+  const initialValue = props.initialValue;
 
   return (
     <>
@@ -13,21 +13,21 @@ function GenderField(props = {}) {
         <Box mr="s">
           <Radio
             label="Male"
-            id="male"
-            value="male"
+            id="Male"
+            value="Male"
             name="gender"
             onChange={props.onChange}
-            checked={initialValue === 'male'}
+            checked={initialValue === 'Male'}
           />
         </Box>
         <Box>
           <Radio
             label="Female"
-            id="female"
+            id="Female"
             name="gender"
-            value="female"
+            value="Female"
             onChange={props.onChange}
-            checked={initialValue === 'female'}
+            checked={initialValue === 'Female'}
           />
         </Box>
       </Box>
