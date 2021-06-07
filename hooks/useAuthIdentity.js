@@ -15,9 +15,12 @@ function useAuthIdentity() {
   async function handleAuthIdentity({
     identity: _identity,
     userExists = false,
+    userProfile: _userProfile = [],
     nextStep,
   }) {
     const identity = _identity || state.identity;
+    const userProfile = _userProfile || state.userProfile;
+
     const isValidPhoneNumber = validatePhoneNumber(identity);
     const isValidEmail = validateEmail(identity);
     const step = nextStep;
@@ -29,6 +32,7 @@ function useAuthIdentity() {
           identity,
           type,
           userExists,
+          userProfile,
         })
       );
       modalDispatch(showStep(step));
@@ -41,24 +45,28 @@ function useAuthIdentity() {
 
     // If they used a phone number, we need to send a PIN.
     if (isValidPhoneNumber) {
-      try {
-        await requestPin({
-          variables: {
-            phone: identity,
-          },
-          update: (
-            cache,
-            {
-              data: {
-                requestSmsLoginPin: { success },
-              },
-            }
-          ) => {
-            if (success) onSuccess('sms');
-          },
-        });
-      } catch (requestPinError) {
-        onError(requestPinError);
+      if (nextStep > 1) {
+        try {
+          await requestPin({
+            variables: {
+              phone: identity,
+            },
+            update: (
+              cache,
+              {
+                data: {
+                  requestSmsLoginPin: { success },
+                },
+              }
+            ) => {
+              if (success) onSuccess('sms');
+            },
+          });
+        } catch (requestPinError) {
+          onError(requestPinError);
+        }
+      } else {
+        onSuccess('sms');
       }
     }
 

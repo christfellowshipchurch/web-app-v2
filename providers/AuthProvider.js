@@ -14,6 +14,7 @@ const initialState = {
   type: null,
   userExists: false,
   onSuccess: () => false,
+  userProfile: [],
 };
 
 const actionTypes = {
