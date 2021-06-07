@@ -40,21 +40,29 @@ function Nav(props = {}) {
             href="#0"
             display="block"
             border="2px solid"
-            borderColor="fg"
+            borderColor={props?.darkMode ? 'white' : 'fg'}
             borderRadius="50%"
             lineHeight="38px"
             size="45px"
             textAlign="center"
             onClick={handleAuthClick}
           >
-            <Icon name="user" color="fg" size="28px" />
+            <Icon
+              name="user"
+              color={props?.darkMode ? 'white' : 'fg'}
+              size="28px"
+            />
             <Box as="span" className="srt">
               User
             </Box>
           </Box>
         )}
       </ClientSideComponent>
-      <CustomLink mr={'-5rem'} href="/discover" color="fg">
+      <CustomLink
+        mr={'-5rem'}
+        href="/discover"
+        color={props?.darkMode ? 'white' : 'fg'}
+      >
         <Icon name="search" />
       </CustomLink>
       <Menu
@@ -64,8 +72,8 @@ function Nav(props = {}) {
         }}
         renderTrigger={({ toggle }) => (
           <Box as="a" textDecoration="none" href="#0" onClick={toggle}>
-            <Icon name="menu" color="fg" />
-            <Box as="span" p="xs" color="fg" >
+            <Icon name="menu" color={props?.darkMode ? 'white' : 'fg'} />
+            <Box as="span" p="xs" color={props?.darkMode ? 'white' : 'fg'}>
               Menu
             </Box>
           </Box>
@@ -129,6 +137,11 @@ function MenuLinks(props = {}) {
 Nav.propTypes = {
   ...systemPropTypes,
   data: PropTypes.object,
+  darkMode: PropTypes.bool,
+};
+
+Nav.defaultProps = {
+  darkMode: false,
 };
 
 export default Nav;

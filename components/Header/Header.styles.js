@@ -1,12 +1,23 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
 import { system } from 'ui-kit';
 
+const colorMode = ({ darkMode, darkBg }) => {
+  if (darkMode) {
+    return css`
+      background-color: ${darkBg};
+      box-shadow: none;
+    `;
+  }
+  return css`
+    background-color: ${themeGet('colors.paper')};
+    box-shadow: ${themeGet('shadows.base')};
+  `;
+};
+
 const Header = styled.header`
-  background-color: ${themeGet('colors.paper')};
   color: ${themeGet('colors.fg')};
-  box-shadow: ${themeGet('shadows.base')};
   align-items: center;
   justify-content: center;
   grid-template-columns: auto 1fr;
@@ -26,6 +37,7 @@ const Header = styled.header`
     padding: ${themeGet('space.base')} ${themeGet('space.xl')};
   }
 
+  ${colorMode}
   ${system}
 `;
 
