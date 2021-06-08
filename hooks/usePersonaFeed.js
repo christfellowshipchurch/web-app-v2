@@ -9,6 +9,8 @@ export const GET_PERSONA_FEED = gql`
           title
           summary
           ... on UniversalContentItem {
+            showOnHomePage
+            featureOnHomePage
             linkURL
             linkText
             coverImage {

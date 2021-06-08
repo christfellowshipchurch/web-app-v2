@@ -29,6 +29,8 @@ export const GET_CONTENT_CHANNEL = gql`
                     uri
                   }
                 }
+                featureOnHomePage
+                showOnHomePage
                 showTitleOverImage
                 subtitle
                 isFeatured

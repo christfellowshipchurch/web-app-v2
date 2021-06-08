@@ -41,7 +41,14 @@ export async function getStaticProps() {
   const articles = await apolloClient.query({
     query: GET_CONTENT_CHANNEL,
     variables: {
-      itemId: getChannelId(IDS.ARTICLES),
+      itemId: getChannelId(IDS.CHANNELS.ARTICLES),
+    },
+  });
+
+  const events = await apolloClient.query({
+    query: GET_CONTENT_CHANNEL,
+    variables: {
+      itemId: getChannelId(IDS.CHANNELS.EVENTS),
     },
   });
 
@@ -49,6 +56,7 @@ export async function getStaticProps() {
     props: {
       initialApolloState: apolloClient.cache.extract(),
       articles: articles?.data?.node?.childContentItemsConnection?.edges,
+      events: events?.data?.node?.childContentItemsConnection?.edges,
       sermon: {
         ...sermonRequest?.data?.node,
         videos: latestSermon?.videos,

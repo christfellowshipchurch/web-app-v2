@@ -107,6 +107,7 @@ function FullLengthSermon(props = {}) {
         title={props.sermon?.title}
         summary={props.sermon?.summary}
         subtitle={clips?.length ? 'HIGHLIGHTS FROM' : ''}
+        mb={{ _: 'l', md: 'xxl' }}
       />
       {clips?.length ? (
         <Box
@@ -164,7 +165,7 @@ function HomeFeedLargeArticle({ article }) {
 function HomeFeedArticles({ articles }) {
   return (
     <ArticleLinks fullWidth>
-      {articles.map(({ node: article }, i) => (
+      {articles.map((article, i) => (
         <ArticleLink
           key={i}
           color="quaternary"
@@ -253,8 +254,12 @@ function HomeFeedContent(props = {}) {
   const router = useRouter();
   const theme = useTheme();
 
-  const largeArticle = props.articles?.[0]?.node;
-  const miniArticles = props.articles?.slice(1, 3);
+  const articles = props.articles || [];
+
+  const largeArticle = articles.find(article => article?.featureOnHomePage);
+  const miniArticles = articles
+    .filter(article => !article?.featureOnHomePage && article?.showOnHomePage)
+    .slice(1, 3);
 
   // Fixes a very strange static generation error I was running into.
   // In effect - when this page was rendered for an authed user
@@ -268,17 +273,19 @@ function HomeFeedContent(props = {}) {
 
   return (
     <React.Fragment key={[props.authenticated, serverSide].join('-')}>
-      <Section>
-        <CardGrid
-          gridColumnGap="l"
-          columns={2}
-          breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
-          my={{ _: 'l', md: 'xxl' }}
-        >
-          <HomeFeedLargeArticle article={largeArticle} />
-          <HomeFeedArticles articles={miniArticles} />
-        </CardGrid>
-      </Section>
+      {largeArticle || miniArticles?.length ? (
+        <Section>
+          <CardGrid
+            gridColumnGap="l"
+            columns={2}
+            breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
+            mb={{ _: 'l', md: 'xxl' }}
+          >
+            <HomeFeedLargeArticle article={largeArticle} />
+            <HomeFeedArticles articles={miniArticles} />
+          </CardGrid>
+        </Section>
+      ) : null}
       <Section>
         <CardGrid
           gridColumnGap="l"
@@ -350,14 +357,26 @@ function HomeFeedContent(props = {}) {
 
 function HomeFeed(props = {}) {
   const { authenticated } = useCurrentUser();
-  const { articles } = usePersonaFeed({ skip: !authenticated });
+  const { articles: personaArticles } = usePersonaFeed({
+    skip: !authenticated,
+  });
+
+  let articles = [];
+
+  if (authenticated) {
+    articles = personaArticles;
+  } else {
+    articles = [...(props.articles || []), ...(props.events || [])];
+  }
+
+  articles = articles.map(({ node }) => node);
 
   return (
     <>
       <FullLengthSermon {...props} />
       <HomeFeedContent
         {...props}
-        articles={articles || props.articles}
+        articles={articles}
         authenticated={authenticated}
       />
     </>
