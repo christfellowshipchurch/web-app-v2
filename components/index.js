@@ -19,7 +19,7 @@ import DiscoverFiltersMap from './DiscoverFiltersMap';
 import DiscoverItemsList from './DiscoverItemsList';
 import EventSingle from './EventSingle';
 import EventsList from './EventsList';
-import ExternalHome from './ExternalHome';
+import HeroLanding from './HeroLanding';
 import FeatureFeed from './FeatureFeed';
 import FilterField from './FilterField';
 import Footer from './Footer';
@@ -72,7 +72,7 @@ export {
   DiscoverItemsList,
   EventSingle,
   EventsList,
-  ExternalHome,
+  HeroLanding,
   FeatureFeed,
   FilterField,
   Footer,
