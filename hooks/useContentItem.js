@@ -5,6 +5,11 @@ export const GET_CONTENT_ITEM = gql`
     node(id: $itemId) {
       id
       ... on UniversalContentItem {
+        seriesImage {
+          sources {
+            uri
+          }
+        }
         showTitleOverImage
         title
         summary
