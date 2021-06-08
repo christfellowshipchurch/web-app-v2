@@ -48,6 +48,7 @@ function Nav(props = {}) {
           <Box as="li">
             {authenticated ? (
               <Menu.Link href="/connect" px="base" py="xs">
+                <Icon name="user" mr="s" size="18" />
                 Connect
               </Menu.Link>
             ) : null}
@@ -61,11 +62,24 @@ function Nav(props = {}) {
                 onClick={handleLogoutClick}
                 px="base"
                 py="xs"
+                mt="10px"
+                borderTop="1px solid"
+                borderColor="border"
               >
-                Log out
+                <Icon name="signOut" mr="s" size="18" />
+                Sign out
               </Menu.Link>
             ) : (
-              <Menu.Link href="#0" onClick={handleAuthClick} px="base" py="xs">
+              <Menu.Link
+                href="#0"
+                onClick={handleAuthClick}
+                px="base"
+                py="xs"
+                mt="10px"
+                borderTop="1px solid"
+                borderColor="border"
+              >
+                <Icon name="signIn" mr="s" size="18" />
                 Sign in
               </Menu.Link>
             )}
@@ -80,6 +94,7 @@ function Primary(props = {}) {
   return props.data.map((item, idx) => (
     <Box key={idx} as="li">
       <CustomLink href={item.action} Component={Menu.Link} px="base" py="xs">
+        <Icon name={item.icon} mr="s" size="18" />
         {item.call}
       </CustomLink>
     </Box>
@@ -98,6 +113,7 @@ function MenuLinks(props = {}) {
   return props.data.map((item, idx) => (
     <Box key={idx} as="li">
       <CustomLink href={item.action} Component={Menu.Link} px="base" py="xs">
+        <Icon name={item.icon} mr="s" size="18" />
         {item.call}
       </CustomLink>
     </Box>
