@@ -28,32 +28,6 @@ function Nav(props = {}) {
   return (
     <Styled>
       <QuickAction data={props.data.quickAction} />
-      <ClientSideComponent>
-        {authenticated ? (
-          <CurrentUserProvider
-            Component={UserAvatar}
-            handleAuthClick={handleAuthClick}
-          />
-        ) : (
-          <Box
-            as="a"
-            href="#0"
-            display="block"
-            border="2px solid"
-            borderColor="fg"
-            borderRadius="50%"
-            lineHeight="38px"
-            size="45px"
-            textAlign="center"
-            onClick={handleAuthClick}
-          >
-            <Icon name="user" color="fg" size="28px" />
-            <Box as="span" className="srt">
-              User
-            </Box>
-          </Box>
-        )}
-      </ClientSideComponent>
       <CustomLink mr={'-5rem'} href="/discover" color="fg">
         <Icon name="search" />
       </CustomLink>
@@ -65,7 +39,7 @@ function Nav(props = {}) {
         renderTrigger={({ toggle }) => (
           <Box as="a" textDecoration="none" href="#0" onClick={toggle}>
             <Icon name="menu" color="fg" />
-            <Box as="span" p="xs" color="fg" >
+            <Box as="span" p="xs" color="fg">
               Menu
             </Box>
           </Box>
@@ -74,6 +48,13 @@ function Nav(props = {}) {
         menuWidth="175px"
       >
         <List py="xs" space="0">
+          <Box as="li">
+            {authenticated ? (
+              <Menu.Link href="/connect" px="base" py="xs">
+                Connect
+              </Menu.Link>
+            ) : null}
+          </Box>
           <Primary data={props.data.navigationLinks} />
           <MenuLinks data={props.data.menuLinks} />
           <Box as="li">
