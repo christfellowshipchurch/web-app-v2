@@ -28,9 +28,6 @@ function Nav(props = {}) {
   return (
     <Styled>
       <QuickAction data={props.data.quickAction} />
-      <CustomLink mr={'-5rem'} href="/discover" color="fg">
-        <Icon name="search" />
-      </CustomLink>
       <Menu
         cardContentProps={{
           p: '0',
