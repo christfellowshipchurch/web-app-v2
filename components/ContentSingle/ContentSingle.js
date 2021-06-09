@@ -2,16 +2,24 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 
-import { Box, Avatar, Loader } from 'ui-kit';
+import { Box, Avatar, Loader, Card, Button } from 'ui-kit';
 import { ContentLayout, Share } from 'components';
+import { useNodeActions } from 'hooks';
 
 import ContentVideo from './ContentVideo';
 import ContentVideosList from './ContentVideosList';
+import { id } from 'date-fns/locale';
 
 function ContentSingle(props = {}) {
   const [currentVideo, setCurrentVideo] = useState(
     Array.isArray(props.data?.videos) ? props.data.videos[0] : null
   );
+
+  const { actions } = useNodeActions({
+    variables: {
+      nodeId: props?.data?.id,
+    },
+  });
 
   useEffect(() => {
     // Do we have videos now, when we didn't before?
@@ -58,6 +66,8 @@ function ContentSingle(props = {}) {
     }
   };
 
+  console.log({ actions });
+
   return (
     <ContentLayout
       mode={mode}
@@ -100,12 +110,32 @@ function ContentSingle(props = {}) {
         </Box>
       )}
       contentTitleE={videos?.length >= 2 ? 'Videos' : null}
+      // renderContentE={() => (
+      //   <ContentVideosList
+      //     thumbnail={coverImageUri}
+      //     videos={videos}
+      //     onSelectVideo={handleSelectVideo}
+      //   />
+      // )}
       renderContentE={() => (
-        <ContentVideosList
-          thumbnail={coverImageUri}
-          videos={videos}
-          onSelectVideo={handleSelectVideo}
-        />
+        <Card
+          boxShadow="base"
+          display="flex"
+          flexDirection="column"
+          p={{ _: 's', md: 'base' }}
+        >
+          {actions?.map((n, i) => (
+            <Button
+              as="a"
+              href={n.action}
+              key={i}
+              my={'s'}
+              target={n.action.includes('http') ? '_blank' : ''}
+            >
+              {n.title}
+            </Button>
+          ))}
+        </Card>
       )}
       htmlContent={htmlContent}
       features={featureFeed?.features}
