@@ -3,10 +3,10 @@ import { themeGet } from '@styled-system/theme-get';
 
 import { system } from 'ui-kit';
 
-const colorMode = ({ darkMode, darkBg }) => {
+const colorMode = ({ darkMode }) => {
   if (darkMode) {
     return css`
-      background-color: ${darkBg};
+      background-color: rgba(0, 0, 0, 0.5);
       box-shadow: none;
     `;
   }

@@ -21,23 +21,30 @@ const HeroLanding = styled.div`
 `;
 
 const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   z-index: 2;
   color: ${themeGet('colors.white')};
   padding: 20px;
-  text-align: center;
 
-  @media screen and (min-width: ${themeGet('breakpoints.xs')}) {
+  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
     max-width: 100%;
+    margin-top: ${themeGet('space.xxl')};
+    margin-bottom: 0px;
   }
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     max-width: 60%;
+    margin-top: 0px;
+    margin-bottom: ${themeGet('space.xxl')};
   }
 
   ${system}
 `;
 
 const Title = styled.h1`
-  font-size: 3rem;
+  font-size: 2.8rem;
 `;
 
 const BackgroundVideo = styled.video`
@@ -48,7 +55,7 @@ const BackgroundVideo = styled.video`
   right: 0;
 
   min-width: 100%;
-  min-height: 100%;
+  min-height: 110%;
 `;
 
 const VideoOverlay = styled.div`

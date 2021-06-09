@@ -19,24 +19,26 @@ export default function HeroLandingPage(props = {}) {
     <HeroLanding
       heroTitle="Looking for more out of life?"
       heroSummary="Church is a great place to start. Christ Fellowship Church is helping thousands of people every week discover there’s more to life and that it’s easier to find than you think."
-      backgroundVideo="/home-background-vid.mp4"
+      backgroundVideo="/external-landing/home-background-vid.mp4"
       actions={[
         {
           title: "I'm New Here",
           url: '#new-here',
+          rounded: true,
         },
         {
           title: 'I Attend CF',
           url: '',
           variant: 'secondary',
-          // color: 'white',
-          // borderColor: 'white',
+          rounded: true,
+          color: 'white',
+          borderColor: 'white',
           onClick: handleAuthClick,
         },
       ]}
     >
       {contentBlocks.map((block, i) => (
-        <ContentBlock key={i} {...block} />
+        <ContentBlock key={i} px="base" {...block} />
       ))}
     </HeroLanding>
   );

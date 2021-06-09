@@ -20,7 +20,7 @@ export default function HeroLanding(props = {}) {
         />
         <Styled.VideoOverlay />
 
-        <Styled.Content mt={{ _: 'xxl', md: '' }}>
+        <Styled.Content>
           <Styled.Title>{props?.heroTitle}</Styled.Title>
           <Box as="h3" fontWeight="normal">
             {props?.heroSummary}
@@ -30,8 +30,8 @@ export default function HeroLanding(props = {}) {
               key={i}
               Component={Button}
               href={action.url}
-              mr="base"
-              minWidth={{ _: '', md: '30%' }}
+              my="xs"
+              minWidth={{ _: '50%', md: '30%' }}
               {...action}
             >
               {action.title}
