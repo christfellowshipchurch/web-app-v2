@@ -28,43 +28,6 @@ function Nav(props = {}) {
   return (
     <Styled>
       <QuickAction data={props.data.quickAction} />
-      <ClientSideComponent>
-        {authenticated ? (
-          <CurrentUserProvider
-            Component={UserAvatar}
-            handleAuthClick={handleAuthClick}
-          />
-        ) : (
-          <Box
-            as="a"
-            href="#0"
-            display="block"
-            border="2px solid"
-            borderColor={props?.darkMode ? 'white' : 'fg'}
-            borderRadius="50%"
-            lineHeight="38px"
-            size="45px"
-            textAlign="center"
-            onClick={handleAuthClick}
-          >
-            <Icon
-              name="user"
-              color={props?.darkMode ? 'white' : 'fg'}
-              size="28px"
-            />
-            <Box as="span" className="srt">
-              User
-            </Box>
-          </Box>
-        )}
-      </ClientSideComponent>
-      <CustomLink
-        mr={'-5rem'}
-        href="/discover"
-        color={props?.darkMode ? 'white' : 'fg'}
-      >
-        <Icon name="search" />
-      </CustomLink>
       <Menu
         cardContentProps={{
           p: '0',
@@ -82,6 +45,14 @@ function Nav(props = {}) {
         menuWidth="175px"
       >
         <List py="xs" space="0">
+          <Box as="li">
+            {authenticated ? (
+              <Menu.Link href="/connect" px="base" py="xs">
+                <Icon name="user" mr="s" size="18" />
+                Connect
+              </Menu.Link>
+            ) : null}
+          </Box>
           <Primary data={props.data.navigationLinks} />
           <MenuLinks data={props.data.menuLinks} />
           <Box as="li">
@@ -91,11 +62,24 @@ function Nav(props = {}) {
                 onClick={handleLogoutClick}
                 px="base"
                 py="xs"
+                mt="10px"
+                borderTop="1px solid"
+                borderColor="border"
               >
-                Log out
+                <Icon name="signOut" mr="s" size="18" />
+                Sign out
               </Menu.Link>
             ) : (
-              <Menu.Link href="#0" onClick={handleAuthClick} px="base" py="xs">
+              <Menu.Link
+                href="#0"
+                onClick={handleAuthClick}
+                px="base"
+                py="xs"
+                mt="10px"
+                borderTop="1px solid"
+                borderColor="border"
+              >
+                <Icon name="signIn" mr="s" size="18" />
                 Sign in
               </Menu.Link>
             )}
@@ -110,6 +94,7 @@ function Primary(props = {}) {
   return props.data.map((item, idx) => (
     <Box key={idx} as="li">
       <CustomLink href={item.action} Component={Menu.Link} px="base" py="xs">
+        <Icon name={item.icon} mr="s" size="18" />
         {item.call}
       </CustomLink>
     </Box>
@@ -128,6 +113,7 @@ function MenuLinks(props = {}) {
   return props.data.map((item, idx) => (
     <Box key={idx} as="li">
       <CustomLink href={item.action} Component={Menu.Link} px="base" py="xs">
+        <Icon name={item.icon} mr="s" size="18" />
         {item.call}
       </CustomLink>
     </Box>
