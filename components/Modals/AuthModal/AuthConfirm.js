@@ -134,7 +134,12 @@ function AuthConfirm() {
       <Box as="p" color="subdued" mb="l">
         {COPY.DESCRIPTION[descriptionKey]}
       </Box>
-      <Box as="form" action="" onSubmit={handleSubmit} px="xl">
+      <Box
+        as="form"
+        action=""
+        onSubmit={handleSubmit}
+        px={{ md: 'l', lg: 'xl' }}
+      >
         <Box mb="l">
           <TextInput
             id="passcode"
