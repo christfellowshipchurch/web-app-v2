@@ -7,6 +7,10 @@ export const GET_NODE_ACTIONS = gql`
       title
       relatedNode {
         id
+        __typename
+        ... on Url {
+          url
+        }
       }
     }
   }
@@ -19,7 +23,7 @@ function useNodeActions(options = {}) {
   });
 
   return {
-    actions: query?.data?.nodeActions || {},
+    actions: query?.data?.nodeActions || [],
     ...query,
   };
 }

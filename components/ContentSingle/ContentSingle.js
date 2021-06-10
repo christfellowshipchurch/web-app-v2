@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 
 import { Box, Avatar, Loader, Card, Button } from 'ui-kit';
-import { ContentLayout, Share } from 'components';
+import { ContentLayout, CustomLink, Share } from 'components';
 import { useNodeActions } from 'hooks';
+import { onPressActionItem } from 'utils';
 
 import ContentVideo from './ContentVideo';
 import ContentVideosList from './ContentVideosList';
@@ -110,33 +111,33 @@ function ContentSingle(props = {}) {
         </Box>
       )}
       contentTitleE={videos?.length >= 2 ? 'Videos' : null}
-      // renderContentE={() => (
-      //   <ContentVideosList
-      //     thumbnail={coverImageUri}
-      //     videos={videos}
-      //     onSelectVideo={handleSelectVideo}
-      //   />
-      // )}
-      renderContentE={() => (
+      renderContentE={() => [
         <Card
+          key={`actions-${props?.data?.id}`}
           boxShadow="base"
           display="flex"
           flexDirection="column"
           p={{ _: 's', md: 'base' }}
         >
           {actions?.map((n, i) => (
-            <Button
-              as="a"
-              href={n.action}
+            <CustomLink
+              Component={Button}
+              href={n?.relatedNode?.url || '/'}
               key={i}
               my={'s'}
-              target={n.action.includes('http') ? '_blank' : ''}
+              target={n?.relatedNode?.url?.includes('http') ? '_blank' : ''}
             >
               {n.title}
-            </Button>
+            </CustomLink>
           ))}
-        </Card>
-      )}
+        </Card>,
+        <ContentVideosList
+          key={`videos-${props?.data?.id}`}
+          thumbnail={coverImageUri}
+          videos={videos}
+          onSelectVideo={handleSelectVideo}
+        />,
+      ]}
       htmlContent={htmlContent}
       features={featureFeed?.features}
     />

@@ -9,6 +9,7 @@ import getUrlFromRelatedNode from './getUrlFromRelatedNode';
 import getURLFromType from './getURLFromType';
 import htmlToReactParser from './htmlToReactParser';
 import normalizeUserData from './normalizeUserData';
+import onPressActionItem from './onPressActionItem';
 import parseLiveStreamDates from './parseLiveStreamDates';
 import slugify from './slugify';
 import textTrimmer from './textTrimmer';
@@ -27,6 +28,7 @@ export {
   getURLFromType,
   htmlToReactParser,
   normalizeUserData,
+  onPressActionItem,
   parseLiveStreamDates,
   slugify,
   textTrimmer,

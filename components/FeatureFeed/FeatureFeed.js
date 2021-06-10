@@ -42,6 +42,7 @@ const onPressActionItem = (event, { action, relatedNode }) => {
     case 'READ_EVENT':
     case 'OPEN_NODE':
     case 'OPEN_URL':
+      return relatedNode?.url;
     case 'OPEN_AUTHENTICATED_URL':
     case 'OPEN_CHANNEL':
     default:
