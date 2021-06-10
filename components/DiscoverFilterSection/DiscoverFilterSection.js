@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 
-import { getUrlFromRelatedNode, getURLFromType, slugify } from 'utils';
+import { getUrlFromRelatedNode, slugify } from 'utils';
 import { useDiscoverFilterCategoriesPreview } from 'hooks';
 
 import { Button, Box, DefaultCard, CardGrid } from 'ui-kit';
@@ -31,13 +31,17 @@ const DiscoverFilterSection = ({ contentId, title }) => {
     <Box my="s">
       <Box display="flex" justifyContent="space-between" mb="s">
         <Box as="h3">{title}</Box>
-        <Button variant="link" paddingRight={0} onClick={handleSeeMore}>
-          See more
-        </Button>
+        {content?.length > 2 ? (
+          <Button variant="link" paddingRight={0} onClick={handleSeeMore}>
+            See more
+          </Button>
+        ) : null}
       </Box>
+
       <CardGrid columns="3" mb="xl">
         {content.map((n, i) => (
           <CustomLink
+            key={i}
             Component={DefaultCard}
             as="a"
             boxShadow="none"
