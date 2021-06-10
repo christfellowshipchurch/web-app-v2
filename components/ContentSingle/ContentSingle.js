@@ -5,11 +5,10 @@ import { format } from 'date-fns';
 import { Box, Avatar, Loader, Card, Button } from 'ui-kit';
 import { ContentLayout, CustomLink, Share } from 'components';
 import { useNodeActions } from 'hooks';
-import { onPressActionItem } from 'utils';
+import { getUrlFromRelatedNode } from 'utils';
 
 import ContentVideo from './ContentVideo';
 import ContentVideosList from './ContentVideosList';
-import { id } from 'date-fns/locale';
 
 function ContentSingle(props = {}) {
   const [currentVideo, setCurrentVideo] = useState(
@@ -67,8 +66,6 @@ function ContentSingle(props = {}) {
     }
   };
 
-  console.log({ actions });
-
   return (
     <ContentLayout
       mode={mode}
@@ -122,7 +119,7 @@ function ContentSingle(props = {}) {
           {actions?.map((n, i) => (
             <CustomLink
               Component={Button}
-              href={n?.relatedNode?.url || '/'}
+              href={getUrlFromRelatedNode(n?.relatedNode) || '/'}
               key={i}
               my={'s'}
               target={n?.relatedNode?.url?.includes('http') ? '_blank' : ''}
