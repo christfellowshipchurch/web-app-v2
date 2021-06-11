@@ -2,16 +2,24 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 
-import { Box, Avatar, Loader } from 'ui-kit';
+import { Box, Avatar, Loader, Card, Button } from 'ui-kit';
 import { ContentLayout, Share } from 'components';
+import { useNodeActions } from 'hooks';
+import { getUrlFromRelatedNode } from 'utils';
 
 import ContentVideo from './ContentVideo';
 import ContentVideosList from './ContentVideosList';
-
+import Styled from './ContentSingle.styles';
 function ContentSingle(props = {}) {
   const [currentVideo, setCurrentVideo] = useState(
     Array.isArray(props.data?.videos) ? props.data.videos[0] : null
   );
+
+  const { actions } = useNodeActions({
+    variables: {
+      nodeId: props?.data?.id,
+    },
+  });
 
   useEffect(() => {
     // Do we have videos now, when we didn't before?
@@ -100,13 +108,28 @@ function ContentSingle(props = {}) {
         </Box>
       )}
       contentTitleE={videos?.length >= 2 ? 'Videos' : null}
-      renderContentE={() => (
+      renderContentE={() => [
+        <Styled.ButtonContainer
+          key={`actions-${props?.data?.id}`}
+          p={{ _: 's', md: 'base' }}
+        >
+          {actions?.map((n, i) => (
+            <Styled.ButtonLink
+              key={i}
+              href={getUrlFromRelatedNode(n?.relatedNode) || '/'}
+              target={n?.relatedNode?.url?.includes('http') ? '_blank' : ''}
+            >
+              <Button width="100%">{n.title}</Button>
+            </Styled.ButtonLink>
+          ))}
+        </Styled.ButtonContainer>,
         <ContentVideosList
+          key={`videos-${props?.data?.id}`}
           thumbnail={coverImageUri}
           videos={videos}
           onSelectVideo={handleSelectVideo}
-        />
-      )}
+        />,
+      ]}
       htmlContent={htmlContent}
       features={featureFeed?.features}
     />
