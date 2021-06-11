@@ -11,6 +11,9 @@ import ResourcesList from './ResourcesList';
 function GroupManageResources(props = {}) {
   const [{ resourceStatus: status, groupData }, dispatch] = useGroupManage();
   const setStatus = s => dispatch(update({ resourceStatus: s }));
+  const currentResources = groupData?.resources?.map(
+    ({ relatedNode }) => relatedNode.id
+  );
 
   const handleAddLinkClick = toggle => event => {
     event.preventDefault();
@@ -37,6 +40,7 @@ function GroupManageResources(props = {}) {
       return (
         <GroupResourceOptionsProvider
           Component={AddResourceContent}
+          currentResources={currentResources}
           options={{ variables: { groupId: groupData.id } }}
         />
       );
