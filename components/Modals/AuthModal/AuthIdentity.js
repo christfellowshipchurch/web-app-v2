@@ -48,7 +48,12 @@ function AuthIdentity() {
         Enter your phone number or email address to get started. We'll never
         share your information or contact you (unless you ask!).
       </Box>
-      <Box as="form" action="" onSubmit={handleSubmit} px="xl">
+      <Box
+        as="form"
+        action=""
+        onSubmit={handleSubmit}
+        px={{ md: 'l', lg: 'xl' }}
+      >
         <Box mb="base">
           <TextInput
             id="identity"
