@@ -17,6 +17,7 @@ function AuthIdentity() {
     onCompleted: async data => {
       const identity = values.identity;
       const userExists = data?.userExists !== 'NONE';
+
       handleAuthIdentity({
         identity,
         userExists,
@@ -29,7 +30,7 @@ function AuthIdentity() {
     const validEmail = validateEmail(identity);
     const validPhoneNumber = validatePhoneNumber(identity);
     const validIdentity = validEmail || validPhoneNumber;
-    
+
     if (validIdentity) {
       setStatus('LOADING');
       checkIfUserExists({ variables: { identity: values.identity } });
@@ -47,7 +48,12 @@ function AuthIdentity() {
         Enter your phone number or email address to get started. We'll never
         share your information or contact you (unless you ask!).
       </Box>
-      <Box as="form" action="" onSubmit={handleSubmit} px="xl">
+      <Box
+        as="form"
+        action=""
+        onSubmit={handleSubmit}
+        px={{ md: 'l', lg: 'xl' }}
+      >
         <Box mb="base">
           <TextInput
             id="identity"
@@ -63,12 +69,7 @@ function AuthIdentity() {
           ) : null}
         </Box>
         <Box mb="l" display="flex">
-          <Checkbox  
-            id="agreement" 
-            required 
-            onChange={handleChange} 
-            mr="s" 
-            />
+          <Checkbox id="agreement" required onChange={handleChange} mr="s" />
           <Box as="p" fontSize="s">
             I agree to the&nbsp;
             <a target="_blank" rel="noopener noreferrer" href="/terms-of-use">

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { useGroupManage, update } from 'providers/GroupManageProvider';
 import { useUpdateGroupResourceContentItem } from 'hooks';
-import { Box, Button, Select } from 'ui-kit';
+import { Box, Button, Loader, Select } from 'ui-kit';
 
 function AddResourceContent(props = {}) {
   const [
@@ -57,24 +57,28 @@ function AddResourceContent(props = {}) {
           {message}
         </Box>
       )}
-      <Select
-        defaultValue=""
-        id="contentOption"
-        name="contentOption"
-        onChange={handleChange}
-        mb="base"
-      >
-        <Select.Option value="" disabled={true}>
-          Select...
-        </Select.Option>
-        {props.data?.edges?.map(item => {
-          return (
-            <Select.Option key={item.node.id} value={item.node.id}>
-              {item.node.title}
-            </Select.Option>
-          );
-        })}
-      </Select>
+      {props.loading ? (
+        <Loader pt="s" pb="base" />
+      ) : (
+        <Select
+          defaultValue=""
+          id="contentOption"
+          name="contentOption"
+          onChange={handleChange}
+          mb="base"
+        >
+          <Select.Option value="" disabled={true}>
+            Select...
+          </Select.Option>
+          {props.data?.map(item => {
+            return (
+              <Select.Option key={item.node.id} value={item.node.id}>
+                {item.node.title}
+              </Select.Option>
+            );
+          })}
+        </Select>
+      )}
       <Box alignItems="center" display="flex">
         <Button
           onClick={handleSave}
@@ -91,7 +95,15 @@ function AddResourceContent(props = {}) {
 }
 
 AddResourceContent.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      cursor: PropTypes.string,
+      node: PropTypes.shape({
+        id: PropTypes.string,
+        title: PropTypes.string,
+      }),
+    })
+  ),
 };
 
 export default AddResourceContent;

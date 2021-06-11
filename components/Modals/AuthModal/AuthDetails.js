@@ -1,4 +1,5 @@
 import React from 'react';
+import upperFirst from 'lodash/upperFirst';
 
 import { getAge } from 'utils';
 import { useAuthIdentity, useForm } from 'hooks';
@@ -15,7 +16,7 @@ function AuthDetails() {
     handleAuthIdentity,
   } = useAuthIdentity();
   const { values, handleSubmit, handleChange } = useForm(() => {
-    const age = getAge(values.birthdate);
+    const age = getAge(values.birthDate);
     // Make sure they are at least 13 years of age.
     if (age < 13) {
       setError({
@@ -24,7 +25,13 @@ function AuthDetails() {
     }
     if (!error) {
       setStatus('LOADING');
-      handleAuthIdentity({ nextStep: 2 });
+
+      const userProfile = Object.keys(values).map(key => ({
+        field: upperFirst(key),
+        value: values[key],
+      }));
+
+      handleAuthIdentity({ nextStep: 2, userProfile });
     }
   });
 
@@ -73,14 +80,14 @@ function AuthDetails() {
         </Box>
         <Box
           display="grid"
-          gridTemplateColumns="repeat(2, 1fr)"
+          gridTemplateColumns={{ lg: 'repeat(2, 1fr)' }}
           gridColumnGap="base"
           mb="l"
         >
           <Box>
-            <BirthDateField onChange={handleChange} error={error?.birthdate} />
+            <BirthDateField onChange={handleChange} error={error?.birthDate} />
           </Box>
-          <Box>
+          <Box mt={{ _: 'base', lg: '0' }}>
             <GenderField
               initialValue={values.gender || ''}
               onChange={handleChange}
