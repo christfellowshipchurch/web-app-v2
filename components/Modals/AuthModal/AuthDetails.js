@@ -80,14 +80,14 @@ function AuthDetails() {
         </Box>
         <Box
           display="grid"
-          gridTemplateColumns="repeat(2, 1fr)"
+          gridTemplateColumns={{ lg: 'repeat(2, 1fr)' }}
           gridColumnGap="base"
           mb="l"
         >
           <Box>
             <BirthDateField onChange={handleChange} error={error?.birthDate} />
           </Box>
-          <Box>
+          <Box mt={{ _: 'base', lg: '0' }}>
             <GenderField
               initialValue={values.gender || ''}
               onChange={handleChange}
