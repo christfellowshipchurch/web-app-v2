@@ -72,7 +72,13 @@ function AddResourceContent(props = {}) {
           </Select.Option>
           {props.data?.map(item => {
             return (
-              <Select.Option key={item.node.id} value={item.node.id}>
+              <Select.Option
+                key={item.node.id}
+                value={item.node.id}
+                disabled={props.currentResources?.find(
+                  resourceId => item.node.id === resourceId
+                )}
+              >
                 {item.node.title}
               </Select.Option>
             );
