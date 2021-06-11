@@ -25,7 +25,6 @@ function GroupResourceOptionsProvider({ Component, options, ...props }) {
             },
           },
           updateQuery: (prevResult, { fetchMoreResult }) => {
-            console.log(prevResult);
             return {
               ...fetchMoreResult,
               groupResourceOptions: {
