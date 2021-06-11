@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 
 import { Box, Avatar, Loader, Card, Button } from 'ui-kit';
-import { ContentLayout, CustomLink, Share } from 'components';
+import { ContentLayout, Share } from 'components';
 import { useNodeActions } from 'hooks';
 import { getUrlFromRelatedNode } from 'utils';
 
 import ContentVideo from './ContentVideo';
 import ContentVideosList from './ContentVideosList';
-
+import Styled from './ContentSingle.styles';
 function ContentSingle(props = {}) {
   const [currentVideo, setCurrentVideo] = useState(
     Array.isArray(props.data?.videos) ? props.data.videos[0] : null
@@ -109,25 +109,20 @@ function ContentSingle(props = {}) {
       )}
       contentTitleE={videos?.length >= 2 ? 'Videos' : null}
       renderContentE={() => [
-        <Card
+        <Styled.ButtonContainer
           key={`actions-${props?.data?.id}`}
-          boxShadow="base"
-          display="flex"
-          flexDirection="column"
           p={{ _: 's', md: 'base' }}
         >
           {actions?.map((n, i) => (
-            <CustomLink
-              Component={Button}
-              href={getUrlFromRelatedNode(n?.relatedNode) || '/'}
+            <Styled.ButtonLink
               key={i}
-              my={'s'}
+              href={getUrlFromRelatedNode(n?.relatedNode) || '/'}
               target={n?.relatedNode?.url?.includes('http') ? '_blank' : ''}
             >
-              {n.title}
-            </CustomLink>
+              <Button width="100%">{n.title}</Button>
+            </Styled.ButtonLink>
           ))}
-        </Card>,
+        </Styled.ButtonContainer>,
         <ContentVideosList
           key={`videos-${props?.data?.id}`}
           thumbnail={coverImageUri}
