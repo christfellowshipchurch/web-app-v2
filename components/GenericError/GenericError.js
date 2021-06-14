@@ -24,7 +24,10 @@ const GenericError = () => {
         </Box>
         <Box as="p" fontSize="l" mb="xxl">
           If you're still having trouble, you can{' '}
-          <CustomLink href="https://rock.gocf.org/contactus" title="Contact Us">
+          <CustomLink
+            href="https://form.jotform.com/201343828801148"
+            title="Contact Us"
+          >
             contact us
           </CustomLink>{' '}
           for assistance.
