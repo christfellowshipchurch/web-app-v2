@@ -34,7 +34,10 @@ export const GET_GROUPS = gql`
 `;
 
 function useGroups(options = {}) {
-  const query = useQuery(GET_GROUPS, options);
+  const query = useQuery(GET_GROUPS, {
+    fetchPolicy: 'cache-and-network',
+    ...options,
+  });
 
   return {
     groups: query?.data?.currentUser?.profile?.groups || [],

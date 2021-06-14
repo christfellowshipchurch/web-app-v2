@@ -34,7 +34,10 @@ export const SEARCH_CONTENT_ITEMS = gql`
 `;
 
 function useSearchContentItems(options = {}) {
-  const [search, query] = useLazyQuery(SEARCH_CONTENT_ITEMS, options);
+  const [search, query] = useLazyQuery(SEARCH_CONTENT_ITEMS, {
+    fetchPolicy: 'cache-and-network',
+    ...options,
+  });
 
   return [
     search,

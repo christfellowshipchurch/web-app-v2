@@ -32,7 +32,10 @@ export const GET_CATEGORIES_FILTER_PREVIEW = gql`
 `;
 
 function useDiscoverFilterCategoriesPreview(options = {}) {
-  const query = useQuery(GET_CATEGORIES_FILTER_PREVIEW, options);
+  const query = useQuery(GET_CATEGORIES_FILTER_PREVIEW, {
+    fetchPolicy: 'cache-and-network',
+    ...options,
+  });
 
   return {
     categories: query?.data?.node?.childContentItemsConnection?.edges || [],

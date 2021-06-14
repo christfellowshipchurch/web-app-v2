@@ -9,8 +9,11 @@ export const GET_FILTERS = gql`
   }
 `;
 
-function useDiscoverFilters() {
-  const query = useQuery(GET_FILTERS);
+function useDiscoverFilters(options) {
+  const query = useQuery(GET_FILTERS, {
+    fetchPolicy: 'cache-and-network',
+    ...options,
+  });
 
   return {
     filters: query?.data?.browseFilters || [],
