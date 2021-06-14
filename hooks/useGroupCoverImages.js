@@ -15,7 +15,10 @@ export const GET_GROUP_COVER_IMAGES = gql`
 `;
 
 function useGroupCoverImages(options = {}) {
-  const query = useQuery(GET_GROUP_COVER_IMAGES, options);
+  const query = useQuery(GET_GROUP_COVER_IMAGES, {
+    fetchPolicy: 'cache-and-network',
+    ...options,
+  });
 
   return {
     coverImages: query?.data?.groupCoverImages || [],

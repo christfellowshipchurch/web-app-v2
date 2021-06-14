@@ -27,7 +27,10 @@ export const GET_FEED_FEATURES = gql`
 `;
 
 function useFeedFeatures(options = {}) {
-  const query = useQuery(GET_FEED_FEATURES, options);
+  const query = useQuery(GET_FEED_FEATURES, {
+    fetchPolicy: 'cache-and-network',
+    ...options,
+  });
 
   return {
     features: query?.data?.userFeedFeatures || [],

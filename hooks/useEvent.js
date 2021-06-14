@@ -64,7 +64,10 @@ export const GET_EVENT = gql`
 `;
 
 function useEvent(options = {}) {
-  const query = useQuery(GET_EVENT, options);
+  const query = useQuery(GET_EVENT, {
+    fetchPolicy: 'cache-and-network',
+    ...options,
+  });
 
   return {
     event: query?.data?.getEventContentByTitle || [],
