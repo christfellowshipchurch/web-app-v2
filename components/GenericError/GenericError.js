@@ -19,7 +19,7 @@ const GenericError = () => {
           Oops! Something went wrong.
         </Box>
         <Box as="p" fontSize="l" mb="xxl">
-          We were unable to load the content you were looking for. Please hit
+          We were unable to load the content you were looking for. Please go
           back and try again.
         </Box>
       </Box>
