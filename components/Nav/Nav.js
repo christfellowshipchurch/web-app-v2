@@ -72,7 +72,7 @@ function Nav(props = {}) {
           </Box>
         )}
         side="right"
-        menuWidth="230px"
+        menuWidth="260px"
       >
         <List py="xs" space="0">
           {/* Mobile Watch Online */}
