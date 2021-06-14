@@ -24,6 +24,7 @@ import FeatureFeed from './FeatureFeed';
 import FilterField from './FilterField';
 import Footer from './Footer';
 import GenderField from './GenderField';
+import GenericError from './GenericError';
 import GroupManage from './GroupManage';
 import GroupSearchFilters from './GroupSearchFilters';
 import GroupSingle from './GroupSingle';
@@ -77,6 +78,7 @@ export {
   FilterField,
   Footer,
   GenderField,
+  GenericError,
   GroupManage,
   GroupSearchFilters,
   GroupSingle,

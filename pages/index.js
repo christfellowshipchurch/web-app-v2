@@ -39,28 +39,37 @@ export default function Home(props = {}) {
 export async function getServerSideProps() {
   const apolloClient = initializeApollo();
 
-  const featureFeed = await apolloClient.query({
-    query: GET_FEATURE_FEED,
-    variables: { pathname: 'home' },
-  });
-  const features = featureFeed?.data?.featuresFeed?.features || [];
+  try {
+    const featureFeed = await apolloClient.query({
+      query: GET_FEATURE_FEED,
+      variables: { pathname: 'home' },
+    });
+    const features = featureFeed?.data?.featuresFeed?.features || [];
 
-  let promises = [];
-  features.map(item =>
-    promises.push(
-      apolloClient.query({
-        query: GET_FEATURE,
-        variables: {
-          featureId: item?.id,
-        },
-      })
-    )
-  );
-  await Promise.all(promises);
+    let promises = [];
+    features.map(item =>
+      promises.push(
+        apolloClient.query({
+          query: GET_FEATURE,
+          variables: {
+            featureId: item?.id,
+          },
+        })
+      )
+    );
+    await Promise.all(promises);
 
-  return {
-    props: {
-      initialApolloState: apolloClient.cache.extract(),
-    },
-  };
+    return {
+      props: {
+        initialApolloState: apolloClient.cache.extract(),
+      },
+    };
+  } catch (err) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: '/error',
+      },
+    };
+  }
 }
