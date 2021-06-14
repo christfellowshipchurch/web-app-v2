@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Box } from 'ui-kit';
-import { Layout } from 'components';
+import { CustomLink, Layout } from 'components';
 
 const GenericError = () => {
   return (
@@ -18,9 +18,16 @@ const GenericError = () => {
         <Box as="h1" mt="l">
           Oops! Something went wrong.
         </Box>
-        <Box as="p" fontSize="l" mb="xxl">
+        <Box as="p" fontSize="l">
           We were unable to load the content you were looking for. Please go
           back and try again.
+        </Box>
+        <Box as="p" fontSize="l" mb="xxl">
+          If you're still having trouble, you can{' '}
+          <CustomLink href="https://rock.gocf.org/contactus" title="Contact Us">
+            contact us
+          </CustomLink>{' '}
+          for assistance.
         </Box>
       </Box>
     </Layout>
