@@ -108,28 +108,32 @@ function ContentSingle(props = {}) {
         </Box>
       )}
       contentTitleE={videos?.length >= 2 ? 'Videos' : null}
-      renderContentE={() => [
-        <Styled.ButtonContainer
-          key={`actions-${props?.data?.id}`}
-          p={{ _: 's', md: 'base' }}
-        >
-          {actions?.map((n, i) => (
-            <Styled.ButtonLink
-              key={i}
-              href={getUrlFromRelatedNode(n?.relatedNode) || '/'}
-              target={n?.relatedNode?.url?.includes('http') ? '_blank' : ''}
+      renderContentE={() => (
+        <>
+          {actions?.length > 0 && (
+            <Styled.ButtonContainer
+              key={`actions-${props?.data?.id}`}
+              p={{ _: 's', md: 'base' }}
             >
-              <Button width="100%">{n.title}</Button>
-            </Styled.ButtonLink>
-          ))}
-        </Styled.ButtonContainer>,
-        <ContentVideosList
-          key={`videos-${props?.data?.id}`}
-          thumbnail={coverImageUri}
-          videos={videos}
-          onSelectVideo={handleSelectVideo}
-        />,
-      ]}
+              {actions?.map((n, i) => (
+                <Styled.ButtonLink
+                  key={i}
+                  href={getUrlFromRelatedNode(n?.relatedNode) || '/'}
+                  target={n?.relatedNode?.url?.includes('http') ? '_blank' : ''}
+                >
+                  <Button width="100%">{n.title}</Button>
+                </Styled.ButtonLink>
+              ))}
+            </Styled.ButtonContainer>
+          )}
+          <ContentVideosList
+            key={`videos-${props?.data?.id}`}
+            thumbnail={coverImageUri}
+            videos={videos}
+            onSelectVideo={handleSelectVideo}
+          />
+        </>
+      )}
       htmlContent={htmlContent}
       features={featureFeed?.features}
     />
