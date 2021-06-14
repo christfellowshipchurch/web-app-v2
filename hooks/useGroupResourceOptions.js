@@ -23,7 +23,10 @@ export const GROUP_RESOURCE_OPTIONS = gql`
 `;
 
 function useGroupResourceOptions(options = {}) {
-  const query = useQuery(GROUP_RESOURCE_OPTIONS, options);
+  const query = useQuery(GROUP_RESOURCE_OPTIONS, {
+    fetchPolicy: 'cache-and-network',
+    ...options,
+  });
 
   return {
     groupResourceOptions: query?.data?.groupResourceOptions || [],
