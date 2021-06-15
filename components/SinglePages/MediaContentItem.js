@@ -124,9 +124,11 @@ export default function WeekendContentItem({ item, dropdownData } = {}) {
         <Heading variant="h2" fontWeight="800" mb="m">
           {item.title}
         </Heading>
-        <Heading variant="h4" fontWeight="500" mb="m">
-          {item.summary}
-        </Heading>
+        {!item.htmlContent?.includes(item.summary) ? (
+          <Heading variant="h4" fontWeight="500" mb="m">
+            {item.summary}
+          </Heading>
+        ) : null}
         <Longform dangerouslySetInnerHTML={{ __html: item.htmlContent }} />
       </Section>
     </Layout>
