@@ -67,7 +67,7 @@ export default function Page({
     link =>
       getSlugFromURL(link?.sharing?.url) !== router.query.page &&
       (getIdSuffix(link.parentChannel?.id) === IDS.CHANNELS.EVENTS ||
-        getIdSuffix(link.parentChannel?.id) === IDS.CHANNELS.NEWS)
+        getIdSuffix(link.parentChannel?.id) === IDS.CHANNELS.ARTICLES)
   );
 
   return (

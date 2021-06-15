@@ -9,7 +9,6 @@ const IDS = {
     ARTICLES: '5a0b4e1270f614226ba74fedb5ca04f8',
     BAPTISMS: 'a47485748b1e08a019e4b135c674751a',
     EVENTS: 'f1184b518af2c2607b4e580e777d0f57',
-    NEWS: '', // TODO - add this
   },
   SERIES: {
     SUNDAY: '71ec2079298288ea22cabf29ff907d73',
