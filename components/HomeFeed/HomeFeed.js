@@ -364,7 +364,7 @@ function HomeFeed(props = {}) {
   let articles = [];
 
   if (authenticated) {
-    articles = personaArticles;
+    articles = personaArticles || [];
   } else {
     articles = [...(props.articles || []), ...(props.events || [])];
   }
