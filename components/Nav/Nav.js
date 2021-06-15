@@ -86,7 +86,7 @@ function Nav(props = {}) {
               />
             </Menu.Link>
           </Box>
-          <Box as="li">
+          {/* <Box as="li">
             {authenticated ? (
               <Menu.Link
                 display={{ _: 'inline', md: 'none' }}
@@ -98,7 +98,7 @@ function Nav(props = {}) {
                 Connect
               </Menu.Link>
             ) : null}
-          </Box>
+          </Box> */}
           <Primary data={props.data.navigationLinks} />
           <MenuLinks data={props.data.menuLinks} />
           <Box as="li">
