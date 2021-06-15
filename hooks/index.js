@@ -34,6 +34,7 @@ import useLiveStream from './useLiveStream';
 import useLiveStreams from './useLiveStreams';
 import useLiveStreamsQuery from './useLiveStreamsQuery';
 import useNode from './useNode';
+import useNodeActions from './useNodeActions';
 import useNodeRoute from './useNodeRoute';
 import useNotifyMeBanner from './useNotifyMeBanner';
 import useRegisterWithEmail from './useRegisterWithEmail';
@@ -90,6 +91,7 @@ export {
   useLiveStreams,
   useLiveStreamsQuery,
   useNode,
+  useNodeActions,
   useNodeRoute,
   useNotifyMeBanner,
   useRegisterWithEmail,

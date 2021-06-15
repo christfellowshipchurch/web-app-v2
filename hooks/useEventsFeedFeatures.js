@@ -33,7 +33,10 @@ export const GET_EVENTS_FEED_FEATURES = gql`
 `;
 
 function useEventsFeedFeatures(options = {}) {
-  const query = useQuery(GET_EVENTS_FEED_FEATURES, options);
+  const query = useQuery(GET_EVENTS_FEED_FEATURES, {
+    fetchPolicy: 'cache-and-network',
+    ...options,
+  });
 
   return {
     eventsFeatures: query?.data?.eventsFeedFeatures || [],

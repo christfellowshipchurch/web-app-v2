@@ -10,7 +10,10 @@ export const GET_NOTIFY_ME_BANNER = gql`
 `;
 
 function useNotifyMeBanner(options = {}) {
-  const query = useQuery(GET_NOTIFY_ME_BANNER, options);
+  const query = useQuery(GET_NOTIFY_ME_BANNER, {
+    fetchPolicy: 'cache-and-network',
+    ...options,
+  });
 
   return {
     notifyMeBanner: query?.data?.notifyMeBanner,
