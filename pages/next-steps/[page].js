@@ -32,7 +32,7 @@ export default function Page({ data = {}, campuses, dropdownData }) {
   return (
     <Layout meta={getMetaData(node)} bg="bg_alt" dropdownData={dropdownData}>
       <MainPhotoHeader
-        mb={{ _: '0', lg: 'l' }}
+        mb={{ _: '0', lg: 'l', xl: 'xxl' }}
         src={node.coverImage?.sources?.[0].uri || ''}
         title={node.title}
         subtitle={node.subtitle}
