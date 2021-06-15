@@ -15,6 +15,7 @@ const metadata = {
     facebook: 'https://www.facebook.com/CFimpact/',
     instagram: 'https://www.instagram.com/christfellowship.church/',
     youtube: 'https://www.youtube.com/user/christfellowship',
+    cfSeu: 'https://cfseu.com/',
   },
 };
 
