@@ -1,10 +1,11 @@
 import { useRouter } from 'next/router';
 
 import { Layout, MainPhotoHeader } from 'components';
-import { Box, Button, Heading, Longform, Section } from 'ui-kit';
+import { Box, CardGrid, Heading, Longform, Section } from 'ui-kit';
 import { getIdSuffix, getMetaData } from 'utils';
 import IDS from 'config/ids';
 import MetadataCallout from 'components/MetadataCallout';
+import MarketingHeadline from 'components/MarketingHeadline';
 
 export default function Page({ data, dropdownData } = {}) {
   const router = useRouter();
@@ -65,23 +66,26 @@ export default function Page({ data, dropdownData } = {}) {
         </Section>
       )}
       {data.ctaLinks?.length ? (
-        <Section mb={{ _: 'l', lg: 'xxl' }}>
-          <Box
-            display="flex"
-            flexWrap="wrap"
-            justifyContent="center"
-            alignItems="center"
-          >
+        <Section my={{ _: 'l', md: 'xxl' }}>
+          <CardGrid columns="1">
             {data.ctaLinks?.map((cta, i) => (
-              <Button
+              <MarketingHeadline
                 key={i}
-                onClick={() => router.push(cta.buttonLink)}
-                m="xs"
-              >
-                {cta.buttonText}
-              </Button>
+                image={{
+                  src: cta.image?.sources?.[0]?.uri,
+                }}
+                justify={i % 2 === 0 ? 'left' : 'right'}
+                title={cta.title}
+                description={cta.body}
+                actions={[
+                  {
+                    label: cta.buttonText,
+                    onClick: () => router.push(cta.buttonLink),
+                  },
+                ]}
+              />
             ))}
-          </Box>
+          </CardGrid>
         </Section>
       ) : null}
     </Layout>
