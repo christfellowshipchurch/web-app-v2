@@ -34,12 +34,12 @@ function NotifyMeError(props = {}) {
   );
 }
 
-NotifyMeSuccess.propTypes = {
+NotifyMeError.propTypes = {
   title: PropTypes.string,
 };
 
-NotifyMeSuccess.defaultProps = {
+NotifyMeError.defaultProps = {
   title: 'Notify Me',
 };
 
-export default NotifyMeSuccess;
+export default NotifyMeError;
