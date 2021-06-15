@@ -103,7 +103,7 @@ export const GET_CONTENT_BY_SLUG = gql`
         }
         ministry
         secondaryHTML
-        childContentItemsConnection {
+        childContentItemsConnection(orderBy: { field: DATE, direction: DESC }) {
           edges {
             node {
               ...BaseContentItem
