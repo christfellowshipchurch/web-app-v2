@@ -49,13 +49,19 @@ export default function Page({ data, dropdownData } = {}) {
           )}
         </Box>
       </Section>
+      {isEvent ? (
+        <Section
+          mb={{
+            _: 'l',
+            lg: data.htmlContent ? 'l' : 'xxl',
+          }}
+        >
+          <MetadataCallout data={data} />
+        </Section>
+      ) : null}
       {data.htmlContent && (
         <Section mb={{ _: 'l', lg: 'xxl' }}>
-          {isEvent ? (
-            <MetadataCallout data={data} />
-          ) : (
-            <Longform dangerouslySetInnerHTML={{ __html: data.htmlContent }} />
-          )}
+          <Longform dangerouslySetInnerHTML={{ __html: data.htmlContent }} />
         </Section>
       )}
       {data.ctaLinks?.length ? (
