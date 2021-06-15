@@ -7,6 +7,9 @@ export const GET_MINISTRY_CONTENT = gql`
       ... on UniversalContentItem {
         title
         summary
+        parentChannel {
+          id
+        }
         coverImage {
           sources {
             uri

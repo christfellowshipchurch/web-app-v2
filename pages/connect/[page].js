@@ -15,7 +15,12 @@ import {
   Quote,
 } from 'components';
 import { Button, CardGrid, Longform, Section } from 'ui-kit';
-import { getChildrenByType, getMetaData, getSlugFromURL } from 'utils';
+import {
+  getChildrenByType,
+  getIdSuffix,
+  getMetaData,
+  getSlugFromURL,
+} from 'utils';
 import IDS from 'config/ids';
 import { initializeApollo } from 'lib/apolloClient';
 import { Info } from 'phosphor-react';
@@ -59,7 +64,10 @@ export default function Page({
     : [];
 
   links = links.filter(
-    link => getSlugFromURL(link?.sharing?.url) !== router.query.page
+    link =>
+      getSlugFromURL(link?.sharing?.url) !== router.query.page &&
+      (getIdSuffix(link.parentChannel?.id) === IDS.CHANNELS.EVENTS ||
+        getIdSuffix(link.parentChannel?.id) === IDS.CHANNELS.NEWS)
   );
 
   return (
@@ -114,7 +122,7 @@ export default function Page({
           >
             {({ filteredData }) => (
               <ArticleLinks>
-                {filteredData.map(({ node }, i) => (
+                {filteredData.map(({ node }) => (
                   <ArticleLink
                     key={node.id}
                     imageSrc={node.coverImage?.sources?.[0]?.uri}
