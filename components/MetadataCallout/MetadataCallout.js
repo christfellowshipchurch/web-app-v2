@@ -74,7 +74,7 @@ export default function MetadataCallout({ data }) {
           )}
           {metadata.forWho && (
             <Styled.CalloutDetailsListItem>
-              For Who: {metadata.timforWho}
+              For Who: {metadata.forWho}
             </Styled.CalloutDetailsListItem>
           )}
           {metadata.isMembershipRequired && (
