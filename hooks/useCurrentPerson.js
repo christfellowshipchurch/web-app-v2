@@ -42,7 +42,10 @@ export const GET_CURRENT_PERSON = gql`
 `;
 
 function useCurrentPerson(options = {}) {
-  const query = useAuthQuery(GET_CURRENT_PERSON, options);
+  const query = useAuthQuery(GET_CURRENT_PERSON, {
+    fetchPolicy: 'cache-and-network',
+    ...options,
+  });
 
   return {
     currentPerson: query?.data?.currentUser || [],

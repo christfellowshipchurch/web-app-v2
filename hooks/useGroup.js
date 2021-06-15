@@ -154,7 +154,10 @@ export const GET_GROUP = gql`
 `;
 
 function useGroup(options = {}) {
-  const query = useQuery(GET_GROUP, options);
+  const query = useQuery(GET_GROUP, {
+    fetchPolicy: 'cache-and-network',
+    ...options,
+  });
 
   return {
     group: query?.data?.node || [],

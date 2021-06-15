@@ -26,7 +26,10 @@ export const GET_CATEGORIES_FROM_FILTER = gql`
 `;
 
 function useDiscoverFilterCategories(options = {}) {
-  const query = useQuery(GET_CATEGORIES_FROM_FILTER, options);
+  const query = useQuery(GET_CATEGORIES_FROM_FILTER, {
+    fetchPolicy: 'cache-and-network',
+    ...options,
+  });
 
   return {
     categories: query?.data?.node?.childContentItemsConnection?.edges || [],
