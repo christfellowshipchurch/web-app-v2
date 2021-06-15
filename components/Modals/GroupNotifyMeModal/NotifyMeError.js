@@ -5,7 +5,7 @@ import { useModalDispatch, hideModal } from 'providers/ModalProvider';
 
 import { Box, Button, Icon } from 'ui-kit';
 
-function NotifyMeSuccess(props = {}) {
+function NotifyMeError(props = {}) {
   const modalDispatch = useModalDispatch();
 
   const handleDone = () => {
