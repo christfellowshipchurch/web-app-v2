@@ -30,6 +30,11 @@ const RowCard = (props = {}) => {
         {props.children ? props.children : null}
         <Divider />
       </Styled.Content>
+        {props.label ? (
+          <Styled.CoverLabel onHover={true}>
+            {props.label}
+          </Styled.CoverLabel>
+        ) : null}
     </Styled>
   );
 };

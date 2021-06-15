@@ -101,6 +101,7 @@ function HorizontalCardListFeature(props = {}) {
                 title={card?.title}
                 description={card?.summary}
                 type={cardType}
+                label={card?.labelText}
               />
             );
           })}

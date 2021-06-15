@@ -41,6 +41,7 @@ function HeroListFeature(props = {}) {
         display="block"
         marginBottom="base"
         onClick={e => onPressActionItem(e, heroCard)}
+        coverImageLabel={heroCard?.labelText}
       />
       {cards.length > 0 && (
         <CardGrid columns={col} marginBottom="l">
@@ -55,6 +56,7 @@ function HeroListFeature(props = {}) {
                 coverImageOverlay={true}
                 title={card?.title}
                 description={card?.subtitle}
+                label={card?.labelText}
               />
             );
           })}
@@ -69,6 +71,7 @@ function HeroListFeature(props = {}) {
           coverImageOverlay={true}
           title={bottomCard?.title}
           description={bottomCard?.subtitle}
+          label={card?.labelText}
         />
       )}
     </Box>
