@@ -47,7 +47,7 @@ function Header({ dropdownData }) {
             }}
             {...action.dropdownProps}
           >
-            <Component {...(dropdownData[action.id] || {})} />
+            <Component {...(dropdownData?.[action.id] || {})} />
           </Styled.Dropdown>
         ) : null;
       })}
