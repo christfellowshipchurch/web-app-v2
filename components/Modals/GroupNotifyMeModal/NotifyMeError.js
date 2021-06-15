@@ -5,7 +5,7 @@ import { useModalDispatch, hideModal } from 'providers/ModalProvider';
 
 import { Box, Button, Icon } from 'ui-kit';
 
-function NotifyMeSuccess(props = {}) {
+function NotifyMeError(props = {}) {
   const modalDispatch = useModalDispatch();
 
   const handleDone = () => {
@@ -17,17 +17,14 @@ function NotifyMeSuccess(props = {}) {
       <Box
         textAlign="center"
         as="h2"
-        color="success"
+        color="warning"
         display="flex"
         flexDirection="column"
       >
-        <Icon name="checkCircle" color="success" size="64" mb="xs" />
-        {`You're all set!`}
+        {`That wasn't suppose to happen!`}
       </Box>
       <Box textAlign="center" as="p" mb="l" px="l">
-        <Box as="p">
-          You'll receive a notification when these groups become available.
-        </Box>
+        <Box as="p">Something went wrong. Please try again later.</Box>
       </Box>
 
       <Button onClick={handleDone} size="l" width="100%">
@@ -37,12 +34,12 @@ function NotifyMeSuccess(props = {}) {
   );
 }
 
-NotifyMeSuccess.propTypes = {
+NotifyMeError.propTypes = {
   title: PropTypes.string,
 };
 
-NotifyMeSuccess.defaultProps = {
+NotifyMeError.defaultProps = {
   title: 'Notify Me',
 };
 
-export default NotifyMeSuccess;
+export default NotifyMeError;

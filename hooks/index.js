@@ -27,6 +27,7 @@ import useGroupCoverImages from './useGroupCoverImages';
 import useGroupMemberStatus from './useGroupMemberStatus';
 import useGroupPreference from './useGroupPreference';
 import useGroupPreferences from './useGroupPreferences';
+import useGroupPreferenceUpdates from './useGroupPreferenceUpdates';
 import useGroupResourceOptions from './useGroupResourceOptions';
 import useGroups from './useGroups';
 import useLinkTree from './useLinkTree';
@@ -84,6 +85,7 @@ export {
   useGroupMemberStatus,
   useGroupPreference,
   useGroupPreferences,
+  useGroupPreferenceUpdates,
   useGroupResourceOptions,
   useGroups,
   useLinkTree,
