@@ -86,19 +86,6 @@ function Nav(props = {}) {
               />
             </Menu.Link>
           </Box>
-          {/* <Box as="li">
-            {authenticated ? (
-              <Menu.Link
-                display={{ _: 'inline', md: 'none' }}
-                href="/connect"
-                px="base"
-                py="xs"
-              >
-                <Icon name="user" mr="s" size="18" />
-                Connect
-              </Menu.Link>
-            ) : null}
-          </Box> */}
           <Primary data={props.data.navigationLinks} />
           <MenuLinks data={props.data.menuLinks} />
           <Box as="li">
