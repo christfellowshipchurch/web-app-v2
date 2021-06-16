@@ -57,7 +57,18 @@ function GroupManageResources(props = {}) {
         </Box>
         <Menu
           renderTrigger={({ toggle }) => (
-            <Box as="a" href="#0" onClick={toggle} textDecoration="none">
+            <Box
+              pl="xs"
+              py="xs"
+              border={'2px solid'}
+              backgroundColor="white"
+              borderRadius="7px"
+              as="a"
+              href="#0"
+              onClick={toggle}
+              textDecoration="none"
+              fontWeight="bold"
+            >
               Add <Icon name="caretDown" position="relative" top="2px" />
             </Box>
           )}
