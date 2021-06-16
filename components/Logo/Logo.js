@@ -10,9 +10,9 @@ function Logo({ withText, dark, ...props } = {}) {
   return withText ? (
     <Box>
       <Icon
-        name="logo"
+        name="logoTree"
         alt="Long Hollow"
-        viewBox="0 0 78 78"
+        viewBox="0 0 42 42"
         width="42px"
         height="42px"
         stroke={color}
@@ -34,9 +34,9 @@ function Logo({ withText, dark, ...props } = {}) {
     </Box>
   ) : (
     <Icon
-      name="logo"
+      name="logoTree"
       alt="Long Hollow"
-      viewBox="0 0 78 78"
+      viewBox="0 0 42 42"
       width="42px"
       height="42px"
       stroke={color}
