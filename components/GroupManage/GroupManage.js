@@ -85,13 +85,13 @@ function GroupManage(props = {}) {
                       p="s"
                       px="base"
                       onClick={handleSectionClick(_section)}
-                      backgroundColor={
-                        section === _section ? 'primarySubduedHover' : ''
-                      }
+                      // backgroundColor={
+                      //   section === _section ? 'primarySubduedHover' : ''
+                      // }
                       borderLeft={section === _section ? '5px solid' : ''}
                       {...borderRadius}
                       color={section === _section ? 'primary' : 'neutrals.700'}
-                      cursor="pointer"
+                      // cursor="pointer"
                       fontWeight="bold"
                     >
                       Update {capitalize(_section)}
