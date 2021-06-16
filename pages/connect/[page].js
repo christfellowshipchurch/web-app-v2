@@ -196,10 +196,13 @@ export default function Page({
           <PageSplit title="Meet the Staff" />
           <Section
             mb={{ _: 'l', md: 'xxl' }}
-            display="flex"
-            flexWrap="wrap"
-            justifyContent="center"
-            alignItems="center"
+            mt="l"
+            contentProps={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
           >
             {staff.map(person => (
               <MeetTheStaff
