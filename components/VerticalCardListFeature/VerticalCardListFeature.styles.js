@@ -28,6 +28,10 @@ const cardSpan = ({ index, total }) => {
     span = 12 / remainder;
   }
 
+  if (remainder === 1 && index < 4) {
+    span = 6;
+  }
+
   return css`
     grid-column-end: span ${span};
   `;
