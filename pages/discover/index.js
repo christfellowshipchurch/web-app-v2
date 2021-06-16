@@ -33,8 +33,8 @@ const Discover = () => {
   });
 
   const [filterValues, setFilterValues] = useState({
-    title: filters[0]?.title,
-    contentId: filters[0]?.id,
+    title: null,
+    contentId: null,
   });
 
   const setFilterTitle = title =>
