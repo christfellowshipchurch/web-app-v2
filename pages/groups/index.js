@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 import flags from 'config/flags';
-import { Box, Cell, Icon, utils } from 'ui-kit';
+import { Box, Button, Cell, Icon, utils } from 'ui-kit';
 import {
   CommunityActionSection,
   CommunityLeaderActions,
@@ -67,12 +67,15 @@ export default function Community(props = {}) {
       <SEO title="Christ Fellowship Church Groups" />
       <Box display="grid" gridTemplateRows="auto 1fr auto" height="100vh">
         <Header />
-        <Styled.Hero />
-        <Box>
+        <Styled.Hero>
+          <Box />
           <Cell
             maxWidth={DEFAULT_CONTENT_WIDTH}
             p={{ _: 'xs', md: 'base' }}
             textAlign="center"
+            display="flex"
+            alignContent="center"
+            flexDirection="column"
           >
             <Styled.Title>Life is better together.</Styled.Title>
             <Styled.Summary>
@@ -81,14 +84,23 @@ export default function Community(props = {}) {
               faith. Groups and classes help you know where to look for
               direction and have the right people encouraging you along the way.
             </Styled.Summary>
-            <Box as="p" fontStyle="italic">
-              Already in a group? View all of your groups{' '}
-              <Box as="a" onClick={handleMyGroups} href="/connect">
-                here
-              </Box>
-              .
-            </Box>
           </Cell>
+
+          <Box
+            textAlign="center"
+            as="p"
+            fontWeight="bold"
+            fontStyle="italic"
+            color="white"
+          >
+            Already in a group? View all of your groups{' '}
+            <Box as="a" onClick={handleMyGroups} href="/connect" color="white">
+              here
+            </Box>
+            .
+          </Box>
+        </Styled.Hero>
+        <Box mt="base">
           <Cell
             maxWidth={DEFAULT_CONTENT_WIDTH}
             px="base"

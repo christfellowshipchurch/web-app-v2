@@ -9,36 +9,32 @@ const Community = styled.div`
 `;
 
 const Hero = styled.div`
-  background-image: linear-gradient(
-      rgba(246, 246, 246, 0) 70%,
-      rgba(246, 246, 246, 1) 100%
-    ),
-    url(/groups-cover-image.jpg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+
+  background-image: url(/groups-cover-image-new.jpg);
   background-size: cover;
   background-position: center bottom;
 
-  height: 200px;
+  min-height: 70vh;
 
-  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-    height: 400px;
-    background-image: linear-gradient(
-        rgba(246, 246, 246, 0) 60%,
-        rgba(246, 246, 246, 0.5) 80%,
-        rgba(246, 246, 246, 1) 100%
-      ),
-      url(/groups-cover-image.jpg);
-  }
+  padding-right: ${themeGet('space.base')};
+  padding-left: ${themeGet('space.base')};
+  padding-bottom: ${themeGet('space.s')};
+  margin-bottom: ${themeGet('space.m')};
 
-  @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
-    height: 500px;
+  @media screen and (min-width: ${themeGet('breakpoints.sm')}) {
+    min-height: 50vh;
   }
 
   ${system}
 `;
 
 const Title = styled.h1`
-  color: ${themeGet('colors.primary')};
-  font-size: ${rem('50px')};
+  color: white;
+  font-size: ${rem('45px')};
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     font-size: ${rem('65px')};
@@ -51,8 +47,16 @@ const Title = styled.h1`
 `;
 
 const Summary = styled.p`
-  padding: ${themeGet('space.l')};
+  color: white;
   padding-top: 0;
+
+  padding-left: ${themeGet('space.base')};
+  padding-right: ${themeGet('space.base')};
+
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    padding-left: ${themeGet('space.l')};
+    padding-right: ${themeGet('space.l')};
+  }
 
   ${system}
 `;
