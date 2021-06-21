@@ -69,7 +69,7 @@ function Resources() {
           <Styled.Link href={links.shopOnline}>Shop Online</Styled.Link>
         </Box>
         <Box as="li">
-          <Styled.Link href={links.cfSeu}>CF SEU</Styled.Link>
+          <Styled.Link href={links.cfSeu}>Get Your Degree</Styled.Link>
         </Box>
       </List>
     </Box>
