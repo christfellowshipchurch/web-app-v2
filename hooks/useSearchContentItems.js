@@ -12,6 +12,8 @@ export const SEARCH_CONTENT_ITEMS = gql`
         cursor
         title
         summary
+        action
+        url
         coverImage {
           sources {
             uri
