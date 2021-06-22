@@ -71,7 +71,7 @@ function HeroListFeature(props = {}) {
           coverImageOverlay={true}
           title={bottomCard?.title}
           description={bottomCard?.subtitle}
-          label={transformISODates(card?.labelText)}
+          label={transformISODates(bottomCard?.labelText)}
         />
       )}
     </Box>
