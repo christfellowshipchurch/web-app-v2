@@ -5,7 +5,7 @@ import isEmpty from 'lodash/isEmpty';
 
 import { CustomLink } from '..';
 import { Box, CardGrid, DefaultCard, RowCard } from 'ui-kit';
-import { getUrlFromRelatedNode } from 'utils';
+import { getUrlFromRelatedNode, transformISODates } from 'utils';
 
 function HeroListFeature(props = {}) {
   const onPressActionItem = props?.onPressActionItem;
@@ -41,7 +41,7 @@ function HeroListFeature(props = {}) {
         display="block"
         marginBottom="base"
         onClick={e => onPressActionItem(e, heroCard)}
-        coverImageLabel={heroCard?.labelText}
+        coverImageLabel={transformISODates(heroCard?.labelText)}
       />
       {cards.length > 0 && (
         <CardGrid columns={col} marginBottom="l">
@@ -56,7 +56,7 @@ function HeroListFeature(props = {}) {
                 coverImageOverlay={true}
                 title={card?.title}
                 description={card?.subtitle}
-                label={card?.labelText}
+                label={transformISODates(card?.labelText)}
               />
             );
           })}
@@ -71,7 +71,7 @@ function HeroListFeature(props = {}) {
           coverImageOverlay={true}
           title={bottomCard?.title}
           description={bottomCard?.subtitle}
-          label={bottomCard?.labelText}
+          label={transformISODates(bottomCard?.labelText)}
         />
       )}
     </Box>
