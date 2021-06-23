@@ -27,7 +27,7 @@ const transformISODates = (
   { isTodayText = 'Today', withTime = false } = {}
 ) => {
   if (!!str && typeof str === 'string') {
-    const isoRegex = /\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+([+-][0-2]\d:[0-5]\d|Z)/gim;
+    const isoRegex = /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+([+-][0-2]\d:[0-5]\d|Z))|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d([+-][0-2]\d:[0-5]\d|Z))|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d([+-][0-2]\d:[0-5]\d|Z))/;
 
     return str.replace(isoRegex, match => {
       try {
@@ -35,7 +35,7 @@ const transformISODates = (
 
         /** If the date is today, display the isTodayText */
         if (isToday(iso)) {
-          return withTime ? format(iso, `'Today at' h:mm A`) : isTodayText;
+          return withTime ? format(iso, `'Today at' h:mm a`) : isTodayText;
         }
 
         /** If the date is within this week: Monday */
@@ -46,7 +46,7 @@ const transformISODates = (
           })
         ) {
           return withTime
-            ? format(iso, `EEEE 'at' h:mm A`)
+            ? format(iso, `EEEE 'at' h:mm aaa`)
             : format(iso, 'EEEE');
         }
 
@@ -62,7 +62,7 @@ const transformISODates = (
 
         /** If the date is within this year: January 1 */
         return withTime
-          ? format(iso, 'MMM d [at] h:mm A')
+          ? format(iso, `MMM d 'at' h:mm a`)
           : format(iso, 'MMMM d');
       } catch (e) {
         console.warn('Unable to parse ISO string', { e });
