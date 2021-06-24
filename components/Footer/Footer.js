@@ -55,7 +55,9 @@ function Resources() {
       </Box>
       <List as="ul" space="xs">
         <Box as="li">
-          <Styled.Link target="_blank" href={links.churchOnline}>Church Online</Styled.Link>
+          <Styled.Link target="_blank" href={links.churchOnline}>
+            Church Online
+          </Styled.Link>
         </Box>
         <Box as="li">
           <Styled.Link href={links.pastMessages}>Past Messages</Styled.Link>
@@ -65,6 +67,9 @@ function Resources() {
         </Box>
         <Box as="li">
           <Styled.Link href={links.shopOnline}>Shop Online</Styled.Link>
+        </Box>
+        <Box as="li">
+          <Styled.Link href={links.cfSeu}>Get Your Degree</Styled.Link>
         </Box>
       </List>
     </Box>
@@ -107,9 +112,7 @@ function About() {
       </Box>
       <List as="ul" space="xs">
         <Box as="li">
-          <Styled.Link href="/about">
-            Our Leadership
-          </Styled.Link>
+          <Styled.Link href="/about">Our Leadership</Styled.Link>
         </Box>
         <Box as="li">
           <Styled.Link href={links.careerOpportunities}>

@@ -79,23 +79,28 @@ function GroupManage(props = {}) {
                   }
 
                   return (
-                    <Box
-                      key={idx}
-                      width="100%"
-                      p="s"
-                      px="base"
-                      onClick={handleSectionClick(_section)}
-                      backgroundColor={
-                        section === _section ? 'primarySubduedHover' : ''
-                      }
-                      borderLeft={section === _section ? '5px solid' : ''}
-                      {...borderRadius}
-                      color={section === _section ? 'primary' : 'neutrals.700'}
-                      cursor="pointer"
-                      fontWeight="bold"
-                    >
-                      Update {capitalize(_section)}
-                    </Box>
+                    /**
+                     * todo : Hiding 'Update' section for now TEMPORARILY per request.
+                     */
+                    // <Box
+                    //   display="none"
+                    //   key={idx}
+                    //   width="100%"
+                    //   p="s"
+                    //   px="base"
+                    //   onClick={handleSectionClick(_section)}
+                    //   backgroundColor={
+                    //     section === _section ? 'primarySubduedHover' : ''
+                    //   }
+                    //   borderLeft={section === _section ? '5px solid' : ''}
+                    //   {...borderRadius}
+                    //   color={section === _section ? 'primary' : 'neutrals.700'}
+                    //   cursor="pointer"
+                    //   fontWeight="bold"
+                    // >
+                    //   Update {capitalize(_section)}
+                    // </Box>
+                    <></>
                   );
                 }
               )}
