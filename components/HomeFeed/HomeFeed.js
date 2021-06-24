@@ -169,7 +169,7 @@ function HomeFeedArticles({ articles }) {
         <ArticleLink
           key={i}
           color="quaternary"
-          description={article?.summary}
+          description={article?.title}
           url={article?.linkURL || `/${getSlugFromURL(article?.sharing?.url)}`}
           urlText={article?.linkText || 'Learn More'}
           imageSrc={article?.coverImage?.sources?.[0]?.uri}
