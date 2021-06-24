@@ -15,31 +15,20 @@ function DiscoverItemsList(props = {}) {
 
   return (
     <CardGrid>
-      {props.data.map(contentItem => {
-        let href;
-        switch (contentItem.action) {
-          case 'OPEN_URL':
-            href = contentItem?.url;
-            break;
-          default:
-            href = getUrlFromRelatedNode(contentItem?.node);
-        }
-
-        return (
-          <CustomLink
-            Component={DefaultCard}
-            as="a"
-            boxShadow="none"
-            coverImage={contentItem?.coverImage?.sources[0]?.uri}
-            description={contentItem?.summary}
-            href={href}
-            key={contentItem?.id}
-            scaleCard={false}
-            scaleCoverImage={true}
-            title={contentItem?.title}
-          />
-        );
-      })}
+      {props.data.map(contentItem => (
+        <CustomLink
+          Component={DefaultCard}
+          as="a"
+          boxShadow="none"
+          coverImage={contentItem?.coverImage?.sources[0]?.uri}
+          description={contentItem?.summary}
+          href={getUrlFromRelatedNode(contentItem?.node)}
+          key={contentItem?.id}
+          scaleCard={false}
+          scaleCoverImage={true}
+          title={contentItem?.title}
+        />
+      ))}
     </CardGrid>
   );
 }
