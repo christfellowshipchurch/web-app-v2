@@ -20,6 +20,11 @@ export const SEARCH_CONTENT_ITEMS = gql`
           }
         }
         node {
+          ... on Url {
+            id
+            url
+            __typename
+          }
           ... on ContentItem {
             id
             __typename
