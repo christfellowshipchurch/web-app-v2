@@ -64,7 +64,7 @@ function AuthIdentity() {
         <Box mb="l">
           <Checkbox
             id="agreement"
-            label="I agree to the Terms of Use and Privacy Policy laid out by Long Hollow Baptist Church."
+            label="I agree to the Terms of Use and Privacy Policy laid out by Long Hollow Church."
             required
             onChange={handleChange}
             mr="s"

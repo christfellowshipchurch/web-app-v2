@@ -22,7 +22,7 @@ function Logo({ withText, dark, ...props } = {}) {
       />
       <Icon
         name="logoText"
-        alt="Long Hollow Baptist Church"
+        alt="Long Hollow Church"
         viewBox="0 0 260 36"
         width="140px"
         height="42px"

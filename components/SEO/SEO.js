@@ -4,8 +4,8 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 const DEFAULT_DESCRIPTION = `Long Hollow is one church that meets in two locations just north of Nashville. We’re a community of believers with something for everyone; whether you’re checking out the claims of Christ for the first time, or are looking for a new place to call home, Long Hollow has a place for you!`;
-const DEFAULT_KEYWORDS = `Church, Long Hollow, Long Hollow Baptist, Long Hollow Baptist Church, Churches in Nashville`;
-const DEFAULT_TITLE = 'Long Hollow Baptist Church';
+const DEFAULT_KEYWORDS = `Church, Long Hollow, Long Hollow Baptist, Long Hollow Church, Churches in Nashville`;
+const DEFAULT_TITLE = 'Long Hollow Church';
 
 function getPageTitle(title) {
   if (title === DEFAULT_TITLE || title === 'Home') return DEFAULT_TITLE;

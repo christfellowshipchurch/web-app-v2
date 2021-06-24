@@ -54,7 +54,7 @@ function Contact() {
       </Box>
       <Box display="flex" flexDirection="column">
         <Text variant="h4" color="neutrals.100" opacity="33%">
-          Long Hollow Baptist Church
+          Long Hollow Church
         </Text>
         <Text variant="h5" color="neutrals.100" opacity="60%">
           3031 Long Hollow Pike
