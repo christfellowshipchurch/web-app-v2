@@ -13,7 +13,6 @@ export const SEARCH_CONTENT_ITEMS = gql`
         title
         summary
         action
-        url
         coverImage {
           sources {
             uri
