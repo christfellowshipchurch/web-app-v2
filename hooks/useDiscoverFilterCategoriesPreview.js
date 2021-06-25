@@ -38,7 +38,10 @@ function useDiscoverFilterCategoriesPreview(options = {}) {
   });
 
   return {
-    categories: query?.data?.node?.childContentItemsConnection?.edges || [],
+    categoryTitle: query?.data?.node?.title,
+    contentItems:
+      query?.data?.node?.childContentItemsConnection?.edges.map(n => n.node) ||
+      [],
     ...query,
   };
 }
