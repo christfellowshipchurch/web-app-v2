@@ -7,17 +7,15 @@ import { useDiscoverFilterCategoriesPreview } from 'hooks';
 import { Box, DefaultCard, CardGrid, Cell, Icon, Button, utils } from 'ui-kit';
 import { Layout, CustomLink } from 'components';
 
-export default function Content(props) {
+export default function DiscoverFilterCategoriesPreview(props) {
   const { query, back } = useRouter();
   const type = 'UniversalContentItem';
   const contentId = type.concat(':', query?.id);
 
-  const { categories } = useDiscoverFilterCategoriesPreview({
+  const { categoryTitle, contentItems } = useDiscoverFilterCategoriesPreview({
     variables: { id: contentId, first: 21 },
     fetchPolicy: 'cache-and-network',
   });
-
-  const content = categories?.map(edge => edge.node);
 
   return (
     <Layout title={startCase(query?.title)}>
@@ -34,14 +32,14 @@ export default function Content(props) {
           mb="l"
         >
           <Box as="h1" mb="0">
-            {startCase(query?.title)}
+            {categoryTitle}
           </Box>
           <Button variant="link" onClick={() => back()} pr="0">
             <Icon name="angleLeft" /> Back
           </Button>
         </Box>
         <CardGrid columns="3" mb="xl">
-          {content.map((n, i) => (
+          {contentItems.map(n => (
             <CustomLink
               Component={DefaultCard}
               as="a"

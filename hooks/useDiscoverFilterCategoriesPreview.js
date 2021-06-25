@@ -4,6 +4,7 @@ export const GET_CATEGORIES_FILTER_PREVIEW = gql`
   query getFilterCategories($id: ID!, $first: Int) {
     node(id: $id) {
       id
+      title
       ... on ContentItem {
         title
         childContentItemsConnection(first: $first) {
@@ -38,7 +39,10 @@ function useDiscoverFilterCategoriesPreview(options = {}) {
   });
 
   return {
-    categories: query?.data?.node?.childContentItemsConnection?.edges || [],
+    categoryTitle: query?.data?.node?.title,
+    contentItems:
+      query?.data?.node?.childContentItemsConnection?.edges.map(n => n.node) ||
+      [],
     ...query,
   };
 }
