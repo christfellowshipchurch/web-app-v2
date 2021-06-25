@@ -35,7 +35,7 @@ const transformISODates = (
 
         /** If the date is today, display the isTodayText */
         if (isToday(iso)) {
-          return withTime ? format(iso, `'Today at' h:mm a`) : isTodayText;
+          return withTime ? format(iso, `'Today at' h:mmaaa`) : isTodayText;
         }
 
         /** If the date is within this week: Monday */
@@ -46,7 +46,7 @@ const transformISODates = (
           })
         ) {
           return withTime
-            ? format(iso, `EEEE 'at' h:mm aaa`)
+            ? format(iso, `EEEE 'at' h:mmaaa`)
             : format(iso, 'EEEE');
         }
 
@@ -62,7 +62,7 @@ const transformISODates = (
 
         /** If the date is within this year: January 1 */
         return withTime
-          ? format(iso, `MMM d 'at' h:mm a`)
+          ? format(iso, `MMM d 'at' h:mmaaa`)
           : format(iso, 'MMMM d');
       } catch (e) {
         console.warn('Unable to parse ISO string', { e });
