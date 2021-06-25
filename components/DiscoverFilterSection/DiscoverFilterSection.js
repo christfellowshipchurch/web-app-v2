@@ -5,12 +5,12 @@ import { useRouter } from 'next/router';
 import { getUrlFromRelatedNode, slugify } from 'utils';
 import { useDiscoverFilterCategoriesPreview } from 'hooks';
 
-import { Button, Box, DefaultCard, CardGrid } from 'ui-kit';
+import { Button, Box, DefaultCard, CardGrid, Loader } from 'ui-kit';
 import { CustomLink } from 'components';
 
 const DiscoverFilterSection = ({ contentId, title }) => {
   const router = useRouter();
-  const { contentItems } = useDiscoverFilterCategoriesPreview({
+  const { contentItems, loading } = useDiscoverFilterCategoriesPreview({
     variables: { id: contentId, first: 3 },
   });
 
@@ -33,20 +33,24 @@ const DiscoverFilterSection = ({ contentId, title }) => {
       </Box>
 
       <CardGrid columns="3" mb="xl">
-        {contentItems.map((n, i) => (
-          <CustomLink
-            key={i}
-            Component={DefaultCard}
-            as="a"
-            boxShadow="none"
-            coverImage={n?.coverImage?.sources[0]?.uri}
-            description={n?.summary}
-            href={getUrlFromRelatedNode(n)}
-            scaleCard={false}
-            scaleCoverImage={true}
-            title={n?.title}
-          />
-        ))}
+        {loading ? (
+          <Loader />
+        ) : (
+          contentItems.map((n, i) => (
+            <CustomLink
+              key={i}
+              Component={DefaultCard}
+              as="a"
+              boxShadow="none"
+              coverImage={n?.coverImage?.sources[0]?.uri}
+              description={n?.summary}
+              href={getUrlFromRelatedNode(n)}
+              scaleCard={false}
+              scaleCoverImage={true}
+              title={n?.title}
+            />
+          ))
+        )}
       </CardGrid>
     </Box>
   );
