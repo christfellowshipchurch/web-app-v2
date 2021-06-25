@@ -18,7 +18,7 @@ export default function DiscoverFilterCategoriesPreview(props) {
   });
 
   return (
-    <Layout title={startCase(query?.title)}>
+    <Layout title={startCase(categoryTitle)}>
       <Cell
         as="main"
         maxWidth={utils.rem('1100px')}

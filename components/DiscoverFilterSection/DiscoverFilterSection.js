@@ -10,12 +10,9 @@ import { CustomLink } from 'components';
 
 const DiscoverFilterSection = ({ contentId, title }) => {
   const router = useRouter();
-  const { categories } = useDiscoverFilterCategoriesPreview({
+  const { contentItems } = useDiscoverFilterCategoriesPreview({
     variables: { id: contentId, first: 3 },
-    fetchPolicy: 'cache-and-network',
   });
-
-  const content = categories?.map(edge => edge.node);
 
   const handleSeeMore = event => {
     const [type, id] = contentId.split(':');
@@ -28,7 +25,7 @@ const DiscoverFilterSection = ({ contentId, title }) => {
     <Box my="s">
       <Box display="flex" justifyContent="space-between" mb="s">
         <Box as="h3">{title}</Box>
-        {content?.length > 2 ? (
+        {contentItems?.length > 2 ? (
           <Button variant="link" paddingRight={0} onClick={handleSeeMore}>
             See more
           </Button>
@@ -36,7 +33,7 @@ const DiscoverFilterSection = ({ contentId, title }) => {
       </Box>
 
       <CardGrid columns="3" mb="xl">
-        {content.map((n, i) => (
+        {contentItems.map((n, i) => (
           <CustomLink
             key={i}
             Component={DefaultCard}
@@ -45,7 +42,6 @@ const DiscoverFilterSection = ({ contentId, title }) => {
             coverImage={n?.coverImage?.sources[0]?.uri}
             description={n?.summary}
             href={getUrlFromRelatedNode(n)}
-            key={n?.id}
             scaleCard={false}
             scaleCoverImage={true}
             title={n?.title}
