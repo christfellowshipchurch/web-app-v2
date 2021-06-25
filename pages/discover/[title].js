@@ -4,7 +4,16 @@ import startCase from 'lodash/startCase';
 import { getUrlFromRelatedNode } from 'utils';
 import { useDiscoverFilterCategoriesPreview } from 'hooks';
 
-import { Box, DefaultCard, CardGrid, Cell, Icon, Button, utils } from 'ui-kit';
+import {
+  Box,
+  DefaultCard,
+  CardGrid,
+  Cell,
+  Icon,
+  Button,
+  utils,
+  Loader,
+} from 'ui-kit';
 import { Layout, CustomLink } from 'components';
 
 export default function DiscoverFilterCategoriesPreview(props) {
@@ -12,13 +21,17 @@ export default function DiscoverFilterCategoriesPreview(props) {
   const type = 'UniversalContentItem';
   const contentId = type.concat(':', query?.id);
 
-  const { categoryTitle, contentItems } = useDiscoverFilterCategoriesPreview({
+  const {
+    categoryTitle,
+    contentItems,
+    loading,
+  } = useDiscoverFilterCategoriesPreview({
     variables: { id: contentId, first: 21 },
     fetchPolicy: 'cache-and-network',
   });
 
   return (
-    <Layout title={startCase(query?.title)}>
+    <Layout title={startCase(categoryTitle)}>
       <Cell
         as="main"
         maxWidth={utils.rem('1100px')}
@@ -39,20 +52,25 @@ export default function DiscoverFilterCategoriesPreview(props) {
           </Button>
         </Box>
         <CardGrid columns="3" mb="xl">
-          {contentItems.map(n => (
-            <CustomLink
-              Component={DefaultCard}
-              as="a"
-              boxShadow="none"
-              coverImage={n?.coverImage?.sources[0]?.uri}
-              description={n?.summary}
-              href={getUrlFromRelatedNode(n)}
-              key={n?.id}
-              scaleCard={false}
-              scaleCoverImage={true}
-              title={n?.title}
-            />
-          ))}
+          {loading ? (
+            <Loader />
+          ) : (
+            contentItems.map(n => (
+              <CustomLink
+                Component={DefaultCard}
+                as="a"
+                boxShadow="none"
+                coverImage={n?.coverImage?.sources[0]?.uri}
+                description={n?.summary}
+                href={getUrlFromRelatedNode(n)}
+                key={n?.id}
+                scaleCard={false}
+                scaleCoverImage={true}
+                title={n?.title}
+                loading
+              />
+            ))
+          )}
         </CardGrid>
       </Cell>
     </Layout>
