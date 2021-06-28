@@ -5,7 +5,7 @@ import { ContentLayout } from 'components';
 import { useCurrentBreakpoint, useCurrentUser, useCheckIn } from 'hooks';
 
 import { ChatConnectionProvider } from 'providers';
-import { currentUserIsLeader } from 'utils';
+import { currentUserIsLeader, transformISODates } from 'utils';
 import { Box, Card, Icon } from 'ui-kit';
 import { CustomLink } from 'components';
 
@@ -118,7 +118,9 @@ function GroupSingle(props = {}) {
       <ContentLayout
         mode={props.data.mode}
         title={props.data?.title}
-        summary={props.data.schedule?.friendlyScheduleText}
+        summary={transformISODates(props.data?.dateTime?.start, {
+          withTime: true,
+        })}
         coverImage={props.data?.coverImage?.sources[0]?.uri}
         titleIconLink={() =>
           isLeader ? (
