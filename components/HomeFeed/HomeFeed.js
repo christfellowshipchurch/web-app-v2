@@ -180,6 +180,7 @@ function HomeFeedArticles({ articles }) {
 }
 
 function HomeFeedCTA({ authenticated }) {
+  const router = useRouter();
   return authenticated && false ? (
     <MarketingHeadline
       image={{
@@ -192,7 +193,7 @@ function HomeFeedCTA({ authenticated }) {
       title={
         <>
           <Heading color="neutrals.900" variant="h2" fontWeight="800">
-            They're welcome here.
+            There's Something for Everyone
           </Heading>
         </>
       }
@@ -200,16 +201,18 @@ function HomeFeedCTA({ authenticated }) {
         mb: 'xxl',
         mt: 'l',
       }}
-      supertitle="Know someone in need?"
-      description="Long Hollow is one church that meets in two locations just north of Nashville. We’re a community of believers with something for everyone. Whether you’re checking out Christ for the first time or are looking for a place to call home, you’re invited to discover your purpose and live it out at Long Hollow."
+      supertitle="Don't miss what God's doing this week!"
+      description="From Sunday services to Wednesday night activities, there’s always a way to be a part of what God is doing every week at Long Hollow. Check out our weekly schedule for every member of your family, and mark your calendar for several upcoming events."
       actions={[
         {
           color: 'primary',
-          label: 'Primary Call',
+          label: 'Times and Locations',
+          onClick: () => router.push('/about/schedule'),
         },
         {
           color: 'secondary',
-          label: 'Secondary Call',
+          label: 'Upcoming Events',
+          onClick: () => router.push('/search?category=Events&p=1'),
         },
       ]}
     />
@@ -239,11 +242,13 @@ function HomeFeedCTA({ authenticated }) {
         {
           color: 'primary',
           label: 'Times and Locations',
+          onClick: () => router.push('/about/schedule'),
         },
         {
           color: 'quaternary',
           variant: 'outlined',
           label: 'Join Us Online',
+          onClick: () => router.push('/next-steps/join-us-online'),
         },
       ]}
     />
