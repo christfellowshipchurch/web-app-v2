@@ -82,7 +82,7 @@ function Carousel({
               }}
             >
               <Box display="flex" justifyContent="center" height="100%">
-                {child ? cloneElement(child, childProps(i)) : null}
+                {child ? cloneElement(child, childProps?.(i)) : null}
               </Box>
             </Styled.Container>
           );

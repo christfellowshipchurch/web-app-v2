@@ -12,10 +12,11 @@ function LargeImage({
   color,
   text,
   action,
-  dropShadow = true,
+  dropShadow: _dropShadow,
   size = 'l',
   ...props
 } = {}) {
+  const dropShadow = _dropShadow !== false;
   let textPadding;
   let fontSize;
   let lineHeight;

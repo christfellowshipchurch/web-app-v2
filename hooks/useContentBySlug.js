@@ -18,6 +18,23 @@ export const GET_CONTENT_BY_SLUG = gql`
     sharing {
       url
     }
+    siblingContentItemsConnection {
+      edges {
+        node {
+          id
+          title
+          summary
+          coverImage {
+            sources {
+              uri
+            }
+          }
+          sharing {
+            url
+          }
+        }
+      }
+    }
   }
   fragment WithMedia on ContentItem {
     videos {
