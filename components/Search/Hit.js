@@ -12,9 +12,10 @@ function Hit(props) {
       src={props.hit.coverImage ? props.hit.coverImage.sources[0].uri : null}
       text={props.hit.title}
       color="white"
-      width="460px"
-      height="347px"
-      m="m"
+      width="300px"
+      height="225px"
+      m="xs"
+      size="m"
     />
   );
 }

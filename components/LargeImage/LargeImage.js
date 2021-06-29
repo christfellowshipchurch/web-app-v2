@@ -13,8 +13,36 @@ function LargeImage({
   text,
   action,
   dropShadow = true,
+  size = 'l',
   ...props
 } = {}) {
+  let textPadding;
+  let fontSize;
+  let lineHeight;
+  let iconSize;
+
+  switch (size) {
+    case 's':
+      textPadding = '15px 24px 15px';
+      fontSize = '14px';
+      lineHeight = '18px';
+      iconSize = 16;
+      break;
+    case 'm':
+      textPadding = '15px 24px 15px';
+      fontSize = '20px';
+      lineHeight = '24px';
+      iconSize = 24;
+      break;
+    case 'l':
+    default:
+      textPadding = '25px 34px 25px';
+      fontSize = '28px';
+      lineHeight = '34px';
+      iconSize = 36;
+      break;
+  }
+
   return (
     <Styled
       onClick={action ? action : noop}
@@ -27,7 +55,7 @@ function LargeImage({
         alignItems="center"
         justifyContent="space-between"
         position="absolute"
-        padding="25px 34px 25px"
+        padding={textPadding}
         backgroundColor="rgba(0, 0, 0, 0.75)"
         width="100%"
         borderRadius="0 0 24px 24px"
@@ -35,15 +63,15 @@ function LargeImage({
         {text && (
           <Heading
             color={color}
-            fontSize="28px"
-            lineHeight="35px"
+            fontSize={fontSize}
+            lineHeight={lineHeight}
             fontWeight="700"
           >
             <span style={{ marginRight: '36px' }}>{text}</span>
             {action && (
               <ArrowCircleRight
                 style={{ float: 'right' }}
-                size={36}
+                size={iconSize}
                 color={color}
               />
             )}
@@ -59,6 +87,7 @@ LargeImage.propTypes = {
   text: PropTypes.string,
   color: PropTypes.string,
   action: PropTypes.func,
+  size: PropTypes.oneOf(['s', 'm', 'l']),
 };
 
 export default LargeImage;
