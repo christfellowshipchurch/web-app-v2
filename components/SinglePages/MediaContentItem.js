@@ -2,14 +2,12 @@ import { Carousel, Layout, MainPhotoHeader } from 'components';
 import { useRouter } from 'next/router';
 import VideoPlayer from 'components/VideoPlayer/VideoJSPlayer';
 import { Heading, Section, Longform, Box, Text } from 'ui-kit';
-import { getMediaSource, getMetaData, getSlugFromURL } from 'utils';
+import { getMediaSource, getMetaData } from 'utils';
 import { useState } from 'react';
 import Styled from 'components/HomeFeed/HomeFeed.styles';
-import LargeImage from 'components/LargeImage';
-import { useTheme } from 'styled-components';
+import Siblings from 'components/Siblings';
 
 export default function WeekendContentItem({ item, dropdownData } = {}) {
-  const theme = useTheme();
   const clips = item?.childContentItemsConnection?.edges || [];
 
   const [selectedClip, setSelectedClip] = useState(0);
@@ -129,33 +127,7 @@ export default function WeekendContentItem({ item, dropdownData } = {}) {
         </Heading>
         <Longform dangerouslySetInnerHTML={{ __html: item.htmlContent }} />
       </Section>
-      {item.siblingContentItemsConnection?.edges?.length ? (
-        <Box
-          display="flex"
-          my="m"
-          mr={`-${theme.space.m}`}
-          px={{ _: 'l', md: 'xxl' }}
-          flexWrap="wrap"
-          justifyContent="center"
-        >
-          {item.siblingContentItemsConnection.edges.map(({ node }) => (
-            <LargeImage
-              key={node.id}
-              text={node.title}
-              color="white"
-              src={node.coverImage.sources?.[0].uri}
-              height="225px"
-              maxWidth="300px"
-              mr="m"
-              mb="m"
-              size="m"
-              action={() =>
-                router.push(`/${getSlugFromURL(node?.sharing?.url)}`)
-              }
-            />
-          ))}
-        </Box>
-      ) : null}
+      <Siblings root={item} />
     </Layout>
   );
 }
