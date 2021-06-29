@@ -225,7 +225,7 @@ function HomeFeedCTA({ authenticated }) {
       title={
         <>
           <Heading color="neutrals.900" variant="h2" fontWeight="800">
-            You're welcome here.
+            Join Us This Weekend
           </Heading>
         </>
       }
@@ -233,17 +233,17 @@ function HomeFeedCTA({ authenticated }) {
         mb: 'xxl',
         mt: 'l',
       }}
-      supertitle="We'd like to know you"
-      description="Long Hollow is one church that meets in two locations just north of Nashville. We’re a community of believers with something for everyone. Whether you’re checking out Christ for the first time or are looking for a place to call home, you’re invited to discover your purpose and live it out at Long Hollow."
+      supertitle="God wants to work in your life"
+      description="Long Hollow is one church that meets in two locations just north of Nashville, and online all across the globe. Whether you’re exploring faith for the first time, or are looking for a place to call home, we want you to be a part of our community. Join us on Sunday either in person or online!"
       actions={[
         {
           color: 'primary',
-          label: 'Primary Call',
+          label: 'Times and Locations',
         },
         {
           color: 'quaternary',
           variant: 'outlined',
-          label: 'Secondary Call',
+          label: 'Join Us Online',
         },
       ]}
     />
