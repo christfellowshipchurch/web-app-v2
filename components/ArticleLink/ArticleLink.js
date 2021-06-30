@@ -6,6 +6,7 @@ import Link from 'next/link';
 
 import Styled from './ArticleLink.styles';
 import { splitString } from 'utils';
+import { useRouter } from 'next/router';
 
 function ArticleLink({
   title,
@@ -16,10 +17,16 @@ function ArticleLink({
   imageSrc,
   ...props
 }) {
+  const router = useRouter();
   return (
     <Styled.Container {...props}>
       <Styled.ImageContainer>
-        <Styled.Image rounded src={imageSrc} float="right" />
+        <Styled.Image
+          rounded
+          src={imageSrc}
+          float="right"
+          onClick={url ? () => router.push(url) : null}
+        />
       </Styled.ImageContainer>
       <Styled.TextContainer>
         <Text fontWeight="700" variant="s">

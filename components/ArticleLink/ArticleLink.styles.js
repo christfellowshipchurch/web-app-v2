@@ -23,6 +23,7 @@ Styled.Image = styled(Image)`
   height: 100%;
   object-fit: cover;
   width: 100%;
+  cursor: ${props => (props.onClick ? 'pointer' : 'initial')};
 
   ${system}
 `;
