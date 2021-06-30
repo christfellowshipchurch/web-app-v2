@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { ArrowCircleRight } from 'phosphor-react';
 
 import { Box, Heading } from 'ui-kit';
-import { noop } from 'utils';
 
 import Styled, { StyledImage } from './LargeImage.styles';
 
@@ -45,11 +44,7 @@ function LargeImage({
   }
 
   return (
-    <Styled
-      onClick={action ? action : noop}
-      clickable={Boolean(action)}
-      {...props}
-    >
+    <Styled onClick={action ? action : null} {...props}>
       <StyledImage src={src} rounded dropShadow={dropShadow} />
       <Box
         display="flex"

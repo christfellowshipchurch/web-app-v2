@@ -3,6 +3,7 @@ import { gql, useQuery } from '@apollo/client';
 export const GET_STAFF = gql`
   query getStaff($ministry: String!) {
     getStaff(ministry: $ministry) {
+      id
       firstName
       lastName
       photo {

@@ -13,6 +13,8 @@ const rounded = ({ rounded }) => props => {
 };
 
 const Image = styled.img`
+  cursor: ${props => (props.onClick ? 'pointer' : 'inherit')};
+
   ${props => props.objectFit && `object-fit: ${props.objectFit};`}
   ${rounded}
   ${system}

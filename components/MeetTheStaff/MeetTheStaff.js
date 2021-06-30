@@ -1,10 +1,13 @@
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 
 import { Box, Text } from 'ui-kit';
+import { getIdSuffix } from 'utils';
 
 import Styled, { StyledImage } from './MeetTheStaff.styles';
 
-function MeetTheStaff({ name, description, src, ...props }) {
+function MeetTheStaff({ id, name, description, src, ...props }) {
+  const router = useRouter();
   return (
     <Styled>
       <Box
@@ -13,7 +16,12 @@ function MeetTheStaff({ name, description, src, ...props }) {
         justifyContent="space-between"
         {...props}
       >
-        <StyledImage rounded src={src} width="100%" />
+        <StyledImage
+          rounded
+          src={src}
+          width="100%"
+          onClick={() => router.push(`/staff/${getIdSuffix(id)}`)}
+        />
         <Text fontWeight="700" variant="s">
           {name}
         </Text>
