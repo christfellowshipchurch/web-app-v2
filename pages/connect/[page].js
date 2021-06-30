@@ -210,7 +210,7 @@ export default function Page({
                 id={person.id}
                 src={person.photo?.uri}
                 name={`${person.firstName} ${person.lastName}`}
-                description={person.campus?.name}
+                description={person.position}
               />
             ))}
           </Section>

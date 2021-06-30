@@ -9,6 +9,7 @@ export const GET_STAFF = gql`
       photo {
         uri
       }
+      position
       campus {
         name
       }
