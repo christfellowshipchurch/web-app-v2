@@ -51,14 +51,6 @@ export default function Page({
         getIdSuffix(link.parentChannel?.id) === IDS.CHANNELS.ARTICLES)
   );
 
-  links = [
-    {
-      title: 'hi',
-      id: '123',
-      subtitle: 'whoa',
-      sharing: { url: 'www.google.com' },
-    },
-  ];
   return (
     <Layout meta={getMetaData(node)} bg="bg_alt" dropdownData={dropdownData}>
       <MainPhotoHeader
