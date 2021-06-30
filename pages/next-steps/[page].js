@@ -5,18 +5,29 @@ import {
   ArticleLink,
   ArticleLinks,
   CampusFilter,
+  EventCallout,
+  EventsCallout,
   Layout,
   MainPhotoHeader,
   MarketingHeadline,
 } from 'components';
 import IDS from 'config/ids';
 import { CardGrid, Longform, Section } from 'ui-kit';
-import { getMetaData, getSlugFromURL } from 'utils';
+import { getIdSuffix, getMetaData, getSlugFromURL } from 'utils';
 import { initializeApollo } from 'lib/apolloClient';
 import { GET_CAMPUSES } from 'hooks/useCampuses';
 import { GET_CONTENT_BY_SLUG } from 'hooks/useContentBySlug';
+import { useTheme } from 'styled-components';
+import { Info } from 'phosphor-react';
+import { GET_MINISTRY_CONTENT } from 'hooks/useMinistryContent';
 
-export default function Page({ data = {}, campuses, dropdownData }) {
+export default function Page({
+  data = {},
+  campuses,
+  dropdownData,
+  relatedContent,
+}) {
+  const theme = useTheme();
   const router = useRouter();
 
   const { loading, error, getContentBySlug: node = {} } = data;
@@ -29,16 +40,67 @@ export default function Page({ data = {}, campuses, dropdownData }) {
 
   const childContent = node.childContentItemsConnection?.edges;
 
+  let links = relatedContent?.getMinistryContent?.length
+    ? relatedContent.getMinistryContent.slice(0, 4)
+    : [];
+
+  links = links.filter(
+    link =>
+      getSlugFromURL(link?.sharing?.url) !== router.query.page &&
+      (getIdSuffix(link.parentChannel?.id) === IDS.CHANNELS.EVENTS ||
+        getIdSuffix(link.parentChannel?.id) === IDS.CHANNELS.ARTICLES)
+  );
+
+  links = [
+    {
+      title: 'hi',
+      id: '123',
+      subtitle: 'whoa',
+      sharing: { url: 'www.google.com' },
+    },
+  ];
   return (
     <Layout meta={getMetaData(node)} bg="bg_alt" dropdownData={dropdownData}>
       <MainPhotoHeader
-        mb={{ _: '0', lg: 'l', xl: 'xxl' }}
+        mb={{ _: 'xl', lg: 'xxl' }}
         src={node.coverImage?.sources?.[0].uri || ''}
         title={node.title}
         subtitle={node.subtitle}
         showTitleOverImage={node.showTitleOverImage}
         summary={node.summary}
       />
+      {links?.length ? (
+        <Section contentProps={{ p: '0 !important' }}>
+          <EventsCallout
+            mx={{ _: 0, lg: 'xl' }}
+            mb={{ _: 'l', md: 'xxl' }}
+            my={{ lg: `-${theme.space.xxl}` }}
+            title="News & Events"
+            icon={
+              <Info
+                size={24}
+                style={{
+                  color: theme.colors.neutrals[900],
+                  opacity: '60%',
+                  marginRight: theme.space.xxs,
+                }}
+              />
+            }
+          >
+            {links.map(link => (
+              <EventCallout
+                key={link.id}
+                title={link.title}
+                description={link.subtitle}
+                imageSrc={link.coverImage?.sources?.[0]?.uri}
+                onClick={() =>
+                  router.push(`/${getSlugFromURL(link?.sharing?.url)}`)
+                }
+              />
+            ))}
+          </EventsCallout>
+        </Section>
+      ) : null}
       {node.htmlContent && (
         <Section>
           <Longform
@@ -120,6 +182,15 @@ export async function getStaticProps(context) {
     skip: !context.params.page,
   });
 
+  const pageData = pageResponse?.data?.getContentBySlug;
+
+  const ministryResponse = await apolloClient.query({
+    query: GET_MINISTRY_CONTENT,
+    variables: {
+      ministry: pageData?.ministry,
+    },
+  });
+
   const campusesResponse = await apolloClient.query({
     query: GET_CAMPUSES,
   });
@@ -128,6 +199,7 @@ export async function getStaticProps(context) {
     props: {
       initialApolloState: apolloClient.cache.extract(),
       data: pageResponse?.data || {},
+      relatedContent: ministryResponse?.data,
       campuses: campusesResponse?.data?.campuses || [],
     },
     revalidate: 60, // In seconds
