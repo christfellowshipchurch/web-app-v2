@@ -9,17 +9,14 @@ function MainPhotoHeader({
   title,
   subtitle,
   summary,
-  backdrop = true,
-  showImage = true,
-  showTitleOverImage = true,
+  showImage,
+  backdrop,
+  showTitleOverImage,
   primaryButton,
   secondaryButton,
-  overlay = {
-    lg:
-      'linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);',
-  },
+  overlay,
   content,
-  justifyText = 'flex-end',
+  justifyText,
   imageProps = {},
   ...props
 } = {}) {
@@ -102,6 +99,17 @@ function MainPhotoHeader({
     </Styled.Container>
   );
 }
+
+MainPhotoHeader.defaultProps = {
+  showImage: true,
+  backdrop: true,
+  showTitleOverImage: true,
+  justifyText: 'flex-end',
+  overlay: {
+    lg:
+      'linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);',
+  },
+};
 
 MainPhotoHeader.propTypes = {
   src: PropTypes.string,

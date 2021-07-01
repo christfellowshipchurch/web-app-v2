@@ -22,11 +22,13 @@ Styled.Backdrop = styled(Box)`
     display: block;
     height: calc(100vw * 0.5625);
     margin-left: -5px;
+    visibility: hidden;
     width: calc(100% + 10px);
   }
 
   @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
     height: calc(${themeGet('space.content')} * 0.5625);
+    visibility: visible;
   }
 
   ${system}
@@ -87,7 +89,7 @@ Styled.BackdropOverlay = styled(Box)`
 
   @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
     display: block;
-    height: 100%;
+    height: calc(${themeGet('space.content')} * 0.5625);
     left: 0;
     position: absolute;
     top: 0;

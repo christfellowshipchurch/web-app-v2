@@ -1,22 +1,17 @@
 import { Carousel, Layout, MainPhotoHeader } from 'components';
 import { useRouter } from 'next/router';
 import VideoPlayer from 'components/VideoPlayer/VideoJSPlayer';
-import { Heading, Section, Longform, Box, Text } from 'ui-kit';
+import { Heading, Section, Longform, Box } from 'ui-kit';
 import { getMediaSource, getMetaData } from 'utils';
 import { useState } from 'react';
-import Styled from 'components/HomeFeed/HomeFeed.styles';
 import Siblings from 'components/Siblings';
+import { useTheme } from 'styled-components';
 
 export default function WeekendContentItem({ item, dropdownData } = {}) {
-  const clips = item?.childContentItemsConnection?.edges || [];
+  const theme = useTheme();
 
-  const [selectedClip, setSelectedClip] = useState(0);
+  const [selectedVideo, setSelectedVideo] = useState(0);
   const [playerError, setPlayerError] = useState(false);
-  const [showing, setShowing] = useState({
-    clips: clips?.length > 0,
-    full: !(clips?.length > 0),
-  });
-
   const router = useRouter();
   if (router.isFallback) {
     return null;
@@ -28,11 +23,15 @@ export default function WeekendContentItem({ item, dropdownData } = {}) {
     src = getMediaSource(item, 'audios') || src;
   }
 
+  const clips = item?.childContentItemsConnection?.edges || [];
+  const clipItems = clips.map(({ node }) => node);
+  const videos = [item, ...clipItems];
+
   return (
     <Layout meta={getMetaData(item)} dropdownData={dropdownData}>
       <Box display="flex" flexDirection="column">
         <MainPhotoHeader
-          src={item.coverImage?.sources?.[0]?.uri}
+          src={item.seriesImage?.sources?.[0]?.uri}
           showImage={false}
           overlay=""
           content={
@@ -45,77 +44,50 @@ export default function WeekendContentItem({ item, dropdownData } = {}) {
                 position={{ lg: 'absolute' }}
                 top="0"
                 alignItems="center"
-                justifyContent="center"
-                background={{
-                  _: 'inherit',
-                  lg:
-                    'linear-gradient(89.49deg, #1C1617 -16.61%, rgba(28, 22, 23, 0) 99.62%);',
-                }}
                 height="100%"
                 width="100%"
                 display="flex"
                 flexDirection="column"
               >
-                {clips?.length ? (
-                  <Styled.SermonSelector>
-                    <Text
-                      mx="xs"
-                      variant="h2"
-                      fontWeight={showing?.clips ? 'bold' : 'normal'}
-                      onClick={() => setShowing({ clips: true, full: false })}
-                    >
-                      Clips
-                    </Text>
-                    <Text
-                      mx="xs"
-                      variant="h2"
-                      fontWeight={showing?.full ? 'bold' : 'normal'}
-                      onClick={() => setShowing({ clips: false, full: true })}
-                    >
-                      Full Message
-                    </Text>
-                  </Styled.SermonSelector>
-                ) : null}
-                {clips?.length && showing?.clips ? (
+                {videos.length > 1 ? (
                   <Carousel
                     width="100%"
                     neighbors="3d"
-                    contentWidth={{ _: '100vw', lg: '681px' }}
-                    onClick={i => setSelectedClip(i)}
+                    contentWidth={{ _: '100vw', xl: theme.space.content }}
+                    onClick={i => setSelectedVideo(i)}
                     childProps={i => ({
                       style: {
-                        pointerEvents: i !== selectedClip ? 'none' : 'initial',
+                        pointerEvents: i !== selectedVideo ? 'none' : 'initial',
                         width: '100%',
                       },
                     })}
                   >
-                    {clips.map(clip => {
-                      const clipSrc = getMediaSource(clip.node);
-                      return clipSrc ? (
+                    {videos.map(video => {
+                      const videoSrc = getMediaSource(video);
+                      return videoSrc ? (
                         <VideoPlayer
-                          key={clip.node?.id}
-                          src={clipSrc}
-                          title={clip.node?.title}
-                          poster={clip.node?.coverImage?.sources?.[0]?.uri}
-                          style={{ width: '681px' }}
-                          rounded={{ lg: 'image' }}
+                          key={video.id}
+                          src={videoSrc}
+                          poster={video.coverImage?.sources?.[0]?.uri}
                         />
                       ) : null;
                     })}
                   </Carousel>
-                ) : null}
-                {showing?.full ? (
-                  <Box width={{ _: '100%', lg: '681px' }}>
+                ) : (
+                  <Box
+                    width={{ _: '100%', xl: theme.space.content }}
+                    mt={{ _: 0, xl: 'l' }}
+                  >
                     <VideoPlayer
                       key={item.id}
                       src={src}
                       poster={item.coverImage?.sources?.[0]?.uri}
-                      style={{ width: '100%' }}
-                      rounded={{ lg: 'image' }}
+                      style={{ width: '100%', overflow: 'hidden' }}
                       onError={() => setPlayerError(true)}
+                      borderRadius={{ _: 0, xl: 'image' }}
                     />
                   </Box>
-                ) : null}
+                )}
               </Box>
             )
           }

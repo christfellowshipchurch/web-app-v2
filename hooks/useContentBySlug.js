@@ -53,6 +53,11 @@ export const GET_CONTENT_BY_SLUG = gql`
             uri
           }
         }
+        seriesImage {
+          sources {
+            uri
+          }
+        }
         childContentItemsConnection {
           edges {
             node {
@@ -68,6 +73,11 @@ export const GET_CONTENT_BY_SLUG = gql`
           }
         }
         ...WithMedia
+        seriesImage {
+          sources {
+            uri
+          }
+        }
         childContentItemsConnection {
           edges {
             node {
@@ -120,31 +130,6 @@ export const GET_CONTENT_BY_SLUG = gql`
         }
         ministry
         secondaryHTML
-        childContentItemsConnection(orderBy: { field: DATE, direction: DESC }) {
-          edges {
-            node {
-              ...BaseContentItem
-              ... on UniversalContentItem {
-                campus {
-                  id
-                  name
-                }
-                linkText
-                linkURL
-                socialMedia {
-                  title
-                  image {
-                    sources {
-                      uri
-                    }
-                  }
-                  summary
-                }
-              }
-              ...WithMedia
-            }
-          }
-        }
       }
     }
   }
