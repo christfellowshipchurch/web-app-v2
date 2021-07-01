@@ -24,6 +24,7 @@ function MarketingHeadline({
         flex="1 0 50%"
         pb={{ _: 's', lg: 0 }}
         width="100%"
+        onClick={() => actions?.[0]?.onClick?.()}
         {...image}
       />
     );

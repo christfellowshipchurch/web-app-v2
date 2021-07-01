@@ -4,7 +4,10 @@ import { Box, Image, theme } from 'ui-kit';
 import styled from 'styled-components';
 
 const StyledImage = styled(Image)`
-  ${props => props.dropShadow ? 'filter: drop-shadow(0px 20px 48px rgba(0, 0, 0, 0.25));' : ''}
+  ${props =>
+    props.dropShadow
+      ? 'filter: drop-shadow(0px 20px 48px rgba(0, 0, 0, 0.25));'
+      : ''}
 `;
 
 export default function Photo({
@@ -15,7 +18,7 @@ export default function Photo({
   borderRadius = theme.radii.image,
   alignItems = 'center',
   justifyContent = 'center',
-  onClick = () => {},
+  onClick,
   imageProps = {},
   dropShadow = true,
   ...props
@@ -25,6 +28,7 @@ export default function Photo({
   return (
     <Box position="relative" onClick={onClick} {...props}>
       <StyledImage
+        onClick={onClick}
         src={src}
         objectFit="cover"
         width="100%"
@@ -66,6 +70,14 @@ export default function Photo({
     </Box>
   );
 }
+
+Photo.defaultProps = {
+  borderRadius: theme.radii.image,
+  alignItems: 'center',
+  justifyContent: 'center',
+  imageProps: {},
+  dropShadow: true,
+};
 
 Photo.propTypes = {
   src: PropTypes.string,
