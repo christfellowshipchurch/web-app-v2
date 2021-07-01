@@ -78,7 +78,7 @@ export default function Page({ data, dropdownData } = {}) {
         </Section>
       )}
       {data.ctaLinks?.length ? (
-        <Section my={{ _: 'l', md: 'xxl' }}>
+        <Section mb={{ _: 'l', md: 'xxl' }}>
           <CardGrid columns="1">
             {data.ctaLinks?.map((cta, i) => (
               <MarketingHeadline

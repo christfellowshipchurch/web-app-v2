@@ -5,11 +5,9 @@ import IDS from 'config/ids';
 import { useRouter } from 'next/router';
 import { GET_MESSAGE_SERIES } from 'hooks/useMessageSeries';
 import { getChannelId, getMetaData, getSlugFromURL } from 'utils';
-import { useTheme } from 'styled-components';
 
 export default function Series({ series, dropdownData } = {}) {
   const router = useRouter();
-  const theme = useTheme();
 
   if (router.isFallback) {
     return null;
