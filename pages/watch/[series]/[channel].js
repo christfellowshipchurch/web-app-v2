@@ -1,6 +1,6 @@
 import { LargeImage, Layout, MainPhotoHeader } from 'components';
 import { GET_MESSAGE_CHANNEL } from 'hooks/useMessageChannel';
-import { Box, Button, Section } from 'ui-kit';
+import { Box, Button, Longform, Section } from 'ui-kit';
 import { useRouter } from 'next/router';
 import { getIdSuffix, getMetaData, getChannelId, getSlugFromURL } from 'utils';
 import { useTheme } from 'styled-components';
@@ -42,6 +42,9 @@ export default function Channel({ item, dropdownData } = {}) {
         title={item?.title}
         showTitleOverImage={false}
       />
+      <Section mt="xxl">
+        <Longform dangerouslySetInnerHTML={{ __html: item.htmlContent }} />
+      </Section>
       <Section>
         <Box
           display="flex"

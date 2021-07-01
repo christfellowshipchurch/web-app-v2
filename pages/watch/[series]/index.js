@@ -27,14 +27,7 @@ export default function Series({ series, dropdownData } = {}) {
         >
           {series.name}
         </Heading>
-        <Box
-          display="flex"
-          my="m"
-          mr={`-${theme.space.m}`}
-          px={{ _: 'l', md: 'xxl' }}
-          flexWrap="wrap"
-          justifyContent="center"
-        >
+        <Box display="flex" my="m" flexWrap="wrap" justifyContent="center">
           {series.childContentItemsConnection?.edges.map(({ node }) => (
             <LargeImage
               key={node.id}
@@ -42,8 +35,8 @@ export default function Series({ series, dropdownData } = {}) {
               color="white"
               src={node.coverImage.sources?.[0].uri}
               height="350px"
-              maxWidth="400px"
-              mr="m"
+              maxWidth="370px"
+              mx="s"
               mb="m"
               action={() =>
                 router.push(
