@@ -55,8 +55,6 @@ function HorizontalRow({
                 onClick={item.action}
                 rounded
                 imageProps={{
-                  width: '310px',
-                  height: '226px',
                   objectFit: 'cover',
                   cursor: 'pointer',
                 }}
@@ -65,10 +63,14 @@ function HorizontalRow({
                     {item.title}
                   </Heading>
                 }
-                overlay={item.title ? {
-                  color: theme.colors.almost_black,
-                  opacity: '30%',
-                } : undefined}
+                overlay={
+                  item.title
+                    ? {
+                        color: theme.colors.almost_black,
+                        opacity: '30%',
+                      }
+                    : undefined
+                }
                 {...imageProps}
               />
             </RowItem>

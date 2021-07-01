@@ -26,9 +26,6 @@ const ConnectTiles = props => {
       <HorizontalRow
         py={{ _: 'l', lg: 'xxl' }}
         width="100%"
-        imageProps={{
-          height: '226px',
-        }}
         items={featuredItems.map(item => ({
           src: item.coverImage?.sources?.[0]?.uri,
           title: item?.showTitleOverImage && item?.title,
