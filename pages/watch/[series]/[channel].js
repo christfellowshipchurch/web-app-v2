@@ -16,7 +16,7 @@ export default function Channel({ item, dropdownData } = {}) {
   const theme = useTheme();
 
   const [videos, setVideos] = useState(
-    item?.childContentItemsConnection?.edges
+    item?.childContentItemsConnection?.edges || []
   );
   const [cursor, setCursor] = useState(
     item?.childContentItemsConnection?.pageInfo?.endCursor
@@ -50,7 +50,7 @@ export default function Channel({ item, dropdownData } = {}) {
           flexWrap="wrap"
           justifyContent="center"
         >
-          {videos.map(({ node }) => (
+          {videos?.map(({ node }) => (
             <LargeImage
               key={node.id}
               text={node.title}
@@ -67,7 +67,7 @@ export default function Channel({ item, dropdownData } = {}) {
           ))}
         </Box>
       </Section>
-      {totalVideoCount > videos.length ? (
+      {totalVideoCount > videos?.length ? (
         <Button
           onClick={() => {
             fetchVideos({
@@ -110,7 +110,7 @@ export async function getStaticPaths() {
 
   const channels = (
     await Promise.all(
-      series.map(id =>
+      series?.map(id =>
         apolloClient.query({
           query: GET_MESSAGE_SERIES,
           variables: {
@@ -120,7 +120,7 @@ export async function getStaticPaths() {
       )
     )
   ).flatMap(({ data }) =>
-    data.node.childContentItemsConnection?.edges.map(({ node }) => ({
+    data.node.childContentItemsConnection?.edges?.map(({ node }) => ({
       channel: node,
       seriesId: data.node.id,
     }))
