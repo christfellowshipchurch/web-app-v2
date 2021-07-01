@@ -1,8 +1,7 @@
 import { themeGet } from '@styled-system/theme-get';
-import { CaretLeft, CaretRight } from 'phosphor-react';
 import styled, { css } from 'styled-components';
 
-import { Image, Text, system } from 'ui-kit';
+import { Image, Text, system, Box } from 'ui-kit';
 
 const Styled = {};
 
@@ -74,16 +73,18 @@ Styled.Content = styled.div`
   ${system}
 `;
 
-Styled.ArrowLeft = styled(CaretLeft)`
-  left: 0;
+Styled.CarouselArrow = styled(Box)`
+  align-items: center;
+  background: linear-gradient(
+    to ${props => props.direction || 'right'},
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.2)
+  );
+  cursor: pointer;
+  display: flex;
+  height: 100%;
   position: absolute;
-
-  ${system}
-`;
-
-Styled.ArrowRight = styled(CaretRight)`
-  position: absolute;
-  right: 0;
+  top: 0;
 
   ${system}
 `;

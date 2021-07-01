@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { CaretLeft, CaretRight } from 'phosphor-react';
 import { cloneElement, Fragment } from 'react';
 import { useState } from 'react';
 
@@ -88,24 +89,33 @@ function Carousel({
           );
         })}
       </Styled.Content>
-      <Styled.ArrowLeft
-        color="white"
-        size="40"
-        display={selectedItem <= 0 ? 'none' : 'block'}
+      <Styled.CarouselArrow
+        direction="left"
+        left="0"
         onClick={() => {
           setSelectedItem(selectedItem - 1);
           onClick?.(selectedItem - 1);
         }}
-      />
-      <Styled.ArrowRight
-        color="white"
-        size="40"
-        display={selectedItem >= children.length - 1 ? 'none' : 'block'}
+      >
+        <CaretLeft
+          color="white"
+          size="40"
+          display={selectedItem <= 0 ? 'none' : 'block'}
+        />
+      </Styled.CarouselArrow>
+      <Styled.CarouselArrow
+        right="0"
         onClick={() => {
           setSelectedItem(selectedItem + 1);
           onClick?.(selectedItem + 1);
         }}
-      />
+      >
+        <CaretRight
+          color="white"
+          size="40"
+          display={selectedItem >= children.length - 1 ? 'none' : 'block'}
+        />
+      </Styled.CarouselArrow>
     </Box>
   );
 }

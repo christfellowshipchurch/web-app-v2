@@ -58,9 +58,12 @@ export default function WeekendContentItem({ item, dropdownData } = {}) {
                     onClick={i => setSelectedVideo(i)}
                     childProps={i => ({
                       style: {
+                        overflow: 'hidden',
                         pointerEvents: i !== selectedVideo ? 'none' : 'initial',
                         width: '100%',
                       },
+                      borderRadius: { _: 0, xl: 'image' },
+                      m: { xl: 'xxl' },
                     })}
                   >
                     {videos.map(video => {
