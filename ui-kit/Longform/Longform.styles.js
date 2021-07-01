@@ -53,7 +53,17 @@ const Longform = styled.div`
     line-height: ${themeGet('lineHeights.h5')};
   }
 
-  h1, h2, h3, h4, h5 { 
+  h6 {
+    font-size: ${themeGet('fontSizes.h6')};
+    line-height: ${themeGet('lineHeights.h6')};
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     margin-top: ${themeGet('space.l')};
   }
 
