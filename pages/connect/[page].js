@@ -201,7 +201,7 @@ export default function Page({
               display: 'flex',
               flexWrap: 'wrap',
               justifyContent: 'center',
-              alignItems: 'center',
+              alignItems: 'flex-start',
             }}
           >
             {staff.map(person => (

@@ -19,7 +19,6 @@ function MeetTheStaff({ id, name, description, src, ...props }) {
         <StyledImage
           rounded
           src={src}
-          width="100%"
           onClick={() => router.push(`/staff/${getIdSuffix(id)}`)}
         />
         <Text fontWeight="700" variant="s">
