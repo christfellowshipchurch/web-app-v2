@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { format, parseISO } from 'date-fns';
 
 import { Layout, MainPhotoHeader } from 'components';
 import { Box, CardGrid, Heading, Longform, Section } from 'ui-kit';
@@ -46,6 +47,17 @@ export default function Page({ data, dropdownData } = {}) {
               textTransform="uppercase"
             >
               {data.title}
+            </Heading>
+          )}
+          {data.publishDate && (
+            <Heading
+              fontSize="h5"
+              lineHeight="h5"
+              color="fg"
+              fontWeight="800"
+              textTransform="uppercase"
+            >
+              {`Published: ${format(parseISO(data.publishDate), 'MM/dd')}`}
             </Heading>
           )}
         </Box>
