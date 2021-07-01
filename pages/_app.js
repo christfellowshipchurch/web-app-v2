@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { initializeApollo } from 'lib/apolloClient';
 import getDropdownData from 'utils/getDropdownData';
+import NotFound from './404';
 
 // Tracks the route changes and adds a bar to the top.
 configureNProgress();
@@ -35,7 +36,11 @@ function App({ Component, pageProps = {}, dropdownData }) {
         <link rel="stylesheet" type="text/css" href="/font-awesome.css" />
       </Head>
       <AppProvider initialApolloState={initialApolloState}>
-        <Component dropdownData={dropdownData} {...componentProps} />
+        {pageProps.error ? (
+          <NotFound dropdownData={dropdownData} {...componentProps} />
+        ) : (
+          <Component dropdownData={dropdownData} {...componentProps} />
+        )}
       </AppProvider>
     </>
   );
