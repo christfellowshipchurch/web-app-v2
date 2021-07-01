@@ -7,6 +7,7 @@ export const GET_CONTENT_BY_SLUG = gql`
     title
     summary
     htmlContent
+    publishDate
     parentChannel {
       id
     }

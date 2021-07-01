@@ -5,6 +5,7 @@ export const GET_MEDIA_CONTENT_ITEM = gql`
     node(id: $itemId) {
       id
       title
+      publishDate
       summary
       coverImage {
         sources {

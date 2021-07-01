@@ -1,3 +1,4 @@
+import { format, parseISO } from 'date-fns';
 import { Carousel, Layout, MainPhotoHeader } from 'components';
 import { useRouter } from 'next/router';
 import VideoPlayer from 'components/VideoPlayer/VideoJSPlayer';
@@ -97,6 +98,17 @@ export default function WeekendContentItem({ item, dropdownData } = {}) {
         <Heading variant="h2" fontWeight="800" mb="m">
           {item.title}
         </Heading>
+        {item.publishDate && (
+          <Heading
+            fontSize="h5"
+            lineHeight="h5"
+            color="fg"
+            fontWeight="800"
+            textTransform="uppercase"
+          >
+            {`Published: ${format(parseISO(item.publishDate), 'MM/dd')}`}
+          </Heading>
+        )}
         <Longform dangerouslySetInnerHTML={{ __html: item.htmlContent }} />
       </Section>
       <Siblings root={item} />
