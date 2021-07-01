@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { format, parseISO } from 'date-fns';
 
 import { Layout, MainPhotoHeader } from 'components';
-import { Box, CardGrid, Heading, Longform, Section } from 'ui-kit';
+import { Box, Button, CardGrid, Heading, Longform, Section } from 'ui-kit';
 import { getIdSuffix, getMetaData } from 'utils';
 import IDS from 'config/ids';
 import MetadataCallout from 'components/MetadataCallout';
@@ -15,6 +15,8 @@ export default function Page({ data, dropdownData } = {}) {
     return null;
   }
 
+  console.log(data);
+  const button = data?.featureFeed?.features?.[0]?.action;
   const isEvent = getIdSuffix(data?.parentChannel?.id) === IDS.CHANNELS.EVENTS;
 
   return (
@@ -62,6 +64,13 @@ export default function Page({ data, dropdownData } = {}) {
           )}
         </Box>
       </Section>
+      {button ? (
+        <Section mb="l">
+          <Button onClick={() => router.push(button.url)}>
+            {button.title}
+          </Button>
+        </Section>
+      ) : null}
       {isEvent ? (
         <Section
           mb={{
