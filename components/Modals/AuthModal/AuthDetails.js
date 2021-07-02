@@ -25,11 +25,15 @@ function AuthDetails() {
       });
     }
     if (!error) {
-      dispatch(updateAuth({ profile: {
-        ...values,
-        birthDate: new Date(values.birthDate),
-        gender: upperFirst(values.gender),
-      } }));
+      dispatch(
+        updateAuth({
+          profile: {
+            ...values,
+            birthDate: new Date(values.birthDate),
+            gender: upperFirst(values.gender),
+          },
+        })
+      );
       setStatus('LOADING');
       handleAuthIdentity({ nextStep: 2 });
     }
@@ -43,11 +47,12 @@ function AuthDetails() {
         Help us learn a little more about you so we can connect you with the
         best ministries and events.
       </Box>
-      <Box as="form" action="" onSubmit={handleSubmit} px="l">
+      <Box as="form" action="" onSubmit={handleSubmit} px={{ _: 0, lg: 'xl' }}>
         <Box
           display="grid"
-          gridTemplateColumns="repeat(2, 1fr)"
+          gridTemplateColumns={{ _: 'repeat(1, 1fr)', sm: 'repeat(2, 1fr)' }}
           gridColumnGap="base"
+          gridRowGap="base"
           mb="base"
         >
           <Box>
@@ -80,15 +85,16 @@ function AuthDetails() {
         </Box>
         <Box
           display="grid"
-          gridTemplateColumns="repeat(2, 1fr)"
+          gridTemplateColumns={{ _: 'repeat(1, 1fr)', sm: 'repeat(2, 1fr)' }}
           gridColumnGap="base"
+          gridRowGap="base"
           mb="l"
         >
           <Box>
             <BirthDateField onChange={handleChange} error={error?.birthdate} />
           </Box>
           <Box>
-            <GenderField onChange={handleChange} initialValue={values.gender}/>
+            <GenderField onChange={handleChange} initialValue={values.gender} />
           </Box>
         </Box>
         <Box textAlign="center">
