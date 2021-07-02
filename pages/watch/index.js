@@ -88,7 +88,7 @@ export default function Watch({
           justify="left"
           title={sermon?.title}
           description={sermon?.summary}
-          textProps={{ px: 'xl' }}
+          textProps={{ px: { lg: 'xl' } }}
           actions={[
             {
               label: 'Watch now',
@@ -232,7 +232,7 @@ export default function Watch({
                 justify={i % 2 === 0 ? 'left' : 'right'}
                 title={page.title}
                 description={page.summary}
-                textProps={{ px: 'xl' }}
+                textProps={{ px: { lg: 'xl' } }}
                 actions={[
                   {
                     label: page.buttonText,
