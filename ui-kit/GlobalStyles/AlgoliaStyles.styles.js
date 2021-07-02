@@ -158,12 +158,21 @@ export default css`
     list-style-type: none;
   }
 
+  .ais-Hits-item {
+    width: 100%;
+
+    @media screen and (min-width: ${themeGet('breakpoints.sm')}) {
+      width: unset;
+    }
+  }
+
   .ais-Highlight-highlighted {
     font-style: normal;
   }
 
   .ais-Pagination-list {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     list-style-type: none;
     width: 100%;
