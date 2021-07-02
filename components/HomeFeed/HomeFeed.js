@@ -282,12 +282,14 @@ function HomeFeedContent(props = {}) {
         <Section>
           <CardGrid
             gridColumnGap="l"
-            columns={2}
+            columns={largeArticle && miniArticles?.length ? 2 : 1}
             breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
             mb={{ _: 'l', md: 'xxl' }}
           >
-            <HomeFeedLargeArticle article={largeArticle} />
-            <HomeFeedArticles articles={miniArticles} />
+            {largeArticle && <HomeFeedLargeArticle article={largeArticle} />}
+            {miniArticles?.length && (
+              <HomeFeedArticles articles={miniArticles} />
+            )}
           </CardGrid>
         </Section>
       ) : null}
