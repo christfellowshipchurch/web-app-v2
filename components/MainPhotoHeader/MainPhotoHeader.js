@@ -61,7 +61,7 @@ function MainPhotoHeader({
                   mt={{ _: 's', lg: 'xs' }}
                   textTransform="uppercase"
                   textAlign="left"
-                  fontSize="60px"
+                  fontSize={{ _: 'h1', sm: '60px' }}
                   lineHeight="1"
                   maxWidth={{ lg: '440px' }}
                 >
