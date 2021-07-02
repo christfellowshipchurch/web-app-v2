@@ -147,8 +147,8 @@ export default function Watch({
                       text={node.title}
                       color="white"
                       src={node.coverImage?.sources?.[0].uri}
-                      height="350px"
                       maxWidth="400px"
+                      size={{ _: 's', md: 'm' }}
                       action={() =>
                         router.push(
                           `/watch/${getIdSuffix(
@@ -201,7 +201,8 @@ export default function Watch({
                     text={node.title}
                     color="white"
                     src={node.coverImage?.sources?.[0].uri}
-                    height="350px"
+                    height={{ sm: '350px' }}
+                    size={{ _: 's', md: 'm' }}
                     maxWidth="400px"
                     action={() =>
                       router.push(`/${getSlugFromURL(node?.sharing?.url)}`)

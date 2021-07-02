@@ -32,8 +32,9 @@ export default function Series({ series, dropdownData } = {}) {
               text={node.title}
               color="white"
               src={node.coverImage.sources?.[0].uri}
-              height="350px"
-              maxWidth="370px"
+              height={{ sm: '350px' }}
+              size={{ _: 's', md: 'm' }}
+              maxWidth="400px"
               mx="s"
               mb="m"
               action={() =>
