@@ -129,10 +129,17 @@ Styled.ImageOverlay = styled(Box)`
 `;
 
 Styled.TextContainer = styled(Box)`
+  background-color: ${themeGet('colors.neutrals.600')}12;
   flex-direction: column;
-  margin: ${themeGet('space.l')};
-  z-index: 1;
+  padding: ${themeGet('space.l')};
+  margin-bottom: ${themeGet('space.l')};
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  word-break: break-word;
+  z-index: 1;
+
+  @media screen and (min-width: ${themeGet('breakpoints.sm')}) {
+    background-color: inherit;
+  }
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     bottom: unset;

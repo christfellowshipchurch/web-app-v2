@@ -80,17 +80,19 @@ function MainPhotoHeader({
                   {summary}
                 </Heading>
               )}
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'flex-start',
-                  marginTop: '32px',
-                }}
-              >
-                {primaryButton}
-                {secondaryButton}
-              </div>
+              {(primaryButton || secondaryButton) && (
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'flex-start',
+                    marginTop: '32px',
+                  }}
+                >
+                  {primaryButton}
+                  {secondaryButton}
+                </div>
+              )}
             </Styled.TextContainer>
           </Styled.TextPosition>
         )}
