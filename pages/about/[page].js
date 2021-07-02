@@ -12,7 +12,7 @@ import { initializeApollo } from 'lib/apolloClient';
 import { CardGrid, Longform, Section } from 'ui-kit';
 import { GET_CONTENT_CHANNEL } from 'hooks/useContentChannel';
 import { GET_CAMPUSES } from 'hooks/useCampuses';
-import { GET_CONTENT_BY_SLUG } from 'hooks/useContentBySlug';
+import { GET_UNIVERSAL_CONTENT_ITEM_BY_SLUG } from 'hooks/useUniversalContentItemBySlug';
 import { useEffect } from 'react';
 
 export default function Page({ data = {}, campuses, dropdownData }) {
@@ -130,7 +130,7 @@ export async function getStaticProps(context) {
   const apolloClient = initializeApollo();
 
   const pageResponse = await apolloClient.query({
-    query: GET_CONTENT_BY_SLUG,
+    query: GET_UNIVERSAL_CONTENT_ITEM_BY_SLUG,
     variables: {
       slug: context.params.page,
     },

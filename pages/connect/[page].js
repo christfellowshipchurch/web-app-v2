@@ -28,7 +28,7 @@ import { useTheme } from 'styled-components';
 import { GET_STAFF } from 'hooks/useStaff';
 import { GET_MINISTRY_CONTENT } from 'hooks/useMinistryContent';
 import { GET_CAMPUSES } from 'hooks/useCampuses';
-import { GET_CONTENT_BY_SLUG } from 'hooks/useContentBySlug';
+import { GET_UNIVERSAL_CONTENT_ITEM_BY_SLUG } from 'hooks/useUniversalContentItemBySlug';
 
 export default function Page({
   data = {},
@@ -250,7 +250,7 @@ export async function getStaticProps({ params }) {
   const apolloClient = initializeApollo();
 
   const pageResponse = await apolloClient.query({
-    query: GET_CONTENT_BY_SLUG,
+    query: GET_UNIVERSAL_CONTENT_ITEM_BY_SLUG,
     variables: {
       slug: params.page,
     },

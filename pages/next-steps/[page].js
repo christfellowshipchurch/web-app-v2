@@ -16,7 +16,7 @@ import { CardGrid, Longform, Section } from 'ui-kit';
 import { getIdSuffix, getMetaData, getSlugFromURL } from 'utils';
 import { initializeApollo } from 'lib/apolloClient';
 import { GET_CAMPUSES } from 'hooks/useCampuses';
-import { GET_CONTENT_BY_SLUG } from 'hooks/useContentBySlug';
+import { GET_UNIVERSAL_CONTENT_ITEM_BY_SLUG } from 'hooks/useUniversalContentItemBySlug';
 import { useTheme } from 'styled-components';
 import { Info } from 'phosphor-react';
 import { GET_MINISTRY_CONTENT } from 'hooks/useMinistryContent';
@@ -167,7 +167,7 @@ export async function getStaticProps(context) {
   const apolloClient = initializeApollo();
 
   const pageResponse = await apolloClient.query({
-    query: GET_CONTENT_BY_SLUG,
+    query: GET_UNIVERSAL_CONTENT_ITEM_BY_SLUG,
     variables: {
       slug: context.params.page,
     },
