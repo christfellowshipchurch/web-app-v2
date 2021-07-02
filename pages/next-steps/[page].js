@@ -54,12 +54,20 @@ export default function Page({
   return (
     <Layout meta={getMetaData(node)} bg="bg_alt" dropdownData={dropdownData}>
       <MainPhotoHeader
-        mb={{ _: 'xl', lg: 'xxl' }}
         src={node.coverImage?.sources?.[0].uri || ''}
         title={node.title}
         subtitle={node.subtitle}
         showTitleOverImage={node.showTitleOverImage}
         summary={node.summary}
+        mb={{
+          _:
+            ((node.title || node.subtitle || node.summary) &&
+              node.showTitleOverImage) ||
+            !links?.length
+              ? 'xl'
+              : 0,
+          lg: 'xxl',
+        }}
       />
       {links?.length ? (
         <Section contentProps={{ p: '0 !important' }}>
