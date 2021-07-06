@@ -78,7 +78,7 @@ export default function Page({ data, dropdownData } = {}) {
           )}
         </Box>
       </Section>
-      {button ? (
+      {button && !isEvent ? (
         <Section mb="l">
           <Button onClick={() => router.push(button.url)}>
             {button.title}

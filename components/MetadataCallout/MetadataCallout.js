@@ -1,8 +1,8 @@
 import Styled from './MetadataCallout.styles';
-import { Button, Heading } from 'ui-kit';
-import { format } from 'date-fns';
+import { Box, Button } from 'ui-kit';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import PageSplit from 'components/PageSplit';
 
 const getDataFn = data => key => {
   const datum = data[key];
@@ -49,85 +49,119 @@ export default function MetadataCallout({ data }) {
   return (
     <Styled.Callout>
       <Styled.CalloutHeader>
-        <Styled.CaretCircleDown color="#FFFFF" size={64} weight="fill" />
-        <Heading variant="h2" color="white" ml="xs">
-          Details!
-        </Heading>
+        <PageSplit title="Details" />
       </Styled.CalloutHeader>
       <Styled.CalloutDetails>
         <Styled.CalloutDetailsList>
           {metadata.time && (
             <Styled.CalloutDetailsListItem>
-              Time: {metadata.time}
+              <Styled.CalloutDetailsListItemLabel>
+                Time
+              </Styled.CalloutDetailsListItemLabel>
+              {metadata.time}
             </Styled.CalloutDetailsListItem>
           )}
           {metadata.schedule && (
             <Styled.CalloutDetailsListItem>
-              Schedule: {metadata.schedule}
+              <Styled.CalloutDetailsListItemLabel>
+                Schedule
+              </Styled.CalloutDetailsListItemLabel>
+              {metadata.schedule}
             </Styled.CalloutDetailsListItem>
           )}
           {metadata.deadline && (
             <Styled.CalloutDetailsListItem>
-              Signup Deadline:{' '}
-              {format(new Date(metadata.deadline), 'MM/dd/yyyy')}
+              <Styled.CalloutDetailsListItemLabel>
+                Signup Deadline
+              </Styled.CalloutDetailsListItemLabel>
+              {metadata.deadline}
             </Styled.CalloutDetailsListItem>
           )}
           {metadata.forWho && (
             <Styled.CalloutDetailsListItem>
-              For Who: {metadata.forWho}
+              <Styled.CalloutDetailsListItemLabel>
+                For Who
+              </Styled.CalloutDetailsListItemLabel>
+              {metadata.forWho}
             </Styled.CalloutDetailsListItem>
           )}
           {metadata.isMembershipRequired && (
             <Styled.CalloutDetailsListItem>
-              Membership Required: {metadata.isMembershipRequired}
+              <Styled.CalloutDetailsListItemLabel>
+                Membership Required
+              </Styled.CalloutDetailsListItemLabel>
+              {metadata.isMembershipRequired}
             </Styled.CalloutDetailsListItem>
           )}
           {metadata.groupEventType && (
             <Styled.CalloutDetailsListItem>
-              Group Type: {metadata.groupEventType}
+              <Styled.CalloutDetailsListItemLabel>
+                Group Type
+              </Styled.CalloutDetailsListItemLabel>
+              {metadata.groupEventType}
             </Styled.CalloutDetailsListItem>
           )}
           {metadata.daysAvailable && (
             <Styled.CalloutDetailsListItem>
-              Days Available: {metadata.daysAvailable}
+              <Styled.CalloutDetailsListItemLabel>
+                Days Available
+              </Styled.CalloutDetailsListItemLabel>
+              {metadata.daysAvailable}
             </Styled.CalloutDetailsListItem>
           )}
           {metadata.ministry && (
             <Styled.CalloutDetailsListItem>
-              Ministry: {metadata.ministry}
+              <Styled.CalloutDetailsListItemLabel>
+                Ministry
+              </Styled.CalloutDetailsListItemLabel>
+              {metadata.ministry}
             </Styled.CalloutDetailsListItem>
           )}
           {metadata.serviceArea && (
             <Styled.CalloutDetailsListItem>
-              Service Area: {metadata.serviceArea}
+              <Styled.CalloutDetailsListItemLabel>
+                Service Area
+              </Styled.CalloutDetailsListItemLabel>
+              {metadata.serviceArea}
             </Styled.CalloutDetailsListItem>
           )}
           {metadata.opportunityType && (
             <Styled.CalloutDetailsListItem>
-              Opportunity Type: {metadata.opportunityType}
+              <Styled.CalloutDetailsListItemLabel>
+                Opportunity Type
+              </Styled.CalloutDetailsListItemLabel>
+              {metadata.opportunityType}
             </Styled.CalloutDetailsListItem>
           )}
           {metadata.relatedSkills && (
             <Styled.CalloutDetailsListItem>
-              Related Skills: {metadata.relatedSkills}
+              <Styled.CalloutDetailsListItemLabel>
+                Related Skills
+              </Styled.CalloutDetailsListItemLabel>
+              {metadata.relatedSkills}
             </Styled.CalloutDetailsListItem>
           )}
           {metadata.childcareInfo && (
             <Styled.CalloutDetailsListItem>
-              Childcare Info: {metadata.childcareInfo}
+              <Styled.CalloutDetailsListItemLabel>
+                Childcare Info
+              </Styled.CalloutDetailsListItemLabel>
+              {metadata.childcareInfo}
             </Styled.CalloutDetailsListItem>
           )}
           {metadata.location && (
-            <Styled.CalloutDetailsListItem
-              onClick={() => {
-                if (metadata.gps) {
-                  router.push(
-                    `https://www.google.com/maps/place/${metadata.gps}`
-                  );
-                }
-              }}
-            >
-              Location:{' '}
+            <Styled.CalloutDetailsListItem>
+              <Styled.CalloutDetailsListItemLabel
+                onClick={() => {
+                  if (metadata.gps) {
+                    router.push(
+                      `https://www.google.com/maps/place/${metadata.gps}`
+                    );
+                  }
+                }}
+              >
+                Location
+              </Styled.CalloutDetailsListItemLabel>
               {metadata.gps ? (
                 <Link
                   href={`https://www.google.com/maps/place/${metadata.gps}`}
@@ -141,9 +175,14 @@ export default function MetadataCallout({ data }) {
           )}
           {metadata.contact && (
             <Styled.CalloutDetailsListItem>
-              Contact: {metadata.contact}
+              <Styled.CalloutDetailsListItemLabel>
+                Contact
+              </Styled.CalloutDetailsListItemLabel>
+              {metadata.contact}
             </Styled.CalloutDetailsListItem>
           )}
+        </Styled.CalloutDetailsList>
+        <Box display="flex" justifyContent="center">
           {feature?.title && feature?.relatedNode?.url ? (
             <Button
               mt="l"
@@ -151,12 +190,13 @@ export default function MetadataCallout({ data }) {
               fontFamily="heading"
               fontSize="h5"
               lineHeight="h5"
+              borderRadius="xl"
               onClick={() => router.push(feature?.relatedNode?.url)}
             >
               {feature?.title}
             </Button>
           ) : null}
-        </Styled.CalloutDetailsList>
+        </Box>
       </Styled.CalloutDetails>
     </Styled.Callout>
   );

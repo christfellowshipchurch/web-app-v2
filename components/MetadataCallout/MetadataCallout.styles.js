@@ -1,37 +1,29 @@
 import { themeGet } from '@styled-system/theme-get';
 import styled from 'styled-components';
-import { CaretCircleDown } from 'phosphor-react';
 import { Box } from 'ui-kit';
 
 const Styled = {};
 
 Styled.Callout = styled(Box)`
-  background-color: ${themeGet('colors.neutrals.100')};
+  background-color: ${themeGet('white')};
   border-radius: ${themeGet('radii.image')};
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 5px 20px 0px rgb(0 0 0 / 10%);
   overflow: hidden;
 `;
 
 Styled.CalloutHeader = styled(Box)`
   align-items: center;
-  background-color: ${themeGet('colors.neutrals.500')};
   display: flex;
   font-weight: ${themeGet('fontWeights.bold')};
   height: ${themeGet('space.xxl')};
   padding: ${themeGet('space.s')} ${themeGet('space.s')};
 `;
 
-Styled.CaretCircleDown = styled(CaretCircleDown)`
-  > path {
-    fill: #fff;
-  }
-`;
-
 Styled.CalloutDetails = styled(Box)`
   padding: ${themeGet('space.m')};
 `;
 
-Styled.CalloutDetailsList = styled.ul`
+Styled.CalloutDetailsList = styled(Box)`
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   margin-left: ${themeGet('space.s')};
@@ -45,11 +37,19 @@ Styled.CalloutDetailsList = styled.ul`
   }
 `;
 
-Styled.CalloutDetailsListItem = styled.li`
+Styled.CalloutDetailsListItem = styled(Box)`
+  border-bottom: 1px solid ${themeGet('colors.neutrals.200')};
+  display: flex;
+  margin: 0 ${themeGet('space.m')};
+  padding: ${themeGet('space.xs')} 0;
+`;
+
+Styled.CalloutDetailsListItemLabel = styled(Box)`
   font-size: ${themeGet('fontSizes.h5')};
   font-weight: 600;
   line-height: ${themeGet('fontSizes.h5')};
   margin: ${themeGet('space.xxs')} 0;
+  flex-basis: 150px;
 
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     margin-right: ${themeGet('space.xl')};
