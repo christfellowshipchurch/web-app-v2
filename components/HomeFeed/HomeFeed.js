@@ -135,7 +135,7 @@ function HomeFeedArticles({ articles }) {
 
 function HomeFeedCTA({ authenticated }) {
   const router = useRouter();
-  return authenticated && false ? (
+  return authenticated ? (
     <MarketingHeadline
       image={{
         src: '/watch.jpeg',
@@ -152,8 +152,8 @@ function HomeFeedCTA({ authenticated }) {
         </>
       }
       textProps={{
-        mb: 'xxl',
-        mt: 'l',
+        mb: { xl: 'xxl' },
+        mt: { _: 'm', lg: 0, xl: 'l' },
       }}
       supertitle="Don't miss what God's doing this week!"
       description="From Sunday services to Wednesday night activities, there’s always a way to be a part of what God is doing every week at Long Hollow. Check out our weekly schedule for every member of your family, and mark your calendar for several upcoming events."
@@ -187,8 +187,8 @@ function HomeFeedCTA({ authenticated }) {
         </>
       }
       textProps={{
-        mb: 'xxl',
-        mt: 'l',
+        mb: { xl: 'xxl' },
+        mt: { _: 'm', lg: 0, xl: 'l' },
       }}
       supertitle="God wants to work in your life"
       description="Long Hollow is one church that meets in two locations just north of Nashville, and online all across the globe. Whether you’re exploring faith for the first time, or are looking for a place to call home, we want you to be a part of our community. Join us on Sunday either in person or online!"
@@ -248,16 +248,11 @@ function HomeFeedContent(props = {}) {
         </Section>
       ) : null}
       <Section>
-        <CardGrid
-          gridColumnGap="l"
-          columns={1}
-          breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
-          mb={{ _: 'l', md: 'xxl' }}
-        >
+        <Box mb={{ _: 'l', md: 'xxl' }}>
           <HomeFeedCTA authenticated={props.authenticated} />
-        </CardGrid>
+        </Box>
       </Section>
-      <FullWidthCTA mt="-150px" py="xxl" justifyContent="flex-start">
+      <FullWidthCTA mt={{ xl: '-150px' }} py="xxl" justifyContent="flex-start">
         <Heading
           fontSize="66px"
           textAlign="center"
