@@ -15,9 +15,10 @@ export default function Page({ data, dropdownData } = {}) {
     return null;
   }
 
-  console.log(data);
   const button = data?.featureFeed?.features?.[0]?.action;
   const isEvent = getIdSuffix(data?.parentChannel?.id) === IDS.CHANNELS.EVENTS;
+  const isVolunteerPositions =
+    getIdSuffix(data?.parentChannel?.id) === IDS.CHANNELS.VOLUNTEER_POSITIONS;
 
   return (
     <Layout meta={getMetaData(data)} bg="bg_alt" dropdownData={dropdownData}>
@@ -49,6 +50,17 @@ export default function Page({ data, dropdownData } = {}) {
               textTransform="uppercase"
             >
               {data.title}
+            </Heading>
+          )}
+          {isVolunteerPositions && data.ministry && (
+            <Heading
+              fontSize="h3"
+              lineHeight="h3"
+              color="fg"
+              fontWeight="800"
+              opacity="60%"
+            >
+              {data.ministry}
             </Heading>
           )}
           {data.publishDate && (
