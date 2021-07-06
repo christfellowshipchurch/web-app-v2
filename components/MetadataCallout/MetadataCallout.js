@@ -58,7 +58,7 @@ export default function MetadataCallout({ data }) {
               <Styled.CalloutDetailsListItemLabel>
                 Time
               </Styled.CalloutDetailsListItemLabel>
-              {metadata.time}
+              <Box>{metadata.time}</Box>
             </Styled.CalloutDetailsListItem>
           )}
           {metadata.schedule && (
@@ -66,7 +66,7 @@ export default function MetadataCallout({ data }) {
               <Styled.CalloutDetailsListItemLabel>
                 Schedule
               </Styled.CalloutDetailsListItemLabel>
-              {metadata.schedule}
+              <Box>{metadata.schedule}</Box>
             </Styled.CalloutDetailsListItem>
           )}
           {metadata.deadline && (
@@ -74,7 +74,7 @@ export default function MetadataCallout({ data }) {
               <Styled.CalloutDetailsListItemLabel>
                 Signup Deadline
               </Styled.CalloutDetailsListItemLabel>
-              {metadata.deadline}
+              <Box>{metadata.deadline}</Box>
             </Styled.CalloutDetailsListItem>
           )}
           {metadata.forWho && (
@@ -82,7 +82,7 @@ export default function MetadataCallout({ data }) {
               <Styled.CalloutDetailsListItemLabel>
                 For Who
               </Styled.CalloutDetailsListItemLabel>
-              {metadata.forWho}
+              <Box>{metadata.forWho}</Box>
             </Styled.CalloutDetailsListItem>
           )}
           {metadata.isMembershipRequired && (
@@ -90,7 +90,7 @@ export default function MetadataCallout({ data }) {
               <Styled.CalloutDetailsListItemLabel>
                 Membership Required
               </Styled.CalloutDetailsListItemLabel>
-              {metadata.isMembershipRequired}
+              <Box>{metadata.isMembershipRequired}</Box>
             </Styled.CalloutDetailsListItem>
           )}
           {metadata.groupEventType && (
@@ -98,7 +98,7 @@ export default function MetadataCallout({ data }) {
               <Styled.CalloutDetailsListItemLabel>
                 Group Type
               </Styled.CalloutDetailsListItemLabel>
-              {metadata.groupEventType}
+              <Box>{metadata.groupEventType}</Box>
             </Styled.CalloutDetailsListItem>
           )}
           {metadata.daysAvailable && (
@@ -106,7 +106,7 @@ export default function MetadataCallout({ data }) {
               <Styled.CalloutDetailsListItemLabel>
                 Days Available
               </Styled.CalloutDetailsListItemLabel>
-              {metadata.daysAvailable}
+              <Box>{metadata.daysAvailable}</Box>
             </Styled.CalloutDetailsListItem>
           )}
           {metadata.ministry && (
@@ -114,7 +114,7 @@ export default function MetadataCallout({ data }) {
               <Styled.CalloutDetailsListItemLabel>
                 Ministry
               </Styled.CalloutDetailsListItemLabel>
-              {metadata.ministry}
+              <Box>{metadata.ministry}</Box>
             </Styled.CalloutDetailsListItem>
           )}
           {metadata.serviceArea && (
@@ -122,7 +122,7 @@ export default function MetadataCallout({ data }) {
               <Styled.CalloutDetailsListItemLabel>
                 Service Area
               </Styled.CalloutDetailsListItemLabel>
-              {metadata.serviceArea}
+              <Box>{metadata.serviceArea}</Box>
             </Styled.CalloutDetailsListItem>
           )}
           {metadata.opportunityType && (
@@ -130,7 +130,7 @@ export default function MetadataCallout({ data }) {
               <Styled.CalloutDetailsListItemLabel>
                 Opportunity Type
               </Styled.CalloutDetailsListItemLabel>
-              {metadata.opportunityType}
+              <Box>{metadata.opportunityType}</Box>
             </Styled.CalloutDetailsListItem>
           )}
           {metadata.relatedSkills && (
@@ -138,7 +138,7 @@ export default function MetadataCallout({ data }) {
               <Styled.CalloutDetailsListItemLabel>
                 Related Skills
               </Styled.CalloutDetailsListItemLabel>
-              {metadata.relatedSkills}
+              <Box>{metadata.relatedSkills}</Box>
             </Styled.CalloutDetailsListItem>
           )}
           {metadata.childcareInfo && (
@@ -146,7 +146,7 @@ export default function MetadataCallout({ data }) {
               <Styled.CalloutDetailsListItemLabel>
                 Childcare Info
               </Styled.CalloutDetailsListItemLabel>
-              {metadata.childcareInfo}
+              <Box>{metadata.childcareInfo}</Box>
             </Styled.CalloutDetailsListItem>
           )}
           {metadata.location && (
@@ -162,15 +162,17 @@ export default function MetadataCallout({ data }) {
               >
                 Location
               </Styled.CalloutDetailsListItemLabel>
-              {metadata.gps ? (
-                <Link
-                  href={`https://www.google.com/maps/place/${metadata.gps}`}
-                >
-                  {metadata.location}
-                </Link>
-              ) : (
-                `${metadata.location}`
-              )}
+              <Box>
+                {metadata.gps ? (
+                  <Link
+                    href={`https://www.google.com/maps/place/${metadata.gps}`}
+                  >
+                    {metadata.location}
+                  </Link>
+                ) : (
+                  `${metadata.location}`
+                )}
+              </Box>
             </Styled.CalloutDetailsListItem>
           )}
           {metadata.contact && (
@@ -178,7 +180,7 @@ export default function MetadataCallout({ data }) {
               <Styled.CalloutDetailsListItemLabel>
                 Contact
               </Styled.CalloutDetailsListItemLabel>
-              {metadata.contact}
+              <Box>{metadata.contact}</Box>
             </Styled.CalloutDetailsListItem>
           )}
         </Styled.CalloutDetailsList>
