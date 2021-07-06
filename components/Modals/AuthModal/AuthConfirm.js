@@ -136,6 +136,7 @@ function AuthConfirm() {
             id="passcode"
             type={state.type === 'password' ? 'password' : 'text'}
             label={COPY.LABEL[state.type]}
+            fontSize="s"
             onChange={handleChange}
             required
             autoFocus

@@ -59,6 +59,7 @@ function AuthDetails() {
             <TextInput
               id="firstName"
               label="First Name"
+              fontSize="s"
               onChange={handleChange}
               required
               autoFocus
@@ -73,6 +74,7 @@ function AuthDetails() {
             <TextInput
               id="lastName"
               label="Last Name"
+              fontSize="s"
               onChange={handleChange}
               required
             />

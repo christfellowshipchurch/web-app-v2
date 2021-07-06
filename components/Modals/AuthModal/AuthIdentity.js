@@ -52,6 +52,7 @@ function AuthIdentity() {
             id="identity"
             label="Mobile Number or Email"
             onChange={handleChange}
+            fontSize="s"
             required
             autoFocus
           />
