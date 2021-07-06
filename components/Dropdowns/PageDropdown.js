@@ -21,20 +21,35 @@ export default function PageDropdown({
   const numColumns =
     Math.ceil(featuredItems.length / 2) + Number(hasNonFeaturedItems);
 
-  const mdColumns = numColumns > 1 ? (numColumns % 2 === 0 ? 2 : 3) : 1;
+  const gridTemplateColumns = {
+    _: 'repeat(1, 1fr)',
+    sm: 'repeat(1, 0.7fr)',
+    md: 'repeat(2, 1fr)',
+  };
+
+  switch (numColumns) {
+    case 1:
+      delete gridTemplateColumns.md;
+      break;
+    case 2:
+      break;
+    case 3:
+      gridTemplateColumns.lg = 'repeat(3, 1fr)';
+      break;
+    default:
+      gridTemplateColumns.lg = 'repeat(4, 1fr)';
+      break;
+  }
 
   return (
     <Dropdowns.Container {...props}>
       {loading ? (
         <Loader height="400px" centered />
       ) : (
-        <Section>
+        <Section contentProps={{ px: 'm' }}>
           <CardGrid
             py="l"
-            gridTemplateColumns={{
-              _: 'repeat(1, 1fr)',
-              md: `repeat(${mdColumns > 4 ? 4 : numColumns}, 1fr)`,
-            }}
+            gridTemplateColumns={gridTemplateColumns}
             gridColumnGap="base"
             gridRowGap={0}
           >
