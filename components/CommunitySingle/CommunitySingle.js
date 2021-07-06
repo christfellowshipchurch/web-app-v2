@@ -8,6 +8,7 @@ import {
   Box,
   Button,
   HorizontalHighlightCard,
+  Icon,
   utils,
 } from 'ui-kit';
 import {
@@ -59,6 +60,7 @@ function CommunitySingle(props = {}) {
     variables: {
       preferenceId: props?.data?.id,
     },
+    fetchPolicy: 'network-only',
   });
   const showNotifyMe = notifyMeBanner;
 
@@ -116,7 +118,6 @@ function CommunitySingle(props = {}) {
 
     showFilterModal();
   }
-
 
   return (
     <>
@@ -184,6 +185,7 @@ function CommunitySingle(props = {}) {
                 size="l"
                 onClick={handleNotifyMeClick}
               >
+                <Icon name="notification" mr="xs" />
                 {`Notify Me`}
               </Button>
             </Box>

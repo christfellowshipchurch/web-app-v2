@@ -5,33 +5,27 @@ import { useRouter } from 'next/router';
 import { getUrlFromRelatedNode, slugify } from 'utils';
 import { useDiscoverFilterCategoriesPreview } from 'hooks';
 
-import { Button, Box, DefaultCard, CardGrid } from 'ui-kit';
+import { Button, Box, DefaultCard, CardGrid, Loader } from 'ui-kit';
 import { CustomLink } from 'components';
 
 const DiscoverFilterSection = ({ contentId, title }) => {
   const router = useRouter();
-  const { categories } = useDiscoverFilterCategoriesPreview({
+  const { contentItems, loading } = useDiscoverFilterCategoriesPreview({
     variables: { id: contentId, first: 3 },
-    fetchPolicy: 'cache-and-network',
   });
-
-  const content = categories?.map(edge => edge.node);
 
   const handleSeeMore = event => {
     const [type, id] = contentId.split(':');
 
     event.preventDefault();
-    router.push(
-      `/discover/${slugify(title)}?id=${slugify(id)}`,
-      `/discover/${slugify(title)}`
-    );
+    router.push(`/discover/${slugify(title)}?id=${slugify(id)}`);
   };
 
   return (
     <Box my="s">
       <Box display="flex" justifyContent="space-between" mb="s">
         <Box as="h3">{title}</Box>
-        {content?.length > 2 ? (
+        {contentItems?.length > 2 ? (
           <Button variant="link" paddingRight={0} onClick={handleSeeMore}>
             See more
           </Button>
@@ -39,21 +33,24 @@ const DiscoverFilterSection = ({ contentId, title }) => {
       </Box>
 
       <CardGrid columns="3" mb="xl">
-        {content.map((n, i) => (
-          <CustomLink
-            key={i}
-            Component={DefaultCard}
-            as="a"
-            boxShadow="none"
-            coverImage={n?.coverImage?.sources[0]?.uri}
-            description={n?.summary}
-            href={getUrlFromRelatedNode(n)}
-            key={n?.id}
-            scaleCard={false}
-            scaleCoverImage={true}
-            title={n?.title}
-          />
-        ))}
+        {loading ? (
+          <Loader />
+        ) : (
+          contentItems.map((n, i) => (
+            <CustomLink
+              key={i}
+              Component={DefaultCard}
+              as="a"
+              boxShadow="none"
+              coverImage={n?.coverImage?.sources[0]?.uri}
+              description={n?.summary}
+              href={getUrlFromRelatedNode(n)}
+              scaleCard={false}
+              scaleCoverImage={true}
+              title={n?.title}
+            />
+          ))
+        )}
       </CardGrid>
     </Box>
   );

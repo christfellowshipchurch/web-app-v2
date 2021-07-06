@@ -12,6 +12,7 @@ import normalizeUserData from './normalizeUserData';
 import parseLiveStreamDates from './parseLiveStreamDates';
 import slugify from './slugify';
 import textTrimmer from './textTrimmer';
+import transformISODates from './transformISODates';
 import validateEmail from './validateEmail';
 import validatePhoneNumber from './validatePhoneNumber';
 
@@ -30,6 +31,7 @@ export {
   parseLiveStreamDates,
   slugify,
   textTrimmer,
+  transformISODates,
   validateEmail,
   validatePhoneNumber,
 };

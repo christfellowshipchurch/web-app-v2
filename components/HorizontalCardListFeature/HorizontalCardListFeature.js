@@ -11,7 +11,7 @@ import {
   Loader,
   PrayerCard,
 } from 'ui-kit';
-import { getUrlFromRelatedNode } from 'utils';
+import { getUrlFromRelatedNode, transformISODates } from 'utils';
 
 function HorizontalCardListFeature(props = {}) {
   const { title, subtitle, cards } = props?.data;
@@ -101,6 +101,7 @@ function HorizontalCardListFeature(props = {}) {
                 title={card?.title}
                 description={card?.summary}
                 type={cardType}
+                label={transformISODates(card?.labelText)}
               />
             );
           })}

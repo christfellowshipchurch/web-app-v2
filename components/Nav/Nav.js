@@ -27,7 +27,37 @@ function Nav(props = {}) {
 
   return (
     <Styled>
-      <QuickAction data={props.data.quickAction} />
+      <QuickAction
+        type="primary"
+        display={{ _: 'none', md: 'inline' }}
+        data={props.data.quickAction}
+      />
+      <ClientSideComponent>
+        {authenticated ? (
+          <CurrentUserProvider
+            Component={UserAvatar}
+            handleAuthClick={handleAuthClick}
+          />
+        ) : (
+          <Box
+            as="a"
+            href="#0"
+            display="block"
+            border="2px solid"
+            borderColor="fg"
+            borderRadius="50%"
+            lineHeight="38px"
+            size="45px"
+            textAlign="center"
+            onClick={handleAuthClick}
+          >
+            <Icon name="user" color="fg" size="28px" />
+            <Box as="span" className="srt">
+              User
+            </Box>
+          </Box>
+        )}
+      </ClientSideComponent>
       <Menu
         cardContentProps={{
           p: '0',
@@ -42,16 +72,19 @@ function Nav(props = {}) {
           </Box>
         )}
         side="right"
-        menuWidth="175px"
+        menuWidth="245px"
       >
         <List py="xs" space="0">
-          <Box as="li">
-            {authenticated ? (
-              <Menu.Link href="/connect" px="base" py="xs">
-                <Icon name="user" mr="s" size="18" />
-                Connect
-              </Menu.Link>
-            ) : null}
+          {/* Mobile Watch Online */}
+          <Box as="li" display={{ _: 'inline', md: 'none' }}>
+            <Menu.Link>
+              <QuickAction
+                py="xs"
+                type="link"
+                icon
+                data={props.data.quickAction}
+              />
+            </Menu.Link>
           </Box>
           <Primary data={props.data.navigationLinks} />
           <MenuLinks data={props.data.menuLinks} />
@@ -103,7 +136,14 @@ function Primary(props = {}) {
 
 function QuickAction(props = {}) {
   return (
-    <Button as="a" href={props.data.action} target="_blank">
+    <Button
+      variant={props?.type}
+      {...props}
+      as="a"
+      href={props.data.action}
+      target="_blank"
+    >
+      {props?.icon && <Icon color="primary" name="play" mr={'s'} size="18" />}
       {props.data.call}
     </Button>
   );

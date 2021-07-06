@@ -29,10 +29,9 @@ const Header = styled.header`
     justify-self: flex-end;
   }
 
-  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-    display: grid;
-    justify-content: flex-start;
-  }
+  /* @media screen and (min-width: ${themeGet('breakpoints.md')}) { */
+  display: grid;
+  justify-content: flex-start;
 
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     padding: ${themeGet('space.base')} ${themeGet('space.xl')};

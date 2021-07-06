@@ -79,7 +79,10 @@ export const GET_CONTENT_FEED = gql`
 `;
 
 function useContentFeed(options = {}) {
-  const query = useQuery(GET_CONTENT_FEED, options);
+  const query = useQuery(GET_CONTENT_FEED, {
+    fetchPolicy: 'cache-and-network',
+    ...options,
+  });
 
   return {
     content: query?.data?.node?.childContentItemsConnection || [],
