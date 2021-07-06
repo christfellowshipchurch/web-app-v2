@@ -24,6 +24,7 @@ function UserProfileContent(props = {}) {
       gridColumnGap="s"
       gridRowGap="s"
       textAlign="center"
+      mb="s"
     >
       <UserProfileAttribute title="My Campus" data={campus} label="campus" />
       <UserProfileAttribute title="Email" data={email} label="email" />

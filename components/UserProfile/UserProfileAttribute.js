@@ -6,7 +6,13 @@ import { Box, Card } from 'ui-kit';
 function UserProfileAttribute(props = {}) {
   return (
     <Card boxShadow="base" p="base">
-      <Box as="h2" color="subdued" fontSize="s" fontWeight="bold">
+      <Box
+        as="h2"
+        color="subdued"
+        fontSize="s"
+        fontWeight="bold"
+        textAlign="center"
+      >
         {props.title}
       </Box>
       <Box as="p">
