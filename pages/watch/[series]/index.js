@@ -1,20 +1,38 @@
 import { LargeImage, Layout } from 'components';
 import { initializeApollo } from 'lib/apolloClient';
-import { Box, Heading, Section } from 'ui-kit';
+import { Box, Button, Heading, Section } from 'ui-kit';
 import IDS from 'config/ids';
 import { useRouter } from 'next/router';
 import { GET_MESSAGE_SERIES } from 'hooks/useMessageSeries';
 import { getChannelId, getMetaData, getSlugFromURL } from 'utils';
+import { useState } from 'react';
+import { useLazyQuery } from '@apollo/client';
 
-export default function Series({ series, dropdownData } = {}) {
+export default function Series({ item, dropdownData } = {}) {
   const router = useRouter();
+
+  const [series, setSeries] = useState(
+    item.childContentItemsConnection?.edges || []
+  );
+  const [cursor, setCursor] = useState(
+    item.childContentItemsConnection?.pageInfo?.endCursor
+  );
+
+  const [fetchMore, { loading }] = useLazyQuery(GET_MESSAGE_SERIES, {
+    onCompleted: data => {
+      setSeries([...series, ...data?.node?.childContentItemsConnection?.edges]);
+      setCursor(data?.node?.childContentItemsConnection?.pageInfo?.endCursor);
+    },
+  });
 
   if (router.isFallback) {
     return null;
   }
 
+  const totalSeriesCount = item?.childContentItemsConnection?.totalCount || 0;
+
   return (
-    <Layout meta={getMetaData(series)} dropdownData={dropdownData}>
+    <Layout meta={getMetaData(item)} dropdownData={dropdownData}>
       <Section>
         <Heading
           mt="l"
@@ -23,10 +41,10 @@ export default function Series({ series, dropdownData } = {}) {
           fontSize="h1"
           lineHeight="h1"
         >
-          {series.name}
+          {item.name}
         </Heading>
         <Box display="flex" my="m" flexWrap="wrap" justifyContent="center">
-          {series.childContentItemsConnection?.edges.map(({ node }) => (
+          {series.map(({ node }) => (
             <LargeImage
               key={node.id}
               text={node.title}
@@ -48,6 +66,20 @@ export default function Series({ series, dropdownData } = {}) {
           ))}
         </Box>
       </Section>
+      {totalSeriesCount > series?.length ? (
+        <Button
+          onClick={() => {
+            fetchMore({
+              variables: { itemId: item.id, after: cursor },
+            });
+          }}
+          status={loading ? 'LOADING' : 'SUCCESS'}
+          mx="auto"
+          mb="l"
+        >
+          {loading ? 'Loading More' : 'Load More'}
+        </Button>
+      ) : null}
     </Layout>
   );
 }
@@ -65,7 +97,7 @@ export async function getStaticProps(context) {
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
-      series: seriesResponse?.data?.node,
+      item: seriesResponse?.data?.node,
     },
     revalidate: 60, // In seconds
   };

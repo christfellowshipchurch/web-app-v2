@@ -1,7 +1,7 @@
 import { gql, useQuery } from '@apollo/client';
 
 export const GET_MESSAGE_CHANNEL = gql`
-  query getMessageChannel($itemId: ID!) {
+  query getMessageChannel($itemId: ID!, $after: String) {
     node(id: $itemId) {
       id
       ... on ContentSeriesContentItem {
@@ -12,7 +12,10 @@ export const GET_MESSAGE_CHANNEL = gql`
         sharing {
           url
         }
-        childContentItemsConnection(orderBy: { field: DATE, direction: ASC }) {
+        childContentItemsConnection(
+          orderBy: { field: DATE, direction: ASC }
+          after: $after
+        ) {
           edges {
             node {
               id
