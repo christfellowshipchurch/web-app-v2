@@ -1,49 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Box, Icon } from 'ui-kit';
+import { Box } from 'ui-kit';
+import LogoSVG from './LogoSVG';
+import { useTheme } from 'styled-components';
 
-function Logo({ withText, dark, ...props } = {}) {
-  const color = dark ? 'neutrals.100' : 'primary';
-  const textColor = dark ? 'neutrals.100' : 'black';
+function Logo({ withText, width, dark, ...props } = {}) {
+  const theme = useTheme();
+  const color = dark ? theme.colors.neutrals['100'] : null;
   const opacity = dark ? '33%' : '100%';
-  return withText ? (
+  return (
     <Box>
-      <Icon
-        name="logoTree"
-        alt="Long Hollow"
-        viewBox="0 0 42 42"
-        width="42px"
-        height="42px"
-        stroke={color}
-        fill={color}
+      <LogoSVG
         opacity={opacity}
-        {...props}
-      />
-      <Icon
-        name="logoText"
+        width={width || (withText && '182px') || '80px'}
         alt="Long Hollow Church"
-        viewBox="0 0 260 36"
-        width="140px"
-        height="42px"
-        ml="20px"
-        fill={textColor}
-        opacity={opacity}
-        {...props}
+        treeColor={color}
+        withText={withText}
       />
     </Box>
-  ) : (
-    <Icon
-      name="logoTree"
-      alt="Long Hollow"
-      viewBox="0 0 42 42"
-      width="42px"
-      height="42px"
-      stroke={color}
-      fill={color}
-      opacity={opacity}
-      {...props}
-    />
   );
 }
 
