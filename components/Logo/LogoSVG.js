@@ -1,5 +1,9 @@
-export default function LogoSVG(props = {}) {
-  const treeColor = props.treeColor || '#71D671';
+export default function LogoSVG({
+  withText,
+  treeColor: _treeColor,
+  ...props
+} = {}) {
+  const treeColor = _treeColor || '#71D671';
   return (
     <svg
       version="1.1"
