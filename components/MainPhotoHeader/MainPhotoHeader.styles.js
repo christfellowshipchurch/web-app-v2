@@ -156,6 +156,7 @@ Styled.TextContainer = styled(Box)`
     height: 100%;
     max-width: ${themeGet('space.content')};
     width: 100%;
+    word-break: normal;
   }
 
   ${system}
