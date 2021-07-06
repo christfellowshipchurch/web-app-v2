@@ -17,6 +17,8 @@ export default function Page({ data, dropdownData } = {}) {
 
   const button = data?.featureFeed?.features?.[0]?.action;
   const isEvent = getIdSuffix(data?.parentChannel?.id) === IDS.CHANNELS.EVENTS;
+  const isArticle =
+    getIdSuffix(data?.parentChannel?.id) === IDS.CHANNELS.ARTICLES;
   const isVolunteerPositions =
     getIdSuffix(data?.parentChannel?.id) === IDS.CHANNELS.VOLUNTEER_POSITIONS;
 
@@ -63,7 +65,7 @@ export default function Page({ data, dropdownData } = {}) {
               {data.ministry}
             </Heading>
           )}
-          {data.publishDate && (
+          {data.publishDate && isArticle && (
             <Heading
               fontSize="h5"
               lineHeight="h5"
