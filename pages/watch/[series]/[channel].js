@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { getIdSuffix, getMetaData, getChannelId, getSlugFromURL } from 'utils';
 import { useTheme } from 'styled-components';
 import { useState } from 'react';
-import { useLazyQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { initializeApollo } from 'lib/apolloClient';
 import IDS from 'config/ids';
 import { GET_MESSAGE_SERIES } from 'hooks/useMessageSeries';
@@ -15,14 +15,11 @@ export default function Channel({ item, dropdownData } = {}) {
   const router = useRouter();
   const theme = useTheme();
 
-  const [videos, setVideos] = useState(
-    item?.childContentItemsConnection?.edges || []
-  );
-  const [cursor, setCursor] = useState(
-    item?.childContentItemsConnection?.pageInfo?.endCursor
-  );
+  const [videos, setVideos] = useState([]);
+  const [cursor, setCursor] = useState();
 
-  const [fetchVideos, { loading }] = useLazyQuery(GET_MESSAGE_CHANNEL, {
+  const { fetchMore, loading } = useQuery(GET_MESSAGE_CHANNEL, {
+    variables: { itemId: item.id },
     onCompleted: data => {
       setVideos([...videos, ...data?.node?.childContentItemsConnection?.edges]);
       setCursor(data?.node?.childContentItemsConnection?.pageInfo?.endCursor);
@@ -74,8 +71,17 @@ export default function Channel({ item, dropdownData } = {}) {
       {totalVideoCount > videos?.length ? (
         <Button
           onClick={() => {
-            fetchVideos({
+            fetchMore({
               variables: { itemId: item.id, after: cursor },
+              onCompleted: data => {
+                setVideos([
+                  ...videos,
+                  ...data?.node?.childContentItemsConnection?.edges,
+                ]);
+                setCursor(
+                  data?.node?.childContentItemsConnection?.pageInfo?.endCursor
+                );
+              },
             });
           }}
           status={loading ? 'LOADING' : 'SUCCESS'}

@@ -1,45 +1,52 @@
 import { gql, useQuery } from '@apollo/client';
 
-export const CONTENT_SERIES_CONTENT_ITEM_FRAGMENT = gql`
-  fragment ContentSeriesContentItemFragment on ContentSeriesContentItem {
-    id
-    title
-    parentChannel {
-      id
-    }
-    sharing {
-      url
-    }
-    childContentItemsConnection(orderBy: { field: DATE, direction: DESC }) {
-      edges {
-        node {
-          id
-          title
-          sharing {
-            url
-          }
-        }
-      }
-      pageInfo {
-        endCursor
-      }
-      totalCount
-    }
-    coverImage {
-      sources {
-        uri
-      }
-    }
-  }
-`;
-
 export const GET_MESSAGE_CHANNEL = gql`
   query getMessageChannel($itemId: ID!) {
     node(id: $itemId) {
-      ...ContentSeriesContentItemFragment
+      id
+      ... on ContentSeriesContentItem {
+        title
+        parentChannel {
+          id
+        }
+        sharing {
+          url
+        }
+        childContentItemsConnection(orderBy: { field: DATE, direction: ASC }) {
+          edges {
+            node {
+              id
+              title
+              sharing {
+                url
+              }
+              ... on WeekendContentItem {
+                coverImage {
+                  sources {
+                    uri
+                  }
+                }
+                seriesImage {
+                  sources {
+                    uri
+                  }
+                }
+              }
+            }
+          }
+          pageInfo {
+            endCursor
+          }
+          totalCount
+        }
+        coverImage {
+          sources {
+            uri
+          }
+        }
+      }
     }
   }
-  ${CONTENT_SERIES_CONTENT_ITEM_FRAGMENT}
 `;
 
 function useMessageChannel(options = {}) {
