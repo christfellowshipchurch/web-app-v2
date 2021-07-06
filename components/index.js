@@ -6,6 +6,7 @@ import AvatarListFeature from './AvatarListFeature';
 import BirthDateField from './BirthDateField';
 import Chat from './Chat';
 import ClientSideComponent from './ClientSideComponent';
+import CollectionPreview from './CollectionPreview';
 import CommunityActionSection from './CommunityActionSection';
 import CommunityLeaderActions from './CommunityLeaderActions';
 import CommunityList from './CommunityList';
@@ -60,6 +61,7 @@ export {
   BirthDateField,
   Chat,
   ClientSideComponent,
+  CollectionPreview,
   CommunityActionSection,
   CommunityLeaderActions,
   CommunityList,

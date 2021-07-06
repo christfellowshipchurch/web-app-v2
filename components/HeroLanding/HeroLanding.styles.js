@@ -11,11 +11,15 @@ const HeroLanding = styled.div`
   flex-direction: column;
   align-items: center;
 
-  height: 100vh;
   width: 100vw;
   overflow: none;
 
-  margin-bottom: ${themeGet('space.xxl')};
+  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+    height: 100vh;
+  }
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    height: 82vh;
+  }
 
   ${system}
 `;
@@ -23,8 +27,6 @@ const HeroLanding = styled.div`
 const Content = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
   z-index: 2;
   color: ${themeGet('colors.white')};
   padding: 20px;
@@ -44,7 +46,7 @@ const Content = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 2.8rem;
+  font-size: 3rem;
 `;
 
 const BackgroundVideo = styled.video`

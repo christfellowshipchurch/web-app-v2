@@ -5,7 +5,6 @@ import { CustomLink, Layout } from 'components';
 import { Box, Button } from 'ui-kit';
 
 import Styled from './HeroLanding.styles';
-import { themeGet } from '@styled-system/theme-get';
 
 export default function HeroLanding(props = {}) {
   return (
@@ -22,7 +21,7 @@ export default function HeroLanding(props = {}) {
 
         <Styled.Content>
           <Styled.Title>{props?.heroTitle}</Styled.Title>
-          <Box as="h3" fontWeight="normal">
+          <Box as="h2" fontWeight="normal">
             {props?.heroSummary}
           </Box>
           {props?.actions?.map((action, i) => (
@@ -31,7 +30,7 @@ export default function HeroLanding(props = {}) {
               Component={Button}
               href={action.url}
               my="xs"
-              minWidth={{ _: '50%', md: '30%' }}
+              maxWidth={{ _: '50%', md: '30%' }}
               {...action}
             >
               {action.title}
@@ -39,7 +38,7 @@ export default function HeroLanding(props = {}) {
           ))}
         </Styled.Content>
       </Styled>
-      <Box mx="auto" maxWidth={1000}>
+      <Box bg="white" mx="auto">
         {props?.children}
       </Box>
     </Layout>

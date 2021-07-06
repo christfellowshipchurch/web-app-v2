@@ -5,7 +5,9 @@ import { useFeature } from '../hooks';
 
 function FeatureProvider({ Component, options, ...props }) {
   const { loading, error, feature } = useFeature(options);
-
+  if (feature?.title === 'Stay in the Know') {
+    console.log(feature?.id);
+  }
   return (
     <Component data={feature} loading={loading} error={error} {...props} />
   );

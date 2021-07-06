@@ -5,16 +5,21 @@ import { useRouter } from 'next/router';
 import { getUrlFromRelatedNode, slugify } from 'utils';
 import { useDiscoverFilterCategoriesPreview } from 'hooks';
 
-import { Button, Box, DefaultCard, CardGrid, Loader } from 'ui-kit';
+import {
+  Button,
+  Box,
+  DefaultCard,
+  CardGrid,
+  Loader,
+  HorizontalHighlightCard,
+} from 'ui-kit';
 import { CustomLink } from 'components';
 
-const DiscoverFilterSection = ({ contentId, title }) => {
+const CollectionPreview = ({ contentId, title, center, summary, cardType }) => {
   const router = useRouter();
   const { contentItems, loading } = useDiscoverFilterCategoriesPreview({
     variables: { id: contentId, first: 3 },
   });
-
-  console.log({ contentId });
 
   const handleSeeMore = event => {
     const [type, id] = contentId.split(':');
@@ -25,23 +30,33 @@ const DiscoverFilterSection = ({ contentId, title }) => {
 
   return (
     <Box my="s">
-      <Box display="flex" justifyContent="space-between" mb="s">
-        <Box as="h3">{title}</Box>
-        {contentItems?.length > 2 ? (
-          <Button variant="link" paddingRight={0} onClick={handleSeeMore}>
-            See more
-          </Button>
-        ) : null}
+      <Box textAlign={center && 'center'} as={center ? 'h1' : 'h2'}>
+        {title}
       </Box>
-
-      <CardGrid columns="3" mb="xl">
+      {summary && (
+        <Box
+          maxWidth={600}
+          textAlign="center"
+          mt="base"
+          mb="l"
+          as="h3"
+          fontWeight="normal"
+          mx="auto"
+        >
+          {summary}
+        </Box>
+      )}
+      <CardGrid columns="3">
         {loading ? (
           <Loader />
         ) : (
           contentItems.map((n, i) => (
             <CustomLink
               key={i}
-              Component={DefaultCard}
+              Component={
+                cardType === 'default' ? DefaultCard : HorizontalHighlightCard
+              }
+              type="HIGHLIGHT_SMALL"
               as="a"
               boxShadow="none"
               coverImage={n?.coverImage?.sources[0]?.uri}
@@ -54,13 +69,20 @@ const DiscoverFilterSection = ({ contentId, title }) => {
           ))
         )}
       </CardGrid>
+      {contentItems?.length > 2 ? (
+        <Box textAlign="center" width="100%">
+          <Button my="base" onClick={handleSeeMore}>
+            Show More
+          </Button>
+        </Box>
+      ) : null}
     </Box>
   );
 };
 
-DiscoverFilterSection.propTypes = {
+CollectionPreview.propTypes = {
   contentId: PropTypes.string,
   title: PropTypes.string,
 };
 
-export default DiscoverFilterSection;
+export default CollectionPreview;

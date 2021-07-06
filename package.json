@@ -35,6 +35,7 @@
     "react-dom": "17.0.1",
     "react-is": "^17.0.1",
     "react-multi-carousel": "^2.6.1",
+    "react-simple-typewriter": "^3.0.0",
     "shaka-player-react": "^1.1.2",
     "storybook": "^6.2.9",
     "stream-chat": "^3.6.2",

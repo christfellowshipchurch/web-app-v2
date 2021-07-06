@@ -10978,6 +10978,11 @@ react-remove-scroll@^2.4.1:
     use-callback-ref "^1.2.3"
     use-sidecar "^1.0.1"
 
+react-simple-typewriter@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/react-simple-typewriter/-/react-simple-typewriter-3.0.0.tgz#80ac4e52bc4421cc23c6744847e447810c613db1"
+  integrity sha512-asT0tTweJ2ntMU1VRKHz5LvzkF/bCnuh2XpKaTnz5aFp3DS044LW2IbeyDxuRaYgrxe7Op4E4yub3W0sKLCEcg==
+
 react-sizeme@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/react-sizeme/-/react-sizeme-3.0.1.tgz#4d12f4244e0e6a0fb97253e7af0314dc7c83a5a0"
