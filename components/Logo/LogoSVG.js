@@ -10,7 +10,7 @@ export default function LogoSVG({
       id="Layer_1"
       x="0px"
       y="0px"
-      viewBox={`0 0 ${withText ? '792' : '280'} 219.09`}
+      viewBox={withText ? '0 0 792 219.09' : '60 35 160 160'}
       {...props}
     >
       <pattern

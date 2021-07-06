@@ -13,7 +13,7 @@ function Logo({ withText, width, dark, ...props } = {}) {
     <Box>
       <LogoSVG
         opacity={opacity}
-        width={width || (withText && '182px') || '80px'}
+        width={width || (withText && '182px') || '46px'}
         alt="Long Hollow Church"
         treeColor={color}
         withText={withText}
