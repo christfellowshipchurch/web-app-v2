@@ -1,5 +1,5 @@
 import Styled from './MetadataCallout.styles';
-import { Box, Button } from 'ui-kit';
+import { Box, Button, Text } from 'ui-kit';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import PageSplit from 'components/PageSplit';
@@ -44,6 +44,7 @@ export default function MetadataCallout({ data }) {
     ]
       .filter(con => Boolean(con))
       .join(', '),
+    finePrint: getData('finePrint'),
   };
 
   return (
@@ -184,7 +185,7 @@ export default function MetadataCallout({ data }) {
             </Styled.CalloutDetailsListItem>
           )}
         </Styled.CalloutDetailsList>
-        <Box display="flex" justifyContent="center">
+        <Box display="flex" flexDirection="column" alignItems="center">
           {feature?.title && feature?.relatedNode?.url ? (
             <Button
               mt="l"
@@ -198,6 +199,11 @@ export default function MetadataCallout({ data }) {
               {feature?.title}
             </Button>
           ) : null}
+          {metadata.finePrint && (
+            <Text variant="base" color="neutrals.400" mt="m" textAlign="center">
+              {metadata.finePrint}
+            </Text>
+          )}
         </Box>
       </Styled.CalloutDetails>
     </Styled.Callout>

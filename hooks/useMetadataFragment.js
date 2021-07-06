@@ -20,6 +20,7 @@ const METADATA_FRAGMENT = gql`
       latitude
       longitude
     }
+    finePrint
     contactName
     contactEmail
     contactPhone
