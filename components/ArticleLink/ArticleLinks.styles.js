@@ -9,7 +9,7 @@ Styled.ArticleLinks = styled(CardGrid)`
   grid-column-gap: ${themeGet('space.l')};
   grid-template-columns: repeat(1, 1fr);
 
-  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     grid-template-columns: repeat(
       ${props => (props.fullWidth ? '1' : '2')},
       1fr
