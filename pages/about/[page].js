@@ -68,7 +68,7 @@ export default function Page({ data = {}, campuses, dropdownData }) {
                     }}
                     justify={i % 2 === 0 ? 'left' : 'right'}
                     title={node.title}
-                    description={node.summary}
+                    description={node.summaryHTML}
                     actions={
                       node.linkText
                         ? [
