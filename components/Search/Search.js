@@ -117,10 +117,36 @@ function Search({ filtering, setFiltering }) {
 
   const selectedCategories = searchState.refinementList?.category || [];
 
+  const shouldPresort = !searchState.query && selectedCategories.length === 1;
+
+  let indexName = 'prod_ContentItem';
+  if (shouldPresort) {
+    switch (selectedCategories[0]) {
+      case 'Articles':
+      case 'Messages':
+        indexName = 'publish_date_desc';
+        break;
+      case 'Events':
+      case 'Mission Trips':
+        indexName = 'start_date_asc';
+        break;
+      case 'General':
+      case 'Service Opportunities':
+      case 'Volunteer Positions':
+        indexName = 'title_asc';
+        break;
+      case 'Staff':
+        indexName = 'last_name_asc';
+        break;
+      default:
+        break;
+    }
+  }
+
   return (
     <div className="ais-InstantSearch">
       <InstantSearch
-        indexName="prod_ContentItem"
+        indexName={indexName}
         searchClient={searchClient}
         searchState={searchState}
         onSearchStateChange={onSearchStateChange}

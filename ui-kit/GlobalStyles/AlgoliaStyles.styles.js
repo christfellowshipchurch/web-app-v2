@@ -25,7 +25,7 @@ export default css`
     display: none;
   }
 
-  .ais-InstantSearch > .right-panel {
+  .ais-InstantSearch .right-panel {
     flex: 1;
 
     &.filtering {
