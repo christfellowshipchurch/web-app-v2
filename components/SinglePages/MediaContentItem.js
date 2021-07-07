@@ -109,7 +109,7 @@ export default function WeekendContentItem({ item, dropdownData } = {}) {
             fontWeight="800"
             textTransform="uppercase"
           >
-            {`Published: ${format(parseISO(item.publishDate), 'MM/dd')}`}
+            {`Published: ${format(parseISO(item.publishDate), 'MM/dd/yy')}`}
           </Heading>
         )}
         <Longform dangerouslySetInnerHTML={{ __html: item.htmlContent }} />
