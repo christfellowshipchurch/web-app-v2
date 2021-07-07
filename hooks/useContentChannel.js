@@ -23,6 +23,13 @@ export const GET_CONTENT_CHANNEL = gql`
                   uri
                 }
               }
+              ... on WeekendContentItem {
+                seriesImage {
+                  sources {
+                    uri
+                  }
+                }
+              }
               ... on UniversalContentItem {
                 navImage {
                   sources {

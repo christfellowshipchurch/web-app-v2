@@ -60,6 +60,7 @@ export async function getStaticProps() {
       sermon: {
         ...sermonRequest?.data?.node,
         videos: latestSermon?.videos,
+        moreMessagesImage: sermonVideos?.[1]?.node?.seriesImage || '',
       },
     },
     // Next.js will attempt to re-generate the page:

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRight } from 'phosphor-react';
+import { ArrowRight, PlayCircle } from 'phosphor-react';
 import { useTheme } from 'styled-components';
 
 import {
@@ -18,16 +18,22 @@ import { useRouter } from 'next/router';
 import { getMediaSource, getSlugFromURL } from 'utils';
 import { useCurrentUser } from 'hooks';
 import usePersonaFeed from 'hooks/usePersonaFeed';
+import Styled from './HomeFeed.styles';
+import IDS from 'config/ids';
 
 function FullLengthSermon(props = {}) {
+  const router = useRouter();
+  const theme = useTheme();
   const [selectedClip, setSelectedClip] = useState(0);
 
-  const clips = [
-    props.sermon,
-    ...(props.sermon?.childContentItemsConnection?.edges?.map(
-      ({ node }) => node
-    ) || []),
-  ];
+  const clips =
+    props.sermon?.childContentItemsConnection?.edges?.map(({ node }) => node) ||
+    [];
+
+  let src = getMediaSource(props.sermon);
+  if (!src) {
+    src = getMediaSource(props.sermon, 'audios') || src;
+  }
 
   return (
     <Box display="flex" flexDirection="column">
@@ -36,9 +42,12 @@ function FullLengthSermon(props = {}) {
         justifyText="center"
         backdrop={false}
         content={
-          !!(
-            clips?.length &&
-            clips.some(clip => clip?.videos?.length || clip?.audios?.length)
+          Boolean(
+            (clips?.length &&
+              clips.some(
+                clip => clip?.videos?.length || clip?.audios?.length
+              )) ||
+              src
           ) && (
             <Box
               position="absolute"
@@ -53,36 +62,47 @@ function FullLengthSermon(props = {}) {
               height={{ lg: '100%' }}
               width="100%"
               display={'flex'}
-              pl={{ _: '0', lg: '300px' }}
+              pl={{ _: '0', lg: '100px', xl: '300px' }}
             >
-              <Carousel
-                width="100%"
-                neighbors="3d"
-                contentWidth={{ _: '100vw', lg: '681px' }}
-                pl={{ _: '0', lg: '300px' }}
-                onClick={i => setSelectedClip(i)}
-                childProps={i => ({
-                  style: {
-                    pointerEvents: i !== selectedClip ? 'none' : 'initial',
-                    width: '100%',
-                  },
-                })}
-              >
-                {clips.map(clip => {
-                  let clipSrc = getMediaSource(clip);
-                  if (!clipSrc) {
-                    clipSrc = getMediaSource(clip, 'audios');
-                  }
-                  return clipSrc ? (
-                    <VideoPlayer
-                      key={clip?.id}
-                      src={clipSrc}
-                      poster={clip?.coverImage?.sources?.[0]?.uri}
-                      style={{ width: '681px' }}
-                    />
-                  ) : null;
-                })}
-              </Carousel>
+              {clips?.length ? (
+                <Carousel
+                  width="100%"
+                  neighbors="3d"
+                  contentWidth={{ _: '100vw', lg: '600px', xl: '681px' }}
+                  pl={{ _: '0', lg: '300px' }}
+                  onClick={i => setSelectedClip(i)}
+                  childProps={i => ({
+                    style: {
+                      pointerEvents: i !== selectedClip ? 'none' : 'initial',
+                      width: '100%',
+                    },
+                  })}
+                >
+                  {clips.map(clip => {
+                    let clipSrc = getMediaSource(clip);
+                    if (!clipSrc) {
+                      clipSrc = getMediaSource(clip, 'audios');
+                    }
+                    return clipSrc ? (
+                      <VideoPlayer
+                        key={clip?.id}
+                        src={clipSrc}
+                        poster={clip?.coverImage?.sources?.[0]?.uri}
+                        style={{ width: '681px' }}
+                      />
+                    ) : null;
+                  })}
+                </Carousel>
+              ) : (
+                <Box width={{ _: '100%', lg: '681px' }}>
+                  <VideoPlayer
+                    key={props.sermon?.id}
+                    src={src}
+                    poster={props.sermon?.coverImage?.sources?.[0]?.uri}
+                    style={{ width: '100%' }}
+                  />
+                </Box>
+              )}
             </Box>
           )
         }
@@ -91,6 +111,43 @@ function FullLengthSermon(props = {}) {
         subtitle={clips?.length ? 'HIGHLIGHTS FROM' : ''}
         mb={{ _: 'l', md: 'xxl' }}
       />
+      <Box
+        flexDirection="column"
+        mx={{ _: 'l', md: 'xxl' }}
+        mt={{ lg: '-180px' }}
+        mb="xl"
+        zIndex="2"
+      >
+        <Heading variant="h5" color="neutrals.500">
+          {clips?.length ? 'FULL MESSAGE' : 'MORE MESSAGES'}
+        </Heading>
+        <Styled.SermonContainer mt="s">
+          <Styled.SermonImage
+            rounded
+            src={
+              clips?.length
+                ? props.sermon?.coverImage?.sources?.[0]?.uri
+                : props.sermon?.moreMessagesImage?.sources?.[0]?.uri
+            }
+            onClick={() =>
+              router.push(
+                clips?.length
+                  ? `/${getSlugFromURL(props.sermon?.sharing?.url)}`
+                  : `/watch/${IDS.SERIES.SUNDAY}`
+              )
+            }
+          />
+          {Boolean(clips?.length) && (
+            <Box position="absolute" right="10px" bottom="10px">
+              <PlayCircle
+                size="36"
+                color={`${theme.colors.neutrals[100]}`}
+                opacity="60%"
+              />
+            </Box>
+          )}
+        </Styled.SermonContainer>
+      </Box>
     </Box>
   );
 }
