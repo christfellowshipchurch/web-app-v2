@@ -87,7 +87,7 @@ export default function HeroLandingPage(props = {}) {
           <ContentBlock
             mb="xxl"
             title="1. Know God Personally"
-            htmlContent="Experience the most out of life through a life-givingrelationship with Jesus Christ."
+            htmlContent="Experience the most out of life through a life-giving relationship with Jesus Christ."
             contentLayout="LEFT"
             image={placeholderImage}
           />
