@@ -117,15 +117,11 @@ function Search({ filtering, setFiltering }) {
 
   const selectedCategories = searchState.refinementList?.category || [];
 
-  const shouldPresort = !searchState.query && selectedCategories.length === 1;
+  const shouldPresort = !searchState.query && selectedCategories.length <= 1;
 
   let indexName = 'prod_ContentItem';
   if (shouldPresort) {
     switch (selectedCategories[0]) {
-      case 'Articles':
-      case 'Messages':
-        indexName = 'publish_date_desc';
-        break;
       case 'Events':
       case 'Mission Trips':
         indexName = 'start_date_asc';
@@ -138,7 +134,10 @@ function Search({ filtering, setFiltering }) {
       case 'Staff':
         indexName = 'last_name_asc';
         break;
+      case 'Articles':
+      case 'Messages':
       default:
+        indexName = 'publish_date_desc';
         break;
     }
   }
