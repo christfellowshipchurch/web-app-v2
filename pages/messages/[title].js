@@ -25,10 +25,10 @@ export default function Message(props) {
 // This function gets called at build time to generate the titles for _all_ messages
 export async function getStaticPaths() {
   // todo : make this a Network request so that it's dynamic
-  const messageTitles = ['declaration-of-dependence'];
+  const titles = [];
 
   return {
-    paths: messageTitles.map(title => ({ params: { title } })),
+    paths: titles.map(title => `messages/${title}`),
     // Enable statically generating additional pages
     // For example: `/messages/another-great-sermon`
     fallback: true,
