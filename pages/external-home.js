@@ -73,7 +73,12 @@ export default function HeroLandingPage(props = {}) {
 
       {/* Life to the Fullest Blocks */}
       <Box bg="white">
-        <Box mx="auto" maxWidth={1300} fontSize="1.7rem">
+        <Box
+          mx="auto"
+          p="base"
+          maxWidth={1300}
+          fontSize={{ _: '1.2rem', md: '1.7rem' }}
+        >
           <ContentBlock
             py="xl"
             title="Live life to the fullest."
@@ -116,7 +121,7 @@ export default function HeroLandingPage(props = {}) {
 
       {/* It all starts here. */}
       <GradientBackground bottomShade="primarySubduedHover">
-        <Box py="xxl" mx="auto" maxWidth={800}>
+        <Box py="xxl" px="xl" mx="auto" maxWidth={800}>
           <CollectionPreview
             title="It all starts here."
             summary="Come as you are. Online or in person. Just show up. We promise to give you access to the tools and support you need."
@@ -129,7 +134,13 @@ export default function HeroLandingPage(props = {}) {
       </GradientBackground>
 
       {/* Need Prayer? */}
-      <Box maxWidth={1200} mx="auto" fontSize="1.5rem" py="xl">
+      <Box
+        maxWidth={1200}
+        mx="auto"
+        fontSize={{ _: '1.2rem', md: '1.5rem' }}
+        px="base"
+        py="xl"
+      >
         <ContentBlock
           pb="l"
           title="Need Prayer?"
@@ -137,7 +148,7 @@ export default function HeroLandingPage(props = {}) {
             <b>+1-000-000-0000.</b> </br>Let us know how we can pray for you."
         />
         <ContentBlock
-          my="xl"
+          mt="xl"
           title="Church isn’t just a building you walk in to,
           but a family you can belong to."
           htmlContent="We’ve helped tens of thousands of people grab hold of
@@ -163,7 +174,7 @@ export default function HeroLandingPage(props = {}) {
       </Box>
 
       {/* Latest Messages */}
-      <Box p="l" mx="auto" maxWidth={1300}>
+      <Box px="base" py="xl" mx="auto" maxWidth={1300}>
         <CollectionPreview
           title="Stay in the Know"
           contentId="UniversalContentItem:021a93e4715936dcecd0bc57898d6fa5"
@@ -172,9 +183,9 @@ export default function HeroLandingPage(props = {}) {
 
       {/* Latest Messages */}
       <Box bg="neutrals.200">
-        <Box p="l" mx="auto" maxWidth={1300}>
+        <Box px="base" py="xl" mx="auto" maxWidth={1300}>
           <CollectionPreview
-            title="Watch Online: Latest Messages"
+            title="Latest Messages"
             contentId="UniversalContentItem:47a5a31f61ac5a4fb65576d0d47564e0"
           />
         </Box>

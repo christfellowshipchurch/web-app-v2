@@ -46,12 +46,23 @@ const Content = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 3.5rem;
+  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+    font-size: 3rem;
+  }
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    font-size: 3.5rem;
+  }
 `;
 
 const Summary = styled.h2`
-  font-size: 1.9rem;
   font-weight: normal;
+
+  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+    font-size: 1.6rem;
+  }
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    font-size: 1.9rem;
+  }
 `;
 
 const BackgroundVideo = styled.video`
