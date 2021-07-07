@@ -50,6 +50,7 @@ Styled.CalloutDetailsListItem = styled(Box)`
 Styled.CalloutDetailsListItemLabel = styled(Box)`
   color: ${themeGet('colors.fg')};
   flex-basis: 150px;
+  flex-shrink: 0;
 
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     margin-right: ${themeGet('space.xl')};

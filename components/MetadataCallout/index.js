@@ -1,3 +1,3 @@
-import MetadataCallout from './MetadataCallout';
+import MetadataCallout, { getMetadataObj } from './MetadataCallout';
 
-export default MetadataCallout;
+export { MetadataCallout as default, getMetadataObj };

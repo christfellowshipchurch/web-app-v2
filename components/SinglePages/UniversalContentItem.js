@@ -5,7 +5,7 @@ import { Layout, MainPhotoHeader } from 'components';
 import { Box, Button, CardGrid, Heading, Longform, Section } from 'ui-kit';
 import { getIdSuffix, getMetaData } from 'utils';
 import IDS from 'config/ids';
-import MetadataCallout from 'components/MetadataCallout';
+import MetadataCallout, { getMetadataObj } from 'components/MetadataCallout';
 import MarketingHeadline from 'components/MarketingHeadline';
 
 export default function Page({ data, dropdownData } = {}) {
@@ -16,7 +16,9 @@ export default function Page({ data, dropdownData } = {}) {
   }
 
   const button = data?.featureFeed?.features?.[0]?.action;
-  const isEvent = getIdSuffix(data?.parentChannel?.id) === IDS.CHANNELS.EVENTS;
+  const includeMetadataCallout = Object.values(getMetadataObj(data)).some(val =>
+    Boolean(val)
+  );
   const isArticle =
     getIdSuffix(data?.parentChannel?.id) === IDS.CHANNELS.ARTICLES;
   const isVolunteerPositions =
@@ -78,14 +80,14 @@ export default function Page({ data, dropdownData } = {}) {
           )}
         </Box>
       </Section>
-      {button && !isEvent ? (
+      {button && !includeMetadataCallout ? (
         <Section mb="l">
           <Button onClick={() => router.push(button.url)}>
             {button.title}
           </Button>
         </Section>
       ) : null}
-      {isEvent ? (
+      {includeMetadataCallout ? (
         <Section
           mb={{
             _: 'l',

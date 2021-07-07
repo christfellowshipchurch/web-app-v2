@@ -10,14 +10,11 @@ const getDataFn = data => key => {
   return Array.isArray(datum) && datum?.length < 1 ? null : datum;
 };
 
-export default function MetadataCallout({ data }) {
-  const router = useRouter();
-
-  const feature = data?.featureFeed?.features?.[0]?.action;
-
+export const getMetadataObj = data => {
   const getData = getDataFn(data);
   const getLocationData = getDataFn(getData('location'));
-  const metadata = {
+
+  return {
     time: getData('time'),
     schedule: getData('schedule'),
     deadline: getData('deadline'),
@@ -46,6 +43,14 @@ export default function MetadataCallout({ data }) {
       .join(', '),
     finePrint: getData('finePrint'),
   };
+};
+
+export default function MetadataCallout({ data }) {
+  const router = useRouter();
+
+  const feature = data?.featureFeed?.features?.[0]?.action;
+
+  const metadata = getMetadataObj(data);
 
   return (
     <Styled.Callout>
