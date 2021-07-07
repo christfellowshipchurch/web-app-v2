@@ -4,7 +4,7 @@ import { ContentSingle, Layout } from 'components';
 
 import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
 import { initializeApollo } from 'lib/apolloClient';
-å;
+
 export default function Message(props) {
   const router = useRouter();
   const { title } = router.query;
