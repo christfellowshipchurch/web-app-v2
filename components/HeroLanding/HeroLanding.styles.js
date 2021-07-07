@@ -46,7 +46,12 @@ const Content = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 3rem;
+  font-size: 3.5rem;
+`;
+
+const Summary = styled.h2`
+  font-size: 1.9rem;
+  font-weight: normal;
 `;
 
 const BackgroundVideo = styled.video`
@@ -75,5 +80,6 @@ HeroLanding.BackgroundVideo = BackgroundVideo;
 HeroLanding.VideoOverlay = VideoOverlay;
 HeroLanding.Content = Content;
 HeroLanding.Title = Title;
+HeroLanding.Summary = Summary;
 
 export default HeroLanding;

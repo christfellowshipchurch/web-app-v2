@@ -15,7 +15,14 @@ import {
 } from 'ui-kit';
 import { CustomLink } from 'components';
 
-const CollectionPreview = ({ contentId, title, center, summary, cardType }) => {
+const CollectionPreview = ({
+  contentId,
+  title,
+  center,
+  summary,
+  cardType,
+  hideButton,
+}) => {
   const router = useRouter();
   const { contentItems, loading } = useDiscoverFilterCategoriesPreview({
     variables: { id: contentId, first: 3 },
@@ -58,7 +65,6 @@ const CollectionPreview = ({ contentId, title, center, summary, cardType }) => {
               }
               type="HIGHLIGHT_SMALL"
               as="a"
-              boxShadow="none"
               coverImage={n?.coverImage?.sources[0]?.uri}
               description={n?.summary}
               href={getUrlFromRelatedNode(n)}
@@ -69,7 +75,7 @@ const CollectionPreview = ({ contentId, title, center, summary, cardType }) => {
           ))
         )}
       </CardGrid>
-      {contentItems?.length > 2 ? (
+      {contentItems?.length > 2 && !hideButton ? (
         <Box textAlign="center" width="100%">
           <Button my="base" onClick={handleSeeMore}>
             Show More

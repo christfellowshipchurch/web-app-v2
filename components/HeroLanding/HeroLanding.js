@@ -21,9 +21,7 @@ export default function HeroLanding(props = {}) {
 
         <Styled.Content>
           <Styled.Title>{props?.heroTitle}</Styled.Title>
-          <Box as="h2" fontWeight="normal">
-            {props?.heroSummary}
-          </Box>
+          <Styled.Summary>{props?.heroSummary}</Styled.Summary>
           {props?.actions?.map((action, i) => (
             <CustomLink
               key={i}
@@ -38,9 +36,7 @@ export default function HeroLanding(props = {}) {
           ))}
         </Styled.Content>
       </Styled>
-      <Box bg="white" mx="auto">
-        {props?.children}
-      </Box>
+      <Box mx="auto">{props?.children}</Box>
     </Layout>
   );
 }
