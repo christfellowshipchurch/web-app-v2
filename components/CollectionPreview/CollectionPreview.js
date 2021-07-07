@@ -63,6 +63,7 @@ const CollectionPreview = ({
               Component={
                 cardType === 'default' ? DefaultCard : HorizontalHighlightCard
               }
+              coverImageOverlay={true}
               type="HIGHLIGHT_SMALL"
               as="a"
               coverImage={n?.coverImage?.sources[0]?.uri}

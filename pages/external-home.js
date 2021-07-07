@@ -1,10 +1,23 @@
 import React from 'react';
 import { Typewriter } from 'react-simple-typewriter';
 
-import { CollectionPreview, HeroLanding, GradientBackground } from 'components';
+import { CollectionPreview, HeroLanding } from 'components';
 import { Box, ContentBlock } from 'ui-kit';
 
 const placeholderImage = '/placeholder.png';
+
+const ValueStack = ({ children, color }) => (
+  <Box
+    bg={color ? color : 'neutrals.500'}
+    textAlign="center"
+    as="h3"
+    py="l"
+    mb="0"
+    flexGrow={1}
+  >
+    {children}
+  </Box>
+);
 
 export default function HeroLandingPage(props = {}) {
   return (
@@ -23,20 +36,12 @@ export default function HeroLandingPage(props = {}) {
       <Box
         display="flex"
         flexDirection={{ _: 'column', md: 'row' }}
-        justifyContent="center"
         width="100%"
-        bg="secondary"
         color="white"
       >
-        <Box textAlign="center" as="h3" px="xxl" py="l" mb="0">
-          Know God Personally
-        </Box>
-        <Box textAlign="center" as="h3" px="xxl" py="l" mb="0" bg="primary">
-          Grow In Relationship
-        </Box>
-        <Box textAlign="center" as="h3" px="xxl" py="l" mb="0">
-          Discover Your Purpose
-        </Box>
+        <ValueStack>Know God Personally</ValueStack>
+        <ValueStack color="primaryHover">Grow In Relationship</ValueStack>
+        <ValueStack>Discover Your Purpose</ValueStack>
       </Box>
 
       {/* Text Carousel */}
@@ -50,9 +55,9 @@ export default function HeroLandingPage(props = {}) {
         py="xxl"
         mx="auto"
       >
-        <Box as="h1" display="flex">
+        <Box as="h1" fontSize={{ _: '', md: '3rem' }} display="flex">
           Life is
-          <Box ml="xs" minWidth={220} borderBottom="2px solid">
+          <Box ml="xs" minWidth={{ _: 200, md: 320 }} borderBottom="2px solid">
             <Typewriter
               words={['complicated', 'confusing', 'difficult', 'crazy']}
               loop={0} //infinite loops
@@ -65,10 +70,10 @@ export default function HeroLandingPage(props = {}) {
           </Box>
           .
         </Box>
-        <Box as="h1" fontWeight="normal">
+        <Box as="h2" fontWeight="normal">
           But you can do more than just get by.
         </Box>
-        <Box as="h1">We want to help.</Box>
+        <Box as="h2">We want to help.</Box>
       </Box>
 
       {/* Life to the Fullest Blocks */}
@@ -85,14 +90,12 @@ export default function HeroLandingPage(props = {}) {
             htmlContent="Discover how to live a life full of purpose and significance."
           />
           <ContentBlock
-            mb="xxl"
             title="1. Know God Personally"
             htmlContent="Experience the most out of life through a life-giving relationship with Jesus Christ."
             contentLayout="LEFT"
             image={placeholderImage}
           />
           <ContentBlock
-            mb="xxl"
             title="2. Grow in your relationships"
             htmlContent="A life marked by the depth of your relationships, with
           God and others."
@@ -100,7 +103,6 @@ export default function HeroLandingPage(props = {}) {
             image={placeholderImage}
           />
           <ContentBlock
-            mb="xxl"
             title="3. Discover your Purpose"
             htmlContent="A life of purpose, where you are fully engaged with
           the process and fully committed to God’s vision for
@@ -117,12 +119,11 @@ export default function HeroLandingPage(props = {}) {
             image={placeholderImage}
           />
         </Box>
-      </Box>
 
-      {/* It all starts here. */}
-      <GradientBackground bottomShade="primarySubduedHover">
-        <Box py="xxl" px="xl" mx="auto" maxWidth={800}>
+        {/* It all starts here. */}
+        <Box py="xxl" px="base" maxWidth={1200} mx="auto">
           <CollectionPreview
+            pb="xxl"
             title="It all starts here."
             summary="Come as you are. Online or in person. Just show up. We promise to give you access to the tools and support you need."
             contentId="UniversalContentItem:86a4c7f40414e00c8f045c268cd3c4cc"
@@ -131,9 +132,25 @@ export default function HeroLandingPage(props = {}) {
             hideButton
           />
         </Box>
-      </GradientBackground>
+      </Box>
 
       {/* Need Prayer? */}
+      <Box bg="primarySubdued">
+        <Box
+          maxWidth={1200}
+          mx="auto"
+          fontSize={{ _: '1.2rem', md: '1.5rem' }}
+          px="base"
+          py="xl"
+        >
+          <ContentBlock
+            title="Need Prayer?"
+            htmlContent="We believe in the power of prayer!</br> We have teams praying around the clock. </br></br> Text or Call us at
+            <b><a>+1-000-000-0000</a>.</b> </br>Let us know how we can pray for you."
+          />
+        </Box>
+      </Box>
+      {/* Church isn’t just a building you walk in to */}
       <Box
         maxWidth={1200}
         mx="auto"
@@ -141,12 +158,6 @@ export default function HeroLandingPage(props = {}) {
         px="base"
         py="xl"
       >
-        <ContentBlock
-          pb="l"
-          title="Need Prayer?"
-          htmlContent="We believe in the power of prayer!</br> We have teams praying around the clock. </br></br> Text or Call us at
-            <b>+1-000-000-0000.</b> </br>Let us know how we can pray for you."
-        />
         <ContentBlock
           mt="xl"
           title="Church isn’t just a building you walk in to,
@@ -174,7 +185,7 @@ export default function HeroLandingPage(props = {}) {
       </Box>
 
       {/* Latest Messages */}
-      <Box px="base" py="xl" mx="auto" maxWidth={1300}>
+      <Box px="base" py="xl" mx="auto" maxWidth={1200}>
         <CollectionPreview
           title="Stay in the Know"
           contentId="UniversalContentItem:021a93e4715936dcecd0bc57898d6fa5"
@@ -183,7 +194,7 @@ export default function HeroLandingPage(props = {}) {
 
       {/* Latest Messages */}
       <Box bg="neutrals.200">
-        <Box px="base" py="xl" mx="auto" maxWidth={1300}>
+        <Box px="base" py="xl" mx="auto" maxWidth={1200}>
           <CollectionPreview
             title="Latest Messages"
             contentId="UniversalContentItem:47a5a31f61ac5a4fb65576d0d47564e0"
