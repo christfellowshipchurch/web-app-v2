@@ -24,6 +24,10 @@ export default function Page({ data, dropdownData } = {}) {
   const isVolunteerPositions =
     getIdSuffix(data?.parentChannel?.id) === IDS.CHANNELS.VOLUNTEER_POSITIONS;
 
+  const dates = data.dates
+    ?.split(',')
+    .filter(date => !!date)
+    .map(date => format(parseISO(date), 'MMMM d, y'));
   return (
     <Layout meta={getMetaData(data)} bg="bg_alt" dropdownData={dropdownData}>
       <MainPhotoHeader
@@ -75,7 +79,18 @@ export default function Page({ data, dropdownData } = {}) {
               fontWeight="800"
               textTransform="uppercase"
             >
-              {`Published: ${format(parseISO(data.publishDate), 'MM/dd')}`}
+              {`Published: ${format(parseISO(data.publishDate), 'MMMM d, y')}`}
+            </Heading>
+          )}
+          {dates && (
+            <Heading
+              fontSize="h5"
+              lineHeight="h5"
+              color="fg"
+              fontWeight="800"
+              textTransform="uppercase"
+            >
+              {dates.length === 1 ? `${dates[0]}` : `${dates.join(' - ')}`}
             </Heading>
           )}
         </Box>

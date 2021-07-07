@@ -112,9 +112,8 @@ function MarketingHeadline({
             whiteSpace="pre"
             mt="xs"
             textAlign={{ _: 'center', lg: justify }}
-          >
-            {splitString(description)}
-          </Text>
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
         )}
         {details && (
           <Text

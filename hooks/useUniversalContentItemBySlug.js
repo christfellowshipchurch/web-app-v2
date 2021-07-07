@@ -84,6 +84,7 @@ export const GET_UNIVERSAL_CONTENT_ITEM_BY_SLUG = gql`
                   }
                   summary
                 }
+                summaryHTML
               }
               ...WithMedia
             }
