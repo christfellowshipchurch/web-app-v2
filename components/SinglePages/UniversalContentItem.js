@@ -27,7 +27,7 @@ export default function Page({ data, dropdownData } = {}) {
   const dates = data.dates
     ?.split(',')
     .filter(date => !!date)
-    .map(date => format(parseISO(date), 'MM/dd/yy'));
+    .map(date => format(parseISO(date), 'MMMM d, y'));
   return (
     <Layout meta={getMetaData(data)} bg="bg_alt" dropdownData={dropdownData}>
       <MainPhotoHeader
@@ -79,7 +79,7 @@ export default function Page({ data, dropdownData } = {}) {
               fontWeight="800"
               textTransform="uppercase"
             >
-              {`Published: ${format(parseISO(data.publishDate), 'MM/dd/yy')}`}
+              {`Published: ${format(parseISO(data.publishDate), 'MMMM d, y')}`}
             </Heading>
           )}
           {dates && (
@@ -90,9 +90,7 @@ export default function Page({ data, dropdownData } = {}) {
               fontWeight="800"
               textTransform="uppercase"
             >
-              {dates.length === 1
-                ? `Date: ${dates[0]}`
-                : `Dates: ${dates.join(' - ')}`}
+              {dates.length === 1 ? `${dates[0]}` : `${dates.join(' - ')}`}
             </Heading>
           )}
         </Box>
