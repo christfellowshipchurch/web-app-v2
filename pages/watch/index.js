@@ -234,16 +234,14 @@ export default function Watch({
                 title={page.title}
                 description={page.summary}
                 textProps={{ px: { lg: 'xl' } }}
-                actions={[
-                  {
-                    label: page.buttonText,
-                    onClick: () =>
-                      router.push(
-                        page.buttonLink ||
-                          `/${getSlugFromURL(page?.sharing?.url)}`
-                      ),
-                  },
-                ]}
+                actions={page.ctaLinks?.map(link => ({
+                  label: link?.[0]?.buttonText,
+                  onClick: () =>
+                    router.push(
+                      link?.[0]?.buttonLink ||
+                        `/${getSlugFromURL(page?.sharing?.url)}`
+                    ),
+                }))}
               />
             ))}
           </Section>
