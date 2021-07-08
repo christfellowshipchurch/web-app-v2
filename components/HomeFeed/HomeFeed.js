@@ -119,7 +119,7 @@ function FullLengthSermon(props = {}) {
         flexDirection="column"
         mx={{ _: 'l', md: 'xxl' }}
         mt={{ lg: '-240px' }}
-        mb={{ _: 'xl', lg: 0 }}
+        mb="xl"
         zIndex="2"
       >
         <Heading variant="h5" color="neutrals.500">
