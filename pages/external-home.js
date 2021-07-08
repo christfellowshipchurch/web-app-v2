@@ -4,11 +4,12 @@ import { Typewriter } from 'react-simple-typewriter';
 import { CollectionPreview, HeroLanding } from 'components';
 import { Box, ContentBlock } from 'ui-kit';
 
-const placeholderImage = '/placeholder.png';
+// const placeholderImage = '/placeholder.png';
+const placeholderImage = 'https://source.unsplash.com/random';
 
 const ValueStack = ({ children, color }) => (
   <Box
-    bg={color ? color : 'neutrals.500'}
+    bg={color ? color : 'neutrals.800'}
     textAlign="center"
     as="h3"
     py="l"
@@ -40,7 +41,7 @@ export default function HeroLandingPage(props = {}) {
         color="white"
       >
         <ValueStack>Know God Personally</ValueStack>
-        <ValueStack color="primaryHover">Grow In Relationship</ValueStack>
+        <ValueStack color="primary">Grow In Relationship</ValueStack>
         <ValueStack>Discover Your Purpose</ValueStack>
       </Box>
 
@@ -57,7 +58,12 @@ export default function HeroLandingPage(props = {}) {
       >
         <Box as="h1" fontSize={{ _: '', md: '3rem' }} display="flex">
           Life is
-          <Box ml="xs" minWidth={{ _: 200, md: 320 }} borderBottom="2px solid">
+          <Box
+            ml="xs"
+            mb="s"
+            minWidth={{ _: 200, md: 320 }}
+            borderBottom="2px solid"
+          >
             <Typewriter
               words={['complicated', 'confusing', 'difficult', 'crazy']}
               loop={0} //infinite loops
@@ -70,7 +76,7 @@ export default function HeroLandingPage(props = {}) {
           </Box>
           .
         </Box>
-        <Box as="h2" fontWeight="normal">
+        <Box as="h2" mb={0} fontWeight="normal">
           But you can do more than just get by.
         </Box>
         <Box as="h2">We want to help.</Box>
@@ -81,19 +87,16 @@ export default function HeroLandingPage(props = {}) {
         <Box
           mx="auto"
           p="base"
+          pt="l"
           maxWidth={1300}
           fontSize={{ _: '1.2rem', md: '1.7rem' }}
         >
-          <ContentBlock
-            py="xl"
-            title="Live life to the fullest."
-            htmlContent="Discover how to live a life full of purpose and significance."
-          />
           <ContentBlock
             title="1. Know God Personally"
             htmlContent="Experience the most out of life through a life-giving relationship with Jesus Christ."
             contentLayout="LEFT"
             image={placeholderImage}
+            mb="-1.3rem"
           />
           <ContentBlock
             title="2. Grow in your relationships"
@@ -101,6 +104,7 @@ export default function HeroLandingPage(props = {}) {
           God and others."
             contentLayout="RIGHT"
             image={placeholderImage}
+            mb="-1.3rem"
           />
           <ContentBlock
             title="3. Discover your Purpose"
@@ -109,6 +113,7 @@ export default function HeroLandingPage(props = {}) {
           your life."
             contentLayout="LEFT"
             image={placeholderImage}
+            mb="-1.3rem"
           />
           <ContentBlock
             title="4. Make a difference"

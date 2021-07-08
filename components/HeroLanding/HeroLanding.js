@@ -27,7 +27,7 @@ export default function HeroLanding(props = {}) {
               key={i}
               Component={Button}
               href={action.url}
-              my="xs"
+              my="s"
               maxWidth={{ _: '50%', md: '30%' }}
               {...action}
             >
