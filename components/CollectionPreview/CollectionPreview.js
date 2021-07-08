@@ -44,7 +44,6 @@ const CollectionPreview = ({
         <Box
           maxWidth={600}
           textAlign="center"
-          mt="base"
           mb="l"
           as="h3"
           fontWeight="normal"

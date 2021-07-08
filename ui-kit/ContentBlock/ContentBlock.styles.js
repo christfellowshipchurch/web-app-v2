@@ -50,7 +50,7 @@ const gridLayout = ({ gridLayout }) => props => {
 
 const Container = styled.div`
   display: grid;
-  grid-row-gap: ${themeGet('space.l')};
+  grid-row-gap: 0.5rem;
   justify-content: space-around;
   width: 100%;
 
