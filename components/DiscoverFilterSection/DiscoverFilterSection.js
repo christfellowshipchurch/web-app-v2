@@ -14,8 +14,6 @@ const DiscoverFilterSection = ({ contentId, title }) => {
     variables: { id: contentId, first: 3 },
   });
 
-  console.log({ contentId });
-
   const handleSeeMore = event => {
     const [type, id] = contentId.split(':');
 
