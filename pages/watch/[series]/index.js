@@ -12,10 +12,10 @@ export default function Series({ item, dropdownData } = {}) {
   const router = useRouter();
 
   const [series, setSeries] = useState(
-    item.childContentItemsConnection?.edges || []
+    item?.childContentItemsConnection?.edges || []
   );
   const [cursor, setCursor] = useState(
-    item.childContentItemsConnection?.pageInfo?.endCursor
+    item?.childContentItemsConnection?.pageInfo?.endCursor
   );
 
   const [fetchMore, { loading }] = useLazyQuery(GET_MESSAGE_SERIES, {
@@ -41,15 +41,15 @@ export default function Series({ item, dropdownData } = {}) {
           fontSize="h1"
           lineHeight="h1"
         >
-          {item.name}
+          {item?.name}
         </Heading>
         <Box display="flex" my="m" flexWrap="wrap" justifyContent="center">
           {series.map(({ node }) => (
             <LargeImage
-              key={node.id}
-              text={node.title}
+              key={node?.id}
+              text={node?.title}
               color="white"
-              src={node.coverImage.sources?.[0].uri}
+              src={node?.coverImage?.sources?.[0].uri}
               height={{ sm: '350px' }}
               size={{ _: 's', md: 'm' }}
               maxWidth="400px"
@@ -70,7 +70,7 @@ export default function Series({ item, dropdownData } = {}) {
         <Button
           onClick={() => {
             fetchMore({
-              variables: { itemId: item.id, after: cursor },
+              variables: { itemId: item?.id, after: cursor },
             });
           }}
           status={loading ? 'LOADING' : 'SUCCESS'}

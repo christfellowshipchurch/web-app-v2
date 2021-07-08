@@ -19,7 +19,7 @@ export default function Channel({ item, dropdownData } = {}) {
   const [cursor, setCursor] = useState();
 
   const { fetchMore, loading } = useQuery(GET_MESSAGE_CHANNEL, {
-    variables: { itemId: item.id },
+    variables: { itemId: item?.id },
     onCompleted: data => {
       setVideos([...videos, ...data?.node?.childContentItemsConnection?.edges]);
       setCursor(data?.node?.childContentItemsConnection?.pageInfo?.endCursor);
@@ -40,7 +40,7 @@ export default function Channel({ item, dropdownData } = {}) {
         showTitleOverImage={false}
       />
       <Section mt="xxl">
-        <Longform dangerouslySetInnerHTML={{ __html: item.htmlContent }} />
+        <Longform dangerouslySetInnerHTML={{ __html: item?.htmlContent }} />
       </Section>
       <Section>
         <Box
@@ -52,8 +52,8 @@ export default function Channel({ item, dropdownData } = {}) {
         >
           {videos?.map(({ node }) => (
             <LargeImage
-              key={node.id}
-              text={node.title}
+              key={node?.id}
+              text={node?.title}
               color="white"
               src={node?.coverImage?.sources?.[0].uri}
               height={{ sm: '350px' }}
@@ -72,7 +72,7 @@ export default function Channel({ item, dropdownData } = {}) {
         <Button
           onClick={() => {
             fetchMore({
-              variables: { itemId: item.id, after: cursor },
+              variables: { itemId: item?.id, after: cursor },
               onCompleted: data => {
                 setVideos([
                   ...videos,
@@ -130,9 +130,9 @@ export async function getStaticPaths() {
       )
     )
   ).flatMap(({ data }) =>
-    data.node.childContentItemsConnection?.edges?.map(({ node }) => ({
+    data?.node?.childContentItemsConnection?.edges?.map(({ node }) => ({
       channel: node,
-      seriesId: data.node.id,
+      seriesId: data?.node?.id,
     }))
   );
 
