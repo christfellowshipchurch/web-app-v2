@@ -175,6 +175,8 @@ function AppHead({ Component, pageProps }) {
           </noscript>
         </>
       ) : null}
+
+      <style>{'html { scroll-behavior: smooth; }'}</style>
     </Head>
   );
 }

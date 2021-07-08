@@ -36,7 +36,7 @@ const CollectionPreview = ({
   };
 
   return (
-    <Box my="s">
+    <Box>
       <Box textAlign={center && 'center'} as={center ? 'h1' : 'h2'}>
         {title}
       </Box>
@@ -77,7 +77,7 @@ const CollectionPreview = ({
       </CardGrid>
       {contentItems?.length > 2 && !hideButton ? (
         <Box textAlign="center" width="100%">
-          <Button my="base" onClick={handleSeeMore}>
+          <Button mt="base" onClick={handleSeeMore}>
             Show More
           </Button>
         </Box>

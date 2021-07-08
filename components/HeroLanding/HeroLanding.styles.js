@@ -10,6 +10,7 @@ const HeroLanding = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 
   width: 100vw;
   overflow: none;
@@ -27,6 +28,8 @@ const HeroLanding = styled.div`
 const Content = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   z-index: 2;
   color: ${themeGet('colors.white')};
   padding: 20px;
@@ -52,7 +55,7 @@ const Title = styled.h1`
     font-size: 3rem;
   }
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-    font-size: 3.5rem;
+    font-size: 4rem;
   }
 `;
 
@@ -63,7 +66,7 @@ const Summary = styled.h2`
     font-size: 1.6rem;
   }
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-    font-size: 1.9rem;
+    font-size: 2.472rem;
   }
 `;
 

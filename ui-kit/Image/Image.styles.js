@@ -10,7 +10,7 @@ const mask = ({ mask }) => {
 
       -webkit-mask-size: contain;
       mask-size: contain;
-      mask-repeat: no-repeat;
+      mask-repeat: round;
     `;
   }
   return null;
