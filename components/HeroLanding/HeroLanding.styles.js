@@ -16,7 +16,7 @@ const HeroLanding = styled.div`
   overflow: none;
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
-    height: 100vh;
+    height: 88vh;
   }
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     height: 82vh;
@@ -49,19 +49,25 @@ const Content = styled.div`
 `;
 
 const Title = styled.h1`
-  margin-bottom: 0px;
-  line-height: 4rem;
+  text-align: center;
+
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
     font-size: 3rem;
+    line-height: 3rem;
+    margin-bottom: ${themeGet('space.xs')};
   }
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     font-size: 4rem;
+    line-height: 4rem;
+    margin-bottom: 0px;
   }
 `;
 
 const Summary = styled.h2`
   font-weight: normal;
   padding-left: 4px;
+  text-align: center;
+
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
     font-size: 1.6rem;
   }

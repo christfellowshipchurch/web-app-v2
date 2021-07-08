@@ -5,6 +5,8 @@ import { CollectionPreview, HeroLanding } from 'components';
 import { Box, ContentBlock, Image, Icon } from 'ui-kit';
 
 import random from 'lodash/random';
+import styled from 'styled-components';
+import { themeGet } from '@styled-system/theme-get';
 
 const BASE_MAX_WIDTH = 1200;
 const BASE_VERITCAL_PADDING = 'xl';
@@ -43,6 +45,24 @@ const StartHere = () => {
     },
   ];
 
+  const StyledCard = styled.div`
+    background: white;
+    border-radius: ${themeGet('radii.base')};
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: ${themeGet('space.base')};
+    padding-bottom: ${themeGet('space.l')};
+    margin-bottom: ${themeGet('space.base')};
+    box-shadow: ${themeGet('shadows.base')};
+    transition: box-shadow ease-in 0.3s;
+
+    :hover {
+      box-shadow: ${themeGet('shadows.xl')};
+      cursor: pointer;
+    }
+  `;
+
   return (
     <Box>
       <Box textAlign="center" mb="base">
@@ -62,16 +82,7 @@ const StartHere = () => {
         margin="auto"
       >
         {data.map(({ title, subtitle }, i) => (
-          <Box
-            bg="white"
-            borderRadius={6}
-            overflow="hidden"
-            display="flex"
-            flexDirection="column"
-            p="base"
-            pb="1.5rem"
-            boxShadow={i === 0 ? 'l' : 'base'}
-          >
+          <StyledCard boxShadow={i === 0 ? 'l' : 'base'}>
             <Image mb="2rem" source={placeholderImage()} aspectRatio={16 / 9} />
 
             <Box px="s">
@@ -87,7 +98,7 @@ const StartHere = () => {
                 {subtitle}
               </Box>
             </Box>
-          </Box>
+          </StyledCard>
         ))}
       </Box>
     </Box>
@@ -278,24 +289,18 @@ export default function HeroLandingPage(props = {}) {
         <LifeToTheFullest variant={21} />
       </Box>
 
-      <Box id="start-here" bg="nuetrals.200" p={BASE_VERITCAL_PADDING}>
-        {/* It all starts here. */}
-
+      {/* It all starts here. */}
+      <Box
+        id="start-here"
+        bg="nuetrals.200"
+        px="base"
+        py={BASE_VERITCAL_PADDING}
+      >
         <StartHere />
-        {/* <Box mx="auto" py="s">
-          <CollectionPreview
-            title="It all starts here."
-            summary="Come as you are. Online or in person. Just show up. We promise to give you access to the tools and support you need."
-            contentId="UniversalContentItem:86a4c7f40414e00c8f045c268cd3c4cc"
-            center
-            cardType="default"
-            hideButton
-          />
-        </Box> */}
       </Box>
 
       {/* Church isn’t just a building you walk in to */}
-      <Box p={BASE_VERITCAL_PADDING} bg="white">
+      <Box px="base" py={BASE_VERITCAL_PADDING} bg="white">
         <Box
           fontSize={{ _: '1.2rem', md: '1.5rem' }}
           maxWidth={BASE_MAX_WIDTH}
@@ -326,7 +331,7 @@ export default function HeroLandingPage(props = {}) {
           />
         </Box>
 
-        {/* Latest Messages */}
+        {/* Stay in the Know */}
         <Box pt={BASE_VERITCAL_PADDING} mx="auto" maxWidth={1200}>
           <CollectionPreview
             title="Stay in the Know"
@@ -336,7 +341,7 @@ export default function HeroLandingPage(props = {}) {
       </Box>
 
       {/* Latest Messages */}
-      <Box py={BASE_VERITCAL_PADDING} bg="neutrals.100">
+      <Box px="base" py={BASE_VERITCAL_PADDING} bg="neutrals.100">
         <Box mx="auto" maxWidth={1200}>
           <CollectionPreview
             title="Latest Messages"
