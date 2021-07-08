@@ -62,7 +62,11 @@ function FullLengthSermon(props = {}) {
               height={{ lg: '100%' }}
               width="100%"
               display={'flex'}
-              pl={{ _: '0', lg: '100px', xl: '300px' }}
+              pl={{
+                _: '0',
+                lg: clips?.length ? '100px' : '400px',
+                xl: clips?.length ? '300px' : '400px',
+              }}
             >
               {clips?.length ? (
                 <Carousel
@@ -114,8 +118,8 @@ function FullLengthSermon(props = {}) {
       <Box
         flexDirection="column"
         mx={{ _: 'l', md: 'xxl' }}
-        mt={{ lg: '-180px' }}
-        mb="xl"
+        mt={{ lg: '-240px' }}
+        mb={{ _: 'xl', lg: 0 }}
         zIndex="2"
       >
         <Heading variant="h5" color="neutrals.500">

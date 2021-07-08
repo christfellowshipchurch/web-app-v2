@@ -20,6 +20,7 @@ Styled.Circle = styled(Circle)`
 
 Styled.SermonContainer = styled(Box)`
   cursor: pointer;
+  filter: drop-shadow(0px 20px 48px rgba(0, 0, 0, 0.25));
   position: relative;
 
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
