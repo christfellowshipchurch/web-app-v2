@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { format, parseISO } from 'date-fns';
+import { format, isSameMonth, isSameYear, parseISO } from 'date-fns';
 
 import { Layout, MainPhotoHeader } from 'components';
 import { Box, Button, CardGrid, Heading, Longform, Section } from 'ui-kit';
@@ -16,7 +16,8 @@ export default function Page({ data, dropdownData } = {}) {
   }
 
   const button = data?.featureFeed?.features?.[0]?.action;
-  const includeMetadataCallout = Object.values(getMetadataObj(data)).some(val =>
+  const metadata = getMetadataObj(data);
+  const includeMetadataCallout = Object.values(metadata).some(val =>
     Boolean(val)
   );
   const isArticle =
@@ -27,7 +28,28 @@ export default function Page({ data, dropdownData } = {}) {
   const dates = data.dates
     ?.split(',')
     .filter(date => !!date)
-    .map(date => format(parseISO(date), 'MMMM d, y'));
+    .map(date => parseISO(date));
+
+  let dateStr;
+
+  if (dates?.length > 1) {
+    if (isSameMonth(dates[0], dates[1])) {
+      dateStr = `${format(dates[0], 'MMMM d')}-${format(dates[1], 'd, y')}`;
+    } else if (isSameYear(dates[0], dates[1])) {
+      dateStr = `${format(dates[0], 'MMMM d')} - ${format(
+        dates[1],
+        'MMMM d, y'
+      )}`;
+    } else {
+      dateStr = `${format(dates[0], 'MMMM d, y')} - ${format(
+        dates[1],
+        'MMMM d, y'
+      )}`;
+    }
+  } else if (dates?.length === 1) {
+    dateStr = format(dates[0], 'MMMM d, y');
+  }
+
   return (
     <Layout meta={getMetaData(data)} bg="bg_alt" dropdownData={dropdownData}>
       <MainPhotoHeader
@@ -82,7 +104,7 @@ export default function Page({ data, dropdownData } = {}) {
               {`Published: ${format(parseISO(data.publishDate), 'MMMM d, y')}`}
             </Heading>
           )}
-          {dates && (
+          {dateStr && (
             <Heading
               fontSize="h5"
               lineHeight="h5"
@@ -90,7 +112,7 @@ export default function Page({ data, dropdownData } = {}) {
               fontWeight="800"
               textTransform="uppercase"
             >
-              {dates.length === 1 ? `${dates[0]}` : `${dates.join(' - ')}`}
+              {dateStr}
             </Heading>
           )}
         </Box>
