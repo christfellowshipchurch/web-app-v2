@@ -121,9 +121,8 @@ export default function HeroLandingPage(props = {}) {
         </Box>
 
         {/* It all starts here. */}
-        <Box py="xxl" px="base" maxWidth={1200} mx="auto">
+        <Box maxWidth={1200} mx="auto">
           <CollectionPreview
-            pb="xxl"
             title="It all starts here."
             summary="Come as you are. Online or in person. Just show up. We promise to give you access to the tools and support you need."
             contentId="UniversalContentItem:86a4c7f40414e00c8f045c268cd3c4cc"
@@ -135,53 +134,59 @@ export default function HeroLandingPage(props = {}) {
       </Box>
 
       {/* Need Prayer? */}
-      <Box bg="primarySubdued">
+      <Box p="base" bg="white">
         <Box
+          bg="primarySubdued"
           maxWidth={1200}
           mx="auto"
           fontSize={{ _: '1.2rem', md: '1.5rem' }}
           px="base"
           py="xl"
+          textAlign="center"
         >
-          <ContentBlock
-            title="Need Prayer?"
-            htmlContent="We believe in the power of prayer!</br> We have teams praying around the clock. </br></br> Text or Call us at
-            <b><a>+1-000-000-0000</a>.</b> </br>Let us know how we can pray for you."
-          />
+          <Box as="h1" color="black">
+            Need Prayer?
+          </Box>
+          <Box as="p">We believe in the power of prayer!</Box>
+          <Box as="p" pb="s">
+            We have teams praying around the clock.
+          </Box>
+          <Box as="p">
+            Text or Call us at&nbsp;
+            <b>
+              <a href="tel:+15617997600">(561) 799-7600</a>.
+            </b>
+          </Box>
+          <Box as="p">Let us know how we can pray for you.</Box>
         </Box>
       </Box>
       {/* Church isn’t just a building you walk in to */}
-      <Box
-        maxWidth={1200}
-        mx="auto"
-        fontSize={{ _: '1.2rem', md: '1.5rem' }}
-        px="base"
-        py="xl"
-      >
-        <ContentBlock
-          mt="xl"
-          title="Church isn’t just a building you walk in to,
+      <Box fontSize={{ _: '1.2rem', md: '1.5rem' }} p="base">
+        <Box maxWidth={1200} mx="auto">
+          <ContentBlock
+            title="Church isn’t just a building you walk in to,
           but a family you can belong to."
-          htmlContent="We’ve helped tens of thousands of people grab hold of
+            htmlContent="We’ve helped tens of thousands of people grab hold of
           their vision for getting the most out of their life, their
           family, and for their future – by equipping them with
           direction, resources, coaching, and encouragement to
           discover their purpose through a deeper relationship with
           Christ. What we’ve done for them, we want to do for you."
-          image={
-            'https://cloudfront.christfellowship.church/GetImage.ashx?guid=8b846fd4-ee88-4a24-b07f-af5a2924b369'
-          }
-          contentLayout="RIGHT"
-          imageRatio="3by4"
-          actions={[
-            {
-              title: 'Read More',
-              relatedNode: {
-                url: '/',
+            image={
+              'https://cloudfront.christfellowship.church/GetImage.ashx?guid=8b846fd4-ee88-4a24-b07f-af5a2924b369'
+            }
+            contentLayout="RIGHT"
+            imageRatio="3by4"
+            actions={[
+              {
+                title: 'Read More',
+                relatedNode: {
+                  url: '/',
+                },
               },
-            },
-          ]}
-        />
+            ]}
+          />
+        </Box>
       </Box>
 
       {/* Latest Messages */}
