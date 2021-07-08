@@ -180,7 +180,7 @@ function CommunitySingle(props = {}) {
               mt={{ _: 'base', lg: 0 }}
             >
               <Button
-                variant="secondary"
+                variant="primary"
                 rounded={true}
                 size="l"
                 onClick={handleNotifyMeClick}

@@ -40,17 +40,9 @@ const NotifyMeSection = styled.section`
   padding: ${themeGet('space.l')} ${themeGet('space.base')};
 
   // Option 1 ::
-  /* border: 1px solid ${themeGet('colors.primary')};
-  background: rgb(223, 243, 250); */
-
-  // Option 2 ::
-  /* border: 1px solid white;
-  background: white;
-  box-shadow: ${themeGet('shadows.base')}; */
-
-  // Option 3 ::
-  background: white;
-  box-shadow: ${themeGet('shadows.base')};
+  border: 1px solid ${themeGet('colors.primary')};
+  background: rgb(223, 243, 250);
+  box-shadow: ${themeGet('shadows.l')};
 
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     flex-direction: row;
