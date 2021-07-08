@@ -3,14 +3,12 @@ import PropTypes from 'prop-types';
 
 import { Box } from 'ui-kit';
 import LogoSVG from './LogoSVG';
-import { useTheme } from 'styled-components';
 
 function Logo({ withText, width, dark, ...props } = {}) {
-  const theme = useTheme();
-  const color = dark ? theme.colors.neutrals['100'] : null;
-  const opacity = dark ? '33%' : '100%';
+  const color = dark ? '#6B6C71' : null;
+  const opacity = dark ? '100%' : '100%';
   return (
-    <Box>
+    <Box display="flex" alignItems="center">
       <LogoSVG
         opacity={opacity}
         width={width || (withText && '182px') || '46px'}
