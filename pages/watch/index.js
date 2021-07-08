@@ -235,10 +235,10 @@ export default function Watch({
                 description={page.summary}
                 textProps={{ px: { lg: 'xl' } }}
                 actions={page.ctaLinks?.map(link => ({
-                  label: link?.[0]?.buttonText,
+                  label: link?.buttonText,
                   onClick: () =>
                     router.push(
-                      link?.[0]?.buttonLink ||
+                      link?.buttonLink ||
                         `/${getSlugFromURL(page?.sharing?.url)}`
                     ),
                 }))}
