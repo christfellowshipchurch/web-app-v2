@@ -45,7 +45,11 @@ function ContentBlock(props = {}) {
     >
       {(props.image || props.image !== '') && (
         <Styled.Media maxWidth={horizontalLayout ? '500px' : '800px'}>
-          <Image source={props.image} aspectRatio={props.imageRatio} />
+          <Image
+            mask={props?.imageMask}
+            source={props.image}
+            aspectRatio={props.imageRatio}
+          />
         </Styled.Media>
       )}
       {props.videos?.length >= 1 && (

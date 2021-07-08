@@ -96,6 +96,7 @@ export default function HeroLandingPage(props = {}) {
             htmlContent="Experience the most out of life through a life-giving relationship with Jesus Christ."
             contentLayout="LEFT"
             image={placeholderImage}
+            imageMask="/shape-mask-1.png"
             mb="-1.3rem"
           />
           <ContentBlock
@@ -104,6 +105,7 @@ export default function HeroLandingPage(props = {}) {
           God and others."
             contentLayout="RIGHT"
             image={placeholderImage}
+            imageMask="/shape-mask-2.png"
             mb="-1.3rem"
           />
           <ContentBlock
@@ -113,6 +115,7 @@ export default function HeroLandingPage(props = {}) {
           your life."
             contentLayout="LEFT"
             image={placeholderImage}
+            imageMask="/shape-mask-3.png"
             mb="-1.3rem"
           />
           <ContentBlock
@@ -122,6 +125,7 @@ export default function HeroLandingPage(props = {}) {
           emulate."
             contentLayout="RIGHT"
             image={placeholderImage}
+            imageMask="/shape-mask-1.png"
           />
         </Box>
 
