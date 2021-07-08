@@ -166,8 +166,8 @@ function CommunitySingle(props = {}) {
         {showNotifyMe && (
           <Styled.NotifyMeSection>
             <Box maxWidth={{ lg: '60%' }} mr={{ lg: 'l' }}>
-              <Box as="h3">{notifyMeBanner?.title}</Box>
-              <Box color="subdued">
+              <Box as="h1">{notifyMeBanner?.title}</Box>
+              <Box color="secondary">
                 {htmlToReactParser.parse(notifyMeBanner?.htmlContent)}
               </Box>
             </Box>
