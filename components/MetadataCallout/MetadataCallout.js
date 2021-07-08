@@ -31,9 +31,9 @@ export const getMetadataObj = data => {
     location: {
       name: getLocationData('name'),
       address: getLocationData('address')
-        .replace('\r\n', ' ')
-        .replace('\r', ' ')
-        .replace('\n', ' '),
+        ?.replace('\r\n', ' ')
+        ?.replace('\r', ' ')
+        ?.replace('\n', ' '),
     },
     gps:
       getLocationData('latitude') && getLocationData('longitude')
