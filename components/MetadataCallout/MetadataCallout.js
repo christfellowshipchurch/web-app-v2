@@ -3,6 +3,7 @@ import { Box, Button, Text } from 'ui-kit';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import PageSplit from 'components/PageSplit';
+import { formatRelative, isAfter } from 'date-fns';
 
 const getDataFn = data => key => {
   const datum = data[key];
@@ -56,6 +57,8 @@ export default function MetadataCallout({ data }) {
 
   const metadata = getMetadataObj(data);
 
+  const expired = isAfter(new Date(), new Date(metadata.deadline)) || true;
+
   return (
     <Styled.Callout>
       <Styled.CalloutHeader>
@@ -84,7 +87,9 @@ export default function MetadataCallout({ data }) {
               <Styled.CalloutDetailsListItemLabel>
                 Signup Deadline
               </Styled.CalloutDetailsListItemLabel>
-              <Box>{metadata.deadline}</Box>
+              <Box>
+                {formatRelative(new Date(metadata.deadline), new Date())}
+              </Box>
             </Styled.CalloutDetailsListItem>
           )}
           {metadata.forWho && (
@@ -178,7 +183,9 @@ export default function MetadataCallout({ data }) {
                     metadata.gps || metadata.location.address
                   }`}
                 >
-                  {metadata.location.name}
+                  <Text color="primary" fontWeight="bold" textDecoration="none">
+                    {metadata.location.name}
+                  </Text>
                 </Link>
               </Box>
             </Styled.CalloutDetailsListItem>
@@ -193,7 +200,7 @@ export default function MetadataCallout({ data }) {
           )}
         </Styled.CalloutDetailsList>
         <Box display="flex" flexDirection="column" alignItems="center">
-          {feature?.title && feature?.relatedNode?.url ? (
+          {!expired && feature?.title && feature?.relatedNode?.url ? (
             <Button
               mt="l"
               fontWeight="bold"
@@ -205,9 +212,18 @@ export default function MetadataCallout({ data }) {
             >
               {feature?.title}
             </Button>
-          ) : null}
+          ) : (
+            <Text variant="s" color="neutrals.900" mt="xl" textAlign="center">
+              Go to the front desk to sign up.
+            </Text>
+          )}
           {metadata.finePrint && (
-            <Text variant="base" color="neutrals.400" mt="m" textAlign="center">
+            <Text
+              variant="base"
+              color="neutrals.400"
+              mt="xs"
+              textAlign="center"
+            >
               {metadata.finePrint}
             </Text>
           )}
