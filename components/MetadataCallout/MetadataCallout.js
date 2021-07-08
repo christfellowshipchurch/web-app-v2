@@ -27,9 +27,13 @@ export const getMetadataObj = data => {
     opportunityType: getData('opportunityType'),
     relatedSkills: getData('relatedSkills'),
     childcareInfo: getData('childcareInfo'),
-    location: [getLocationData('name'), getLocationData('address')]
-      .filter(loc => Boolean(loc))
-      .join(' '),
+    location: {
+      name: getLocationData('name'),
+      address: getLocationData('address')
+        .replace('\r\n', ' ')
+        .replace('\r', ' ')
+        .replace('\n', ' '),
+    },
     gps:
       getLocationData('latitude') && getLocationData('longitude')
         ? [getLocationData('latitude'), getLocationData('longitude')].join(',')
@@ -169,15 +173,13 @@ export default function MetadataCallout({ data }) {
                 Location
               </Styled.CalloutDetailsListItemLabel>
               <Box>
-                {metadata.gps ? (
-                  <Link
-                    href={`https://www.google.com/maps/place/${metadata.gps}`}
-                  >
-                    {metadata.location}
-                  </Link>
-                ) : (
-                  `${metadata.location}`
-                )}
+                <Link
+                  href={`https://www.google.com/maps/place/${
+                    metadata.gps || metadata.location.address
+                  }`}
+                >
+                  {metadata.location.name}
+                </Link>
               </Box>
             </Styled.CalloutDetailsListItem>
           )}
