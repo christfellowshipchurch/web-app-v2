@@ -26,11 +26,6 @@ Styled.CalloutDetails = styled(Box)`
 Styled.CalloutDetailsList = styled(Box)`
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  margin-left: ${themeGet('space.s')};
-
-  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-    margin-left: ${themeGet('space.m')};
-  }
 
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     grid-template-columns: repeat(2, 1fr);
@@ -41,16 +36,25 @@ Styled.CalloutDetailsListItem = styled(Box)`
   border-bottom: 1px solid ${themeGet('colors.neutrals.200')};
   color: ${themeGet('colors.neutrals.700')};
   display: flex;
-  line-height: ${themeGet('fontSizes.h3')};
+  flex-direction: column;
   font-size: ${themeGet('fontSizes.h5')};
-  margin: 0 ${themeGet('space.m')};
+  line-height: ${themeGet('fontSizes.h3')};
+  margin: 0;
   padding: ${themeGet('space.xs')} 0;
+
+  @media screen and (min-width: ${themeGet('breakpoints.sm')}) {
+    flex-direction: row;
+    margin: 0 ${themeGet('space.m')};
+  }
 `;
 
 Styled.CalloutDetailsListItemLabel = styled(Box)`
   color: ${themeGet('colors.fg')};
-  flex-basis: 150px;
   flex-shrink: 0;
+
+  @media screen and (min-width: ${themeGet('breakpoints.sm')}) {
+    flex-basis: 150px;
+  }
 
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     margin-right: ${themeGet('space.xl')};
