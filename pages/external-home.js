@@ -2,12 +2,12 @@ import React from 'react';
 import { Typewriter } from 'react-simple-typewriter';
 
 import { CollectionPreview, HeroLanding } from 'components';
-import { Box, ContentBlock } from 'ui-kit';
+import { Box, ContentBlock, Image, Icon } from 'ui-kit';
 
 import random from 'lodash/random';
 
 const BASE_MAX_WIDTH = 1200;
-const BASE_VERITCAL_PADDING = 'l';
+const BASE_VERITCAL_PADDING = 'xl';
 
 // const placeholderImage = '/placeholder.png';
 const placeholderImage = () =>
@@ -26,39 +26,101 @@ const ValueStack = ({ children, color }) => (
   </Box>
 );
 
+const StartHere = () => {
+  const data = [
+    {
+      title: 'Plan a Visit',
+      subtitle: 'Attend a Sunday service. We would love to meet you!',
+    },
+    {
+      title: 'Find Friends',
+      subtitle: 'Meet other people just like you. Find a group or class today.',
+    },
+    {
+      title: 'Ask a Question',
+      subtitle:
+        'Do you have questions or need prayer? Text or call us at (561) 799-5600.',
+    },
+  ];
+
+  return (
+    <Box>
+      <Box textAlign="center" mb="base">
+        <Box as="h1" color="black" fontSize="2.5rem">
+          It all starts here.
+        </Box>
+      </Box>
+
+      <Box
+        display={{ _: 'block', md: 'grid' }}
+        gridTemplateColumns="1fr 1fr 1fr"
+        gridTemplateRows="1fr"
+        gridGap="1rem 1rem"
+        gridTemplateAreas={`". . ."`}
+        textAlign="center"
+        maxWidth={BASE_MAX_WIDTH}
+        margin="auto"
+      >
+        {data.map(({ title, subtitle }, i) => (
+          <Box
+            bg="white"
+            borderRadius={6}
+            overflow="hidden"
+            display="flex"
+            flexDirection="column"
+            p="base"
+            pb="1.5rem"
+            boxShadow={i === 0 ? 'l' : 'base'}
+          >
+            <Image mb="2rem" source={placeholderImage()} aspectRatio={16 / 9} />
+
+            <Box px="s">
+              <Box as="a" href="#" textDecoration="none">
+                <Box display="flex" justifyContent="center" alignItems="center">
+                  <Box as="h2" m="0" mb="0.25rem">
+                    {`${title}`}
+                  </Box>
+                  <Icon name="angleRight" size={32} />
+                </Box>
+              </Box>
+              <Box as="p" fontSize="1.35rem" lineHeight="1.65rem" mt="s">
+                {subtitle}
+              </Box>
+            </Box>
+          </Box>
+        ))}
+      </Box>
+    </Box>
+  );
+};
+
 const LifeToTheFullest = ({ variant }) => {
+  const data = [
+    {
+      title: 'Know God personally',
+      subtitle:
+        'You can know Jesus on a personal level. See how a relationship with Him changes your life for the better.',
+    },
+    {
+      title: 'Grow in your relationships',
+      subtitle:
+        "You weren't meant to do life alone. Find friends and build stronger relationships with those you love.",
+    },
+    {
+      title: 'Discover your purpose',
+      subtitle:
+        "You're here for a reason. Find out who God created you to be and learn how to live life on purpose.",
+    },
+    {
+      title: 'Impact your world',
+      subtitle:
+        'A life lived contributing your talents, gifts and passion for your world, and a life that others are inspired to emulate.',
+    },
+  ];
+
+  const mask = [1, 3, 2, 1];
+
   if (variant === 2) {
-    const linearGradient = [
-      'rgba(255, 255, 255, 1) 40%',
-      'rgba(255, 255, 255, 0.9) 50%',
-      'rgba(255, 255, 255, 0.65) 70%',
-
-      'rgba(255, 255, 255, 0) 100%',
-    ];
-
-    const data = [
-      {
-        title: 'Know God Personally',
-        subtitle:
-          'Experience the most out of life through a life-giving relationship with Jesus Christ.',
-      },
-      {
-        title: 'Grow in your relationships',
-        subtitle:
-          'A life marked by the depth of your relationships, with God and others.',
-      },
-      {
-        title: 'Discover your Purpose',
-        subtitle:
-          'A life of purpose, where you are fully engaged with the process and fully committed to God’s vision for your life.',
-      },
-      {
-        title: 'Make a difference',
-        subtitle:
-          'A life lived contributing your talents, gifts and passion for your world, and a life that others are inspired to emulate.',
-      },
-    ];
-
     return (
       <Box
         display={{ md: 'grid' }}
@@ -73,21 +135,28 @@ const LifeToTheFullest = ({ variant }) => {
       >
         {data.map(({ title, subtitle }, i) => (
           <Box
-            p="l"
+            px="xxl"
             pt="xxl"
-            minHeight="500px"
+            display="flex"
+            flexDirection="column"
+            justifyContent="space-around"
+            alignItems="center"
             textAlign="center"
             bg="white"
-            backgroundImage={`linear-gradient(${linearGradient.join(
-              ','
-            )}), url(${placeholderImage()})`}
           >
-            <Box as="h1" fontSize="2.5rem" color="black">
-              {`${i + 1}. ${title}`}
+            <Box mb="xl">
+              <Box as="h1" fontSize="40px" color="black">
+                {`${title}`}
+              </Box>
+              <Box as="span" fontSize="21px">
+                {subtitle}
+              </Box>
             </Box>
-            <Box as="span" fontSize="1.545rem">
-              {subtitle}
-            </Box>
+            <Image
+              mask={`/shape-mask-${mask[i]}.png`}
+              source={placeholderImage()}
+              maxWidth="400px"
+            />
           </Box>
         ))}
       </Box>
@@ -97,47 +166,42 @@ const LifeToTheFullest = ({ variant }) => {
   return (
     <Box
       mx="auto"
-      p={BASE_VERITCAL_PADDING}
+      p="base"
       pt="l"
       maxWidth={BASE_MAX_WIDTH}
       fontSize={{ _: '1.2rem', md: '1.7rem' }}
     >
-      <ContentBlock
-        title="1. Know God Personally"
-        htmlContent="Experience the most out of life through a life-giving relationship with Jesus Christ."
-        contentLayout="LEFT"
-        image={placeholderImage()}
-        pb={{ _: 'base', md: 's' }}
-      />
+      {data.map(({ title, subtitle }, i) => (
+        <Box
+          display={{ _: 'block', md: 'grid' }}
+          gridTemplateColumns={i % 2 === 0 ? '1fr 1.618fr' : '1.618fr 1fr'}
+          gridTemplateRows="1fr"
+          gridGap="1em 1em"
+          gridTemplateAreas={i % 2 === 0 ? `"img content"` : `"content img"`}
+          my="l"
+        >
+          <Image
+            mask={`/shape-mask-${mask[i]}.png`}
+            source={placeholderImage()}
+            maxWidth="400px"
+            gridArea="img"
+            my="base"
+          />
 
-      <ContentBlock
-        title="2. Grow in your relationships"
-        htmlContent="A life marked by the depth of your relationships, with
-  God and others."
-        contentLayout="RIGHT"
-        image={placeholderImage()}
-        pb={{ _: 'base', md: 's' }}
-      />
-
-      <ContentBlock
-        title="3. Discover your Purpose"
-        htmlContent="A life of purpose, where you are fully engaged with
-  the process and fully committed to God’s vision for
-  your life."
-        contentLayout="LEFT"
-        image={placeholderImage()}
-        pb={{ _: 'base', md: 's' }}
-      />
-
-      <ContentBlock
-        title="4. Make a difference"
-        htmlContent="A life lived contributing your talents, gifts and passion
-  for your world, and a life that others are inspired to
-  emulate."
-        contentLayout="RIGHT"
-        image={placeholderImage()}
-        pb={{ _: 'base', md: 's' }}
-      />
+          <Box
+            gridArea="content"
+            display="flex"
+            justifyContent="center"
+            flexDirection="column"
+            my="base"
+          >
+            <Box as="h1" color="black">
+              {`${i + 1}. ${title}`}
+            </Box>
+            <Box as="p">{subtitle}</Box>
+          </Box>
+        </Box>
+      ))}
     </Box>
   );
 };
@@ -146,12 +210,12 @@ export default function HeroLandingPage(props = {}) {
   return (
     <HeroLanding
       heroTitle="Get the most out of life."
-      heroSummary="Christ Fellowship Church helps thousands of people every week grow in their relationship with God, discover their purpose and make a difference in their community."
+      heroSummary="A church that wants to help you do more than just get by."
       backgroundVideo="/external-landing/home-background-vid.mp4"
       actions={[
         {
           title: 'Start Now',
-          url: '#startnow',
+          url: '#start-here',
         },
       ]}
     >
@@ -168,42 +232,45 @@ export default function HeroLandingPage(props = {}) {
       </Box>
 
       {/* Text Carousel */}
-      <Box p="0.5rem" pb="0">
+      <Box
+        bg="primarySubdued"
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        textAlign="center"
+        p={{ _: 's', md: 'xxl' }}
+        py="xxl"
+        mx="auto"
+      >
         <Box
-          bg="primarySubdued"
+          as="h1"
+          fontSize={{ _: '', md: '3rem' }}
           display="flex"
-          flexDirection="column"
-          alignItems="center"
-          textAlign="center"
-          p={{ _: 's', md: 'xxl' }}
-          py="xxl"
-          mx="auto"
+          color="black"
         >
-          <Box as="h1" fontSize={{ _: '', md: '3rem' }} display="flex">
-            Life is
-            <Box
-              ml="xs"
-              mb="s"
-              minWidth={{ _: 200, md: 320 }}
-              borderBottom="2px solid"
-            >
-              <Typewriter
-                words={['complicated', 'confusing', 'difficult', 'crazy']}
-                loop={0} //infinite loops
-                cursor
-                cursorStyle="|"
-                typeSpeed={70}
-                deleteSpeed={50}
-                delaySpeed={2000}
-              />
-            </Box>
-            .
+          Life is
+          <Box
+            ml="xs"
+            mb="s"
+            minWidth={{ _: 200, md: 320 }}
+            borderBottom="2px solid"
+          >
+            <Typewriter
+              words={['complicated', 'confusing', 'difficult', 'crazy']}
+              loop={0} //infinite loops
+              cursor
+              cursorStyle="|"
+              typeSpeed={70}
+              deleteSpeed={50}
+              delaySpeed={2000}
+            />
           </Box>
-          <Box as="h2" mb={0} fontWeight="normal">
-            But you can do more than just get by.
-          </Box>
-          <Box as="h2">We want to help.</Box>
+          .
         </Box>
+        <Box as="h2" mb={0} fontWeight="normal">
+          But we want to help you live life to the fullest.
+        </Box>
+        <Box as="h2">And here's how.</Box>
       </Box>
 
       {/* Life to the Fullest Blocks */}
@@ -211,9 +278,11 @@ export default function HeroLandingPage(props = {}) {
         <LifeToTheFullest variant={21} />
       </Box>
 
-      <Box bg="nuetrals.200" p={BASE_VERITCAL_PADDING}>
+      <Box id="start-here" bg="nuetrals.200" p={BASE_VERITCAL_PADDING}>
         {/* It all starts here. */}
-        <Box maxWidth={1200} mx="auto" py="s">
+
+        <StartHere />
+        {/* <Box mx="auto" py="s">
           <CollectionPreview
             title="It all starts here."
             summary="Come as you are. Online or in person. Just show up. We promise to give you access to the tools and support you need."
@@ -222,43 +291,16 @@ export default function HeroLandingPage(props = {}) {
             cardType="default"
             hideButton
           />
-        </Box>
-
-        <Box
-          bg="primarySubdued"
-          maxWidth={BASE_MAX_WIDTH}
-          mx="auto"
-          fontSize={{ _: '1.2rem', md: '1.5rem' }}
-          px="base"
-          py="xl"
-          textAlign="center"
-          borderRadius="radii.base"
-          my={BASE_VERITCAL_PADDING}
-        >
-          <Box as="h1" color="black">
-            Need Prayer?
-          </Box>
-          <Box as="p">We believe in the power of prayer!</Box>
-          <Box as="p" pb="s">
-            We have teams praying around the clock.
-          </Box>
-          <Box as="p">
-            Text or Call us at&nbsp;
-            <b>
-              <a href="tel:+15617997600">(561) 799-7600</a>.
-            </b>
-          </Box>
-          <Box as="p">Let us know how we can pray for you.</Box>
-        </Box>
+        </Box> */}
       </Box>
 
       {/* Church isn’t just a building you walk in to */}
-      <Box
-        fontSize={{ _: '1.2rem', md: '1.5rem' }}
-        p={BASE_VERITCAL_PADDING}
-        bg="white"
-      >
-        <Box maxWidth={BASE_MAX_WIDTH} mx="auto">
+      <Box p={BASE_VERITCAL_PADDING} bg="white">
+        <Box
+          fontSize={{ _: '1.2rem', md: '1.5rem' }}
+          maxWidth={BASE_MAX_WIDTH}
+          mx="auto"
+        >
           <ContentBlock
             title="Church isn’t just a building you walk in to,
           but a family you can belong to."
@@ -283,19 +325,19 @@ export default function HeroLandingPage(props = {}) {
             ]}
           />
         </Box>
+
+        {/* Latest Messages */}
+        <Box pt={BASE_VERITCAL_PADDING} mx="auto" maxWidth={1200}>
+          <CollectionPreview
+            title="Stay in the Know"
+            contentId="UniversalContentItem:021a93e4715936dcecd0bc57898d6fa5"
+          />
+        </Box>
       </Box>
 
       {/* Latest Messages */}
-      <Box py="xl" mx="auto" maxWidth={1200}>
-        <CollectionPreview
-          title="Stay in the Know"
-          contentId="UniversalContentItem:021a93e4715936dcecd0bc57898d6fa5"
-        />
-      </Box>
-
-      {/* Latest Messages */}
-      <Box bg="white">
-        <Box py="xl" mx="auto" maxWidth={1200}>
+      <Box py={BASE_VERITCAL_PADDING} bg="neutrals.100">
+        <Box mx="auto" maxWidth={1200}>
           <CollectionPreview
             title="Latest Messages"
             contentId="UniversalContentItem:47a5a31f61ac5a4fb65576d0d47564e0"

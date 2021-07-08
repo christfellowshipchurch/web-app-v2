@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import replace from 'lodash/replace';
 
@@ -9,6 +9,7 @@ const Image = (props = {}) => {
   return (
     <Styled
       {...props}
+      mask={props.mask}
       src={props.source}
       aspectRatio={replace(props.aspectRatio, 'by', '/')}
     />
@@ -23,8 +24,10 @@ Image.propTypes = {
   ...systemPropTypes,
   aspectRatio: PropTypes.oneOf(RATIOS),
   source: PropTypes.string,
+  mask: PropTypes.string,
 };
 
 Image.defaultProps = {
   aspectRatio: '1by1',
+  mask: '',
 };
