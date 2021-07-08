@@ -46,6 +46,8 @@ const Content = styled.div`
 `;
 
 const Title = styled.h1`
+  margin-bottom: 0px;
+  line-height: 4rem;
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
     font-size: 3rem;
   }
@@ -56,7 +58,7 @@ const Title = styled.h1`
 
 const Summary = styled.h2`
   font-weight: normal;
-
+  padding-left: 4px;
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
     font-size: 1.6rem;
   }
