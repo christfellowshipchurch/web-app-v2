@@ -36,7 +36,11 @@ function MainPhotoHeader({
           />
         )}
         {showTitleOverImage && overlay && (
-          <Styled.ImageOverlay background={overlay} backdrop={backdrop} />
+          <Styled.ImageOverlay
+            background={overlay}
+            backdrop={backdrop}
+            {...imageProps}
+          />
         )}
         {showTitleOverImage && (subtitle || title || summary) && (
           <Styled.TextPosition>

@@ -39,6 +39,9 @@ function FullLengthSermon(props = {}) {
     <Box display="flex" flexDirection="column">
       <MainPhotoHeader
         src={props.sermon?.seriesImage?.sources?.[0].uri || '/schedule.jpeg'}
+        imageProps={{
+          maxHeight: '98vh',
+        }}
         justifyText="center"
         backdrop={false}
         content={
