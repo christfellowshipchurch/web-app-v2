@@ -121,7 +121,11 @@ function CommunitySingle(props = {}) {
 
   return (
     <>
-      <SEO title={props.data?.title} />
+      <SEO 
+        title={props.data?.title} 
+        image={props.data?.coverImage?.sources[0]?.uri}
+        description={props.data?.summary}
+      />
       <Header />
       <Box width="100%" px="xxs" py={{ _: 's', lg: 'base' }}>
         <Styled.BackButton>
