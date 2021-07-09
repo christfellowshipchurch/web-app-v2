@@ -71,7 +71,6 @@ function ContentSingle(props = {}) {
       mode={mode}
       title={title}
       seoMetaTags={{
-        title: `${title} - Christ Fellowship Church`,
         description: schedule?.friendlyScheduleText || summary,
         image: coverImageUri,
         author: authorName,

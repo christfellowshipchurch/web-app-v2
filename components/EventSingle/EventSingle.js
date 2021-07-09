@@ -22,10 +22,27 @@ function EventSingle(props = {}) {
     );
   }
 
+  const author = props?.data?.author;
+  const coverImage = props?.data?.coverImage;
+  const schedule = props?.data?.schedule;
+  const summary = props?.data?.summary;
+  const title = props?.data?.title;
+  const coverImageUri = coverImage?.sources[0]?.uri;
+  const authorName = author
+    ? `${author.firstName} ${author.lastName}`
+    : undefined;
+
   return (
     <ContentLayout
       mode={props.data.mode}
       title={props.data.title}
+      seoMetaTags={{
+        title: `${title} - Christ Fellowship Church`,
+        description: schedule?.friendlyScheduleText || summary,
+        image: coverImageUri,
+        author: authorName,
+        url: typeof window !== 'undefined' ? window.location.href : undefined,
+      }}
       summary={props.data.summary}
       coverImage={props.data?.coverImage?.sources[0]?.uri}
       renderC={() => (
