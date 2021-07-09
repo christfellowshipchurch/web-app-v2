@@ -76,8 +76,10 @@ function PageSingle(props = {}) {
   return (
     <Layout
       title={title}
-      image={coverImage}
-      description={summary}
+      seoMetaTags={{
+        image: coverImage,
+        description: summary,
+      }}
       contentMaxWidth={'100vw'}
       contentHorizontalPadding={'0'}
       contentVerticalPadding={'0'}
