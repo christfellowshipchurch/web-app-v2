@@ -40,7 +40,7 @@ const StartHere = () => {
     flex-direction: column;
     padding: ${themeGet('space.base')};
     padding-bottom: ${themeGet('space.l')};
-    margin-bottom: ${themeGet('space.base')};
+
     box-shadow: ${themeGet('shadows.base')};
     transition: box-shadow ease-in 0.3s;
 
@@ -69,23 +69,36 @@ const StartHere = () => {
         margin="auto"
       >
         {data.map(({ title, subtitle }, i) => (
-          <StyledCard boxShadow={i === 0 ? 'l' : 'base'}>
-            <Image mb="2rem" source={placeholderImage()} aspectRatio={16 / 9} />
+          <Box
+            mb={{ _: i === data.length - 1 ? '0' : 'base', md: '0' }}
+            display="flex"
+          >
+            <StyledCard boxShadow={i === 0 ? 'l' : 'base'}>
+              <Image
+                mb="2rem"
+                source={placeholderImage()}
+                aspectRatio={16 / 9}
+              />
 
-            <Box px="s">
-              <Box as="a" href="#" textDecoration="none">
-                <Box display="flex" justifyContent="center" alignItems="center">
-                  <Box as="h2" m="0" mb="0.25rem">
-                    {`${title}`}
+              <Box px="s">
+                <Box as="a" href="#" textDecoration="none">
+                  <Box
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                  >
+                    <Box as="h2" m="0" mb="0.25rem">
+                      {`${title}`}
+                    </Box>
+                    <Icon name="angleRight" size={32} />
                   </Box>
-                  <Icon name="angleRight" size={32} />
+                </Box>
+                <Box as="p" fontSize="1.35rem" lineHeight="1.65rem" mt="s">
+                  {subtitle}
                 </Box>
               </Box>
-              <Box as="p" fontSize="1.35rem" lineHeight="1.65rem" mt="s">
-                {subtitle}
-              </Box>
-            </Box>
-          </StyledCard>
+            </StyledCard>
+          </Box>
         ))}
       </Box>
     </Box>
@@ -198,6 +211,15 @@ const LifeToTheFullest = ({ variant }) => {
             </Box>
             <Box as="p">{subtitle}</Box>
           </Box>
+
+          <Box
+            as="hr"
+            display={{ md: 'none' }}
+            my="l"
+            height="1px"
+            border="none"
+            backgroundColor="neutrals.200"
+          />
         </Box>
       ))}
     </Box>
