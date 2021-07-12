@@ -26,7 +26,7 @@ export default function DiscoverFilterCategoriesPreview(props) {
     contentItems,
     loading,
   } = useDiscoverFilterCategoriesPreview({
-    variables: { id: contentId, first: 100 },
+    variables: { id: contentId, first: 21 },
     fetchPolicy: 'cache-and-network',
   });
 
