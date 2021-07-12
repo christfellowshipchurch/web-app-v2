@@ -5,6 +5,7 @@ const PICTON = '#0092bc';
 const TUATARA = '#353535';
 const WHITE_SMOKE = '#f6f6f6';
 const RUBY = '#cb2c30';
+const COTTON_CANDY = '#6BCABA';
 
 const colors = {
   // LIGHT THEME
@@ -15,8 +16,8 @@ const colors = {
     primarySubduedHover: Color(PICTON).desaturate(0.1).lighten(0.85),
     secondary: BATTLESHIP,
     secondaryHover: Color(BATTLESHIP).darken(0.2),
-    tertiary: TUATARA,
-    tertiaryHover: Color(TUATARA).darken(0.2),
+    tertiary: COTTON_CANDY,
+    tertiaryHover: Color(COTTON_CANDY).darken(0.2),
 
     neutrals: {
       100: WHITE_SMOKE,

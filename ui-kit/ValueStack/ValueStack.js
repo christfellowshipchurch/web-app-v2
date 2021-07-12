@@ -36,7 +36,7 @@ ValueStack.propTypes = {
 
 ValueStack.defaultProps = {
   items: [],
-  backgroundColorMap: ['secondary', 'primarySubdued'],
+  backgroundColorMap: ['neutrals.800', 'secondary'],
 };
 
 export default ValueStack;

@@ -250,7 +250,7 @@ export default function HeroLandingPage(props = {}) {
 
       {/* Text Carousel */}
       <Box
-        bg="primarySubdued"
+        bg="neutral-200"
         display="flex"
         flexDirection="column"
         alignItems="center"
