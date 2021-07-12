@@ -16,7 +16,7 @@ const HeroLanding = styled.div`
   overflow: none;
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
-    height: 88vh;
+    height: 70vh;
   }
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     height: 82vh;
@@ -36,7 +36,6 @@ const Content = styled.div`
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
     max-width: 100%;
-    margin-top: ${themeGet('space.xxl')};
     margin-bottom: 0px;
   }
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {

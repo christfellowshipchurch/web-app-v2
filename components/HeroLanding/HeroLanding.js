@@ -9,7 +9,7 @@ import Styled from './HeroLanding.styles';
 export default function HeroLanding(props = {}) {
   return (
     <Layout darkMode>
-      <Styled justifyContent={{ _: 'flex-start', md: 'center' }}>
+      <Styled>
         <Styled.BackgroundVideo
           autoPlay
           muted
