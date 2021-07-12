@@ -22,18 +22,22 @@ export default function HeroLanding(props = {}) {
         <Styled.Content>
           <Styled.Title>{props?.heroTitle}</Styled.Title>
           <Styled.Summary>{props?.heroSummary}</Styled.Summary>
-          {props?.actions?.map((action, i) => (
-            <CustomLink
-              key={i}
-              Component={Button}
-              href={action.url}
-              my="base"
-              maxWidth={{ _: '50%', md: '30%' }}
-              {...action}
-            >
-              {action.title}
-            </CustomLink>
-          ))}
+          <Box display="flex">
+            {props?.actions?.map((action, i) => (
+              <CustomLink
+                key={i}
+                size="l"
+                Component={Button}
+                href={action.url}
+                my="base"
+                mr={i > 0 ? '' : 's'}
+                variant={i > 0 ? 'secondary' : null}
+                {...action}
+              >
+                {action.title}
+              </CustomLink>
+            ))}
+          </Box>
         </Styled.Content>
       </Styled>
       <Box mx="auto">{props?.children}</Box>

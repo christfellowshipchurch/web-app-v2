@@ -237,8 +237,13 @@ export default function HeroLandingPage(props = {}) {
           title: 'Start Now',
           url: '#start-here',
         },
+        {
+          title: 'I attend here',
+          url: '#login',
+        },
       ]}
     >
+      <Button onClick={showLandingModal}>click here</Button>
       {/* Value Stack */}
       <ValueStack
         items={[
@@ -292,7 +297,7 @@ export default function HeroLandingPage(props = {}) {
 
       {/* Life to the Fullest Blocks */}
       <Box bg="white">
-        <LifeToTheFullest variant={21} />
+        <LifeToTheFullest variant={1} />
       </Box>
 
       {/* It all starts here. */}
@@ -330,15 +335,17 @@ export default function HeroLandingPage(props = {}) {
               {
                 title: 'Read More',
                 relatedNode: {
-                  url: '/',
+                  url: '/about',
                 },
               },
             ]}
           />
         </Box>
+      </Box>
 
-        {/* Stay in the Know */}
-        <Box pt={BASE_VERITCAL_PADDING} mx="auto" maxWidth={1200}>
+      {/* Stay in the Know */}
+      <Box px="base" py={BASE_VERITCAL_PADDING} bg="neutrals.100">
+        <Box mx="auto" maxWidth={1200}>
           <CollectionPreview
             title="Stay in the Know"
             contentId="UniversalContentItem:021a93e4715936dcecd0bc57898d6fa5"
@@ -347,7 +354,7 @@ export default function HeroLandingPage(props = {}) {
       </Box>
 
       {/* Latest Messages */}
-      <Box px="base" py={BASE_VERITCAL_PADDING} bg="neutrals.100">
+      <Box px="base" py={BASE_VERITCAL_PADDING} bg="white">
         <Box mx="auto" maxWidth={1200}>
           <CollectionPreview
             title="Latest Messages"

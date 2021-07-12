@@ -37,7 +37,7 @@ const CollectionPreview = ({
 
   return (
     <Box>
-      <Box textAlign={center && 'center'} as={center ? 'h1' : 'h2'}>
+      <Box color="primary" textAlign={'center'} as="h1" opacity={0.5} mb="base">
         {title}
       </Box>
       {summary && (
@@ -63,7 +63,7 @@ const CollectionPreview = ({
                 cardType === 'default' ? DefaultCard : HorizontalHighlightCard
               }
               coverImageOverlay={true}
-              type="HIGHLIGHT_SMALL"
+              type="HIGHLIGHT_MEDIUM"
               as="a"
               coverImage={n?.coverImage?.sources[0]?.uri}
               description={n?.summary}
@@ -77,7 +77,7 @@ const CollectionPreview = ({
       </CardGrid>
       {contentItems?.length > 2 && !hideButton ? (
         <Box textAlign="center" width="100%">
-          <Button mt="base" onClick={handleSeeMore}>
+          <Button variant="secondary" mt="base" onClick={handleSeeMore}>
             Show More
           </Button>
         </Box>
