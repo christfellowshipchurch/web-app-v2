@@ -233,7 +233,7 @@ export default function HeroLandingPage(props = {}) {
         flexDirection="column"
         alignItems="center"
         textAlign="center"
-        p={{ _: 's', md: 'xxl' }}
+        px="base"
         py="xxl"
         mx="auto"
       >
