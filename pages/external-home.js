@@ -179,7 +179,7 @@ const LifeToTheFullest = ({ variant }) => {
       mx="auto"
       p="base"
       pt="l"
-      maxWidth={BASE_MAX_WIDTH}
+      maxWidth={1500}
       fontSize={{ _: '1.2rem', md: '1.7rem' }}
     >
       {data.map(({ title, subtitle }, i) => (
