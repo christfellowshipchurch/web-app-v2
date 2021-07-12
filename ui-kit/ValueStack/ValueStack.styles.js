@@ -7,7 +7,16 @@ const backgroundColor = ({ bg }) => css`
   background: ${themeGet(`colors.${bg}`)};
 `;
 
-const ValueStack = styled.div``;
+const ValueStack = styled.div`
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    flex-direction: row;
+  }
+`;
 
 const Item = styled.h2`
   color: white;

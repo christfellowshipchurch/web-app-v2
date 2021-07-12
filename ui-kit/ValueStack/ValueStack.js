@@ -11,19 +11,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Styled from './ValueStack.styles';
-import { Box } from 'ui-kit';
 
 const ValueStack = ({ items, backgroundColorMap }) => {
   if (!items.length) return null;
 
   return (
-    <Box display="flex" flexDirection={{ _: 'column', md: 'row' }} width="100%">
+    <Styled>
       {items.map((item, i) => (
-        <Styled.Item bg={backgroundColorMap[i % backgroundColorMap.length]}>
+        <Styled.Item
+          bg={backgroundColorMap[i % backgroundColorMap.length]}
+          key={item}
+        >
           {item}
         </Styled.Item>
       ))}
-    </Box>
+    </Styled>
   );
 };
 
