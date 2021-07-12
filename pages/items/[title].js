@@ -2,6 +2,7 @@ import { isEmpty } from 'lodash';
 import { useRouter } from 'next/router';
 
 import { LegacyNodeRouter, ContentLayout, Layout } from 'components';
+import ContentVideo from '../../components/ContentSingle/ContentVideo';
 import { Box, Button, Card, Loader } from 'ui-kit';
 
 import { gql, useQuery } from '@apollo/client';
@@ -204,9 +205,17 @@ export default function Item() {
       <ContentLayout
         title={node?.title}
         summary={node?.summary}
-        coverImage={node?.coverImage?.sources[0]?.uri}
+        coverImage={
+          node?.videos.length > 0 ? null : node?.coverImage?.sources[0]?.uri
+        }
         htmlContent={node?.htmlContent}
         features={[]}
+        renderA={() => (
+          <ContentVideo
+            video={node?.videos[0]}
+            poster={node?.coverImage?.sources[0]?.uri}
+          />
+        )}
         renderContentE={() =>
           node?.callsToAction?.length > 0 && (
             <Card
