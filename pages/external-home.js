@@ -2,7 +2,7 @@ import React from 'react';
 import { Typewriter } from 'react-simple-typewriter';
 
 import { CollectionPreview, HeroLanding } from 'components';
-import { Box, ContentBlock, Image, Icon } from 'ui-kit';
+import { Box, ContentBlock, Image, Icon, ValueStack } from 'ui-kit';
 
 import random from 'lodash/random';
 import styled from 'styled-components';
@@ -14,19 +14,6 @@ const BASE_VERITCAL_PADDING = 'xl';
 // const placeholderImage = '/placeholder.png';
 const placeholderImage = () =>
   `https://source.unsplash.com/random?random=${random(0, 100, true)}`;
-
-const ValueStack = ({ children, color }) => (
-  <Box
-    bg={color ? color : 'neutrals.800'}
-    textAlign="center"
-    as="h3"
-    py="l"
-    mb="0"
-    flexGrow={1}
-  >
-    {children}
-  </Box>
-);
 
 const StartHere = () => {
   const data = [
@@ -231,16 +218,13 @@ export default function HeroLandingPage(props = {}) {
       ]}
     >
       {/* Value Stack */}
-      <Box
-        display="flex"
-        flexDirection={{ _: 'column', md: 'row' }}
-        width="100%"
-        color="white"
-      >
-        <ValueStack>Know God Personally</ValueStack>
-        <ValueStack color="primary">Grow In Relationship</ValueStack>
-        <ValueStack>Discover Your Purpose</ValueStack>
-      </Box>
+      <ValueStack
+        items={[
+          'Know God Personally',
+          'Grow In Relationships',
+          'Discover Your Purpose',
+        ]}
+      />
 
       {/* Text Carousel */}
       <Box
