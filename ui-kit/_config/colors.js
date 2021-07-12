@@ -1,22 +1,22 @@
 import Color from 'color';
 
-const BATTLESHIP = '#818181';
-const PICTON = '#00aeef';
+const BATTLESHIP = '#004f71';
+const PICTON = '#0092bc';
 const TUATARA = '#353535';
 const WHITE_SMOKE = '#f6f6f6';
-const RUBY = '#cb045b';
+const RUBY = '#cb2c30';
 
 const colors = {
   // LIGHT THEME
   light: {
     primary: PICTON,
     primaryHover: Color(PICTON).darken(0.25),
-    primarySubdued: Color(PICTON).desaturate(0.25).lighten(0.98),
+    primarySubdued: Color(PICTON).desaturate(0.25).lighten(0.99),
     primarySubduedHover: Color(PICTON).desaturate(0.1).lighten(0.85),
-    secondary: TUATARA,
-    secondaryHover: Color(TUATARA).darken(0.2),
-    tertiary: BATTLESHIP,
-    tertiaryHover: Color(BATTLESHIP).darken(0.2),
+    secondary: BATTLESHIP,
+    secondaryHover: Color(BATTLESHIP).darken(0.2),
+    tertiary: TUATARA,
+    tertiaryHover: Color(TUATARA).darken(0.2),
 
     neutrals: {
       100: WHITE_SMOKE,
