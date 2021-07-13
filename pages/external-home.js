@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Typewriter } from 'react-simple-typewriter';
 
 import { CollectionPreview, HeroLanding } from 'components';
-import { Box, ContentBlock, Image, Icon, ValueStack } from 'ui-kit';
+import { Box, ContentBlock, Image, Icon, ValueStack, Button } from 'ui-kit';
+import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
 import random from 'lodash/random';
 import styled from 'styled-components';
@@ -227,6 +228,17 @@ const LifeToTheFullest = ({ variant }) => {
 };
 
 export default function HeroLandingPage(props = {}) {
+  const modalDispatch = useModalDispatch();
+
+  useEffect(() => {
+    setTimeout(() => {
+      function showLandingModal() {
+        modalDispatch(showModal('Welcome'));
+      }
+      showLandingModal();
+    }, 1000);
+  }, [modalDispatch]);
+
   return (
     <HeroLanding
       heroTitle="Get the most out of life."
@@ -237,13 +249,12 @@ export default function HeroLandingPage(props = {}) {
           title: 'Start Now',
           url: '#start-here',
         },
-        {
-          title: 'I attend here',
-          url: '#login',
-        },
+        // {
+        //   title: 'I attend here',
+        //   url: '#login',
+        // },
       ]}
     >
-      <Button onClick={showLandingModal}>click here</Button>
       {/* Value Stack */}
       <ValueStack
         items={[
