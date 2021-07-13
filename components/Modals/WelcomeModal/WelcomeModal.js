@@ -2,13 +2,22 @@ import React from 'react';
 
 import { Box, Button, Modal } from 'ui-kit';
 
-import { useModalDispatch, hideModal } from 'providers/ModalProvider';
+import {
+  useModalDispatch,
+  hideModal,
+  showModal,
+} from 'providers/ModalProvider';
 
 function WelcomeModal(props = {}) {
   const modalDispatch = useModalDispatch();
 
   const close = () => {
     modalDispatch(hideModal());
+  };
+
+  const handleLoginClick = event => {
+    event.preventDefault();
+    modalDispatch(showModal('Auth'));
   };
 
   return (
@@ -21,7 +30,9 @@ function WelcomeModal(props = {}) {
           <Button onClick={close} mr="s">
             Let's get started
           </Button>
-          <Button variant="secondary">I attend here</Button>
+          <Button onClick={handleLoginClick} variant="secondary">
+            I attend here
+          </Button>
         </Box>
       </Box>
     </Modal>
