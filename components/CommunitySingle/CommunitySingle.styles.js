@@ -39,6 +39,11 @@ const NotifyMeSection = styled.section`
   margin-bottom: ${themeGet('space.xl')};
   padding: ${themeGet('space.l')} ${themeGet('space.base')};
 
+  // Option 1 ::
+  border: 1px solid ${themeGet('colors.primary')};
+  background: rgb(223, 243, 250);
+  box-shadow: ${themeGet('shadows.l')};
+
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     flex-direction: row;
     justify-content: space-between;
