@@ -16,10 +16,10 @@ const HeroLanding = styled.div`
   overflow: none;
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
-    height: 70vh;
+    height: 100vh;
   }
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-    height: 82vh;
+    height: 90vh;
   }
 
   ${system}

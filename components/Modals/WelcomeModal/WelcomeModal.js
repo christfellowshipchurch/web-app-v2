@@ -27,10 +27,10 @@ function WelcomeModal(props = {}) {
           Welcome!
         </Box>
         <Box>
-          <Button onClick={close} mr="s">
+          <Button onClick={close} mb="s" mx="s">
             Let's get started
           </Button>
-          <Button onClick={handleLoginClick} variant="secondary">
+          <Button onClick={handleLoginClick} mb="base" variant="secondary">
             I attend here
           </Button>
         </Box>

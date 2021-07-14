@@ -1,20 +1,7 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
 import { system } from 'ui-kit';
-
-const colorMode = ({ darkMode }) => {
-  if (darkMode) {
-    return css`
-      background-color: rgba(0, 0, 0, 0.5);
-      box-shadow: none;
-    `;
-  }
-  return css`
-    background-color: ${themeGet('colors.paper')};
-    box-shadow: ${themeGet('shadows.base')};
-  `;
-};
 
 const Header = styled.header`
   color: ${themeGet('colors.fg')};
@@ -22,8 +9,10 @@ const Header = styled.header`
   justify-content: center;
   grid-template-columns: auto 1fr;
   padding: ${themeGet('space.base')};
-  position: relative;
+  position: ${props => props.position};
+  width: 100%;
   z-index: 9;
+  transition: background-color ease-in 0.2s;
 
   > *:last-child {
     justify-self: flex-end;
@@ -37,7 +26,6 @@ const Header = styled.header`
     padding: ${themeGet('space.base')} ${themeGet('space.xl')};
   }
 
-  ${colorMode}
   ${system}
 `;
 
