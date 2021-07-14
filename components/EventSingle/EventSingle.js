@@ -37,7 +37,7 @@ function EventSingle(props = {}) {
       mode={props.data.mode}
       title={props.data.title}
       seoMetaTags={{
-        title: `${title} - Christ Fellowship Church`,
+        title,
         description: schedule?.friendlyScheduleText || summary,
         image: coverImageUri,
         author: authorName,
