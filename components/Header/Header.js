@@ -16,7 +16,7 @@ function Header(props = {}) {
   // Change Navbar color on ScrollPosition,
   useScrollPosition(({ currPos }) => {
     const opaque = currPos.y > -1 * offset;
-    setBgColor(opaque ? 'transparent' : 'neutrals.800');
+    setBgColor(opaque ? 'transparent' : 'secondary');
   });
 
   const darkModeProps = props?.darkMode
