@@ -27,6 +27,8 @@ function SEO(props = {}) {
 
   return (
     <Head>
+      <meta property="og:type" content={props.type} key="og:type" />
+
       {/* Title */}
       <title>{pageTitle}</title>
       <meta property="og:title" content={props.title} key="og:title" />
@@ -82,6 +84,7 @@ function SEO(props = {}) {
 }
 
 SEO.propTypes = {
+  type: PropTypes.string,
   author: PropTypes.string,
   description: PropTypes.string,
   image: PropTypes.string,
@@ -92,6 +95,7 @@ SEO.propTypes = {
 };
 
 SEO.defaultProps = {
+  type: "website",
   description: DEFAULT_DESCRIPTION,
   image: DEFAULT_IMAGE,
   keywords: DEFAULT_KEYWORDS,
