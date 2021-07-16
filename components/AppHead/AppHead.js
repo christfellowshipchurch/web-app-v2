@@ -4,9 +4,7 @@ import { useRouter } from 'next/router';
 
 import { useCurrentUser } from 'hooks';
 
-import gtag from 'lib/gtag';
-import amplitude from 'lib/amplitude';
-import fbq from 'lib/fbq';
+import { amplitude, fbq, gtag } from 'lib/analytics';
 
 function AppHead({ Component, pageProps }) {
   const router = useRouter();

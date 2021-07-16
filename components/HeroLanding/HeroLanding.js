@@ -5,6 +5,7 @@ import { CustomLink, Layout } from 'components';
 import { Box, Button } from 'ui-kit';
 
 import Styled from './HeroLanding.styles';
+import { trackEvent } from 'lib/analytics';
 
 export default function HeroLanding(props = {}) {
   return (
@@ -28,6 +29,13 @@ export default function HeroLanding(props = {}) {
                 key={i}
                 size="l"
                 Component={Button}
+                onClick={() =>
+                  trackEvent({
+                    category: `${props?.heroTitle} - Landing Page`,
+                    action: `${props?.heroTitle} - Action`,
+                    label: `${action.title} - Button`,
+                  })
+                }
                 href={action.url}
                 my="base"
                 mr={i > 0 ? '' : 's'}

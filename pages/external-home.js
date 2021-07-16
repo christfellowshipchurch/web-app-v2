@@ -2,12 +2,13 @@ import React, { useEffect } from 'react';
 import { Typewriter } from 'react-simple-typewriter';
 
 import { CollectionPreview, HeroLanding } from 'components';
-import { Box, ContentBlock, Image, Icon, ValueStack, Button } from 'ui-kit';
+import { Box, ContentBlock, Image, ValueStack, Button } from 'ui-kit';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
 import random from 'lodash/random';
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
+import { trackEvent } from 'lib/analytics';
 
 const BASE_MAX_WIDTH = 1200;
 const BASE_VERITCAL_PADDING = 'xl';
@@ -52,7 +53,7 @@ const StartHere = () => {
   `;
 
   return (
-    <Box>
+    <Box mt="xl">
       <Box textAlign="center" mb="base">
         <Box as="h1" color="black" fontSize="2.5rem">
           It all starts here.
@@ -88,10 +89,22 @@ const StartHere = () => {
                     justifyContent="center"
                     alignItems="center"
                   >
-                    <Box as="h2" m="0" mb="0.25rem">
-                      {`${title}`}
-                    </Box>
-                    <Icon name="angleRight" size={32} />
+                    <Button
+                      onClick={() => {
+                        trackEvent({
+                          category: 'External Landing Page',
+                          action: `It All Starts Here - Action`,
+                          label: `${title} - Button`,
+                        });
+                      }}
+                      bg="secondary"
+                      as="h2"
+                      m="0"
+                      mb="0.25rem"
+                    >
+                      {title}
+                    </Button>
+                    {/* <Icon name="angleRight" size={32} /> */}
                   </Box>
                 </Box>
                 <Box as="p" fontSize="1.35rem" lineHeight="1.65rem" mt="s">
@@ -158,7 +171,7 @@ const LifeToTheFullest = ({ variant }) => {
           >
             <Box mb="xl">
               <Box as="h1" fontSize="40px" color="black">
-                {`${title}`}
+                {title}
               </Box>
               <Box as="span" fontSize="21px">
                 {subtitle}
