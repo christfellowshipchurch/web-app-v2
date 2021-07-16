@@ -15,20 +15,43 @@ function DiscoverItemsList(props = {}) {
 
   return (
     <CardGrid>
-      {props.data.map(contentItem => (
-        <CustomLink
-          Component={DefaultCard}
-          as="a"
-          boxShadow="none"
-          coverImage={contentItem?.coverImage?.sources[0]?.uri}
-          description={contentItem?.summary}
-          href={getUrlFromRelatedNode(contentItem?.node)}
-          key={contentItem?.id}
-          scaleCard={false}
-          scaleCoverImage={true}
-          title={contentItem?.title}
-        />
-      ))}
+      {props.data
+        .map(contentItem => {
+          switch (contentItem.action) {
+            case 'OPEN_URL':
+            case 'READ_CONTENT':
+              return (
+                <CustomLink
+                  Component={DefaultCard}
+                  as="a"
+                  boxShadow="none"
+                  coverImage={contentItem?.coverImage?.sources[0]?.uri}
+                  description={contentItem?.summary}
+                  href={getUrlFromRelatedNode(contentItem?.node)}
+                  key={contentItem?.id}
+                  scaleCard={false}
+                  scaleCoverImage={true}
+                  title={contentItem?.title}
+                />
+              );
+            case '':
+            case null:
+            case undefined:
+              console.warning('Action type not provided.');
+              return null;
+            case 'ACTION_FEATURE_ACTION':
+            case 'PAGE_BUILDER_FEATURE_ACTION':
+            case 'INDEX_ACTION':
+            case 'OPEN_CHANNEL':
+            case 'READ_PRAYER':
+            case 'READ_GROUP':
+            case 'READ_GLOBAL_CONTENT':
+            default:
+              console.warning('Action type not supported.');
+              return null;
+          }
+        })
+        .filter(item => Boolean(item))}
     </CardGrid>
   );
 }

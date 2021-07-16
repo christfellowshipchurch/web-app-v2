@@ -12,12 +12,18 @@ export const SEARCH_CONTENT_ITEMS = gql`
         cursor
         title
         summary
+        action
         coverImage {
           sources {
             uri
           }
         }
         node {
+          ... on Url {
+            id
+            url
+            __typename
+          }
           ... on ContentItem {
             id
             __typename
