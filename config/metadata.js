@@ -16,6 +16,7 @@ const metadata = {
     instagram: 'https://www.instagram.com/christfellowship.church/',
     youtube: 'https://www.youtube.com/user/christfellowship',
     cfSeu: 'https://cfseu.com/',
+    cfConf: 'https://www.christfellowshipconference.com/',
   },
 };
 
