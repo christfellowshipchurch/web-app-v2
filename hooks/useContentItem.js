@@ -39,6 +39,7 @@ export const GET_CONTENT_ITEM = gql`
           }
         }
         secondaryHTML
+        redirectURL
         childContentItemsConnection {
           edges {
             node {

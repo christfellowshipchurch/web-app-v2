@@ -131,6 +131,7 @@ export const GET_CONTENT_BY_SLUG = gql`
         }
         ministry
         secondaryHTML
+        redirectURL
         dates
       }
     }

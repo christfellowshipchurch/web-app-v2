@@ -46,6 +46,9 @@ export async function getServerSideProps(context) {
     const data = pageResponse?.data?.getContentBySlug;
     const itemId = data?.id;
 
+    if (data?.redirectURL)
+      return { redirect: { destination: data.redirectURL, permanent: false } };
+
     if (data?.parentChannel?.id) {
       const parentId = getIdSuffix(data?.parentChannel?.id);
       switch (parentId) {
