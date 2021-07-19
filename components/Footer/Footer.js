@@ -101,7 +101,7 @@ function Connect() {
 
 function About() {
   return (
-    <Box>
+    <Box mb={{ _: 'base', lg: '0' }}>
       <Box as="h4" fontSize="h3">
         About
       </Box>
@@ -131,7 +131,7 @@ function About() {
 
 function More() {
   return (
-    <Box>
+    <Box mb={{ _: 'base', lg: '0' }}>
       <Box as="h4" fontSize="h3">
         More
       </Box>
