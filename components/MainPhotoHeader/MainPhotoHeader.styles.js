@@ -9,6 +9,7 @@ Styled.Container = styled(Box)`
   position: relative;
   text-align: center;
   width: 100%;
+  background-color: ${themeGet('colors.neutrals.900')};
 
   ${system}
 `;
@@ -129,17 +130,12 @@ Styled.ImageOverlay = styled(Box)`
 `;
 
 Styled.TextContainer = styled(Box)`
-  background-color: ${themeGet('colors.neutrals.900')};
   flex-direction: column;
   padding: ${themeGet('space.l')};
   margin-bottom: ${themeGet('space.l')};
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
   word-break: break-word;
   z-index: 1;
-
-  @media screen and (min-width: ${themeGet('breakpoints.sm')}) {
-    background-color: inherit;
-  }
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     bottom: unset;
