@@ -13,7 +13,7 @@ const gridLayout = ({ gridLayout }) => props => {
           'content';
         @media screen and (min-width: ${themeGet('breakpoints.md')}) {
           grid-template-areas: 'content media';
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: 2fr 1fr;
         }
       `;
     case 'RIGHT':
@@ -23,7 +23,7 @@ const gridLayout = ({ gridLayout }) => props => {
           'content';
         @media screen and (min-width: ${themeGet('breakpoints.md')}) {
           grid-template-areas: 'media content';
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: 1fr 2fr;
         }
       `;
     case 'INVERTED':
@@ -50,7 +50,7 @@ const gridLayout = ({ gridLayout }) => props => {
 
 const Container = styled.div`
   display: grid;
-  grid-row-gap: ${themeGet('space.l')};
+  grid-row-gap: 0.5rem;
   justify-content: space-around;
   width: 100%;
 

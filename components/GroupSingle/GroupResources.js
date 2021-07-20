@@ -4,7 +4,7 @@ import { List, Box, Image } from 'ui-kit';
 import { CustomLink } from 'components';
 
 import { getUrlFromRelatedNode } from 'utils';
-import amplitude from 'lib/amplitude';
+import { amplitude } from 'lib/analytics';
 export default function GroupResources(props = {}) {
   if (!props.resources?.length) {
     return null;

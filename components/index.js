@@ -6,6 +6,7 @@ import AvatarListFeature from './AvatarListFeature';
 import BirthDateField from './BirthDateField';
 import Chat from './Chat';
 import ClientSideComponent from './ClientSideComponent';
+import CollectionPreview from './CollectionPreview';
 import CommunityActionSection from './CommunityActionSection';
 import CommunityLeaderActions from './CommunityLeaderActions';
 import CommunityList from './CommunityList';
@@ -19,11 +20,13 @@ import DiscoverFiltersMap from './DiscoverFiltersMap';
 import DiscoverItemsList from './DiscoverItemsList';
 import EventSingle from './EventSingle';
 import EventsList from './EventsList';
+import HeroLanding from './HeroLanding';
 import FeatureFeed from './FeatureFeed';
 import FilterField from './FilterField';
 import Footer from './Footer';
 import GenderField from './GenderField';
 import GenericError from './GenericError';
+import GradientBackground from './GradientBackground';
 import GroupManage from './GroupManage';
 import GroupSearchFilters from './GroupSearchFilters';
 import GroupSingle from './GroupSingle';
@@ -59,6 +62,7 @@ export {
   BirthDateField,
   Chat,
   ClientSideComponent,
+  CollectionPreview,
   CommunityActionSection,
   CommunityLeaderActions,
   CommunityList,
@@ -72,11 +76,13 @@ export {
   DiscoverItemsList,
   EventSingle,
   EventsList,
+  HeroLanding,
   FeatureFeed,
   FilterField,
   Footer,
   GenderField,
   GenericError,
+  GradientBackground,
   GroupManage,
   GroupSearchFilters,
   GroupSingle,

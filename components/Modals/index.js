@@ -5,6 +5,7 @@ import GroupFilterModal from './GroupFilterModal';
 import GroupNotifyMeModal from './GroupNotifyMeModal';
 import NodeSingleModal from './NodeSingleModal';
 import VideoModal from './VideoModal';
+import WelcomeModal from './WelcomeModal';
 
 export {
   AuthModal,
@@ -14,4 +15,5 @@ export {
   GroupNotifyMeModal,
   NodeSingleModal,
   VideoModal,
+  WelcomeModal,
 };

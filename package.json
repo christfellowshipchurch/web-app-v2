@@ -17,6 +17,7 @@
   "dependencies": {
     "@apollo/client": "^3.2.5",
     "@babel/plugin-transform-react-jsx": "^7.13.12",
+    "@n8tb1t/use-scroll-position": "^2.0.3",
     "@storybook/cli": "^6.1.11",
     "@styled-system/theme-get": "^5.1.2",
     "amplitude-js": "^8.1.0",
@@ -35,6 +36,7 @@
     "react-dom": "17.0.1",
     "react-is": "^17.0.1",
     "react-multi-carousel": "^2.6.1",
+    "react-simple-typewriter": "^3.0.0",
     "shaka-player-react": "^1.1.2",
     "storybook": "^6.2.9",
     "stream-chat": "^3.6.2",
