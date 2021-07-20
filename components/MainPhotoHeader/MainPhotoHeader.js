@@ -47,7 +47,7 @@ function MainPhotoHeader({
             <Styled.TextContainer display={'flex'} justifyContent={justifyText}>
               {subtitle && (
                 <Heading
-                  color={{ _: 'fg', lg: 'white' }}
+                  color={'white'}
                   variant="h2"
                   opacity="80%"
                   fontWeight="800"
@@ -60,7 +60,7 @@ function MainPhotoHeader({
               )}
               {title && (
                 <Heading
-                  color={{ _: 'fg', lg: 'neutrals.100' }}
+                  color={'white'}
                   fontWeight="800"
                   mt={{ _: 's', lg: 'xs' }}
                   textTransform="uppercase"
@@ -74,7 +74,7 @@ function MainPhotoHeader({
               )}
               {summary && (
                 <Heading
-                  color={{ _: 'fg', lg: 'neutrals.100' }}
+                  color={'white'}
                   variant="h5"
                   maxWidth={{ lg: '28%' }}
                   mt={{ _: 'm', lg: 'xs' }}

@@ -129,7 +129,7 @@ Styled.ImageOverlay = styled(Box)`
 `;
 
 Styled.TextContainer = styled(Box)`
-  background-color: ${themeGet('colors.neutrals.600')}12;
+  background-color: ${themeGet('colors.neutrals.900')};
   flex-direction: column;
   padding: ${themeGet('space.l')};
   margin-bottom: ${themeGet('space.l')};

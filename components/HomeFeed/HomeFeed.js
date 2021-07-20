@@ -124,6 +124,7 @@ function FullLengthSermon(props = {}) {
         mt={{ lg: '-240px' }}
         mb="xl"
         zIndex="2"
+        display={{ _: 'none', xl: 'block' }}
       >
         <Heading variant="h5" color="neutrals.500">
           {clips?.length ? 'FULL MESSAGE' : 'MORE MESSAGES'}

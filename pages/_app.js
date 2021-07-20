@@ -31,6 +31,11 @@ function App({ Component, pageProps = {}, dropdownData }) {
   return (
     <>
       <Head>
+        {/* uncomment this once app is live 
+        <meta
+          name="apple-itunes-app"
+          content="app-id=com.longhollow.churchapp"
+        />*/}
         <link rel="icon" href="/favicon.png" />
         <link rel="stylesheet" type="text/css" href="/nprogress.css" />
         <link rel="stylesheet" type="text/css" href="/font-awesome.css" />
