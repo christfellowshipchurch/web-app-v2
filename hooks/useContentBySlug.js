@@ -133,6 +133,15 @@ export const GET_CONTENT_BY_SLUG = gql`
         secondaryHTML
         redirectURL
         dates
+        socialMedia {
+          title
+          summary
+          image {
+            sources {
+              uri
+            }
+          }
+        }
       }
     }
   }
