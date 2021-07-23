@@ -17,6 +17,8 @@ export default function Page({ data, dropdownData } = {}) {
 
   const button = data?.featureFeed?.features?.[0]?.action;
   const metadata = getMetadataObj(data);
+  if (!metadata.location?.name && !metadata.location?.address)
+    metadata.location = null;
   const includeMetadataCallout = Object.values(metadata).some(val =>
     Boolean(val)
   );
