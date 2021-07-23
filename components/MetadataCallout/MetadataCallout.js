@@ -58,7 +58,7 @@ export default function MetadataCallout({ data }) {
   const metadata = getMetadataObj(data);
 
   const expired = metadata.deadline
-    ? isAfter(new Date(), new Date(metadata.deadline)) || true
+    ? isAfter(new Date(), new Date(metadata.deadline))
     : false;
 
   return (
@@ -123,7 +123,7 @@ export default function MetadataCallout({ data }) {
               <Styled.CalloutDetailsListItemLabel>
                 Days Available
               </Styled.CalloutDetailsListItemLabel>
-              <Box>{metadata.daysAvailable}</Box>
+              <Box>{metadata.daysAvailable.join(', ')}</Box>
             </Styled.CalloutDetailsListItem>
           )}
           {metadata.ministry && (
@@ -202,7 +202,7 @@ export default function MetadataCallout({ data }) {
           )}
         </Styled.CalloutDetailsList>
         <Box display="flex" flexDirection="column" alignItems="center">
-          {!expired && feature?.title && feature?.relatedNode?.url ? (
+          {feature?.title && feature?.relatedNode?.url ? (
             <Button
               mt="l"
               fontWeight="bold"
@@ -214,8 +214,14 @@ export default function MetadataCallout({ data }) {
             >
               {feature?.title}
             </Button>
-          ) : (
-            <Text variant="s" color="neutrals.900" mt="xl" textAlign="center">
+          ) : null}
+          {expired && (
+            <Text
+              variant="base"
+              color="neutrals.400"
+              mt="xs"
+              textAlign="center"
+            >
               Go to the front desk to sign up.
             </Text>
           )}
