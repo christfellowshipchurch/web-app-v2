@@ -88,6 +88,14 @@ export default function Page({
           lg: 'xxl',
         }}
       />
+      {node.htmlContent && (
+        <Section>
+          <Longform
+            mb={{ _: 'l', md: 'xxl' }}
+            dangerouslySetInnerHTML={{ __html: node.htmlContent }}
+          />
+        </Section>
+      )}
       {links?.length ? (
         <Section contentProps={{ p: '0 !important' }}>
           <EventsCallout
@@ -191,14 +199,6 @@ export default function Page({
           </CardGrid>
         </Section>
       ) : null}
-      {node.htmlContent && (
-        <Section>
-          <Longform
-            mb={{ _: 'l', md: 'xxl' }}
-            dangerouslySetInnerHTML={{ __html: node.htmlContent }}
-          />
-        </Section>
-      )}
       {staff?.length ? (
         <>
           <PageSplit title="Meet the Staff" />
