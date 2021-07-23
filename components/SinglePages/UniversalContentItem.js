@@ -19,9 +19,11 @@ export default function Page({ data, dropdownData } = {}) {
   const metadata = getMetadataObj(data);
   if (!metadata.location?.name && !metadata.location?.address)
     metadata.location = null;
-  const includeMetadataCallout = Object.values(metadata).some(val =>
-    Boolean(val)
-  );
+  // if ministry is the only one, don't show the box
+  const includeMetadataCallout = Object.values({
+    ...metadata,
+    ministry: null,
+  }).some(val => Boolean(val));
   const isArticle =
     getIdSuffix(data?.parentChannel?.id) === IDS.CHANNELS.ARTICLES;
   const isVolunteerPositions =

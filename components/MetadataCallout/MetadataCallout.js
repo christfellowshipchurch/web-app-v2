@@ -166,7 +166,7 @@ export default function MetadataCallout({ data }) {
               <Box>{metadata.childcareInfo}</Box>
             </Styled.CalloutDetailsListItem>
           )}
-          {metadata.location && (
+          {metadata.location && metadata.location.name && (
             <Styled.CalloutDetailsListItem>
               <Styled.CalloutDetailsListItemLabel
                 onClick={() => {
