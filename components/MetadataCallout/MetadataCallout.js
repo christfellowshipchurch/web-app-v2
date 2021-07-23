@@ -111,7 +111,7 @@ export default function MetadataCallout({ data }) {
           {metadata.groupEventType && (
             <Styled.CalloutDetailsListItem>
               <Styled.CalloutDetailsListItemLabel>
-                Group Type
+                For Who
               </Styled.CalloutDetailsListItemLabel>
               <Box>{metadata.groupEventType}</Box>
             </Styled.CalloutDetailsListItem>
