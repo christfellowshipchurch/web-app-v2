@@ -57,7 +57,9 @@ export default function MetadataCallout({ data }) {
 
   const metadata = getMetadataObj(data);
 
-  const expired = isAfter(new Date(), new Date(metadata.deadline)) || true;
+  const expired = metadata.deadline
+    ? isAfter(new Date(), new Date(metadata.deadline)) || true
+    : false;
 
   return (
     <Styled.Callout>
