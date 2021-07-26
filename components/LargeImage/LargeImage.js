@@ -43,6 +43,7 @@ function LargeImage({
   action,
   dropShadow: _dropShadow,
   size = 'l',
+  subtext,
   ...props
 } = {}) {
   const dropShadow = _dropShadow !== false;
@@ -70,9 +71,6 @@ function LargeImage({
     <Styled onClick={action ? action : null} {...props}>
       <StyledImage src={src} rounded dropShadow={dropShadow} />
       <Box
-        display="flex"
-        alignItems="center"
-        justifyContent="space-between"
         position="absolute"
         padding={textPadding}
         backgroundColor="rgba(0, 0, 0, 0.75)"
@@ -105,6 +103,18 @@ function LargeImage({
                 />
               </Box>
             )}
+          </Heading>
+        )}
+        {subtext && (
+          <Heading
+            color={color}
+            lineHeight={lineHeight}
+            fontWeight="700"
+            display="flex"
+            justifyContent="space-between"
+            width="100%"
+          >
+            <span style={{ marginRight: '36px' }}>{subtext}</span>
           </Heading>
         )}
       </Box>

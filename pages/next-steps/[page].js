@@ -61,9 +61,8 @@ export default function Page({
         summary={node.summary}
         mb={{
           _:
-            ((node.title || node.subtitle || node.summary) &&
-              node.showTitleOverImage) ||
-            !links?.length
+            links?.length ? 0 : ((node.title || node.subtitle || node.summary) &&
+              node.showTitleOverImage)
               ? 'xl'
               : 0,
           lg: 'xxl',

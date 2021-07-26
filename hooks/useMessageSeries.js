@@ -11,6 +11,7 @@ export const GET_MESSAGE_SERIES = gql`
             node {
               id
               title
+              publishDate
               coverImage {
                 sources {
                   uri

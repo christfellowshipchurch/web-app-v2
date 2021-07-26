@@ -6,6 +6,7 @@ import { getIdSuffix, getMetaData, getChannelId, getSlugFromURL } from 'utils';
 import { useTheme } from 'styled-components';
 import { useState } from 'react';
 import { useQuery } from '@apollo/client';
+import { format } from 'date-fns';
 import { initializeApollo } from 'lib/apolloClient';
 import IDS from 'config/ids';
 import { GET_MESSAGE_SERIES } from 'hooks/useMessageSeries';
@@ -54,6 +55,7 @@ export default function Channel({ item, dropdownData } = {}) {
             <LargeImage
               key={node?.id}
               text={node?.title}
+              subtext={node?.publishDate ? format(new Date(node?.publishDate), 'MMMM do, yyyy') : null}
               color="white"
               src={node?.coverImage?.sources?.[0].uri}
               height={{ sm: '350px' }}

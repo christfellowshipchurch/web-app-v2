@@ -3,7 +3,7 @@ import { Box, Button, Text } from 'ui-kit';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import PageSplit from 'components/PageSplit';
-import { formatRelative, isAfter } from 'date-fns';
+import { formatRelative, format, isAfter } from 'date-fns';
 
 const getDataFn = data => key => {
   const datum = data[key];
@@ -39,14 +39,12 @@ export const getMetadataObj = data => {
       getLocationData('latitude') && getLocationData('longitude')
         ? [getLocationData('latitude'), getLocationData('longitude')].join(',')
         : null,
-    contact: [
-      getData('contactName'),
-      getData('contactEmail'),
-      getData('contactPhone'),
-    ]
-      .filter(con => Boolean(con))
-      .join(', '),
+    contactName: getData('contactName'),
+    contactEmail: getData('contactEmail'),
+    contactPhone: getData('contactPhone'),
     finePrint: getData('finePrint'),
+    cost: getData('cost'),
+    tripType: getData('tripType'),
   };
 };
 
@@ -60,6 +58,8 @@ export default function MetadataCallout({ data }) {
   const expired = metadata.deadline
     ? isAfter(new Date(), new Date(metadata.deadline))
     : false;
+
+    console.log({ metadata, data });
 
   return (
     <Styled.Callout>
@@ -90,7 +90,7 @@ export default function MetadataCallout({ data }) {
                 Signup Deadline
               </Styled.CalloutDetailsListItemLabel>
               <Box>
-                {formatRelative(new Date(metadata.deadline), new Date())}
+                {format(new Date(metadata.deadline), 'MMMM do, yyyy')}
               </Box>
             </Styled.CalloutDetailsListItem>
           )}
@@ -192,12 +192,31 @@ export default function MetadataCallout({ data }) {
               </Box>
             </Styled.CalloutDetailsListItem>
           )}
-          {metadata.contact && (
+          {metadata.contactName && (
             <Styled.CalloutDetailsListItem>
               <Styled.CalloutDetailsListItemLabel>
                 Contact
               </Styled.CalloutDetailsListItemLabel>
-              <Box>{metadata.contact}</Box>
+              <Box>
+                {metadata.contactEmail ? (<a href="mailto:{metadata.contactEmail}">{metadata.contactName}</a>) : metadata.contactName}
+                {metadata.contactPhone ? (<a href="tel:{metadata.contactPhone}">{metadata.contactPhone}</a>) : null}
+              </Box>
+            </Styled.CalloutDetailsListItem>
+          )}
+          {metadata.cost && (
+            <Styled.CalloutDetailsListItem>
+              <Styled.CalloutDetailsListItemLabel>
+                Cost
+              </Styled.CalloutDetailsListItemLabel>
+              <Box>${metadata.cost}</Box>
+            </Styled.CalloutDetailsListItem>
+          )}
+          {metadata.cost && (
+            <Styled.CalloutDetailsListItem>
+              <Styled.CalloutDetailsListItemLabel>
+                Trip Type
+              </Styled.CalloutDetailsListItemLabel>
+              <Box>{metadata.tripType}</Box>
             </Styled.CalloutDetailsListItem>
           )}
         </Styled.CalloutDetailsList>

@@ -115,16 +115,16 @@ function FullLengthSermon(props = {}) {
         }
         title={props.sermon?.title}
         summary={props.sermon?.summary}
-        subtitle={clips?.length ? 'HIGHLIGHTS FROM' : ''}
+        subtitle={clips?.length ? 'HIGHLIGHTS FROM' : 'LATEST MESSAGE'}
         mb={{ _: 'l', md: 'xxl' }}
       />
       <Box
         flexDirection="column"
         mx={{ _: 'l', md: 'xxl' }}
-        mt={{ lg: '-240px' }}
+        mt={{ lg: '-200px', xl: '-240px' }}
         mb="xl"
         zIndex="2"
-        display={{ _: 'none', xl: 'block' }}
+        display={{ _: 'none', lg: 'block', xl: 'block' }}
       >
         <Heading variant="h5" color="neutrals.500">
           {clips?.length ? 'FULL MESSAGE' : 'MORE MESSAGES'}

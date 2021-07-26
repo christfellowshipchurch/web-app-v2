@@ -24,6 +24,8 @@ const METADATA_FRAGMENT = gql`
     contactName
     contactEmail
     contactPhone
+    cost
+    tripType
     featureFeed {
       features {
         ... on ButtonFeature {

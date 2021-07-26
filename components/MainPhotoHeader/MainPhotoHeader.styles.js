@@ -131,11 +131,15 @@ Styled.ImageOverlay = styled(Box)`
 
 Styled.TextContainer = styled(Box)`
   flex-direction: column;
-  padding: ${themeGet('space.l')};
   margin-bottom: ${themeGet('space.l')};
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
   word-break: break-word;
   z-index: 1;
+
+  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+    padding: ${themeGet('space.l')};
+    padding-bottom: 0;
+  }
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     bottom: unset;

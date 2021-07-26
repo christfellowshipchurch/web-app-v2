@@ -23,6 +23,7 @@ export const GET_MESSAGE_CHANNEL = gql`
               sharing {
                 url
               }
+              publishDate
               ... on WeekendContentItem {
                 coverImage {
                   sources {

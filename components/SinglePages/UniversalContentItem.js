@@ -90,7 +90,7 @@ export default function Page({ data, dropdownData } = {}) {
             <Heading
               fontSize="h3"
               lineHeight="h3"
-              color="fg"
+              color="neutrals.500"
               fontWeight="800"
               opacity="60%"
             >
@@ -99,20 +99,20 @@ export default function Page({ data, dropdownData } = {}) {
           )}
           {data.publishDate && isArticle && (
             <Heading
-              fontSize="h5"
-              lineHeight="h5"
-              color="fg"
+              fontSize="h3"
+              lineHeight="h3"
+              color="neutrals.500"
               fontWeight="800"
               textTransform="uppercase"
             >
-              {`Published: ${format(parseISO(data.publishDate), 'MMMM d, y')}`}
+              {format(parseISO(data.publishDate), 'MMMM do, yyyy')}
             </Heading>
           )}
           {dateStr && (
             <Heading
-              fontSize="h5"
-              lineHeight="h5"
-              color="fg"
+              fontSize="h3"
+              lineHeight="h3"
+              color="neutrals.500"
               fontWeight="800"
               textTransform="uppercase"
             >

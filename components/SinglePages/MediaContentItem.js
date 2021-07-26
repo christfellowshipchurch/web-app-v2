@@ -98,18 +98,19 @@ export default function WeekendContentItem({ item, dropdownData } = {}) {
         />
       </Box>
       <Section my="xl">
-        <Heading variant="h2" fontWeight="800" mb="m">
+        <Heading variant="h2" fontWeight="800">
           {item.title}
         </Heading>
         {item.publishDate && (
           <Heading
-            fontSize="h5"
-            lineHeight="h5"
-            color="fg"
+            fontSize="h3"
+            lineHeight="h3"
+            color="neutrals.500"
             fontWeight="800"
             textTransform="uppercase"
+            mb="m"
           >
-            {`Published: ${format(parseISO(item.publishDate), 'MM/dd/yy')}`}
+            {format(parseISO(item.publishDate), 'MMMM do, yyyy')}
           </Heading>
         )}
         <Longform dangerouslySetInnerHTML={{ __html: item.htmlContent }} />
