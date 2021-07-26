@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowRight, PlayCircle } from 'phosphor-react';
 import { useTheme } from 'styled-components';
+import { uniq } from 'lodash';
 
 import {
   ArticleLink,
@@ -384,13 +385,11 @@ function HomeFeed(props = {}) {
 
   let articles = [];
 
-  if (authenticated) {
-    articles = personaArticles || [];
-  } else {
-    articles = [...(props.articles || []), ...(props.events || [])];
-  }
+  if (authenticated) articles = personaArticles || [];
+  articles = [...articles, ...(props.articles || []), ...(props.events || [])];
 
   articles = articles.map(({ node }) => node);
+  articles = uniq(articles, ({ id } = {}) => id);
 
   return (
     <>
