@@ -229,7 +229,7 @@ export default function CommunitySearch() {
 
                 {!loading && hasMorePages && (
                   <Box display="flex" justifyContent="center" mt="xl">
-                    <Button variant="tertiary" onClick={handleLoadMore}>
+                    <Button variant="primary" onClick={handleLoadMore}>
                       Load more
                     </Button>
                   </Box>
