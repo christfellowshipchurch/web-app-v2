@@ -243,14 +243,17 @@ const LifeToTheFullest = ({ variant }) => {
 export default function HeroLandingPage(props = {}) {
   const modalDispatch = useModalDispatch();
 
-  useEffect(() => {
-    setTimeout(() => {
-      function showLandingModal() {
-        modalDispatch(showModal('Welcome'));
-      }
-      showLandingModal();
-    }, 1000);
-  }, [modalDispatch]);
+  /**
+   * note : Commenting out the Welcome Modal for now, but may implement in the future.
+   */
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     function showLandingModal() {
+  //       modalDispatch(showModal('Welcome'));
+  //     }
+  //     showLandingModal();
+  //   }, 1000);
+  // }, [modalDispatch]);
 
   return (
     <HeroLanding

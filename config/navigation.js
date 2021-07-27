@@ -46,6 +46,23 @@ const navigation = {
     action: links.churchOnline,
     call: 'Watch Online',
   },
+  startHereLinks: [
+    {
+      action: '/',
+      call: 'Plan a Visit',
+      icon: 'location',
+    },
+    {
+      action: '/',
+      call: 'Find Friends',
+      icon: 'users',
+    },
+    {
+      action: '/',
+      call: 'Ask a Question',
+      icon: 'info',
+    },
+  ],
 };
 
 // if (flags.GROUP_FINDER) {

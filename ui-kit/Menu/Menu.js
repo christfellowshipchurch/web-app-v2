@@ -29,7 +29,11 @@ function Menu(props = {}) {
         <Styled.Toggle>{props.renderTrigger({ toggle })}</Styled.Toggle>
       ) : null}
       {visible ? (
-        <Styled.Content side={props.side} width={props.menuWidth}>
+        <Styled.Content
+          mt={props?.menuMargin}
+          side={props.side}
+          width={props.menuWidth}
+        >
           <Card {...props.cardProps} contentProps={props.cardContentProps}>
             {typeof props.children === 'function'
               ? props.children(toggle)
@@ -66,6 +70,7 @@ Menu.defaultProps = {
   },
   closeOnDocumentClick: true,
   menuWidth: utils.rem('200px'),
+  menuMargin: 'base',
 };
 
 Menu.Link = Styled.Link;

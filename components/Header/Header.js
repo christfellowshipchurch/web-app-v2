@@ -11,7 +11,7 @@ import Styled from './Header.styles';
 
 function Header(props = {}) {
   const [bgColor, setBgColor] = useState('transparent');
-  const offset = 400;
+  const offset = 150;
 
   // Change Navbar color on ScrollPosition,
   useScrollPosition(({ currPos }) => {
@@ -39,7 +39,7 @@ function Header(props = {}) {
             as={Logo}
             dark={props?.darkMode}
             mx={{ _: 'auto', md: '0' }}
-            mb={{ _: 'base', md: '0' }}
+            mb="0"
           />
         </a>
       </Link>

@@ -9,8 +9,7 @@ import { Box, Button, Icon, List, Menu, systemPropTypes } from 'ui-kit';
 import { ClientSideComponent, CustomLink, UserAvatar } from 'components';
 import Styled from './Nav.styles';
 
-import amplitude from 'lib/amplitude';
-import gtag from 'lib/gtag';
+import { amplitude, gtag } from 'lib/analytics';
 
 function Nav(props = {}) {
   const [{ authenticated }, authDispatch] = useAuth();
@@ -30,28 +29,82 @@ function Nav(props = {}) {
 
   return (
     <Styled>
-      <QuickAction
-        type="primary"
-        display={{ _: 'none', md: 'inline' }}
-        data={props.data.quickAction}
-        onClick={() => {
-          return [
-            amplitude.trackEvent({
-              eventType: 'Testing Amplitude',
-              eventProperties: {
+      {authenticated ? (
+        <QuickAction
+          type="primary"
+          display={{ _: 'none', md: 'inline' }}
+          data={props.data.quickAction}
+          onClick={() => {
+            return [
+              amplitude.trackEvent({
+                eventType: 'Testing Amplitude',
+                eventProperties: {
+                  category: 'Testing',
+                  action: `${props.data.quickAction.action} - Action`,
+                  label: `${props.data.quickAction.call} - Button`,
+                },
+              }),
+              gtag.trackEvent({
                 category: 'Testing',
                 action: `${props.data.quickAction.action} - Action`,
                 label: `${props.data.quickAction.call} - Button`,
-              },
-            }),
-            gtag.trackEvent({
-              category: 'Testing',
-              action: `${props.data.quickAction.action} - Action`,
-              label: `${props.data.quickAction.call} - Button`,
-            }),
-          ];
-        }}
-      />
+              }),
+            ];
+          }}
+        />
+      ) : (
+        [
+          <Menu
+            display={{ _: 'none', md: 'inline' }}
+            cardContentProps={{
+              p: '0',
+              py: 's',
+            }}
+            renderTrigger={({ toggle }) => (
+              <Box as="a" textDecoration="none" href="#0" onClick={toggle}>
+                <Button px="base" size="s">
+                  Start Here
+                  <Icon name="caretDown" mr={-10} ml="xs" mt={-4} mb={-6} />
+                </Button>
+              </Box>
+            )}
+            side="right"
+            menuWidth="200px"
+            menuMargin="s"
+          >
+            <List py="xs" space="0">
+              <MenuLinks data={props.data.startHereLinks} />
+            </List>
+          </Menu>,
+
+          <QuickAction
+            size="s"
+            px="base"
+            color={props?.darkMode ? 'white' : 'primary'}
+            borderColor={props?.darkMode ? 'white' : 'primary'}
+            type="secondary"
+            display={{ _: 'none', md: 'inline' }}
+            data={props.data.quickAction}
+            onClick={() => {
+              return [
+                amplitude.trackEvent({
+                  eventType: 'Testing Amplitude',
+                  eventProperties: {
+                    category: 'Testing',
+                    action: `${props.data.quickAction.action} - Action`,
+                    label: `${props.data.quickAction.call} - Button`,
+                  },
+                }),
+                gtag.trackEvent({
+                  category: 'Testing',
+                  action: `${props.data.quickAction.action} - Action`,
+                  label: `${props.data.quickAction.call} - Button`,
+                }),
+              ];
+            }}
+          />,
+        ]
+      )}
       <ClientSideComponent>
         {authenticated ? (
           <CurrentUserProvider
