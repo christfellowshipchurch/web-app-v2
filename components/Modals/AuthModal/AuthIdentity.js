@@ -44,7 +44,7 @@ function AuthIdentity() {
 
   return (
     <>
-      <Box as="p" color="subdued" mb="l">
+      <Box as="p" mb="l">
         Enter your phone number or email address to get started. We'll never
         share your information or contact you (unless you ask!).
       </Box>

@@ -5,7 +5,7 @@ const BackButton = styled.a`
   text-decoration: none;
   line-height: 0;
 
-  ${system}
+  ${system};
 `;
 
 export default BackButton;

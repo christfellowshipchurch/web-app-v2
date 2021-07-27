@@ -131,7 +131,7 @@ function AuthConfirm() {
 
   return (
     <>
-      <Box as="p" color="subdued" mb="l">
+      <Box as="p" mb="l">
         {COPY.DESCRIPTION[descriptionKey]}
       </Box>
       <Box
