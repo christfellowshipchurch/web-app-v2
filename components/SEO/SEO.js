@@ -15,7 +15,7 @@ function getPageTitle(title) {
 function SEO(props = {}) {
   const router = useRouter();
   const title = getPageTitle(props.meta.title || props.title);
-  const url = `${process.env.BASE_URL}${router.asPath}`;
+  const url = `https://longhollow.com${router.asPath}`;
 
   return (
     <Head>
