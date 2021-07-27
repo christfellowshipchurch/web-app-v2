@@ -1,14 +1,15 @@
 import { gql, useQuery } from '@apollo/client';
 
 export const GET_CONTENT_ITEM = gql`
+  fragment MediaFragment on Media {
+    sources { uri }
+  }
   query getUniversalContentItem($itemId: ID!) {
     node(id: $itemId) {
       id
       ... on UniversalContentItem {
         seriesImage {
-          sources {
-            uri
-          }
+          ...MediaFragment
         }
         showTitleOverImage
         title
@@ -22,9 +23,7 @@ export const GET_CONTENT_ITEM = gql`
           title
           body
           image {
-            sources {
-              uri
-            }
+            ...MediaFragment
           }
           buttonText
           buttonLink
@@ -34,9 +33,7 @@ export const GET_CONTENT_ITEM = gql`
           url
         }
         coverImage {
-          sources {
-            uri
-          }
+          ...MediaFragment
         }
         secondaryHTML
         redirectURL
@@ -47,14 +44,10 @@ export const GET_CONTENT_ITEM = gql`
               title
               summary
               coverImage {
-                sources {
-                  uri
-                }
+                ...MediaFragment
               }
               images {
-                sources {
-                  uri
-                }
+                ...MediaFragment
               }
               parentChannel {
                 id
@@ -63,7 +56,6 @@ export const GET_CONTENT_ITEM = gql`
                 url
               }
               ... on UniversalContentItem {
-                id
                 campus {
                   id
                   name
@@ -73,18 +65,14 @@ export const GET_CONTENT_ITEM = gql`
                 socialMedia {
                   title
                   image {
-                    sources {
-                      uri
-                    }
+                    ...MediaFragment
                   }
                   summary
                 }
               }
               ... on MediaContentItem {
                 videos {
-                  sources {
-                    uri
-                  }
+                  ...MediaFragment
                 }
               }
             }
