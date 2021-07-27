@@ -198,7 +198,7 @@ const CoverContent = styled.div`
 `;
 
 const CoverLabel = styled.b`
-  background-color: rgb(6, 174, 238, 0.75);
+  background-color: ${themeGet('colors.primary')};;
   backdrop-filter: blur(25px);
   box-shadow: ${themeGet('shadows.l')};
   border-radius: ${themeGet('radii.xxl')};
