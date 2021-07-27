@@ -100,11 +100,6 @@ export const GET_CONTENT_BY_SLUG = gql`
         childContentItemsConnection(orderBy: { field: DATE, direction: DESC }) {
           edges {
             node {
-              id
-              title
-              sharing {
-                url
-              }
               ...BaseContentItem
             }
           }
@@ -133,6 +128,21 @@ export const GET_CONTENT_BY_SLUG = gql`
         secondaryHTML
         redirectURL
         dates
+        childContentItemsConnection {
+          edges {
+            node {
+              ...BaseContentItem
+              ... on UniversalContentItem {
+                campus {
+                  id
+                  name
+                }
+                linkText
+                linkURL
+              }
+            }
+          }
+        }
         socialMedia {
           title
           summary

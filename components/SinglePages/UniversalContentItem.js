@@ -1,14 +1,15 @@
 import { useRouter } from 'next/router';
 import { format, isSameMonth, isSameYear, parseISO } from 'date-fns';
 
-import { Layout, MainPhotoHeader } from 'components';
+import { CampusFilter, Layout, MainPhotoHeader } from 'components';
 import { Box, Button, CardGrid, Heading, Longform, Section } from 'ui-kit';
-import { getIdSuffix, getMetaData } from 'utils';
+import { getIdSuffix, getMetaData, getSlugFromURL } from 'utils';
+
 import IDS from 'config/ids';
 import MetadataCallout, { getMetadataObj } from 'components/MetadataCallout';
 import MarketingHeadline from 'components/MarketingHeadline';
 
-export default function Page({ data, dropdownData } = {}) {
+export default function Page({ data, campuses = [], dropdownData } = {}) {
   const router = useRouter();
 
   if (data?.loading || router.isFallback) {
@@ -53,6 +54,8 @@ export default function Page({ data, dropdownData } = {}) {
   } else if (dates?.length === 1) {
     dateStr = format(dates[0], 'MMMM d, y');
   }
+
+  const childContent = data.childContentItemsConnection?.edges;
 
   return (
     <Layout meta={getMetaData(data)} bg="bg_alt" dropdownData={dropdownData}>
@@ -164,6 +167,47 @@ export default function Page({ data, dropdownData } = {}) {
               />
             ))}
           </CardGrid>
+        </Section>
+      ) : null}
+      {childContent?.length ? (
+        <Section>
+          <CampusFilter
+            mb={{ _: 'l', md: 'xxl' }}
+            filterWidth="200px"
+            data={childContent}
+            campuses={campuses}
+          >
+            {({ filteredData }) => (
+              <CardGrid columns="1">
+                {filteredData.map(({ node }, i) => (
+                  <MarketingHeadline
+                    key={node.id}
+                    image={{
+                      src: node.coverImage?.sources?.[0]?.uri,
+                    }}
+                    justify={i % 2 === 0 ? 'left' : 'right'}
+                    title={node.title}
+                    description={node.summaryHTML}
+                    actions={
+                      node.linkText
+                        ? [
+                            {
+                              label: node.linkText,
+                              onClick: () => {
+                                router.push(
+                                  node.linkURL ||
+                                    `/${getSlugFromURL(node?.sharing?.url)}`
+                                );
+                              },
+                            },
+                          ]
+                        : []
+                    }
+                  />
+                ))}
+              </CardGrid>
+            )}
+          </CampusFilter>
         </Section>
       ) : null}
     </Layout>

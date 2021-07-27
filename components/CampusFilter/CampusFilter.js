@@ -18,7 +18,7 @@ export default function CampusFilter({
 
   // If the data has campus options, filter by the selected campus, otherwise show all data
   const filteredData = campus && hasCampuses
-    ? data.filter(datum => datum.node?.campus?.id === campus?.id) : data;
+    ? data.filter(datum => datum.node?.campus?.id === campus?.id || !datum.node?.campus?.id) : data;
 
   return (
     <Box {...props}>
