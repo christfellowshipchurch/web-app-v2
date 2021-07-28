@@ -19,6 +19,7 @@ module.exports = {
   },
   async redirects() {
     return [
+      { source: '/images/emailsig/:path*', destination: 'https://rock.longhollow.com/Content/emailsig/:path*', permanent: true },
       { source: '/contact', destination: '/', permanent: true },
       { source: '/prayer', destination: '/', permanent: true },
       { source: '/baptism', destination: '/', permanent: true },
