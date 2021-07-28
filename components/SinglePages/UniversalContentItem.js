@@ -1,7 +1,8 @@
 import { useRouter } from 'next/router';
 import { format, isSameMonth, isSameYear, parseISO } from 'date-fns';
 
-import { CampusFilter, Layout, MainPhotoHeader } from 'components';
+import { ArticleLink,
+  ArticleLinks, CampusFilter, Layout, MainPhotoHeader } from 'components';
 import { Box, Button, CardGrid, Heading, Longform, Section } from 'ui-kit';
 import { getIdSuffix, getMetaData, getSlugFromURL } from 'utils';
 
@@ -178,34 +179,20 @@ export default function Page({ data, campuses = [], dropdownData } = {}) {
             campuses={campuses}
           >
             {({ filteredData }) => (
-              <CardGrid columns="1">
-                {filteredData.map(({ node }, i) => (
-                  <MarketingHeadline
+              <ArticleLinks>
+                {filteredData.map(({ node }) => (
+                  <ArticleLink
                     key={node.id}
-                    image={{
-                      src: node.coverImage?.sources?.[0]?.uri,
-                    }}
-                    justify={i % 2 === 0 ? 'left' : 'right'}
+                    imageSrc={node.coverImage?.sources?.[0]?.uri}
                     title={node.title}
-                    description={node.summaryHTML}
-                    actions={
-                      node.linkText
-                        ? [
-                            {
-                              label: node.linkText,
-                              onClick: () => {
-                                router.push(
-                                  node.linkURL ||
-                                    `/${getSlugFromURL(node?.sharing?.url)}`
-                                );
-                              },
-                            },
-                          ]
-                        : []
+                    description={node.summary}
+                    urlText={node.linkText}
+                    url={
+                      node.linkURL || `/${getSlugFromURL(node?.sharing?.url)}`
                     }
                   />
                 ))}
-              </CardGrid>
+              </ArticleLinks>
             )}
           </CampusFilter>
         </Section>
