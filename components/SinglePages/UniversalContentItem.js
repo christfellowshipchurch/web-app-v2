@@ -90,17 +90,6 @@ export default function Page({ data, campuses = [], dropdownData } = {}) {
               {data.title}
             </Heading>
           )}
-          {isVolunteerPositions && data.ministry && (
-            <Heading
-              fontSize="h3"
-              lineHeight="h3"
-              color="neutrals.500"
-              fontWeight="800"
-              opacity="60%"
-            >
-              {data.ministry}
-            </Heading>
-          )}
           {data.publishDate && isArticle && (
             <Heading
               fontSize="h3"
