@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
-const DEFAULT_DESCRIPTION = `Long Hollow is one church that meets in two locations just north of Nashville. We’re a community of believers with something for everyone; whether you’re checking out the claims of Christ for the first time, or are looking for a new place to call home, Long Hollow has a place for you!`;
+const DEFAULT_DESCRIPTION = `We exist to invite one another into a growing relationship with Jesus.`;
 const DEFAULT_KEYWORDS = `Church, Long Hollow, Long Hollow Baptist, Long Hollow Church, Churches in Nashville`;
 const DEFAULT_TITLE = 'Long Hollow Church';
+const DEFAULT_IMAGE = '/lh.jpeg';
 
 function getPageTitle(title) {
   if (title === DEFAULT_TITLE || title === 'Home') return DEFAULT_TITLE;
@@ -52,9 +53,9 @@ SEO.propTypes = {
 
 SEO.defaultProps = {
   meta: {
-    title: '',
+    title: DEFAULT_TITLE,
     description: DEFAULT_DESCRIPTION,
-    image: '',
+    image: DEFAULT_IMAGE,
     keywords: DEFAULT_KEYWORDS,
   },
   title: DEFAULT_TITLE,
