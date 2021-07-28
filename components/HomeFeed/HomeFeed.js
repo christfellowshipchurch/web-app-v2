@@ -128,7 +128,7 @@ function FullLengthSermon(props = {}) {
         display={{ _: 'none', lg: 'block', xl: 'block' }}
       >
         <Heading variant="h5" color="neutrals.500">
-          {clips?.length ? 'FULL MESSAGE' : 'MORE MESSAGES'}
+          {clips?.length ? 'FULL MESSAGE' : ''}
         </Heading>
         <Styled.SermonContainer mt="s">
           <Styled.SermonImage
@@ -136,7 +136,7 @@ function FullLengthSermon(props = {}) {
             src={
               clips?.length
                 ? props.sermon?.coverImage?.sources?.[0]?.uri
-                : props.sermon?.moreMessagesImage?.sources?.[0]?.uri
+                : '/more-messages.jpeg'
             }
             onClick={() =>
               router.push(
