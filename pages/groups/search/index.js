@@ -41,7 +41,7 @@ export default function CommunitySearch() {
   const [filtersState, filtersDispatch] = useGroupFilters();
   const [searchGroups, { loading, groups, data, fetchMore }] = useSearchGroups({
     notifyOnNetworkStatusChange: true,
-    fetchPolicy: 'cache-and-network',
+    fetchPolicy: 'network-only',
   });
 
   // Logical shorthands
