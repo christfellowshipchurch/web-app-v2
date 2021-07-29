@@ -60,7 +60,7 @@ function GroupCardWithMember(props) {
         case 'OPEN':
         default:
           setCallToAction({
-            call: 'Contact',
+            call: props?.contactButtonText,
             action: () => props?.handleConnectClick(props),
           });
           break;
@@ -79,13 +79,22 @@ function GroupsResultsList(props = {}) {
     const showConnectModal = () => {
       modalDispatch(
         showModal('ConnectModal', {
-          leaderName: group?.node?.leaders?.edges[0]?.node?.nickName,
-          leaderAvatar: group?.node?.leaders?.edges[0]?.node?.photo.uri,
+          leaderName: group?.leaders[0].firstName,
+          leaderAvatar: group?.leaders[0]?.photo?.uri,
           groupId: group?.node?.id,
           width: utils.rem('450px'),
         })
       );
     };
+
+    if (group?.node?.__typename === 'Url') {
+      const url = group?.node?.url;
+      console.log(url);
+      if (url) {
+        window.open(url, '_blank').focus();
+      }
+      return;
+    }
 
     if (!authenticated) {
       modalDispatch(showModal('Auth'));
@@ -102,21 +111,24 @@ function GroupsResultsList(props = {}) {
   return (
     <CardGrid>
       {props.data.map(group => {
+        console.log({ group });
         return (
           <GroupCardWithMember
             key={group.node?.id}
             id={group.node?.id}
-            campus={group.node?.campus?.name}
+            campus={group?.campusName}
             coverImage={group.coverImage?.sources[0]?.uri}
-            dateTime={group.node?.dateTime?.start}
-            groupType={group.type}
-            heroAvatars={group.node?.leaders?.edges}
-            preferences={group.node?.preference}
-            subPreference={group.node?.subPreference}
-            meetingType={group.node?.meetingType}
+            meetingDay={group.meetingDay}
+            heroAvatars={group?.leaders?.map(node => ({ node }))}
+            preferences={group?.preferences}
+            subPreference={group.subPreferences.join(', ')}
+            meetingType={group?.meetingType}
             summary={group.summary}
             title={group.title}
             handleConnectClick={() => handleConnectClick(group)}
+            contactButtonText={
+              group?.node?.__typename === 'Url' ? 'Register' : 'Contact'
+            }
           />
         );
       })}

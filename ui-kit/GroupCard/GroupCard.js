@@ -55,6 +55,13 @@ const GroupCard = (props = {}) => {
 
   const labelType = get(labelTypes, camelCase(props?.meetingType));
   const heroAvatars = props.heroAvatars.slice(0, maxAvatars);
+  const renderDateTime = _props => {
+    if (_props.dateTime) {
+      return format(new Date(props.dateTime), "EEEE 'at' h:mm a");
+    }
+
+    if (_props.meetingDay) return _props.meetingDay;
+  };
 
   return (
     <Styled {...props}>
@@ -109,10 +116,10 @@ const GroupCard = (props = {}) => {
             {props.campus}
           </Styled.DateTimeLabel>
         )}
-        {props.dateTime && (
+        {(props.dateTime || props.meetingDay) && (
           <Styled.DateTimeLabel>
             <Icon name="calendar" size="16" mr="xs" />
-            {format(new Date(props.dateTime), "EEEE 'at' h:mm a")}
+            {renderDateTime(props)}
           </Styled.DateTimeLabel>
         )}
         {props.summary && (
@@ -174,7 +181,15 @@ const GroupCard = (props = {}) => {
 
 GroupCard.propTypes = {
   ...systemPropTypes,
-  avatars: PropTypes.array,
+  avatars: PropTypes.arrayOf(
+    PropTypes.shape({
+      node: PropTypes.shape({
+        photo: PropTypes.shape({
+          uri: PropTypes.string,
+        }),
+      }),
+    })
+  ),
   callToAction: PropTypes.shape({
     call: PropTypes.string,
     action: PropTypes.func,
@@ -184,8 +199,17 @@ GroupCard.propTypes = {
   subPreference: PropTypes.string,
   coverImage: PropTypes.string,
   dateTime: PropTypes.string,
+  meetingDay: PropTypes.string,
   groupType: PropTypes.string,
-  heroAvatars: PropTypes.array,
+  heroAvatars: PropTypes.arrayOf(
+    PropTypes.shape({
+      node: PropTypes.shape({
+        photo: PropTypes.shape({
+          uri: PropTypes.string,
+        }),
+      }),
+    })
+  ),
   isLoading: PropTypes.bool,
   summary: PropTypes.string,
   title: PropTypes.string,
