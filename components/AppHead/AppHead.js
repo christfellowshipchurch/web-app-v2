@@ -23,7 +23,7 @@ function AppHead({ Component, pageProps }) {
     if (_isNotBrowser) return null;
 
     // Only run Google Analytics and Facebook Pixels in production
-    if (!process.env.NODE_ENV === 'production') return null;
+    if (process.env.NODE_ENV !== 'production') return null;
 
     // NEXT_PUBLIC_GA_CODE  needs to be set in the .env
     if (!process.env.NEXT_PUBLIC_GA_CODE) {
@@ -94,7 +94,7 @@ function AppHead({ Component, pageProps }) {
     if (_isNotBrowser) return null;
 
     // Only run Amplitude Analytics in production
-    if (!process.env.NODE_ENV === 'production') return null;
+    if (process.env.NODE_ENV !== 'production') return null;
 
     // NEXT_PUBLIC_AMPLITUDE_KEY  needs to be set in the .env
     if (!process.env.NEXT_PUBLIC_AMPLITUDE_KEY) {
