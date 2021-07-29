@@ -47,7 +47,7 @@ function FullLengthSermon(props = {}) {
         backdrop={false}
         content={
           Boolean(
-            (clips?.length &&
+            (!!clips?.length &&
               clips.some(
                 clip => clip?.videos?.length || clip?.audios?.length
               )) ||
@@ -306,8 +306,8 @@ function HomeFeedContent(props = {}) {
             breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
             mb={{ _: 'l', md: 'xxl' }}
           >
-            {largeArticle && <HomeFeedLargeArticle article={largeArticle} />}
-            {miniArticles?.length && (
+            {!!largeArticle && <HomeFeedLargeArticle article={largeArticle} />}
+            {!!miniArticles?.length && (
               <HomeFeedArticles articles={miniArticles} />
             )}
           </CardGrid>
