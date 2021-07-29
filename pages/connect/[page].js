@@ -25,7 +25,7 @@ import IDS from 'config/ids';
 import { initializeApollo } from 'lib/apolloClient';
 import { Info } from 'phosphor-react';
 import { useTheme } from 'styled-components';
-import { GET_STAFF } from 'hooks/useStaff';
+// import { GET_STAFF } from 'hooks/useStaff';
 import { GET_MINISTRY_CONTENT } from 'hooks/useMinistryContent';
 import { GET_CAMPUSES } from 'hooks/useCampuses';
 import { GET_UNIVERSAL_CONTENT_ITEM_BY_SLUG } from 'hooks/useUniversalContentItemBySlug';
@@ -199,7 +199,7 @@ export default function Page({
           </CardGrid>
         </Section>
       ) : null}
-      {staff?.length ? (
+      {/*staff?.length ? (
         <>
           <PageSplit title="Meet the Staff" />
           <Section
@@ -223,7 +223,7 @@ export default function Page({
             ))}
           </Section>
         </>
-      ) : null}
+      ) : null*/}
       {extraCTA?.length ? (
         <>
           <PageSplit title="Connect" />
@@ -268,14 +268,14 @@ export async function getStaticProps({ params }) {
   const pageData = pageResponse?.data?.getContentBySlug;
 
   let staffResponse;
-  if (pageData?.ministry) {
-    staffResponse = await apolloClient.query({
-      query: GET_STAFF,
-      variables: {
-        ministry: pageData?.ministry,
-      },
-    });
-  }
+  // if (pageData?.ministry) {
+  //   staffResponse = await apolloClient.query({
+  //     query: GET_STAFF,
+  //     variables: {
+  //       ministry: pageData?.ministry,
+  //     },
+  //   });
+  // }
 
   const ministryResponse = await apolloClient.query({
     query: GET_MINISTRY_CONTENT,
