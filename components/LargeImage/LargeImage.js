@@ -4,7 +4,7 @@ import { ArrowCircleRight } from 'phosphor-react';
 
 import { Box, Heading } from 'ui-kit';
 
-import Styled, { StyledImage } from './LargeImage.styles';
+import Styled, { StyledImage, TextContainer } from './LargeImage.styles';
 
 function getTextSizing(size) {
   let textPadding;
@@ -44,6 +44,7 @@ function LargeImage({
   dropShadow: _dropShadow,
   size = 'l',
   subtext,
+  height,
   ...props
 } = {}) {
   const dropShadow = _dropShadow !== false;
@@ -66,16 +67,14 @@ function LargeImage({
   }
 
   const { textPadding, fontSize, lineHeight, iconSize } = textSizing;
+  const staticHeight = !!height && typeof height !== 'string';
 
   return (
-    <Styled onClick={action ? action : null} {...props}>
-      <StyledImage src={src} rounded dropShadow={dropShadow} />
-      <Box
-        position="absolute"
+    <Styled onClick={action ? action : null} height={height} {...props} backgroundSrc={src}>
+      <StyledImage staticHeight={staticHeight} src={src} rounded dropShadow={dropShadow} />
+      <TextContainer
+        staticHeight={staticHeight}
         padding={textPadding}
-        backgroundColor="rgba(0, 0, 0, 0.75)"
-        width="100%"
-        borderRadius="0 0 24px 24px"
       >
         {text && (
           <Heading
@@ -117,7 +116,7 @@ function LargeImage({
             <span style={{ marginRight: '36px' }}>{subtext}</span>
           </Heading>
         )}
-      </Box>
+      </TextContainer>
     </Styled>
   );
 }
