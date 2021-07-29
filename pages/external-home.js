@@ -22,15 +22,18 @@ const StartHere = () => {
     {
       title: 'Plan a Visit',
       subtitle: 'Attend a Sunday service. We would love to meet you!',
+      image: '/plan-a-visit.png',
     },
     {
       title: 'Find Friends',
       subtitle: 'Meet other people just like you. Find a group or class today.',
+      image: 'find-friends.png',
     },
     {
       title: 'Ask a Question',
       subtitle:
         'Do you have questions or need prayer? Text or call us at (561) 799-5600.',
+      image: 'ask-a-question.png',
     },
   ];
 
@@ -53,9 +56,9 @@ const StartHere = () => {
   `;
 
   return (
-    <Box mt="xl">
-      <Box textAlign="center" mb="base">
-        <Box as="h1" color="black" fontSize="2.5rem">
+    <Box my="xl">
+      <Box textAlign="center" my="l">
+        <Box as="h1" color="white" fontSize="3.5rem">
           It all starts here.
         </Box>
       </Box>
@@ -70,17 +73,13 @@ const StartHere = () => {
         maxWidth={BASE_MAX_WIDTH}
         margin="auto"
       >
-        {data.map(({ title, subtitle }, i) => (
+        {data.map(({ title, subtitle, image }, i) => (
           <Box
             mb={{ _: i === data.length - 1 ? '0' : 'base', md: '0' }}
             display="flex"
           >
             <StyledCard boxShadow={i === 0 ? 'l' : 'base'}>
-              <Image
-                mb="2rem"
-                source={placeholderImage()}
-                aspectRatio={16 / 9}
-              />
+              <Image mb="2rem" source={image} aspectRatio={16 / 9} />
 
               <Box px="s">
                 <Box as="a" href="#" textDecoration="none">
@@ -347,10 +346,17 @@ export default function HeroLandingPage(props = {}) {
 
       {/* It all starts here. */}
       <Box
+        mt="base"
         id="start-here"
-        bg="nuetrals.200"
+        bg="primary"
         px="base"
         py={BASE_VERITCAL_PADDING}
+        style={{
+          backgroundImage:
+            'url(/start-here-corners.png), url(/start-here-dots.png), url(start-here-wedge.png)',
+          backgroundPosition: 'right, top left, bottom left',
+          backgroundRepeat: 'no-repeat',
+        }}
       >
         <StartHere />
       </Box>
