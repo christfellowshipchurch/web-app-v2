@@ -126,14 +126,14 @@ export default function MetadataCallout({ data }) {
               <Box>{metadata.daysAvailable.join(', ')}</Box>
             </Styled.CalloutDetailsListItem>
           )}
-          {metadata.ministry && (
+          {/*metadata.ministry && (
             <Styled.CalloutDetailsListItem>
               <Styled.CalloutDetailsListItemLabel>
                 Ministry
               </Styled.CalloutDetailsListItemLabel>
               <Box>{metadata.ministry}</Box>
             </Styled.CalloutDetailsListItem>
-          )}
+          )*/}
           {metadata.serviceArea && (
             <Styled.CalloutDetailsListItem>
               <Styled.CalloutDetailsListItemLabel>
