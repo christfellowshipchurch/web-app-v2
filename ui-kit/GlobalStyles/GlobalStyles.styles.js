@@ -134,6 +134,10 @@ export const styles = css`
     font-size: ${themeGet('fontSizes.xxs')};
     margin-right: 2px;
   }
+
+  iframe {
+    max-width: 100%;
+  }
 `;
 
 const GlobalStyles = createGlobalStyle`
