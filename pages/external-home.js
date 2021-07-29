@@ -125,21 +125,25 @@ const LifeToTheFullest = ({ variant }) => {
       title: 'Know God personally',
       subtitle:
         'You can know Jesus on a personal level. See how a relationship with Him changes your life for the better.',
+      image: '/external-home-1.png',
     },
     {
       title: 'Grow in your relationships',
       subtitle:
         "You weren't meant to do life alone. Find friends and build stronger relationships with those you love.",
+      image: 'external-home-2.png',
     },
     {
       title: 'Discover your purpose',
       subtitle:
         "You're here for a reason. Find out who God created you to be and learn how to live life on purpose.",
+      image: 'external-home-3.png',
     },
     {
       title: 'Impact your world',
       subtitle:
         'A life lived contributing your talents, gifts and passion for your world, and a life that others are inspired to emulate.',
+      image: 'external-home-4.png',
     },
   ];
 
@@ -196,7 +200,7 @@ const LifeToTheFullest = ({ variant }) => {
       maxWidth={1500}
       fontSize={{ _: '1.2rem', md: '1.7rem' }}
     >
-      {data.map(({ title, subtitle }, i) => (
+      {data.map(({ title, subtitle, image }, i) => (
         <Box
           display={{ _: 'block', md: 'grid' }}
           gridTemplateColumns={i % 2 === 0 ? '1fr 1.618fr' : '1.618fr 1fr'}
@@ -206,8 +210,8 @@ const LifeToTheFullest = ({ variant }) => {
           my="l"
         >
           <Image
-            mask={`/shape-mask-${mask[i]}.png`}
-            source={placeholderImage()}
+            // mask={`/shape-mask-${mask[i]}.png`}
+            source={image}
             maxWidth="400px"
             gridArea="img"
             my="base"
@@ -273,6 +277,7 @@ export default function HeroLandingPage(props = {}) {
     >
       {/* Value Stack */}
       <ValueStack
+        backgroundColorMap={['secondary', 'secondary']}
         items={[
           'Know God Personally',
           'Grow In Relationships',
@@ -290,6 +295,11 @@ export default function HeroLandingPage(props = {}) {
         px="base"
         py="xxl"
         mx="auto"
+        style={{
+          backgroundImage: 'url(/background-dots.png)',
+          backgroundPosition: '30px 0px',
+          backgroundRepeat: 'no-repeat',
+        }}
       >
         <Box
           as="h1"
@@ -323,7 +333,15 @@ export default function HeroLandingPage(props = {}) {
       </Box>
 
       {/* Life to the Fullest Blocks */}
-      <Box bg="white">
+      <Box
+        style={{
+          backgroundImage: 'url(/background-blob-white.png)',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+        }}
+        py="xxl"
+      >
         <LifeToTheFullest variant={1} />
       </Box>
 
