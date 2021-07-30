@@ -78,7 +78,6 @@ export default function CommunitySearch() {
     filtersState.hydrated,
     filtersState.queryData,
     filtersState.values.text,
-    modalState.activeModal.component,
     searchGroups,
     setValues,
   ]);

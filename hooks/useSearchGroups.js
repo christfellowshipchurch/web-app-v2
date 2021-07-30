@@ -9,6 +9,7 @@ export const SEARCH_GROUPS = gql`
         endCursor
       }
       edges {
+        id
         cursor
         title
         summary
@@ -17,13 +18,14 @@ export const SEARCH_GROUPS = gql`
             uri
           }
         }
-        node {
+        relatedNode {
           id
 
           ... on Url {
             url
           }
         }
+        action
         ...groupSearchResultNodeFragment
       }
     }
@@ -47,8 +49,8 @@ export const SEARCH_GROUPS = gql`
 
 function useSearchGroups(options = {}) {
   const [searchGroups, query] = useLazyQuery(SEARCH_GROUPS, {
-    fetchPolicy: 'network-only',
     ...options,
+    fetchPolicy: 'no-cache',
   });
 
   return [

@@ -6,6 +6,7 @@ import get from 'lodash/get';
 
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
+import { CustomLink } from 'components';
 import {
   Avatar,
   Box,
@@ -18,6 +19,7 @@ import {
 import Styled from './GroupCard.styles';
 import { themeGet } from '@styled-system/theme-get';
 import camelCase from 'lodash.camelcase';
+import { getUrlFromRelatedNode } from 'utils';
 
 const GroupCard = (props = {}) => {
   const modalDispatch = useModalDispatch();
@@ -71,7 +73,7 @@ const GroupCard = (props = {}) => {
             {!isEmpty(labelType) && (
               <Styled.Label backgroundColor={labelType.color}>
                 {props?.meetingType}
-                <Icon size={18} name={labelType.icon} ml="xs" />
+                <Icon size="18" name={labelType.icon} ml="xs" />
               </Styled.Label>
             )}
             {heroAvatars ? (
@@ -164,7 +166,10 @@ const GroupCard = (props = {}) => {
           </Box>
         )}
         {props.callToAction && (
-          <Button
+          <CustomLink
+            as="a"
+            Component={Button}
+            variant="primary"
             onClick={props?.callToAction?.action}
             mt="auto"
             size="l"
@@ -172,7 +177,7 @@ const GroupCard = (props = {}) => {
             {...props?.callToAction?.buttonProps}
           >
             {props?.callToAction?.call}
-          </Button>
+          </CustomLink>
         )}
       </Styled.GroupCardContent>
     </Styled>
