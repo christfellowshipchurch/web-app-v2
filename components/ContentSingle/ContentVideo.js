@@ -25,8 +25,7 @@ export default function ContentVideo(props = {}) {
       height={{ _: '258px', md: '596px' }}
       cursor="pointer"
       contentProps={{
-        height: '100%',
-        p: '0 !important',
+        p: '0 !important'
       }}
       onClick={handlePlay}
       scaleCoverImage={!playClicked && !currentBreakpoint.isSmall}
