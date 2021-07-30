@@ -362,29 +362,32 @@ export default function HeroLandingPage(props = {}) {
       </Box>
 
       {/* Church isn’t just a building you walk in to */}
-      <Box px="base" py={BASE_VERITCAL_PADDING} bg="white">
+      <Box
+        px="base"
+        py={BASE_VERITCAL_PADDING}
+        bg="white"
+        style={{
+          backgroundImage: 'url(/blue-dots.png)',
+          backgroundPosition: 'bottom right',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
         <Box
           fontSize={{ _: '1.2rem', md: '1.5rem' }}
           maxWidth={BASE_MAX_WIDTH}
           mx="auto"
         >
           <ContentBlock
-            title="Church isn’t just a building you walk in to,
-          but a family you can belong to."
-            htmlContent="We’ve helped tens of thousands of people grab hold of
-          their vision for getting the most out of their life, their
-          family, and for their future – by equipping them with
-          direction, resources, coaching, and encouragement to
-          discover their purpose through a deeper relationship with
-          Christ. What we’ve done for them, we want to do for you."
-            image={
-              'https://cloudfront.christfellowship.church/GetImage.ashx?guid=8b846fd4-ee88-4a24-b07f-af5a2924b369'
+            title="Do more than just get by."
+            htmlContent={
+              'For the past 35 years, we’ve helped thousands of people just like you to... <br/> <br/> --> Find people to do life with <br/>--> Break free from the pain of their past<br/> --> Thrive in their marriage <br/> --> Become a better parent <br/> --> Experience financial freedom <br/> <br/> <b>What we’ve done for them, we want to do for you.<b/>'
             }
+            image={'/do-more-external.png'}
             contentLayout="RIGHT"
             imageRatio="3by4"
             actions={[
               {
-                title: 'Read More',
+                title: 'About Us',
                 relatedNode: {
                   url: '/about',
                 },

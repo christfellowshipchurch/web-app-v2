@@ -37,7 +37,7 @@ const CollectionPreview = ({
 
   return (
     <Box>
-      <Box color="primary" textAlign={'center'} as="h1" opacity={0.5} mb="base">
+      <Box color="secondary" textAlign={'center'} as="h1" mb="l">
         {title}
       </Box>
       {summary && (
