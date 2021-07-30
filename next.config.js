@@ -21,10 +21,7 @@ module.exports = {
     return [
       { source: '/images/emailsig/:path*', destination: 'https://rock.longhollow.com/Content/emailsig/:path*', permanent: true },
       { source: '/media/:path*', destination: '/:path*', permanent: true },
-      { source: '/contact', destination: '/', permanent: true },
-      { source: '/baptism', destination: '/', permanent: true },
-      { source: '/support', destination: '/', permanent: true },
-      { source: '/schedule', destination: '/', permanent: true },
+      { source: '/home', destination: '/', permanent: true },
       {
         source: '/about/meet-our-staff',
         destination: '/search?category=Staff&p=1',
