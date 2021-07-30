@@ -246,6 +246,11 @@ const LifeToTheFullest = ({ variant }) => {
 export default function HeroLandingPage(props = {}) {
   const modalDispatch = useModalDispatch();
 
+  const handleLoginClick = event => {
+    event.preventDefault();
+    modalDispatch(showModal('Auth'));
+  };
+
   /**
    * note : Commenting out the Welcome Modal for now, but may implement in the future.
    */
@@ -268,10 +273,13 @@ export default function HeroLandingPage(props = {}) {
           title: 'Start Now',
           url: '#start-here',
         },
-        // {
-        //   title: 'I attend here',
-        //   url: '#login',
-        // },
+        {
+          title: 'I Already Attend',
+          onClick: e => handleLoginClick(e),
+          url: '#login',
+          color: 'white',
+          borderColor: 'white',
+        },
       ]}
     >
       {/* Value Stack */}
