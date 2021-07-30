@@ -32,6 +32,7 @@ module.exports = {
         destination: '/:slug',
         permanent: false,
       },
+      { source: '/tablemenu', destination: 'https://docs.google.com/document/u/2/d/e/2PACX-1vS0ckSAxPL38NrJ7on2g7jVvF-DcRmwvWkcOt43clkB269vTPKPCO9A37Bk6aNkr8TkQpJ7M0iD87Ii/pub', permanent: true },
       { source: '/new', destination: 'https://my.longhollow.com/new', permanent: true },
       { source: '/next', destination: 'https://my.longhollow.com/NextSteps', permanent: true },
       { source: '/notes', destination: 'http://bible.com/events/48738573', permanent: true },
