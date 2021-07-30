@@ -36,6 +36,7 @@ module.exports = {
         destination: '/:slug',
         permanent: false,
       },
+      { source: '/meet-our-staff', destination: '/about/meet-pastor-robby', permanent: true },
       { source: '/staff', destination: '/about/meet-pastor-robby', permanent: true },
       { source: '/mensnight', destination: '/mens-night-2021', permanent: true },
       { source: '/new', destination: 'https://my.longhollow.com/new', permanent: true },
