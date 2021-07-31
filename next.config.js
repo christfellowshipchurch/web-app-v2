@@ -206,7 +206,8 @@ module.exports = {
       { source: '/times-and-locations', destination: '/about/schedule', permanent: true },
       { source: '/hendersonville', destination: '/', permanent: true },
       { source: '/gallatin', destination: '/', permanent: true },
-      { source: '/events/lh-kids-baptism-classes', destination: '/kids-baptism-classes', permanent: true }
+      { source: '/events/lh-kids-baptism-classes', destination: '/kids-baptism-classes', permanent: true },
+      { source: '/events/supporting-those-who-struggle-event', destination: '/supporting-those-who-struggle-event', permanent: true }
     ];
   },
 };
