@@ -348,7 +348,7 @@ function HomeFeedContent(props = {}) {
             display="inline"
             fontWeight="600"
             onClick={() =>
-              router.push('/next-steps/start-a-discipleship-group')
+              router.push('/about/our-mission-and-strategy')
             }
           >
             Discipleship Journey
