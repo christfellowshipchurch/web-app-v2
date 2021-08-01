@@ -169,6 +169,7 @@ module.exports = {
       { source: '/im_new', destination: '/next-steps/plan-your-visit', permanent: true },
       { source: '/mobile', destination: '/', permanent: true },
       { source: '/jesus', destination: '/about/who-is-jesus', permanent: true },
+      { source: '/gospel', destination: '/about/who-is-jesus', permanent: true },
       { source: '/discover', destination: '/next-steps/starting-point', permanent: true },
       { source: '/the-good-news', destination: '/about/who-is-jesus', permanent: true },
       { source: '/what-we-believe', destination: '/about/beliefs', permanent: true },
