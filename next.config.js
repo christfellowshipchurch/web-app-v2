@@ -32,6 +32,7 @@ module.exports = {
         destination: '/:slug',
         permanent: false,
       },
+      { source: '/links', destination: '/links-shared-on-social-media', permanent: true },
       { source: '/staff-work-orders', destination: 'https://rock.longhollow.com/page/813', permanent: true },
       { source: '/deadlines-and-dates', destination: 'https://rock.longhollow.com/page/814', permanent: true },
       { source: '/staff-common-forms-and-documents', destination: 'https://rock.longhollow.com/page/1246', permanent: true },
