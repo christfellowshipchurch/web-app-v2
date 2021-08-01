@@ -32,6 +32,7 @@ module.exports = {
         destination: '/:slug',
         permanent: false,
       },
+      { source: '/liveevents', destination: '/live-event-stream', permanent: true },
       { source: '/together', destination: '/prayer-team-and-prayer-requests', permanent: true },
       { source: '/21-days-of-devotion', destination: '/', permanent: true },
       { source: '/links', destination: '/links-shared-on-social-media', permanent: true },
