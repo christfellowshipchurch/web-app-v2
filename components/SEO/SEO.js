@@ -28,9 +28,6 @@ function SEO(props = {}) {
 
     if (_isNotBrowser) return null;
 
-    // Only run Google Analytics
-    if (process.env.NODE_ENV !== 'production') return null;
-
     // NEXT_PUBLIC_GA_CODE  needs to be set in the .env
     if (!process.env.NEXT_PUBLIC_GA_CODE) {
       console.warn(
