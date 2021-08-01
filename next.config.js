@@ -32,6 +32,7 @@ module.exports = {
         destination: '/:slug',
         permanent: false,
       },
+      { source: '/today', destination: 'http://today.longhollow.com', permanent: true },
       { source: '/liveevents', destination: '/live-event-stream', permanent: true },
       { source: '/together', destination: '/prayer-team-and-prayer-requests', permanent: true },
       { source: '/21-days-of-devotion', destination: '/', permanent: true },
