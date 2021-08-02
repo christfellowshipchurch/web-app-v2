@@ -63,17 +63,18 @@ function ContentBlock(props = {}) {
       )}
       {hasContent && (
         <Styled.Content textAlign={horizontalLayout ? 'flex-start' : 'center'}>
-          {(title || subtitle) && (
-            <Box
-              display="flex"
-              flexDirection={titleFlexDirection(props?.contentLayout)}
-            >
-              <Styled.Title>{props.title}</Styled.Title>
-              <Styled.Subtitle>{props.subtitle}</Styled.Subtitle>
-            </Box>
-          )}
-          <Box>{htmlToReactParser.parse(props.htmlContent)}</Box>
-
+          <Box my={{ _: 'l', md: 0 }}>
+            {(title || subtitle) && (
+              <Box
+                display="flex"
+                flexDirection={titleFlexDirection(props?.contentLayout)}
+              >
+                <Styled.Title>{props.title}</Styled.Title>
+                <Styled.Subtitle>{props.subtitle}</Styled.Subtitle>
+              </Box>
+            )}
+            <Box>{htmlToReactParser.parse(props.htmlContent)}</Box>
+          </Box>
           {actions && actions?.length > 0 && (
             <Box my="base" flexDirection="column" display="flex">
               {actions.map((action, i) => (
@@ -88,6 +89,7 @@ function ContentBlock(props = {}) {
                    * todo : We want to eventually add functionality with the 'onPressActionItem' to be able to perform more actions in the future.
                    */
                   // onClick={e => onPressActionItem(e, heroCard)}
+                  {...action}
                 >
                   {action?.title}
                 </CustomLink>

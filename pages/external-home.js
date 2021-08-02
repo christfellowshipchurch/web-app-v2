@@ -5,17 +5,12 @@ import { CollectionPreview, HeroLanding } from 'components';
 import { Box, ContentBlock, Image, ValueStack, Button } from 'ui-kit';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
-import random from 'lodash/random';
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
-import { trackEvent } from 'lib/analytics';
+import { amplitude } from 'lib/analytics';
 
 const BASE_MAX_WIDTH = 1200;
 const BASE_VERITCAL_PADDING = 'xl';
-
-// const placeholderImage = '/placeholder.png';
-const placeholderImage = () =>
-  `https://source.unsplash.com/random?random=${random(0, 100, true)}`;
 
 const StartHere = () => {
   const data = [
@@ -23,17 +18,20 @@ const StartHere = () => {
       title: 'Plan a Visit',
       subtitle: 'Attend a Sunday service. We would love to meet you!',
       image: '/plan-a-visit.png',
+      url: '/locations',
     },
     {
       title: 'Find Friends',
       subtitle: 'Meet other people just like you. Find a group or class today.',
       image: 'find-friends.png',
+      url: '/groups',
     },
     {
       title: 'Ask a Question',
       subtitle:
         'Do you have questions or need prayer? Text or call us at (561) 799-5600.',
       image: 'ask-a-question.png',
+      url: 'https://rock.gocf.org/contactus',
     },
   ];
 
@@ -73,7 +71,7 @@ const StartHere = () => {
         maxWidth={BASE_MAX_WIDTH}
         margin="auto"
       >
-        {data.map(({ title, subtitle, image }, i) => (
+        {data.map(({ title, subtitle, image, url }, i) => (
           <Box
             mb={{ _: i === data.length - 1 ? '0' : 'base', md: '0' }}
             display="flex"
@@ -82,7 +80,7 @@ const StartHere = () => {
               <Image mb="2rem" source={image} aspectRatio={16 / 9} />
 
               <Box px="s">
-                <Box as="a" href="#" textDecoration="none">
+                <Box as="a" href={url} textDecoration="none">
                   <Box
                     display="flex"
                     justifyContent="center"
@@ -90,10 +88,14 @@ const StartHere = () => {
                   >
                     <Button
                       onClick={() => {
-                        trackEvent({
-                          category: 'External Landing Page',
-                          action: `It All Starts Here - Action`,
-                          label: `${title} - Button`,
+                        amplitude.trackEvent({
+                          eventType: 'Button Click',
+                          eventProperties: {
+                            category:
+                              'External Landing Page - It All Starts Here',
+                            label: `${title} - Button`,
+                            action: url,
+                          },
                         });
                       }}
                       bg="secondary"
@@ -103,7 +105,6 @@ const StartHere = () => {
                     >
                       {title}
                     </Button>
-                    {/* <Icon name="angleRight" size={32} /> */}
                   </Box>
                 </Box>
                 <Box as="p" fontSize="1.35rem" lineHeight="1.65rem" mt="s">
@@ -118,88 +119,48 @@ const StartHere = () => {
   );
 };
 
-const LifeToTheFullest = ({ variant }) => {
+const LifeToTheFullest = () => {
   const data = [
     {
       title: 'Know God personally',
       subtitle:
         'You can know Jesus on a personal level. See how a relationship with Him changes your life for the better.',
       image: '/external-home-1.png',
+      highlightWidth: '57%',
     },
     {
       title: 'Grow in your relationships',
       subtitle:
         "You weren't meant to do life alone. Find friends and build stronger relationships with those you love.",
       image: 'external-home-2.png',
+      highlightWidth: '68%',
+      shortBar: true,
     },
     {
       title: 'Discover your purpose',
       subtitle:
         "You're here for a reason. Find out who God created you to be and learn how to live life on purpose.",
       image: 'external-home-3.png',
+      highlightWidth: '61%',
     },
     {
       title: 'Impact your world',
       subtitle:
         'A life lived contributing your talents, gifts and passion for your world, and a life that others are inspired to emulate.',
       image: 'external-home-4.png',
+      highlightWidth: '52%',
     },
   ];
-
-  const mask = [1, 3, 2, 1];
-
-  if (variant === 2) {
-    return (
-      <Box
-        display={{ md: 'grid' }}
-        gridTemplateColumns="1fr 1fr"
-        gridTemplateRows="1fr 1fr"
-        gridGap="0.5rem"
-        gridTemplateAreas={`
-    ". ."
-    ". ."`}
-        p="0.5rem"
-        bg="neutrals.100"
-      >
-        {data.map(({ title, subtitle }, i) => (
-          <Box
-            px="xxl"
-            pt="xxl"
-            display="flex"
-            flexDirection="column"
-            justifyContent="space-around"
-            alignItems="center"
-            textAlign="center"
-            bg="white"
-          >
-            <Box mb="xl">
-              <Box as="h1" fontSize="40px" color="black">
-                {title}
-              </Box>
-              <Box as="span" fontSize="21px">
-                {subtitle}
-              </Box>
-            </Box>
-            <Image
-              mask={`/shape-mask-${mask[i]}.png`}
-              source={placeholderImage()}
-              maxWidth="400px"
-            />
-          </Box>
-        ))}
-      </Box>
-    );
-  }
 
   return (
     <Box
       mx="auto"
       p="base"
       pt="l"
-      maxWidth={1500}
+      maxWidth={1200}
       fontSize={{ _: '1.2rem', md: '1.7rem' }}
     >
-      {data.map(({ title, subtitle, image }, i) => (
+      {data.map(({ title, subtitle, image, highlightWidth, shortBar }, i) => (
         <Box
           display={{ _: 'block', md: 'grid' }}
           gridTemplateColumns={i % 2 === 0 ? '1fr 1.618fr' : '1.618fr 1fr'}
@@ -208,13 +169,7 @@ const LifeToTheFullest = ({ variant }) => {
           gridTemplateAreas={i % 2 === 0 ? `"img content"` : `"content img"`}
           my="l"
         >
-          <Image
-            // mask={`/shape-mask-${mask[i]}.png`}
-            source={image}
-            maxWidth="400px"
-            gridArea="img"
-            my="base"
-          />
+          <Image source={image} maxWidth="400px" gridArea="img" my="base" />
 
           <Box
             gridArea="content"
@@ -223,8 +178,23 @@ const LifeToTheFullest = ({ variant }) => {
             flexDirection="column"
             my="base"
           >
-            <Box as="h1" color="black">
-              {`${i + 1}. ${title}`}
+            <Box as="h1" color="black" borderRadius="xxl">
+              <Box
+                position="relative"
+                bottom="-35px"
+                height="18px"
+                bg="primarySubdued"
+                width={
+                  !shortBar
+                    ? { _: '90%', md: highlightWidth }
+                    : { _: '60%', md: highlightWidth }
+                }
+                borderRadius="s"
+                pl="s"
+              />
+              <Box as="p" position="relative" pl="xs">{`${
+                i + 1
+              }. ${title}`}</Box>
             </Box>
             <Box as="p">{subtitle}</Box>
           </Box>
@@ -304,12 +274,13 @@ export default function HeroLandingPage(props = {}) {
         mx="auto"
         style={{
           backgroundImage: 'url(/background-dots.png)',
-          backgroundPosition: '30px 0px',
+          backgroundPosition: '-100px -18px',
           backgroundRepeat: 'no-repeat',
         }}
       >
         <Box
           as="h1"
+          mt="l"
           fontSize={{ _: '', md: '3rem' }}
           display="flex"
           color="black"
@@ -347,7 +318,8 @@ export default function HeroLandingPage(props = {}) {
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
         }}
-        py="xxl"
+        mt={{ _: 0, md: 'l' }}
+        mb="l"
       >
         <LifeToTheFullest variant={1} />
       </Box>
@@ -362,7 +334,7 @@ export default function HeroLandingPage(props = {}) {
         style={{
           backgroundImage:
             'url(/start-here-corners.png), url(/start-here-dots.png), url(start-here-wedge.png)',
-          backgroundPosition: 'right, top left, bottom left',
+          backgroundPosition: 'right, -100px -62px, bottom left',
           backgroundRepeat: 'no-repeat',
         }}
       >
@@ -372,7 +344,7 @@ export default function HeroLandingPage(props = {}) {
       {/* Church isn’t just a building you walk in to */}
       <Box
         px="base"
-        py={BASE_VERITCAL_PADDING}
+        pt={BASE_VERITCAL_PADDING}
         bg="white"
         style={{
           backgroundImage: 'url(/blue-dots.png)',
@@ -381,14 +353,14 @@ export default function HeroLandingPage(props = {}) {
         }}
       >
         <Box
-          fontSize={{ _: '1.2rem', md: '1.5rem' }}
+          fontSize={{ _: '1.05rem', md: '1.5rem' }}
           maxWidth={BASE_MAX_WIDTH}
           mx="auto"
         >
           <ContentBlock
             title="Do more than just get by."
             htmlContent={
-              'For the past 35 years, we’ve helped thousands of people just like you to... <br/> <br/> --> Find people to do life with <br/>--> Break free from the pain of their past<br/> --> Thrive in their marriage <br/> --> Become a better parent <br/> --> Experience financial freedom <br/> <br/> <b>What we’ve done for them, we want to do for you.<b/>'
+              'For the past 35 years, we’ve helped thousands of people just like you to... <br/> <br/><b> → Find people to do life with <br/>→ Break free from the pain of their past<br/> → Thrive in their marriage <br/> → Become a better parent <br/> → Experience financial freedom</b> <br/> <br/> What we’ve done for them, we want to do for you.'
             }
             image={'/do-more-external.png'}
             contentLayout="RIGHT"
@@ -399,8 +371,28 @@ export default function HeroLandingPage(props = {}) {
                 relatedNode: {
                   url: '/about',
                 },
+                onClick: () =>
+                  amplitude.trackEvent({
+                    eventType: 'Button Click',
+                    eventProperties: {
+                      category:
+                        'External Landing Page - Do more than just get by',
+                      label: `About - Button`,
+                      action: '/about',
+                    },
+                  }),
               },
             ]}
+          />
+        </Box>
+      </Box>
+
+      {/* Latest Messages */}
+      <Box px="base" py={BASE_VERITCAL_PADDING} bg="neutrals.100">
+        <Box mx="auto" maxWidth={1200}>
+          <CollectionPreview
+            title="Latest Messages"
+            contentId="UniversalContentItem:47a5a31f61ac5a4fb65576d0d47564e0"
           />
         </Box>
       </Box>
@@ -415,12 +407,18 @@ export default function HeroLandingPage(props = {}) {
         </Box>
       </Box>
 
-      {/* Latest Messages */}
       <Box px="base" py={BASE_VERITCAL_PADDING} bg="white">
         <Box mx="auto" maxWidth={1200}>
-          <CollectionPreview
-            title="Latest Messages"
-            contentId="UniversalContentItem:47a5a31f61ac5a4fb65576d0d47564e0"
+          <ContentBlock
+            title="Never miss a thing."
+            actions={[
+              {
+                title: 'Subscribe for Updates',
+                url:
+                  'https://church.us11.list-manage.com/subscribe?u=76848e191018191e2e2d01d77&id=3265404466',
+                mt: '-0.8rem',
+              },
+            ]}
           />
         </Box>
       </Box>

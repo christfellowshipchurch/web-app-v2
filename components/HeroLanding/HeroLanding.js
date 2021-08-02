@@ -5,7 +5,7 @@ import { CustomLink, Layout } from 'components';
 import { Box, Button } from 'ui-kit';
 
 import Styled from './HeroLanding.styles';
-import { trackEvent } from 'lib/analytics';
+import { amplitude } from 'lib/analytics';
 
 export default function HeroLanding(props = {}) {
   return (
@@ -23,22 +23,30 @@ export default function HeroLanding(props = {}) {
         <Styled.Content>
           <Styled.Title>{props?.heroTitle}</Styled.Title>
           <Styled.Summary>{props?.heroSummary}</Styled.Summary>
-          <Box display="flex">
+          <Box
+            display="flex"
+            flexDirection={{ _: 'column', md: 'row' }}
+            alignItems="center"
+          >
             {props?.actions?.map((action, i) => (
               <CustomLink
                 key={i}
                 size="l"
                 Component={Button}
                 onClick={() =>
-                  trackEvent({
-                    category: `${props?.heroTitle} - Landing Page`,
-                    action: `${props?.heroTitle} - Action`,
-                    label: `${action.title} - Button`,
+                  amplitude.trackEvent({
+                    eventType: `Button Click`,
+                    eventProperties: {
+                      category: `Hero Landing - ${props?.heroTitle}`,
+                      label: `${action.title} - Button`,
+                      action: action.url,
+                    },
                   })
                 }
+                width={{ _: '100%', md: 'auto' }}
                 href={action.url}
-                my="base"
-                mr={i > 0 ? '' : 's'}
+                my={{ _: 'xs', md: 'base' }}
+                mr={{ _: '0', md: i > 0 ? '' : 's' }}
                 variant={i > 0 ? 'secondary' : null}
                 {...action}
               >
