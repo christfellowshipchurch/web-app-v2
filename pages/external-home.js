@@ -348,7 +348,7 @@ export default function HeroLandingPage(props = {}) {
         bg="white"
         style={{
           backgroundImage: 'url(/blue-dots.png)',
-          backgroundPosition: 'bottom right',
+          backgroundPosition: '100% 119%',
           backgroundRepeat: 'no-repeat',
         }}
       >

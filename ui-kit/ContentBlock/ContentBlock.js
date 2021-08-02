@@ -63,7 +63,7 @@ function ContentBlock(props = {}) {
       )}
       {hasContent && (
         <Styled.Content textAlign={horizontalLayout ? 'flex-start' : 'center'}>
-          <Box my={{ _: 'l', md: 0 }}>
+          <Box mt={{ _: 'l', md: 0 }} mb={{ _: 's', md: 0 }}>
             {(title || subtitle) && (
               <Box
                 display="flex"
