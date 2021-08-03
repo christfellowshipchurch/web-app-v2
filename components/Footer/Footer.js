@@ -19,7 +19,7 @@ function Footer(props = {}) {
             <Resources />
             <Connect />
             <About />
-            <More />
+            <Opportunities />
           </Box>
         </Cell>
       </Box>
@@ -66,6 +66,9 @@ function Resources() {
         <Box as="li">
           <Styled.Link target="_blank" href={links.giveOnline}>Give Online</Styled.Link>
         </Box>
+        <Box as="li">
+          <Styled.Link target="_blank" href={links.shopOnline}>Shop Online</Styled.Link>
+        </Box>
       </List>
     </Box>
   );
@@ -110,9 +113,7 @@ function About() {
           <Styled.Link href="/about">Our Leadership</Styled.Link>
         </Box>
         <Box as="li">
-          <Styled.Link href="/career-opportunities">
-            Career Opportunities
-          </Styled.Link>
+          <Styled.Link href="/locations">Locations</Styled.Link>
         </Box>
         <Box as="li">
           <CustomLink href="/privacy-policy" Component={Styled.Link}>
@@ -129,21 +130,23 @@ function About() {
   );
 }
 
-function More() {
+function Opportunities() {
   return (
     <Box mb={{ _: 'base', lg: '0' }}>
       <Box as="h4" fontSize="h3">
-        More
+        Opportunities
       </Box>
       <List as="ul" space="xs">
+        <Box as="li">
+          <Styled.Link href="/career-opportunities">
+            Careers
+          </Styled.Link>
+        </Box>
         <Box as="li">
           <Styled.Link target="_blank" href={links.cfConf}>CF Conference</Styled.Link>
         </Box>
         <Box as="li">
           <Styled.Link target="_blank" href={links.cfSeu}>Get Your Degree</Styled.Link>
-        </Box>
-        <Box as="li">
-          <Styled.Link target="_blank" href={links.shopOnline}>Shop Online</Styled.Link>
         </Box>
       </List>
     </Box>
