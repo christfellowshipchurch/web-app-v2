@@ -80,6 +80,7 @@ export default function CommunitySearch() {
     filtersState.values.text,
     searchGroups,
     setValues,
+    router,
   ]);
 
   const handleLoadMore = () => {
