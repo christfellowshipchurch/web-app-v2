@@ -2,11 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 
-const DEFAULT_TITLE = 'Christ Fellowship Church';
-const DEFAULT_DESCRIPTION = `Christ Fellowship is a church in South Florida that helps you thrive in every area of life. Christ Fellowship Church's passion is to help you know God, grow in your relationship with God & others, and discover your purpose so that you can impact the world.`;
-const DEFAULT_IMAGE =
-  'https://rock.christfellowship.church/Content/images/CF-Worship-Generic.jpg';
-const DEFAULT_KEYWORDS = `Church, Christ Fellowship, Christ Fellowship Church, Churches in South Florida`;
+const DEFAULT_TITLE = 'Christ Fellowship Church - Helping You Get the Most Out of Life';
+const DEFAULT_DESCRIPTION = `Christ Fellowship Church is a church in South Florida that helps you do more than just get by. Life is complicated. But it doesn’t have to be. We’re here to help you live life to the fullest.`;
+const DEFAULT_IMAGE = '/metadata_image.jpg';
+const DEFAULT_KEYWORDS = `Christ Fellowship Church, Christ Fellowship, Church, Churches in South Florida, Churches Near Me, Churches in the Area`;
 const DEFAULT_URL = 'https://christfellowship.church';
 
 function getPageTitle(title) {
