@@ -71,7 +71,8 @@ const Summary = styled.h2`
     font-size: 1.6rem;
   }
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-    font-size: 2.472rem;
+    font-size: 2.3rem;
+    max-width: 700px;
   }
 `;
 

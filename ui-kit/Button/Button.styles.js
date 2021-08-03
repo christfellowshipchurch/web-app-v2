@@ -11,12 +11,15 @@ const rounded = ({ rounded }) => props => {
   }
 };
 
-const variant = ({ variant, active }) => props => {
+const variant = ({ variant, active, hoverColor }) => props => {
   if (variant === 'secondary') {
     return css`
       background-color: transparent;
       border-color: ${themeGet('colors.primary')};
       color: ${themeGet('colors.primary')};
+      &:hover {
+        background-color: ${themeGet(`colors.${hoverColor}`)};
+      }
     `;
   }
 
@@ -163,5 +166,4 @@ const Button = styled.button`
   ${active}
   ${system}
 `;
-
 export default Button;

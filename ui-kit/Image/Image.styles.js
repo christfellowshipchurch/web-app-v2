@@ -20,7 +20,7 @@ const StyledImage = styled.img`
   border-radius: ${themeGet('radii.base')};
   width: 100%;
   height: auto;
-  object-fit: cover;
+  object-fit: ${props => props.objectFit};
   aspect-ratio: ${props => props.aspectRatio};
 
   ${mask}

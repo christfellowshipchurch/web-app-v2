@@ -23,6 +23,7 @@ const RATIOS = ['1by1', '4by3', '16by9', '21by9', '3by4'];
 Image.propTypes = {
   ...systemPropTypes,
   aspectRatio: PropTypes.oneOf(RATIOS),
+  objectFit: PropTypes.string,
   source: PropTypes.string,
   mask: PropTypes.string,
 };
@@ -30,4 +31,5 @@ Image.propTypes = {
 Image.defaultProps = {
   aspectRatio: '1by1',
   mask: '',
+  objectFit: 'cover',
 };

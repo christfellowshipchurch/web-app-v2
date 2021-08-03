@@ -48,17 +48,17 @@ const navigation = {
   },
   startHereLinks: [
     {
-      action: '/',
+      action: '/locations',
       call: 'Plan a Visit',
       icon: 'location',
     },
     {
-      action: '/',
+      action: '/groups',
       call: 'Find Friends',
       icon: 'users',
     },
     {
-      action: '/',
+      action: 'https://rock.gocf.org/contactus',
       call: 'Ask a Question',
       icon: 'info',
     },
