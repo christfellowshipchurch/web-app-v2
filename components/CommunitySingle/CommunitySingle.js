@@ -48,8 +48,8 @@ function CommunitySingle(props = {}) {
 
   const options = {
     variables: {
-      facet: 'subPreference',
-      facetFilters: [`preference:${props.data?.title}`],
+      facet: 'subPreferences',
+      facetFilters: [`preferences:${props.data?.title}`],
     },
   };
 
@@ -121,8 +121,8 @@ function CommunitySingle(props = {}) {
 
   return (
     <>
-      <SEO 
-        title={props.data?.title} 
+      <SEO
+        title={props.data?.title}
         image={props.data?.coverImage?.sources[0]?.uri}
         description={props.data?.summary}
       />
