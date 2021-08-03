@@ -6,6 +6,7 @@ import get from 'lodash/get';
 
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
+import { CustomLink } from 'components';
 import {
   Avatar,
   Box,
@@ -18,6 +19,7 @@ import {
 import Styled from './GroupCard.styles';
 import { themeGet } from '@styled-system/theme-get';
 import camelCase from 'lodash.camelcase';
+import { getUrlFromRelatedNode } from 'utils';
 
 const GroupCard = (props = {}) => {
   const modalDispatch = useModalDispatch();
@@ -55,6 +57,13 @@ const GroupCard = (props = {}) => {
 
   const labelType = get(labelTypes, camelCase(props?.meetingType));
   const heroAvatars = props.heroAvatars.slice(0, maxAvatars);
+  const renderDateTime = _props => {
+    if (_props.dateTime) {
+      return format(new Date(props.dateTime), "EEEE 'at' h:mm a");
+    }
+
+    if (_props.meetingDay) return _props.meetingDay;
+  };
 
   return (
     <Styled {...props}>
@@ -64,7 +73,7 @@ const GroupCard = (props = {}) => {
             {!isEmpty(labelType) && (
               <Styled.Label backgroundColor={labelType.color}>
                 {props?.meetingType}
-                <Icon size={18} name={labelType.icon} ml="xs" />
+                <Icon size="18" name={labelType.icon} ml="xs" />
               </Styled.Label>
             )}
             {heroAvatars ? (
@@ -109,10 +118,10 @@ const GroupCard = (props = {}) => {
             {props.campus}
           </Styled.DateTimeLabel>
         )}
-        {props.dateTime && (
+        {(props.dateTime || props.meetingDay) && (
           <Styled.DateTimeLabel>
             <Icon name="calendar" size="16" mr="xs" />
-            {format(new Date(props.dateTime), "EEEE 'at' h:mm a")}
+            {renderDateTime(props)}
           </Styled.DateTimeLabel>
         )}
         {props.summary && (
@@ -157,7 +166,10 @@ const GroupCard = (props = {}) => {
           </Box>
         )}
         {props.callToAction && (
-          <Button
+          <CustomLink
+            as="a"
+            Component={Button}
+            variant="primary"
             onClick={props?.callToAction?.action}
             mt="auto"
             size="l"
@@ -165,7 +177,7 @@ const GroupCard = (props = {}) => {
             {...props?.callToAction?.buttonProps}
           >
             {props?.callToAction?.call}
-          </Button>
+          </CustomLink>
         )}
       </Styled.GroupCardContent>
     </Styled>
@@ -174,7 +186,15 @@ const GroupCard = (props = {}) => {
 
 GroupCard.propTypes = {
   ...systemPropTypes,
-  avatars: PropTypes.array,
+  avatars: PropTypes.arrayOf(
+    PropTypes.shape({
+      node: PropTypes.shape({
+        photo: PropTypes.shape({
+          uri: PropTypes.string,
+        }),
+      }),
+    })
+  ),
   callToAction: PropTypes.shape({
     call: PropTypes.string,
     action: PropTypes.func,
@@ -184,8 +204,17 @@ GroupCard.propTypes = {
   subPreference: PropTypes.string,
   coverImage: PropTypes.string,
   dateTime: PropTypes.string,
+  meetingDay: PropTypes.string,
   groupType: PropTypes.string,
-  heroAvatars: PropTypes.array,
+  heroAvatars: PropTypes.arrayOf(
+    PropTypes.shape({
+      node: PropTypes.shape({
+        photo: PropTypes.shape({
+          uri: PropTypes.string,
+        }),
+      }),
+    })
+  ),
   isLoading: PropTypes.bool,
   summary: PropTypes.string,
   title: PropTypes.string,

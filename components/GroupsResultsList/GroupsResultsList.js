@@ -4,12 +4,12 @@ import isEmpty from 'lodash/isEmpty';
 
 import { CardGrid, GroupCard, utils } from 'ui-kit';
 
-import { update as updateAuth, useAuth } from 'providers/AuthProvider';
-import { useModalDispatch, showModal } from 'providers/ModalProvider';
+import useFeatureAction from 'hooks/useFeatureAction';
 import useGroupMemberStatus from 'hooks/useGroupMemberStatus';
+import { getUrlFromRelatedNode } from 'utils';
 
 // note : This breaks convention a little bit, but we need to create the CTA for the Group based on the status of the group for the current member.
-function GroupCardWithMember(props) {
+function GroupCardWithMember({ relatedNode, ...props }) {
   const { data, loading } = useGroupMemberStatus({
     skip: isEmpty(props?.id),
     variables: {
@@ -22,6 +22,7 @@ function GroupCardWithMember(props) {
     buttonProps: {
       status: 'LOADING',
       disabled: true,
+      href: '#',
     },
   });
 
@@ -36,6 +37,7 @@ function GroupCardWithMember(props) {
             action: null,
             buttonProps: {
               disabled: true,
+              href: '#',
             },
           });
           break;
@@ -45,6 +47,7 @@ function GroupCardWithMember(props) {
             action: null,
             buttonProps: {
               disabled: true,
+              href: '#',
             },
           });
           break;
@@ -54,14 +57,19 @@ function GroupCardWithMember(props) {
             action: null,
             buttonProps: {
               disabled: true,
+              href: '#',
             },
           });
           break;
         case 'OPEN':
         default:
           setCallToAction({
-            call: 'Contact',
-            action: () => props?.handleConnectClick(props),
+            call: props?.contactButtonText,
+            action: props?.handleConnectClick,
+            buttonProps: {
+              href: getUrlFromRelatedNode(relatedNode),
+              target: '_blank',
+            },
           });
           break;
       }
@@ -72,54 +80,40 @@ function GroupCardWithMember(props) {
 }
 
 function GroupsResultsList(props = {}) {
-  const modalDispatch = useModalDispatch();
-  const [{ authenticated }, authDispatch] = useAuth();
-
-  const handleConnectClick = group => {
-    const showConnectModal = () => {
-      modalDispatch(
-        showModal('ConnectModal', {
-          leaderName: group?.node?.leaders?.edges[0]?.node?.nickName,
-          leaderAvatar: group?.node?.leaders?.edges[0]?.node?.photo.uri,
-          groupId: group?.node?.id,
-          width: utils.rem('450px'),
-        })
-      );
-    };
-
-    if (!authenticated) {
-      modalDispatch(showModal('Auth'));
-      authDispatch(
-        updateAuth({
-          onSuccess: showConnectModal,
-        })
-      );
-    } else {
-      showConnectModal();
-    }
-  };
+  const [onPressActionItem] = useFeatureAction();
 
   return (
     <CardGrid>
-      {props.data.map(group => {
-        return (
-          <GroupCardWithMember
-            key={group.node?.id}
-            id={group.node?.id}
-            campus={group.node?.campus?.name}
-            coverImage={group.coverImage?.sources[0]?.uri}
-            dateTime={group.node?.dateTime?.start}
-            groupType={group.type}
-            heroAvatars={group.node?.leaders?.edges}
-            preferences={group.node?.preference}
-            subPreference={group.node?.subPreference}
-            meetingType={group.node?.meetingType}
-            summary={group.summary}
-            title={group.title}
-            handleConnectClick={() => handleConnectClick(group)}
-          />
-        );
-      })}
+      {props.data.map(group => (
+        <GroupCardWithMember
+          key={group?.id}
+          id={group?.id}
+          campus={group?.campusName}
+          coverImage={group.coverImage?.sources[0]?.uri}
+          meetingDay={group.meetingDay}
+          heroAvatars={group?.leaders?.map(node => ({ node }))}
+          preferences={group?.preferences}
+          subPreference={group.subPreferences.join(', ')}
+          meetingType={group?.meetingType}
+          summary={group.summary}
+          title={group.title}
+          handleConnectClick={e =>
+            onPressActionItem(e, {
+              action: group?.action,
+              relatedNode: group?.relatedNode,
+              modalProps: {
+                leaderName: group?.leaders[0].firstName,
+                leaderAvatar: group?.leaders[0]?.photo?.uri,
+                width: utils.rem('450px'),
+              },
+            })
+          }
+          contactButtonText={
+            group?.relatedNode?.__typename === 'Url' ? 'Register' : 'Contact'
+          }
+          relatedNode={group.relatedNode || {}}
+        />
+      ))}
     </CardGrid>
   );
 }
