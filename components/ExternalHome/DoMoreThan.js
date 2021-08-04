@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, ContentBlock } from 'ui-kit';
-import { amplitude } from 'lib/analytics';
+import { amplitude, gtag } from 'lib/analytics';
 
 const DoMoreThan = ({ maxWidth }) => (
   <Box fontSize={{ _: '1.05rem', md: '1.5rem' }} maxWidth={maxWidth} mx="auto">
@@ -18,7 +18,7 @@ const DoMoreThan = ({ maxWidth }) => (
           relatedNode: {
             url: '/about',
           },
-          onClick: () =>
+          onClick: () => [
             amplitude.trackEvent({
               eventType: 'Button Click',
               eventProperties: {
@@ -27,6 +27,12 @@ const DoMoreThan = ({ maxWidth }) => (
                 action: '/about',
               },
             }),
+            gtag.trackEvent({
+              category: 'External Landing Page - Do more than just get by',
+              label: `About - Button`,
+              action: '/about',
+            }),
+          ],
         },
       ]}
     />

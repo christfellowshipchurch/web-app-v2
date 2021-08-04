@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
-import { amplitude } from 'lib/analytics';
+import { amplitude, gtag } from 'lib/analytics';
 import { Box, Image, Button } from 'ui-kit';
 
 const StartHere = ({ maxWidth }) => {
@@ -81,7 +81,7 @@ const StartHere = ({ maxWidth }) => {
             >
               <StyledCard
                 boxShadow={i === 0 ? 'l' : 'base'}
-                onClick={() => {
+                onClick={() => [
                   amplitude.trackEvent({
                     eventType: 'Button Click',
                     eventProperties: {
@@ -89,8 +89,13 @@ const StartHere = ({ maxWidth }) => {
                       label: `${title} - Button`,
                       action: url,
                     },
-                  });
-                }}
+                  }),
+                  gtag.trackEvent({
+                    category: 'External Landing Page - It All Starts Here',
+                    label: `${title} - Button`,
+                    action: url,
+                  }),
+                ]}
               >
                 <Image mb="2rem" source={image} aspectRatio={16 / 9} />
 
