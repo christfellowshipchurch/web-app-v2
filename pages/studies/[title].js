@@ -33,7 +33,7 @@ export async function getStaticPaths() {
   const titles = [];
 
   return {
-    paths: titles.map(title => `locations/${title}`),
+    paths: titles.map(title => `studies/${title}`),
     // Enable statically generating additional pages
     // For example: `/messages/another-great-sermon`
     fallback: true,
@@ -46,7 +46,7 @@ export async function getStaticProps({ params }) {
 
   await apolloClient.query({
     query: GET_CONTENT_ITEM,
-    variables: { pathname: `locations/${params.title}` },
+    variables: { pathname: `studies/${params.title}` },
   });
 
   // Pass post data to the page via props
