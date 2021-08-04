@@ -9,9 +9,6 @@ import { Box, Button, Icon, List, Menu, systemPropTypes } from 'ui-kit';
 import { ClientSideComponent, CustomLink, UserAvatar } from 'components';
 import Styled from './Nav.styles';
 
-import amplitude from 'lib/amplitude';
-import gtag from 'lib/gtag';
-
 function Nav(props = {}) {
   const [{ authenticated }, authDispatch] = useAuth();
   const modalDispatch = useModalDispatch();
@@ -34,23 +31,6 @@ function Nav(props = {}) {
         type="primary"
         display={{ _: 'none', md: 'inline' }}
         data={props.data.quickAction}
-        onClick={() => {
-          return [
-            amplitude.trackEvent({
-              eventType: 'Testing Amplitude',
-              eventProperties: {
-                category: 'Testing',
-                action: `${props.data.quickAction.action} - Action`,
-                label: `${props.data.quickAction.call} - Button`,
-              },
-            }),
-            gtag.trackEvent({
-              category: 'Testing',
-              action: `${props.data.quickAction.action} - Action`,
-              label: `${props.data.quickAction.call} - Button`,
-            }),
-          ];
-        }}
       />
       <ClientSideComponent>
         {authenticated ? (
