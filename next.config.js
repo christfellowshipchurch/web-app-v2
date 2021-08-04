@@ -32,6 +32,7 @@ module.exports = {
         destination: '/:slug',
         permanent: false,
       },
+      { source: '/news/download-life-group-curriculum', destination: '/download-life-group-curriculum', permanent: true },
       { source: '/treasure-creek', destination: '/weekday-preschool', permanent: true },
       { source: '/today', destination: 'http://today.longhollow.com', permanent: true },
       { source: '/liveevents', destination: '/live-event-stream', permanent: true },
