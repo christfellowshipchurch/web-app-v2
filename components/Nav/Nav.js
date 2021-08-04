@@ -9,7 +9,7 @@ import { Box, Button, Icon, List, Menu, systemPropTypes } from 'ui-kit';
 import { ClientSideComponent, CustomLink, UserAvatar } from 'components';
 import Styled from './Nav.styles';
 
-import { amplitude, gtag } from 'lib/analytics';
+import { amplitude } from 'lib/analytics';
 
 function Nav(props = {}) {
   const [{ authenticated }, authDispatch] = useAuth();
@@ -31,26 +31,8 @@ function Nav(props = {}) {
     <Styled>
       {authenticated ? (
         <QuickAction
-          type="primary"
           display={{ _: 'none', md: 'inline' }}
           data={props.data.quickAction}
-          onClick={() => {
-            return [
-              amplitude.trackEvent({
-                eventType: 'Testing Amplitude',
-                eventProperties: {
-                  category: 'Testing',
-                  action: `${props.data.quickAction.action} - Action`,
-                  label: `${props.data.quickAction.call} - Button`,
-                },
-              }),
-              gtag.trackEvent({
-                category: 'Testing',
-                action: `${props.data.quickAction.action} - Action`,
-                label: `${props.data.quickAction.call} - Button`,
-              }),
-            ];
-          }}
         />
       ) : (
         [
@@ -62,7 +44,20 @@ function Nav(props = {}) {
             }}
             renderTrigger={({ toggle }) => (
               <Box as="a" textDecoration="none" href="#0" onClick={toggle}>
-                <Button px="base" size="s">
+                <Button
+                  px="base"
+                  size="s"
+                  onClick={() =>
+                    amplitude.trackEvent({
+                      eventType: 'Button Click',
+                      eventProperties: {
+                        category: 'Navbar',
+                        label: `Start Here - Button`,
+                        action: `Opened Start Here dropdown`,
+                      },
+                    })
+                  }
+                >
                   Start Here
                   <Icon name="caretDown" mr={-10} ml="xs" mt={-4} mb={-6} />
                 </Button>
@@ -78,30 +73,24 @@ function Nav(props = {}) {
           </Menu>,
 
           <QuickAction
+            variant="secondary"
             size="s"
             px="base"
             color={props?.darkMode ? 'white' : 'primary'}
             borderColor={props?.darkMode ? 'white' : 'primary'}
-            type="secondary"
+            hoverColor={props?.darkMode ? 'neutrals.400' : null}
             display={{ _: 'none', md: 'inline' }}
             data={props.data.quickAction}
-            onClick={() => {
-              return [
-                amplitude.trackEvent({
-                  eventType: 'Testing Amplitude',
-                  eventProperties: {
-                    category: 'Testing',
-                    action: `${props.data.quickAction.action} - Action`,
-                    label: `${props.data.quickAction.call} - Button`,
-                  },
-                }),
-                gtag.trackEvent({
-                  category: 'Testing',
-                  action: `${props.data.quickAction.action} - Action`,
+            onClick={() =>
+              amplitude.trackEvent({
+                eventType: 'Button Click',
+                eventProperties: {
+                  category: 'Navbar',
                   label: `${props.data.quickAction.call} - Button`,
-                }),
-              ];
-            }}
+                  action: `${props.data.quickAction.action}`,
+                },
+              })
+            }
           />,
         ]
       )}
@@ -160,6 +149,16 @@ function Nav(props = {}) {
                 type="link"
                 icon
                 data={props.data.quickAction}
+                onClick={() =>
+                  amplitude.trackEvent({
+                    eventType: 'Button Click',
+                    eventProperties: {
+                      category: 'Navbar',
+                      label: `${props.data.quickAction.call} - Button`,
+                      action: `${props.data.quickAction.action}`,
+                    },
+                  })
+                }
               />
             </Menu.Link>
           </Box>
@@ -213,13 +212,7 @@ function Primary(props = {}) {
 
 function QuickAction(props = {}) {
   return (
-    <Button
-      variant={props?.type}
-      {...props}
-      as="a"
-      href={props.data.action}
-      target="_blank"
-    >
+    <Button {...props} as="a" href={props.data.action} target="_blank">
       {props?.icon && <Icon color="primary" name="play" mr={'s'} size="18" />}
       {props.data.call}
     </Button>
@@ -229,10 +222,12 @@ function QuickAction(props = {}) {
 function MenuLinks(props = {}) {
   return props.data.map((item, idx) => (
     <Box key={idx} as="li">
-      <CustomLink href={item.action} Component={Menu.Link} px="base" py="xs">
-        <Icon name={item.icon} mr="s" size="18" />
-        {item.call}
-      </CustomLink>
+      <Box as="a" textDecoration="none" href={item.action} target={item.target}>
+        <Menu.Link px="base" py="xs">
+          <Icon name={item.icon} mr="s" size="18" />
+          {item.call}
+        </Menu.Link>
+      </Box>
     </Box>
   ));
 }

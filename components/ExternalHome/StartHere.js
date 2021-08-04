@@ -25,6 +25,7 @@ const StartHere = ({ maxWidth }) => {
         'Do you have questions or need prayer? Text or call us at (561) 799-5600.',
       image: 'ask-a-question.png',
       url: 'https://rock.gocf.org/contactus',
+      target: '_blank',
     },
   ];
 
@@ -36,6 +37,7 @@ const StartHere = ({ maxWidth }) => {
     flex-direction: column;
     padding: ${themeGet('space.base')};
     padding-bottom: ${themeGet('space.l')};
+    height: 100%;
 
     box-shadow: ${themeGet('shadows.base')};
     transition: box-shadow ease 0.3s, transform ease 0.3s;
@@ -65,38 +67,40 @@ const StartHere = ({ maxWidth }) => {
         maxWidth={maxWidth}
         margin="auto"
       >
-        {data.map(({ title, subtitle, image, url }, i) => (
+        {data.map(({ title, subtitle, image, url, target }, i) => (
           <Box
             mb={{ _: i === data.length - 1 ? '0' : 'base', md: '0' }}
             display="flex"
           >
-            <StyledCard boxShadow={i === 0 ? 'l' : 'base'}>
-              <Image mb="2rem" source={image} aspectRatio={16 / 9} />
+            <Box
+              as="a"
+              textDecoration="none"
+              color="black"
+              href={url}
+              target={target}
+            >
+              <StyledCard
+                boxShadow={i === 0 ? 'l' : 'base'}
+                onClick={() => {
+                  amplitude.trackEvent({
+                    eventType: 'Button Click',
+                    eventProperties: {
+                      category: 'External Landing Page - It All Starts Here',
+                      label: `${title} - Button`,
+                      action: url,
+                    },
+                  });
+                }}
+              >
+                <Image mb="2rem" source={image} aspectRatio={16 / 9} />
 
-              <Box px="s">
-                <Box as="a" href={url} textDecoration="none">
+                <Box px="s">
                   <Box
                     display="flex"
                     justifyContent="center"
                     alignItems="center"
                   >
-                    <Button
-                      onClick={() => {
-                        amplitude.trackEvent({
-                          eventType: 'Button Click',
-                          eventProperties: {
-                            category:
-                              'External Landing Page - It All Starts Here',
-                            label: `${title} - Button`,
-                            action: url,
-                          },
-                        });
-                      }}
-                      bg="secondary"
-                      as="h2"
-                      m="0"
-                      mb="0.25rem"
-                    >
+                    <Button bg="secondary" as="h2" m="0" mb="0.25rem">
                       {title}
                     </Button>
                   </Box>
@@ -104,8 +108,8 @@ const StartHere = ({ maxWidth }) => {
                 <Box as="p" fontSize="1.35rem" lineHeight="1.65rem" mt="s">
                   {subtitle}
                 </Box>
-              </Box>
-            </StyledCard>
+              </StyledCard>
+            </Box>
           </Box>
         ))}
       </Box>

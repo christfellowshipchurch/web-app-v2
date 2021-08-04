@@ -61,6 +61,7 @@ const navigation = {
       action: 'https://rock.gocf.org/contactus',
       call: 'Ask a Question',
       icon: 'info',
+      target: '_blank',
     },
   ],
 };
