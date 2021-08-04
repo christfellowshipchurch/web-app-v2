@@ -102,7 +102,7 @@ function GroupsResultsList(props = {}) {
               action: group?.action,
               relatedNode: group?.relatedNode,
               modalProps: {
-                leaderName: group?.leaders[0].firstName,
+                leaderName: group?.leaders[0]?.firstName,
                 leaderAvatar: group?.leaders[0]?.photo?.uri,
                 width: utils.rem('450px'),
               },
