@@ -5,7 +5,7 @@ import { CustomLink, Layout } from 'components';
 import { Box, Button } from 'ui-kit';
 
 import Styled from './HeroLanding.styles';
-import { amplitude } from 'lib/analytics';
+import { amplitude, gtag } from 'lib/analytics';
 
 export default function HeroLanding(props = {}) {
   return (
@@ -33,7 +33,7 @@ export default function HeroLanding(props = {}) {
                 key={i}
                 size="l"
                 Component={Button}
-                onClick={() =>
+                onClick={() => [
                   amplitude.trackEvent({
                     eventType: `Button Click`,
                     eventProperties: {
@@ -41,8 +41,13 @@ export default function HeroLanding(props = {}) {
                       label: `${action.title} - Button`,
                       action: action.url,
                     },
-                  })
-                }
+                  }),
+                  gtag.trackEvent({
+                    category: `Hero Landing - ${props?.heroTitle}`,
+                    label: `${action.title} - Button`,
+                    action: action.url,
+                  }),
+                ]}
                 width={{ _: '100%', md: 'auto' }}
                 href={action.url}
                 my={{ _: 'xs', md: 'base' }}
