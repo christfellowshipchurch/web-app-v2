@@ -8,7 +8,7 @@ function Logo({ withText, width, dark, ...props } = {}) {
   const color = dark ? '#6B6C71' : null;
   const opacity = dark ? '100%' : '100%';
   return (
-    <Box display="flex" alignItems="center">
+    <Box display="flex" alignItems="center" {...props}>
       <LogoSVG
         opacity={opacity}
         width={width || (withText && '182px') || '46px'}

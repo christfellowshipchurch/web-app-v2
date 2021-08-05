@@ -50,7 +50,7 @@ function Contact() {
   return (
     <Styled.Contact>
       <Box mb="xs">
-        <Logo dark />
+        <Logo dark justifyContent={{ xs: "center", lg: "flex-start" }} />
       </Box>
       <Box display="flex" flexDirection="column">
         <Text variant="h4" color="neutrals.100" opacity="33%">
