@@ -203,7 +203,7 @@ export default function MetadataCallout({ data }) {
                 Contact
               </Styled.CalloutDetailsListItemLabel>
               <Box>
-                {metadata.contactEmail ? (<a href="mailto:{metadata.contactEmail}">{metadata.contactName}</a>) : metadata.contactName}
+                {metadata.contactEmail ? (<a href="mailto:{metadata.contactEmail}">{metadata.contactName}</a>) : metadata.contactName}<br />
                 {metadata.contactPhone ? (<a href="tel:{metadata.contactPhone}">{metadata.contactPhone}</a>) : null}
               </Box>
             </Styled.CalloutDetailsListItem>
