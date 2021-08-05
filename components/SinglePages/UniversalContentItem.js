@@ -81,8 +81,8 @@ export default function Page({ data, campuses = [], dropdownData } = {}) {
           )}
           {data.title && (
             <Heading
-              fontSize={{ _: 'h2', md: 'h1' }}
-              lineHeight={{ _: 'h2', md: 'h1' }}
+              fontSize={{ _: '30px', md: 'h1' }}
+              lineHeight={{ _: '36px', md: 'h1' }}
               color="fg"
               fontWeight="800"
               textTransform="uppercase"
