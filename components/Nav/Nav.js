@@ -94,7 +94,7 @@ function Nav(props = {}) {
           />,
         ]
       )}
-      <ClientSideComponent>
+      <ClientSideComponent display={{ _: 'none', md: 'block' }}>
         {authenticated ? (
           <CurrentUserProvider
             Component={UserAvatar}
@@ -143,10 +143,35 @@ function Nav(props = {}) {
         <List py="xs" space="0">
           {/* Mobile Watch Online */}
           <Box as="li" display={{ _: 'inline', md: 'none' }}>
+            <ClientSideComponent>
+              {authenticated && (
+                <Menu.Link>
+                  <Box
+                    borderBottom="solid lightgrey 1px"
+                    ml="s"
+                    pl="s"
+                    py="s"
+                    mr="base"
+                    mb="s"
+                    display="flex"
+                    alignItems="center"
+                  >
+                    <CurrentUserProvider
+                      Component={UserAvatar}
+                      handleAuthClick={handleAuthClick}
+                      size={25}
+                    />
+                    <Box as="p" ml="xs">
+                      Profile
+                    </Box>
+                  </Box>
+                </Menu.Link>
+              )}
+            </ClientSideComponent>
             <Menu.Link>
               <QuickAction
                 py="xs"
-                type="link"
+                variant="link"
                 icon
                 data={props.data.quickAction}
                 onClick={() =>

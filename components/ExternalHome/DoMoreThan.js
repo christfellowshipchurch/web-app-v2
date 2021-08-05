@@ -10,6 +10,7 @@ const DoMoreThan = ({ maxWidth }) => (
         'For the past 35 years, we’ve helped thousands of people just like you to... <br/> <br/><b> → Find people to do life with <br/>→ Break free from the pain of their past<br/> → Thrive in their marriage <br/> → Become a better parent <br/> → Experience financial freedom</b> <br/> <br/> What we’ve done for them, we want to do for you.'
       }
       image={'/do-more-external.png'}
+      objectFit="contain"
       contentLayout="RIGHT"
       imageRatio="3by4"
       actions={[

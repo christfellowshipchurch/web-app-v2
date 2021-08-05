@@ -83,8 +83,12 @@ const BackgroundVideo = styled.video`
   bottom: 0;
   right: 0;
 
-  min-width: 100%;
-  min-height: 110%;
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    width: 100%;
+    height: 100%;
+  }
+
+  object-fit: cover;
 `;
 
 const VideoOverlay = styled.div`

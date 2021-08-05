@@ -49,6 +49,7 @@ function ContentBlock(props = {}) {
             mask={props?.imageMask}
             source={props.image}
             aspectRatio={props.imageRatio}
+            objectFit={props?.objectFit}
           />
         </Styled.Media>
       )}
@@ -113,6 +114,7 @@ ContentBlock.propTypes = {
   imageAlt: PropTypes.string,
   imageRatio: PropTypes.string,
   images: PropTypes.array,
+  objectFit: PropTypes.string,
   openLinksInNewTab: PropTypes.bool,
   secondaryCallToAction: PropTypes.object,
   subtitle: PropTypes.string,
@@ -135,6 +137,7 @@ ContentBlock.propTypes = {
 
 ContentBlock.defaultProps = {
   image: '',
+  objectFit: 'cover',
 };
 
 export default ContentBlock;
