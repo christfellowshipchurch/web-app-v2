@@ -322,7 +322,7 @@ function HomeFeedContent(props = {}) {
       </Section>
       <FullWidthCTA mt={{ xl: '-150px' }} py="xxl" justifyContent="flex-start">
         <Heading
-          fontSize="66px"
+          fontSize={{ xs: "40px", lg: "66px" }}
           textAlign="center"
           lineHeight={theme.lineHeights.heading}
           px="m"
