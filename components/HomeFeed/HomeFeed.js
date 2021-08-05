@@ -210,6 +210,7 @@ function HomeFeedCTA({ authenticated }) {
           height: '100%',
         },
       }}
+      justify={'right'}
       title={
         <>
           <Heading color="neutrals.900" variant="h2" fontWeight="800">
@@ -245,6 +246,7 @@ function HomeFeedCTA({ authenticated }) {
           height: '100%',
         },
       }}
+      justify={'right'}
       title={
         <>
           <Heading color="neutrals.900" variant="h2" fontWeight="800">
