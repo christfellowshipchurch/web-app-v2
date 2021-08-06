@@ -4,6 +4,7 @@ import { themeGet } from '@styled-system/theme-get';
 
 import { amplitude, gtag } from 'lib/analytics';
 import { Box, Image, Button } from 'ui-kit';
+import { htmlToReactParser } from 'utils';
 
 const StartHere = ({ maxWidth }) => {
   const data = [
@@ -22,7 +23,7 @@ const StartHere = ({ maxWidth }) => {
     {
       title: 'Ask a Question',
       subtitle:
-        'Do you have questions or need prayer? Text or call us at (561) 799-5600.',
+        'Do you have questions or need prayer? <a href="tel:1-561-799-5600">Call</a> or <a href="sms:1-561-799-5600">Text</a> us at (561)-700-5600',
       image: 'ask-a-question.png',
       url: 'https://rock.gocf.org/contactus',
       target: '_blank',
@@ -111,7 +112,7 @@ const StartHere = ({ maxWidth }) => {
                   </Box>
                 </Box>
                 <Box as="p" fontSize="1.35rem" lineHeight="1.65rem" mt="s">
-                  {subtitle}
+                  {htmlToReactParser.parse(subtitle)}
                 </Box>
               </StyledCard>
             </Box>
