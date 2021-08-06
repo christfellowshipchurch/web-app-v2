@@ -15,6 +15,7 @@ export default function HeroLanding(props = {}) {
           autoPlay
           muted
           loop
+          playsInline
           src={props?.backgroundVideo}
           type="video/mp4"
         />
