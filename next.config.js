@@ -31,7 +31,7 @@ module.exports = {
         source: '/app-link/:slug',
         destination: '/:slug',
         permanent: false,
-      },
+      }, //eric test
       { source: '/news/download-life-group-curriculum', destination: '/download-life-group-curriculum', permanent: true },
       { source: '/treasure-creek', destination: '/weekday-preschool', permanent: true },
       { source: '/today', destination: 'http://today.longhollow.com', permanent: true },
