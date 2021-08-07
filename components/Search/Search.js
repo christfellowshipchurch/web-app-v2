@@ -16,8 +16,8 @@ import Hit from './Hit';
 import RefinementsList from './RefinementsList';
 
 const searchClient = algoliasearch(
-  'KXH2MCDDBD',
-  '7938b74cef1ef3dd0722fe36e418d2c7'
+  'LSBUYNCS8I',
+  '70aa13c6033700e9f8e71e40b196e12e'
 );
 
 const DEBOUNCE_TIME = 1000;
