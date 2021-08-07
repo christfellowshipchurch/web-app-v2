@@ -12,9 +12,7 @@ export const GET_CONTENT_BY_SLUG = gql`
       id
     }
     coverImage {
-      sources {
-        uri
-      }
+      ...Sources
     }
     sharing {
       url
@@ -26,9 +24,7 @@ export const GET_CONTENT_BY_SLUG = gql`
           title
           summary
           coverImage {
-            sources {
-              uri
-            }
+            ...Sources
           }
           sharing {
             url
@@ -37,11 +33,10 @@ export const GET_CONTENT_BY_SLUG = gql`
       }
     }
   }
+  fragment Sources on Media { sources { uri }}
   fragment WithMedia on ContentItem {
     videos {
-      sources {
-        uri
-      }
+      ...Sources
     }
   }
   query getContentBySlug($slug: String!) {
@@ -50,14 +45,10 @@ export const GET_CONTENT_BY_SLUG = gql`
       ... on WeekendContentItem {
         ...WithMedia
         audios {
-          sources {
-            uri
-          }
+          ...Sources
         }
         seriesImage {
-          sources {
-            uri
-          }
+          ...Sources
         }
         childContentItemsConnection {
           edges {
@@ -69,15 +60,11 @@ export const GET_CONTENT_BY_SLUG = gql`
       }
       ... on MediaContentItem {
         audios {
-          sources {
-            uri
-          }
+          ...Sources
         }
         ...WithMedia
         seriesImage {
-          sources {
-            uri
-          }
+          ...Sources
         }
         childContentItemsConnection {
           edges {
@@ -100,11 +87,6 @@ export const GET_CONTENT_BY_SLUG = gql`
         childContentItemsConnection(orderBy: { field: DATE, direction: DESC }) {
           edges {
             node {
-              id
-              title
-              sharing {
-                url
-              }
               ...BaseContentItem
             }
           }
@@ -122,9 +104,7 @@ export const GET_CONTENT_BY_SLUG = gql`
           title
           body
           image {
-            sources {
-              uri
-            }
+            ...Sources
           }
           buttonText
           buttonLink
@@ -133,13 +113,26 @@ export const GET_CONTENT_BY_SLUG = gql`
         secondaryHTML
         redirectURL
         dates
+        childContentItemsConnection {
+          edges {
+            node {
+              ...BaseContentItem
+              ... on UniversalContentItem {
+                campus {
+                  id
+                  name
+                }
+                linkText
+                linkURL
+              }
+            }
+          }
+        }
         socialMedia {
           title
           summary
           image {
-            sources {
-              uri
-            }
+            ...Sources
           }
         }
       }

@@ -20,33 +20,34 @@ Styled.Container = styled(Box)`
 `;
 
 Styled.Image = styled(Image)`
-  height: 100%;
-  object-fit: cover;
+  height: auto;
   width: 100%;
+
+  filter: drop-shadow(0px 20px 48px rgba(0, 0, 0, 0.25));
 
   ${system}
 `;
 
 Styled.ImageContainer = styled(Box)`
   margin-bottom: ${themeGet('space.m')};
-  object-fit: cover;
   order: initial;
-  filter: drop-shadow(0px 20px 48px rgba(0, 0, 0, 0.25));
 
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    margin-bottom: 0;
     flex: 1 0 50%;
-    height: 245px;
-    margin-bottom: 0;
-    max-width: 400px;
-  }
-
-  @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
-    margin-bottom: 0;
+    justify-content: center;
+    align-items: center;
+    display: flex;
   }
 
   ${system}
 `;
 
-Styled.TextContainer = styled(Box)``;
+Styled.TextContainer = styled(Box)`
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    margin-bottom: 0;
+    flex: 1 0 50%;
+  }
+`;
 
 export default Styled;

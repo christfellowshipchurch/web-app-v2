@@ -25,7 +25,7 @@ import IDS from 'config/ids';
 import { initializeApollo } from 'lib/apolloClient';
 import { Info } from 'phosphor-react';
 import { useTheme } from 'styled-components';
-import { GET_STAFF } from 'hooks/useStaff';
+// import { GET_STAFF } from 'hooks/useStaff';
 import { GET_MINISTRY_CONTENT } from 'hooks/useMinistryContent';
 import { GET_CAMPUSES } from 'hooks/useCampuses';
 import { GET_UNIVERSAL_CONTENT_ITEM_BY_SLUG } from 'hooks/useUniversalContentItemBySlug';
@@ -88,14 +88,6 @@ export default function Page({
           lg: 'xxl',
         }}
       />
-      {node.htmlContent && (
-        <Section>
-          <Longform
-            mb={{ _: 'l', md: 'xxl' }}
-            dangerouslySetInnerHTML={{ __html: node.htmlContent }}
-          />
-        </Section>
-      )}
       {links?.length ? (
         <Section contentProps={{ p: '0 !important' }}>
           <EventsCallout
@@ -128,6 +120,14 @@ export default function Page({
           </EventsCallout>
         </Section>
       ) : null}
+      {node.htmlContent && (
+        <Section>
+          <Longform
+            mb={{ _: 'l', md: 'xxl' }}
+            dangerouslySetInnerHTML={{ __html: node.htmlContent }}
+          />
+        </Section>
+      )}
       {childContent?.length ? (
         <Section>
           <CampusFilter
@@ -199,7 +199,7 @@ export default function Page({
           </CardGrid>
         </Section>
       ) : null}
-      {staff?.length ? (
+      {/*staff?.length ? (
         <>
           <PageSplit title="Meet the Staff" />
           <Section
@@ -223,7 +223,7 @@ export default function Page({
             ))}
           </Section>
         </>
-      ) : null}
+      ) : null*/}
       {extraCTA?.length ? (
         <>
           <PageSplit title="Connect" />
@@ -242,11 +242,11 @@ export default function Page({
           </Section>
         </>
       ) : null}
-      {data.secondaryHTML && (
+      {node.secondaryHTML && (
         <Section>
           <Longform
             mb={{ _: 'l', md: 'xxl' }}
-            dangerouslySetInnerHTML={{ __html: data.secondaryHTML }}
+            dangerouslySetInnerHTML={{ __html: node.secondaryHTML }}
           />
         </Section>
       )}
@@ -268,14 +268,14 @@ export async function getStaticProps({ params }) {
   const pageData = pageResponse?.data?.getContentBySlug;
 
   let staffResponse;
-  if (pageData?.ministry) {
-    staffResponse = await apolloClient.query({
-      query: GET_STAFF,
-      variables: {
-        ministry: pageData?.ministry,
-      },
-    });
-  }
+  // if (pageData?.ministry) {
+  //   staffResponse = await apolloClient.query({
+  //     query: GET_STAFF,
+  //     variables: {
+  //       ministry: pageData?.ministry,
+  //     },
+  //   });
+  // }
 
   const ministryResponse = await apolloClient.query({
     query: GET_MINISTRY_CONTENT,

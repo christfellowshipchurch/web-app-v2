@@ -47,7 +47,7 @@ function FullLengthSermon(props = {}) {
         backdrop={false}
         content={
           Boolean(
-            (clips?.length &&
+            (!!clips?.length &&
               clips.some(
                 clip => clip?.videos?.length || clip?.audios?.length
               )) ||
@@ -128,7 +128,7 @@ function FullLengthSermon(props = {}) {
         display={{ _: 'none', lg: 'block', xl: 'block' }}
       >
         <Heading variant="h5" color="neutrals.500">
-          {clips?.length ? 'FULL MESSAGE' : 'MORE MESSAGES'}
+          {clips?.length ? 'FULL MESSAGE' : ''}
         </Heading>
         <Styled.SermonContainer mt="s">
           <Styled.SermonImage
@@ -136,7 +136,7 @@ function FullLengthSermon(props = {}) {
             src={
               clips?.length
                 ? props.sermon?.coverImage?.sources?.[0]?.uri
-                : props.sermon?.moreMessagesImage?.sources?.[0]?.uri
+                : '/more-messages.jpeg'
             }
             onClick={() =>
               router.push(
@@ -210,6 +210,7 @@ function HomeFeedCTA({ authenticated }) {
           height: '100%',
         },
       }}
+      justify={'right'}
       title={
         <>
           <Heading color="neutrals.900" variant="h2" fontWeight="800">
@@ -245,6 +246,7 @@ function HomeFeedCTA({ authenticated }) {
           height: '100%',
         },
       }}
+      justify={'right'}
       title={
         <>
           <Heading color="neutrals.900" variant="h2" fontWeight="800">
@@ -306,8 +308,8 @@ function HomeFeedContent(props = {}) {
             breakpoints={[{ breakpoint: 'lg', columns: 1 }]}
             mb={{ _: 'l', md: 'xxl' }}
           >
-            {largeArticle && <HomeFeedLargeArticle article={largeArticle} />}
-            {miniArticles?.length && (
+            {!!largeArticle && <HomeFeedLargeArticle article={largeArticle} />}
+            {!!miniArticles?.length && (
               <HomeFeedArticles articles={miniArticles} />
             )}
           </CardGrid>
@@ -320,7 +322,7 @@ function HomeFeedContent(props = {}) {
       </Section>
       <FullWidthCTA mt={{ xl: '-150px' }} py="xxl" justifyContent="flex-start">
         <Heading
-          fontSize="66px"
+          fontSize={{ xs: "40px", lg: "66px" }}
           textAlign="center"
           lineHeight={theme.lineHeights.heading}
           px="m"
@@ -348,7 +350,7 @@ function HomeFeedContent(props = {}) {
             display="inline"
             fontWeight="600"
             onClick={() =>
-              router.push('/next-steps/start-a-discipleship-group')
+              router.push('/about/our-mission-and-strategy')
             }
           >
             Discipleship Journey

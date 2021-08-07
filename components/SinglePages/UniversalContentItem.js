@@ -1,14 +1,16 @@
 import { useRouter } from 'next/router';
 import { format, isSameMonth, isSameYear, parseISO } from 'date-fns';
 
-import { Layout, MainPhotoHeader } from 'components';
+import { ArticleLink,
+  ArticleLinks, CampusFilter, Layout, MainPhotoHeader } from 'components';
 import { Box, Button, CardGrid, Heading, Longform, Section } from 'ui-kit';
-import { getIdSuffix, getMetaData } from 'utils';
+import { getIdSuffix, getMetaData, getSlugFromURL } from 'utils';
+
 import IDS from 'config/ids';
 import MetadataCallout, { getMetadataObj } from 'components/MetadataCallout';
 import MarketingHeadline from 'components/MarketingHeadline';
 
-export default function Page({ data, dropdownData } = {}) {
+export default function Page({ data, campuses = [], dropdownData } = {}) {
   const router = useRouter();
 
   if (data?.loading || router.isFallback) {
@@ -54,6 +56,8 @@ export default function Page({ data, dropdownData } = {}) {
     dateStr = format(dates[0], 'MMMM d, y');
   }
 
+  const childContent = data.childContentItemsConnection?.edges;
+
   return (
     <Layout meta={getMetaData(data)} bg="bg_alt" dropdownData={dropdownData}>
       <MainPhotoHeader
@@ -77,24 +81,13 @@ export default function Page({ data, dropdownData } = {}) {
           )}
           {data.title && (
             <Heading
-              fontSize="h1"
-              lineHeight="h1"
+              fontSize={{ _: '30px', md: 'h1' }}
+              lineHeight={{ _: '36px', md: 'h1' }}
               color="fg"
               fontWeight="800"
               textTransform="uppercase"
             >
               {data.title}
-            </Heading>
-          )}
-          {isVolunteerPositions && data.ministry && (
-            <Heading
-              fontSize="h3"
-              lineHeight="h3"
-              color="neutrals.500"
-              fontWeight="800"
-              opacity="60%"
-            >
-              {data.ministry}
             </Heading>
           )}
           {data.publishDate && isArticle && (
@@ -164,6 +157,33 @@ export default function Page({ data, dropdownData } = {}) {
               />
             ))}
           </CardGrid>
+        </Section>
+      ) : null}
+      {childContent?.length ? (
+        <Section>
+          <CampusFilter
+            mb={{ _: 'l', md: 'xxl' }}
+            filterWidth="200px"
+            data={childContent}
+            campuses={campuses}
+          >
+            {({ filteredData }) => (
+              <ArticleLinks>
+                {filteredData.map(({ node }) => (
+                  <ArticleLink
+                    key={node.id}
+                    imageSrc={node.coverImage?.sources?.[0]?.uri}
+                    title={node.title}
+                    description={node.summary}
+                    urlText={node.linkText}
+                    url={
+                      node.linkURL || `/${getSlugFromURL(node?.sharing?.url)}`
+                    }
+                  />
+                ))}
+              </ArticleLinks>
+            )}
+          </CampusFilter>
         </Section>
       ) : null}
     </Layout>

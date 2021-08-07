@@ -126,14 +126,14 @@ export default function MetadataCallout({ data }) {
               <Box>{metadata.daysAvailable.join(', ')}</Box>
             </Styled.CalloutDetailsListItem>
           )}
-          {metadata.ministry && (
+          {/*metadata.ministry && (
             <Styled.CalloutDetailsListItem>
               <Styled.CalloutDetailsListItemLabel>
                 Ministry
               </Styled.CalloutDetailsListItemLabel>
               <Box>{metadata.ministry}</Box>
             </Styled.CalloutDetailsListItem>
-          )}
+          )*/}
           {metadata.serviceArea && (
             <Styled.CalloutDetailsListItem>
               <Styled.CalloutDetailsListItemLabel>
@@ -180,15 +180,20 @@ export default function MetadataCallout({ data }) {
                 Location
               </Styled.CalloutDetailsListItemLabel>
               <Box>
-                <Link
+                {(() => {
+                  const inner = metadata.location.name;
+                  if (metadata.gps || metadata.location.address) return (
+                    <Link
                   href={`https://www.google.com/maps/place/${
                     metadata.gps || metadata.location.address
                   }`}
                 >
-                  <Text color="primary" fontWeight="bold" textDecoration="none">
-                    {metadata.location.name}
-                  </Text>
+
+                  <Text color="primary" fontWeight="bold" textDecoration="none">{inner}</Text>
                 </Link>
+                  );
+                  return inner;
+                })()}
               </Box>
             </Styled.CalloutDetailsListItem>
           )}
@@ -198,7 +203,7 @@ export default function MetadataCallout({ data }) {
                 Contact
               </Styled.CalloutDetailsListItemLabel>
               <Box>
-                {metadata.contactEmail ? (<a href="mailto:{metadata.contactEmail}">{metadata.contactName}</a>) : metadata.contactName}
+                {metadata.contactEmail ? (<a href="mailto:{metadata.contactEmail}">{metadata.contactName}</a>) : metadata.contactName}<br />
                 {metadata.contactPhone ? (<a href="tel:{metadata.contactPhone}">{metadata.contactPhone}</a>) : null}
               </Box>
             </Styled.CalloutDetailsListItem>
@@ -211,7 +216,7 @@ export default function MetadataCallout({ data }) {
               <Box>${metadata.cost}</Box>
             </Styled.CalloutDetailsListItem>
           )}
-          {metadata.cost && (
+          {metadata.tripType && (
             <Styled.CalloutDetailsListItem>
               <Styled.CalloutDetailsListItemLabel>
                 Trip Type

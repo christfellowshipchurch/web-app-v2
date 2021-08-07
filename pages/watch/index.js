@@ -56,7 +56,7 @@ export default function Watch({
             }}
             href={live ? liveStreams[0].webViewUrl : 'about/schedule'}
           >
-            {live ? 'Watch now' : 'Our live schedule'}
+            {live ? 'Watch Now' : 'Our Weekly Schedule'}
           </a>
         }
         secondaryButton={
@@ -69,7 +69,7 @@ export default function Watch({
             }}
             href="/next-steps/join-us-online"
           >
-            {live ? 'Other ways to watch' : 'How to watch'}
+            {live ? 'Other Ways to Watch' : 'How to Watch'}
           </a>
         }
       />
@@ -234,14 +234,12 @@ export default function Watch({
                 title={page.title}
                 description={page.summary}
                 textProps={{ px: { lg: 'xl' } }}
-                actions={page.ctaLinks?.map(link => ({
-                  label: link?.buttonText,
-                  onClick: () =>
-                    router.push(
-                      link?.buttonLink ||
-                        `/${getSlugFromURL(page?.sharing?.url)}`
-                    ),
-                }))}
+                actions={[
+                  {
+                    label: page.linkText || undefined,
+                    onClick: () => router.push(page.linkURL || `/${getSlugFromURL(page?.sharing?.url)}`),
+                  },
+                ]}
               />
             ))}
           </Section>

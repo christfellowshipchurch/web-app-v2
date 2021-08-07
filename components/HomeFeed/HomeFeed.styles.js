@@ -30,7 +30,7 @@ Styled.SermonContainer = styled(Box)`
 
 Styled.SermonImage = styled(Image)`
   // This is causing the image to disappear in Chrome
-  // object-fit: cover;
+  object-fit: cover;
   width: 100%;
 
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {

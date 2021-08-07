@@ -1,6 +1,8 @@
 import { getIdSuffix, parseItemId } from 'utils';
 import { initializeApollo } from 'lib/apolloClient';
 import { GET_CONTENT_BY_SLUG } from 'hooks/useContentBySlug';
+import { GET_CAMPUSES } from 'hooks/useCampuses';
+
 import {
   UniversalContentItem,
   ContentSeriesContentItem,
@@ -10,12 +12,12 @@ import {
 } from 'components/SinglePages';
 import IDS from 'config/ids';
 
-export default function Page({ data, type, dropdownData }) {
+export default function Page({ data, campuses, type, dropdownData }) {
   switch (type) {
     case 'DevotionalContentItem':
       return <DevotionalContentItem data={data} dropdownData={dropdownData} />;
     case 'UniversalContentItem':
-      return <UniversalContentItem data={data} dropdownData={dropdownData} />;
+      return <UniversalContentItem data={data} campuses={campuses} dropdownData={dropdownData} />;
     case 'ContentChannel':
       return <ContentChannel series={data} dropdownData={dropdownData} />;
     case 'ContentSeriesContentItem':
@@ -41,6 +43,10 @@ export async function getServerSideProps(context) {
         slug: context.params.slug,
       },
       skip: !context.params.slug,
+    });
+
+    const campusesResponse = await apolloClient.query({
+      query: GET_CAMPUSES,
     });
 
     const data = pageResponse?.data?.getContentBySlug;
@@ -86,6 +92,7 @@ export async function getServerSideProps(context) {
         props: {
           initialApolloState: apolloClient.cache.extract(),
           data: pageResponse?.data?.getContentBySlug,
+          campuses: campusesResponse.data?.campuses || [],
           type,
         },
       };

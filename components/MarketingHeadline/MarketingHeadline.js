@@ -112,7 +112,7 @@ function MarketingHeadline({
             whiteSpace="pre"
             mt="xs"
             textAlign={{ _: 'center', lg: justify }}
-            dangerouslySetInnerHTML={{ __html: description }}
+            dangerouslySetInnerHTML={{ __html: description.replace(/\\n/g, '<br />') }}
           />
         )}
         {details && (
