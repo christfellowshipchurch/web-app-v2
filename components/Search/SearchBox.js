@@ -8,6 +8,7 @@ const SearchBox = ({ onSearchStateChange, currentRefinement, refine }) => {
   return (
     <Styled.SearchContainer>
       <Styled.SearchBox
+        autoFocus
         type="search"
         placeholder="Search"
         value={currentRefinement}
