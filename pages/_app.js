@@ -10,6 +10,7 @@ import './StreamChatOverrides.css';
 configureNProgress();
 
 function App({ Component, pageProps }) {
+  window.history.scrollRestoration = 'manual';
   return (
     <AppProvider initialApolloState={pageProps.initialApolloState}>
       <>
