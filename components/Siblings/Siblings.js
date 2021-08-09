@@ -23,7 +23,6 @@ export default function Siblings({ root }) {
           text={node.title}
           color="white"
           src={node.coverImage.sources?.[0].uri}
-          height="225px"
           maxWidth="300px"
           mr="m"
           mb="m"
