@@ -39,14 +39,10 @@ export const TextContainer = styled(Box)`
   @media screen and (min-width: ${props => props.staticHeight ? 0 : themeGet('breakpoints.md')}) {
     position: absolute;
     bottom: 0;
-    top: 0;
     left: 0;
     right: 0;
     width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: flex-end;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 24.48%, rgba(0, 0, 0, 0.75) 100%);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.95) 100%);
   }
   ${system}
 `;

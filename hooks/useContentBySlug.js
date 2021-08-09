@@ -23,6 +23,7 @@ export const GET_CONTENT_BY_SLUG = gql`
           id
           title
           summary
+          publishDate
           coverImage {
             ...Sources
           }
