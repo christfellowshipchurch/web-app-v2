@@ -33,7 +33,6 @@ export default function Series({ item, dropdownData } = {}) {
 
   return (
     <Layout meta={getMetaData(item)} dropdownData={dropdownData}>
-      <Section>
         <Heading
           mt="l"
           textAlign="center"
@@ -65,7 +64,6 @@ export default function Series({ item, dropdownData } = {}) {
             />
           ))}
         </Box>
-      </Section>
       {totalSeriesCount > series?.length ? (
         <Button
           onClick={() => {
