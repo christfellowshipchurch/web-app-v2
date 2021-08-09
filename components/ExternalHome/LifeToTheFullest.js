@@ -94,7 +94,12 @@ const LifeToTheFullest = () => {
                 />
                 <Box
                   as="p"
-                  fontSize={{ _: '1.50rem', sm: '1.75rem', md: '2.3rem' }}
+                  fontSize={{
+                    _: '1.50rem',
+                    sm: '1.75rem',
+                    md: '2.03rem',
+                    lg: '2.3rem',
+                  }}
                   position="relative"
                   pl="xs"
                 >{`${i + 1}. ${title}`}</Box>
