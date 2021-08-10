@@ -6,7 +6,11 @@ import { getUrlFromRelatedNode } from 'utils';
 import { Box, CardGrid, DefaultCard, Loader } from 'ui-kit';
 import { CustomLink } from 'components';
 
+import useFeatureAction from 'hooks/useFeatureAction';
+
 function DiscoverItemsList(props = {}) {
+  const [onPressActionItem] = useFeatureAction();
+
   if (props.loading) return <Loader text="Loading your items" />;
 
   const noContentItems = props.data.length === 0;
@@ -22,11 +26,20 @@ function DiscoverItemsList(props = {}) {
           boxShadow="none"
           coverImage={contentItem?.coverImage?.sources[0]?.uri}
           description={contentItem?.summary}
-          href={getUrlFromRelatedNode(contentItem?.node)}
+          href={getUrlFromRelatedNode({
+            ...contentItem?.relatedNode,
+            routing: contentItem?.routing,
+          })}
           key={contentItem?.id}
           scaleCard={false}
           scaleCoverImage={true}
           title={contentItem?.title}
+          onClick={e =>
+            onPressActionItem(e, {
+              action: contentItem?.action,
+              relatedNode: contentItem?.relatedNode,
+            })
+          }
         />
       ))}
     </CardGrid>
