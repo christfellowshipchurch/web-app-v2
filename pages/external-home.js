@@ -154,8 +154,9 @@ export default function ExternalLandingPage(props = {}) {
             actions={[
               {
                 title: 'Subscribe for Updates',
-                url:
-                  'https://church.us11.list-manage.com/subscribe?u=76848e191018191e2e2d01d77&id=3265404466',
+                relatedNode: {
+                  url: 'http://eepurl.com/hAk7aP',
+                },
                 mt: '-0.8rem',
               },
             ]}
