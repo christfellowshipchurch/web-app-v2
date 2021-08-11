@@ -25,12 +25,7 @@ const PrayerCard = (props = {}) => {
             </Box>
           )}
           {props?.coverImage && (
-            <Avatar
-              src={props?.coverImage}
-              objectFit="cover"
-              height="60px"
-              width="60px"
-            />
+            <Avatar src={props?.coverImage} height="60px" width="60px" />
           )}
         </Box>
 
