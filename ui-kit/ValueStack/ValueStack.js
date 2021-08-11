@@ -12,11 +12,11 @@ import PropTypes from 'prop-types';
 
 import Styled from './ValueStack.styles';
 
-const ValueStack = ({ items, backgroundColorMap }) => {
+const ValueStack = ({ items, backgroundColorMap, ...props }) => {
   if (!items.length) return null;
 
   return (
-    <Styled>
+    <Styled {...props}>
       {items.map((item, i) => (
         <Styled.Item
           bg={backgroundColorMap[i % backgroundColorMap.length]}

@@ -55,6 +55,7 @@ export default function ExternalLandingPage(props = {}) {
     >
       {/* Value Stack */}
       <ValueStack
+        display={{ _: 'none', md: 'flex' }}
         backgroundColorMap={['secondary', 'secondary']}
         items={[
           'Know God Personally',

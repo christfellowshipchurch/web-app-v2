@@ -32,16 +32,17 @@ const Content = styled.div`
   justify-content: center;
   z-index: 2;
   color: ${themeGet('colors.white')};
-  padding: 20px;
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
     max-width: 100%;
     margin-bottom: 0px;
+    padding: 0px;
   }
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     max-width: 60%;
     margin-top: 0px;
     margin-bottom: ${themeGet('space.xxl')};
+    padding: 20px;
   }
 
   ${system}
@@ -51,8 +52,8 @@ const Title = styled.h1`
   text-align: center;
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
-    font-size: 3rem;
-    line-height: 3rem;
+    font-size: 2rem;
+    line-height: 2rem;
     margin-bottom: ${themeGet('space.xs')};
   }
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
@@ -68,7 +69,7 @@ const Summary = styled.h2`
   text-align: center;
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     font-size: 2.3rem;

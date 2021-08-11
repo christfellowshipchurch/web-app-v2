@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
-import { system, theme } from 'ui-kit';
+import { system } from 'ui-kit';
 
 const backgroundColor = ({ bg }) => css`
   background: ${themeGet(`colors.${bg}`)};
@@ -16,6 +16,8 @@ const ValueStack = styled.div`
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     flex-direction: row;
   }
+
+  ${system}
 `;
 
 const Item = styled.h2`
