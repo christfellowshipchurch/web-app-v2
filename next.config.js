@@ -31,7 +31,7 @@ module.exports = {
         source: '/app-link/:slug',
         destination: '/:slug',
         permanent: false,
-      }, //eric test
+      }, //eric test again
       { source: '/24-hours-of-prayer', destination: 'https://prayerteam.longhollow.com', permanent: true },
       { source: '/news/download-life-group-curriculum', destination: '/download-life-group-curriculum', permanent: true },
       { source: '/treasure-creek', destination: '/weekday-preschool', permanent: true },
