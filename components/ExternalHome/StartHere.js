@@ -23,7 +23,7 @@ const StartHere = ({ maxWidth }) => {
     {
       title: 'Ask a Question',
       subtitle:
-        'Do you have questions or need prayer? </br> <a href="tel:1-561-799-5600">Call</a> or <a href="sms:1-561-799-5600">Text</a> us at (561)&#8288;-700&#8288;-5600',
+        'Have questions or need prayer? </br> <a href="tel:1-561-799-5600">Call</a> or <a href="sms:1-561-799-5600">Text</a> us at 561&#8288-700&#8288-5600',
       image: 'ask-a-question.jpeg',
       url: 'https://rock.gocf.org/contactus',
       target: '_blank',
