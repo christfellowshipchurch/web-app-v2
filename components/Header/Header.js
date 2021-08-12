@@ -8,6 +8,8 @@ import Styled from './Header.styles';
 import { getMenuItem } from 'components/Nav/Nav';
 import navigation from 'config/navigation';
 
+import MobileCountdown from './MobileCountdown';
+
 function Header({ dropdownData }) {
   const [active, setActive] = useState(false);
   const [hoveredItem, setHoveredItem] = useState();
@@ -22,6 +24,7 @@ function Header({ dropdownData }) {
             </a>
           </Link>
           <Styled.ListIcon size="22" onClick={() => setActive(!active)} />
+          <MobileCountdown />
         </Styled.LogoContainer>
         <NavigationProvider
           Component={Nav}
