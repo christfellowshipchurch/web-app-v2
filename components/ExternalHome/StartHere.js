@@ -23,8 +23,8 @@ const StartHere = ({ maxWidth }) => {
     {
       title: 'Ask a Question',
       subtitle:
-        'Do you have questions or need prayer? <a href="tel:1-561-799-5600">Call</a> or <a href="sms:1-561-799-5600">Text</a> us at (561)&#8288;-700&#8288;-5600',
-      image: 'ask-a-question.png',
+        'Do you have questions or need prayer? </br> <a href="tel:1-561-799-5600">Call</a> or <a href="sms:1-561-799-5600">Text</a> us at (561)&#8288;-700&#8288;-5600',
+      image: 'ask-a-question.jpeg',
       url: 'https://rock.gocf.org/contactus',
       target: '_blank',
     },
@@ -111,7 +111,12 @@ const StartHere = ({ maxWidth }) => {
                     </Button>
                   </Box>
                 </Box>
-                <Box as="p" fontSize="1.35rem" lineHeight="1.65rem" mt="s">
+                <Box
+                  as="p"
+                  fontSize={{ _: '1.2rem', lg: '1.35rem' }}
+                  lineHeight="1.65rem"
+                  mt="s"
+                >
                   {htmlToReactParser.parse(subtitle)}
                 </Box>
               </StyledCard>
