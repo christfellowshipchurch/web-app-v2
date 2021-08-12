@@ -23,22 +23,3 @@ export default function Devotionals(props) {
     </Layout>
   );
 }
-
-/**
- * todo : Need to fix ServerSideProps, currenlty breaking page.
- */
-
-// export async function getServerSideProps(context) {
-//   const apolloClient = initializeApollo();
-
-//   await apolloClient.query({
-//     query: GET_CONTENT_ITEM,
-//     variables: { itemId: getItemId(context.params.title) },
-//   });
-
-//   return {
-//     props: {
-//       initialApolloState: apolloClient.cache.extract(),
-//     },
-//   };
-// }
