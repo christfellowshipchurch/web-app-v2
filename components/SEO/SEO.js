@@ -66,8 +66,8 @@ function SEO(props = {}) {
   return (
     <Head>
       <title>{title}</title>
-      <meta property="og:title" content={title} />
-      <meta name="twitter:title" content={title} />
+      <meta property="og:title" content={props.meta.title} />
+      <meta name="twitter:title" content={props.meta.title} />
       <meta name="keywords" content={props.meta.keywords} />
       <meta name="description" content={props.meta.description} />
       <meta property="og:description" content={props.meta.description} />
