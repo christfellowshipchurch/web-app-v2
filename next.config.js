@@ -48,7 +48,6 @@ module.exports = {
       { source: '/tablemenu', destination: 'https://docs.google.com/document/u/2/d/e/2PACX-1vS0ckSAxPL38NrJ7on2g7jVvF-DcRmwvWkcOt43clkB269vTPKPCO9A37Bk6aNkr8TkQpJ7M0iD87Ii/pub', permanent: true },
       { source: '/new', destination: 'https://my.longhollow.com/new', permanent: true },
       { source: '/next', destination: 'https://my.longhollow.com/NextSteps', permanent: true },
-      { source: '/notes', destination: 'http://bible.com/events/48742226', permanent: true },
       { source: '/f260', destination: '/follow-the-f260-bible-reading-plan', permanent: true },
       { source: '/nt260', destination: '/follow-the-nt260-bible-reading-plan', permanent: true },
       { source: '/greecetrip', destination: 'https://discoverycruisesandtravel.com/tour/robby-and-kandi-gallaty/', permanent: true },
@@ -218,7 +217,8 @@ module.exports = {
       { source: '/gallatin', destination: '/', permanent: true },
       { source: '/events/lh-kids-baptism-classes', destination: '/kids-baptism-classes', permanent: true },
       { source: '/events/supporting-those-who-struggle-event', destination: '/supporting-those-who-struggle-event', permanent: true },
-      { source: '/events/light-up-the-pike', destination: 'https://lightupthepike.com', permanent: true }
+      { source: '/events/light-up-the-pike', destination: 'https://lightupthepike.com', permanent: true },
+      { source: '/notes', destination: 'http://bible.com/events/48746366', permanent: true }
     ];
   },
 };
