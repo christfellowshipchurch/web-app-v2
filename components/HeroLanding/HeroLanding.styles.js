@@ -1,7 +1,7 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
-import { system, theme } from 'ui-kit';
+import { system } from 'ui-kit';
 
 const HeroLanding = styled.div`
   z-index: 0;
@@ -95,7 +95,7 @@ const BackgroundVideo = styled.video`
 const VideoOverlay = styled.div`
   z-index: 1;
   position: absolute;
-  top: 0;
+  top: -500px;
   left: 0;
   right: 0;
   bottom: 0;
