@@ -94,36 +94,39 @@ function Nav(props = {}) {
           />,
         ]
       )}
-      <ClientSideComponent display={{ _: 'none', md: 'block' }}>
-        {authenticated ? (
-          <CurrentUserProvider
-            Component={UserAvatar}
-            handleAuthClick={handleAuthClick}
-          />
-        ) : (
-          <Box
-            as="a"
-            href="#0"
-            display="block"
-            border="2px solid"
-            borderColor={props?.darkMode ? 'white' : 'fg'}
-            borderRadius="50%"
-            lineHeight="38px"
-            size="45px"
-            textAlign="center"
-            onClick={handleAuthClick}
-          >
-            <Icon
-              name="user"
-              color={props?.darkMode ? 'white' : 'fg'}
-              size="28px"
+      {/* Hide avatar for dark mode */}
+      {!props.darkMode && (
+        <ClientSideComponent display={{ _: 'none', md: 'block' }}>
+          {authenticated ? (
+            <CurrentUserProvider
+              Component={UserAvatar}
+              handleAuthClick={handleAuthClick}
             />
-            <Box as="span" className="srt">
-              User
+          ) : (
+            <Box
+              as="a"
+              href="#0"
+              display="block"
+              border="2px solid"
+              borderColor={props?.darkMode ? 'white' : 'fg'}
+              borderRadius="50%"
+              lineHeight="38px"
+              size="45px"
+              textAlign="center"
+              onClick={handleAuthClick}
+            >
+              <Icon
+                name="user"
+                color={props?.darkMode ? 'white' : 'fg'}
+                size="28px"
+              />
+              <Box as="span" className="srt">
+                User
+              </Box>
             </Box>
-          </Box>
-        )}
-      </ClientSideComponent>
+          )}
+        </ClientSideComponent>
+      )}
       <Menu
         cardContentProps={{
           p: '0',
