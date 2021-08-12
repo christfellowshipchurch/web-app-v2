@@ -21,7 +21,7 @@ function MobileCountdown(props) {
   const isLive = liveStreams.liveStreams.find(ls => ls.isLive);
   if (!isLive) return null;
   return (
-    <Link href="/watch">
+    <Link href="https://live.longhollow.com">
       <StyledText
         ml="xxs"
         fontSize="xs"
