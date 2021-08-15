@@ -32,6 +32,7 @@ module.exports = {
         destination: '/:slug',
         permanent: false,
       }, //eric test again
+      { source: '/prayernight', destination: '/prayer-night-and-wednesday-activities-return-on-august-18', permanent: true },
       { source: '/news/follow-the-f260-bible-reading-plan', destination: '/follow-the-f260-bible-reading-plan', permanent: true },
       { source: '/news/follow-the-f260-nt-bible-reading-plan', destination: '/follow-the-nt260-bible-reading-plan', permanent: true },
       { source: '/coming-up', destination: '/search?category=Events&p=1', permanent: true },
