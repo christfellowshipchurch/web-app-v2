@@ -142,8 +142,8 @@ export default function ExternalLandingPage(props = {}) {
       <Box px="base" py={BASE_VERITCAL_PADDING} bg="neutrals.100">
         <Box mx="auto" maxWidth={1200}>
           <CollectionPreview
-            title="Stay in the Know"
-            contentId="UniversalContentItem:021a93e4715936dcecd0bc57898d6fa5"
+            title="Discover More"
+            contentId="UniversalContentItem:d29e24e1873b0c4f4f645218ca3338ea"
           />
         </Box>
       </Box>
