@@ -43,6 +43,7 @@ export const GET_CONTENT_CHANNEL = gql`
                 isFeatured
                 linkURL
                 linkText
+                dates
                 ctaLinks {
                   title
                   body

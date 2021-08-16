@@ -45,18 +45,25 @@ export async function getStaticProps() {
     },
   });
 
-  const events = await apolloClient.query({
+  const { data: eventsData } = await apolloClient.query({
     query: GET_CONTENT_CHANNEL,
     variables: {
       itemId: getChannelId(IDS.CHANNELS.EVENTS),
     },
+  });
+  const events =
+    [...eventsData?.node?.childContentItemsConnection?.edges] || [];
+  events.sort((a, b) => {
+    const date1 = a.node.dates?.split(',')[0];
+    const date2 = b.node.dates?.split(',')[0];
+    return date1 > date2 ? 1 : -1;
   });
 
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
       articles: articles?.data?.node?.childContentItemsConnection?.edges,
-      events: events?.data?.node?.childContentItemsConnection?.edges,
+      events,
       sermon: {
         ...sermonRequest?.data?.node,
         videos: latestSermon?.videos,
