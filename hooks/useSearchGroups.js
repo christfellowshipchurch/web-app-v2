@@ -50,7 +50,7 @@ export const SEARCH_GROUPS = gql`
 function useSearchGroups(options = {}) {
   const [searchGroups, query] = useLazyQuery(SEARCH_GROUPS, {
     ...options,
-    fetchPolicy: 'no-cache',
+    fetchPolicy: 'network-only',
   });
 
   return [
