@@ -17,7 +17,13 @@ export default function Page({ data, campuses, type, dropdownData }) {
     case 'DevotionalContentItem':
       return <DevotionalContentItem data={data} dropdownData={dropdownData} />;
     case 'UniversalContentItem':
-      return <UniversalContentItem data={data} campuses={campuses} dropdownData={dropdownData} />;
+      return (
+        <UniversalContentItem
+          data={data}
+          campuses={campuses}
+          dropdownData={dropdownData}
+        />
+      );
     case 'ContentChannel':
       return <ContentChannel series={data} dropdownData={dropdownData} />;
     case 'ContentSeriesContentItem':

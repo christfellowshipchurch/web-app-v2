@@ -1,8 +1,14 @@
+import { gql, useQuery } from '@apollo/client';
 import { useRouter } from 'next/router';
 import { format, isSameMonth, isSameYear, parseISO } from 'date-fns';
 
-import { ArticleLink,
-  ArticleLinks, CampusFilter, Layout, MainPhotoHeader } from 'components';
+import {
+  ArticleLink,
+  ArticleLinks,
+  CampusFilter,
+  Layout,
+  MainPhotoHeader,
+} from 'components';
 import { Box, Button, CardGrid, Heading, Longform, Section } from 'ui-kit';
 import { getIdSuffix, getMetaData, getSlugFromURL } from 'utils';
 
@@ -12,6 +18,29 @@ import MarketingHeadline from 'components/MarketingHeadline';
 
 export default function Page({ data, campuses = [], dropdownData } = {}) {
   const router = useRouter();
+
+  // add rock authenticated links
+  const { data: authData } = useQuery(
+    gql`
+      {
+        currentUser {
+          id
+          rock {
+            authToken
+          }
+        }
+      }
+    `
+  );
+  if (authData?.currentUser?.id) {
+    const token = authData.currentUser.rock.authToken;
+    const html = data?.htmlContent || '';
+    const authedHTML = html.replace(
+      /"([^"]*my\.longhollow\.com[^"]*)"/g,
+      (match, p1) => `"${p1}?rckipid=${token}"`
+    );
+    data.htmlContent = authedHTML;
+  }
 
   if (data?.loading || router.isFallback) {
     return null;

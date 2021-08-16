@@ -45,6 +45,7 @@ export async function getStaticProps() {
     },
   });
 
+  // sort events
   const { data: eventsData } = await apolloClient.query({
     query: GET_CONTENT_CHANNEL,
     variables: {
