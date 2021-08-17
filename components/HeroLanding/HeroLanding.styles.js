@@ -35,13 +35,11 @@ const Content = styled.div`
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
     max-width: 100%;
-    margin-bottom: 0px;
     padding: 0px;
   }
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     max-width: 60%;
-    margin-top: 0px;
-    margin-bottom: ${themeGet('space.xxl')};
+    margin-top: ${themeGet('space.base')};
     padding: 20px;
   }
 
