@@ -96,7 +96,7 @@ module.exports = {
       { source: '/online', destination: '/next-steps/join-us-online', permanent: true },
       { source: '/health', destination: '/about/schedule', permanent: true },
       { source: '/start', destination: '/next-steps/starting-point', permanent: true },
-      // { source: '/robbynotes', destination: 'TBD', permanent: true },
+      { source: '/robbynotes', destination: '/wednesday-night-bible-study-notes', permanent: true },
       { source: '/startingpoint', destination: '/next-steps/starting-point', permanent: true },
       { source: '/support', destination: '/connect/support-groups', permanent: true },
       { source: '/marriage', destination: '/next-steps/find-a-life-group', permanent: true },
