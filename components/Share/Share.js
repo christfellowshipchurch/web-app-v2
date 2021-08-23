@@ -11,13 +11,13 @@ const Share = props => {
   if (_isNotBrowser) return null;
 
   const defaultShareMessages = {
-    faceBook: `Check out ${props.title} happening at Christ Fellowship Church!`,
+    faceBook: `Check out this article Christ Fellowship Church!`,
     twitter: `${props.title} at Christ Fellowship Church`,
     email: {
-      subject: `${props.title} at Christ Fellowship Church`,
-      body: `Check out ${props.title} happening at Christ Fellowship Church! I would love for you to join me. \n\n`,
+      subject: `${props.title} - Christ Fellowship Church`,
+      body: `I thought you might be interested in this article from Christ Fellowship: ${document.URL} \n\n`,
     },
-    sms: `Join me for ${props.title} at Christ Fellowship! ${document.URL}`,
+    sms: `I thought you might be interested in this article from Christ Fellowship: ${document.URL}`,
   };
 
   const messages = {
