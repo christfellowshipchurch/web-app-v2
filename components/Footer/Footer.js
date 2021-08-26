@@ -1,7 +1,6 @@
 import React from 'react';
 import { FacebookLogo, InstagramLogo, TwitterLogo } from 'phosphor-react';
 
-import { links } from 'config/metadata';
 import { Box, CardGrid, List, systemPropTypes, Text, theme } from 'ui-kit';
 import { Logo } from 'components';
 import Styled from './Footer.styles';
@@ -50,7 +49,7 @@ function Contact() {
   return (
     <Styled.Contact>
       <Box mb="xs">
-        <Logo dark justifyContent={{ xs: "center", lg: "flex-start" }} />
+        <Logo dark justifyContent={{ xs: 'center', lg: 'flex-start' }} />
       </Box>
       <Box display="flex" flexDirection="column">
         <Text variant="h4" color="neutrals.100" opacity="33%">
@@ -106,7 +105,7 @@ function QuickLinks() {
     <List as="ul" space="xs">
       <Box as="li">
         <Styled.Link
-          href={links.watch}
+          href={'/watch'}
           color={theme.colors.white}
           fontWeight="600"
           opacity="1"
@@ -114,7 +113,7 @@ function QuickLinks() {
           Watch
         </Styled.Link>
         <Styled.Link
-          href={links.search}
+          href={'/serve'}
           color={theme.colors.white}
           fontWeight="600"
           opacity="1"
@@ -122,7 +121,7 @@ function QuickLinks() {
           Search
         </Styled.Link>
         <Styled.Link
-          href={links.give}
+          href={'/online-giving'}
           color={theme.colors.white}
           fontWeight="600"
           opacity="1"
@@ -130,7 +129,7 @@ function QuickLinks() {
           Give
         </Styled.Link>
         <Styled.Link
-          href={links.profile}
+          href={'https://my.longhollow.com/page/673?returnurl=%252fMyAccount'}
           color={theme.colors.white}
           fontWeight="600"
           opacity="1"
