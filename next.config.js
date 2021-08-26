@@ -31,7 +31,8 @@ module.exports = {
         source: '/app-link/:slug',
         destination: '/:slug',
         permanent: false,
-      }, //eric test again
+      }, //eric test again 
+      { source: '/hvillemap', destination: 'https://rock.longhollow.com/Content/ExternalSite/Downloads/HENDERSONVILLE_MAP_COMBO.pdf', permanent: true },
       { source: '/mensnextsteps', destination: '/next-steps-from-mens-night-2021', permanent: true },
       { source: '/prayernight', destination: '/prayer-night-and-wednesday-activities-return-on-august-18', permanent: true },
       { source: '/news/follow-the-f260-bible-reading-plan', destination: '/follow-the-f260-bible-reading-plan', permanent: true },
