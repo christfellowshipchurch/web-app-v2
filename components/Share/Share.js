@@ -4,65 +4,16 @@ import uniqueId from 'lodash/uniqueId';
 
 import { Box, Menu, List, Button, Icon } from 'ui-kit';
 
+import { handleSocialShare, shareMessaging } from './shareUtils.js';
+
 const Share = props => {
   const _isNotBrowser =
     typeof window === 'undefined' || typeof document === 'undefined';
 
   if (_isNotBrowser) return null;
 
-  const defaultShareMessages = {
-    faceBook: `Check out this article Christ Fellowship Church!`,
-    twitter: `${props.title} at Christ Fellowship Church`,
-    email: {
-      subject: `${props.title} - Christ Fellowship Church`,
-      body: `I thought you might be interested in this article from Christ Fellowship: ${document.URL} \n\n`,
-    },
-    sms: `I thought you might be interested in this article from Christ Fellowship: ${document.URL}`,
-  };
-
-  const messages = {
-    ...defaultShareMessages,
-    ...props.shareMessages,
-  };
-
-  const handleSocialShare = shareType => {
-    const url = document.URL;
-
-    switch (shareType) {
-      case 'twitter':
-        window.open(
-          'http://twitter.com/share?url=' +
-            encodeURIComponent(url) +
-            '&text=' +
-            encodeURIComponent(messages.twitter),
-          '',
-          'left=0,top=0,width=550,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0'
-        );
-        break;
-      case 'facebook':
-        window.open(
-          'http://facebook.com/sharer/sharer.php?u=' +
-            encodeURIComponent(url) +
-            '&t=' +
-            encodeURIComponent(messages.faceBook),
-          '',
-          'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0'
-        );
-        break;
-      case 'email':
-        window.open(
-          `mailto:?subject=${encodeURIComponent(
-            messages.email.subject
-          )}&body=${encodeURIComponent(messages.email.body)}`
-        );
-        break;
-      case 'sms':
-        window.open(`sms://?&body=${encodeURI(messages.sms)}`);
-        break;
-      default:
-        break;
-    }
-  };
+  // If alternate shareMessages prop is passed through it will replace the default with this `shareMessaging` util method.
+  const messages = shareMessaging({ ...props, url: document.URL });
 
   return (
     <Menu
@@ -80,7 +31,12 @@ const Share = props => {
       <List py="xs" space="0">
         <Box as="li">
           <Menu.Link
-            onClick={() => handleSocialShare('facebook')}
+            onClick={() =>
+              handleSocialShare({
+                shareType: 'facebook',
+                shareMessages: messages,
+              })
+            }
             px="base"
             py="xs"
           >
@@ -90,7 +46,12 @@ const Share = props => {
         </Box>
         <Box as="li">
           <Menu.Link
-            onClick={() => handleSocialShare('twitter')}
+            onClick={() =>
+              handleSocialShare({
+                shareType: 'twitter',
+                shareMessages: messages,
+              })
+            }
             px="base"
             py="xs"
           >
@@ -100,7 +61,12 @@ const Share = props => {
         </Box>
         <Box as="li">
           <Menu.Link
-            onClick={() => handleSocialShare('email')}
+            onClick={() =>
+              handleSocialShare({
+                shareType: 'email',
+                shareMessages: messages,
+              })
+            }
             px="base"
             py="xs"
           >
@@ -110,7 +76,12 @@ const Share = props => {
         </Box>
         <Box as="li">
           <Menu.Link
-            onClick={() => handleSocialShare('sms')}
+            onClick={() =>
+              handleSocialShare({
+                shareType: 'sms',
+                shareMessages: messages,
+              })
+            }
             display={{ md: 'none' }}
             px="base"
             py="xs"
