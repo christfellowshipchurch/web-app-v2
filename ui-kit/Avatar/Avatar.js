@@ -14,7 +14,7 @@ function Avatar(props = {}) {
   if (!props.src || error) {
     return (
       <Box
-        bg="subdued"
+        bg="neutrals.600"
         borderRadius="50%"
         height={props.height}
         width={props.width}
