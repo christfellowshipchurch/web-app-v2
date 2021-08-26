@@ -37,6 +37,7 @@ export const SEARCH_GROUPS = gql`
     meetingDay
     meetingType
     campusName
+    dateTime
     leaders {
       firstName
       lastName
