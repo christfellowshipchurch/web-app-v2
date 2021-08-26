@@ -81,6 +81,7 @@ const CardCarousel = (props = {}) => {
   const isCarousel = props.children?.length > props.cardsDisplayed;
 
   const currentBreakpoint = useCurrentBreakpoint();
+  let largeDisplay = currentBreakpoint.isLarge || currentBreakpoint.isXLarge;
 
   return (
     <Box {...props}>
@@ -92,9 +93,7 @@ const CardCarousel = (props = {}) => {
         ref={el => (carousel = el)}
         renderButtonGroupOutside={isCarousel && !props.hideArrows}
         customButtonGroup={
-          !props.hideArrows && currentBreakpoint.isLarge ? (
-            <CustomArrows />
-          ) : null
+          !props.hideArrows && largeDisplay ? <CustomArrows /> : null
         }
       >
         {props.children}
