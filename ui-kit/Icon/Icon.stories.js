@@ -11,8 +11,6 @@ import React from 'react';
 import Icon from './Icon';
 import icons from '../_config/icons';
 
-console.log(icons);
-
 const config = {
   title: 'ui-kit/Icon',
   component: Icon,
