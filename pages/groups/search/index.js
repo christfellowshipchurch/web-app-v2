@@ -31,7 +31,6 @@ import { useModalState } from 'providers/ModalProvider';
 import { GroupsProvider } from 'providers';
 import { useSearchGroups, useForm, useCurrentBreakpoint } from 'hooks';
 
-import Styled from './Search.styles';
 import Sidebar from './Sidebar';
 
 const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
@@ -53,7 +52,7 @@ export default function CommunitySearch() {
     previous: null,
   });
   const [filtersState, filtersDispatch] = useGroupFilters();
-  const [searchGroups, { loading, groups, data, fetchMore }] = useSearchGroups({
+  const [searchGroups, { loading, groups, data }] = useSearchGroups({
     notifyOnNetworkStatusChange: true,
     fetchPolicy: 'no-cache',
   });
@@ -64,7 +63,6 @@ export default function CommunitySearch() {
     ? Math.ceil(data?.searchGroups?.totalResults / PAGE_SIZE)
     : 0;
   const showEmptyState = !loading && !hasResults;
-  const hasMorePages = groups?.length < data?.searchGroups?.totalResults;
 
   // Pagination Stepper shorthand
   const renderPagination = () => (
