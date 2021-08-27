@@ -38,7 +38,7 @@ function AuthModal(props = {}) {
 }
 
 AuthModal.propTypes = {
-  ...Modal.propTypes,
+  // ...Modal.propTypes,
 };
 
 export default AuthModal;

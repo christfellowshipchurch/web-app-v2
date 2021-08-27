@@ -20,7 +20,7 @@ function VideoModal(props = {}) {
 }
 
 VideoModal.propTypes = {
-  ...Modal.propTypes,
+  // ...Modal.propTypes,
 };
 
 VideoModal.defaultProps = {

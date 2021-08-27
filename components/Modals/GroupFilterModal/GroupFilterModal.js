@@ -31,7 +31,7 @@ function GroupFilterModal(props = {}) {
 }
 
 GroupFilterModal.propTypes = {
-  ...Modal.propTypes,
+  // ...Modal.propTypes,
 };
 
 GroupFilterModal.defaultProps = {};
