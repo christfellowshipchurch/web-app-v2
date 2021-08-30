@@ -91,6 +91,7 @@ function GroupsResultsList(props = {}) {
           campus={group?.campusName}
           coverImage={group.coverImage?.sources[0]?.uri}
           meetingDay={group.meetingDay}
+          dateTime={group?.dateTime}
           heroAvatars={group?.leaders?.map(node => ({ node }))}
           preferences={group?.preferences}
           subPreference={group.subPreferences.join(', ')}

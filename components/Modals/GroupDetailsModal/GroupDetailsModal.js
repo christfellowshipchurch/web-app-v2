@@ -18,7 +18,7 @@ function GroupDetailsModal(props = {}) {
 }
 
 GroupDetailsModal.propTypes = {
-  ...Modal.propTypes,
+  // ...Modal.propTypes,
   groupTitle: PropTypes.string,
   groupSummary: PropTypes.string,
   groupCallToAction: PropTypes.shape({
