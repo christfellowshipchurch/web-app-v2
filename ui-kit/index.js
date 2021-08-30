@@ -30,6 +30,7 @@ import Loader from './Loader';
 import Longform from './Longform';
 import Menu from './Menu';
 import Modal from './Modal';
+import PaginationStepper from './PaginationStepper';
 import PrayerCard from './PrayerCard';
 import Radio from './Radio';
 import RowCard from './RowCard';
@@ -67,6 +68,7 @@ export {
   Longform,
   Menu,
   Modal,
+  PaginationStepper,
   PrayerCard,
   Radio,
   RowCard,
