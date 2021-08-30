@@ -24,7 +24,7 @@ function NodeSingleModal(props = {}) {
 }
 
 NodeSingleModal.propTypes = {
-  ...Modal.propTypes,
+  // ...Modal.propTypes,
 };
 
 NodeSingleModal.defaultProps = {};

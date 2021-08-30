@@ -31,7 +31,7 @@ function GroupNotifyMeModal(props = {}) {
 }
 
 GroupNotifyMeModal.propTypes = {
-  ...Modal.propTypes,
+  // ...Modal.propTypes,
   initialCampusId: PropTypes.string,
   groupPreference: PropTypes.shape({
     id: PropTypes.string.isRequired,
