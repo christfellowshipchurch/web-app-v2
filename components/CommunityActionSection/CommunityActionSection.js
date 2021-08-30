@@ -2,7 +2,6 @@ import { Box, Button } from 'ui-kit';
 import { CustomLink } from 'components';
 
 export default function CommunityActionSection(props) {
-  const classesHub = props?.title === 'Classes';
   return (
     <Box
       display="flex"
