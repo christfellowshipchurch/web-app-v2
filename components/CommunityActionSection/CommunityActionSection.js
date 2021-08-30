@@ -19,6 +19,7 @@ export default function CommunityActionSection(props) {
         that’s right for you!
       </Box>
       <Button onClick={props.handleOnClick} rounded={true} mb="base">
+        {/* Allows for Group Hub titles to be passed in */}
         Search All Groups & Classes
       </Button>
       <CustomLink target="_blank" href="https://rock.gocf.org/page/2113">
