@@ -19,19 +19,9 @@ export default function CommunityActionSection(props) {
         With many choices to pick from, we’ll help you find a group or class
         that’s right for you!
       </Box>
-      
-      {classesHub &&(
-        <Button onClick={props.handleOnClick} rounded={true} mb="base">
-          Search All Groups & Classes
-        </Button>
-      )}
-      {!classesHub &&(
-        <Button onClick={props.handleOnClick} rounded={true} mb="base">
-          {/* Allows for Group Hub titles to be passed in */}
-          {`Search All ${props?.title ? props?.title + ' ' : ''}Groups & Classes`}
-        </Button>
-      )}
-
+      <Button onClick={props.handleOnClick} rounded={true} mb="base">
+        Search All Groups & Classes
+      </Button>
       <CustomLink target="_blank" href="https://rock.gocf.org/page/2113">
         Need help?
       </CustomLink>
