@@ -20,9 +20,8 @@ export default function CommunityActionSection(props) {
       </Box>
       <Button onClick={props.handleOnClick} rounded={true} mb="base">
         {/* Allows for Group Hub titles to be passed in */}
-        {`Search All ${props?.title ? props?.title + ' ' : ''}Groups & Classes`}
+        Search All Groups & Classes
       </Button>
-
       <CustomLink target="_blank" href="https://rock.gocf.org/page/2113">
         Need help?
       </CustomLink>
