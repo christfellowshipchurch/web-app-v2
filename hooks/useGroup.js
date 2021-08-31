@@ -106,7 +106,7 @@ export const GROUP_FRAGMENT = gql`
       edges {
         node {
           id
-          firstName
+          nickName
           lastName
           photo {
             uri
@@ -119,7 +119,7 @@ export const GROUP_FRAGMENT = gql`
       edges {
         node {
           id
-          firstName
+          nickName
           lastName
           photo {
             uri
