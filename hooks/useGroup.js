@@ -45,7 +45,7 @@ export const GROUP_ITEM_FRAGMENT = gql`
       edges {
         node {
           id
-          nickName
+          firstName
           photo {
             uri
           }
@@ -57,7 +57,7 @@ export const GROUP_ITEM_FRAGMENT = gql`
       edges {
         node {
           id
-          nickName
+          firstName
           photo {
             uri
           }
@@ -106,7 +106,7 @@ export const GROUP_FRAGMENT = gql`
       edges {
         node {
           id
-          nickName
+          firstName
           lastName
           photo {
             uri
@@ -119,7 +119,7 @@ export const GROUP_FRAGMENT = gql`
       edges {
         node {
           id
-          nickName
+          firstName
           lastName
           photo {
             uri
