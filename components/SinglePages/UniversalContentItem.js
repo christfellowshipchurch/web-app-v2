@@ -119,7 +119,7 @@ export default function Page({ data, campuses = [], dropdownData } = {}) {
               {data.title}
             </Heading>
           )}
-          {data.publishDate && isArticle && (
+          {/* Eric trying to remove pub dates from Articles {data.publishDate && isArticle && (
             <Heading
               fontSize="h3"
               lineHeight="h3"
@@ -129,7 +129,7 @@ export default function Page({ data, campuses = [], dropdownData } = {}) {
             >
               {format(parseISO(data.publishDate), 'MMMM do, yyyy')}
             </Heading>
-          )}
+          )} */}
           {dateStr && (
             <Heading
               fontSize="h3"
