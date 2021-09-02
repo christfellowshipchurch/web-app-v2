@@ -42,7 +42,7 @@ NotifyMeSuccess.propTypes = {
 };
 
 NotifyMeSuccess.defaultProps = {
-  title: 'Notify Me',
+  title: 'Remind Me',
 };
 
 export default NotifyMeSuccess;
