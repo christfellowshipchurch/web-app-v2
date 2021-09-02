@@ -32,6 +32,16 @@ function EventSingle(props = {}) {
     ? `${author.firstName} ${author.lastName}`
     : undefined;
 
+  const eventShareMessages = {
+    faceBook: `Check out ${title} happening at Christ Fellowship Church!`,
+    twitter: `${title} at Christ Fellowship Church`,
+    email: {
+      subject: `${title} at Christ Fellowship Church`,
+      body: `Check out ${title} happening at Christ Fellowship Church! I would love for you to join me. \n\n ${document.URL}`,
+    },
+    sms: `Join me for ${title} at Christ Fellowship! ${document.URL}`,
+  };
+
   return (
     <ContentLayout
       mode={props.data.mode}
@@ -47,7 +57,11 @@ function EventSingle(props = {}) {
       coverImage={props.data?.coverImage?.sources[0]?.uri}
       renderC={() => (
         <Box justifySelf="flex-end">
-          <Share title={props.data.title} shareTitle="Invite" />
+          <Share
+            title={props.data.title}
+            shareTitle="Invite"
+            shareMessages={eventShareMessages}
+          />
         </Box>
       )}
       htmlContent={props.data.htmlContent}
