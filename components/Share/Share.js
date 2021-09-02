@@ -86,7 +86,7 @@ const Share = props => {
             px="base"
             py="xs"
           >
-            <Icon name="phone" mr="s" />
+            <Icon name="messageBubble" mr="s" />
             Message
           </Menu.Link>
         </Box>
