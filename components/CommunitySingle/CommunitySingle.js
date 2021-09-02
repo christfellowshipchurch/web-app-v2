@@ -190,7 +190,7 @@ function CommunitySingle(props = {}) {
                 onClick={handleNotifyMeClick}
               >
                 <Icon name="notification" mr="xs" />
-                {`Notify Me`}
+                {`Remind Me`}
               </Button>
             </Box>
           </Styled.NotifyMeSection>

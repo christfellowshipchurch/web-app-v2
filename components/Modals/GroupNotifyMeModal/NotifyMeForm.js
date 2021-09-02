@@ -89,7 +89,7 @@ NotifyMeForm.propTypes = {
 };
 
 NotifyMeForm.defaultProps = {
-  title: 'Notify Me',
+  title: 'Remind Me',
 };
 
 export default NotifyMeForm;
