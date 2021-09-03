@@ -27,7 +27,9 @@ function GroupManageMembers(props = {}) {
           title="Add New Member"
         />
       </Box>
-      <SearchField />
+      <SearchField placeholder="Search..." value={''}>
+        Search
+      </SearchField>
     </>
   );
 }

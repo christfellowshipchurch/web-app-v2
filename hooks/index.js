@@ -47,6 +47,7 @@ import useRequestPasswordChange from './useRequestPasswordChange';
 import useRequestPin from './useRequestPin';
 import useSearchContentItems from './useSearchContentItems';
 import useSearchGroups from './useSearchGroups';
+import useSearchGroupMembers from './useSearchGroupMembers';
 import useUpdateCurrentUser from './useUpdateCurrentUser';
 import useUpdateGroupCoverImage from './useUpdateGroupCoverImage';
 import useUpdateGroupResourceContentItem from './useUpdateGroupResourceContentItem';
@@ -106,6 +107,7 @@ export {
   useRequestPin,
   useSearchContentItems,
   useSearchGroups,
+  useSearchGroupMembers,
   useUpdateCurrentUser,
   useUpdateGroupCoverImage,
   useUpdateGroupResourceContentItem,

@@ -22,6 +22,7 @@ import DefaultCard from './DefaultCard';
 import Divider from './Divider';
 import FormLabel from './FormLabel';
 import GroupCard from './GroupCard';
+import GroupMemberStatusBadge from './GroupMemberStatusBadge';
 import HorizontalHighlightCard from './HorizontalHighlightCard';
 import Icon from './Icon';
 import Image from './Image';
@@ -60,6 +61,7 @@ export {
   Divider,
   FormLabel,
   GroupCard,
+  GroupMemberStatusBadge,
   HorizontalHighlightCard,
   Icon,
   Image,
