@@ -41,6 +41,8 @@ function GroupSingle(props = {}) {
     }
   };
 
+  console.log(currentBreakpoint);
+
   // Sub-render functions for clarity
   // -----------------------------------
   const renderMembers = () => (
@@ -49,7 +51,7 @@ function GroupSingle(props = {}) {
         {totalMembers} Members
       </Box>
       <GroupMembers
-        showCount={currentBreakpoint.isSmall ? 5 : 7}
+        showCount={currentBreakpoint.isSmall ? 4 : 7}
         leaders={props.data?.leaders}
         members={props.data?.members}
       />
