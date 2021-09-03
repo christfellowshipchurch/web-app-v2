@@ -6,13 +6,14 @@ export const GROUP_RESOURCE_FRAGMENT = gql`
     action
     relatedNode {
       id
-      ... on ContentItem {
+      ... on ContentNode {
         coverImage {
           sources {
             uri
           }
         }
       }
+
       ... on Url {
         url
       }

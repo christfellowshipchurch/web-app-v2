@@ -35,6 +35,7 @@ function RemoveResourceLink(props = {}) {
       mr="s"
       position="relative"
       top="-1px"
+      opacity={0.35}
     >
       <Icon name="x" color="alert" />
     </Box>
