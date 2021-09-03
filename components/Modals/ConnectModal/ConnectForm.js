@@ -6,7 +6,12 @@ import { showStep, hideModal, useModalDispatch } from 'providers/ModalProvider';
 
 import { useContactGroupLeader, useGroupMemberStatus } from 'hooks';
 
-import { Avatar, Box, Button, Loader } from 'ui-kit';
+import { Avatar, Box, Button, Icon, Loader } from 'ui-kit';
+import {
+  generateTitle,
+  generateSummary,
+  generateButtonTitle,
+} from './ConnectModal.utils';
 
 function ConnectForm(props = {}) {
   const { data, loading } = useGroupMemberStatus({
@@ -15,6 +20,7 @@ function ConnectForm(props = {}) {
       groupId: props?.groupId,
     },
   });
+  const hasLeader = !isEmpty(props.leaderName);
   const [status, setStatus] = useState('LOADING');
   const modalDispatch = useModalDispatch();
   const [contactGroupLeader] = useContactGroupLeader();
@@ -45,50 +51,6 @@ function ConnectForm(props = {}) {
     }
   };
 
-  const generateTitle = key => {
-    switch (key) {
-      case 'LOADING':
-        return 'Loading';
-      case 'FULL':
-        return 'Sorry, this group is now full.';
-      case 'PENDING':
-        return `${props.leaderName} will be in contact soon!`;
-      case 'MEMBER':
-        return `You're already a member of this group.`;
-      case 'OPEN':
-      default:
-        return `Connect with ${props.leaderName}`;
-    }
-  };
-
-  const generateSummary = key => {
-    switch (key) {
-      case 'OPEN':
-        return `Contact the leader to let them know you’re interested.`;
-      case 'PENDING':
-        return `Your status in this group is "pending".`;
-      case 'MEMBER':
-        return `Contact ${props.leaderName} if you have any questions.`;
-      case 'LOADING':
-      case 'FULL':
-      default:
-        return ``;
-    }
-  };
-
-  const generateButtonTitle = key => {
-    switch (key) {
-      case 'OPEN':
-        return `Send`;
-      case 'LOADING':
-      case 'PENDING':
-      case 'MEMBER':
-      case 'FULL':
-      default:
-        return `Find Another Group`;
-    }
-  };
-
   useEffect(() => {
     if (!loading && data?.groupMemberStatus) {
       const { groupMemberStatus } = data;
@@ -100,23 +62,27 @@ function ConnectForm(props = {}) {
   return (
     <Box display="flex" flexDirection="column">
       <Box display="flex" alignItems="center" flexDirection="column" mb="base">
-        <Avatar
-          src={props.leaderAvatar}
-          name={props.leaderName}
-          height="100px"
-          width="100px"
-        />
+        {hasLeader ? (
+          <Avatar
+            src={props.leaderAvatar}
+            name={props.leaderName}
+            height="100px"
+            width="100px"
+          />
+        ) : (
+          <Icon name="users" size={100} color="tertiary" />
+        )}
       </Box>
 
       <Box textAlign="center" as="h2">
         {status === 'LOADING' ? (
           <Loader justifyContent="center" />
         ) : (
-          generateTitle(status)
+          generateTitle(status, { leaderName: props?.leaderName })
         )}
       </Box>
       <Box textAlign="center" as="p" mb="l" px="m">
-        {generateSummary(status)}
+        {generateSummary(status, { leaderName: props?.leaderName })}
       </Box>
 
       {status !== 'MEMBER' && status !== 'PENDING' && status !== 'LOADING' && (
@@ -125,7 +91,7 @@ function ConnectForm(props = {}) {
           mb="base"
           status={status === 'LOADING' ? 'LOADING' : 'IDLE'}
         >
-          {generateButtonTitle(status)}
+          {generateButtonTitle(status, { leaderName: props?.leaderName })}
         </Button>
       )}
     </Box>
