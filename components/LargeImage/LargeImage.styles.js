@@ -30,19 +30,23 @@ export const TextContainer = styled(Box)`
   border-radius: 0 0 24px 24px;
   background: rgba(0, 0, 0, 0.5);
   flex: 1;
-
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
-    ${props => !props.staticHeight ? `backdrop-filter: blur(24px);` : '' }
+    ${props => (!props.staticHeight ? `backdrop-filter: blur(24px);` : '')}
   }
 
-  @media screen and (min-width: ${props => props.staticHeight ? 0 : themeGet('breakpoints.md')}) {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+  @media screen and (min-width: ${props =>
+      props.staticHeight ? 0 : themeGet('breakpoints.md')}) {
     width: 100%;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.95) 100%);
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.95) 100%
+    );
   }
   ${system}
 `;
@@ -55,17 +59,19 @@ export default styled(Box)`
   cursor: ${props => (props.onClick ? 'pointer' : 'default')};
 
   ${props =>
-    props.backgroundSrc ? `background: url("${props.backgroundSrc}") no-repeat bottom center;` : ''
-  }
+    props.backgroundSrc
+      ? `background: url("${props.backgroundSrc}") no-repeat bottom center;`
+      : ''}
 
   background-size: contain;
 
   ${props =>
-    props.height ? `
+    props.height
+      ? `
       display: flex;
       flex-direction: column;
-    ` : ''
-  }
+    `
+      : ''}
 
   ${system}
 `;
