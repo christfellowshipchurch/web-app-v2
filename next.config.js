@@ -32,6 +32,7 @@ module.exports = {
         destination: '/:slug',
         permanent: false,
       }, //eric test again 
+      { source: '/rhythms', destination: '/rhythms-september-2021', permanent: true },
       { source: '/survey', destination: 'https://www.surveymonkey.com/r/YFZMCFP', permanent: true },
       { source: '/hvillemap', destination: 'https://rock.longhollow.com/Content/ExternalSite/Downloads/HENDERSONVILLE_MAP_COMBO.pdf', permanent: true },
       { source: '/mensnextsteps', destination: '/next-steps-from-mens-night-2021', permanent: true },
