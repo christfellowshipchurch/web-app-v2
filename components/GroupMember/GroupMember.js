@@ -10,10 +10,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { useModalDispatch, showModal } from 'providers/ModalProvider';
 import { Box, Button, GroupMemberStatusBadge, SquareAvatar } from 'ui-kit';
 import { isEmpty } from 'lodash';
+import { id } from 'date-fns/locale';
 
-const GroupMember = ({ person, role, status }) => {
+const GroupMember = ({ id, person, role, status }) => {
+  const modalDispatch = useModalDispatch();
+  const handlePressView = () => {
+    if (isEmpty(id)) return;
+
+    modalDispatch(
+      showModal('GroupMemberDetails', {
+        id,
+      })
+    );
+  };
   const profileImageUrl = person?.photo?.uri;
   const fullName = [person?.firstName, person?.lastName]
     .filter(name => !isEmpty(name))
@@ -29,7 +41,12 @@ const GroupMember = ({ person, role, status }) => {
     >
       <Box display="flex" flexDirection="row" alignItems="center">
         <Box position="relative">
-          <SquareAvatar src={profileImageUrl} height="65px" width="56px" />
+          <SquareAvatar
+            src={profileImageUrl}
+            height="65px"
+            width="56px"
+            name={fullName}
+          />
           {role.toUpperCase() === 'LEADER' && (
             <Box
               position="absolute"
@@ -67,6 +84,8 @@ const GroupMember = ({ person, role, status }) => {
         fontSize="0.65rem"
         py="3px"
         px="6px"
+        disabled={isEmpty(id)}
+        onClick={handlePressView}
       >
         VIEW
       </Button>
@@ -82,13 +101,13 @@ GroupMember.propTypes = {
     label: PropTypes.string,
   }),
   role: PropTypes.string,
-  person: {
+  person: PropTypes.shape({
     firstName: PropTypes.string,
     lastName: PropTypes.string,
     photo: PropTypes.shape({
       uri: PropTypes.string,
     }),
-  },
+  }),
 };
 GroupMember.defaultProps = {};
 

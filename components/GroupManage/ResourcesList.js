@@ -27,7 +27,7 @@ function ResourceCoverImage(props = {}) {
       backgroundRepeat="no-repeat"
       backgroundSize="cover"
     >
-      {!hasCoverImage && <Icon name="link" color="white" size={32} />}
+      {!hasCoverImage && <Icon name="link" color="white" size={'32'} />}
     </Box>
   );
 }

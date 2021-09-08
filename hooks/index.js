@@ -25,7 +25,9 @@ import useForm from './useForm';
 import useGroup from './useGroup';
 import useGroupContentId from './useGroupContentId';
 import useGroupCoverImages from './useGroupCoverImages';
+import useGroupMember from './useGroupMember';
 import useGroupMemberStatus from './useGroupMemberStatus';
+import useGroupMemberStatuses from './useGroupMemberStatuses';
 import useGroupPreference from './useGroupPreference';
 import useGroupPreferences from './useGroupPreferences';
 import useGroupPreferenceUpdates from './useGroupPreferenceUpdates';
@@ -85,7 +87,9 @@ export {
   useGroup,
   useGroupContentId,
   useGroupCoverImages,
+  useGroupMember,
   useGroupMemberStatus,
+  useGroupMemberStatuses,
   useGroupPreference,
   useGroupPreferences,
   useGroupPreferenceUpdates,

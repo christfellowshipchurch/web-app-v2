@@ -37,6 +37,7 @@ import Radio from './Radio';
 import RowCard from './RowCard';
 import Select from './Select';
 import SquareAvatar from './SquareAvatar';
+import TextArea from './TextArea';
 import TextInput from './TextInput';
 
 export {
@@ -76,6 +77,7 @@ export {
   RowCard,
   Select,
   SquareAvatar,
+  TextArea,
   TextInput,
   // ====================
   icons,

@@ -23,15 +23,20 @@ function GroupManage(props = {}) {
         </Box>
 
         <Box
-          display={{ lg: 'grid' }}
-          gridTemplateColumns="40% 1fr"
+          display="grid"
+          gridTemplateColumns={{ _: '1fr', md: '40% 1fr' }}
           gridColumnGap="base"
+          columnGap="15px"
+          rowGap="15px"
+          // ! : keep for backwards css compatibility
+          gridColumnGap="15px"
+          gridRowGap="15px"
         >
-          <Card p="base" m={{ _: 'base', lg: '0' }}>
+          <Card p="base">
             <GroupManageResources />
           </Card>
 
-          <Card p="base" m={{ _: 'base', lg: '0' }}>
+          <Card p="base">
             <GroupManageMembers />
           </Card>
         </Box>

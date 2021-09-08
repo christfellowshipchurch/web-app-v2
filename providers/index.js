@@ -14,6 +14,7 @@ import FeatureProvider from './FeatureProvider';
 import GroupCoverImagesProvider from './GroupCoverImagesProvider';
 import GroupFiltersProvider from './GroupFiltersProvider';
 import GroupManageProvider from './GroupManageProvider';
+import GroupMemberProvider from './GroupMemberProvider';
 import GroupProvider from './GroupProvider';
 import GroupResourceOptionsProvider from './GroupResourceOptionsProvider';
 import GroupsProvider from './GroupsProvider';
@@ -43,6 +44,7 @@ export {
   GroupCoverImagesProvider,
   GroupFiltersProvider,
   GroupManageProvider,
+  GroupMemberProvider,
   GroupProvider,
   GroupResourceOptionsProvider,
   GroupsProvider,

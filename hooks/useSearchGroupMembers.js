@@ -1,4 +1,4 @@
-import { gql, useLazyQuery } from '@apollo/client';
+import { gql, useLazyQuery, useQuery } from '@apollo/client';
 
 export const SEARCH_GROUP_MEMBERS = gql`
   query searchGroupMembers(
@@ -14,12 +14,33 @@ export const SEARCH_GROUP_MEMBERS = gql`
       }
       edges {
         id
+        coverImage {
+          sources {
+            uri
+          }
+        }
+        firstName
+        lastName
+        status
+        role
       }
     }
   }
 `;
 
+export const SEARCH_GROUP_MEMBER_FACET_OPTIONS = gql`
+  query groupMemberSearchFacetOptions {
+    groupMemberSearchFacetOptions {
+      key
+      values
+    }
+  }
+`;
+
 function useSearchGroupMembers(options = {}) {
+  const { data: facetData } = useQuery(SEARCH_GROUP_MEMBER_FACET_OPTIONS, {
+    fetchPolicy: 'network-only',
+  });
   const [searchGroupMembers, query] = useLazyQuery(SEARCH_GROUP_MEMBERS, {
     fetchPolicy: 'no-cache',
     ...options,
@@ -30,6 +51,7 @@ function useSearchGroupMembers(options = {}) {
     {
       groupMembers: query?.data?.searchGroupMembers?.edges,
       ...query,
+      facets: facetData?.groupMemberSearchFacetOptions || [],
     },
   ];
 }
