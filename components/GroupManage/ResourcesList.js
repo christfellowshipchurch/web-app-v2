@@ -37,7 +37,7 @@ function ResourcesList(props = {}) {
 
   return (
     <List>
-      {groupData.resources.map(
+      {groupData?.resources?.map(
         (resource, idx) =>
           resource?.title && (
             <Box as="li" key={idx} display="flex" alignItems="center">

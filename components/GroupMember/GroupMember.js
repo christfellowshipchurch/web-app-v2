@@ -17,12 +17,12 @@ import { id } from 'date-fns/locale';
 
 const GroupMember = ({ id, person, role, status }) => {
   const modalDispatch = useModalDispatch();
-  const handlePressView = () => {
+  const handlePressView = groupMemberId => {
     if (isEmpty(id)) return;
 
     modalDispatch(
       showModal('GroupMemberDetails', {
-        id,
+        id: groupMemberId,
       })
     );
   };
@@ -85,7 +85,7 @@ const GroupMember = ({ id, person, role, status }) => {
         py="3px"
         px="6px"
         disabled={isEmpty(id)}
-        onClick={handlePressView}
+        onClick={() => handlePressView(id)}
       >
         VIEW
       </Button>

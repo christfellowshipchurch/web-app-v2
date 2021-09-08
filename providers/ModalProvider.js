@@ -76,8 +76,6 @@ function ModalProvider(props = {}) {
     modals: props.modals || [],
   }));
 
-  console.log(state);
-
   return (
     <ModalStateContext.Provider value={state}>
       <ModalDispatchContext.Provider value={dispatch}>

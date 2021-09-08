@@ -4,14 +4,11 @@ import {
   ConnectModal,
   GroupDetailsModal,
   GroupFilterModal,
-  // GroupMemberDetailsModal,
+  GroupMemberDetailsModal,
   GroupNotifyMeModal,
   NodeSingleModal,
   VideoModal,
 } from 'components/Modals';
-import GroupMemberDetailsModal from '../components/Modals/GroupMemberDetailsModal/GroupMemberDetailsModal';
-
-console.log(GroupMemberDetailsModal);
 
 const modals = [
   {

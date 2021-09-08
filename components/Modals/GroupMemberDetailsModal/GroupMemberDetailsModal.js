@@ -4,28 +4,23 @@
  * Author: Caleb Panza
  * Created: Sep 08, 2021
  *
- * Modal that displays information about a single Group Member
+ * description
  */
 
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import GroupMemberDetails from './GroupMemberDetails';
-import { GroupMemberProvider } from 'providers';
+import { Box, Modal } from 'ui-kit';
 
-function GroupMemberDetailsModal({ id }) {
-  console.log('Hello??');
+const GroupMemberDetailsModal = ({}) => {
   return (
-    <GroupMemberProvider
-      Component={GroupMemberDetails}
-      options={{ variables: { id } }}
-    />
+    <Modal>
+      <Box>Hello there</Box>
+    </Modal>
   );
-}
-
-GroupMemberDetailsModal.propTypes = {
-  id: PropTypes.string.isRequired,
 };
+
+GroupMemberDetailsModal.propTypes = {};
 GroupMemberDetailsModal.defaultProps = {};
 
 export default GroupMemberDetailsModal;
