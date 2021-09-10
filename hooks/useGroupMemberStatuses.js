@@ -1,4 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
+import get from 'lodash/get';
 
 export const GET_GROUP_MEMBER_STATUSES = gql`
   query groupMemberStatuses {
@@ -6,9 +7,7 @@ export const GET_GROUP_MEMBER_STATUSES = gql`
       id
       label
     }
-  }
 
-  query inactiveStatusReasons {
     inactiveStatusReasons {
       id
       value
@@ -24,8 +23,8 @@ function useGroupMemberStatuses(options = {}) {
 
   return {
     ...query,
-    groupMemberStatuses: query?.data?.groupMemberStatuses || [],
-    inactiveStatusReasons: query?.data?.inactiveStatusReasons || [],
+    groupMemberStatuses: get(query, 'data.groupMemberStatuses', []),
+    inactiveStatusReasons: get(query, 'data.inactiveStatusReasons', []),
   };
 }
 

@@ -13,7 +13,6 @@ import PropTypes from 'prop-types';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 import { Box, Button, GroupMemberStatusBadge, SquareAvatar } from 'ui-kit';
 import { isEmpty } from 'lodash';
-import { id } from 'date-fns/locale';
 
 const GroupMember = ({ id, person, role, status }) => {
   const modalDispatch = useModalDispatch();
@@ -47,7 +46,7 @@ const GroupMember = ({ id, person, role, status }) => {
             width="56px"
             name={fullName}
           />
-          {role.toUpperCase() === 'LEADER' && (
+          {role?.toUpperCase() === 'LEADER' && (
             <Box
               position="absolute"
               bottom="0"

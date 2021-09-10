@@ -34,16 +34,24 @@ const sortAlphabetically = (a, b) => {
 };
 
 const GroupMemberDetails = ({
+  id,
   person,
   role,
   status: initialStatus,
-  inactiveStatusReason: initialInactiveStatusReason,
+  note: initialNote,
   groupMemberStatuses,
   inactiveStatusReasons,
+  onCancel,
+  onSave,
 }) => {
-  const [status, setStatus] = useState(initialStatus);
+  const [status, setStatus] = useState(initialStatus?.id);
   const [inactiveStatusReason, setInactiveStatusReason] = useState(
-    initialInactiveStatusReason
+    initialStatus?.inactiveReason?.id || inactiveStatusReasons[0]?.id
+  );
+  const [note, setNote] = useState(initialNote);
+
+  const inactiveStatus = groupMemberStatuses.find(
+    ({ label }) => label.toUpperCase() === 'INACTIVE'
   );
   const profileImageUrl = person?.photo?.uri;
   const fullName = [person?.firstName, person?.lastName]
@@ -60,78 +68,106 @@ const GroupMemberDetails = ({
 
   return (
     <Box display="flex" flexDirection="column">
+      <Box as="h1" mb="l">
+        Edit Group Member
+      </Box>
+
       <Box display="flex" flexDirection="row" alignItems="center" mb="s">
-        <SquareAvatar src={profileImageUrl} height="70px" width="60px" mr="s" />
-        <Box as="h3">{fullName}</Box>
+        <SquareAvatar src={profileImageUrl} height="80px" width="70px" mr="s" />
+        <Box as="h3" m="0">
+          {fullName}
+        </Box>
       </Box>
 
       <Row label="Status">
         <Select
-          defaultValue={status?.label}
+          defaultValue={status}
           id="groupMemberStatus"
           name="groupMemberStatus"
-          onChange={event => setStatus({ label: event.target.value })}
+          onChange={event => setStatus(event.target.value)}
         >
-          {groupMemberStatuses
-            .sort((a, b) => sortAlphabetically(a.label, b.label))
-            .map(({ label }) => {
-              return (
-                <Select.Option key={label} value={label}>
-                  {label}
-                </Select.Option>
-              );
-            })}
+          {groupMemberStatuses.map(({ label, id }) => {
+            return (
+              <Select.Option key={id} value={id}>
+                {label}
+              </Select.Option>
+            );
+          })}
         </Select>
       </Row>
 
-      {status?.label?.toUpperCase() === 'INACTIVE' && (
+      {status === inactiveStatus?.id && (
         <Row label="Why are you marking this person as inactive?">
           <Select
-            defaultValue={inactiveStatusReason?.value}
+            defaultValue={inactiveStatusReason}
             id="inactiveMemberReason"
             name="inactiveMemberReason"
-            onChange={event => setStatus({ label: event.target.value })}
+            onChange={event => setInactiveStatusReason(event.target.value)}
           >
-            {inactiveStatusReasons
-              .sort((a, b) => sortAlphabetically(a.value, b.value))
-              .map(({ value }) => {
-                return (
-                  <Select.Option key={value} value={value}>
-                    {value}
-                  </Select.Option>
-                );
-              })}
+            {inactiveStatusReasons.map(({ id, value }) => {
+              return (
+                <Select.Option key={id} value={id}>
+                  {value}
+                </Select.Option>
+              );
+            })}
           </Select>
         </Row>
       )}
 
       {!isEmpty(person?.birthDate) && (
         <Row label="Birthday">
-          <Box as="h3">{format(parseISO(person?.birthDate))}</Box>
+          <Box as="h4">
+            {format(parseISO(person?.birthDate), 'MMMM d, yyyy')}
+          </Box>
         </Row>
       )}
 
       {!isEmpty(person?.phoneNumber) && (
         <Row label="Phone Number">
-          <Box as="h5">{person?.phoneNumber}</Box>
+          <Box as="h4">{person?.phoneNumber}</Box>
         </Row>
       )}
 
       {!isEmpty(person?.email) && (
         <Row label="Email">
-          <Box as="h5">{person?.email}</Box>
+          <Box as="h4">{person?.email}</Box>
         </Row>
       )}
 
       {!isEmpty(person?.address) && (
         <Row label="Address">
-          <Box as="h5">{renderAddress(person?.address)}</Box>
+          <Box as="h4">{renderAddress(person?.address)}</Box>
         </Row>
       )}
 
       <Row label="Notes">
-        <TextArea rows="4" />
+        <TextArea
+          id="group-leader-notes"
+          rows="5"
+          resize="none"
+          maxWidth="100%"
+          minWidth="100%"
+          value={note}
+          onChange={event => setNote(event.target.value)}
+        />
+        <Box as="h6" fontStyle="italic" color="neutrals.300">
+          All updates to notes will be visible to all other Group Leaders.
+        </Box>
       </Row>
+
+      <Box display="flex" justifyContent="flex-end">
+        <Button mx="s" variant="secondary" borderWidth="0" onClick={onCancel}>
+          Cancel
+        </Button>
+        <Button
+          onClick={() => {
+            onSave({ groupMemberId: id, note, status, inactiveStatusReason });
+          }}
+        >
+          Save
+        </Button>
+      </Box>
     </Box>
   );
 };
@@ -150,7 +186,7 @@ GroupMemberDetails.propTypes = {
     })
   ),
   role: PropTypes.string,
-  person: {
+  person: PropTypes.shape({
     firstName: PropTypes.string,
     lastName: PropTypes.string,
     birthDate: PropTypes.string,
@@ -158,7 +194,7 @@ GroupMemberDetails.propTypes = {
       uri: PropTypes.string,
     }),
     address: PropTypes.shape({}),
-  },
+  }),
   groupMemberStatuses: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
@@ -171,13 +207,18 @@ GroupMemberDetails.propTypes = {
       value: PropTypes.string,
     })
   ),
+  onCancel: PropTypes.func,
+  onSave: PropTypes.func,
 };
 GroupMemberDetails.defaultProps = {
+  note: '',
   status: {
     label: 'Active',
   },
   groupMemberStatuses: [],
   inactiveMemberStatuses: [],
+  onCancel: () => null,
+  onSave: () => null,
 };
 
 export default GroupMemberDetails;
