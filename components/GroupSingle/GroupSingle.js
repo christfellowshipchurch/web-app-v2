@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { useRouter } from 'next/router';
 import { ContentLayout } from 'components';
 import { useCurrentBreakpoint, useCurrentUser, useCheckIn } from 'hooks';
 
 import { ChatConnectionProvider } from 'providers';
 import { currentUserIsLeader, transformISODates } from 'utils';
-import { Box, Card, Icon } from 'ui-kit';
+import { Box, Button, Card, Icon } from 'ui-kit';
 import { CustomLink } from 'components';
 
 import GroupChat from './GroupChat';
@@ -16,6 +17,7 @@ import GroupResources from './GroupResources';
 import GroupActions from './GroupActions';
 
 function GroupSingle(props = {}) {
+  const router = useRouter();
   const currentBreakpoint = useCurrentBreakpoint();
   const { currentUser } = useCurrentUser();
   const isLeader = currentUserIsLeader(currentUser, props.data?.leaders?.edges);
@@ -47,7 +49,7 @@ function GroupSingle(props = {}) {
         {totalMembers} Members
       </Box>
       <GroupMembers
-        showCount={currentBreakpoint.isSmall ? 5 : 7}
+        showCount={currentBreakpoint.isSmall ? 4 : 7}
         leaders={props.data?.leaders}
         members={props.data?.members}
       />
@@ -63,6 +65,21 @@ function GroupSingle(props = {}) {
       pb="l"
       mt={{ _: 'l', md: '0' }}
     >
+      {isLeader && (
+        <Box my="base">
+          <Button
+            rounded
+            variant="secondary"
+            width={'100%'}
+            onClick={() => {
+              router.push(`${router.asPath}/edit`);
+            }}
+          >
+            <Icon name="pen" mr="5px" mb="2px" size={20} /> Manage Group
+          </Button>
+        </Box>
+      )}
+
       <Box>
         <GroupDateTime
           title={props.data?.title}
@@ -122,14 +139,6 @@ function GroupSingle(props = {}) {
           withTime: true,
         })}
         coverImage={props.data?.coverImage?.sources[0]?.uri}
-        titleIconLink={() =>
-          isLeader ? (
-            // NOTE: The `router.pathname` from `useRouter()` didn't work for some reason.
-            <CustomLink href={`${window.location.pathname}/edit`}>
-              <Icon name="gear" ml="xs" mt="xxs" />
-            </CustomLink>
-          ) : null
-        }
         renderContentB={renderMembers}
         renderC={renderMeetingDetails}
         renderD={renderChat}
