@@ -41,8 +41,6 @@ function GroupSingle(props = {}) {
     }
   };
 
-  console.log(currentBreakpoint);
-
   // Sub-render functions for clarity
   // -----------------------------------
   const renderMembers = () => (
