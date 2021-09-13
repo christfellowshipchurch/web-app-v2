@@ -1,5 +1,6 @@
 import DefaultModal from 'ui-kit/Modal';
 import {
+  AddGroupMemberModal,
   AuthModal,
   ConnectModal,
   GroupDetailsModal,
@@ -14,6 +15,10 @@ const modals = [
   {
     title: 'Default',
     component: DefaultModal,
+  },
+  {
+    title: 'AddGroupMember',
+    component: AddGroupMemberModal,
   },
   {
     title: 'Auth',

@@ -9,6 +9,7 @@
 
 import React, { useState, useEffect } from 'react';
 
+import { useModalDispatch, showModal } from 'providers/ModalProvider';
 import { useGroupManage } from 'providers/GroupManageProvider';
 import { GroupMember, SearchField } from 'components';
 import { Box, Button, Loader } from 'ui-kit';
@@ -16,19 +17,54 @@ import { CardTitle, SmallPillButton } from './GroupManage.components';
 import { useSearchGroupMembers } from 'hooks';
 
 function GroupManageMembers(props = {}) {
+  // MARK : Hooks
+  const modalDispatch = useModalDispatch();
   const [{ groupData }] = useGroupManage();
-  const groupId = groupData?.id;
   const [searchGroupMembers, { groupMembers, facets, loading }] =
     useSearchGroupMembers();
+
+  // MARK : State
   const [searchText, setSearchText] = useState('');
   const [searchArgs, setSearchArgs] = useState([
     { key: 'text', values: [''] },
-    { key: 'groupId', values: [groupId] },
+    { key: 'groupId', values: [groupData?.id] },
     { key: 'status', values: [] },
   ]);
+
+  // MARK : Variables
+  const groupId = groupData?.id;
   const hasMembers = Array.isArray(groupMembers) && groupMembers.length > 0;
   const statusFacet = facets.find(({ key }) => key === 'status');
 
+  // MARK : Handlers
+  const searchFieldHandleChange = event => {
+    setSearchText(event?.target?.value || '');
+  };
+  const searchFieldHandleClear = event => {
+    event.preventDefault();
+    const searchWithoutText = searchArgs.filter(({ key }) => key !== 'text');
+    setSearchText('');
+    setSearchArgs([...searchWithoutText, { key: 'text', values: [''] }]);
+  };
+  const searchFieldHandleSubmit = event => {
+    event.preventDefault();
+
+    const searchWithoutText = searchArgs.filter(({ key }) => key !== 'text');
+    setSearchArgs([
+      ...searchWithoutText,
+      { key: 'text', values: [searchText] },
+    ]);
+  };
+
+  const handleAddNewMember = () => {
+    modalDispatch(
+      showModal('AddGroupMember', {
+        groupId,
+      })
+    );
+  };
+
+  // MARK : Render
   const renderStatusFacets = () => {
     const hasFacets = statusFacet?.values.length > 0;
     const selectedStatuses =
@@ -74,25 +110,7 @@ function GroupManageMembers(props = {}) {
     );
   };
 
-  const searchFieldHandleChange = event => {
-    setSearchText(event?.target?.value || '');
-  };
-  const searchFieldHandleClear = event => {
-    event.preventDefault();
-    const searchWithoutText = searchArgs.filter(({ key }) => key !== 'text');
-    setSearchText('');
-    setSearchArgs([...searchWithoutText, { key: 'text', values: [''] }]);
-  };
-  const searchFieldHandleSubmit = event => {
-    event.preventDefault();
-
-    const searchWithoutText = searchArgs.filter(({ key }) => key !== 'text');
-    setSearchArgs([
-      ...searchWithoutText,
-      { key: 'text', values: [searchText] },
-    ]);
-  };
-
+  // MARK : Effects
   useEffect(() => {
     searchGroupMembers({
       variables: {
@@ -118,7 +136,7 @@ function GroupManageMembers(props = {}) {
       <Box alignItems="center" display="flex">
         <CardTitle title="Group Members" />
 
-        <SmallPillButton onClick={() => null} icon="plus" title="Add" />
+        <SmallPillButton onClick={handleAddNewMember} icon="plus" title="Add" />
       </Box>
 
       <Box mt="base" mb="l">

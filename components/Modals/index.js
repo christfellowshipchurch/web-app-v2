@@ -1,3 +1,4 @@
+import AddGroupMemberModal from './AddGroupMemberModal';
 import AuthModal from './AuthModal';
 import ConnectModal from './ConnectModal';
 import GroupDetailsModal from './GroupDetailsModal';
@@ -8,6 +9,7 @@ import NodeSingleModal from './NodeSingleModal';
 import VideoModal from './VideoModal';
 
 export {
+  AddGroupMemberModal,
   AuthModal,
   ConnectModal,
   GroupDetailsModal,

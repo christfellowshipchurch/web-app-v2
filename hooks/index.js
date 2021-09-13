@@ -1,3 +1,4 @@
+import useAddGroupMember from './useAddGroupMember';
 import useAuthIdentity from './useAuthIdentity';
 import useAuthQuery from './useAuthQuery';
 import useAuthenticateCredentials from './useAuthenticateCredentials';
@@ -59,6 +60,7 @@ import useVerifyPin from './useVerifyPin';
 import useGroupFacetFilters from './useGroupFacetFilters';
 
 export {
+  useAddGroupMember,
   useAuthIdentity,
   useAuthQuery,
   useAuthenticateCredentials,
