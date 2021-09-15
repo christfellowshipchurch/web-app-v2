@@ -167,6 +167,7 @@ function HomeFeedLargeArticle({ article }) {
     <Box position="relative" height="100%" width="100%">
       <LargeImage
         height="100%"
+        size={{ _: 'm', md: 'l' }}
         dropShadow
         text={article?.title}
         color="white"
