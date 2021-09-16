@@ -31,7 +31,7 @@ module.exports = {
         source: '/app-link/:slug',
         destination: '/:slug',
         permanent: false,
-      }, //eric test again again
+      }, // hope this works
       { source: '/rhythms', destination: '/rhythms-september-2021', permanent: true },
       { source: '/survey', destination: 'https://www.surveymonkey.com/r/YFZMCFP', permanent: true },
       { source: '/hvillemap', destination: 'https://rock.longhollow.com/Content/ExternalSite/Downloads/HENDERSONVILLE_MAP_COMBO.pdf', permanent: true },
