@@ -14,7 +14,7 @@ const Hero = styled.div`
       rgba(000, 000, 000, 0.3) 0%,
       rgba(000, 000, 000, 0.6) 100%
     ),
-    url(about/about-christ-fellowship-church.jpg);
+    url(about/Christ-Fellowship-Church-Locations.jpeg);
   background-position: center;
   background-size: cover;
   color: ${themeGet('colors.white')} ${system};
