@@ -31,7 +31,7 @@ module.exports = {
         source: '/app-link/:slug',
         destination: '/:slug',
         permanent: false,
-      }, // hope this works
+      }, 
       { source: '/rhythms', destination: '/rhythms-september-2021', permanent: true },
       { source: '/survey', destination: 'https://www.surveymonkey.com/r/YFZMCFP', permanent: true },
       { source: '/hvillemap', destination: 'https://rock.longhollow.com/Content/ExternalSite/Downloads/HENDERSONVILLE_MAP_COMBO.pdf', permanent: true },
@@ -112,7 +112,7 @@ module.exports = {
       { source: '/deacon', destination: '/nominate-a-deacon-2021', permanent: true },
       { source: '/live', destination: '/next-steps/join-us-online', permanent: true },
       { source: '/greece', destination: 'https://discoverycruisesandtravel.com/tour/robby-and-kandi-gallaty/', permanent: true },
-      { source: '/jobs', destination: '/job-opportunities', permanent: true },
+      { source: '/jobs', destination: '/connect/current-job-opportunities', permanent: true },
       { source: '/surrendering', destination: '/surrendering-the-secret', permanent: true },
       { source: '/mentalhealth', destination: '/mental-health', permanent: true },
       { source: '/f260nt', destination: '/follow-the-nt260-bible-reading-plan', permanent: true },
