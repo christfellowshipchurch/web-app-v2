@@ -17,7 +17,7 @@ export default function Edit(props) {
     // TODO: It should say the group's name here.
     // Use `title` and then deal with the hyphened title.
     <Layout title="Edit Group">
-      <Cell px="base" py={{ _: 'l', lg: 'xl' }}>
+      <Cell px="base" py={{ _: 'l', lg: 'xl' }} maxWidth={1300}>
         {isLoading ? (
           <Loader text="Loading your Group" />
         ) : _id ? (

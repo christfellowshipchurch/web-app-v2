@@ -22,6 +22,7 @@ import DefaultCard from './DefaultCard';
 import Divider from './Divider';
 import FormLabel from './FormLabel';
 import GroupCard from './GroupCard';
+import GroupMemberStatusBadge from './GroupMemberStatusBadge';
 import HorizontalHighlightCard from './HorizontalHighlightCard';
 import Icon from './Icon';
 import Image from './Image';
@@ -36,6 +37,7 @@ import Radio from './Radio';
 import RowCard from './RowCard';
 import Select from './Select';
 import SquareAvatar from './SquareAvatar';
+import TextArea from './TextArea';
 import TextInput from './TextInput';
 
 export {
@@ -60,6 +62,7 @@ export {
   Divider,
   FormLabel,
   GroupCard,
+  GroupMemberStatusBadge,
   HorizontalHighlightCard,
   Icon,
   Image,
@@ -74,6 +77,7 @@ export {
   RowCard,
   Select,
   SquareAvatar,
+  TextArea,
   TextInput,
   // ====================
   icons,

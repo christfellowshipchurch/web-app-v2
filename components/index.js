@@ -25,6 +25,8 @@ import Footer from './Footer';
 import GenderField from './GenderField';
 import GenericError from './GenericError';
 import GroupManage from './GroupManage';
+import GroupMember from './GroupMember';
+import GroupMemberDetails from './GroupMemberDetails';
 import GroupSearchFilters from './GroupSearchFilters';
 import GroupSingle from './GroupSingle';
 import GroupsList from './GroupsList';
@@ -78,6 +80,8 @@ export {
   GenderField,
   GenericError,
   GroupManage,
+  GroupMember,
+  GroupMemberDetails,
   GroupSearchFilters,
   GroupSingle,
   GroupsList,
