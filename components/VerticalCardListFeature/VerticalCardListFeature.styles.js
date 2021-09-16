@@ -37,7 +37,7 @@ const cardSpan = ({ index, total }) => {
   `;
 };
 
-const VerticalModalCardListFeature = styled.div`
+const VerticalCardListFeature = styled.div`
   ${system}
 `;
 
@@ -46,6 +46,6 @@ const CardSpacing = styled.div`
   ${system}
 `;
 
-VerticalModalCardListFeature.CardSpacing = CardSpacing;
+VerticalCardListFeature.CardSpacing = CardSpacing;
 
-export default VerticalModalCardListFeature;
+export default VerticalCardListFeature;

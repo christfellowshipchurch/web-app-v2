@@ -38,18 +38,20 @@ export default function GroupMembers(props = {}) {
           </Box>
         </Box>
       ))}
-      <Box
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="flex-start"
-        pl="xs"
-        pb="l"
-      >
+      {combinedMembers.length > 7 &&       
+        <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="flex-start"
+          pl="xs"
+          pb="l"
+        >
         <Box as="p" fontSize="l">
           +{hiddenCount}
         </Box>
-      </Box>
+        </Box>
+      }
     </Box>
   );
 }

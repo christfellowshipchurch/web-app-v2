@@ -39,7 +39,7 @@ NotifyMeError.propTypes = {
 };
 
 NotifyMeError.defaultProps = {
-  title: 'Notify Me',
+  title: 'Remind Me',
 };
 
 export default NotifyMeError;
