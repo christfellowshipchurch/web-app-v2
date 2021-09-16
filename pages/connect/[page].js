@@ -56,8 +56,8 @@ export default function Page({
   );
 
   const story = stories.length ? stories[0] : null;
-  const cta = node.ctaLinks?.length ? node.ctaLinks?.[0] : null;
-  const extraCTA = node.ctaLinks?.length ? node.ctaLinks?.slice(1) : null;
+  const ctaLinks = node.ctaLinks.filter((cta) => cta.image?.sources?.[0]?.uri);
+  const extraCTA = node.ctaLinks.filter((cta) => !cta.image?.sources?.[0]?.uri);
 
   let links = relatedContent?.getMinistryContent?.length
     ? relatedContent.getMinistryContent.slice(0, 4)
@@ -155,7 +155,7 @@ export default function Page({
           </CampusFilter>
         </Section>
       ) : null}
-      {cta || story ? (
+      {ctaLinks?.length || story ? (
         <Section>
           <CardGrid
             mb={{ _: 'l', md: 'xxl' }}
@@ -165,24 +165,28 @@ export default function Page({
                 : 'repeat(1, 1fr)'
             }
           >
-            {cta ? (
-              <MarketingHeadline
-                image={
-                  story
-                    ? null
-                    : {
+            {ctaLinks?.length ? (
+              <Section mb={{ _: 0 }}>
+                <CardGrid mb={{ _: 'l', md: 'xxl' }} columns="1">
+                  {ctaLinks?.map((cta, i) => (
+                    <MarketingHeadline
+                      key={i}
+                      image={{
                         src: cta.image?.sources?.[0]?.uri,
-                      }
-                }
-                title={cta.title}
-                description={cta.body}
-                actions={[
-                  {
-                    label: cta.buttonText,
-                    onClick: () => router.push(cta.buttonLink),
-                  },
-                ]}
-              />
+                      }}
+                      justify={i % 2 === 0 ? 'left' : 'right'}
+                      title={cta.title}
+                      description={cta.body}
+                      actions={[
+                        {
+                          label: cta.buttonText,
+                          onClick: () => router.push(cta.buttonLink),
+                        },
+                      ]}
+                    />
+                  ))}
+                </CardGrid>
+              </Section>
             ) : null}
             {story ? (
               <Quote
