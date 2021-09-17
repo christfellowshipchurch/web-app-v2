@@ -113,6 +113,7 @@ module.exports = {
       { source: '/live', destination: '/next-steps/join-us-online', permanent: true },
       { source: '/greece', destination: 'https://discoverycruisesandtravel.com/tour/robby-and-kandi-gallaty/', permanent: true },
       { source: '/jobs', destination: '/connect/current-job-opportunities', permanent: true },
+      { source: '/job-opportunities', destination: '/connect/current-job-opportunities', permanent: true },
       { source: '/surrendering', destination: '/surrendering-the-secret', permanent: true },
       { source: '/mentalhealth', destination: '/mental-health', permanent: true },
       { source: '/f260nt', destination: '/follow-the-nt260-bible-reading-plan', permanent: true },
