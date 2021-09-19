@@ -260,7 +260,7 @@ function HomeFeedCTA({ authenticated }) {
         mt: { _: 'm', lg: 0, xl: 'l' },
       }}
       supertitle="God wants to work in your life"
-      description="Long Hollow is one church that meets in two locations just north of Nashville, and online all across the globe. Whether you’re exploring faith for the first time, or are looking for a place to call home, we want you to be a part of our community. Join us on Sunday either in person or online!"
+      description="Long Hollow is one church that meets just north of Nashville, and online all across the globe. Whether you’re exploring faith for the first time, or are looking for a place to call home, we want you to be a part of our community. Join us on Sunday either in person or online!"
       actions={[
         {
           color: 'primary',
