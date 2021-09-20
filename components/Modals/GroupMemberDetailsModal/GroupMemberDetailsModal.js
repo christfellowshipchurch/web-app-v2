@@ -21,15 +21,38 @@ import { GroupMemberDetails } from 'components';
 import { Box, Modal, Loader } from 'ui-kit';
 
 const GroupMemberDetailsModal = ({ id, onSave: callback }) => {
-  const client = useApolloClient();
   const modalDispatch = useModalDispatch();
   const { groupMemberStatuses, inactiveStatusReasons } =
     useGroupMemberStatuses();
-  const [[updateStatus], [updateNote]] = useEditGroupMember();
+  const [[updateStatus], [updateNote]] = useEditGroupMember({
+    update: (cache, { data }) => {
+      if (data?.updateGroupMemberStatus) {
+        console.log({ data });
+        const { updateGroupMemberStatus } = data;
+        const { id, status: newStatus } = updateGroupMemberStatus;
+
+        cache.modify({
+          id: cache.identify({ __typename: 'GroupMember', id }),
+          fields: {
+            status() {
+              return newStatus;
+            },
+          },
+        });
+
+        cache.modify({
+          id: cache.identify({ __typename: 'GroupMemberSearchResult', id }),
+          fields: {
+            status() {
+              return newStatus.label;
+            },
+          },
+        });
+      }
+    },
+  });
   const { groupMember, loading } = useGroupMember({ variables: { id } });
   const [isLoading, setIsLoading] = useState(loading);
-
-  const { cache } = client;
 
   const onCancel = () => {
     modalDispatch(hideModal());
@@ -42,32 +65,34 @@ const GroupMemberDetailsModal = ({ id, onSave: callback }) => {
     inactiveStatusReason,
   }) => {
     setIsLoading(true);
+    // note : only run the mutation if the value has actually changed
+    const statusPromise = () => {
+      if (status !== groupMember.status.id) {
+        return updateStatus({
+          variables: {
+            groupMemberId,
+            groupMemberStatusId: status,
+            inactiveStatusReasonId: inactiveStatusReason,
+          },
+        });
+      }
 
-    await Promise.all([
-      updateStatus({
-        variables: {
-          groupMemberId,
-          groupMemberStatusId: status,
-          inactiveStatusReasonId: inactiveStatusReason,
-        },
-      }),
-      updateNote({
-        variables: {
-          groupMemberId,
-          note,
-        },
-      }),
-    ]);
+      return Promise.resolve();
+    };
+    const notePromise = () => {
+      if (note !== groupMember.note) {
+        return updateNote({
+          variables: {
+            groupMemberId,
+            note,
+          },
+        });
+      }
 
-    cache.modify({
-      id: cache.identify({ __typename: 'GroupMemberSearchResult', id }),
-      fields: {
-        status() {
-          const newStatus = groupMemberStatuses.find(({ id }) => id === status);
-          return newStatus.label;
-        },
-      },
-    });
+      return Promise.resolve();
+    };
+
+    await Promise.all([statusPromise(), notePromise()]);
 
     onCancel();
   };

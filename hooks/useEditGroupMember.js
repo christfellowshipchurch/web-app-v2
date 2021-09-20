@@ -21,6 +21,10 @@ export const UPDATE_GROUP_MEMBER_STATUS = gql`
       inactiveStatusReasonId: $inactiveStatusReasonId
     ) {
       id
+      status {
+        id
+        label
+      }
     }
   }
 `;
@@ -29,6 +33,7 @@ export const UPDATE_GROUP_MEMBER_NOTE = gql`
   mutation updateGroupMemberNote($groupMemberId: ID!, $note: String) {
     updateGroupMemberNote(groupMemberId: $groupMemberId, text: $note) {
       id
+      note
     }
   }
 `;

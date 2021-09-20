@@ -47,6 +47,7 @@ function useSearchGroupMembers(options = {}) {
   });
   const [searchGroupMembers, query] = useLazyQuery(SEARCH_GROUP_MEMBERS, {
     fetchPolicy: 'cache-and-network',
+    nextFetchPolicy: 'cache-first',
     ...options,
   });
 
