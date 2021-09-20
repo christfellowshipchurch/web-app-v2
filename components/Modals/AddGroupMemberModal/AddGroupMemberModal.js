@@ -65,8 +65,6 @@ const AddGroupMemberModal = ({ groupId }) => {
 
   const handleAddGroupMember = async () => {
     try {
-      console.log(values);
-
       await addGroupMember({
         variables: {
           groupId,

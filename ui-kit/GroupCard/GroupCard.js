@@ -157,6 +157,7 @@ const GroupCard = (props = {}) => {
                   height="100%"
                   name="Group Member"
                   src={n.node?.photo?.uri}
+                  name="Group Member"
                 />
                 {avatarsDiff > 0 && props.avatars.length === i + 1 && (
                   <Styled.AvatarCount>{`+${avatarsDiff}`}</Styled.AvatarCount>

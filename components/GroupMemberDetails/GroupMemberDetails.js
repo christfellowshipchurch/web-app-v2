@@ -42,7 +42,7 @@ const GroupMemberDetails = ({
   groupMemberStatuses,
   inactiveStatusReasons,
   onCancel,
-  onSave,
+  onSave: callback,
 }) => {
   const [status, setStatus] = useState(initialStatus?.id);
   const [inactiveStatusReason, setInactiveStatusReason] = useState(
@@ -66,6 +66,10 @@ const GroupMemberDetails = ({
       .join('\n');
   };
 
+  const onSave = () => {
+    callback({ groupMemberId: id, note, status, inactiveStatusReason });
+  };
+
   return (
     <Box display="flex" flexDirection="column">
       <Box as="h1" mb="l">
@@ -73,7 +77,13 @@ const GroupMemberDetails = ({
       </Box>
 
       <Box display="flex" flexDirection="row" alignItems="center" mb="s">
-        <SquareAvatar src={profileImageUrl} height="80px" width="70px" mr="s" />
+        <SquareAvatar
+          src={profileImageUrl}
+          name={fullName || 'Group Member'}
+          height="80px"
+          width="70px"
+          mr="s"
+        />
         <Box as="h3" m="0">
           {fullName}
         </Box>
@@ -160,13 +170,7 @@ const GroupMemberDetails = ({
         <Button mx="s" variant="secondary" borderWidth="0" onClick={onCancel}>
           Cancel
         </Button>
-        <Button
-          onClick={() => {
-            onSave({ groupMemberId: id, note, status, inactiveStatusReason });
-          }}
-        >
-          Save
-        </Button>
+        <Button onClick={onSave}>Save</Button>
       </Box>
     </Box>
   );

@@ -9,6 +9,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useApolloClient } from '@apollo/client';
 
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 import { Box, Button, GroupMemberStatusBadge, SquareAvatar } from 'ui-kit';
@@ -16,12 +17,21 @@ import { isEmpty } from 'lodash';
 
 const GroupMember = ({ id, person, role, status }) => {
   const modalDispatch = useModalDispatch();
+  const client = useApolloClient();
   const handlePressView = groupMemberId => {
     if (isEmpty(id)) return;
 
     modalDispatch(
       showModal('GroupMemberDetails', {
         id: groupMemberId,
+        onSave: ({ status, inactiveStatusReason }) => {
+          client.cache.modify({
+            id: cache.identify({ id }),
+            fields(fieldValue, details) {
+              return details.INVALIDATE;
+            },
+          });
+        },
       })
     );
   };
@@ -44,7 +54,7 @@ const GroupMember = ({ id, person, role, status }) => {
             src={profileImageUrl}
             height="65px"
             width="56px"
-            name={fullName}
+            name={fullName || 'Group Member'}
           />
           {role?.toUpperCase() === 'LEADER' && (
             <Box

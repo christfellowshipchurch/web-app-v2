@@ -12,5 +12,6 @@ export const Default = () => (
     src="https://source.unsplash.com/random/200x200"
     height="100px"
     width="100px"
+    name="Square Avatar"
   />
 );

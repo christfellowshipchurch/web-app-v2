@@ -15,6 +15,7 @@ import useCurrentUserRoleForChatChannel from './useCurrentUserRoleForChatChannel
 import useDiscoverFilterCategories from './useDiscoverFilterCategories';
 import useDiscoverFilterCategoriesPreview from './useDiscoverFilterCategoriesPreview';
 import useDiscoverFilters from './useDiscoverFilters';
+import useEditGroupMember from './useEditGroupMember';
 import useEvent from './useEvent';
 import useEvents from './useEvents';
 import useEventsFeedFeatures from './useEventsFeedFeatures';
@@ -77,6 +78,7 @@ export {
   useDiscoverFilterCategories,
   useDiscoverFilterCategoriesPreview,
   useDiscoverFilters,
+  useEditGroupMember,
   useEvent,
   useEvents,
   useEventsFeedFeatures,

@@ -9,21 +9,27 @@
 
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useRouter } from 'next/router';
+import { useApolloClient } from '@apollo/client';
 
 import { hideModal, useModalDispatch } from 'providers/ModalProvider';
-import { useGroupMember, useGroupMemberStatuses } from 'hooks';
+import {
+  useEditGroupMember,
+  useGroupMember,
+  useGroupMemberStatuses,
+} from 'hooks';
 import { GroupMemberDetails } from 'components';
 import { Box, Modal, Loader } from 'ui-kit';
 
-const GroupMemberDetailsModal = ({ id }) => {
-  const router = useRouter();
+const GroupMemberDetailsModal = ({ id, onSave: callback }) => {
+  const client = useApolloClient();
   const modalDispatch = useModalDispatch();
   const { groupMemberStatuses, inactiveStatusReasons } =
     useGroupMemberStatuses();
-  const [{ groupMember, loading }, [updateStatus], [updateNote]] =
-    useGroupMember({ variables: { id } });
+  const [[updateStatus], [updateNote]] = useEditGroupMember();
+  const { groupMember, loading } = useGroupMember({ variables: { id } });
   const [isLoading, setIsLoading] = useState(loading);
+
+  const { cache } = client;
 
   const onCancel = () => {
     modalDispatch(hideModal());
@@ -53,16 +59,22 @@ const GroupMemberDetailsModal = ({ id }) => {
       }),
     ]);
 
-    if (window?.location?.pathname) {
-      router.reload(window?.location?.pathname);
-    }
+    cache.modify({
+      id: cache.identify({ __typename: 'GroupMemberSearchResult', id }),
+      fields: {
+        status() {
+          const newStatus = groupMemberStatuses.find(({ id }) => id === status);
+          return newStatus.label;
+        },
+      },
+    });
+
+    onCancel();
   };
 
   useEffect(() => {
     setIsLoading(loading);
   }, [loading]);
-
-  console.log(groupMember);
 
   return (
     <Modal>
@@ -85,7 +97,10 @@ const GroupMemberDetailsModal = ({ id }) => {
 
 GroupMemberDetailsModal.propTypes = {
   id: PropTypes.string.isRequired,
+  onSave: PropTypes.func,
 };
-GroupMemberDetailsModal.defaultProps = {};
+GroupMemberDetailsModal.defaultProps = {
+  onSave: () => null,
+};
 
 export default GroupMemberDetailsModal;

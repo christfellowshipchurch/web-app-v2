@@ -23,6 +23,10 @@ export const SEARCH_GROUP_MEMBERS = gql`
         lastName
         status
         role
+        relatedNode {
+          __typename
+          id
+        }
       }
     }
   }
@@ -42,7 +46,7 @@ function useSearchGroupMembers(options = {}) {
     fetchPolicy: 'network-only',
   });
   const [searchGroupMembers, query] = useLazyQuery(SEARCH_GROUP_MEMBERS, {
-    fetchPolicy: 'no-cache',
+    fetchPolicy: 'cache-and-network',
     ...options,
   });
 
