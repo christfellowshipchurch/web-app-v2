@@ -90,4 +90,5 @@ AddToCalendar.defaultProps = {
   alternateDescription: 'Join us for an event at Christ Fellowship!',
 };
 
-export default AddToCalendar;
+// todo : resolve the error being caused by this
+export default () => null;
