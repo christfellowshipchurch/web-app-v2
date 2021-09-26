@@ -166,7 +166,7 @@ module.exports = {
       { source: '/replicate', destination: 'https://replicate.org/', permanent: true },
       { source: '/bylaws', destination: '/about/beliefs', permanent: true },
       { source: '/divorcecare', destination: '/divorce-care', permanent: true },
-      { source: '/offering', destination: '/online-giving', permanent: true },
+      { source: '/offering', destination: '/fall-offering-and-the-legacy-park-project', permanent: true },
       { source: '/ministryplan', destination: '/the-2021-ministry-plan', permanent: true },
       { source: '/griefshare', destination: '/grief-share', permanent: true },
       { source: '/food', destination: '/next-steps/get-involved-with-missions', permanent: true },
