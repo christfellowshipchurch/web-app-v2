@@ -23,7 +23,7 @@ function AppHead({ Component, pageProps }) {
     if (_isNotBrowser) return null;
 
     // Only run Google Analytics and Facebook Pixels in production
-    if (!process.env.NODE_ENV === 'production') return null;
+    if (process.env.NODE_ENV !== 'production') return null;
 
     // NEXT_PUBLIC_GA_CODE  needs to be set in the .env
     if (!process.env.NEXT_PUBLIC_GA_CODE) {
@@ -94,7 +94,7 @@ function AppHead({ Component, pageProps }) {
     if (_isNotBrowser) return null;
 
     // Only run Amplitude Analytics in production
-    if (!process.env.NODE_ENV === 'production') return null;
+    if (process.env.NODE_ENV !== 'production') return null;
 
     // NEXT_PUBLIC_AMPLITUDE_KEY  needs to be set in the .env
     if (!process.env.NEXT_PUBLIC_AMPLITUDE_KEY) {
@@ -175,6 +175,22 @@ function AppHead({ Component, pageProps }) {
           </noscript>
         </>
       ) : null}
+
+      {/* Hotjar Tracking Code for christfellowship.church */}
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            (function(h,o,t,j,a,r){
+              h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+              h._hjSettings={hjid:2502416,hjsv:6};
+              a=o.getElementsByTagName('head')[0];
+              r=o.createElement('script');r.async=1;
+              r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+              a.appendChild(r);
+            })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+          `,
+        }}
+      />
     </Head>
   );
 }

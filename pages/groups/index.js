@@ -61,10 +61,17 @@ export default function Community(props = {}) {
   }
 
   if (!flags.GROUP_FINDER) return null;
-
+  
   return (
     <>
-      <SEO title="Christ Fellowship Church Groups" />
+      <SEO 
+        title="Christ Fellowship Church Groups" 
+        image="/groups-cover-image.jpg"
+        description=" We want to help you find community, grow in your relationship with
+        God, and build the kind of friendships we all need to live out our
+        faith. Groups and classes help you know where to look for
+        direction and have the right people encouraging you along the way."
+      />
       <Box display="grid" gridTemplateRows="auto 1fr auto" height="100vh">
         <Header />
         <Styled.Hero>

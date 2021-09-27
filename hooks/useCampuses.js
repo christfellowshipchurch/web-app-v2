@@ -10,7 +10,10 @@ export const GET_CAMPUSES = gql`
 `;
 
 function useCampuses(options) {
-  const query = useQuery(GET_CAMPUSES, options);
+  const query = useQuery(GET_CAMPUSES, {
+    fetchPolicy: 'cache-and-network',
+    ...options,
+  });
 
   return {
     campuses: query?.data?.campuses || [],

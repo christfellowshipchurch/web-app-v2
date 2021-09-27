@@ -18,6 +18,7 @@ import useEvent from './useEvent';
 import useEvents from './useEvents';
 import useEventsFeedFeatures from './useEventsFeedFeatures';
 import useFeature from './useFeature';
+import useFeatureAction from './useFeatureAction';
 import useFeatureFeed from './useFeatureFeed';
 import useFeedFeatures from './useFeedFeatures';
 import useForm from './useForm';
@@ -27,6 +28,7 @@ import useGroupCoverImages from './useGroupCoverImages';
 import useGroupMemberStatus from './useGroupMemberStatus';
 import useGroupPreference from './useGroupPreference';
 import useGroupPreferences from './useGroupPreferences';
+import useGroupPreferenceUpdates from './useGroupPreferenceUpdates';
 import useGroupResourceOptions from './useGroupResourceOptions';
 import useGroups from './useGroups';
 import useLinkTree from './useLinkTree';
@@ -34,6 +36,7 @@ import useLiveStream from './useLiveStream';
 import useLiveStreams from './useLiveStreams';
 import useLiveStreamsQuery from './useLiveStreamsQuery';
 import useNode from './useNode';
+import useNodeActions from './useNodeActions';
 import useNodeRoute from './useNodeRoute';
 import useNotifyMeBanner from './useNotifyMeBanner';
 import useRegisterWithEmail from './useRegisterWithEmail';
@@ -73,6 +76,7 @@ export {
   useEvents,
   useEventsFeedFeatures,
   useFeature,
+  useFeatureAction,
   useGroupFacetFilters,
   useFeatureFeed,
   useFeedFeatures,
@@ -83,6 +87,7 @@ export {
   useGroupMemberStatus,
   useGroupPreference,
   useGroupPreferences,
+  useGroupPreferenceUpdates,
   useGroupResourceOptions,
   useGroups,
   useLinkTree,
@@ -90,6 +95,7 @@ export {
   useLiveStreams,
   useLiveStreamsQuery,
   useNode,
+  useNodeActions,
   useNodeRoute,
   useNotifyMeBanner,
   useRegisterWithEmail,

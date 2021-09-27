@@ -1,8 +1,17 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import flags from 'config/flags';
-import { BackButton, Button, Box, Cell, Divider, Loader, utils } from 'ui-kit';
+import {
+  BackButton,
+  Button,
+  Box,
+  Cell,
+  Divider,
+  Loader,
+  PaginationStepper,
+  utils,
+} from 'ui-kit';
 import {
   Footer,
   GroupSearchFilters,
@@ -22,7 +31,6 @@ import { useModalState } from 'providers/ModalProvider';
 import { GroupsProvider } from 'providers';
 import { useSearchGroups, useForm, useCurrentBreakpoint } from 'hooks';
 
-import Styled from './Search.styles';
 import Sidebar from './Sidebar';
 
 const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
@@ -38,16 +46,46 @@ export default function CommunitySearch() {
   }, [router]);
 
   const modalState = useModalState();
+  const [cursor, setCursor] = useState({
+    page: 1,
+    current: null,
+    previous: null,
+  });
   const [filtersState, filtersDispatch] = useGroupFilters();
-  const [searchGroups, { loading, groups, data, fetchMore }] = useSearchGroups({
+  const [searchGroups, { loading, groups, data }] = useSearchGroups({
     notifyOnNetworkStatusChange: true,
-    fetchPolicy: 'cache-and-network',
+    fetchPolicy: 'no-cache',
   });
 
   // Logical shorthands
   const hasResults = groups?.length > 0;
+  const totalResults = data?.searchGroups?.totalResults
+    ? Math.ceil(data?.searchGroups?.totalResults / PAGE_SIZE)
+    : 0;
   const showEmptyState = !loading && !hasResults;
-  const hasMorePages = groups?.length < data?.searchGroups?.totalResults;
+
+  // Pagination Stepper shorthand
+  const renderPagination = () => (
+    <PaginationStepper
+      total={totalResults}
+      cursor={cursor.page}
+      stepBy={1}
+      onStepBackward={() => {
+        setCursor({
+          page: cursor.page - 1,
+          current: cursor.page === 2 ? null : cursor.previous,
+          previous: cursor.current,
+        });
+      }}
+      onStepForward={() => {
+        setCursor({
+          page: cursor.page + 1,
+          current: data?.searchGroups?.pageInfo?.endCursor,
+          previous: cursor.current,
+        });
+      }}
+    />
+  );
 
   const { values, handleSubmit, handleChange, setValues, reset } = useForm(
     () => {
@@ -59,6 +97,17 @@ export default function CommunitySearch() {
   );
 
   useEffect(() => {
+    // note : only run a search with the cursor if the cursor itself has been changed
+    searchGroups({
+      variables: {
+        query: filtersState.queryData,
+        first: PAGE_SIZE,
+        after: cursor.current,
+      },
+    });
+  }, [cursor]);
+
+  useEffect(() => {
     // Don't execute search if state hasn't been hydrated OR a modal is open
     if (!filtersState.hydrated || modalState.activeModal.component) {
       return;
@@ -67,6 +116,13 @@ export default function CommunitySearch() {
     if (filtersState.values.text.length) {
       setValues({ text: filtersState.values.text[0] });
     }
+
+    // note : when the filters have changed, reset the cursor in order to insure that the user will be starting this new query from page 1
+    setCursor({
+      page: 1,
+      current: null,
+      previous: null,
+    });
 
     searchGroups({
       variables: {
@@ -78,21 +134,14 @@ export default function CommunitySearch() {
     filtersState.hydrated,
     filtersState.queryData,
     filtersState.values.text,
-    modalState.activeModal.component,
     searchGroups,
     setValues,
+    router,
   ]);
 
-  const handleLoadMore = () => {
-    if (!loading && hasMorePages) {
-      fetchMore({
-        variables: {
-          first: PAGE_SIZE,
-          after: data?.searchGroups?.pageInfo?.endCursor,
-        },
-      });
-    }
-  };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [data]);
 
   const handleClick = event => {
     filtersDispatch(update({ text: [values.text] }));
@@ -108,9 +157,6 @@ export default function CommunitySearch() {
   }
 
   if (!flags.GROUP_FINDER) return null;
-
-  const showResultsCount =
-    hasResults && data?.searchGroups?.totalResults > PAGE_SIZE;
 
   return (
     <>
@@ -178,10 +224,6 @@ export default function CommunitySearch() {
                 pageSize={PAGE_SIZE}
               />
             )}
-            <Styled.ResultsCount visible={showResultsCount}>
-              {!currentBreakpoint.isSmall ? 'Showing' : ''} {groups?.length} of{' '}
-              {data?.searchGroups?.totalResults} results
-            </Styled.ResultsCount>
           </Box>
           <Box
             display={currentBreakpoint.isXLarge && 'grid'}
@@ -218,20 +260,22 @@ export default function CommunitySearch() {
             )}
             <Box>
               {hasResults && (
-                <GroupsProvider data={groups} Component={GroupsResultsList} />
+                <>
+                  <Box py="base" display="flex" justifyContent="flex-end">
+                    {renderPagination()}
+                  </Box>
+
+                  <GroupsProvider data={groups} Component={GroupsResultsList} />
+
+                  <Box py="base" display="flex" justifyContent="center">
+                    {renderPagination()}
+                  </Box>
+                </>
               )}
               <Box>
                 {loading && (
                   <Box display="flex" justifyContent="center" my="xxl">
                     <Loader />
-                  </Box>
-                )}
-
-                {!loading && hasMorePages && (
-                  <Box display="flex" justifyContent="center" mt="xl">
-                    <Button variant="tertiary" onClick={handleLoadMore}>
-                      Load more
-                    </Button>
                   </Box>
                 )}
               </Box>

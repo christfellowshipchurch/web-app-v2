@@ -8,6 +8,7 @@ import {
   Box,
   Button,
   HorizontalHighlightCard,
+  Icon,
   utils,
 } from 'ui-kit';
 import {
@@ -47,8 +48,8 @@ function CommunitySingle(props = {}) {
 
   const options = {
     variables: {
-      facet: 'subPreference',
-      facetFilters: [`preference:${props.data?.title}`],
+      facet: 'subPreferences',
+      facetFilters: [`preferences:${props.data?.title}`],
     },
   };
 
@@ -59,6 +60,7 @@ function CommunitySingle(props = {}) {
     variables: {
       preferenceId: props?.data?.id,
     },
+    fetchPolicy: 'network-only',
   });
   const showNotifyMe = notifyMeBanner;
 
@@ -117,10 +119,13 @@ function CommunitySingle(props = {}) {
     showFilterModal();
   }
 
-
   return (
     <>
-      <SEO title={props.data?.title} />
+      <SEO
+        title={props.data?.title}
+        image={props.data?.coverImage?.sources[0]?.uri}
+        description={props.data?.summary}
+      />
       <Header />
       <Box width="100%" px="xxs" py={{ _: 's', lg: 'base' }}>
         <Styled.BackButton>
@@ -165,8 +170,8 @@ function CommunitySingle(props = {}) {
         {showNotifyMe && (
           <Styled.NotifyMeSection>
             <Box maxWidth={{ lg: '60%' }} mr={{ lg: 'l' }}>
-              <Box as="h3">{notifyMeBanner?.title}</Box>
-              <Box color="subdued">
+              <Box as="h1">{notifyMeBanner?.title}</Box>
+              <Box color="secondary">
                 {htmlToReactParser.parse(notifyMeBanner?.htmlContent)}
               </Box>
             </Box>
@@ -179,12 +184,13 @@ function CommunitySingle(props = {}) {
               mt={{ _: 'base', lg: 0 }}
             >
               <Button
-                variant="secondary"
+                variant="primary"
                 rounded={true}
                 size="l"
                 onClick={handleNotifyMeClick}
               >
-                {`Notify Me`}
+                <Icon name="notification" mr="xs" />
+                {`Remind Me`}
               </Button>
             </Box>
           </Styled.NotifyMeSection>

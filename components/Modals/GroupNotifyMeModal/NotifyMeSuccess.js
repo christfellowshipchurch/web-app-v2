@@ -14,12 +14,20 @@ function NotifyMeSuccess(props = {}) {
 
   return (
     <Box display="flex" flexDirection="column">
-      <Box textAlign="center" as="h2">
-        {props.title}
+      <Box
+        textAlign="center"
+        as="h2"
+        color="success"
+        display="flex"
+        flexDirection="column"
+      >
+        <Icon name="checkCircle" color="success" size="64" mb="xs" />
+        {`You're all set!`}
       </Box>
-      <Box textAlign="center" as="p" my="l" px="l">
-        <Icon name="checkCircle" color="success" size="64" mb="base" />
-        <Box as="p">You're on the notification list!</Box>
+      <Box textAlign="center" as="p" mb="l" px="l">
+        <Box as="p">
+          You'll receive a notification when these groups become available.
+        </Box>
       </Box>
 
       <Button onClick={handleDone} size="l" width="100%">
@@ -34,7 +42,7 @@ NotifyMeSuccess.propTypes = {
 };
 
 NotifyMeSuccess.defaultProps = {
-  title: 'Notify Me',
+  title: 'Remind Me',
 };
 
 export default NotifyMeSuccess;

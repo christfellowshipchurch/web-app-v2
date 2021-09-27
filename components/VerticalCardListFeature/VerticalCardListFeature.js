@@ -4,7 +4,7 @@ import isEmpty from 'lodash/isEmpty';
 
 import { CustomLink } from 'components';
 import { Box, CardGrid, HorizontalHighlightCard } from 'ui-kit';
-import { getUrlFromRelatedNode } from 'utils';
+import { getUrlFromRelatedNode, transformISODates } from 'utils';
 import Styled from './VerticalCardListFeature.styles';
 
 function VerticalCardListFeature(props = {}) {
@@ -36,7 +36,7 @@ function VerticalCardListFeature(props = {}) {
                 title={card?.title}
                 description={card?.summary}
                 type="HIGHLIGHT_SMALL"
-                label={card?.labelText}
+                label={transformISODates(card?.labelText)}
               />
             </Styled.CardSpacing>
           ))}

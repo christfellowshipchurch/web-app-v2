@@ -23,7 +23,7 @@ function ConnectModal(props = {}) {
 }
 
 ConnectModal.propTypes = {
-  ...Modal.propTypes,
+  // ...Modal.propTypes,
 };
 
 export default ConnectModal;

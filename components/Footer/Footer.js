@@ -12,13 +12,14 @@ function Footer(props = {}) {
         <Cell>
           <Box
             display={{ lg: 'grid' }}
-            gridTemplateColumns="30% repeat(3, 20%)"
+            gridTemplateColumns="30% repeat(4, 13%)"
             gridColumnGap="l"
           >
             <Contact />
             <Resources />
             <Connect />
             <About />
+            <Opportunities />
           </Box>
         </Cell>
       </Box>
@@ -55,16 +56,18 @@ function Resources() {
       </Box>
       <List as="ul" space="xs">
         <Box as="li">
-          <Styled.Link target="_blank" href={links.churchOnline}>Church Online</Styled.Link>
+          <Styled.Link target="_blank" href={links.churchOnline}>
+            Church Online
+          </Styled.Link>
         </Box>
         <Box as="li">
-          <Styled.Link href={links.pastMessages}>Past Messages</Styled.Link>
+          <Styled.Link target="_blank" href={links.pastMessages}>Past Messages</Styled.Link>
         </Box>
         <Box as="li">
-          <Styled.Link href={links.giveOnline}>Give Online</Styled.Link>
+          <Styled.Link target="_blank" href={links.giveOnline}>Give Online</Styled.Link>
         </Box>
         <Box as="li">
-          <Styled.Link href={links.shopOnline}>Shop Online</Styled.Link>
+          <Styled.Link target="_blank" href={links.shopOnline}>Shop Online</Styled.Link>
         </Box>
       </List>
     </Box>
@@ -79,20 +82,20 @@ function Connect() {
       </Box>
       <List as="ul" space="xs">
         <Box as="li">
-          <Styled.Link href={links.connectCard}>Connect Card</Styled.Link>
+          <Styled.Link target="_blank" href={links.connectCard}>Connect Card</Styled.Link>
         </Box>
         <Box as="li">
-          <Styled.Link href={links.submitPrayerRequest}>
+          <Styled.Link target="_blank" href={links.submitPrayerRequest}>
             Request Prayer
           </Styled.Link>
         </Box>
         <Box as="li">
-          <Styled.Link href={links.subscribeToUpdates}>
+          <Styled.Link target="_blank" href={links.subscribeToUpdates}>
             Subscribe To Updates
           </Styled.Link>
         </Box>
         <Box as="li">
-          <Styled.Link href={links.contactUs}>Contact Us</Styled.Link>
+          <Styled.Link target="_blank" href={links.contactUs}>Contact Us</Styled.Link>
         </Box>
       </List>
     </Box>
@@ -101,20 +104,16 @@ function Connect() {
 
 function About() {
   return (
-    <Box>
+    <Box mb={{ _: 'base', lg: '0' }}>
       <Box as="h4" fontSize="h3">
         About
       </Box>
       <List as="ul" space="xs">
         <Box as="li">
-          <Styled.Link href="/about">
-            Our Leadership
-          </Styled.Link>
+          <Styled.Link href="/about">Our Leadership</Styled.Link>
         </Box>
         <Box as="li">
-          <Styled.Link href={links.careerOpportunities}>
-            Career Opportunities
-          </Styled.Link>
+          <Styled.Link href="/locations">Locations</Styled.Link>
         </Box>
         <Box as="li">
           <CustomLink href="/privacy-policy" Component={Styled.Link}>
@@ -125,6 +124,29 @@ function About() {
           <CustomLink href="/terms-of-use" Component={Styled.Link}>
             Terms of Use
           </CustomLink>
+        </Box>
+      </List>
+    </Box>
+  );
+}
+
+function Opportunities() {
+  return (
+    <Box mb={{ _: 'base', lg: '0' }}>
+      <Box as="h4" fontSize="h3">
+        Opportunities
+      </Box>
+      <List as="ul" space="xs">
+        <Box as="li">
+          <Styled.Link href="/career-opportunities">
+            Careers
+          </Styled.Link>
+        </Box>
+        <Box as="li">
+          <Styled.Link target="_blank" href={links.cfConf}>CF Conference</Styled.Link>
+        </Box>
+        <Box as="li">
+          <Styled.Link target="_blank" href={links.cfSeu}>Get Your Degree</Styled.Link>
         </Box>
       </List>
     </Box>

@@ -105,19 +105,19 @@ export default function ResetPassword(props) {
         py={{ _: 'l', lg: 'xl' }}
         mb="xxl"
       >
-        <Card maxWidth="62%" margin="auto" p="base" pb="l">
+        <Card width='620px' maxWidth="100%" margin="auto" p="base" pb="l">
           {/* Form Header */}
           <Box my="l" textAlign="center">
             <Box as="h1">Password Reset</Box>
             <Box as="p">Forgot your password? We’ve got you covered!</Box>
           </Box>
 
-          <Box as="form" action="" onSubmit={handleSubmit} px="xxl">
+          <Box as="form" action="" onSubmit={handleSubmit} my="l" textAlign="center">
             {/* Email & Confirmation Code*/}
             <Box as="section" mb="l">
               <Box
                 as="h5"
-                px="l"
+                px="s"
                 pb="s"
                 mb="base"
                 color="subdued"

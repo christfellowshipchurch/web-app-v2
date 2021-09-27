@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { useModalDispatch, showStep } from 'providers/ModalProvider';
-import { useCampuses, useCurrentUser } from 'hooks';
+import { useCampuses, useCurrentUser, useGroupPreferenceUpdates } from 'hooks';
 
 import { Box, Button, FormLabel, Select } from 'ui-kit';
 
@@ -33,6 +33,16 @@ function CampusSelect(props = {}) {
 function NotifyMeForm(props = {}) {
   const { currentUser } = useCurrentUser();
   const [campusId, setCampusId] = useState(props.initialCampusId || '');
+  const [subscribeToGroupPreferenceUpdates] = useGroupPreferenceUpdates({
+    onCompleted: () => {
+      // Show success state
+      modalDispatch(showStep(1));
+    },
+    onError: e => {
+      console.log({ e });
+      modalDispatch(showStep(2));
+    },
+  });
   const modalDispatch = useModalDispatch();
 
   const handleCampusSelect = event => {
@@ -40,16 +50,14 @@ function NotifyMeForm(props = {}) {
   };
 
   const handleSubmit = () => {
-    const valuesToSubmit = {
+    const variables = {
       campusId,
-      userId: currentUser.id,
       groupPreferenceId: props.groupPreference.id,
     };
 
-    // TODO Invoke mutation here
-
-    // Show success state
-    modalDispatch(showStep(2));
+    subscribeToGroupPreferenceUpdates({
+      variables,
+    });
   };
 
   return (
@@ -81,7 +89,7 @@ NotifyMeForm.propTypes = {
 };
 
 NotifyMeForm.defaultProps = {
-  title: 'Notify Me',
+  title: 'Remind Me',
 };
 
 export default NotifyMeForm;

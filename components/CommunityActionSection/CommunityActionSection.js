@@ -14,15 +14,14 @@ export default function CommunityActionSection(props) {
       <Box as="h2" mb="s">
         You were made for community.
       </Box>
-      <Box as="p" mb="l" color="subdued">
+      <Box as="p" mb="l">
         With many choices to pick from, we’ll help you find a group or class
         that’s right for you!
       </Box>
       <Button onClick={props.handleOnClick} rounded={true} mb="base">
         {/* Allows for Group Hub titles to be passed in */}
-        {`Search All ${props?.title ? props?.title + ' ' : ''}Groups & Classes`}
+        Search All Groups & Classes
       </Button>
-
       <CustomLink target="_blank" href="https://rock.gocf.org/page/2113">
         Need help?
       </CustomLink>

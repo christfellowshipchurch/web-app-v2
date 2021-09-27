@@ -22,15 +22,46 @@ function EventSingle(props = {}) {
     );
   }
 
+  const author = props?.data?.author;
+  const coverImage = props?.data?.coverImage;
+  const schedule = props?.data?.schedule;
+  const summary = props?.data?.summary;
+  const title = props?.data?.title;
+  const coverImageUri = coverImage?.sources[0]?.uri;
+  const authorName = author
+    ? `${author.firstName} ${author.lastName}`
+    : undefined;
+
+  const eventShareMessages = {
+    faceBook: `Check out ${title} happening at Christ Fellowship Church!`,
+    twitter: `${title} at Christ Fellowship Church`,
+    email: {
+      subject: `${title} at Christ Fellowship Church`,
+      body: `Check out ${title} happening at Christ Fellowship Church! I would love for you to join me. \n\n ${document.URL}`,
+    },
+    sms: `Join me for ${title} at Christ Fellowship! ${document.URL}`,
+  };
+
   return (
     <ContentLayout
       mode={props.data.mode}
       title={props.data.title}
+      seoMetaTags={{
+        title,
+        description: schedule?.friendlyScheduleText || summary,
+        image: coverImageUri,
+        author: authorName,
+        url: typeof window !== 'undefined' ? window.location.href : undefined,
+      }}
       summary={props.data.summary}
       coverImage={props.data?.coverImage?.sources[0]?.uri}
       renderC={() => (
         <Box justifySelf="flex-end">
-          <Share title={props.data.title} shareTitle="Invite" />
+          <Share
+            title={props.data.title}
+            shareTitle="Invite"
+            shareMessages={eventShareMessages}
+          />
         </Box>
       )}
       htmlContent={props.data.htmlContent}

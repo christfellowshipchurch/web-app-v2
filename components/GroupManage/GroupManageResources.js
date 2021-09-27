@@ -11,6 +11,9 @@ import ResourcesList from './ResourcesList';
 function GroupManageResources(props = {}) {
   const [{ resourceStatus: status, groupData }, dispatch] = useGroupManage();
   const setStatus = s => dispatch(update({ resourceStatus: s }));
+  const currentResources = groupData?.resources?.map(
+    ({ relatedNode }) => relatedNode.id
+  );
 
   const handleAddLinkClick = toggle => event => {
     event.preventDefault();
@@ -37,6 +40,7 @@ function GroupManageResources(props = {}) {
       return (
         <GroupResourceOptionsProvider
           Component={AddResourceContent}
+          currentResources={currentResources}
           options={{ variables: { groupId: groupData.id } }}
         />
       );
@@ -53,7 +57,18 @@ function GroupManageResources(props = {}) {
         </Box>
         <Menu
           renderTrigger={({ toggle }) => (
-            <Box as="a" href="#0" onClick={toggle} textDecoration="none">
+            <Box
+              pl="xs"
+              py="xs"
+              border={'2px solid'}
+              backgroundColor="white"
+              borderRadius="7px"
+              as="a"
+              href="#0"
+              onClick={toggle}
+              textDecoration="none"
+              fontWeight="bold"
+            >
               Add <Icon name="caretDown" position="relative" top="2px" />
             </Box>
           )}

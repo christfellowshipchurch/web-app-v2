@@ -9,6 +9,7 @@ export const SEARCH_GROUPS = gql`
         endCursor
       }
       edges {
+        id
         cursor
         title
         summary
@@ -17,43 +18,31 @@ export const SEARCH_GROUPS = gql`
             uri
           }
         }
-        node {
+        relatedNode {
           id
-          ...groupSearchResultNodeFragment
+
+          ... on Url {
+            url
+          }
         }
+        action
+        ...groupSearchResultNodeFragment
       }
     }
   }
 
-  fragment groupSearchResultNodeFragment on Node {
-    ... on Group {
-      preference
-      subPreference
-      meetingType
-      campus {
-        name
-      }
-      dateTime {
-        start
-      }
-    }
-    ... on GroupItem {
-      members: people(first: 1) {
-        totalCount
-      }
-      leaders: people(first: 3, isLeader: true) {
-        totalCount
-        edges {
-          node {
-            id
-            firstName
-            lastName
-            nickName
-            photo {
-              uri
-            }
-          }
-        }
+  fragment groupSearchResultNodeFragment on GroupSearchResult {
+    preferences
+    subPreferences
+    meetingDay
+    meetingType
+    campusName
+    dateTime
+    leaders {
+      firstName
+      lastName
+      photo {
+        uri
       }
     }
   }
@@ -61,7 +50,7 @@ export const SEARCH_GROUPS = gql`
 
 function useSearchGroups(options = {}) {
   const [searchGroups, query] = useLazyQuery(SEARCH_GROUPS, {
-    fetchPolicy: 'cache-and-network',
+    fetchPolicy: 'network-only',
     ...options,
   });
 

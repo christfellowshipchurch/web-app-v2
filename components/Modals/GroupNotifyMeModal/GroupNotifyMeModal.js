@@ -5,6 +5,7 @@ import { Modal } from 'ui-kit';
 
 import NotifyMeForm from './NotifyMeForm';
 import NotifyMeSuccess from './NotifyMeSuccess';
+import NotifyMeError from './NotifyMeError';
 
 function GroupNotifyMeModal(props = {}) {
   function render(step) {
@@ -21,13 +22,16 @@ function GroupNotifyMeModal(props = {}) {
       case 1: {
         return <NotifyMeSuccess />;
       }
+      case 2: {
+        return <NotifyMeError />;
+      }
     }
   }
   return <Modal {...props}>{render}</Modal>;
 }
 
 GroupNotifyMeModal.propTypes = {
-  ...Modal.propTypes,
+  // ...Modal.propTypes,
   initialCampusId: PropTypes.string,
   groupPreference: PropTypes.shape({
     id: PropTypes.string.isRequired,

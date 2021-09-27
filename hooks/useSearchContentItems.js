@@ -9,6 +9,7 @@ export const SEARCH_CONTENT_ITEMS = gql`
         endCursor
       }
       edges {
+        id
         cursor
         title
         summary
@@ -17,24 +18,33 @@ export const SEARCH_CONTENT_ITEMS = gql`
             uri
           }
         }
-        node {
-          ... on ContentItem {
-            id
-            __typename
-          }
-          ... on NodeRoute {
-            routing {
-              pathname
-            }
+
+        relatedNode {
+          id
+
+          ... on Url {
+            url
           }
         }
+        action
+
+        ...contentSearchResultNodeFragment
       }
+    }
+  }
+
+  fragment contentSearchResultNodeFragment on ContentItemSearchResult {
+    routing {
+      pathname
     }
   }
 `;
 
 function useSearchContentItems(options = {}) {
-  const [search, query] = useLazyQuery(SEARCH_CONTENT_ITEMS, options);
+  const [search, query] = useLazyQuery(SEARCH_CONTENT_ITEMS, {
+    ...options,
+    fetchPolicy: 'no-cache',
+  });
 
   return [
     search,

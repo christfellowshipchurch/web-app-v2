@@ -5,7 +5,7 @@ import { Box } from 'ui-kit';
 import { VerticalCardListFeature } from 'components';
 
 export default {
-  title: 'components/VerticalCardListFeature',
+  title: 'components/VerticalModalCardListFeature',
   component: VerticalCardListFeature,
 };
 

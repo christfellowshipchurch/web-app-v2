@@ -97,7 +97,7 @@ const GroupCardSubTitle = styled.div`
   padding-right: ${themeGet('space.base')};
   font-size: ${themeGet('fontSizes.s')};
   font-weight: ${themeGet('fontWeights.bold')};
-  color: ${themeGet('colors.subdued')};
+  color: ${themeGet('colors.neutrals.500')};
 `;
 
 const GroupDescription = styled.p`
