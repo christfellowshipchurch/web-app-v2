@@ -192,7 +192,7 @@ export default function CommunitySearch() {
               href="https://rock.gocf.org/page/2113"
               display={{ _: 'none', md: 'inline-block' }}
             >
-              Need help?
+              Help Me Find a Group
             </Button>
           </Box>
 
