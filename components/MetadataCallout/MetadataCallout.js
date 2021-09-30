@@ -45,6 +45,7 @@ export const getMetadataObj = data => {
     finePrint: getData('finePrint'),
     cost: getData('cost'),
     tripType: getData('tripType'),
+    closedInstructions: getData('closedInstructions'),
   };
 };
 
@@ -58,8 +59,6 @@ export default function MetadataCallout({ data }) {
   const expired = metadata.deadline
     ? isAfter(new Date(), new Date(metadata.deadline))
     : false;
-
-    console.log({ metadata, data });
 
   return (
     <Styled.Callout>
@@ -239,16 +238,16 @@ export default function MetadataCallout({ data }) {
               {feature?.title}
             </Button>
           ) : null}
-          {expired && (
+          {expired && metadata.closedInstructions ? (
             <Text
               variant="base"
               color="neutrals.400"
               mt="xs"
               textAlign="center"
             >
-              Go to the front desk to sign up.
+              {metadata.closedInstructions}
             </Text>
-          )}
+          ) : null}
           {metadata.finePrint && (
             <Text
               variant="base"
