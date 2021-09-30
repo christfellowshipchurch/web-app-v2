@@ -19,7 +19,7 @@ export default function Page({ data, dropdownData }) {
         <Box mt={{ _: 'l' }} px="l">
           <ProfileImage width="400px" src={data?.photo?.uri} />
           <Box pt="xl" pb="m">
-            {data.campus?.name && (
+            /*{data.campus?.name && (
               <Heading
                 fontSize="h2"
                 lineHeight="h2"
@@ -29,7 +29,7 @@ export default function Page({ data, dropdownData }) {
               >
                 {data.campus?.name}
               </Heading>
-            )}
+            )}*/
             {data.firstName && data.lastName && (
               <Heading
                 fontSize="h1"
