@@ -30,17 +30,17 @@ export const TextContainer = styled(Box)`
   border-radius: 0 0 24px 24px;
   background: rgba(0, 0, 0, 0.5);
   flex: 1;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  left: 0;
 
-  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+  @media screen and (max-width: ${themeGet('breakpoints.sm')}) {
     ${props => (!props.staticHeight ? `backdrop-filter: blur(24px);` : '')}
   }
 
   @media screen and (min-width: ${props =>
-      props.staticHeight ? 0 : themeGet('breakpoints.md')}) {
+      props.staticHeight ? 0 : themeGet('breakpoints.sm')}) {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
     width: 100%;
     background: linear-gradient(
       180deg,

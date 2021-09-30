@@ -10,10 +10,14 @@ function Hit(props) {
     <LargeImage
       action={url ? () => router.push(url) : null}
       src={props.hit.coverImage ? props.hit.coverImage.sources[0].uri : null}
-      text={props.hit.title}
+      text={
+        props.hit.title.length > 35
+          ? props.hit.title.substring(0, 35) + '...'
+          : props.hit.title
+      }
       color="white"
       width={{ sm: '300px' }}
-      height="225px"
+      height={{ sm: '225px' }}
       m="xs"
       size="m"
     />
