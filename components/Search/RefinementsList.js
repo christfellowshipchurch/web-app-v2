@@ -44,7 +44,7 @@ export default function RefinementsList({
             </Panel>
           </Box>
         ))}
-        <Configure hitsPerPage={8} />
+        <Configure hitsPerPage={12} />
       </Styled.Refinements>
     </Styled.RefinementsBackground>
   );
