@@ -11,7 +11,7 @@ const VIDEO_URI = {
   sisterhood:
     'https://link.theplatform.com/s/IfSiAC/media/gMIs5lxTQwK1/file.m3u8?format=redirect&formats=m3u,mpeg4',
   crew:
-    'https://link.theplatform.com/s/IfSiAC/media/sGI100_ZBu7A/file.m3u8?format=redirect&formats=m3u,mpeg4',
+    'https://link.theplatform.com/s/IfSiAC/media/ZWXl6MnuPxWk/file.m3u8?format=redirect&formats=m3u,mpeg4',
   marriedPeople:
     'https://link.theplatform.com/s/IfSiAC/media/YzTluBLlGRWE/file.m3u8?format=redirect&formats=m3u,mpeg4',
   everyone:
