@@ -97,7 +97,7 @@ export default css`
 
   .ais-RefinementList-labelText {
     margin-left: ${themeGet('space.xs')};
-    overflow: hidden;
+    overflow: visible;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
