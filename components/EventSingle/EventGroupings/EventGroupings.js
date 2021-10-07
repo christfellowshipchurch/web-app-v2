@@ -11,17 +11,16 @@ const EventGroupings = (props = {}) => {
     i => i.name === values.campusSelect
   );
 
-  useEffect(() => {
-    if (props.data?.eventGroupings && props.data?.eventGroupings[0]?.name) {
-      setValues({ campusSelect: props.data.eventGroupings[0]?.name });
-    }
-  }, [setValues, props.data.eventGroupings]);
-
   // note : Checks to make sure there is a valid instance of each grouping, if not that means the grouping's date is invalid and should not show
   const isValidGrouping = groupings =>
     groupings.filter(group => group?.instances.length > 0);
-
   const eventGroupings = isValidGrouping(props.data?.eventGroupings);
+
+  useEffect(() => {
+    if (eventGroupings && eventGroupings[0]?.name) {
+      setValues({ campusSelect: eventGroupings[0]?.name });
+    }
+  }, [setValues, eventGroupings]);
 
   return (
     <Box as="form" onSubmit={handleSubmit}>
