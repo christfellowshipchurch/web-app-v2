@@ -55,7 +55,11 @@ export default function Channel({ item, dropdownData } = {}) {
             <LargeImage
               key={node?.id}
               text={node?.title}
-              subtext={node?.publishDate ? format(new Date(node?.publishDate), 'MMMM do, yyyy') : null}
+              subtext={
+                node?.publishDate
+                  ? format(new Date(node?.publishDate), 'MMMM do, yyyy')
+                  : null
+              }
               color="white"
               src={node?.coverImage?.sources?.[0].uri}
               height={{ sm: '350px' }}
