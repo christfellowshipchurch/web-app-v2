@@ -27,7 +27,7 @@ const DateTime = ({ start, end, title, ...props }) => {
             {format(new Date(start), 'eee LLL d')}
           </Box>
         </Box>
-        <Box display="flex" alignItems="center" color="subdued">
+        <Box display="flex" alignItems="center" color="neutrals.800">
           <Icon name="clock" mr="s" size="20" />
           <Box as="p" m={0}>
             {format(new Date(start), 'p')}
