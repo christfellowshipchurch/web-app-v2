@@ -3,7 +3,7 @@ const metadata = {
     churchOnline: 'https://cf.church/watchonline',
     pastMessages:
       'https://www.youtube.com/playlist?list=PLUQ7jSnRB_efXMDq9Lka6stS02awWoaz4',
-    giveOnline: 'https://pushpay.com/g/christfellowship',
+    giveOnline: 'https://christfellowship.church/give',
     volunteer: 'https://rock.christfellowship.church/dreamteam',
     shopOnline: 'https://resource.gochristfellowship.com/',
     connectCard: 'https://rock.gocf.org/connect',
