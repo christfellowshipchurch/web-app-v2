@@ -32,6 +32,7 @@ module.exports = {
         destination: '/:slug',
         permanent: false,
       }, 
+      { source: '/vote', destination: 'https://rock.longhollow.com/page/1267', permanent: true },
       { source: '/fallfamily', destination: '/fall-family-fun-day-2021', permanent: true },
       { source: '/rhythms', destination: '/rhythms-september-2021', permanent: true },
       { source: '/survey', destination: 'https://www.surveymonkey.com/r/YFZMCFP', permanent: true },
