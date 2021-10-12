@@ -149,6 +149,7 @@ export const GET_GROUP = gql`
       }
     }
   }
+
   ${GROUP_RESOURCE_FRAGMENT}
   ${GROUP_ITEM_FRAGMENT}
   ${GROUP_FRAGMENT}
@@ -162,6 +163,7 @@ function useGroup(options = {}) {
 
   return {
     group: query?.data?.node || [],
+    groupLeaders: query?.data?.groupLeaders || [],
     ...query,
   };
 }

@@ -9,38 +9,53 @@
 
 import { gql, useQuery } from '@apollo/client';
 
+export const GROUP_MEMBER_FRAGMENT = gql`
+  fragment groupMemberFragment on GroupMember {
+    id
+
+    note
+
+    status {
+      id
+      label
+      inactiveReason {
+        id
+        value
+      }
+    }
+
+    role
+
+    person {
+      id
+      birthDate
+      email
+      firstName
+      lastName
+      phoneNumber
+      address {
+        street1
+        street2
+        state
+        city
+        postalCode
+      }
+      photo {
+        uri
+      }
+    }
+  }
+`;
+
 export const GET_GROUP_MEMBER = gql`
   query getGroupMember($id: ID!) {
     node(id: $id) {
       id
-      ... on GroupMember {
-        id
-
-        note
-
-        status {
-          id
-          label
-          inactiveReason {
-            id
-            value
-          }
-        }
-
-        person {
-          id
-          birthDate
-          email
-          firstName
-          lastName
-          phoneNumber
-          photo {
-            uri
-          }
-        }
-      }
+      ...groupMemberFragment
     }
   }
+
+  ${GROUP_MEMBER_FRAGMENT}
 `;
 
 function useGroupMember(options = {}) {

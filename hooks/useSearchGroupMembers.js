@@ -1,35 +1,18 @@
 import { gql, useLazyQuery, useQuery } from '@apollo/client';
 
+import { GROUP_MEMBER_FRAGMENT } from './useGroupMember';
+
 export const SEARCH_GROUP_MEMBERS = gql`
   query searchGroupMembers(
+    $groupId: ID!
     $query: SearchQueryInput!
-    $first: Int
-    $after: String
   ) {
-    searchGroupMembers(query: $query, first: $first, after: $after) {
-      totalResults
-      pageInfo {
-        startCursor
-        endCursor
-      }
-      edges {
-        id
-        coverImage {
-          sources {
-            uri
-          }
-        }
-        firstName
-        lastName
-        status
-        role
-        relatedNode {
-          __typename
-          id
-        }
-      }
+    searchGroupMembers(groupId: $groupId, query: $query) {
+      ...groupMemberFragment
     }
   }
+
+  ${GROUP_MEMBER_FRAGMENT}
 `;
 
 export const SEARCH_GROUP_MEMBER_FACET_OPTIONS = gql`
@@ -54,7 +37,7 @@ function useSearchGroupMembers(options = {}) {
   return [
     searchGroupMembers,
     {
-      groupMembers: query?.data?.searchGroupMembers?.edges,
+      groupMembers: query?.data?.searchGroupMembers ??[],
       ...query,
       facets: facetData?.groupMemberSearchFacetOptions || [],
     },

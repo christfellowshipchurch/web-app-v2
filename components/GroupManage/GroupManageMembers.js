@@ -114,6 +114,7 @@ function GroupManageMembers(props = {}) {
   useEffect(() => {
     searchGroupMembers({
       variables: {
+        groupId: groupData?.id,
         query: {
           attributes: searchArgs,
         },
@@ -124,12 +125,15 @@ function GroupManageMembers(props = {}) {
   useEffect(() => {
     searchGroupMembers({
       variables: {
+        groupId: groupData?.id,
         query: {
           attributes: [...searchArgs],
         },
       },
     });
   }, []);
+
+  console.log({ groupMembers })
 
   return (
     <>
@@ -170,13 +174,13 @@ function GroupManageMembers(props = {}) {
           gridRowGap="15px"
         >
           {groupMembers.map(
-            ({ id, firstName, lastName, coverImage, role, status }) => (
+            ({ id, person, role, status }) => (
               <GroupMember
                 id={id}
                 key={id}
-                status={{ label: status }}
+                status={status}
                 role={role}
-                person={{ firstName, lastName, photo: coverImage?.sources[0] }}
+                person={person}
               />
             )
           )}
