@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CollectionPreview, HeroLanding } from 'components';
+import { CollectionPreview, HeroLanding, SEO } from 'components';
 import {
   DoMoreThan,
   LifeToTheFullest,
@@ -34,136 +34,143 @@ export default function ExternalLandingPage(props = {}) {
   // }, [modalDispatch]);
 
   return (
-    <HeroLanding
-      heroTitle="Get the most out of life."
-      heroSummary="A church that wants to help you do more than just get by."
-      backgroundVideo="/external-landing/home-background-vid.mp4"
-      actions={[
-        {
-          title: 'Start Now',
-          url: '#start-here',
-        },
-        {
-          title: 'I Already Attend',
-          onClick: e => handleLoginClick(e),
-          url: '#login',
-          color: 'white',
-          borderColor: 'white',
-          hoverColor: 'neutrals.400',
-        },
-      ]}
-    >
-      {/* Value Stack */}
-      <ValueStack
-        display={{ _: 'none', md: 'flex' }}
-        backgroundColorMap={['secondary', 'secondary']}
-        items={[
-          'Know God Personally',
-          'Grow In Relationships',
-          'Discover Your Purpose',
-        ]}
+    <>
+      <SEO
+        title={props.data?.title}
+        image={props.data?.coverImage?.sources[0]?.uri}
+        description={props.data?.summary}
       />
-
-      {/* Text Carousel */}
-      <Box
-        bg="neutral-200"
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        textAlign="center"
-        px="base"
-        py="xxl"
-        mx="auto"
-        style={{
-          backgroundImage: 'url(/background-dots.png)',
-          backgroundPosition: '-100px -18px',
-          backgroundRepeat: 'no-repeat',
-        }}
+      <HeroLanding
+        heroTitle="Get the most out of life."
+        heroSummary="A church that wants to help you do more than just get by."
+        backgroundVideo="/external-landing/home-background-vid.mp4"
+        actions={[
+          {
+            title: 'Start Now',
+            url: '#start-here',
+          },
+          {
+            title: 'I Already Attend',
+            onClick: e => handleLoginClick(e),
+            url: '#login',
+            color: 'white',
+            borderColor: 'white',
+            hoverColor: 'neutrals.400',
+          },
+        ]}
       >
-        <LifeIsCrazy />
-      </Box>
+        {/* Value Stack */}
+        <ValueStack
+          display={{ _: 'none', md: 'flex' }}
+          backgroundColorMap={['secondary', 'secondary']}
+          items={[
+            'Know God Personally',
+            'Grow In Relationships',
+            'Discover Your Purpose',
+          ]}
+        />
 
-      {/* Life to the Fullest Blocks */}
-      <Box
-        style={{
-          backgroundImage: 'url(/background-blob-white.png)',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
-        }}
-        mt={{ _: 0, md: 'l' }}
-        mb="l"
-      >
-        <LifeToTheFullest />
-      </Box>
-
-      {/* It all starts here. */}
-      <Box
-        mt="base"
-        id="start-here"
-        bg="primary"
-        px="base"
-        py={BASE_VERITCAL_PADDING}
-        style={{
-          backgroundImage:
-            'url(/start-here-corners.png), url(/start-here-dots.png), url(start-here-wedge.png)',
-          backgroundPosition: 'right, -100px -62px, bottom left',
-          backgroundRepeat: 'no-repeat',
-        }}
-      >
-        <StartHere maxWidth={BASE_MAX_WIDTH} />
-      </Box>
-
-      {/* Do more than just get by.*/}
-      <Box
-        px="base"
-        pt={BASE_VERITCAL_PADDING}
-        bg="white"
-        style={{
-          backgroundImage: 'url(/blue-dots.png)',
-          backgroundPosition: '100% 119%',
-          backgroundRepeat: 'no-repeat',
-        }}
-      >
-        <DoMoreThan maxWidth={BASE_MAX_WIDTH} />
-      </Box>
-
-      {/* Latest Messages */}
-      <Box px="base" py={BASE_VERITCAL_PADDING} bg="neutrals.100">
-        <Box mx="auto" maxWidth={1200}>
-          <CollectionPreview
-            title="Latest Messages"
-            contentId="UniversalContentItem:47a5a31f61ac5a4fb65576d0d47564e0"
-          />
+        {/* Text Carousel */}
+        <Box
+          bg="neutral-200"
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          textAlign="center"
+          px="base"
+          py="xxl"
+          mx="auto"
+          style={{
+            backgroundImage: 'url(/background-dots.png)',
+            backgroundPosition: '-100px -18px',
+            backgroundRepeat: 'no-repeat',
+          }}
+        >
+          <LifeIsCrazy />
         </Box>
-      </Box>
 
-      {/* Stay in the Know */}
-      <Box px="base" py={BASE_VERITCAL_PADDING} bg="neutrals.100">
-        <Box mx="auto" maxWidth={1200}>
-          <CollectionPreview
-            title="Discover More"
-            contentId="UniversalContentItem:d29e24e1873b0c4f4f645218ca3338ea"
-          />
+        {/* Life to the Fullest Blocks */}
+        <Box
+          style={{
+            backgroundImage: 'url(/background-blob-white.png)',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+          }}
+          mt={{ _: 0, md: 'l' }}
+          mb="l"
+        >
+          <LifeToTheFullest />
         </Box>
-      </Box>
 
-      <Box px="base" py={BASE_VERITCAL_PADDING} bg="white">
-        <Box mx="auto" maxWidth={1200}>
-          <ContentBlock
-            title="Never miss a thing."
-            actions={[
-              {
-                title: 'Subscribe for Updates',
-                relatedNode: {
-                  url: 'http://eepurl.com/hAk7aP',
+        {/* It all starts here. */}
+        <Box
+          mt="base"
+          id="start-here"
+          bg="primary"
+          px="base"
+          py={BASE_VERITCAL_PADDING}
+          style={{
+            backgroundImage:
+              'url(/start-here-corners.png), url(/start-here-dots.png), url(start-here-wedge.png)',
+            backgroundPosition: 'right, -100px -62px, bottom left',
+            backgroundRepeat: 'no-repeat',
+          }}
+        >
+          <StartHere maxWidth={BASE_MAX_WIDTH} />
+        </Box>
+
+        {/* Do more than just get by.*/}
+        <Box
+          px="base"
+          pt={BASE_VERITCAL_PADDING}
+          bg="white"
+          style={{
+            backgroundImage: 'url(/blue-dots.png)',
+            backgroundPosition: '100% 119%',
+            backgroundRepeat: 'no-repeat',
+          }}
+        >
+          <DoMoreThan maxWidth={BASE_MAX_WIDTH} />
+        </Box>
+
+        {/* Latest Messages */}
+        <Box px="base" py={BASE_VERITCAL_PADDING} bg="neutrals.100">
+          <Box mx="auto" maxWidth={1200}>
+            <CollectionPreview
+              title="Latest Messages"
+              contentId="UniversalContentItem:47a5a31f61ac5a4fb65576d0d47564e0"
+            />
+          </Box>
+        </Box>
+
+        {/* Stay in the Know */}
+        <Box px="base" py={BASE_VERITCAL_PADDING} bg="neutrals.100">
+          <Box mx="auto" maxWidth={1200}>
+            <CollectionPreview
+              title="Discover More"
+              contentId="UniversalContentItem:d29e24e1873b0c4f4f645218ca3338ea"
+            />
+          </Box>
+        </Box>
+
+        <Box px="base" py={BASE_VERITCAL_PADDING} bg="white">
+          <Box mx="auto" maxWidth={1200}>
+            <ContentBlock
+              title="Never miss a thing."
+              actions={[
+                {
+                  title: 'Subscribe for Updates',
+                  relatedNode: {
+                    url: 'http://eepurl.com/hAk7aP',
+                  },
+                  mt: '-0.8rem',
                 },
-                mt: '-0.8rem',
-              },
-            ]}
-          />
+              ]}
+            />
+          </Box>
         </Box>
-      </Box>
-    </HeroLanding>
+      </HeroLanding>
+    </>
   );
 }
