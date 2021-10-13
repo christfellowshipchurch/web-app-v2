@@ -5,7 +5,7 @@ import { ContentSingle, Layout } from 'components';
 import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
 import { initializeApollo } from 'lib/apolloClient';
 
-export default function Article(props) {
+export default function SoGoodSisterhoodContent() {
   const router = useRouter();
   const { title } = router.query;
 
