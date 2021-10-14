@@ -33,6 +33,7 @@ import Header from './Header';
 import HeroListFeature from './HeroListFeature';
 import HomeFeed from './HomeFeed';
 import HorizontalCardListFeature from './HorizontalCardListFeature';
+import IconCollection from './IconCollection';
 import Layout from './Layout';
 import LegacyNodeRouter from './LegacyNodeRouter';
 import LocationSingle from './LocationSingle';
@@ -86,6 +87,7 @@ export {
   HeroListFeature,
   HomeFeed,
   HorizontalCardListFeature,
+  IconCollection,
   Layout,
   LegacyNodeRouter,
   LocationSingle,
