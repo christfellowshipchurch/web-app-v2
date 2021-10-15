@@ -23,7 +23,7 @@ function renderItems(n) {
     arr.push(
       {
         title: '78,350',
-        description:
+        summary:
           'Water projects funded',
         coverImage: {sources: [{uri: testImage}]},
         highlightWidth: '100%',
