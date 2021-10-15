@@ -10,6 +10,7 @@ import { htmlToReactParser } from 'utils';
 
 export default function About() {
   const [active, setActive] = useState('leadership');
+  
   return (
     <Box width="100%">
       <SEO title="About" />
@@ -28,6 +29,10 @@ export default function About() {
             message of Jesus Christ—everyone, everyday,&nbsp;everywhere.
           </Box>
         </Styled.Hero>
+        <Box>
+          <ContentBlockCollection icons={icons} />
+        </Box>
+
         <Styled.Section>
           <Box as="h1">One Church with Many Locations</Box>
           <Box as="p" fontSize="l" maxWidth="840px">

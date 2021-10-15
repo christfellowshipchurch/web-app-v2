@@ -30,7 +30,7 @@ function VerticalCardListFeature(props = {}) {
                 as="a"
                 key={i}
                 href={getUrlFromRelatedNode(card?.relatedNode)}
-                Component={HorizontalHighlightCard}
+                Component={props?.Component ?? HorizontalHighlightCard}
                 coverImage={card?.coverImage?.sources[0]?.uri}
                 coverImageOverlay={true}
                 title={card?.title}
@@ -48,6 +48,11 @@ function VerticalCardListFeature(props = {}) {
 
 VerticalCardListFeature.propTypes = {
   data: PropTypes.object,
+  Component: PropTypes.any
 };
+
+VerticalCardListFeature.defaultProps = {
+  Component: HorizontalHighlightCard
+}
 
 export default VerticalCardListFeature;
