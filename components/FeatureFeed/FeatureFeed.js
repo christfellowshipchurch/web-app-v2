@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ActionBarFeature from '../ActionBarFeature';
+import ActionListFeature from '../ActionListFeature';
 import AvatarListFeature from '../AvatarListFeature';
 import ContentBlockFeature from '../ContentBlockFeature';
 import HeroListFeature from '../HeroListFeature';
@@ -21,7 +22,7 @@ const FEATURE_COMPONENTS = {
   VerticalCardListFeature,
 
   // TODO: Implement all Features needed for web
-  // ActionListFeature: () => null,
+  ActionListFeature: () => ActionListFeature,
   // PrayerListFeature: () => null,
   // VerticalPrayerListFeature: () => null,
   // CommentListFeature: () => null,

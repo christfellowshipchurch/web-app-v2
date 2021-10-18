@@ -3,6 +3,7 @@ import { gql, useQuery } from '@apollo/client';
 import {
   LITE_FEATURES_FRAGMENT,
   ACTION_BAR_FEATURE_FRAGMENT,
+  ACTION_LIST_FEATURE_FRAGMENT,
   AVATAR_LIST_FEATURE_FRAGMENT,
   RELATED_FEATURE_NODE_FRAGMENT,
   THEME_FRAGMENT,
@@ -25,6 +26,7 @@ export const GET_FEATURE_FEED = gql`
         id
         ...LiteFeaturesFragment
         ...ActionBarFeatureFragment
+        ...ActionListFeatureFragment
         ...AvatarListFeatureFragment
         ... on HorizontalCardListFeature {
           cardType
@@ -41,6 +43,7 @@ export const GET_FEATURE_FEED = gql`
   }
   ${LITE_FEATURES_FRAGMENT}
   ${ACTION_BAR_FEATURE_FRAGMENT}
+  ${ACTION_LIST_FEATURE_FRAGMENT}
   ${AVATAR_LIST_FEATURE_FRAGMENT}
   ${RELATED_FEATURE_NODE_FRAGMENT}
   ${THEME_FRAGMENT}
