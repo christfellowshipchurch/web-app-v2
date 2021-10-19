@@ -12,7 +12,7 @@ const LifeIsCrazy = () => [
     color="black"
   >
     Life is
-    <Box ml="xs" mb="s" minWidth={{ _: 200, md: 320 }} borderBottom="2px solid">
+    <Box ml="xs" mb="s" minWidth={{ _: 200, md: 360 }} borderBottom="2px solid">
       <Typewriter
         words={['crazy', 'overwhelming', 'complicated', 'unpredictable']}
         loop={0} //infinite loops
