@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Box, Image } from 'ui-kit';
+import { htmlToReactParser } from 'utils';
 
 const LifeToTheFullest = () => {
   const data = [
@@ -23,7 +24,7 @@ const LifeToTheFullest = () => {
     {
       title: 'Discover your purpose',
       subtitle:
-        "You're here for a reason. Find out who God created you to be and learn how to live life on purpose.",
+        "You're here for a reason. Find out who God created <i>you</i> to be and learn how to live life on purpose.",
       image: 'external-home-3.png',
       highlightWidth: '61%',
       highlightWidthSmall: '85%',
@@ -31,7 +32,7 @@ const LifeToTheFullest = () => {
     {
       title: 'Impact your world',
       subtitle:
-        'A life lived contributing your talents, gifts and passion for your world, and a life that others are inspired to emulate.',
+        'You can make a difference. Learn how to impact people in your sphere of influence, your community, and on the other side of the world.',
       image: 'external-home-4.png',
       highlightWidth: '52%',
       highlightWidthSmall: '70%',
@@ -108,7 +109,7 @@ const LifeToTheFullest = () => {
                 as="p"
                 fontSize={{ _: '1.2rem', md: '1.4rem', lg: '1.7rem' }}
               >
-                {subtitle}
+                {htmlToReactParser.parse(subtitle)}
               </Box>
             </Box>
 

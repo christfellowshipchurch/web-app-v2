@@ -10,20 +10,22 @@ const StartHere = ({ maxWidth }) => {
   const data = [
     {
       title: 'Plan a Visit',
-      subtitle: 'Attend a Sunday service. We would love to meet you!',
-      image: '/plan-a-visit.png',
+      subtitle:
+        'Attend a Sunday service, in person or online. We would love to meet you!',
+      image: 'plan-a-visit.png',
       url: '/locations',
     },
     {
-      title: 'Find Friends',
-      subtitle: 'Meet other people just like you. Find a group or class today.',
-      image: 'find-friends.png',
-      url: '/groups',
+      title: 'Discover What’s Here',
+      subtitle:
+        'We’ve designed a path for you and your family to grow in your faith, find friends, and serve others.',
+      image: 'discover-whats-here.jpeg',
+      url: '/get-connected',
     },
     {
       title: 'Ask a Question',
       subtitle:
-        'Have questions or need prayer? </br> <a href="tel:1-561-799-5600">Call</a> or <a href="sms:1-561-799-5600">Text</a> us at 561&#8288-700&#8288-5600',
+        'Have a question or need prayer? Let us know and our team will reach out to you!',
       image: 'ask-a-question.jpeg',
       url: 'https://rock.gocf.org/contactus',
       target: '_blank',

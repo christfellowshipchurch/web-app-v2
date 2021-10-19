@@ -14,7 +14,7 @@ const LifeIsCrazy = () => [
     Life is
     <Box ml="xs" mb="s" minWidth={{ _: 200, md: 320 }} borderBottom="2px solid">
       <Typewriter
-        words={['complicated', 'confusing', 'difficult', 'crazy']}
+        words={['crazy', 'overwhelming', 'complicated', 'unpredictable']}
         loop={0} //infinite loops
         cursor
         cursorStyle="|"

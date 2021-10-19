@@ -2,10 +2,10 @@ import React from 'react';
 
 import { CollectionPreview, HeroLanding, SEO } from 'components';
 import {
-  DoMoreThan,
+  LifeIsCrazy,
   LifeToTheFullest,
   StartHere,
-  LifeIsCrazy,
+  ThriveInEveryArea,
 } from 'components/ExternalHome';
 import { Box, ContentBlock, ValueStack } from 'ui-kit';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
@@ -42,7 +42,7 @@ export default function ExternalLandingPage(props = {}) {
       />
       <HeroLanding
         heroTitle="Get the most out of life."
-        heroSummary="A church that wants to help you do more than just get by."
+        heroSummary="A church that wants to help you live the life you were created for."
         backgroundVideo="/external-landing/home-background-vid.mp4"
         actions={[
           {
@@ -131,24 +131,24 @@ export default function ExternalLandingPage(props = {}) {
             backgroundRepeat: 'no-repeat',
           }}
         >
-          <DoMoreThan maxWidth={BASE_MAX_WIDTH} />
+          <ThriveInEveryArea maxWidth={BASE_MAX_WIDTH} />
         </Box>
 
-        {/* Latest Messages */}
+        {/* Relevant Messages */}
         <Box px="base" py={BASE_VERITCAL_PADDING} bg="neutrals.100">
           <Box mx="auto" maxWidth={1200}>
             <CollectionPreview
-              title="Latest Messages"
+              title="Relevant Messages"
               contentId="UniversalContentItem:47a5a31f61ac5a4fb65576d0d47564e0"
             />
           </Box>
         </Box>
 
-        {/* Stay in the Know */}
+        {/* Events for You */}
         <Box px="base" py={BASE_VERITCAL_PADDING} bg="neutrals.100">
           <Box mx="auto" maxWidth={1200}>
             <CollectionPreview
-              title="Discover More"
+              title="Events for You"
               contentId="UniversalContentItem:d29e24e1873b0c4f4f645218ca3338ea"
             />
           </Box>
