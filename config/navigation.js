@@ -37,7 +37,7 @@ const navigation = {
       icon: 'search',
     },
     {
-      action: '/items/112e169bd2542932ae3d392c13c1ac06',
+      action: '/give',
       call: 'Give',
       icon: 'envelopeOpenDollar',
     },

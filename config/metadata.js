@@ -1,13 +1,14 @@
 const metadata = {
   links: {
-    churchOnline: 'https://www.youtube.com/c/ChristFellowshipWelcomeHome',
-    pastMessages: 'https://www.youtube.com/playlist?list=PLUQ7jSnRB_efXMDq9Lka6stS02awWoaz4',
-    giveOnline: 'https://pushpay.com/g/christfellowship',
+    churchOnline: 'https://cf.church/watchonline',
+    pastMessages:
+      'https://www.youtube.com/playlist?list=PLUQ7jSnRB_efXMDq9Lka6stS02awWoaz4',
+    giveOnline: 'https://christfellowship.church/give',
     volunteer: 'https://rock.christfellowship.church/dreamteam',
     shopOnline: 'https://resource.gochristfellowship.com/',
     connectCard: 'https://rock.gocf.org/connect',
     submitPrayerRequest: 'https://rock.gocf.org/RequestPrayer',
-    subscribeToUpdates:'http://eepurl.com/hAk7aP',
+    subscribeToUpdates: 'http://eepurl.com/hAk7aP',
     contactUs: 'https://rock.gocf.org/contactus',
     careerOpportunities: 'https://boards.greenhouse.io/christfellowship',
     facebook: 'https://www.facebook.com/CFimpact/',

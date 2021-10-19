@@ -38,6 +38,7 @@
     "react-is": "^17.0.1",
     "react-multi-carousel": "^2.6.1",
     "react-simple-typewriter": "^3.0.0",
+    "shaka-player": "^3.2.0",
     "shaka-player-react": "^1.1.2",
     "storybook": "^6.3.7",
     "stream-chat": "3.1.x",

@@ -2,9 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { useContentItem } from 'hooks';
+import { NotFound } from 'components';
+import { Box, Loader } from 'ui-kit';
 
 function ContentItemProvider({ Component, options, ...props }) {
   const { loading, error, item } = useContentItem(options);
+
+  if (loading) {
+    return <Loader mt="xxl" centered text="Loading Event" />;
+  }
+
+  if (!item) {
+    return <NotFound layout={false} />;
+  }
 
   return <Component data={item} loading={loading} error={error} {...props} />;
 }

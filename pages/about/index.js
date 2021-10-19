@@ -10,6 +10,7 @@ import { htmlToReactParser } from 'utils';
 
 export default function About() {
   const [active, setActive] = useState('leadership');
+  
   return (
     <Box width="100%">
       <SEO title="About" />
@@ -30,15 +31,11 @@ export default function About() {
         </Styled.Hero>
         <Styled.Section>
           <Box as="h1">One Church with Many Locations</Box>
-          <Box as="p" mb="xl" fontSize="l" maxWidth="840px">
+          <Box as="p" fontSize="l" maxWidth="840px">
             We believe that church isn’t just a building you walk in to, but a
             family you can belong to—so whether you call one of our many
             locations home or join from home, church is wherever you&nbsp;are!
           </Box>
-          <Image
-            maxWidth="800px"
-            source={'about/Christ-Fellowship-Church-Locations.jpeg'}
-          />
         </Styled.Section>
         <List
           display="flex"

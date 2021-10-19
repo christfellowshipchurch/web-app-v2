@@ -22,9 +22,6 @@ export default function Give(props) {
         px="base"
         py={{ _: 'base', lg: 'l' }}
       >
-        <Box as="h1" mb="xs">
-          Give
-        </Box>
         <FeatureFeedProvider Component={FeatureFeed} options={options} />
       </Cell>
     </Layout>

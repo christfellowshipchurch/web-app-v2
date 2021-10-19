@@ -12518,7 +12518,7 @@ shaka-player-react@^1.1.2:
     rollup "^1.26.2"
     shaka-player "^3.0.6"
 
-shaka-player@^3.0.6:
+shaka-player@^3.0.6, shaka-player@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/shaka-player/-/shaka-player-3.2.0.tgz#612c61b0a05aed8173c8fb55161eb05f61309955"
   integrity sha512-JwFYNB+jgXKIwukncYEnU3wqR/ScyxpPNkSVUgT4Qxt4uPOkEBwPuZr9cpeqBUMQi6lXpBVTztC76AooPOpZ5g==
