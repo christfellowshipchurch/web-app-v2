@@ -104,7 +104,7 @@ function PageSingle(props = {}) {
 
         {features && features.length > 0 && (
           <Box>
-            <FeatureFeed data={features} skipQuery />
+            <FeatureFeed data={features} />
           </Box>
         )}
       </Box>
