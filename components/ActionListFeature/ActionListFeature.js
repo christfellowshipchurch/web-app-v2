@@ -8,18 +8,20 @@ import { getUrlFromRelatedNode, transformISODates } from 'utils';
 
 function ActionListFeature(props = {}) {
   const onPressActionItem = props?.onPressActionItem;
-  let title = props?.data?.node?.title;
-  let subtitle = props?.data?.node?.subtitle;
-  let cards = props?.data?.node?.actions || [];
+  let title = props?.data?.title;
+  let subtitle = props?.data?.subtitle;
+  let cards = props?.data?.actions || [];
 
   return (
     <Box>
-      {!isEmpty(title) && <Box as="h2">{title}</Box>}
-      {!isEmpty(subtitle) && (
-        <Box as="h3" fontWeight="normal">
-          {subtitle}
-        </Box>
-      )}
+      <Box mb="base">
+        {!isEmpty(title) && <Box as="h2">{title}</Box>}
+        {!isEmpty(subtitle) && (
+          <Box as="h3" fontWeight="normal">
+            {subtitle}
+          </Box>
+        )}
+      </Box>
       {cards.length > 0 && (
         <Box>
           {cards.map((card, i) => {

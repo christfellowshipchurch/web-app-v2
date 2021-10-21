@@ -72,6 +72,10 @@ const ActionListFeatureStory = ({ items }) => {
   );
 };
 
+ActionListFeatureStory.defaultProps = {
+  items: 1,
+};
+
 export const Default = ActionListFeatureStory.bind({});
 
 export default config;

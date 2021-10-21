@@ -162,6 +162,22 @@ const CONTENT_BLOCK_FEATURE_FRAGMENT = gql`
   }
 `;
 
+const FEATURE_FEED_FRAGMENT = gql`
+  fragment FeatureFeedFragment on FeatureFeed {
+    id
+    features {
+      id
+      ...ActionBarFeatureFragment
+      ...ActionListFeatureFragment
+      ...AvatarListFeatureFragment
+      ...ContentBlockFeatureFragment
+      ...HeroListFeatureFragment
+      ...HorizontalCardListFeatureFragment
+      ...VerticalCardListFeatureFragment
+    }
+  }
+`;
+
 const HERO_LIST_FEATURE_FRAGMENT = gql`
   fragment HeroListFeatureFragment on HeroListFeature {
     id
@@ -301,6 +317,7 @@ export {
   ACTION_LIST_FEATURE_FRAGMENT,
   AVATAR_LIST_FEATURE_FRAGMENT,
   CONTENT_BLOCK_FEATURE_FRAGMENT,
+  FEATURE_FEED_FRAGMENT,
   HERO_LIST_FEATURE_FRAGMENT,
   HORIZONTAL_CARD_LIST_FEATURE_FRAGMENT,
   LITE_FEATURES_FRAGMENT,

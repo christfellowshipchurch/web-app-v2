@@ -8,12 +8,12 @@ import ContentBlockFeature from '../ContentBlockFeature';
 import HeroListFeature from '../HeroListFeature';
 import HorizontalCardListFeature from '../HorizontalCardListFeature';
 import VerticalCardListFeature from '../VerticalCardListFeature';
-import { FeatureProvider } from 'providers';
 import { Box } from 'ui-kit';
 import { getComponent } from 'utils';
 
 const FEATURE_COMPONENTS = {
   ActionBarFeature,
+  ActionListFeature,
   AvatarListFeature,
   ContentBlockFeature,
   HeroListFeature,
@@ -22,7 +22,6 @@ const FEATURE_COMPONENTS = {
   VerticalCardListFeature,
 
   // TODO: Implement all Features needed for web
-  ActionListFeature: () => ActionListFeature,
   // PrayerListFeature: () => null,
   // VerticalPrayerListFeature: () => null,
   // CommentListFeature: () => null,
@@ -59,22 +58,17 @@ const FeatureFeed = (props = {}) => {
     return <Box as="h1">Please Log In to View Page</Box>;
   }
 
-  return props.data?.map((edge, i) => (
-    <Box key={edge?.id} py="l">
-      <FeatureProvider
-        onPressActionItem={props?.onPressActionItem}
-        Component={getComponent(edge, {
-          ...FEATURE_COMPONENTS,
-          ...props?.additionalFeatures,
-        })}
-        options={{
-          variables: {
-            featureId: edge?.id,
-          },
-        }}
-      />
-    </Box>
-  ));
+  return props.data?.map((edge, i) => {
+    const Component = getComponent(edge, {
+      ...FEATURE_COMPONENTS,
+      ...props?.additionalFeatures,
+    });
+    return (
+      <Box key={edge?.id} py="l">
+        <Component data={edge} onPressActionItem={props?.onPressActionItem} />
+      </Box>
+    );
+  });
 };
 
 FeatureFeed.propTypes = {
