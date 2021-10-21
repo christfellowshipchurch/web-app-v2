@@ -16,7 +16,7 @@ const LifeToTheFullest = () => {
     {
       title: 'Grow in your relationships',
       subtitle:
-        "You weren't meant to do life alone. Find friends and build stronger relationships with those you love.",
+        'You weren’t meant to do life alone. Find friends and build stronger relationships with God and others.',
       image: 'external-home-2.png',
       highlightWidth: '69%',
       highlightWidthSmall: '98%',

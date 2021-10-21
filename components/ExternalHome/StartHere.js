@@ -9,7 +9,7 @@ import { htmlToReactParser } from 'utils';
 const StartHere = ({ maxWidth }) => {
   const data = [
     {
-      title: 'Plan a Visit',
+      title: 'Find a Location',
       subtitle:
         'Attend a Sunday service, in person or online. We would love to meet you!',
       image: 'plan-a-visit.png',

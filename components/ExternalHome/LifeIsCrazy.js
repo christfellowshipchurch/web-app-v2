@@ -11,7 +11,7 @@ const LifeIsCrazy = () => [
     display="flex"
     color="black"
   >
-    Life is
+    Life can be
     <Box ml="xs" mb="s" minWidth={{ _: 200, md: 360 }} borderBottom="2px solid">
       <Typewriter
         words={['crazy', 'overwhelming', 'complicated', 'unpredictable']}
@@ -26,9 +26,10 @@ const LifeIsCrazy = () => [
     .
   </Box>,
   <Box as="h2" mb={0} fontWeight="normal">
-    But we want to help you live life to the fullest.
+    But it doesn’t have to be. We want to help you live life to the fullest.
+    <br />
+    <b>And here’s how.</b>
   </Box>,
-  <Box as="h2">And here's how.</Box>,
 ];
 
 export default LifeIsCrazy;

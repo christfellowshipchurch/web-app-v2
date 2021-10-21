@@ -19,7 +19,7 @@ const HeroLanding = styled.div`
     height: 100vh;
   }
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-    height: 90vh;
+    height: 91vh;
   }
 
   ${system}
