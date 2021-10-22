@@ -5,7 +5,7 @@ import { kebabCase, toLower, capitalize } from 'lodash';
 import { initializeApollo } from 'lib/apolloClient';
 import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
 import { FeatureFeedProvider, ContentItemProvider } from 'providers';
-import { Layout, FeatureFeed, ContentSingle, PageSingle } from 'components';
+import { Layout, FeatureFeed, PageSingle } from 'components';
 
 export default function PageBuilder(props = {}) {
   const router = useRouter();
@@ -55,32 +55,3 @@ export async function getStaticProps({ params }) {
     revalidate: 1,
   };
 }
-
-// export async function getServerSideProps() {
-//   const apolloClient = initializeApollo();
-
-//   const featureFeed = await apolloClient.query({
-//     query: GET_FEATURE_FEED,
-//     variables: { pathname: 'home' },
-//   });
-//   const features = featureFeed?.data?.featuresFeed?.features || [];
-
-//   let promises = [];
-//   features.map(item =>
-//     promises.push(
-//       apolloClient.query({
-//         query: GET_FEATURE,
-//         variables: {
-//           featureId: item?.id,
-//         },
-//       })
-//     )
-//   );
-//   await Promise.all(promises);
-
-//   return {
-//     props: {
-//       initialApolloState: apolloClient.cache.extract(),
-//     },
-//   };
-// }

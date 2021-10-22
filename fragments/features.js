@@ -73,6 +73,35 @@ const ACTION_BAR_FEATURE_FRAGMENT = gql`
   }
 `;
 
+const ACTION_LIST_FEATURE_FRAGMENT = gql`
+  fragment ActionListFeatureFragment on ActionListFeature {
+    id
+    title
+    subtitle
+    actions {
+      id
+      title
+      subtitle
+      action
+      image {
+        sources {
+          uri
+        }
+      }
+      relatedNode {
+        ...RelatedFeatureNodeFragment
+      }
+    }
+    primaryAction {
+      title
+      action
+      relatedNode {
+        ...RelatedFeatureNodeFragment
+      }
+    }
+  }
+`;
+
 const AVATAR_LIST_FEATURE_FRAGMENT = gql`
   fragment AvatarListFeatureFragment on AvatarListFeature {
     id
@@ -129,6 +158,22 @@ const CONTENT_BLOCK_FEATURE_FRAGMENT = gql`
       sources {
         uri
       }
+    }
+  }
+`;
+
+const FEATURE_FEED_FRAGMENT = gql`
+  fragment FeatureFeedFragment on FeatureFeed {
+    id
+    features {
+      id
+      ...ActionBarFeatureFragment
+      ...ActionListFeatureFragment
+      ...AvatarListFeatureFragment
+      ...ContentBlockFeatureFragment
+      ...HeroListFeatureFragment
+      ...HorizontalCardListFeatureFragment
+      ...VerticalCardListFeatureFragment
     }
   }
 `;
@@ -269,8 +314,10 @@ const VERTICAL_CARD_LIST_FEATURE_FRAGMENT = gql`
 
 export {
   ACTION_BAR_FEATURE_FRAGMENT,
+  ACTION_LIST_FEATURE_FRAGMENT,
   AVATAR_LIST_FEATURE_FRAGMENT,
   CONTENT_BLOCK_FEATURE_FRAGMENT,
+  FEATURE_FEED_FRAGMENT,
   HERO_LIST_FEATURE_FRAGMENT,
   HORIZONTAL_CARD_LIST_FEATURE_FRAGMENT,
   LITE_FEATURES_FRAGMENT,

@@ -23,32 +23,3 @@ export default function Event(props) {
     </Layout>
   );
 }
-
-// export async function getStaticProps(context) {
-//   const apolloClient = initializeApollo();
-
-//   await apolloClient.query({
-//     query: GET_EVENT,
-//     variables: { title: context.params.title },
-//   });
-
-//   return {
-//     props: {
-//       initialApolloState: apolloClient.cache.extract(),
-//     },
-//     revalidate: 1,
-//   };
-// }
-
-// export async function getStaticPaths() {
-//   const apolloClient = initializeApollo();
-
-//   const query = await apolloClient.query({ query: GET_EVENTS });
-//   const events = query.data.allEvents;
-
-//   const paths = events.map(event => ({
-//     params: { title: slugify(event.title) },
-//   }));
-
-//   return { paths, fallback: false };
-// }

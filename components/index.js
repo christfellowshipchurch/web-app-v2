@@ -1,5 +1,6 @@
 import * as modals from './Modals';
 import ActionBarFeature from './ActionBarFeature';
+import ActionListFeature from './ActionListFeature';
 import AddToCalendar from './AddToCalendar';
 import AppHead from './AppHead';
 import AvatarListFeature from './AvatarListFeature';
@@ -54,6 +55,7 @@ import Video from './Video';
 
 export {
   ActionBarFeature,
+  ActionListFeature,
   AddToCalendar,
   AppHead,
   AvatarListFeature,

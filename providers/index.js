@@ -10,7 +10,6 @@ import CurrentPersonProvider from './CurrentPersonProvider';
 import CurrentUserProvider from './CurrentUserProvider';
 import EventProvider from './EventProvider';
 import FeatureFeedProvider from './FeatureFeedProvider';
-import FeatureProvider from './FeatureProvider';
 import GroupCoverImagesProvider from './GroupCoverImagesProvider';
 import GroupFiltersProvider from './GroupFiltersProvider';
 import GroupManageProvider from './GroupManageProvider';
@@ -39,7 +38,6 @@ export {
   CurrentUserProvider,
   EventProvider,
   FeatureFeedProvider,
-  FeatureProvider,
   GroupCoverImagesProvider,
   GroupFiltersProvider,
   GroupManageProvider,
