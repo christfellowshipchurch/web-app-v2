@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 import { createMarkup } from 'utils';
+import capitalize from 'lodash/capitalize';
 import isEmpty from 'lodash/isEmpty';
 
 import { Layout, NotFound, FeatureFeed } from 'components';
@@ -42,7 +44,23 @@ const renderBody = ({ title, summary, htmlContent, coverImage }) => {
   return null;
 };
 
+const formatTitleForSEO = path => {
+  if (typeof path !== "string" || isEmpty(path)) {
+    return "Christ Fellowship Church"
+  }
+
+  return path
+    .replace("/", "-")
+    .split("-")
+    .map(w => capitalize(w))
+    .filter(w => !isEmpty(w))
+    .join(" ")
+};
+
 function PageSingle(props = {}) {
+  const router = useRouter();
+  const { asPath } = router;
+
   const data = props?.data;
   const loading = props?.loading;
 
@@ -75,7 +93,7 @@ function PageSingle(props = {}) {
 
   return (
     <Layout
-      title={title}
+      title={!title || isEmpty(title) ? formatTitleForSEO(asPath) : title}
       seoMetaTags={{
         image: coverImage,
         description: summary,
