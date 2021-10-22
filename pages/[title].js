@@ -32,7 +32,7 @@ export default function PageBuilder(props = {}) {
 
 export async function getStaticPaths() {
   // todo : make this a Network request so that it's dynamic
-  const titles = ['/so-good-sisterhood'];
+  const titles = [];
 
   return {
     paths: titles.map(title => title),
