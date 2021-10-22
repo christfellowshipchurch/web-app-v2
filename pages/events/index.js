@@ -37,7 +37,6 @@ export async function getServerSideProps() {
     query: GET_FEATURE_FEED,
     variables: { pathname: 'events' },
   });
-  await Promise.all(promises);
 
   return {
     props: {
