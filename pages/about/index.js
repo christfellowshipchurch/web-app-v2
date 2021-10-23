@@ -10,6 +10,7 @@ import { htmlToReactParser } from 'utils';
 
 export default function About() {
   const [active, setActive] = useState('leadership');
+  
   return (
     <Box width="100%">
       <SEO title="About" />
