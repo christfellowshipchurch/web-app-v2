@@ -32,6 +32,8 @@ module.exports = {
         destination: '/:slug',
         permanent: false,
       }, 
+      { source: '/legacy', destination: '/the-legacy-park-project', permanent: true },
+      { source: '/legacypark', destination: '/the-legacy-park-project', permanent: true },
       { source: '/food', destination: 'https://longhollow.com/food-for-families-2021', permanent: true },
       { source: '/girls-weekend', destination: 'https://longhollow.com/girls-weekend-2021', permanent: true },
       { source: '/guys-weekend', destination: 'https://longhollow.com/guys-weekend-2021', permanent: true },
