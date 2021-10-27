@@ -10,7 +10,7 @@ const PasswordReset = styled.div`
 
     background-color: ${themeGet('colors.paper')};
     color: ${themeGet('colors.fg')};
-    
+    text-align: center;
 
     @media screen and (min-width: ${themeGet('breakpoints.md')}) {
         flex-direction: row;
@@ -19,6 +19,7 @@ const PasswordReset = styled.div`
         margin-left: auto;
         margin-right: auto;
 
+        text-align: left;
         border-radius: ${themeGet('radii.base')};
         box-shadow: ${themeGet('shadows.xl')};
         overflow: ${props => (props.scaleCoverImage ? 'hidden' : 'initial')};
@@ -52,11 +53,12 @@ const HeroTitle = styled.h1`
     margin: auto;
     
     color: ${themeGet('colors.paper')};
-    font-size: 48pt;
+    font-size: 36pt;
     font-weight: bold;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
     @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+        font-size: 48pt;
         top: 50%;
         transform: translateY(-50%);
     }
