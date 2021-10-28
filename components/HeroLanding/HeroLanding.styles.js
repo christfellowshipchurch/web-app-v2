@@ -35,7 +35,7 @@ const Content = styled.div`
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
     max-width: 100%;
-    padding: 0px;
+    padding: 10px;
   }
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     max-width: 60%;

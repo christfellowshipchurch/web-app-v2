@@ -155,12 +155,13 @@ export default function ExternalLandingPage(props = {}) {
         </Box>
 
         <Box px="base" py={BASE_VERITCAL_PADDING} bg="white">
-          <Box mx="auto" maxWidth={1200}>
+          <Box mt={{ _: '-0.5rem', md: 'base' }} mx="auto" maxWidth={1200}>
             <ContentBlock
               title="Never miss a thing."
+              subtitle="Receive events and updates straight to your inbox!"
               actions={[
                 {
-                  title: 'Subscribe for Updates',
+                  title: 'Subscribe',
                   relatedNode: {
                     url: 'http://eepurl.com/hAk7aP',
                   },

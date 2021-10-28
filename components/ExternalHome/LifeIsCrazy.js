@@ -7,7 +7,7 @@ const LifeIsCrazy = () => [
   <Box
     as="h1"
     mt="l"
-    fontSize={{ _: '', md: '3rem' }}
+    fontSize={{ _: '1.5rem', md: '3rem' }}
     display="flex"
     color="black"
   >
