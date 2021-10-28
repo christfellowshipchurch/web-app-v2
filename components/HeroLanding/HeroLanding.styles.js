@@ -80,7 +80,8 @@ const BackgroundVideo = styled.video`
 
   position: absolute;
   bottom: 0;
-  right: 0;
+  width: 100%;
+  height: 100%;
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     width: 100%;
