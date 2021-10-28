@@ -12,7 +12,7 @@ const StartHere = ({ maxWidth }) => {
       title: 'Find a Location',
       subtitle:
         'Attend a Sunday service, in person or online. We would love to meet you!',
-      image: 'plan-a-visit.png',
+      image: 'find-a-location.jpg',
       url: '/locations',
     },
     {
