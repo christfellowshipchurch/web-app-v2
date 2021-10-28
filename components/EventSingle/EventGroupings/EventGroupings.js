@@ -7,19 +7,26 @@ import DateTime from './DateTime';
 
 const EventGroupings = (props = {}) => {
   const { values, handleSubmit, setValues, handleChange } = useForm();
-  const selectedGroup = props.data?.eventGroupings?.find(
+
+  // note : Checks to make sure there is a valid instance of each grouping, if not that means the grouping's date is invalid and should not show
+  const isValidGrouping = groupings =>
+    groupings.filter(group => group?.instances.length > 0);
+
+  const eventGroupings = isValidGrouping(props.data?.eventGroupings);
+
+  useEffect(() => {
+    if (eventGroupings && eventGroupings[0]?.name) {
+      setValues({ campusSelect: eventGroupings[0]?.name });
+    }
+  }, [setValues]);
+
+  const selectedGroup = eventGroupings?.find(
     i => i.name === values.campusSelect
   );
 
-  useEffect(() => {
-    if (props.data?.eventGroupings && props.data?.eventGroupings[0]?.name) {
-      setValues({ campusSelect: props.data.eventGroupings[0]?.name });
-    }
-  }, [setValues, props.data.eventGroupings]);
-
   return (
     <Box as="form" onSubmit={handleSubmit}>
-      {props.data?.eventGroupings?.length > 0 && (
+      {eventGroupings?.length > 0 && (
         <Card
           boxShadow="base"
           display="flex"
@@ -29,7 +36,7 @@ const EventGroupings = (props = {}) => {
           p={{ _: 's', md: 'base' }}
         >
           <Select
-            defaultValue={props.data?.eventGroupings[0]?.name}
+            defaultValue={eventGroupings[0]?.name}
             id="campusSelect"
             mb={selectedGroup?.instances?.length > 0 ? 'base' : '0'}
             name="campusSelect"
@@ -38,7 +45,7 @@ const EventGroupings = (props = {}) => {
             <Select.Option value="" disabled={true}>
               Select a campus...
             </Select.Option>
-            {props.data?.eventGroupings?.map(({ name }) => {
+            {eventGroupings?.map(({ name }) => {
               return (
                 <Select.Option key={name} value={name}>
                   {name}

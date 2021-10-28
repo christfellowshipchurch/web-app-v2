@@ -1,5 +1,4 @@
 import React from 'react';
-import { useRouter } from 'next/router';
 import { kebabCase, toLower, capitalize } from 'lodash';
 
 import { initializeApollo } from 'lib/apolloClient';
@@ -7,10 +6,10 @@ import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
 import { FeatureFeedProvider, ContentItemProvider } from 'providers';
 import { Layout, FeatureFeed, PageSingle } from 'components';
 
-export default function PageBuilder(props = {}) {
-  const router = useRouter();
-  const { query } = router;
-  const { title } = query;
+// note : We need to create this file to make sure the URL still pulls in the correct Page Builder page for So Good Sisterhood
+
+export default function SoGoodSisterhoodPage() {
+  const title = 'so-good-sisterhood';
   const formatTitleAsUrl = title => kebabCase(toLower(title));
 
   const options = {
@@ -30,22 +29,12 @@ export default function PageBuilder(props = {}) {
   );
 }
 
-export async function getStaticPaths() {
-  // todo : make this a Network request so that it's dynamic
-  const titles = [];
-
-  return {
-    paths: titles.map(title => title),
-    fallback: true,
-  };
-}
-
-export async function getStaticProps({ params }) {
+export async function getStaticProps() {
   const apolloClient = initializeApollo();
 
   await apolloClient.query({
     query: GET_CONTENT_ITEM,
-    variables: { pathname: params.title },
+    variables: { pathname: 'so-good-sisterhood' },
   });
 
   return {

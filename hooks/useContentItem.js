@@ -1,5 +1,18 @@
 import { gql, useQuery } from '@apollo/client';
 
+import {
+  ACTION_BAR_FEATURE_FRAGMENT,
+  ACTION_LIST_FEATURE_FRAGMENT,
+  AVATAR_LIST_FEATURE_FRAGMENT,
+  CONTENT_BLOCK_FEATURE_FRAGMENT,
+  FEATURE_FEED_FRAGMENT,
+  HERO_LIST_FEATURE_FRAGMENT,
+  HORIZONTAL_CARD_LIST_FEATURE_FRAGMENT,
+  RELATED_FEATURE_NODE_FRAGMENT,
+  THEME_FRAGMENT,
+  VERTICAL_CARD_LIST_FEATURE_FRAGMENT,
+} from 'fragments';
+
 export const CONTENT_ITEM_FRAGMENT = gql`
   fragment contentItemFragment on ContentItem {
     id
@@ -130,10 +143,7 @@ export const GET_CONTENT_ITEM = gql`
 
       ... on FeaturesNode {
         featureFeed {
-          id
-          features {
-            id
-          }
+          ...FeatureFeedFragment
         }
       }
     }
@@ -143,6 +153,17 @@ export const GET_CONTENT_ITEM = gql`
   ${CONTENT_ITEM_FRAGMENT}
   ${PUBLISH_FRAGMENT}
   ${INFORMATIONAL_ITEM_FRAGMENT}
+
+  ${ACTION_BAR_FEATURE_FRAGMENT}
+  ${ACTION_LIST_FEATURE_FRAGMENT}
+  ${AVATAR_LIST_FEATURE_FRAGMENT}
+  ${CONTENT_BLOCK_FEATURE_FRAGMENT}
+  ${FEATURE_FEED_FRAGMENT}
+  ${HERO_LIST_FEATURE_FRAGMENT}
+  ${HORIZONTAL_CARD_LIST_FEATURE_FRAGMENT}
+  ${RELATED_FEATURE_NODE_FRAGMENT}
+  ${THEME_FRAGMENT}
+  ${VERTICAL_CARD_LIST_FEATURE_FRAGMENT}
 `;
 
 function useContentItem(options = {}) {

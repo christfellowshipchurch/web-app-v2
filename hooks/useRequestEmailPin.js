@@ -8,8 +8,8 @@ export const REQUEST_EMAIL_PIN = gql`
   }
 `;
 
-function useRequestPin(options = {}) {
+function useRequestEmailPin(options = {}) {
   return useMutation(REQUEST_EMAIL_PIN, options);
 }
 
-export default useRequestPin;
+export default useRequestEmailPin;

@@ -1,11 +1,16 @@
 import { gql, useQuery } from '@apollo/client';
 
 import {
-  LITE_FEATURES_FRAGMENT,
   ACTION_BAR_FEATURE_FRAGMENT,
+  ACTION_LIST_FEATURE_FRAGMENT,
   AVATAR_LIST_FEATURE_FRAGMENT,
+  CONTENT_BLOCK_FEATURE_FRAGMENT,
+  FEATURE_FEED_FRAGMENT,
+  HERO_LIST_FEATURE_FRAGMENT,
+  HORIZONTAL_CARD_LIST_FEATURE_FRAGMENT,
   RELATED_FEATURE_NODE_FRAGMENT,
   THEME_FRAGMENT,
+  VERTICAL_CARD_LIST_FEATURE_FRAGMENT,
 } from 'fragments';
 
 /**
@@ -20,30 +25,19 @@ import {
 export const GET_FEATURE_FEED = gql`
   query getFeatureFeed($pathname: String!) {
     featuresFeed(pathname: $pathname) {
-      id
-      features {
-        id
-        ...LiteFeaturesFragment
-        ...ActionBarFeatureFragment
-        ...AvatarListFeatureFragment
-        ... on HorizontalCardListFeature {
-          cardType
-          primaryAction {
-            title
-            action
-            relatedNode {
-              ...RelatedFeatureNodeFragment
-            }
-          }
-        }
-      }
+      ...FeatureFeedFragment
     }
   }
-  ${LITE_FEATURES_FRAGMENT}
   ${ACTION_BAR_FEATURE_FRAGMENT}
+  ${ACTION_LIST_FEATURE_FRAGMENT}
   ${AVATAR_LIST_FEATURE_FRAGMENT}
+  ${CONTENT_BLOCK_FEATURE_FRAGMENT}
+  ${FEATURE_FEED_FRAGMENT}
+  ${HERO_LIST_FEATURE_FRAGMENT}
+  ${HORIZONTAL_CARD_LIST_FEATURE_FRAGMENT}
   ${RELATED_FEATURE_NODE_FRAGMENT}
   ${THEME_FRAGMENT}
+  ${VERTICAL_CARD_LIST_FEATURE_FRAGMENT}
 `;
 
 function useFeatureFeed(options = {}) {

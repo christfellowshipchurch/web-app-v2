@@ -1,5 +1,6 @@
 import * as modals from './Modals';
 import ActionBarFeature from './ActionBarFeature';
+import ActionListFeature from './ActionListFeature';
 import AddToCalendar from './AddToCalendar';
 import AppHead from './AppHead';
 import AvatarListFeature from './AvatarListFeature';
@@ -35,6 +36,7 @@ import Header from './Header';
 import HeroListFeature from './HeroListFeature';
 import HomeFeed from './HomeFeed';
 import HorizontalCardListFeature from './HorizontalCardListFeature';
+import ContentBlockCollection from './ContentBlockCollection';
 import Layout from './Layout';
 import LegacyNodeRouter from './LegacyNodeRouter';
 import LocationSingle from './LocationSingle';
@@ -43,6 +45,7 @@ import Logo from './Logo';
 import Nav from './Nav';
 import NotFound from './NotFound';
 import PageSingle from './PageSingle';
+import PasswordReset from './PasswordReset'
 import SEO from './SEO';
 import SearchField from './SearchField';
 import Share from './Share';
@@ -55,6 +58,7 @@ import Video from './Video';
 
 export {
   ActionBarFeature,
+  ActionListFeature,
   AddToCalendar,
   AppHead,
   AvatarListFeature,
@@ -90,6 +94,7 @@ export {
   HeroListFeature,
   HomeFeed,
   HorizontalCardListFeature,
+  ContentBlockCollection,
   Layout,
   LegacyNodeRouter,
   LocationSingle,
@@ -98,6 +103,7 @@ export {
   Nav,
   NotFound,
   PageSingle,
+  PasswordReset,
   SEO,
   SearchField,
   Share,
