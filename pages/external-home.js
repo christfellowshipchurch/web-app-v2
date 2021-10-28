@@ -43,7 +43,7 @@ export default function ExternalLandingPage(props = {}) {
       <HeroLanding
         heroTitle="Get the most out of life."
         heroSummary="A church that wants to help you live the life you were created for."
-        backgroundVideo="/external-landing/home-background-vid.mp4"
+        backgroundVideo="/external-landing/external-bg-vid.mp4"
         actions={[
           {
             title: 'Start Now',

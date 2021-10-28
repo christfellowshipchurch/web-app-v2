@@ -64,7 +64,7 @@ function Nav(props = {}) {
               </Box>
             )}
             side="right"
-            menuWidth="200px"
+            menuWidth="240px"
             menuMargin="s"
           >
             <List py="xs" space="0">

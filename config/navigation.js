@@ -49,12 +49,12 @@ const navigation = {
   startHereLinks: [
     {
       action: '/locations',
-      call: 'Plan a Visit',
+      call: 'Find a Location',
       icon: 'location',
     },
     {
-      action: '/groups',
-      call: 'Find Friends',
+      action: '/get-connected',
+      call: "Discover What's Here",
       icon: 'users',
     },
     {
