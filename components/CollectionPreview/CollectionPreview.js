@@ -22,6 +22,7 @@ const CollectionPreview = ({
   summary,
   cardType,
   hideButton,
+  buttonOverride,
 }) => {
   const router = useRouter();
   const { contentItems, loading } = useDiscoverFilterCategoriesPreview({
@@ -77,7 +78,13 @@ const CollectionPreview = ({
       </CardGrid>
       {contentItems?.length > 2 && !hideButton ? (
         <Box textAlign="center" width="100%">
-          <Button variant="secondary" mt="base" onClick={handleSeeMore}>
+          <Button
+            variant="secondary"
+            mt="base"
+            onClick={
+              buttonOverride ? () => router.push(buttonOverride) : handleSeeMore
+            }
+          >
             Show More
           </Button>
         </Box>
@@ -89,6 +96,11 @@ const CollectionPreview = ({
 CollectionPreview.propTypes = {
   contentId: PropTypes.string,
   title: PropTypes.string,
+  buttonOverride: PropTypes.string,
+};
+
+CollectionPreview.defaultProps = {
+  buttonOverride: false,
 };
 
 export default CollectionPreview;
