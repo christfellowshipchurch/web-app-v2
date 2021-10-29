@@ -57,7 +57,7 @@ const Title = styled.h1`
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     font-size: 4rem;
     line-height: 4rem;
-    margin-bottom: 0px;
+    margin-bottom: ${themeGet('space.s')};
   }
 `;
 
@@ -70,7 +70,7 @@ const Summary = styled.h2`
     font-size: 1.4rem;
   }
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-    font-size: 2.3rem;
+    font-size: 2rem;
     max-width: 700px;
   }
 `;

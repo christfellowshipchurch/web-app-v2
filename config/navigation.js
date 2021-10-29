@@ -46,7 +46,7 @@ const navigation = {
     action: links.churchOnline,
     call: 'Watch Online',
   },
-  startHereLinks: [
+  startNowLinks: [
     {
       action: '/locations',
       call: 'Find a Location',

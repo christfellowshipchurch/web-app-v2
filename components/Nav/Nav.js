@@ -58,7 +58,7 @@ function Nav(props = {}) {
                     })
                   }
                 >
-                  Start Here
+                  Start Now
                   <Icon name="caretDown" mr={-10} ml="xs" mt={-4} mb={-6} />
                 </Button>
               </Box>
@@ -68,7 +68,7 @@ function Nav(props = {}) {
             menuMargin="s"
           >
             <List py="xs" space="0">
-              <MenuLinks data={props.data.startHereLinks} />
+              <MenuLinks data={props.data.startNowLinks} />
             </List>
           </Menu>,
 

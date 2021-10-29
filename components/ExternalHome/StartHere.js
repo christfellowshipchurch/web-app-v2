@@ -108,14 +108,20 @@ const StartHere = ({ maxWidth }) => {
                     justifyContent="center"
                     alignItems="center"
                   >
-                    <Button bg="secondary" as="h2" m="0" mb="0.25rem">
+                    <Button
+                      bg="secondary"
+                      as="h2"
+                      m="0"
+                      mb="0.25rem"
+                      fontSize={{ _: '1.1rem', lg: '1.25rem' }}
+                    >
                       {title}
                     </Button>
                   </Box>
                 </Box>
                 <Box
                   as="p"
-                  fontSize={{ _: '1.2rem', lg: '1.35rem' }}
+                  fontSize={{ _: '1rem', lg: '1.1rem' }}
                   lineHeight="1.65rem"
                   mt="s"
                 >
