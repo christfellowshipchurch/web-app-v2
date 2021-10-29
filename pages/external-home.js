@@ -139,7 +139,7 @@ export default function ExternalLandingPage(props = {}) {
           <Box mx="auto" maxWidth={1200}>
             <CollectionPreview
               title="Relevant Messages"
-              contentId="UniversalContentItem:47a5a31f61ac5a4fb65576d0d47564e0"
+              contentId="UniversalContentItem:e45a213bba4f171708ef051041a22046"
             />
           </Box>
         </Box>
