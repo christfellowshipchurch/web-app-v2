@@ -12,7 +12,7 @@ const Header = styled.header`
   position: ${props => props.position};
   width: 100%;
   z-index: 9;
-  transition: background-color ease-in 0.2s;
+  transition: background-color ease-in 0.2s, opacity ease-in 0.2s;
 
   > *:last-child {
     justify-self: flex-end;
