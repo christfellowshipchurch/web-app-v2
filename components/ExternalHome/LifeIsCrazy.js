@@ -25,11 +25,12 @@ const LifeIsCrazy = () => [
     </Box>
     .
   </Box>,
-  <Box as="h2" mb={0} fontWeight="normal">
+  <Box as="h2" mv="s" fontWeight="normal">
     But it doesn’t have to be. We want to help you live life to the fullest.
-    <br />
-    <b>And here’s how.</b>
   </Box>,
+  <Box as="h2" mb={0} fontWeight="normal">
+    <b>And here’s how.</b>
+  </Box>
 ];
 
 export default LifeIsCrazy;
