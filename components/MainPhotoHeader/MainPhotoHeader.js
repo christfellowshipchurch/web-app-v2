@@ -6,6 +6,7 @@ import Styled from './MainPhotoHeader.styles';
 
 function MainPhotoHeader({
   src,
+  backgroundSrc,
   title,
   subtitle,
   summary,
@@ -20,9 +21,10 @@ function MainPhotoHeader({
   imageProps = {},
   ...props
 } = {}) {
+  const _backgroundSrc = backgroundSrc || src;
   return (
     <Styled.Container {...props}>
-      {backdrop && <Styled.Backdrop src={src} />}
+      {backdrop && <Styled.Backdrop src={_backgroundSrc} />}
       {backdrop && <Styled.BackdropOverlay bg="bg_alt" opacity="0.4" />}
       <Styled.ImageContainer backdrop={backdrop}>
         {showImage && (

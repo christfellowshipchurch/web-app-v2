@@ -1,4 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
+import { SOURCES } from 'lib/apolloClient/fragments';
 
 export const GET_CONTENT_CHANNEL = gql`
   query getContentChannel($itemId: ID!) {
@@ -11,30 +12,25 @@ export const GET_CONTENT_CHANNEL = gql`
               title
               summary
               videos {
-                sources {
-                  uri
-                }
+                ...Sources
               }
               sharing {
                 url
               }
               coverImage {
-                sources {
-                  uri
-                }
+                ...Sources
               }
               ... on WeekendContentItem {
                 seriesImage {
-                  sources {
-                    uri
-                  }
+                  ...Sources
+                }
+                seriesBackgroundImage {
+                  ...Sources
                 }
               }
               ... on UniversalContentItem {
                 navImage {
-                  sources {
-                    uri
-                  }
+                  ...Sources
                 }
                 featureOnHomePage
                 showOnHomePage
@@ -48,9 +44,7 @@ export const GET_CONTENT_CHANNEL = gql`
                   title
                   body
                   image {
-                    sources {
-                      uri
-                    }
+                    ...Sources
                   }
                   buttonText
                   buttonLink
@@ -62,6 +56,7 @@ export const GET_CONTENT_CHANNEL = gql`
       }
     }
   }
+  ${SOURCES}
 `;
 
 function useContentChannel(options = {}) {

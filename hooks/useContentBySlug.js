@@ -1,45 +1,12 @@
 import { gql, useQuery } from '@apollo/client';
-import METADATA_FRAGMENT from './useMetadataFragment';
+import {
+  BASE_CONTENT_ITEM,
+  METADATA_FRAGMENT,
+  SOURCES,
+  WITH_MEDIA,
+} from 'lib/apolloClient/fragments';
 
 export const GET_CONTENT_BY_SLUG = gql`
-  fragment BaseContentItem on ContentItem {
-    id
-    title
-    summary
-    htmlContent
-    publishDate
-    parentChannel {
-      id
-    }
-    coverImage {
-      ...Sources
-    }
-    sharing {
-      url
-    }
-    siblingContentItemsConnection {
-      edges {
-        node {
-          id
-          title
-          summary
-          publishDate
-          coverImage {
-            ...Sources
-          }
-          sharing {
-            url
-          }
-        }
-      }
-    }
-  }
-  fragment Sources on Media { sources { uri }}
-  fragment WithMedia on ContentItem {
-    videos {
-      ...Sources
-    }
-  }
   query getContentBySlug($slug: String!) {
     getContentBySlug(slug: $slug) {
       ...BaseContentItem
@@ -49,6 +16,9 @@ export const GET_CONTENT_BY_SLUG = gql`
           ...Sources
         }
         seriesImage {
+          ...Sources
+        }
+        seriesBackgroundImage {
           ...Sources
         }
         childContentItemsConnection {
@@ -65,6 +35,9 @@ export const GET_CONTENT_BY_SLUG = gql`
         }
         ...WithMedia
         seriesImage {
+          ...Sources
+        }
+        seriesBackgroundImage {
           ...Sources
         }
         childContentItemsConnection {
@@ -85,6 +58,9 @@ export const GET_CONTENT_BY_SLUG = gql`
         }
       }
       ... on ContentSeriesContentItem {
+        backgroundImage {
+          ...Sources
+        }
         childContentItemsConnection(orderBy: { field: DATE, direction: DESC }) {
           edges {
             node {
@@ -140,6 +116,9 @@ export const GET_CONTENT_BY_SLUG = gql`
     }
   }
   ${METADATA_FRAGMENT}
+  ${BASE_CONTENT_ITEM}
+  ${SOURCES}
+  ${WITH_MEDIA}
 `;
 
 function useContentBySlug(options = {}) {

@@ -36,10 +36,15 @@ function FullLengthSermon(props = {}) {
     src = getMediaSource(props.sermon, 'audios') || src;
   }
 
+  const mainPhoto =
+    props.sermon?.seriesBackgroundImage?.sources?.[0].uri ||
+    props.sermon?.seriesImage?.sources?.[0].uri ||
+    'schedule.jpeg';
+
   return (
     <Box display="flex" flexDirection="column">
       <MainPhotoHeader
-        src={props.sermon?.seriesImage?.sources?.[0].uri || '/schedule.jpeg'}
+        src={mainPhoto}
         imageProps={{
           maxHeight: '98vh',
         }}
@@ -323,7 +328,7 @@ function HomeFeedContent(props = {}) {
       </Section>
       <FullWidthCTA mt={{ xl: '-150px' }} py="xxl" justifyContent="flex-start">
         <Heading
-          fontSize={{ xs: "40px", lg: "66px" }}
+          fontSize={{ xs: '40px', lg: '66px' }}
           textAlign="center"
           lineHeight={theme.lineHeights.heading}
           px="m"
@@ -350,9 +355,7 @@ function HomeFeedContent(props = {}) {
             opacity="60%"
             display="inline"
             fontWeight="600"
-            onClick={() =>
-              router.push('/about/our-mission-and-strategy')
-            }
+            onClick={() => router.push('/about/our-mission-and-strategy')}
           >
             Discipleship Journey
           </Text>

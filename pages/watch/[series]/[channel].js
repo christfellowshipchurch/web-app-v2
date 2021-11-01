@@ -37,6 +37,7 @@ export default function Channel({ item, dropdownData } = {}) {
     <Layout meta={getMetaData(item)} dropdownData={dropdownData}>
       <MainPhotoHeader
         src={item?.coverImage.sources?.[0]?.uri}
+        backgroundSrc={item?.backgroundImage?.sources?.[0]?.uri}
         title={item?.title}
         showTitleOverImage={false}
       />

@@ -1,15 +1,16 @@
 import { gql, useQuery } from '@apollo/client';
+import { SOURCES } from 'lib/apolloClient/fragments';
 
 export const GET_CONTENT_ITEM = gql`
-  fragment MediaFragment on Media {
-    sources { uri }
-  }
   query getUniversalContentItem($itemId: ID!) {
     node(id: $itemId) {
       id
       ... on UniversalContentItem {
         seriesImage {
-          ...MediaFragment
+          ...Sources
+        }
+        seriesBackgroundImage {
+          ...Sources
         }
         showTitleOverImage
         title
@@ -23,7 +24,7 @@ export const GET_CONTENT_ITEM = gql`
           title
           body
           image {
-            ...MediaFragment
+            ...Sources
           }
           buttonText
           buttonLink
@@ -33,7 +34,7 @@ export const GET_CONTENT_ITEM = gql`
           url
         }
         coverImage {
-          ...MediaFragment
+          ...Sources
         }
         secondaryHTML
         redirectURL
@@ -44,10 +45,10 @@ export const GET_CONTENT_ITEM = gql`
               title
               summary
               coverImage {
-                ...MediaFragment
+                ...Sources
               }
               images {
-                ...MediaFragment
+                ...Sources
               }
               parentChannel {
                 id
@@ -65,14 +66,14 @@ export const GET_CONTENT_ITEM = gql`
                 socialMedia {
                   title
                   image {
-                    ...MediaFragment
+                    ...Sources
                   }
                   summary
                 }
               }
               ... on MediaContentItem {
                 videos {
-                  ...MediaFragment
+                  ...Sources
                 }
               }
             }
@@ -81,6 +82,7 @@ export const GET_CONTENT_ITEM = gql`
       }
     }
   }
+  ${SOURCES}
 `;
 
 function useContentItem(options = {}) {

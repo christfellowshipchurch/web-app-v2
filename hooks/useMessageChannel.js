@@ -1,4 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
+import { SOURCES } from 'lib/apolloClient/fragments';
 
 export const GET_MESSAGE_CHANNEL = gql`
   query getMessageChannel($itemId: ID!, $after: String) {
@@ -26,14 +27,13 @@ export const GET_MESSAGE_CHANNEL = gql`
               publishDate
               ... on WeekendContentItem {
                 coverImage {
-                  sources {
-                    uri
-                  }
+                  ...Sources
                 }
                 seriesImage {
-                  sources {
-                    uri
-                  }
+                  ...Sources
+                }
+                seriesBackgroundImage {
+                  ...Sources
                 }
               }
             }
@@ -44,13 +44,15 @@ export const GET_MESSAGE_CHANNEL = gql`
           totalCount
         }
         coverImage {
-          sources {
-            uri
-          }
+          ...Sources
+        }
+        backgroundImage {
+          ...Sources
         }
       }
     }
   }
+  ${SOURCES}
 `;
 
 function useMessageChannel(options = {}) {

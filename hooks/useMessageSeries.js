@@ -1,4 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
+import { SOURCES } from 'lib/apolloClient/fragments';
 
 export const GET_MESSAGE_SERIES = gql`
   query getMessageSeries($itemId: ID!, $after: String) {
@@ -13,9 +14,7 @@ export const GET_MESSAGE_SERIES = gql`
               title
               publishDate
               coverImage {
-                sources {
-                  uri
-                }
+                ...Sources
               }
               sharing {
                 url
@@ -30,6 +29,7 @@ export const GET_MESSAGE_SERIES = gql`
       }
     }
   }
+  ${SOURCES}
 `;
 
 function useMessageSeries(options = {}) {

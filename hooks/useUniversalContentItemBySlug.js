@@ -1,49 +1,12 @@
 import { gql, useQuery } from '@apollo/client';
-import METADATA_FRAGMENT from './useMetadataFragment';
+import {
+  BASE_CONTENT_ITEM,
+  METADATA_FRAGMENT,
+  SOURCES,
+  WITH_MEDIA,
+} from 'lib/apolloClient/fragments';
 
 export const GET_UNIVERSAL_CONTENT_ITEM_BY_SLUG = gql`
-  fragment BaseContentItem on ContentItem {
-    id
-    title
-    summary
-    htmlContent
-    publishDate
-    parentChannel {
-      id
-    }
-    coverImage {
-      sources {
-        uri
-      }
-    }
-    sharing {
-      url
-    }
-    siblingContentItemsConnection {
-      edges {
-        node {
-          id
-          title
-          summary
-          coverImage {
-            sources {
-              uri
-            }
-          }
-          sharing {
-            url
-          }
-        }
-      }
-    }
-  }
-  fragment WithMedia on ContentItem {
-    videos {
-      sources {
-        uri
-      }
-    }
-  }
   query getWebpageContentBySlug($slug: String!) {
     getContentBySlug(slug: $slug) {
       ...BaseContentItem
@@ -55,9 +18,7 @@ export const GET_UNIVERSAL_CONTENT_ITEM_BY_SLUG = gql`
           title
           body
           image {
-            sources {
-              uri
-            }
+            ...Sources
           }
           buttonText
           buttonLink
@@ -79,9 +40,7 @@ export const GET_UNIVERSAL_CONTENT_ITEM_BY_SLUG = gql`
                 socialMedia {
                   title
                   image {
-                    sources {
-                      uri
-                    }
+                    ...Sources
                   }
                   summary
                 }
@@ -95,6 +54,9 @@ export const GET_UNIVERSAL_CONTENT_ITEM_BY_SLUG = gql`
     }
   }
   ${METADATA_FRAGMENT}
+  ${BASE_CONTENT_ITEM}
+  ${SOURCES}
+  ${WITH_MEDIA}
 `;
 
 function useUniversalContentItemBySlug(options = {}) {

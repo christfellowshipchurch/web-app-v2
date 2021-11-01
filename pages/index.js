@@ -60,6 +60,11 @@ export async function getStaticProps() {
     return date1 > date2 ? 1 : -1;
   });
 
+  const moreMessagesImage =
+    sermonVideos?.[1]?.node?.seriesImage ||
+    sermonVideos?.[1]?.node?.seriesBackgroundImage ||
+    '';
+
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
@@ -68,7 +73,7 @@ export async function getStaticProps() {
       sermon: {
         ...sermonRequest?.data?.node,
         videos: latestSermon?.videos,
-        moreMessagesImage: sermonVideos?.[1]?.node?.seriesImage || '',
+        moreMessagesImage,
       },
     },
     // Next.js will attempt to re-generate the page:

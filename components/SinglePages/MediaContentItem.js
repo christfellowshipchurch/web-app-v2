@@ -28,11 +28,15 @@ export default function WeekendContentItem({ item, dropdownData } = {}) {
   const clipItems = clips.map(({ node }) => node);
   const videos = [item, ...clipItems];
 
+  const mainPhoto =
+    item.seriesBackgroundImage?.sources?.[0].uri ||
+    item.seriesImage?.sources?.[0].uri;
+
   return (
     <Layout meta={getMetaData(item)} dropdownData={dropdownData}>
       <Box display="flex" flexDirection="column">
         <MainPhotoHeader
-          src={item.seriesImage?.sources?.[0]?.uri}
+          src={mainPhoto}
           showImage={false}
           overlay=""
           content={
