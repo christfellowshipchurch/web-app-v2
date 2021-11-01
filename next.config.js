@@ -32,6 +32,7 @@ module.exports = {
         destination: '/:slug',
         permanent: false,
       }, 
+      { source: '/spirit', destination: '/spirit-of-christmas-2021', permanent: true },
       { source: '/growtogether', destination: '/grow-together-november-2021', permanent: true },
       { source: '/legacy', destination: '/the-legacy-park-project', permanent: true },
       { source: '/legacypark', destination: '/the-legacy-park-project', permanent: true },
