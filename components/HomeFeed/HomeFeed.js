@@ -292,7 +292,7 @@ function HomeFeedContent(props = {}) {
   const largeArticle = articles.find(article => article?.featureOnHomePage);
   const miniArticles = articles
     .filter(article => !article?.featureOnHomePage && article?.showOnHomePage)
-    .slice(0, 2);
+    .slice(-2);
 
   // Fixes a very strange static generation error I was running into.
   // In effect - when this page was rendered for an authed user
