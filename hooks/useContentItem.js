@@ -11,6 +11,7 @@ import {
   RELATED_FEATURE_NODE_FRAGMENT,
   THEME_FRAGMENT,
   VERTICAL_CARD_LIST_FEATURE_FRAGMENT,
+  THEMED_NODE_FRAGMENT
 } from 'fragments';
 
 export const CONTENT_ITEM_FRAGMENT = gql`
@@ -146,6 +147,8 @@ export const GET_CONTENT_ITEM = gql`
           ...FeatureFeedFragment
         }
       }
+
+      ...ThemedNodeFragment
     }
   }
 
@@ -163,6 +166,7 @@ export const GET_CONTENT_ITEM = gql`
   ${HORIZONTAL_CARD_LIST_FEATURE_FRAGMENT}
   ${RELATED_FEATURE_NODE_FRAGMENT}
   ${THEME_FRAGMENT}
+  ${THEMED_NODE_FRAGMENT}
   ${VERTICAL_CARD_LIST_FEATURE_FRAGMENT}
 `;
 
