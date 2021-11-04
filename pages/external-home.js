@@ -151,6 +151,7 @@ export default function ExternalLandingPage(props = {}) {
             <CollectionPreview
               title="Events for You"
               contentId="UniversalContentItem:d29e24e1873b0c4f4f645218ca3338ea"
+              buttonOverride="/events"
             />
           </Box>
         </Box>
