@@ -20,7 +20,7 @@ const StartHere = ({ maxWidth }) => {
       subtitle:
         'We’ve designed a path for you and your family to grow in your faith, find friends, and serve others.',
       image: 'discover-whats-here.jpeg',
-      url: '/get-connected',
+      url: '/discover-whats-here',
     },
     {
       title: 'Ask a Question',

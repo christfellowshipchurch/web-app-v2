@@ -53,7 +53,7 @@ const navigation = {
       icon: 'location',
     },
     {
-      action: '/get-connected',
+      action: '/discover-whats-here',
       call: "Discover What's Here",
       icon: 'users',
     },
