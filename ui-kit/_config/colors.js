@@ -1,13 +1,13 @@
 import Color from 'color';
 
-//Defining colors 
+//Defining colors
 
 //Brand Colors
 const OCEAN = '#0092bc';
 const OCEAN_SUBDUED = '#B5E4F1';
-const OCEAN_HOVER = '#007899'
+const OCEAN_HOVER = '#007899';
 
-const NAVY = '#004f71'
+const NAVY = '#004f71';
 
 const COTTON_CANDY = '#6bcaba';
 
@@ -18,16 +18,15 @@ const TANGERINE = '#ff8f1c';
 const PEACH = '#e8927c';
 const LEMON = '#fcd757';
 
-//System Colors 
+//System Colors
 const ALERT = '#cb045b';
 const WARNING = '#ffc527';
 const SUCCESS = '#1ec27f';
 
-//Neutral Colors 
+//Neutral Colors
 const WHITE = '#ffffff';
 const BLACK = '#000000';
 const WHITE_SMOKE = '#f6f6f6';
-
 
 const colors = {
   // LIGHT THEME

@@ -9,7 +9,7 @@ function Layout(props = {}) {
     <>
       {props.title && <SEO title={props.title} {...props?.seoMetaTags} />}
       <Box display="flex" flexDirection="column" height="100vh">
-        <Header />
+        <Header darkMode={props?.darkMode} />
         <Box flexGrow="1">{props.children}</Box>
         <Footer />
       </Box>
@@ -34,6 +34,11 @@ Layout.propTypes = {
     PropTypes.object,
   ]),
   title: PropTypes.string,
+  darkMode: PropTypes.bool,
+};
+
+Layout.defaultProps = {
+  darkMode: false,
 };
 
 export default Layout;

@@ -4,53 +4,55 @@ import { system } from 'ui-kit';
 
 const ContentBlock = styled.div``;
 
-const gridLayout = ({ gridLayout }) => props => {
-  switch (gridLayout) {
-    case 'LEFT':
-      return css`
-        grid-template-areas:
-          'media'
-          'content';
-        @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-          grid-template-areas: 'content media';
-          grid-template-columns: 1fr 1fr;
-        }
-      `;
-    case 'RIGHT':
-      return css`
-        grid-template-areas:
-          'media'
-          'content';
-        @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-          grid-template-areas: 'media content';
-          grid-template-columns: 1fr 1fr;
-        }
-      `;
-    case 'INVERTED':
-      return css`
-        grid-template-columns: 1fr;
-        grid-template-areas:
-          'content'
-          'media';
-      `;
-    case 'NO_MEDIA':
-      return css`
-        grid-template-areas: 'content';
-      `;
-    case 'default':
-    default:
-      return css`
-        grid-template-columns: 1fr;
-        grid-template-areas:
-          'media'
-          'content';
-      `;
-  }
-};
+const gridLayout =
+  ({ gridLayout }) =>
+  props => {
+    switch (gridLayout) {
+      case 'LEFT':
+        return css`
+          grid-template-areas:
+            'media'
+            'content';
+          @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+            grid-template-areas: 'content media';
+            grid-template-columns: 2fr 1fr;
+          }
+        `;
+      case 'RIGHT':
+        return css`
+          grid-template-areas:
+            'media'
+            'content';
+          @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+            grid-template-areas: 'media content';
+            grid-template-columns: 1fr 2fr;
+          }
+        `;
+      case 'INVERTED':
+        return css`
+          grid-template-columns: 1fr;
+          grid-template-areas:
+            'content'
+            'media';
+        `;
+      case 'NO_MEDIA':
+        return css`
+          grid-template-areas: 'content';
+        `;
+      case 'default':
+      default:
+        return css`
+          grid-template-columns: 1fr;
+          grid-template-areas:
+            'media'
+            'content';
+        `;
+    }
+  };
 
 const Container = styled.div`
   display: grid;
-  grid-row-gap: ${themeGet('space.l')};
+  grid-row-gap: 0.5rem;
   justify-content: space-around;
   width: 100%;
 
@@ -84,8 +86,13 @@ const Media = styled.div`
 `;
 
 const Subtitle = styled.h4`
-  color: ${themeGet('colors.tertiary')};
-  margin-bottom: 0px;
+  color: ${themeGet('colors.neutrals.600')};
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    margin-bottom: ${themeGet('space.xs')};
+  }
+  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+    margin-bottom: 0px;
+  }
   text-transform: uppercase;
 `;
 

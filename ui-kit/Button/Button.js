@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Box, Loader, systemPropTypes } from 'ui-kit';
 import Styled from './Button.styles';
+import { themeGet } from '@styled-system/theme-get';
 
 function Button(props = {}) {
   if (props.status === 'LOADING') {
@@ -28,10 +29,12 @@ Button.propTypes = {
     'tertiary',
     'chip',
   ]),
+  hoverColor: PropTypes.string,
 };
 
 Button.defaultProps = {
   status: 'IDLE',
+  hoverColor: 'primaryHover',
 };
 
 export default Button;

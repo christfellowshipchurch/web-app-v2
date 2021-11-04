@@ -1710,6 +1710,11 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
+"@n8tb1t/use-scroll-position@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@n8tb1t/use-scroll-position/-/use-scroll-position-2.0.3.tgz#207c54d584285cac0954d556964f83cf5774940b"
+  integrity sha512-6GO4FHVJTMI4jbRHborzemuL6B319qh2cVLOLj8DApJhjyT71eLgANbQ4bNKSZ51zBm3uJ3WmqnyNF17eSsDyw==
+
 "@napi-rs/triples@^1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@napi-rs/triples/-/triples-1.0.3.tgz#76d6d0c3f4d16013c61e45dfca5ff1e6c31ae53c"
@@ -11723,6 +11728,11 @@ react-remove-scroll@^2.4.1:
     tslib "^1.0.0"
     use-callback-ref "^1.2.3"
     use-sidecar "^1.0.1"
+
+react-simple-typewriter@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/react-simple-typewriter/-/react-simple-typewriter-3.0.0.tgz#80ac4e52bc4421cc23c6744847e447810c613db1"
+  integrity sha512-asT0tTweJ2ntMU1VRKHz5LvzkF/bCnuh2XpKaTnz5aFp3DS044LW2IbeyDxuRaYgrxe7Op4E4yub3W0sKLCEcg==
 
 react-sizeme@^3.0.1:
   version "3.0.2"

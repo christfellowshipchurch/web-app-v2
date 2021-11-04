@@ -37,6 +37,7 @@ import RowCard from './RowCard';
 import Select from './Select';
 import SquareAvatar from './SquareAvatar';
 import TextInput from './TextInput';
+import ValueStack from './ValueStack';
 
 export {
   // ====================
@@ -75,6 +76,7 @@ export {
   Select,
   SquareAvatar,
   TextInput,
+  ValueStack,
   // ====================
   icons,
   theme,

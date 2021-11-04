@@ -11,13 +11,23 @@ function UserAvatar(props = {}) {
 
   return (
     <CustomLink href="/connect">
-      <UIAvatar name={name} src={src} height="45px" width="45px" />
+      <UIAvatar
+        name={name}
+        src={src}
+        height={props?.size}
+        width={props?.size}
+      />
     </CustomLink>
   );
 }
 
 UserAvatar.propTypes = {
   currentUser: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  size: PropTypes.number,
+};
+
+UserAvatar.defaultProps = {
+  size: 45,
 };
 
 export default UserAvatar;

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 
-const DEFAULT_TITLE = 'Christ Fellowship Church - Helping You Get the Most Out of Life';
+const DEFAULT_TITLE = 'Christ Fellowship Church - Get the Most Out of Life';
 const DEFAULT_DESCRIPTION = `Christ Fellowship Church is a church in South Florida that helps you do more than just get by. Life is complicated. But it doesn’t have to be. We’re here to help you live life to the fullest.`;
 const DEFAULT_IMAGE = '/metadata_image.jpg';
 const DEFAULT_KEYWORDS = `Christ Fellowship Church, Christ Fellowship, Church, Churches in South Florida, Churches Near Me, Churches in the Area`;
@@ -94,7 +94,7 @@ SEO.propTypes = {
 };
 
 SEO.defaultProps = {
-  type: "website",
+  type: 'website',
   description: DEFAULT_DESCRIPTION,
   image: DEFAULT_IMAGE,
   keywords: DEFAULT_KEYWORDS,
