@@ -69,6 +69,7 @@ function ContentSingle(props = {}) {
   return (
     <ContentLayout
       mode={mode}
+      theme={props?.data?.theme}
       title={title}
       seoMetaTags={{
         description: schedule?.friendlyScheduleText || summary,

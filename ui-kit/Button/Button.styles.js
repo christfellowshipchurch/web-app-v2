@@ -1,8 +1,25 @@
 import styled, { css } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
+import Color from 'color'
 
 import { system } from 'ui-kit';
 
+// MARK : methods
+export const primaryHover = () => props => {
+  const primaryColor = themeGet('colors.primary')(props)
+
+  console.log({ primaryColor })
+
+  return Color(primaryColor).saturate(0.1).darken(0.35).hex()
+};
+
+const primarySubduedHover = () => props => {
+  const primaryColor = themeGet('colors.primary')(props)
+
+  return Color(primaryColor).desaturate(0.1).lighten(0.85).hex()
+};
+
+// MARK : Styles
 const rounded = ({ rounded }) => props => {
   if (rounded) {
     return css`
@@ -97,15 +114,15 @@ const status = ({ status }) => props => {
   if (status === 'SELECTED') {
     return css`
       color: ${themeGet('colors.primary')};
-      background-color: ${themeGet('colors.primarySubdued')};
+      background-color: ${primaryHover};
       border-color: ${themeGet('colors.primary')};
 
       &:active,
       &:focus,
       &:hover {
-        background-color: ${themeGet('colors.primarySubduedHover')};
-        border-color: ${themeGet('colors.primaryHover')};
-        color: ${themeGet('colors.primaryHover')};
+        background-color: ${primarySubduedHover};
+        border-color: ${primaryHover};
+        color: ${primaryHover};
       }
     `;
   }
@@ -155,7 +172,7 @@ const Button = styled.button`
   &:active,
   &:focus,
   &:hover {
-    background-color: ${themeGet('colors.primaryHover')};
+    background-color: ${primaryHover};
     color: ${themeGet('colors.white')};
   }
 

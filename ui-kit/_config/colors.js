@@ -32,8 +32,8 @@ const colors = {
   // LIGHT THEME
   light: {
     primary: OCEAN,
-    primaryHover: OCEAN_HOVER,
-    primarySubdued: OCEAN_SUBDUED,
+    primaryHover: Color(OCEAN).saturate(0.1).lighten(0.5),
+    primarySubdued: Color(OCEAN).desaturate(0.1).lighten(0.75),
     primarySubduedHover: Color(OCEAN).desaturate(0.1).lighten(0.85),
 
     secondary: NAVY,

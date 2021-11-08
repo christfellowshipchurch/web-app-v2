@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { ThemeProvider as SCThemeProvider } from 'styled-components';
 import { createMarkup } from 'utils';
 import { SEO, FeatureFeed } from 'components';
 import {
@@ -9,8 +10,9 @@ import {
   Cell,
   DefaultCard,
   Longform,
-  ThemeProvider,
+  ThemeMixin,
   utils,
+  theme as defaultTheme
 } from 'ui-kit';
 
 const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
@@ -104,9 +106,8 @@ function ContentLayout(props = {}) {
       </Box>
     );
   }
-
   return (
-    <ThemeProvider mode={props.mode} themeMixin={props?.theme}>
+    <ThemeMixin theme={props?.theme}>
       <Box backgroundColor={'bg'} color={'fg'}>
         <Cell
           as="main"
@@ -144,7 +145,7 @@ function ContentLayout(props = {}) {
           />
         </Box>
       )}
-    </ThemeProvider>
+    </ThemeMixin>
   );
 }
 

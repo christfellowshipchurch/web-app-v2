@@ -4,7 +4,7 @@ import theme from './_config/theme';
 import { system, propTypes as systemPropTypes } from './_lib/system';
 import * as utils from './_utils';
 
-import ThemeProvider from './ThemeProvider';
+import ThemeProvider, { ThemeMixin } from './ThemeProvider';
 import GlobalStyles, { styles as globalStyles } from './GlobalStyles';
 
 import ActionBar, { ActionBarItem } from './ActionBar';
@@ -23,6 +23,7 @@ import Divider from './Divider';
 import FormLabel from './FormLabel';
 import GroupCard from './GroupCard';
 import HorizontalHighlightCard from './HorizontalHighlightCard';
+import HtmlRenderer from './HtmlRenderer'
 import Icon from './Icon';
 import Image from './Image';
 import List from './List';
@@ -42,6 +43,7 @@ import ValueStack from './ValueStack';
 export {
   // ====================
   ThemeProvider,
+  ThemeMixin,
   GlobalStyles,
   globalStyles,
   // ====================
@@ -62,6 +64,7 @@ export {
   FormLabel,
   GroupCard,
   HorizontalHighlightCard,
+  HtmlRenderer,
   Icon,
   Image,
   List,
