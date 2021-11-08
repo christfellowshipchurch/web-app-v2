@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { ThemeProvider as SCThemeProvider } from 'styled-components';
 import { createMarkup } from 'utils';
 import { SEO, FeatureFeed } from 'components';
 import {
@@ -12,7 +11,7 @@ import {
   Longform,
   ThemeMixin,
   utils,
-  theme as defaultTheme
+  HtmlRenderer
 } from 'ui-kit';
 
 const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
@@ -76,9 +75,9 @@ function ContentLayout(props = {}) {
         ) : null}
         {props.htmlContent && !props.renderContentD ? (
           <Card boxShadow="base" p={{ _: 's', md: 'base' }}>
-            <Longform
-              dangerouslySetInnerHTML={createMarkup(props.htmlContent)}
-            />
+            <Longform>
+              <HtmlRenderer htmlContent={props?.htmlContent} />
+            </Longform>
           </Card>
         ) : (
           props.renderContentD && (
