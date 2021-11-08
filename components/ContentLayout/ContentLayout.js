@@ -106,7 +106,7 @@ function ContentLayout(props = {}) {
   }
 
   return (
-    <ThemeProvider mode={props.mode}>
+    <ThemeProvider mode={props.mode} themeMixin={props?.theme}>
       <Box backgroundColor={'bg'} color={'fg'}>
         <Cell
           as="main"
