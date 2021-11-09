@@ -1,0 +1,16 @@
+name: Deploy
+
+on:
+  push:
+    branches: []
+  ? workflow_dispatch
+
+jobs:
+  bump-version:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v1
+
+      - name:  'Automated Github Action Version Bump'
+        uses:  'rimonhanna/gh-action-bump-version@master'
