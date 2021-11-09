@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
 
 // import { Video } from 'components';
-import { Box, Button, Image, systemPropTypes } from 'ui-kit';
+import { Box, Button, Image, HtmlRenderer, systemPropTypes } from 'ui-kit';
 import { htmlToReactParser, getUrlFromRelatedNode } from 'utils';
 import { CustomLink, Video } from 'components';
 
@@ -74,7 +74,7 @@ function ContentBlock(props = {}) {
                 <Styled.Subtitle>{props.subtitle}</Styled.Subtitle>
               </Box>
             )}
-            <Box>{htmlToReactParser.parse(props.htmlContent)}</Box>
+            <HtmlRenderer htmlContent={props?.htmlContent} />
           </Box>
           {actions && actions?.length > 0 && (
             <Box my="base" flexDirection="column" display="flex">
