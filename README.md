@@ -1,5 +1,5 @@
 # Christ Fellowship Web App
-[![Package Version](https://img.shields.io/github/package-json/v/christfellowshipchurch/web-app.svg)](https://github.com/christfellowshipchurch/web-app)
+[![Package Version](https://img.shields.io/github/package-json/v/christfellowshipchurch/web-app-v2.svg)](https://github.com/christfellowshipchurch/web-app-v2)
 
 ## Live Site
 [![Netlify Status](https://api.netlify.com/api/v1/badges/59817745-3a48-4020-9028-1630e394dc04/deploy-status)](https://app.netlify.com/sites/upbeat-pasteur-01cde4/deploys)
