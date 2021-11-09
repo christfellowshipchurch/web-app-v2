@@ -4,6 +4,11 @@ import { system } from 'ui-kit';
 import { primaryHover } from 'ui-kit/Button/Button.styles'
 
 const HtmlRenderer = styled.div`
+    > ul,
+    > ol {
+        margin-left: ${themeGet('space.base')};
+    }
+
     a {
         color: ${themeGet('colors.primary')};
         
