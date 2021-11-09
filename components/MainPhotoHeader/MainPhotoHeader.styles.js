@@ -87,6 +87,7 @@ Styled.Image = styled(Image)`
 
 Styled.BackdropOverlay = styled(Box)`
   display: none;
+  opacity: 0.4;
 
   @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
     display: block;
@@ -95,8 +96,10 @@ Styled.BackdropOverlay = styled(Box)`
     position: absolute;
     top: 0;
     width: 100%;
-    opacity: 1;
     background-color: rgba(255, 255, 255, 0.33);
+
+    ${({ blurred = true }) => (blurred ? 'opacity: 1;' : 'opacity: 0;')}
+    ${({ blurred = true }) => (blurred ? 'backdrop-filter: blur(25px);' : '')}
   }
 `;
 

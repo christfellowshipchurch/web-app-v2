@@ -33,37 +33,37 @@ export default function Series({ item, dropdownData } = {}) {
 
   return (
     <Layout meta={getMetaData(item)} dropdownData={dropdownData}>
-        <Heading
-          mt="l"
-          textAlign="center"
-          fontWeight="800"
-          fontSize="h1"
-          lineHeight="h1"
-        >
-          {item?.name}
-        </Heading>
-        <Box display="flex" my="m" flexWrap="wrap" justifyContent="center">
-          {series.map(({ node }) => (
-            <LargeImage
-              key={node?.id}
-              text={node?.title}
-              color="white"
-              src={node?.coverImage?.sources?.[0].uri}
-              height={{ sm: '350px' }}
-              size={{ _: 's', md: 'm' }}
-              maxWidth="400px"
-              mx="s"
-              mb="m"
-              action={() =>
-                router.push(
-                  `/watch/${router.query.series}/${getSlugFromURL(
-                    node?.sharing?.url
-                  )}`
-                )
-              }
-            />
-          ))}
-        </Box>
+      <Heading
+        mt="l"
+        textAlign="center"
+        fontWeight="800"
+        fontSize="h1"
+        lineHeight="h1"
+      >
+        {item?.name}
+      </Heading>
+      <Box display="flex" my="m" flexWrap="wrap" justifyContent="center">
+        {series.map(({ node }) => (
+          <LargeImage
+            key={node?.id}
+            text={node?.title}
+            color="white"
+            src={node?.coverImage?.sources?.[0].uri}
+            height={{ sm: '350px' }}
+            size={{ _: 's', md: 'm' }}
+            maxWidth="400px"
+            mx="s"
+            mb="m"
+            action={() =>
+              router.push(
+                `/watch/${router.query.series}/${getSlugFromURL(
+                  node?.sharing?.url
+                )}`
+              )
+            }
+          />
+        ))}
+      </Box>
       {totalSeriesCount > series?.length ? (
         <Button
           onClick={() => {

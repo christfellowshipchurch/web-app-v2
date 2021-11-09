@@ -39,6 +39,7 @@ export default function WeekendContentItem({ item, dropdownData } = {}) {
           src={mainPhoto}
           showImage={false}
           overlay=""
+          bgBlurred={false}
           content={
             !!(
               (clips?.length &&

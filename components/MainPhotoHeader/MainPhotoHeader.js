@@ -18,6 +18,7 @@ function MainPhotoHeader({
   overlay,
   content,
   justifyText,
+  bgBlurred,
   imageProps = {},
   ...props
 } = {}) {
@@ -25,7 +26,7 @@ function MainPhotoHeader({
   return (
     <Styled.Container {...props}>
       {backdrop && <Styled.Backdrop src={_backgroundSrc} />}
-      {backdrop && <Styled.BackdropOverlay bg="bg_alt" opacity="0.4" />}
+      {backdrop && <Styled.BackdropOverlay bg="bg_alt" blurred={bgBlurred} />}
       <Styled.ImageContainer backdrop={backdrop}>
         {showImage && (
           <Styled.Image
