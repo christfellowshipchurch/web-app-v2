@@ -7,7 +7,7 @@ import isEmpty from 'lodash/isEmpty';
 
 import { Layout, NotFound, FeatureFeed } from 'components';
 
-import { Box, Loader, Longform } from 'ui-kit';
+import { Box, Loader, ThemeMixin, HtmlRenderer } from 'ui-kit';
 import Styled from './PageSingle.styles';
 
 const renderBody = ({ title, summary, htmlContent, coverImage }) => {
@@ -35,7 +35,7 @@ const renderBody = ({ title, summary, htmlContent, coverImage }) => {
           </Box>
         )}
         {htmlContent && (
-          <Longform dangerouslySetInnerHTML={createMarkup(htmlContent)} />
+          <HtmlRenderer htmlContent={htmlContent} />
         )}
       </Box>
     );
@@ -70,6 +70,7 @@ function PageSingle(props = {}) {
   const htmlContent = data?.htmlContent;
   const coverImage = data?.coverImage?.sources[0]?.uri;
   const features = data?.featureFeed?.features;
+  const theme = data?.theme
 
   if (loading) {
     return (
@@ -93,6 +94,7 @@ function PageSingle(props = {}) {
 
   return (
     <Layout
+    theme={theme}
       title={!title || isEmpty(title) ? formatTitleForSEO(asPath) : title}
       seoMetaTags={{
         image: coverImage,
@@ -102,30 +104,32 @@ function PageSingle(props = {}) {
       contentHorizontalPadding={'0'}
       contentVerticalPadding={'0'}
     >
-      {!isEmpty(coverImage) && (
-        <Styled.Hero coverImage={coverImage} title={title}>
-          {!isEmpty(title) && (
-            <Styled.Glass>
-              <Styled.GlassContent>
-                <Box as="h1">{title}</Box>
-                <Box as="h4" fontStyle="italic" fontWeight="normal">
-                  {summary}
-                </Box>
-              </Styled.GlassContent>
-            </Styled.Glass>
-          )}
-        </Styled.Hero>
-      )}
-
-      <Box maxWidth={1100} margin="auto" px="s">
-        {renderBody({ title, summary, htmlContent, coverImage })}
-
-        {features && features.length > 0 && (
-          <Box>
-            <FeatureFeed data={features} />
-          </Box>
+      <ThemeMixin theme={theme ?? {}}>
+        {!isEmpty(coverImage) && (
+          <Styled.Hero coverImage={coverImage} title={title}>
+            {!isEmpty(title) && (
+              <Styled.Glass>
+                <Styled.GlassContent>
+                  <Box as="h1">{title}</Box>
+                  <Box as="h4" fontStyle="italic" fontWeight="normal">
+                    {summary}
+                  </Box>
+                </Styled.GlassContent>
+              </Styled.Glass>
+            )}
+          </Styled.Hero>
         )}
-      </Box>
+
+        <Box maxWidth={1100} margin="auto" px="s">
+          {renderBody({ title, summary, htmlContent, coverImage })}
+
+          {features && features.length > 0 && (
+            <Box>
+              <FeatureFeed data={features} />
+            </Box>
+          )}
+        </Box>
+      </ThemeMixin>
     </Layout>
   );
 }

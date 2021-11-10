@@ -14,8 +14,6 @@ import { htmlToReactParser } from 'utils';
 import Styled from './HtmlRenderer.styles'
 
 const HtmlRenderer = ({ htmlContent }) => {
-    console.log({ htmlContent})
-
     return <Styled>
         {htmlToReactParser.parse(htmlContent)}
     </Styled>
