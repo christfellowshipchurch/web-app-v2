@@ -112,7 +112,7 @@ function ContentLayout(props = {}) {
           as="main"
           maxWidth={props.contentMaxWidth}
           px={props.contentHorizontalPadding}
-          py={props.contentVerticalPadding}
+          pt={props.contentVerticalPadding}
         >
           <SEO title={props.title} {...props.seoMetaTags} />
           {renderA()}
@@ -137,12 +137,16 @@ function ContentLayout(props = {}) {
         </Cell>
       </Box>
       {props?.features && (
-        <Box>
+        <Cell
+          as="main"
+          maxWidth={props.contentMaxWidth}
+          px={props.contentHorizontalPadding}
+        >
           <FeatureFeed
             data={props?.features}
             additionalFeatures={props?.additionalFeatures}
           />
-        </Box>
+        </Cell>
       )}
     </ThemeMixin>
   );
