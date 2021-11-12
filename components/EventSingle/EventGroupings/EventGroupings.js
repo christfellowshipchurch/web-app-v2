@@ -10,7 +10,7 @@ const EventGroupings = (props = {}) => {
 
   // note : Checks to make sure there is a valid instance of each grouping, if not that means the grouping's date is invalid and should not show
   const isValidGrouping = groupings =>
-    groupings.filter(group => group?.instances.length > 0);
+    groupings?.filter(group => group?.instances.length > 0);
 
   const eventGroupings = isValidGrouping(props.data?.eventGroupings);
 
