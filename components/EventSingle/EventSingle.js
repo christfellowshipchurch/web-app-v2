@@ -44,6 +44,7 @@ function EventSingle(props = {}) {
 
   return (
     <ContentLayout
+      theme={props?.data?.theme ?? {}}
       mode={props.data.mode}
       title={props.data.title}
       seoMetaTags={{
