@@ -45,11 +45,6 @@ module.exports = {
         destination: '/baptism-faqs',
         permanent: true,
       },
-      {
-        source: '/events/freedom',
-        destination: '/events/freedom-encounter',
-        permanent: true,
-      },
       // TODO: Uncomment these lines to hide Group Finder.
       // NOTE: We can't get `config/flags` in this file.
       // {
