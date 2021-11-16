@@ -4,7 +4,7 @@ import { createMarkup } from 'utils';
 
 import { ContentLayout, Layout, NotFound } from 'components';
 
-import { Box, Cell, Loader, Longform, utils } from 'ui-kit';
+import { Box, Cell, Image, Loader, Longform, utils } from 'ui-kit';
 import Styled from './LocationSingle.styles';
 
 function LocationSingle(props = {}) {
@@ -44,14 +44,85 @@ function LocationSingle(props = {}) {
       contentHorizontalPadding={'0'}
       contentVerticalPadding={'0'}
     >
-      <Styled.Hero coverImage={coverImage}>
-        <Styled.Glass coverImage={coverImage}>
-          <Box as="h1" pt="l" textAlign="center">
-            {props?.data?.title}
-          </Box>
-          {props?.data?.summary && <Box as="h3">{props?.data?.summary}</Box>}
-        </Styled.Glass>
-      </Styled.Hero>
+      <Box display="flex" justifyContent="center" alignItems="end">
+        <Styled.Cover
+          src={coverImage}
+          width="100%"
+          maxWidth={1100}
+          height={{ _: 200, md: 300, lg: 470 }}
+          borderRadius={{ _: 'none', lg: 'base' }}
+          mt={{ _: 0, md: 0, lg: 'base' }}
+          mx="auto"
+          overlay
+        />
+        <Box
+          as="h1"
+          textAlign="center"
+          color="white"
+          position="absolute"
+          mb={{ _: 'l', lg: 'xl' }}
+          zIndex={1000}
+          mx="base"
+        >
+          {props?.data?.title}
+        </Box>
+      </Box>
+
+      {/* ----------- These are alternate styles for the header image -------------- */}
+
+      {/* Option - 1 */}
+
+      {/* <Box display="flex" justifyContent="center" alignItems="end">
+        <Image
+          source={coverImage}
+          aspectRatio="21by9"
+          maxWidth={1100}
+          mx="auto"
+          mt="base"
+        />
+        <Box
+          as="h1"
+          color="white"
+          position="absolute"
+          background="rgb(100,100,100,0.8)"
+          p="base"
+          mt="base"
+          borderRadius="base"
+        >
+          {props?.data?.title}
+        </Box>
+      </Box> */}
+
+      {/* Option - 2 */}
+
+      {/* <Box display="flex" justifyContent="center" alignItems="center">
+        <Styled.Cover
+          src={coverImage}
+          width="100%"
+          maxWidth={1100}
+          height={{ _: 200, md: 300, lg: 470 }}
+          borderRadius={{ _: 'none', lg: 'base' }}
+          mt={{ _: 0, md: 0, lg: 'base' }}
+          mx="auto"
+          overlay
+        />
+        <Box
+          as="h1"
+          textAlign="center"
+          color="white"
+          position="absolute"
+          mt="l"
+          borderRadius="base"
+          background="rgb(100,100,100,0.85)"
+          p={{ _: 's', md: 'base' }}
+          zIndex={1000}
+          mx="base"
+        >
+          {props?.data?.title}
+        </Box>
+      </Box> */}
+
+      {/* ----------------------------------------------------------------- */}
 
       <Cell maxWidth={utils.rem('1100px')} px="base">
         <ContentLayout
