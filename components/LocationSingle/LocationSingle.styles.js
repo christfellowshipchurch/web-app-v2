@@ -43,12 +43,11 @@ const overlay =
     if (overlay) {
       return css`
         &::after {
-          background: rgba(0, 0, 0, 0.3);
-          /* background: linear-gradient(
+          background: linear-gradient(
             to bottom,
             rgba(0, 0, 0, 0),
-            ${themeGet('colors.neutrals.900')}
-          ); */
+            ${themeGet('colors.fg')}
+          );
           bottom: 0;
           content: '';
           height: 100%;
