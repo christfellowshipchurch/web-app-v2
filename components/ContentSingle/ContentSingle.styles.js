@@ -12,6 +12,9 @@ const VideoContainer = styled.div`
   background: black;
   height: 100%;
   width: 100%;
+  margin-bottom: ${themeGet('space.base')};
+  border-radius: ${themeGet('radii.base')};
+  overflow: hidden;
 
   & > .shaka-video-container {
     height: 100%;

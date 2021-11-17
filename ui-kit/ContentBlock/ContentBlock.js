@@ -43,7 +43,7 @@ function ContentBlock(props = {}) {
       gridLayout={noMedia ? 'NO_MEDIA' : props.contentLayout}
       {...props}
     >
-      {(props.image || props.image !== '') && (
+      {(props.image || props.image !== '') && !props?.videos?.length && (
         <Styled.Media maxWidth={horizontalLayout ? '500px' : '800px'}>
           <Image
             mask={props?.imageMask}
@@ -59,6 +59,7 @@ function ContentBlock(props = {}) {
             src={props.videos[0].sources[0].uri}
             autoPlay={false}
             playsInline={true}
+            poster={props?.image}
           />
         </Styled.Media>
       )}
