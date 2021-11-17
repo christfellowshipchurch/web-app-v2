@@ -93,7 +93,7 @@ const CardCarousel = (props = {}) => {
         ref={el => (carousel = el)}
         renderButtonGroupOutside={isCarousel && !props.hideArrows}
         customButtonGroup={
-          !props.hideArrows && largeDisplay ? <CustomArrows /> : null
+          isCarousel && !props.hideArrows && largeDisplay ? <CustomArrows /> : null
         }
       >
         {props.children}
