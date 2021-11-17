@@ -81,6 +81,8 @@ const Media = styled.div`
   grid-area: media;
   margin: auto;
   width: 100%;
+  border-radius: ${themeGet('radii.base')};
+  overflow: hidden;
 
   ${system};
 `;
