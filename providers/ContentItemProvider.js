@@ -9,7 +9,7 @@ function ContentItemProvider({ Component, options, ...props }) {
   const { loading, error, item } = useContentItem(options);
 
   if (loading) {
-    return <Loader m="xxl" centered text="Loading" />;
+    return <Loader mt="xxl" mb="xxl" centered text="Loading" />;
   }
 
   if (!item) {
