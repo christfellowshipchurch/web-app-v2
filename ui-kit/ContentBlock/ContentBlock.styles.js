@@ -2,108 +2,90 @@ import styled, { css } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 import { system } from 'ui-kit';
 
-const ContentBlock = styled.div``;
-
-const gridLayout =
-  ({ gridLayout }) =>
+const flexLayout =
+  ({ contentLayout }) =>
   props => {
-    switch (gridLayout) {
-      case 'LEFT':
+    switch (contentLayout) {
+      case 'right':
         return css`
-          grid-template-areas:
-            'media'
-            'content';
+          flex-direction: column;
+          
           @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-            grid-template-areas: 'content media';
-            grid-template-columns: 2fr 1fr;
+            flex-direction: row;
           }
         `;
-      case 'RIGHT':
+      case 'left':
         return css`
-          grid-template-areas:
-            'media'
-            'content';
+          flex-direction: column;
+
           @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-            grid-template-areas: 'media content';
-            grid-template-columns: 1fr 2fr;
+            flex-direction: row-reverse;
           }
         `;
-      case 'INVERTED':
+      case 'inverted':
         return css`
-          grid-template-columns: 1fr;
-          grid-template-areas:
-            'content'
-            'media';
-        `;
-      case 'NO_MEDIA':
-        return css`
-          grid-template-areas: 'content';
+          flex-direction: column-reverse;
+          align-items: center;
         `;
       case 'default':
       default:
         return css`
-          grid-template-columns: 1fr;
-          grid-template-areas:
-            'media'
-            'content';
+          flex-direction: column;
+          align-items: center;
         `;
     }
   };
 
-const Container = styled.div`
-  display: grid;
-  grid-row-gap: 0.5rem;
-  justify-content: space-around;
+const ContentBlock = styled.div`
+  display: flex;
+  grid-gap: 2rem;
   width: 100%;
 
-  ${gridLayout};
+  ${flexLayout};
   ${system};
 `;
+
+const textAlign = ({ contentLayout }) => props => {
+  if (contentLayout === "left" || contentLayout === "right") {
+    return css`  
+      text-align: left;
+    `;
+  }
+
+  return css`  
+    text-align: center;
+  `;
+};
+
+const gridTemplate = ({ contentLayout }) => props => {
+  if (contentLayout === "left" || contentLayout === "right") {
+    return css`  
+      grid-template-areas:  
+        'subtitle'
+        'title'
+        'htmlContent'
+        'actions';
+    `;
+  }
+
+  return css`  
+      grid-template-areas:  
+        'title'  
+        'subtitle'
+        'htmlContent'
+        'actions';
+    `;
+};
 
 const Content = styled.div`
-  flex: 1;
-  align-items: ${props => props.textAlign};
-  display: flex;
-  flex-direction: column;
-  grid-area: content;
-  justify-content: center;
-  padding: ${themeGet('space.l')};
+  flex: 4;
+  display: grid;
 
-  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
-    padding: ${themeGet('space.xs')};
-  }
-
+  ${textAlign};
+  ${gridTemplate}
   ${system};
 `;
 
-const Media = styled.div`
-  flex: 1;
-  grid-area: media;
-  margin: auto;
-  width: 100%;
-  border-radius: ${themeGet('radii.base')};
-  overflow: hidden;
-
-  ${system};
-`;
-
-const Subtitle = styled.h4`
-  color: ${themeGet('colors.neutrals.600')};
-  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-    margin-bottom: ${themeGet('space.xs')};
-  }
-  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
-    margin-bottom: 0px;
-  }
-  text-transform: uppercase;
-`;
-
-const Title = styled.h1``;
-
-ContentBlock.Container = Container;
 ContentBlock.Content = Content;
-ContentBlock.Media = Media;
-ContentBlock.Subtitle = Subtitle;
-ContentBlock.Title = Title;
 
 export default ContentBlock;
