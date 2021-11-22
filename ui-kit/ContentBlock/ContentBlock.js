@@ -92,6 +92,7 @@ function ContentBlock(props = {}) {
       <ConditionalBox 
         condition={hasActions} my={hasTitle || hasSubtitle || hasHtmlContent ? "s" : 0}
         gridArea="actions"
+        mx="-0.3125rem"
       >
         {actions.map((action, i) => (
           <CustomLink
@@ -99,7 +100,7 @@ function ContentBlock(props = {}) {
             href={getUrlFromRelatedNode(action?.relatedNode)}
             Component={Button}
             variant={i === 0 ? 'primary' : 'secondary'}
-            my="xs"
+            m="xs"
             textTransform="capitalize!important"
             /**
              * todo : We want to eventually add functionality with the 'onPressActionItem' to be able to perform more actions in the future.
