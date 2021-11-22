@@ -150,6 +150,8 @@ ContentBlock.propTypes = {
 ContentBlock.defaultProps = {
   image: '',
   objectFit: 'cover',
+  videos: [],
+  actions: []
 };
 
 export default ContentBlock;
