@@ -85,6 +85,7 @@ export default function About() {
           <Box
             m="auto"
             maxWidth="1000px"
+            p="base"
           >
             {data.leadership.map((item, i) => (
               <Box
