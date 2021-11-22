@@ -80,6 +80,7 @@ const gridTemplate = ({ contentLayout }) => props => {
 const Content = styled.div`
   flex: 4;
   display: grid;
+  grid-row-gap: 0.15rem;
 
   ${textAlign};
   ${gridTemplate}
