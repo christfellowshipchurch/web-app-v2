@@ -93,7 +93,7 @@ const FeatureFeed = (props = {}) => {
             : edge?.id?.replace(regex, '')
         }
         key={edge?.id}
-        py="l"
+        py="xl"
       >
         <Component data={edge} onPressActionItem={props?.onPressActionItem} />
       </Box>

@@ -3,123 +3,139 @@ import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
 import kebabCase from 'lodash/kebabCase'
 
-// import { Video } from 'components';
 import { Box, Button, Icon, Image, HtmlRenderer, systemPropTypes } from 'ui-kit';
-import { htmlToReactParser, getUrlFromRelatedNode } from 'utils';
+import { getUrlFromRelatedNode } from 'utils';
 import { CustomLink, Video } from 'components';
 
 import Styled from './ContentBlock.styles';
 import toLower from 'lodash/toLower';
+function Conditional({ condition, children }) {
+  return Boolean(condition) ? children : null
+}
 
-function titleFlexDirection(orientation) {
-  switch (orientation) {
-    case 'RIGHT':
-    case 'LEFT':
-      return 'column-reverse';
-    default:
-      return 'column';
-  }
+Conditional.propTypes = {
+  condition: PropTypes.bool
+}
+
+function ConditionalBox({ condition, children, ...props }) {
+  return Boolean(condition) ? <Box {...props}>{children}</Box> : null
 }
 
 function ContentBlock(props = {}) {
-  const horizontalLayout =
-    toLower(props.contentLayout) === 'left' ||
-    toLower(props.contentLayout) === 'right';
   const id = props?.id;
+  const contentLayout = toLower(props?.contentLayout ?? "default")
+  const horizontalLayout = contentLayout === 'left' || contentLayout === 'right';
   const title = props?.title;
   const subtitle = props?.subtitle;
   const htmlContent = props?.htmlContent;
   const actions = props?.actions;
 
-  const hasContent =
-    !isEmpty(title) ||
-    !isEmpty(subtitle) ||
-    !isEmpty(htmlContent) ||
-    actions?.length > 0;
+  const hasTitle = !isEmpty(title);
+  const hasSubtitle = !isEmpty(subtitle);
+  const hasHtmlContent = !isEmpty(htmlContent);
+  const hasActions = actions?.length > 0;
+  const hasImage = !isEmpty(props?.image);
+  const hasVideo = !isEmpty(props?.videos[0]?.sources[0]?.uri);
+  const hasMedia = hasImage || hasVideo;
 
   const noMedia =
     !(props.image || props.image !== '') && !(props.videos?.length >= 1);
   const idRegex = /\D/g;
-  const containerId = !isEmpty(title)
+  const containerId = hasTitle
     ? kebabCase(title)
     : id?.replace(idRegex, '')
 
-  return (
-    <Styled.Container
-      id={containerId}
-      gridLayout={noMedia ? 'NO_MEDIA' : props.contentLayout}
-      {...props}
-    >
-      {(props.image || props.image !== '') && !props?.videos?.length && (
-        <Styled.Media maxWidth={horizontalLayout ? '500px' : '800px'}>
+  return <Styled 
+    id={containerId}
+    contentLayout={contentLayout}
+  >
+    {/* // MARK : Media */}
+    <Conditional condition={hasMedia}>
+      <Box flex={3} borderRadius="base" maxWidth={horizontalLayout ? '500px' : '800px'}>
+        <Conditional condition={hasImage && !hasVideo}>
           <Image
             mask={props?.imageMask}
             source={props.image}
             aspectRatio={props.imageRatio}
             objectFit={props?.objectFit}
           />
-        </Styled.Media>
-      )}
-      {props.videos?.length >= 1 && (
-        <Styled.Media maxWidth={horizontalLayout ? '500px' : '800px'}>
+        </Conditional>
+
+        <Conditional condition={hasVideo}>
           <Video
-            src={props.videos[0].sources[0].uri}
+            src={props?.videos[0]?.sources[0]?.uri}
             autoPlay={false}
             playsInline={true}
             poster={props?.image}
           />
-        </Styled.Media>
-      )}
-      {hasContent && (
-        <Styled.Content textAlign={horizontalLayout ? 'flex-start' : 'center'}>
-          <Box mt={{ _: 'l', md: 0 }} mb={{ _: 's', md: 0 }}>
-            {(title || subtitle) && (
-              <Box
-                display="flex"
-                flexDirection={titleFlexDirection(props?.contentLayout)}
-              >
-                <Styled.Title>
-                  {props.title}
-                  <CustomLink
-                    as="a"
-                    ml="xs"
-                    href={`#${containerId}`}
-                    opacity="0.5"
-                  >
-                    <Icon name="link" size={16} />
-                  </CustomLink>
-                  
-                </Styled.Title>
-                <Styled.Subtitle>{props.subtitle}</Styled.Subtitle>
-              </Box>
-            )}
-            <HtmlRenderer htmlContent={props?.htmlContent} />
-          </Box>
-          {actions && actions?.length > 0 && (
-            <Box my="base" flexDirection="column" display="flex">
-              {actions.map((action, i) => (
-                <CustomLink
-                  as="a"
-                  href={getUrlFromRelatedNode(action?.relatedNode)}
-                  Component={Button}
-                  variant={i === 0 ? 'primary' : 'secondary'}
-                  my="xs"
-                  textTransform="capitalize!important"
-                  /**
-                   * todo : We want to eventually add functionality with the 'onPressActionItem' to be able to perform more actions in the future.
-                   */
-                  // onClick={e => onPressActionItem(e, heroCard)}
-                  {...action}
-                >
-                  {action?.title}
-                </CustomLink>
-              ))}
-            </Box>
-          )}
-        </Styled.Content>
-      )}
-    </Styled.Container>
-  );
+        </Conditional>
+      </Box>
+    </Conditional>
+
+    {/* // MARK : Content */}
+    <Styled.Content contentLayout={contentLayout}>
+      <ConditionalBox 
+        condition={hasTitle}
+        gridArea="title"
+      >
+        <Box as="h1">
+          {props.title}
+          <CustomLink
+            as="a"
+            ml="xs"
+            href={`#${containerId}`}
+            opacity="0.5"
+          >
+            <Icon name="link" size={16} />
+          </CustomLink>
+        </Box>
+      </ConditionalBox>
+
+      <ConditionalBox 
+        condition={hasSubtitle}
+        gridArea="subtitle"
+      >
+        <Box 
+          as="h4" 
+          color="neutrals.600" 
+          textTransform="uppercase"
+        >
+          {props.subtitle}
+        </Box>
+      </ConditionalBox>
+
+      <ConditionalBox 
+        condition={hasHtmlContent}
+        gridArea="htmlContent"
+      >
+        <HtmlRenderer htmlContent={props?.htmlContent} />
+      </ConditionalBox>
+
+      <ConditionalBox 
+        condition={hasActions} my={hasTitle || hasSubtitle || hasHtmlContent ? "s" : 0}
+        gridArea="actions"
+        mx="-0.3125rem"
+      >
+        {actions.map((action, i) => (
+          <CustomLink
+            as="a"
+            href={getUrlFromRelatedNode(action?.relatedNode)}
+            Component={Button}
+            variant={i === 0 ? 'primary' : 'secondary'}
+            m="xs"
+            textTransform="capitalize!important"
+            /**
+             * todo : We want to eventually add functionality with the 'onPressActionItem' to be able to perform more actions in the future.
+             */
+            // onClick={e => onPressActionItem(e, heroCard)}
+            {...action}
+          >
+            {action?.title}
+          </CustomLink>
+        ))}
+      </ConditionalBox>
+    </Styled.Content>
+  </Styled>;
 }
 
 ContentBlock.propTypes = {
@@ -157,6 +173,8 @@ ContentBlock.propTypes = {
 ContentBlock.defaultProps = {
   image: '',
   objectFit: 'cover',
+  videos: [],
+  actions: []
 };
 
 export default ContentBlock;
