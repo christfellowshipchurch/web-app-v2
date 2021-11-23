@@ -5,6 +5,7 @@ import ActionBarFeature from '../ActionBarFeature';
 import ActionListFeature from '../ActionListFeature';
 import AvatarListFeature from '../AvatarListFeature';
 import ContentBlockFeature from '../ContentBlockFeature';
+import ContentBlockCollection from '../ContentBlockCollection';
 import HeroListFeature from '../HeroListFeature';
 import HorizontalCardListFeature from '../HorizontalCardListFeature';
 import VerticalCardListFeature from '../VerticalCardListFeature';
@@ -20,6 +21,7 @@ const FEATURE_COMPONENTS = {
   HorizontalCardListFeature,
   HtmlBlockFeature: ContentBlockFeature,
   VerticalCardListFeature,
+  ContentBlockCollectionFeature: ContentBlockCollection,
 
   // TODO: Implement all Features needed for web
   // PrayerListFeature: () => null,
