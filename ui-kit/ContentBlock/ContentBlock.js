@@ -73,10 +73,17 @@ function ContentBlock(props = {}) {
     </Conditional>
 
     {/* // MARK : Content */}
-    <Styled.Content contentLayout={contentLayout}>
+    <Box 
+      flex={4}
+      flexDirection="column"
+      display="flex"
+      gridRowGap="0.15rem"
+      textAlign={horizontalLayout ? "left" : "center"}
+      pt={hasMedia && horizontalLayout ? "base" : "0"}
+    >
       <ConditionalBox 
         condition={hasTitle}
-        gridArea="title"
+        order={horizontalLayout ? 1 : 0}
       >
         <Box as="h1">
           {props.title}
@@ -85,15 +92,16 @@ function ContentBlock(props = {}) {
             ml="xs"
             href={`#${containerId}`}
             opacity="0.5"
+            color="primary"
           >
-            <Icon name="link" size={16} />
+            <Icon name="link" size="16" />
           </CustomLink>
         </Box>
       </ConditionalBox>
 
       <ConditionalBox 
         condition={hasSubtitle}
-        gridArea="subtitle"
+        order={horizontalLayout ? 0 : 1}
       >
         <Box 
           as="h4" 
@@ -106,14 +114,14 @@ function ContentBlock(props = {}) {
 
       <ConditionalBox 
         condition={hasHtmlContent}
-        gridArea="htmlContent"
+        order={2}
       >
         <HtmlRenderer htmlContent={props?.htmlContent} />
       </ConditionalBox>
 
       <ConditionalBox 
         condition={hasActions} my={hasTitle || hasSubtitle || hasHtmlContent ? "s" : 0}
-        gridArea="actions"
+        order={3}
         mx="-0.3125rem"
       >
         {actions.map((action, i) => (
@@ -134,7 +142,7 @@ function ContentBlock(props = {}) {
           </CustomLink>
         ))}
       </ConditionalBox>
-    </Styled.Content>
+    </Box>
   </Styled>;
 }
 
