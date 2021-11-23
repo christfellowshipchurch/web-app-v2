@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
+import kebabCase from 'lodash/kebabCase'
 
-import { Box, Button, Image, HtmlRenderer, systemPropTypes } from 'ui-kit';
+import { Box, Button, Icon, Image, HtmlRenderer, systemPropTypes } from 'ui-kit';
 import { getUrlFromRelatedNode } from 'utils';
 import { CustomLink, Video } from 'components';
 
@@ -21,6 +22,7 @@ function ConditionalBox({ condition, children, ...props }) {
 }
 
 function ContentBlock(props = {}) {
+  const id = props?.id;
   const contentLayout = toLower(props?.contentLayout ?? "default")
   const horizontalLayout = contentLayout === 'left' || contentLayout === 'right';
   const title = props?.title;
@@ -36,7 +38,17 @@ function ContentBlock(props = {}) {
   const hasVideo = !isEmpty(props?.videos[0]?.sources[0]?.uri);
   const hasMedia = hasImage || hasVideo;
 
-  return <Styled contentLayout={contentLayout}>
+  const noMedia =
+    !(props.image || props.image !== '') && !(props.videos?.length >= 1);
+  const idRegex = /\D/g;
+  const containerId = hasTitle
+    ? kebabCase(title)
+    : id?.replace(idRegex, '')
+
+  return <Styled 
+    id={containerId}
+    contentLayout={contentLayout}
+  >
     {/* // MARK : Media */}
     <Conditional condition={hasMedia}>
       <Box flex={3} borderRadius="base" maxWidth={horizontalLayout ? '500px' : '800px'}>
@@ -61,17 +73,35 @@ function ContentBlock(props = {}) {
     </Conditional>
 
     {/* // MARK : Content */}
-    <Styled.Content contentLayout={contentLayout}>
+    <Box 
+      flex={4}
+      flexDirection="column"
+      display="flex"
+      gridRowGap="0.15rem"
+      textAlign={horizontalLayout ? "left" : "center"}
+      pt={hasMedia && horizontalLayout ? "base" : "0"}
+    >
       <ConditionalBox 
         condition={hasTitle}
-        gridArea="title"
+        order={horizontalLayout ? 1 : 0}
       >
-        <Box as="h1">{props.title}</Box>
+        <Box as="h1">
+          {props.title}
+          <CustomLink
+            as="a"
+            ml="xs"
+            href={`#${containerId}`}
+            opacity="0.5"
+            color="primary"
+          >
+            <Icon name="link" size="16" />
+          </CustomLink>
+        </Box>
       </ConditionalBox>
 
       <ConditionalBox 
         condition={hasSubtitle}
-        gridArea="subtitle"
+        order={horizontalLayout ? 0 : 1}
       >
         <Box 
           as="h4" 
@@ -84,14 +114,14 @@ function ContentBlock(props = {}) {
 
       <ConditionalBox 
         condition={hasHtmlContent}
-        gridArea="htmlContent"
+        order={2}
       >
         <HtmlRenderer htmlContent={props?.htmlContent} />
       </ConditionalBox>
 
       <ConditionalBox 
         condition={hasActions} my={hasTitle || hasSubtitle || hasHtmlContent ? "s" : 0}
-        gridArea="actions"
+        order={3}
         mx="-0.3125rem"
       >
         {actions.map((action, i) => (
@@ -112,7 +142,7 @@ function ContentBlock(props = {}) {
           </CustomLink>
         ))}
       </ConditionalBox>
-    </Styled.Content>
+    </Box>
   </Styled>;
 }
 

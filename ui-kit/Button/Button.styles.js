@@ -33,7 +33,8 @@ const variant = ({ variant, active, hoverColor }) => props => {
       border-color: ${themeGet('colors.primary')};
       color: ${themeGet('colors.primary')};
       &:hover {
-        background-color: ${themeGet(`colors.${hoverColor}`)};
+        background-color: ${primaryHover};
+        border-color: ${primaryHover};
       }
     `;
   }
@@ -48,7 +49,7 @@ const variant = ({ variant, active, hoverColor }) => props => {
       &:focus,
       &:hover {
         background: none;
-        color: ${themeGet('colors.neutrals.800')};
+        color: ${primaryHover};
         outline: none;
       }
     `;
@@ -57,7 +58,7 @@ const variant = ({ variant, active, hoverColor }) => props => {
   if (variant === 'tertiary') {
     return css`
       background-color: ${themeGet('colors.paper')};
-      color: ${themeGet('colors.secondary')};
+      color: ${themeGet('colors.primary')};
     `;
   }
 
