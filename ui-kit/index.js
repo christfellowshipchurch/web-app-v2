@@ -18,6 +18,7 @@ import CardGrid from './CardGrid';
 import Cell from './Cell';
 import Checkbox from './Checkbox';
 import ContentBlock from './ContentBlock';
+import CoverImage from './CoverImage'
 import DefaultCard from './DefaultCard';
 import Divider from './Divider';
 import FormLabel from './FormLabel';
@@ -59,6 +60,7 @@ export {
   Cell,
   Checkbox,
   ContentBlock,
+  CoverImage,
   DefaultCard,
   Divider,
   FormLabel,

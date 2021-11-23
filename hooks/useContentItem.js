@@ -149,6 +149,12 @@ export const GET_CONTENT_ITEM = gql`
       }
 
       ...ThemedNodeFragment
+
+      ... on NodeRoute {
+        routing {
+          pathname
+        }
+      }
     }
   }
 
