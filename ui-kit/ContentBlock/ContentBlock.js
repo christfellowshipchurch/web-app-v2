@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
+import kebabCase from 'lodash/kebabCase'
 
-import { Box, Button, Image, HtmlRenderer, systemPropTypes } from 'ui-kit';
+import { Box, Button, Icon, Image, HtmlRenderer, systemPropTypes } from 'ui-kit';
 import { getUrlFromRelatedNode } from 'utils';
 import { CustomLink, Video } from 'components';
 
@@ -21,6 +22,7 @@ function ConditionalBox({ condition, children, ...props }) {
 }
 
 function ContentBlock(props = {}) {
+  const id = props?.id;
   const contentLayout = toLower(props?.contentLayout ?? "default")
   const horizontalLayout = contentLayout === 'left' || contentLayout === 'right';
   const title = props?.title;
@@ -36,7 +38,17 @@ function ContentBlock(props = {}) {
   const hasVideo = !isEmpty(props?.videos[0]?.sources[0]?.uri);
   const hasMedia = hasImage || hasVideo;
 
-  return <Styled contentLayout={contentLayout}>
+  const noMedia =
+    !(props.image || props.image !== '') && !(props.videos?.length >= 1);
+  const idRegex = /\D/g;
+  const containerId = hasTitle
+    ? kebabCase(title)
+    : id?.replace(idRegex, '')
+
+  return <Styled 
+    id={containerId}
+    contentLayout={contentLayout}
+  >
     {/* // MARK : Media */}
     <Conditional condition={hasMedia}>
       <Box flex={3} borderRadius="base" maxWidth={horizontalLayout ? '500px' : '800px'}>
@@ -66,7 +78,17 @@ function ContentBlock(props = {}) {
         condition={hasTitle}
         gridArea="title"
       >
-        <Box as="h1">{props.title}</Box>
+        <Box as="h1">
+          {props.title}
+          <CustomLink
+            as="a"
+            ml="xs"
+            href={`#${containerId}`}
+            opacity="0.5"
+          >
+            <Icon name="link" size={16} />
+          </CustomLink>
+        </Box>
       </ConditionalBox>
 
       <ConditionalBox 
