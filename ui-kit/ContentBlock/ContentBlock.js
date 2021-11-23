@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
+import kebabCase from 'lodash/kebabCase'
 
 // import { Video } from 'components';
-import { Box, Button, Image, HtmlRenderer, systemPropTypes } from 'ui-kit';
+import { Box, Button, Icon, Image, HtmlRenderer, systemPropTypes } from 'ui-kit';
 import { htmlToReactParser, getUrlFromRelatedNode } from 'utils';
 import { CustomLink, Video } from 'components';
 
@@ -24,6 +25,7 @@ function ContentBlock(props = {}) {
   const horizontalLayout =
     toLower(props.contentLayout) === 'left' ||
     toLower(props.contentLayout) === 'right';
+  const id = props?.id;
   const title = props?.title;
   const subtitle = props?.subtitle;
   const htmlContent = props?.htmlContent;
@@ -37,9 +39,14 @@ function ContentBlock(props = {}) {
 
   const noMedia =
     !(props.image || props.image !== '') && !(props.videos?.length >= 1);
+  const idRegex = /\D/g;
+  const containerId = !isEmpty(title)
+    ? kebabCase(title)
+    : id?.replace(idRegex, '')
 
   return (
     <Styled.Container
+      id={containerId}
       gridLayout={noMedia ? 'NO_MEDIA' : props.contentLayout}
       {...props}
     >
@@ -71,7 +78,18 @@ function ContentBlock(props = {}) {
                 display="flex"
                 flexDirection={titleFlexDirection(props?.contentLayout)}
               >
-                <Styled.Title>{props.title}</Styled.Title>
+                <Styled.Title>
+                  {props.title}
+                  <CustomLink
+                    as="a"
+                    ml="xs"
+                    href={`#${containerId}`}
+                    opacity="0.5"
+                  >
+                    <Icon name="link" size={16} />
+                  </CustomLink>
+                  
+                </Styled.Title>
                 <Styled.Subtitle>{props.subtitle}</Styled.Subtitle>
               </Box>
             )}
