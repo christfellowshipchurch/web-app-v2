@@ -64,7 +64,7 @@ const FeatureFeed = (props = {}) => {
       ...props?.additionalFeatures,
     });
     return (
-      <Box key={edge?.id} py="l">
+      <Box key={edge?.id} my="xl">
         <Component data={edge} onPressActionItem={props?.onPressActionItem} />
       </Box>
     );

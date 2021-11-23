@@ -19,6 +19,15 @@ const HtmlRenderer = styled.div`
         }
     }
 
+    p:not(:first-child) {
+        margin-top: ${themeGet('space.base')};
+        margin-bottom: ${themeGet('space.base')};
+    }
+
+    img {
+        border-radius: ${themeGet('radii.base')};
+    }
+
     ${system};
 `;
 
