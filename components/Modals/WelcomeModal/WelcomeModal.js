@@ -7,8 +7,6 @@ import {
   hideModal,
   showModal,
 } from 'providers/ModalProvider';
-import { trackEvent } from 'lib/analytics';
-
 function WelcomeModal(props = {}) {
   const modalDispatch = useModalDispatch();
 
@@ -30,11 +28,6 @@ function WelcomeModal(props = {}) {
         <Box>
           <Button
             onClick={() => {
-              trackEvent({
-                category: 'Group Item',
-                action: `Welcome Modal Action`,
-                label: `Let's Get Started Button`,
-              });
               close();
             }}
             mb="s"
@@ -44,11 +37,6 @@ function WelcomeModal(props = {}) {
           </Button>
           <Button
             onClick={e => {
-              trackEvent({
-                category: 'Group Item',
-                action: `Welcome Modal Action`,
-                label: `Login Button`,
-              });
               handleLoginClick(e);
             }}
             mb="base"

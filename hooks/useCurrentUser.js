@@ -7,6 +7,7 @@ export const GET_CURRENT_USER = gql`
     currentUser {
       id
       profile {
+        id
         email
         firstName
         lastName

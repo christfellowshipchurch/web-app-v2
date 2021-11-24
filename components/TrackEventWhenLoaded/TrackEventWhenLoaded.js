@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { useAuthState } from 'providers/AuthProvider';
-import { amplitude } from 'lib/analytics';
 
 const objectToGqlInput = (props = {}) =>
   Object.keys(props).map(key => ({
@@ -15,10 +14,7 @@ const TrackEventWhenLoaded = ({ loaded, eventName, properties }) => {
 
   useEffect(() => {
     if (loaded && authenticated) {
-      amplitude.trackEvent({
-        eventName,
-        properties: objectToGqlInput(properties),
-      });
+      // todo
     }
   }, [loaded, authenticated, properties, eventName]);
 

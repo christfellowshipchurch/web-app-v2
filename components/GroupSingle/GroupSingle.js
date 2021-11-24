@@ -29,11 +29,6 @@ function GroupSingle(props = {}) {
     (props.data?.members?.totalCount || 0);
 
   const handleOnClickVideoCall = action => {
-    // amplitude.trackEvent({
-    //   category: 'Groups',
-    //   action: action ? `${action} Video Call` : 'Video Call',
-    //   label: props.data?.title,
-    // });
     if (options.length > 0) {
       checkInCurrentUser({ optionIds: options.map(({ id }) => id) });
     }
