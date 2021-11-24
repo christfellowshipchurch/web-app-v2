@@ -82,9 +82,8 @@ function useFeatureFeed(options = {}) {
   const isGivePage = options?.variables?.pathname === "give"
   let features = Array.isArray(query?.data?.featuresFeed?.features) ? clone(query?.data?.featuresFeed?.features) : []
 
-  if(isGivePage && features.length > 1){
-    features[1] = customGiveContentBlockCollection;
-    console.log(features)
+  if(isGivePage && features.length > 2){
+    features[2] = customGiveContentBlockCollection;
   }
 
   return {

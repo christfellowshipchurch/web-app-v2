@@ -14,7 +14,7 @@ const Item = ({ coverImage, title, description }) => {
     >
       <Image
         source={coverImage}
-        width={{ _: '60%', md: '85%' }}
+        width={{ _: '60%', md: '70%' }}
         gridArea="img"
         objectFit="contain"
       />
