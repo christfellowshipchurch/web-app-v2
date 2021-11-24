@@ -47,16 +47,6 @@ function Nav(props = {}) {
                 <Button
                   px="base"
                   size="s"
-                  onClick={() =>
-                    amplitude.trackEvent({
-                      eventType: 'Button Click',
-                      eventProperties: {
-                        category: 'Navbar',
-                        label: `Start Here - Button`,
-                        action: `Opened Start Here dropdown`,
-                      },
-                    })
-                  }
                 >
                   Start Now
                   <Icon name="caretDown" mr={-10} ml="xs" mt={-4} mb={-6} />
@@ -81,16 +71,6 @@ function Nav(props = {}) {
             hoverColor={props?.darkMode ? 'neutrals.400' : null}
             display={{ _: 'none', md: 'inline' }}
             data={props.data.quickAction}
-            onClick={() =>
-              amplitude.trackEvent({
-                eventType: 'Button Click',
-                eventProperties: {
-                  category: 'Navbar',
-                  label: `${props.data.quickAction.call} - Button`,
-                  action: `${props.data.quickAction.action}`,
-                },
-              })
-            }
           />,
         ]
       )}
@@ -177,16 +157,6 @@ function Nav(props = {}) {
                 variant="link"
                 icon
                 data={props.data.quickAction}
-                onClick={() =>
-                  amplitude.trackEvent({
-                    eventType: 'Button Click',
-                    eventProperties: {
-                      category: 'Navbar',
-                      label: `${props.data.quickAction.call} - Button`,
-                      action: `${props.data.quickAction.action}`,
-                    },
-                  })
-                }
               />
             </Menu.Link>
           </Box>

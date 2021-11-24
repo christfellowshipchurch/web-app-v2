@@ -2,13 +2,10 @@ import { useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
-import { useCurrentUser } from 'hooks';
-
-import { amplitude, fbq, gtag } from 'lib/analytics';
+import { fbq, gtag } from 'lib/analytics';
 
 function AppHead({ Component, pageProps }) {
   const router = useRouter();
-  const { currentUser } = useCurrentUser();
 
   useEffect(() => {
     let gtagValid = true;
@@ -83,27 +80,6 @@ function AppHead({ Component, pageProps }) {
       router.events.off('routeChangeComplete', handleRouteChange);
     };
   }, [router.events]);
-
-  useEffect(() => {
-    // Do not run Amplitude Analytics unless traffic is coming from a browser
-    const _isNotBrowser =
-      typeof window === 'undefined' || typeof document === 'undefined';
-
-    if (_isNotBrowser) return null;
-
-    // Only run Amplitude Analytics in production
-    if (process.env.NODE_ENV !== 'production') return null;
-
-    // NEXT_PUBLIC_AMPLITUDE_KEY  needs to be set in the .env
-    if (!process.env.NEXT_PUBLIC_AMPLITUDE_KEY) {
-      console.warn(
-        'Amplitude Analytics tracking code is required to initialize Amplitude Analytics'
-      );
-      return null;
-    }
-
-    amplitude.init(currentUser);
-  }, [currentUser]);
 
   return (
     <Head>

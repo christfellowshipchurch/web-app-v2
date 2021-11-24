@@ -1404,6 +1404,21 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@fingerprintjs/fingerprintjs-pro@^3.5.3":
+  version "3.5.3"
+  resolved "https://registry.yarnpkg.com/@fingerprintjs/fingerprintjs-pro/-/fingerprintjs-pro-3.5.3.tgz#eae507234e28653b5f853b95af359568e886e03d"
+  integrity sha512-QKGbRTpIJ7eEiNBNPv63vBgptPUBpa5lT8HxGvLL1z7nxTT5OsErX6qqbJluoGz76KZW/JOJo/ILcE5kBIkW/g==
+  dependencies:
+    "@fingerprintjs/fingerprintjs" "3.3.0"
+    tslib "^2.0.1"
+
+"@fingerprintjs/fingerprintjs@3.3.0":
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/@fingerprintjs/fingerprintjs/-/fingerprintjs-3.3.0.tgz#d15c2fab8e0d9138bcb8efa1429dd780f93bb945"
+  integrity sha512-2kw2yVrfMKd0YvmYAdNxhGytNhhLvChqNAbBZWMglYVw2J95Jm50ketK5yS1C8SJmqG2nFJgeuWvYXeZEh+b8g==
+  dependencies:
+    tslib "^2.0.1"
+
 "@fortawesome/fontawesome-common-types@^0.2.36":
   version "0.2.36"
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.36.tgz#b44e52db3b6b20523e0c57ef8c42d315532cb903"

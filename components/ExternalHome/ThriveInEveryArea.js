@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, ContentBlock } from 'ui-kit';
-import { amplitude, gtag } from 'lib/analytics';
+import { gtag } from 'lib/analytics';
 import { useCurrentBreakpoint } from 'hooks';
 
 const ThriveInEveryArea = ({ maxWidth }) => {
@@ -31,14 +31,6 @@ const ThriveInEveryArea = ({ maxWidth }) => {
               url: '/about',
             },
             onClick: () => [
-              amplitude.trackEvent({
-                eventType: 'Button Click',
-                eventProperties: {
-                  category: 'External Landing Page - Do more than just get by',
-                  label: `About - Button`,
-                  action: '/about',
-                },
-              }),
               gtag.trackEvent({
                 category: 'External Landing Page - Do more than just get by',
                 label: `About - Button`,
