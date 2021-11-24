@@ -111,7 +111,7 @@ const AnalyticsProvider = ({ children }) => {
 
     const _isNotValidClient = typeof window === 'undefined' 
         || typeof document === 'undefined'
-        // || process.env.NODE_ENV !== 'production';
+        || process.env.NODE_ENV !== 'production';
 
     function handleRouteChange(route) {
         dispatchEvent({ processed: false, route })
@@ -149,6 +149,7 @@ const AnalyticsProvider = ({ children }) => {
     // note : Pull or fetch the FingerprintId
     useEffect(() => {
         if (_isNotValidClient) return
+        if (isEmpty(process.env.NEXT_PUBLIC_FINGERPRINTJS_KEY)) return
 
         if (isEmpty(fingerprintId)) {
             const fpPromise = fingerprintJS.load({
@@ -184,6 +185,7 @@ const AnalyticsProvider = ({ children }) => {
     // note : Initialize Amplitude client
     useEffect(() => {
         if (_isNotValidClient || !amplitudeJS || !fingerprintJS) return
+        if (isEmpty(process.env.NEXT_PUBLIC_AMPLITUDE_KEY)) return
 
         amplitudeJS
             .getInstance()
