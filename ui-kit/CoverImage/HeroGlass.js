@@ -13,6 +13,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty'
 
+import Box from '../Box'
 import Styled from './HeroGlass.styles'
 
 const HeroGlass = ({ src, title, subtitle }) => {
