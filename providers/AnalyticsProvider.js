@@ -71,7 +71,8 @@ function eventsReduce(state, action) {
 // MARK : Ready State Reducer
 const DEFAULT_READY_STATE = {
     fingerprint: false,
-    amplitude: false
+    amplitude: false,
+    all: false
 }
 function readyStateReducer(state, task) {
     let newState = {}
@@ -161,13 +162,18 @@ const AnalyticsProvider = ({ children }) => {
                 .then(result => fingerprintIdVar(result.visitorId))
         } else {
             setIsReady("fingerprint")
-            var identify = new amplitudeJS.Identify().setOnce('fingerprintId', fingerprintId);
-            amplitudeJS.getInstance().identify(identify);
+
+            if (isReady.amplitude) {
+                var identify = new amplitudeJS.Identify().setOnce('fingerprintId', fingerprintId);
+                amplitudeJS.getInstance().identify(identify);
+            }
         }
-    }, [fingerprintId])
+    }, [isReady, fingerprintId])
 
     // note : When we have a change in our current user, we can set/unset the current user id
     useEffect(() => {
+        if (!isReady.all) return
+
         let identify = new amplitudeJS.Identify()
         if (currentUser?.id) {
             identify
