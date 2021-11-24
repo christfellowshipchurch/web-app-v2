@@ -112,7 +112,7 @@ const AnalyticsProvider = ({ children }) => {
 
     const _isNotValidClient = typeof window === 'undefined' 
         || typeof document === 'undefined'
-        || process.env.NODE_ENV !== 'production';
+        // || process.env.NODE_ENV !== 'production';
 
     function handleRouteChange(route) {
         dispatchEvent({ processed: false, route })
@@ -162,13 +162,8 @@ const AnalyticsProvider = ({ children }) => {
                 .then(result => fingerprintIdVar(result.visitorId))
         } else {
             setIsReady("fingerprint")
-
-            if (isReady.amplitude) {
-                var identify = new amplitudeJS.Identify().setOnce('fingerprintId', fingerprintId);
-                amplitudeJS.getInstance().identify(identify);
-            }
         }
-    }, [isReady, fingerprintId])
+    }, [fingerprintId])
 
     // note : When we have a change in our current user, we can set/unset the current user id
     useEffect(() => {
@@ -187,6 +182,14 @@ const AnalyticsProvider = ({ children }) => {
 
         amplitudeJS.getInstance().identify(identify);
     }, [currentUser])
+
+    // note : We break out the logic for setting the FingerprintId in Amplitude so that if Amplitude finishes after Fingerprint, we still run the logic
+    useEffect(() => {
+        if (!isReady.all) return
+
+        var identify = new amplitudeJS.Identify().setOnce('fingerprintId', fingerprintId);
+        amplitudeJS.getInstance().identify(identify);
+    }, [isReady])
 
     // note : Initialize Amplitude client
     useEffect(() => {
