@@ -1,34 +1,37 @@
 import styled, { css } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 import { system } from 'ui-kit';
-import { primaryHover } from 'ui-kit/Button/Button.styles'
+import { primaryHover } from 'ui-kit/Button/Button.styles';
 
 const HtmlRenderer = styled.div`
-    > ul,
-    > ol {
-        margin-left: ${themeGet('space.base')};
-    }
+  > ul,
+  > ol {
+    margin-left: ${themeGet('space.base')};
+  }
 
-    a {
-        color: ${themeGet('colors.primary')};
-        
-        &:active,
-        &:focus,
-        &:hover {
-            color: ${primaryHover};
-        }
-    }
+  a {
+    color: ${themeGet('colors.primary')};
 
-    p:not(:first-child) {
-        margin-top: ${themeGet('space.base')};
-        margin-bottom: ${themeGet('space.base')};
+    &:active,
+    &:focus,
+    &:hover {
+      color: ${primaryHover};
     }
+  }
 
-    img {
-        border-radius: ${themeGet('radii.base')};
-    }
+  p:not(:first-child) {
+    margin-top: ${themeGet('space.base')};
+  }
 
-    ${system};
+  p:not(:last-child) {
+    margin-bottom: ${themeGet('space.base')};
+  }
+
+  img {
+    border-radius: ${themeGet('radii.base')};
+  }
+
+  ${system};
 `;
 
 export default HtmlRenderer;
