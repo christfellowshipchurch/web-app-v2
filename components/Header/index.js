@@ -1,3 +1,4 @@
 import Header from './Header';
+import TransparentHeader from './TransparentHeader';
 
-export default Header;
+export { Header as DefaultHeader, TransparentHeader };

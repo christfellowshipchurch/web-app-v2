@@ -16,6 +16,16 @@ function Nav(props = {}) {
   const modalDispatch = useModalDispatch();
   const router = useRouter();
 
+  /**
+   * todo : Update the handleRouterReload to take a list a specific pages that need to be reloaded after logging as user out. To skip the rest of the pages and continue to reduce the amount of unnecessary reloads.
+   */
+  function handleRouterReload(pathname) {
+    if (pathname === '/') {
+      return null;
+    }
+    return router.reload();
+  }
+
   function handleAuthClick(event) {
     event.preventDefault();
     modalDispatch(showModal('Auth'));
@@ -24,7 +34,7 @@ function Nav(props = {}) {
   function handleLogoutClick(event) {
     event.preventDefault();
     authDispatch(logout());
-    router.reload();
+    handleRouterReload(router.pathname);
   }
 
   return (
@@ -44,10 +54,7 @@ function Nav(props = {}) {
             }}
             renderTrigger={({ toggle }) => (
               <Box as="a" textDecoration="none" href="#0" onClick={toggle}>
-                <Button
-                  px="base"
-                  size="s"
-                >
+                <Button px="base" size="s">
                   Start Now
                   <Icon name="caretDown" mr={-10} ml="xs" mt={-4} mb={-6} />
                 </Button>
@@ -66,16 +73,16 @@ function Nav(props = {}) {
             variant="secondary"
             size="s"
             px="base"
-            color={props?.darkMode ? 'white' : 'primary'}
-            borderColor={props?.darkMode ? 'white' : 'primary'}
-            hoverColor={props?.darkMode ? 'neutrals.400' : null}
+            color={props?.transparentMode ? 'white' : 'primary'}
+            borderColor={props?.transparentMode ? 'white' : 'primary'}
+            hoverColor={props?.transparentMode ? 'neutrals.400' : null}
             display={{ _: 'none', md: 'inline' }}
             data={props.data.quickAction}
           />,
         ]
       )}
       {/* Hide avatar for dark mode */}
-      {!props.darkMode && (
+      {!props.transparentMode && (
         <ClientSideComponent display={{ _: 'none', md: 'block' }}>
           {authenticated ? (
             <CurrentUserProvider
@@ -88,7 +95,7 @@ function Nav(props = {}) {
               href="#0"
               display="block"
               border="2px solid"
-              borderColor={props?.darkMode ? 'white' : 'fg'}
+              borderColor={props?.transparentMode ? 'white' : 'fg'}
               borderRadius="50%"
               lineHeight="38px"
               size="45px"
@@ -97,7 +104,7 @@ function Nav(props = {}) {
             >
               <Icon
                 name="user"
-                color={props?.darkMode ? 'white' : 'fg'}
+                color={props?.transparentMode ? 'white' : 'fg'}
                 size="28px"
               />
               <Box as="span" className="srt">
@@ -114,8 +121,12 @@ function Nav(props = {}) {
         }}
         renderTrigger={({ toggle }) => (
           <Box as="a" textDecoration="none" href="#0" onClick={toggle}>
-            <Icon name="menu" color={props?.darkMode ? 'white' : 'fg'} />
-            <Box as="span" p="xs" color={props?.darkMode ? 'white' : 'fg'}>
+            <Icon name="menu" color={props?.transparentMode ? 'white' : 'fg'} />
+            <Box
+              as="span"
+              p="xs"
+              color={props?.transparentMode ? 'white' : 'fg'}
+            >
               Menu
             </Box>
           </Box>
@@ -233,11 +244,11 @@ function MenuLinks(props = {}) {
 Nav.propTypes = {
   ...systemPropTypes,
   data: PropTypes.object,
-  darkMode: PropTypes.bool,
+  transparentMode: PropTypes.bool,
 };
 
 Nav.defaultProps = {
-  darkMode: false,
+  transparentMode: false,
 };
 
 export default Nav;
