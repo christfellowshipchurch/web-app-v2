@@ -19,16 +19,16 @@ export default function ContentVideo(props = {}) {
     setPlayClicked(true);
   };
 
-  return (
-    <Styled.VideoContainer>
-      <Video
-        src={props.video.sources[0].uri}
-        poster={props.poster}
-        autoPlay={true}
-        playsInline={true}
-      />
-    </Styled.VideoContainer>
-  );
+  // return (
+  //   <Styled.VideoContainer>
+  //     <Video
+  //       src={props.video.sources[0].uri}
+  //       poster={props.poster}
+  //       autoPlay={true}
+  //       playsInline={true}
+  //     />
+  //   </Styled.VideoContainer>
+  // );
 
   return (
     <DefaultCard
