@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button, Box, Card, ContentBlock, List } from 'ui-kit';
 import { rem } from 'ui-kit/_utils';
-import { SEO, DefaultHeader, Footer } from 'components';
+import { SEO, Header, Footer } from 'components';
 
 import Styled from './About.styles';
 
@@ -10,12 +10,12 @@ import { htmlToReactParser } from 'utils';
 
 export default function About() {
   const [active, setActive] = useState('leadership');
-
+  
   return (
     <Box width="100%">
       <SEO title="About" />
       <Box display="grid" gridTemplateRows="auto 1fr auto" height="100vh">
-        <DefaultHeader />
+        <Header />
         <Styled.Hero>
           <Box as="h1">About Christ Fellowship</Box>
           <Box as="p" fontSize="l" maxWidth="840px">
@@ -81,15 +81,23 @@ export default function About() {
             </Button>
           </Box>
         </List>
-        {active === 'leadership' && (
-          <Box m="auto" maxWidth="1000px" p="base">
+        {active === 'leadership' &&
+          <Box
+            m="auto"
+            maxWidth="1000px"
+            p="base"
+          >
             {data.leadership.map((item, i) => (
-              <Box my="xl">
-                <ContentBlock {...item} key={i} />
+              <Box
+                my="xl"
+              >
+                <ContentBlock
+                  {...item}
+                  key={i}
+                />
               </Box>
             ))}
-          </Box>
-        )}
+          </Box>}
         {active === 'beliefs' && (
           <Box
             display="flex"
