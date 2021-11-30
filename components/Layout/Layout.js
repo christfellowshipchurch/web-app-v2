@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 
 import { Box } from 'ui-kit';
 import { Footer, SEO } from 'components';
-import { DefaultHeader, TransparentHeader } from '../Header';
-
+import { Header } from 'components';
 function Layout(props = {}) {
   return (
     <>
       {props.title && <SEO title={props.title} {...props?.seoMetaTags} />}
       <Box display="flex" flexDirection="column" height="100vh">
-        {props?.transparentHeader ? <TransparentHeader /> : <DefaultHeader />}
+        <Header type={props?.transparentHeader ? 'transparent' : null} />
         <Box flexGrow="1">{props.children}</Box>
         <Footer />
       </Box>

@@ -53,8 +53,6 @@ export async function getServerSideProps() {
       variables: { pathname: 'home' },
     });
 
-    console.log({ apolloClient });
-
     return {
       props: {
         initialApolloState: apolloClient.cache.extract(),

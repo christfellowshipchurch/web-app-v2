@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
-import PropTypes from 'prop-types';
-
-import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 
 import { NavigationProvider } from 'providers';
 import { Box, systemPropTypes } from 'ui-kit';
 import { Logo, Nav } from 'components';
-import { useCurrentBreakpoint } from 'hooks';
 import Styled from './Header.styles';
 
-function Header(props = {}) {
+function DefaultHeader(props = {}) {
   return (
     <Styled bg="white" position="relative" boxShadow="base" {...props}>
       <Link href="/">
@@ -23,8 +19,8 @@ function Header(props = {}) {
   );
 }
 
-Header.propTypes = {
+DefaultHeader.propTypes = {
   ...systemPropTypes,
 };
 
-export default Header;
+export default DefaultHeader;

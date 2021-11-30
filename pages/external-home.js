@@ -9,7 +9,6 @@ import {
 } from 'components/ExternalHome';
 import { Box, ContentBlock, ValueStack } from 'ui-kit';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
-import { TransparentHeader } from 'components/Header';
 
 const BASE_MAX_WIDTH = 1200;
 const BASE_VERITCAL_PADDING = 'xl';

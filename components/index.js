@@ -1,5 +1,4 @@
 import * as modals from './Modals';
-import * as headers from './Header';
 import ActionBarFeature from './ActionBarFeature';
 import ActionListFeature from './ActionListFeature';
 import AddToCalendar from './AddToCalendar';
@@ -34,7 +33,7 @@ import GroupSearchFilters from './GroupSearchFilters';
 import GroupSingle from './GroupSingle';
 import GroupsList from './GroupsList';
 import GroupsResultsList from './GroupsResultsList';
-// import Header from './Header';
+import Header from './Header';
 import HeroListFeature from './HeroListFeature';
 import HomeFeed from './HomeFeed';
 import HorizontalCardListFeature from './HorizontalCardListFeature';
@@ -93,7 +92,7 @@ export {
   GroupSingle,
   GroupsList,
   GroupsResultsList,
-  // Header,
+  Header,
   HeroListFeature,
   HomeFeed,
   HorizontalCardListFeature,
@@ -116,6 +115,5 @@ export {
   VerticalCardListFeature,
   VerticalModalCardListFeature,
   Video,
-  headers,
   modals,
 };
