@@ -16,7 +16,7 @@ import {
   CommunityLeaderActions,
   CustomLink,
   Footer,
-  Header,
+  DefaultHeader,
   SEO,
 } from 'components';
 import { useCurrentUser, useNotifyMeBanner, useGroupFacetFilters } from 'hooks';
@@ -126,7 +126,7 @@ function CommunitySingle(props = {}) {
         image={props.data?.coverImage?.sources[0]?.uri}
         description={props.data?.summary}
       />
-      <Header />
+      <DefaultHeader />
       <Box width="100%" px="xxs" py={{ _: 's', lg: 'base' }}>
         <Styled.BackButton>
           <CustomLink
