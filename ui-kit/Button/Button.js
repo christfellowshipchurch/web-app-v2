@@ -32,7 +32,7 @@ function childrenIcons(children) {
   return null
 }
 function Button(props = {}) {
-  const { trackEvent, eventKeys, trackingDisabled } = useAnalytics()
+  const { trackEvent, eventKeys } = useAnalytics()
 
   if (props.status === 'LOADING') {
     return (
@@ -52,23 +52,20 @@ function Button(props = {}) {
         }
       }
 
-      if (trackingDisabled) {
-        handleClick()
-        return
-      }
-
       if (!isEmpty(props?.href)) {
         trackEvent(eventKeys.openLink, {
           text: childrenText(props?.children),
           icon: childrenIcons(props?.children),
           link: props?.href,
-        }, handleClick)
+        })
       } else {
         trackEvent(eventKeys.clickButton, {
           text: childrenText(props?.children),
           icon: childrenIcons(props?.children),
-        }, handleClick)
+        })
       }
+
+      handleClick()
     }}
   />;
 }
