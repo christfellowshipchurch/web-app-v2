@@ -228,6 +228,13 @@ const AnalyticsProvider = ({ children }) => {
             )
     }, [])
 
+    console.log({
+        _isNotValidClient,
+        am: !amplitudeJS,
+        fp: !fingerprintJS,
+        isReady
+    })
+
     return <AnalyticsContext.Provider 
         value={{
             trackEvent: (key, props, optCallback) => dispatchEvent({ 
@@ -237,7 +244,7 @@ const AnalyticsProvider = ({ children }) => {
                 optCallback
             }),
             eventKeys: EVENT_KEYS,
-            trackingDisabled: _isNotValidClient || !amplitudeJS || !fingerprintJS
+            trackingDisabled: _isNotValidClient || !amplitudeJS || !fingerprintJS || !isReady.all
         }}
     >
         {children}
