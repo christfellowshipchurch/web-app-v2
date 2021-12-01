@@ -7,7 +7,7 @@
  * Current implementation listens to changes in page route
  */
 
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useContext, useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import { useReactiveVar } from '@apollo/client';
 import { useRouter } from 'next/router'
@@ -23,7 +23,9 @@ const amplitudeJS =
   typeof window !== 'undefined' ? require('amplitude-js') : null;
 const EVENT_KEYS = {
     pageView: "Viewed Page",
-    exitPage: "Exited Page"
+    exitPage: "Exited Page",
+    openLink: "Open Link",
+    clickButton: "Click Button"
 }
 const initOptions = {
     includeFbclid: true,
@@ -54,18 +56,10 @@ function eventsReduce(state, action) {
      * 
      * We also want to parse and format our route so that it's more easily digestible to Amplitude
      */
-    return [...state, action].map(a => {
-        const parsedRoute = URL.parse(a?.route)
-
-        return {
-            ...a,
-            taskId: a?.taskId ?? uniqueId(),
-            props: {
-                pathname: parsedRoute?.pathname,
-                query: parsedRoute?.query?.split("&")
-            }
-        }
-    })
+    return [...state, action].map((a) => ({
+        ...a,
+        taskId: a?.taskId ?? uniqueId(),
+    }))
 }
 
 // MARK : Ready State Reducer
@@ -103,6 +97,20 @@ function readyStateReducer(state, task) {
     }
 }
 
+// MARK : Provider
+const AnalyticsContext = React.createContext({
+    trackEvent: () => null,
+    eventKeys: EVENT_KEYS
+});
+
+export function useAnalytics() {
+    const context = useContext(AnalyticsContext);
+    if (context === undefined) {
+      throw new Error(`useAnalytics must be used within an AnalyticsProvider`);
+    }
+    return context;
+}
+
 const AnalyticsProvider = ({ children }) => {
     const router = useRouter()
     const { currentUser } = useCurrentUser()
@@ -112,19 +120,33 @@ const AnalyticsProvider = ({ children }) => {
 
     const _isNotValidClient = typeof window === 'undefined' 
         || typeof document === 'undefined'
-        || process.env.NODE_ENV !== 'production';
+        // || process.env.NODE_ENV !== 'production';
 
     function handleRouteChange(route) {
-        dispatchEvent({ processed: false, route })
+        const parsedRoute = URL.parse(route)
+
+        dispatchEvent({
+            processed: false,
+            key: EVENT_KEYS.pageView,
+            props: {
+                pathname: parsedRoute?.pathname,
+                query: parsedRoute?.query?.split("&")
+            } 
+        })
     }
 
-    function trackEvent(event) {
+    function trackEvent(event, optCallback) {
         amplitudeJS
             .getInstance()
             .logEvent(
-                EVENT_KEYS.pageView,
+                event?.key,
                 event?.props,
-                () => dispatchEvent({ ...event, processed: true }),
+                () => {
+                    dispatchEvent({ ...event, processed: true })
+                    if (optCallback && typeof optCallback === "function") {
+                        optCallback()
+                    }
+                },
                 (e) => console.warn("Error", { e })
             )
     }
@@ -206,7 +228,18 @@ const AnalyticsProvider = ({ children }) => {
             )
     }, [])
 
-    return children
+    return <AnalyticsContext.Provider 
+        value={{
+            trackEvent: (key, props, optCallback) => dispatchEvent({ 
+                processed: false, 
+                key, 
+                props 
+            }, optCallback),
+            eventKeys: EVENT_KEYS
+        }}
+    >
+        {children}
+    </AnalyticsContext.Provider>
 };
 
 AnalyticsProvider.propTypes = {}
