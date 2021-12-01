@@ -10,7 +10,7 @@ import { Logo, Nav } from 'components';
 import { useCurrentBreakpoint } from 'hooks';
 import Styled from './Header.styles';
 
-function Header(props = {}) {
+function TransparentHeader(props = {}) {
   const [bgColor, setBgColor] = useState('transparent');
   const [navOpacity, setOpacity] = useState(1);
 
@@ -28,43 +28,31 @@ function Header(props = {}) {
     setOpacity(invisible ? 0 : 1);
   });
 
-  const darkModeProps = props?.darkMode
-    ? {
-        bg: bgColor,
-        opacity: navOpacity,
-        boxShadow: 'none',
-        position: 'fixed',
-      }
-    : {
-        bg: 'white',
-        boxShadow: 'base',
-        position: 'relative',
-      };
-
   return (
-    <Styled {...darkModeProps} {...props}>
+    <Styled
+      boxShadow="none"
+      bg={bgColor}
+      opacity={navOpacity}
+      position="fixed"
+      {...props}
+    >
       <Link href="/">
         <a>
-          <Box
-            as={Logo}
-            dark={props?.darkMode}
-            mx={{ _: 'auto', md: '0' }}
-            mb="0"
-          />
+          <Box as={Logo} dark={true} mx={{ _: 'auto', md: '0' }} mb="0" />
         </a>
       </Link>
-      <NavigationProvider Component={Nav} {...props} />
+      <NavigationProvider Component={Nav} {...props} transparentMode />
     </Styled>
   );
 }
 
-Header.propTypes = {
+TransparentHeader.propTypes = {
   ...systemPropTypes,
   darkMode: PropTypes.bool,
 };
 
-Header.defaultProps = {
-  darkMode: false,
+TransparentHeader.defaultProps = {
+  darkMode: true,
 };
 
-export default Header;
+export default TransparentHeader;

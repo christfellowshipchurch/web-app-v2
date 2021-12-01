@@ -9,7 +9,7 @@ import { gtag } from 'lib/analytics';
 
 export default function HeroLanding(props = {}) {
   return (
-    <Layout darkMode>
+    <>
       <Styled>
         <Styled.BackgroundVideo
           autoPlay
@@ -55,7 +55,7 @@ export default function HeroLanding(props = {}) {
         </Styled.Content>
       </Styled>
       <Box mx="auto">{props?.children}</Box>
-    </Layout>
+    </>
   );
 }
 
