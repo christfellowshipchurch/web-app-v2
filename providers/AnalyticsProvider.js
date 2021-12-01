@@ -120,7 +120,7 @@ const AnalyticsProvider = ({ children }) => {
 
     const _isNotValidClient = typeof window === 'undefined' 
         || typeof document === 'undefined'
-        // || process.env.NODE_ENV !== 'production';
+        || process.env.NODE_ENV !== 'production';
 
     function handleRouteChange(route) {
         const parsedRoute = URL.parse(route)
