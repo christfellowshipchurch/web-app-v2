@@ -46,6 +46,8 @@ function Button(props = {}) {
   return <Styled 
     {...props} 
     onClick={(e) => {
+      console.log({ trackingDisabled })
+
       function handleClick() {
         if (typeof props?.onClick === "function") {
           props?.onClick(e)
