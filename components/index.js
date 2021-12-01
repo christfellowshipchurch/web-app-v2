@@ -46,7 +46,7 @@ import Logo from './Logo';
 import Nav from './Nav';
 import NotFound from './NotFound';
 import PageSingle from './PageSingle';
-import PasswordReset from './PasswordReset'
+import PasswordReset from './PasswordReset';
 import SEO from './SEO';
 import SearchField from './SearchField';
 import Share from './Share';
