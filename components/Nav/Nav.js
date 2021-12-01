@@ -153,7 +153,7 @@ function Nav(props = {}) {
                     <CurrentUserProvider
                       Component={UserAvatar}
                       handleAuthClick={handleAuthClick}
-                      size={25}
+                      size={"25px"}
                     />
                     <Box as="p" ml="xs">
                       Profile
