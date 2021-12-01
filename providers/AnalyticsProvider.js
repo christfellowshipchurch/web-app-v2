@@ -141,12 +141,7 @@ const AnalyticsProvider = ({ children }) => {
             .logEvent(
                 event?.key,
                 event?.props,
-                () => {
-                    dispatchEvent({ ...event, processed: true })
-                    if (event?.optCallback && typeof event?.optCallback === "function") {
-                        event?.optCallback()
-                    }
-                },
+                () => dispatchEvent({ ...event, processed: true }),
                 (e) => console.warn("Error", { e })
             )
     }
@@ -230,11 +225,10 @@ const AnalyticsProvider = ({ children }) => {
 
     return <AnalyticsContext.Provider 
         value={{
-            trackEvent: (key, props, optCallback) => dispatchEvent({ 
+            trackEvent: (key, props) => dispatchEvent({ 
                 processed: false, 
                 key, 
-                props,
-                optCallback
+                props
             }),
             eventKeys: EVENT_KEYS,
             trackingDisabled: _isNotValidClient || !amplitudeJS || !fingerprintJS || !isReady.all
