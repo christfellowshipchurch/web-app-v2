@@ -135,7 +135,7 @@ const AnalyticsProvider = ({ children }) => {
         })
     }
 
-    function trackEvent(event, optCallback) {
+    function trackEvent(event) {
         amplitudeJS
             .getInstance()
             .logEvent(
@@ -143,8 +143,8 @@ const AnalyticsProvider = ({ children }) => {
                 event?.props,
                 () => {
                     dispatchEvent({ ...event, processed: true })
-                    if (optCallback && typeof optCallback === "function") {
-                        optCallback()
+                    if (event?.optCallback && typeof event?.optCallback === "function") {
+                        event?.optCallback()
                     }
                 },
                 (e) => console.warn("Error", { e })
@@ -233,9 +233,11 @@ const AnalyticsProvider = ({ children }) => {
             trackEvent: (key, props, optCallback) => dispatchEvent({ 
                 processed: false, 
                 key, 
-                props 
-            }, optCallback),
-            eventKeys: EVENT_KEYS
+                props,
+                optCallback
+            }),
+            eventKeys: EVENT_KEYS,
+            trackingDisabled: _isNotValidClient || !amplitudeJS || !fingerprintJS
         }}
     >
         {children}

@@ -32,7 +32,7 @@ function childrenIcons(children) {
   return null
 }
 function Button(props = {}) {
-  const { trackEvent, eventKeys } = useAnalytics()
+  const { trackEvent, eventKeys, trackingDisabled } = useAnalytics()
 
   if (props.status === 'LOADING') {
     return (
@@ -50,6 +50,11 @@ function Button(props = {}) {
         if (typeof props?.onClick === "function") {
           props?.onClick(e)
         }
+      }
+
+      if (trackingDisabled) {
+        handleClick()
+        return
       }
 
       if (!isEmpty(props?.href)) {
