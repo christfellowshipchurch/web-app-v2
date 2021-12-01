@@ -8,14 +8,17 @@ const Header = ({ type }) => {
   switch (type) {
     case 'transparent':
       return <TransparentHeader />;
+    case 'default ':
     default:
       return <DefaultHeader />;
   }
 };
 
 Header.propTypes = {
-  type: PropTypes.oneOf(['transparent']),
+  type: PropTypes.oneOf(['transparent', 'default']),
 };
-Header.defaultProps = {};
+Header.defaultProps = {
+  type: 'default',
+};
 
 export default Header;
