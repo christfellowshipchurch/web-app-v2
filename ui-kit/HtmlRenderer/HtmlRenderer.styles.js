@@ -6,12 +6,12 @@ import { primaryHover } from 'ui-kit/Button/Button.styles';
 const HtmlRenderer = styled.div`
   > ul,
   > ol {
-    margin-left: ${themeGet('space.base')};
+      margin-left: ${themeGet('space.base')};
   }
-
+  
   a {
     color: ${themeGet('colors.primary')};
-
+    
     &:active,
     &:focus,
     &:hover {
@@ -19,12 +19,17 @@ const HtmlRenderer = styled.div`
     }
   }
 
-  p:not(:first-child) {
-    margin-top: ${themeGet('space.base')};
-  }
-
-  p:not(:last-child) {
-    margin-bottom: ${themeGet('space.base')};
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    &:not(:first-child) {
+      margin-top: ${themeGet('space.base')};
+      margin-bottom: ${themeGet('space.base')};
+    }
   }
 
   img {
