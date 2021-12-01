@@ -23,11 +23,11 @@ function UserAvatar(props = {}) {
 
 UserAvatar.propTypes = {
   currentUser: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  size: PropTypes.number,
+  size: PropTypes.string,
 };
 
 UserAvatar.defaultProps = {
-  size: 45,
+  size: "45px",
 };
 
 export default UserAvatar;
