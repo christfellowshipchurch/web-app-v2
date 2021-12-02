@@ -17,6 +17,7 @@ import isEmpty from 'lodash/isEmpty';
 import { useCurrentUser } from 'hooks'
 
 import { fingerprintIdVar } from 'lib/apolloClient/localStorage';
+import { useAuthState } from './AuthProvider'
 
 // MARK : Amplitude initialization
 const amplitudeJS =
@@ -25,7 +26,7 @@ const EVENT_KEYS = {
     pageView: "Viewed Page",
     exitPage: "Exited Page",
     openLink: "Open Link",
-    clickButton: "Click Button"
+    clickButton: "Click Button",
 }
 const initOptions = {
     includeFbclid: true,
@@ -188,13 +189,24 @@ const AnalyticsProvider = ({ children }) => {
 
         let identify = new amplitudeJS.Identify()
         if (currentUser?.id) {
+            amplitudeJS.getInstance().setUserId(currentUser?.id)
             identify
                 .set("apollosUserId", currentUser?.id)
-                .set("apollosPersonId", currentUser?.profile?.id);
+                .set("apollosPersonId", currentUser?.profile?.id)
+                .set("firstName", currentUser?.profile?.firstName)
+                .set("lastName", currentUser?.profile?.lastName)
+                .set("campusName", currentUser?.profile?.campus?.name)
+                .set("email", currentUser?.profile?.email);
         } else {
             identify
                 .set("apollosUserId", null)
                 .set("apollosPersonId", null);
+            /**
+             * Per the Amplitude documentation, this is how you properly set up a new user when someone logs out. There are some trade-offs, but I do believe this to be the right call
+             * @see https://developers.amplitude.com/docs/javascript#setting-custom-user-id
+             */
+            amplitudeJS.getInstance().setUserId(null); // not string 'null'
+            amplitudeJS.getInstance().regenerateDeviceId();
         }
 
         amplitudeJS.getInstance().identify(identify);
