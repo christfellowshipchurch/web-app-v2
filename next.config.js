@@ -187,7 +187,7 @@ module.exports = {
       { source: '/seniors', destination: '/', permanent: true },
       { source: '/easter', destination: '/', permanent: true },
       { source: '/lhkids', destination: '/connect/kids', permanent: true },
-      { source: '/christmas', destination: '/', permanent: true },
+      { source: '/christmas', destination: '/christmas-at-long-hollow', permanent: true },
       { source: '/schedule', destination: '/about/schedule', permanent: true },
       { source: '/contact_us', destination: '/connect/connect-with-us', permanent: true },
       { source: '/im_new', destination: '/next-steps/plan-your-visit', permanent: true },
