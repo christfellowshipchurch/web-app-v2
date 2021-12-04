@@ -6,9 +6,10 @@ import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 
 import { NavigationProvider } from 'providers';
 import { Box, systemPropTypes } from 'ui-kit';
-import { Logo, Nav } from 'components';
+import { CustomLink, Logo, Nav } from 'components';
 import { useCurrentBreakpoint } from 'hooks';
 import Styled from './Header.styles';
+import ChristmasBanner from './ChristmasBanner';
 
 function TransparentHeader(props = {}) {
   const [bgColor, setBgColor] = useState('transparent');
@@ -35,13 +36,24 @@ function TransparentHeader(props = {}) {
       opacity={navOpacity}
       position="fixed"
       {...props}
+      display="flex"
+      flexDirection="column"
+      mt="-1.3rem"
     >
-      <Link href="/">
-        <a>
-          <Box as={Logo} dark={true} mx={{ _: 'auto', md: '0' }} mb="0" />
-        </a>
-      </Link>
-      <NavigationProvider Component={Nav} {...props} transparentMode />
+      <ChristmasBanner position="sticky" width="115%" mb="base" />
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent="space-between"
+        width="100%"
+      >
+        <Link href="/">
+          <a>
+            <Box as={Logo} dark={true} mx={{ _: 'auto', md: '0' }} mb="0" />
+          </a>
+        </Link>
+        <NavigationProvider Component={Nav} {...props} transparentMode />
+      </Box>
     </Styled>
   );
 }
