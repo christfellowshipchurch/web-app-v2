@@ -83,7 +83,18 @@ function AppHead({ Component, pageProps }) {
 
   return (
     <Head>
-      <link rel="icon" href="/favicon.png" />
+      {/* Platform Specific Favicons */}
+      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2" />
+      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2" />
+      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2" />
+      <link rel="manifest" href="/site.webmanifest?v=2" />
+      <link rel="mask-icon" href="/safari-pinned-tab.svg?v=2" color="#0092bc" />
+      <link rel="shortcut icon" href="/favicon.ico?v=2" />
+      <meta name="apple-mobile-web-app-title" content="Christ Fellowship Church" />
+      <meta name="application-name" content="Christ Fellowship Church" />
+      <meta name="msapplication-TileColor" content="#0092bc" />
+      <meta name="theme-color" content="#ffffff" />
+
       {/* This will throw a 403 if you don't run on local.christfellowship.church! */}
       <link
         rel="stylesheet"
