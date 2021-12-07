@@ -12,7 +12,7 @@ import React, { useState, useEffect } from 'react';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 import { useGroupManage } from 'providers/GroupManageProvider';
 import { GroupMember, SearchField } from 'components';
-import { Box, Button, Loader } from 'ui-kit';
+import { Box, Button, Loader, Icon } from 'ui-kit';
 import { CardTitle, SmallPillButton } from './GroupManage.components';
 import { useSearchGroupMembers } from 'hooks';
 
@@ -133,13 +133,10 @@ function GroupManageMembers(props = {}) {
     });
   }, []);
 
-  console.log({ groupMembers })
-
   return (
     <>
       <Box alignItems="center" display="flex">
         <CardTitle title="Group Members" />
-
         <SmallPillButton onClick={handleAddNewMember} icon="plus" title="Add" />
       </Box>
 
@@ -153,6 +150,20 @@ function GroupManageMembers(props = {}) {
         >
           Search
         </SearchField>
+      </Box>
+      
+      <Box display="flex" ml="85%" pb="base">
+        <Button
+          icon="plus"
+          rounded
+          variant="secondary"
+          fontSize="0.65rem"
+          py="3px"
+          px="6px"
+        >
+          <Icon name="envelope" size="18px" mr="xs"/>
+          {groupMembers.length} Members
+        </Button>
       </Box>
 
       {renderStatusFacets()}
