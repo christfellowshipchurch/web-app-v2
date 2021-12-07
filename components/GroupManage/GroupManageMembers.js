@@ -140,7 +140,7 @@ function GroupManageMembers(props = {}) {
         <SmallPillButton onClick={handleAddNewMember} icon="plus" title="Add" />
       </Box>
 
-      <Box mt="base" mb="l">
+      <Box mt="base" mb="base">
         <SearchField
           handleChange={searchFieldHandleChange}
           handleClear={searchFieldHandleClear}
@@ -152,9 +152,21 @@ function GroupManageMembers(props = {}) {
         </SearchField>
       </Box>
       
-      <Box display="flex" ml="85%" pb="base">
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        my="base"
+      >
         <Button
-          icon="plus"
+          rounded
+          fontSize="0.65rem"
+          py="3px"
+          px="6px"
+        >
+          Group Filters Will Go Here
+        </Button>
+
+        <Button
           rounded
           variant="secondary"
           fontSize="0.65rem"
