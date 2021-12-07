@@ -29,6 +29,8 @@ import GenderField from './GenderField';
 import GenericError from './GenericError';
 import GradientBackground from './GradientBackground';
 import GroupManage from './GroupManage';
+import GroupMember from './GroupMember';
+import GroupMemberDetails from './GroupMemberDetails';
 import GroupSearchFilters from './GroupSearchFilters';
 import GroupSingle from './GroupSingle';
 import GroupsList from './GroupsList';
@@ -88,6 +90,8 @@ export {
   GenericError,
   GradientBackground,
   GroupManage,
+  GroupMember,
+  GroupMemberDetails,
   GroupSearchFilters,
   GroupSingle,
   GroupsList,

@@ -11,26 +11,15 @@ export default function GroupMembers(props = {}) {
   const hiddenCount = combinedMembers.length - props.showCount;
 
   return (
-    <Box
-      display="grid"
-      gridTemplateColumns={`repeat(${props.showCount + 1}, 1fr)`}
-      gridTemplateRows="123%"
-      gridColumnGap="s"
-    >
+    <Box display="flex" flexDirection="row" mx="-5px">
       {combinedMembers.slice(0, props.showCount).map(member => (
-        <Box
-          key={member.id}
-          display="flex"
-          flexDirection="column"
-          justifyContent="center"
-          position="relative"
-        >
+        <Box key={member.id} textAlign="center" mx="5px">
           <SquareAvatar
-            height="100%"
             key={member.id}
+            height="100px"
+            width="75px"
             name={`${member.firstName} ${member.lastName}`}
             src={member.photo?.uri}
-            width="100%"
             mb="s"
           />
           <Box as="span" textAlign="center">
@@ -38,7 +27,7 @@ export default function GroupMembers(props = {}) {
           </Box>
         </Box>
       ))}
-      {combinedMembers.length > 7 &&       
+      {hiddenCount > 0 && (
         <Box
           display="flex"
           flexDirection="column"
@@ -47,11 +36,11 @@ export default function GroupMembers(props = {}) {
           pl="xs"
           pb="l"
         >
-        <Box as="p" fontSize="l">
-          +{hiddenCount}
+          <Box as="p" fontSize="l">
+            +{hiddenCount}
+          </Box>
         </Box>
-        </Box>
-      }
+      )}
     </Box>
   );
 }

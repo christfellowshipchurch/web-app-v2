@@ -147,7 +147,7 @@ const active = ({ active, variant }) => props => {
 
 const Button = styled.button`
   background-color: ${themeGet('colors.primary')};
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   border-radius: ${themeGet('radii.s')};
   color: ${themeGet('colors.white')};
   cursor: pointer;
