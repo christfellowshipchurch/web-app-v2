@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Box, Card, ContentBlock, List, Image, CardGrid } from 'ui-kit';
+import { Button, Box, Card, ContentBlock, List } from 'ui-kit';
 import { rem } from 'ui-kit/_utils';
 import { SEO, Header, Footer } from 'components';
 
@@ -82,16 +82,22 @@ export default function About() {
           </Box>
         </List>
         {active === 'leadership' &&
-          data.leadership.map((item, i) => (
-            <ContentBlock
-              {...item}
-              key={i}
-              justifySelf="center"
-              maxWidth=" 1100px"
-              mb="xl"
-              p="l"
-            />
-          ))}
+          <Box
+            m="auto"
+            maxWidth="1000px"
+            p="base"
+          >
+            {data.leadership.map((item, i) => (
+              <Box
+                my="xl"
+              >
+                <ContentBlock
+                  {...item}
+                  key={i}
+                />
+              </Box>
+            ))}
+          </Box>}
         {active === 'beliefs' && (
           <Box
             display="flex"

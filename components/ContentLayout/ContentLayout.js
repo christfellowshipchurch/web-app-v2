@@ -9,8 +9,9 @@ import {
   Cell,
   DefaultCard,
   Longform,
-  ThemeProvider,
+  ThemeMixin,
   utils,
+  HtmlRenderer
 } from 'ui-kit';
 
 const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
@@ -74,9 +75,9 @@ function ContentLayout(props = {}) {
         ) : null}
         {props.htmlContent && !props.renderContentD ? (
           <Card boxShadow="base" p={{ _: 's', md: 'base' }}>
-            <Longform
-              dangerouslySetInnerHTML={createMarkup(props.htmlContent)}
-            />
+            <Longform>
+              <HtmlRenderer htmlContent={props?.htmlContent} />
+            </Longform>
           </Card>
         ) : (
           props.renderContentD && (
@@ -104,15 +105,14 @@ function ContentLayout(props = {}) {
       </Box>
     );
   }
-
   return (
-    <ThemeProvider mode={props.mode}>
+    <ThemeMixin theme={props?.theme}>
       <Box backgroundColor={'bg'} color={'fg'}>
         <Cell
           as="main"
           maxWidth={props.contentMaxWidth}
           px={props.contentHorizontalPadding}
-          py={props.contentVerticalPadding}
+          pt={props.contentVerticalPadding}
         >
           <SEO title={props.title} {...props.seoMetaTags} />
           {renderA()}
@@ -137,14 +137,18 @@ function ContentLayout(props = {}) {
         </Cell>
       </Box>
       {props?.features && (
-        <Box>
+        <Cell
+          as="main"
+          maxWidth={props.contentMaxWidth}
+          px={props.contentHorizontalPadding}
+        >
           <FeatureFeed
             data={props?.features}
             additionalFeatures={props?.additionalFeatures}
           />
-        </Box>
+        </Cell>
       )}
-    </ThemeProvider>
+    </ThemeMixin>
   );
 }
 

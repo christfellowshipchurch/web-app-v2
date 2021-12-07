@@ -9,7 +9,6 @@ import {
 } from 'ui-kit';
 
 const DEFAULT_MODE = 'light';
-
 function ThemeProvider(props = {}) {
   const theme = {
     ...props.theme,

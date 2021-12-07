@@ -4,7 +4,7 @@ import theme from './_config/theme';
 import { system, propTypes as systemPropTypes } from './_lib/system';
 import * as utils from './_utils';
 
-import ThemeProvider from './ThemeProvider';
+import ThemeProvider, { ThemeMixin } from './ThemeProvider';
 import GlobalStyles, { styles as globalStyles } from './GlobalStyles';
 
 import ActionBar, { ActionBarItem } from './ActionBar';
@@ -18,12 +18,14 @@ import CardGrid from './CardGrid';
 import Cell from './Cell';
 import Checkbox from './Checkbox';
 import ContentBlock from './ContentBlock';
+import CoverImage from './CoverImage'
 import DefaultCard from './DefaultCard';
 import Divider from './Divider';
 import FormLabel from './FormLabel';
 import GroupCard from './GroupCard';
 import GroupMemberStatusBadge from './GroupMemberStatusBadge';
 import HorizontalHighlightCard from './HorizontalHighlightCard';
+import HtmlRenderer from './HtmlRenderer'
 import Icon from './Icon';
 import Image from './Image';
 import List from './List';
@@ -39,10 +41,12 @@ import Select from './Select';
 import SquareAvatar from './SquareAvatar';
 import TextArea from './TextArea';
 import TextInput from './TextInput';
+import ValueStack from './ValueStack';
 
 export {
   // ====================
   ThemeProvider,
+  ThemeMixin,
   GlobalStyles,
   globalStyles,
   // ====================
@@ -58,12 +62,14 @@ export {
   Cell,
   Checkbox,
   ContentBlock,
+  CoverImage,
   DefaultCard,
   Divider,
   FormLabel,
   GroupCard,
   GroupMemberStatusBadge,
   HorizontalHighlightCard,
+  HtmlRenderer,
   Icon,
   Image,
   List,
@@ -79,6 +85,7 @@ export {
   SquareAvatar,
   TextArea,
   TextInput,
+  ValueStack,
   // ====================
   icons,
   theme,

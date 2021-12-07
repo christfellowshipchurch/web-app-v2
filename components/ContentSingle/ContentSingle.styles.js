@@ -12,10 +12,16 @@ const VideoContainer = styled.div`
   background: black;
   height: 100%;
   width: 100%;
+  margin-bottom: ${themeGet('space.base')};
+  border-radius: ${themeGet('radii.base')};
+  overflow: hidden;
+  position: relative;
+  padding-top: 56.25%; /* Player ratio: 100 / (1280 / 720) */
 
-  & > .shaka-video-container {
-    height: 100%;
-    width: 100%;
+  .react-player {
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 `;
 

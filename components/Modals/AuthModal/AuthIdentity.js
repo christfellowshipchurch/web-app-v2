@@ -5,13 +5,8 @@ import { useAuthIdentity, useForm, useUserExists } from 'hooks';
 import { Box, Button, Checkbox, TextInput } from 'ui-kit';
 
 function AuthIdentity() {
-  const {
-    status,
-    setStatus,
-    error,
-    setError,
-    handleAuthIdentity,
-  } = useAuthIdentity();
+  const { status, setStatus, error, setError, handleAuthIdentity } =
+    useAuthIdentity();
   const [checkIfUserExists] = useUserExists({
     fetchPolicy: 'network-only',
     onCompleted: async data => {
@@ -45,8 +40,7 @@ function AuthIdentity() {
   return (
     <>
       <Box as="p" mb="l">
-        Enter your phone number or email address to get started. We'll never
-        share your information or contact you (unless you ask!).
+        Enter your phone number or email address to get started.
       </Box>
       <Box
         as="form"

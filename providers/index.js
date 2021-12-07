@@ -1,3 +1,4 @@
+import AnalyticsProvider from './AnalyticsProvider'
 import AppProvider from './AppProvider';
 import AuthProvider from './AuthProvider';
 import CampusesProvider from './CampusesProvider';
@@ -26,6 +27,7 @@ import DiscoverFiltersCategoriesProvider from './DiscoverFiltersCategoriesProvid
 import DiscoverFiltersProvider from './DiscoverFiltersProvider';
 
 export {
+  AnalyticsProvider,
   AppProvider,
   AuthProvider,
   CampusesProvider,

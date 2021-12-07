@@ -46,6 +46,24 @@ const navigation = {
     action: links.churchOnline,
     call: 'Watch Online',
   },
+  startNowLinks: [
+    {
+      action: '/locations',
+      call: 'Find a Location',
+      icon: 'location',
+    },
+    {
+      action: '/discover-whats-here',
+      call: "Discover What's Here",
+      icon: 'users',
+    },
+    {
+      action: 'https://rock.gocf.org/contactus',
+      call: 'Ask a Question',
+      icon: 'info',
+      target: '_blank',
+    },
+  ],
 };
 
 // if (flags.GROUP_FINDER) {

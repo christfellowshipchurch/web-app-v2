@@ -6,6 +6,21 @@ import { system } from 'ui-kit';
 const Modal = styled.div`
   position: relative;
 
+  -webkit-animation: fadein 0.3s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 0.3s; /* Firefox < 16 */
+  -ms-animation: fadein 0.3s; /* Internet Explorer */
+  -o-animation: fadein 0.3s; /* Opera < 12.1 */
+  animation: fadein 0.3s;
+
+  @keyframes fadein {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
   ${system}
 `;
 
@@ -49,7 +64,7 @@ const Overlay = styled.div`
   bottom: 0;
   height: 100%;
   left: 0;
-  opacity: 0.5;
+  opacity: 0.3;
   position: fixed;
   right: 0;
   top: 0;

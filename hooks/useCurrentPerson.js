@@ -31,6 +31,7 @@ export const GET_CURRENT_PERSON = gql`
           uri
         }
         address {
+          id
           street1
           city
           state

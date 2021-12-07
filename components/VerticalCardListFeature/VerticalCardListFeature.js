@@ -35,7 +35,7 @@ function VerticalCardListFeature(props = {}) {
                 coverImageOverlay={true}
                 title={card?.title}
                 description={card?.summary}
-                type="HIGHLIGHT_SMALL"
+                type={cards.length < 2 ? 'DEFAULT' : 'HIGHLIGHT_SMALL'}
                 label={transformISODates(card?.labelText)}
               />
             </Styled.CardSpacing>
@@ -48,11 +48,11 @@ function VerticalCardListFeature(props = {}) {
 
 VerticalCardListFeature.propTypes = {
   data: PropTypes.object,
-  Component: PropTypes.any
+  Component: PropTypes.any,
 };
 
 VerticalCardListFeature.defaultProps = {
-  Component: HorizontalHighlightCard
-}
+  Component: HorizontalHighlightCard,
+};
 
 export default VerticalCardListFeature;

@@ -4,15 +4,15 @@ import { themeGet } from '@styled-system/theme-get';
 import { system } from 'ui-kit';
 
 const Header = styled.header`
-  background-color: ${themeGet('colors.paper')};
   color: ${themeGet('colors.fg')};
-  box-shadow: ${themeGet('shadows.base')};
   align-items: center;
   justify-content: center;
   grid-template-columns: auto 1fr;
   padding: ${themeGet('space.base')};
-  position: relative;
+  position: ${props => props.position};
+  width: 100%;
   z-index: 9;
+  transition: background-color ease-in 0.2s, opacity ease-in 0.2s;
 
   > *:last-child {
     justify-self: flex-end;
