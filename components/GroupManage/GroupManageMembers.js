@@ -9,6 +9,7 @@
 
 import React, { useState, useEffect } from 'react';
 
+import { useRouter } from 'next/router';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 import { useGroupManage } from 'providers/GroupManageProvider';
 import { GroupMember, SearchField } from 'components';
@@ -32,6 +33,7 @@ function GroupManageMembers(props = {}) {
   ]);
 
   // MARK : Variables
+  const router = useRouter();
   const groupId = groupData?.id;
   const hasMembers = Array.isArray(groupMembers) && groupMembers.length > 0;
   const statusFacet = facets.find(({ key }) => key === 'status');
@@ -172,6 +174,9 @@ function GroupManageMembers(props = {}) {
           fontSize="0.65rem"
           py="3px"
           px="6px"
+          onClick={() => {
+            router.push(`${router.asPath}/email`);
+          }}
         >
           <Icon name="envelope" size="18px" mr="xs"/>
           {groupMembers.length} Members
