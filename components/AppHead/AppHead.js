@@ -2,15 +2,10 @@ import { useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
-import { useCurrentUser } from 'hooks';
-
-import gtag from 'lib/gtag';
-import amplitude from 'lib/amplitude';
-import fbq from 'lib/fbq';
+import { fbq, gtag } from 'lib/analytics';
 
 function AppHead({ Component, pageProps }) {
   const router = useRouter();
-  const { currentUser } = useCurrentUser();
 
   useEffect(() => {
     let gtagValid = true;
@@ -86,30 +81,20 @@ function AppHead({ Component, pageProps }) {
     };
   }, [router.events]);
 
-  useEffect(() => {
-    // Do not run Amplitude Analytics unless traffic is coming from a browser
-    const _isNotBrowser =
-      typeof window === 'undefined' || typeof document === 'undefined';
-
-    if (_isNotBrowser) return null;
-
-    // Only run Amplitude Analytics in production
-    if (process.env.NODE_ENV !== 'production') return null;
-
-    // NEXT_PUBLIC_AMPLITUDE_KEY  needs to be set in the .env
-    if (!process.env.NEXT_PUBLIC_AMPLITUDE_KEY) {
-      console.warn(
-        'Amplitude Analytics tracking code is required to initialize Amplitude Analytics'
-      );
-      return null;
-    }
-
-    amplitude.init(currentUser);
-  }, [currentUser]);
-
   return (
     <Head>
-      <link rel="icon" href="/favicon.png" />
+      {/* Platform Specific Favicons */}
+      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2" />
+      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2" />
+      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2" />
+      <link rel="manifest" href="/site.webmanifest?v=2" />
+      <link rel="mask-icon" href="/safari-pinned-tab.svg?v=2" color="#0092bc" />
+      <link rel="shortcut icon" href="/favicon.ico?v=2" />
+      <meta name="apple-mobile-web-app-title" content="Christ Fellowship Church" />
+      <meta name="application-name" content="Christ Fellowship Church" />
+      <meta name="msapplication-TileColor" content="#0092bc" />
+      <meta name="theme-color" content="#ffffff" />
+
       {/* This will throw a 403 if you don't run on local.christfellowship.church! */}
       <link
         rel="stylesheet"
@@ -191,6 +176,8 @@ function AppHead({ Component, pageProps }) {
           `,
         }}
       />
+
+      <style>{'html { scroll-behavior: smooth; }'}</style>
     </Head>
   );
 }

@@ -7,6 +7,7 @@ import GroupMemberDetailsModal from './GroupMemberDetailsModal';
 import GroupNotifyMeModal from './GroupNotifyMeModal';
 import NodeSingleModal from './NodeSingleModal';
 import VideoModal from './VideoModal';
+import WelcomeModal from './WelcomeModal';
 
 export {
   AddGroupMemberModal,
@@ -18,4 +19,5 @@ export {
   GroupNotifyMeModal,
   NodeSingleModal,
   VideoModal,
+  WelcomeModal,
 };

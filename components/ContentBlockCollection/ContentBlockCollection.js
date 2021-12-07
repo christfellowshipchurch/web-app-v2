@@ -10,14 +10,12 @@ const Item = ({ coverImage, title, description }) => {
       textAlign="center"
       flexDirection="column"
       alignItems="center"
-      py="base"
-      px="l"
+      m="base"
     >
       <Image
         source={coverImage}
-        maxWidth="200px"
+        width={{ _: '60%', md: '70%' }}
         gridArea="img"
-        my="base"
         objectFit="contain"
       />
       <Box
@@ -25,49 +23,32 @@ const Item = ({ coverImage, title, description }) => {
         display="flex"
         justifyContent="center"
         flexDirection="column"
-        my={{ _: '-30px', md: 'xs' }}
       >
-        <Box as="h1" color="black" borderRadius="xxl">
+        <Box color="black" borderRadius="xxl">
           <Box
             position="relative"
             bottom={{ _: '-25px', md: '-35px' }}
             height={{ _: '16px', md: '18px' }}
-            bg="primarySubdued"
+            bg="primary"
+            opacity="0.2"
             borderRadius="s"
             pl="s"
           />
           <Box
-            as="p"
-            fontSize={{
-              _: '1.4rem',
-              sm: '1.70rem',
-              md: '2.45rem',
-              lg: '2.2rem',
-            }}
+            as="h1"
             position="relative"
             pl="xs"
           >{`${title}`}</Box>
         </Box>
-        <Box
-          as="p"
-          fontSize={{ _: '1rem', md: '1.2rem', lg: '1.4rem' }}
-        >
+        <Box as="p">
           {description}
         </Box>
       </Box>
-      <Box
-        as="hr"
-        display={{ md: 'none' }}
-        my="l"
-        height="1px"
-        border="none"
-        backgroundColor="neutrals.200"
-      />
     </Box>
   )
 }
 
-const ContentBlockCollection = ({icons}) => {
+const ContentBlockCollection = ({data}) => {
   return (
     <Box 
       display="flex"
@@ -75,14 +56,16 @@ const ContentBlockCollection = ({icons}) => {
     >
       <VerticalCardListFeature
         Component={Item}
-        data={{cards: icons}}
+        data={data}
       />
     </Box>
   )
 };
 
 ContentBlockCollection.propTypes = {
-    icons: PropTypes.arrayOf(
+  data: PropTypes.shape(
+    {
+      cards: PropTypes.arrayOf(
         PropTypes.shape({
             title: PropTypes.string,
             description: PropTypes.string,
@@ -94,13 +77,13 @@ ContentBlockCollection.propTypes = {
             highlightWidth: PropTypes.string,
             highlightWidthSmall: PropTypes.string,
         })
-    )
+      )
+    }
+  )
 };
 
 ContentBlockCollection.defaultProps = {
-    icons: [],
+    data: {cards: []},
 };
 
 export default ContentBlockCollection;
-
-

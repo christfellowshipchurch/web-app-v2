@@ -20,12 +20,23 @@ export default function ContentVideo(props = {}) {
   };
 
   return (
+    <Styled.VideoContainer>
+      <Video
+        src={props.video.sources[0].uri}
+        poster={props.poster}
+        autoPlay={true}
+        playsInline={true}
+      />
+    </Styled.VideoContainer>
+  );
+
+  return (
     <DefaultCard
       position="relative"
       height={{ _: '258px', md: '596px' }}
       cursor="pointer"
       contentProps={{
-        p: '0 !important'
+        p: '0 !important',
       }}
       onClick={handlePlay}
       scaleCoverImage={!playClicked && !currentBreakpoint.isSmall}

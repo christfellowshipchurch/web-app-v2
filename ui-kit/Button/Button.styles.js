@@ -1,140 +1,149 @@
 import styled, { css } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
+import Color from 'color'
 
 import { system } from 'ui-kit';
 
-const rounded =
-  ({ rounded }) =>
-  props => {
-    if (rounded) {
-      return css`
-        border-radius: 9999px;
-      `;
-    }
-  };
+// MARK : methods
+export const primaryHover = () => props => {
+  const primaryColor = themeGet('colors.primary')(props)
 
-const variant =
-  ({ variant, active }) =>
-  props => {
-    if (variant === 'secondary') {
-      return css`
-        background-color: transparent;
-        border-color: ${themeGet('colors.primary')};
-        color: ${themeGet('colors.primary')};
-      `;
-    }
+  return Color(primaryColor).saturate(0.1).darken(0.35).hex()
+};
 
-    if (variant === 'link') {
-      return css`
-        background-color: transparent;
-        color: ${themeGet('colors.primary')};
-        line-height: 1.5;
+const primarySubduedHover = () => props => {
+  const primaryColor = themeGet('colors.primary')(props)
 
-        &:active,
-        &:focus,
-        &:hover {
-          background: none;
-          color: ${themeGet('colors.neutrals.800')};
-          outline: none;
-        }
-      `;
-    }
+  return Color(primaryColor).desaturate(0.1).lighten(0.85).hex()
+};
 
-    if (variant === 'tertiary') {
-      return css`
-        background-color: ${themeGet('colors.paper')};
-        color: ${themeGet('colors.secondary')};
-      `;
-    }
+// MARK : Styles
+const rounded = ({ rounded }) => props => {
+  if (rounded) {
+    return css`
+      border-radius: 9999px;
+    `;
+  }
+};
 
-    if (variant === 'chip') {
-      return css`
-        background-color: ${themeGet('colors.paper')};
-        color: ${themeGet('colors.neutrals.600')};
-        border-color: ${themeGet('colors.neutrals.600')};
+const variant = ({ variant, active, hoverColor }) => props => {
+  if (variant === 'secondary') {
+    return css`
+      background-color: transparent;
+      border-color: ${themeGet('colors.primary')};
+      color: ${themeGet('colors.primary')};
+      &:hover {
+        background-color: ${primaryHover};
+        border-color: ${primaryHover};
+      }
+    `;
+  }
 
-        &:active,
-        &:focus,
-        &:hover {
-          background-color: ${themeGet('colors.neutrals.200')};
-          border-color: ${themeGet('colors.fg')};
-          color: ${themeGet('colors.fg')};
-        }
-      `;
-    }
-  };
+  if (variant === 'link') {
+    return css`
+      background-color: transparent;
+      color: ${themeGet('colors.primary')};
+      line-height: 1.5;
 
-const size =
-  ({ size }) =>
-  props => {
-    if (size === 's') {
-      return css`
-        font-size: ${themeGet('fontSizes.s')};
-        line-height: 1;
-        padding-left: ${themeGet('space.s')};
-        padding-right: ${themeGet('space.s')};
-      `;
-    }
+      &:active,
+      &:focus,
+      &:hover {
+        background: none;
+        color: ${primaryHover};
+        outline: none;
+      }
+    `;
+  }
 
-    if (size === 'l') {
-      return css`
-        line-height: 2.2;
-        padding-left: ${themeGet('space.l')};
-        padding-right: ${themeGet('space.l')};
-      `;
-    }
-  };
+  if (variant === 'tertiary') {
+    return css`
+      background-color: ${themeGet('colors.paper')};
+      color: ${themeGet('colors.primary')};
+    `;
+  }
 
-const status =
-  ({ status }) =>
-  props => {
-    if (status === 'LOADING') {
-      return css`
-        align-items: center;
-        display: inline-flex;
+  if (variant === 'chip') {
+    return css`
+      background-color: ${themeGet('colors.paper')};
+      color: ${themeGet('colors.neutrals.600')};
+      border-color: ${themeGet('colors.neutrals.600')};
 
-        > *:first-child {
-          margin-right: ${themeGet('space.s')};
-        }
-      `;
-    }
+      &:active,
+      &:focus,
+      &:hover {
+        background-color: ${themeGet('colors.neutrals.200')};
+        border-color: ${themeGet('colors.fg')};
+        color: ${themeGet('colors.fg')};
+      }
+    `;
+  }
+};
 
-    if (status === 'SELECTED') {
-      return css`
-        color: ${themeGet('colors.primary')};
-        background-color: ${themeGet('colors.primarySubdued')};
-        border-color: ${themeGet('colors.primary')};
+const size = ({ size }) => props => {
+  if (size === 's') {
+    return css`
+      font-size: ${themeGet('fontSizes.s')};
+      line-height: 1;
+      padding-left: ${themeGet('space.s')};
+      padding-right: ${themeGet('space.s')};
+    `;
+  }
 
-        &:active,
-        &:focus,
-        &:hover {
-          background-color: ${themeGet('colors.primarySubduedHover')};
-          border-color: ${themeGet('colors.primaryHover')};
-          color: ${themeGet('colors.primaryHover')};
-        }
-      `;
-    }
-  };
+  if (size === 'l') {
+    return css`
+      line-height: 2.2;
+      padding-left: ${themeGet('space.l')};
+      padding-right: ${themeGet('space.l')};
+    `;
+  }
+};
 
-const active =
-  ({ active, variant }) =>
-  props => {
-    if (active && variant === 'link') {
-      return css`
+const status = ({ status }) => props => {
+  if (status === 'LOADING') {
+    return css`
+      align-items: center;
+      display: inline-flex;
+
+      > *:first-child {
+        margin-right: ${themeGet('space.s')};
+      }
+    `;
+  }
+
+  if (status === 'SELECTED') {
+    return css`
+      color: ${themeGet('colors.primary')};
+      background-color: ${primaryHover};
+      border-color: ${themeGet('colors.primary')};
+
+      &:active,
+      &:focus,
+      &:hover {
+        background-color: ${primarySubduedHover};
+        border-color: ${primaryHover};
+        color: ${primaryHover};
+      }
+    `;
+  }
+};
+
+const active = ({ active, variant }) => props => {
+  if (active && variant === 'link') {
+    return css`
+      background: none;
+      color: ${themeGet('colors.neutrals.800')};
+      outline: none;
+
+      &:active,
+      &:focus,
+      &:hover {
         background: none;
         color: ${themeGet('colors.neutrals.800')};
         outline: none;
-
-        &:active,
-        &:focus,
-        &:hover {
-          background: none;
-          color: ${themeGet('colors.neutrals.800')};
-          outline: none;
-        }
-      `;
-    }
-  };
+      }
+    `;
+  }
+};
 
 const Button = styled.button`
   background-color: ${themeGet('colors.primary')};
@@ -162,8 +171,7 @@ const Button = styled.button`
   &:active,
   &:focus,
   &:hover {
-    background-color: ${themeGet('colors.primaryHover')};
-    border-color: ${themeGet('colors.primaryHover')};
+    background-color: ${primaryHover};
     color: ${themeGet('colors.white')};
   }
 
@@ -174,5 +182,4 @@ const Button = styled.button`
   ${active}
   ${system}
 `;
-
 export default Button;

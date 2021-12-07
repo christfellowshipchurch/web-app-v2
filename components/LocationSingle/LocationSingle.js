@@ -4,7 +4,7 @@ import { createMarkup } from 'utils';
 
 import { ContentLayout, Layout, NotFound } from 'components';
 
-import { Box, Cell, Loader, Longform, utils } from 'ui-kit';
+import { Box, Cell, Image, Loader, Longform, utils } from 'ui-kit';
 import Styled from './LocationSingle.styles';
 
 function LocationSingle(props = {}) {
@@ -44,14 +44,29 @@ function LocationSingle(props = {}) {
       contentHorizontalPadding={'0'}
       contentVerticalPadding={'0'}
     >
-      <Styled.Hero coverImage={coverImage}>
-        <Styled.Glass coverImage={coverImage}>
-          <Box as="h1" pt="l" textAlign="center">
-            {props?.data?.title}
-          </Box>
-          {props?.data?.summary && <Box as="h3">{props?.data?.summary}</Box>}
-        </Styled.Glass>
-      </Styled.Hero>
+      <Box display="flex" justifyContent="center" alignItems="end" mb="-3rem">
+        <Styled.Cover
+          src={coverImage}
+          width="100%"
+          maxWidth={1100}
+          height={{ _: 300, md: 350, lg: 470 }}
+          borderRadius={{ _: 'none', lg: 'base' }}
+          mt={{ _: 0, md: 0, lg: 'l' }}
+          mx="auto"
+          overlay
+        />
+        <Box
+          as="h1"
+          textAlign="center"
+          color="white"
+          position="absolute"
+          mb="base"
+          zIndex={1000}
+          mx="base"
+        >
+          {props?.data?.title}
+        </Box>
+      </Box>
 
       <Cell maxWidth={utils.rem('1100px')} px="base">
         <ContentLayout

@@ -10,6 +10,9 @@ function getUrlFromRelatedNode(relatedNode) {
   }
 
   if (relatedNode?.routing?.pathname) {
+    if (relatedNode?.routing?.pathname?.startsWith('http')) {
+      return relatedNode?.routing?.pathname;
+    }
     return `/${relatedNode?.routing?.pathname}`;
   }
 

@@ -40,7 +40,6 @@ const side = ({ side }) => props => {
 };
 
 const Content = styled.div`
-  margin-top: ${themeGet('space.base')};
   position: absolute;
   top: 100%;
   z-index: 20;
