@@ -28,23 +28,26 @@ const ChrismasBanner = (props = {}) => (
         },
       }}
     >
-      <CustomLink
-        Component={Button}
-        mt={{ _: 's', md: 0 }}
-        size="s"
-        ml="base"
-        href="https://www.christmasatcf.com/"
-      >
-        Times & Locations
-      </CustomLink>
-      <CustomLink
-        Component={Button}
-        mt={{ _: 's', md: 0 }}
-        size="s"
-        href="https://rock.christfellowship.church/christmas"
-      >
-        Volunteer for Christmas
-      </CustomLink>
+      <Box display="flex" flexDirection="row">
+        <CustomLink
+          Component={Button}
+          mt={{ _: 's', md: 0 }}
+          size="s"
+          ml={{ _: 0, md: 'base' }}
+          href="https://www.christmasatcf.com/"
+        >
+          Times & Locations
+        </CustomLink>
+        <CustomLink
+          Component={Button}
+          mt={{ _: 's', md: 0 }}
+          size="s"
+          ml="s"
+          href="https://rock.christfellowship.church/christmas"
+        >
+          Volunteer for Christmas
+        </CustomLink>
+      </Box>
     </ThemeMixin>
   </Box>
 );
