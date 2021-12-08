@@ -11,24 +11,51 @@
  * note : class references can be found in `/node_modules/react-quill/dist/quill.css`
  */
 
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
  
 import { system } from 'ui-kit';
+
+const toolbarBorderColor = ({ isFocused }) => props => {
+    if (isFocused) {
+      return css`
+        border-top-color: ${themeGet('colors.primary')};
+        border-left-color: ${themeGet('colors.primary')};
+        border-right-color: ${themeGet('colors.primary')};
+      `;
+    }
+};
+
+const containerBorderColor = ({ isFocused }) => props => {
+    if (isFocused) {
+      return css`
+        border-bottom-color: ${themeGet('colors.primary')};
+        border-left-color: ${themeGet('colors.primary')};
+        border-right-color: ${themeGet('colors.primary')};
+      `;
+    }
+};
  
 const RichTextEditor = styled.div`
     .ql-snow {
         font-family: ${themeGet("fonts.base")} !important;
+        -webkit-transition: border-color 0.25s;
+        transition: border-color 0.25s;
     }
 
     .ql-toolbar {
         border-top-left-radius: ${themeGet("radii.base")};
         border-top-right-radius: ${themeGet("radii.base")};
+        background-color: ${themeGet("colors.neutrals.200")};
+        
+        ${toolbarBorderColor}
     }
 
     .ql-container {
         border-bottom-left-radius: ${themeGet("radii.base")};
         border-bottom-right-radius: ${themeGet("radii.base")};
+        
+        ${containerBorderColor}
     }
 
     .ql-active {

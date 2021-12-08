@@ -7,7 +7,7 @@
  * A WYSIWYG style Html Rich Text Editor
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import dynamic from 'next/dynamic'
 
@@ -56,7 +56,9 @@ const defaultFormats = [
 ]
 
 function RichTextEditor({ formats, modules, placeholder, value, onChange }) {
-    return <Styled>
+    const [isFocused, setIsFocused] = useState(false)
+
+    return <Styled isFocused={isFocused}>
         <QuillNoSSRWrapper 
             theme="snow"     
             modules={modules} 
@@ -64,6 +66,8 @@ function RichTextEditor({ formats, modules, placeholder, value, onChange }) {
             placeholder={placeholder}
             value={value}
             onChange={onChange}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
         />
     </Styled>
 };

@@ -7,12 +7,12 @@
  * Email composer for a specified Group.
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import take from 'lodash/take'
 import { slugify } from 'utils';
 
-import { Box, Button, Card, Icon, SquareAvatar, TextArea } from 'ui-kit'
+import { Box, Button, Card, Icon, RichTextEditor, SquareAvatar, TextArea } from 'ui-kit'
 import { CustomLink } from 'components';
 
 import Styled from './GroupEmailComposer.styles'
@@ -33,6 +33,7 @@ const StyledCard = (props) => <Card
 />
 
 const GroupEmailComposer = (props = {}) => {
+    const [emailBody, setEmailBody] = useState("")
     const fromEmail = "my.email@domain.com"
     // Recipients
     const recipients = [
@@ -226,10 +227,9 @@ const GroupEmailComposer = (props = {}) => {
                     position="relative"
                     mt="base"
                 >
-                    <TextArea 
-                        placeholder="Html WYSIWYG"
-                        minWidth="100%"
-                        maxWidth="100%"
+                    <RichTextEditor 
+                        value={emailBody}
+                        onChange={setEmailBody}
                     />
                 </Box>
             </StyledCard>
