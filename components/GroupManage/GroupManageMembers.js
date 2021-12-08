@@ -9,10 +9,11 @@
 
 import React, { useState, useEffect } from 'react';
 
+import { useRouter } from 'next/router';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 import { useGroupManage } from 'providers/GroupManageProvider';
 import { GroupMember, SearchField } from 'components';
-import { Box, Button, Loader } from 'ui-kit';
+import { Box, Button, Loader, Icon } from 'ui-kit';
 import { CardTitle, SmallPillButton } from './GroupManage.components';
 import { useSearchGroupMembers } from 'hooks';
 
@@ -32,6 +33,7 @@ function GroupManageMembers(props = {}) {
   ]);
 
   // MARK : Variables
+  const router = useRouter();
   const groupId = groupData?.id;
   const hasMembers = Array.isArray(groupMembers) && groupMembers.length > 0;
   const statusFacet = facets.find(({ key }) => key === 'status');
@@ -133,17 +135,14 @@ function GroupManageMembers(props = {}) {
     });
   }, []);
 
-  console.log({ groupMembers })
-
   return (
     <>
       <Box alignItems="center" display="flex">
         <CardTitle title="Group Members" />
-
         <SmallPillButton onClick={handleAddNewMember} icon="plus" title="Add" />
       </Box>
 
-      <Box mt="base" mb="l">
+      <Box mt="base" mb="base">
         <SearchField
           handleChange={searchFieldHandleChange}
           handleClear={searchFieldHandleClear}
@@ -153,6 +152,35 @@ function GroupManageMembers(props = {}) {
         >
           Search
         </SearchField>
+      </Box>
+      
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        my="base"
+      >
+        <Button
+          rounded
+          fontSize="0.65rem"
+          py="3px"
+          px="6px"
+        >
+          Group Filters Will Go Here
+        </Button>
+
+        <Button
+          rounded
+          variant="secondary"
+          fontSize="0.65rem"
+          py="3px"
+          px="6px"
+          onClick={() => {
+            router.push(`${router.asPath}/email`);
+          }}
+        >
+          <Icon name="envelope" size="18px" mr="xs"/>
+          {groupMembers.length} Members
+        </Button>
       </Box>
 
       {renderStatusFacets()}
