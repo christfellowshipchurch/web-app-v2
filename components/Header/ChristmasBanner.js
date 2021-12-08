@@ -1,6 +1,6 @@
 import React from 'react';
 import { CustomLink } from 'components';
-import { Box, Button, Icon, ThemeMixin } from 'ui-kit';
+import { Box, Button, ThemeMixin } from 'ui-kit';
 
 const ChrismasBanner = (props = {}) => (
   <Box
@@ -32,10 +32,18 @@ const ChrismasBanner = (props = {}) => (
         Component={Button}
         mt={{ _: 's', md: 0 }}
         size="s"
-        mx="base"
+        ml="base"
         href="https://www.christmasatcf.com/"
       >
         Times & Locations
+      </CustomLink>
+      <CustomLink
+        Component={Button}
+        mt={{ _: 's', md: 0 }}
+        size="s"
+        href="https://rock.christfellowship.church/christmas"
+      >
+        Volunteer for Christmas
       </CustomLink>
     </ThemeMixin>
   </Box>
