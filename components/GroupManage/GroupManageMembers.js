@@ -152,7 +152,25 @@ function GroupManageMembers(props = {}) {
         <SmallPillButton onClick={handleAddNewMember} icon="plus" title="Add" />
       </Box>
 
-      <Box mt="base" mb="base">
+      <Box my="base">
+        <Button
+          display={{ md: "none" }}
+          disabled={loading}
+          rounded
+          variant="secondary"
+          fontSize="0.65rem"
+          mb="base"
+          py="3px"
+          px="6px"
+          onClick={() => {
+            let newPath = router?.asPath?.split("/").filter(p => p !== "edit")
+            router.push([...newPath, "email"].join("/"));
+          }}
+        >
+          <Icon name="envelope" size="18px" mr="xs"/>
+          {groupMembers.length} Members
+        </Button>
+
         <SearchField
           handleChange={searchFieldHandleChange}
           handleClear={searchFieldHandleClear}
@@ -166,9 +184,11 @@ function GroupManageMembers(props = {}) {
       
       <Box
         display="flex"
+        flexDirection={{ _: "column", md: "row" }}
         justifyContent="space-between"
-        alignItems="center"
+        alignItems={{ _: "flex-start", md: "center" }}
         my="base"
+        gridGap="0.5rem"
       >
         <StatusFilters 
           selected={selectedStatuses}
@@ -176,6 +196,7 @@ function GroupManageMembers(props = {}) {
         />
 
         <Button
+          display={{ _: "none", md: "block" }}
           disabled={loading}
           rounded
           variant="secondary"
