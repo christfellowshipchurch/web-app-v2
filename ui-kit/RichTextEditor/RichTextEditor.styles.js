@@ -52,6 +52,8 @@ const RichTextEditor = styled.div`
     }
 
     .ql-container {
+        font-size: ${themeGet("fontSizes.base")};
+
         border-bottom-left-radius: ${themeGet("radii.base")};
         border-bottom-right-radius: ${themeGet("radii.base")};
         
