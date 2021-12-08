@@ -98,7 +98,7 @@ const GroupEmailComposer = (props = {}) => {
         <Styled.Grid>
             <StyledCard gridArea="from-email">
                 <Label>
-                    Send Email From
+                    Sender Email
                 </Label>
                 <Box
                     as="h3"

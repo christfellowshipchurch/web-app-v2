@@ -133,8 +133,6 @@ function GroupManageMembers(props = {}) {
     });
   }, []);
 
-  console.log({ groupMembers })
-
   return (
     <>
       <Box alignItems="center" display="flex">
