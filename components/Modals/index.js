@@ -2,6 +2,7 @@ import AddGroupMemberModal from './AddGroupMemberModal';
 import AuthModal from './AuthModal';
 import ConnectModal from './ConnectModal';
 import GroupDetailsModal from './GroupDetailsModal';
+import GroupEmailComposerConfirmationModal from './GroupEmailComposerConfirmationModal'
 import GroupFilterModal from './GroupFilterModal';
 import GroupMemberDetailsModal from './GroupMemberDetailsModal';
 import GroupNotifyMeModal from './GroupNotifyMeModal';
@@ -14,6 +15,7 @@ export {
   AuthModal,
   ConnectModal,
   GroupDetailsModal,
+  GroupEmailComposerConfirmationModal,
   GroupFilterModal,
   GroupMemberDetailsModal,
   GroupNotifyMeModal,

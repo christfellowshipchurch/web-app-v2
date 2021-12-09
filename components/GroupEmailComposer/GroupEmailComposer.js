@@ -8,13 +8,11 @@
  */
 
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import take from 'lodash/take'
-import { slugify } from 'utils';
 
-import { Box, Button, Card, Icon, RichTextEditor, SquareAvatar, TextArea } from 'ui-kit'
-import { CustomLink } from 'components';
+import { useModalDispatch, showModal } from 'providers/ModalProvider';
+import { Box, Button, Card, Icon, RichTextEditor, SquareAvatar } from 'ui-kit'
 
 import Styled from './GroupEmailComposer.styles'
 
@@ -35,6 +33,8 @@ const StyledCard = (props) => <Card
 
 const GroupEmailComposer = (props = {}) => {
     const router = useRouter()
+    const modalDispatch = useModalDispatch();
+    const [submitting, setSubmitting] = useState(false)
     const [emailBody, setEmailBody] = useState("")
     const fromEmail = "my.email@domain.com"
     // Recipients
@@ -64,6 +64,20 @@ const GroupEmailComposer = (props = {}) => {
         { type: "image", src: "https://picsum.photos/200" },
     ]
     const visibleAttachments = take(attachments, 5)
+    const disabled = submitting;
+
+    const handleSubmit = () => {
+        if (submitting) return
+
+        setSubmitting(true)
+        
+        setTimeout(() => {
+            modalDispatch(showModal("GroupEmailComposerConfirmation", { 
+                memberCount: recipients?.length ?? 0 
+            }))
+            setSubmitting(false)
+        }, 1000);
+    }
 
     return <Box>
         <Box 
@@ -95,9 +109,11 @@ const GroupEmailComposer = (props = {}) => {
             >
                 <Button
                     size="s"
-                    onClick={() => console.log("SEND EMAIL")}
+                    onClick={handleSubmit}
+                    status={submitting ? "LOADING" : "IDLE"}
+                    disabled={disabled}
                 >
-                    <Icon name="paperPlane" size="18px" /> Send
+                    {!submitting && <Icon name="paperPlane" size="18px" />} Send
                 </Button>
             </Box>
         </Box>
@@ -136,6 +152,7 @@ const GroupEmailComposer = (props = {}) => {
                             variant="link"
                             size="s"
                             margin="0"
+                            disabled={disabled}
                         >
                             {`${recipients?.length > 0 ? "Edit" : "Select"} Recipients`}
                         </Button>
@@ -227,6 +244,13 @@ const GroupEmailComposer = (props = {}) => {
                     <Label>
                         Email Subject
                     </Label>
+                    <Button
+                        variant="link"
+                        size="s"
+                        margin="0"
+                        disabled={disabled}
+                    />
+                    
                     <Box 
                         position="relative"
                         mt="s"
