@@ -7,13 +7,14 @@
  * Email composer for a specified Group.
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import take from 'lodash/take'
 import { slugify } from 'utils';
 
-import { Box, Button, Card, Icon, SquareAvatar, TextArea } from 'ui-kit'
+import { useModalDispatch, showModal } from 'providers/ModalProvider';
 import { CustomLink } from 'components';
+import { Box, Button, Card, Icon, SquareAvatar, TextArea } from 'ui-kit'
 
 import Styled from './GroupEmailComposer.styles'
 
@@ -33,6 +34,8 @@ const StyledCard = (props) => <Card
 />
 
 const GroupEmailComposer = (props = {}) => {
+    const modalDispatch = useModalDispatch();
+    const [submitting, setSubmitting] = useState(false)
     const fromEmail = "my.email@domain.com"
     // Recipients
     const recipients = [
@@ -61,6 +64,20 @@ const GroupEmailComposer = (props = {}) => {
         { type: "image", src: "https://picsum.photos/200" },
     ]
     const visibleAttachments = take(attachments, 5)
+    const disabled = submitting;
+
+    const handleSubmit = () => {
+        if (submitting) return
+
+        setSubmitting(true)
+        
+        setTimeout(() => {
+            modalDispatch(showModal("GroupEmailComposerConfirmation", { 
+                memberCount: recipients?.length ?? 0 
+            }))
+            setSubmitting(false)
+        }, 1000);
+    }
 
     return <Box>
         <Box 
@@ -73,7 +90,10 @@ const GroupEmailComposer = (props = {}) => {
             mb={{ _: "s", md: "l"}}
         >
             <Box flex="1">
-                <CustomLink href={`/group/${slugify(props?.data?.title)}`}>
+                <CustomLink 
+                    href={`/group/${slugify(props?.data?.title)}`} 
+                    disabled={disabled}
+                >
                     &larr; Back
                 </CustomLink>
                 <Box as="h1">{props?.data?.title}</Box>
@@ -88,9 +108,11 @@ const GroupEmailComposer = (props = {}) => {
             >
                 <Button
                     size="s"
-                    onClick={() => console.log("SEND EMAIL")}
+                    onClick={handleSubmit}
+                    status={submitting ? "LOADING" : "IDLE"}
+                    disabled={disabled}
                 >
-                    <Icon name="paperPlane" size="18px" /> Send
+                    {!submitting && <Icon name="paperPlane" size="18px" />} Send
                 </Button>
             </Box>
         </Box>
@@ -126,6 +148,7 @@ const GroupEmailComposer = (props = {}) => {
                         variant="link"
                         size="s"
                         margin="0"
+                        disabled={disabled}
                     >
                         {`${recipients?.length > 0 ? "Edit" : "Select"} Recipients`}
                     </Button>
@@ -177,6 +200,7 @@ const GroupEmailComposer = (props = {}) => {
                         variant="link"
                         size="s"
                         margin="0"
+                        disabled={disabled}
                     >
                         {`${attachments?.length > 0 ? "Edit" : "Select"} Attachments`}
                     </Button>
@@ -219,6 +243,7 @@ const GroupEmailComposer = (props = {}) => {
                 >
                     <Styled.SubjectInput 
                         placeholder="Subject"
+                        disabled={disabled}
                     />
                 </Box>
 
