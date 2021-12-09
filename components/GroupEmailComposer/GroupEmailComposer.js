@@ -9,6 +9,7 @@
 
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 import take from 'lodash/take'
 import { slugify } from 'utils';
 
@@ -33,6 +34,7 @@ const StyledCard = (props) => <Card
 />
 
 const GroupEmailComposer = (props = {}) => {
+    const router = useRouter()
     const [emailBody, setEmailBody] = useState("")
     const fromEmail = "my.email@domain.com"
     // Recipients
@@ -73,10 +75,14 @@ const GroupEmailComposer = (props = {}) => {
             }}
             mb={{ _: "s", md: "l"}}
         >
-            <Box flex="1">
-                <CustomLink href={`/group/${slugify(props?.data?.title)}`}>
+            <Box  flex="1" >
+                <Button 
+                    ml="-1rem"
+                    variant="link"
+                    onClick={() => router.back()}
+                >
                     &larr; Back
-                </CustomLink>
+                </Button>
                 <Box as="h1">{props?.data?.title}</Box>
             </Box>
 

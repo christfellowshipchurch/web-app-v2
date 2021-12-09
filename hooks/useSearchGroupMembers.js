@@ -15,19 +15,7 @@ export const SEARCH_GROUP_MEMBERS = gql`
   ${GROUP_MEMBER_FRAGMENT}
 `;
 
-export const SEARCH_GROUP_MEMBER_FACET_OPTIONS = gql`
-  query groupMemberSearchFacetOptions {
-    groupMemberSearchFacetOptions {
-      key
-      values
-    }
-  }
-`;
-
 function useSearchGroupMembers(options = {}) {
-  const { data: facetData } = useQuery(SEARCH_GROUP_MEMBER_FACET_OPTIONS, {
-    fetchPolicy: 'network-only',
-  });
   const [searchGroupMembers, query] = useLazyQuery(SEARCH_GROUP_MEMBERS, {
     fetchPolicy: 'cache-and-network',
     nextFetchPolicy: 'cache-first',
@@ -37,9 +25,8 @@ function useSearchGroupMembers(options = {}) {
   return [
     searchGroupMembers,
     {
-      groupMembers: query?.data?.searchGroupMembers ??[],
-      ...query,
-      facets: facetData?.groupMemberSearchFacetOptions || [],
+      groupMembers: query?.data?.searchGroupMembers ?? [],
+      ...query
     },
   ];
 }

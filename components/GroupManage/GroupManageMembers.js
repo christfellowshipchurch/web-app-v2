@@ -8,7 +8,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-
+import PropTypes from 'prop-types'
 import { useRouter } from 'next/router';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 import { useGroupManage } from 'providers/GroupManageProvider';
@@ -17,11 +17,47 @@ import { Box, Button, Loader, Icon } from 'ui-kit';
 import { CardTitle, SmallPillButton } from './GroupManage.components';
 import { useSearchGroupMembers } from 'hooks';
 
+function StatusFilters({ statuses, selected, onChange }) {
+  return <Box mx={'-3px'}>
+    {statuses.map(value => (
+      <Button
+        key={value}
+        mx="3px"
+        px="10px"
+        py="4px"
+        rounded
+        size="s"
+        variant="chip"
+        status={
+          selected?.includes(value) ? 'SELECTED' : 'IDLE'
+        }
+        onClick={() => {
+          onChange(value)
+        }}
+      >
+        {value}
+      </Button>
+    ))}
+  </Box>
+}
+
+StatusFilters.propTypes = {
+  statuses: PropTypes.arrayOf(PropTypes.string),
+  selected: PropTypes.arrayOf(PropTypes.string),
+  onChange: PropTypes.func
+}
+
+StatusFilters.defaultProps = {
+  statuses: ["Active", "Pending", "Inactive"],
+  selected: [],
+  onChange: () => null
+}
+
 function GroupManageMembers(props = {}) {
   // MARK : Hooks
   const modalDispatch = useModalDispatch();
   const [{ groupData }] = useGroupManage();
-  const [searchGroupMembers, { groupMembers, facets, loading }] =
+  const [searchGroupMembers, { groupMembers, loading }] =
     useSearchGroupMembers();
 
   // MARK : State
@@ -29,14 +65,14 @@ function GroupManageMembers(props = {}) {
   const [searchArgs, setSearchArgs] = useState([
     { key: 'text', values: [''] },
     { key: 'groupId', values: [groupData?.id] },
-    { key: 'status', values: [] },
+    { key: 'status', values: ["Active", "Pending"] },
   ]);
 
   // MARK : Variables
   const router = useRouter();
   const groupId = groupData?.id;
   const hasMembers = Array.isArray(groupMembers) && groupMembers.length > 0;
-  const statusFacet = facets.find(({ key }) => key === 'status');
+  const selectedStatuses = searchArgs.find(({ key }) => key === "status")?.values ?? []
 
   // MARK : Handlers
   const searchFieldHandleChange = event => {
@@ -58,57 +94,31 @@ function GroupManageMembers(props = {}) {
     ]);
   };
 
+  const handleStatusFilterChange = status => {
+    if (loading) return
+
+    const activeStatuses = searchArgs.find(({ key }) => key === "status")
+    let newStatuses = activeStatuses.values;
+    if (activeStatuses.values.includes(status)) {
+      newStatuses = newStatuses.filter(
+        existingValue => existingValue !== status
+      );
+    } else {
+      newStatuses = [...newStatuses, status];
+    }
+
+    const statuses = { key: 'status', values: newStatuses };
+    setSearchArgs([
+      ...searchArgs.filter(({ key }) => key !== 'status'),
+      statuses,
+    ]);
+  }
+
   const handleAddNewMember = () => {
     modalDispatch(
       showModal('AddGroupMember', {
         groupId,
       })
-    );
-  };
-
-  // MARK : Render
-  const renderStatusFacets = () => {
-    const hasFacets = statusFacet?.values.length > 0;
-    const selectedStatuses =
-      searchArgs.find(({ key }) => key === 'status') || [];
-
-    if (!hasFacets) return null;
-
-    return (
-      <Box my="base" mx={'-3px'}>
-        {statusFacet?.values.map(value => (
-          <Button
-            key={value}
-            mx="3px"
-            px="10px"
-            py="4px"
-            rounded
-            size="s"
-            variant="chip"
-            status={
-              selectedStatuses.values.includes(value) ? 'SELECTED' : 'IDLE'
-            }
-            onClick={() => {
-              let newStatuses = selectedStatuses.values;
-              if (selectedStatuses.values.includes(value)) {
-                newStatuses = newStatuses.filter(
-                  existingValue => existingValue !== value
-                );
-              } else {
-                newStatuses = [...newStatuses, value];
-              }
-
-              const statuses = { key: 'status', values: newStatuses };
-              setSearchArgs([
-                ...searchArgs.filter(({ key }) => key !== 'status'),
-                statuses,
-              ]);
-            }}
-          >
-            {value}
-          </Button>
-        ))}
-      </Box>
     );
   };
 
@@ -142,7 +152,25 @@ function GroupManageMembers(props = {}) {
         <SmallPillButton onClick={handleAddNewMember} icon="plus" title="Add" />
       </Box>
 
-      <Box mt="base" mb="base">
+      <Box my="base">
+        <Button
+          display={{ md: "none" }}
+          disabled={loading}
+          rounded
+          variant="secondary"
+          fontSize="0.65rem"
+          mb="base"
+          py="3px"
+          px="6px"
+          onClick={() => {
+            let newPath = router?.asPath?.split("/").filter(p => p !== "edit")
+            router.push([...newPath, "email"].join("/"));
+          }}
+        >
+          <Icon name="envelope" size="18px" mr="xs"/>
+          {groupMembers.length} Members
+        </Button>
+
         <SearchField
           handleChange={searchFieldHandleChange}
           handleClear={searchFieldHandleClear}
@@ -156,34 +184,34 @@ function GroupManageMembers(props = {}) {
       
       <Box
         display="flex"
+        flexDirection={{ _: "column", md: "row" }}
         justifyContent="space-between"
+        alignItems={{ _: "flex-start", md: "center" }}
         my="base"
+        gridGap="0.5rem"
       >
-        <Button
-          rounded
-          fontSize="0.65rem"
-          py="3px"
-          px="6px"
-        >
-          Group Filters Will Go Here
-        </Button>
+        <StatusFilters 
+          selected={selectedStatuses}
+          onChange={handleStatusFilterChange}
+        />
 
         <Button
+          display={{ _: "none", md: "block" }}
+          disabled={loading}
           rounded
           variant="secondary"
           fontSize="0.65rem"
           py="3px"
           px="6px"
           onClick={() => {
-            router.push(`${router.asPath}/email`);
+            let newPath = router?.asPath?.split("/").filter(p => p !== "edit")
+            router.push([...newPath, "email"].join("/"));
           }}
         >
           <Icon name="envelope" size="18px" mr="xs"/>
           {groupMembers.length} Members
         </Button>
       </Box>
-
-      {renderStatusFacets()}
 
       {loading && (
         <Box display="flex" justifyContent="center" alignItems="center" p="s">
