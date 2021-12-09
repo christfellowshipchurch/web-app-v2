@@ -17,29 +17,28 @@ import { CustomLink } from 'components';
 
 const CollectionPreview = ({
   contentId,
-  title,
-  center,
   summary,
   cardType,
   hideButton,
   buttonOverride,
 }) => {
   const router = useRouter();
-  const { contentItems, loading } = useDiscoverFilterCategoriesPreview({
-    variables: { id: contentId, first: 3 },
-  });
+  const { categoryTitle, contentItems, loading } =
+    useDiscoverFilterCategoriesPreview({
+      variables: { id: contentId, first: 3 },
+    });
 
   const handleSeeMore = event => {
     const [type, id] = contentId.split(':');
 
     event.preventDefault();
-    router.push(`/discover/${slugify(title)}?id=${slugify(id)}`);
+    router.push(`/discover/${slugify(categoryTitle)}?id=${slugify(id)}`);
   };
 
   return (
     <Box>
       <Box color="secondary" textAlign={'center'} as="h1" mb="l">
-        {title}
+        {categoryTitle}
       </Box>
       {summary && (
         <Box
@@ -95,7 +94,6 @@ const CollectionPreview = ({
 
 CollectionPreview.propTypes = {
   contentId: PropTypes.string,
-  title: PropTypes.string,
   buttonOverride: PropTypes.string,
 };
 
