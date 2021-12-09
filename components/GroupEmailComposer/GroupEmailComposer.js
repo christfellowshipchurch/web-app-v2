@@ -8,14 +8,11 @@
  */
 
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import take from 'lodash/take'
-import { slugify } from 'utils';
 
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
-import { CustomLink } from 'components';
-import { Box, Button, Card, Icon, RichTextEditor, SquareAvatar, TextArea } from 'ui-kit'
+import { Box, Button, Card, Icon, RichTextEditor, SquareAvatar } from 'ui-kit'
 
 import Styled from './GroupEmailComposer.styles'
 

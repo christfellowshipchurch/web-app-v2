@@ -10,12 +10,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
+import { useModalDispatch, hideModal } from 'providers/ModalProvider';
 
 import { Box, Button, Icon, Modal } from 'ui-kit';
 
 const GroupEmailComposerConfirmationModal = ({ memberCount }) => {
     const router = useRouter();
-    const handleClose = () => router.back()
+    const modalDispatch = useModalDispatch();
+    const handleClose = () => {
+        const cleanPath = router.asPath.split("/")
+
+        router.push(cleanPath.filter(p => p !== "email").join("/"))
+    }
 
     return <Modal
         onClose={handleClose}
@@ -38,7 +44,10 @@ const GroupEmailComposerConfirmationModal = ({ memberCount }) => {
             </Box>
 
             <Button
-                onClick={handleClose}
+                onClick={() => {
+                    modalDispatch(hideModal())
+                    handleClose()
+                }}
             >
                 Done
             </Button>
