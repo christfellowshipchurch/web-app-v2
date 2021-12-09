@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import capitalize from 'lodash/capitalize';
+import { useRouter } from 'next/router';
 
 import { slugify } from 'utils';
 import { GroupManageProvider } from 'providers';
-import { Box, Card } from 'ui-kit';
+import { Box, Button, Card } from 'ui-kit';
 import { CustomLink } from 'components';
 
 // todo : figure out where/how to support this
@@ -12,13 +12,19 @@ import GroupManagePhoto from './GroupManagePhoto';
 import GroupManageResources from './GroupManageResources';
 import GroupManageMembers from './GroupManageMembers';
 function GroupManage(props = {}) {
+  const router = useRouter()
+
   return (
     <GroupManageProvider groupData={props.data}>
       <Box>
         <Box mb="l">
-          <CustomLink href={`/group/${slugify(props?.data?.title)}`}>
-            &larr; Back
-          </CustomLink>
+          <Button 
+              ml="-1rem"
+              variant="link"
+              onClick={() => router.back()}
+          >
+              &larr; Back
+          </Button>
           <Box as="h1">{props?.data?.title}</Box>
         </Box>
 
