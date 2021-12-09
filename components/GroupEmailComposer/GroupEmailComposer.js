@@ -9,14 +9,13 @@
 
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import React from 'react';
 import { useRouter } from 'next/router';
 import take from 'lodash/take'
 import { slugify } from 'utils';
 
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 import { CustomLink } from 'components';
-import { Box, Button, Card, Icon, SquareAvatar, TextArea } from 'ui-kit'
+import { Box, Button, Card, Icon, RichTextEditor, SquareAvatar, TextArea } from 'ui-kit'
 
 import Styled from './GroupEmailComposer.styles'
 
@@ -39,6 +38,7 @@ const GroupEmailComposer = (props = {}) => {
     const router = useRouter()
     const modalDispatch = useModalDispatch();
     const [submitting, setSubmitting] = useState(false)
+    const [emailBody, setEmailBody] = useState("")
     const fromEmail = "my.email@domain.com"
     // Recipients
     const recipients = [
@@ -122,146 +122,158 @@ const GroupEmailComposer = (props = {}) => {
         </Box>
 
         <Styled.Grid>
-            <StyledCard gridArea="from-email">
-                <Label>
-                    Sender Email
-                </Label>
-                <Box
-                    as="h3"
-                    color="secondary"
-                    mb="0"
-                >
-                    {fromEmail}
-                </Box>
-            </StyledCard>
-
-            <StyledCard gridArea="recipients">
-                <Box
-                    display="flex"
-                    justifyContent="space-between"
-                    alignItems="center"
-                    // Hack to position the button correctly
-                    mt="-16px"
-                    mr="-16px"
-                >
+            <Box gridArea="from-email">
+                <StyledCard>
                     <Label>
-                        Recipients
+                        Sender Email
                     </Label>
+                    <Box
+                        as="h3"
+                        color="secondary"
+                        mb="0"
+                    >
+                        {fromEmail}
+                    </Box>
+                </StyledCard>
+            </Box>
 
-                    <Button
-                        variant="link"
-                        size="s"
-                        margin="0"
-                        disabled={disabled}
+            <Box gridArea="recipients">
+                <StyledCard>
+                    <Box
+                        display="flex"
+                        justifyContent="space-between"
+                        alignItems="center"
+                        // Hack to position the button correctly
+                        mt="-16px"
+                        mr="-16px"
                     >
-                        {`${recipients?.length > 0 ? "Edit" : "Select"} Recipients`}
-                    </Button>
-                </Box>
-                
-                <Box 
-                    display="flex"
-                    flexDirection="row"
-                    alignItems="center"
-                >
-                    {visibleRecipients.map((r, i) => <SquareAvatar 
-                        key={`${r}-${i}`}
-                        src={r} 
-                        width="56px"
-                        height="65px"
-                        ml={{
-                            _: i === 0 ? "-5px" : "-1.5rem",
-                            md: i === 0 ? "-5px" : "-1rem",
-                        }}
-                        borderColor="white"
-                        borderWidth="5px"
-                        borderStyle="solid"
-                    />)}
-                    {recipients?.length > visibleRecipients?.length && <Box 
-                        as="p"
-                        m="xs"
-                        color="neutrals.600"
+                        <Label>
+                            Recipients
+                        </Label>
+
+                        <Button
+                            variant="link"
+                            size="s"
+                            margin="0"
+                            disabled={disabled}
+                        >
+                            {`${recipients?.length > 0 ? "Edit" : "Select"} Recipients`}
+                        </Button>
+                    </Box>
+                    
+                    <Box 
+                        display="flex"
+                        flexDirection="row"
+                        alignItems="center"
                     >
-                        {`+${recipients?.length - visibleRecipients?.length}`}
-                    </Box>}
-                </Box>
-            </StyledCard>
+                        {visibleRecipients.map((r, i) => <SquareAvatar 
+                            key={`${r}-${i}`}
+                            src={r} 
+                            width="56px"
+                            height="65px"
+                            ml={{
+                                _: i === 0 ? "-5px" : "-1.5rem",
+                                md: i === 0 ? "-5px" : "-1rem",
+                            }}
+                            borderColor="white"
+                            borderWidth="5px"
+                            borderStyle="solid"
+                        />)}
+                        {recipients?.length > visibleRecipients?.length && <Box 
+                            as="p"
+                            m="xs"
+                            color="neutrals.600"
+                        >
+                            {`+${recipients?.length - visibleRecipients?.length}`}
+                        </Box>}
+                    </Box>
+                </StyledCard>
+            </Box>
 
             {/* ! Might end up removing this before release */}
-            <StyledCard gridArea="attachments">
-                <Box
-                    display="flex"
-                    justifyContent="space-between"
-                    alignItems="center"
-                    // Hack to position the button correctly
-                    mt="-16px"
-                    mr="-16px"
-                >
-                    <Label>
-                        Attachments
-                    </Label>
+            <Box gridArea="attachments">
+                <StyledCard>
+                    <Box
+                        display="flex"
+                        justifyContent="space-between"
+                        alignItems="center"
+                        // Hack to position the button correctly
+                        mt="-16px"
+                        mr="-16px"
+                    >
+                        <Label>
+                            Attachments
+                        </Label>
 
+                        <Button
+                            variant="link"
+                            size="s"
+                            margin="0"
+                        >
+                            {`${attachments?.length > 0 ? "Edit" : "Select"} Attachments`}
+                        </Button>
+                    </Box>
+                    
+                    <Box 
+                        display="flex"
+                        flexDirection="row"
+                        alignItems="center"
+                    >
+                        {visibleAttachments.map(({ type, src }, i) => <Box
+                            key={`attachment-${i}`}
+                            ml={i === 0 ? "-5px" : "-0.6rem"}
+                            width="42px"
+                            height="42px"
+                            backgroundColor="secondary"
+                            borderColor="white"
+                            borderWidth="5px"
+                            borderStyle="solid"
+                            borderRadius="4px"
+                        />)}
+
+                        {attachments?.length > visibleAttachments?.length && <Box 
+                            as="p"
+                            m="xs"
+                            color="neutrals.600"
+                        >
+                            {`+${attachments?.length - visibleAttachments?.length}`}
+                        </Box>}
+                    </Box>
+                </StyledCard>
+            </Box>
+
+            <Box gridArea="email-body">
+                <StyledCard>
+                    <Label>
+                        Email Subject
+                    </Label>
                     <Button
                         variant="link"
                         size="s"
                         margin="0"
                         disabled={disabled}
-                    >
-                        {`${attachments?.length > 0 ? "Edit" : "Select"} Attachments`}
-                    </Button>
-                </Box>
-                
-                <Box 
-                    display="flex"
-                    flexDirection="row"
-                    alignItems="center"
-                >
-                    {visibleAttachments.map(({ type, src }, i) => <Box
-                        key={`attachment-${i}`}
-                        ml={i === 0 ? "-5px" : "-0.6rem"}
-                        width="42px"
-                        height="42px"
-                        backgroundColor="secondary"
-                        borderColor="white"
-                        borderWidth="5px"
-                        borderStyle="solid"
-                        borderRadius="4px"
-                    />)}
-
-                    {attachments?.length > visibleAttachments?.length && <Box 
-                        as="p"
-                        m="xs"
-                        color="neutrals.600"
-                    >
-                        {`+${attachments?.length - visibleAttachments?.length}`}
-                    </Box>}
-                </Box>
-            </StyledCard>
-
-            <StyledCard gridArea="email-body">
-                <Label>
-                    Email Subject
-                </Label>
-                <Box 
-                    position="relative"
-                    mt="s"
-                >
-                    <Styled.SubjectInput 
-                        placeholder="Subject"
-                        disabled={disabled}
                     />
-                </Box>
+                    
+                    <Box 
+                        position="relative"
+                        mt="s"
+                    >
+                        <Styled.SubjectInput 
+                            placeholder="Subject"
+                        />
+                    </Box>
 
-                <Box 
-                    position="relative"
-                    mt="base"
-                >
-                    <TextArea 
-                        placeholder="Html WYSIWYG"
-                        minWidth="100%"
-                        maxWidth="100%"
-                    />
-                </Box>
-            </StyledCard>
+                    <Box 
+                        position="relative"
+                        mt="base"
+                    >
+                        <RichTextEditor 
+                            value={emailBody}
+                            onChange={setEmailBody}
+                        />
+                    </Box>
+                </StyledCard>
+            </Box>
         </Styled.Grid>
     </Box>
 };

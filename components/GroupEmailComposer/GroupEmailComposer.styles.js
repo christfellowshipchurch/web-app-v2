@@ -7,10 +7,8 @@
  * Styles for the Email Composer
  */
 
-import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
-import isEmpty from 'lodash/isEmpty';
 
 import { system } from 'ui-kit';
 
@@ -28,7 +26,7 @@ const Grid = styled.div`
                          "attachments";
     grid-template-columns: 100%;
 
-    @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
         grid-template-areas: "from-email email-body"
                              "recipients email-body"
                              "attachments email-body"
