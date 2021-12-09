@@ -28,8 +28,6 @@ const CollectionPreview = ({
       variables: { id: contentId, first: 3 },
     });
 
-  console.log({ contentItems });
-
   const handleSeeMore = event => {
     const [type, id] = contentId.split(':');
 
