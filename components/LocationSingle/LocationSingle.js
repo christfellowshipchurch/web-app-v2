@@ -44,7 +44,12 @@ function LocationSingle(props = {}) {
       contentHorizontalPadding={'0'}
       contentVerticalPadding={'0'}
     >
-      <Box display="flex" justifyContent="center" alignItems="end" mb="-3rem">
+      <Box
+        position="relative"
+        display="flex" 
+        justifyContent="center" 
+        alignItems="end" 
+      >
         <Styled.Cover
           src={coverImage}
           width="100%"
@@ -63,6 +68,7 @@ function LocationSingle(props = {}) {
           mb="base"
           zIndex={1000}
           mx="base"
+          bottom="0"
         >
           {props?.data?.title}
         </Box>
