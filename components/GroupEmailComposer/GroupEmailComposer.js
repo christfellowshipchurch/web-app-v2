@@ -7,7 +7,7 @@
  * Email composer for a specified Group.
  */
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import take from 'lodash/take'
 import { slugify } from 'utils';
@@ -16,6 +16,9 @@ import { Box, Button, Card, Icon, SquareAvatar, TextArea } from 'ui-kit'
 import { CustomLink } from 'components';
 
 import Styled from './GroupEmailComposer.styles'
+
+import { useSearchGroupMembers } from 'hooks';
+import { useGroupManage } from 'providers/GroupManageProvider';
 
 const Label = (props) => <Box 
     as="label"
@@ -33,6 +36,41 @@ const StyledCard = (props) => <Card
 />
 
 const GroupEmailComposer = (props = {}) => {
+    const [{ groupData }] = useGroupManage();
+    console.log('AHFH', groupData);
+    const [searchGroupMembers, { groupMembers, facets, loading }] =
+      useSearchGroupMembers();
+
+    const [searchArgs, setSearchArgs] = useState([
+        { key: 'text', values: [''] },
+        { key: 'groupId', values: [groupData?.id] },
+        { key: 'status', values: [] },
+    ]);
+
+    useEffect(() => {
+        searchGroupMembers({
+          variables: {
+            groupId: groupData?.id,
+            query: {
+              attributes: searchArgs,
+            },
+          },
+        });
+      }, [searchArgs]);
+    
+      useEffect(() => {
+        searchGroupMembers({
+          variables: {
+            groupId: groupData?.id,
+            query: {
+              attributes: [...searchArgs],
+            },
+          },
+        });
+      }, []);
+
+      console.log(groupMembers)
+
     const fromEmail = "my.email@domain.com"
     // Recipients
     const recipients = [

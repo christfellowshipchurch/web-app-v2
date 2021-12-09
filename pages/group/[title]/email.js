@@ -1,11 +1,13 @@
 import { useRouter } from 'next/router';
+import PropTypes from 'prop-types';
 
 import { useGroupContentId } from 'hooks';
 import { GroupProvider } from 'providers';
 import { Box, Cell, Loader } from 'ui-kit';
 import { GroupEmailComposer, Layout } from 'components';
+import { GroupManageProvider } from 'providers';
 
-function Email(props) {
+function Email(props = {}) {
   const router = useRouter();
   const { title, id } = router.query;
   const state = useGroupContentId({ title, id });
@@ -23,15 +25,20 @@ function Email(props) {
             <Loader text="Loading your Group" />
           </Box>
         ) : _id ? (
-          <GroupProvider
-            Component={GroupEmailComposer}
-            options={{ variables: { itemId: _id } }}
-          />
+          <GroupManageProvider groupData={props.data}>
+            <GroupProvider
+              Component={GroupEmailComposer}
+              options={{ variables: { itemId: _id } }}
+            />
+          </GroupManageProvider>
         ) : null}
       </Cell>
     </Layout>
   );
 }
 
+Email.propTypes = {
+  data: PropTypes.object,
+};
 
 export default Email
