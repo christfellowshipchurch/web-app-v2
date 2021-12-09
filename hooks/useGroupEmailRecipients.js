@@ -99,6 +99,8 @@ const useGroupEmailRecipients = ({ groupId }) => {
     return {
         recipients,
         toggleRecipient,
+        flushRecipients: () => updateRecipientIds([]),
+        setRecipients: (ids) => updateRecipientIds(ids),
         groupMembers
     }
 };
