@@ -5,7 +5,6 @@ import { useGroupContentId } from 'hooks';
 import { GroupProvider } from 'providers';
 import { Box, Cell, Loader } from 'ui-kit';
 import { GroupEmailComposer, Layout } from 'components';
-import { GroupManageProvider } from 'providers';
 
 function Email(props = {}) {
   const router = useRouter();
@@ -25,12 +24,10 @@ function Email(props = {}) {
             <Loader text="Loading your Group" />
           </Box>
         ) : _id ? (
-          <GroupManageProvider groupData={props.data}>
-            <GroupProvider
-              Component={GroupEmailComposer}
-              options={{ variables: { itemId: _id } }}
-            />
-          </GroupManageProvider>
+          <GroupProvider
+            Component={GroupEmailComposer}
+            options={{ variables: { itemId: _id } }}
+          />
         ) : null}
       </Cell>
     </Layout>

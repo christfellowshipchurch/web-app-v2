@@ -7,7 +7,7 @@
  * Email composer for a specified Group.
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import take from 'lodash/take'
 import { slugify } from 'utils';
@@ -17,8 +17,7 @@ import { CustomLink } from 'components';
 
 import Styled from './GroupEmailComposer.styles'
 
-import { useSearchGroupMembers } from 'hooks';
-import { useGroupManage } from 'providers/GroupManageProvider';
+import { useSearchGroupMembers, useGroupEmailRecipients } from 'hooks';
 
 const Label = (props) => <Box 
     as="label"
@@ -36,56 +35,11 @@ const StyledCard = (props) => <Card
 />
 
 const GroupEmailComposer = (props = {}) => {
-    const [{ groupData }] = useGroupManage();
-    console.log('AHFH', groupData);
-    const [searchGroupMembers, { groupMembers, facets, loading }] =
-      useSearchGroupMembers();
-
-    const [searchArgs, setSearchArgs] = useState([
-        { key: 'text', values: [''] },
-        { key: 'groupId', values: [groupData?.id] },
-        { key: 'status', values: [] },
-    ]);
-
-    useEffect(() => {
-        searchGroupMembers({
-          variables: {
-            groupId: groupData?.id,
-            query: {
-              attributes: searchArgs,
-            },
-          },
-        });
-      }, [searchArgs]);
-    
-      useEffect(() => {
-        searchGroupMembers({
-          variables: {
-            groupId: groupData?.id,
-            query: {
-              attributes: [...searchArgs],
-            },
-          },
-        });
-      }, []);
-
-      console.log(groupMembers)
+    const { recipients, toggleRecipient } = useGroupEmailRecipients({ 
+        groupId: props?.data?.id 
+    })
 
     const fromEmail = "my.email@domain.com"
-    // Recipients
-    const recipients = [
-        "https://picsum.photos/200",
-        "https://picsum.photos/200",
-        "https://picsum.photos/200",
-        "https://picsum.photos/200",
-        "https://picsum.photos/200",
-        "https://picsum.photos/200",
-        "https://picsum.photos/200",
-        "https://picsum.photos/200",
-        "https://picsum.photos/200",
-        "https://picsum.photos/200",
-        "https://picsum.photos/200",
-    ]
     const visibleRecipients = take(recipients, 7)
     // Attachments
     const attachments = [
@@ -164,6 +118,7 @@ const GroupEmailComposer = (props = {}) => {
                         variant="link"
                         size="s"
                         margin="0"
+                        onClick={() => toggleRecipient(recipients[0]?.id)}
                     >
                         {`${recipients?.length > 0 ? "Edit" : "Select"} Recipients`}
                     </Button>
@@ -174,9 +129,9 @@ const GroupEmailComposer = (props = {}) => {
                     flexDirection="row"
                     alignItems="center"
                 >
-                    {visibleRecipients.map((r, i) => <SquareAvatar 
-                        key={`${r}-${i}`}
-                        src={r} 
+                    {visibleRecipients.map((groupMember, i) => <SquareAvatar 
+                        key={groupMember?.id}
+                        src={groupMember?.person?.photo?.uri} 
                         width="56px"
                         height="65px"
                         ml={{
@@ -275,7 +230,11 @@ const GroupEmailComposer = (props = {}) => {
     </Box>
 };
 
-GroupEmailComposer.propTypes = {}
+GroupEmailComposer.propTypes = {
+    data: PropTypes.shape({
+        id: PropTypes.string.isRequired
+    })
+}
 GroupEmailComposer.defaultProps = {}
 
 export default GroupEmailComposer;
