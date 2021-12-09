@@ -17,7 +17,7 @@ import { CustomLink } from 'components';
 
 import Styled from './GroupEmailComposer.styles'
 
-import { useSearchGroupMembers, useGroupEmailRecipients } from 'hooks';
+import { useGroupEmailRecipients } from 'hooks';
 
 const Label = (props) => <Box 
     as="label"
