@@ -36,6 +36,7 @@ import Modal from './Modal';
 import PaginationStepper from './PaginationStepper';
 import PrayerCard from './PrayerCard';
 import Radio from './Radio';
+import RichTextEditor from './RichTextEditor';
 import RowCard from './RowCard';
 import Select from './Select';
 import SquareAvatar from './SquareAvatar';
@@ -80,6 +81,7 @@ export {
   PaginationStepper,
   PrayerCard,
   Radio,
+  RichTextEditor,
   RowCard,
   Select,
   SquareAvatar,

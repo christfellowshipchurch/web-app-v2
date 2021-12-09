@@ -51,7 +51,6 @@ function WelcomeModal(props = {}) {
 }
 
 WelcomeModal.propTypes = {
-  ...Modal.propTypes,
 };
 
 WelcomeModal.defaultProps = {
