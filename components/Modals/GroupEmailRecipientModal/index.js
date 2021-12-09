@@ -1,3 +1,3 @@
-import GroupEmailRecipientModal from "GroupEmailRecipientModal";
+import GroupEmailRecipientModal from "./GroupEmailRecipientModal";
 
 export default GroupEmailRecipientModal

@@ -35,12 +35,12 @@ const StyledCard = (props) => <Card
 />
 
 const GroupEmailComposer = (props = {}) => {
+    const router = useRouter()
+    const modalDispatch = useModalDispatch();
+    
     const { recipients, toggleRecipient } = useGroupEmailRecipients({ 
         groupId: props?.data?.id 
     })
-
-    const router = useRouter()
-    const modalDispatch = useModalDispatch();
     const [submitting, setSubmitting] = useState(false)
     const [emailBody, setEmailBody] = useState("")
     const fromEmail = "my.email@domain.com"
@@ -70,6 +70,12 @@ const GroupEmailComposer = (props = {}) => {
             }))
             setSubmitting(false)
         }, 1000);
+    }
+
+    const handleSelectRecipients = () => {
+        modalDispatch(showModal("GroupEmailRecipients", { 
+            groupId: props?.data?.id 
+        }))
     }
 
     return <Box>
@@ -146,6 +152,7 @@ const GroupEmailComposer = (props = {}) => {
                             size="s"
                             margin="0"
                             disabled={disabled}
+                            onClick={handleSelectRecipients}
                         >
                             {`${recipients?.length > 0 ? "Edit" : "Select"} Recipients`}
                         </Button>
