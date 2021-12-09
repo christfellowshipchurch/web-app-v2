@@ -5,9 +5,11 @@ import { NavigationProvider } from 'providers';
 import { Box, systemPropTypes } from 'ui-kit';
 import { Logo, Nav } from 'components';
 import Styled from './Header.styles';
+import ChristmasBanner from './ChristmasBanner';
 
 function DefaultHeader(props = {}) {
-  return (
+  return [
+    <ChristmasBanner />,
     <Styled bg="white" position="relative" boxShadow="base" {...props}>
       <Link href="/">
         <a>
@@ -15,8 +17,8 @@ function DefaultHeader(props = {}) {
         </a>
       </Link>
       <NavigationProvider Component={Nav} {...props} />
-    </Styled>
-  );
+    </Styled>,
+  ];
 }
 
 DefaultHeader.propTypes = {
