@@ -42,7 +42,7 @@ module.exports = {
       },
       {
         source: '/baptism',
-        destination: '/baptism-faqs',
+        destination: '/articles/baptism-faqs',
         permanent: true,
       },
       // TODO: Uncomment these lines to hide Group Finder.
