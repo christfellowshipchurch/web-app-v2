@@ -32,6 +32,7 @@ module.exports = {
         destination: '/:slug',
         permanent: false,
       }, // force a refresh
+      { source: '/share', destination: 'https://my.longhollow.com/Registration/share', permanent: true },
       { source: '/report', destination: 'https://annualreport.longhollow.com', permanent: true },
       { source: '/annualreport', destination: 'https://annualreport.longhollow.com', permanent: true },
       { source: '/feed', destination: '/first-responder-meal-deliveries', permanent: true },
