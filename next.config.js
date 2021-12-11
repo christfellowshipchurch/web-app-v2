@@ -166,7 +166,7 @@ module.exports = {
       { source: '/internships', destination: '/long-hollow-internships', permanent: true },
       { source: '/groupfinder', destination: '/next-steps/find-a-life-group', permanent: true },
       { source: '/connect', destination: '/next-steps/become-a-member', permanent: true },
-      { source: '/relief', destination: '/next-steps/serve-the-community', permanent: true },
+      { source: '/relief', destination: '/join-disaster-relief-efforts-to-help-our-community', permanent: true },
       { source: '/adoption', destination: '/adoption-and-foster-care', permanent: true },
       { source: '/pathway', destination: '/about/our-mission-and-strategy', permanent: true },
       { source: '/dgroups', destination: '/next-steps/start-a-discipleship-group', permanent: true },
