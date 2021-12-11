@@ -31,7 +31,7 @@ module.exports = {
         source: '/app-link/:slug',
         destination: '/:slug',
         permanent: false,
-      }, 
+      }, // force a refresh
       { source: '/report', destination: 'https://annualreport.longhollow.com', permanent: true },
       { source: '/annualreport', destination: 'https://annualreport.longhollow.com', permanent: true },
       { source: '/feed', destination: '/first-responder-meal-deliveries', permanent: true },
