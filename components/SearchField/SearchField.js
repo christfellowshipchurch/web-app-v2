@@ -10,27 +10,22 @@ function SearchField(props = {}) {
       as="form"
       onSubmit={props.handleSubmit}
       display="flex"
+      alignItems="center"
       position="relative"
+      bg="white"
+      borderRadius="xxl"
+      width="100%"
       {...props}
     >
-      <Icon
-        name="search"
-        color="border"
-        position="absolute"
-        zIndex="1"
-        marginLeft={utils.rem('12px')}
-        size="20"
-      />
       <TextInput
         id="text"
         placeholder={props.placeholder}
         onChange={props.handleChange}
         containerProps={{ flex: 1 }}
         value={props.value}
-        borderTopRightRadius="0"
-        borderBottomRightRadius="0"
-        paddingLeft={utils.rem('38px')}
-        borderRight="none"
+        border="none"
+        mx="base"
+        mb={0}
       />
       {props.value !== '' && props.handleClear && (
         <Styled.ClearButton onClick={props.handleClear}>
@@ -38,14 +33,22 @@ function SearchField(props = {}) {
         </Styled.ClearButton>
       )}
       <Button
-        type="submit"
+        alignItems="center"
+        borderRadius="xxl"
+        display="flex"
+        mr="xs"
+        my="xs"
         onClick={props.handleClick}
-        borderTopLeftRadius="0"
-        borderBottomLeftRadius="0"
         outline="none"
-        lineHeight="1"
+        p={0}
+        type="submit"
+        zIndex={100}
       >
-        {props.children}
+        <Icon name="search" color="white" size="20" mx="xs" my="xs" />
+        {/* Todo: fix spacing for "Search" text option */}
+        {/* <Box as="p" mb="none" ml="xs" mr="s">
+          Search
+        </Box> */}
       </Button>
     </Box>
   );
