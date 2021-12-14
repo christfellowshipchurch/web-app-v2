@@ -15,10 +15,14 @@ const Content = styled.div`
   left: 0;
   right: 0;
   text-align: center;
-  top: 35%;
+  margin-top: ${themeGet('space.l')};
 
-  @media screen and (min-width: ${themeGet('breakpoints.sm')}) {
-    top: 25%;
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    margin-top: ${themeGet('space.xl')};
+  }
+
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    margin-top: ${themeGet('space.xxl')};
   }
 
   ${system}
