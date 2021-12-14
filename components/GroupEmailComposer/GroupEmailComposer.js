@@ -187,7 +187,7 @@ const GroupEmailComposer = (props = {}) => {
                         variant="link"
                         size="s"
                         margin="0"
-                        disabled={disabled}
+                        disabled={disabled || recipients.length === 0}
                     />
                     
                     <Box 

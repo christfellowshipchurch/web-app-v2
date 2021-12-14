@@ -1,3 +1,0 @@
-import GroupEmailComposerConfirmationModal from "./GroupEmailComposerConfirmationModal";
-
-export default GroupEmailComposerConfirmationModal;
