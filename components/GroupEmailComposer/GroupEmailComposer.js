@@ -7,7 +7,7 @@
  * Email composer for a specified Group.
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import take from 'lodash/take'
@@ -17,7 +17,7 @@ import { Box, Button, Card, Icon, RichTextEditor, SquareAvatar } from 'ui-kit'
 
 import Styled from './GroupEmailComposer.styles'
 
-import { useGroupEmailRecipients } from 'hooks';
+import { useGroupEmailRecipients, useSearchGroupMembers } from 'hooks';
 
 const Label = (props) => <Box 
     as="label"
@@ -35,16 +35,19 @@ const StyledCard = (props) => <Card
 />
 
 const GroupEmailComposer = (props = {}) => {
+
     const router = useRouter()
     const modalDispatch = useModalDispatch();
-    
+    const [searchGroupMembers, { groupMembers, loading }] = useSearchGroupMembers();
     const { recipients, toggleRecipient } = useGroupEmailRecipients({ 
-        groupId: props?.data?.id 
+        groupId: props?.data?.id
     })
     const [submitting, setSubmitting] = useState(false)
     const [emailBody, setEmailBody] = useState("")
     const fromEmail = "my.email@domain.com"
-    const visibleRecipients = take(recipients, 7)
+    const visibleRecipients = take(recipients, 7).map(rId => {
+        return groupMembers.find(({id}) => rId === id);
+    })
     // Attachments
     const attachments = [
         { type: "image", src: "https://picsum.photos/200" },
@@ -74,9 +77,23 @@ const GroupEmailComposer = (props = {}) => {
 
     const handleSelectRecipients = () => {
         modalDispatch(showModal("GroupEmailRecipients", { 
-            groupId: props?.data?.id 
+            groupId: props?.data?.id
         }))
     }
+
+    useEffect(() => {
+        searchGroupMembers({
+            variables: {
+                groupId: props?.data?.id,
+                query: {
+                    attributes: [{
+                        key: "groupId",
+                        values: [props?.data?.id],
+                    }]
+                },
+            }
+        })
+    }, [])
 
     return <Box>
         <Box 
@@ -165,7 +182,7 @@ const GroupEmailComposer = (props = {}) => {
                     >
                         {visibleRecipients.map((groupMember, i) => <SquareAvatar 
                             key={groupMember?.id}
-                            src={groupMember?.person?.photo?.uri} 
+                            src={groupMember?.person?.photo?.uri}
                             width="56px"
                             height="65px"
                             ml={{

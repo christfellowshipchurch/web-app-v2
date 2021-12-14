@@ -27,9 +27,6 @@ function loadFromLocalStorage(groupId) {
 
 const useGroupEmailRecipients = ({ groupId }) => {
     const [recipientIds, setRecipientIds] = useState([])
-    const [searchGroupMembers, { groupMembers }] = useSearchGroupMembers()
-
-    const recipients = groupMembers.filter(({ id }) => recipientIds.includes(id))
 
     function updateRecipientIds(newIds) {
         setRecipientIds(newIds)
@@ -52,6 +49,7 @@ const useGroupEmailRecipients = ({ groupId }) => {
     }
 
     function toggleRecipient(groupMemberId) {
+        console.log('heeeyyy',groupMemberId)
         if (recipientIds.includes(groupMemberId)) {
             removeRecipient(groupMemberId)
         } else { 
@@ -60,48 +58,15 @@ const useGroupEmailRecipients = ({ groupId }) => {
     }
 
     useEffect(() => {
-        try {
-            const local = JSON.parse(localStorage.getItem(`egr:${groupId}`))
-
-            if (!Array.isArray(local)) {
-                const ids = groupMembers
-                    .filter(gm => gm?.status?.label?.toUpperCase() === "ACTIVE")
-                    .map(({ id }) => id)
-                
-                updateRecipientIds(ids)
-            }
-        } catch (e) {
-            const ids = groupMembers
-                .filter(gm => gm?.status?.label?.toUpperCase() === "ACTIVE")
-                .map(({ id }) => id)
-            
-            updateRecipientIds(ids)
-        }
-    }, [groupMembers])
-
-    useEffect(() => {
         if (!groupId) return
-
         setRecipientIds(loadFromLocalStorage(groupId))
-        
-        searchGroupMembers({
-            variables: {
-              groupId,
-              query: {
-                attributes: [
-                    { key: 'groupId', values: [groupId] },
-                ],
-              },
-            },
-          });
     }, [])
 
     return {
-        recipients,
+        recipients: recipientIds,
         toggleRecipient,
         flushRecipients: () => updateRecipientIds([]),
         setRecipients: (ids) => updateRecipientIds(ids),
-        groupMembers
     }
 };
 
