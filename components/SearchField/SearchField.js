@@ -1,22 +1,25 @@
-import React from 'react';
+import { useCurrentBreakpoint } from 'hooks';
+import React, { useState, useEffect } from 'react';
 
 import { Box, Button, Icon, systemPropTypes, TextInput, utils } from 'ui-kit';
 
 import Styled from './SearchField.styles';
 
 function SearchField(props = {}) {
+  const currentBreakpoint = useCurrentBreakpoint();
+  const [iconOnly, setIconOnly] = useState(!props?.children);
+
+  useEffect(() => {
+    if (!!props?.children) {
+      if (!!currentBreakpoint.isSmall) {
+        return setIconOnly(true);
+      }
+      return setIconOnly(false);
+    }
+  }, [currentBreakpoint]);
+
   return (
-    <Box
-      as="form"
-      onSubmit={props.handleSubmit}
-      display="flex"
-      alignItems="center"
-      position="relative"
-      bg="white"
-      borderRadius="xxl"
-      width="100%"
-      {...props}
-    >
+    <Styled.Container as="form" onSubmit={props.handleSubmit} {...props}>
       <TextInput
         id="text"
         placeholder={props.placeholder}
@@ -28,29 +31,28 @@ function SearchField(props = {}) {
         mb={0}
       />
       {props.value !== '' && props.handleClear && (
-        <Styled.ClearButton onClick={props.handleClear}>
-          <Icon name="x" color="border" size="20" />
-        </Styled.ClearButton>
+        <Icon
+          onClick={props.handleClear}
+          zIndex={1}
+          name="x"
+          color="border"
+          size="20"
+          mr="s"
+        />
       )}
-      <Button
-        alignItems="center"
-        borderRadius="xxl"
-        display="flex"
-        mr="xs"
-        my="xs"
-        onClick={props.handleClick}
-        outline="none"
-        p={0}
+      <Styled.SearchButton
         type="submit"
-        zIndex={100}
+        onClick={props.handleClick}
+        pl={!iconOnly ? 's' : 0}
       >
-        <Icon name="search" color="white" size="20" mx="xs" my="xs" />
-        {/* Todo: fix spacing for "Search" text option */}
-        {/* <Box as="p" mb="none" ml="xs" mr="s">
-          Search
-        </Box> */}
-      </Button>
-    </Box>
+        <Icon name="search" color="white" size="22" mx="xs" my="xs" />
+        {!iconOnly && (
+          <Box as="p" my="xs" mr="base">
+            {props?.children}
+          </Box>
+        )}
+      </Styled.SearchButton>
+    </Styled.Container>
   );
 }
 

@@ -66,12 +66,14 @@ export default function Community(props = {}) {
   if (!flags.GROUP_FINDER) return null;
 
   // Logic for Search bar: sets values and handles search
-  const { values, handleSubmit, handleChange, setValues } = useForm(() => {
-    router.push({
-      pathname: `/groups/search`,
-      query: filtersState.valuesSerialized,
-    });
-  });
+  const { values, handleSubmit, handleChange, setValues, reset } = useForm(
+    () => {
+      router.push({
+        pathname: `/groups/search`,
+        query: filtersState.valuesSerialized,
+      });
+    }
+  );
 
   useEffect(() => {
     if (filtersState.values.text.length) {
@@ -108,6 +110,7 @@ export default function Community(props = {}) {
               handleSubmit={handleSubmit}
               handleChange={handleChange}
               handleClick={handleClick}
+              handleClear={() => reset()}
               value={values.text || ''}
               mb="base"
             />

@@ -196,18 +196,20 @@ export default function CommunitySearch() {
             </Button>
           </Box>
 
-          <Divider mb="l" />
           <SearchField
+            border="2px solid #C4C4C4"
+            boxShadow="l"
             placeholder="Search for groups..."
             handleSubmit={handleSubmit}
             handleClear={handleClearAllClick}
             handleClick={handleClick}
             handleChange={handleChange}
             value={values.text || ''}
-            mb="base"
+            mb="l"
           >
             Search
           </SearchField>
+          <Divider mb="l" />
           <Box
             display="flex"
             justifyContent={
