@@ -15,7 +15,11 @@ const Content = styled.div`
   left: 0;
   right: 0;
   text-align: center;
-  top: 25%;
+  top: 35%;
+
+  @media screen and (min-width: ${themeGet('breakpoints.sm')}) {
+    top: 25%;
+  }
 
   ${system}
 `;
