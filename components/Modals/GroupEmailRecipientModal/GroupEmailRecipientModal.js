@@ -1,16 +1,31 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Modal, Box, Button } from 'ui-kit';
-import take from 'lodash/take'
+import { Modal, Box } from 'ui-kit';
 import { useGroupEmailRecipients, useSearchGroupMembers } from 'hooks';
 import AvatarRow from './AvatarRow';
 
+function emptyFunc() {
+  return null
+}
+
 function GroupEmailRecipientModal(props = {}) {
-  // console.log('this works', props)
-  const { recipients, toggleRecipient } = useGroupEmailRecipients({ 
-    groupId: props?.groupId
-  })
+  const [recipients, setRecipients] = useState(props?.recipients ?? [])
   const [searchGroupMembers, { groupMembers, loading }] = useSearchGroupMembers();
+
+  function toggle(id) {
+    if (recipients?.includes(id)) {
+      setRecipients(recipients.filter(gmid => gmid !== id))
+    } else {
+      setRecipients([
+        ...recipients,
+        id
+      ])
+    }
+    
+    if (typeof props?.onChange === "function") {
+      props?.onChange(id)
+    }
+  }
 
   //visually display all recipients, check/uncheck 
   //after current state is accuarely showing implement the toggle
@@ -41,17 +56,10 @@ function GroupEmailRecipientModal(props = {}) {
           pb="base"
         >
           {`${groupMembers.length} Selected`}
-          {/* <Button
-            variant="link"
-            size="s"
-            margin="0"
-          >
-          Done
-        </Button> */}
         </Box>
         <Box
           display="grid"
-          gridTemplateColumns={{ _: '1fr', md: '1fr 1fr' }}
+          gridTemplateColumns={{ _: '1fr', lg: '1fr 1fr' }}
           columnGap="25px"
           rowGap="15px"
           gridColumnGap="15px"
@@ -66,7 +74,7 @@ function GroupEmailRecipientModal(props = {}) {
               lastName={groupMember?.person?.lastName}
               selected={recipients.includes(groupMember?.id)}
               status={groupMember?.status?.label}
-              toggle={() => toggleRecipient(groupMember?.id)}
+              toggle={toggle}
           />)}
         </Box>
 

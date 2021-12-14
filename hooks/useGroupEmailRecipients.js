@@ -9,9 +9,6 @@
 
 import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types';
-import { useReactiveVar } from '@apollo/client'
-import { groupEmailRecipientsVar } from 'lib/apolloClient/localStorage';
-import useSearchGroupMembers from './useSearchGroupMembers'
 
 function loadFromLocalStorage(groupId) {
     try {
@@ -49,7 +46,7 @@ const useGroupEmailRecipients = ({ groupId }) => {
     }
 
     function toggleRecipient(groupMemberId) {
-        console.log('heeeyyy',groupMemberId)
+        console.log({ groupMemberId,  })
         if (recipientIds.includes(groupMemberId)) {
             removeRecipient(groupMemberId)
         } else { 
