@@ -46,7 +46,6 @@ const useGroupEmailRecipients = ({ groupId }) => {
     }
 
     function toggleRecipient(groupMemberId) {
-        console.log({ groupMemberId,  })
         if (recipientIds.includes(groupMemberId)) {
             removeRecipient(groupMemberId)
         } else { 

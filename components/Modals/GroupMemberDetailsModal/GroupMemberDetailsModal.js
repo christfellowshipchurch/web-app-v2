@@ -27,7 +27,6 @@ const GroupMemberDetailsModal = ({ id, onSave: callback }) => {
   const [[updateStatus], [updateNote]] = useEditGroupMember({
     update: (cache, { data }) => {
       if (data?.updateGroupMemberStatus) {
-        console.log({ data });
         const { updateGroupMemberStatus } = data;
         const { id, status: newStatus } = updateGroupMemberStatus;
 
