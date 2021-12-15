@@ -4,7 +4,7 @@ import {
   AuthModal,
   ConnectModal,
   GroupDetailsModal,
-  GroupEmailComposerConfirmationModal,
+  GroupEmailRecipientModal,
   GroupFilterModal,
   GroupMemberDetailsModal,
   GroupNotifyMeModal,
@@ -35,8 +35,8 @@ const modals = [
     component: GroupDetailsModal,
   },
   {
-    title: "GroupEmailComposerConfirmation",
-    component: GroupEmailComposerConfirmationModal
+    title: "GroupEmailRecipients",
+    component: GroupEmailRecipientModal
   },
   {
     title: 'GroupFilter',

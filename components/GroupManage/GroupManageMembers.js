@@ -15,7 +15,7 @@ import { useGroupManage } from 'providers/GroupManageProvider';
 import { GroupMember, SearchField } from 'components';
 import { Box, Button, Loader, Icon } from 'ui-kit';
 import { CardTitle, SmallPillButton } from './GroupManage.components';
-import { useSearchGroupMembers } from 'hooks';
+import { useSearchGroupMembers, useGroupEmailRecipients } from 'hooks';
 
 function StatusFilters({ statuses, selected, onChange }) {
   return <Box mx={'-3px'}>
@@ -59,6 +59,7 @@ function GroupManageMembers(props = {}) {
   const [{ groupData }] = useGroupManage();
   const [searchGroupMembers, { groupMembers, loading }] =
     useSearchGroupMembers();
+  const {recipients, setRecipients } = useGroupEmailRecipients({groupId: groupData?.id});
 
   // MARK : State
   const [searchText, setSearchText] = useState('');
@@ -144,6 +145,11 @@ function GroupManageMembers(props = {}) {
       },
     });
   }, []);
+
+  useEffect(() => {
+    // if (loading) return 
+    setRecipients(groupMembers?.map(m => m?.id));
+  }, [groupMembers]);
 
   return (
     <>

@@ -1,11 +1,12 @@
 import { useRouter } from 'next/router';
+import PropTypes from 'prop-types';
 
 import { useGroupContentId } from 'hooks';
 import { GroupProvider } from 'providers';
 import { Box, Cell, Loader } from 'ui-kit';
 import { GroupEmailComposer, Layout } from 'components';
 
-function Email(props) {
+function Email(props = {}) {
   const router = useRouter();
   const { title, id } = router.query;
   const state = useGroupContentId({ title, id });
@@ -33,5 +34,8 @@ function Email(props) {
   );
 }
 
+Email.propTypes = {
+  data: PropTypes.object,
+};
 
 export default Email

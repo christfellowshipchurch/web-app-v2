@@ -26,6 +26,7 @@ import useForm from './useForm';
 import useGroup from './useGroup';
 import useGroupContentId from './useGroupContentId';
 import useGroupCoverImages from './useGroupCoverImages';
+import useGroupEmailRecipients from './useGroupEmailRecipients'
 import useGroupLeaders from './useGroupLeaders'
 import useGroupMember from './useGroupMember';
 import useGroupMembers from './useGroupMembers'
@@ -91,6 +92,7 @@ export {
   useGroup,
   useGroupContentId,
   useGroupCoverImages,
+  useGroupEmailRecipients,
   useGroupLeaders,
   useGroupMember,
   useGroupMembers,
