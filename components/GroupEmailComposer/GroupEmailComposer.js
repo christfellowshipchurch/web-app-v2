@@ -10,6 +10,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
+import isEmpty from 'lodash/isEmpty'
 
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 import { Box, Button, Card, Icon, RichTextEditor } from 'ui-kit'
@@ -46,7 +47,7 @@ const GroupEmailComposer = (props = {}) => {
     const [emailBody, setEmailBody] = useState("")
     const fromEmail = currentUser?.profile?.email
     const allSelected = recipients.length >= groupMembers?.length
-    const disabled = submitting;
+    const disabled = submitting || isEmpty(emailBody) || recipients?.length < 1;
 
     const handleSubmit = () => {
         if (submitting) return
@@ -54,7 +55,8 @@ const GroupEmailComposer = (props = {}) => {
         setSubmitting(true)
         
         setTimeout(() => {
-            modalDispatch(showModal("GroupEmailComposerConfirmation", { 
+            console.log("Hello?")
+            modalDispatch(showModal("GroupEmailConfirmation", { 
                 memberCount: recipients?.length ?? 0 
             }))
             setSubmitting(false)
