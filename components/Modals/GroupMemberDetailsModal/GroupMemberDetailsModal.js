@@ -20,7 +20,7 @@ import {
 import { GroupMemberDetails } from 'components';
 import { Box, Modal, Loader } from 'ui-kit';
 
-const GroupMemberDetailsModal = ({ id, onSave: callback }) => {
+const GroupMemberDetailsModal = ({ id, onSave: callback, groupId, onEmail }) => {
   const modalDispatch = useModalDispatch();
   const { groupMemberStatuses, inactiveStatusReasons } =
     useGroupMemberStatuses();
@@ -113,6 +113,8 @@ const GroupMemberDetailsModal = ({ id, onSave: callback }) => {
           inactiveStatusReasons={inactiveStatusReasons}
           onCancel={onCancel}
           onSave={args => onSave(args)}
+          onEmail={onEmail}
+          groupId={groupId}
         />
       )}
     </Modal>
@@ -121,10 +123,12 @@ const GroupMemberDetailsModal = ({ id, onSave: callback }) => {
 
 GroupMemberDetailsModal.propTypes = {
   id: PropTypes.string.isRequired,
+  groupId: PropTypes.string.isRequired,
   onSave: PropTypes.func,
 };
 GroupMemberDetailsModal.defaultProps = {
   onSave: () => null,
+  onEmail: () => null
 };
 
 export default GroupMemberDetailsModal;

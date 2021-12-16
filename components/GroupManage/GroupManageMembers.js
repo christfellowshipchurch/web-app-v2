@@ -59,7 +59,7 @@ function GroupManageMembers(props = {}) {
   const [{ groupData }] = useGroupManage();
   const [searchGroupMembers, { groupMembers, loading }] =
     useSearchGroupMembers();
-  const {recipients, setRecipients } = useGroupEmailRecipients({groupId: groupData?.id});
+  const { setRecipients } = useGroupEmailRecipients({ groupId: groupData?.id });
 
   // MARK : State
   const [searchText, setSearchText] = useState('');
@@ -243,6 +243,7 @@ function GroupManageMembers(props = {}) {
                 status={status}
                 role={role}
                 person={person}
+                groupId={groupId}
               />
             )
           )}

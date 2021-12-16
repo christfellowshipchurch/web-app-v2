@@ -11,11 +11,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useApolloClient } from '@apollo/client';
 
-import { useModalDispatch, showModal } from 'providers/ModalProvider';
+import { useModalDispatch, showModal, hideModal } from 'providers/ModalProvider';
 import { Box, Button, GroupMemberStatusBadge, SquareAvatar } from 'ui-kit';
 import { isEmpty } from 'lodash';
 
-const GroupMember = ({ id, person, role, status }) => {
+const GroupMember = ({ id, person, role, status, groupId }) => {
   const modalDispatch = useModalDispatch();
   const client = useApolloClient();
   const handlePressView = groupMemberId => {
@@ -24,6 +24,10 @@ const GroupMember = ({ id, person, role, status }) => {
     modalDispatch(
       showModal('GroupMemberDetails', {
         id: groupMemberId,
+        groupId,
+        onEmail: () => {
+          modalDispatch(hideModal())
+        },
         onSave: ({ status, inactiveStatusReason }) => {
           client.cache.modify({
             id: cache.identify({ id }),

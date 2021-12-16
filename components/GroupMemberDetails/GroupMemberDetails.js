@@ -9,19 +9,21 @@
 
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 import { isEmpty } from 'lodash';
 import { parseISO, format } from 'date-fns';
+import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
 import {
   Box,
   Button,
-  GroupMemberStatusBadge,
+  Icon,
   SquareAvatar,
   Select,
   TextArea,
 } from 'ui-kit';
 import { Row } from './GroupMemberDetails.components';
-import { useGroupMemberStatuses } from 'hooks';
+import { useGroupEmailRecipients } from 'hooks';
 
 const sortAlphabetically = (a, b) => {
   if (a < b) {
@@ -36,14 +38,17 @@ const sortAlphabetically = (a, b) => {
 const GroupMemberDetails = ({
   id,
   person,
-  role,
   status: initialStatus,
   note: initialNote,
   groupMemberStatuses,
   inactiveStatusReasons,
   onCancel,
   onSave: callback,
+  groupId,
+  onEmail
 }) => {
+  const router = useRouter()
+  const { setRecipients } = useGroupEmailRecipients({ groupId })
   const [status, setStatus] = useState(initialStatus?.id);
   const [inactiveStatusReason, setInactiveStatusReason] = useState(
     initialStatus?.inactiveReason?.id || inactiveStatusReasons[0]?.id
@@ -84,9 +89,22 @@ const GroupMemberDetails = ({
           width="70px"
           mr="s"
         />
-        <Box as="h3" m="0">
+        <Box as="h3" m="0" flex={1}>
           {fullName}
         </Box>
+        <Button 
+          variant="link" 
+          m="0" 
+          p="0"
+          onClick={() => {
+            setRecipients([id])
+            onEmail()
+            let newPath = router?.asPath?.split("/").filter(p => p !== "edit")
+            router.push([...newPath, "email"].join("/"));
+          }}
+        >
+          <Icon name="envelope" />
+        </Button>
       </Box>
 
       <Row label="Status">
