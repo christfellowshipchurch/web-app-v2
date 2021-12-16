@@ -32,9 +32,11 @@ function AvatarRow(props = {}) {
             </Box>
             
             <Button 
-                variant="link" onClick={() => props?.toggle(props?.id)}
+                variant="link" 
+                onClick={() => props?.toggle(props?.id)}
                 p="0"
                 m="0"
+                color={props?.selected ? "primary" : "neutrals.500"}
             >
                 {props?.selected ? <Icon name="checkCircle" /> : <Icon name="circle" /> }
             </Button>

@@ -17,7 +17,7 @@ import { Box, Button, Card, Icon, RichTextEditor } from 'ui-kit'
 import Styled from './GroupEmailComposer.styles'
 import AvatarRow from './AvatarRow'
 
-import { useGroupEmailRecipients, useSearchGroupMembers } from 'hooks';
+import { useCurrentUser, useGroupEmailRecipients, useSearchGroupMembers } from 'hooks';
 
 const Label = (props) => <Box 
     as="label"
@@ -37,13 +37,14 @@ const StyledCard = (props) => <Card
 const GroupEmailComposer = (props = {}) => {
     const router = useRouter()
     const modalDispatch = useModalDispatch();
+    const  { currentUser } = useCurrentUser()
     const [searchGroupMembers, { groupMembers, loading }] = useSearchGroupMembers();
     const { recipients, toggleRecipient, setRecipients } = useGroupEmailRecipients({ 
         groupId: props?.data?.id
     })
     const [submitting, setSubmitting] = useState(false)
     const [emailBody, setEmailBody] = useState("")
-    const fromEmail = "my.email@domain.com"
+    const fromEmail = currentUser?.profile?.email
     const allSelected = recipients.length >= groupMembers?.length
     const disabled = submitting;
 
@@ -137,7 +138,7 @@ const GroupEmailComposer = (props = {}) => {
                         alignItems="center"
                     >
                         <Label>
-                            Recipients
+                            {`${recipients?.length} Recipients`}
                         </Label>
 
                         <Button 
@@ -153,7 +154,6 @@ const GroupEmailComposer = (props = {}) => {
                             m="0"
                         >
                             {allSelected ? "Deselect All" : "Select All"}
-                            {allSelected ? <Icon name="circle" ml="xs" /> : <Icon name="checkCircle" ml="xs" /> }
                         </Button>
                     </Box>
                     
