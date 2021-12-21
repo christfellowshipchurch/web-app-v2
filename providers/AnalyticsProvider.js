@@ -75,7 +75,7 @@ function readyStateReducer(state, task) {
     function all(s) {
         if (typeof window === 'undefined' || typeof document === 'undefined') return false
 
-        return s?.fingerprint && s?.amplitude
+        return s?.amplitude
     }
     
     switch (task) {
