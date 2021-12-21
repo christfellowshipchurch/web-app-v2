@@ -26,10 +26,10 @@ import useForm from './useForm';
 import useGroup from './useGroup';
 import useGroupContentId from './useGroupContentId';
 import useGroupCoverImages from './useGroupCoverImages';
-import useGroupEmailRecipients from './useGroupEmailRecipients'
-import useGroupLeaders from './useGroupLeaders'
+import useGroupEmailRecipients from './useGroupEmailRecipients';
+import useGroupLeaders from './useGroupLeaders';
 import useGroupMember from './useGroupMember';
-import useGroupMembers from './useGroupMembers'
+import useGroupMembers from './useGroupMembers';
 import useGroupMemberStatus from './useGroupMemberStatus';
 import useGroupMemberStatuses from './useGroupMemberStatuses';
 import useGroupPreference from './useGroupPreference';
@@ -53,6 +53,7 @@ import useRequestPasswordChange from './useRequestPasswordChange';
 import useRequestPin from './useRequestPin';
 import useSearchContentItems from './useSearchContentItems';
 import useSearchGroups from './useSearchGroups';
+import useSendGroupEmail from './useSendGroupEmail';
 import useSearchGroupMembers from './useSearchGroupMembers';
 import useUpdateCurrentUser from './useUpdateCurrentUser';
 import useUpdateGroupCoverImage from './useUpdateGroupCoverImage';
@@ -119,6 +120,7 @@ export {
   useRequestPin,
   useSearchContentItems,
   useSearchGroups,
+  useSendGroupEmail,
   useSearchGroupMembers,
   useUpdateCurrentUser,
   useUpdateGroupCoverImage,

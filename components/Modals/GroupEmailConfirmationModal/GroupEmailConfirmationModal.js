@@ -5,39 +5,47 @@ import { useRouter } from 'next/router';
 import { useModalDispatch, hideModal } from 'providers/ModalProvider';
 
 function GroupEmailConfirmationModal(props = {}) {
-  const router = useRouter()
-  const modalDispatch = useModalDispatch()
-  
+  const router = useRouter();
+  const modalDispatch = useModalDispatch();
+
   return (
-    <Modal 
-      {...props} 
+    <Modal
+      {...props}
       maxWidth="280px"
       textAlign="center"
       onClose={() => router?.back()}
     >
-        <Icon 
-          name="paperPlane" 
-          color="success" 
-          size="72"
-        />
-        <Box as="h1" mt="base">
-          Successfully sent email.
-        </Box>
+      <Icon
+        name={props?.status === 'SUCCESS' ? 'paperPlane' : 'x'}
+        color={props?.status === 'SUCCESS' ? 'success' : 'alert'}
+        size="72"
+      />
+      <Box as="h1" mt="base">
+        {props?.statusMessage}
+      </Box>
 
-        <Button onClick={() => {
-          modalDispatch(hideModal())
-          router?.back()
-        }}>
-          Done
-        </Button>
+      <Button
+        onClick={() => {
+          modalDispatch(hideModal());
+          if (props?.status === 'SUCCESS') {
+            router?.back();
+          }
+        }}
+      >
+        Done
+      </Button>
     </Modal>
   );
 }
 
 GroupEmailConfirmationModal.propTypes = {
-  groupId: PropTypes.string.isRequired
+  status: PropTypes.string,
+  statusMessage: PropTypes.string,
 };
 
-GroupEmailConfirmationModal.defaultProps = {};
+GroupEmailConfirmationModal.defaultProps = {
+  status: 'ERROR',
+  statusMessage: 'Message was not sent.',
+};
 
 export default GroupEmailConfirmationModal;
