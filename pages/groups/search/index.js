@@ -199,7 +199,6 @@ export default function CommunitySearch() {
           <SearchField
             border="2px solid #C4C4C4"
             boxShadow="l"
-            placeholder="Search for groups..."
             handleSubmit={handleSubmit}
             handleClear={handleClearAllClick}
             handleClick={handleClick}

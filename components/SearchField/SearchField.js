@@ -1,14 +1,14 @@
 import { useCurrentBreakpoint } from 'hooks';
 import React, { useState, useEffect } from 'react';
 
-import { Box, Button, Icon, systemPropTypes, TextInput, utils } from 'ui-kit';
+import { Box, Icon, systemPropTypes, TextInput } from 'ui-kit';
 
 import Styled from './SearchField.styles';
-
 function SearchField(props = {}) {
   const currentBreakpoint = useCurrentBreakpoint();
   const [iconOnly, setIconOnly] = useState(!props?.children);
 
+  //Only show icon on mobile display for Search Button
   useEffect(() => {
     if (!!props?.children) {
       if (!!currentBreakpoint.isSmall) {
@@ -18,11 +18,18 @@ function SearchField(props = {}) {
     }
   }, [currentBreakpoint]);
 
+  // Default placeholder for group search that adjusts to mobile
+  const defaultPlaceholder = currentBreakpoint.isSmall
+    ? 'Search for a group...'
+    : "Search for a group name, class, study, or activity you're interested in...";
+
   return (
     <Styled.Container as="form" onSubmit={props.handleSubmit} {...props}>
       <TextInput
         id="text"
-        placeholder={props.placeholder}
+        placeholder={
+          props.placeholder ? props?.placeholder : defaultPlaceholder
+        }
         onChange={props.handleChange}
         containerProps={{ flex: 1 }}
         value={props.value}
