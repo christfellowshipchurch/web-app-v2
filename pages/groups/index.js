@@ -118,16 +118,16 @@ export default function Community(props = {}) {
               fontSize={{ _: '16px', md: '20px' }}
               color="white"
             >
-              Already in a group? View all of your groups{' '}
+              Already in a group?{' '}
               <Box
                 as="a"
                 color="white"
                 onClick={handleMyGroups}
                 href="/connect"
               >
-                here
-              </Box>
-              .
+                Log in
+              </Box>{' '}
+              to see your groups.
             </Box>
           </Styled.Content>
         </Styled.Hero>
@@ -136,10 +136,11 @@ export default function Community(props = {}) {
             Why Groups?
           </Box>
           <Box px="l" mx="auto" maxWidth={800}>
-            We want to help you find community, grow in your relationship with
-            God, and build the kind of friendships we all need to live out our
-            faith. Groups and classes help you know where to look for direction
-            and have the right people encouraging you along the way.
+            You weren’t meant to do life alone. You were made for community. But
+            not just any community. Groups and classes help you find people to
+            do life with so that you can know where to look for direction, and
+            have someone to keep you accountable and encouraged as you grow in
+            your relationship with God and others.
           </Box>
         </Box>
         <Box>
@@ -154,9 +155,11 @@ export default function Community(props = {}) {
                 color="secondary"
                 textAlign="center"
                 mt={{ _: 'l', lg: 0 }}
-                mb="l"
               >
-                Discover all kinds of groups
+                Discover All Kinds of Groups
+              </Box>
+              <Box as="p" textAlign="center" mb="l">
+                Tap on a group category below to see what’s available.
               </Box>
               <CommunitiesProvider Component={CommunityList} />
             </Box>
