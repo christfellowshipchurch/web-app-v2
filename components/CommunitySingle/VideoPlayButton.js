@@ -10,8 +10,7 @@ import { useModalDispatch, showModal } from 'providers/ModalProvider';
 const VIDEO_URI = {
   sisterhood:
     'https://link.theplatform.com/s/IfSiAC/media/gMIs5lxTQwK1/file.m3u8?format=redirect&formats=m3u,mpeg4',
-  crew:
-    'https://link.theplatform.com/s/IfSiAC/media/ZWXl6MnuPxWk/file.m3u8?format=redirect&formats=m3u,mpeg4',
+  crew: 'https://link.theplatform.com/s/IfSiAC/media/ZWXl6MnuPxWk/file.m3u8?format=redirect&formats=m3u,mpeg4',
   marriedPeople:
     'https://link.theplatform.com/s/IfSiAC/media/YzTluBLlGRWE/file.m3u8?format=redirect&formats=m3u,mpeg4',
   everyone:
@@ -20,6 +19,7 @@ const VIDEO_URI = {
     'https://link.theplatform.com/s/IfSiAC/media/VH3iIxwYPf_X/file.m3u8?format=redirect&formats=m3u,mpeg4',
   freedomCare:
     'https://link.theplatform.com/s/IfSiAC/media/ulPNeyTh2y55/file.m3u8?format=redirect&formats=m3u,mpeg4',
+  classes: 'http://link.theplatform.com/s/IfSiAC/media/gPUhOJHomYsB',
 };
 
 /**
