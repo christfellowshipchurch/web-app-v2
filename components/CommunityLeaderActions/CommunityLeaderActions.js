@@ -31,7 +31,7 @@ export default function CommunityLeaderActions(props) {
         display="grid"
         px={{ _: 'base', md: 'xxl' }}
         py={{ _: 'l', md: 'xxl' }}
-        gridTemplateColumns={{ _: 'repeat(1, 1fr)', md: 'repeat(3, 1fr)' }}
+        gridTemplateColumns={{ _: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)' }}
         gridColumnGap="l"
         textAlign="center"
       >
@@ -72,27 +72,6 @@ export default function CommunityLeaderActions(props) {
               rounded={true}
             >
               Learn More
-            </Button>
-          </Box>
-        </Box>
-
-        <Box mb={{ _: 'xl', md: 0 }}>
-          <Icon name="book" size="40" mb="s" color="subdued" />
-          <Box>
-            <Box as="h2" mb="s">
-              Toolbox Resources
-            </Box>
-            <Box as="p" mb="base">
-              Access all your leader and member resources.
-            </Box>
-            <Button
-              as="a"
-              size="s"
-              variant="secondary"
-              href="https://rock.christfellowship.church/myaccount"
-              rounded={true}
-            >
-              Access Toolbox
             </Button>
           </Box>
         </Box>

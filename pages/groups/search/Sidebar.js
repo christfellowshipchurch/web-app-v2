@@ -98,7 +98,7 @@ function Sidebar(props = {}) {
           onClear={handleClear}
         />
         <FilterField
-          label="Hubs"
+          label="Category"
           name="preferences"
           options={preferences?.map(({ title }) => title)}
           values={filtersState.values.preferences}

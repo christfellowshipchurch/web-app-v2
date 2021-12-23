@@ -151,7 +151,8 @@ function CommunitySingle(props = {}) {
                 {props.data?.title}
               </Box>
               <Box
-                as="p"
+                as="h3"
+                fontWeight="normal"
                 px={{ _: 's', sm: '80px', md: '140px', lg: '190px' }}
                 mb="s"
               >

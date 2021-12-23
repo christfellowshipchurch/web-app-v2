@@ -1,28 +1,37 @@
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
-import { system, utils } from 'ui-kit';
+import { system, utils, Button, Box } from 'ui-kit';
 
 const SearchField = {};
 
-const ClearButton = styled.div`
-  align-content: center;
-  align-self: center;
-  background: ${themeGet('colors.white')};
-  border-left: none;
-  border-right: none;
-  cursor: pointer;
-  display: inline-flex;
-  height: calc(100% - ${utils.rem('4px')});
+const Container = styled(Box)`
+  display: flex;
+  align-items: center;
   justify-content: center;
-  position: absolute;
-  right: ${utils.rem('100px')};
-  width: 40px;
-  zindex: 1;
+  position: relative;
+  background-color: white;
+  border-radius: ${themeGet('radii.xxl')};
+  width: 100%;
 
   ${system}
 `;
 
-SearchField.ClearButton = ClearButton;
+const SearchButton = styled(Button)`
+  align-items: center;
+  border-radius: ${themeGet('radii.xxl')};
+  display: flex;
+  margin-right: ${themeGet('space.xs')};
+  margin-bottom: ${themeGet('space.xs')};
+  margin-top: ${themeGet('space.xs')};
+  outline: none;
+  padding: 0px;
+  z-index: 1;
+
+  ${system}
+`;
+
+SearchField.SearchButton = SearchButton;
+SearchField.Container = Container;
 
 export default SearchField;
