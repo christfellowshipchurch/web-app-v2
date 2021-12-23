@@ -192,22 +192,23 @@ export default function CommunitySearch() {
               href="https://rock.gocf.org/page/2113"
               display={{ _: 'none', md: 'inline-block' }}
             >
-              Help Me Find a Group
+              Need help finding a group?
             </Button>
           </Box>
 
-          <Divider mb="l" />
           <SearchField
-            placeholder="Search for groups..."
+            border="2px solid #C4C4C4"
+            boxShadow="l"
             handleSubmit={handleSubmit}
             handleClear={handleClearAllClick}
             handleClick={handleClick}
             handleChange={handleChange}
             value={values.text || ''}
-            mb="base"
+            mb="l"
           >
             Search
           </SearchField>
+          <Divider mb="l" />
           <Box
             display="flex"
             justifyContent={

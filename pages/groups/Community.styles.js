@@ -8,37 +8,58 @@ const Community = styled.div`
   ${system}
 `;
 
-const Hero = styled.div`
-  background-image: linear-gradient(
-      rgba(246, 246, 246, 0) 70%,
-      rgba(246, 246, 246, 1) 100%
-    ),
-    url(/groups-cover-image.jpg);
-  background-size: cover;
-  background-position: center bottom;
-
-  height: 200px;
+const Content = styled.div`
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  margin-top: ${themeGet('space.l')};
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-    height: 400px;
-    background-image: linear-gradient(
-        rgba(246, 246, 246, 0) 60%,
-        rgba(246, 246, 246, 0.5) 80%,
-        rgba(246, 246, 246, 1) 100%
-      ),
-      url(/groups-cover-image.jpg);
+    margin-top: ${themeGet('space.xl')};
   }
 
-  @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
-    height: 500px;
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    margin-top: ${themeGet('space.xxl')};
   }
 
   ${system}
 `;
 
+const Hero = styled.div`
+  background-image: url(/groups-cover-image.png);
+  background-size: cover;
+  background-position: center;
+
+  height: 375px;
+
+  @media screen and (min-width: ${themeGet('breakpoints.sm')}) {
+    height: 300px;
+  }
+
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    height: 400px;
+  }
+
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    height: 450px;
+  }
+
+  ${system}
+`;
+
+const Subtitle = styled.h2`
+  color: ${themeGet('colors.secondary')};
+  padding: ${themeGet('space.s')};
+`;
+
 const Title = styled.h1`
-  color: ${themeGet('colors.primary')};
+  color: ${themeGet('colors.white')};
   font-size: ${rem('50px')};
+  text-shadow: 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.3);
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     font-size: ${rem('65px')};
@@ -50,15 +71,9 @@ const Title = styled.h1`
   ${system}
 `;
 
-const Summary = styled.p`
-  padding: ${themeGet('space.l')};
-  padding-top: 0;
-
-  ${system}
-`;
-
+Community.Content = Content;
 Community.Hero = Hero;
+Community.Subtitle = Subtitle;
 Community.Title = Title;
-Community.Summary = Summary;
 
 export default Community;
