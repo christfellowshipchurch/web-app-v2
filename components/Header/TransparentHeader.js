@@ -9,7 +9,6 @@ import { Box, systemPropTypes } from 'ui-kit';
 import { CustomLink, Logo, Nav } from 'components';
 import { useCurrentBreakpoint } from 'hooks';
 import Styled from './Header.styles';
-import ChristmasBanner from './ChristmasBanner';
 
 function TransparentHeader(props = {}) {
   const [bgColor, setBgColor] = useState('transparent');
@@ -38,9 +37,7 @@ function TransparentHeader(props = {}) {
       {...props}
       display="flex"
       flexDirection="column"
-      mt="-1.3rem"
     >
-      <ChristmasBanner position="sticky" width="115%" mb="base" />
       <Box
         display="flex"
         alignItems="center"

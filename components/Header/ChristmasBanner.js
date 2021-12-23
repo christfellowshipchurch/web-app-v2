@@ -2,7 +2,10 @@ import React from 'react';
 import { CustomLink } from 'components';
 import { Box, Button, ThemeMixin } from 'ui-kit';
 
-const ChrismasBanner = (props = {}) => (
+// 2021 ChristmasBanner for times and locations and volunteer sign up -
+// We'll leave it here for now incase we want to reuse any of this for next year.
+
+const ChristmasBanner = (props = {}) => (
   <Box
     p={{ _: 's', md: 'base' }}
     fontSize={{ _: '0.8rem', md: '1.1rem' }}
@@ -54,4 +57,4 @@ const ChrismasBanner = (props = {}) => (
 // green: #445b25
 // gold: #d08f36
 
-export default ChrismasBanner;
+export default ChristmasBanner;
