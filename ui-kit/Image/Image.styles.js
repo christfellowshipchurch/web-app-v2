@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
-import { system } from 'ui-kit';
+import Link from 'next/link';
+import { Icon, system } from 'ui-kit';
 
 const mask = ({ mask }) => {
   if (mask !== '') {
@@ -16,14 +17,27 @@ const mask = ({ mask }) => {
   return null;
 };
 
+const IconLink = styled.a`
+  position: absolute;
+  top: ${themeGet('space.xs')};
+  right: ${themeGet('space.xs')};
+  background: ${themeGet('colors.white')};
+  border-radius: ${themeGet('radii.xxl')};
+`;
+
 const StyledImage = styled.img`
   border-radius: ${themeGet('radii.base')};
   width: 100%;
   height: auto;
+  margin-left: auto;
+  margin-right: auto;
   object-fit: ${props => props.objectFit};
   aspect-ratio: ${props => props.aspectRatio};
 
   ${mask}
   ${system}
 `;
+
+StyledImage.IconLink = IconLink;
+
 export default StyledImage;
