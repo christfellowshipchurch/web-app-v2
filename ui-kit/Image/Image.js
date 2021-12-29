@@ -14,7 +14,9 @@ const Image = (props = {}) => {
         {...props}
         mask={props.mask}
         src={props.source}
-        aspectRatio={replace(props.aspectRatio, 'by', '/')}
+        aspectRatio={
+          !props?.disableRatio && replace(props.aspectRatio, 'by', '/')
+        }
       />
     </Box>
   );
@@ -30,6 +32,7 @@ Image.propTypes = {
   source: PropTypes.string,
   mask: PropTypes.string,
   download: PropTypes.bool,
+  disableRatio: PropTypes.bool,
 };
 
 Image.defaultProps = {
@@ -37,4 +40,5 @@ Image.defaultProps = {
   mask: '',
   objectFit: 'cover',
   download: false,
+  disableRatio: false,
 };

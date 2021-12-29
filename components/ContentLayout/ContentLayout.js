@@ -11,7 +11,8 @@ import {
   Longform,
   ThemeMixin,
   utils,
-  HtmlRenderer
+  HtmlRenderer,
+  Image,
 } from 'ui-kit';
 
 const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
@@ -76,7 +77,26 @@ function ContentLayout(props = {}) {
         {props.htmlContent && !props.renderContentD ? (
           <Card boxShadow="base" p={{ _: 's', md: 'base' }}>
             <Longform>
-              <HtmlRenderer htmlContent={props?.htmlContent} />
+              <HtmlRenderer
+                htmlContent={props?.htmlContent}
+                customProcessing={[
+                  {
+                    //add download button for images
+                    shouldProcessNode: function (node) {
+                      return node.name && node.name === 'img';
+                    },
+                    processNode: function (node, children) {
+                      return (
+                        <Image
+                          source={node?.attribs.src}
+                          disableRatio
+                          download
+                        />
+                      );
+                    },
+                  },
+                ]}
+              />
             </Longform>
           </Card>
         ) : (

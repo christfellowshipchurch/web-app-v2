@@ -66,7 +66,6 @@ function ContentBlock(props = {}) {
               source={props.image}
               aspectRatio={props.imageRatio}
               objectFit={props?.objectFit}
-              download={true}
             />
           </Conditional>
 

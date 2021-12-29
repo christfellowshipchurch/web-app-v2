@@ -17,12 +17,13 @@ const mask = ({ mask }) => {
   return null;
 };
 
-const IconLink = styled.a`
+const IconLink = styled.div`
   position: absolute;
   top: ${themeGet('space.xs')};
   right: ${themeGet('space.xs')};
   background: ${themeGet('colors.white')};
   border-radius: ${themeGet('radii.xxl')};
+  cursor: pointer;
 `;
 
 const StyledImage = styled.img`

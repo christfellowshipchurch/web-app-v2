@@ -9,15 +9,44 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import HtmlToReact from 'html-to-react';
 import { htmlToReactParser } from 'utils';
 
 import Styled from './HtmlRenderer.styles';
 
-const HtmlRenderer = ({ htmlContent }) => (
-  <Styled>{htmlToReactParser.parse(htmlContent)}</Styled>
-);
+const isValidNode = function () {
+  return true;
+};
 
-HtmlRenderer.propTypes = {};
-HtmlRenderer.defaultProps = {};
+const HtmlRenderer = ({ htmlContent, customProcessing }) => {
+  const processNodeDefinitions = new HtmlToReact.ProcessNodeDefinitions(React);
+
+  const processingInstructions = [
+    ...customProcessing,
+    {
+      // Anything else
+      shouldProcessNode: function (node) {
+        return true;
+      },
+      processNode: processNodeDefinitions.processDefaultNode,
+    },
+  ];
+  const parsedHtmlContent = htmlToReactParser.parseWithInstructions(
+    htmlContent,
+    isValidNode,
+    processingInstructions
+  );
+
+  return <Styled>{parsedHtmlContent}</Styled>;
+};
+
+HtmlRenderer.propTypes = {
+  htmlContent: PropTypes.object.isRequired,
+  customProcessing: PropTypes.array,
+};
+HtmlRenderer.defaultProps = {
+  htmlContent: null,
+  customProcessing: [],
+};
 
 export default HtmlRenderer;
