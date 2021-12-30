@@ -14,15 +14,9 @@ import { isEmpty } from 'lodash';
 import { parseISO, format } from 'date-fns';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
-import {
-  Box,
-  Button,
-  Icon,
-  SquareAvatar,
-  Select,
-  TextArea,
-} from 'ui-kit';
+import { Box, Button, Icon, SquareAvatar, Select, TextArea } from 'ui-kit';
 import { Row } from './GroupMemberDetails.components';
+import Styled from './GroupMemberDetails.styles';
 import { useGroupEmailRecipients } from 'hooks';
 
 const sortAlphabetically = (a, b) => {
@@ -45,10 +39,10 @@ const GroupMemberDetails = ({
   onCancel,
   onSave: callback,
   groupId,
-  onEmail
+  onEmail,
 }) => {
-  const router = useRouter()
-  const { setRecipients } = useGroupEmailRecipients({ groupId })
+  const router = useRouter();
+  const { setRecipients } = useGroupEmailRecipients({ groupId });
   const [status, setStatus] = useState(initialStatus?.id);
   const [inactiveStatusReason, setInactiveStatusReason] = useState(
     initialStatus?.inactiveReason?.id || inactiveStatusReasons[0]?.id
@@ -92,15 +86,15 @@ const GroupMemberDetails = ({
         <Box as="h3" m="0" flex={1}>
           {fullName}
         </Box>
-        <Button 
-          variant="link" 
-          m="0" 
+        <Button
+          variant="link"
+          m="0"
           p="0"
           onClick={() => {
-            setRecipients([id])
-            onEmail()
-            let newPath = router?.asPath?.split("/").filter(p => p !== "edit")
-            router.push([...newPath, "email"].join("/"));
+            setRecipients([id]);
+            onEmail();
+            let newPath = router?.asPath?.split('/').filter(p => p !== 'edit');
+            router.push([...newPath, 'email'].join('/'));
           }}
         >
           <Icon name="envelope" />
@@ -145,27 +139,27 @@ const GroupMemberDetails = ({
 
       {!isEmpty(person?.birthDate) && (
         <Row label="Birthday">
-          <Box as="h4">
+          <Styled.Label as="h4">
             {format(parseISO(person?.birthDate), 'MMMM d, yyyy')}
-          </Box>
+          </Styled.Label>
         </Row>
       )}
 
       {!isEmpty(person?.phoneNumber) && (
         <Row label="Phone Number">
-          <Box as="h4">{person?.phoneNumber}</Box>
+          <Styled.Label as="h4">{person?.phoneNumber}</Styled.Label>
         </Row>
       )}
 
       {!isEmpty(person?.email) && (
         <Row label="Email">
-          <Box as="h4">{person?.email}</Box>
+          <Styled.Label as="h4">{person?.email}</Styled.Label>
         </Row>
       )}
 
       {!isEmpty(person?.address) && (
         <Row label="Address">
-          <Box as="h4">{renderAddress(person?.address)}</Box>
+          <Styled.Label as="h4">{renderAddress(person?.address)}</Styled.Label>
         </Row>
       )}
 
