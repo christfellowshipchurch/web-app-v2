@@ -1,53 +1,65 @@
-import React from 'react';
+import { useCurrentBreakpoint } from 'hooks';
+import React, { useState, useEffect } from 'react';
 
-import { Box, Button, Icon, systemPropTypes, TextInput, utils } from 'ui-kit';
+import { Box, Icon, systemPropTypes, TextInput } from 'ui-kit';
 
 import Styled from './SearchField.styles';
-
 function SearchField(props = {}) {
+  const currentBreakpoint = useCurrentBreakpoint();
+  const [iconOnly, setIconOnly] = useState(!props?.children);
+
+  //Only show icon on mobile display for Search Button
+  useEffect(() => {
+    if (!!props?.children) {
+      if (!!currentBreakpoint.isSmall) {
+        return setIconOnly(true);
+      }
+      return setIconOnly(false);
+    }
+  }, [currentBreakpoint]);
+
+  // Default placeholder for group search that adjusts to mobile
+  const defaultPlaceholder = currentBreakpoint.isSmall
+    ? 'Search for a group...'
+    : "Search for a group name, class, study, or activity you're interested in...";
+
   return (
-    <Box
-      as="form"
-      onSubmit={props.handleSubmit}
-      display="flex"
-      position="relative"
-      {...props}
-    >
-      <Icon
-        name="search"
-        color="border"
-        position="absolute"
-        zIndex="1"
-        marginLeft={utils.rem('12px')}
-        size="20"
-      />
+    <Styled.Container as="form" onSubmit={props.handleSubmit} {...props}>
       <TextInput
         id="text"
-        placeholder={props.placeholder}
+        placeholder={
+          props.placeholder ? props?.placeholder : defaultPlaceholder
+        }
         onChange={props.handleChange}
         containerProps={{ flex: 1 }}
         value={props.value}
-        borderTopRightRadius="0"
-        borderBottomRightRadius="0"
-        paddingLeft={utils.rem('38px')}
-        borderRight="none"
+        border="none"
+        mx="base"
+        mb={0}
       />
       {props.value !== '' && props.handleClear && (
-        <Styled.ClearButton onClick={props.handleClear}>
-          <Icon name="x" color="border" size="20" />
-        </Styled.ClearButton>
+        <Icon
+          onClick={props.handleClear}
+          zIndex={1}
+          name="x"
+          color="border"
+          size="20"
+          mr="s"
+        />
       )}
-      <Button
+      <Styled.SearchButton
         type="submit"
         onClick={props.handleClick}
-        borderTopLeftRadius="0"
-        borderBottomLeftRadius="0"
-        outline="none"
-        lineHeight="1"
+        pl={!iconOnly ? 's' : 0}
       >
-        {props.children}
-      </Button>
-    </Box>
+        <Icon name="search" color="white" size="22" mx="xs" my="xs" />
+        {!iconOnly && (
+          <Box as="p" my="xs" mr="base">
+            {props?.children}
+          </Box>
+        )}
+      </Styled.SearchButton>
+    </Styled.Container>
   );
 }
 
