@@ -16,6 +16,14 @@ const GroupEmailComposer = styled.div`
   ${system}
 `;
 
+const EmailLabel = styled.h3`
+  color: ${themeGet('colors.secondary')};
+  margin-bottom: 0px;
+  overflow-wrap: break-word;
+
+  ${system}
+`;
+
 const Grid = styled.div`
   display: grid;
   gap: 15px;
@@ -69,5 +77,6 @@ const SubjectInput = styled.input`
 
 GroupEmailComposer.Grid = Grid;
 GroupEmailComposer.SubjectInput = SubjectInput;
+GroupEmailComposer.EmailLabel = EmailLabel;
 
 export default GroupEmailComposer;
