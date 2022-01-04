@@ -54,6 +54,16 @@ const colors = {
       900: '#353535',
     },
 
+    hues: {
+      blue: OCEAN,
+      green: SUCCESS,
+      mint: COTTON_CANDY,
+      orange: TANGERINE,
+      peach: PEACH,
+      red: APPLE,
+      yellow: LEMON,
+    },
+
     alert: ALERT,
     warning: WARNING,
     success: SUCCESS,
@@ -89,6 +99,16 @@ const colors = {
       700: '#cecece',
       800: '#e7e7e7',
       900: WHITE_SMOKE,
+    },
+
+    hues: {
+      blue: OCEAN,
+      green: SUCCESS,
+      mint: COTTON_CANDY,
+      orange: TANGERINE,
+      peach: PEACH,
+      red: APPLE,
+      yellow: LEMON,
     },
 
     alert: ALERT,

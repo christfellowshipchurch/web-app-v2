@@ -40,8 +40,9 @@ const Content = styled.div`
   box-shadow: ${themeGet('shadows.xl')};
   left: 50%;
   margin-top: -${themeGet('space.xxl')};
-  max-height: 100vh;
   max-width: 100vw;
+  max-width: 100vw;
+  overflow: scroll;
   padding: ${themeGet('space.l')};
   padding-top: ${themeGet('space.xl')};
   position: fixed;
@@ -56,6 +57,7 @@ const Content = styled.div`
     padding: ${themeGet('space.base')};
     padding-top: ${themeGet('space.xl')};
     width: calc(100vw - ${themeGet('space.base')});
+    max-height: 85vh;
   }
 `;
 

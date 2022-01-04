@@ -13,7 +13,9 @@ import EventProvider from './EventProvider';
 import FeatureFeedProvider from './FeatureFeedProvider';
 import GroupCoverImagesProvider from './GroupCoverImagesProvider';
 import GroupFiltersProvider from './GroupFiltersProvider';
+import GroupLeadersProvider from './GroupLeadersProvider'
 import GroupManageProvider from './GroupManageProvider';
+import GroupMemberProvider from './GroupMemberProvider';
 import GroupProvider from './GroupProvider';
 import GroupResourceOptionsProvider from './GroupResourceOptionsProvider';
 import GroupsProvider from './GroupsProvider';
@@ -42,7 +44,9 @@ export {
   FeatureFeedProvider,
   GroupCoverImagesProvider,
   GroupFiltersProvider,
+  GroupLeadersProvider,
   GroupManageProvider,
+  GroupMemberProvider,
   GroupProvider,
   GroupResourceOptionsProvider,
   GroupsProvider,

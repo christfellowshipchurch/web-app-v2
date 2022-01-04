@@ -6,13 +6,14 @@ export const GROUP_RESOURCE_FRAGMENT = gql`
     action
     relatedNode {
       id
-      ... on ContentItem {
+      ... on ContentNode {
         coverImage {
           sources {
             uri
           }
         }
       }
+
       ... on Url {
         url
       }
@@ -148,6 +149,7 @@ export const GET_GROUP = gql`
       }
     }
   }
+
   ${GROUP_RESOURCE_FRAGMENT}
   ${GROUP_ITEM_FRAGMENT}
   ${GROUP_FRAGMENT}
@@ -161,6 +163,7 @@ function useGroup(options = {}) {
 
   return {
     group: query?.data?.node || [],
+    groupLeaders: query?.data?.groupLeaders || [],
     ...query,
   };
 }

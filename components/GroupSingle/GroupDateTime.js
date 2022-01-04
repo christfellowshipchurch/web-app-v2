@@ -44,7 +44,7 @@ const GroupDateTime = ({
       mb="base"
       p={{ _: 's', md: 'base' }}
     >
-      <Box as="h5" color="subdued">
+      <Box as="h5" color="neutrals.500">
         NEXT MEETING
       </Box>
       <Box as="h3" mb="base">
