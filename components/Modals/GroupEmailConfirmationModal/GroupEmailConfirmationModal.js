@@ -18,9 +18,9 @@ function GroupEmailConfirmationModal(props = {}) {
       <Icon
         name={props?.status === 'SUCCESS' ? 'paperPlane' : 'x'}
         color={props?.status === 'SUCCESS' ? 'success' : 'alert'}
-        size="72"
+        size="70"
       />
-      <Box as="h1" mt="base">
+      <Box as="h3" m="l">
         {props?.statusMessage}
       </Box>
 

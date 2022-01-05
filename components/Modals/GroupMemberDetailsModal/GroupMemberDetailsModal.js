@@ -11,7 +11,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useApolloClient } from '@apollo/client';
 
-import { hideModal, useModalDispatch } from 'providers/ModalProvider';
+import { hideModal, showModal, useModalDispatch } from 'providers/ModalProvider';
 import {
   useEditGroupMember,
   useGroupMember,
@@ -52,6 +52,8 @@ const GroupMemberDetailsModal = ({ id, onSave: callback, groupId, onEmail }) => 
   });
   const { groupMember, loading } = useGroupMember({ variables: { id } });
   const [isLoading, setIsLoading] = useState(loading);
+  const [status, setStatus] = useState('IDLE');
+  const [statusMessage, setStatusMessage] = useState('STATUS MESSAGE');
 
   const onCancel = () => {
     modalDispatch(hideModal());
@@ -65,15 +67,23 @@ const GroupMemberDetailsModal = ({ id, onSave: callback, groupId, onEmail }) => 
   }) => {
     setIsLoading(true);
     // note : only run the mutation if the value has actually changed
-    const statusPromise = () => {
+    const statusPromise = async() => {
       if (status !== groupMember.status.id) {
-        return updateStatus({
-          variables: {
-            groupMemberId,
-            groupMemberStatusId: status,
-            inactiveStatusReasonId: inactiveStatusReason,
-          },
-        });
+        try {
+          const response = await updateStatus({
+            variables: {
+              groupMemberId,
+              groupMemberStatusId: status,
+              inactiveStatusReasonId: inactiveStatusReason,
+            },
+          });
+          setStatusMessage('User successfully updated');
+          setStatus('SUCCESS');
+        } catch (e) {
+          setStatusMessage(e?.message ?? 'Could not save.');
+          setStatus('ERROR');
+          return;
+        }
       }
 
       return Promise.resolve();
@@ -99,6 +109,17 @@ const GroupMemberDetailsModal = ({ id, onSave: callback, groupId, onEmail }) => 
   useEffect(() => {
     setIsLoading(loading);
   }, [loading]);
+
+  useEffect(() => {
+    if (status === 'IDLE' || status === 'SUCCESS') return;
+
+    modalDispatch(
+      showModal('GroupEmailConfirmation', {
+        status,
+        statusMessage,
+      })
+    );
+  }, [status]);
 
   return (
     <Modal>
