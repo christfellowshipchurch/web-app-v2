@@ -1,31 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { Icon } from 'ui-kit';
+import { Box, Icon } from 'ui-kit';
 import Styled from './Image.styles';
-
-function downloadImage(src) {
-  const img = new Image();
-  img.crossOrigin = ''; // This tells the browser to request cross-origin access when trying to download the image data.
-  // ref: https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_enabled_image#Implementing_the_save_feature
-  img.src = src;
-  img.onload = () => {
-    // create Canvas
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    canvas.width = img.width;
-    canvas.height = img.height;
-    ctx.drawImage(img, 0, 0);
-    // create a tag
-    const a = document.createElement('a');
-    a.download = 'download.png';
-    a.href = canvas.toDataURL('image/png');
-    a.click();
-  };
-}
 
 const DownloadIcon = (props = {}) => {
   const [downloadState, setDownloadState] = useState(false);
+  const [isShown, setIsShown] = useState(false);
 
   let iconProps = downloadState
     ? {
@@ -33,23 +14,42 @@ const DownloadIcon = (props = {}) => {
         size: 14,
         mx: 5,
         my: 3,
+        color: 'tertiary',
       }
     : {
         name: 'download',
         size: 14,
         m: 'xs',
         mt: 1,
+        mr: 6,
+        color: 'secondary',
       };
 
   return (
-    <Styled.IconLink
+    <Styled.DownloadLink
       onClick={() => {
-        downloadImage(props?.source);
         setDownloadState(true);
       }}
+      onMouseEnter={() => setIsShown(true)}
+      onMouseLeave={() => setIsShown(false)}
+      download
+      href={props?.source}
+      target="_blank"
     >
-      <Icon {...iconProps} color="primary" />
-    </Styled.IconLink>
+      <Icon {...iconProps} />
+      {isShown && (
+        <Box
+          as="p"
+          color={downloadState ? 'tertiary' : 'secondary'}
+          fontSize="0.8rem"
+          fontWeight="bold"
+          pb="1px"
+          pr="5px"
+        >
+          {downloadState ? 'Downloaded' : 'Download'}
+        </Box>
+      )}
+    </Styled.DownloadLink>
   );
 };
 

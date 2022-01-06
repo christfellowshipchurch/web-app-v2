@@ -17,28 +17,39 @@ const mask = ({ mask }) => {
   return null;
 };
 
-const IconLink = styled.div`
-  position: absolute;
-  top: ${themeGet('space.xs')};
-  right: ${themeGet('space.xs')};
+const DownloadLink = styled.a`
+  align-items: center;
   background: ${themeGet('colors.white')};
   border-radius: ${themeGet('radii.xxl')};
-  cursor: pointer;
+  display: flex;
+  height: 25px;
+  justify-content: center;
+  overflow: hidden;
+  position: absolute;
+  right: ${themeGet('space.xs')};
+  top: ${themeGet('space.xs')};
+  transition: width ease-in-out 0.3s;
+  width: 26px;
+
+  :hover {
+    width: 110px;
+    cursor: pointer;
+  }
 `;
 
 const StyledImage = styled.img`
+  aspect-ratio: ${props => props.aspectRatio};
   border-radius: ${themeGet('radii.base')};
-  width: 100%;
   height: auto;
   margin-left: auto;
   margin-right: auto;
   object-fit: ${props => props.objectFit};
-  aspect-ratio: ${props => props.aspectRatio};
+  width: 100%;
 
   ${mask}
   ${system}
 `;
 
-StyledImage.IconLink = IconLink;
+StyledImage.DownloadLink = DownloadLink;
 
 export default StyledImage;
