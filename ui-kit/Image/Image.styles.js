@@ -17,13 +17,16 @@ const mask = ({ mask }) => {
 };
 
 const StyledImage = styled.img`
-  border-radius: ${themeGet('radii.base')};
-  width: 100%;
-  height: auto;
-  object-fit: ${props => props.objectFit};
   aspect-ratio: ${props => props.aspectRatio};
+  border-radius: ${themeGet('radii.base')};
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: ${props => props.objectFit};
+  width: 100%;
 
   ${mask}
   ${system}
 `;
+
 export default StyledImage;
