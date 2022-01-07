@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { Box, Icon } from 'ui-kit';
-import Styled from './Image.styles';
+import Styled from './Img.styles';
 
-const DownloadIcon = (props = {}) => {
+const DownloadButton = (props = {}) => {
   const [status, setStatus] = useState("IDLE") // ACTIVE | DONE
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const DownloadIcon = (props = {}) => {
   }, [status])
 
   return (
-    <Styled.DownloadLink
+    <Styled.DownloadButton
       status={status}
       onClick={() => {
         setStatus("DONE");
@@ -44,16 +44,16 @@ const DownloadIcon = (props = {}) => {
       >
         {status === "DONE" ? 'Downloaded' : "Download"}
       </Box>
-    </Styled.DownloadLink>
+    </Styled.DownloadButton>
   );
 };
 
-DownloadIcon.propTypes = {
+DownloadButton.propTypes = {
   source: PropTypes.string,
 };
 
-DownloadIcon.defaultProps = {
+DownloadButton.defaultProps = {
   source: '',
 };
 
-export default DownloadIcon;
+export default DownloadButton;
