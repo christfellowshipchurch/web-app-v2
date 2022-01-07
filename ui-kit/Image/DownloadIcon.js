@@ -1,54 +1,49 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { Box, Icon } from 'ui-kit';
 import Styled from './Image.styles';
 
 const DownloadIcon = (props = {}) => {
-  const [downloadState, setDownloadState] = useState(false);
-  const [isShown, setIsShown] = useState(false);
+  const [status, setStatus] = useState("IDLE") // ACTIVE | DONE
 
-  let iconProps = downloadState
-    ? {
-        name: 'check',
-        size: 14,
-        mx: 5,
-        my: 3,
-        color: 'tertiary',
-      }
-    : {
-        name: 'download',
-        size: 14,
-        m: 'xs',
-        mt: 1,
-        mr: 6,
-        color: 'secondary',
-      };
+  useEffect(() => {
+    if (status === "DONE") {
+      setTimeout(() => {
+        setStatus("IDLE")
+      }, 2500)
+    }
+  }, [status])
 
   return (
     <Styled.DownloadLink
+      status={status}
       onClick={() => {
-        setDownloadState(true);
+        setStatus("DONE");
       }}
-      onMouseEnter={() => setIsShown(true)}
-      onMouseLeave={() => setIsShown(false)}
+      onMouseEnter={() => setStatus("ACTIVE")}
+      onMouseLeave={() => {
+        if (status === "DONE") return
+        setStatus("IDLE")
+      }}
+      href={`/api/image?src=${props?.source}`}
       download
-      href={props?.source}
-      target="_blank"
     >
-      <Icon {...iconProps} />
-      {isShown && (
-        <Box
-          as="p"
-          color={downloadState ? 'tertiary' : 'secondary'}
-          fontSize="0.8rem"
-          fontWeight="bold"
-          pb="1px"
-          pr="5px"
-        >
-          {downloadState ? 'Downloaded' : 'Download'}
-        </Box>
-      )}
+      <Icon 
+        name={status === "DONE" ? 'check' : 'download'}
+        size={14}
+        color='primary'
+      />
+
+      <Box
+        as="span"
+        color={"primary"}
+        fontSize="0.8rem"
+        fontWeight="bold"
+        ml={status === "IDLE" ? "0px" : "3px"}
+      >
+        {status === "DONE" ? 'Downloaded' : "Download"}
+      </Box>
     </Styled.DownloadLink>
   );
 };
