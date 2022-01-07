@@ -5,13 +5,13 @@ import { Box, Icon } from 'ui-kit';
 import Styled from './Img.styles';
 
 const DownloadButton = (props = {}) => {
-  const [status, setStatus] = useState('IDLE'); // ACTIVE | DONE
+  const [status, setStatus] = useState('IDLE'); // IDLE | ACTIVE | DONE
 
   useEffect(() => {
     if (status === 'DONE') {
       setTimeout(() => {
         setStatus('IDLE');
-      }, 2500);
+      }, 3500);
     }
   }, [status]);
 
@@ -27,17 +27,17 @@ const DownloadButton = (props = {}) => {
         setStatus('IDLE');
       }}
       href={`/api/image?src=${props?.source}`}
-      download
+      download="ChristFellowshipChurch"
     >
       <Icon
         name={status === 'DONE' ? 'check' : 'download'}
         size={14}
-        color={status === 'DONE' ? 'sucess' : 'secondary'}
+        color={status === 'DONE' ? 'success' : 'black'}
       />
 
       <Box
         as="span"
-        color={status === 'DONE' ? 'sucess' : 'secondary'}
+        color={status === 'DONE' ? 'success' : 'black'}
         fontSize="0.8rem"
         fontWeight="bold"
         ml={status === 'IDLE' ? '0px' : '3px'}
