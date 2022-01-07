@@ -10,42 +10,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import HtmlToReact from 'html-to-react';
-import isEmpty from 'lodash/isEmpty'
+import isEmpty from 'lodash/isEmpty';
 import { htmlToReactParser } from 'utils';
 
 import Styled from './HtmlRenderer.styles';
-import ImgTag from './tags/Img'
+import ImgTag from './tags/Img';
 
 const isValidNode = function () {
   return true;
 };
 
-const defualtProcessing = [
+const defaultProcessing = [
   {
     //add download button for images
-    shouldProcessNode: function(node) {
+    shouldProcessNode: function (node) {
       return node?.name && node?.name === 'img' && !isEmpty(node?.attribs?.src);
     },
-    processNode: function(node, children) {
-      return (
-        <ImgTag
-          source={node?.attribs?.src}
-          disableRatio
-        />
-      );
+    processNode: function (node, children) {
+      return <ImgTag source={node?.attribs?.src} disableRatio />;
     },
   },
-]
+];
 
 const HtmlRenderer = ({ htmlContent, customProcessing }) => {
   const processNodeDefinitions = new HtmlToReact.ProcessNodeDefinitions(React);
 
   const processingInstructions = [
-    ...defualtProcessing,
+    ...defaultProcessing,
     ...customProcessing,
     {
       // Anything else
-      shouldProcessNode: function(node) {
+      shouldProcessNode: function (node) {
         return true;
       },
       processNode: processNodeDefinitions.processDefaultNode,

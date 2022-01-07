@@ -5,44 +5,44 @@ import { Box, Icon } from 'ui-kit';
 import Styled from './Img.styles';
 
 const DownloadButton = (props = {}) => {
-  const [status, setStatus] = useState("IDLE") // ACTIVE | DONE
+  const [status, setStatus] = useState('IDLE'); // ACTIVE | DONE
 
   useEffect(() => {
-    if (status === "DONE") {
+    if (status === 'DONE') {
       setTimeout(() => {
-        setStatus("IDLE")
-      }, 2500)
+        setStatus('IDLE');
+      }, 2500);
     }
-  }, [status])
+  }, [status]);
 
   return (
     <Styled.DownloadButton
       status={status}
       onClick={() => {
-        setStatus("DONE");
+        setStatus('DONE');
       }}
-      onMouseEnter={() => setStatus("ACTIVE")}
+      onMouseEnter={() => setStatus('ACTIVE')}
       onMouseLeave={() => {
-        if (status === "DONE") return
-        setStatus("IDLE")
+        if (status === 'DONE') return;
+        setStatus('IDLE');
       }}
       href={`/api/image?src=${props?.source}`}
       download
     >
-      <Icon 
-        name={status === "DONE" ? 'check' : 'download'}
+      <Icon
+        name={status === 'DONE' ? 'check' : 'download'}
         size={14}
-        color='primary'
+        color={status === 'DONE' ? 'sucess' : 'secondary'}
       />
 
       <Box
         as="span"
-        color={"primary"}
+        color={status === 'DONE' ? 'sucess' : 'secondary'}
         fontSize="0.8rem"
         fontWeight="bold"
-        ml={status === "IDLE" ? "0px" : "3px"}
+        ml={status === 'IDLE' ? '0px' : '3px'}
       >
-        {status === "DONE" ? 'Downloaded' : "Download"}
+        {status === 'DONE' ? 'Downloaded' : 'Download'}
       </Box>
     </Styled.DownloadButton>
   );
