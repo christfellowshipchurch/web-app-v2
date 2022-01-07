@@ -7,6 +7,8 @@ import { AppProvider } from 'providers';
 import 'stream-chat-react/dist/css/index.css';
 import './StreamChatOverrides.css';
 
+import 'react-quill/dist/quill.snow.css'
+
 // Tracks the route changes and adds a bar to the top.
 configureNProgress();
 

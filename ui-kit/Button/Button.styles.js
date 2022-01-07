@@ -11,6 +11,12 @@ export const primaryHover = () => props => {
   return Color(primaryColor).saturate(0.1).darken(0.35).hex()
 };
 
+export const primarySubdued = () => props => {
+  const primaryColor = themeGet('colors.primary')(props)
+
+  return Color(primaryColor).desaturate(0.15).lighten(1.5).hex()
+};
+
 const primarySubduedHover = () => props => {
   const primaryColor = themeGet('colors.primary')(props)
 
@@ -64,16 +70,16 @@ const variant = ({ variant, active, hoverColor }) => props => {
 
   if (variant === 'chip') {
     return css`
-      background-color: ${themeGet('colors.paper')};
-      color: ${themeGet('colors.neutrals.600')};
-      border-color: ${themeGet('colors.neutrals.600')};
+      background-color: ${primarySubdued};
+      color: ${themeGet('colors.primary')};
+      border-color: ${themeGet('colors.primary')};
 
       &:active,
       &:focus,
       &:hover {
-        background-color: ${themeGet('colors.neutrals.200')};
-        border-color: ${themeGet('colors.fg')};
-        color: ${themeGet('colors.fg')};
+        background-color: ${primarySubdued};
+        color: ${themeGet('colors.primary')};
+        border-color: ${themeGet('colors.primary')};
       }
     `;
   }
@@ -112,16 +118,16 @@ const status = ({ status }) => props => {
 
   if (status === 'SELECTED') {
     return css`
-      color: ${themeGet('colors.primary')};
-      background-color: ${primaryHover};
+      color: ${themeGet('colors.white')};
+      background-color: ${themeGet('colors.primary')};
       border-color: ${themeGet('colors.primary')};
 
       &:active,
       &:focus,
       &:hover {
-        background-color: ${primarySubduedHover};
-        border-color: ${primaryHover};
-        color: ${primaryHover};
+        color: ${themeGet('colors.white')};
+        background-color: ${themeGet('colors.primary')};
+        border-color: ${themeGet('colors.primary')};
       }
     `;
   }
@@ -147,7 +153,7 @@ const active = ({ active, variant }) => props => {
 
 const Button = styled.button`
   background-color: ${themeGet('colors.primary')};
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   border-radius: ${themeGet('radii.s')};
   color: ${themeGet('colors.white')};
   cursor: pointer;

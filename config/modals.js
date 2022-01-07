@@ -1,9 +1,12 @@
 import DefaultModal from 'ui-kit/Modal';
 import {
+  AddGroupMemberModal,
   AuthModal,
   ConnectModal,
   GroupDetailsModal,
+  GroupEmailConfirmationModal,
   GroupFilterModal,
+  GroupMemberDetailsModal,
   GroupNotifyMeModal,
   NodeSingleModal,
   WelcomeModal,
@@ -14,6 +17,10 @@ const modals = [
   {
     title: 'Default',
     component: DefaultModal,
+  },
+  {
+    title: 'AddGroupMember',
+    component: AddGroupMemberModal,
   },
   {
     title: 'Auth',
@@ -28,8 +35,16 @@ const modals = [
     component: GroupDetailsModal,
   },
   {
+    title: "GroupEmailConfirmation",
+    component: GroupEmailConfirmationModal
+  },
+  {
     title: 'GroupFilter',
     component: GroupFilterModal,
+  },
+  {
+    title: 'GroupMemberDetails',
+    component: GroupMemberDetailsModal,
   },
   {
     title: 'GroupNotifyMe',

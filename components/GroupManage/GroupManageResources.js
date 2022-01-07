@@ -2,7 +2,8 @@ import React from 'react';
 
 import { GroupResourceOptionsProvider } from 'providers';
 import { useGroupManage, update } from 'providers/GroupManageProvider';
-import { Box, Icon, List, Menu } from 'ui-kit';
+import { Box, Button, Icon, List, Menu } from 'ui-kit';
+import { CardTitle, SmallPillButton } from './GroupManage.components';
 
 import AddResourceContent from './AddResourceContent';
 import AddResourceLink from './AddResourceLink';
@@ -52,25 +53,10 @@ function GroupManageResources(props = {}) {
   return (
     <>
       <Box alignItems="center" display="flex" mb="base">
-        <Box as="h2" flexGrow="1" mb="0">
-          Resources
-        </Box>
+        <CardTitle title="Resources" />
         <Menu
           renderTrigger={({ toggle }) => (
-            <Box
-              pl="xs"
-              py="xs"
-              border={'2px solid'}
-              backgroundColor="white"
-              borderRadius="7px"
-              as="a"
-              href="#0"
-              onClick={toggle}
-              textDecoration="none"
-              fontWeight="bold"
-            >
-              Add <Icon name="caretDown" position="relative" top="2px" />
-            </Box>
+            <SmallPillButton onClick={toggle} icon="plus" title="Add" />
           )}
           side="right"
         >
@@ -85,7 +71,7 @@ function GroupManageResources(props = {}) {
                   px="s"
                   textDecoration="none"
                 >
-                  Add URL
+                  Add Link
                 </Box>
               </Box>
               <Box as="li">

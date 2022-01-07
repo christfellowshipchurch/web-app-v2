@@ -80,18 +80,18 @@ const GroupCard = (props = {}) => {
               heroAvatars
                 .slice(0, maxAvatars)
                 .map((n, i) => (
-                  <Avatar
-                    height={heroAvatars.length > 3 ? '60px' : '80px'}
+                  <SquareAvatar
+                    height={heroAvatars.length > 3 ? '80px' : '100px'}
                     width={heroAvatars.length > 3 ? '60px' : '80px'}
                     key={i}
                     mr={props.heroAvatars.length > 1 ? 'xs' : null}
-                    name={`${n.node?.firstName} ${n.node?.lastName}`}
-                    src={n.node?.photo?.uri}
+                    name={`${n?.firstName} ${n?.lastName}`}
+                    src={n?.photo?.uri}
                   />
                 ))
             ) : (
-              <Avatar
-                height="80px"
+              <SquareAvatar
+                height="100px"
                 name="Group Leader"
                 src={false}
                 width="80px"
@@ -142,7 +142,7 @@ const GroupCard = (props = {}) => {
         )}
         {props.avatars?.length > 0 && (
           <Box display="flex" gridColumnGap="s">
-            {props.avatars.slice(0, maxAvatars).map((n, i = 2) => (
+            {props.avatars.slice(0, maxAvatars).map((n, i) => (
               <Box
                 key={i}
                 display="flex"
@@ -156,7 +156,8 @@ const GroupCard = (props = {}) => {
                   width="100%"
                   height="100%"
                   name="Group Member"
-                  src={n.node?.photo?.uri}
+                  src={n?.photo?.uri}
+                  name="Group Member"
                 />
                 {avatarsDiff > 0 && props.avatars.length === i + 1 && (
                   <Styled.AvatarCount>{`+${avatarsDiff}`}</Styled.AvatarCount>

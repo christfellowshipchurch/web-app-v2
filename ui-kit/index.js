@@ -23,6 +23,7 @@ import DefaultCard from './DefaultCard';
 import Divider from './Divider';
 import FormLabel from './FormLabel';
 import GroupCard from './GroupCard';
+import GroupMemberStatusBadge from './GroupMemberStatusBadge';
 import HorizontalHighlightCard from './HorizontalHighlightCard';
 import HtmlRenderer from './HtmlRenderer'
 import Icon from './Icon';
@@ -35,9 +36,11 @@ import Modal from './Modal';
 import PaginationStepper from './PaginationStepper';
 import PrayerCard from './PrayerCard';
 import Radio from './Radio';
+import RichTextEditor from './RichTextEditor';
 import RowCard from './RowCard';
 import Select from './Select';
 import SquareAvatar from './SquareAvatar';
+import TextArea from './TextArea';
 import TextInput from './TextInput';
 import ValueStack from './ValueStack';
 
@@ -65,6 +68,7 @@ export {
   Divider,
   FormLabel,
   GroupCard,
+  GroupMemberStatusBadge,
   HorizontalHighlightCard,
   HtmlRenderer,
   Icon,
@@ -77,9 +81,11 @@ export {
   PaginationStepper,
   PrayerCard,
   Radio,
+  RichTextEditor,
   RowCard,
   Select,
   SquareAvatar,
+  TextArea,
   TextInput,
   ValueStack,
   // ====================
