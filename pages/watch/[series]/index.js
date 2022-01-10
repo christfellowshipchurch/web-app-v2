@@ -1,12 +1,12 @@
-import { LargeImage, Layout } from 'components';
-import { initializeApollo } from 'lib/apolloClient';
-import { Box, Button, Heading, Section } from 'ui-kit';
-import IDS from 'config/ids';
-import { useRouter } from 'next/router';
-import { GET_MESSAGE_SERIES } from 'hooks/useMessageSeries';
-import { getChannelId, getMetaData, getSlugFromURL } from 'utils';
-import { useState } from 'react';
 import { useLazyQuery } from '@apollo/client';
+import { LargeImage, Layout } from 'components';
+import IDS from 'config/ids';
+import { GET_MESSAGE_SERIES } from 'hooks/useMessageSeries';
+import { initializeApollo } from 'lib/apolloClient';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { Box, Button, Heading } from 'ui-kit';
+import { getChannelId, getMetaData, getSlugFromURL } from 'utils';
 
 export default function Series({ item, dropdownData } = {}) {
   const router = useRouter();

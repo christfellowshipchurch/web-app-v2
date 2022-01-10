@@ -1,31 +1,42 @@
+import { useLazyQuery } from '@apollo/client';
 import { LargeImage, Layout, MainPhotoHeader } from 'components';
-import { GET_MESSAGE_CHANNEL } from 'hooks/useMessageChannel';
-import { Box, Button, Longform, Section } from 'ui-kit';
-import { useRouter } from 'next/router';
-import { getIdSuffix, getMetaData, getChannelId, getSlugFromURL } from 'utils';
-import { useTheme } from 'styled-components';
-import { useState } from 'react';
-import { useQuery } from '@apollo/client';
-import { format } from 'date-fns';
-import { initializeApollo } from 'lib/apolloClient';
 import IDS from 'config/ids';
-import { GET_MESSAGE_SERIES } from 'hooks/useMessageSeries';
+import 'core-js/features/promise';
+import { format } from 'date-fns';
 import { GET_CONTENT_BY_SLUG } from 'hooks/useContentBySlug';
+import { GET_MESSAGE_CHANNEL } from 'hooks/useMessageChannel';
+import { GET_MESSAGE_SERIES } from 'hooks/useMessageSeries';
+import { initializeApollo } from 'lib/apolloClient';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { useTheme } from 'styled-components';
+import { Box, Button, Longform, Section } from 'ui-kit';
+import { getChannelId, getIdSuffix, getMetaData, getSlugFromURL } from 'utils';
 
-export default function Channel({ item, dropdownData } = {}) {
+export default function Channel({ item, dropdownData, messageChannel } = {}) {
   const router = useRouter();
   const theme = useTheme();
 
-  const [videos, setVideos] = useState([]);
-  const [cursor, setCursor] = useState();
+  const [videos, setVideos] = useState(
+    messageChannel?.childContentItemsConnection?.edges || []
+  );
+  const [cursor, setCursor] = useState(
+    messageChannel?.childContentItemsConnection?.pageInfo?.endCursor
+  );
 
-  const { fetchMore, loading } = useQuery(GET_MESSAGE_CHANNEL, {
-    variables: { itemId: item?.id },
+  const [fetchMore, { loading }] = useLazyQuery(GET_MESSAGE_CHANNEL, {
     onCompleted: data => {
       setVideos([...videos, ...data?.node?.childContentItemsConnection?.edges]);
       setCursor(data?.node?.childContentItemsConnection?.pageInfo?.endCursor);
     },
   });
+
+  useEffect(() => {
+    setVideos(messageChannel?.childContentItemsConnection?.edges || []);
+    setCursor(
+      messageChannel?.childContentItemsConnection?.pageInfo?.endCursor || []
+    );
+  }, [messageChannel]);
 
   if (router.isFallback) {
     return null;
@@ -80,15 +91,6 @@ export default function Channel({ item, dropdownData } = {}) {
           onClick={() => {
             fetchMore({
               variables: { itemId: item?.id, after: cursor },
-              onCompleted: data => {
-                setVideos([
-                  ...videos,
-                  ...data?.node?.childContentItemsConnection?.edges,
-                ]);
-                setCursor(
-                  data?.node?.childContentItemsConnection?.pageInfo?.endCursor
-                );
-              },
             });
           }}
           status={loading ? 'LOADING' : 'SUCCESS'}
@@ -112,10 +114,20 @@ export async function getStaticProps(context) {
     },
   });
 
+  const item = itemResponse.data?.getContentBySlug;
+
+  const messageChannelResponse = await apolloClient.query({
+    query: GET_MESSAGE_CHANNEL,
+    variables: {
+      itemId: item?.id,
+    },
+  });
+
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
-      item: itemResponse?.data?.getContentBySlug,
+      item,
+      messageChannel: messageChannelResponse?.data?.node,
     },
   };
 }
