@@ -17,7 +17,7 @@ import {
   DiscoverFiltersCategoriesProvider,
 } from 'providers';
 
-const PAGE_SIZE = 21;
+const PAGE_SIZE = 100;
 
 const Discover = () => {
   const router = useRouter();
@@ -47,16 +47,17 @@ const Discover = () => {
   const showEmptyState = !loading && !hasResults;
   const hasMorePages = contentItems?.length < data?.search?.totalResults;
 
-  const handleLoadMore = () => {
-    if (!loading && hasMorePages) {
-      fetchMore({
-        variables: {
-          first: PAGE_SIZE,
-          after: data?.search?.pageInfo?.endCursor,
-        },
-      });
-    }
-  };
+  // NOT IN USE FOR NOW 
+  // const handleLoadMore = () => {
+  //   if (!loading && hasMorePages) {
+  //     fetchMore({
+  //       variables: {
+  //         first: PAGE_SIZE,
+  //         after: data?.search?.pageInfo?.endCursor,
+  //       },
+  //     });
+  //   }
+  // };
 
   const handleClick = event => {
     setSearchVisible(true);
@@ -171,13 +172,14 @@ const Discover = () => {
             <Loader />
           </Box>
         )}
+        {/* NOT IN USE FOR NOW 
         {!loading && hasMorePages && searchVisible && (
           <Box display="flex" justifyContent="center" mt="xl">
             <Button variant="tertiary" onClick={handleLoadMore}>
               Load more
             </Button>
           </Box>
-        )}
+        )} */}
 
         {!loading && !searchVisible && (
           <Box>
