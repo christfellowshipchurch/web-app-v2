@@ -1,9 +1,9 @@
 import LargeImage from 'components/LargeImage';
+import { format, parseISO } from 'date-fns';
 import { useRouter } from 'next/router';
 import { useTheme } from 'styled-components';
 import { Box } from 'ui-kit';
 import { getSlugFromURL } from 'utils';
-import { format, parseISO } from 'date-fns';
 
 export default function Siblings({ root }) {
   const theme = useTheme();
@@ -18,11 +18,14 @@ export default function Siblings({ root }) {
       flexWrap="wrap"
       justifyContent="center"
     >
-      {root.siblingContentItemsConnection.edges.map(({ node }) => console.log({ node }) || (
+      {root.siblingContentItemsConnection.edges.map(({ node }) => (
         <LargeImage
           key={node.id}
           text={node.title}
-          subtext={node.publishDate && format(parseISO(node.publishDate), 'MMMM do, yyyy')}
+          subtext={
+            node.publishDate &&
+            format(parseISO(node.publishDate), 'MMMM do, yyyy')
+          }
           color="white"
           src={node.coverImage.sources?.[0].uri}
           maxWidth="300px"

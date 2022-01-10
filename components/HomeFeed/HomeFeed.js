@@ -1,26 +1,25 @@
-import React, { useState } from 'react';
-import { ArrowRight, PlayCircle } from 'phosphor-react';
-import { useTheme } from 'styled-components';
-import { uniq } from 'lodash';
-
 import {
   ArticleLink,
+  ArticleLinks,
   Carousel,
+  ConnectTiles,
   FullWidthCTA,
   LargeImage,
   MainPhotoHeader,
   MarketingHeadline,
-  ConnectTiles,
   VideoPlayer,
-  ArticleLinks,
 } from 'components';
-import { Box, CardGrid, Heading, Section, Text } from 'ui-kit';
-import { useRouter } from 'next/router';
-import { getMediaSource, getSlugFromURL } from 'utils';
+import IDS from 'config/ids';
 import { useCurrentUser } from 'hooks';
 import usePersonaFeed from 'hooks/usePersonaFeed';
+import { uniq } from 'lodash';
+import { useRouter } from 'next/router';
+import { ArrowRight, PlayCircle } from 'phosphor-react';
+import React, { useState } from 'react';
+import { useTheme } from 'styled-components';
+import { Box, CardGrid, Heading, Section, Text } from 'ui-kit';
+import { getMediaSource, getSlugFromURL } from 'utils';
 import Styled from './HomeFeed.styles';
-import IDS from 'config/ids';
 
 function FullLengthSermon(props = {}) {
   const router = useRouter();

@@ -1,18 +1,24 @@
-import { getIdSuffix, parseItemId } from 'utils';
-import { initializeApollo } from 'lib/apolloClient';
-import { GET_CONTENT_BY_SLUG } from 'hooks/useContentBySlug';
-import { GET_CAMPUSES } from 'hooks/useCampuses';
-
 import {
-  UniversalContentItem,
-  ContentSeriesContentItem,
   ContentChannel,
+  ContentSeriesContentItem,
   DevotionalContentItem,
   MediaContentItem,
+  UniversalContentItem,
 } from 'components/SinglePages';
 import IDS from 'config/ids';
+import { GET_CAMPUSES } from 'hooks/useCampuses';
+import { GET_CONTENT_BY_SLUG } from 'hooks/useContentBySlug';
+import { GET_MINISTRY_CONTENT } from 'hooks/useMinistryContent';
+import { initializeApollo } from 'lib/apolloClient';
+import { getIdSuffix, parseItemId } from 'utils';
 
-export default function Page({ data, campuses, type, dropdownData }) {
+export default function Page({
+  data,
+  relatedContent,
+  campuses,
+  type,
+  dropdownData,
+}) {
   switch (type) {
     case 'DevotionalContentItem':
       return <DevotionalContentItem data={data} dropdownData={dropdownData} />;
@@ -21,6 +27,7 @@ export default function Page({ data, campuses, type, dropdownData }) {
         <UniversalContentItem
           data={data}
           campuses={campuses}
+          relatedContent={relatedContent}
           dropdownData={dropdownData}
         />
       );
@@ -94,10 +101,22 @@ export async function getServerSideProps(context) {
     if (itemId) {
       const { type } = parseItemId(itemId);
 
+      const pageData = pageResponse?.data?.getContentBySlug;
+      let ministryResponse;
+      if (pageData?.ministry) {
+        ministryResponse = await apolloClient.query({
+          query: GET_MINISTRY_CONTENT,
+          variables: {
+            ministry: pageData?.ministry,
+          },
+        });
+      }
+
       return {
         props: {
           initialApolloState: apolloClient.cache.extract(),
           data: pageResponse?.data?.getContentBySlug,
+          relatedContent: ministryResponse?.data,
           campuses: campusesResponse.data?.campuses || [],
           type,
         },
