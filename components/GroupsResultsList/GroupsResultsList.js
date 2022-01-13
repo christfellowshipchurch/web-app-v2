@@ -92,7 +92,7 @@ function GroupsResultsList(props = {}) {
           coverImage={group.coverImage?.sources[0]?.uri}
           meetingDay={group.meetingDay}
           dateTime={group?.dateTime}
-          heroAvatars={group?.leaders?.map(node => node)}
+          heroAvatars={group?.leaders ?? []}
           preferences={group?.preferences}
           subPreference={group.subPreferences.join(', ')}
           meetingType={group?.meetingType}
