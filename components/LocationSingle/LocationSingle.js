@@ -1,10 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createMarkup } from 'utils';
+import dropRight from 'lodash/dropRight';
 
 import { ContentLayout, Layout, NotFound } from 'components';
 
-import { Box, Cell, Image, Loader, Longform, utils } from 'ui-kit';
+import {
+  Box,
+  Button,
+  Cell,
+  Divider,
+  Image,
+  Loader,
+  Longform,
+  utils,
+} from 'ui-kit';
 import Styled from './LocationSingle.styles';
 
 // UPDATE THIS COMPONENT
@@ -45,34 +55,54 @@ function LocationSingle(props = {}) {
       contentMaxWidth={'100vw'}
       contentHorizontalPadding={'0'}
       contentVerticalPadding={'0'}
+      transparentHeader
     >
       <Box
         position="relative"
         display="flex"
-        justifyContent="center"
-        alignItems="end"
+        justifyContent="flex-start"
+        alignItems={{ _: 'end', sm: 'center' }}
       >
         <Styled.Cover
           src={coverImage}
           width="100%"
-          maxWidth={1100}
-          height={{ _: 300, md: 350, lg: 470 }}
-          borderRadius={{ _: 'none', lg: 'base' }}
-          mt={{ _: 0, md: 0, lg: 'l' }}
+          height={{ _: '90vh', sm: 500, lg: 700 }}
+          borderRadius="none"
           mx="auto"
           overlay
+          mt={0}
         />
         <Box
-          as="h1"
-          textAlign="center"
-          color="white"
           position="absolute"
+          zIndex={1}
+          mx={{ _: 'base', md: 'l' }}
+          mt="xxl"
+          maxWidth={700}
           mb="base"
-          zIndex={1000}
-          mx="base"
-          bottom="0"
         >
-          {props?.data?.title}
+          <Box
+            as="h1"
+            fontSize={{ _: 43, md: 50, lg: 60 }}
+            pb={{ _: 'xxl', sm: 0 }}
+            mb={{ _: 'xxl', sm: 0 }}
+            mr="l"
+            color="white"
+          >
+            {dropRight(props?.data?.title, 4)}
+          </Box>
+          <Divider my="base" />
+          <Box
+            display="flex"
+            justifyContent={{ _: 'center', sm: 'flex-start' }}
+            mb="base"
+          >
+            <Button mt="s" mr={{ _: 's', md: 'base' }}>
+              Join Us Sunday
+            </Button>
+            <Button mt="s" variant="tertiary">
+              Get Connected
+            </Button>
+          </Box>
         </Box>
       </Box>
 
