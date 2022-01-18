@@ -7,6 +7,8 @@ import { ContentLayout, Layout, NotFound } from 'components';
 import { Box, Cell, Image, Loader, Longform, utils } from 'ui-kit';
 import Styled from './LocationSingle.styles';
 
+// UPDATE THIS COMPONENT
+
 function LocationSingle(props = {}) {
   const coverImage = props?.data?.coverImage?.sources[0]?.uri;
 
@@ -46,9 +48,9 @@ function LocationSingle(props = {}) {
     >
       <Box
         position="relative"
-        display="flex" 
-        justifyContent="center" 
-        alignItems="end" 
+        display="flex"
+        justifyContent="center"
+        alignItems="end"
       >
         <Styled.Cover
           src={coverImage}
