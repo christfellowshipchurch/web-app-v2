@@ -57,51 +57,56 @@ function LocationSingle(props = {}) {
       contentVerticalPadding={'0'}
       transparentHeader
     >
+      {/* Header Section */}
       <Box
         position="relative"
         display="flex"
-        justifyContent="flex-start"
+        justifyContent="center"
         alignItems={{ _: 'end', sm: 'center' }}
       >
-        <Styled.Cover
-          src={coverImage}
-          width="100%"
+        <Styled.VideoCover
           height={{ _: '90vh', sm: 500, lg: 700 }}
-          borderRadius="none"
           mx="auto"
-          overlay
           mt={0}
+          src="/external-landing/external-bg-vid.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          type="video/mp4"
         />
+        <Styled.VideoOverlay />
         <Box
           position="absolute"
+          width={{ _: '90%', md: '80%' }}
           zIndex={1}
-          mx={{ _: 'base', md: 'l' }}
           mt="xxl"
-          maxWidth={700}
           mb="base"
         >
-          <Box
-            as="h1"
-            fontSize={{ _: 43, md: 50, lg: 60 }}
-            pb={{ _: 'xxl', sm: 0 }}
-            mb={{ _: 'xxl', sm: 0 }}
-            mr="l"
-            color="white"
-          >
-            {dropRight(props?.data?.title, 4)}
-          </Box>
-          <Divider my="base" />
-          <Box
-            display="flex"
-            justifyContent={{ _: 'center', sm: 'flex-start' }}
-            mb="base"
-          >
-            <Button mt="s" mr={{ _: 's', md: 'base' }}>
-              Join Us Sunday
-            </Button>
-            <Button mt="s" variant="tertiary">
-              Get Connected
-            </Button>
+          <Box maxWidth={{ _: 400, md: 500, lg: 700 }}>
+            <Box
+              as="h1"
+              fontSize={{ _: 43, md: 50, lg: 60 }}
+              pb={{ _: 'xxl', sm: 0 }}
+              mb={{ _: 'xxl', sm: 0 }}
+              mr="l"
+              color="white"
+            >
+              {dropRight(props?.data?.title, 4)}
+            </Box>
+            <Divider my="base" />
+            <Box
+              display="flex"
+              justifyContent={{ _: 'center', sm: 'flex-start' }}
+              mb="base"
+            >
+              <Button mt="s" mr={{ _: 's', md: 'base' }}>
+                Join Us Sunday
+              </Button>
+              <Button mt="s" variant="tertiary">
+                Get Connected
+              </Button>
+            </Box>
           </Box>
         </Box>
       </Box>
