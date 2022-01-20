@@ -12,6 +12,7 @@ import {
   SearchField,
   SEO,
 } from 'components';
+import JsonLD from 'components/JsonLD'
 import {
   resetValues,
   update,
@@ -94,6 +95,20 @@ export default function Community(props = {}) {
         God, and build the kind of friendships we all need to live out our
         faith. Groups and classes help you know where to look for
         direction and have the right people encouraging you along the way."
+      />
+      <JsonLD 
+        schema={{
+          "@type": "WebSite",
+          "url": "https://christfellowship.church/groups",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://christfellowship.church/groups/search?text={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        }}
       />
       <Box display="grid" gridTemplateRows="auto 1fr auto" height="100vh">
         <Header />
