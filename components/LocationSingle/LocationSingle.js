@@ -128,12 +128,15 @@ function LocationSingle(props = {}) {
               <Styled.ServiceTime>5PM</Styled.ServiceTime>
             </Box>
           </Styled.ServiceTimeBox>
+
+          {/* Addtional Information */}
           <Box mr={{ _: 0, md: 'l' }}>
             <Styled.InfoBox>
               <Box as="li">CFKids services takes place at each service</Box>
               <Box as="li">Traducciones al español ofrecidas a las 11:45am</Box>
               <Box as="li">ASL interpretation offered at 10am</Box>
             </Styled.InfoBox>
+            {/* Address and Church You Call Home */}
             <Box
               display="flex"
               flexDirection={{ _: 'column', md: 'row' }}
