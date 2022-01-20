@@ -26,9 +26,9 @@ const InfoBox = styled.ul`
   }
 
   @media screen and (max-width: ${themeGet('breakpoints.sm')}) {
-    border-radius: none;
-    margin-left: 0px;
+    border-radius: 0px;
     margin-top: 0px;
+    margin-left: 0px;
     max-width: none;
     padding-left: 80px;
     width: 100%;
@@ -52,11 +52,11 @@ const ServiceTimeBox = styled.div`
   margin-top: ${themeGet('space.base')};
   padding-top: ${themeGet('space.base')};
   padding-bottom: ${themeGet('space.base')};
-  padding-left: ${themeGet('space.l')};
-  padding-right: ${themeGet('space.l')};
+  padding-right: ${themeGet('space.base')};
+  padding-left: ${themeGet('space.base')};
 
-  @media screen and (max-width: ${themeGet('breakpoints.sm')}) {
-    border-radius: none;
+  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+    border-radius: 0px;
     flex-direction: column;
   }
 `;

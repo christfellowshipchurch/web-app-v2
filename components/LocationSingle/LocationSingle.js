@@ -101,24 +101,25 @@ function LocationSingle(props = {}) {
 
       {/* Campus Information */}
       <Cell
-        position="relative"
-        top="-2.7rem"
-        maxWidth={utils.rem('1000px')}
-        mx="auto"
-        px="base"
+        alignItems={{ _: 'center', md: 'start' }}
         display="flex"
         flexDirection={{ _: 'column', md: 'row' }}
         justifyContent="center"
-        alignItems={{ _: 'center', md: 'start' }}
+        maxWidth={utils.rem('1000px')}
+        mx="auto"
+        position="relative"
+        px={{ _: 0, md: 'base' }}
+        top="-2.7rem"
         zIndex={1}
+        width="100%"
       >
         {/* Service Times */}
-        <Box>
+        <Box width="100%">
           <Styled.ServiceTimeBox>
             <Box as="h4" mb={{ _: 's', sm: 0 }} color="neutrals.300">
               Every Sunday
             </Box>
-            <Box display="flex" alignItems="center">
+            <Box display="flex" alignItems="center" px={0}>
               <Styled.ServiceTime>8:30AM</Styled.ServiceTime>
               <Styled.VerticalDivider />
               <Styled.ServiceTime>10AM</Styled.ServiceTime>
@@ -157,7 +158,7 @@ function LocationSingle(props = {}) {
                 as="h3"
                 textAlign={{ _: 'center', md: 'start' }}
                 px="base"
-                mx={{ _: 'l', md: 0 }}
+                mx={{ _: 'base', md: 0 }}
               >
                 5343 Northlake Blvd. Palm Beach Gardens, FL 33418
               </Box>
