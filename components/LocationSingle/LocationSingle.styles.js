@@ -1,8 +1,70 @@
 import styled from 'styled-components';
+import { themeGet } from '@styled-system/theme-get';
+
 import { system } from 'ui-kit';
 
 const LocationSingle = styled.div`
   ${system}
+`;
+
+const InfoBox = styled.ul`
+  background: ${themeGet('colors.hues.orange')};
+  border-radius: ${themeGet('radii.base')};
+  color: white;
+  font-size: 11px;
+  font-style: italic;
+  margin-left: auto;
+  margin-right: -2rem;
+  margin-top: -0.7rem;
+  max-width: 290px;
+  padding-bottom: ${themeGet('space.s')};
+  padding-left: 22px;
+  padding-top: ${themeGet('space.s')};
+
+  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+    margin-right: 0px;
+  }
+
+  @media screen and (max-width: ${themeGet('breakpoints.sm')}) {
+    border-radius: none;
+    margin-left: 0px;
+    margin-top: 0px;
+    max-width: none;
+    padding-left: 80px;
+    width: 100%;
+  }
+`;
+
+const ServiceTime = styled.h3`
+  color: white;
+  margin-bottom: 0px;
+  margin-left: ${themeGet('space.base')};
+  margin-right: ${themeGet('space.base')};
+`;
+
+const ServiceTimeBox = styled.div`
+  align-items: center;
+  background: linear-gradient(270.35deg, #0092bc -22.55%, #004f71 106.52%),
+    linear-gradient(90.49deg, #6bcaba -24.45%, #0092bc 118.95%);
+  border-radius: ${themeGet('radii.base')};
+  display: flex;
+  justify-content: space-around;
+  margin-top: ${themeGet('space.base')};
+  padding-top: ${themeGet('space.base')};
+  padding-bottom: ${themeGet('space.base')};
+  padding-left: ${themeGet('space.l')};
+  padding-right: ${themeGet('space.l')};
+
+  @media screen and (max-width: ${themeGet('breakpoints.sm')}) {
+    border-radius: none;
+    flex-direction: column;
+  }
+`;
+
+const VerticalDivider = styled.div`
+  height: 40px;
+  width: 2px;
+  background: ${themeGet('colors.neutrals.500')};
 `;
 
 const VideoCover = styled.video`
@@ -25,11 +87,14 @@ const VideoOverlay = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
-LocationSingle.VideoOverlay = VideoOverlay;
+LocationSingle.InfoBox = InfoBox;
+LocationSingle.ServiceTime = ServiceTime;
+LocationSingle.ServiceTimeBox = ServiceTimeBox;
+LocationSingle.VerticalDivider = VerticalDivider;
 LocationSingle.VideoCover = VideoCover;
+LocationSingle.VideoOverlay = VideoOverlay;
 
 export default LocationSingle;

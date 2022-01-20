@@ -67,7 +67,12 @@ function LocationSingle(props = {}) {
           type="video/mp4"
         />
         <Styled.VideoOverlay />
-        <Box position="absolute" width={{ _: '90%', md: '80%' }} zIndex={1}>
+        <Box
+          mt={{ _: 0, md: 'xxl' }}
+          position="absolute"
+          width={{ _: '90%', md: '80%' }}
+          zIndex={1}
+        >
           <Box maxWidth={{ _: 500, md: 600, lg: 750 }}>
             <Box
               as="h1"
@@ -94,61 +99,71 @@ function LocationSingle(props = {}) {
         </Box>
       </Box>
 
-      {/* Service Times */}
+      {/* Campus Information */}
       <Cell
         position="relative"
         top="-2.7rem"
         maxWidth={utils.rem('1000px')}
+        mx="auto"
         px="base"
         display="flex"
+        flexDirection={{ _: 'column', md: 'row' }}
         justifyContent="center"
-        alignItems="start"
+        alignItems={{ _: 'center', md: 'start' }}
         zIndex={1}
       >
+        {/* Service Times */}
         <Box>
-          <Box
-            alignItems="center"
-            bg="secondary"
-            borderRadius="base"
-            display="flex"
-            justifyContent="space-between"
-            mt="base"
-            py="base"
-            px="l"
-          >
-            <Box as="h4" mb={0} color="neutrals.300">
+          <Styled.ServiceTimeBox>
+            <Box as="h4" mb={{ _: 's', sm: 0 }} color="neutrals.300">
               Every Sunday
             </Box>
-            <Box as="h3" mb={0} color="white" mx="base">
-              8:30AM
+            <Box display="flex" alignItems="center">
+              <Styled.ServiceTime>8:30AM</Styled.ServiceTime>
+              <Styled.VerticalDivider />
+              <Styled.ServiceTime>10AM</Styled.ServiceTime>
+              <Styled.VerticalDivider />
+              <Styled.ServiceTime>11:45AM</Styled.ServiceTime>
+              <Styled.VerticalDivider />
+              <Styled.ServiceTime>5PM</Styled.ServiceTime>
             </Box>
-            <Box height={40} width={2} bg="neutrals.500" />
-            <Box as="h3" mb={0} color="white" mx="base">
-              10AM
-            </Box>
-            <Box height={40} width={2} bg="neutrals.500" />
-            <Box as="h3" mb={0} color="white" mx="base">
-              11:45AM
-            </Box>
-            <Box height={40} width={2} bg="neutrals.500" />
-            <Box as="h3" mb={0} color="white" mx="base">
-              5PM
-            </Box>
-          </Box>
-          <Box mr="l">
-            <Box display="flex" alignItems="start" py="l" mt="l">
-              <Box as="h3" mr="xxl" color="secondary">
+          </Styled.ServiceTimeBox>
+          <Box mr={{ _: 0, md: 'l' }}>
+            <Styled.InfoBox>
+              <Box as="li">CFKids services takes place at each service</Box>
+              <Box as="li">Traducciones al español ofrecidas a las 11:45am</Box>
+              <Box as="li">ASL interpretation offered at 10am</Box>
+            </Styled.InfoBox>
+            <Box
+              display="flex"
+              flexDirection={{ _: 'column', md: 'row' }}
+              alignItems={{ _: 'center', md: 'start' }}
+              mx={{ _: 'l', md: 0 }}
+              py="l"
+              mt={{ _: 0, md: 'base' }}
+            >
+              <Box
+                display={{ _: 'none', md: 'flex' }}
+                as="h3"
+                mr="xxl"
+                color="secondary"
+              >
                 Address
               </Box>
-              <Box as="h3" px="base">
+              <Box
+                as="h3"
+                textAlign={{ _: 'center', md: 'start' }}
+                px="base"
+                mx={{ _: 'l', md: 0 }}
+              >
                 5343 Northlake Blvd. Palm Beach Gardens, FL 33418
               </Box>
               <Button borderRadius="xxl" size="s" px="base">
                 GET DIRECTIONS
               </Button>
             </Box>
-            <Divider width="100%" />
-            <Box display="flex" mt="l">
+            <Divider display={{ _: 'none', md: 'flex' }} width="100%" />
+            <Box display={{ _: 'none', md: 'flex' }} mt="l">
               <Box as="h3" color="secondary" minWidth={155}>
                 A Church You Can Call Home
               </Box>
@@ -172,12 +187,30 @@ function LocationSingle(props = {}) {
           borderRadius="base"
           p="l"
           position="relative"
-          left="-1rem"
+          left={{ _: 0, md: '-1rem' }}
           boxShadow="l"
         >
           <Box as="h3">Campus Pastors</Box>
         </Box>
       </Cell>
+
+      {/* Mobile View for "Church You Can Call Home" section */}
+      <Box display={{ _: 'inline', md: 'none' }} mt="l" textAlign="center">
+        <Box as="h3" color="secondary">
+          A Church You Can Call Home
+        </Box>
+        <Box mx={{ _: 'base', sm: 'xl' }}>
+          <Box as="p">
+            Here at Christ Fellowship Church in Palm Beach Gardens, we have
+            Sunday church services where you can experience uplifting worship
+            music, powerful messages from our pastors, special programming for
+            your family, and an opportunity to meet other amazing people like
+            you!
+          </Box>
+          <br />
+          <Box as="p">We look forward to seeing you this Sunday!</Box>
+        </Box>
+      </Box>
 
       <Cell maxWidth={utils.rem('1100px')} px="base">
         <ContentLayout
