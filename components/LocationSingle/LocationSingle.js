@@ -62,7 +62,7 @@ function LocationSingle(props = {}) {
         position="relative"
         display="flex"
         justifyContent="center"
-        alignItems={{ _: 'end', sm: 'center' }}
+        alignItems={{ _: 'flex-end', sm: 'center' }}
       >
         <Styled.VideoCover
           height={{ _: '90vh', sm: 500, lg: 700 }}
@@ -76,19 +76,11 @@ function LocationSingle(props = {}) {
           type="video/mp4"
         />
         <Styled.VideoOverlay />
-        <Box
-          position="absolute"
-          width={{ _: '90%', md: '80%' }}
-          zIndex={1}
-          mt="xxl"
-          mb="base"
-        >
-          <Box maxWidth={{ _: 400, md: 500, lg: 700 }}>
+        <Box position="absolute" width={{ _: '90%', md: '80%' }} zIndex={1}>
+          <Box maxWidth={{ _: 500, md: 600, lg: 750 }}>
             <Box
               as="h1"
               fontSize={{ _: 43, md: 50, lg: 60 }}
-              pb={{ _: 'xxl', sm: 0 }}
-              mb={{ _: 'xxl', sm: 0 }}
               mr="l"
               color="white"
             >
@@ -98,7 +90,7 @@ function LocationSingle(props = {}) {
             <Box
               display="flex"
               justifyContent={{ _: 'center', sm: 'flex-start' }}
-              mb="base"
+              mb="xl"
             >
               <Button mt="s" mr={{ _: 's', md: 'base' }}>
                 Join Us Sunday
