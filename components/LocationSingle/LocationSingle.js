@@ -175,9 +175,19 @@ function LocationSingle(props = {}) {
                 pl={5}
                 pr="base"
               >
-                5343 Northlake Blvd. Palm Beach Gardens, FL 33418
+                {props?.address}
               </Box>
-              <Button borderRadius="xxl" size="s" px="base">
+              <Button
+                as="a"
+                target="_blank"
+                href={`https://www.google.com/maps/place/${props.address.replace(
+                  ' ',
+                  '+'
+                )}`}
+                borderRadius="xxl"
+                size="s"
+                px="base"
+              >
                 GET DIRECTIONS
               </Button>
             </Box>
@@ -264,11 +274,13 @@ LocationSingle.propTypes = {
   data: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   loading: PropTypes.bool,
   serviceTimes: PropTypes.array,
+  address: PropTypes.string,
 };
 
 LocationSingle.defaultProps = {
   loading: true,
   serviceTimes: ['8:30AM', '10AM', '11:45AM', '5PM'],
+  address: '5343 Northlake Blvd. Palm Beach Gardens, FL 33418',
 };
 
 export default LocationSingle;
