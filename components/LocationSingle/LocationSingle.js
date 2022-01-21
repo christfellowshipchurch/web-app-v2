@@ -5,7 +5,17 @@ import dropRight from 'lodash/dropRight';
 
 import { ContentLayout, Layout, NotFound } from 'components';
 
-import { Box, Button, Cell, Divider, Loader, Longform, utils } from 'ui-kit';
+import {
+  Avatar,
+  Box,
+  Button,
+  Cell,
+  Divider,
+  Icon,
+  Loader,
+  Longform,
+  utils,
+} from 'ui-kit';
 import Styled from './LocationSingle.styles';
 
 // UPDATE THIS COMPONENT
@@ -116,7 +126,7 @@ function LocationSingle(props = {}) {
         display="flex"
         flexDirection={{ _: 'column', md: 'row' }}
         justifyContent="center"
-        maxWidth={utils.rem('1000px')}
+        maxWidth={utils.rem('1100px')}
         mx="auto"
         position="relative"
         px={{ _: 0, md: 'base' }}
@@ -171,7 +181,7 @@ function LocationSingle(props = {}) {
                 as="h3"
                 textAlign={{ _: 'center', md: 'start' }}
                 mx={{ _: 'base', md: 0 }}
-                maxWidth={360}
+                maxWidth={300}
                 pl={5}
                 pr="base"
               >
@@ -187,6 +197,7 @@ function LocationSingle(props = {}) {
                 borderRadius="xxl"
                 size="s"
                 px="base"
+                ml={{ _: 0, md: 'auto' }}
               >
                 GET DIRECTIONS
               </Button>
@@ -214,12 +225,58 @@ function LocationSingle(props = {}) {
         <Box
           bg="white"
           borderRadius="base"
-          p="l"
           position="relative"
           left={{ _: 0, md: '-1rem' }}
           boxShadow="l"
+          py="l"
+          px="base"
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          flexDirection="column"
+          textAlign="center"
         >
-          <Box as="h3">Campus Pastors</Box>
+          <Box display="flex" alignItems="center">
+            <Divider width={80} mx="s" bg="neutrals.200" />
+            <Avatar width={70} src="/pastor-pic.png" />
+            <Divider width={80} mx="s" bg="neutrals.200" />
+          </Box>
+          <Box as="h3" mx="l">
+            Dave and Rhonda Simiele
+          </Box>
+          <Box
+            as="h5"
+            fontWeight="normal"
+            fontStyle="italic"
+            color="neutrals.700"
+          >
+            Campus Pastors
+          </Box>
+          <Divider width="100%" my="base" bg="neutrals.200" />
+          <Box as="h5" fontStyle="italic" mb="base">
+            We can’t wait to see you this week!
+          </Box>
+          <Box display={{ _: 'inline', lg: 'flex' }}>
+            <Button size="xs" borderRadius="xxl" variant="secondary" mr="xs">
+              ADD TO CALENDAR
+            </Button>
+            <Button
+              size="xs"
+              borderRadius="xxl"
+              ml={{ _: 0, lg: 'xs' }}
+              m={{ _: 'xs', lg: 0 }}
+            >
+              INIVTE A FRIEND
+            </Button>
+          </Box>
+          <Box mt="base">
+            <Box as="a" color="tertiary" href={''} mr="xs">
+              <Icon name="facebook" size="32" />
+            </Box>
+            <Box as="a" color="tertiary" href={''}>
+              <Icon name="instagram" size="32" />
+            </Box>
+          </Box>
         </Box>
       </Cell>
 
