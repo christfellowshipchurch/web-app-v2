@@ -63,6 +63,7 @@ export default function Page({
     ...metadata,
     ministry: null,
   }).some(val => Boolean(val));
+  const isEvent = getIdSuffix(data?.parentChannel?.id) === IDS.CHANNELS.EVENTS;
   const isArticle =
     getIdSuffix(data?.parentChannel?.id) === IDS.CHANNELS.ARTICLES;
   const isVolunteerPositions =
@@ -102,7 +103,8 @@ export default function Page({
     link =>
       getSlugFromURL(link?.sharing?.url) !== router.query.page &&
       (getIdSuffix(link.parentChannel?.id) === IDS.CHANNELS.EVENTS ||
-        getIdSuffix(link.parentChannel?.id) === IDS.CHANNELS.ARTICLES)
+        getIdSuffix(link.parentChannel?.id) === IDS.CHANNELS.ARTICLES) &&
+      link.id !== data.id
   );
 
   return (
@@ -113,7 +115,7 @@ export default function Page({
         overlay=""
         mb={{ _: 'l', md: 'xxl' }}
       />
-      {links?.length ? (
+      {links?.length && !isEvent ? (
         <Section contentProps={{ p: '0 !important' }}>
           <EventsCallout
             mx={{ _: 0, lg: 'xl' }}
