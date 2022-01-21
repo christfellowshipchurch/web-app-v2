@@ -88,10 +88,21 @@ function LocationSingle(props = {}) {
               justifyContent={{ _: 'center', sm: 'flex-start' }}
               mb="xl"
             >
-              <Button mt="s" mr={{ _: 's', md: 'base' }}>
+              <Button
+                as="a"
+                href="#service-times"
+                mt="s"
+                mr={{ _: 's', md: 'base' }}
+              >
                 Join Us Sunday
               </Button>
-              <Button mt="s" variant="tertiary">
+              <Button
+                as="a"
+                href="#get-connected"
+                id="service-times"
+                mt="s"
+                variant="tertiary"
+              >
                 Get Connected
               </Button>
             </Box>
