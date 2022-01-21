@@ -131,13 +131,15 @@ function LocationSingle(props = {}) {
               Every Sunday
             </Box>
             <Box display="flex" alignItems="center" px={0}>
-              <Styled.ServiceTime>8:30AM</Styled.ServiceTime>
-              <Styled.VerticalDivider />
-              <Styled.ServiceTime>10AM</Styled.ServiceTime>
-              <Styled.VerticalDivider />
-              <Styled.ServiceTime>11:45AM</Styled.ServiceTime>
-              <Styled.VerticalDivider />
-              <Styled.ServiceTime>5PM</Styled.ServiceTime>
+              {props.serviceTimes &&
+                props.serviceTimes.map((n, i) => (
+                  <>
+                    <Styled.ServiceTime>{n}</Styled.ServiceTime>
+                    {i < props?.serviceTimes.length - 1 && (
+                      <Styled.VerticalDivider />
+                    )}
+                  </>
+                ))}
             </Box>
           </Styled.ServiceTimeBox>
 
@@ -168,8 +170,10 @@ function LocationSingle(props = {}) {
               <Box
                 as="h3"
                 textAlign={{ _: 'center', md: 'start' }}
-                px="base"
                 mx={{ _: 'base', md: 0 }}
+                maxWidth={360}
+                pl={5}
+                pr="base"
               >
                 5343 Northlake Blvd. Palm Beach Gardens, FL 33418
               </Box>
@@ -259,10 +263,12 @@ function LocationSingle(props = {}) {
 LocationSingle.propTypes = {
   data: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   loading: PropTypes.bool,
+  serviceTimes: PropTypes.array,
 };
 
 LocationSingle.defaultProps = {
   loading: true,
+  serviceTimes: ['8:30AM', '10AM', '11:45AM', '5PM'],
 };
 
 export default LocationSingle;
