@@ -254,7 +254,7 @@ function LocationSingle(props = {}) {
           </Box>
           <Divider width="100%" my="base" bg="neutrals.200" />
           <Box as="h5" fontStyle="italic" mb="base">
-            We can’t wait to see you this week!
+            We can’t wait to see you this weekend!
           </Box>
           <Box display={{ _: 'inline', lg: 'flex' }}>
             <Button size="xs" borderRadius="xxl" variant="secondary" mr="xs">
@@ -266,7 +266,7 @@ function LocationSingle(props = {}) {
               ml={{ _: 0, lg: 'xs' }}
               m={{ _: 'xs', lg: 0 }}
             >
-              INIVTE A FRIEND
+              INVITE A FRIEND
             </Button>
           </Box>
           <Box mt="base">
