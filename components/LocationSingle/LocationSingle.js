@@ -83,38 +83,49 @@ function LocationSingle(props = {}) {
           width={{ _: '90%', md: '80%' }}
           zIndex={1}
         >
-          <Box maxWidth={{ _: 500, md: 600, lg: 750 }}>
+          <Box
+            height={{ _: '80vh', sm: 'auto' }}
+            display={{ _: 'flex', sm: 'block' }}
+            flexDirection="column"
+            justifyContent="space-between"
+            maxWidth={{ _: 500, md: 600, lg: 750 }}
+          >
             <Box
               as="h1"
-              fontSize={{ _: 43, md: 50, lg: 60 }}
+              fontSize={{ _: 38, md: 50, lg: 60 }}
               mr="l"
               color="white"
+              mt="l"
             >
               {dropRight(props?.data?.title, 4)}
             </Box>
-            <Divider my="base" />
-            <Box
-              display="flex"
-              justifyContent={{ _: 'center', sm: 'flex-start' }}
-              mb="xl"
-            >
-              <Button
-                as="a"
-                href="#service-times"
-                mt="s"
-                mr={{ _: 's', md: 'base' }}
+            <Box>
+              <Box
+                display="flex"
+                justifyContent={{ _: 'center', sm: 'flex-start' }}
+                mb="base"
               >
-                Join Us Sunday
-              </Button>
-              <Button
-                as="a"
-                href="#get-connected"
-                id="service-times"
-                mt="s"
-                variant="tertiary"
-              >
-                Get Connected
-              </Button>
+                <Button
+                  as="a"
+                  href="#service-times"
+                  mt="s"
+                  mr={{ _: 's', md: 'base' }}
+                >
+                  Join Us Sunday
+                </Button>
+                <Button
+                  as="a"
+                  href="#get-connected"
+                  id="service-times"
+                  mt="s"
+                  variant="tertiary"
+                >
+                  Get Connected
+                </Button>
+              </Box>
+              <Box>
+                <Divider mb="l" />
+              </Box>
             </Box>
           </Box>
         </Box>
@@ -136,11 +147,11 @@ function LocationSingle(props = {}) {
       >
         {/* Service Times */}
         <Box width="100%">
-          <Styled.ServiceTimeBox>
+          <Styled.ServiceTimeContainer>
             <Box as="h4" mb={{ _: 's', sm: 0 }} color="neutrals.300">
               Every Sunday
             </Box>
-            <Box display="flex" alignItems="center" px={0}>
+            <Styled.ServiceTimes>
               {props.serviceTimes &&
                 props.serviceTimes.map((n, i) => (
                   <>
@@ -150,8 +161,8 @@ function LocationSingle(props = {}) {
                     )}
                   </>
                 ))}
-            </Box>
-          </Styled.ServiceTimeBox>
+            </Styled.ServiceTimes>
+          </Styled.ServiceTimeContainer>
 
           {/* Addtional Information */}
           <Box mr={{ _: 0, md: 'l' }}>

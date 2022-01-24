@@ -11,14 +11,14 @@ const InfoBox = styled.ul`
   background: ${themeGet('colors.hues.orange')};
   border-radius: ${themeGet('radii.base')};
   color: white;
-  font-size: 11px;
+  font-size: 14px;
   font-style: italic;
   margin-left: auto;
   margin-right: -2rem;
   margin-top: -0.7rem;
-  max-width: 290px;
+  max-width: 355px;
   padding-bottom: ${themeGet('space.s')};
-  padding-left: 22px;
+  padding-left: 30px;
   padding-top: ${themeGet('space.s')};
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
@@ -30,7 +30,7 @@ const InfoBox = styled.ul`
     margin-top: 0px;
     margin-left: 0px;
     max-width: none;
-    padding-left: 80px;
+    padding-left: 50px;
     width: 100%;
   }
 `;
@@ -42,7 +42,17 @@ const ServiceTime = styled.h3`
   margin-right: ${themeGet('space.base')};
 `;
 
-const ServiceTimeBox = styled.div`
+const ServiceTimes = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 0;
+
+  @media screen and (max-width: 389px) {
+    flex-flow: row wrap;
+  }
+`;
+
+const ServiceTimeContainer = styled.div`
   align-items: center;
   background: linear-gradient(270.35deg, #0092bc -22.55%, #004f71 106.52%),
     linear-gradient(90.49deg, #6bcaba -24.45%, #0092bc 118.95%);
@@ -50,10 +60,7 @@ const ServiceTimeBox = styled.div`
   display: flex;
   justify-content: space-around;
   margin-top: ${themeGet('space.base')};
-  padding-top: ${themeGet('space.base')};
-  padding-bottom: ${themeGet('space.base')};
-  padding-right: ${themeGet('space.base')};
-  padding-left: ${themeGet('space.base')};
+  padding: ${themeGet('space.base')};
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
     border-radius: 0px;
@@ -92,7 +99,8 @@ const VideoOverlay = styled.div`
 
 LocationSingle.InfoBox = InfoBox;
 LocationSingle.ServiceTime = ServiceTime;
-LocationSingle.ServiceTimeBox = ServiceTimeBox;
+LocationSingle.ServiceTimes = ServiceTimes;
+LocationSingle.ServiceTimeContainer = ServiceTimeContainer;
 LocationSingle.VerticalDivider = VerticalDivider;
 LocationSingle.VideoCover = VideoCover;
 LocationSingle.VideoOverlay = VideoOverlay;
