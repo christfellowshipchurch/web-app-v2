@@ -19,7 +19,7 @@ const LocationBlockFeature = props => {
   const content = props?.data;
 
   return (
-    <Box textAlign="center" my="l">
+    <Box textAlign="center" my="l" {...props}>
       <Box mb={0} as="h2" color="secondary">
         {`At ${props?.title}`}
       </Box>

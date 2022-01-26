@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import dropRight from 'lodash/dropRight';
 import drop from 'lodash/drop';
 
-import { Layout, LocationBlockFeature, NotFound } from 'components';
+import {
+  CollectionPreview,
+  Layout,
+  LocationBlockFeature,
+  NotFound,
+} from 'components';
 
 import {
   Avatar,
@@ -311,14 +316,27 @@ function LocationSingle(props = {}) {
         </Box>
       </Box>
 
-      <Cell px="xl">
+      <Box width="100%" bg="white" p="xl">
         <LocationBlockFeature
+          mx="auto"
+          maxWidth={1000}
           title={campus}
           data={defaultBlockData}
-          // These would be the content blocks we pull in from Rock, but since the content doesn't match Figma we'll hard code the content for now.
+          /**
+           * todo :  These would be the content blocks we pull in from Rock, but since the content doesn't match Figma we'll hard code the content for now.
+           *  */
           // data={drop(props?.data?.featureFeed?.features)}
         />
-      </Cell>
+      </Box>
+      <Box px="base" py="xl" bg="neutrals.100">
+        <Box mx="auto" maxWidth={1200}>
+          <CollectionPreview
+            size="s"
+            titleOverride="Coming Up at Palm Beach Gardens"
+            contentId="UniversalContentItem:d29e24e1873b0c4f4f645218ca3338ea"
+          />
+        </Box>
+      </Box>
       <Box px="base" py="xl" bg="white">
         <Box mt={{ _: '-0.5rem', md: 'base' }} mx="auto" maxWidth={1200}>
           <ContentBlock

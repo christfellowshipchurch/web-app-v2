@@ -21,6 +21,8 @@ const CollectionPreview = ({
   cardType,
   hideButton,
   buttonOverride,
+  titleOverride,
+  size,
 }) => {
   const router = useRouter();
   const { categoryTitle, contentItems, loading } =
@@ -37,8 +39,13 @@ const CollectionPreview = ({
 
   return (
     <Box>
-      <Box color="secondary" textAlign={'center'} as="h1" mb="l">
-        {categoryTitle}
+      <Box
+        color="secondary"
+        textAlign={'center'}
+        as={size === 's' ? 'h2' : 'h1'}
+        mb="l"
+      >
+        {titleOverride ? titleOverride : categoryTitle}
       </Box>
       {summary && (
         <Box
@@ -63,7 +70,8 @@ const CollectionPreview = ({
                 cardType === 'default' ? DefaultCard : HorizontalHighlightCard
               }
               coverImageOverlay={true}
-              type="HIGHLIGHT_MEDIUM"
+              type={size === 's' ? 'HIGHLIGHT_SMALL' : 'HIGHLIGHT_MEDIUM'}
+              mx={size === 's' ? 'base' : 0}
               as="a"
               coverImage={n?.coverImage?.sources[0]?.uri}
               description={n?.summary}
@@ -79,7 +87,9 @@ const CollectionPreview = ({
         <Box textAlign="center" width="100%">
           <Button
             variant="secondary"
-            mt="base"
+            mt="l"
+            px={size === 's' ? 'base' : 'l'}
+            size={size}
             onClick={
               buttonOverride ? () => router.push(buttonOverride) : handleSeeMore
             }
@@ -95,10 +105,12 @@ const CollectionPreview = ({
 CollectionPreview.propTypes = {
   contentId: PropTypes.string,
   buttonOverride: PropTypes.string,
+  size: PropTypes.oneOf(['s', 'l']),
 };
 
 CollectionPreview.defaultProps = {
   buttonOverride: false,
+  size: 'l',
 };
 
 export default CollectionPreview;
