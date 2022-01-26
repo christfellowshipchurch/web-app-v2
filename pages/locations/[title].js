@@ -27,7 +27,7 @@ export async function getStaticPaths() {
   const titles = [];
 
   return {
-    paths: titles.map(title => `locations/${title}`),
+    paths: titles.map(title => `/locations/${title}`),
     // Enable statically generating additional pages
     // For example: `/messages/another-great-sermon`
     fallback: true,
