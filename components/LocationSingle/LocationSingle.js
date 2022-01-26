@@ -224,18 +224,12 @@ function LocationSingle(props = {}) {
             )}
             <Box display={{ _: 'none', md: 'flex' }} mt="l">
               <Box as="h3" color="secondary" minWidth={155}>
-                A Church You Can Call Home
+                Get the Most Out of Life
               </Box>
               <Box mx="l">
                 <Box as="p">
-                  Here at Christ Fellowship Church in Palm Beach Gardens, we
-                  have Sunday church services where you can experience uplifting
-                  worship music, powerful messages from our pastors, special
-                  programming for your family, and an opportunity to meet other
-                  amazing people like you!
+                  {`Here at Christ Fellowship Church in ${campus}, we want to help you live the life you were created for. Every Sunday, we have church services where you can experience uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—and it all starts here!`}
                 </Box>
-                <br />
-                <Box as="p">We look forward to seeing you this Sunday!</Box>
               </Box>
             </Box>
           </Box>
