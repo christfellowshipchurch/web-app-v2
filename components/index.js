@@ -28,7 +28,7 @@ import Footer from './Footer';
 import GenderField from './GenderField';
 import GenericError from './GenericError';
 import GradientBackground from './GradientBackground';
-import GroupEmailComposer from './GroupEmailComposer'
+import GroupEmailComposer from './GroupEmailComposer';
 import GroupManage from './GroupManage';
 import GroupMember from './GroupMember';
 import GroupMemberDetails from './GroupMemberDetails';
@@ -43,8 +43,9 @@ import HorizontalCardListFeature from './HorizontalCardListFeature';
 import ContentBlockCollection from './ContentBlockCollection';
 import Layout from './Layout';
 import LegacyNodeRouter from './LegacyNodeRouter';
-import LocationSingle from './LocationSingle';
 import LiveStreamSingle from './LiveStreamSingle';
+import LocationBlockFeature from './LocationBlockFeature';
+import LocationSingle from './LocationSingle';
 import Logo from './Logo';
 import Nav from './Nav';
 import NotFound from './NotFound';
@@ -105,8 +106,9 @@ export {
   ContentBlockCollection,
   Layout,
   LegacyNodeRouter,
-  LocationSingle,
   LiveStreamSingle,
+  LocationBlockFeature,
+  LocationSingle,
   Logo,
   Nav,
   NotFound,

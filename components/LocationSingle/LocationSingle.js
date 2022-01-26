@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createMarkup } from 'utils';
 import dropRight from 'lodash/dropRight';
+import drop from 'lodash/drop';
 
-import { ContentLayout, Layout, NotFound } from 'components';
+import { Layout, LocationBlockFeature, NotFound } from 'components';
 
 import {
   Avatar,
@@ -13,10 +13,10 @@ import {
   Divider,
   Icon,
   Loader,
-  Longform,
   utils,
 } from 'ui-kit';
 import Styled from './LocationSingle.styles';
+import defaultBlockData from '../LocationBlockFeature/defaultBlockData';
 
 // UPDATE THIS COMPONENT
 
@@ -49,6 +49,9 @@ function LocationSingle(props = {}) {
   if (!props.loading && !props?.data?.id) {
     return <NotFound />;
   }
+
+  const title = props?.data?.title;
+  const campus = title.substring(27, title.length - 4);
 
   return (
     <Layout
@@ -172,48 +175,52 @@ function LocationSingle(props = {}) {
               <Box as="li">ASL interpretation offered at 10am</Box>
             </Styled.InfoBox>
             {/* Address and Church You Call Home */}
-            <Box
-              display="flex"
-              flexDirection={{ _: 'column', md: 'row' }}
-              alignItems={{ _: 'center', md: 'start' }}
-              mx={{ _: 'l', md: 0 }}
-              py="l"
-              mt={{ _: 0, md: 'base' }}
-            >
-              <Box
-                display={{ _: 'none', md: 'flex' }}
-                as="h3"
-                mr="xxl"
-                color="secondary"
-              >
-                Address
-              </Box>
-              <Box
-                as="h3"
-                textAlign={{ _: 'center', md: 'start' }}
-                mx={{ _: 'base', md: 0 }}
-                maxWidth={300}
-                pl={5}
-                pr="base"
-              >
-                {props?.address}
-              </Box>
-              <Button
-                as="a"
-                target="_blank"
-                href={`https://www.google.com/maps/place/${props.address.replace(
-                  ' ',
-                  '+'
-                )}`}
-                borderRadius="xxl"
-                size="s"
-                px="base"
-                ml={{ _: 0, md: 'auto' }}
-              >
-                GET DIRECTIONS
-              </Button>
-            </Box>
-            <Divider display={{ _: 'none', md: 'flex' }} width="100%" />
+            {props?.address && (
+              <>
+                <Box
+                  display="flex"
+                  flexDirection={{ _: 'column', md: 'row' }}
+                  alignItems={{ _: 'center', md: 'start' }}
+                  mx={{ _: 'l', md: 0 }}
+                  py="l"
+                  mt={{ _: 0, md: 'base' }}
+                >
+                  <Box
+                    display={{ _: 'none', md: 'flex' }}
+                    as="h3"
+                    mr="xxl"
+                    color="secondary"
+                  >
+                    Address
+                  </Box>
+                  <Box
+                    as="h3"
+                    textAlign={{ _: 'center', md: 'start' }}
+                    mx={{ _: 'base', md: 0 }}
+                    maxWidth={300}
+                    pl={5}
+                    pr="base"
+                  >
+                    {props?.address}
+                  </Box>
+                  <Button
+                    as="a"
+                    target="_blank"
+                    href={`https://www.google.com/maps/place/${props?.address.replace(
+                      ' ',
+                      '+'
+                    )}`}
+                    borderRadius="xxl"
+                    size="s"
+                    px="base"
+                    ml={{ _: 0, md: 'auto' }}
+                  >
+                    GET DIRECTIONS
+                  </Button>
+                </Box>
+                <Divider display={{ _: 'none', md: 'flex' }} width="100%" />
+              </>
+            )}
             <Box display={{ _: 'none', md: 'flex' }} mt="l">
               <Box as="h3" color="secondary" minWidth={155}>
                 A Church You Can Call Home
@@ -309,29 +316,12 @@ function LocationSingle(props = {}) {
         </Box>
       </Box>
 
-      <Cell maxWidth={utils.rem('1100px')} px="base">
-        <ContentLayout
-          renderA={() => {
-            return (
-              (props?.data?.summary || props?.data?.htmlContent) && (
-                <Box
-                  fontSize="l"
-                  maxWidth="840px"
-                  margin="auto"
-                  textAlign="center"
-                >
-                  {props?.data?.htmlContent && (
-                    <Longform
-                      dangerouslySetInnerHTML={createMarkup(
-                        props?.data?.htmlContent
-                      )}
-                    />
-                  )}
-                </Box>
-              )
-            );
-          }}
-          features={props?.data?.featureFeed?.features}
+      <Cell px="xl">
+        <LocationBlockFeature
+          title={campus}
+          data={defaultBlockData}
+          // These would be the content blocks we pull in from Rock, but since the content doesn't match Figma we'll hard code the content for now.
+          // data={drop(props?.data?.featureFeed?.features)}
         />
       </Cell>
     </Layout>
