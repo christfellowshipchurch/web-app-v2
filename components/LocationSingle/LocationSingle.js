@@ -10,6 +10,7 @@ import {
   Box,
   Button,
   Cell,
+  ContentBlock,
   Divider,
   Icon,
   Loader,
@@ -324,6 +325,23 @@ function LocationSingle(props = {}) {
           // data={drop(props?.data?.featureFeed?.features)}
         />
       </Cell>
+      <Box px="base" py="xl" bg="white">
+        <Box mt={{ _: '-0.5rem', md: 'base' }} mx="auto" maxWidth={1200}>
+          <ContentBlock
+            title="Never miss a thing."
+            subtitle="Receive events and updates straight to your inbox!"
+            actions={[
+              {
+                title: 'Subscribe',
+                relatedNode: {
+                  url: 'http://eepurl.com/hAk7aP',
+                },
+                mt: '-0.8rem',
+              },
+            ]}
+          />
+        </Box>
+      </Box>
     </Layout>
   );
 }
