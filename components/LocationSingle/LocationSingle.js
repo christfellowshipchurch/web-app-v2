@@ -1,11 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createMarkup } from 'utils';
+import dropRight from 'lodash/dropRight';
 
 import { ContentLayout, Layout, NotFound } from 'components';
 
-import { Box, Cell, Image, Loader, Longform, utils } from 'ui-kit';
+import {
+  Box,
+  Button,
+  Cell,
+  ContentBlock,
+  Divider,
+  Image,
+  Loader,
+  Longform,
+  utils,
+} from 'ui-kit';
 import Styled from './LocationSingle.styles';
+
+// UPDATE THIS COMPONENT
 
 function LocationSingle(props = {}) {
   const coverImage = props?.data?.coverImage?.sources[0]?.uri;
@@ -43,34 +56,51 @@ function LocationSingle(props = {}) {
       contentMaxWidth={'100vw'}
       contentHorizontalPadding={'0'}
       contentVerticalPadding={'0'}
+      transparentHeader
     >
+      {/* Header Section */}
       <Box
         position="relative"
-        display="flex" 
-        justifyContent="center" 
-        alignItems="end" 
+        display="flex"
+        justifyContent="center"
+        alignItems={{ _: 'flex-end', sm: 'center' }}
       >
-        <Styled.Cover
-          src={coverImage}
-          width="100%"
-          maxWidth={1100}
-          height={{ _: 300, md: 350, lg: 470 }}
-          borderRadius={{ _: 'none', lg: 'base' }}
-          mt={{ _: 0, md: 0, lg: 'l' }}
+        <Styled.VideoCover
+          height={{ _: '90vh', sm: 500, lg: 700 }}
           mx="auto"
-          overlay
+          mt={0}
+          src="/external-landing/external-bg-vid.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          type="video/mp4"
         />
-        <Box
-          as="h1"
-          textAlign="center"
-          color="white"
-          position="absolute"
-          mb="base"
-          zIndex={1000}
-          mx="base"
-          bottom="0"
-        >
-          {props?.data?.title}
+        <Styled.VideoOverlay />
+        <Box position="absolute" width={{ _: '90%', md: '80%' }} zIndex={1}>
+          <Box maxWidth={{ _: 500, md: 600, lg: 750 }}>
+            <Box
+              as="h1"
+              fontSize={{ _: 43, md: 50, lg: 60 }}
+              mr="l"
+              color="white"
+            >
+              {dropRight(props?.data?.title, 4)}
+            </Box>
+            <Divider my="base" />
+            <Box
+              display="flex"
+              justifyContent={{ _: 'center', sm: 'flex-start' }}
+              mb="xl"
+            >
+              <Button mt="s" mr={{ _: 's', md: 'base' }}>
+                Join Us Sunday
+              </Button>
+              <Button mt="s" variant="tertiary">
+                Get Connected
+              </Button>
+            </Box>
+          </Box>
         </Box>
       </Box>
 
@@ -99,6 +129,23 @@ function LocationSingle(props = {}) {
           features={props?.data?.featureFeed?.features}
         />
       </Cell>
+      <Box px="base" py="xl" bg="white">
+        <Box mt={{ _: '-0.5rem', md: 'base' }} mx="auto" maxWidth={1200}>
+          <ContentBlock
+            title="Never miss a thing."
+            subtitle="Receive events and updates straight to your inbox!"
+            actions={[
+              {
+                title: 'Subscribe',
+                relatedNode: {
+                  url: 'http://eepurl.com/hAk7aP',
+                },
+                mt: '-0.8rem',
+              },
+            ]}
+          />
+        </Box>
+      </Box>
     </Layout>
   );
 }
