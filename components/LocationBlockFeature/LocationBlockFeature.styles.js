@@ -18,10 +18,6 @@ const Container = styled.div`
 const LocationBlock = styled.div`
   height: auto;
   margin: ${themeGet('space.xl')};
-  /* margin-left: ${themeGet('space.xl')};
-  margin-right: ${themeGet('space.xl')};
-  margin-bottom: ${themeGet('space.xxl')};
-  margin-top: ${themeGet('space.xxl')}; */
   text-align: center;
 
   @media screen and (max-width: ${themeGet('breakpoints.lg')}) {

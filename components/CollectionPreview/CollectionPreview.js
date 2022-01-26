@@ -94,7 +94,7 @@ const CollectionPreview = ({
               buttonOverride ? () => router.push(buttonOverride) : handleSeeMore
             }
           >
-            Show More
+            See More
           </Button>
         </Box>
       ) : null}

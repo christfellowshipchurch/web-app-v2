@@ -316,7 +316,7 @@ function LocationSingle(props = {}) {
         </Box>
       </Box>
 
-      <Box width="100%" bg="white" p="xl">
+      <Box width="100%" bg="white" p={{ _: 'base', md: 'xl' }}>
         <LocationBlockFeature
           mx="auto"
           maxWidth={1000}
