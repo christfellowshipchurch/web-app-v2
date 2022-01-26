@@ -45,6 +45,11 @@ module.exports = {
         destination: '/articles/baptism-faqs',
         permanent: true,
       },
+      {
+        source: '/articles/boca-raton-heart-for-the-house',
+        destination: '/locations/boca-raton',
+        permanent: true,
+      },
       // TODO: Uncomment these lines to hide Group Finder.
       // NOTE: We can't get `config/flags` in this file.
       // {
