@@ -5,6 +5,7 @@ import drop from 'lodash/drop';
 
 import {
   CollectionPreview,
+  FAQ,
   Layout,
   LocationBlockFeature,
   NotFound,
@@ -335,6 +336,11 @@ function LocationSingle(props = {}) {
             titleOverride="Coming Up at Palm Beach Gardens"
             contentId="UniversalContentItem:d29e24e1873b0c4f4f645218ca3338ea"
           />
+        </Box>
+      </Box>
+      <Box px="base" py="xl" width="100%" bg="white">
+        <Box mx="auto" maxWidth={1200}>
+          <FAQ />
         </Box>
       </Box>
       <Box px="base" py="xl" bg="white">

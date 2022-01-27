@@ -22,6 +22,7 @@ import DiscoverItemsList from './DiscoverItemsList';
 import EventSingle from './EventSingle';
 import EventsList from './EventsList';
 import HeroLanding from './HeroLanding';
+import FAQ from './FAQ';
 import FeatureFeed from './FeatureFeed';
 import FilterField from './FilterField';
 import Footer from './Footer';
@@ -85,6 +86,7 @@ export {
   EventSingle,
   EventsList,
   HeroLanding,
+  FAQ,
   FeatureFeed,
   FilterField,
   Footer,
