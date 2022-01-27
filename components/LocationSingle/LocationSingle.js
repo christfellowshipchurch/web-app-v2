@@ -9,6 +9,7 @@ import {
   Layout,
   LocationBlockFeature,
   NotFound,
+  Testimonials,
 } from 'components';
 
 import {
@@ -341,6 +342,11 @@ function LocationSingle(props = {}) {
       <Box px="base" py="xl" width="100%" bg="white">
         <Box mx="auto" maxWidth={1200}>
           <FAQ />
+        </Box>
+      </Box>
+      <Box px="base" py="xl" width="100%">
+        <Box mx="auto" maxWidth={1200}>
+          <Testimonials />
         </Box>
       </Box>
       <Box px="base" py="xl" bg="white">

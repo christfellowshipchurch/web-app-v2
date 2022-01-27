@@ -9,9 +9,9 @@ function FAQ(props = {}) {
   const [display, setDisplay] = useState('none');
 
   return (
-    <Styled {...props}>
-      <Box>
-        <Box as="h2" color="neutrals.300" mb="base">
+    <Styled id="faq" {...props}>
+      <Box mb="xl" pr="l">
+        <Box as="h2" fontSize={32} color="neutrals.300" mb="base">
           FAQ
         </Box>
         <Box as="h4" color="tertiary" fontStyle="italic" mb={0}>
@@ -34,7 +34,10 @@ function FAQ(props = {}) {
         ))}
         <Box width="100%" textAlign="center">
           <Button
-            onClick={() => setDisplay(display ? null : 'none')}
+            onClick={() => {
+              setDisplay(display ? null : 'none');
+              window.location = '#faq';
+            }}
             mx="auto"
             variant="link"
           >

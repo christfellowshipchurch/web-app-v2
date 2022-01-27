@@ -8,6 +8,11 @@ const FAQ = styled.div`
   grid-template-columns: 1fr 1fr;
   margin: ${themeGet('space.l')};
 
+  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+    grid-template-columns: 1fr;
+    margin: ${themeGet('space.base')};
+  }
+
   ${system}
 `;
 

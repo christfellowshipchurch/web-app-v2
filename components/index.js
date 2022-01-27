@@ -55,6 +55,7 @@ import PasswordReset from './PasswordReset';
 import SEO from './SEO';
 import SearchField from './SearchField';
 import Share from './Share';
+import Testimonials from './Testimonials';
 import TrackEventWhenLoaded from './TrackEventWhenLoaded';
 import UserAvatar from './UserAvatar';
 import UserProfile from './UserProfile';
@@ -119,6 +120,7 @@ export {
   SEO,
   SearchField,
   Share,
+  Testimonials,
   TrackEventWhenLoaded,
   UserAvatar,
   UserProfile,
