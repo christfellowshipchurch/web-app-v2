@@ -123,7 +123,7 @@ export default function About() {
                 textAlign="center"
               >
                 <Box as="h2">{item.title}</Box>
-                <Box as="p" color="subdued" mb="base">
+                <Box as="p" color="primary" mb="base">
                   {item.subtitle}
                 </Box>
                 <Box as="p">{item.description}</Box>
@@ -158,7 +158,7 @@ export default function About() {
                 textAlign="center"
               >
                 <Box as="h2">{item.title}</Box>
-                <Box as="p" color="subdued">
+                <Box as="p" color="primary">
                   {item.description}
                 </Box>
               </Card>
