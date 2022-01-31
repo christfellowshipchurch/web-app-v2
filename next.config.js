@@ -31,7 +31,7 @@ module.exports = {
         source: '/app-link/:slug',
         destination: '/:slug',
         permanent: false,
-      }, // force a refresh again
+      }, //fixing mvmnt
       { source: '/mvmnt', destination: 'https://longhollow.com/mvmnt-2022', permanent: true },
       { source: '/game', destination: 'https://longhollow.com/family-game-night', permanent: true },
       { source: '/studentmissions', destination: 'https://longhollow.com/student-spring-break-missions', permanent: true },
