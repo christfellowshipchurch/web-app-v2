@@ -57,12 +57,12 @@ const HtmlRenderer = ({ htmlContent, customProcessing }) => {
 };
 
 HtmlRenderer.propTypes = {
-  htmlContent: PropTypes.object.isRequired,
+  htmlContent: PropTypes.string.isRequired,
   customProcessing: PropTypes.array,
 };
 
 HtmlRenderer.defaultProps = {
-  htmlContent: null,
+  htmlContent: '',
   customProcessing: [],
 };
 

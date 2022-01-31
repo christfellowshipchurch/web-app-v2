@@ -91,7 +91,9 @@ const CollectionPreview = ({
             px={size === 's' ? 'base' : 'l'}
             size={size}
             onClick={
-              buttonOverride ? () => router.push(buttonOverride) : handleSeeMore
+              buttonOverride !== ''
+                ? () => router.push(buttonOverride)
+                : handleSeeMore
             }
           >
             See More
@@ -109,7 +111,7 @@ CollectionPreview.propTypes = {
 };
 
 CollectionPreview.defaultProps = {
-  buttonOverride: false,
+  buttonOverride: '',
   size: 'l',
 };
 

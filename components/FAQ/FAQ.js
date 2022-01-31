@@ -24,7 +24,7 @@ function FAQ(props = {}) {
       </Box>
       <Box>
         {props?.data?.map((n, i) => (
-          <Box display={i > 1 ? display : null}>
+          <Box key={i} display={i > 1 ? display : null}>
             <Box as="h3" color="secondary" fontStyle="italic">
               {n.title}
             </Box>

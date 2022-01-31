@@ -25,7 +25,7 @@ const LocationBlockFeature = props => {
       </Box>
       <Styled.Container>
         {content.map(block => (
-          <Styled.LocationBlock>
+          <Styled.LocationBlock key={block.id}>
             <Image
               aspectRatio="16by9"
               source={block?.coverImage?.sources[0]?.uri}
@@ -44,6 +44,7 @@ const LocationBlockFeature = props => {
             <HtmlRenderer htmlContent={block?.htmlContent} />
             {block?.actions.map((action, i) => (
               <CustomLink
+                key={i}
                 as="a"
                 href={getUrlFromRelatedNode(action?.relatedNode)}
                 Component={Button}
@@ -52,6 +53,7 @@ const LocationBlockFeature = props => {
                 size="s"
                 mt="s"
                 textTransform="capitalize!important"
+                px="base"
                 /**
                  * todo : We want to eventually add functionality with the 'onPressActionItem' to be able to perform more actions in the future.
                  */

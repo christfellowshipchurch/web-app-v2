@@ -1,14 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  Box,
-  Button,
-  Divider,
-  HtmlRenderer,
-  Icon,
-  systemPropTypes,
-} from 'ui-kit';
+import { Box, Icon, systemPropTypes } from 'ui-kit';
 import Styled from './Testimonials.styles';
 import RatingStars from './RatingStars';
 
@@ -40,8 +33,8 @@ function Testimonials(props = {}) {
         See What Others Are Saying
       </Box>
       <Styled {...props}>
-        {props?.data?.map(n => (
-          <Styled.Card>
+        {props?.data?.map((n, i) => (
+          <Styled.Card key={i}>
             <Box as="h4" fontStyle="italic">
               {n.title}
             </Box>
