@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Avatar, Box, Button, Cell, Divider, Icon, utils } from 'ui-kit';
+import nextSunday from 'date-fns/nextSunday';
 
 import Styled from './LocationSingle.styles';
+import { icsLink } from 'components/AddToCalendar/utils';
 
 const CampusInfo = (props = {}) => (
   <>
@@ -127,7 +129,7 @@ const CampusInfo = (props = {}) => (
             width="90px"
             height="90px"
             name="campus-pastors"
-            src="/pastor-pic.png"
+            src={props?.campusPastors?.photo}
           />
           <Divider width={80} mx="s" bg="neutrals.200" />
         </Box>
@@ -148,6 +150,19 @@ const CampusInfo = (props = {}) => (
         </Box>
         <Box display={{ _: 'inline', lg: 'flex' }}>
           <Button
+            as="a"
+            /**
+             * todo : We are using custom button styling and the 'icsLink' method from AddToCalendar button to grab the next Sunday coming up with the service times listed inside of the description. We'll want to move this logic somewhere else later, and update the AddToCalendar component
+             */
+            href={icsLink({
+              title: 'Sunday Service At Christ Fellowship',
+              description: `Here are the following times for Sunday! ${props?.serviceTimes?.map(
+                time => `${time}`
+              )}`,
+              address: props?.address,
+              startTime: nextSunday(new Date()),
+              endTime: nextSunday(new Date()),
+            })}
             size="xs"
             px="base"
             borderRadius="xxl"
@@ -156,6 +171,7 @@ const CampusInfo = (props = {}) => (
           >
             ADD TO CALENDAR
           </Button>
+
           <Button
             size="xs"
             px="base"
@@ -212,7 +228,7 @@ CampusInfo.defaultProps = {
   address: '5343 Northlake Blvd. Palm Beach Gardens, FL 33418',
   campusPastors: {
     name: 'Dave and Rhonda Simiele',
-    photo: '',
+    photo: '/pastor-pic.png',
   },
   serviceTimes: ['8:30AM', '10AM', '11:45AM', '5PM'],
 };
