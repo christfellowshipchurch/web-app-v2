@@ -2,6 +2,12 @@ import replace from 'lodash/replace';
 import includes from 'lodash/includes';
 import { add, parseISO, format, formatISO } from 'date-fns';
 
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+}
+
 const formatEvent = event => ({
   title: event?.title || 'Christ Fellowship Church Event',
   description: event?.description || '',
@@ -71,7 +77,7 @@ export const icsLink = event => {
     'CALSCALE:GREGORIAN',
     'BEGIN:VEVENT',
     `DTSTAMP:${format(new Date(), 'yyyyMMddhhmmss')}Z`,
-    `UID: ${Math.floor(Math.random() * 8)} - christfellowship.church}`,
+    `UID:${getRandomInt(10000000, 99999999)}-@christfellowship.church`,
     `DTSTART;VALUE=DATE:${format(startTime, 'yyyyMMdd')}`,
     `DTEND;VALUE=DATE:${format(endTime, 'yyyyMMdd')}`,
     `SUMMARY:${title}`,
@@ -82,7 +88,7 @@ export const icsLink = event => {
     'END:VCALENDAR',
   ].join('\n');
 
-  // We use block method and removed `charset=utf8` in order to be compatible with Safari IOS
+  // We use blob method and removed `charset=utf8` in order to be compatible with Safari IOS
   let blob = new Blob([icsString], { type: 'text/calendar' });
   let url = window.URL.createObjectURL(blob);
 
