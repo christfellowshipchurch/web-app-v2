@@ -70,6 +70,10 @@ export const googleCalLink = (event, allDay) => {
 export const icsLink = event => {
   let { title, description, address, startTime, endTime } = event;
 
+  if (!title || !description || !address || !startTime || !endTime) {
+    return null;
+  }
+
   const icsString = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
