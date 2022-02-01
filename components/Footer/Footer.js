@@ -84,6 +84,11 @@ function Resources() {
             Shop Online
           </Styled.Link>
         </Box>
+        <Box as="li">
+          <Styled.Link target="_blank" href={links.cfApp}>
+            CF App
+          </Styled.Link>
+        </Box>
       </List>
     </Box>
   );
