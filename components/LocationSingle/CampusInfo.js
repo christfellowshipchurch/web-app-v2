@@ -8,10 +8,10 @@ import { icsLink } from 'components/AddToCalendar/utils';
 
 const CampusInfo = (props = {}) => {
   const icsLinkEvent = {
-    title: 'Sunday Service At Christ Fellowship',
-    description: `Here are the following times for Sunday! ${props?.serviceTimes?.map(
-      time => `${time}`
-    )}`,
+    title: `Christ Fellowship - ${props?.campus}`,
+    description: `Here are the service times for Sunday: ${props?.serviceTimes?.map(
+      time => ` ${time}`
+    )}. Can't wait to see you there!`,
     address: props?.address,
     startTime: nextSunday(new Date()),
     endTime: nextSunday(new Date()),
@@ -222,6 +222,7 @@ const CampusInfo = (props = {}) => {
 
 CampusInfo.propTypes = {
   address: PropTypes.string,
+  campus: PropTypes.string,
   campusPastors: {
     name: PropTypes.string,
     photo: PropTypes.string,
@@ -231,6 +232,7 @@ CampusInfo.propTypes = {
 
 CampusInfo.defaultProps = {
   address: '5343 Northlake Blvd. Palm Beach Gardens, FL 33418',
+  campus: 'Palm Beach Gardens',
   campusPastors: {
     name: 'Dave and Rhonda Simiele',
     photo: '/pastor-pic.png',
