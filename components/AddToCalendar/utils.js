@@ -68,11 +68,11 @@ export const googleCalLink = (event, allDay) => {
  */
 
 export const icsLink = event => {
-  let { title, description, address, startTime, endTime } = event;
+  let { title, description, address, startTime, endTime, url } = event;
 
-  if (!title || !description || !address || !startTime || !endTime) {
-    return null;
-  }
+  // if (!title || !description || !address || !startTime || !endTime) {
+  //   return null;
+  // }
 
   const icsString = [
     'BEGIN:VCALENDAR',
@@ -85,7 +85,7 @@ export const icsLink = event => {
     `DTSTART;VALUE=DATE:${format(startTime, 'yyyyMMdd')}`,
     `DTEND;VALUE=DATE:${format(endTime, 'yyyyMMdd')}`,
     `SUMMARY:${title}`,
-    `URL:${document.URL}`,
+    `URL:${url ?? document?.URL ?? 'https://www.christfellowship.church'}`,
     `DESCRIPTION:${description}`,
     `LOCATION:${address}`,
     'END:VEVENT',
@@ -94,7 +94,7 @@ export const icsLink = event => {
 
   // We use blob method and removed `charset=utf8` in order to be compatible with Safari IOS
   let blob = new Blob([icsString], { type: 'text/calendar' });
-  let url = window.URL.createObjectURL(blob);
+  let calendarLink = window.URL.createObjectURL(blob);
 
-  return url;
+  return calendarLink;
 };

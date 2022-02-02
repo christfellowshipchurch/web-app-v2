@@ -24,7 +24,7 @@ export default function Location(props = {}) {
 // This function gets called at build time to generate the titles for _all_ messages
 export async function getStaticPaths() {
   // todo : make this a Network request so that it's dynamic
-  const titles = [];
+  const titles = ['palm-beach-gardens'];
 
   return {
     paths: titles.map(title => `/locations/${title}`),
@@ -36,21 +36,8 @@ export async function getStaticPaths() {
 
 // This also gets called at build time
 export async function getStaticProps({ params }) {
-  const apolloClient = initializeApollo();
-
-  await apolloClient.query({
-    query: GET_CONTENT_ITEM,
-    variables: { pathname: `locations/${params.title}` },
-  });
-
   // Pass post data to the page via props
   return {
-    props: {
-      initialApolloState: apolloClient.cache.extract(),
-    },
-    // Re-generate the post at most once per second
-    // if a request comes in
-    revalidate: 1,
+    props: {},
   };
 }
-
