@@ -112,15 +112,18 @@ export async function getServerSideProps(context) {
         });
       }
 
-      return {
-        props: {
-          initialApolloState: apolloClient.cache.extract(),
-          data: pageResponse?.data?.getContentBySlug,
-          relatedContent: ministryResponse?.data,
-          campuses: campusesResponse.data?.campuses || [],
-          type,
-        },
+      const props = {
+        initialApolloState: apolloClient.cache.extract(),
+        data: pageResponse?.data?.getContentBySlug,
+        campuses: campusesResponse.data?.campuses || [],
+        type,
       };
+
+      if (ministryResponse?.data) {
+        props.relatedContent = ministryResponse?.data;
+      }
+
+      return { props };
     }
   } catch (e) {
     let statusCode = 400;

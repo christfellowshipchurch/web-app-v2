@@ -63,11 +63,18 @@ export default function Page({
     ...metadata,
     ministry: null,
   }).some(val => Boolean(val));
-  const isEvent = getIdSuffix(data?.parentChannel?.id) === IDS.CHANNELS.EVENTS;
-  const isArticle =
-    getIdSuffix(data?.parentChannel?.id) === IDS.CHANNELS.ARTICLES;
-  const isVolunteerPositions =
-    getIdSuffix(data?.parentChannel?.id) === IDS.CHANNELS.VOLUNTEER_POSITIONS;
+  const EVENTS_CALLOUT_CHANNEL_IDS = [
+    IDS.ABOUT_PAGES,
+    IDS.CHILD_LINKS,
+    IDS.CONNECT_PAGES,
+    IDS.GIVE_PAGES,
+    IDS.NEXT_STEPS_PAGES,
+    IDS.STANDALONE_PAGES,
+    IDS.WATCH_PAGES,
+  ];
+  const showEventsCallout = EVENTS_CALLOUT_CHANNEL_IDS.includes(
+    getIdSuffix(data?.parentChannel?.id)
+  );
 
   const dates = data.dates
     ?.split(',')
@@ -115,7 +122,7 @@ export default function Page({
         overlay=""
         mb={{ _: 'l', md: 'xxl' }}
       />
-      {links?.length && !isEvent ? (
+      {links?.length && showEventsCallout ? (
         <Section contentProps={{ p: '0 !important' }}>
           <EventsCallout
             mx={{ _: 0, lg: 'xl' }}

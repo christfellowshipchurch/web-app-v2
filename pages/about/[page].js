@@ -1,22 +1,32 @@
-import { useRouter } from 'next/router';
-
 import {
   CampusFilter,
+  EventCallout,
+  EventsCallout,
   Layout,
   MainPhotoHeader,
   MarketingHeadline,
 } from 'components';
-import { getChannelId, getMetaData, getSlugFromURL } from 'utils';
 import IDS from 'config/ids';
-import { initializeApollo } from 'lib/apolloClient';
-import { CardGrid, Longform, Section } from 'ui-kit';
-import { GET_CONTENT_CHANNEL } from 'hooks/useContentChannel';
 import { GET_CAMPUSES } from 'hooks/useCampuses';
+import { GET_CONTENT_CHANNEL } from 'hooks/useContentChannel';
+import { GET_MINISTRY_CONTENT } from 'hooks/useMinistryContent';
 import { GET_UNIVERSAL_CONTENT_ITEM_BY_SLUG } from 'hooks/useUniversalContentItemBySlug';
+import { initializeApollo } from 'lib/apolloClient';
+import { useRouter } from 'next/router';
+import { Info } from 'phosphor-react';
 import { useEffect } from 'react';
+import { useTheme } from 'styled-components';
+import { CardGrid, Longform, Section } from 'ui-kit';
+import { getChannelId, getIdSuffix, getMetaData, getSlugFromURL } from 'utils';
 
-export default function Page({ data = {}, campuses, dropdownData }) {
+export default function Page({
+  data = {},
+  campuses,
+  dropdownData,
+  relatedContent,
+}) {
   const router = useRouter();
+  const theme = useTheme();
 
   // next.config.js isn't working for redirects when clicking on the link to redirect from
   useEffect(() => {
@@ -32,6 +42,16 @@ export default function Page({ data = {}, campuses, dropdownData }) {
   const childContent = data.childContentItemsConnection?.edges;
   const ctaLinks = data.ctaLinks;
 
+  let links = relatedContent?.getMinistryContent?.length
+    ? relatedContent.getMinistryContent.slice(0, 4)
+    : [];
+
+  links = links.filter(
+    link =>
+      getSlugFromURL(link?.sharing?.url) !== router.query.page &&
+      (getIdSuffix(link.parentChannel?.id) === IDS.CHANNELS.EVENTS ||
+        getIdSuffix(link.parentChannel?.id) === IDS.CHANNELS.ARTICLES)
+  );
   return (
     <Layout meta={getMetaData(data)} bg="bg_alt" dropdownData={dropdownData}>
       <MainPhotoHeader
@@ -42,6 +62,38 @@ export default function Page({ data = {}, campuses, dropdownData }) {
         showTitleOverImage={data.showTitleOverImage}
         mb={{ _: 'l', md: 'xxl' }}
       />
+      {links?.length ? (
+        <Section contentProps={{ p: '0 !important' }}>
+          <EventsCallout
+            mx={{ _: 0, lg: 'xl' }}
+            mb={{ _: 'l', md: 'xxl' }}
+            my={{ lg: `-${theme.space.xxl}` }}
+            title="News & Events"
+            icon={
+              <Info
+                size={24}
+                style={{
+                  color: theme.colors.neutrals[900],
+                  opacity: '60%',
+                  marginRight: theme.space.xxs,
+                }}
+              />
+            }
+          >
+            {links.map(link => (
+              <EventCallout
+                key={link.id}
+                title={link.title}
+                description={link.subtitle}
+                imageSrc={link.coverImage?.sources?.[0]?.uri}
+                onClick={() =>
+                  router.push(`/${getSlugFromURL(link?.sharing?.url)}`)
+                }
+              />
+            ))}
+          </EventsCallout>
+        </Section>
+      ) : null}
       {data.htmlContent && (
         <Section>
           <Longform
@@ -135,11 +187,19 @@ export async function getStaticProps(context) {
       slug: context.params.page,
     },
   });
+  const pageData = pageResponse?.data?.getContentBySlug;
 
   const submenuLinks = await apolloClient.query({
     query: GET_CONTENT_CHANNEL,
     variables: {
       itemId: getChannelId(IDS.ABOUT_PAGES),
+    },
+  });
+
+  const ministryResponse = await apolloClient.query({
+    query: GET_MINISTRY_CONTENT,
+    variables: {
+      ministry: pageData?.ministry,
     },
   });
 
@@ -150,10 +210,11 @@ export async function getStaticProps(context) {
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
-      data: pageResponse?.data?.getContentBySlug,
+      data: pageData,
       submenuLinks:
         submenuLinks?.data?.node?.childContentItemsConnection?.edges,
       campuses: campusesResponse?.data?.campuses || [],
+      relatedContent: ministryResponse?.data,
     },
     revalidate: 60, // In seconds
   };
