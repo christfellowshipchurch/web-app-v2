@@ -7,6 +7,15 @@ const LocationSingle = styled.div`
   ${system}
 `;
 
+const FlexBreak = styled.div`
+  flex-basis: 100%;
+  height: 0;
+
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    display: none;
+  }
+`;
+
 const InfoBox = styled.ul`
   background: ${themeGet('colors.hues.orange')};
   border-radius: ${themeGet('radii.base')};
@@ -16,10 +25,11 @@ const InfoBox = styled.ul`
   margin-left: auto;
   margin-right: -2rem;
   margin-top: -0.7rem;
-  max-width: 355px;
+  max-width: 370px;
   padding-bottom: ${themeGet('space.s')};
   padding-left: 30px;
   padding-top: ${themeGet('space.s')};
+  box-shadow: -7px -5px 19px rgba(0, 0, 0, 0.12);
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
     margin-right: 0px;
@@ -35,20 +45,53 @@ const InfoBox = styled.ul`
   }
 `;
 
+const PastorsCard = styled.div`
+  background: ${themeGet('colors.white')};
+  position: relative;
+  padding-left: ${themeGet('space.base')};
+  padding-right: ${themeGet('space.base')};
+  padding-top: ${themeGet('space.l')};
+  padding-bottom: ${themeGet('space.l')};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
+
+  @media screen and (min-width: ${themeGet('breakpoints.sm')}) {
+    border: 1px solid ${themeGet('colors.neutrals.300')};
+    border-radius: ${themeGet('radii.l')};
+    box-shadow: ${themeGet('shadows.l')};
+    width: auto;
+  }
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    left: -1rem;
+  }
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    min-width: 350px;
+  }
+
+  ${system}
+`;
+
 const ServiceTime = styled.h3`
   color: white;
+  opacity: 75%;
+  margin-bottom: 0px;
+  margin-left: ${themeGet('space.s')};
+  margin-right: ${themeGet('space.s')};
+`;
+
+const ServiceTimeTitle = styled.h4`
+  color: white;
+  opacity: 75%;
   margin-bottom: 0px;
   margin-left: ${themeGet('space.base')};
   margin-right: ${themeGet('space.base')};
-`;
 
-const ServiceTimes = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 0;
-
-  @media screen and (max-width: 389px) {
-    flex-flow: row wrap;
+  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+    margin-bottom: ${themeGet('space.s')};
   }
 `;
 
@@ -58,31 +101,34 @@ const ServiceTimeContainer = styled.div`
     linear-gradient(90.49deg, #6bcaba -24.45%, #0092bc 118.95%);
   border-radius: ${themeGet('radii.base')};
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   margin-top: ${themeGet('space.base')};
   padding: ${themeGet('space.base')};
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
     border-radius: 0px;
-    flex-direction: column;
+    /* flex-direction: column; */
   }
 `;
 
 const VerticalDivider = styled.div`
-  height: 40px;
-  width: 2px;
-  background: ${themeGet('colors.neutrals.500')};
+  height: 30px;
+  width: 1px;
+  background-color: rgb(255 255 255 / 25%);
+}
+
+
 `;
 
 const VideoCover = styled.video`
-  align-items: flex-end;
-  display: flex;
-  justify-content: center;
-  overflow: hidden;
-  position: relative;
-
   width: 100%;
-  object-fit: cover;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  object-fit cover;
 
   ${system}
 `;
@@ -97,9 +143,11 @@ const VideoOverlay = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
+LocationSingle.FlexBreak = FlexBreak;
 LocationSingle.InfoBox = InfoBox;
+LocationSingle.PastorsCard = PastorsCard;
 LocationSingle.ServiceTime = ServiceTime;
-LocationSingle.ServiceTimes = ServiceTimes;
+LocationSingle.ServiceTimeTitle = ServiceTimeTitle;
 LocationSingle.ServiceTimeContainer = ServiceTimeContainer;
 LocationSingle.VerticalDivider = VerticalDivider;
 LocationSingle.VideoCover = VideoCover;

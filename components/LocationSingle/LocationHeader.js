@@ -9,25 +9,29 @@ const LocationHeader = (props = {}) => (
   <Box
     position="relative"
     display="flex"
-    justifyContent="center"
+    justifyContent={{ _: 'flex-start', lg: 'center' }}
     alignItems={{ _: 'flex-end', sm: 'center' }}
   >
-    <Styled.VideoCover
-      height={{ _: '90vh', sm: 500, lg: 700 }}
-      mx="auto"
-      mt={0}
-      src="/external-landing/external-bg-vid.mp4"
-      autoPlay
-      muted
-      loop
-      playsInline
-      type="video/mp4"
-    />
+    <Box
+      pt={{ _: 0, sm: '56.25%', lg: 0 }}
+      height={{ _: '90vh', sm: 500, md: 0, lg: 700 }}
+    >
+      <Styled.VideoCover
+        mx="auto"
+        src="/external-landing/external-bg-vid.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+        type="video/mp4"
+      />
+    </Box>
     <Styled.VideoOverlay />
     <Box
-      mt={{ _: 0, md: 'xxl' }}
       position="absolute"
-      width={{ _: '90%', md: '80%' }}
+      mx="base"
+      width={{ _: 'auto', md: '90%' }}
+      maxWidth={1200}
       zIndex={1}
     >
       <Box
@@ -39,9 +43,9 @@ const LocationHeader = (props = {}) => (
       >
         <Box
           as="h1"
-          fontSize={{ _: 38, md: 50, lg: 60 }}
-          mr="l"
+          fontSize={{ _: 38, md: 48, lg: 60 }}
           color="white"
+          boxShadow="l"
           mt="l"
         >
           {dropRight(props?.title, 4)}
@@ -49,29 +53,32 @@ const LocationHeader = (props = {}) => (
         <Box>
           <Box
             display="flex"
-            justifyContent={{ _: 'center', sm: 'flex-start' }}
+            justifyContent={{ _: 'space-between', sm: 'flex-start' }}
             mb="base"
           >
             <Button
               as="a"
               href="#service-times"
               mt="s"
-              mr={{ _: 's', md: 'base' }}
+              mr={{ _: 'xs', md: 'base' }}
+              width={{ _: '100%', sm: 'auto' }}
             >
               Join Us Sunday
             </Button>
             <Button
               as="a"
-              href="#get-connected"
+              href="https://rock.gocf.org/connect"
               id="service-times"
               mt="s"
               variant="tertiary"
+              ml={{ _: 'xs', md: 0 }}
+              width={{ _: '100%', sm: 'auto' }}
             >
               Get Connected
             </Button>
           </Box>
           <Box>
-            <Divider mb="l" />
+            <Divider bg="white" opacity="30%" mb="xl" mt="l" />
           </Box>
         </Box>
       </Box>

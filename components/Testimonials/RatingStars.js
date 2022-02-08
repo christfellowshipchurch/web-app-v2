@@ -11,7 +11,7 @@ function RatingStars(props = {}) {
   } while (i < props.rating);
 
   return (
-    <Box display="flex" justifyContent="center">
+    <Box {...props} display="flex" justifyContent="center">
       {stars.map(i => (
         <Icon key={i} mx={2} color="hues.yellow" name="star" />
       ))}

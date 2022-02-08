@@ -20,7 +20,9 @@ function FAQ(props = {}) {
         <Box fontWeight="bold" mb="base" maxWidth={450}>
           Someone from our team is happy to answer any of your questions!
         </Box>
-        <Box as="a">Contact Us</Box>
+        <Box as="a" href="https://rock.gocf.org/contactus">
+          Contact Us
+        </Box>
       </Box>
       <Box>
         {props?.data?.map((n, i) => (

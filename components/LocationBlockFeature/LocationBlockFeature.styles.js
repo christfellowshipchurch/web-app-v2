@@ -21,7 +21,10 @@ const LocationBlock = styled.div`
   text-align: center;
 
   @media screen and (max-width: ${themeGet('breakpoints.lg')}) {
-    margin: ${themeGet('space.base')};
+    margin-top: ${themeGet('space.base')};
+    margin-bottom: ${themeGet('space.l')};
+    margin-left: 0px;
+    margin-right: 0px;
   }
 `;
 

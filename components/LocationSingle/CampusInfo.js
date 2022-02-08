@@ -25,7 +25,7 @@ const CampusInfo = (props = {}) => {
         display="flex"
         flexDirection={{ _: 'column', md: 'row' }}
         justifyContent="center"
-        maxWidth={utils.rem('1100px')}
+        maxWidth={utils.rem('1200px')}
         mx="auto"
         position="relative"
         px={{ _: 0, md: 'base' }}
@@ -36,20 +36,17 @@ const CampusInfo = (props = {}) => {
         {/* Service Times */}
         <Box width="100%">
           <Styled.ServiceTimeContainer>
-            <Box as="h4" mb={{ _: 's', sm: 0 }} color="neutrals.300">
-              Every Sunday
-            </Box>
-            <Styled.ServiceTimes>
-              {props?.serviceTimes &&
-                props?.serviceTimes?.map((n, i) => [
-                  <Styled.ServiceTime key={i}>{n}</Styled.ServiceTime>,
-                  <>
-                    {i < props?.serviceTimes.length - 1 && (
-                      <Styled.VerticalDivider key={i} />
-                    )}
-                  </>,
-                ])}
-            </Styled.ServiceTimes>
+            <Styled.ServiceTimeTitle>Every Sunday</Styled.ServiceTimeTitle>
+            <Styled.FlexBreak />
+            {props?.serviceTimes &&
+              props?.serviceTimes?.map((n, i) => [
+                <Styled.ServiceTime key={i}>{n}</Styled.ServiceTime>,
+                <>
+                  {i < props?.serviceTimes.length - 1 && (
+                    <Styled.VerticalDivider key={i} />
+                  )}
+                </>,
+              ])}
           </Styled.ServiceTimeContainer>
 
           {/* Addtional Information */}
@@ -73,44 +70,46 @@ const CampusInfo = (props = {}) => {
                   <Box
                     display={{ _: 'none', md: 'flex' }}
                     as="h3"
-                    mr="xxl"
                     color="secondary"
+                    flex="1"
                   >
                     Address
                   </Box>
                   <Box
                     as="h3"
                     textAlign={{ _: 'center', md: 'start' }}
-                    mx={{ _: 'base', md: 0 }}
                     maxWidth={300}
-                    pl={5}
-                    pr="base"
+                    flex="1"
                   >
                     {props?.address}
                   </Box>
-                  <Button
-                    as="a"
-                    target="_blank"
-                    href={`https://www.google.com/maps/place/${props?.address?.replace(
-                      ' ',
-                      '+'
-                    )}`}
-                    borderRadius="xxl"
-                    size="s"
-                    px="base"
-                    ml={{ _: 0, md: 'auto' }}
-                  >
-                    GET DIRECTIONS
-                  </Button>
+                  <Box textAlign="right" flex="1">
+                    <Button
+                      as="a"
+                      target="_blank"
+                      href={`https://www.google.com/maps/place/${props?.address?.replace(
+                        ' ',
+                        '+'
+                      )}`}
+                      borderRadius="xxl"
+                      size="s"
+                      px="base"
+                      mt="base"
+                    >
+                      GET DIRECTIONS
+                    </Button>
+                  </Box>
                 </Box>
                 <Divider display={{ _: 'none', md: 'flex' }} width="100%" />
               </>
             )}
             <Box display={{ _: 'none', md: 'flex' }} mt="l">
-              <Box as="h3" color="secondary" minWidth={155}>
-                Get the Most Out of Life
+              <Box flex="1">
+                <Box as="h3" pr="xl" color="secondary">
+                  Get the Most Out of Life
+                </Box>
               </Box>
-              <Box mx="l">
+              <Box flex="2">
                 <Box as="p">
                   {`Here at Christ Fellowship Church in ${props?.campus}, we want to help you live the life you were created for. Every Sunday, we have church services where you can experience uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—and it all starts here!`}
                 </Box>
@@ -119,32 +118,18 @@ const CampusInfo = (props = {}) => {
           </Box>
         </Box>
         {/* Campus Pastors */}
-        <Box
-          bg="white"
-          borderRadius="base"
-          position="relative"
-          left={{ _: 0, md: '-1rem' }}
-          boxShadow="l"
-          py="l"
-          px="base"
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          flexDirection="column"
-          textAlign="center"
-          minWidth={{ _: '', lg: 380 }}
-        >
+        <Styled.PastorsCard>
           <Box display="flex" alignItems="center">
-            <Divider width={80} mx="s" bg="neutrals.200" />
+            <Divider width={120} mr="s" bg="neutrals.200" />
             <Avatar
               width="90px"
               height="90px"
               name="campus-pastors"
               src={props?.campusPastors?.photo}
             />
-            <Divider width={80} mx="s" bg="neutrals.200" />
+            <Divider width={120} ml="s" bg="neutrals.200" />
           </Box>
-          <Box as="h3" mx="l">
+          <Box as="h3" mt="base" mb="xs" mx="l">
             {props?.campusPastors?.name}
           </Box>
           <Box
@@ -152,12 +137,13 @@ const CampusInfo = (props = {}) => {
             fontWeight="normal"
             fontStyle="italic"
             color="neutrals.700"
+            mb={0}
           >
             Campus Pastors
           </Box>
-          <Divider width="100%" my="base" bg="neutrals.200" />
-          <Box as="h5" fontStyle="italic" mb="base">
-            We can’t wait to see you this weekend!
+          <Divider width="100%" my="l" bg="neutrals.200" />
+          <Box as="h4" fontStyle="italic" mb="base">
+            We can’t wait to see you this week!
           </Box>
           <Box display={{ _: 'inline', lg: 'flex' }}>
             <Button
@@ -186,7 +172,7 @@ const CampusInfo = (props = {}) => {
             </Button>
           </Box>
           {/**
-           * todo : Add urls to social media links
+           * todo : Add urls to social media links, maybe setup those up from Rock???
            **/}
           <Box mt="base">
             <Box as="a" color="tertiary" href={''} mr="xs">
@@ -196,24 +182,24 @@ const CampusInfo = (props = {}) => {
               <Icon name="instagram" size="32" />
             </Box>
           </Box>
-        </Box>
+        </Styled.PastorsCard>
       </Cell>
 
       {/* Mobile View for "Church You Can Call Home" section */}
-      <Box display={{ _: 'inline', md: 'none' }} mt="l" textAlign="center">
-        <Box as="h3" color="secondary">
-          A Church You Can Call Home
+      <Box
+        display={{ _: 'block', md: 'none' }}
+        bg="white"
+        py="l"
+        textAlign="center"
+        mt="-2.7rem"
+      >
+        <Box as="h2" color="secondary">
+          Get the Most Out of Life
         </Box>
         <Box mx={{ _: 'base', sm: 'xl' }}>
           <Box as="p">
-            Here at Christ Fellowship Church in Palm Beach Gardens, we have
-            Sunday church services where you can experience uplifting worship
-            music, powerful messages from our pastors, special programming for
-            your family, and an opportunity to meet other amazing people like
-            you!
+            {`Here at Christ Fellowship Church in ${props?.campus}, we want to help you live the life you were created for. Every Sunday, we have church services where you can experience uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—and it all starts here!`}
           </Box>
-          <br />
-          <Box as="p">We look forward to seeing you this Sunday!</Box>
         </Box>
       </Box>
     </>

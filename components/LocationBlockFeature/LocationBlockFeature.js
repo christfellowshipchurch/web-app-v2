@@ -30,14 +30,16 @@ const LocationBlockFeature = props => {
               aspectRatio="16by9"
               source={block?.coverImage?.sources[0]?.uri}
             />
-            <Box mt="s" as="h2">
+            <Box fontSize={{ _: 30, sm: 'auto' }} mt="base" as="h2">
               {block?.title}
             </Box>
             <Box
-              as="h4"
+              fontSize={{ _: 20, sm: 'auto' }}
+              as="h3"
               color="secondary"
               fontWeight="normal"
               fontStyle="italic"
+              mb="xs"
             >
               {block?.subtitle}
             </Box>
@@ -51,7 +53,7 @@ const LocationBlockFeature = props => {
                 variant="secondary"
                 borderRadius="xxl"
                 size="s"
-                mt="s"
+                mt="base"
                 textTransform="capitalize!important"
                 px="base"
                 /**

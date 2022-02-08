@@ -41,8 +41,8 @@ function Testimonials(props = {}) {
             <Box color="secondary" mb="s">
               {n.description}
             </Box>
-            <RatingStars rating={n.rating} />
-            <Icon mt="s" color="neutrals.300" name="google" />
+            <RatingStars mt="base" rating={n.rating} />
+            <Icon mt="l" color="neutrals.300" name="google" />
           </Styled.Card>
         ))}
       </Styled>

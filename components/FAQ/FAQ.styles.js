@@ -5,7 +5,7 @@ import { system } from 'ui-kit';
 
 const FAQ = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1.5fr;
   margin: ${themeGet('space.l')};
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {

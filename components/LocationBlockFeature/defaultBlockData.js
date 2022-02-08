@@ -8,7 +8,7 @@ const locationBlockData = [
         relatedNode: {
           __typename: 'Url',
           id: 'Url:f4974a223763b3a06ea2cd73ff30952be89d6281e05bc41f7ee423cd227a2b00ac473ab51d6349eb947f770d463c04fc83a72f8b7a0522333e94950a0fc721fc7072f037d6a7dd2f84bf0a108a662de3',
-          url: 'https://christfellowship.church/discover?c=kids',
+          url: 'https://www.christfellowship.church/events/christ-fellowship-kids',
         },
         title: 'LEARN MORE',
       },
@@ -41,7 +41,7 @@ const locationBlockData = [
         relatedNode: {
           __typename: 'Url',
           id: 'Url:f4974a223763b3a06ea2cd73ff30952be89d6281e05bc41f7ee423cd227a2b00ac473ab51d6349eb947f770d463c04fc83a72f8b7a0522333e94950a0fc721fcfdab85895f0b5055043fe0a42e50277efd830a93c8139273e438a07a5780ed1a',
-          url: 'https://christfellowship.church/discover?c=students',
+          url: 'https://www.christfellowship.church/events/cfstudents',
         },
         title: 'LEARN MORE',
       },
@@ -74,7 +74,7 @@ const locationBlockData = [
         relatedNode: {
           __typename: 'Url',
           id: 'Url:f4974a223763b3a06ea2cd73ff30952be89d6281e05bc41f7ee423cd227a2b00ac473ab51d6349eb947f770d463c04fc83a72f8b7a0522333e94950a0fc721fc10f4fb466bd6d032935690b552c306ca3b00fdd2fe74edeadb0f0b65b8070e31',
-          url: 'https://christfellowship.church/discover?c=young-adults',
+          url: 'https://www.christfellowship.church/events/cf-young-adults',
         },
         title: 'LEARN MORE',
       },
@@ -107,7 +107,7 @@ const locationBlockData = [
         relatedNode: {
           __typename: 'Url',
           id: 'Url:f4974a223763b3a06ea2cd73ff30952be89d6281e05bc41f7ee423cd227a2b00ac473ab51d6349eb947f770d463c04fc9c28570aa73ca7806e04ced01d81c9f0169f48ff4f5af7b5ff0eb16e38c29c44',
-          url: 'https://christfellowship.church/get-connected',
+          url: 'https://christfellowship.church/groups',
         },
         title: 'LEARN MORE',
       },

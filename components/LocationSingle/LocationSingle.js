@@ -80,6 +80,7 @@ function LocationSingle(props = {}) {
       <Box px="base" py="xl" bg="neutrals.100">
         <Box mx="auto" maxWidth={1200}>
           <CollectionPreview
+            horizontalScroll
             size="s"
             titleOverride="Coming Up at Palm Beach Gardens"
             contentId="UniversalContentItem:d29e24e1873b0c4f4f645218ca3338ea"
