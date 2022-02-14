@@ -21,7 +21,7 @@ const LocationBlockFeature = props => {
   return (
     <Box textAlign="center" my="l" {...props}>
       <Box mb={0} as="h2" color="secondary">
-        {`At ${props?.title}`}
+        At This Location
       </Box>
       <Styled.Container>
         {content.map(block => (

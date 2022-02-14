@@ -67,7 +67,6 @@ function LocationSingle(props = {}) {
         <LocationBlockFeature
           mx="auto"
           maxWidth={1000}
-          title={campus}
           data={defaultBlockData}
           /**
            * todo :  These would be the content blocks we pull in from Rock, but since the content doesn't match Figma we'll hard code the content for now.
@@ -82,8 +81,7 @@ function LocationSingle(props = {}) {
           <CollectionPreview
             horizontalScroll
             size="s"
-            titleOverride="Coming Up at Palm Beach Gardens"
-            contentId="UniversalContentItem:d29e24e1873b0c4f4f645218ca3338ea"
+            contentId="UniversalContentItem:ddf0d380759e8404fb6b70aa941c06f7"
           />
         </Box>
       </Box>
