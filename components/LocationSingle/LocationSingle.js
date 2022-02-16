@@ -14,6 +14,7 @@ import { Box, ContentBlock, Loader } from 'ui-kit';
 import CampusInfo from './CampusInfo';
 import LocationHeader from './LocationHeader';
 import defaultBlockData from '../LocationBlockFeature/defaultBlockData';
+import { CampusProvider } from 'providers';
 
 function LocationSingle(props = {}) {
   const coverImage = props?.data?.coverImage?.sources[0]?.uri;
@@ -46,7 +47,9 @@ function LocationSingle(props = {}) {
   }
 
   const title = props?.data?.title;
-  const campus = title.substring(27, title.length - 4);
+  const campus = title.substring(28, title.length - 4);
+
+  console.log({ campus });
 
   return (
     <Layout
@@ -60,12 +63,16 @@ function LocationSingle(props = {}) {
       <LocationHeader title={props?.data?.title} />
 
       {/* Service Times and Campus Pastors sections */}
-      <CampusInfo campus={campus} />
+      <CampusProvider
+        Component={CampusInfo}
+        options={{ variables: { campusName: campus } }}
+      />
 
       {/* At this Campus Section */}
       <Box width="100%" bg="white" p={{ _: 'base', md: 'xl' }}>
         <LocationBlockFeature
           mx="auto"
+          campusName={campus}
           maxWidth={1000}
           data={defaultBlockData}
           /**

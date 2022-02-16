@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { useContentItem } from 'hooks';
 import { NotFound } from 'components';
-import { Box, Loader } from 'ui-kit';
+import { Loader } from 'ui-kit';
 
 function ContentItemProvider({ Component, options, ...props }) {
   const { loading, error, item } = useContentItem(options);

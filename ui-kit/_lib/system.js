@@ -83,6 +83,7 @@ import {
   boxShadow,
   opacity,
   overflow,
+  textShadow,
 } from 'styled-system';
 
 const textDecoration = style({
@@ -175,7 +176,8 @@ export const misc = compose(
   boxShadow,
   cursor,
   opacity,
-  overflow
+  overflow,
+  textShadow
 );
 
 export const system = compose(
@@ -271,4 +273,5 @@ export const propTypes = {
   ...boxShadow.propTypes,
   ...opacity.propTypes,
   ...overflow.propTypes,
+  ...textShadow.propTypes,
 };

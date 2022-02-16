@@ -45,10 +45,11 @@ const LocationHeader = (props = {}) => (
           as="h1"
           fontSize={{ _: 38, md: 48, lg: 60 }}
           color="white"
-          boxShadow="l"
+          textShadow="4px 4px 4px rgb(0 0 0 / 30%)"
           mt="l"
         >
-          {dropRight(props?.title, 4)}
+          {/* {dropRight(props?.title, 4)} */}
+          {props?.title}
         </Box>
         <Box>
           <Box

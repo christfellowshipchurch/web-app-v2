@@ -8,6 +8,7 @@
  */
 
 import { CustomLink } from 'components';
+import { drop } from 'lodash';
 import React from 'react';
 
 import { Box, Button, HtmlRenderer, Image } from 'ui-kit';
@@ -16,7 +17,15 @@ import { getUrlFromRelatedNode } from 'utils';
 import Styled from './LocationBlockFeature.styles';
 
 const LocationBlockFeature = props => {
-  const content = props?.data;
+  let content = props?.data;
+
+  /**
+   * todo : We want to remove Kids from the Downtown Campus, once we update the code to use the content blocks from Rock we can remove this.
+   */
+  if (props?.campusName === 'Downtown West Palm Beach') {
+    //removes Kids content block
+    content = drop(content);
+  }
 
   return (
     <Box textAlign="center" my="l" {...props}>

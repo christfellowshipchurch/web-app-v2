@@ -26,6 +26,10 @@ const Card = styled.div`
   margin-right: ${themeGet('space.base')};
   padding: ${themeGet('space.l')};
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 Testimonials.Card = Card;

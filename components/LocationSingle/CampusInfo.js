@@ -5,14 +5,29 @@ import nextSunday from 'date-fns/nextSunday';
 
 import Styled from './LocationSingle.styles';
 import { icsLink } from 'components/AddToCalendar/utils';
+import { handleSocialShare } from 'components/Share/shareUtils';
 
-const CampusInfo = (props = {}) => {
+const CampusInfo = ({
+  name,
+  pastor,
+  firstName,
+  lastName,
+  photo,
+  city,
+  street1,
+  state,
+  postalCode,
+  serviceTimes,
+  additionalInfo,
+}) => {
+  const address = `${street1} ${city}, ${state} ${postalCode?.substring(0, 5)}`;
+
   const icsLinkEvent = {
-    title: `Christ Fellowship - ${props?.campus}`,
-    description: `Here are the service times for Sunday: ${props?.serviceTimes?.map(
-      time => ` ${time}`
+    title: `Christ Fellowship - ${name}`,
+    description: `Here are the service times for Sunday: ${serviceTimes?.map(
+      n => ` ${n.time}`
     )}. Can't wait to see you there!`,
-    address: props?.address,
+    address,
     startTime: nextSunday(new Date()),
     endTime: nextSunday(new Date()),
   };
@@ -38,11 +53,11 @@ const CampusInfo = (props = {}) => {
           <Styled.ServiceTimeContainer>
             <Styled.ServiceTimeTitle>Every Sunday</Styled.ServiceTimeTitle>
             <Styled.FlexBreak />
-            {props?.serviceTimes &&
-              props?.serviceTimes?.map((n, i) => [
-                <Styled.ServiceTime key={i}>{n}</Styled.ServiceTime>,
+            {serviceTimes &&
+              serviceTimes?.map((n, i) => [
+                <Styled.ServiceTime key={i}>{n?.time}</Styled.ServiceTime>,
                 <>
-                  {i < props?.serviceTimes.length - 1 && (
+                  {i < serviceTimes.length - 1 && (
                     <Styled.VerticalDivider key={i} />
                   )}
                 </>,
@@ -50,14 +65,13 @@ const CampusInfo = (props = {}) => {
           </Styled.ServiceTimeContainer>
 
           {/* Addtional Information */}
-          <Box mr={{ _: 0, md: 'l' }}>
+          <Box mr={{ _: 0, md: 'base' }}>
             <Styled.InfoBox>
-              <Box as="li">CFKids services takes place at each service</Box>
-              <Box as="li">Traducciones al español ofrecidas a las 11:45am</Box>
-              <Box as="li">ASL interpretation offered at 10am</Box>
+              {additionalInfo &&
+                additionalInfo.map(n => <Box as="li">{n}</Box>)}
             </Styled.InfoBox>
             {/* Address and Church You Call Home */}
-            {props?.address && (
+            {address && (
               <>
                 <Box
                   display="flex"
@@ -81,13 +95,13 @@ const CampusInfo = (props = {}) => {
                     maxWidth={300}
                     flex="1"
                   >
-                    {props?.address}
+                    {address}
                   </Box>
                   <Box textAlign="right" flex="1">
                     <Button
                       as="a"
                       target="_blank"
-                      href={`https://www.google.com/maps/place/${props?.address?.replace(
+                      href={`https://www.google.com/maps/place/${address?.replace(
                         ' ',
                         '+'
                       )}`}
@@ -105,13 +119,13 @@ const CampusInfo = (props = {}) => {
             )}
             <Box display={{ _: 'none', md: 'flex' }} mt="l">
               <Box flex="1">
-                <Box as="h3" pr="xl" color="secondary">
+                <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
                   Get the Most Out of Life
                 </Box>
               </Box>
               <Box flex="2">
                 <Box as="p">
-                  {`Here at Christ Fellowship Church in ${props?.campus}, we want to help you live the life you were created for. Every Sunday, we have church services where you can experience uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—and it all starts here!`}
+                  {`Here at Christ Fellowship Church in ${name}, we want to help you live the life you were created for. Every Sunday, we have church services where you can experience uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—and it all starts here!`}
                 </Box>
               </Box>
             </Box>
@@ -125,12 +139,12 @@ const CampusInfo = (props = {}) => {
               width="90px"
               height="90px"
               name="campus-pastors"
-              src={props?.campusPastors?.photo}
+              src={pastor?.photo?.uri}
             />
             <Divider width={120} ml="s" bg="neutrals.200" />
           </Box>
           <Box as="h3" mt="base" mb="xs" mx="l">
-            {props?.campusPastors?.name}
+            {`${pastor?.firstName} ${pastor?.lastName}`}
           </Box>
           <Box
             as="h5"
@@ -139,7 +153,7 @@ const CampusInfo = (props = {}) => {
             color="neutrals.700"
             mb={0}
           >
-            Campus Pastors
+            Campus Pastor
           </Box>
           <Divider width="100%" my="l" bg="neutrals.200" />
           <Box as="h4" fontStyle="italic" mb="base">
@@ -167,6 +181,14 @@ const CampusInfo = (props = {}) => {
               borderRadius="xxl"
               ml={{ _: 0, lg: 'xs' }}
               m={{ _: 'xs', lg: 0 }}
+              onClick={() =>
+                handleSocialShare({
+                  shareType: 'sms',
+                  shareMessages: {
+                    sms: `Would you like to join me for service at Christ Fellowship Church? Here’s a link with all the details. ${document.URL}`,
+                  },
+                })
+              }
             >
               INVITE A FRIEND
             </Button>
@@ -198,7 +220,7 @@ const CampusInfo = (props = {}) => {
         </Box>
         <Box mx={{ _: 'base', sm: 'xl' }}>
           <Box as="p">
-            {`Here at Christ Fellowship Church in ${props?.campus}, we want to help you live the life you were created for. Every Sunday, we have church services where you can experience uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—and it all starts here!`}
+            {`Here at Christ Fellowship Church in ${name}, we want to help you live the life you were created for. Every Sunday, we have church services where you can experience uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—and it all starts here!`}
           </Box>
         </Box>
       </Box>
@@ -207,23 +229,28 @@ const CampusInfo = (props = {}) => {
 };
 
 CampusInfo.propTypes = {
-  address: PropTypes.string,
-  campus: PropTypes.string,
-  campusPastors: {
-    name: PropTypes.string,
-    photo: PropTypes.string,
+  name: PropTypes.string,
+  pastor: {
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    photo: {
+      uri: PropTypes.string,
+    },
   },
+  city: PropTypes.string,
+  street1: PropTypes.string,
+  state: PropTypes.string,
+  postalCode: PropTypes.string,
   serviceTimes: PropTypes.array,
+  additionalInfo: PropTypes.array,
 };
 
 CampusInfo.defaultProps = {
-  address: '5343 Northlake Blvd. Palm Beach Gardens, FL 33418',
-  campus: 'Palm Beach Gardens',
-  campusPastors: {
-    name: 'Dave and Rhonda Simiele',
-    photo: '/pastor-pic.png',
-  },
-  serviceTimes: ['8:30AM', '10AM', '11:45AM', '5PM'],
+  additionalInfo: [
+    'CFKids services takes place at each service',
+    'Traducciones al español ofrecidas a las 11:45am',
+    'ASL interpretation offered at 10am',
+  ],
 };
 
 export default CampusInfo;

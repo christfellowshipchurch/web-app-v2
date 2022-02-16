@@ -4,9 +4,16 @@ import PropTypes from 'prop-types';
 import { Box, Button, Divider, HtmlRenderer, systemPropTypes } from 'ui-kit';
 import Styled from './FAQ.styles';
 import faqData from './faqData';
+import { useCurrentBreakpoint } from 'hooks';
 
 function FAQ(props = {}) {
   const [display, setDisplay] = useState('none');
+
+  /**
+   * note : This is a custom scroll position setup for the Location Pages so it properly scrolls back to the FAQ section when pressing the See Less button. We may want to revisit how we determine the scroll position so its more dynamic.
+   */
+  let currentBreakpoint = useCurrentBreakpoint();
+  let seeLessScrollPosition = currentBreakpoint.isSmall ? 4450 : 2800;
 
   return (
     <Styled id="faq" {...props}>
@@ -37,8 +44,11 @@ function FAQ(props = {}) {
         <Box width="100%" textAlign="center">
           <Button
             onClick={() => {
+              window.scrollTo({
+                top: seeLessScrollPosition,
+                behavior: 'smooth',
+              });
               setDisplay(display ? null : 'none');
-              window.location = '#faq';
             }}
             mx="auto"
             variant="link"

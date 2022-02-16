@@ -18,7 +18,8 @@ const FlexBreak = styled.div`
 
 const InfoBox = styled.ul`
   background: ${themeGet('colors.hues.orange')};
-  border-radius: ${themeGet('radii.base')};
+  border-top-left-radius: ${themeGet('radii.base')};
+  border-bottom-left-radius: ${themeGet('radii.base')};
   color: white;
   font-size: 14px;
   font-style: italic;
@@ -65,9 +66,6 @@ const PastorsCard = styled.div`
     box-shadow: ${themeGet('shadows.l')};
     width: auto;
   }
-  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-    left: -1rem;
-  }
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     min-width: 350px;
   }
@@ -99,7 +97,8 @@ const ServiceTimeContainer = styled.div`
   align-items: center;
   background: linear-gradient(270.35deg, #0092bc -22.55%, #004f71 106.52%),
     linear-gradient(90.49deg, #6bcaba -24.45%, #0092bc 118.95%);
-  border-radius: ${themeGet('radii.base')};
+  border-top-left-radius: ${themeGet('radii.base')};
+  border-bottom-left-radius: ${themeGet('radii.base')};
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
