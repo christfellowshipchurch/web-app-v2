@@ -15,7 +15,7 @@ import nextSunday from 'date-fns/nextSunday';
 import { icsLink } from 'components/AddToCalendar/utils';
 import { handleSocialShare } from 'components/Share/shareUtils';
 
-import { socialMediaLinks } from './locationData';
+import { campusLinks } from './locationData';
 import Styled from './LocationSingle.styles';
 import { find } from 'lodash';
 
@@ -42,7 +42,7 @@ const CampusInfo = ({
   };
 
   /** Instagram URL */
-  const socialLink = find(socialMediaLinks, { name: name });
+  const campusLink = find(campusLinks, { name: name });
 
   return (
     <>
@@ -116,10 +116,7 @@ const CampusInfo = ({
                     <Button
                       as="a"
                       target="_blank"
-                      href={`https://www.google.com/maps/place/${address?.replace(
-                        ' ',
-                        '+'
-                      )}`}
+                      href={campusLink.googleMap}
                       borderRadius="xxl"
                       size="s"
                       px="base"
@@ -229,7 +226,7 @@ const CampusInfo = ({
               as="a"
               target="_blank"
               //campus instagram
-              href={socialLink?.instagram}
+              href={campusLink?.instagram}
               color="tertiary"
             >
               <Icon name="instagram" size="32" />
