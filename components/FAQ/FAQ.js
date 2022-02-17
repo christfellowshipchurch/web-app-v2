@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import { Box, Button, Divider, HtmlRenderer, systemPropTypes } from 'ui-kit';
 import Styled from './FAQ.styles';
-import faqData from './faqData';
 import { useCurrentBreakpoint } from 'hooks';
 
 function FAQ(props = {}) {
@@ -67,7 +66,7 @@ FAQ.propTypes = {
 };
 
 FAQ.defaultProps = {
-  data: faqData,
+  data: [],
 };
 
 export default FAQ;

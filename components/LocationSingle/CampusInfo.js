@@ -1,18 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Avatar, Box, Button, Cell, Divider, Icon, utils } from 'ui-kit';
+import {
+  Avatar,
+  Box,
+  Button,
+  Cell,
+  Divider,
+  Icon,
+  Loader,
+  utils,
+} from 'ui-kit';
 import nextSunday from 'date-fns/nextSunday';
 
-import Styled from './LocationSingle.styles';
 import { icsLink } from 'components/AddToCalendar/utils';
 import { handleSocialShare } from 'components/Share/shareUtils';
+
+import { socialMediaLinks } from './locationData';
+import Styled from './LocationSingle.styles';
+import { find } from 'lodash';
 
 const CampusInfo = ({
   name,
   pastor,
-  firstName,
-  lastName,
-  photo,
   city,
   street1,
   state,
@@ -31,6 +40,9 @@ const CampusInfo = ({
     startTime: nextSunday(new Date()),
     endTime: nextSunday(new Date()),
   };
+
+  /** Instagram URL */
+  const socialLink = find(socialMediaLinks, { name: name });
 
   return (
     <>
@@ -64,12 +76,15 @@ const CampusInfo = ({
               ])}
           </Styled.ServiceTimeContainer>
 
-          {/* Addtional Information */}
+          {/* Addtional Information - Orange Box */}
           <Box mr={{ _: 0, md: 'base' }}>
-            <Styled.InfoBox>
-              {additionalInfo &&
-                additionalInfo.map(n => <Box as="li">{n}</Box>)}
-            </Styled.InfoBox>
+            {additionalInfo && additionalInfo?.length > 0 && (
+              <Styled.InfoBox>
+                {additionalInfo.map(n => (
+                  <Box as="li">{n}</Box>
+                ))}
+              </Styled.InfoBox>
+            )}
             {/* Address and Church You Call Home */}
             {address && (
               <>
@@ -143,9 +158,13 @@ const CampusInfo = ({
             />
             <Divider width={120} ml="s" bg="neutrals.200" />
           </Box>
-          <Box as="h3" mt="base" mb="xs" mx="l">
-            {`${pastor?.firstName} ${pastor?.lastName}`}
-          </Box>
+          {pastor ? (
+            <Box as="h3" mt="base" mb="xs" mx="l">
+              {`${pastor?.firstName} ${pastor?.lastName}`}
+            </Box>
+          ) : (
+            <Loader mt="base" mb="xs" />
+          )}
           <Box
             as="h5"
             fontWeight="normal"
@@ -197,10 +216,22 @@ const CampusInfo = ({
            * todo : Add urls to social media links, maybe setup those up from Rock???
            **/}
           <Box mt="base">
-            <Box as="a" color="tertiary" href={''} mr="xs">
+            <Box
+              as="a"
+              target="_blank"
+              href="https://www.facebook.com/CFimpact"
+              color="tertiary"
+              mr="xs"
+            >
               <Icon name="facebook" size="32" />
             </Box>
-            <Box as="a" color="tertiary" href={''}>
+            <Box
+              as="a"
+              target="_blank"
+              //campus instagram
+              href={socialLink?.instagram}
+              color="tertiary"
+            >
               <Icon name="instagram" size="32" />
             </Box>
           </Box>
@@ -246,11 +277,7 @@ CampusInfo.propTypes = {
 };
 
 CampusInfo.defaultProps = {
-  additionalInfo: [
-    'CFKids services takes place at each service',
-    'Traducciones al español ofrecidas a las 11:45am',
-    'ASL interpretation offered at 10am',
-  ],
+  additionalInfo: [],
 };
 
 export default CampusInfo;

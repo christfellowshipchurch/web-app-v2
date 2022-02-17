@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { find } from 'lodash';
 
 import {
   CollectionPreview,
@@ -14,11 +15,11 @@ import { Box, ContentBlock, Loader } from 'ui-kit';
 import CampusInfo from './CampusInfo';
 import LocationHeader from './LocationHeader';
 import defaultBlockData from '../LocationBlockFeature/defaultBlockData';
+import { additionalInfoCampusData, campusMetaData } from './locationData';
 import { CampusProvider } from 'providers';
+import faqData from 'components/FAQ/faqData';
 
 function LocationSingle(props = {}) {
-  const coverImage = props?.data?.coverImage?.sources[0]?.uri;
-
   if (props.loading) {
     return (
       <Layout
@@ -49,11 +50,16 @@ function LocationSingle(props = {}) {
   const title = props?.data?.title;
   const campus = title.substring(28, title.length - 4);
 
-  console.log({ campus });
+  /**
+   * note : import hard coded addtional information and meta data
+   */
+  const campusAdditionalInfo = find(additionalInfoCampusData, { name: campus });
+  const metaData = find(campusMetaData, { name: campus });
 
   return (
     <Layout
       title={props?.data?.title}
+      seoMetaTags={metaData}
       contentMaxWidth={'100vw'}
       contentHorizontalPadding={'0'}
       contentVerticalPadding={'0'}
@@ -66,6 +72,7 @@ function LocationSingle(props = {}) {
       <CampusProvider
         Component={CampusInfo}
         options={{ variables: { campusName: campus } }}
+        additionalInfo={campusAdditionalInfo?.info}
       />
 
       {/* At this Campus Section */}
@@ -96,7 +103,7 @@ function LocationSingle(props = {}) {
       {/* FAQs Section */}
       <Box px="base" py="xl" width="100%" bg="white">
         <Box mx="auto" maxWidth={1200}>
-          <FAQ />
+          <FAQ data={faqData(campus)} />
         </Box>
       </Box>
 
