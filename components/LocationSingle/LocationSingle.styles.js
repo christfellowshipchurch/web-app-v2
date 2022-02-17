@@ -75,7 +75,6 @@ const PastorsCard = styled.div`
 
 const ServiceTime = styled.h3`
   color: white;
-  opacity: 75%;
   margin-bottom: 0px;
   margin-left: ${themeGet('space.s')};
   margin-right: ${themeGet('space.s')};
@@ -108,6 +107,10 @@ const ServiceTimeContainer = styled.div`
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
     border-radius: 0px;
     /* flex-direction: column; */
+  }
+
+  @media screen and (max-width: ${themeGet('breakpoints.sm')}) {
+    margin-top: 0px;
   }
 `;
 

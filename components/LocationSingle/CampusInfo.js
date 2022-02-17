@@ -19,6 +19,8 @@ import { campusLinks } from './locationData';
 import Styled from './LocationSingle.styles';
 import { find } from 'lodash';
 
+const StyledDivider = props => <Divider bg="secondarySubdued" {...props} />;
+
 const CampusInfo = ({
   name,
   pastor,
@@ -56,7 +58,7 @@ const CampusInfo = ({
         mx="auto"
         position="relative"
         px={{ _: 0, md: 'base' }}
-        top="-2.7rem"
+        top={{ _: 0, md: '-2.7rem' }}
         zIndex={1}
         width="100%"
       >
@@ -116,7 +118,7 @@ const CampusInfo = ({
                     <Button
                       as="a"
                       target="_blank"
-                      href={campusLink.googleMap}
+                      href={campusLink?.googleMap}
                       borderRadius="xxl"
                       size="s"
                       px="base"
@@ -126,7 +128,10 @@ const CampusInfo = ({
                     </Button>
                   </Box>
                 </Box>
-                <Divider display={{ _: 'none', md: 'flex' }} width="100%" />
+                <StyledDivider
+                  display={{ _: 'none', md: 'flex' }}
+                  width="100%"
+                />
               </>
             )}
             <Box display={{ _: 'none', md: 'flex' }} mt="l">
@@ -146,17 +151,17 @@ const CampusInfo = ({
         {/* Campus Pastors */}
         <Styled.PastorsCard>
           <Box display="flex" alignItems="center">
-            <Divider width={120} mr="s" bg="neutrals.200" />
+            <StyledDivider width={120} mr="s" />
             <Avatar
-              width="90px"
-              height="90px"
+              width="115px"
+              height="115px"
               name="campus-pastors"
               src={pastor?.photo?.uri}
             />
-            <Divider width={120} ml="s" bg="neutrals.200" />
+            <StyledDivider width={120} ml="s" />
           </Box>
           {pastor ? (
-            <Box as="h3" mt="base" mb="xs" mx="l">
+            <Box as="h2" mt="base" mb="xs" mx="l">
               {`${pastor?.firstName} ${pastor?.lastName}`}
             </Box>
           ) : (
@@ -171,7 +176,7 @@ const CampusInfo = ({
           >
             Campus Pastor
           </Box>
-          <Divider width="100%" my="l" bg="neutrals.200" />
+          <StyledDivider width="100%" my="l" />
           <Box as="h4" fontStyle="italic" mb="base">
             We can’t wait to see you this week!
           </Box>
@@ -236,12 +241,12 @@ const CampusInfo = ({
       </Cell>
 
       {/* Mobile View for "Church You Can Call Home" section */}
+      <StyledDivider display={{ _: 'block', md: 'none' }} width="80%" />
       <Box
         display={{ _: 'block', md: 'none' }}
         bg="white"
         py="l"
         textAlign="center"
-        mt="-2.7rem"
       >
         <Box as="h2" color="secondary">
           Get the Most Out of Life

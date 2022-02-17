@@ -25,7 +25,7 @@ const faqDefaultData = [
   },
   {
     title: 'Are there any expectations for visitors?',
-    description: `Not at all. When we say "welcome home," we mean it! Be yourself, relax, and enjoy the service. We can't wait to see you!`,
+    description: `Not at all. When we say "welcome home", we mean it! Be yourself, relax, and enjoy the service. We can't wait to see you!`,
   },
   {
     title: 'What does Christ Fellowship believe?',
@@ -57,7 +57,7 @@ const faqDowntownData = [
   },
   {
     title: 'Are there any expectations for visitors?',
-    description: `Not at all. When we say "welcome home," we mean it! Be yourself, relax, and enjoy the service. We can't wait to see you!`,
+    description: `Not at all. When we say "welcome home", we mean it! Be yourself, relax, and enjoy the service. We can't wait to see you!`,
   },
   {
     title: 'What does Christ Fellowship believe?',
@@ -89,7 +89,7 @@ const faqJupiterData = [
   },
   {
     title: 'Are there any expectations for visitors?',
-    description: `Not at all. When we say "welcome home," we mean it! Be yourself, relax, and enjoy the service. We can't wait to see you!`,
+    description: `Not at all. When we say "welcome home", we mean it! Be yourself, relax, and enjoy the service. We can't wait to see you!`,
   },
   {
     title: 'What does Christ Fellowship believe?',

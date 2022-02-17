@@ -3,6 +3,7 @@ import { gql, useQuery } from '@apollo/client';
 export const GET_CAMPUS = gql`
   query getCampusInfo($campusName: String!) {
     campus(name: $campusName) {
+      id
       name
       pastor {
         firstName

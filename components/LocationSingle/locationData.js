@@ -60,6 +60,7 @@ const additionalInfoCampusData = [
 
 const campusMetaData = [
   {
+    key: 'palm-beach-gardens',
     name: 'Palm Beach Gardens',
     description:
       'Here at Christ Fellowship Church in Palm Beach Gardens, FL we want to help you live the life you were created for. Every Sunday, we have church services where you can experience uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—and it all starts here!',
@@ -70,6 +71,7 @@ const campusMetaData = [
     url: 'https://www.christfellowship.church/locations/palm-beach-gardens',
   },
   {
+    key: 'royal-palm-beach',
     name: 'Royal Palm Beach',
     description:
       'Here at Christ Fellowship Church in Royal Palm Beach, FL we want to help you live the life you were created for. Every Sunday, we have church services where you can experience uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—and it all starts here!',
@@ -80,6 +82,7 @@ const campusMetaData = [
     url: 'https://christfellowship.church/locations/royal-palm-beach',
   },
   {
+    key: 'downtown-west-palm-beach',
     name: 'Downtown West Palm Beach',
     description:
       'Here at Christ Fellowship Church in Downtown West Palm Beach, FL we want to help you live the life you were created for. Every Sunday, we have church services where you can experience uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—and it all starts here!',
@@ -90,6 +93,7 @@ const campusMetaData = [
     url: 'https://christfellowship.church/locations/downtown-west-palm-beach',
   },
   {
+    key: 'vero-beach',
     name: 'Vero Beach',
     description:
       'Here at Christ Fellowship Church in Vero Beach, FL we want to help you live the life you were created for. Every Sunday, we have church services where you can experience uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—and it all starts here!',
@@ -100,6 +104,7 @@ const campusMetaData = [
       'church in vero beach fl, churches in vero beach fl, church in indian river county, churches in indian river county, christ fellowship church in vero beach fl, church near me, churches near me, church in my area, churches in my area, christian church near me, christian churches near me, non denominational church near me, non denominational churches near me, church service near me',
   },
   {
+    key: 'boynton-beach',
     name: 'Boynton Beach',
     description:
       'Here at Christ Fellowship Church in Boynton Beach, FL we want to help you live the life you were created for. Every Sunday, we have church services where you can experience uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—and it all starts here!',
@@ -110,6 +115,7 @@ const campusMetaData = [
       'church in boynton beach fl, churches in boynton beach fl, church in palm beach county, churches in palm beach county, christ fellowship church in boynton beach fl, church near me, churches near me, church in my area, churches in my area, christian church near me, christian churches near me, non denominational church near me, non denominational churches near me, church service near me,',
   },
   {
+    key: 'jupiter',
     name: 'Jupiter',
     description:
       'Here at Christ Fellowship Church in Jupiter, FL we want to help you live the life you were created for. Every Sunday, we have church services where you can experience uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—and it all starts here!',
@@ -120,6 +126,7 @@ const campusMetaData = [
       'church in jupiter fl, churches in jupiter fl, church in palm beach county, churches in palm beach county, christ fellowship church in jupiter fl, church near me, churches near me, church in my area, churches in my area, christian church near me, christian churches near me, non denominational church near me, non denominational churches near me, church service near me,',
   },
   {
+    key: 'stuart',
     name: 'Stuart',
     description:
       'Here at Christ Fellowship Church in Stuart, FL we want to help you live the life you were created for. Every Sunday, we have church services where you can experience uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—and it all starts here!',
@@ -130,6 +137,7 @@ const campusMetaData = [
       'church in stuart fl, churches in stuart fl, church in martin county, churches in martin county, christ fellowship church in stuart fl, church near me, churches near me, church in my area, churches in my area, christian church near me, christian churches near me, non denominational church near me, non denominational churches near me, church service near me,',
   },
   {
+    key: 'belle-glade',
     name: 'Belle Glade',
     description:
       'Here at Christ Fellowship Church in Belle Glade, FL we want to help you live the life you were created for. Every Sunday, we have church services where you can experience uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—and it all starts here!',
@@ -140,6 +148,7 @@ const campusMetaData = [
       'church in belle glade fl, churches in belle glade fl, church in palm beach county, churches in palm beach county, christ fellowship church in belle glade fl, church near me, churches near me, church in my area, churches in my area, christian church near me, christian churches near me, non denominational church near me, non denominational churches near me, church service near me,',
   },
   {
+    key: 'port-st-lucie',
     name: 'Port St. Lucie',
     description:
       'Here at Christ Fellowship Church in Port St. Lucie, FL we want to help you live the life you were created for. Every Sunday, we have church services where you can experience uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—and it all starts here!',
@@ -150,6 +159,7 @@ const campusMetaData = [
       'church in port st lucie fl, churches in port st lucie fl, church in st lucie county, churches in st lucie county, christ fellowship church in port st lucie fl, church near me, churches near me, church in my area, churches in my area, christian church near me, christian churches near me, non denominational church near me, non denominational churches near me, church service near me',
   },
   {
+    key: 'okeechobee',
     name: 'Okeechobee',
     description:
       'Here at Christ Fellowship Church in Okeechobee, FL we want to help you live the life you were created for. Every Sunday, we have church services where you can experience uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—and it all starts here!',
@@ -160,6 +170,7 @@ const campusMetaData = [
       'church in okeechobee fl, churches in okeechobee fl, church in okeechobee county, churches in okeechobee county, christ fellowship church in okeechobee fl, church near me, churches near me, church in my area, churches in my area, christian church near me, christian churches near me, non denominational church near me, non denominational churches near me, church service near me',
   },
   {
+    key: 'boca-raton',
     name: 'Boca Raton',
     description:
       'Here at Christ Fellowship Church in Boca Raton, FL we want to help you live the life you were created for. Every Sunday, we have church services where you can experience uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—and it all starts here!',
@@ -170,6 +181,7 @@ const campusMetaData = [
       'church in boca raton fl, churches in boca raton fl, church in palm beach county, churches in palm beach county, christ fellowship church in boca raton fl, church near me, churches near me, church in my area, churches in my area, christian church near me, christian churches near me, non denominational church near me, non denominational churches near me, church service near me',
   },
   {
+    key: 'riviera-beach',
     name: 'Riviera Beach',
     description:
       'Here at Christ Fellowship Church in Riviera Beach, FL we want to help you live the life you were created for. Every Sunday, we have church services where you can experience uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—and it all starts here!',

@@ -41,6 +41,7 @@ import Header from './Header';
 import HeroListFeature from './HeroListFeature';
 import HomeFeed from './HomeFeed';
 import HorizontalCardListFeature from './HorizontalCardListFeature';
+import JsonLD from './JsonLD';
 import ContentBlockCollection from './ContentBlockCollection';
 import Layout from './Layout';
 import LegacyNodeRouter from './LegacyNodeRouter';
@@ -106,6 +107,7 @@ export {
   HeroListFeature,
   HomeFeed,
   HorizontalCardListFeature,
+  JsonLD,
   ContentBlockCollection,
   Layout,
   LegacyNodeRouter,

@@ -30,6 +30,11 @@ const Card = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+
+  @media screen and (max-width: ${themeGet('breakpoints.sm')}) {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
 `;
 
 Testimonials.Card = Card;

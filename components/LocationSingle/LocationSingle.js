@@ -51,15 +51,12 @@ function LocationSingle(props = {}) {
   const campus = title.substring(28, title.length - 4);
 
   /**
-   * note : import hard coded addtional information and meta data
+   * note : import hard coded addtional information
    */
   const campusAdditionalInfo = find(additionalInfoCampusData, { name: campus });
-  const metaData = find(campusMetaData, { name: campus });
 
   return (
     <Layout
-      title={props?.data?.title}
-      seoMetaTags={metaData}
       contentMaxWidth={'100vw'}
       contentHorizontalPadding={'0'}
       contentVerticalPadding={'0'}

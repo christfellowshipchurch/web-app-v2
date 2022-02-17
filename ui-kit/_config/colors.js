@@ -38,6 +38,7 @@ const colors = {
 
     secondary: NAVY,
     secondaryHover: Color(NAVY).darken(0.2),
+    secondarySubdued: '#DAEAF1',
 
     tertiary: COTTON_CANDY,
     tertiaryHover: Color(COTTON_CANDY).darken(0.2),
