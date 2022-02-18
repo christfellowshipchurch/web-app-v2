@@ -71,6 +71,7 @@ const LocationHeader = (props = {}) => (
               href="https://rock.gocf.org/connect"
               id="service-times"
               mt="s"
+              target="_blank"
               variant="tertiary"
               ml={{ _: 'xs', md: 0 }}
               width={{ _: '100%', sm: 'auto' }}

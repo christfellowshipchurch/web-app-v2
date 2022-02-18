@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { find } from 'lodash';
+import { find, includes } from 'lodash';
 
 import {
   CollectionPreview,
@@ -11,7 +11,7 @@ import {
   Testimonials,
 } from 'components';
 
-import { Box, ContentBlock, Loader } from 'ui-kit';
+import { Box, ContentBlock, Divider, Loader } from 'ui-kit';
 import CampusInfo from './CampusInfo';
 import LocationHeader from './LocationHeader';
 import defaultBlockData from '../LocationBlockFeature/defaultBlockData';
@@ -48,7 +48,15 @@ function LocationSingle(props = {}) {
   }
 
   const title = props?.data?.title;
-  const campus = title.substring(28, title.length - 4);
+  let campus = title.substring(28, title.length - 4);
+
+  // note : We need to override the cmapus name to for CFE to properly format it for querying purposes
+  if (includes(campus, 'Español')) {
+    const intitialString = title.substring(25, title.length - 4);
+    const firstHalf = intitialString.substring(0, 10);
+    const secondHalf = intitialString.substring(12, intitialString.length);
+    campus = firstHalf + secondHalf;
+  }
 
   /**
    * note : import hard coded addtional information
@@ -71,6 +79,10 @@ function LocationSingle(props = {}) {
         options={{ variables: { campusName: campus } }}
         additionalInfo={campusAdditionalInfo?.info}
       />
+
+      <Box px="base" bg="white" display={{ _: 'block', md: 'none' }}>
+        <Divider bg="secondarySubdued" />
+      </Box>
 
       {/* At this Campus Section */}
       <Box width="100%" bg="white" p={{ _: 'base', md: 'xl' }}>

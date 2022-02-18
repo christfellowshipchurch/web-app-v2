@@ -15,7 +15,7 @@ function Testimonials(props = {}) {
         {props?.testimonies?.map((n, i) => (
           <Styled.Card key={i}>
             {n.rating && <RatingStars mb="base" rating={n.rating} />}
-            <Box color="secondary" my="base">
+            <Box color="secondary" my="sm">
               {n.description}
             </Box>
             <Box mt="base">

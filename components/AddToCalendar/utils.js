@@ -1,12 +1,7 @@
 import replace from 'lodash/replace';
 import includes from 'lodash/includes';
+import uniqueId from 'lodash/uniqueId';
 import { add, parseISO, format, formatISO } from 'date-fns';
-
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
-}
 
 const formatEvent = event => ({
   title: event?.title || 'Christ Fellowship Church Event',
@@ -81,9 +76,9 @@ export const icsLink = event => {
     'CALSCALE:GREGORIAN',
     'BEGIN:VEVENT',
     `DTSTAMP:${format(new Date(), 'yyyyMMddhhmmss')}Z`,
-    `UID:${getRandomInt(10000000, 99999999)}-@christfellowship.church`,
-    `DTSTART;VALUE=DATE:${format(startTime, 'yyyyMMdd')}`,
-    `DTEND;VALUE=DATE:${format(endTime, 'yyyyMMdd')}`,
+    `UID:${uniqueId()}-@christfellowship.church`,
+    `DTSTART;TZID=America/New_York:${format(startTime, "yyyyMMdd'T'HHmmss")}`,
+    `DTEND;TZID=America/New_York:${format(endTime, "yyyyMMdd'T'HHmmss")}`,
     `SUMMARY:${title}`,
     `URL:${url ?? document?.URL ?? 'https://www.christfellowship.church'}`,
     `DESCRIPTION:${description}`,

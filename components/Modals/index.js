@@ -1,4 +1,5 @@
 import AddGroupMemberModal from './AddGroupMemberModal';
+import AddToCalendarModal from './AddToCalendarModal';
 import AuthModal from './AuthModal';
 import ConnectModal from './ConnectModal';
 import GroupDetailsModal from './GroupDetailsModal';
@@ -12,6 +13,7 @@ import WelcomeModal from './WelcomeModal';
 
 export {
   AddGroupMemberModal,
+  AddToCalendarModal,
   AuthModal,
   ConnectModal,
   GroupDetailsModal,

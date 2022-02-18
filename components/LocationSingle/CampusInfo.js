@@ -11,13 +11,41 @@ import {
   utils,
 } from 'ui-kit';
 import nextSunday from 'date-fns/nextSunday';
+import setMinutes from 'date-fns/setMinutes';
+import setHours from 'date-fns/setHours';
+import addMinutes from 'date-fns/addMinutes';
+import setSeconds from 'date-fns/setSeconds';
 
 import { icsLink } from 'components/AddToCalendar/utils';
 import { handleSocialShare } from 'components/Share/shareUtils';
+import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
 import { campusLinks } from './locationData';
 import Styled from './LocationSingle.styles';
-import { find } from 'lodash';
+import { find, includes } from 'lodash';
+
+const DAY_KEYS = {
+  SUNDAY: 0,
+  MONDAY: 1,
+  TUESDAY: 2,
+  WEDNESDAY: 3,
+  THURSDAY: 4,
+  FRIDAY: 5,
+  SATURDAY: 6,
+};
+
+function parseTimeAsInt(_time) {
+  const time = _time.toString().trim().toUpperCase();
+  const a = time.match(/(AM)|(PM)/g).join();
+  const [hour, minute] = time
+    .replace(/(AM)|(PM)/g, '')
+    .trim()
+    .split(':')
+    .map(n => parseInt(n));
+  let hour24 = a === 'PM' ? hour + 12 : hour;
+
+  return [hour24, minute];
+}
 
 const StyledDivider = props => <Divider bg="secondarySubdued" {...props} />;
 
@@ -31,17 +59,29 @@ const CampusInfo = ({
   serviceTimes,
   additionalInfo,
 }) => {
+  const modalDispatch = useModalDispatch();
   const address = `${street1} ${city}, ${state} ${postalCode?.substring(0, 5)}`;
 
-  const icsLinkEvent = {
-    title: `Christ Fellowship - ${name}`,
-    description: `Here are the service times for Sunday: ${serviceTimes?.map(
-      n => ` ${n.time}`
-    )}. Can't wait to see you there!`,
-    address,
-    startTime: nextSunday(new Date()),
-    endTime: nextSunday(new Date()),
-  };
+  const icsLinkEvents = serviceTimes?.map(({ day, time }) => {
+    const dayKey = DAY_KEYS[day.toUpperCase()] ?? 0;
+    let now = new Date();
+    let [hour, minute] = parseTimeAsInt(time);
+    let sunday = nextSunday(now);
+    sunday = setMinutes(sunday, minute ?? 0);
+    sunday = setHours(sunday, hour ?? 0);
+    sunday = setSeconds(sunday, 0);
+
+    return {
+      label: `${time}`,
+      event: {
+        title: `Sunday Service at ${name}, FL`,
+        description: `Join us this Sunday!`,
+        address,
+        startTime: sunday,
+        endTime: addMinutes(sunday, 90),
+      },
+    };
+  });
 
   /** Instagram URL */
   const campusLink = find(campusLinks, { name: name });
@@ -174,7 +214,7 @@ const CampusInfo = ({
             color="neutrals.700"
             mb={0}
           >
-            Campus Pastor
+            {`Campus Pastor${includes(pastor?.firstName, ' and ') ? 's' : ''}`}
           </Box>
           <StyledDivider width="100%" my="l" />
           <Box as="h4" fontStyle="italic" mb="base">
@@ -183,10 +223,14 @@ const CampusInfo = ({
           <Box display={{ _: 'inline', lg: 'flex' }}>
             <Button
               as="a"
-              /**
-               * todo : We are using custom button styling and the 'icsLink' method from AddToCalendar button to grab the next Sunday coming up with the service times listed inside of the description. We'll want to move this logic somewhere else later, and update the AddToCalendar component
-               */
-              href={icsLink(icsLinkEvent)}
+              onClick={() => {
+                modalDispatch(
+                  showModal('AddToCalendar', {
+                    title: 'What service would you like to attend?',
+                    events: icsLinkEvents,
+                  })
+                );
+              }}
               size="xs"
               px="base"
               borderRadius="xxl"
@@ -241,7 +285,10 @@ const CampusInfo = ({
       </Cell>
 
       {/* Mobile View for "Church You Can Call Home" section */}
-      <StyledDivider display={{ _: 'block', md: 'none' }} width="80%" />
+      <Box px="base" bg="white" display={{ _: 'block', md: 'none' }}>
+        <StyledDivider />
+      </Box>
+
       <Box
         display={{ _: 'block', md: 'none' }}
         bg="white"
@@ -280,6 +327,7 @@ CampusInfo.propTypes = {
 
 CampusInfo.defaultProps = {
   additionalInfo: [],
+  serviceTimes: [],
 };
 
 export default CampusInfo;
