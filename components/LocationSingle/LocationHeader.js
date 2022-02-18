@@ -11,6 +11,7 @@ const LocationHeader = (props = {}) => (
     display="flex"
     justifyContent={{ _: 'flex-start', lg: 'center' }}
     alignItems={{ _: 'flex-end', sm: 'center' }}
+    backgroundImage="url(/groups-cover-image.png)"
   >
     <Box
       pt={{ _: 0, sm: '56.25%', lg: 0 }}
