@@ -28,8 +28,8 @@ const LocationBlockFeature = props => {
   }
 
   return (
-    <Box textAlign="center" my="l" {...props}>
-      <Box mb={0} as="h2" color="secondary">
+    <Box textAlign="center" {...props}>
+      <Box mt="l" mb={0} as="h2" color="secondary">
         At This Location
       </Box>
       <Styled.Container>

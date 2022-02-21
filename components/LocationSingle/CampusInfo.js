@@ -87,7 +87,7 @@ const CampusInfo = ({
   const campusLink = find(campusLinks, { name: name });
 
   return (
-    <>
+    <Box bg="white">
       {/* Campus Information */}
       <Cell
         alignItems={{ _: 'center', md: 'start' }}
@@ -304,7 +304,7 @@ const CampusInfo = ({
           </Box>
         </Box>
       </Box>
-    </>
+    </Box>
   );
 };
 

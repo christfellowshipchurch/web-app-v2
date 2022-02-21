@@ -85,7 +85,7 @@ function LocationSingle(props = {}) {
       </Box>
 
       {/* At this Campus Section */}
-      <Box width="100%" bg="white" p={{ _: 'base', md: 'xl' }}>
+      <Box width="100%" px={{ _: 'base', md: 'xl' }} pt="base">
         <LocationBlockFeature
           mx="auto"
           campusName={campus}
@@ -99,32 +99,33 @@ function LocationSingle(props = {}) {
       </Box>
 
       {/* What's Coming Up Section */}
-      <Box px="base" py="xl" bg="neutrals.100">
+      <Box bg="white" px="base" py="l">
         <Box mx="auto" maxWidth={1200}>
           <CollectionPreview
             horizontalScroll
             size="s"
             contentId="UniversalContentItem:ddf0d380759e8404fb6b70aa941c06f7"
+            buttonOverride="/events"
           />
         </Box>
       </Box>
 
       {/* FAQs Section */}
-      <Box px="base" py="xl" width="100%" bg="white">
+      <Box px="base" py="xl" width="100%">
         <Box mx="auto" maxWidth={1200}>
           <FAQ data={faqData(campus)} />
         </Box>
       </Box>
 
       {/* Testimonial Section */}
-      <Box px="base" py="xl" width="100%">
+      <Box bg="white" px="base" py="xl" width="100%">
         <Box mx="auto" maxWidth={1200}>
           <Testimonials />
         </Box>
       </Box>
 
       {/* Never Miss a Thing Section */}
-      <Box px="base" py="xl" bg="white">
+      <Box px="base" py="xl">
         <Box mt={{ _: '-0.5rem', md: 'base' }} mx="auto" maxWidth={1200}>
           <ContentBlock
             title="Never miss a thing."
