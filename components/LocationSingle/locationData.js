@@ -254,6 +254,15 @@ const campusLinks = [
     instagram: 'https://www.instagram.com/cf.okeechobee/',
     googleMap: 'https://goo.gl/maps/EjYCSoh8Zsi4fnfp6',
   },
+  {
+    name: 'en Español Royal Palm Beach',
+    googleMap: 'https://goo.gl/maps/RQCSvNAJ8uFo9atR6',
+    instagram: 'https://www.instagram.com/cf.espanol/',
+  },
+  {
+    name: 'en Español Palm Beach Gardens',
+    instagram: 'https://www.instagram.com/cf.espanol/',
+  },
 ];
 
 export { additionalInfoCampusData, campusMetaData, campusLinks };

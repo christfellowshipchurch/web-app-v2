@@ -16,7 +16,7 @@ const faqDefaultData = [
   {
     title: 'Is childcare provided?',
     description:
-      'Yes! We have a fun, safe, and clean area for kids & students (newborn–grade 6). <br/> <br/> <b> New to Christ Fellowship Kids?</b> <br/> We’d love to meet you! Let us know a little about your family using this <a>brief form</a> so that our team can help get you connected when you arrive. <br/> <br/> If you are planning on visiting Christ Fellowship Kids this Sunday, <a>let us know</a> so we can help your family experience all that CFKids has to offer! <br/> <br/> You can learn more about Christ Fellowship Kids programming <a>here</a>!',
+      'Yes! We have a fun, safe, and clean area for kids & students (newborn–grade 6). <br/> <br/> <b> New to Christ Fellowship Kids?</b> <br/> We’d love to meet you! Let us know a little about your family using this <a target="_blank" href="https://rock.gocf.org/FamilyRegistration">brief form</a> so that our team can help get you connected when you arrive. <br/> <br/> If you are planning on visiting Christ Fellowship Kids this Sunday, <a target="_blank" href="https://rock.gocf.org/CFKidsPlanaVisit">let us know</a> so we can help your family experience all that CFKids has to offer! <br/> <br/> You can learn more about Christ Fellowship Kids programming <a target="_blank" href="https://www.christfellowship.church/articles/whats-happening-in-cf-kids">here</a>!',
   },
   {
     title: 'What should I wear?',
@@ -30,7 +30,7 @@ const faqDefaultData = [
   {
     title: 'What does Christ Fellowship believe?',
     description:
-      'Christ Fellowship is a church in South Florida with a passion to help you know God and grow in your relationships so that you can discover your purpose and impact your world. Led by senior pastors Todd & Julie Mullins, our mission is to impact the world with the love and message of Jesus Christ—everyone, everyday, everywhere. <br />  <br />  Find out more about <a href="/about">our church and our beliefs.</a>',
+      'Christ Fellowship is a church in South Florida with a passion to help you know God and grow in your relationships so that you can discover your purpose and impact your world. Led by senior pastors Todd & Julie Mullins, our mission is to impact the world with the love and message of Jesus Christ—everyone, everyday, everywhere. <br />  <br />  Find out more about <a target="_blank" href="/about">our church and our beliefs.</a>',
   },
 ];
 
@@ -80,7 +80,7 @@ const faqJupiterData = [
   {
     title: 'Is childcare provided?',
     description:
-      'Yes! We have a fun, safe, and clean area for kids & students (newborn–grade 6). <br/> <br/> <b> New to Christ Fellowship Kids?</b> <br/> We’d love to meet you! Let us know a little about your family using this <a>brief form</a> so that our team can help get you connected when you arrive. <br/> <br/> If you are planning on visiting Christ Fellowship Kids this Sunday, <a>let us know</a> so we can help your family experience all that CFKids has to offer! <br/> <br/> You can learn more about Christ Fellowship Kids programming <a>here</a>!',
+      'Yes! We have a fun, safe, and clean area for kids & students (newborn–grade 6). <br/> <br/> <b> New to Christ Fellowship Kids?</b> <br/> We’d love to meet you! Let us know a little about your family using this <a target="_blank" href="https://rock.gocf.org/FamilyRegistration">brief form</a> so that our team can help get you connected when you arrive. <br/> <br/> If you are planning on visiting Christ Fellowship Kids this Sunday, <a target="_blank" href="https://rock.gocf.org/CFKidsPlanaVisit">let us know</a> so we can help your family experience all that CFKids has to offer! <br/> <br/> You can learn more about Christ Fellowship Kids programming <a target="_blank" href="https://www.christfellowship.church/articles/whats-happening-in-cf-kids">here</a>!',
   },
   {
     title: 'What should I wear?',
@@ -94,7 +94,7 @@ const faqJupiterData = [
   {
     title: 'What does Christ Fellowship believe?',
     description:
-      'Christ Fellowship is a church in South Florida with a passion to help you know God and grow in your relationships so that you can discover your purpose and impact your world. Led by senior pastors Todd & Julie Mullins, our mission is to impact the world with the love and message of Jesus Christ—everyone, everyday, everywhere. <br />  <br />  Find out more about <a href="/about">our church and our beliefs.</a>',
+      'Christ Fellowship is a church in South Florida with a passion to help you know God and grow in your relationships so that you can discover your purpose and impact your world. Led by senior pastors Todd & Julie Mullins, our mission is to impact the world with the love and message of Jesus Christ—everyone, everyday, everywhere. <br />  <br />  Find out more about <a target="_blank" href="/about">our church and our beliefs.</a>',
   },
 ];
 

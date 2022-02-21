@@ -16,7 +16,6 @@ import setHours from 'date-fns/setHours';
 import addMinutes from 'date-fns/addMinutes';
 import setSeconds from 'date-fns/setSeconds';
 
-import { icsLink } from 'components/AddToCalendar/utils';
 import { handleSocialShare } from 'components/Share/shareUtils';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
@@ -83,7 +82,7 @@ const CampusInfo = ({
     };
   });
 
-  /** Instagram URL */
+  /** Instagram and Google Map URLs */
   const campusLink = find(campusLinks, { name: name });
 
   return (
@@ -158,7 +157,14 @@ const CampusInfo = ({
                     <Button
                       as="a"
                       target="_blank"
-                      href={campusLink?.googleMap}
+                      href={
+                        campusLink?.googleMap
+                          ? campusLink?.googleMap
+                          : `https://www.google.com/maps/place/${address?.replace(
+                              ' ',
+                              '+'
+                            )}`
+                      }
                       borderRadius="xxl"
                       size="s"
                       px="base"
