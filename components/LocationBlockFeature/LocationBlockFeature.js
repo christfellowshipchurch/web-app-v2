@@ -33,7 +33,7 @@ const LocationBlockFeature = props => {
         At This Location
       </Box>
       <Styled.Container>
-        {content.map(block => (
+        {content?.map(block => (
           <Styled.LocationBlock key={block.id}>
             <Image
               aspectRatio={'16by9'}

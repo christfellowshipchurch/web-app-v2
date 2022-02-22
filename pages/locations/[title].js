@@ -6,6 +6,7 @@ import kebabCase from 'lodash/kebabCase';
 
 import { ContentItemProvider } from 'providers';
 import { LocationSingle, JsonLD, SEO } from 'components';
+import OldLocationSingle from '../../components/LocationSingle/OldLocationSingle';
 
 import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
 import { GET_CAMPUS } from 'hooks/useCampus';
@@ -84,7 +85,13 @@ export default function Location(props = {}) {
           />
         </>
       )}
-      <ContentItemProvider Component={LocationSingle} options={options} />
+      {/* For Prison Locations we will need to use the old LocationSingle component for formatting purposes, until we find another solution */}
+      <ContentItemProvider
+        Component={
+          title === 'prison-locations' ? OldLocationSingle : LocationSingle
+        }
+        options={options}
+      />
     </>
   );
 }
