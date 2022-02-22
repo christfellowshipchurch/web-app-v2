@@ -73,7 +73,7 @@ const CampusInfo = ({
     return {
       label: `${time}`,
       event: {
-        title: `Sunday Service at ${name}, FL`,
+        title: 'Sunday service at Christ Fellowship Church',
         description: `Join us this Sunday!`,
         address,
         startTime: sunday,
