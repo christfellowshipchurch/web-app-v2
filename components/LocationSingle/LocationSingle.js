@@ -11,7 +11,7 @@ import {
   Testimonials,
 } from 'components';
 
-import { Box, ContentBlock, Divider, Loader } from 'ui-kit';
+import { Box, Button, ContentBlock, Divider, Loader } from 'ui-kit';
 import CampusInfo from './CampusInfo';
 import LocationHeader from './LocationHeader';
 import defaultBlockData from '../LocationBlockFeature/defaultBlockData';
@@ -126,20 +126,22 @@ function LocationSingle(props = {}) {
 
       {/* Never Miss a Thing Section */}
       <Box px="base" py="xl">
-        <Box mt={{ _: '-0.5rem', md: 'base' }} mx="auto" maxWidth={1200}>
-          <ContentBlock
-            title="Never miss a thing."
-            subtitle="Receive events and updates straight to your inbox!"
-            actions={[
-              {
-                title: 'Subscribe',
-                relatedNode: {
-                  url: 'http://eepurl.com/hAk7aP',
-                },
-                mt: '-0.8rem',
-              },
-            ]}
-          />
+        <Box textAlign="center" maxWidth={500} mx="auto">
+          <Box as="h2" color="secondary">
+            Never miss a thing.
+          </Box>
+          <Box as="h4" color="neutrals.500">
+            Receive events and updates straight to your inbox!
+          </Box>
+          <Button
+            as="a"
+            mx="auto"
+            size="s"
+            px="base"
+            href="http://eepurl.com/hAk7aP"
+          >
+            Suscribe
+          </Button>
         </Box>
       </Box>
     </Layout>
