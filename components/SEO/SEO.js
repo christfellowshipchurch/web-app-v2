@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
+import includes from 'lodash/includes';
 
 const DEFAULT_TITLE = 'Christ Fellowship Church - Get the Most Out of Life';
 const DEFAULT_DESCRIPTION = `Christ Fellowship Church is a church in South Florida that helps you do more than just get by. Life is complicated. But it doesn’t have to be. We’re here to help you live life to the fullest.`;
@@ -10,6 +11,10 @@ const DEFAULT_URL = 'https://christfellowship.church';
 
 function getPageTitle(title) {
   if (title === DEFAULT_TITLE || title === 'Home') return DEFAULT_TITLE;
+  // note : a catch for titles that already contain 'Christ Fellowship Church' so it doens't create extra long titles.
+  if (includes(title, 'Christ Fellowship Church')) {
+    return title;
+  }
   return `${title} - ${DEFAULT_TITLE}`;
 }
 
