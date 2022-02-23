@@ -140,7 +140,7 @@ function LocationSingle(props = {}) {
             px="base"
             href="http://eepurl.com/hAk7aP"
           >
-            Suscribe
+            Subscribe
           </Button>
         </Box>
       </Box>
