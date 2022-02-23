@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { drop, find, includes } from 'lodash';
+import { find, includes } from 'lodash';
 
 import {
   CollectionPreview,
@@ -11,11 +11,11 @@ import {
   Testimonials,
 } from 'components';
 
-import { Box, Button, ContentBlock, Divider, Loader } from 'ui-kit';
+import { Box, Button, Divider, Loader } from 'ui-kit';
 import CampusInfo from './CampusInfo';
 import LocationHeader from './LocationHeader';
 import defaultBlockData from '../LocationBlockFeature/defaultBlockData';
-import { additionalInfoCampusData, campusMetaData } from './locationData';
+import { additionalInfoCampusData } from './locationData';
 import { CampusProvider } from 'providers';
 import faqData from 'components/FAQ/faqData';
 
@@ -99,7 +99,7 @@ function LocationSingle(props = {}) {
       </Box>
 
       {/* What's Coming Up Section */}
-      <Box bg="white" px="base" py="l">
+      <Box bg="white" py={{ _: 'l', sm: 'xl' }}>
         <Box mx="auto" maxWidth={1200}>
           <CollectionPreview
             horizontalScroll

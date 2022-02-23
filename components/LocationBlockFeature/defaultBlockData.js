@@ -23,7 +23,7 @@ const locationBlockData = [
       ],
     },
     htmlContent:
-      'CFKids is designed to partner with parents as together, we lead our kids to love Jesus, love others, and love life.',
+      'Christ Fellowship Kids is designed to partner with parents as together, we lead our kids to love Jesus, love others, and love life.',
     id: 'ContentBlockFeature:d0d7407920381ab5b3b4d32cd65762c64989d8e83682072935738f853c71dde9',
     imageAlt: null,
     imageRatio: null,

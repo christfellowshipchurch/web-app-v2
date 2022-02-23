@@ -108,7 +108,14 @@ const CampusInfo = ({
             <Styled.FlexBreak />
             {serviceTimes &&
               serviceTimes?.map((n, i) => [
-                <Styled.ServiceTime key={i}>{n?.time}</Styled.ServiceTime>,
+                <Box
+                  display="flex"
+                  flex={1}
+                  justifyContent="center"
+                  alignItems="center"
+                >
+                  <Styled.ServiceTime key={i}>{n?.time}</Styled.ServiceTime>
+                </Box>,
                 <>
                   {i < serviceTimes.length - 1 && (
                     <Styled.VerticalDivider key={i} />
@@ -207,7 +214,7 @@ const CampusInfo = ({
             <StyledDivider width={120} ml="s" />
           </Box>
           {pastor ? (
-            <Box as="h2" mt="base" mb="xs" mx="l">
+            <Box as="h2" mt="base" mb="xs" mx="s">
               {`${pastor?.firstName} ${pastor?.lastName}`}
             </Box>
           ) : (

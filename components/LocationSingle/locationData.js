@@ -6,7 +6,7 @@ const additionalInfoCampusData = [
   {
     name: 'Palm Beach Gardens',
     info: [
-      'CFKids services takes place at each service',
+      'Kids services take place at each service',
       'Traducciones al español ofrecidas a las 11:45am',
       'ASL interpretation offered at 10am',
     ],
@@ -14,47 +14,47 @@ const additionalInfoCampusData = [
   {
     name: 'Port St. Lucie',
     info: [
-      'CFKids takes place during each service',
+      'Kids services take place at each service',
       'Traducciones al español ofrecidas a las 10AM',
     ],
   },
   {
     name: 'Boynton Beach',
     info: [
-      'CFKids takes place during each service',
+      'Kids services take place at each service',
       'Traducciones al español ofrecidas a las 11AM',
     ],
   },
   {
     name: 'Belle Glade',
     info: [
-      'CFKids takes place during each service',
+      'Kids services take place at each service',
       'Traducción al español disponible el segundo domingo de cada mes',
     ],
   },
   {
     name: 'Royal Palm Beach',
-    info: ['CFKids takes place during each service'],
+    info: ['Kids services take place at each service'],
   },
   {
     name: 'Jupiter',
-    info: ['CFKids takes place during each service'],
+    info: ['Kids services take place at each service'],
   },
   {
     name: 'Stuart',
-    info: ['CFKids takes place during each service'],
+    info: ['Kids services take place at each service'],
   },
   {
     name: 'Vero Beach',
-    info: ['CFKids takes place during each service'],
+    info: ['Kids services take place at each service'],
   },
   {
     name: 'Riviera Beach',
-    info: ['CFKids takes place during each service'],
+    info: ['Kids services take place at each service'],
   },
   {
     name: 'Boca Raton',
-    info: ['CFKids takes place during each service'],
+    info: ['Kids services take place at each service'],
   },
 ];
 

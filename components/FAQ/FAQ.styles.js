@@ -10,7 +10,7 @@ const FAQ = styled.div`
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
     grid-template-columns: 1fr;
-    margin: ${themeGet('space.base')};
+    margin: 0px;
   }
 
   ${system}

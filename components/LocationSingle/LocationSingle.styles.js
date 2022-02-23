@@ -102,7 +102,8 @@ const ServiceTimeContainer = styled.div`
   flex-wrap: wrap;
   justify-content: space-around;
   margin-top: ${themeGet('space.base')};
-  padding: ${themeGet('space.base')};
+  padding-top: ${themeGet('space.base')};
+  padding-bottom: ${themeGet('space.base')};
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
     border-radius: 0px;
