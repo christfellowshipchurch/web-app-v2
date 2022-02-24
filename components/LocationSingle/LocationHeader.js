@@ -41,7 +41,7 @@ const LocationHeader = (props = {}) => (
       >
         <Box
           as="h1"
-          fontSize={{ _: 38, md: 48, lg: 60 }}
+          fontSize={{ _: 32, sm: 38, md: 48, lg: 60 }}
           color="white"
           textShadow="4px 4px 4px rgb(0 0 0 / 30%)"
           mt="l"
@@ -52,7 +52,6 @@ const LocationHeader = (props = {}) => (
           <Box
             display="flex"
             justifyContent={{ _: 'space-between', sm: 'flex-start' }}
-            mb="base"
           >
             <Button
               as="a"
@@ -60,6 +59,8 @@ const LocationHeader = (props = {}) => (
               mt="s"
               mr={{ _: 'xs', md: 'base' }}
               width={{ _: '100%', sm: 'auto' }}
+              fontSize={{ _: "0.75rem", md: "1rem" }}
+              px={{ _: "6px", sm: "1.25rem" }}
             >
               Join Us Sunday
             </Button>
@@ -72,12 +73,14 @@ const LocationHeader = (props = {}) => (
               variant="tertiary"
               ml={{ _: 'xs', md: 0 }}
               width={{ _: '100%', sm: 'auto' }}
+              fontSize={{ _: "0.75rem", md: "1rem" }}
+              px={{ _: "6px", sm: "1.25rem" }}
             >
               Get Connected
             </Button>
           </Box>
           <Box>
-            <Divider bg="white" opacity="30%" mb="xl" mt="l" />
+            <Divider bg="white" opacity="30%" my="l" />
           </Box>
         </Box>
       </Box>
