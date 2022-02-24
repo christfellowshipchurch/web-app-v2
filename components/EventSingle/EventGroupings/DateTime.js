@@ -34,7 +34,7 @@ const DateTime = ({ start, end, title, ...props }) => {
           </Box>
         </Box>
       </Box>
-      <AddToCalendar event={event} mb="base" />
+      {/* <AddToCalendar event={event} mb="base" /> */}
     </Box>
   );
 };
