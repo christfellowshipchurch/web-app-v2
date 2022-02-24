@@ -13,10 +13,7 @@ const LocationHeader = (props = {}) => (
     alignItems={{ _: 'flex-end', sm: 'center' }}
     backgroundImage="url(/groups-cover-image.png)"
   >
-    <Box
-      pt={{ _: 0, sm: '56.25%', lg: 0 }}
-      height={{ _: '90vh', sm: 500, md: 0, lg: 700 }}
-    >
+    <Box height={{ _: '90vh', sm: 500, md: 600, lg: 700 }}>
       <Styled.VideoCover
         mx="auto"
         src="/external-landing/external-bg-vid.mp4"
@@ -49,7 +46,6 @@ const LocationHeader = (props = {}) => (
           textShadow="4px 4px 4px rgb(0 0 0 / 30%)"
           mt="l"
         >
-          {/* {dropRight(props?.title, 4)} */}
           {props?.title}
         </Box>
         <Box>

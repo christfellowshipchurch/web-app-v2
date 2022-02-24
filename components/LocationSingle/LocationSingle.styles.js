@@ -107,7 +107,7 @@ const ServiceTimeContainer = styled.div`
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
     border-radius: 0px;
-    /* flex-direction: column; */
+    margin-top: 0px;
   }
 
   @media screen and (max-width: ${themeGet('breakpoints.sm')}) {
