@@ -48,7 +48,11 @@ const LocationHeader = (props = {}) => (
         >
           {props?.title}
         </Box>
-        <Box>
+        <Box
+          display="flex"
+          flexDirection={{ _: "column", sm: "column-reverse" }}
+          gap={"1rem"}
+        >
           <Box
             display="flex"
             justifyContent={{ _: 'space-between', sm: 'flex-start' }}
