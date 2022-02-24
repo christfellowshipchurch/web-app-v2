@@ -1,9 +1,0 @@
-# *
-User-agent: *
-Allow: /
-
-# Host
-Host: https://www.christfellowship.church
-
-# Sitemaps
-Sitemap: https://www.christfellowship.church/sitemap.xml
