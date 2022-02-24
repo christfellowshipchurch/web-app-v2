@@ -51,7 +51,7 @@ const GroupDateTime = ({
         {dateTextFormat(dateTime?.start)}
       </Box>
 
-      <AddToCalendar
+      {/* <AddToCalendar
         event={{
           title,
           summary,
@@ -63,7 +63,7 @@ const GroupDateTime = ({
         }}
         alternateDescription={notes}
         label={true}
-      />
+      /> */}
     </Box>
   );
 };
