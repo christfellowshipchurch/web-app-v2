@@ -65,8 +65,6 @@ const AddGroupMemberModal = ({ groupId }) => {
 
   const handleAddGroupMember = async () => {
     try {
-      console.log({ values })
-
       await addGroupMember({
         variables: {
           groupId,
@@ -216,9 +214,7 @@ const AddGroupMemberModal = ({ groupId }) => {
             onChange={handleChange}
             isRequired
           >
-            <Select.Option value={null}>
-              Select a Campus
-            </Select.Option>
+            <Select.Option value={null}>Select a Campus</Select.Option>
             {campuses.map(({ id, name }) => {
               return (
                 <Select.Option key={id} value={id}>

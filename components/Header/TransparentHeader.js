@@ -16,7 +16,7 @@ function TransparentHeader(props = {}) {
 
   const currentBreakpoint = useCurrentBreakpoint();
 
-  const offset = 150;
+  const offset = currentBreakpoint.isSmall ? 5 : 50;
   //This is currently set for the External Marketing page:
   const hidePosition = currentBreakpoint.isSmall ? -8300 : -5800;
 

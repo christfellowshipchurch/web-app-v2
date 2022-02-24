@@ -1,6 +1,7 @@
 import DefaultModal from 'ui-kit/Modal';
 import {
   AddGroupMemberModal,
+  AddToCalendarModal,
   AuthModal,
   ConnectModal,
   GroupDetailsModal,
@@ -23,6 +24,10 @@ const modals = [
     component: AddGroupMemberModal,
   },
   {
+    title: 'AddToCalendar',
+    component: AddToCalendarModal,
+  },
+  {
     title: 'Auth',
     component: AuthModal,
   },
@@ -35,8 +40,8 @@ const modals = [
     component: GroupDetailsModal,
   },
   {
-    title: "GroupEmailConfirmation",
-    component: GroupEmailConfirmationModal
+    title: 'GroupEmailConfirmation',
+    component: GroupEmailConfirmationModal,
   },
   {
     title: 'GroupFilter',

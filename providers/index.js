@@ -1,7 +1,8 @@
-import AnalyticsProvider from './AnalyticsProvider'
+import AnalyticsProvider from './AnalyticsProvider';
 import AppProvider from './AppProvider';
 import AuthProvider from './AuthProvider';
 import CampusesProvider from './CampusesProvider';
+import CampusProvider from './CampusProvider';
 import ChatConnectionProvider from './ChatConnectionProvider';
 import CommunitiesProvider from './CommunitiesProvider';
 import ContentFeedProvider from './ContentFeedProvider';
@@ -13,7 +14,7 @@ import EventProvider from './EventProvider';
 import FeatureFeedProvider from './FeatureFeedProvider';
 import GroupCoverImagesProvider from './GroupCoverImagesProvider';
 import GroupFiltersProvider from './GroupFiltersProvider';
-import GroupLeadersProvider from './GroupLeadersProvider'
+import GroupLeadersProvider from './GroupLeadersProvider';
 import GroupManageProvider from './GroupManageProvider';
 import GroupMemberProvider from './GroupMemberProvider';
 import GroupProvider from './GroupProvider';
@@ -31,6 +32,7 @@ export {
   AppProvider,
   AuthProvider,
   CampusesProvider,
+  CampusProvider,
   ChatConnectionProvider,
   CommunitiesProvider,
   DiscoverFiltersCategoriesProvider,

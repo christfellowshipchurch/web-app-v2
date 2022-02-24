@@ -1,5 +1,6 @@
 import replace from 'lodash/replace';
 import includes from 'lodash/includes';
+import uniqueId from 'lodash/uniqueId';
 import { add, parseISO, format, formatISO } from 'date-fns';
 
 const formatEvent = event => ({
@@ -57,27 +58,38 @@ export const googleCalLink = (event, allDay) => {
   );
 };
 
-export const icsLink = (event, allDay) => {
-  let { title, description, address, startTime, endTime } = formatEvent(event);
+/**
+ * todo : As of now this is the only working method for Add to Calendar. We will need to update the other methods above to work like this one. For now we are only downloading ics files that are all day events.
+ */
 
-  if (allDay) {
-    endTime = add(endTime, { days: 1 });
-  }
+export const icsLink = event => {
+  let { title, description, address, startTime, endTime, url } = event;
 
-  return (
-    'data:text/calendar;charset=utf8,' +
-    [
-      'BEGIN:VCALENDAR',
-      'VERSION:2.0',
-      'BEGIN:VEVENT',
-      `URL:${document.URL}`,
-      `DTSTART:${formatTime(startTime, allDay)}`,
-      `DTEND:${formatTime(endTime, allDay)}`,
-      `SUMMARY:${title}`,
-      `DESCRIPTION:${description}`,
-      `LOCATION:${address}`,
-      'END:VEVENT',
-      'END:VCALENDAR',
-    ].join('\n')
-  );
+  // if (!title || !description || !address || !startTime || !endTime) {
+  //   return null;
+  // }
+
+  const icsString = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//www.cf.church//Christ Fellowship Church',
+    'CALSCALE:GREGORIAN',
+    'BEGIN:VEVENT',
+    `DTSTAMP:${format(new Date(), 'yyyyMMddhhmmss')}Z`,
+    `UID:${uniqueId()}-@christfellowship.church`,
+    `DTSTART;TZID=America/New_York:${format(startTime, "yyyyMMdd'T'HHmmss")}`,
+    `DTEND;TZID=America/New_York:${format(endTime, "yyyyMMdd'T'HHmmss")}`,
+    `SUMMARY:${title}`,
+    `URL:${url ?? document?.URL ?? 'https://www.christfellowship.church'}`,
+    `DESCRIPTION:${description}`,
+    `LOCATION:${address}`,
+    'END:VEVENT',
+    'END:VCALENDAR',
+  ].join('\n');
+
+  // We use blob method and removed `charset=utf8` in order to be compatible with Safari IOS
+  let blob = new Blob([icsString], { type: 'text/calendar' });
+  let calendarLink = window.URL.createObjectURL(blob);
+
+  return calendarLink;
 };

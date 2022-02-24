@@ -22,13 +22,14 @@ import DiscoverItemsList from './DiscoverItemsList';
 import EventSingle from './EventSingle';
 import EventsList from './EventsList';
 import HeroLanding from './HeroLanding';
+import FAQ from './FAQ';
 import FeatureFeed from './FeatureFeed';
 import FilterField from './FilterField';
 import Footer from './Footer';
 import GenderField from './GenderField';
 import GenericError from './GenericError';
 import GradientBackground from './GradientBackground';
-import GroupEmailComposer from './GroupEmailComposer'
+import GroupEmailComposer from './GroupEmailComposer';
 import GroupManage from './GroupManage';
 import GroupMember from './GroupMember';
 import GroupMemberDetails from './GroupMemberDetails';
@@ -40,11 +41,13 @@ import Header from './Header';
 import HeroListFeature from './HeroListFeature';
 import HomeFeed from './HomeFeed';
 import HorizontalCardListFeature from './HorizontalCardListFeature';
+import JsonLD from './JsonLD';
 import ContentBlockCollection from './ContentBlockCollection';
 import Layout from './Layout';
 import LegacyNodeRouter from './LegacyNodeRouter';
-import LocationSingle from './LocationSingle';
 import LiveStreamSingle from './LiveStreamSingle';
+import LocationBlockFeature from './LocationBlockFeature';
+import LocationSingle from './LocationSingle';
 import Logo from './Logo';
 import Nav from './Nav';
 import NotFound from './NotFound';
@@ -53,6 +56,7 @@ import PasswordReset from './PasswordReset';
 import SEO from './SEO';
 import SearchField from './SearchField';
 import Share from './Share';
+import Testimonials from './Testimonials';
 import TrackEventWhenLoaded from './TrackEventWhenLoaded';
 import UserAvatar from './UserAvatar';
 import UserProfile from './UserProfile';
@@ -84,6 +88,7 @@ export {
   EventSingle,
   EventsList,
   HeroLanding,
+  FAQ,
   FeatureFeed,
   FilterField,
   Footer,
@@ -102,11 +107,13 @@ export {
   HeroListFeature,
   HomeFeed,
   HorizontalCardListFeature,
+  JsonLD,
   ContentBlockCollection,
   Layout,
   LegacyNodeRouter,
-  LocationSingle,
   LiveStreamSingle,
+  LocationBlockFeature,
+  LocationSingle,
   Logo,
   Nav,
   NotFound,
@@ -115,6 +122,7 @@ export {
   SEO,
   SearchField,
   Share,
+  Testimonials,
   TrackEventWhenLoaded,
   UserAvatar,
   UserProfile,

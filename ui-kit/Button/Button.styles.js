@@ -1,155 +1,174 @@
 import styled, { css } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
-import Color from 'color'
+import Color from 'color';
 
 import { system } from 'ui-kit';
 
 // MARK : methods
 export const primaryHover = () => props => {
-  const primaryColor = themeGet('colors.primary')(props)
+  const primaryColor = themeGet('colors.primary')(props);
 
-  return Color(primaryColor).saturate(0.1).darken(0.35).hex()
+  return Color(primaryColor).saturate(0.1).darken(0.35).hex();
 };
 
 export const primarySubdued = () => props => {
-  const primaryColor = themeGet('colors.primary')(props)
+  const primaryColor = themeGet('colors.primary')(props);
 
-  return Color(primaryColor).desaturate(0.15).lighten(1.5).hex()
+  return Color(primaryColor).desaturate(0.15).lighten(1.5).hex();
 };
 
 const primarySubduedHover = () => props => {
-  const primaryColor = themeGet('colors.primary')(props)
+  const primaryColor = themeGet('colors.primary')(props);
 
-  return Color(primaryColor).desaturate(0.1).lighten(0.85).hex()
+  return Color(primaryColor).desaturate(0.1).lighten(0.85).hex();
 };
 
 // MARK : Styles
-const rounded = ({ rounded }) => props => {
-  if (rounded) {
-    return css`
-      border-radius: 9999px;
-    `;
-  }
-};
+const rounded =
+  ({ rounded }) =>
+  props => {
+    if (rounded) {
+      return css`
+        border-radius: 9999px;
+      `;
+    }
+  };
 
-const variant = ({ variant, active, hoverColor }) => props => {
-  if (variant === 'secondary') {
-    return css`
-      background-color: transparent;
-      border-color: ${themeGet('colors.primary')};
-      color: ${themeGet('colors.primary')};
-      &:hover {
-        background-color: ${primaryHover};
-        border-color: ${primaryHover};
-      }
-    `;
-  }
+const variant =
+  ({ variant, active, hoverColor }) =>
+  props => {
+    if (variant === 'secondary') {
+      return css`
+        background-color: transparent;
+        border-color: ${themeGet('colors.primary')};
+        color: ${themeGet('colors.primary')};
+        &:hover {
+          background-color: ${primaryHover};
+          border-color: ${primaryHover};
+        }
+      `;
+    }
 
-  if (variant === 'link') {
-    return css`
-      background-color: transparent;
-      color: ${themeGet('colors.primary')};
-      line-height: 1.5;
+    if (variant === 'link') {
+      return css`
+        background-color: transparent;
+        color: ${themeGet('colors.primary')};
+        line-height: 1.5;
 
-      &:active,
-      &:focus,
-      &:hover {
-        background: none;
-        color: ${primaryHover};
-        outline: none;
-      }
-    `;
-  }
+        &:active,
+        &:focus,
+        &:hover {
+          background: none;
+          color: ${primaryHover};
+          outline: none;
+        }
+      `;
+    }
 
-  if (variant === 'tertiary') {
-    return css`
-      background-color: ${themeGet('colors.paper')};
-      color: ${themeGet('colors.primary')};
-    `;
-  }
+    if (variant === 'tertiary') {
+      return css`
+        background-color: ${themeGet('colors.paper')};
+        color: ${themeGet('colors.primary')};
+      `;
+    }
 
-  if (variant === 'chip') {
-    return css`
-      background-color: ${primarySubdued};
-      color: ${themeGet('colors.primary')};
-      border-color: ${themeGet('colors.primary')};
-
-      &:active,
-      &:focus,
-      &:hover {
+    if (variant === 'chip') {
+      return css`
         background-color: ${primarySubdued};
         color: ${themeGet('colors.primary')};
         border-color: ${themeGet('colors.primary')};
-      }
-    `;
-  }
-};
 
-const size = ({ size }) => props => {
-  if (size === 's') {
-    return css`
-      font-size: ${themeGet('fontSizes.s')};
-      line-height: 1;
-      padding-left: ${themeGet('space.s')};
-      padding-right: ${themeGet('space.s')};
-    `;
-  }
+        &:active,
+        &:focus,
+        &:hover {
+          background-color: ${primarySubdued};
+          color: ${themeGet('colors.primary')};
+          border-color: ${themeGet('colors.primary')};
+        }
+      `;
+    }
+  };
 
-  if (size === 'l') {
-    return css`
-      line-height: 2.2;
-      padding-left: ${themeGet('space.l')};
-      padding-right: ${themeGet('space.l')};
-    `;
-  }
-};
+const size =
+  ({ size }) =>
+  props => {
+    if (size === 'xs') {
+      return css`
+        font-size: ${themeGet('fontSizes.xxs')};
+        line-height: 0.6;
+        padding-left: ${themeGet('space.s')};
+        padding-right: ${themeGet('space.s')};
+      `;
+    }
 
-const status = ({ status }) => props => {
-  if (status === 'LOADING') {
-    return css`
-      align-items: center;
-      display: inline-flex;
+    if (size === 's') {
+      return css`
+        font-size: ${themeGet('fontSizes.s')};
+        line-height: 1;
+        padding-left: ${themeGet('space.s')};
+        padding-right: ${themeGet('space.s')};
+      `;
+    }
 
-      > *:first-child {
-        margin-right: ${themeGet('space.s')};
-      }
-    `;
-  }
+    if (size === 'l') {
+      return css`
+        line-height: 2.2;
+        padding-left: ${themeGet('space.l')};
+        padding-right: ${themeGet('space.l')};
+      `;
+    }
+  };
 
-  if (status === 'SELECTED') {
-    return css`
-      color: ${themeGet('colors.white')};
-      background-color: ${themeGet('colors.primary')};
-      border-color: ${themeGet('colors.primary')};
+const status =
+  ({ status }) =>
+  props => {
+    if (status === 'LOADING') {
+      return css`
+        align-items: center;
+        display: inline-flex;
 
-      &:active,
-      &:focus,
-      &:hover {
+        > *:first-child {
+          margin-right: ${themeGet('space.s')};
+        }
+      `;
+    }
+
+    if (status === 'SELECTED') {
+      return css`
         color: ${themeGet('colors.white')};
         background-color: ${themeGet('colors.primary')};
         border-color: ${themeGet('colors.primary')};
-      }
-    `;
-  }
-};
 
-const active = ({ active, variant }) => props => {
-  if (active && variant === 'link') {
-    return css`
-      background: none;
-      color: ${themeGet('colors.neutrals.800')};
-      outline: none;
+        &:active,
+        &:focus,
+        &:hover {
+          color: ${themeGet('colors.white')};
+          background-color: ${themeGet('colors.primary')};
+          border-color: ${themeGet('colors.primary')};
+        }
+      `;
+    }
+  };
 
-      &:active,
-      &:focus,
-      &:hover {
+const active =
+  ({ active, variant }) =>
+  props => {
+    if (active && variant === 'link') {
+      return css`
         background: none;
         color: ${themeGet('colors.neutrals.800')};
         outline: none;
-      }
-    `;
-  }
-};
+
+        &:active,
+        &:focus,
+        &:hover {
+          background: none;
+          color: ${themeGet('colors.neutrals.800')};
+          outline: none;
+        }
+      `;
+    }
+  };
 
 const Button = styled.button`
   background-color: ${themeGet('colors.primary')};

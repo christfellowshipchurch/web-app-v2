@@ -12,6 +12,7 @@ import {
   CardGrid,
   Loader,
   HorizontalHighlightCard,
+  CardCarousel,
 } from 'ui-kit';
 import { CustomLink } from 'components';
 
@@ -21,6 +22,9 @@ const CollectionPreview = ({
   cardType,
   hideButton,
   buttonOverride,
+  titleOverride,
+  size,
+  horizontalScroll,
 }) => {
   const router = useRouter();
   const { categoryTitle, contentItems, loading } =
@@ -37,8 +41,13 @@ const CollectionPreview = ({
 
   return (
     <Box>
-      <Box color="secondary" textAlign={'center'} as="h1" mb="l">
-        {categoryTitle}
+      <Box
+        color="secondary"
+        textAlign={'center'}
+        as={size === 's' ? 'h2' : 'h1'}
+        mb="l"
+      >
+        {titleOverride ? titleOverride : categoryTitle}
       </Box>
       {summary && (
         <Box
@@ -52,7 +61,36 @@ const CollectionPreview = ({
           {summary}
         </Box>
       )}
-      <CardGrid columns="3">
+      {horizontalScroll && (
+        <CardCarousel display={{ md: 'none' }}>
+          {loading ? (
+            <Loader />
+          ) : (
+            contentItems.map((n, i) => (
+              <CustomLink
+                key={i}
+                Component={
+                  cardType === 'default' ? DefaultCard : HorizontalHighlightCard
+                }
+                coverImageOverlay={true}
+                type={size === 's' ? 'HIGHLIGHT_SMALL' : 'HIGHLIGHT_MEDIUM'}
+                mx={size === 's' ? 'base' : 0}
+                as="a"
+                coverImage={n?.coverImage?.sources[0]?.uri}
+                description={n?.summary}
+                href={getUrlFromRelatedNode(n)}
+                scaleCard={false}
+                scaleCoverImage={true}
+                title={n?.title}
+              />
+            ))
+          )}
+        </CardCarousel>
+      )}
+      <CardGrid
+        display={horizontalScroll ? { _: 'none', md: null } : null}
+        columns="3"
+      >
         {loading ? (
           <Loader />
         ) : (
@@ -63,7 +101,8 @@ const CollectionPreview = ({
                 cardType === 'default' ? DefaultCard : HorizontalHighlightCard
               }
               coverImageOverlay={true}
-              type="HIGHLIGHT_MEDIUM"
+              type={size === 's' ? 'HIGHLIGHT_SMALL' : 'HIGHLIGHT_MEDIUM'}
+              mx={size === 's' ? 'base' : 0}
               as="a"
               coverImage={n?.coverImage?.sources[0]?.uri}
               description={n?.summary}
@@ -79,12 +118,16 @@ const CollectionPreview = ({
         <Box textAlign="center" width="100%">
           <Button
             variant="secondary"
-            mt="base"
+            mt="l"
+            px={size === 's' ? 'base' : 'l'}
+            size={size}
             onClick={
-              buttonOverride ? () => router.push(buttonOverride) : handleSeeMore
+              buttonOverride !== ''
+                ? () => router.push(buttonOverride)
+                : handleSeeMore
             }
           >
-            Show More
+            See More
           </Button>
         </Box>
       ) : null}
@@ -95,10 +138,14 @@ const CollectionPreview = ({
 CollectionPreview.propTypes = {
   contentId: PropTypes.string,
   buttonOverride: PropTypes.string,
+  horizontalScroll: PropTypes.bool,
+  size: PropTypes.oneOf(['s', 'l']),
 };
 
 CollectionPreview.defaultProps = {
-  buttonOverride: false,
+  buttonOverride: '',
+  horizontalScroll: false,
+  size: 'l',
 };
 
 export default CollectionPreview;

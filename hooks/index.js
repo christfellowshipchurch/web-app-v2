@@ -2,6 +2,7 @@ import useAddGroupMember from './useAddGroupMember';
 import useAuthIdentity from './useAuthIdentity';
 import useAuthQuery from './useAuthQuery';
 import useAuthenticateCredentials from './useAuthenticateCredentials';
+import useCampus from './useCampus';
 import useCampuses from './useCampuses';
 import useCheckIn from './useCheckIn';
 import useContactGroupLeader from './useContactGroupLeader';
@@ -68,6 +69,7 @@ export {
   useAuthIdentity,
   useAuthQuery,
   useAuthenticateCredentials,
+  useCampus,
   useCampuses,
   useCheckIn,
   useContactGroupLeader,

@@ -125,6 +125,7 @@ function ContentBlock(props = {}) {
         >
           {actions.map((action, i) => (
             <CustomLink
+              key={i}
               as="a"
               href={getUrlFromRelatedNode(action?.relatedNode)}
               Component={Button}

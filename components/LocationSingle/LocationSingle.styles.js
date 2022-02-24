@@ -1,121 +1,159 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
-import isEmpty from 'lodash/isEmpty';
 
 import { system } from 'ui-kit';
-
-const glassBackground =
-  ({ coverImage }) =>
-  props => {
-    if (!isEmpty(coverImage)) {
-      return css`
-        color: ${themeGet('colors.white')};
-        background-image: linear-gradient(
-          rgba(0, 0, 0, 0),
-          rgba(0, 0, 0, 0.65),
-          rgba(0, 0, 0, 0.85)
-        );
-      `;
-    }
-  };
-
-const heroImageRatios =
-  ({ coverImage }) =>
-  props => {
-    if (!isEmpty(coverImage)) {
-      return css`
-        padding-top: 100%;
-
-        @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-          padding-top: 56.25%;
-        }
-
-        @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
-          padding-top: 42.86%;
-        }
-      `;
-    }
-  };
-
-const overlay =
-  ({ overlay }) =>
-  props => {
-    if (overlay) {
-      return css`
-        &::after {
-          background: linear-gradient(
-            to bottom,
-            rgba(0, 0, 0, 0),
-            ${themeGet('colors.fg')}
-          );
-          bottom: 0;
-          content: '';
-          height: 100%;
-          left: 0;
-          opacity: 0.8;
-          position: absolute;
-          right: 0;
-          top: 0;
-          width: 100%;
-          z-index: 1;
-        }
-      `;
-    }
-  };
 
 const LocationSingle = styled.div`
   ${system}
 `;
 
-const Cover = styled.div`
-  align-items: flex-end;
-  background-color: ${themeGet('colors.neutrals.900')};
-  background-image: url(${props => props.src});
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+const FlexBreak = styled.div`
+  flex-basis: 100%;
+  height: 0;
+
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    display: none;
+  }
+`;
+
+const InfoBox = styled.ul`
+  background: ${themeGet('colors.hues.orange')};
+  border-top-left-radius: ${themeGet('radii.base')};
+  border-bottom-left-radius: ${themeGet('radii.base')};
+  color: white;
+  font-size: 14px;
+  font-style: italic;
+  margin-left: auto;
+  margin-right: -2rem;
+  margin-top: -0.7rem;
+  max-width: 370px;
+  padding-bottom: ${themeGet('space.s')};
+  padding-left: 30px;
+  padding-top: ${themeGet('space.s')};
+  box-shadow: -7px -5px 19px rgba(0, 0, 0, 0.12);
+
+  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+    margin-right: 0px;
+  }
+
+  @media screen and (max-width: ${themeGet('breakpoints.sm')}) {
+    border-radius: 0px;
+    margin-top: 0px;
+    margin-left: 0px;
+    max-width: none;
+    padding-left: 50px;
+    width: 100%;
+  }
+`;
+
+const PastorsCard = styled.div`
+  background: ${themeGet('colors.white')};
+  position: relative;
+  padding-left: ${themeGet('space.base')};
+  padding-right: ${themeGet('space.base')};
+  padding-top: ${themeGet('space.l')};
+  padding-bottom: ${themeGet('space.l')};
   display: flex;
   justify-content: center;
-  overflow: hidden;
-  position: relative;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
 
-  ${overlay}
+  @media screen and (min-width: ${themeGet('breakpoints.sm')}) {
+    border: 1px solid ${themeGet('colors.neutrals.300')};
+    border-radius: ${themeGet('radii.l')};
+    box-shadow: ${themeGet('shadows.l')};
+    width: auto;
+  }
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    min-width: 350px;
+  }
 
   ${system}
 `;
 
-const Hero = styled.div`
+const ServiceTime = styled.h3`
+  color: white;
+  margin-bottom: 0px;
+  margin-left: ${themeGet('space.s')};
+  margin-right: ${themeGet('space.s')};
+`;
+
+const ServiceTimeTitle = styled.h4`
+  color: white;
+  opacity: 75%;
+  margin-bottom: 0px;
+  margin-left: ${themeGet('space.base')};
+  margin-right: ${themeGet('space.base')};
+
+  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+    margin-bottom: ${themeGet('space.s')};
+  }
+`;
+
+const ServiceTimeContainer = styled.div`
+  align-items: center;
+  background: linear-gradient(270.35deg, #0092bc -22.55%, #004f71 106.52%),
+    linear-gradient(90.49deg, #6bcaba -24.45%, #0092bc 118.95%);
+  border-top-left-radius: ${themeGet('radii.base')};
+  border-bottom-left-radius: ${themeGet('radii.base')};
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: ${themeGet('space.base')};
+  padding-top: ${themeGet('space.base')};
+  padding-bottom: ${themeGet('space.base')};
 
-  position: relative;
-  overflow: hidden;
-  padding-top: 100%;
-  height: 0;
+  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+    border-radius: 0px;
+    margin-top: 0px;
+  }
 
-  background-image: url(${props => props.coverImage});
-  background-position: bottom;
-  background-size: cover;
-
-  ${heroImageRatios}
+  @media screen and (max-width: ${themeGet('breakpoints.sm')}) {
+    margin-top: 0px;
+  }
 `;
 
-const Glass = styled.div`
+const VerticalDivider = styled.div`
+  height: 30px;
+  width: 1px;
+  background-color: rgb(255 255 255 / 25%);
+}
+
+
+`;
+
+const VideoCover = styled.video`
   width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 
-  padding-bottom: ${themeGet('space.l')};
-  padding-top: ${themeGet('space.xl')};
-  padding-right: ${themeGet('space.s')};
-  padding-left: ${themeGet('space.s')};
+  object-fit cover;
 
-  text-align: center;
-
-  ${glassBackground}
+  ${system}
 `;
 
-LocationSingle.Cover = Cover;
-LocationSingle.Hero = Hero;
-LocationSingle.Glass = Glass;
+const VideoOverlay = styled.div`
+  z-index: 1;
+  position: absolute;
+  top: -500px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+`;
+
+LocationSingle.FlexBreak = FlexBreak;
+LocationSingle.InfoBox = InfoBox;
+LocationSingle.PastorsCard = PastorsCard;
+LocationSingle.ServiceTime = ServiceTime;
+LocationSingle.ServiceTimeTitle = ServiceTimeTitle;
+LocationSingle.ServiceTimeContainer = ServiceTimeContainer;
+LocationSingle.VerticalDivider = VerticalDivider;
+LocationSingle.VideoCover = VideoCover;
+LocationSingle.VideoOverlay = VideoOverlay;
 
 export default LocationSingle;

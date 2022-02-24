@@ -1,15 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createMarkup } from 'utils';
+import { find, includes } from 'lodash';
 
-import { ContentLayout, Layout, NotFound } from 'components';
+import {
+  CollectionPreview,
+  FAQ,
+  Layout,
+  LocationBlockFeature,
+  NotFound,
+  Testimonials,
+} from 'components';
 
-import { Box, Cell, Image, Loader, Longform, utils } from 'ui-kit';
-import Styled from './LocationSingle.styles';
+import { Box, Button, Divider, Loader } from 'ui-kit';
+import CampusInfo from './CampusInfo';
+import LocationHeader from './LocationHeader';
+import defaultBlockData from '../LocationBlockFeature/defaultBlockData';
+import { additionalInfoCampusData } from './locationData';
+import { CampusProvider } from 'providers';
+import faqData from 'components/FAQ/faqData';
 
 function LocationSingle(props = {}) {
-  const coverImage = props?.data?.coverImage?.sources[0]?.uri;
-
   if (props.loading) {
     return (
       <Layout
@@ -37,68 +47,103 @@ function LocationSingle(props = {}) {
     return <NotFound />;
   }
 
+  const title = props?.data?.title;
+  let campus = title.substring(28, title.length - 4);
+
+  // note : We need to override the cmapus name to for CFE to properly format it for querying purposes
+  if (includes(campus, 'Español')) {
+    const intitialString = title.substring(25, title.length - 4);
+    const firstHalf = intitialString.substring(0, 10);
+    const secondHalf = intitialString.substring(12, intitialString.length);
+    campus = firstHalf + secondHalf;
+  }
+
+  /**
+   * note : import hard coded addtional information
+   */
+  const campusAdditionalInfo = find(additionalInfoCampusData, { name: campus });
+
   return (
     <Layout
-      title={props?.data?.title}
       contentMaxWidth={'100vw'}
       contentHorizontalPadding={'0'}
       contentVerticalPadding={'0'}
+      transparentHeader
     >
-      <Box
-        position="relative"
-        display="flex" 
-        justifyContent="center" 
-        alignItems="end" 
-      >
-        <Styled.Cover
-          src={coverImage}
-          width="100%"
-          maxWidth={1100}
-          height={{ _: 300, md: 350, lg: 470 }}
-          borderRadius={{ _: 'none', lg: 'base' }}
-          mt={{ _: 0, md: 0, lg: 'l' }}
+      {/* Header Section */}
+      <LocationHeader title={props?.data?.title} />
+
+      {/* Service Times and Campus Pastors sections */}
+      <CampusProvider
+        Component={CampusInfo}
+        options={{ variables: { campusName: campus } }}
+        additionalInfo={campusAdditionalInfo?.info}
+      />
+
+      <Box px="base" bg="white" display={{ _: 'block', md: 'none' }}>
+        <Divider bg="secondarySubdued" />
+      </Box>
+
+      {/* At this Campus Section */}
+      <Box width="100%" px={{ _: 'base', md: 'xl' }} pt="base">
+        <LocationBlockFeature
           mx="auto"
-          overlay
+          campusName={campus}
+          maxWidth={1000}
+          data={defaultBlockData}
+          /**
+           * todo :  These would be the content blocks we pull in from Rock, but since the content doesn't match Figma we'll hard code the content for now.
+           *  */
+          // data={props?.data?.featureFeed?.features}
         />
-        <Box
-          as="h1"
-          textAlign="center"
-          color="white"
-          position="absolute"
-          mb="base"
-          zIndex={1000}
-          mx="base"
-          bottom="0"
-        >
-          {props?.data?.title}
+      </Box>
+
+      {/* What's Coming Up Section */}
+      <Box bg="white" py={{ _: 'l', sm: 'xl' }}>
+        <Box mx="auto" maxWidth={1200}>
+          <CollectionPreview
+            horizontalScroll
+            size="s"
+            contentId="UniversalContentItem:ddf0d380759e8404fb6b70aa941c06f7"
+            buttonOverride="/events"
+          />
         </Box>
       </Box>
 
-      <Cell maxWidth={utils.rem('1100px')} px="base">
-        <ContentLayout
-          renderA={() => {
-            return (
-              (props?.data?.summary || props?.data?.htmlContent) && (
-                <Box
-                  fontSize="l"
-                  maxWidth="840px"
-                  margin="auto"
-                  textAlign="center"
-                >
-                  {props?.data?.htmlContent && (
-                    <Longform
-                      dangerouslySetInnerHTML={createMarkup(
-                        props?.data?.htmlContent
-                      )}
-                    />
-                  )}
-                </Box>
-              )
-            );
-          }}
-          features={props?.data?.featureFeed?.features}
-        />
-      </Cell>
+      {/* FAQs Section */}
+      <Box px="base" py="xl" width="100%">
+        <Box mx="auto" maxWidth={1200}>
+          <FAQ data={faqData(campus)} />
+        </Box>
+      </Box>
+
+      {/* Testimonial Section */}
+      <Box bg="white" px="base" py="xl" width="100%">
+        <Box mx="auto" maxWidth={1200}>
+          <Testimonials />
+        </Box>
+      </Box>
+
+      {/* Never Miss a Thing Section */}
+      <Box px="base" py="xl">
+        <Box textAlign="center" maxWidth={500} mx="auto">
+          <Box as="h2" color="secondary">
+            Never miss a thing.
+          </Box>
+          <Box as="h4" color="neutrals.500">
+            Receive events and updates straight to your inbox!
+          </Box>
+          <Button
+            as="a"
+            mx="auto"
+            size="s"
+            px="base"
+            href="http://eepurl.com/hAk7aP"
+          >
+            Subscribe
+          </Button>
+        </Box>
+      </Box>
     </Layout>
   );
 }
