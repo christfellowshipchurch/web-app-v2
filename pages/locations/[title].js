@@ -2,7 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import find from 'lodash/find';
 import startCase from 'lodash/startCase';
-import kebabCase from 'lodash/kebabCase';
+import includes from 'lodash/includes';
 
 import { ContentItemProvider } from 'providers';
 import { LocationSingle, JsonLD, SEO } from 'components';
@@ -16,6 +16,12 @@ import {
   campusMetaData,
   campusLinks,
 } from 'components/LocationSingle/locationData';
+
+const OLD_LOCATION_PAGES = [
+  'prison-locations',
+  'iglesia-royal-palm-beach',
+  'iglesia-palm-beach-gardens',
+];
 
 export default function Location(props = {}) {
   const router = useRouter();
@@ -85,10 +91,11 @@ export default function Location(props = {}) {
           />
         </>
       )}
-      {/* For Prison Locations we will need to use the old LocationSingle component for formatting purposes, until we find another solution */}
       <ContentItemProvider
         Component={
-          title === 'prison-locations' ? OldLocationSingle : LocationSingle
+          includes(OLD_LOCATION_PAGES, title)
+            ? OldLocationSingle
+            : LocationSingle
         }
         options={options}
       />
