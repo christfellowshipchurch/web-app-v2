@@ -26,7 +26,7 @@ function FAQ(props = {}) {
         <Box fontWeight="bold" mb="base" maxWidth={450}>
           Someone from our team is happy to answer any of your questions!
         </Box>
-        <Box as="a" href="https://rock.gocf.org/contactus">
+        <Box as="a" href="https://rock.gocf.org/contactus" target="_blank">
           Contact Us
         </Box>
       </Box>

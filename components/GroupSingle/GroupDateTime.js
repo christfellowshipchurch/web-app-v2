@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { dateTextFormat } from 'utils';
-import { Box, Card } from 'ui-kit';
+import { Box } from 'ui-kit';
 import { AddToCalendar } from 'components';
 
 const GroupDateTime = ({
@@ -51,7 +51,7 @@ const GroupDateTime = ({
         {dateTextFormat(dateTime?.start)}
       </Box>
 
-      {/* <AddToCalendar
+      <AddToCalendar
         event={{
           title,
           summary,
@@ -63,7 +63,7 @@ const GroupDateTime = ({
         }}
         alternateDescription={notes}
         label={true}
-      /> */}
+      />
     </Box>
   );
 };
