@@ -139,6 +139,7 @@ function LocationSingle(props = {}) {
             size="s"
             px="base"
             href="http://eepurl.com/hAk7aP"
+            target="_blank"
           >
             Subscribe
           </Button>

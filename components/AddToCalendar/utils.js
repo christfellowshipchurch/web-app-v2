@@ -2,6 +2,7 @@ import replace from 'lodash/replace';
 import includes from 'lodash/includes';
 import uniqueId from 'lodash/uniqueId';
 import { add, parseISO, format, formatISO } from 'date-fns';
+import { isString } from 'lodash';
 
 const formatEvent = event => ({
   title: event?.title || 'Christ Fellowship Church Event',
@@ -65,9 +66,10 @@ export const googleCalLink = (event, allDay) => {
 export const icsLink = event => {
   let { title, description, address, startTime, endTime, url } = event;
 
-  // if (!title || !description || !address || !startTime || !endTime) {
-  //   return null;
-  // }
+  if (isString(startTime) || isString(endTime)) {
+    startTime = parseISO(startTime);
+    endTime = parseISO(endTime);
+  }
 
   const icsString = [
     'BEGIN:VCALENDAR',

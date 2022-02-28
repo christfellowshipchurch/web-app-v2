@@ -143,7 +143,7 @@ export default function ExternalLandingPage(props = {}) {
         <Box mx="auto" maxWidth={1200}>
           <CollectionPreview
             contentId="UniversalContentItem:d29e24e1873b0c4f4f645218ca3338ea"
-            buttonOverride="/events"
+            buttonOverride="/discover"
           />
         </Box>
       </Box>
