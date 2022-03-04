@@ -11,7 +11,9 @@ const LocationHeader = (props = {}) => (
     display="flex"
     justifyContent={{ _: 'flex-start', lg: 'center' }}
     alignItems={{ _: 'flex-end', sm: 'center' }}
-    backgroundImage="url(/groups-cover-image.png)"
+    backgroundImage="url(/external-landing/external-bg-video-frame-1.png)"
+    backgroundPosition="center"
+    backgroundSize="cover"
   >
     <Box height={{ _: '90vh', sm: 500, md: 600, lg: 700 }}>
       <Styled.VideoCover
