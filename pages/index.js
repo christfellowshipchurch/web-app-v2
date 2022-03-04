@@ -23,28 +23,25 @@ export default function Home(props = {}) {
     },
   };
 
-  if (!authenticated) {
-    return (
-      <Layout transparentHeader={isTransparent}>
-        <ExternalLandingPage />
-      </Layout>
-    );
-  } else
-    return (
-      <Layout transparentHeader={isTransparent} title="Home">
-        <Cell
-          as="main"
-          maxWidth={utils.rem('1100px')}
-          px="base"
-          py={{ _: 'xs', lg: 's' }}
-        >
-          <FeatureFeedProvider Component={FeatureFeed} options={options} />
-        </Cell>
-      </Layout>
-    );
+  if (authenticated) return <Layout transparentHeader={isTransparent} title="Home">
+    <Cell
+      as="main"
+      maxWidth={utils.rem('1100px')}
+      px="base"
+      py={{ _: 'xs', lg: 's' }}
+    >
+      <FeatureFeedProvider Component={FeatureFeed} options={options} />
+    </Cell>
+  </Layout>
+
+  return (
+    <Layout transparentHeader={isTransparent}>
+      <ExternalLandingPage />
+    </Layout>
+  );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const apolloClient = initializeApollo();
 
   try {
