@@ -1,25 +1,20 @@
-import { useRouter } from 'next/router';
-
-import { GET_CONTENT_CHANNEL } from 'hooks/useContentChannel';
 import {
   ArticleLink,
   ArticleLinks,
   CampusFilter,
-  EventCallout,
-  EventsCallout,
   Layout,
   MainPhotoHeader,
   MarketingHeadline,
 } from 'components';
 import IDS from 'config/ids';
+import { GET_CAMPUSES } from 'hooks/useCampuses';
+import { GET_CONTENT_CHANNEL } from 'hooks/useContentChannel';
+import { GET_MINISTRY_CONTENT } from 'hooks/useMinistryContent';
+import { GET_UNIVERSAL_CONTENT_ITEM_BY_SLUG } from 'hooks/useUniversalContentItemBySlug';
+import { initializeApollo } from 'lib/apolloClient';
+import { useRouter } from 'next/router';
 import { CardGrid, Longform, Section } from 'ui-kit';
 import { getIdSuffix, getMetaData, getSlugFromURL } from 'utils';
-import { initializeApollo } from 'lib/apolloClient';
-import { GET_CAMPUSES } from 'hooks/useCampuses';
-import { GET_UNIVERSAL_CONTENT_ITEM_BY_SLUG } from 'hooks/useUniversalContentItemBySlug';
-import { useTheme } from 'styled-components';
-import { Info } from 'phosphor-react';
-import { GET_MINISTRY_CONTENT } from 'hooks/useMinistryContent';
 
 export default function Page({
   data = {},
@@ -27,7 +22,6 @@ export default function Page({
   dropdownData,
   relatedContent,
 }) {
-  const theme = useTheme();
   const router = useRouter();
 
   const { loading, error, getContentBySlug: node = {} } = data;
@@ -60,46 +54,16 @@ export default function Page({
         showTitleOverImage={node.showTitleOverImage}
         summary={node.summary}
         mb={{
-          _:
-            links?.length ? 0 : ((node.title || node.subtitle || node.summary) &&
-              node.showTitleOverImage)
-              ? 'xl'
-              : 0,
+          _: links?.length
+            ? 0
+            : (node.title || node.subtitle || node.summary) &&
+              node.showTitleOverImage
+            ? 'xl'
+            : 0,
           lg: 'xxl',
         }}
+        events={links?.length ? links : null}
       />
-      {links?.length ? (
-        <Section contentProps={{ p: '0 !important' }}>
-          <EventsCallout
-            mx={{ _: 0, lg: 'xl' }}
-            mb={{ _: 'l', md: 'xxl' }}
-            my={{ lg: `-${theme.space.xxl}` }}
-            title="News & Events"
-            icon={
-              <Info
-                size={24}
-                style={{
-                  color: theme.colors.neutrals[900],
-                  opacity: '60%',
-                  marginRight: theme.space.xxs,
-                }}
-              />
-            }
-          >
-            {links.map(link => (
-              <EventCallout
-                key={link.id}
-                title={link.title}
-                description={link.subtitle}
-                imageSrc={link.coverImage?.sources?.[0]?.uri}
-                onClick={() =>
-                  router.push(`/${getSlugFromURL(link?.sharing?.url)}`)
-                }
-              />
-            ))}
-          </EventsCallout>
-        </Section>
-      ) : null}
       {node.htmlContent && (
         <Section>
           <Longform

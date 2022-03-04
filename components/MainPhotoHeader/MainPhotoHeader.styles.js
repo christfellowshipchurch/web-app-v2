@@ -1,6 +1,5 @@
 import { themeGet } from '@styled-system/theme-get';
 import styled, { css } from 'styled-components';
-
 import { Box, Image, system } from 'ui-kit';
 
 const Styled = {};
@@ -9,7 +8,7 @@ Styled.Container = styled(Box)`
   position: relative;
   text-align: center;
   width: 100%;
-  background-color: ${themeGet('colors.neutrals.900')};
+  background-color: ${themeGet('colors.bg_alt')};
 
   ${system}
 `;
