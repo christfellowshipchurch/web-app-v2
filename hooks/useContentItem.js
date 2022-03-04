@@ -181,12 +181,12 @@ function useContentItem(options = {}) {
     fetchPolicy: 'cache-and-network',
     ...options,
   });
-
-
+  const item = query?.data?.getNodeByPathname || null
 
   return {
-    item: query?.data?.getNodeByPathname || null,
+    item,
     ...query,
+    loading: query?.loading && !item
   };
 }
 
