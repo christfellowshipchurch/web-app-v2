@@ -62,6 +62,7 @@ function ContentBlock(props = {}) {
         >
           <Conditional condition={hasImage && !hasVideo}>
             <Image
+              altText={title || "Christ Fellowship Church"}
               mask={props?.imageMask}
               source={props.image}
               aspectRatio={props.imageRatio}
