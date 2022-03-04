@@ -235,7 +235,6 @@ const CampusInfo = ({
           </Box>
           <Box display={{ _: 'inline', lg: 'flex' }}>
             <Button
-              as="a"
               onClick={() => {
                 modalDispatch(
                   showModal('AddToCalendar', {
