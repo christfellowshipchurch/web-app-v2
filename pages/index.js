@@ -35,7 +35,10 @@ export default function Home(props = {}) {
   </Layout>
 
   return (
-    <Layout transparentHeader={isTransparent}>
+    <Layout 
+      title="Christ Fellowship Church - A church that wants to help you live the life you were created for."
+      transparentHeader={isTransparent}
+    >
       <ExternalLandingPage />
     </Layout>
   );
