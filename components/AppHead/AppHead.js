@@ -94,13 +94,7 @@ function AppHead({ Component, pageProps }) {
       <meta name="application-name" content="Christ Fellowship Church" />
       <meta name="msapplication-TileColor" content="#0092bc" />
       <meta name="theme-color" content="#ffffff" />
-
-      {/* This will throw a 403 if you don't run on local.christfellowship.church! */}
-      <link
-        rel="stylesheet"
-        type="text/css"
-        href="https://cloud.typography.com/7426316/6701612/css/fonts.css"
-      />
+ 
       <link rel="stylesheet" type="text/css" href="/nprogress.css" />
       {/* Global site tag (gtag.js) - Google Analytics */}
       {process.env.NODE_ENV === 'production' &&

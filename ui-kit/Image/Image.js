@@ -13,6 +13,7 @@ const Image = (props = {}) => {
       aspectRatio={
         !props?.disableRatio && replace(props.aspectRatio, 'by', '/')
       }
+      alt={props?.altText}
     />
   );
 };
@@ -36,4 +37,5 @@ Image.defaultProps = {
   objectFit: 'cover',
   download: false,
   disableRatio: false,
+  altText: "Christ Fellowship Church"
 };

@@ -134,7 +134,7 @@ export async function getStaticProps({ params }) {
   const apolloClient = initializeApollo();
   await apolloClient.query({
     query: GET_CONTENT_ITEM,
-    variables: { pathname: `/locations/${params.title}` },
+    variables: { pathname: `locations/${params.title}` },
   });
 
   const campus = await apolloClient.query({

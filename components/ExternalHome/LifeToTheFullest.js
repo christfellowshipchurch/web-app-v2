@@ -64,6 +64,7 @@ const LifeToTheFullest = () => {
             my="l"
           >
             <Image
+              altText={`${title} at Christ Fellowship Church`}
               source={image}
               maxWidth="400px"
               gridArea="img"
