@@ -15,6 +15,10 @@ const HeroLanding = styled.div`
   width: 100vw;
   overflow: none;
 
+  background-image: url(/external-landing/external-bg-video-frame-1.png);
+  background-position: center;
+  background-size: cover;
+
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
     height: 100vh;
   }
