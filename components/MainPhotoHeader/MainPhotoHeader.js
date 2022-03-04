@@ -130,7 +130,7 @@ function MainPhotoHeader({
               />
             }
           >
-            {[...events, ...events].map(link => (
+            {events.map(link => (
               <EventCallout
                 key={link.id}
                 title={link.title}
