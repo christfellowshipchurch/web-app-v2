@@ -82,7 +82,7 @@ module.exports = {
       { source: '/session2', destination: 'https://my.longhollow.com/startingpoint2', permanent: true },
       { source: '/session3', destination: 'https://my.longhollow.com/startingpoint3', permanent: true },
       { source: '/session4', destination: 'https://my.longhollow.com/startingpoint4', permanent: true },
-      { source: '/servelink', destination: '/serve-link-october-2021', permanent: true },
+      { source: '/servelink', destination: '/sign-up-for-serve-link', permanent: true },
       { source: '/app', destination: '/the-long-hollow-app', permanent: true },
       { source: '/supportgroups', destination: '/connect/support-groups', permanent: true },
       { source: '/beliefs', destination: '/about/beliefs', permanent: true },
