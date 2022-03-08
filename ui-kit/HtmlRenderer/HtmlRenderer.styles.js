@@ -6,7 +6,18 @@ import { primaryHover } from 'ui-kit/Button/Button.styles';
 const HtmlRenderer = styled.div`
   > ul,
   > ol {
-      margin-left: ${themeGet('space.base')};
+    margin-top: ${themeGet('space.base')};
+    margin-bottom: ${themeGet('space.base')};
+  }
+
+  ul,
+  ol {
+    padding-left: ${themeGet('space.base')};
+
+    li {
+      margin-top: ${themeGet('space.xs')};
+      margin-bottom: ${themeGet('space.xs')};
+    }
   }
   
   a {
