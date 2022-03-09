@@ -51,6 +51,8 @@ const HtmlRenderer = styled.div`
 
   img {
     border-radius: ${themeGet('radii.base')};
+    margin-top: ${themeGet('space.base')};
+    margin-bottom: ${themeGet('space.base')};
   }
 
   blockquote {
@@ -60,11 +62,11 @@ const HtmlRenderer = styled.div`
     font-size: 1.15rem;
     line-height: 2.15rem;
 
-    color: ${themeGet('colors.neutrals.800')};
+    color: ${themeGet('colors.neutrals.700')};
     text-align: center;
 
-    border-top: 2px solid ${themeGet('colors.neutrals.300')};
-    border-bottom: 2px solid ${themeGet('colors.neutrals.300')};
+    border-top: 1px solid ${themeGet('colors.neutrals.300')};
+    border-bottom: 1px solid ${themeGet('colors.neutrals.300')};
 
     padding: ${themeGet('space.l')};
     margin: ${themeGet('space.l')} ${themeGet('space.base')};
