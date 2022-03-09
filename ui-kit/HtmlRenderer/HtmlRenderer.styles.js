@@ -54,10 +54,17 @@ const HtmlRenderer = styled.div`
   }
 
   blockquote {
+    font-family: ${themeGet('fonts.serif')};
+    font-style: italic;
+    font-weight: normal;
+    font-size: 1.15rem;
+    line-height: 2.15rem;
+
+    color: ${themeGet('colors.neutrals.800')};
+    text-align: center;
+
     border-top: 2px solid ${themeGet('colors.neutrals.300')};
     border-bottom: 2px solid ${themeGet('colors.neutrals.300')};
-
-    text-align: center;
 
     padding: ${themeGet('space.l')};
     margin: ${themeGet('space.l')} ${themeGet('space.base')};

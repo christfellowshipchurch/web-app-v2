@@ -10,9 +10,10 @@ const theme = {
   },
   colors,
   fonts: {
-    base: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+    base: 'Proxima-Nova, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
     heading:
-      '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+      'Proxima-Nova, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+    serif: 'Merriweather, "Times New Roman", "Georgia", "Garamond", serif, -apple-system, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
   },
   fontSizes: {
     base: rem('16px'),
@@ -31,7 +32,7 @@ const theme = {
     bold: 'bold',
   },
   lineHeights: {
-    base: '1.35',
+    base: '1.25',
     heading: '1.1',
   },
   radii: {
