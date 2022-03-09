@@ -30,21 +30,37 @@ const HtmlRenderer = styled.div`
     }
   }
 
+  p {
+    margin-bottom: 0.75rem;
+  }
+
+  // H1-H3 will be considered "title" tags
   h1,
   h2,
-  h3,
+  h3 {
+    margin-top: 1.65rem;
+    margin-bottom: 0.4rem;
+  }
+
+  // H4-H6 will be considered "subtitle" tags
   h4,
   h5,
-  h6,
-  p {
-    &:not(:first-child) {
-      margin-top: ${themeGet('space.base')};
-      margin-bottom: ${themeGet('space.base')};
-    }
+  h6 {
+    margin-bottom: 0.75rem;
   }
 
   img {
     border-radius: ${themeGet('radii.base')};
+  }
+
+  blockquote {
+    border-top: 2px solid ${themeGet('colors.neutrals.300')};
+    border-bottom: 2px solid ${themeGet('colors.neutrals.300')};
+
+    text-align: center;
+
+    padding: ${themeGet('space.l')};
+    margin: ${themeGet('space.l')} ${themeGet('space.base')};
   }
 
   ${system};

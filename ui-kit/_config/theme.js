@@ -31,8 +31,8 @@ const theme = {
     bold: 'bold',
   },
   lineHeights: {
-    base: '1.5',
-    heading: '1.2',
+    base: '1.35',
+    heading: '1.1',
   },
   radii: {
     s: rem('4px'),
