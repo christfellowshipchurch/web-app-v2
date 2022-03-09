@@ -32,6 +32,7 @@ module.exports = {
         destination: '/:slug',
         permanent: false,
       }, //fixing mvmnt
+      { source: '/checkin', destination: '/how-to-check-in-for-kids-activities', permanent: true },
       { source: '/calling', destination: '/discover-your-calling', permanent: true },
       { source: '/camp', destination: 'https://longhollow.com/student-camp-2022', permanent: true },
       { source: '/secretchurch', destination: 'https://longhollow.com/secret-church', permanent: true },
