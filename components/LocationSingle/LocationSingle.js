@@ -71,7 +71,23 @@ function LocationSingle(props = {}) {
       transparentHeader
     >
       {/* Header Section */}
-      <LocationHeader title={props?.data?.title} />
+      <LocationHeader
+        title={props?.data?.title}
+        /**
+         * ! TEMPORARY CODE FOR THE Royal Palm Campus will be deleted when done!!
+         */
+        primaryButton={
+          campus === 'Royal Palm Beach'
+            ? {
+                call: 'Set a Reminder',
+                action: 'https://rock.gocf.org/page/3365',
+              }
+            : {
+                call: 'Join Us Sunday',
+                action: '#service-times',
+              }
+        }
+      />
 
       {/* Service Times and Campus Pastors sections */}
       <CampusProvider

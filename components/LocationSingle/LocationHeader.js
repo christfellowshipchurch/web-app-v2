@@ -52,8 +52,8 @@ const LocationHeader = (props = {}) => (
         </Box>
         <Box
           display="flex"
-          flexDirection={{ _: "column", sm: "column-reverse" }}
-          gap={"1rem"}
+          flexDirection={{ _: 'column', sm: 'column-reverse' }}
+          gap={'1rem'}
         >
           <Box
             display="flex"
@@ -61,28 +61,28 @@ const LocationHeader = (props = {}) => (
           >
             <Button
               as="a"
-              href="#service-times"
+              href={props?.primaryButton?.action}
               mt="s"
               mr={{ _: 'xs', md: 'base' }}
               width={{ _: '100%', sm: 'auto' }}
-              fontSize={{ _: "0.75rem", md: "1rem" }}
-              px={{ _: "6px", sm: "1.25rem" }}
+              fontSize={{ _: '0.75rem', md: '1rem' }}
+              px={{ _: '6px', sm: '1.25rem' }}
             >
-              Join Us Sunday
+              {props?.primaryButton?.call}
             </Button>
             <Button
               as="a"
-              href="https://rock.gocf.org/connect"
+              href={props?.secondaryButton?.action}
               id="service-times"
               mt="s"
               target="_blank"
               variant="tertiary"
               ml={{ _: 'xs', md: 0 }}
               width={{ _: '100%', sm: 'auto' }}
-              fontSize={{ _: "0.75rem", md: "1rem" }}
-              px={{ _: "6px", sm: "1.25rem" }}
+              fontSize={{ _: '0.75rem', md: '1rem' }}
+              px={{ _: '6px', sm: '1.25rem' }}
             >
-              Get Connected
+              {props?.secondaryButton?.call}
             </Button>
           </Box>
           <Box>
@@ -96,10 +96,26 @@ const LocationHeader = (props = {}) => (
 
 LocationHeader.propTypes = {
   title: PropTypes.string,
+  primaryButton: PropTypes.shape({
+    call: PropTypes.string,
+    action: PropTypes.string,
+  }),
+  secondaryButton: PropTypes.shape({
+    call: PropTypes.string,
+    action: PropTypes.string,
+  }),
 };
 
 LocationHeader.defaultProps = {
   title: 'Palm Beach Gardens',
+  primaryButton: {
+    call: 'Join Us Sunday',
+    action: '#service-times',
+  },
+  secondaryButton: {
+    call: 'Get Connected',
+    action: 'https://rock.gocf.org/connect',
+  },
 };
 
 export default LocationHeader;
