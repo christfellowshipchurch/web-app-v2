@@ -32,6 +32,7 @@ module.exports = {
         destination: '/:slug',
         permanent: false,
       }, //fixing mvmnt
+      { source: '/everyday', destination: '/get-the-everyday-life-podcast', permanent: true },
       { source: '/checkin', destination: '/how-to-check-in-for-kids-activities', permanent: true },
       { source: '/calling', destination: '/discover-your-calling', permanent: true },
       { source: '/camp', destination: 'https://longhollow.com/student-camp-2022', permanent: true },
