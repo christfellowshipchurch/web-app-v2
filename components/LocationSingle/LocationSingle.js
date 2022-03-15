@@ -81,10 +81,12 @@ function LocationSingle(props = {}) {
             ? {
                 call: 'Set a Reminder',
                 action: 'https://rock.gocf.org/page/3365',
+                newTab: true,
               }
             : {
                 call: 'Join Us Sunday',
                 action: '#service-times',
+                newTab: false,
               }
         }
       />

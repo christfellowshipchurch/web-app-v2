@@ -62,6 +62,8 @@ const LocationHeader = (props = {}) => (
             <Button
               as="a"
               href={props?.primaryButton?.action}
+              target={props?.primaryButton?.newTab ? '_blank' : ''}
+              // target="_blank"
               mt="s"
               mr={{ _: 'xs', md: 'base' }}
               width={{ _: '100%', sm: 'auto' }}
@@ -73,9 +75,9 @@ const LocationHeader = (props = {}) => (
             <Button
               as="a"
               href={props?.secondaryButton?.action}
+              target={props?.secondaryButton?.newTab ? '_blank' : ''}
               id="service-times"
               mt="s"
-              target="_blank"
               variant="tertiary"
               ml={{ _: 'xs', md: 0 }}
               width={{ _: '100%', sm: 'auto' }}
@@ -99,10 +101,12 @@ LocationHeader.propTypes = {
   primaryButton: PropTypes.shape({
     call: PropTypes.string,
     action: PropTypes.string,
+    newTab: PropTypes.bool,
   }),
   secondaryButton: PropTypes.shape({
     call: PropTypes.string,
     action: PropTypes.string,
+    newTab: PropTypes.bool,
   }),
 };
 
@@ -111,10 +115,12 @@ LocationHeader.defaultProps = {
   primaryButton: {
     call: 'Join Us Sunday',
     action: '#service-times',
+    newTab: false,
   },
   secondaryButton: {
     call: 'Get Connected',
     action: 'https://rock.gocf.org/connect',
+    newTab: true,
   },
 };
 
