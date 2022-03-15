@@ -18,12 +18,11 @@ const youtube = ({ }) => {
             renderA={() => <iframe 
                 width="100%"
                 height="500px"
-                src="https://www.youtube.com/embed/bumfVOTKPmI?widget_referrer=https://christfellowship.church" 
+                src="https://www.youtube.com/embed/bumfVOTKPmI?widget_referrer=https://christfellowship.church&modestbranding=1" 
                 title="YouTube Analytic Test" 
                 frameborder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen 
-                modestbranding    
+                allowfullscreen     
             />}
             renderContentB={() => <Box as="h1">YouTube Analytic Test</Box>}
         />
