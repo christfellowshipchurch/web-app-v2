@@ -1,7 +1,5 @@
 import {
   CampusFilter,
-  EventCallout,
-  EventsCallout,
   Layout,
   MainPhotoHeader,
   MarketingHeadline,
@@ -13,9 +11,7 @@ import { GET_MINISTRY_CONTENT } from 'hooks/useMinistryContent';
 import { GET_UNIVERSAL_CONTENT_ITEM_BY_SLUG } from 'hooks/useUniversalContentItemBySlug';
 import { initializeApollo } from 'lib/apolloClient';
 import { useRouter } from 'next/router';
-import { Info } from 'phosphor-react';
 import { useEffect } from 'react';
-import { useTheme } from 'styled-components';
 import { CardGrid, Longform, Section } from 'ui-kit';
 import { getChannelId, getIdSuffix, getMetaData, getSlugFromURL } from 'utils';
 
@@ -26,7 +22,6 @@ export default function Page({
   relatedContent,
 }) {
   const router = useRouter();
-  const theme = useTheme();
 
   // next.config.js isn't working for redirects when clicking on the link to redirect from
   useEffect(() => {
@@ -61,39 +56,8 @@ export default function Page({
         summary={data.summary}
         showTitleOverImage={data.showTitleOverImage}
         mb={{ _: 'l', md: 'xxl' }}
+        events={links?.length ? links : null}
       />
-      {links?.length ? (
-        <Section contentProps={{ p: '0 !important' }}>
-          <EventsCallout
-            mx={{ _: 0, lg: 'xl' }}
-            mb={{ _: 'l', md: 'xxl' }}
-            my={{ lg: `-${theme.space.xxl}` }}
-            title="News & Events"
-            icon={
-              <Info
-                size={24}
-                style={{
-                  color: theme.colors.neutrals[900],
-                  opacity: '60%',
-                  marginRight: theme.space.xxs,
-                }}
-              />
-            }
-          >
-            {links.map(link => (
-              <EventCallout
-                key={link.id}
-                title={link.title}
-                description={link.subtitle}
-                imageSrc={link.coverImage?.sources?.[0]?.uri}
-                onClick={() =>
-                  router.push(`/${getSlugFromURL(link?.sharing?.url)}`)
-                }
-              />
-            ))}
-          </EventsCallout>
-        </Section>
-      ) : null}
       {data.htmlContent && (
         <Section>
           <Longform

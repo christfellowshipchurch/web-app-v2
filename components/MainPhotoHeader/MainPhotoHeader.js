@@ -1,7 +1,11 @@
-import React from 'react';
+import { EventCallout, EventsCallout } from 'components';
+import { useRouter } from 'next/router';
+import { Info } from 'phosphor-react';
 import PropTypes from 'prop-types';
-
-import { Heading } from 'ui-kit';
+import React from 'react';
+import { useTheme } from 'styled-components';
+import { Heading, Section } from 'ui-kit';
+import { getSlugFromURL } from 'utils';
 import Styled from './MainPhotoHeader.styles';
 
 function MainPhotoHeader({
@@ -20,8 +24,11 @@ function MainPhotoHeader({
   justifyText,
   bgBlurred,
   imageProps = {},
+  events,
   ...props
 } = {}) {
+  const theme = useTheme();
+  const router = useRouter();
   const _backgroundSrc = backgroundSrc || src;
   return (
     <Styled.Container {...props}>
@@ -105,6 +112,38 @@ function MainPhotoHeader({
         )}
       </Styled.ImageContainer>
       {content}
+      {events?.length ? (
+        <Section contentProps={{ p: '0 !important' }}>
+          <EventsCallout
+            mx={{ _: 0, lg: 'xl' }}
+            mb={{ _: 'l', lg: `-${theme.space.xl}` }}
+            mt={{ lg: `-${theme.space.xxl}` }}
+            title="News & Events"
+            icon={
+              <Info
+                size={24}
+                style={{
+                  color: theme.colors.neutrals[900],
+                  opacity: '60%',
+                  marginRight: theme.space.xxs,
+                }}
+              />
+            }
+          >
+            {events.map(link => (
+              <EventCallout
+                key={link.id}
+                title={link.title}
+                description={link.subtitle}
+                imageSrc={link.coverImage?.sources?.[0]?.uri}
+                onClick={() =>
+                  router.push(`/${getSlugFromURL(link?.sharing?.url)}`)
+                }
+              />
+            ))}
+          </EventsCallout>
+        </Section>
+      ) : null}
     </Styled.Container>
   );
 }

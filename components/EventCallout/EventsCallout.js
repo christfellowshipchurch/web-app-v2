@@ -1,30 +1,24 @@
-import { Box, Text } from 'ui-kit';
 import PropTypes from 'prop-types';
-import Styled from './EventsCallout.styles';
 import { useTheme } from 'styled-components';
+import { Box, Text } from 'ui-kit';
+import Styled from './EventsCallout.styles';
 
 function EventsCallout({ icon, title, children, ...props } = {}) {
   const theme = useTheme();
 
   return (
     <Box
-      height={{ _: 'auto', lg: theme.space.xl }}
       zIndex={1}
+      display="flex"
+      justifyContent="right"
       position="relative"
+      mb={{ _: 0, lg: 'm' }}
       {...props}
     >
-      <Styled
-        floater
-        width={{ _: 'auto', lg: theme.breakpoints.sm }}
-        position={{ _: 'initial', lg: 'absolute' }}
-      >
+      <Styled width={{ _: 'auto', lg: theme.breakpoints.sm }}>
         <Box display="flex" alignItems="center" mb="m">
           {icon}
-          <Text
-            color="neutrals.900"
-            opacity="60%"
-            fontWeight="600"
-          >
+          <Text color="neutrals.900" opacity="60%" fontWeight="600">
             {title}
           </Text>
         </Box>

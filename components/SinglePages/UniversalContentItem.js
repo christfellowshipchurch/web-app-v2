@@ -3,8 +3,6 @@ import {
   ArticleLink,
   ArticleLinks,
   CampusFilter,
-  EventCallout,
-  EventsCallout,
   Layout,
   MainPhotoHeader,
 } from 'components';
@@ -13,8 +11,6 @@ import MetadataCallout, { getMetadataObj } from 'components/MetadataCallout';
 import IDS from 'config/ids';
 import { format, isSameMonth, isSameYear, parseISO } from 'date-fns';
 import { useRouter } from 'next/router';
-import { Info } from 'phosphor-react';
-import { useTheme } from 'styled-components';
 import { Box, Button, CardGrid, Heading, Longform, Section } from 'ui-kit';
 import { getIdSuffix, getMetaData, getSlugFromURL } from 'utils';
 
@@ -25,7 +21,6 @@ export default function Page({
   dropdownData,
 } = {}) {
   const router = useRouter();
-  const theme = useTheme();
 
   // add rock authenticated links
   const { data: authData } = useQuery(
@@ -121,39 +116,8 @@ export default function Page({
         width="auto"
         overlay=""
         mb={{ _: 'l', md: 'xxl' }}
+        events={links?.length && showEventsCallout ? links : null}
       />
-      {links?.length && showEventsCallout ? (
-        <Section contentProps={{ p: '0 !important' }}>
-          <EventsCallout
-            mx={{ _: 0, lg: 'xl' }}
-            mb={{ _: 'l', md: 'xxl' }}
-            my={{ lg: `-${theme.space.xxl}` }}
-            title="News & Events"
-            icon={
-              <Info
-                size={24}
-                style={{
-                  color: theme.colors.neutrals[900],
-                  opacity: '60%',
-                  marginRight: theme.space.xxs,
-                }}
-              />
-            }
-          >
-            {links.map(link => (
-              <EventCallout
-                key={link.id}
-                title={link.title}
-                description={link.subtitle}
-                imageSrc={link.coverImage?.sources?.[0]?.uri}
-                onClick={() =>
-                  router.push(`/${getSlugFromURL(link?.sharing?.url)}`)
-                }
-              />
-            ))}
-          </EventsCallout>
-        </Section>
-      ) : null}
       <Section mb={{ _: 'l' }}>
         <Box>
           {data.subtitle && (
