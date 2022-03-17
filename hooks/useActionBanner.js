@@ -15,6 +15,7 @@ export const GET_ACTION_BANNER = gql`
 
       actions {
         action
+        title
         relatedNode {
           id
           ... on Url {
@@ -32,10 +33,8 @@ function useActionBanner(options) {
     ...options,
   });
 
-  console.log({ query });
-
   return {
-    actionBanner: query?.data,
+    actionBanner: query?.data?.actionBanner,
     ...query,
   };
 }

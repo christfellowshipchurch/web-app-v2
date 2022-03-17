@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
+import Color from 'color'
 
-import { system } from 'ui-kit';
+import { Button, system } from 'ui-kit';
 
 const Banner = styled.div`
-  color: ${themeGet('colors.white')};
+  background-color: ${themeGet('colors.primary')};
+  color: ${Color(themeGet('colors.primary')).isLight() ? "black" : "white"};
   grid-gap: 0.5rem;
   display: flex;
   justify-content: space-between;
@@ -22,7 +24,35 @@ const Banner = styled.div`
     text-align: left;
   }
 
+  /* This is necessary to override the styles set by the HtmlRenderer */
+  p {
+    margin: 0 !important;
+  }
+
   ${system}
 `;
+
+const PrimaryButton = styled(Button)`
+  background-color: ${themeGet('colors.secondary')};
+  color: ${Color(themeGet('colors.secondary')).isLight() ? "black" : "white"};
+
+  &:hover {
+    background-color: ${themeGet('colors.secondary')};
+    color: ${Color(themeGet('colors.secondary')).isLight() ? "black" : "white"};
+  }
+`;
+
+const SecondaryButton = styled(Button)`
+  background-color: ${Color(themeGet('colors.secondary')).isLight() ? "black" : "white"};
+  color: ${themeGet('colors.secondary')};
+
+  &:hover {
+    background-color: ${Color(themeGet('colors.secondary')).isLight() ? "black" : "white"};
+    color: ${themeGet('colors.secondary')};
+  }
+`;
+
+Banner.PrimaryButton = PrimaryButton
+Banner.SecondaryButton = SecondaryButton
 
 export default Banner;

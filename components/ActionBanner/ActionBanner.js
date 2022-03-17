@@ -1,52 +1,61 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import get from 'lodash/get'
+
 import { CustomLink } from 'components';
-import { Box, Button, HtmlRenderer, ThemeMixin } from 'ui-kit';
+import { Box, HtmlRenderer, ThemeMixin } from 'ui-kit';
 
 import Styled from './ActionBanner.styles';
 
-const ActionBanner = (props = {}) => (
-  <Styled bg={props?.bannerColor} {...props}>
-    <HtmlRenderer htmlContent={props?.htmlContent} />
-    <ThemeMixin
-      theme={{
-        colors: {
-          primary: props?.buttonColor,
-        },
-      }}
-    >
+import { getUrlFromRelatedNode } from 'utils';
+
+const ActionBanner = (props = {}) => {
+  const primaryButton = get(props, 'actions[0]')
+  const secondaryButton = get(props, 'actions[1]')
+
+  return <ThemeMixin
+    theme={{
+      colors: props?.theme?.colors ?? {}
+    }}
+  >
+    <Styled>
+      <Box>
+        <Box as="h3" mb="2px" opacity={0.85}>{props?.title}</Box>
+        <HtmlRenderer htmlContent={props?.htmlContent} />  
+      </Box>
+
       <Box display="flex" flexDirection="row">
-        {props.primaryButton && (
+        {primaryButton && (
           <CustomLink
-            Component={Button}
+            Component={Styled.PrimaryButton}
             size="s"
             ml={{ _: 0, md: 'base' }}
             px="base"
-            href={props?.primaryButton?.action}
+            href={getUrlFromRelatedNode(primaryButton?.relatedNode)}
             minWidth={140}
+            target="_blank"
           >
-            {props?.primaryButton?.call}
+            {primaryButton?.title}
           </CustomLink>
         )}
-        {props?.secondaryButton && (
+        {secondaryButton && (
           <CustomLink
-            Component={Button}
+            Component={Styled.SecondaryButton}
             size="s"
             ml="s"
-            variant="secondary"
-            bg="white"
             border="none"
             px="base"
             minWidth={140}
-            href={props?.secondaryButton?.action}
+            href={getUrlFromRelatedNode(secondaryButton?.relatedNode)}
+            target="_blank"
           >
-            {props?.secondaryButton?.call}
+            {secondaryButton?.title}
           </CustomLink>
         )}
       </Box>
-    </ThemeMixin>
-  </Styled>
-);
+    </Styled>
+  </ThemeMixin>
+};
 
 ActionBanner.propTypes = {
   htmlContent: PropTypes.string,
@@ -62,19 +71,6 @@ ActionBanner.propTypes = {
   }),
 };
 
-ActionBanner.defaultProps = {
-  htmlContent:
-    '<i>Come check out whats going on at Christ Fellowship this <b>weekend</b>!!!</i>',
-  bannerColor: 'primary',
-  buttonColor: '#004f71',
-  primaryButton: {
-    call: 'Sign Up',
-    action: '#testing',
-  },
-  secondaryButton: {
-    call: 'Learn More',
-    action: '#testing',
-  },
-};
+ActionBanner.defaultProps = {};
 
 export default ActionBanner;
