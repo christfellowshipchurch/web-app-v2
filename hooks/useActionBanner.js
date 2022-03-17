@@ -10,6 +10,7 @@ export const GET_ACTION_BANNER = gql`
       theme {
         colors {
           primary
+          secondary
         }
       }
 
