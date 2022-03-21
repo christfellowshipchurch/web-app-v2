@@ -6,10 +6,10 @@ import { useActionBanner } from 'hooks';
 function ActionBannerProvider({ Component, options, ...props }) {
   const { loading, error, actionBanner } = useActionBanner(options);
 
-  return (
-    actionBanner && (
-      <Component {...actionBanner} loading={loading} error={error} {...props} />
-    )
+  return actionBanner ? (
+    <Component {...actionBanner} loading={loading} error={error} {...props} />
+  ) : (
+    <></>
   );
 }
 
