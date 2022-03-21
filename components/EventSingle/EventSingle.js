@@ -24,6 +24,7 @@ function EventSingle(props = {}) {
 
   const author = props?.data?.author;
   const coverImage = props?.data?.coverImage;
+  const featureFeed = props?.data?.featureFeed;
   const schedule = props?.data?.schedule;
   const summary = props?.data?.summary;
   const title = props?.data?.title;
@@ -37,9 +38,9 @@ function EventSingle(props = {}) {
     twitter: `${title} at Christ Fellowship Church`,
     email: {
       subject: `${title} at Christ Fellowship Church`,
-      body: `Check out ${title} happening at Christ Fellowship Church! I would love for you to join me. \n\n ${document.URL}`,
+      body: `Check out ${title} happening at Christ Fellowship Church! I would love for you to join me. \n\n ${document?.URL}`,
     },
-    sms: `Join me for ${title} at Christ Fellowship! ${document.URL}`,
+    sms: `Join me for ${title} at Christ Fellowship! ${document?.URL}`,
   };
 
   return (
@@ -66,7 +67,7 @@ function EventSingle(props = {}) {
         </Box>
       )}
       htmlContent={props.data.htmlContent}
-      features={props?.data?.featureFeed?.features}
+      features={featureFeed?.features}
       renderContentE={() => props.data && <EventGroupings data={props.data} />}
     />
   );
