@@ -7,7 +7,9 @@ function ActionBannerProvider({ Component, options, ...props }) {
   const { loading, error, actionBanner } = useActionBanner(options);
 
   return (
-    <Component {...actionBanner} loading={loading} error={error} {...props} />
+    actionBanner && (
+      <Component {...actionBanner} loading={loading} error={error} {...props} />
+    )
   );
 }
 
