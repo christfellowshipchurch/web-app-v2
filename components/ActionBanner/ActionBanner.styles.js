@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
-import Color from 'color'
 
 import { Button, system } from 'ui-kit';
 
 const Banner = styled.div`
   background-color: ${themeGet('colors.primary')};
-  color: ${Color(themeGet('colors.primary')).isLight() ? "black" : "white"};
+  color: ${props => (props?.isLight ? 'black' : 'white')};
   grid-gap: 0.5rem;
   display: flex;
   justify-content: space-between;
@@ -34,25 +33,28 @@ const Banner = styled.div`
 
 const PrimaryButton = styled(Button)`
   background-color: ${themeGet('colors.secondary')};
-  color: ${Color(themeGet('colors.secondary')).isLight() ? "black" : "white"};
+  color: ${props => (props?.isLight ? themeGet('colors.primary') : 'white')};
 
   &:hover {
     background-color: ${themeGet('colors.secondary')};
-    color: ${Color(themeGet('colors.secondary')).isLight() ? "black" : "white"};
+    color: ${props =>
+      props?.isLight ? themeGet('colors.neutrals.700') : 'white'};
   }
 `;
 
 const SecondaryButton = styled(Button)`
-  background-color: ${Color(themeGet('colors.secondary')).isLight() ? "black" : "white"};
+  background-color: ${props =>
+    props?.isLight ? themeGet('colors.neutrals.500') : 'white'};
   color: ${themeGet('colors.secondary')};
 
   &:hover {
-    background-color: ${Color(themeGet('colors.secondary')).isLight() ? "black" : "white"};
+    background-color: ${props =>
+      props?.isLight ? themeGet('colors.neutrals.700') : 'white'};
     color: ${themeGet('colors.secondary')};
   }
 `;
 
-Banner.PrimaryButton = PrimaryButton
-Banner.SecondaryButton = SecondaryButton
+Banner.PrimaryButton = PrimaryButton;
+Banner.SecondaryButton = SecondaryButton;
 
 export default Banner;

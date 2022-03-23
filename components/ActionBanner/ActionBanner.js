@@ -8,6 +8,7 @@ import { Box, HtmlRenderer, ThemeMixin } from 'ui-kit';
 import Styled from './ActionBanner.styles';
 
 import { getUrlFromRelatedNode } from 'utils';
+import Color from 'color';
 
 const ActionBanner = (props = {}) => {
   const primaryButton = get(props, 'actions[0]');
@@ -33,6 +34,7 @@ const ActionBanner = (props = {}) => {
           {primaryButton && (
             <CustomLink
               Component={Styled.PrimaryButton}
+              isLight={Color(props?.theme?.colors?.secondary).isLight()}
               size="s"
               ml={{ _: 0, md: 'base' }}
               px="base"
@@ -46,6 +48,7 @@ const ActionBanner = (props = {}) => {
           {secondaryButton && (
             <CustomLink
               Component={Styled.SecondaryButton}
+              isLight={Color(props?.theme?.colors?.secondary).isLight()}
               size="s"
               ml="s"
               border="none"
