@@ -15,7 +15,7 @@ function EventsCallout({ icon, title, children, ...props } = {}) {
       mb={{ _: 0, lg: 'm' }}
       {...props}
     >
-      <Styled width={{ _: 'auto', lg: theme.breakpoints.sm }}>
+      <Styled width={{ _: '100%', lg: theme.breakpoints.sm }}>
         <Box display="flex" alignItems="center" mb="m">
           {icon}
           <Text color="neutrals.900" opacity="60%" fontWeight="600">

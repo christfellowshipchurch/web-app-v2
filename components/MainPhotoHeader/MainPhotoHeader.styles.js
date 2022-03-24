@@ -8,7 +8,6 @@ Styled.Container = styled(Box)`
   position: relative;
   text-align: center;
   width: 100%;
-  background-color: ${themeGet('colors.fg')};
 
   ${system}
 `;
@@ -131,28 +130,28 @@ Styled.ImageOverlay = styled(Box)`
 `;
 
 Styled.TextContainer = styled(Box)`
+  background-color: ${themeGet('colors.fg')};
   flex-direction: column;
-  margin-bottom: ${themeGet('space.l')};
+  padding-bottom: ${themeGet('space.l')};
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
   word-break: break-word;
   z-index: 1;
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
     padding: ${themeGet('space.l')};
-    padding-bottom: 0;
   }
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     bottom: unset;
     height: auto;
     left: 0;
-    margin: ${themeGet('space.l')} ${themeGet('space.xxl')};
+    padding: ${themeGet('space.l')} ${themeGet('space.xxl')};
     max-width: unset;
     position: relative;
   }
 
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
-    margin: 0;
+    background-color: inherit;
     padding: 0 ${themeGet('space.xxl')} ${themeGet('space.l')};
     height: 100%;
     max-width: ${themeGet('space.content')};
