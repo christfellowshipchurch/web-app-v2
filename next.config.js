@@ -195,7 +195,7 @@ module.exports = {
       { source: '/foodpantry', destination: '/connect/connect-with-us', permanent: true },
       { source: '/baby', destination: '/connect/kids', permanent: true },
       { source: '/seniors', destination: '/', permanent: true },
-      { source: '/easter', destination: '/', permanent: true },
+      { source: '/easter', destination: '/come-celebrate-with-us-this-easter', permanent: true },
       { source: '/lhkids', destination: '/connect/kids', permanent: true },
       { source: '/christmas', destination: '/christmas-at-long-hollow', permanent: true },
       { source: '/schedule', destination: '/about/schedule', permanent: true },
