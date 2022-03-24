@@ -5,20 +5,20 @@ import {
   MarketingHeadline,
   PageSplit,
 } from 'components';
+import IDS from 'config/ids';
+import { GET_CONTENT_BY_SLUG } from 'hooks/useContentBySlug';
+import { GET_CONTENT_CHANNEL } from 'hooks/useContentChannel';
+import useLiveStreams from 'hooks/useLiveStreams';
+import { GET_MESSAGE_SERIES } from 'hooks/useMessageSeries';
 import { initializeApollo } from 'lib/apolloClient';
 import { useRouter } from 'next/router';
-import IDS from 'config/ids';
 import { Box, CardGrid, Heading, Section } from 'ui-kit';
-import { GET_MESSAGE_SERIES } from 'hooks/useMessageSeries';
-import { GET_CONTENT_CHANNEL } from 'hooks/useContentChannel';
 import {
   getChannelId,
   getIdSuffix,
   getMediaSource,
   getSlugFromURL,
 } from 'utils';
-import useLiveStreams from 'hooks/useLiveStreams';
-import { GET_CONTENT_BY_SLUG } from 'hooks/useContentBySlug';
 
 const BAPTISMS_CHANNEL_SLUG = 'baptisms';
 
@@ -50,7 +50,7 @@ export default function Watch({
             style={{
               pointerEvents: 'auto',
               marginRight: '16px',
-              zIndex: 100,
+              zIndex: 10,
               width: 'auto',
               padding: '14px 28px',
             }}
@@ -237,7 +237,10 @@ export default function Watch({
                 actions={[
                   {
                     label: page.linkText || undefined,
-                    onClick: () => router.push(page.linkURL || `/${getSlugFromURL(page?.sharing?.url)}`),
+                    onClick: () =>
+                      router.push(
+                        page.linkURL || `/${getSlugFromURL(page?.sharing?.url)}`
+                      ),
                   },
                 ]}
               />

@@ -8,7 +8,7 @@ Styled.Container = styled(Box)`
   position: relative;
   text-align: center;
   width: 100%;
-  background-color: ${themeGet('colors.bg_alt')};
+  background-color: ${themeGet('colors.fg')};
 
   ${system}
 `;
