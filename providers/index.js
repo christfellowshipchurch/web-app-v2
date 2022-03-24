@@ -1,3 +1,4 @@
+import ActionBannerProvider from './ActionBannerProvider';
 import AnalyticsProvider from './AnalyticsProvider';
 import AppProvider from './AppProvider';
 import AuthProvider from './AuthProvider';
@@ -28,6 +29,7 @@ import DiscoverFiltersCategoriesProvider from './DiscoverFiltersCategoriesProvid
 import DiscoverFiltersProvider from './DiscoverFiltersProvider';
 
 export {
+  ActionBannerProvider,
   AnalyticsProvider,
   AppProvider,
   AuthProvider,

@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 
 import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 
-import { NavigationProvider } from 'providers';
+import { ActionBannerProvider, NavigationProvider } from 'providers';
 import { Box, systemPropTypes } from 'ui-kit';
 import { CustomLink, Logo, Nav } from 'components';
 import { useCurrentBreakpoint } from 'hooks';
 import Styled from './Header.styles';
+import ActionBanner from '../ActionBanner/ActionBanner';
 
 function TransparentHeader(props = {}) {
   const [bgColor, setBgColor] = useState('transparent');
@@ -29,29 +30,37 @@ function TransparentHeader(props = {}) {
   });
 
   return (
-    <Styled
-      boxShadow="none"
-      bg={bgColor}
-      opacity={navOpacity}
+    <Box 
       position="fixed"
-      {...props}
-      display="flex"
-      flexDirection="column"
+      zIndex={9}
+      width="100%"
     >
-      <Box
+      <ActionBannerProvider Component={ActionBanner} />
+      <Styled
+        boxShadow="none"
+        bg={bgColor}
+        opacity={navOpacity}
+        // position="fixed"
+        {...props}
         display="flex"
-        alignItems="center"
-        justifyContent="space-between"
-        width="100%"
+        flexDirection="column"
       >
-        <Link href="/">
-          <a>
-            <Box as={Logo} dark={true} mx={{ _: 'auto', md: '0' }} mb="0" />
-          </a>
-        </Link>
-        <NavigationProvider Component={Nav} {...props} transparentMode />
-      </Box>
-    </Styled>
+        
+        <Box
+          display="flex"
+          alignItems="center"
+          justifyContent="space-between"
+          width="100%"
+        >
+          <Link href="/">
+            <a>
+              <Box as={Logo} dark={true} mx={{ _: 'auto', md: '0' }} mb="0" />
+            </a>
+          </Link>
+          <NavigationProvider Component={Nav} {...props} transparentMode />
+        </Box>
+      </Styled>
+    </Box>
   );
 }
 

@@ -1,3 +1,4 @@
+import useActionBanner from './useActionBanner';
 import useAddGroupMember from './useAddGroupMember';
 import useAuthIdentity from './useAuthIdentity';
 import useAuthQuery from './useAuthQuery';
@@ -65,6 +66,7 @@ import useVerifyPin from './useVerifyPin';
 import useGroupFacetFilters from './useGroupFacetFilters';
 
 export {
+  useActionBanner,
   useAddGroupMember,
   useAuthIdentity,
   useAuthQuery,
