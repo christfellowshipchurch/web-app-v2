@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import dropRight from 'lodash/dropRight';
 
 import { Box, Button, Divider } from 'ui-kit';
 import Styled from './LocationSingle.styles';

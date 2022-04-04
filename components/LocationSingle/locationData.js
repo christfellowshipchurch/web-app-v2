@@ -2,6 +2,8 @@
  * note : This is all the hardcoded data for campuses and will be adjusted as we move things over to Rock.
  */
 
+import { stubTrue } from 'lodash';
+
 const additionalInfoCampusData = [
   {
     name: 'Palm Beach Gardens',
@@ -265,4 +267,79 @@ const campusLinks = [
   },
 ];
 
-export { additionalInfoCampusData, campusMetaData, campusLinks };
+const headerLinks = [
+  {
+    name: 'Palm Beach Gardens',
+    call: 'Join Us Sunday',
+    action: '#service-times',
+    newTab: false,
+  },
+  {
+    name: 'Port St. Lucie',
+    call: 'Join Us Sunday',
+    action: '#service-times',
+    newTab: false,
+  },
+  {
+    name: 'Boynton Beach',
+    call: 'Join Us Sunday',
+    action: '#service-times',
+    newTab: false,
+  },
+  {
+    name: 'Belle Glade',
+    call: 'Join Us Sunday',
+    action: '#service-times',
+    newTab: false,
+  },
+  {
+    name: 'Downtown West Palm Beach',
+    call: 'Join Us Sunday',
+    action: '#service-times',
+    newTab: false,
+  },
+  {
+    name: 'Royal Palm Beach',
+    call: 'Set a Reminder',
+    action: 'https://rock.christfellowship.church/im-coming/rpb',
+    newTab: true,
+  },
+  {
+    name: 'Jupiter',
+    call: 'Join Us Sunday',
+    action: '#service-times',
+    newTab: false,
+  },
+  {
+    name: 'Stuart',
+    call: 'Join Us Sunday',
+    action: '#service-times',
+    newTab: false,
+  },
+  {
+    name: 'Vero Beach',
+    call: 'Join Us Sunday',
+    action: '#service-times',
+    newTab: false,
+  },
+  {
+    name: 'Riviera Beach',
+    call: 'Set a Reminder',
+    action: 'https://rock.christfellowship.church/im-coming/riv',
+    newTab: true,
+  },
+  {
+    name: 'Boca Raton',
+    call: 'Join Us Sunday',
+    action: '#service-times',
+    newTab: false,
+  },
+  {
+    name: 'Okeechobee',
+    call: 'Join Us Sunday',
+    action: '#service-times',
+    newTab: false,
+  },
+];
+
+export { additionalInfoCampusData, campusMetaData, campusLinks, headerLinks };
