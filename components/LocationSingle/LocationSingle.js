@@ -15,7 +15,7 @@ import { Box, Button, Divider, Loader } from 'ui-kit';
 import CampusInfo from './CampusInfo';
 import LocationHeader from './LocationHeader';
 import defaultBlockData from '../LocationBlockFeature/defaultBlockData';
-import { additionalInfoCampusData } from './locationData';
+import { additionalInfoCampusData, headerLinks } from './locationData';
 import { CampusProvider } from 'providers';
 import faqData from 'components/FAQ/faqData';
 
@@ -59,9 +59,10 @@ function LocationSingle(props = {}) {
   }
 
   /**
-   * note : import hard coded addtional information
+   * note : import hard coded data
    */
   const campusAdditionalInfo = find(additionalInfoCampusData, { name: campus });
+  const headerLink = find(headerLinks, { name: campus });
 
   return (
     <Layout
@@ -71,25 +72,7 @@ function LocationSingle(props = {}) {
       transparentHeader
     >
       {/* Header Section */}
-      <LocationHeader
-        title={props?.data?.title}
-        /**
-         * ! TEMPORARY CODE FOR THE Royal Palm Campus will be deleted when done!!
-         */
-        primaryButton={
-          campus === 'Royal Palm Beach'
-            ? {
-                call: 'Set a Reminder',
-                action: 'https://rock.gocf.org/page/3365',
-                newTab: true,
-              }
-            : {
-                call: 'Join Us Sunday',
-                action: '#service-times',
-                newTab: false,
-              }
-        }
-      />
+      <LocationHeader title={props?.data?.title} primaryButton={headerLink} />
 
       {/* Service Times and Campus Pastors sections */}
       <CampusProvider
