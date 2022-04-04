@@ -2,8 +2,6 @@
  * note : This is all the hardcoded data for campuses and will be adjusted as we move things over to Rock.
  */
 
-import { stubTrue } from 'lodash';
-
 const additionalInfoCampusData = [
   {
     name: 'Palm Beach Gardens',
