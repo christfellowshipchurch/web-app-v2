@@ -32,6 +32,7 @@ module.exports = {
         destination: '/:slug',
         permanent: false,
       }, //fixing mvmnt
+      { source: '/compassionvolunteer', destination: 'https://my.longhollow.com/Registration/compassion-vol-2022', permanent: true },
       { source: '/everyday', destination: '/get-the-everyday-life-podcast', permanent: true },
       { source: '/checkin', destination: '/how-to-check-in-for-kids-activities', permanent: true },
       { source: '/calling', destination: '/discover-your-calling', permanent: true },
