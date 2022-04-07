@@ -34,7 +34,6 @@ Styled.ImageContainer = styled(Box)`
 
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     margin-bottom: 0;
-    flex: 1 0 50%;
     justify-content: center;
     align-items: center;
     display: flex;

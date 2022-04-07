@@ -15,12 +15,13 @@ function ArticleLink({
   url,
   urlText,
   imageSrc,
+  imageProps,
   ...props
 }) {
   const router = useRouter();
   return (
     <Styled.Container {...props}>
-      <Styled.ImageContainer>
+      <Styled.ImageContainer flex={{ lg: '1 0 50%' }} {...imageProps}>
         <Styled.Image
           rounded
           src={imageSrc}

@@ -204,81 +204,150 @@ function HomeFeedArticles({ articles }) {
   );
 }
 
-function HomeFeedCTA({ authenticated }) {
+function HomeFeedCTA({ authenticated, personaFeed }) {
   const router = useRouter();
-  return authenticated ? (
-    <MarketingHeadline
-      image={{
-        src: '/watch.jpeg',
-        height: '100%',
-        imageProps: {
+  let personaContent;
+
+  if (personaFeed?.length === 2) {
+    personaContent = (
+      <>
+        {personaFeed.map(({ relatedNode }, i) => (
+          <ArticleLink
+            flex="row-reverse"
+            alignItems={{ lg: 'center' }}
+            flexDirection={{ lg: 'row' }}
+            key={i}
+            color="quaternary"
+            description={relatedNode?.title}
+            url={
+              relatedNode?.linkURL ||
+              `/${getSlugFromURL(relatedNode?.sharing?.url)}`
+            }
+            urlText={relatedNode?.linkText || 'Learn More'}
+            imageSrc={relatedNode?.coverImage?.sources?.[0]?.uri}
+            imageProps={{ flex: '1 0 100px', mr: 'l' }}
+            mt={i === 0 ? '' : 'l'}
+          />
+        ))}
+      </>
+    );
+  } else if (personaFeed?.length) {
+    personaContent = (
+      <CardGrid columns="1">
+        {personaFeed.map(({ relatedNode }, i) => (
+          <MarketingHeadline
+            key={relatedNode.id}
+            image={{
+              src: relatedNode.coverImage?.sources?.[0]?.uri,
+              onClick: relatedNode.linkText
+                ? null
+                : () => {
+                    router.push(
+                      relatedNode.linkURL ||
+                        `/${getSlugFromURL(relatedNode?.sharing?.url)}`
+                    );
+                  },
+            }}
+            justify={i % 2 === 1 ? 'left' : 'right'}
+            title={relatedNode.title}
+            description={relatedNode.summaryHTML}
+            actions={
+              relatedNode.linkText
+                ? [
+                    {
+                      label: relatedNode.linkText,
+                      onClick: () => {
+                        router.push(
+                          relatedNode.linkURL ||
+                            `/${getSlugFromURL(relatedNode?.sharing?.url)}`
+                        );
+                      },
+                    },
+                  ]
+                : []
+            }
+          />
+        ))}
+      </CardGrid>
+    );
+  }
+
+  return (
+    personaContent ||
+    (authenticated ? (
+      <MarketingHeadline
+        image={{
+          src: '/watch.jpeg',
           height: '100%',
-        },
-      }}
-      justify={'right'}
-      title={
-        <>
-          <Heading color="neutrals.900" variant="h2" fontWeight="800">
-            There's Something for Everyone
-          </Heading>
-        </>
-      }
-      textProps={{
-        mb: { xl: 'xxl' },
-        mt: { _: 'm', lg: 0, xl: 'l' },
-      }}
-      supertitle="Don't miss what God's doing this week!"
-      description="From Sunday services to Wednesday night activities, there’s always a way to be a part of what God is doing every week at Long Hollow. Check out our weekly schedule for every member of your family, and mark your calendar for several upcoming events."
-      actions={[
-        {
-          color: 'primary',
-          label: 'Times and Locations',
-          onClick: () => router.push('/about/schedule'),
-        },
-        {
-          color: 'secondary',
-          label: 'Upcoming Events',
-          onClick: () => router.push('/search?category=Events&p=1'),
-        },
-      ]}
-    />
-  ) : (
-    <MarketingHeadline
-      image={{
-        src: '/watch.jpeg',
-        height: '100%',
-        imageProps: {
+          imageProps: {
+            height: '100%',
+          },
+        }}
+        justify={'right'}
+        title={
+          <>
+            <Heading color="neutrals.900" variant="h2" fontWeight="800">
+              There's Something for Everyone
+            </Heading>
+          </>
+        }
+        textProps={{
+          mb: { xl: 'xxl' },
+          mt: { _: 'm', lg: 0, xl: 'l' },
+        }}
+        supertitle="Don't miss what God's doing this week!"
+        description="From Sunday services to Wednesday night activities, there’s always a way to be a part of what God is doing every week at Long Hollow. Check out our weekly schedule for every member of your family, and mark your calendar for several upcoming events."
+        actions={[
+          {
+            color: 'primary',
+            label: 'Times and Locations',
+            onClick: () => router.push('/about/schedule'),
+          },
+          {
+            color: 'secondary',
+            label: 'Upcoming Events',
+            onClick: () => router.push('/search?category=Events&p=1'),
+          },
+        ]}
+      />
+    ) : (
+      <MarketingHeadline
+        image={{
+          src: '/watch.jpeg',
           height: '100%',
-        },
-      }}
-      justify={'right'}
-      title={
-        <>
-          <Heading color="neutrals.900" variant="h2" fontWeight="800">
-            Join Us This Weekend
-          </Heading>
-        </>
-      }
-      textProps={{
-        mb: { xl: 'xxl' },
-        mt: { _: 'm', lg: 0, xl: 'l' },
-      }}
-      supertitle="God wants to work in your life"
-      description="Long Hollow is one church that meets just north of Nashville, and online all across the globe. Whether you’re exploring faith for the first time, or are looking for a place to call home, we want you to be a part of our community. Join us on Sunday either in person or online!"
-      actions={[
-        {
-          color: 'primary',
-          label: 'Times and Locations',
-          onClick: () => router.push('/about/schedule'),
-        },
-        {
-          color: 'quaternary',
-          variant: 'outlined',
-          label: 'Join Us Online',
-          onClick: () => router.push('/next-steps/join-us-online'),
-        },
-      ]}
-    />
+          imageProps: {
+            height: '100%',
+          },
+        }}
+        justify={'right'}
+        title={
+          <>
+            <Heading color="neutrals.900" variant="h2" fontWeight="800">
+              Join Us This Weekend
+            </Heading>
+          </>
+        }
+        textProps={{
+          mb: { xl: 'xxl' },
+          mt: { _: 'm', lg: 0, xl: 'l' },
+        }}
+        supertitle="God wants to work in your life"
+        description="Long Hollow is one church that meets just north of Nashville, and online all across the globe. Whether you’re exploring faith for the first time, or are looking for a place to call home, we want you to be a part of our community. Join us on Sunday either in person or online!"
+        actions={[
+          {
+            color: 'primary',
+            label: 'Times and Locations',
+            onClick: () => router.push('/about/schedule'),
+          },
+          {
+            color: 'quaternary',
+            variant: 'outlined',
+            label: 'Join Us Online',
+            onClick: () => router.push('/next-steps/join-us-online'),
+          },
+        ]}
+      />
+    ))
   );
 }
 
@@ -287,6 +356,7 @@ function HomeFeedContent(props = {}) {
   const theme = useTheme();
 
   const articles = props.articles || [];
+  const personaFeed = props.personaFeed || [];
 
   const largeArticle = articles.find(article => article?.featureOnHomePage);
   const miniArticles = articles
@@ -322,7 +392,10 @@ function HomeFeedContent(props = {}) {
       ) : null}
       <Section>
         <Box mb={{ _: 'l', md: 'xxl' }}>
-          <HomeFeedCTA authenticated={props.authenticated} />
+          <HomeFeedCTA
+            personaFeed={personaFeed}
+            authenticated={props.authenticated}
+          />
         </Box>
       </Section>
       <FullWidthCTA mt={{ xl: '-150px' }} py="xxl" justifyContent="flex-start">
@@ -384,14 +457,11 @@ function HomeFeedContent(props = {}) {
 
 function HomeFeed(props = {}) {
   const { authenticated } = useCurrentUser();
-  const { articles: personaArticles } = usePersonaFeed({
+  const { personaFeed } = usePersonaFeed({
     skip: !authenticated,
   });
 
-  let articles = [];
-
-  if (authenticated) articles = personaArticles || [];
-  articles = [...articles, ...(props.articles || []), ...(props.events || [])];
+  let articles = [...(props.articles || []), ...(props.events || [])];
 
   articles = articles.map(({ node }) => node);
   articles = uniq(articles, ({ id } = {}) => id);
@@ -403,6 +473,7 @@ function HomeFeed(props = {}) {
         {...props}
         articles={articles}
         authenticated={authenticated}
+        personaFeed={personaFeed}
       />
     </>
   );

@@ -20,10 +20,14 @@ function MarketingHeadline({
   if (image) {
     sideContent = (
       <Photo
-        justifySelf={justify === 'left' ? 'flex-end' : 'flex-start'}
-        flex="1 0 50%"
+        justifySelf={{
+          _: 'flex-end',
+          lg: justify === 'left' ? 'flex-end' : 'flex-start',
+        }}
+        flex={{ _: '1', lg: '1 0 50%' }}
         pb={{ _: 's', lg: 0 }}
         width="100%"
+        minHeight="0"
         onClick={actions?.length ? () => actions?.[0]?.onClick?.() : null}
         {...image}
       />
@@ -77,7 +81,7 @@ function MarketingHeadline({
           lg: justify === 'right' ? 'flex-end' : 'flex-start',
         }}
         textAlign={{ _: 'center', lg: justify }}
-        flex="1 0 50%"
+        flex={{ _: '', lg: '1 0 50%' }}
         px={{ _: 0, lg: 'm' }}
         {...textProps}
       >
@@ -112,7 +116,9 @@ function MarketingHeadline({
             whiteSpace="pre"
             mt="xs"
             textAlign={{ _: 'center', lg: justify }}
-            dangerouslySetInnerHTML={{ __html: description.replace(/\\n/g, '<br />') }}
+            dangerouslySetInnerHTML={{
+              __html: description.replace(/\\n/g, '<br />'),
+            }}
           />
         )}
         {details && (
