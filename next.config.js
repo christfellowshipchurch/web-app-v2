@@ -31,7 +31,7 @@ module.exports = {
         source: '/app-link/:slug',
         destination: '/:slug',
         permanent: false,
-      }, //fixing mvmnt
+      }, //fixing weather
       { source: '/compassionvolunteer', destination: 'https://my.longhollow.com/Registration/compassion-vol-2022', permanent: true },
       { source: '/everyday', destination: '/get-the-everyday-life-podcast', permanent: true },
       { source: '/checkin', destination: '/how-to-check-in-for-kids-activities', permanent: true },
