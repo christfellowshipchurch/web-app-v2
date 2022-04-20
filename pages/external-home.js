@@ -160,6 +160,7 @@ export default function ExternalLandingPage(props = {}) {
                   url: 'http://eepurl.com/hAk7aP',
                 },
                 mt: '-0.8rem',
+                target: '_blank',
               },
             ]}
           />
