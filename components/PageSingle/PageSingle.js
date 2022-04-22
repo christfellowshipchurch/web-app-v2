@@ -34,9 +34,7 @@ const renderBody = ({ title, summary, htmlContent, coverImage }) => {
             {summary}
           </Box>
         )}
-        {htmlContent && (
-          <HtmlRenderer htmlContent={htmlContent} />
-        )}
+        {htmlContent && <HtmlRenderer htmlContent={htmlContent} />}
       </Box>
     );
   }
@@ -45,16 +43,16 @@ const renderBody = ({ title, summary, htmlContent, coverImage }) => {
 };
 
 const formatTitleForSEO = path => {
-  if (typeof path !== "string" || isEmpty(path)) {
-    return "Christ Fellowship Church"
+  if (typeof path !== 'string' || isEmpty(path)) {
+    return 'Christ Fellowship Church';
   }
 
   return path
-    .replace("/", "-")
-    .split("-")
+    .replace('/', '-')
+    .split('-')
     .map(w => capitalize(w))
     .filter(w => !isEmpty(w))
-    .join(" ")
+    .join(' ');
 };
 
 function PageSingle(props = {}) {
@@ -72,22 +70,17 @@ function PageSingle(props = {}) {
   const features = data?.featureFeed?.features;
   const theme = data?.theme;
   const pathname = data?.routing?.pathname;
-  const actions = pathname === "christ-birthday-offering" 
-    ? [
-      { 
-        title: "READ BOOK", 
-        relatedNode: { 
-          url: "https://e.issuu.com/embed.html?d=events_2021_cbo_print_handouts_8.5x11_pages_1_&hideIssuuLogo=true&u=christfellowshipchurch" 
-        } 
-      },
-      { 
-        title: "GIVE NOW", 
-        relatedNode: { 
-          url: "https://pushpay.com/g/cfchristbirthdayoffering?fnd=H9Cd3ioFXzVIK2kvJl_K8g&r=No&lang=en" 
-        } 
-      },
-    ]
-    : []
+  const actions =
+    pathname === 'christ-birthday-offering'
+      ? [
+          {
+            title: 'READ BOOK',
+            relatedNode: {
+              url: 'https://e.issuu.com/embed.html?d=events_2021_cbo_print_handouts_8.5x11_pages_1_&hideIssuuLogo=true&u=christfellowshipchurch',
+            },
+          },
+        ]
+      : [];
 
   if (loading) {
     return (
@@ -122,12 +115,20 @@ function PageSingle(props = {}) {
       contentVerticalPadding={'0'}
     >
       <ThemeMixin theme={theme ?? {}}>
-        {(!isEmpty(coverImage) || pathname === "christ-birthday-offering") && (
-          <CoverImage 
-            type={pathname === "christ-birthday-offering" ? "graphic-overlay" : "hero-glass"}
-            src={pathname === "christ-birthday-offering" ? "/christ-birthday-offering/cover-image.png" : coverImage} 
-            title={title} 
-            subtitle={summary} 
+        {(!isEmpty(coverImage) || pathname === 'christ-birthday-offering') && (
+          <CoverImage
+            type={
+              pathname === 'christ-birthday-offering'
+                ? 'graphic-overlay'
+                : 'hero-glass'
+            }
+            src={
+              pathname === 'christ-birthday-offering'
+                ? '/christ-birthday-offering/cover-image.png'
+                : coverImage
+            }
+            title={title}
+            subtitle={summary}
             actions={actions}
             alignment="left"
           />
