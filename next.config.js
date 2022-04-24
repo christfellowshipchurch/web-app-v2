@@ -33,7 +33,7 @@ module.exports = {
         permanent: false,
       }, //fixing weather
       
-      { source: '/compassion', destination: '/be-a-part-of-compassion-sunday-on-april-24', permanent: true },
+      { source: '/compassion', destination: '/our-partnership-with-compassion-international', permanent: true },
       { source: '/summerjam', destination: '/bring-your-family-to-summer-jam-with-lh-kids', permanent: true },
       { source: '/compassionvolunteer', destination: 'https://my.longhollow.com/Registration/compassion-vol-2022', permanent: true },
       { source: '/everyday', destination: '/get-the-everyday-life-podcast', permanent: true },
