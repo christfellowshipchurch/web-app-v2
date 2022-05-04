@@ -2,8 +2,8 @@ import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
 
 export const GET_LINK_TREE = gql`
-  query getLinkTree {
-    linkTree {
+  query getLinkTree($pathname: String!) {
+    linkTree(pathname: $pathname) {
       title
       action
       relatedNode {
@@ -21,6 +21,8 @@ const useLinkTree = options => {
     fetchPolicy: 'network-only',
     ...options,
   });
+
+  console.log({ query });
 
   return query;
 };

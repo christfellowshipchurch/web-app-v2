@@ -1,7 +1,7 @@
 module.exports = {
   i18n: {
-    locales: ["en"],
-    defaultLocale: "en",
+    locales: ['en'],
+    defaultLocale: 'en',
   },
   images: {
     domains: ['cloudfront.christfellowship.church'],
@@ -52,6 +52,16 @@ module.exports = {
       {
         source: '/articles/boca-raton-heart-for-the-house',
         destination: '/locations/boca-raton',
+        permanent: true,
+      },
+      {
+        source: '/info',
+        destination: '/link-tree/info',
+        permanent: true,
+      },
+      {
+        source: '/sisterhood-night',
+        destination: '/link-tree/sisterhood-night',
         permanent: true,
       },
       // TODO: Uncomment these lines to hide Group Finder.

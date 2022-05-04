@@ -1,13 +1,19 @@
-import { format } from 'date-fns';
-
+import { useRouter } from 'next/router';
 import { useLinkTree } from 'hooks';
-import { slugify, parseLiveStreamDates } from 'utils';
 
 import { Box, Cell, ContentBlock, Loader, utils } from 'ui-kit';
 import { Layout } from 'components';
 
 export default function Info(props = {}) {
-  const { loading, data } = useLinkTree();
+  const router = useRouter();
+  const { title } = router.query;
+
+  const options = {
+    variables: {
+      pathname: title,
+    },
+  };
+  const { loading, data } = useLinkTree(options);
 
   if (loading) {
     return (
