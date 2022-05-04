@@ -98,16 +98,18 @@ export default function Page({
 
   const childContent = data.childContentItemsConnection?.edges;
   let links = relatedContent?.getMinistryContent?.length
-    ? relatedContent.getMinistryContent.slice(0, 4)
+    ? relatedContent.getMinistryContent
     : [];
 
-  links = links.filter(
-    link =>
-      getSlugFromURL(link?.sharing?.url) !== router.query.page &&
-      (getIdSuffix(link.parentChannel?.id) === IDS.CHANNELS.EVENTS ||
-        getIdSuffix(link.parentChannel?.id) === IDS.CHANNELS.ARTICLES) &&
-      link.id !== data.id
-  );
+  links = links
+    .filter(
+      link =>
+        getSlugFromURL(link?.sharing?.url) !== router.query.page &&
+        (getIdSuffix(link.parentChannel?.id) === IDS.CHANNELS.EVENTS ||
+          getIdSuffix(link.parentChannel?.id) === IDS.CHANNELS.ARTICLES) &&
+        link.id !== data.id
+    )
+    .slice(0, 4);
 
   return (
     <Layout meta={getMetaData(data)} bg="bg_alt" dropdownData={dropdownData}>

@@ -38,15 +38,17 @@ export default function Page({
   const ctaLinks = data.ctaLinks;
 
   let links = relatedContent?.getMinistryContent?.length
-    ? relatedContent.getMinistryContent.slice(0, 4)
+    ? relatedContent.getMinistryContent
     : [];
 
-  links = links.filter(
-    link =>
-      getSlugFromURL(link?.sharing?.url) !== router.query.page &&
-      (getIdSuffix(link.parentChannel?.id) === IDS.CHANNELS.EVENTS ||
-        getIdSuffix(link.parentChannel?.id) === IDS.CHANNELS.ARTICLES)
-  );
+  links = links
+    .filter(
+      link =>
+        getSlugFromURL(link?.sharing?.url) !== router.query.page &&
+        (getIdSuffix(link.parentChannel?.id) === IDS.CHANNELS.EVENTS ||
+          getIdSuffix(link.parentChannel?.id) === IDS.CHANNELS.ARTICLES)
+    )
+    .slice(0, 4);
   return (
     <Layout meta={getMetaData(data)} bg="bg_alt" dropdownData={dropdownData}>
       <MainPhotoHeader

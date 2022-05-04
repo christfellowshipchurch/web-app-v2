@@ -53,15 +53,17 @@ export default function Page({
   const extraCTA = node.ctaLinks.filter(cta => !cta.image?.sources?.[0]?.uri);
 
   let links = relatedContent?.getMinistryContent?.length
-    ? relatedContent.getMinistryContent.slice(0, 4)
+    ? relatedContent.getMinistryContent
     : [];
 
-  links = links.filter(
-    link =>
-      getSlugFromURL(link?.sharing?.url) !== router.query.page &&
-      (getIdSuffix(link.parentChannel?.id) === IDS.CHANNELS.EVENTS ||
-        getIdSuffix(link.parentChannel?.id) === IDS.CHANNELS.ARTICLES)
-  );
+  links = links
+    .filter(
+      link =>
+        getSlugFromURL(link?.sharing?.url) !== router.query.page &&
+        (getIdSuffix(link.parentChannel?.id) === IDS.CHANNELS.EVENTS ||
+          getIdSuffix(link.parentChannel?.id) === IDS.CHANNELS.ARTICLES)
+    )
+    .slice(0, 4);
 
   return (
     <Layout meta={getMetaData(node)} bg="bg_alt" dropdownData={dropdownData}>
