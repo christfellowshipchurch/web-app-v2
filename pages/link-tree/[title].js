@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useLinkTree } from 'hooks';
 
-import { Box, Cell, ContentBlock, Loader, utils } from 'ui-kit';
+import { Box, Cell, ContentBlock, Loader, ThemeMixin, utils } from 'ui-kit';
 import { Layout } from 'components';
 
 export default function Info(props = {}) {
@@ -34,14 +34,30 @@ export default function Info(props = {}) {
 
   return (
     <Layout title="Link Tree">
-      <Cell
-        as="main"
-        maxWidth={utils.rem('1100px')}
-        px="base"
-        py={{ _: 'l', lg: 'xl' }}
+      <ThemeMixin
+        theme={
+          title === 'sisterhood-night'
+            ? {
+                colors: {
+                  primary: '#e9927c',
+                },
+              }
+            : {
+                colors: {
+                  primary: '#0092bc',
+                },
+              }
+        }
       >
-        <ContentBlock actions={actions} />
-      </Cell>
+        <Cell
+          as="main"
+          maxWidth={utils.rem('1100px')}
+          px="base"
+          py={{ _: 'l', lg: 'xl' }}
+        >
+          <ContentBlock actions={actions} />
+        </Cell>
+      </ThemeMixin>
     </Layout>
   );
 }
