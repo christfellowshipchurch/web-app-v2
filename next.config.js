@@ -33,6 +33,7 @@ module.exports = {
         permanent: false,
       }, //fixing weather
       
+      { source: '/loveourcity', destination: '/serve-your-community-during-love-our-city', permanent: true },
       { source: '/compassion', destination: '/our-partnership-with-compassion-international', permanent: true },
       { source: '/summerjam', destination: '/bring-your-family-to-summer-jam-with-lh-kids', permanent: true },
       { source: '/compassionvolunteer', destination: 'https://my.longhollow.com/Registration/compassion-vol-2022', permanent: true },
