@@ -201,6 +201,7 @@ export default function Item() {
   }
 
   if (error) {
+    console.log({ error });
     return (
       <Box
         display="flex"
@@ -211,6 +212,8 @@ export default function Item() {
         minHeight="50vh"
       >
         <Box as="h2">Page Not Found :(</Box>
+        <Box>itemId</Box>
+        <Box>title</Box>
       </Box>
     );
   }
