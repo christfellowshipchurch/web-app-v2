@@ -177,7 +177,7 @@ export default function Item() {
     router.push('/groups');
   }
 
-  const { loading, data } = useQuery(GET_CONTENT_ITEM, {
+  const { loading, error, data } = useQuery(GET_CONTENT_ITEM, {
     variables: { id: itemId },
     fetchPolicy: 'network-only',
     skip: isEmpty(itemId),
@@ -196,6 +196,21 @@ export default function Item() {
         minHeight="50vh"
       >
         <Loader />
+      </Box>
+    );
+  }
+
+  if (error) {
+    return (
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignContent="center"
+        alignItems="center"
+        width="100%"
+        minHeight="50vh"
+      >
+        <Box as="h2">Page Not Found :(</Box>
       </Box>
     );
   }
