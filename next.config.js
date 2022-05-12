@@ -32,7 +32,8 @@ module.exports = {
         destination: '/:slug',
         permanent: false,
       }, //fixing weather
-      
+    
+      { source: '/summerserve', destination: '/sign-up-to-use-your-gifts-at-summer-events', permanent: true },
       { source: '/loveourcity', destination: '/serve-your-community-during-love-our-city', permanent: true },
       { source: '/compassion', destination: '/our-partnership-with-compassion-international', permanent: true },
       { source: '/summerjam', destination: '/bring-your-family-to-summer-jam-with-lh-kids', permanent: true },
