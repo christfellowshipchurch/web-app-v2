@@ -31,7 +31,7 @@ module.exports = {
         source: '/app-link/:slug',
         destination: '/:slug',
         permanent: false,
-      }, //fixing weather
+      }, //fixing cache
     
       { source: '/summerserve', destination: '/sign-up-to-use-your-gifts-at-summer-events', permanent: true },
       { source: '/loveourcity', destination: '/serve-your-community-during-love-our-city', permanent: true },
