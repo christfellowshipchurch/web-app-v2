@@ -240,6 +240,11 @@ export default function Page({
           </CampusFilter>
         </Section>
       ) : null}
+      {data.secondaryHTML && (
+        <Section mb={{ _: 'l', lg: 'xxl' }}>
+          <Longform dangerouslySetInnerHTML={{ __html: data.secondaryHTML }} />
+        </Section>
+      )}
     </Layout>
   );
 }
