@@ -66,7 +66,7 @@ module.exports = {
       },
       {
         source: '/content/how-to-lead-communion-in-your-home-3cbe3357238650b7bbf3011f2356fb57',
-        destination: '/articles/how-to-lead-communion-in-your-home-3cbe3357238650b7bbf3011f2356fb57',
+        destination: '/articles/how-to-lead-communion-in-your-home',
         permanent: true
       },
       // TODO: Uncomment these lines to hide Group Finder.
