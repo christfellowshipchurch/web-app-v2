@@ -32,7 +32,8 @@ module.exports = {
         destination: '/:slug',
         permanent: false,
       }, //fixing cache one more time
-    
+      
+      { source: '/young-adults-weekly-gathering', destination: '/tuesday-night-gathering', permanent: true },
       { source: '/summerserve', destination: '/sign-up-to-use-your-gifts-at-summer-events', permanent: true },
       { source: '/loveourcity', destination: '/serve-your-community-during-love-our-city', permanent: true },
       { source: '/compassion', destination: '/our-partnership-with-compassion-international', permanent: true },
