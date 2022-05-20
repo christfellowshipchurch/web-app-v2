@@ -200,23 +200,9 @@ export default function Item() {
     );
   }
 
-  if (error) {
-    console.log({ error, itemId, title });
-    return (
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignContent="center"
-        alignItems="center"
-        width="100%"
-        minHeight="50vh"
-      >
-        <Box as="h2">Page Not Found :(</Box>
-        <Box>{itemId}</Box>
-        <Box>{title}</Box>
-      </Box>
-    );
-  }
+  /**
+   * ! : Certain links are returning `/undefined` when on production. We'll need to look more into this situation, assuming its something with the caching and static rendering.
+   */
 
   return (
     <Layout title={title}>
