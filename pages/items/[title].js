@@ -179,7 +179,7 @@ export default function Item() {
 
   const { loading, error, data } = useQuery(GET_CONTENT_ITEM, {
     variables: { id: itemId },
-    fetchPolicy: 'network-only',
+    fetchPolicy: 'cache-and-network',
     skip: isEmpty(itemId),
   });
 
