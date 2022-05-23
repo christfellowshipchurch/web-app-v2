@@ -55,6 +55,7 @@ const CampusInfo = ({
   street1,
   state,
   postalCode,
+  phoneNumber,
   serviceTimes,
   additionalInfo,
 }) => {
@@ -269,6 +270,10 @@ const CampusInfo = ({
             >
               INVITE A FRIEND
             </Button>
+          </Box>
+          <Box as="i" pt="base">
+            Have any questions? <br /> Give us a call at{' '}
+            <Box as="a">{phoneNumber}</Box>
           </Box>
           {/**
            * todo : Add urls to social media links, maybe setup those up from Rock???
