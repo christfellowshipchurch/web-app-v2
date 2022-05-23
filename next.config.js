@@ -33,6 +33,7 @@ module.exports = {
         permanent: false,
       }, //fixing cache one more time
       
+      { source: '/cruisein', destination: 'https://longhollow.wufoo.com/forms/pyyg54d1egc91m/', permanent: true },
       { source: '/young-adults-weekly-gathering', destination: '/tuesday-night-gathering', permanent: true },
       { source: '/summerserve', destination: '/sign-up-to-use-your-gifts-at-summer-events', permanent: true },
       { source: '/loveourcity', destination: '/serve-your-community-during-love-our-city', permanent: true },
