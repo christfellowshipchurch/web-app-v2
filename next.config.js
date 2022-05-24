@@ -31,7 +31,7 @@ module.exports = {
         source: '/app-link/:slug',
         destination: '/:slug',
         permanent: false,
-      }, //fixing cache one more time
+      }, //fixing cache one more time again
       
       { source: '/cruisein', destination: 'https://longhollow.wufoo.com/forms/pyyg54d1egc91m/', permanent: true },
       { source: '/young-adults-weekly-gathering', destination: '/tuesday-night-gathering', permanent: true },
