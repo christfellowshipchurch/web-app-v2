@@ -273,7 +273,9 @@ const CampusInfo = ({
           </Box>
           <Box as="i" pt="base">
             Have any questions? <br /> Give us a call at{' '}
-            <Box as="a">{phoneNumber}</Box>
+            <Box as="a" href={`SMS:${phoneNumber}`}>
+              {phoneNumber}
+            </Box>
           </Box>
           {/**
            * todo : Add urls to social media links, maybe setup those up from Rock???
