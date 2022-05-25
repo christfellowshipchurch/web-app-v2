@@ -273,7 +273,7 @@ const CampusInfo = ({
           </Box>
           <Box as="i" pt="base">
             Have any questions? <br /> Give us a call at{' '}
-            <Box as="a" href={`SMS:${phoneNumber}`}>
+            <Box as="a" href={`tel:${phoneNumber}`}>
               {phoneNumber}
             </Box>
           </Box>
