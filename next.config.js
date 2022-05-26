@@ -33,6 +33,7 @@ module.exports = {
         permanent: false,
       }, //try to force cache update
       
+      { source: '/breakfast', destination: 'https://my.longhollow.com/registration/breakfast-2022', permanent: true },
       { source: '/lightupthepike', destination: 'https://lightupthepike.com/', permanent: true },
       { source: '/cruisein', destination: 'https://longhollow.wufoo.com/forms/pyyg54d1egc91m/', permanent: true },
       { source: '/young-adults-weekly-gathering', destination: '/tuesday-night-gathering', permanent: true },
