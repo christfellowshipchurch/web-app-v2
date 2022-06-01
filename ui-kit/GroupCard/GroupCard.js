@@ -76,10 +76,10 @@ const GroupCard = (props = {}) => {
                 <Icon size="18" name={labelType.icon} ml="xs" />
               </Styled.Label>
             )}
+            {/* Only shows group leaders with photos */}
             {heroAvatars ? (
-              heroAvatars
-                .slice(0, maxAvatars)
-                .map((n, i) => (
+              heroAvatars.slice(0, maxAvatars).map((n, i) => {
+                n?.photo?.uri && (
                   <SquareAvatar
                     height={heroAvatars.length > 3 ? '80px' : '100px'}
                     width={heroAvatars.length > 3 ? '60px' : '80px'}
@@ -88,7 +88,8 @@ const GroupCard = (props = {}) => {
                     name={`${n?.firstName} ${n?.lastName}`}
                     src={n?.photo?.uri}
                   />
-                ))
+                );
+              })
             ) : (
               <SquareAvatar
                 height="100px"
