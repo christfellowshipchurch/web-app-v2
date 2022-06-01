@@ -56,7 +56,10 @@ const GroupCard = (props = {}) => {
   };
 
   const labelType = get(labelTypes, camelCase(props?.meetingType));
-  const heroAvatars = props.heroAvatars.slice(0, maxAvatars);
+  const heroAvatars = props.heroAvatars
+    .slice(0, maxAvatars)
+    // only show group leaders with photos
+    .filter(avatar => avatar?.photo?.uri);
   const renderDateTime = _props => {
     if (_props.dateTime) {
       return format(new Date(props.dateTime), "EEEE 'at' h:mm a");
@@ -76,20 +79,17 @@ const GroupCard = (props = {}) => {
                 <Icon size="18" name={labelType.icon} ml="xs" />
               </Styled.Label>
             )}
-            {/* Only shows group leaders with photos */}
             {heroAvatars ? (
-              heroAvatars.slice(0, maxAvatars).map((n, i) => {
-                n?.photo?.uri && (
-                  <SquareAvatar
-                    height={heroAvatars.length > 3 ? '80px' : '100px'}
-                    width={heroAvatars.length > 3 ? '60px' : '80px'}
-                    key={i}
-                    mr={props.heroAvatars.length > 1 ? 'xs' : null}
-                    name={`${n?.firstName} ${n?.lastName}`}
-                    src={n?.photo?.uri}
-                  />
-                );
-              })
+              heroAvatars.map((n, i) => (
+                <SquareAvatar
+                  height={heroAvatars.length > 3 ? '80px' : '100px'}
+                  width={heroAvatars.length > 3 ? '60px' : '80px'}
+                  key={i}
+                  mr={props.heroAvatars.length > 1 ? 'xs' : null}
+                  name={`${n?.firstName} ${n?.lastName}`}
+                  src={n?.photo?.uri}
+                />
+              ))
             ) : (
               <SquareAvatar
                 height="100px"
