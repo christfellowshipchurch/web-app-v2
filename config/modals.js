@@ -3,6 +3,7 @@ import {
   AddGroupMemberModal,
   AddToCalendarModal,
   AuthModal,
+  ConnectCardModal,
   ConnectModal,
   GroupDetailsModal,
   GroupEmailConfirmationModal,
@@ -30,6 +31,10 @@ const modals = [
   {
     title: 'Auth',
     component: AuthModal,
+  },
+  {
+    title: 'ConnectCardModal',
+    component: ConnectCardModal,
   },
   {
     title: 'ConnectModal',

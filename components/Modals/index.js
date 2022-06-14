@@ -1,6 +1,7 @@
 import AddGroupMemberModal from './AddGroupMemberModal';
 import AddToCalendarModal from './AddToCalendarModal';
 import AuthModal from './AuthModal';
+import ConnectCardModal from './ConnectCardModal';
 import ConnectModal from './ConnectModal';
 import GroupDetailsModal from './GroupDetailsModal';
 import GroupEmailConfirmationModal from './GroupEmailConfirmationModal';
@@ -15,6 +16,7 @@ export {
   AddGroupMemberModal,
   AddToCalendarModal,
   AuthModal,
+  ConnectCardModal,
   ConnectModal,
   GroupDetailsModal,
   GroupEmailConfirmationModal,
