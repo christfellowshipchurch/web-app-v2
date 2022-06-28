@@ -8,11 +8,11 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import { Box, Button, Checkbox, Icon, Modal, Select, TextInput } from 'ui-kit';
 import { useCampuses, useForm, useSubmitConnectCard } from 'hooks';
 import { includes, isEmpty, toString } from 'lodash';
 import { validateEmail, validatePhoneNumber } from 'utils';
 import { showStep, useModalDispatch } from 'providers/ModalProvider';
+import StyledForm from './StyledForm';
 
 function ConnectCardForm(props = {}) {
   const modalDispatch = useModalDispatch();
@@ -31,6 +31,7 @@ function ConnectCardForm(props = {}) {
         if (includes(toString(e), 'invalid json response body')) {
           setSuccess(true);
         }
+        setSuccess(false);
         const currentErrors = {};
         currentErrors.networkError = toString(e);
         setErrors(currentErrors);
@@ -38,9 +39,9 @@ function ConnectCardForm(props = {}) {
     });
   const [isLoading, setIsLoading] = useState(false);
 
-  const { values, handleSubmit, handleChange } = useForm(() => {
+  const { values, handleSubmit, handleChange, setValues } = useForm(() => {
     const currentErrors = {};
-    const { email, phoneNumber, campusId, firstName, lastName } = values;
+    let { email, phoneNumber, campusId, firstName, lastName } = values;
     let hasEmailOrPhoneNumber = false;
 
     if (
@@ -101,8 +102,8 @@ function ConnectCardForm(props = {}) {
       phoneNumber: values.phoneNumber || '',
       emailAddress: values.email || '',
       campus: values.campusId || '',
-      decision,
-      allThatApplies,
+      decision: decision || ' ',
+      allThatApplies: allThatApplies || ' ',
     };
 
     try {
@@ -130,6 +131,17 @@ function ConnectCardForm(props = {}) {
     }
   };
 
+  // Sets pre-selected values if user is already logged in.
+  useEffect(() => {
+    setValues({
+      firstName: props?.firstName,
+      lastName: props?.lastName,
+      email: props?.email,
+      phoneNumber: props?.phoneNumber,
+      campusId: props?.campus?.name,
+    });
+  }, []);
+
   useEffect(() => {
     setIsLoading(mutationLoading || campusesLoading);
   }, [mutationLoading, campusesLoading]);
@@ -142,164 +154,20 @@ function ConnectCardForm(props = {}) {
   }, [success]);
 
   return (
-    <Box
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      mx={{ _: '', md: 'l' }}
-      p={{ _: 'base', md: '' }}
-    >
-      <Box as="h1" mb="xl" color="secondary">
-        Get Connected
-      </Box>
-      {errors?.generalError ? (
-        <Box as="p" color="alert" fontSize="s" mt="-1.8rem" mb="s">
-          {errors.generalError}
-        </Box>
-      ) : null}
-      {/* General Information */}
-      <Box
-        display="grid"
-        gridTemplateColumns={{ _: '', md: '1fr 1fr' }}
-        gridColumnGap="base"
-        gridRowGap={{ _: 'base', md: 'l' }}
-      >
-        <Box>
-          <TextInput
-            id="firstName"
-            label="First Name"
-            placeholder="First Name"
-            onChange={handleChange}
-          />
-          {errors?.firstName ? (
-            <Box as="p" color="alert" fontSize="s" mt="s">
-              {errors.firstName}
-            </Box>
-          ) : null}
-        </Box>
-        <Box>
-          <TextInput
-            id="lastName"
-            label="Last Name"
-            placeholder="Last Name"
-            onChange={handleChange}
-          />
-          {errors?.lastName ? (
-            <Box as="p" color="alert" fontSize="s" mt="s">
-              {errors.lastName}
-            </Box>
-          ) : null}
-        </Box>
-        <Box>
-          <TextInput
-            id="email"
-            label="Email"
-            placeholder="Email"
-            onChange={handleChange}
-          />
-          {errors?.email ? (
-            <Box as="p" color="alert" fontSize="s">
-              {errors.email}
-            </Box>
-          ) : null}
-        </Box>
-        <Box>
-          <TextInput
-            id="phoneNumber"
-            label="Phone"
-            placeholder="Phone"
-            onChange={handleChange}
-          />
-          {errors?.phoneNumber ? (
-            <Box as="p" color="alert" fontSize="s">
-              {errors.phoneNumber}
-            </Box>
-          ) : null}
-        </Box>
-        <Box>
-          <Box fontWeight="bold" fontSize="s" mb="s">
-            Campus
-          </Box>
-          <Select id="campusId" name="campusId" onChange={handleChange}>
-            <Select.Option value={null}>Select a Campus</Select.Option>
-            {campuses.map(({ id, name }) => {
-              return (
-                <Select.Option key={id} value={name}>
-                  {name}
-                </Select.Option>
-              );
-            })}
-          </Select>
-          {errors?.campus ? (
-            <Box as="p" color="alert" fontSize="s" mt="s">
-              {errors.campus}
-            </Box>
-          ) : null}
-        </Box>
-        <Box display="flex" pt={25}>
-          <Checkbox
-            id="madeDecision"
-            size={18}
-            onChange={handleChange}
-            mr="s"
-          />
-          <Box as="p" mt="0.1rem" fontWeight="bold" color="secondary">
-            I made a decision to follow Christ today{' '}
-          </Box>
-        </Box>
-      </Box>
-      {/* All that Applies */}
-      <Box display="grid" gridRowGap="s" textAlign="left" my="l" mr="auto">
-        <Box as="p" fontStyle="italic">
-          Please select all that apply to you:
-        </Box>
-        <Box display="flex">
-          <Checkbox id="firstVisit" size={18} onChange={handleChange} mr="s" />
-          <Box as="p" mt="0.1rem">
-            This is my first visit to Christ Fellowship{' '}
-          </Box>
-        </Box>
-        <Box display="flex">
-          <Checkbox
-            id="cfChurchHome"
-            size={18}
-            onChange={handleChange}
-            mr="s"
-          />
-          <Box as="p" mt="0.1rem">
-            I call Christ Fellowship my church home{' '}
-          </Box>
-        </Box>
-        <Box display="flex">
-          <Checkbox
-            id="discoverWhatsHere"
-            size={18}
-            onChange={handleChange}
-            mr="s"
-          />
-          <Box as="p" mt="0.1rem">
-            I'd like to discover what is here for me{' '}
-          </Box>
-        </Box>
-      </Box>
-      {errors?.networkError && (
-        <Box display="flex" alignItems="center" color="alert" mb="s">
-          <Icon name="gear" />
-          Oops! Network error, please try again later.
-        </Box>
-      )}
-      <Button onClick={handleSubmit} borderRadius={50} size="s" px="l">
-        {isLoading ? 'Loading...' : 'SUBMIT'}
-      </Button>
-    </Box>
+    <StyledForm
+      handleChange={handleChange}
+      handleSubmit={handleSubmit}
+      isLoading={isLoading}
+      values={values}
+      errors={errors}
+      defaultUserCampus={props?.campus}
+      campuses={campuses}
+    />
   );
 }
 
 ConnectCardForm.propTypes = {};
 
-ConnectCardForm.defaultProps = {
-  uri: null,
-  poster: null,
-};
+ConnectCardForm.defaultProps = {};
 
 export default ConnectCardForm;
