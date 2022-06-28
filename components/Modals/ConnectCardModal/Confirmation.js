@@ -6,7 +6,14 @@ const ConfirmationScreen = () => {
   const modalDispatch = useModalDispatch();
 
   return (
-    <Box p="l" textAlign="center" px="xxl">
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      p="l"
+      textAlign="center"
+      px="xxl"
+    >
       <Icon name="check" color="success" size="100" />
       <Box as="h2" color="secondary" my="l">
         You're all set!
