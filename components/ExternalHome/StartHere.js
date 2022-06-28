@@ -6,6 +6,26 @@ import { gtag } from 'lib/analytics';
 import { Box, Image, Button } from 'ui-kit';
 import { htmlToReactParser } from 'utils';
 
+const StyledCard = styled.div`
+  background: white;
+  border-radius: ${themeGet('radii.base')};
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: ${themeGet('space.base')};
+  padding-bottom: ${themeGet('space.l')};
+  height: 100%;
+
+  box-shadow: ${themeGet('shadows.base')};
+  transition: box-shadow ease 0.3s, transform ease 0.3s;
+
+  :hover {
+    box-shadow: ${themeGet('shadows.xl')};
+    cursor: pointer;
+    transform: scale(1.03);
+  }
+`;
+
 const StartHere = ({ maxWidth }) => {
   const data = [
     {
@@ -32,26 +52,6 @@ const StartHere = ({ maxWidth }) => {
     },
   ];
 
-  const StyledCard = styled.div`
-    background: white;
-    border-radius: ${themeGet('radii.base')};
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    padding: ${themeGet('space.base')};
-    padding-bottom: ${themeGet('space.l')};
-    height: 100%;
-
-    box-shadow: ${themeGet('shadows.base')};
-    transition: box-shadow ease 0.3s, transform ease 0.3s;
-
-    :hover {
-      box-shadow: ${themeGet('shadows.xl')};
-      cursor: pointer;
-      transform: scale(1.03);
-    }
-  `;
-
   return (
     <Box my="xl">
       <Box textAlign="center" my="l">
@@ -72,6 +72,7 @@ const StartHere = ({ maxWidth }) => {
       >
         {data.map(({ title, subtitle, image, url, target }, i) => (
           <Box
+            key={i}
             mb={{ _: i === data.length - 1 ? '0' : 'base', md: '0' }}
             display="flex"
           >
@@ -92,7 +93,7 @@ const StartHere = ({ maxWidth }) => {
                   }),
                 ]}
               >
-                <Image mb="2rem" source={image} aspectRatio={16 / 9} />
+                <Image mb="2rem" source={image} aspectRatio="16by9" />
 
                 <Box px="s">
                   <Box

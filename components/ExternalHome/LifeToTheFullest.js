@@ -53,6 +53,7 @@ const LifeToTheFullest = () => {
           i
         ) => (
           <Box
+            key={i}
             display={{ _: 'flex', md: 'grid' }}
             flexDirection="column"
             alignItems="center"

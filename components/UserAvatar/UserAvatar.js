@@ -10,14 +10,15 @@ function UserAvatar(props = {}) {
   const { name, src } = normalizeUserData(currentUser);
 
   return (
-    <CustomLink href="/connect">
-      <UIAvatar
-        name={name}
-        src={src}
-        height={props?.size}
-        width={props?.size}
-      />
-    </CustomLink>
+    <CustomLink
+      Component={UIAvatar}
+      href="/connect"
+      name={name}
+      src={src}
+      height={props?.size}
+      width={props?.size}
+      cursor="pointer"
+    />
   );
 }
 
@@ -27,7 +28,7 @@ UserAvatar.propTypes = {
 };
 
 UserAvatar.defaultProps = {
-  size: "45px",
+  size: '45px',
 };
 
 export default UserAvatar;
