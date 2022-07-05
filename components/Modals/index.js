@@ -9,6 +9,7 @@ import GroupFilterModal from './GroupFilterModal';
 import GroupMemberDetailsModal from './GroupMemberDetailsModal';
 import GroupNotifyMeModal from './GroupNotifyMeModal';
 import NodeSingleModal from './NodeSingleModal';
+import SetReminderModal from './SetReminderModal';
 import VideoModal from './VideoModal';
 import WelcomeModal from './WelcomeModal';
 
@@ -24,6 +25,7 @@ export {
   GroupMemberDetailsModal,
   GroupNotifyMeModal,
   NodeSingleModal,
+  SetReminderModal,
   VideoModal,
   WelcomeModal,
 };
