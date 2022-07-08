@@ -265,79 +265,163 @@ const campusLinks = [
   },
 ];
 
-const headerLinks = [
+const headerData = [
   {
     name: 'Palm Beach Gardens',
-    call: 'Join Us Sunday',
-    action: '#service-times',
-    newTab: false,
+    primaryButton: {
+      call: 'Join Us Sunday',
+      action: '#service-times',
+      newTab: false,
+    },
+    backgroundVideo: {
+      mobile: '/location-pages/gardens-mobile.mp4',
+      desktop: '/location-pages/gardens-desktop.mp4',
+    },
+    videoBackgroundImage: '/location-pages/gardens-background.png',
   },
   {
     name: 'Port St. Lucie',
-    call: 'Join Us Sunday',
-    action: '#service-times',
-    newTab: false,
+    primaryButton: {
+      call: 'Join Us Sunday',
+      action: '#service-times',
+      newTab: false,
+    },
+    backgroundVideo: {
+      mobile: '/location-pages/gardens-mobile.mp4',
+      desktop: '/location-pages/gardens-desktop.mp4',
+    },
+    videoBackgroundImage: '/external-landing/external-bg-video-frame-1.png',
   },
   {
     name: 'Boynton Beach',
-    call: 'Join Us Sunday',
-    action: '#service-times',
-    newTab: false,
+    primaryButton: {
+      call: 'Join Us Sunday',
+      action: '#service-times',
+      newTab: false,
+    },
+    backgroundVideo: {
+      mobile: '/location-pages/gardens-mobile.mp4',
+      desktop: '/location-pages/gardens-desktop.mp4',
+    },
+    videoBackgroundImage: '/external-landing/external-bg-video-frame-1.png',
   },
   {
     name: 'Belle Glade',
-    call: 'Join Us Sunday',
-    action: '#service-times',
-    newTab: false,
+    primaryButton: {
+      call: 'Join Us Sunday',
+      action: '#service-times',
+      newTab: false,
+    },
+    backgroundVideo: {
+      mobile: '/location-pages/gardens-mobile.mp4',
+      desktop: '/location-pages/gardens-desktop.mp4',
+    },
+    videoBackgroundImage: '/external-landing/external-bg-video-frame-1.png',
   },
   {
     name: 'Downtown West Palm Beach',
-    call: 'Join Us Sunday',
-    action: '#service-times',
-    newTab: false,
+    primaryButton: {
+      call: 'Join Us Sunday',
+      action: '#service-times',
+      newTab: false,
+    },
+    backgroundVideo: {
+      mobile: '/location-pages/gardens-mobile.mp4',
+      desktop: '/location-pages/gardens-desktop.mp4',
+    },
+    videoBackgroundImage: '/external-landing/external-bg-video-frame-1.png',
   },
   {
     name: 'Royal Palm Beach',
-    call: 'Set a Reminder',
-    action: 'https://rock.christfellowship.church/im-coming/rpb',
-    newTab: true,
+    primaryButton: {
+      call: 'Set a Reminder',
+      action: 'https://rock.christfellowship.church/im-coming/rpb',
+      newTab: true,
+    },
+    backgroundVideo: {
+      mobile: '/location-pages/gardens-mobile.mp4',
+      desktop: '/location-pages/gardens-desktop.mp4',
+    },
+    videoBackgroundImage: '/external-landing/external-bg-video-frame-1.png',
   },
   {
     name: 'Jupiter',
-    call: 'Join Us Sunday',
-    action: '#service-times',
-    newTab: false,
+    primaryButton: {
+      call: 'Join Us Sunday',
+      action: '#service-times',
+      newTab: false,
+    },
+    backgroundVideo: {
+      mobile: '/location-pages/gardens-mobile.mp4',
+      desktop: '/location-pages/gardens-desktop.mp4',
+    },
+    videoBackgroundImage: '/external-landing/external-bg-video-frame-1.png',
   },
   {
     name: 'Stuart',
-    call: 'Join Us Sunday',
-    action: '#service-times',
-    newTab: false,
+    primaryButton: {
+      call: 'Join Us Sunday',
+      action: '#service-times',
+      newTab: false,
+    },
+    backgroundVideo: {
+      mobile: '/location-pages/gardens-mobile.mp4',
+      desktop: '/location-pages/gardens-desktop.mp4',
+    },
+    videoBackgroundImage: '/external-landing/external-bg-video-frame-1.png',
   },
   {
     name: 'Vero Beach',
-    call: 'Join Us Sunday',
-    action: '#service-times',
-    newTab: false,
+    primaryButton: {
+      call: 'Join Us Sunday',
+      action: '#service-times',
+      newTab: false,
+    },
+    backgroundVideo: {
+      mobile: '/location-pages/gardens-mobile.mp4',
+      desktop: '/location-pages/gardens-desktop.mp4',
+    },
+    videoBackgroundImage: '/external-landing/external-bg-video-frame-1.png',
   },
   {
     name: 'Riviera Beach',
-    call: 'Set a Reminder',
-    action: 'https://rock.christfellowship.church/im-coming/riv',
-    newTab: true,
+    primaryButton: {
+      call: 'Set a Reminder',
+      action: 'https://rock.christfellowship.church/im-coming/riv',
+      newTab: true,
+    },
+    backgroundVideo: {
+      mobile: '/location-pages/gardens-mobile.mp4',
+      desktop: '/location-pages/gardens-desktop.mp4',
+    },
+    videoBackgroundImage: '/external-landing/external-bg-video-frame-1.png',
   },
   {
     name: 'Boca Raton',
-    call: 'Join Us Sunday',
-    action: '#service-times',
-    newTab: false,
+    primaryButton: {
+      call: 'Join Us Sunday',
+      action: '#service-times',
+      newTab: false,
+    },
+    backgroundVideo: {
+      mobile: '/location-pages/gardens-mobile.mp4',
+      desktop: '/location-pages/gardens-desktop.mp4',
+    },
+    videoBackgroundImage: '/external-landing/external-bg-video-frame-1.png',
   },
   {
     name: 'Okeechobee',
-    call: 'Join Us Sunday',
-    action: '#service-times',
-    newTab: false,
+    primaryButton: {
+      call: 'Join Us Sunday',
+      action: '#service-times',
+      newTab: false,
+    },
+    backgroundVideo: {
+      mobile: '/location-pages/gardens-mobile.mp4',
+      desktop: '/location-pages/gardens-desktop.mp4',
+    },
+    videoBackgroundImage: '/external-landing/external-bg-video-frame-1.png',
   },
 ];
 
-export { additionalInfoCampusData, campusMetaData, campusLinks, headerLinks };
+export { additionalInfoCampusData, campusMetaData, campusLinks, headerData };
