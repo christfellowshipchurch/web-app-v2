@@ -287,10 +287,10 @@ const headerData = [
       newTab: false,
     },
     backgroundVideo: {
-      mobile: '/location-pages/gardens-mobile.mp4',
-      desktop: '/location-pages/gardens-desktop.mp4',
+      mobile: '/location-pages/psl-mobile.mp4',
+      desktop: '/location-pages/psl-desktop.mp4',
     },
-    videoBackgroundImage: '/external-landing/external-bg-video-frame-1.png',
+    videoBackgroundImage: '/location-pages/psl-background.png',
   },
   {
     name: 'Boynton Beach',
@@ -300,10 +300,10 @@ const headerData = [
       newTab: false,
     },
     backgroundVideo: {
-      mobile: '/location-pages/gardens-mobile.mp4',
-      desktop: '/location-pages/gardens-desktop.mp4',
+      mobile: '/location-pages/boynton-mobile.mp4',
+      desktop: '/location-pages/boynton-desktop.mp4',
     },
-    videoBackgroundImage: '/external-landing/external-bg-video-frame-1.png',
+    videoBackgroundImage: '/location-pages/boynton-background.png',
   },
   {
     name: 'Belle Glade',
@@ -313,10 +313,10 @@ const headerData = [
       newTab: false,
     },
     backgroundVideo: {
-      mobile: '/location-pages/gardens-mobile.mp4',
-      desktop: '/location-pages/gardens-desktop.mp4',
+      mobile: '/location-pages/belle-glade-mobile.mp4',
+      desktop: '/location-pages/belle-glade-desktop.mp4',
     },
-    videoBackgroundImage: '/external-landing/external-bg-video-frame-1.png',
+    videoBackgroundImage: '/location-pages/belle-glade-background.png',
   },
   {
     name: 'Downtown West Palm Beach',
@@ -326,10 +326,10 @@ const headerData = [
       newTab: false,
     },
     backgroundVideo: {
-      mobile: '/location-pages/gardens-mobile.mp4',
-      desktop: '/location-pages/gardens-desktop.mp4',
+      mobile: '/location-pages/downtown-mobile.mp4',
+      desktop: '/location-pages/downtown-desktop.mp4',
     },
-    videoBackgroundImage: '/external-landing/external-bg-video-frame-1.png',
+    videoBackgroundImage: '/location-pages/downtown-background.png',
   },
   {
     name: 'Royal Palm Beach',
@@ -339,10 +339,10 @@ const headerData = [
       newTab: true,
     },
     backgroundVideo: {
-      mobile: '/location-pages/gardens-mobile.mp4',
-      desktop: '/location-pages/gardens-desktop.mp4',
+      mobile: '/location-pages/rp-mobile.mp4',
+      desktop: '/location-pages/rp-desktop.mp4',
     },
-    videoBackgroundImage: '/external-landing/external-bg-video-frame-1.png',
+    videoBackgroundImage: '/location-pages/rp-background.png',
   },
   {
     name: 'Jupiter',
@@ -352,10 +352,10 @@ const headerData = [
       newTab: false,
     },
     backgroundVideo: {
-      mobile: '/location-pages/gardens-mobile.mp4',
-      desktop: '/location-pages/gardens-desktop.mp4',
+      mobile: '/location-pages/jupiter-mobile.mp4',
+      desktop: '/location-pages/jupiter-desktop.mp4',
     },
-    videoBackgroundImage: '/external-landing/external-bg-video-frame-1.png',
+    videoBackgroundImage: '/location-pages/jupiter-background.png',
   },
   {
     name: 'Stuart',
@@ -365,10 +365,10 @@ const headerData = [
       newTab: false,
     },
     backgroundVideo: {
-      mobile: '/location-pages/gardens-mobile.mp4',
-      desktop: '/location-pages/gardens-desktop.mp4',
+      mobile: '/location-pages/stuart-mobile.mp4',
+      desktop: '/location-pages/stuart-desktop.mp4',
     },
-    videoBackgroundImage: '/external-landing/external-bg-video-frame-1.png',
+    videoBackgroundImage: '/location-pages/stuart-background.png',
   },
   {
     name: 'Vero Beach',
@@ -378,10 +378,10 @@ const headerData = [
       newTab: false,
     },
     backgroundVideo: {
-      mobile: '/location-pages/gardens-mobile.mp4',
-      desktop: '/location-pages/gardens-desktop.mp4',
+      mobile: '/location-pages/vero-mobile.mp4',
+      desktop: '/location-pages/vero-desktop.mp4',
     },
-    videoBackgroundImage: '/external-landing/external-bg-video-frame-1.png',
+    videoBackgroundImage: '/location-pages/gaverordens-background.png',
   },
   {
     name: 'Riviera Beach',
@@ -391,10 +391,10 @@ const headerData = [
       newTab: true,
     },
     backgroundVideo: {
-      mobile: '/location-pages/gardens-mobile.mp4',
-      desktop: '/location-pages/gardens-desktop.mp4',
+      mobile: '/location-pages/riviera-mobile.mp4',
+      desktop: '/location-pages/riviera-desktop.mp4',
     },
-    videoBackgroundImage: '/external-landing/external-bg-video-frame-1.png',
+    videoBackgroundImage: '/location-pages/riviera-background.png',
   },
   {
     name: 'Boca Raton',
@@ -404,10 +404,10 @@ const headerData = [
       newTab: false,
     },
     backgroundVideo: {
-      mobile: '/location-pages/gardens-mobile.mp4',
-      desktop: '/location-pages/gardens-desktop.mp4',
+      mobile: '/location-pages/boca-mobile.mp4',
+      desktop: '/location-pages/boca-desktop.mp4',
     },
-    videoBackgroundImage: '/external-landing/external-bg-video-frame-1.png',
+    videoBackgroundImage: '/location-pages/boca-background.png',
   },
   {
     name: 'Okeechobee',
@@ -417,10 +417,10 @@ const headerData = [
       newTab: false,
     },
     backgroundVideo: {
-      mobile: '/location-pages/gardens-mobile.mp4',
-      desktop: '/location-pages/gardens-desktop.mp4',
+      mobile: '/location-pages/okee-mobile.mp4',
+      desktop: '/location-pages/okee-desktop.mp4',
     },
-    videoBackgroundImage: '/external-landing/external-bg-video-frame-1.png',
+    videoBackgroundImage: '/location-pages/okee-background.png',
   },
 ];
 
