@@ -381,7 +381,7 @@ const headerData = [
       mobile: '/location-pages/vero-mobile.mp4',
       desktop: '/location-pages/vero-desktop.mp4',
     },
-    videoBackgroundImage: '/location-pages/gaverordens-background.png',
+    videoBackgroundImage: '/location-pages/vero-background.png',
   },
   {
     name: 'Riviera Beach',
