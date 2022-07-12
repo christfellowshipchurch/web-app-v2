@@ -33,7 +33,7 @@ module.exports = {
         permanent: false,
       }, //try to force cache update
       
-      { source: '/kidssummer', destination: '/join-lh-kids-for-a-fun-filled-summer', permanent: true },
+      { source: '/kidssummer', destination: 'https://longhollow.com/join-lh-kids-for-a-fun-filled-summer', permanent: true },
       { source: '/backtoschool', destination: 'https://my.longhollow.com/Registration/backtoschool-2022', permanent: true },
       { source: '/statement', destination: '/an-important-message-from-long-hollow-church', permanent: true },
       { source: '/israel', destination: 'https://signature.rezdy.com/502175/pastor-robby-gallaty-10-day-journey-to-the-holy-land-march-12-21-2023', permanent: true },
