@@ -15,7 +15,7 @@ import { Box, Button, Divider, Loader } from 'ui-kit';
 import CampusInfo from './CampusInfo';
 import LocationHeader from './LocationHeader';
 import defaultBlockData from '../LocationBlockFeature/defaultBlockData';
-import { additionalInfoCampusData, headerLinks } from './locationData';
+import { additionalInfoCampusData, headerData } from './locationData';
 import { CampusProvider } from 'providers';
 import faqData from 'components/FAQ/faqData';
 
@@ -62,7 +62,7 @@ function LocationSingle(props = {}) {
    * note : import hard coded data
    */
   const campusAdditionalInfo = find(additionalInfoCampusData, { name: campus });
-  const headerLink = find(headerLinks, { name: campus });
+  const headerContent = find(headerData, { name: campus });
 
   return (
     <Layout
@@ -72,7 +72,7 @@ function LocationSingle(props = {}) {
       transparentHeader
     >
       {/* Header Section */}
-      <LocationHeader title={props?.data?.title} primaryButton={headerLink} />
+      <LocationHeader title={props?.data?.title} {...headerContent} />
 
       {/* Service Times and Campus Pastors sections */}
       <CampusProvider
