@@ -110,14 +110,22 @@ function CommunitySingle(props = {}) {
     ensureAuthentication(showNotifyMeModal);
   }
 
-  function handleSubPreferenceSelect(subPreference) {
-    const showFilterModal = () => {
-      filtersDispatch(update({ subPreferences: [subPreference.title] }));
-      modalDispatch(showModal('GroupFilter', { step: ModalSteps.WHERE_WHEN }));
-    };
+  // function handleSubPreferenceSelect(subPreference) {
+  //   const showFilterModal = () => {
+  //     filtersDispatch(update({ subPreferences: [subPreference.title] }));
+  //     modalDispatch(showModal('GroupFilter', { step: ModalSteps.WHERE_WHEN }));
+  //   };
 
-    showFilterModal();
-  }
+  //   showFilterModal();
+  // }
+
+  // Bypassing group filter modal temporarily
+  const handleSubPreferenceSelect = () => {
+    router.push({
+      pathname: `/groups/search`,
+      query: filtersState.valuesSerialized,
+    });
+  };
 
   return (
     <>
