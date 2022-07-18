@@ -74,13 +74,11 @@ const LocationHeader = (props = {}) => {
                 onClick={() =>
                   modalDispatch(
                     showModal(props?.primaryButton?.modal, {
-                      defaultCampus: props?.primaryButton?.name,
+                      defaultCampus: props?.name,
                     })
                   )
                 }
                 target={props?.primaryButton?.newTab ? '_blank' : ''}
-                target={props?.primaryButton?.newTab ? '_blank' : ''}
-                // target="_blank"
                 mt="s"
                 mr={{ _: 'xs', md: 'base' }}
                 width={{ _: '100%', sm: 'auto' }}
@@ -91,9 +89,9 @@ const LocationHeader = (props = {}) => {
               </Button>
               <Button
                 as="a"
-                onClick={() => modalDispatch(showModal('ConnectCardModal'))}
-                href={props?.secondaryButton?.action}
-                target={props?.secondaryButton?.newTab ? '_blank' : ''}
+                onClick={() =>
+                  modalDispatch(showModal(props?.secondaryButton?.modal))
+                }
                 id="service-times"
                 mt="s"
                 variant="tertiary"
@@ -143,7 +141,7 @@ LocationHeader.defaultProps = {
   },
   secondaryButton: {
     call: 'Get Connected',
-    action: 'https://rock.gocf.org/connect',
+    modal: 'ConnectCardModal',
     newTab: true,
   },
   backgroundVideo: {
