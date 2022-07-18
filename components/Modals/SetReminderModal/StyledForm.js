@@ -104,6 +104,7 @@ const StyledForm = ({
               name="campus"
               defaultValue={defaultUserCampus}
               onChange={handleChange}
+              disabled
             >
               <Select.Option value={null}>Select a Campus</Select.Option>
               {campuses.map(({ id, name }) => {

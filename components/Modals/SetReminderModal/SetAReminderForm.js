@@ -8,7 +8,7 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import { useCampus, useCampuses, useForm, useSubmitConnectCard } from 'hooks';
+import { useCampus, useCampuses, useForm, useSubmitSetReminder } from 'hooks';
 import { includes, isEmpty, toString } from 'lodash';
 import { validateEmail, validatePhoneNumber } from 'utils';
 import { showStep, useModalDispatch } from 'providers/ModalProvider';
@@ -31,24 +31,17 @@ function SetAReminderForm(props = {}) {
   /**
    * todo : update with new Rock Workflow
    */
-  const [submitConnectCard, { loading: mutationLoading }] =
-    useSubmitConnectCard({
-      onCompleted: () => {
-        setSuccess(true);
-      },
-      onError: e => {
-        /**
-         * note : 🚨 Warning 🚨 Right now the Rock workflow is returning an invalid reponse error even though the workflow is working. If it returns that error this statment makes sure it still returns a success state. We'll need to revisit this issue on our API later on.
-         */
-        if (includes(toString(e), 'invalid json response body')) {
-          setSuccess(true);
-        }
-        setSuccess(false);
-        const currentErrors = {};
-        currentErrors.networkError = toString(e);
-        setErrors(currentErrors);
-      },
-    });
+  const [submitReminder, { loading: mutationLoading }] = useSubmitSetReminder({
+    onCompleted: () => {
+      setSuccess(true);
+    },
+    onError: e => {
+      setSuccess(false);
+      const currentErrors = {};
+      currentErrors.networkError = toString(e);
+      setErrors(currentErrors);
+    },
+  });
   const [isLoading, setIsLoading] = useState(false);
 
   //Grabs service times of the campus that is selected
@@ -109,13 +102,13 @@ function SetAReminderForm(props = {}) {
       firstName: values.firstName || '',
       lastName: values.lastName || '',
       phoneNumber: values.phoneNumber || '',
-      emailAddress: values.email || '',
+      email: values.email || '',
       campus: values.campus || '',
       serviceTime: values.serviceTime || '',
     };
 
     try {
-      console.log({ input });
+      submitReminder({ variables: input });
     } catch (e) {
       if (includes(e, 'invalid json response body')) {
         return setSuccess(true);
