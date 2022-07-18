@@ -12,7 +12,7 @@ import {
   SearchField,
   SEO,
 } from 'components';
-import JsonLD from 'components/JsonLD'
+import JsonLD from 'components/JsonLD';
 import {
   resetValues,
   update,
@@ -96,18 +96,19 @@ export default function Community(props = {}) {
         faith. Groups and classes help you know where to look for
         direction and have the right people encouraging you along the way."
       />
-      <JsonLD 
+      <JsonLD
         schema={{
-          "@type": "WebSite",
-          "url": "https://christfellowship.church/groups",
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": {
-              "@type": "EntryPoint",
-              "urlTemplate": "https://christfellowship.church/groups/search?text={search_term_string}"
+          '@type': 'WebSite',
+          url: 'https://christfellowship.church/groups',
+          potentialAction: {
+            '@type': 'SearchAction',
+            target: {
+              '@type': 'EntryPoint',
+              urlTemplate:
+                'https://christfellowship.church/groups/search?text={search_term_string}',
             },
-            "query-input": "required name=search_term_string"
-          }
+            'query-input': 'required name=search_term_string',
+          },
         }}
       />
       <Box display="grid" gridTemplateRows="auto 1fr auto" height="100vh">
@@ -142,7 +143,22 @@ export default function Community(props = {}) {
               >
                 Log in
               </Box>{' '}
-              to see your groups.
+              to see your groups.x
+            </Box>
+            <Box
+              fontStyle="italic"
+              fontSize={{ _: '16px', md: '20px' }}
+              color="white"
+            >
+              Interested in starting a Group?{' '}
+              <Box
+                as="a"
+                color="white"
+                target="_blank"
+                href="https://rock.christfellowship.church/groups/starting-a-group"
+              >
+                Learn More
+              </Box>{' '}
             </Box>
           </Styled.Content>
         </Styled.Hero>
