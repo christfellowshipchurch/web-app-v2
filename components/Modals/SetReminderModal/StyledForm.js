@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Box, Button, Checkbox, Icon, Loader, Select, TextInput } from 'ui-kit';
+import { useDiscoverFilterCategoriesPreview } from 'hooks';
 
 const StyledTextInput = props => (
   <Box>
@@ -104,9 +105,12 @@ const StyledForm = ({
               name="campus"
               defaultValue={defaultUserCampus}
               onChange={handleChange}
+              // We have currently disabled the select due to the feature only being available on two different campus. However this will most likely change in the future and we will eventually use the drop down to select other campuses.
               disabled
             >
-              <Select.Option value={null}>Select a Campus</Select.Option>
+              <Select.Option value={null}>
+                {defaultUserCampus ? defaultUserCampus : 'Select a Campus'}
+              </Select.Option>
               {campuses.map(({ id, name }) => {
                 return (
                   <Select.Option key={id} value={name}>

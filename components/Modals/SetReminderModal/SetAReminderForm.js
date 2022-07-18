@@ -161,8 +161,8 @@ function SetAReminderForm(props = {}) {
       isLoading={isLoading}
       values={values}
       errors={errors}
+      campuses={campuses || []}
       defaultUserCampus={props?.defaultCampus}
-      campuses={campuses}
       serviceTimes={serviceTimes || []}
     />
   );
