@@ -299,8 +299,8 @@ const headerLinks = [
   {
     name: 'Royal Palm Beach',
     call: 'Set a Reminder',
-    action: 'https://rock.christfellowship.church/im-coming/rpb',
-    newTab: true,
+    modal: 'SetReminder',
+    newTab: false,
   },
   {
     name: 'Jupiter',
@@ -323,8 +323,8 @@ const headerLinks = [
   {
     name: 'Riviera Beach',
     call: 'Set a Reminder',
-    action: 'https://rock.christfellowship.church/im-coming/riv',
-    newTab: true,
+    modal: 'SetReminder',
+    newTab: false,
   },
   {
     name: 'Boca Raton',

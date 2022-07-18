@@ -11,8 +11,9 @@ import {
   GroupMemberDetailsModal,
   GroupNotifyMeModal,
   NodeSingleModal,
-  WelcomeModal,
+  SetReminderModal,
   VideoModal,
+  WelcomeModal,
 } from 'components/Modals';
 
 const modals = [
@@ -61,16 +62,20 @@ const modals = [
     component: GroupNotifyMeModal,
   },
   {
-    title: 'Welcome',
-    component: WelcomeModal,
-  },
-  {
     title: 'NodeSingle',
     component: NodeSingleModal,
   },
   {
+    title: 'SetReminder',
+    component: SetReminderModal,
+  },
+  {
     title: 'Video',
     component: VideoModal,
+  },
+  {
+    title: 'Welcome',
+    component: WelcomeModal,
   },
 ];
 

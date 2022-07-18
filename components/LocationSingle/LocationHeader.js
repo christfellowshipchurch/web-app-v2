@@ -65,6 +65,13 @@ const LocationHeader = (props = {}) => {
               <Button
                 as="a"
                 href={props?.primaryButton?.action}
+                onClick={() =>
+                  modalDispatch(
+                    showModal(props?.primaryButton?.modal, {
+                      defaultCampus: props?.primaryButton?.name,
+                    })
+                  )
+                }
                 target={props?.primaryButton?.newTab ? '_blank' : ''}
                 mt="s"
                 mr={{ _: 'xs', md: 'base' }}
