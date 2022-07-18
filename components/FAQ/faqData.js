@@ -4,6 +4,11 @@
 
 const faqDefaultData = [
   {
+    title: 'What does Christ Fellowship believe?',
+    description:
+      'Christ Fellowship is a church in South Florida with a passion to help you know God and grow in your relationships so that you can discover your purpose and impact your world. Led by senior pastors Todd & Julie Mullins, our mission is to impact the world with the love and message of Jesus Christ—everyone, everyday, everywhere. <br />  <br />  Find out more about <a target="_blank" href="/about">our church and our beliefs.</a>',
+  },
+  {
     title: 'Where do I park?',
     description:
       'As you pull onto the campus, our parking team will help you find a great spot! We reserve the best parking spots for our visitors right in front of the main entrance, and can help you locate accessible parking if needed.',
@@ -27,14 +32,14 @@ const faqDefaultData = [
     title: 'Are there any expectations for visitors?',
     description: `Not at all. When we say "welcome home", we mean it! Be yourself, relax, and enjoy the service. We can't wait to see you!`,
   },
-  {
-    title: 'What does Christ Fellowship believe?',
-    description:
-      'Christ Fellowship is a church in South Florida with a passion to help you know God and grow in your relationships so that you can discover your purpose and impact your world. Led by senior pastors Todd & Julie Mullins, our mission is to impact the world with the love and message of Jesus Christ—everyone, everyday, everywhere. <br />  <br />  Find out more about <a target="_blank" href="/about">our church and our beliefs.</a>',
-  },
 ];
 
 const faqDowntownData = [
+  {
+    title: 'What does Christ Fellowship believe?',
+    description:
+      'Christ Fellowship is a church in South Florida with a passion to help you know God and grow in your relationships so that you can discover your purpose and impact your world. Led by senior pastors Todd & Julie Mullins, our mission is to impact the world with the love and message of Jesus Christ—everyone, everyday, everywhere. <br />  <br />  Find out more about <a href="/about">our church and our beliefs.</a>',
+  },
   {
     title: 'Where do I park?',
     description:
@@ -59,14 +64,14 @@ const faqDowntownData = [
     title: 'Are there any expectations for visitors?',
     description: `Not at all. When we say "welcome home", we mean it! Be yourself, relax, and enjoy the service. We can't wait to see you!`,
   },
-  {
-    title: 'What does Christ Fellowship believe?',
-    description:
-      'Christ Fellowship is a church in South Florida with a passion to help you know God and grow in your relationships so that you can discover your purpose and impact your world. Led by senior pastors Todd & Julie Mullins, our mission is to impact the world with the love and message of Jesus Christ—everyone, everyday, everywhere. <br />  <br />  Find out more about <a href="/about">our church and our beliefs.</a>',
-  },
 ];
 
 const faqJupiterData = [
+  {
+    title: 'What does Christ Fellowship believe?',
+    description:
+      'Christ Fellowship is a church in South Florida with a passion to help you know God and grow in your relationships so that you can discover your purpose and impact your world. Led by senior pastors Todd & Julie Mullins, our mission is to impact the world with the love and message of Jesus Christ—everyone, everyday, everywhere. <br />  <br />  Find out more about <a target="_blank" href="/about">our church and our beliefs.</a>',
+  },
   {
     title: 'Where do I park?',
     description:
@@ -90,11 +95,6 @@ const faqJupiterData = [
   {
     title: 'Are there any expectations for visitors?',
     description: `Not at all. When we say "welcome home", we mean it! Be yourself, relax, and enjoy the service. We can't wait to see you!`,
-  },
-  {
-    title: 'What does Christ Fellowship believe?',
-    description:
-      'Christ Fellowship is a church in South Florida with a passion to help you know God and grow in your relationships so that you can discover your purpose and impact your world. Led by senior pastors Todd & Julie Mullins, our mission is to impact the world with the love and message of Jesus Christ—everyone, everyday, everywhere. <br />  <br />  Find out more about <a target="_blank" href="/about">our church and our beliefs.</a>',
   },
 ];
 

@@ -4,9 +4,11 @@ import PropTypes from 'prop-types';
 import { Box, Button, Divider } from 'ui-kit';
 import Styled from './LocationSingle.styles';
 import { showModal, useModalDispatch } from 'providers/ModalProvider';
+import { useCurrentBreakpoint } from 'hooks';
 
 const LocationHeader = (props = {}) => {
   const modalDispatch = useModalDispatch();
+  let currentBreakpoint = useCurrentBreakpoint();
 
   return (
     <Box
@@ -14,14 +16,18 @@ const LocationHeader = (props = {}) => {
       display="flex"
       justifyContent={{ _: 'flex-start', lg: 'center' }}
       alignItems={{ _: 'flex-end', sm: 'center' }}
-      backgroundImage="url(/external-landing/external-bg-video-frame-1.png)"
+      backgroundImage={`url(${props?.videoBackgroundImage})`}
       backgroundPosition="center"
       backgroundSize="cover"
     >
       <Box height={{ _: '90vh', sm: 500, md: 600, lg: 700 }}>
         <Styled.VideoCover
           mx="auto"
-          src="/external-landing/external-bg-vid.mp4"
+          src={
+            currentBreakpoint.isSmall
+              ? props?.backgroundVideo?.mobile
+              : props?.backgroundVideo?.desktop
+          }
           autoPlay
           muted
           loop
@@ -73,6 +79,8 @@ const LocationHeader = (props = {}) => {
                   )
                 }
                 target={props?.primaryButton?.newTab ? '_blank' : ''}
+                target={props?.primaryButton?.newTab ? '_blank' : ''}
+                // target="_blank"
                 mt="s"
                 mr={{ _: 'xs', md: 'base' }}
                 width={{ _: '100%', sm: 'auto' }}
@@ -84,6 +92,8 @@ const LocationHeader = (props = {}) => {
               <Button
                 as="a"
                 onClick={() => modalDispatch(showModal('ConnectCardModal'))}
+                href={props?.secondaryButton?.action}
+                target={props?.secondaryButton?.newTab ? '_blank' : ''}
                 id="service-times"
                 mt="s"
                 variant="tertiary"
@@ -92,7 +102,7 @@ const LocationHeader = (props = {}) => {
                 fontSize={{ _: '0.75rem', md: '1rem' }}
                 px={{ _: '6px', sm: '1.25rem' }}
               >
-                Get Connected
+                {props?.secondaryButton?.call}
               </Button>
             </Box>
             <Box>
@@ -117,6 +127,11 @@ LocationHeader.propTypes = {
     action: PropTypes.string,
     newTab: PropTypes.bool,
   }),
+  backgroundVideo: PropTypes.shape({
+    mobile: PropTypes.string,
+    desktop: PropTypes.string,
+  }),
+  videoBackgroundImage: PropTypes.string,
 };
 
 LocationHeader.defaultProps = {
@@ -126,6 +141,16 @@ LocationHeader.defaultProps = {
     action: '#service-times',
     newTab: false,
   },
+  secondaryButton: {
+    call: 'Get Connected',
+    action: 'https://rock.gocf.org/connect',
+    newTab: true,
+  },
+  backgroundVideo: {
+    mobile: '/location-pages/gardens-mobile.mp4',
+    desktop: '/location-pages/gardens-desktop.mp4',
+  },
+  videoBackgroundImage: '/location-pages/gardens-desktop.mp4',
 };
 
 export default LocationHeader;
