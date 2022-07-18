@@ -88,12 +88,12 @@ function Sidebar(props = {}) {
         />
         <FilterField
           filterType="select"
-          label="Meeting Type"
+          label="How do you prefer to meet?"
           name="meetingType"
           options={filtersState.options.meetingType}
           values={filtersState.values.meetingType}
           disabledValues={disableInPerson}
-          placeholder="Select a meeting type..."
+          placeholder="Select In Person or Virtual"
           onChange={handleSelectChange}
           onClear={handleClear}
         />

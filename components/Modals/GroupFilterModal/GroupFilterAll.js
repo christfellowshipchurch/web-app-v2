@@ -76,17 +76,17 @@ function GroupFilterAll(props = {}) {
         />
         <FilterField
           filterType="select"
-          label="Meeting Type"
+          label="How do you prefer to meet?"
           name="meetingType"
           options={filtersState.options.meetingType}
           values={filtersState.values.meetingType}
           disabledValues={disableInPerson}
-          placeholder="Select how you'd like to meet..."
+          placeholder="Select In Person or Virtual"
           onChange={handleMultiSelectChange}
           onClear={handleClear}
         />
         <FilterField
-          label="Hubs"
+          label="Category"
           name="preferences"
           options={preferences?.map(({ title }) => title)}
           values={filtersState.values.preferences}
