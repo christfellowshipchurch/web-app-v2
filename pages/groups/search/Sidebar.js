@@ -32,7 +32,10 @@ function Sidebar(props = {}) {
     filtersDispatch(toggleValue({ name, value }));
   };
   const handleSelectChange = ({ name, value }) => {
-    filtersDispatch(update({ [name]: [value] }));
+    if (name === 'campuses' && value !== 'Online') {
+      return filtersDispatch(update({ [name]: [value, 'Online'] }));
+    }
+    return filtersDispatch(update({ [name]: [value] }));
   };
 
   const handleClear = event => {
