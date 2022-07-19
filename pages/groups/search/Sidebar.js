@@ -35,14 +35,11 @@ function Sidebar(props = {}) {
     //initial array with selected campus
     let newValues = [value];
     //add CFE RP to array if CF Gardens is the selected campus
-    if (
-      name === 'campuses' &&
-      value.includes('en Español Palm Beach Gardens')
-    ) {
+    if (name === 'campuses' && value === 'en Español Palm Beach Gardens') {
       newValues.push('en Español Royal Palm Beach');
     }
     //add CFE Gardens to array if CFE RP is the selected campus
-    if (name === 'campuses' && value.includes('en Español Royal Palm Beach')) {
+    if (name === 'campuses' && value === 'en Español Royal Palm Beach') {
       newValues.push('en Español Palm Beach Gardens');
     }
     //add Online to array if any campus other than Online is selected
