@@ -143,7 +143,7 @@ export default function Community(props = {}) {
               >
                 Log in
               </Box>{' '}
-              to see your groups.x
+              to see your groups.
             </Box>
             <Box
               fontStyle="italic"
