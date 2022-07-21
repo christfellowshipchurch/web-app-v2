@@ -11,13 +11,8 @@ function GroupSearchFilters(props = {}) {
   const [filtersState] = useGroupFilters();
   const [modalState, modalDispatch] = useModal();
 
-  const {
-    campuses,
-    preferences,
-    subPreferences,
-    days,
-    meetingType,
-  } = filtersState.values;
+  const { campuses, preferences, subPreferences, days, meetingType } =
+    filtersState.values;
 
   function handleChangeClick() {
     // Show all filters modal
@@ -77,7 +72,7 @@ function GroupSearchFilters(props = {}) {
               )}
               {preferences.length > 0 && (
                 <FilterButton
-                  label="Hubs"
+                  label="Category"
                   labelDetail={preferences.length}
                   onClick={handleChangeClick}
                 />
