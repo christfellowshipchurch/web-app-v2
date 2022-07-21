@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { createMarkup } from 'utils';
-import { SEO, FeatureFeed } from 'components';
+import { SEO, FeatureFeed, Share } from 'components';
 import {
   Box,
   Card,
@@ -75,30 +75,35 @@ function ContentLayout(props = {}) {
           </Box>
         ) : null}
         {props.htmlContent && !props.renderContentD ? (
-          <Card boxShadow="base" p={{ _: 's', md: 'base' }}>
-            <Longform>
-              <HtmlRenderer
-                htmlContent={props?.htmlContent}
-                customProcessing={[
-                  {
-                    //add download button for images
-                    shouldProcessNode: function (node) {
-                      return node.name && node.name === 'img';
+          <>
+            <Card boxShadow="base" p={{ _: 's', md: 'base' }}>
+              <Longform>
+                <HtmlRenderer
+                  htmlContent={props?.htmlContent}
+                  customProcessing={[
+                    {
+                      //add download button for images
+                      shouldProcessNode: function (node) {
+                        return node.name && node.name === 'img';
+                      },
+                      processNode: function (node, children) {
+                        return (
+                          <Image
+                            source={node?.attribs.src}
+                            disableRatio
+                            download
+                          />
+                        );
+                      },
                     },
-                    processNode: function (node, children) {
-                      return (
-                        <Image
-                          source={node?.attribs.src}
-                          disableRatio
-                          download
-                        />
-                      );
-                    },
-                  },
-                ]}
-              />
-            </Longform>
-          </Card>
+                  ]}
+                />
+              </Longform>
+            </Card>
+            <Box py="l">
+              <Share />
+            </Box>
+          </>
         ) : (
           props.renderContentD && (
             <Card boxShadow="base" p={{ _: 's', md: 'base' }}>
