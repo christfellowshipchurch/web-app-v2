@@ -51,14 +51,14 @@ const faqDowntownData = [
       "Our church services last a little over an hour. We'll sing a few worship songs and hear a message from our pastors or guest speakers. We suggest arriving a little early so you can park, get coffee, and find your seat!",
   },
   {
-    title: 'Where do I park?',
-    description:
-      'Since Christ Fellowship Church in Downtown West Palm Beach is located in The Square, we encourage you to park in one of the shopping center parking garages or on the street. Street parking in The Square is typically free on Sundays. If you’re a student at Palm Beach Atlantic University, we offer a complimentary shuttle prior to the service times that picks up and drops off in front of the Warren Library. </br></br> <i>*Please note that the parking fees vary in The Square</i>',
-  },
-  {
     title: 'What should I wear?',
     description:
       'You can wear whatever you feel most comfortable in! Every Sunday, we have casual, relaxing services where everyone is welcome. Come as you are and expect to feel right at home!',
+  },
+  {
+    title: 'Where do I park?',
+    description:
+      'Since Christ Fellowship Church in Downtown West Palm Beach is located in The Square, we encourage you to park in one of the shopping center parking garages or on the street. Street parking in The Square is typically free on Sundays. If you’re a student at Palm Beach Atlantic University, we offer a complimentary shuttle prior to the service times that picks up and drops off in front of the Warren Library. </br></br> <i>*Please note that the parking fees vary in The Square</i>',
   },
   {
     title: 'Is childcare provided?',
