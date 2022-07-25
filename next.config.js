@@ -33,6 +33,7 @@ module.exports = {
         permanent: false,
       }, //try to force cache update
       
+      { source: '/dodgeball', destination: 'dodgeball-2022', permanent: true },
       { source: '/teacher', destination: 'https://longhollow.com/back-to-school-teacher-serve-week', permanent: true },
       { source: '/kidssummer', destination: 'https://longhollow.com/join-lh-kids-for-a-fun-filled-summer', permanent: true },
       { source: '/backtoschool', destination: 'https://my.longhollow.com/Registration/backtoschool-2022', permanent: true },
