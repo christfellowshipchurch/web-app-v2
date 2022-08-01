@@ -97,7 +97,7 @@ module.exports = {
       { source: '/f260', destination: '/follow-the-f260-bible-reading-plan', permanent: true },
       { source: '/nt260', destination: '/follow-the-nt260-bible-reading-plan', permanent: true },
       { source: '/greecetrip', destination: 'https://discoverycruisesandtravel.com/tour/robby-and-kandi-gallaty/', permanent: true },
-      { source: '/session1', destination: 'https://rock.longhollow.com/StartingPoint1', permanent: true },
+      { source: '/session1', destination: 'https://my.longhollow.com/StartingPoint1', permanent: true },
       { source: '/session2', destination: 'https://my.longhollow.com/startingpoint2', permanent: true },
       { source: '/session3', destination: 'https://my.longhollow.com/startingpoint3', permanent: true },
       { source: '/session4', destination: 'https://my.longhollow.com/startingpoint4', permanent: true },
