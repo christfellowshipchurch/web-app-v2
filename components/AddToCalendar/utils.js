@@ -71,32 +71,29 @@ export const icsLink = event => {
     endTime = parseISO(endTime);
   }
 
-  return (
-    'data:text/calendar;charset=utf8,' +
-    [
-      'BEGIN:VCALENDAR',
-      'VERSION:2.0',
-      'PRODID:-//www.cf.church//Christ Fellowship Church',
-      'CALSCALE:GREGORIAN',
-      'BEGIN:VEVENT',
-      `DTSTAMP:${format(new Date(), 'yyyyMMddhhmmss')}Z`,
-      `UID:${uniqueId()}-@christfellowship.church`,
-      `DTSTART;TZID=America/New_York:${format(startTime, "yyyyMMdd'T'HHmmss")}`,
-      `DTEND;TZID=America/New_York:${format(endTime, "yyyyMMdd'T'HHmmss")}`,
-      `SUMMARY:${title}`,
-      `URL:${url ?? document?.URL ?? 'https://www.christfellowship.church'}`,
-      `DESCRIPTION:${description}`,
-      `LOCATION:${address}`,
-      'END:VEVENT',
-      'END:VCALENDAR',
-    ].join('\n')
-  );
+  const icsString = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//www.cf.church//Christ Fellowship Church',
+    'CALSCALE:GREGORIAN',
+    'BEGIN:VEVENT',
+    `DTSTAMP:${format(new Date(), 'yyyyMMddhhmmss')}Z`,
+    `UID:${uniqueId()}-@christfellowship.church`,
+    `DTSTART;TZID=America/New_York:${format(startTime, "yyyyMMdd'T'HHmmss")}`,
+    `DTEND;TZID=America/New_York:${format(endTime, "yyyyMMdd'T'HHmmss")}`,
+    `SUMMARY:${title}`,
+    `URL:${url ?? document?.URL ?? 'https://www.christfellowship.church'}`,
+    `DESCRIPTION:${description}`,
+    `LOCATION:${address}`,
+    'END:VEVENT',
+    'END:VCALENDAR',
+  ].join('\n');
 
   //Although blob makes this method compatible with safari it makes it break for all other browsers so I'm removing it temporarily
 
   // We use blob method and removed `charset=utf8` in order to be compatible with Safari IOS
-  // let blob = new Blob([icsString], { type: 'text/calendar' });
-  // let calendarLink = window.URL.createObjectURL(blob);
+  let blob = new Blob([icsString], { type: 'text/calendar' });
+  let calendarLink = window.URL.createObjectURL(blob);
 
-  // return calendarLink;
+  return calendarLink;
 };

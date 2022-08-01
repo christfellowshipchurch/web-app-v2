@@ -4,11 +4,12 @@ import { format } from 'date-fns';
 
 import { AddToCalendar } from 'components';
 import { Box, Icon } from 'ui-kit';
+import { icsLink } from 'components/AddToCalendar/utils';
 
 const DateTime = ({ start, end, title, ...props }) => {
   const event = {
-    title: `${title} - Christ Fellowship Church`,
-    alternateDescription: `Join us for ${title} at Christ Fellowship!`,
+    title: `${title}`,
+    address: 'Christ Fellowship Church',
     startTime: start,
     endTime: end,
   };
@@ -34,7 +35,12 @@ const DateTime = ({ start, end, title, ...props }) => {
           </Box>
         </Box>
       </Box>
-      <AddToCalendar event={event} mb="base" />
+      {/* <AddToCalendar event={event} mb="base" /> */}
+
+      {/* We are temporarily using ICS only for the time being, until we fix the AddToCalendar component */}
+      <Box as="a" download="ChristFellowshipChurch.ics" href={icsLink(event)}>
+        <Icon name="calendar-plus" />
+      </Box>
     </Box>
   );
 };
