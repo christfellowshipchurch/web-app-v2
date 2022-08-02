@@ -1,15 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 
-import { AddToCalendar } from 'components';
-import { Box, Icon } from 'ui-kit';
+import { Box, Icon, Loader } from 'ui-kit';
 import { icsLink } from 'components/AddToCalendar/utils';
+import { useCampus } from 'hooks';
 
-const DateTime = ({ start, end, title, ...props }) => {
+function DateTime({ start, end, title, campus, ...props }) {
+  // Adding custom code to pull in address for each actual campus
+  const [campusAddress, setCampusAddress] = useState(
+    'Christ Fellowship Church'
+  );
+
+  const { campus: eventCampus, loading } = useCampus({
+    variables: {
+      campusName: campus,
+    },
+  });
+
+  useEffect(() => {
+    async function getCampusAddress() {
+      try {
+        const { street1, city, state, postalCode } = await eventCampus;
+        setCampusAddress(
+          [street1, city, state, postalCode.substring(0, 5)].join(', ')
+        );
+      } catch (error) {
+        setCampusAddress('Christ Fellowship Church');
+      }
+    }
+    getCampusAddress();
+  }, [eventCampus]);
+
   const event = {
-    title: `${title}`,
-    address: 'Christ Fellowship Church',
+    title: `${title} - ${campus}`,
+    address: campusAddress,
+    description: 'Come join us!',
     startTime: start,
     endTime: end,
   };
@@ -21,29 +47,31 @@ const DateTime = ({ start, end, title, ...props }) => {
       alignItems="center"
       {...props}
     >
-      <Box>
-        <Box display="flex" alignItems="center" mb="xs">
-          <Icon name="calendar" mr="s" size="20" />
-          <Box as="h3" m={0}>
-            {format(new Date(start), 'eee LLL d')}
+      {loading ? (
+        <Loader />
+      ) : (
+        <Box>
+          <Box display="flex" alignItems="center" mb="xs">
+            <Icon name="calendar" mr="s" size="20" />
+            <Box as="h3" m={0}>
+              {format(new Date(start), 'eee LLL d')}
+            </Box>
+          </Box>
+          <Box display="flex" alignItems="center" color="neutrals.800">
+            <Icon name="clock" mr="s" size="20" />
+            <Box as="p" m={0}>
+              {format(new Date(start), 'p')}
+            </Box>
           </Box>
         </Box>
-        <Box display="flex" alignItems="center" color="neutrals.800">
-          <Icon name="clock" mr="s" size="20" />
-          <Box as="p" m={0}>
-            {format(new Date(start), 'p')}
-          </Box>
-        </Box>
-      </Box>
-      {/* <AddToCalendar event={event} mb="base" /> */}
-
+      )}
       {/* We are temporarily using ICS only for the time being, until we fix the AddToCalendar component */}
       <Box as="a" download="ChristFellowshipChurch.ics" href={icsLink(event)}>
         <Icon name="calendar-plus" />
       </Box>
     </Box>
   );
-};
+}
 
 DateTime.propTypes = {
   start: PropTypes.string,

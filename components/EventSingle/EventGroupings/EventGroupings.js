@@ -61,6 +61,7 @@ const EventGroupings = (props = {}) => {
                 key={n.id}
                 start={n.start}
                 title={props.data.title}
+                campus={values?.campusSelect}
                 mb={i === selectedGroup?.instances?.length - 1 ? '0' : 'base'}
               />
             ))}
