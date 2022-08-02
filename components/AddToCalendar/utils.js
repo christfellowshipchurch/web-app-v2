@@ -89,8 +89,6 @@ export const icsLink = event => {
     'END:VCALENDAR',
   ].join('\n');
 
-  //Although blob makes this method compatible with safari it makes it break for all other browsers so I'm removing it temporarily
-
   // We use blob method and removed `charset=utf8` in order to be compatible with Safari IOS
   let blob = new Blob([icsString], { type: 'text/calendar' });
   let calendarLink = window.URL.createObjectURL(blob);
