@@ -31,7 +31,7 @@ module.exports = {
         source: '/app-link/:slug',
         destination: '/:slug',
         permanent: false,
-      }, //try to force cache update
+      }, //try to force cache update again
       
       { source: '/moms', destination: '/intentional-mom', permanent: true },
       { source: '/dodgeball', destination: '/dodgeball-2022', permanent: true },
