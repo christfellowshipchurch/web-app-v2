@@ -32,7 +32,22 @@ function Sidebar(props = {}) {
     filtersDispatch(toggleValue({ name, value }));
   };
   const handleSelectChange = ({ name, value }) => {
-    filtersDispatch(update({ [name]: [value] }));
+    //initial array with selected campus
+    let newValues = [value];
+    //add CFE RP to array if CF Gardens is the selected campus
+    if (name === 'campuses' && value === 'en Español Palm Beach Gardens') {
+      newValues.push('en Español Royal Palm Beach');
+    }
+    //add CFE Gardens to array if CFE RP is the selected campus
+    if (name === 'campuses' && value === 'en Español Royal Palm Beach') {
+      newValues.push('en Español Palm Beach Gardens');
+    }
+    //add Online to array if any campus other than Online is selected
+    if (name === 'campuses' && value !== 'Online') {
+      newValues.push('Online');
+    }
+    //return final array with all updated values
+    return filtersDispatch(update({ [name]: newValues }));
   };
 
   const handleClear = event => {
@@ -88,12 +103,12 @@ function Sidebar(props = {}) {
         />
         <FilterField
           filterType="select"
-          label="Meeting Type"
+          label="How do you prefer to meet?"
           name="meetingType"
           options={filtersState.options.meetingType}
           values={filtersState.values.meetingType}
           disabledValues={disableInPerson}
-          placeholder="Select a meeting type..."
+          placeholder="Select In Person or Virtual"
           onChange={handleSelectChange}
           onClear={handleClear}
         />
