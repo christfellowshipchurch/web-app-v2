@@ -10,7 +10,7 @@ const Select = styled.select`
   background-position: right ${themeGet('space.s')} top 50%;
   background-repeat: no-repeat;
   border: 2px solid ${themeGet('colors.border')};
-  border-radius: ${themeGet('radii.s')};
+  border-radius: ${themeGet('radii.l')};
   box-sizing: border-box;
   color: ${themeGet('colors.fg')};
   display: block;

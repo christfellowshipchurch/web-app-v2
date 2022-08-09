@@ -4,6 +4,7 @@ import { links } from 'config/metadata';
 import { Box, Cell, Icon, List, systemPropTypes } from 'ui-kit';
 import { CustomLink, Logo } from 'components';
 import Styled from './Footer.styles';
+import { showModal, useModalDispatch } from 'providers/ModalProvider';
 
 function Footer(props = {}) {
   return (
@@ -95,6 +96,8 @@ function Resources() {
 }
 
 function Connect() {
+  const modalDispatch = useModalDispatch();
+
   return (
     <Box mb={{ _: 'base', lg: '0' }}>
       <Box as="h4" fontSize="h3">
@@ -102,7 +105,9 @@ function Connect() {
       </Box>
       <List as="ul" space="xs">
         <Box as="li">
-          <Styled.Link target="_blank" href={links.connectCard}>
+          <Styled.Link
+            onClick={() => modalDispatch(showModal('ConnectCardModal'))}
+          >
             Connect Card
           </Styled.Link>
         </Box>

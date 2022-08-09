@@ -1,10 +1,11 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
 import { system } from 'ui-kit';
 
 const Checkbox = styled.div`
   display: flex;
+  transform: scale(${props => props.size});
 
   ${system}
 `;

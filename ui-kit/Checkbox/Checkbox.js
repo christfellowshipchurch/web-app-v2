@@ -34,11 +34,13 @@ Checkbox.propTypes = {
   }),
   id: PropTypes.string.isRequired,
   label: PropTypes.string,
+  size: PropTypes.number,
 };
 
 Checkbox.defaultProps = {
   type: 'checkbox',
   validationMessage: 'Select this checkbox to continue',
+  size: 15,
 };
 
 export default Checkbox;

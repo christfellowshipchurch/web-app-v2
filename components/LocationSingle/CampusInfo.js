@@ -108,21 +108,21 @@ const CampusInfo = ({
             <Styled.ServiceTimeTitle>Every Sunday</Styled.ServiceTimeTitle>
             <Styled.FlexBreak />
             {serviceTimes &&
-              serviceTimes?.map((n, i) => [
-                <Box
-                  display="flex"
-                  flex={1}
-                  justifyContent="center"
-                  alignItems="center"
-                >
-                  <Styled.ServiceTime key={i}>{n?.time}</Styled.ServiceTime>
-                </Box>,
-                <>
+              serviceTimes?.map((n, i) => (
+                <React.Fragment key={i}>
+                  <Box
+                    display="flex"
+                    flex={1}
+                    justifyContent="center"
+                    alignItems="center"
+                  >
+                    <Styled.ServiceTime>{n?.time}</Styled.ServiceTime>
+                  </Box>
                   {i < serviceTimes.length - 1 && (
-                    <Styled.VerticalDivider key={i} />
+                    <Styled.VerticalDivider key={`dividier-${i}`} />
                   )}
-                </>,
-              ])}
+                </React.Fragment>
+              ))}
           </Styled.ServiceTimeContainer>
 
           {/* Addtional Information - Orange Box */}
@@ -130,7 +130,9 @@ const CampusInfo = ({
             {additionalInfo && additionalInfo?.length > 0 && (
               <Styled.InfoBox>
                 {additionalInfo.map(n => (
-                  <Box as="li">{n}</Box>
+                  <Box key={n} as="li">
+                    {n}
+                  </Box>
                 ))}
               </Styled.InfoBox>
             )}
@@ -329,13 +331,13 @@ const CampusInfo = ({
 
 CampusInfo.propTypes = {
   name: PropTypes.string,
-  pastor: {
+  pastor: PropTypes.shape({
     firstName: PropTypes.string,
     lastName: PropTypes.string,
     photo: {
       uri: PropTypes.string,
     },
-  },
+  }),
   city: PropTypes.string,
   street1: PropTypes.string,
   state: PropTypes.string,

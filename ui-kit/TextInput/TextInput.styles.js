@@ -11,7 +11,7 @@ const TextInput = styled.div`
 
 const Input = styled.input`
   border: 2px solid ${themeGet('colors.border')};
-  border-radius: ${themeGet('radii.s')};
+  border-radius: ${themeGet('radii.l')};
   font-family: ${themeGet('fonts.base')};
   font-size: ${themeGet('fontSizes.base')};
   padding: ${themeGet('space.s')};
