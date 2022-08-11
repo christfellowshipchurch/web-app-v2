@@ -15,7 +15,7 @@ const HeroLanding = styled.div`
   width: 100vw;
   overflow: none;
 
-  background-image: url(/external-landing/external-bg-video-frame-1.png);
+  background-image: url(${props => props.backgroundImage});
   background-position: center;
   background-size: cover;
 

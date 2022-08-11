@@ -99,12 +99,51 @@ const faqJupiterData = [
   },
 ];
 
+const faqWestlakeData = [
+  {
+    title: 'What does Christ Fellowship believe?',
+    description:
+      'Christ Fellowship is a church in South Florida with a passion to help you know God and grow in your relationships so that you can discover your purpose and impact your world. Led by senior pastors Todd & Julie Mullins, our mission is to impact the world with the love and message of Jesus Christ—everyone, everyday, everywhere. <br />  <br />  Find out more about <a target="_blank" href="/about">our church and our beliefs.</a>',
+  },
+  {
+    title: 'When is the Westlake location opening?',
+    description: `We’re anticipating being able to officially open the doors in December 2022! Be sure to  <a target="_blank" href="/">sign up for updates</a> to be the first to know more details!`,
+  },
+  {
+    title: 'Will there be any community events before opening?',
+    description:
+      'Yes! Be sure to <a target="_blank" href="/">sign up for updates</a> to be the first to know about upcoming community events!',
+  },
+  {
+    title: 'Can I experience Christ Fellowship before the Westlake opening?',
+    description:
+      'Yes! You can experience a Christ Fellowship service live online every Sunday or  <a target="_blank" href="/locations">find another campus</a> near you!',
+  },
+  {
+    title: 'Are there any expectations for visitors?',
+    description: `Not at all. When we say "welcome home," we mean it! Be yourself, relax, and enjoy the service. We can't wait to see you!`,
+  },
+  {
+    title: 'How long will the services be?',
+    description: `Our church services last a little over an hour. We'll sing a few worship songs and hear a message from our pastors or guest speakers. We suggest arriving a little early so you can park, get coffee, and find your seat!`,
+  },
+  {
+    title: 'What should I plan to wear?',
+    description: `You can wear whatever you feel most comfortable in! Every Sunday, we’ll have casual, relaxing services where everyone is welcome. Come as you are and expect to feel right at home!`,
+  },
+  {
+    title: 'Will childcare be provided?',
+    description: `Yes! We will have a fun, safe, and clean area for kids & students (newborn–grade 6).`,
+  },
+];
 const faqData = campus => {
   switch (campus) {
     case 'Downtown West Palm Beach':
       return faqDowntownData;
     case 'Jupiter':
       return faqJupiterData;
+    case 'Westlake':
+      return faqWestlakeData;
     default:
       return faqDefaultData;
   }
