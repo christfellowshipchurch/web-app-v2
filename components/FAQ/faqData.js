@@ -107,12 +107,12 @@ const faqWestlakeData = [
   },
   {
     title: 'When is the Westlake location opening?',
-    description: `We’re anticipating being able to officially open the doors in December 2022! Be sure to  <a target="_blank" href="/">sign up for updates</a> to be the first to know more details!`,
+    description: `We’re anticipating being able to officially open the doors in December 2022! Be sure to  <a target="_blank" href="https://rock.gocf.org/WestlakeInterest">sign up for updates</a> to be the first to know more details!`,
   },
   {
     title: 'Will there be any community events before opening?',
     description:
-      'Yes! Be sure to <a target="_blank" href="/">sign up for updates</a> to be the first to know about upcoming community events!',
+      'Yes! Be sure to <a target="_blank" href="https://rock.gocf.org/WestlakeInterest">sign up for updates</a> to be the first to know about upcoming community events!',
   },
   {
     title: 'Can I experience Christ Fellowship before the Westlake opening?',

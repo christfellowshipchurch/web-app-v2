@@ -141,7 +141,7 @@ const Westlake = props => {
               {
                 title: 'Join the Launch Team',
                 relatedNode: {
-                  url: '#join-the-launch-form',
+                  url: 'https://rock.gocf.org/WestlakeInterest',
                 },
               },
             ]}
