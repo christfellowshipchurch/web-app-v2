@@ -51,7 +51,8 @@ const Westlake = props => {
             actions={[
               {
                 title: 'Sign Up to Receive Updates',
-                relatedNode: { url: '#form' },
+                target: '_blank',
+                relatedNode: { url: 'https://rock.gocf.org/WestlakeInterest' },
               },
               {
                 title: 'Join the Launch Team',
@@ -152,12 +153,13 @@ const Westlake = props => {
           <ContentBlock
             title="Hear what others are saying!"
             htmlContent={`"I can't wait for this campus launch!"`}
-            image="/find-a-location.jpg"
+            image="/westlake-testimony.jpeg"
             imageRatio="4by3"
             actions={[
               {
                 title: 'Sign Up to Receive Updates',
-                relatedNode: { url: '#form' },
+                target: '_blank',
+                relatedNode: { url: 'https://rock.gocf.org/WestlakeInterest' },
               },
               {
                 title: 'Join the Launch Team',
