@@ -33,6 +33,7 @@ module.exports = {
         permanent: false,
       }, //try to force cache update again again
       
+      { source: '/studentleader', destination: '/lh-student-leader', permanent: true },
       { source: '/moms', destination: '/intentional-mom', permanent: true },
       { source: '/dodgeball', destination: '/dodgeball-2022', permanent: true },
       { source: '/teacher', destination: 'https://longhollow.com/back-to-school-teacher-serve-week', permanent: true },
