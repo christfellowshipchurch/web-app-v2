@@ -1,15 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FAQ, HeroLanding, Layout } from 'components';
-import {
-  Box,
-  Button,
-  CardCarousel,
-  ContentBlock,
-  HtmlRenderer,
-  Icon,
-  Image,
-} from 'ui-kit';
+import { Box, CardCarousel, ContentBlock, Image } from 'ui-kit';
 import faqData from 'components/FAQ/faqData';
 
 const Westlake = props => {
@@ -135,7 +127,7 @@ const Westlake = props => {
           <ContentBlock
             title="Join the launch team!"
             htmlContent={`Want to be a part of creating a place and a space for people to <a target="_blank" href="https://www.christfellowship.church/discover-whats-here">discover what’s here</a>? Join the Christ Fellowship Westlake Launch Team!`}
-            image="/find-a-location.jpg"
+            image="/westlake/launch_team.jpeg"
             imageRatio="16by9"
             actions={[
               {
@@ -153,7 +145,7 @@ const Westlake = props => {
           <ContentBlock
             title="Hear what others are saying!"
             htmlContent={`"I can't wait for this campus launch!"`}
-            image="/westlake-testimony.jpeg"
+            image="/westlake/westlake-testimony.jpeg"
             imageRatio="4by3"
             actions={[
               {
@@ -175,16 +167,37 @@ const Westlake = props => {
           <FAQ data={faqData('Westlake')} />
         </Box>
       </Box>
+      <Box px="base" py="l" bg="white">
+        <Box mt={{ _: '-0.5rem', md: 'base' }} mx="auto" maxWidth={800}>
+          <ContentBlock
+            title="Experience Christ Fellowship now!"
+            htmlContent={`Can’t wait until December 2022? Same here! The good news is that you can experience a Christ Fellowship service live online every Sunday or find another campus near you!`}
+            image="/westlake/watch_online.jpeg"
+            imageRatio="16by9"
+            actions={[
+              {
+                title: 'Watch Online',
+                relatedNode: {
+                  url: 'https://cf.church/watchonline',
+                },
+              },
+            ]}
+          />
+        </Box>
+      </Box>
     </Layout>
   );
 };
 
 Westlake.defaultProps = {
   carouselPhotos: [
-    '/discover-whats-here.jpeg',
-    '/external-landing/new-here-1.jpeg',
-    '/external-landing/new-here-2.png',
-    '/external-landing/new-here-3.jpeg',
+    '/westlake/westlake_1.jpeg',
+    '/westlake/westlake_2.jpeg',
+    '/westlake/westlake_3.jpeg',
+    '/westlake/westlake_4.jpeg',
+    '/westlake/westlake_5.jpeg',
+    '/westlake/westlake_6.jpeg',
+    '/westlake/westlake_7.jpeg',
   ],
 };
 
