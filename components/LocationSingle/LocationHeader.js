@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 
 import { Box, Button, Divider } from 'ui-kit';
 import Styled from './LocationSingle.styles';
+import { showModal, useModalDispatch } from 'providers/ModalProvider';
 import { useCurrentBreakpoint } from 'hooks';
 
 const LocationHeader = (props = {}) => {
+  const modalDispatch = useModalDispatch();
   let currentBreakpoint = useCurrentBreakpoint();
 
   return (
@@ -69,8 +71,14 @@ const LocationHeader = (props = {}) => {
               <Button
                 as="a"
                 href={props?.primaryButton?.action}
+                onClick={() =>
+                  modalDispatch(
+                    showModal(props?.primaryButton?.modal, {
+                      defaultCampus: props?.name,
+                    })
+                  )
+                }
                 target={props?.primaryButton?.newTab ? '_blank' : ''}
-                // target="_blank"
                 mt="s"
                 mr={{ _: 'xs', md: 'base' }}
                 width={{ _: '100%', sm: 'auto' }}
@@ -81,8 +89,9 @@ const LocationHeader = (props = {}) => {
               </Button>
               <Button
                 as="a"
-                href={props?.secondaryButton?.action}
-                target={props?.secondaryButton?.newTab ? '_blank' : ''}
+                onClick={() =>
+                  modalDispatch(showModal(props?.secondaryButton?.modal))
+                }
                 id="service-times"
                 mt="s"
                 variant="tertiary"
@@ -132,7 +141,7 @@ LocationHeader.defaultProps = {
   },
   secondaryButton: {
     call: 'Get Connected',
-    action: 'https://rock.gocf.org/connect',
+    modal: 'ConnectCardModal',
     newTab: true,
   },
   backgroundVideo: {

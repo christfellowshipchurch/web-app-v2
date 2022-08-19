@@ -62,7 +62,7 @@ function ContentBlock(props = {}) {
         >
           <Conditional condition={hasImage && !hasVideo}>
             <Image
-              altText={title || "Christ Fellowship Church"}
+              altText={title || 'Christ Fellowship Church'}
               mask={props?.imageMask}
               source={props.image}
               aspectRatio={props.imageRatio}
@@ -99,9 +99,10 @@ function ContentBlock(props = {}) {
               href={`#${containerId}`}
               opacity="0.5"
               color="primary"
-            >
-              <Icon name="link" size="16" />
-            </CustomLink>
+              Component={Icon}
+              name="link"
+              size="16"
+            />
           </Box>
         </ConditionalBox>
 

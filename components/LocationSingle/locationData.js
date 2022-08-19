@@ -334,8 +334,9 @@ const headerData = [
   {
     name: 'Royal Palm Beach',
     primaryButton: {
+      modal: 'SetReminder',
       call: 'Set a Reminder',
-      action: 'https://rock.christfellowship.church/im-coming/rpb',
+      // action: 'https://rock.christfellowship.church/im-coming/rpb',
       newTab: true,
     },
     backgroundVideo: {
@@ -387,7 +388,8 @@ const headerData = [
     name: 'Riviera Beach',
     primaryButton: {
       call: 'Set a Reminder',
-      action: 'https://rock.christfellowship.church/im-coming/riv',
+      modal: 'SetReminder',
+      // action: 'https://rock.christfellowship.church/im-coming/riv',
       newTab: true,
     },
     backgroundVideo: {

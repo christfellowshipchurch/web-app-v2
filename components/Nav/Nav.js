@@ -45,7 +45,7 @@ function Nav(props = {}) {
           data={props.data.quickAction}
         />
       ) : (
-        [
+        <>
           <Menu
             display={{ _: 'none', md: 'inline' }}
             cardContentProps={{
@@ -67,7 +67,7 @@ function Nav(props = {}) {
             <List py="xs" space="0">
               <MenuLinks data={props.data.startNowLinks} />
             </List>
-          </Menu>,
+          </Menu>
 
           <QuickAction
             variant="secondary"
@@ -78,8 +78,8 @@ function Nav(props = {}) {
             hoverColor={props?.transparentMode ? 'neutrals.400' : null}
             display={{ _: 'none', md: 'inline' }}
             data={props.data.quickAction}
-          />,
-        ]
+          />
+        </>
       )}
       {/* Hide avatar for dark mode */}
       {!props.transparentMode && (
@@ -153,7 +153,7 @@ function Nav(props = {}) {
                     <CurrentUserProvider
                       Component={UserAvatar}
                       handleAuthClick={handleAuthClick}
-                      size={"25px"}
+                      size={'25px'}
                     />
                     <Box as="p" ml="xs">
                       Profile
@@ -211,10 +211,10 @@ function Nav(props = {}) {
 function Primary(props = {}) {
   return props.data.map((item, idx) => (
     <Box key={idx} as="li">
-      <CustomLink href={item.action} Component={Menu.Link} px="base" py="xs">
+      <Menu.Link href={item.action} px="base" py="xs">
         <Icon name={item.icon} mr="s" size="18" />
         {item.call}
-      </CustomLink>
+      </Menu.Link>
     </Box>
   ));
 }
@@ -231,12 +231,16 @@ function QuickAction(props = {}) {
 function MenuLinks(props = {}) {
   return props.data.map((item, idx) => (
     <Box key={idx} as="li">
-      <Box as="a" textDecoration="none" href={item.action} target={item.target}>
-        <Menu.Link px="base" py="xs">
-          <Icon name={item.icon} mr="s" size="18" />
-          {item.call}
-        </Menu.Link>
-      </Box>
+      <Menu.Link
+        href={item.action}
+        target={item.target}
+        textDecoration="none"
+        px="base"
+        py="xs"
+      >
+        <Icon name={item.icon} mr="s" size="18" />
+        {item.call}
+      </Menu.Link>
     </Box>
   ));
 }

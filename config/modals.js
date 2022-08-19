@@ -3,6 +3,7 @@ import {
   AddGroupMemberModal,
   AddToCalendarModal,
   AuthModal,
+  ConnectCardModal,
   ConnectModal,
   GroupDetailsModal,
   GroupEmailConfirmationModal,
@@ -10,8 +11,9 @@ import {
   GroupMemberDetailsModal,
   GroupNotifyMeModal,
   NodeSingleModal,
-  WelcomeModal,
+  SetReminderModal,
   VideoModal,
+  WelcomeModal,
 } from 'components/Modals';
 
 const modals = [
@@ -30,6 +32,10 @@ const modals = [
   {
     title: 'Auth',
     component: AuthModal,
+  },
+  {
+    title: 'ConnectCardModal',
+    component: ConnectCardModal,
   },
   {
     title: 'ConnectModal',
@@ -56,16 +62,20 @@ const modals = [
     component: GroupNotifyMeModal,
   },
   {
-    title: 'Welcome',
-    component: WelcomeModal,
-  },
-  {
     title: 'NodeSingle',
     component: NodeSingleModal,
   },
   {
+    title: 'SetReminder',
+    component: SetReminderModal,
+  },
+  {
     title: 'Video',
     component: VideoModal,
+  },
+  {
+    title: 'Welcome',
+    component: WelcomeModal,
   },
 ];
 

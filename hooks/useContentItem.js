@@ -11,7 +11,7 @@ import {
   RELATED_FEATURE_NODE_FRAGMENT,
   THEME_FRAGMENT,
   VERTICAL_CARD_LIST_FEATURE_FRAGMENT,
-  THEMED_NODE_FRAGMENT
+  THEMED_NODE_FRAGMENT,
 } from 'fragments';
 
 export const CONTENT_ITEM_FRAGMENT = gql`
@@ -179,27 +179,27 @@ export const GET_CONTENT_ITEM = gql`
 /**
  * todo : there is a bug that I can't explain going on here
  * For some reason, EventContentItems are NOT getting updated from the network after pulling the cached data. This means that if I have an event with title `My Event Name` cached and I update the name to `My New Event Name`, I won't see that UNLESS I change the cache policy to `no-cache`
- * 
+ *
  * :: Possible Long Term Solutions
  * Cache merge isn't working properly for the `EventContentItem` type
  * Conflict happening because our platform prefers SSR, so we need to update the `EventSingle` component to allow for SSR
- * 
+ *
  * :: Temporary Solution
  * Check the pathname to see if it starts with `event/`. If it does, change the cache policy to `no-cache`. Fall back to the preferred `cache-and-network`
  */
 function useContentItem(options = {}) {
   const query = useQuery(GET_CONTENT_ITEM, {
-    fetchPolicy: options?.variables?.pathname.startsWith("events/") ? 'no-cache' : 'cache-and-network',
+    fetchPolicy: options?.variables?.pathname.startsWith('events/')
+      ? 'no-cache'
+      : 'cache-and-network',
     ...options,
   });
-  const item = query?.data?.getNodeByPathname || null
-
-  console.log({ options, item })
+  const item = query?.data?.getNodeByPathname || null;
 
   return {
     item,
     ...query,
-    loading: query?.loading && !item
+    loading: query?.loading && !item,
   };
 }
 

@@ -39,7 +39,7 @@ const Content = styled.div`
   border-radius: ${themeGet('radii.base')};
   box-shadow: ${themeGet('shadows.xl')};
   left: 50%;
-  margin-top: -${themeGet('space.xxl')};
+  /* margin-top: -${themeGet('space.xxl')}; */
   max-width: 100vw;
   max-width: 100vw;
   overflow: scroll;

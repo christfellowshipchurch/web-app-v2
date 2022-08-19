@@ -57,6 +57,8 @@ import useSearchContentItems from './useSearchContentItems';
 import useSearchGroups from './useSearchGroups';
 import useSendGroupEmail from './useSendGroupEmail';
 import useSearchGroupMembers from './useSearchGroupMembers';
+import useSubmitConnectCard from './useSubmitConnectCard';
+import useSubmitSetReminder from './useSubmitSetReminder';
 import useUpdateCurrentUser from './useUpdateCurrentUser';
 import useUpdateGroupCoverImage from './useUpdateGroupCoverImage';
 import useUpdateGroupResourceContentItem from './useUpdateGroupResourceContentItem';
@@ -126,6 +128,8 @@ export {
   useSearchGroups,
   useSendGroupEmail,
   useSearchGroupMembers,
+  useSubmitConnectCard,
+  useSubmitSetReminder,
   useUpdateCurrentUser,
   useUpdateGroupCoverImage,
   useUpdateGroupResourceContentItem,
