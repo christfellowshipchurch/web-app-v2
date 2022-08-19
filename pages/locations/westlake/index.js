@@ -132,6 +132,7 @@ const Westlake = props => {
             actions={[
               {
                 title: 'Join the Launch Team',
+                target: '_blank',
                 relatedNode: {
                   url: 'https://rock.gocf.org/WestlakeInterest',
                 },
@@ -143,8 +144,8 @@ const Westlake = props => {
       <Box px="base" py="l" bg="white">
         <Box mt={{ _: '-0.5rem', md: 'base' }} mx="auto" maxWidth={1000}>
           <ContentBlock
-            title="Hear what others are saying!"
-            htmlContent={`"I can't wait for this campus launch!"`}
+            title={`“We can’t wait for Christ Fellowship Westlake"`}
+            htmlContent={`“We started attending Christ Fellowship 8 years ago when we were just dating. We were goers, but we weren’t plugged in, and we knew God wanted more for our family. After building a home in Westlake, we decided to start leading groups for our new neighbors while we waited for the campus to officially launch—and we were blown away by the community that's already here and just waiting for a building! We love that Christ Fellowship gives us so many ways to hang out with our new friends, and we know that God placed us all here for a reason. We can’t wait for Christ Fellowship Westlake, and we’ll be planting the seeds until it gets here!” - Kaitlin & Josh`}
             image="/westlake/westlake-testimony.jpeg"
             imageRatio="4by3"
             actions={[
@@ -177,6 +178,7 @@ const Westlake = props => {
             actions={[
               {
                 title: 'Watch Online',
+                target: '_blank',
                 relatedNode: {
                   url: 'https://cf.church/watchonline',
                 },
