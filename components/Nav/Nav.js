@@ -39,81 +39,18 @@ function Nav(props = {}) {
 
   return (
     <Styled>
-      {authenticated ? (
-        <QuickAction
-          display={{ _: 'none', md: 'inline' }}
-          data={props.data.quickAction}
-        />
-      ) : (
-        <>
-          <Menu
-            display={{ _: 'none', md: 'inline' }}
-            cardContentProps={{
-              p: '0',
-              py: 's',
-            }}
-            renderTrigger={({ toggle }) => (
-              <Box as="a" textDecoration="none" href="#0" onClick={toggle}>
-                <Button px="base" size="s">
-                  Start Now
-                  <Icon name="caretDown" mr={-10} ml="xs" mt={-4} mb={-6} />
-                </Button>
-              </Box>
-            )}
-            side="right"
-            menuWidth="240px"
-            menuMargin="s"
-          >
-            <List py="xs" space="0">
-              <MenuLinks data={props.data.startNowLinks} />
-            </List>
-          </Menu>
+      <QuickAction
+        display={{ _: 'none', md: 'inline' }}
+        data={props.data.quickAction}
+      />
 
-          <QuickAction
-            variant="secondary"
-            size="s"
-            px="base"
-            color={props?.transparentMode ? 'white' : 'primary'}
-            borderColor={props?.transparentMode ? 'white' : 'primary'}
-            hoverColor={props?.transparentMode ? 'neutrals.400' : null}
-            display={{ _: 'none', md: 'inline' }}
-            data={props.data.quickAction}
-          />
-        </>
-      )}
-      {/* Hide avatar for dark mode */}
-      {!props.transparentMode && (
-        <ClientSideComponent display={{ _: 'none', md: 'block' }}>
-          {authenticated ? (
-            <CurrentUserProvider
-              Component={UserAvatar}
-              handleAuthClick={handleAuthClick}
-            />
-          ) : (
-            <Box
-              as="a"
-              href="#0"
-              display="block"
-              border="2px solid"
-              borderColor={props?.transparentMode ? 'white' : 'fg'}
-              borderRadius="50%"
-              lineHeight="38px"
-              size="45px"
-              textAlign="center"
-              onClick={handleAuthClick}
-            >
-              <Icon
-                name="user"
-                color={props?.transparentMode ? 'white' : 'fg'}
-                size="28px"
-              />
-              <Box as="span" className="srt">
-                User
-              </Box>
-            </Box>
-          )}
-        </ClientSideComponent>
-      )}
+      <Box as="a" href="/discover" display={{ _: 'none', md: 'inline' }}>
+        <Icon
+          name="search"
+          color={props?.transparentMode ? 'white' : 'neutrals.800'}
+        />
+      </Box>
+
       <Menu
         cardContentProps={{
           p: '0',
@@ -204,6 +141,47 @@ function Nav(props = {}) {
           </Box>
         </List>
       </Menu>
+      <ClientSideComponent display={{ _: 'none', md: 'block' }}>
+        {authenticated ? (
+          <CurrentUserProvider
+            Component={UserAvatar}
+            handleAuthClick={handleAuthClick}
+          />
+        ) : (
+          <Box
+            as="a"
+            href="#0"
+            onClick={handleAuthClick}
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            textDecoration="none"
+          >
+            <Box
+              display="flex"
+              border="2px solid"
+              justifyContent="center"
+              borderColor={props?.transparentMode ? 'white' : 'fg'}
+              borderRadius="50%"
+              size="30px"
+            >
+              <Icon
+                name="user"
+                size={16}
+                color={props?.transparentMode ? 'white' : 'fg'}
+              />
+            </Box>
+            <Box
+              as="span"
+              mt="0.15rem"
+              color={props?.transparentMode ? 'white' : 'fg'}
+              fontSize="12px"
+            >
+              Sign In
+            </Box>
+          </Box>
+        )}
+      </ClientSideComponent>
     </Styled>
   );
 }
