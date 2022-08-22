@@ -32,7 +32,7 @@ module.exports = {
         destination: '/:slug',
         permanent: false,
       }, //try to force cache update again again
-      
+      { source: '/retreat', destination: 'https://www.eventcreate.com/e/longhollowstaffretreat', permanent: true },
       { source: '/studentleader', destination: '/lh-student-leader', permanent: true },
       { source: '/moms', destination: '/intentional-mom', permanent: true },
       { source: '/dodgeball', destination: '/dodgeball-2022', permanent: true },
