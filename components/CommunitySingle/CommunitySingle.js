@@ -120,7 +120,8 @@ function CommunitySingle(props = {}) {
   // }
 
   // Bypassing group filter modal temporarily
-  const handleSubPreferenceSelect = () => {
+  const handleSubPreferenceSelect = subPreference => {
+    filtersDispatch(update({ subPreferences: [subPreference.title] }));
     router.push({
       pathname: `/groups/search`,
       query: filtersState.valuesSerialized,
