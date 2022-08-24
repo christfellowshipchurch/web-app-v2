@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 
 import { CurrentUserProvider } from 'providers';
 import { logout, useAuth } from 'providers/AuthProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
-import { Box, Button, Icon, List, Menu, systemPropTypes } from 'ui-kit';
-import { ClientSideComponent, CustomLink, UserAvatar } from 'components';
+import { Box, Button, Icon, Menu, systemPropTypes } from 'ui-kit';
+import { ClientSideComponent, MobileNavScreen, UserAvatar } from 'components';
 import Styled from './Nav.styles';
+import { useCurrentBreakpoint } from 'hooks';
 
 function Nav(props = {}) {
   const [{ authenticated }, authDispatch] = useAuth();
+  const [showMobileNav, setShowMobileNav] = useState(false);
+  const currentBreakpoint = useCurrentBreakpoint();
   const modalDispatch = useModalDispatch();
   const router = useRouter();
 
@@ -53,13 +56,21 @@ function Nav(props = {}) {
       <Box
         cursor="pointer"
         textDecoration="none"
-        onClick={() => modalDispatch(showModal('NavMenu'))}
+        onClick={
+          currentBreakpoint.isSmall
+            ? () => setShowMobileNav(!showMobileNav)
+            : () => modalDispatch(showModal('NavMenu'))
+        }
       >
         <Icon name="menu" color={props?.transparentMode ? 'white' : 'fg'} />
         <Box as="span" p="xs" color={props?.transparentMode ? 'white' : 'fg'}>
           Menu
         </Box>
       </Box>
+
+      {showMobileNav && (
+        <MobileNavScreen onClick={() => setShowMobileNav(!showMobileNav)} />
+      )}
 
       {/* <Menu
         cardContentProps={{

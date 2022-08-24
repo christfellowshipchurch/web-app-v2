@@ -9,7 +9,7 @@ import {
 } from 'providers/ModalProvider';
 import { Box, Icon } from 'ui-kit';
 
-function GetHelp() {
+function GetHelp(props = {}) {
   return (
     <Box
       as="a"
@@ -18,6 +18,7 @@ function GetHelp() {
       display="flex"
       alignItems="center"
       color="primary"
+      {...props}
     >
       <Icon name="info" size={18} mb={2} mr={3} />
       <Box as="span" fontSize={14} fontWeight="bold" mb={0}>

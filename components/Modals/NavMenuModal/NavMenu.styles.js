@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
 import { system } from 'ui-kit';
-import NavigationMenu from '.';
-import { fontSize, fontWeight } from 'styled-system';
 
 const NavMenu = styled.div``;
 
