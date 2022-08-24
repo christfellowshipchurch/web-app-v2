@@ -9,8 +9,6 @@ import { Box, Button, Icon, List, Menu, systemPropTypes } from 'ui-kit';
 import { ClientSideComponent, CustomLink, UserAvatar } from 'components';
 import Styled from './Nav.styles';
 
-import { amplitude } from 'lib/analytics';
-
 function Nav(props = {}) {
   const [{ authenticated }, authDispatch] = useAuth();
   const modalDispatch = useModalDispatch();
@@ -51,7 +49,19 @@ function Nav(props = {}) {
         />
       </Box>
 
-      <Menu
+      {/* New Menu */}
+      <Box
+        cursor="pointer"
+        textDecoration="none"
+        onClick={() => modalDispatch(showModal('NavMenu'))}
+      >
+        <Icon name="menu" color={props?.transparentMode ? 'white' : 'fg'} />
+        <Box as="span" p="xs" color={props?.transparentMode ? 'white' : 'fg'}>
+          Menu
+        </Box>
+      </Box>
+
+      {/* <Menu
         cardContentProps={{
           p: '0',
           py: 's',
@@ -72,7 +82,6 @@ function Nav(props = {}) {
         menuWidth="245px"
       >
         <List py="xs" space="0">
-          {/* Mobile Watch Online */}
           <Box as="li" display={{ _: 'inline', md: 'none' }}>
             <ClientSideComponent>
               {authenticated && (
@@ -140,7 +149,7 @@ function Nav(props = {}) {
             )}
           </Box>
         </List>
-      </Menu>
+      </Menu> */}
       <ClientSideComponent display={{ _: 'none', md: 'block' }}>
         {authenticated ? (
           <CurrentUserProvider
