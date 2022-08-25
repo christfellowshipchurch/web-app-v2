@@ -66,10 +66,21 @@ function NavScreen(props) {
         width="inherit"
       >
         <Logo />
-        <Box display="flex">
-          <Icon name="search" mr="s" />
-          <Icon name="user" mr="s" />
-          <Icon name="x" onClick={props?.onClick} />
+        <Box display="flex" alignItems="center">
+          <Box as="a" color="black" href="/discover" mr="0.8rem">
+            <Icon name="search" />
+          </Box>
+          {props?.auth ? (
+            <Icon
+              name="sign-out"
+              size={18}
+              mr="0.8rem"
+              onClick={props?.handleLogout}
+            />
+          ) : (
+            <Icon name="user" mr="0.8rem" onClick={props?.handleAuth} />
+          )}
+          <Icon name="x" onClick={props?.onClose} />
         </Box>
       </Box>
       {screenStates.find(n => n.key === screenState)?.screen}

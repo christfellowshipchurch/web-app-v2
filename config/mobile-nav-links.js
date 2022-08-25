@@ -69,6 +69,10 @@ const navigation = {
       title: 'Next Steps',
       links: [
         {
+          call: 'Find Your Next Step',
+          action: '/find-your-next-step',
+        },
+        {
           call: 'Jesus',
           action: '/discover?c=jesus',
         },
@@ -145,51 +149,51 @@ const navigation = {
       links: [
         {
           call: 'Palm Beach Gardens',
-          action: '/',
+          action: '/locations/palm-beach-gardens',
         },
         {
           call: 'Royal Palm Beach',
-          action: '/',
+          action: '/locations/royal-palm-beach',
         },
         {
           call: 'Downtown West Palm Beach',
-          action: '/',
+          action: '/locations/downtown-west-palm-beach',
         },
         {
           call: 'Port St. Lucie',
-          action: '/',
+          action: '/locations/port-st-lucie',
         },
         {
           call: 'Vero Beach',
-          action: '/',
+          action: '/locations/vero-beach',
         },
         {
           call: 'Okeechobee',
-          action: '/',
+          action: '/locations/okeechobee',
         },
         {
           call: 'Boynton Beach',
-          action: '/',
+          action: '/locations/boynton-beach',
         },
         {
           call: 'Boca Raton',
-          action: '/',
+          action: '/locations/boca-raton',
         },
         {
           call: 'Jupiter',
-          action: '/',
+          action: '/locations/jupiter',
         },
         {
           call: 'Stuart',
-          action: '/',
+          action: '/locations/stuart',
         },
         {
           call: 'Riviera Beach',
-          action: '/',
+          action: '/locations/riviera-beach',
         },
         {
           call: 'Belle Glade',
-          action: '/',
+          action: '/locations/belle-glade',
         },
       ],
     },

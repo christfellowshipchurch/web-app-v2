@@ -63,7 +63,7 @@ const LinkContainerColored = styled.div`
   display: flex;
   flex-direction: column;
   padding-top: ${themeGet('space.base')};
-  padding-bottom: ${themeGet('space.base')};
+  padding-bottom: ${themeGet('space.l')};
   padding-right: ${themeGet('space.l')};
   padding-left: ${themeGet('space.l')};
   width: inherit;

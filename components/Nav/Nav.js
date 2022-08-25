@@ -29,6 +29,7 @@ function Nav(props = {}) {
 
   function handleAuthClick(event) {
     event.preventDefault();
+    setShowMobileNav(false);
     modalDispatch(showModal('Auth'));
   }
 
@@ -68,8 +69,22 @@ function Nav(props = {}) {
         </Box>
       </Box>
 
+      {authenticated && !showMobileNav && (
+        <CurrentUserProvider
+          Component={UserAvatar}
+          handleAuthClick={handleAuthClick}
+          size={35}
+          ml="-1rem"
+        />
+      )}
+
       {showMobileNav && (
-        <MobileNavScreen onClick={() => setShowMobileNav(!showMobileNav)} />
+        <MobileNavScreen
+          onClose={() => setShowMobileNav(!showMobileNav)}
+          auth={authenticated}
+          handleAuth={handleAuthClick}
+          handleLogout={handleLogoutClick}
+        />
       )}
 
       <ClientSideComponent display={{ _: 'none', md: 'block' }}>

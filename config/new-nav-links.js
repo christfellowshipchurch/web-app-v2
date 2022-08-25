@@ -146,7 +146,7 @@ const navigation = {
     },
     {
       headerLink: {
-        call: 'Watch, Read, & Listen',
+        call: 'Watch, Read, & More',
         action: '/discover?c=sundays',
       },
       subLinks: [
