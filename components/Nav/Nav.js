@@ -42,6 +42,12 @@ function Nav(props = {}) {
   return (
     <Styled>
       <QuickAction
+        variant="secondary"
+        size="s"
+        px="base"
+        color={props?.transparentMode ? 'white' : 'primary'}
+        borderColor={props?.transparentMode ? 'white' : 'primary'}
+        hoverColor={props?.transparentMode ? 'neutrals.400' : null}
         display={{ _: 'none', md: 'inline' }}
         data={props.data.quickAction}
       />
