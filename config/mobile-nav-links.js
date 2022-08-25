@@ -148,11 +148,23 @@ const navigation = {
           action: '/',
         },
         {
+          call: 'Royal Palm Beach',
+          action: '/',
+        },
+        {
+          call: 'Downtown West Palm Beach',
+          action: '/',
+        },
+        {
           call: 'Port St. Lucie',
           action: '/',
         },
         {
-          call: 'Royal Palm Beach',
+          call: 'Vero Beach',
+          action: '/',
+        },
+        {
+          call: 'Okeechobee',
           action: '/',
         },
         {
@@ -160,7 +172,7 @@ const navigation = {
           action: '/',
         },
         {
-          call: 'Downtown West Palm Beach',
+          call: 'Boca Raton',
           action: '/',
         },
         {
@@ -172,39 +184,11 @@ const navigation = {
           action: '/',
         },
         {
-          call: 'Okeechobee',
-          action: '/',
-        },
-        {
-          call: 'Belle Glade',
-          action: '/',
-        },
-        {
-          call: 'Boca Raton',
-          action: '/',
-        },
-        {
-          call: 'Vero Beach',
-          action: '/',
-        },
-        {
           call: 'Riviera Beach',
           action: '/',
         },
         {
-          call: 'en Español Palm Beach Gardens',
-          action: '/',
-        },
-        {
-          call: 'en Español Royal Palm Beach',
-          action: '/',
-        },
-        {
-          call: 'Christ Fellowship Everywhere',
-          action: '/',
-        },
-        {
-          call: 'Westlake',
+          call: 'Belle Glade',
           action: '/',
         },
       ],
