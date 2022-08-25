@@ -34,7 +34,7 @@ const navigation = {
     },
     {
       call: 'Join Us Online',
-      action: '/',
+      action: 'https://www.youtube.com/c/ChristFellowshipWelcomeHome',
       color: 'primary',
     },
   ],

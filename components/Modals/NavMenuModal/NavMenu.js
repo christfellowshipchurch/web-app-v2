@@ -18,7 +18,14 @@ function NavigationMenu(props = {}) {
           </Box>
           <SignIn />
         </Box>
-        <Button variant="secondary" size="s" mr="l">
+        <Button
+          a="a"
+          href="https://www.youtube.com/c/ChristFellowshipWelcomeHome"
+          target="_blank"
+          variant="secondary"
+          size="s"
+          mr="l"
+        >
           Join Us Online
         </Button>
       </Box>

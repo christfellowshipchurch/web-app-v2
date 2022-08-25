@@ -10,10 +10,13 @@ import {
 import { Box, Icon } from 'ui-kit';
 
 function GetHelp(props = {}) {
+  const modalDispatch = useModalDispatch();
+
   return (
     <Box
       as="a"
-      href="/"
+      cursor="pointer"
+      onClick={() => modalDispatch(showModal('ConnectCardModal'))}
       textDecoration="none"
       display="flex"
       alignItems="center"
