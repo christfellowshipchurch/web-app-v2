@@ -147,13 +147,19 @@ const navigation = {
     {
       headerLink: {
         call: 'Watch, Read, & More',
-        action: '/discover?c=sundays',
+        action: '/discover?c=on-demand-messages',
       },
       subLinks: [
-        { call: 'On-Demand Messages', action: '/discover?c=sundays' },
-        { call: 'Devotionals & Articles', action: '/' },
-        { call: 'Podcasts', action: '/' },
-        { call: 'Music', action: '/' },
+        {
+          call: 'On-Demand Messages',
+          action: '/discover?c=on-demand-messages',
+        },
+        {
+          call: 'Devotionals & Articles',
+          action: '/discover?c=devotionals-articles',
+        },
+        { call: 'Podcasts', action: '/discover?c=podcasts' },
+        { call: 'Music', action: '/discover?c=music' },
       ],
     },
   ],

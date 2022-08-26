@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import kebabCase from 'lodash/kebabCase'
+import kebabCase from 'lodash/kebabCase';
 
 import { Box, Loader, Button, Cell, utils } from 'ui-kit';
 import {
@@ -25,12 +25,10 @@ const Discover = () => {
   const { values, handleSubmit, handleChange, reset } = useForm();
 
   const { loading: loadingFilters, filters } = useDiscoverFilters();
-  const [
-    search,
-    { loading, contentItems, data, fetchMore },
-  ] = useSearchContentItems({
-    notifyOnNetworkStatusChange: true,
-  });
+  const [search, { loading, contentItems, data, fetchMore }] =
+    useSearchContentItems({
+      notifyOnNetworkStatusChange: true,
+    });
 
   const [filterValues, setFilterValues] = useState({
     title: null,
@@ -47,7 +45,7 @@ const Discover = () => {
   const showEmptyState = !loading && !hasResults;
   const hasMorePages = contentItems?.length < data?.search?.totalResults;
 
-  // NOT IN USE FOR NOW 
+  // NOT IN USE FOR NOW
   // const handleLoadMore = () => {
   //   if (!loading && hasMorePages) {
   //     fetchMore({
@@ -89,8 +87,8 @@ const Discover = () => {
       router.push({
         pathname: '/discover',
         query: {
-          c: kebabCase(filterValues.title)
-        }
+          c: kebabCase(filterValues.title),
+        },
       });
     }
   }, [filterValues]);
@@ -100,7 +98,9 @@ const Discover = () => {
       const preSelection = router?.query?.c;
 
       if (preSelection) {
-        const filter = filters.find(({ title }) => kebabCase(title) === preSelection)
+        const filter = filters.find(
+          ({ title }) => kebabCase(title) === preSelection
+        );
 
         if (filter) {
           setFilterValues({
@@ -121,7 +121,7 @@ const Discover = () => {
   }, [filters, loadingFilters]);
 
   return (
-    <Layout title="Discover">
+    <Layout title="Watch, Read, & More">
       <Cell
         as="main"
         maxWidth={utils.rem('1100px')}
@@ -129,7 +129,7 @@ const Discover = () => {
         py={{ _: 's', lg: 'base' }}
       >
         <Box as="h1" mb="base">
-          Discover
+          Watch, Read, & More
         </Box>
         <SearchField
           handleChange={handleChange}
