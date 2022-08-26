@@ -1,18 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 
 import { CurrentUserProvider } from 'providers';
 import { logout, useAuth } from 'providers/AuthProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
-import { Box, Button, Icon, List, Menu, systemPropTypes } from 'ui-kit';
-import { ClientSideComponent, CustomLink, UserAvatar } from 'components';
+import { Box, Button, Icon, Menu, systemPropTypes } from 'ui-kit';
+import { ClientSideComponent, MobileNavScreen, UserAvatar } from 'components';
 import Styled from './Nav.styles';
-
-import { amplitude } from 'lib/analytics';
+import { useCurrentBreakpoint } from 'hooks';
 
 function Nav(props = {}) {
   const [{ authenticated }, authDispatch] = useAuth();
+  const [showMobileNav, setShowMobileNav] = useState(false);
+  const currentBreakpoint = useCurrentBreakpoint();
   const modalDispatch = useModalDispatch();
   const router = useRouter();
 
@@ -28,6 +29,7 @@ function Nav(props = {}) {
 
   function handleAuthClick(event) {
     event.preventDefault();
+    setShowMobileNav(false);
     modalDispatch(showModal('Auth'));
   }
 
@@ -39,184 +41,101 @@ function Nav(props = {}) {
 
   return (
     <Styled>
-      {authenticated ? (
-        <QuickAction
-          display={{ _: 'none', md: 'inline' }}
-          data={props.data.quickAction}
-        />
-      ) : (
-        <>
-          <Menu
-            display={{ _: 'none', md: 'inline' }}
-            cardContentProps={{
-              p: '0',
-              py: 's',
-            }}
-            renderTrigger={({ toggle }) => (
-              <Box as="a" textDecoration="none" href="#0" onClick={toggle}>
-                <Button px="base" size="s">
-                  Start Now
-                  <Icon name="caretDown" mr={-10} ml="xs" mt={-4} mb={-6} />
-                </Button>
-              </Box>
-            )}
-            side="right"
-            menuWidth="240px"
-            menuMargin="s"
-          >
-            <List py="xs" space="0">
-              <MenuLinks data={props.data.startNowLinks} />
-            </List>
-          </Menu>
+      <QuickAction
+        variant="secondary"
+        size="s"
+        px="base"
+        color={props?.transparentMode ? 'white' : 'primary'}
+        borderColor={props?.transparentMode ? 'white' : 'primary'}
+        hoverColor={props?.transparentMode ? 'neutrals.400' : null}
+        display={{ _: 'none', md: 'inline' }}
+        data={props.data.quickAction}
+      />
 
-          <QuickAction
-            variant="secondary"
-            size="s"
-            px="base"
-            color={props?.transparentMode ? 'white' : 'primary'}
-            borderColor={props?.transparentMode ? 'white' : 'primary'}
-            hoverColor={props?.transparentMode ? 'neutrals.400' : null}
-            display={{ _: 'none', md: 'inline' }}
-            data={props.data.quickAction}
-          />
-        </>
+      <Box as="a" href="/discover" display={{ _: 'none', md: 'inline' }}>
+        <Icon
+          name="search"
+          color={props?.transparentMode ? 'white' : 'neutrals.800'}
+        />
+      </Box>
+
+      {/* New Menu */}
+      <Box
+        cursor="pointer"
+        textDecoration="none"
+        onClick={
+          currentBreakpoint.isSmall
+            ? () => setShowMobileNav(!showMobileNav)
+            : () => modalDispatch(showModal('NavMenu'))
+        }
+      >
+        <Icon name="menu" color={props?.transparentMode ? 'white' : 'fg'} />
+        <Box as="span" p="xs" color={props?.transparentMode ? 'white' : 'fg'}>
+          Menu
+        </Box>
+      </Box>
+
+      {authenticated && !showMobileNav && (
+        <CurrentUserProvider
+          Component={UserAvatar}
+          handleAuthClick={handleAuthClick}
+          size={35}
+          ml="-1rem"
+        />
       )}
-      {/* Hide avatar for dark mode */}
-      {!props.transparentMode && (
-        <ClientSideComponent display={{ _: 'none', md: 'block' }}>
-          {authenticated ? (
-            <CurrentUserProvider
-              Component={UserAvatar}
-              handleAuthClick={handleAuthClick}
-            />
-          ) : (
+
+      {showMobileNav && (
+        <MobileNavScreen
+          onClose={() => setShowMobileNav(!showMobileNav)}
+          auth={authenticated}
+          handleAuth={handleAuthClick}
+          handleLogout={handleLogoutClick}
+        />
+      )}
+
+      <ClientSideComponent display={{ _: 'none', md: 'block' }}>
+        {authenticated ? (
+          <CurrentUserProvider
+            Component={UserAvatar}
+            handleAuthClick={handleAuthClick}
+          />
+        ) : (
+          <Box
+            as="a"
+            href="#0"
+            onClick={handleAuthClick}
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            textDecoration="none"
+          >
             <Box
-              as="a"
-              href="#0"
-              display="block"
+              display="flex"
               border="2px solid"
+              justifyContent="center"
               borderColor={props?.transparentMode ? 'white' : 'fg'}
               borderRadius="50%"
-              lineHeight="38px"
-              size="45px"
-              textAlign="center"
-              onClick={handleAuthClick}
+              size="30px"
             >
               <Icon
                 name="user"
+                size={16}
                 color={props?.transparentMode ? 'white' : 'fg'}
-                size="28px"
               />
-              <Box as="span" className="srt">
-                User
-              </Box>
             </Box>
-          )}
-        </ClientSideComponent>
-      )}
-      <Menu
-        cardContentProps={{
-          p: '0',
-          py: 's',
-        }}
-        renderTrigger={({ toggle }) => (
-          <Box as="a" textDecoration="none" href="#0" onClick={toggle}>
-            <Icon name="menu" color={props?.transparentMode ? 'white' : 'fg'} />
             <Box
               as="span"
-              p="xs"
+              mt="0.15rem"
               color={props?.transparentMode ? 'white' : 'fg'}
+              fontSize="12px"
             >
-              Menu
+              Sign In
             </Box>
           </Box>
         )}
-        side="right"
-        menuWidth="245px"
-      >
-        <List py="xs" space="0">
-          {/* Mobile Watch Online */}
-          <Box as="li" display={{ _: 'inline', md: 'none' }}>
-            <ClientSideComponent>
-              {authenticated && (
-                <Menu.Link>
-                  <Box
-                    borderBottom="solid lightgrey 1px"
-                    ml="s"
-                    pl="s"
-                    py="s"
-                    mr="base"
-                    mb="s"
-                    display="flex"
-                    alignItems="center"
-                  >
-                    <CurrentUserProvider
-                      Component={UserAvatar}
-                      handleAuthClick={handleAuthClick}
-                      size={'25px'}
-                    />
-                    <Box as="p" ml="xs">
-                      Profile
-                    </Box>
-                  </Box>
-                </Menu.Link>
-              )}
-            </ClientSideComponent>
-            <Menu.Link>
-              <QuickAction
-                py="xs"
-                variant="link"
-                icon
-                data={props.data.quickAction}
-              />
-            </Menu.Link>
-          </Box>
-          <Primary data={props.data.navigationLinks} />
-          <MenuLinks data={props.data.menuLinks} />
-          <Box as="li">
-            {authenticated ? (
-              <Menu.Link
-                href="#0"
-                onClick={handleLogoutClick}
-                px="base"
-                py="xs"
-                mt="10px"
-                borderTop="1px solid"
-                borderColor="border"
-              >
-                <Icon name="signOut" mr="s" size="18" />
-                Sign out
-              </Menu.Link>
-            ) : (
-              <Menu.Link
-                href="#0"
-                onClick={handleAuthClick}
-                px="base"
-                py="xs"
-                mt="10px"
-                borderTop="1px solid"
-                borderColor="border"
-              >
-                <Icon name="signIn" mr="s" size="18" />
-                Sign in
-              </Menu.Link>
-            )}
-          </Box>
-        </List>
-      </Menu>
+      </ClientSideComponent>
     </Styled>
   );
-}
-
-function Primary(props = {}) {
-  return props.data.map((item, idx) => (
-    <Box key={idx} as="li">
-      <Menu.Link href={item.action} px="base" py="xs">
-        <Icon name={item.icon} mr="s" size="18" />
-        {item.call}
-      </Menu.Link>
-    </Box>
-  ));
 }
 
 function QuickAction(props = {}) {
@@ -227,24 +146,6 @@ function QuickAction(props = {}) {
     </Button>
   );
 }
-
-function MenuLinks(props = {}) {
-  return props.data.map((item, idx) => (
-    <Box key={idx} as="li">
-      <Menu.Link
-        href={item.action}
-        target={item.target}
-        textDecoration="none"
-        px="base"
-        py="xs"
-      >
-        <Icon name={item.icon} mr="s" size="18" />
-        {item.call}
-      </Menu.Link>
-    </Box>
-  ));
-}
-
 Nav.propTypes = {
   ...systemPropTypes,
   data: PropTypes.object,

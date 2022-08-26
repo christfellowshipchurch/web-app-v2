@@ -10,6 +10,7 @@ import {
   GroupFilterModal,
   GroupMemberDetailsModal,
   GroupNotifyMeModal,
+  NavMenuModal,
   NodeSingleModal,
   SetReminderModal,
   VideoModal,
@@ -60,6 +61,10 @@ const modals = [
   {
     title: 'GroupNotifyMe',
     component: GroupNotifyMeModal,
+  },
+  {
+    title: 'NavMenu',
+    component: NavMenuModal,
   },
   {
     title: 'NodeSingle',
