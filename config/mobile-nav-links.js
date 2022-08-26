@@ -70,7 +70,7 @@ const navigation = {
       links: [
         {
           call: 'Find Your Next Step',
-          action: '/find-your-next-step',
+          action: '/it-all-starts-here',
         },
         {
           call: 'Jesus',
@@ -90,7 +90,7 @@ const navigation = {
         },
         {
           call: 'Volunteer',
-          action: '/dreamteam',
+          action: 'https://rock.christfellowship.church/dreamteam',
         },
       ],
     },
@@ -158,32 +158,20 @@ const navigation = {
           action: '/locations/palm-beach-gardens',
         },
         {
-          call: 'Royal Palm Beach',
-          action: '/locations/royal-palm-beach',
-        },
-        {
-          call: 'Downtown West Palm Beach',
-          action: '/locations/downtown-west-palm-beach',
-        },
-        {
           call: 'Port St. Lucie',
           action: '/locations/port-st-lucie',
         },
         {
-          call: 'Vero Beach',
-          action: '/locations/vero-beach',
-        },
-        {
-          call: 'Okeechobee',
-          action: '/locations/okeechobee',
+          call: 'Royal Palm Beach',
+          action: '/locations/royal-palm-beach',
         },
         {
           call: 'Boynton Beach',
           action: '/locations/boynton-beach',
         },
         {
-          call: 'Boca Raton',
-          action: '/locations/boca-raton',
+          call: 'Downtown West Palm Beach',
+          action: '/locations/downtown-west-palm-beach',
         },
         {
           call: 'Jupiter',
@@ -194,12 +182,32 @@ const navigation = {
           action: '/locations/stuart',
         },
         {
-          call: 'Riviera Beach',
-          action: '/locations/riviera-beach',
+          call: 'Okeechobee',
+          action: '/locations/okeechobee',
         },
         {
           call: 'Belle Glade',
           action: '/locations/belle-glade',
+        },
+        {
+          call: 'Boca Raton',
+          action: '/locations/boca-raton',
+        },
+        {
+          call: 'Vero Beach',
+          action: '/locations/vero-beach',
+        },
+        {
+          call: 'Riviera Beach',
+          action: '/locations/riviera-beach',
+        },
+        {
+          call: 'En Español - Royal Palm Beach',
+          action: '/locations/iglesia-royal-palm-beach',
+        },
+        {
+          call: 'En Español - Palm Beach Gardens',
+          action: '/locations/iglesia-palm-beach-gardens',
         },
       ],
     },

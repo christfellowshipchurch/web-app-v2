@@ -16,7 +16,8 @@ function GetHelp(props = {}) {
     <Box
       as="a"
       cursor="pointer"
-      onClick={() => modalDispatch(showModal('ConnectCardModal'))}
+      href="https://rock.gocf.org/contactus"
+      target="_blank"
       textDecoration="none"
       display="flex"
       alignItems="center"

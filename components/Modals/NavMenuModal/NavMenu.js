@@ -7,8 +7,6 @@ import { SignIn, GetHelp } from './navComponents';
 function NavigationMenu(props = {}) {
   const { mainMenuLinks, subMenuLinks, additionalLinks } = props?.data;
 
-  console.log({ props });
-
   return (
     <Styled>
       <Box display="flex" justifyContent="space-between" alignItems="center">
@@ -19,7 +17,7 @@ function NavigationMenu(props = {}) {
           <SignIn />
         </Box>
         <Button
-          a="a"
+          as="a"
           href="https://www.youtube.com/c/ChristFellowshipWelcomeHome"
           target="_blank"
           variant="secondary"

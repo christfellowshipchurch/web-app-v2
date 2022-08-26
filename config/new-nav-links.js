@@ -76,7 +76,7 @@ const navigation = {
         },
         {
           call: 'Volunteer',
-          action: '/dreamteam',
+          action: 'https://rock.christfellowship.church/dreamteam',
         },
       ],
     },
@@ -119,12 +119,12 @@ const navigation = {
           action: '/discover/young-adults?id=1121835fdcef90201fb42675c92bd0a9',
         },
         {
-          call: 'Men',
-          action: '/discover/men?id=f42c452f7d71c4157ff1e1362c222beb',
-        },
-        {
           call: 'Sisterhood',
           action: '/discover/sisterhood?id=49de7405752fb756e36856e32b732207',
+        },
+        {
+          call: 'Men',
+          action: '/discover/men?id=f42c452f7d71c4157ff1e1362c222beb',
         },
         {
           call: 'Marriage',
