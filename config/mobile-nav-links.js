@@ -49,11 +49,11 @@ const navigation = {
     },
     {
       call: 'Strengthen my marriage',
-      action: '/discover?c=married-people',
+      action: '/discover/marriage?id=5680d5cefa0e61486fc7df2f2084a855',
     },
     {
       call: 'Be a better parent',
-      action: '/christ-fellowship-kids',
+      action: '/christ-fellowship-kids#parenting',
     },
     {
       call: 'Heal from past hurts',
@@ -103,23 +103,23 @@ const navigation = {
         },
         {
           call: 'Students',
-          action: '/events/cfstudents',
+          action: '/discover/students?id=c318bb64cceb38a40962accd3451b515',
         },
         {
           call: 'Young Adults',
-          action: '/events/cf-young-adults',
+          action: '/discover/young-adults?id=1121835fdcef90201fb42675c92bd0a9',
         },
         {
           call: 'Men',
-          action: '/discover?c=men',
+          action: '/discover/men?id=f42c452f7d71c4157ff1e1362c222beb',
         },
         {
           call: 'Sisterhood',
-          action: '/discover?c=sisterhood',
+          action: '/discover/sisterhood?id=49de7405752fb756e36856e32b732207',
         },
         {
           call: 'Marriage',
-          action: '/discover?c=married-people',
+          action: '/discover/marriage?id=5680d5cefa0e61486fc7df2f2084a855',
         },
         {
           call: 'Care',
@@ -127,11 +127,11 @@ const navigation = {
         },
         {
           call: 'Missions',
-          action: '/discover?c=missions',
+          action: '/discover/missions?id=021a93e4715936dcecd0bc57898d6fa5',
         },
         {
           call: 'Special Needs',
-          action: '/discover?c=special-needs',
+          action: '/discover/special-needs?id=8d4f9b66370e57fe85eebf6738a65a3c',
         },
       ],
     },
@@ -142,9 +142,12 @@ const navigation = {
           call: 'On-Demand Messages',
           action: '/discover?c=on-demand-messages',
         },
-        { call: 'Devotionals & Articles', action: '/' },
-        { call: 'Podcasts', action: '/' },
-        { call: 'Music', action: '/' },
+        {
+          call: 'Devotionals & Articles',
+          action: '/discover?c=devotionals-articles',
+        },
+        { call: 'Podcasts', action: '/discover?c=podcasts' },
+        { call: 'Music', action: '/discover?c=music' },
       ],
     },
     {

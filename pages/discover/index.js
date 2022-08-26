@@ -121,7 +121,7 @@ const Discover = () => {
   }, [filters, loadingFilters]);
 
   return (
-    <Layout title="Watch, Read, & More">
+    <Layout title="Watch, Read & More">
       <Cell
         as="main"
         maxWidth={utils.rem('1100px')}
@@ -129,7 +129,7 @@ const Discover = () => {
         py={{ _: 's', lg: 'base' }}
       >
         <Box as="h1" mb="base">
-          Watch, Read, & More
+          Watch, Read & More
         </Box>
         <SearchField
           handleChange={handleChange}
