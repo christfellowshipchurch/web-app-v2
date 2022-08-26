@@ -138,7 +138,10 @@ const navigation = {
     {
       title: 'Messages & Content',
       links: [
-        { call: 'On-Demand Messages', action: '/discover?c=sundays' },
+        {
+          call: 'On-Demand Messages',
+          action: '/discover?c=on-demand-messages',
+        },
         { call: 'Devotionals & Articles', action: '/' },
         { call: 'Podcasts', action: '/' },
         { call: 'Music', action: '/' },
