@@ -8,6 +8,7 @@ import GroupEmailConfirmationModal from './GroupEmailConfirmationModal';
 import GroupFilterModal from './GroupFilterModal';
 import GroupMemberDetailsModal from './GroupMemberDetailsModal';
 import GroupNotifyMeModal from './GroupNotifyMeModal';
+import NavMenuModal from './NavMenuModal';
 import NodeSingleModal from './NodeSingleModal';
 import SetReminderModal from './SetReminderModal';
 import VideoModal from './VideoModal';
@@ -24,6 +25,7 @@ export {
   GroupFilterModal,
   GroupMemberDetailsModal,
   GroupNotifyMeModal,
+  NavMenuModal,
   NodeSingleModal,
   SetReminderModal,
   VideoModal,

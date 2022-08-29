@@ -44,7 +44,7 @@ const navigation = {
   ],
   quickAction: {
     action: links.churchOnline,
-    call: 'Watch Online',
+    call: 'Join Us Online',
   },
   startNowLinks: [
     {
