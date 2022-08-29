@@ -142,6 +142,13 @@ export const GET_CONTENT_ITEM = gql`
         ...publishFragment
       }
 
+      ... on MediaContentItem {
+        metadata {
+          name
+          content
+        }
+      }
+
       ... on FeaturesNode {
         featureFeed {
           ...FeatureFeedFragment
