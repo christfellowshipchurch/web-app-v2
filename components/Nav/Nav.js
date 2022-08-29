@@ -59,7 +59,6 @@ function Nav(props = {}) {
         />
       </Box>
 
-      {/* New Menu */}
       <Box
         cursor="pointer"
         textDecoration="none"
@@ -79,8 +78,7 @@ function Nav(props = {}) {
         <CurrentUserProvider
           Component={UserAvatar}
           handleAuthClick={handleAuthClick}
-          size={35}
-          ml="-1rem"
+          size={40}
         />
       )}
 
@@ -92,48 +90,6 @@ function Nav(props = {}) {
           handleLogout={handleLogoutClick}
         />
       )}
-
-      <ClientSideComponent display={{ _: 'none', md: 'block' }}>
-        {authenticated ? (
-          <CurrentUserProvider
-            Component={UserAvatar}
-            handleAuthClick={handleAuthClick}
-          />
-        ) : (
-          <Box
-            as="a"
-            href="#0"
-            onClick={handleAuthClick}
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            textDecoration="none"
-          >
-            <Box
-              display="flex"
-              border="2px solid"
-              justifyContent="center"
-              borderColor={props?.transparentMode ? 'white' : 'fg'}
-              borderRadius="50%"
-              size="30px"
-            >
-              <Icon
-                name="user"
-                size={16}
-                color={props?.transparentMode ? 'white' : 'fg'}
-              />
-            </Box>
-            <Box
-              as="span"
-              mt="0.15rem"
-              color={props?.transparentMode ? 'white' : 'fg'}
-              fontSize="12px"
-            >
-              Sign In
-            </Box>
-          </Box>
-        )}
-      </ClientSideComponent>
     </Styled>
   );
 }
