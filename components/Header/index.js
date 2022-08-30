@@ -4,13 +4,15 @@ import PropTypes from 'prop-types';
 import DefaultHeader from './DefaultHeader';
 import TransparentHeader from './TransparentHeader';
 
-const Header = ({ type }) => {
+import navData from 'config/new-nav-links';
+
+const Header = ({ type, showMobileNav }) => {
   switch (type) {
     case 'transparent':
-      return <TransparentHeader />;
+      return <TransparentHeader data={navData} showMobileNav={showMobileNav} />;
     case 'default ':
     default:
-      return <DefaultHeader />;
+      return <DefaultHeader data={navData} showMobileNav={showMobileNav} />;
   }
 };
 

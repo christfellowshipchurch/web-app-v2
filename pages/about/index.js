@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button, Box, Card, ContentBlock, List } from 'ui-kit';
 import { rem } from 'ui-kit/_utils';
-import { SEO, Header, Footer } from 'components';
+import { Layout } from 'components';
 
 import Styled from './About.styles';
 
@@ -10,33 +10,42 @@ import { htmlToReactParser } from 'utils';
 
 export default function About() {
   const [active, setActive] = useState('leadership');
-  
+
   return (
-    <Box width="100%">
-      <SEO title="About" />
-      <Box display="grid" gridTemplateRows="auto 1fr auto" height="100vh">
-        <Header />
-        <Styled.Hero>
-          <Box as="h1">About Christ Fellowship</Box>
-          <Box as="p" fontSize="l" maxWidth="840px">
-            Christ Fellowship is a church in South Florida with a passion to
-            help you know God and grow in your relationships so that you can
-            discover your purpose and impact the world. We believe that church
-            isn’t just a building you walk in to, but a family you can belong
-            to—so whether you call one of our many locations home or join from
-            home, church is wherever you are! Led by senior pastors Todd & Julie
-            Mullins, our mission is to impact the world with the love and
-            message of Jesus Christ—everyone, everyday,&nbsp;everywhere.
-          </Box>
-        </Styled.Hero>
-        <Styled.Section>
-          <Box as="h1">One Church with Many Locations</Box>
-          <Box as="p" fontSize="l" maxWidth="840px">
-            We believe that church isn’t just a building you walk in to, but a
-            family you can belong to—so whether you call one of our many
-            locations home or join from home, church is wherever you&nbsp;are!
-          </Box>
-        </Styled.Section>
+    <Layout
+      title="About Us"
+      seoMetaTags={{
+        description:
+          'Christ Fellowship is a church in South Florida with a passion to help you know God and grow in your relationships so that you can discover your purpose and impact the world. We believe that church isn’t just a building you walk in to, but a family you can belong to—so whether you call one of our many locations home or join from home, church is wherever you are! Led by senior pastors Todd & Julie Mullins, our mission is to impact the world with the love and message of Jesus Christ—everyone, everyday, everywhere.',
+      }}
+    >
+      <Styled.Hero>
+        <Box as="h1">About Christ Fellowship</Box>
+        <Box as="p" fontSize="l" maxWidth="840px">
+          Christ Fellowship is a church in South Florida with a passion to help
+          you know God and grow in your relationships so that you can discover
+          your purpose and impact the world. We believe that church isn’t just a
+          building you walk in to, but a family you can belong to—so whether you
+          call one of our many locations home or join from home, church is
+          wherever you are! Led by senior pastors Todd & Julie Mullins, our
+          mission is to impact the world with the love and message of Jesus
+          Christ—everyone, everyday,&nbsp;everywhere.
+        </Box>
+      </Styled.Hero>
+      <Styled.Section>
+        <Box as="h1">One Church with Many Locations</Box>
+        <Box as="p" fontSize="l" maxWidth="840px">
+          We believe that church isn’t just a building you walk in to, but a
+          family you can belong to—so whether you call one of our many locations
+          home or join from home, church is wherever you&nbsp;are!
+        </Box>
+      </Styled.Section>
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        width="100vw"
+      >
         <List
           display="flex"
           py="l"
@@ -81,23 +90,15 @@ export default function About() {
             </Button>
           </Box>
         </List>
-        {active === 'leadership' &&
-          <Box
-            m="auto"
-            maxWidth="1000px"
-            p="base"
-          >
+        {active === 'leadership' && (
+          <Box m="auto" maxWidth="1000px" p="base">
             {data.leadership.map((item, i) => (
-              <Box
-                my="xl"
-              >
-                <ContentBlock
-                  {...item}
-                  key={i}
-                />
+              <Box my="xl">
+                <ContentBlock {...item} key={i} />
               </Box>
             ))}
-          </Box>}
+          </Box>
+        )}
         {active === 'beliefs' && (
           <Box
             display="flex"
@@ -178,8 +179,7 @@ export default function About() {
             <Box>{htmlToReactParser.parse(data.history)}</Box>
           </Box>
         )}
-        <Footer />
       </Box>
-    </Box>
+    </Layout>
   );
 }

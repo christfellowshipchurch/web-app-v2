@@ -18,7 +18,7 @@ function DefaultHeader(props = {}) {
             <Box as={Logo} mx={{ _: 'auto', md: '0' }} mb="0" />
           </a>
         </Link>
-        <NavigationProvider Component={Nav} {...props} />
+        <Nav {...props?.data} showMobileNav={props?.showMobileNav} />
       </Styled>
     </>
   );

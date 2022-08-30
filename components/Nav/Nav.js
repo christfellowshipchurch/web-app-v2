@@ -6,13 +6,12 @@ import { CurrentUserProvider } from 'providers';
 import { logout, useAuth } from 'providers/AuthProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 import { Box, Button, Icon, Menu, systemPropTypes } from 'ui-kit';
-import { ClientSideComponent, MobileNavScreen, UserAvatar } from 'components';
+import { UserAvatar } from 'components';
 import Styled from './Nav.styles';
 import { useCurrentBreakpoint } from 'hooks';
 
 function Nav(props = {}) {
   const [{ authenticated }, authDispatch] = useAuth();
-  const [showMobileNav, setShowMobileNav] = useState(false);
   const currentBreakpoint = useCurrentBreakpoint();
   const modalDispatch = useModalDispatch();
   const router = useRouter();
@@ -29,7 +28,6 @@ function Nav(props = {}) {
 
   function handleAuthClick(event) {
     event.preventDefault();
-    setShowMobileNav(false);
     modalDispatch(showModal('Auth'));
   }
 
@@ -45,14 +43,23 @@ function Nav(props = {}) {
         variant="secondary"
         size="s"
         px="base"
+        mr="base"
         color={props?.transparentMode ? 'white' : 'primary'}
         borderColor={props?.transparentMode ? 'white' : 'primary'}
         hoverColor={props?.transparentMode ? 'neutrals.400' : null}
         display={{ _: 'none', md: 'inline' }}
-        data={props.data.quickAction}
+        data={{
+          call: 'Join Us Online',
+          action: 'https://cf.church/watchonline',
+        }}
       />
 
-      <Box as="a" href="/discover" display={{ _: 'none', md: 'inline' }}>
+      <Box
+        as="a"
+        href="/discover"
+        display={{ _: 'none', md: 'inline' }}
+        mr="base"
+      >
         <Icon
           name="search"
           color={props?.transparentMode ? 'white' : 'neutrals.800'}
@@ -64,9 +71,10 @@ function Nav(props = {}) {
         textDecoration="none"
         onClick={
           currentBreakpoint.isSmall
-            ? () => setShowMobileNav(!showMobileNav)
+            ? props?.showMobileNav
             : () => modalDispatch(showModal('NavMenu'))
         }
+        mr="s"
       >
         <Icon name="menu" color={props?.transparentMode ? 'white' : 'fg'} />
         <Box as="span" p="xs" color={props?.transparentMode ? 'white' : 'fg'}>
@@ -74,20 +82,11 @@ function Nav(props = {}) {
         </Box>
       </Box>
 
-      {authenticated && !showMobileNav && (
+      {authenticated && (
         <CurrentUserProvider
           Component={UserAvatar}
           handleAuthClick={handleAuthClick}
           size={40}
-        />
-      )}
-
-      {showMobileNav && (
-        <MobileNavScreen
-          onClose={() => setShowMobileNav(!showMobileNav)}
-          auth={authenticated}
-          handleAuth={handleAuthClick}
-          handleLogout={handleLogoutClick}
         />
       )}
     </Styled>
