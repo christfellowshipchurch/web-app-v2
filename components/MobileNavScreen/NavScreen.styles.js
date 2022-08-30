@@ -11,7 +11,6 @@ const NavScreen = styled.div`
   min-height: 100%;
   position: relative;
   background: ${themeGet('colors.paper')};
-  overflow: scroll;
 
   ${system};
 `;
