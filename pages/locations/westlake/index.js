@@ -23,7 +23,7 @@ const Westlake = props => {
           },
         ]}
       ></HeroLanding>
-      <Box px="base" py="l" bg="white">
+      <Box px="base" py="xl" bg="white">
         <Box
           id="learn-more"
           mt={{ _: '-0.5rem', md: 'base' }}
@@ -38,7 +38,13 @@ const Westlake = props => {
             </br></br>
             - Pastors Todd & Julie Mullins"
             videos={[
-              { sources: [{ uri: '/external-landing/external-bg-vid.mp4' }] },
+              {
+                sources: [
+                  {
+                    uri: 'https://christfellow2p-a.akamaihd.net/CHRISTFELLOW/649/215/PastorsWestLakeUpdate_1.mp4',
+                  },
+                ],
+              },
             ]}
             actions={[
               {
