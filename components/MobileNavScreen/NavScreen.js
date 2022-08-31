@@ -95,18 +95,35 @@ function NavScreen(props) {
       >
         <Logo />
         <Box display="flex" alignItems="center">
-          <Box as="a" color="black" href="/discover" mr="1rem">
+          <Box as="a" color="black" href="/discover" mr="base">
             <Icon name="search" />
           </Box>
           {authenticated ? (
-            <Icon
-              name="sign-out"
-              size={18}
-              mr="1rem"
+            <Box
+              display="flex"
+              flexDirection="column"
+              mt="5px"
+              mr="base"
               onClick={handleLogoutClick}
-            />
+            >
+              <Icon name="sign-out" size={16} />
+              <Box as="span" fontSize="10px">
+                Sign Out
+              </Box>
+            </Box>
           ) : (
-            <Icon name="user" mr="1rem" onClick={handleAuthClick} />
+            <Box
+              display="flex"
+              flexDirection="column"
+              mt="5px"
+              mr="base"
+              onClick={handleAuthClick}
+            >
+              <Icon name="user" size={16} />
+              <Box as="span" fontSize="10px">
+                Sign In
+              </Box>
+            </Box>
           )}
           <Icon name="x" onClick={props?.onClose} />
         </Box>
