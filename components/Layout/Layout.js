@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { Box } from 'ui-kit';
+import { Box, Button } from 'ui-kit';
 import { Footer, SEO } from 'components';
-import { Header } from 'components';
+import { Header, MobileNavScreen } from 'components';
 function Layout(props = {}) {
-  return (
+  const [showMobileNav, setShowMobileNav] = useState(false);
+
+  return showMobileNav ? (
+    <MobileNavScreen onClose={() => setShowMobileNav(!showMobileNav)} />
+  ) : (
     <>
       {props.title && <SEO title={props.title} {...props?.seoMetaTags} />}
       <Box display="flex" flexDirection="column" height="100vh">
-        <Header type={props?.transparentHeader ? 'transparent' : null} />
+        <Header
+          type={props?.transparentHeader ? 'transparent' : null}
+          showMobileNav={() => setShowMobileNav(!showMobileNav)}
+        />
         <Box flexGrow="1">{props.children}</Box>
         <Footer />
       </Box>

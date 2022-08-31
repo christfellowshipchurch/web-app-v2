@@ -30,22 +30,16 @@ function TransparentHeader(props = {}) {
   });
 
   return (
-    <Box 
-      position="fixed"
-      zIndex={9}
-      width="100%"
-    >
+    <Box position="fixed" zIndex={9} width="100%">
       <ActionBannerProvider Component={ActionBanner} />
       <Styled
         boxShadow="none"
         bg={bgColor}
         opacity={navOpacity}
-        // position="fixed"
-        {...props}
         display="flex"
         flexDirection="column"
+        {...props}
       >
-        
         <Box
           display="flex"
           alignItems="center"
@@ -57,7 +51,11 @@ function TransparentHeader(props = {}) {
               <Box as={Logo} dark={true} mx={{ _: 'auto', md: '0' }} mb="0" />
             </a>
           </Link>
-          <NavigationProvider Component={Nav} {...props} transparentMode />
+          <Nav
+            transparentMode
+            showMobileNav={props?.showMobileNav}
+            {...props?.data}
+          />
         </Box>
       </Styled>
     </Box>

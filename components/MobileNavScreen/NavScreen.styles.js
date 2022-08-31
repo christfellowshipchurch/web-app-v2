@@ -5,15 +5,12 @@ import { system } from 'ui-kit';
 
 const NavScreen = styled.div`
   position: absolute;
-  left: -45px;
-  top: -20px;
   width: 100vw;
   min-width: 100%;
   height: 100vh;
   min-height: 100%;
   position: relative;
   background: ${themeGet('colors.paper')};
-  overflow: scroll;
 
   ${system};
 `;
@@ -37,7 +34,7 @@ const SubNavLink = styled.a`
   font-weight: 600;
   font-size: ${themeGet('fontSizes.h3')};
   text-decoration: none;
-  margin-bottom: ${themeGet('space.s')};
+  margin-bottom: ${themeGet('space.base')};
 
   &:hover {
     color: ${themeGet('colors.primary')};
