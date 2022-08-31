@@ -10,6 +10,7 @@ import { getUrlFromRelatedNode } from 'utils';
 import ContentVideo from './ContentVideo';
 import ContentVideosList from './ContentVideosList';
 import Styled from './ContentSingle.styles';
+import { find, findIndex, includes, keyBy } from 'lodash';
 function ContentSingle(props = {}) {
   const [currentVideo, setCurrentVideo] = useState(
     Array.isArray(props.data?.videos) ? props.data.videos[0] : null
@@ -66,17 +67,24 @@ function ContentSingle(props = {}) {
     }
   };
 
+  const metadata = keyBy(props?.data?.metadata, 'name');
+
   return (
     <ContentLayout
       mode={mode}
       theme={props?.data?.theme}
       title={title}
       seoMetaTags={{
-        description: schedule?.friendlyScheduleText || summary,
+        description:
+          metadata?.description?.content ||
+          schedule?.friendlyScheduleText ||
+          summary,
         image: coverImageUri,
         author: authorName,
         url: typeof window !== 'undefined' ? window.location.href : undefined,
         video: currentVideo?.sources[0]?.uri,
+        keywords: metadata?.keywords?.content,
+        title: metadata?.title?.content || title,
       }}
       summary={schedule?.friendlyScheduleText || summary}
       coverImage={currentVideo ? null : coverImageUri}
