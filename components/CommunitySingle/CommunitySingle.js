@@ -129,13 +129,13 @@ function CommunitySingle(props = {}) {
   };
 
   return (
-    <>
-      <SEO
-        title={props.data?.title}
-        image={props.data?.coverImage?.sources[0]?.uri}
-        description={props.data?.summary}
-      />
-      <Header />
+    <Layout
+      title={props.data?.title}
+      seaMetaTags={{
+        image: props.data?.coverImage?.sources[0]?.uri,
+        description: props.data?.summary,
+      }}
+    >
       <Box width="100%" px="xxs" py={{ _: 's', lg: 'base' }}>
         <Styled.BackButton>
           <CustomLink
@@ -241,8 +241,7 @@ function CommunitySingle(props = {}) {
         />
         <CommunityLeaderActions />
       </Box>
-      <Footer />
-    </>
+    </Layout>
   );
 }
 
