@@ -15,9 +15,7 @@ import {
   CommunityActionSection,
   CommunityLeaderActions,
   CustomLink,
-  Footer,
-  Header,
-  SEO,
+  Layout,
 } from 'components';
 import { useCurrentUser, useNotifyMeBanner, useGroupFacetFilters } from 'hooks';
 
