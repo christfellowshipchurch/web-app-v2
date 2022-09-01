@@ -31,7 +31,7 @@ module.exports = {
         source: '/app-link/:slug',
         destination: '/:slug',
         permanent: false,
-      }, //try to force cache update again again
+      }, //try to force cache update again again again
       { source: '/retreat', destination: 'https://www.eventcreate.com/e/longhollowstaffretreat', permanent: true },
       { source: '/studentleader', destination: '/lh-student-leader', permanent: true },
       { source: '/moms', destination: '/intentional-mom', permanent: true },
