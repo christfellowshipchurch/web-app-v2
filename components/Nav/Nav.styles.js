@@ -8,10 +8,6 @@ const Nav = styled.nav`
   display: flex;
   justify-content: center;
 
-  > *:not(:last-child) {
-    margin-right: ${themeGet('space.base')};
-  }
-
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     justify-content: flex-start;
   }

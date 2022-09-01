@@ -49,6 +49,7 @@ import LiveStreamSingle from './LiveStreamSingle';
 import LocationBlockFeature from './LocationBlockFeature';
 import LocationSingle from './LocationSingle';
 import Logo from './Logo';
+import MobileNavScreen from './MobileNavScreen';
 import Nav from './Nav';
 import NotFound from './NotFound';
 import PageSingle from './PageSingle';
@@ -115,6 +116,7 @@ export {
   LocationBlockFeature,
   LocationSingle,
   Logo,
+  MobileNavScreen,
   Nav,
   NotFound,
   PageSingle,

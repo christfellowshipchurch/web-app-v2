@@ -8,7 +8,7 @@ const locationBlockData = [
         relatedNode: {
           __typename: 'Url',
           id: 'Url:f4974a223763b3a06ea2cd73ff30952be89d6281e05bc41f7ee423cd227a2b00ac473ab51d6349eb947f770d463c04fc83a72f8b7a0522333e94950a0fc721fc7072f037d6a7dd2f84bf0a108a662de3',
-          url: 'https://www.christfellowship.church/events/christ-fellowship-kids',
+          url: 'https://www.christfellowship.church/christ-fellowship-kids',
         },
         title: 'LEARN MORE',
       },

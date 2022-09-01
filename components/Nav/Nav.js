@@ -1,18 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 
 import { CurrentUserProvider } from 'providers';
 import { logout, useAuth } from 'providers/AuthProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
-import { Box, Button, Icon, List, Menu, systemPropTypes } from 'ui-kit';
-import { ClientSideComponent, CustomLink, UserAvatar } from 'components';
+import { Box, Button, Icon, Menu, systemPropTypes } from 'ui-kit';
+import { UserAvatar } from 'components';
 import Styled from './Nav.styles';
-
-import { amplitude } from 'lib/analytics';
+import { useCurrentBreakpoint } from 'hooks';
 
 function Nav(props = {}) {
   const [{ authenticated }, authDispatch] = useAuth();
+  const currentBreakpoint = useCurrentBreakpoint();
   const modalDispatch = useModalDispatch();
   const router = useRouter();
 
@@ -39,184 +39,58 @@ function Nav(props = {}) {
 
   return (
     <Styled>
-      {authenticated ? (
-        <QuickAction
-          display={{ _: 'none', md: 'inline' }}
-          data={props.data.quickAction}
-        />
-      ) : (
-        <>
-          <Menu
-            display={{ _: 'none', md: 'inline' }}
-            cardContentProps={{
-              p: '0',
-              py: 's',
-            }}
-            renderTrigger={({ toggle }) => (
-              <Box as="a" textDecoration="none" href="#0" onClick={toggle}>
-                <Button px="base" size="s">
-                  Start Now
-                  <Icon name="caretDown" mr={-10} ml="xs" mt={-4} mb={-6} />
-                </Button>
-              </Box>
-            )}
-            side="right"
-            menuWidth="240px"
-            menuMargin="s"
-          >
-            <List py="xs" space="0">
-              <MenuLinks data={props.data.startNowLinks} />
-            </List>
-          </Menu>
-
-          <QuickAction
-            variant="secondary"
-            size="s"
-            px="base"
-            color={props?.transparentMode ? 'white' : 'primary'}
-            borderColor={props?.transparentMode ? 'white' : 'primary'}
-            hoverColor={props?.transparentMode ? 'neutrals.400' : null}
-            display={{ _: 'none', md: 'inline' }}
-            data={props.data.quickAction}
-          />
-        </>
-      )}
-      {/* Hide avatar for dark mode */}
-      {!props.transparentMode && (
-        <ClientSideComponent display={{ _: 'none', md: 'block' }}>
-          {authenticated ? (
-            <CurrentUserProvider
-              Component={UserAvatar}
-              handleAuthClick={handleAuthClick}
-            />
-          ) : (
-            <Box
-              as="a"
-              href="#0"
-              display="block"
-              border="2px solid"
-              borderColor={props?.transparentMode ? 'white' : 'fg'}
-              borderRadius="50%"
-              lineHeight="38px"
-              size="45px"
-              textAlign="center"
-              onClick={handleAuthClick}
-            >
-              <Icon
-                name="user"
-                color={props?.transparentMode ? 'white' : 'fg'}
-                size="28px"
-              />
-              <Box as="span" className="srt">
-                User
-              </Box>
-            </Box>
-          )}
-        </ClientSideComponent>
-      )}
-      <Menu
-        cardContentProps={{
-          p: '0',
-          py: 's',
+      <QuickAction
+        variant="secondary"
+        size="s"
+        px="base"
+        mr="base"
+        color={props?.transparentMode ? 'white' : 'primary'}
+        borderColor={props?.transparentMode ? 'white' : 'primary'}
+        hoverColor={props?.transparentMode ? 'neutrals.400' : null}
+        display={{ _: 'none', md: 'inline' }}
+        data={{
+          call: 'Join Us Online',
+          action: 'https://cf.church/watchonline',
         }}
-        renderTrigger={({ toggle }) => (
-          <Box as="a" textDecoration="none" href="#0" onClick={toggle}>
-            <Icon name="menu" color={props?.transparentMode ? 'white' : 'fg'} />
-            <Box
-              as="span"
-              p="xs"
-              color={props?.transparentMode ? 'white' : 'fg'}
-            >
-              Menu
-            </Box>
-          </Box>
-        )}
-        side="right"
-        menuWidth="245px"
+      />
+
+      <Box
+        as="a"
+        href="/discover"
+        display={{ _: 'none', md: 'inline' }}
+        mr="base"
       >
-        <List py="xs" space="0">
-          {/* Mobile Watch Online */}
-          <Box as="li" display={{ _: 'inline', md: 'none' }}>
-            <ClientSideComponent>
-              {authenticated && (
-                <Menu.Link>
-                  <Box
-                    borderBottom="solid lightgrey 1px"
-                    ml="s"
-                    pl="s"
-                    py="s"
-                    mr="base"
-                    mb="s"
-                    display="flex"
-                    alignItems="center"
-                  >
-                    <CurrentUserProvider
-                      Component={UserAvatar}
-                      handleAuthClick={handleAuthClick}
-                      size={'25px'}
-                    />
-                    <Box as="p" ml="xs">
-                      Profile
-                    </Box>
-                  </Box>
-                </Menu.Link>
-              )}
-            </ClientSideComponent>
-            <Menu.Link>
-              <QuickAction
-                py="xs"
-                variant="link"
-                icon
-                data={props.data.quickAction}
-              />
-            </Menu.Link>
-          </Box>
-          <Primary data={props.data.navigationLinks} />
-          <MenuLinks data={props.data.menuLinks} />
-          <Box as="li">
-            {authenticated ? (
-              <Menu.Link
-                href="#0"
-                onClick={handleLogoutClick}
-                px="base"
-                py="xs"
-                mt="10px"
-                borderTop="1px solid"
-                borderColor="border"
-              >
-                <Icon name="signOut" mr="s" size="18" />
-                Sign out
-              </Menu.Link>
-            ) : (
-              <Menu.Link
-                href="#0"
-                onClick={handleAuthClick}
-                px="base"
-                py="xs"
-                mt="10px"
-                borderTop="1px solid"
-                borderColor="border"
-              >
-                <Icon name="signIn" mr="s" size="18" />
-                Sign in
-              </Menu.Link>
-            )}
-          </Box>
-        </List>
-      </Menu>
+        <Icon
+          name="search"
+          color={props?.transparentMode ? 'white' : 'neutrals.800'}
+        />
+      </Box>
+
+      <Box
+        cursor="pointer"
+        textDecoration="none"
+        onClick={
+          currentBreakpoint.isSmall
+            ? props?.showMobileNav
+            : () => modalDispatch(showModal('NavMenu'))
+        }
+        mr="s"
+      >
+        <Icon name="menu" color={props?.transparentMode ? 'white' : 'fg'} />
+        <Box as="span" p="xs" color={props?.transparentMode ? 'white' : 'fg'}>
+          Menu
+        </Box>
+      </Box>
+
+      {authenticated && (
+        <CurrentUserProvider
+          Component={UserAvatar}
+          handleAuthClick={handleAuthClick}
+          size={40}
+        />
+      )}
     </Styled>
   );
-}
-
-function Primary(props = {}) {
-  return props.data.map((item, idx) => (
-    <Box key={idx} as="li">
-      <Menu.Link href={item.action} px="base" py="xs">
-        <Icon name={item.icon} mr="s" size="18" />
-        {item.call}
-      </Menu.Link>
-    </Box>
-  ));
 }
 
 function QuickAction(props = {}) {
@@ -227,24 +101,6 @@ function QuickAction(props = {}) {
     </Button>
   );
 }
-
-function MenuLinks(props = {}) {
-  return props.data.map((item, idx) => (
-    <Box key={idx} as="li">
-      <Menu.Link
-        href={item.action}
-        target={item.target}
-        textDecoration="none"
-        px="base"
-        py="xs"
-      >
-        <Icon name={item.icon} mr="s" size="18" />
-        {item.call}
-      </Menu.Link>
-    </Box>
-  ));
-}
-
 Nav.propTypes = {
   ...systemPropTypes,
   data: PropTypes.object,

@@ -15,7 +15,7 @@ function getPageTitle(title) {
   if (includes(title, 'Christ Fellowship Church')) {
     return title;
   }
-  return `${title} - ${DEFAULT_TITLE}`;
+  return `${title} | Christ Fellowship Church`;
 }
 
 /**
@@ -28,6 +28,8 @@ function getPageTitle(title) {
  */
 function SEO(props = {}) {
   const pageTitle = getPageTitle(props.title);
+
+  console.log({ props });
 
   return (
     <Head>
