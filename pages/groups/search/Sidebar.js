@@ -42,9 +42,9 @@ function Sidebar(props = {}) {
     if (name === 'campuses' && value === 'en Español Royal Palm Beach') {
       newValues.push('en Español Palm Beach Gardens');
     }
-    //add Online to array if any campus other than Online is selected
-    if (name === 'campuses' && value !== 'Online') {
-      newValues.push('Online');
+    //add Christ Fellowship Everywhere to array if any campus other than Christ Fellowship Everywhere is selected
+    if (name === 'campuses' && value !== 'Christ Fellowship Everywhere') {
+      newValues.push('Christ Fellowship Everywhere');
     }
     //return final array with all updated values
     return filtersDispatch(update({ [name]: newValues }));
