@@ -15,7 +15,7 @@ const Westlake = props => {
       <HeroLanding
         heroTitle="Get the most out of life."
         heroSummary="A church, coming to Westlake, that wants to help you live the life you were created for."
-        backgroundImage="/external-landing/attending_christ_fellowship_church_for_the_first_time.jpeg"
+        backgroundVideo="/westlake/westlake-bg-vid.mp4"
         actions={[
           {
             title: 'Learn More',
@@ -60,7 +60,26 @@ const Westlake = props => {
           />
         </Box>
       </Box>
-      <Box px="base" py="xxl">
+      <Box px="base" py="l">
+        <Box mt={{ _: '-0.5rem', md: 'base' }} mx="auto" maxWidth={900}>
+          <ContentBlock
+            title={`Come Meet Us!`}
+            htmlContent={`Learn more about Christ Fellowship Westlake—including meeting the Campus Pastors—at an upcoming interest meeting near you! </br> </br> Sunday, September 11 | Christ Fellowship <a href="royal-palm-beach">Royal Palm Beach</a> </br> Sunday, September 25 | Christ Fellowship <a href="palm-beach-gardens">Palm Beach Gardens</a> </br> </br>`}
+            image="/westlake/campus_pastors.jpeg"
+            imageRatio="4by3"
+            actions={[
+              {
+                title: 'Learn More',
+                relatedNode: {
+                  url: '/christ-fellowship-westlake-interest-meetings',
+                },
+              },
+            ]}
+            contentLayout="left"
+          />
+        </Box>
+      </Box>
+      <Box px="base" py="xxl" bg="white">
         <Box mt={{ _: '-0.5rem', md: 'base' }} mx="auto" maxWidth={900}>
           <CardCarousel cardsDisplayed={3}>
             {props?.carouselPhotos?.map(photo => {
@@ -123,7 +142,7 @@ const Westlake = props => {
       </Box> */}
       {/* -------------------------------------------------------   */}
 
-      <Box px="base" py="l" bg="white">
+      <Box px="base" py="l">
         <Box
           id="join-the-launch"
           mt={{ _: '-0.5rem', md: 'base' }}
@@ -171,7 +190,11 @@ const Westlake = props => {
       </Box>
       <Box px="base" py="xl" width="100%">
         <Box mx="auto" maxWidth={1200}>
-          <FAQ data={faqData('Westlake')} />
+          <FAQ
+            //We need to specify where the page scrolls on the See More button since it's a different from our main location pages.
+            scrollPosition={{ mobile: 4300, desktop: 3800 }}
+            data={faqData('Westlake')}
+          />
         </Box>
       </Box>
       <Box px="base" py="l" bg="white">
