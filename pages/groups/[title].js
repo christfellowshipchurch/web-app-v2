@@ -18,9 +18,8 @@ export default function Community(props) {
   const preferenceOptions = {
     preferencePath: ['groups', title].join('/'),
   };
-  const { preference, subPreferences, loading } = useGroupPreferences(
-    preferenceOptions
-  );
+  const { preference, subPreferences, loading } =
+    useGroupPreferences(preferenceOptions);
 
   if (!flags.GROUP_FINDER) return null;
 

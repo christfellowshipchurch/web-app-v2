@@ -7,11 +7,8 @@ import {
   CommunityActionSection,
   CommunityLeaderActions,
   CommunityList,
-  Footer,
-  Header,
   Layout,
   SearchField,
-  SEO,
 } from 'components';
 import JsonLD from 'components/JsonLD';
 import {
