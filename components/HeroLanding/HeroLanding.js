@@ -10,7 +10,7 @@ import { gtag } from 'lib/analytics';
 export default function HeroLanding(props = {}) {
   return (
     <>
-      <Styled>
+      <Styled backgroundImage={props?.backgroundImage}>
         <Styled.BackgroundVideo
           autoPlay
           muted
