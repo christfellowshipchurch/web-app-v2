@@ -37,6 +37,7 @@ const Westlake = props => {
             But we’re not just building a building. We’re building a place for all generations to live the life they were created to live—and it all starts here! We can’t wait to welcome you and your family to Christ Fellowship Westlake, launching this December. 
             </br></br>
             - Pastors Todd & Julie Mullins"
+            image="/westlake/video-thumbnail.png"
             videos={[
               {
                 sources: [
@@ -63,7 +64,7 @@ const Westlake = props => {
       <Box px="base" py="l">
         <Box mt={{ _: '-0.5rem', md: 'base' }} mx="auto" maxWidth={900}>
           <ContentBlock
-            title={`Come Meet Us!`}
+            title={`Upcoming Events`}
             htmlContent={`Learn more about Christ Fellowship Westlake—including meeting the Campus Pastors—at an upcoming interest meeting near you! </br> </br> Sunday, September 11 | Christ Fellowship <a href="royal-palm-beach">Royal Palm Beach</a> </br> Sunday, September 25 | Christ Fellowship <a href="palm-beach-gardens">Palm Beach Gardens</a> </br> </br>`}
             image="/westlake/campus_pastors.jpeg"
             imageRatio="4by3"
