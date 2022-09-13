@@ -31,7 +31,7 @@ module.exports = {
         source: '/app-link/:slug',
         destination: '/:slug',
         permanent: false,
-      }, //try to force cache update yet again
+      }, //try to force cache update yet again again
       { source: '/feedback', destination: 'https://longhollow.wufoo.com/forms/vision-plan-strategy-feedback/', permanent: true },
       { source: '/identity', destination: 'https://longhollow.com/resources-about-sexuality-gender-and-identity', permanent: true },
       { source: '/retreat', destination: 'https://www.eventcreate.com/e/longhollowstaffretreat', permanent: true },
