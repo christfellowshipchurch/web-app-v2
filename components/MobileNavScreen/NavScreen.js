@@ -54,8 +54,7 @@ function NavScreen(props) {
           />
           <Button
             as="a"
-            href="https://www.youtube.com/c/ChristFellowshipWelcomeHome"
-            target="_blank"
+            href="https://christfellowship.church/events/tune-in-online"
             variant="secondary"
             size="m"
             ml="l"
