@@ -6,7 +6,13 @@ import { Box } from 'ui-kit';
 import Styled from 'ui-kit/Card/Card.styles';
 
 const DefaultCard = (props = {}) => {
-  const hasContent = props.title || props.description || props.children;
+  //These variables are used below to fix spacing issues
+  const mobileView = window.matchMedia('(max-width: 768px)').matches;
+  const deskView = window.matchMedia('(min-width: 769px)').matches;
+
+  const hasContent = mobileView
+    ? props.title || props.description || props.children || props.coverImage
+    : props.title || props.description || props.children;
 
   return (
     <Styled {...props}>
@@ -51,19 +57,38 @@ const DefaultCard = (props = {}) => {
           ) : null}
         </Styled.Cover>
       ) : null}
-      <Styled.Content {...props.contentProps}>
-        {props.title ? (
-          <Box as="h3" mb={{ _: 'xs', md: 's' }}>
-            {props.title}
-          </Box>
-        ) : null}
-        {props.description ? (
-          <Styled.Description color="neutrals.600" fontSize="s">
-            {props.description}
-          </Styled.Description>
-        ) : null}
-        {props.children ? props.children : null}
-      </Styled.Content>
+
+      {mobileView && props.title && (
+        <Styled.Content {...props.contentProps}>
+          {props.title ? (
+            <Box as="h3" mb={{ _: 'xs', md: 's' }}>
+              {props.title}
+            </Box>
+          ) : null}
+          {props.description ? (
+            <Styled.Description color="neutrals.600" fontSize="s">
+              {props.description}
+            </Styled.Description>
+          ) : null}
+          {props.children ? props.children : null}
+        </Styled.Content>
+      )}
+
+      {deskView && (
+        <Styled.Content {...props.contentProps}>
+          {props.title ? (
+            <Box as="h3" mb={{ _: 'xs', md: 's' }}>
+              {props.title}
+            </Box>
+          ) : null}
+          {props.description ? (
+            <Styled.Description color="neutrals.600" fontSize="s">
+              {props.description}
+            </Styled.Description>
+          ) : null}
+          {props.children ? props.children : null}
+        </Styled.Content>
+      )}
     </Styled>
   );
 };
