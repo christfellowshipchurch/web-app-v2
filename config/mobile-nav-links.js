@@ -198,6 +198,10 @@ const navigation = {
           action: '/locations/vero-beach',
         },
         {
+          call: 'Westlake',
+          action: '/locations/westlake',
+        },
+        {
           call: 'Riviera Beach',
           action: '/locations/riviera-beach',
         },
