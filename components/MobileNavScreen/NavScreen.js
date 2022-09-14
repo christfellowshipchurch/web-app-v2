@@ -47,7 +47,7 @@ function NavScreen(props) {
     {
       key: 'Locations',
       screen: (
-        <Box>
+        <Box background="white" pb="base">
           <SubMenu
             {...navData?.additionalLinks?.find(n => n?.title === 'Locations')}
             goBack={() => setScreenState('Main')}
