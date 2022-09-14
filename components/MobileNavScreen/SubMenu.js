@@ -31,6 +31,7 @@ function SubMenu(props) {
               href={link.action}
               display="flex"
               alignItems="center"
+              mb="1rem"
             >
               {link.call}
             </Styled.SubNavLink>

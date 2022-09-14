@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Box, Icon } from 'ui-kit';
+import { Box, Icon, Button } from 'ui-kit';
 
 import Styled from './NavScreen.styles';
 import Logo from 'components/Logo';
@@ -47,10 +47,23 @@ function NavScreen(props) {
     {
       key: 'Locations',
       screen: (
-        <SubMenu
-          {...navData?.additionalLinks?.find(n => n?.title === 'Locations')}
-          goBack={() => setScreenState('Main')}
-        />
+        <Box>
+          <SubMenu
+            {...navData?.additionalLinks?.find(n => n?.title === 'Locations')}
+            goBack={() => setScreenState('Main')}
+          />
+          <Button
+            as="a"
+            href="https://www.youtube.com/c/ChristFellowshipWelcomeHome"
+            target="_blank"
+            variant="secondary"
+            size="m"
+            ml="l"
+            mt="-1rem"
+          >
+            Join Us Online
+          </Button>
+        </Box>
       ),
     },
     {
