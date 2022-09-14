@@ -142,6 +142,21 @@ function NavScreen(props) {
         </Box>
       </Box>
       {screenStates.find(n => n.key === screenState)?.screen}
+      {/* {screenState === 'Locations' ? (
+        <Box>
+          <Button
+            as="a"
+            href="https://www.youtube.com/c/ChristFellowshipWelcomeHome"
+            target="_blank"
+            variant="secondary"
+            size="m"
+            ml="l"
+            mt="-1rem"
+          >
+            Join Us Online
+          </Button>
+        </Box>
+      ) : null} */}
     </Styled>
   );
 }
