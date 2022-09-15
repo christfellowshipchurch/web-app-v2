@@ -60,7 +60,7 @@ function NavScreen(props) {
             ml="l"
             mt="-1rem"
           >
-            Join Us Online
+            Online
           </Button>
         </Box>
       ),
