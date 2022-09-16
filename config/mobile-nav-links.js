@@ -111,7 +111,7 @@ const navigation = {
         },
         {
           call: 'Men',
-          action: '/discover/men?id=f42c452f7d71c4157ff1e1362c222beb',
+          action: '/crew',
         },
         {
           call: 'Sisterhood',
