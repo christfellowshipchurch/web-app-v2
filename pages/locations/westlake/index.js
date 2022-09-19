@@ -11,6 +11,13 @@ const Westlake = props => {
       contentHorizontalPadding={'0'}
       contentVerticalPadding={'0'}
       transparentHeader
+      title="Westlake | Christ Fellowship Church"
+      seoMetaTags={{
+        title: 'Westlake | Christ Fellowship Church',
+        image: '/westlake/westlake_1.jpeg',
+        description:
+          'A church, coming to Westlake, that wants to help you live the life you were created for.',
+      }}
     >
       <HeroLanding
         heroTitle="Get the most out of life."
