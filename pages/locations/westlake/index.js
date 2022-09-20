@@ -73,7 +73,7 @@ const Westlake = props => {
           <ContentBlock
             title={`Upcoming Events`}
             htmlContent={`Learn more about Christ Fellowship Westlake—including meeting the Campus Pastors—at an upcoming interest meeting near you! </br> </br> Sunday, September 25 | Christ Fellowship <a href="palm-beach-gardens">Palm Beach Gardens</a> </br> </br>`}
-            image="/westlake/campus_pastors.jpeg"
+            image="/westlake/campus_pastors.png"
             imageRatio="4by3"
             actions={[
               {
