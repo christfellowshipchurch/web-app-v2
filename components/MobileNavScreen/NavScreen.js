@@ -47,21 +47,11 @@ function NavScreen(props) {
     {
       key: 'Locations',
       screen: (
-        <Box background="white" pb="base">
+        <Box background="white">
           <SubMenu
             {...navData?.additionalLinks?.find(n => n?.title === 'Locations')}
             goBack={() => setScreenState('Main')}
           />
-          <Button
-            as="a"
-            href="https://christfellowship.church/events/tune-in-online"
-            variant="secondary"
-            size="m"
-            ml="l"
-            mt="-1rem"
-          >
-            Online
-          </Button>
         </Box>
       ),
     },
