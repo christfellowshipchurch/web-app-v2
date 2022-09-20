@@ -6,10 +6,8 @@ import { Box } from 'ui-kit';
 import Styled from 'ui-kit/Card/Card.styles';
 
 const DefaultCard = (props = {}) => {
-  const hasContent =
-    props.title || props.description || props.children ? true : false;
+  const hasContent = props.title || props.description || props.children;
 
-  console.log(props?.title, hasContent);
   return (
     <Styled {...props}>
       {props.coverImage ? (
@@ -53,21 +51,19 @@ const DefaultCard = (props = {}) => {
           ) : null}
         </Styled.Cover>
       ) : null}
-      {hasContent && (
-        <Styled.Content {...props.contentProps}>
-          {props.title ? (
-            <Box as="h3" mb={{ _: 'xs', md: 's' }}>
-              {props.title}
-            </Box>
-          ) : null}
-          {props.description ? (
-            <Styled.Description color="neutrals.600" fontSize="s">
-              {props.description}
-            </Styled.Description>
-          ) : null}
-          {props.children ? props.children : null}
-        </Styled.Content>
-      )}
+      <Styled.Content {...props.contentProps}>
+        {props.title ? (
+          <Box as="h3" mb={{ _: 'xs', md: 's' }}>
+            {props.title}
+          </Box>
+        ) : null}
+        {props.description ? (
+          <Styled.Description color="neutrals.600" fontSize="s">
+            {props.description}
+          </Styled.Description>
+        ) : null}
+        {props.children ? props.children : null}
+      </Styled.Content>
     </Styled>
   );
 };
