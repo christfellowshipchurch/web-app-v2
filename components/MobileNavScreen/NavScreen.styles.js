@@ -10,7 +10,7 @@ const NavScreen = styled.div`
   height: 100vh;
   min-height: 100%;
   position: relative;
-  background: ${themeGet('colors.paper')};
+  background: ${themeGet('colors.white')};
 
   ${system};
 `;

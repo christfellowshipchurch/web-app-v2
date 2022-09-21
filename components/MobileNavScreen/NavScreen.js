@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Box, Icon, Button } from 'ui-kit';
+import { Box, Icon } from 'ui-kit';
 
 import Styled from './NavScreen.styles';
 import Logo from 'components/Logo';
@@ -47,12 +47,10 @@ function NavScreen(props) {
     {
       key: 'Locations',
       screen: (
-        <Box background="white">
-          <SubMenu
-            {...navData?.additionalLinks?.find(n => n?.title === 'Locations')}
-            goBack={() => setScreenState('Main')}
-          />
-        </Box>
+        <SubMenu
+          {...navData?.additionalLinks?.find(n => n?.title === 'Locations')}
+          goBack={() => setScreenState('Main')}
+        />
       ),
     },
     {
@@ -130,7 +128,9 @@ function NavScreen(props) {
           <Icon name="x" onClick={props?.onClose} />
         </Box>
       </Box>
-      {screenStates.find(n => n.key === screenState)?.screen}
+      <Box bg="white">
+        {screenStates.find(n => n.key === screenState)?.screen}
+      </Box>
     </Styled>
   );
 }
