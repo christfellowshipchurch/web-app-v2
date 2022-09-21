@@ -128,7 +128,9 @@ function NavScreen(props) {
           <Icon name="x" onClick={props?.onClose} />
         </Box>
       </Box>
-      {screenStates.find(n => n.key === screenState)?.screen}
+      <Box bg="white">
+        {screenStates.find(n => n.key === screenState)?.screen}
+      </Box>
     </Styled>
   );
 }
