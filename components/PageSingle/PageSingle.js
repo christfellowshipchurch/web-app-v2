@@ -102,12 +102,10 @@ function PageSingle(props = {}) {
     return <NotFound />;
   }
 
-  const seoTitle = isEmpty(title) ? formatTitleForSEO(asPath) : title;
-
   return (
     <Layout
       theme={theme}
-      title={seoTitle}
+      title={!title || isEmpty(title) ? formatTitleForSEO(asPath) : title}
       seoMetaTags={{
         image: coverImage,
         description: summary,
