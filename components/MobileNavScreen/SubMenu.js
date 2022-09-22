@@ -19,7 +19,7 @@ function SubMenu(props) {
           alignItems="center"
           ml="-1.8rem"
           color="black"
-          mb="l"
+          mb="base"
           onClick={props?.goBack}
         >
           <Icon name="angleLeft" size={30} />
@@ -31,6 +31,7 @@ function SubMenu(props) {
               href={link.action}
               display="flex"
               alignItems="center"
+              color={link.color}
             >
               {link.call}
             </Styled.SubNavLink>

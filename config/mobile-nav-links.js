@@ -213,6 +213,11 @@ const navigation = {
           call: 'En Español - Palm Beach Gardens',
           action: '/locations/iglesia-palm-beach-gardens',
         },
+        {
+          call: 'Online',
+          action: '/events/tune-in-online',
+          color: 'primary',
+        },
       ],
     },
   ],
