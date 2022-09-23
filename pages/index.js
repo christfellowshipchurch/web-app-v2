@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 import { initializeApollo } from 'lib/apolloClient';
 import { GET_FEATURE_FEED } from 'hooks/useFeatureFeed';
@@ -8,10 +9,21 @@ import { Cell, utils } from 'ui-kit';
 import { useAuth } from 'providers/AuthProvider';
 
 import ExternalLandingPage from './external-home';
+import { showModal, useModalDispatch } from 'providers/ModalProvider';
+import { includes } from 'lodash';
 
 export default function Home(props = {}) {
   const [isTransparent, setIsTransparent] = useState(false);
   const [{ authenticated }] = useAuth();
+  const router = useRouter();
+  const modalDispatch = useModalDispatch();
+
+  useEffect(() => {
+    const { asPath } = router;
+    if (includes(asPath, '#connect-card')) {
+      modalDispatch(showModal('ConnectCardModal'));
+    }
+  }, []);
 
   useEffect(() => {
     setIsTransparent(!authenticated);
@@ -23,19 +35,22 @@ export default function Home(props = {}) {
     },
   };
 
-  if (authenticated) return <Layout transparentHeader={isTransparent} title="Home">
-    <Cell
-      as="main"
-      maxWidth={utils.rem('1100px')}
-      px="base"
-      py={{ _: 'xs', lg: 's' }}
-    >
-      <FeatureFeedProvider Component={FeatureFeed} options={options} />
-    </Cell>
-  </Layout>
+  if (authenticated)
+    return (
+      <Layout transparentHeader={isTransparent} title="Home">
+        <Cell
+          as="main"
+          maxWidth={utils.rem('1100px')}
+          px="base"
+          py={{ _: 'xs', lg: 's' }}
+        >
+          <FeatureFeedProvider Component={FeatureFeed} options={options} />
+        </Cell>
+      </Layout>
+    );
 
   return (
-    <Layout 
+    <Layout
       title="Christ Fellowship Church - A church that wants to help you live the life you were created for."
       transparentHeader={isTransparent}
     >

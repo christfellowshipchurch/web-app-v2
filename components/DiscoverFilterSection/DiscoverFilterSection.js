@@ -5,7 +5,14 @@ import { useRouter } from 'next/router';
 import { getUrlFromRelatedNode, slugify } from 'utils';
 import { useDiscoverFilterCategoriesPreview } from 'hooks';
 
-import { Button, Box, DefaultCard, CardGrid, Loader } from 'ui-kit';
+import {
+  Button,
+  Box,
+  DefaultCard,
+  CardGrid,
+  Loader,
+  HorizontalHighlightCard,
+} from 'ui-kit';
 import { CustomLink } from 'components';
 
 const DiscoverFilterSection = ({ contentId, title }) => {
@@ -39,7 +46,7 @@ const DiscoverFilterSection = ({ contentId, title }) => {
           contentItems.map((n, i) => (
             <CustomLink
               key={i}
-              Component={DefaultCard}
+              Component={n?.title ? DefaultCard : HorizontalHighlightCard}
               as="a"
               boxShadow="none"
               coverImage={n?.coverImage?.sources[0]?.uri}
@@ -48,6 +55,7 @@ const DiscoverFilterSection = ({ contentId, title }) => {
               scaleCard={false}
               scaleCoverImage={true}
               title={n?.title}
+              type="HIGHLIGHT_SMALL"
             />
           ))
         )}
