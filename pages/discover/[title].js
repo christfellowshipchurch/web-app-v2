@@ -13,6 +13,7 @@ import {
   Button,
   utils,
   Loader,
+  HorizontalHighlightCard,
 } from 'ui-kit';
 import { Layout, CustomLink } from 'components';
 
@@ -21,14 +22,11 @@ export default function DiscoverFilterCategoriesPreview(props) {
   const type = 'UniversalContentItem';
   const contentId = type.concat(':', query?.id);
 
-  const {
-    categoryTitle,
-    contentItems,
-    loading,
-  } = useDiscoverFilterCategoriesPreview({
-    variables: { id: contentId, first: 100 },
-    fetchPolicy: 'cache-and-network',
-  });
+  const { categoryTitle, contentItems, loading } =
+    useDiscoverFilterCategoriesPreview({
+      variables: { id: contentId, first: 100 },
+      fetchPolicy: 'cache-and-network',
+    });
 
   return (
     <Layout title={startCase(categoryTitle)}>
@@ -57,7 +55,7 @@ export default function DiscoverFilterCategoriesPreview(props) {
           ) : (
             contentItems.map(n => (
               <CustomLink
-                Component={DefaultCard}
+                Component={n?.title ? DefaultCard : HorizontalHighlightCard}
                 as="a"
                 boxShadow="none"
                 coverImage={n?.coverImage?.sources[0]?.uri}
@@ -68,6 +66,7 @@ export default function DiscoverFilterCategoriesPreview(props) {
                 scaleCoverImage={true}
                 title={n?.title}
                 loading
+                type="HIGHLIGHT_SMALL"
               />
             ))
           )}
