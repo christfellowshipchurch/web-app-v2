@@ -140,7 +140,7 @@ const navigation = {
         },
         {
           call: 'Special Needs',
-          action: '/discover/special-needs?id=8d4f9b66370e57fe85eebf6738a65a3c',
+          action: '/special-needs',
         },
       ],
     },
