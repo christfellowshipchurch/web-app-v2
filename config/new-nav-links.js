@@ -136,7 +136,7 @@ const navigation = {
         },
         {
           call: 'Missions',
-          action: '/discover/missions?id=021a93e4715936dcecd0bc57898d6fa5',
+          action: '/missions',
         },
         {
           call: 'Special Needs',
