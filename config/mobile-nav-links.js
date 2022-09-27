@@ -119,7 +119,7 @@ const navigation = {
         },
         {
           call: 'Marriage',
-          action: '/marriage',
+          action: '/discover/marriage?id=5680d5cefa0e61486fc7df2f2084a855',
         },
         {
           call: 'Care',
@@ -131,7 +131,7 @@ const navigation = {
         },
         {
           call: 'Special Needs',
-          action: '/special-needs',
+          action: '/discover/special-needs?id=8d4f9b66370e57fe85eebf6738a65a3c',
         },
       ],
     },
