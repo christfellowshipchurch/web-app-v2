@@ -128,7 +128,7 @@ const navigation = {
         },
         {
           call: 'Marriage',
-          action: '/discover/marriage?id=5680d5cefa0e61486fc7df2f2084a855',
+          action: '/marriage',
         },
         {
           call: 'Care',
