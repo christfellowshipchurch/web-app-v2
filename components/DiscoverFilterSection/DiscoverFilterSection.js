@@ -21,6 +21,10 @@ const DiscoverFilterSection = ({ contentId, title }) => {
     variables: { id: contentId, first: 3 },
   });
 
+  const contentLength = useDiscoverFilterCategoriesPreview({
+    variables: { id: contentId },
+  }).contentItems.length;
+
   const handleSeeMore = event => {
     const [type, id] = contentId.split(':');
 
@@ -32,7 +36,7 @@ const DiscoverFilterSection = ({ contentId, title }) => {
     <Box my="s">
       <Box display="flex" justifyContent="space-between" mb="s">
         <Box as="h3">{title}</Box>
-        {contentItems?.length > 2 ? (
+        {contentLength > 3 ? (
           <Button variant="link" paddingRight={0} onClick={handleSeeMore}>
             See more
           </Button>
