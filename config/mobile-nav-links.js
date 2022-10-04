@@ -214,6 +214,10 @@ const navigation = {
           action: '/locations/iglesia-palm-beach-gardens',
         },
         {
+          call: 'Trinity Church',
+          action: '/trinity-church',
+        },
+        {
           call: 'Online',
           action: '/events/tune-in-online',
           color: 'primary',
