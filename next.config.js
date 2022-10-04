@@ -81,6 +81,11 @@ module.exports = {
         destination: '/devotionals/dont-let-anyone-look-down-on-you',
         permanent: true,
       },
+      {
+        source: '/locations/trinity-church',
+        destination: '/trinity-church',
+        permanent: true,
+      },
       // TODO: Uncomment these lines to hide Group Finder.
       // NOTE: We can't get `config/flags` in this file.
       // {
