@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
+import { kebabCase } from 'lodash';
 
 import { getUrlFromRelatedNode, slugify } from 'utils';
 import { useDiscoverFilterCategoriesPreview } from 'hooks';
@@ -31,7 +32,9 @@ const DiscoverFilterSection = ({ contentId, title }) => {
   return (
     <Box my="s">
       <Box display="flex" justifyContent="space-between" mb="s">
-        <Box as="h3">{title}</Box>
+        <Box id={kebabCase(title)} as="h3">
+          {title}
+        </Box>
         {contentItems?.length > 2 ? (
           <Button variant="link" paddingRight={0} onClick={handleSeeMore}>
             See more
