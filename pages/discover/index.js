@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import kebabCase from 'lodash/kebabCase';
+import split from 'lodash/split';
+import last from 'lodash/last';
 
 import { Box, Loader, Button, Cell, utils } from 'ui-kit';
 import {
@@ -83,12 +85,15 @@ const Discover = () => {
   }, [search]);
 
   useEffect(() => {
+    const { asPath } = router;
+    const anchorLink = asPath.includes('#') ? last(split(asPath, '#')) : null;
     if (filterValues.title) {
       router.push({
         pathname: '/discover',
         query: {
           c: kebabCase(filterValues.title),
         },
+        hash: anchorLink,
       });
     }
   }, [filterValues]);
