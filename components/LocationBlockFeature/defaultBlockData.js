@@ -89,7 +89,7 @@ const locationBlockData = [
       ],
     },
     htmlContent:
-      'The perfect place those who are looking to grow their relationship with Jesus as well as connect with other young adults throughout South Florida.',
+      'The perfect place for those who are looking to grow their relationship with Jesus as well as connect with other young adults throughout South Florida.',
     id: 'ContentBlockFeature:d0d7407920381ab5b3b4d32cd65762c673360cfc4b7e19fe2d220468dd77d66a',
     imageAlt: null,
     imageRatio: null,

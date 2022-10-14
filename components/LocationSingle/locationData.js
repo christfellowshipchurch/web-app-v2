@@ -22,7 +22,7 @@ const additionalInfoCampusData = [
     name: 'Boynton Beach',
     info: [
       'Kids services take place at each service',
-      'Traducciones al español ofrecidas a las 11AM',
+      'Traducciones al español ofrecidas a las 10AM',
     ],
   },
   {
