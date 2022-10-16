@@ -208,7 +208,7 @@ module.exports = {
       { source: '/replicate', destination: 'https://replicate.org/', permanent: true },
       { source: '/bylaws', destination: '/about/beliefs', permanent: true },
       { source: '/divorcecare', destination: '/divorce-care', permanent: true },
-      { source: '/offering', destination: '/make-a-difference-through-this-years-easter-offering', permanent: true },
+      { source: '/offering', destination: '/be-a-part-of-this-years-fall-offering', permanent: true },
       { source: '/ministryplan', destination: '/the-2022-ministry-plan', permanent: true },
       { source: '/griefshare', destination: '/grief-share', permanent: true },
       { source: '/food', destination: '/next-steps/get-involved-with-missions', permanent: true },
