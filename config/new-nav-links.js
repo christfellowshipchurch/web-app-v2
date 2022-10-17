@@ -112,7 +112,7 @@ const navigation = {
         },
         {
           call: 'Students',
-          action: '/discover/students?id=c318bb64cceb38a40962accd3451b515',
+          action: '/students',
         },
         {
           call: 'Young Adults',
