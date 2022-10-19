@@ -2,9 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FAQ, HeroLanding, Layout } from 'components';
 import { Box, CardCarousel, ContentBlock, Image } from 'ui-kit';
+import { useContentBlockFeature } from 'hooks';
 import faqData from 'components/FAQ/faqData';
 
 const Westlake = props => {
+  //Grabs Upcoming Events Content Block from Rock
+  const { block } = useContentBlockFeature({
+    variables: {
+      id: 'ContentBlockFeature:d0d7407920381ab5b3b4d32cd65762c6f75ed64f8616c1ca5784f8c79bb069b7',
+    },
+  });
+
   return (
     <Layout
       contentMaxWidth={'100vw'}
@@ -39,9 +47,9 @@ const Westlake = props => {
         >
           <ContentBlock
             title="Welcome to Westlake!"
-            htmlContent="When the initial plans for the city of Westlake were being finalized, we knew that we wanted to be a part of this new community. In 2019, we purchased 13 acres to be the future site of Christ Fellowship Westlake, and in December 2022, we will officially open the doors as we welcome both our new neighbors and longtime family home. 
+            htmlContent="When the initial plans for the city of Westlake were being finalized, we knew that we wanted to be a part of this new community. In 2019, we purchased 13 acres to be the future site of Christ Fellowship Westlake, and in early 2023, we will officially open the doors as we welcome both our new neighbors and longtime family home. 
             </br></br>
-            But we’re not just building a building. We’re building a place for all generations to live the life they were created to live—and it all starts here! We can’t wait to welcome you and your family to Christ Fellowship Westlake, launching this December. 
+            But we’re not just building a building. We’re building a place for all generations to live the life they were created to live—and it all starts here! We can’t wait to welcome you and your family to Christ Fellowship Westlake, launching in early 2023. 
             </br></br>
             - Pastors Todd & Julie Mullins"
             image="/westlake/video-thumbnail.png"
@@ -71,11 +79,14 @@ const Westlake = props => {
       <Box px="base" py="l">
         <Box mt={{ _: '-0.5rem', md: 'base' }} mx="auto" maxWidth={900}>
           <ContentBlock
-            title={`Upcoming Events`}
-            htmlContent={`</br> Learn more about Christ Fellowship Westlake—including meeting the Campus Pastors—at an upcoming interest meeting near you! </br> </br> Sunday, October 2 | Christ Fellowship <a href="palm-beach-gardens">Palm Beach Gardens</a> in the Luncheon - Cafe Multipurpose Room. </br> </br>`}
-            image="/westlake/campus_pastors.png"
-            imageRatio="4by3"
-            contentLayout="left"
+            title={block?.title}
+            subtitle={block?.subtitle}
+            actions={block?.actions}
+            contentLayout={block?.orientation}
+            htmlContent={block?.htmlContent}
+            image={block?.coverImage?.sources[0]?.uri}
+            imageRatio={block?.imageRatio}
+            videos={block?.videos}
           />
         </Box>
       </Box>
@@ -201,7 +212,7 @@ const Westlake = props => {
         <Box mt={{ _: '-0.5rem', md: 'base' }} mx="auto" maxWidth={800}>
           <ContentBlock
             title="Experience Christ Fellowship now!"
-            htmlContent={`Can’t wait until December 2022? Same here! The good news is that you can experience a Christ Fellowship service live online every Sunday or find another campus near you!`}
+            htmlContent={`Can’t wait? Same here! The good news is that you can experience a Christ Fellowship service live online every Sunday or find another campus near you!`}
             image="/westlake/watch_online.jpeg"
             imageRatio="16by9"
             actions={[

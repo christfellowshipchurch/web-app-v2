@@ -7,6 +7,7 @@ import useCampus from './useCampus';
 import useCampuses from './useCampuses';
 import useCheckIn from './useCheckIn';
 import useContactGroupLeader from './useContactGroupLeader';
+import useContentBlockFeature from './useContentBlockFeature';
 import useContentFeed from './useNodeRoute';
 import useContentItem from './useContentItem';
 import useCurrentBreakpoint from './useCurrentBreakpoint';
@@ -77,6 +78,7 @@ export {
   useCampuses,
   useCheckIn,
   useContactGroupLeader,
+  useContentBlockFeature,
   useContentFeed,
   useContentItem,
   useCurrentBreakpoint,
