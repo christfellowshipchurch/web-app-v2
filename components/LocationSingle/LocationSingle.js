@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { find, includes } from 'lodash';
+import { find, includes, startCase, upperFirst } from 'lodash';
 
 import {
   CollectionPreview,
@@ -47,10 +47,12 @@ function LocationSingle(props = {}) {
     return <NotFound />;
   }
 
-  const title = props?.data?.title;
-  let campus = title.substring(28, title.length - 4);
+  const { title, routing } = props?.data;
 
-  // note : We need to override the cmapus name to for CFE to properly format it for querying purposes
+  // note : Gets Campus Name from pathname
+  let campus = startCase(routing?.pathname.substring(10));
+
+  // note : We need to override the campus name to for CFE to properly format it for querying purposes
   if (includes(campus, 'Español')) {
     const intitialString = title.substring(25, title.length - 4);
     const firstHalf = intitialString.substring(0, 10);

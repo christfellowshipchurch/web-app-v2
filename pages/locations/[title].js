@@ -119,6 +119,7 @@ export async function getStaticPaths() {
     'royal-palm-beach',
     'stuart',
     'vero-beach',
+    'trinity',
   ];
 
   return {
