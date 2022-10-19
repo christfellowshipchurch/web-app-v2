@@ -21,7 +21,7 @@ const DiscoverFilterSection = ({ contentId, title }) => {
     variables: { id: contentId, first: 3 },
   });
 
-  const contentLength = useDiscoverFilterCategoriesPreview({
+  const content = useDiscoverFilterCategoriesPreview({
     variables: { id: contentId },
   }).contentItems.length;
 
@@ -36,9 +36,9 @@ const DiscoverFilterSection = ({ contentId, title }) => {
     <Box my="s">
       <Box display="flex" justifyContent="space-between" mb="s">
         <Box as="h3">{title}</Box>
-        {contentLength > 3 ? (
+        {content ? (
           <Button variant="link" paddingRight={0} onClick={handleSeeMore}>
-            See more
+            View All
           </Button>
         ) : null}
       </Box>
