@@ -94,7 +94,7 @@ const locationBlockData = [
     imageAlt: null,
     imageRatio: null,
     orientation: 'RIGHT',
-    subtitle: 'College & Young Adult',
+    subtitle: 'College & Young Adults',
     title: 'For Young Adults',
     videos: [],
   },
