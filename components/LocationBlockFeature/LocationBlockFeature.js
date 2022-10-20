@@ -27,6 +27,15 @@ const LocationBlockFeature = props => {
     content = drop(content);
   }
 
+  if (props?.campusName === 'Trinity') {
+    //replaces default content with Trinity specific content
+    content[0].subtitle = 'Babies to Elementary – Every Sunday at 10AM';
+    content[0].htmlContent =
+      'A place designed just for kids where they’ll learn to love Jesus, love others, and love life.';
+    content[1].subtitle = 'Middle School & High School – Available Regionally';
+    content[2].subtitle = 'College & Young Adult – Available Regionally';
+  }
+
   return (
     <Box textAlign="center" {...props}>
       <Box mt="l" mb={0} as="h2" color="secondary">

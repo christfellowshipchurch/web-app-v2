@@ -56,6 +56,15 @@ const additionalInfoCampusData = [
     name: 'Boca Raton',
     info: ['Kids services take place at each service'],
   },
+  {
+    name: 'Trinity',
+    info: [
+      'A more traditional worship setting',
+      'A smaller community so you can get to know your neighbors',
+      'Kids programming up to grade 5 during service',
+      'Additional regional events just down the street',
+    ],
+  },
 ];
 
 const campusMetaData = [
@@ -423,6 +432,19 @@ const headerData = [
       desktop: '/location-pages/okee-desktop.mp4',
     },
     videoBackgroundImage: '/location-pages/okee-background.png',
+  },
+  {
+    name: 'Trinity',
+    primaryButton: {
+      call: 'Join Us Sunday',
+      action: '#service-times',
+      newTab: false,
+    },
+    backgroundVideo: {
+      mobile: '/location-pages/trinity.mp4',
+      desktop: '/location-pages/trinity.mp4',
+    },
+    videoBackgroundImage: '/location-pages/trinity-background.png',
   },
 ];
 
