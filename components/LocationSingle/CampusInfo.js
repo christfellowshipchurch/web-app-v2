@@ -98,6 +98,18 @@ const CampusInfo = ({
   /** Instagram and Google Map URLs */
   const campusLink = find(campusLinks, { name: name });
 
+  /** Directions to all Campuses except Trinity Campus (has special link) */
+  const allCampusesDirections = campusLink?.googleMap
+    ? campusLink?.googleMap
+    : `https://www.google.com/maps/place/${address?.replace(' ', '+')}`;
+
+  /** Trinity Campus Directions Link */
+  const trinityCampusDirections =
+    'https://www.google.com/maps/place/Trinity+Church+by+Christ+Fellowship/@26.8145836,-80.1182792,16z/data=!4m6!3m5!1s0x88d92b3990eb6687:0xb308c56e1ba6c5d4!8m2!3d26.8180426!4d-80.1071754!15sCiN0cmluaXR5IGNodXJjaCBieSBjaHJpc3QgZmVsbG93c2hpcJIBBmNodXJjaOABAA?shorturl=1';
+
+  const handleCampusDirections =
+    name === 'Trinity' ? trinityCampusDirections : allCampusesDirections;
+
   return (
     <Box bg="white">
       {/* Campus Information */}
@@ -179,14 +191,7 @@ const CampusInfo = ({
                     <Button
                       as="a"
                       target="_blank"
-                      href={
-                        campusLink?.googleMap
-                          ? campusLink?.googleMap
-                          : `https://www.google.com/maps/place/${address?.replace(
-                              ' ',
-                              '+'
-                            )}`
-                      }
+                      href={handleCampusDirections}
                       borderRadius="xxl"
                       size="s"
                       px="base"
