@@ -31,7 +31,7 @@ const faqDefaultData = [
   {
     title: 'Is childcare provided?',
     description:
-      'Yes! We have a fun, safe, and clean area for kids & students (newborn–grade 6). <br/> <br/> <b> New to Christ Fellowship Kids?</b> <br/> We’d love to meet you! Let us know a little about your family using this <a target="_blank" href="https://rock.gocf.org/FamilyRegistration">brief form</a> so that our team can help get you connected when you arrive. <br/> <br/> If you are planning on visiting Christ Fellowship Kids this Sunday, <a target="_blank" href="https://rock.gocf.org/CFKidsPlanaVisit">let us know</a> so we can help your family experience all that CFKids has to offer! <br/> <br/> You can learn more about Christ Fellowship Kids programming <a target="_blank" href="https://www.christfellowship.church/christ-fellowship-kids">here</a>!',
+      'Yes! We have a fun, safe, and clean area for kids & students (newborn–grade 5). <br/> <br/> <b> New to Christ Fellowship Kids?</b> <br/> We’d love to meet you! Let us know a little about your family using this <a target="_blank" href="https://rock.gocf.org/FamilyRegistration">brief form</a> so that our team can help get you connected when you arrive. <br/> <br/> If you are planning on visiting Christ Fellowship Kids this Sunday, <a target="_blank" href="https://rock.gocf.org/CFKidsPlanaVisit">let us know</a> so we can help your family experience all that CFKids has to offer! <br/> <br/> You can learn more about Christ Fellowship Kids programming <a target="_blank" href="https://www.christfellowship.church/christ-fellowship-kids">here</a>!',
   },
 ];
 
@@ -160,12 +160,12 @@ const faqTrinityData = [
   {
     title: 'Is childcare provided?',
     description:
-      'Yes! We have a fun, safe, and clean area for kids & students (newborn–grade 6). <br/> <br/> <b> New to Christ Fellowship Kids?</b> <br/> We’d love to meet you! Let us know a little about your family using this <a target="_blank" href="https://rock.gocf.org/FamilyRegistration">brief form</a> so that our team can help get you connected when you arrive. <br/> <br/> If you are planning on visiting Christ Fellowship Kids this Sunday, <a target="_blank" href="https://rock.gocf.org/CFKidsPlanaVisit">let us know</a> so we can help your family experience all that CFKids has to offer! <br/> <br/> You can learn more about Christ Fellowship Kids programming <a target="_blank" href="https://www.christfellowship.church/christ-fellowship-kids">here</a>!',
+      'Yes! We have a fun, safe, and clean area for kids & students (newborn–grade 5). <br/> <br/> <b> New to Christ Fellowship Kids?</b> <br/> We’d love to meet you! Let us know a little about your family using this <a target="_blank" href="https://rock.gocf.org/FamilyRegistration">brief form</a> so that our team can help get you connected when you arrive. <br/> <br/> If you are planning on visiting Christ Fellowship Kids this Sunday, <a target="_blank" href="https://rock.gocf.org/CFKidsPlanaVisit">let us know</a> so we can help your family experience all that CFKids has to offer! <br/> <br/> You can learn more about Christ Fellowship Kids programming <a target="_blank" href="https://www.christfellowship.church/christ-fellowship-kids">here</a>!',
   },
   {
     title: 'Is there anything available for students and young adults?',
     description:
-      'Yes! We have <br/> <br/> CFStudents programming available for 6th–12th graders <a target="_blank" href="https://www.christfellowship.church/events/cfstudents"> regionally at Christ Fellowship Palm Beach Gardens </a> every Wednesday night at 6:30PM. <br/> <br/> Christ Fellowship Young Adults gatherings happening <a target="_blank" href="https://www.christfellowship.church/events/cf-young-adults">regionally at Christ Fellowship Palm Beach Gardens</a> every Thursday night at 7:30PM.',
+      'Yes! There is programming for students and young adults available just down the street at Christ Fellowship Palm Beach Gardens. We have <br/> <br/> <a target="_blank" href="https://www.christfellowship.church/students"> CFStudents</a> programming available for 6th–12th graders regionally at Christ Fellowship Palm Beach Gardens every Wednesday night at 6:30PM. <br/> <br/> <a target="_blank" href="https://www.christfellowship.church/young-adults"> Christ Fellowship Young Adults</a> gatherings happening regionally at Christ Fellowship Palm Beach Gardens every Thursday night at 7:30PM.',
   },
 ];
 
