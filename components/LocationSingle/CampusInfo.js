@@ -83,6 +83,18 @@ const CampusInfo = ({
     };
   });
 
+  /** Get the Most Out of Life messaging */
+  const getTheMost =
+    name === 'Trinity'
+      ? {
+          title: 'Experience Something New!',
+          body: 'Have you been searching for a meaningful community but haven’t found it yet? If so, you’re not alone. Trinity Church by Christ Fellowship is a new church experience coming to your neighborhood! This community location in Palm Beach Gardens offers a different way to experience church so you can get to know people in your neighborhood, enjoy a more traditional worship setting, and find a place for you and your family to belong—it’s big church made small, and you’ll feel right at home!',
+        }
+      : {
+          title: 'Get the Most Out of Life',
+          body: `Here at Christ Fellowship Church in ${name}, we want to help you live the life you were created for. Every Sunday, we have church services where you can experience uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—and it all starts here!`,
+        };
+
   /** Instagram and Google Map URLs */
   const campusLink = find(campusLinks, { name: name });
 
@@ -190,35 +202,16 @@ const CampusInfo = ({
                 />
               </>
             )}
-            {name !== 'Trinity' ? (
-              <Box display={{ _: 'none', md: 'flex' }} mt="l">
-                <Box flex="1">
-                  <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
-                    Get the Most Out of Life
-                  </Box>
-                </Box>
-                <Box flex="2">
-                  <Box as="p">
-                    {`Here at Christ Fellowship Church in ${name}, we want to help you live the life you were created for. Every Sunday, we have church services where you can experience uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—and it all starts here!`}
-                  </Box>
+            <Box display={{ _: 'none', md: 'flex' }} mt="l">
+              <Box flex="1">
+                <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
+                  {getTheMost?.title}
                 </Box>
               </Box>
-            ) : (
-              <Box display={{ _: 'none', md: 'flex' }} mt="l">
-                <Box flex="1">
-                  <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
-                    Experience Something New!
-                  </Box>
-                </Box>
-                <Box flex="2">
-                  <Box as="p">
-                    {
-                      'Have you been searching for a meaningful community but haven’t found it yet? If so, you’re not alone. Trinity Church by Christ Fellowship is a new church experience coming to your neighborhood! This community location in Palm Beach Gardens offers a different way to experience church so you can get to know people in your neighborhood, enjoy a more traditional worship setting, and find a place for you and your family to belong—it’s big church made small, and you’ll feel right at home!'
-                    }
-                  </Box>
-                </Box>
+              <Box flex="2">
+                <Box as="p">{getTheMost?.body}</Box>
               </Box>
-            )}
+            </Box>
           </Box>
         </Box>
         {/* Campus Pastors */}
@@ -334,12 +327,10 @@ const CampusInfo = ({
         textAlign="center"
       >
         <Box as="h2" color="secondary">
-          Get the Most Out of Life
+          {getTheMost?.title}
         </Box>
         <Box mx={{ _: 'base', sm: 'xl' }}>
-          <Box as="p">
-            {`Here at Christ Fellowship Church in ${name}, we want to help you live the life you were created for. Every Sunday, we have church services where you can experience uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—and it all starts here!`}
-          </Box>
+          <Box as="p">{getTheMost?.body}</Box>
         </Box>
       </Box>
     </Box>

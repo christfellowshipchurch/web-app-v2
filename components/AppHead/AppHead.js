@@ -84,18 +84,48 @@ function AppHead({ Component, pageProps }) {
   return (
     <Head>
       {/* Platform Specific Favicons */}
-      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2" />
-      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2" />
-      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2" />
+      <link
+        rel="apple-touch-icon"
+        sizes="180x180"
+        href="/apple-touch-icon.png?v=2"
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="32x32"
+        href="/favicon-32x32.png?v=2"
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="16x16"
+        href="/favicon-16x16.png?v=2"
+      />
       <link rel="manifest" href="/site.webmanifest?v=2" />
       <link rel="mask-icon" href="/safari-pinned-tab.svg?v=2" color="#0092bc" />
       <link rel="shortcut icon" href="/favicon.ico?v=2" />
-      <meta name="apple-mobile-web-app-title" content="Christ Fellowship Church" />
+      <meta
+        name="apple-mobile-web-app-title"
+        content="Christ Fellowship Church"
+      />
       <meta name="application-name" content="Christ Fellowship Church" />
       <meta name="msapplication-TileColor" content="#0092bc" />
       <meta name="theme-color" content="#ffffff" />
- 
       <link rel="stylesheet" type="text/css" href="/nprogress.css" />
+
+      {process.env.SEGMENT_KEY && (
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+            !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="${process.env.SEGMENT_KEY}";;analytics.SNIPPET_VERSION="4.15.3";
+            analytics.load("${process.env.SEGMENT_KEY}");
+            analytics.page();
+            }}();
+          `,
+          }}
+        />
+      )}
+
       {/* Global site tag (gtag.js) - Google Analytics */}
       {process.env.NODE_ENV === 'production' &&
       process.env.NEXT_PUBLIC_GA_CODE ? (
@@ -119,7 +149,6 @@ function AppHead({ Component, pageProps }) {
           />
         </>
       ) : null}
-
       {/* Global Site Code Pixel - Facebook Pixel */}
       {/* Facebook meta-tag for new iOS 14 website verification */}
       <meta
@@ -154,7 +183,6 @@ function AppHead({ Component, pageProps }) {
           </noscript>
         </>
       ) : null}
-
       {/* Hotjar Tracking Code for christfellowship.church */}
       <script
         dangerouslySetInnerHTML={{
@@ -170,7 +198,6 @@ function AppHead({ Component, pageProps }) {
           `,
         }}
       />
-
       <style>{'html { scroll-behavior: smooth; }'}</style>
     </Head>
   );
