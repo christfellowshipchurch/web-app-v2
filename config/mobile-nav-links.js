@@ -53,7 +53,7 @@ const navigation = {
     },
     {
       call: 'Be a better parent',
-      action: '/christ-fellowship-kids#parenting',
+      action: '/christ-fellowship-kids#parenting-resources',
     },
     {
       call: 'Heal from past hurts',
