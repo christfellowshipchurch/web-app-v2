@@ -58,12 +58,7 @@ const additionalInfoCampusData = [
   },
   {
     name: 'Trinity',
-    info: [
-      'A more traditional worship setting',
-      'A smaller community so you can get to know your neighbors',
-      'Kids programming up to grade 5 during service',
-      'Additional regional events just down the street',
-    ],
+    info: ['Kids programming up to grade 5 during service'],
   },
 ];
 

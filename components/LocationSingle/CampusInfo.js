@@ -88,7 +88,7 @@ const CampusInfo = ({
     name === 'Trinity'
       ? {
           title: 'Experience Something New!',
-          body: 'Have you been searching for a meaningful community but haven’t found it yet? If so, you’re not alone. Trinity Church by Christ Fellowship is a new church experience coming to your neighborhood! This community location in Palm Beach Gardens offers a different way to experience church so you can get to know people in your neighborhood, enjoy a more traditional worship setting, and find a place for you and your family to belong—it’s big church made small, and you’ll feel right at home!',
+          body: 'Have you been searching for a meaningful community but haven’t found it yet? If so, you’re not alone. Trinity Church by Christ Fellowship is a new church experience coming to your neighborhood! This community location in Palm Beach Gardens offers a different way to experience church so you can get to know people in your neighborhood and enjoy a more traditional worship setting. Find a place for you and your family to belong with even more regional events offered just down the street—it’s big church made small, and you’ll feel right at home!',
         }
       : {
           title: 'Get the Most Out of Life',
