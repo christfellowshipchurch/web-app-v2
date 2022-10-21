@@ -41,7 +41,7 @@ const locationBlockData = [
         relatedNode: {
           __typename: 'Url',
           id: 'Url:f4974a223763b3a06ea2cd73ff30952be89d6281e05bc41f7ee423cd227a2b00ac473ab51d6349eb947f770d463c04fc83a72f8b7a0522333e94950a0fc721fcfdab85895f0b5055043fe0a42e50277efd830a93c8139273e438a07a5780ed1a',
-          url: 'https://www.christfellowship.church/events/cfstudents',
+          url: 'https://www.christfellowship.church/cfstudents',
         },
         title: 'LEARN MORE',
       },
