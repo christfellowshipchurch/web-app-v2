@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button, Box, Card, ContentBlock, List } from 'ui-kit';
 import { rem } from 'ui-kit/_utils';
 import { Layout } from 'components';
+import { useRouter } from 'next/router';
+import { includes } from 'lodash';
 
 import Styled from './About.styles';
 
@@ -10,6 +12,20 @@ import { htmlToReactParser } from 'utils';
 
 export default function About() {
   const [active, setActive] = useState('leadership');
+  const router = useRouter();
+
+  useEffect(() => {
+    const { asPath } = router;
+    const lastOfPath = asPath.substring(7);
+
+    if (includes(asPath, lastOfPath)) {
+      setActive(lastOfPath);
+      router.push({
+        pathname: '/about',
+        hash: lastOfPath,
+      });
+    }
+  }, []);
 
   return (
     <Layout
@@ -55,6 +71,7 @@ export default function About() {
         >
           <Box as="li">
             <Button
+              id="leadership"
               variant="link"
               active={active === 'leadership'}
               onClick={() => setActive('leadership')}
@@ -64,6 +81,7 @@ export default function About() {
           </Box>
           <Box as="li">
             <Button
+              id="beliefs"
               variant="link"
               active={active === 'beliefs'}
               onClick={() => setActive('beliefs')}
@@ -73,6 +91,7 @@ export default function About() {
           </Box>
           <Box as="li">
             <Button
+              id="values"
               variant="link"
               active={active === 'values'}
               onClick={() => setActive('values')}
@@ -82,6 +101,7 @@ export default function About() {
           </Box>
           <Box as="li">
             <Button
+              id="history"
               variant="link"
               active={active === 'history'}
               onClick={() => setActive('history')}
