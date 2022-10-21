@@ -165,7 +165,7 @@ const faqTrinityData = [
   {
     title: 'Is there anything available for students and young adults?',
     description:
-      'Yes! There is programming for students and young adults available just down the street at Christ Fellowship Palm Beach Gardens. We have <br/> <br/> <a target="_blank" href="https://www.christfellowship.church/students"> CFStudents</a> programming available for 6th–12th graders regionally at Christ Fellowship Palm Beach Gardens every Wednesday night at 6:30PM. <br/> <br/> <a target="_blank" href="https://www.christfellowship.church/young-adults"> Christ Fellowship Young Adults</a> gatherings happening regionally at Christ Fellowship Palm Beach Gardens every Thursday night at 7:30PM.',
+      'Yes! There is programming for students and young adults available just down the street at Christ Fellowship Palm Beach Gardens. <br/> <br/> <a target="_blank" href="https://www.christfellowship.church/students"> CFStudents</a> programming available for 6th–12th graders regionally at Christ Fellowship Palm Beach Gardens every Wednesday night at 6:30PM. <br/> <br/> <a target="_blank" href="https://www.christfellowship.church/young-adults"> Christ Fellowship Young Adults</a> gatherings happening regionally at Christ Fellowship Palm Beach Gardens every Thursday night at 7:30PM.',
   },
 ];
 
