@@ -215,7 +215,7 @@ const navigation = {
         },
         {
           call: 'Trinity Church',
-          action: '/trinity-church',
+          action: '/locations/trinity',
         },
         {
           call: 'Online',
