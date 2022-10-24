@@ -4,11 +4,15 @@ import PropTypes from 'prop-types';
 import { Box, Button, Divider } from 'ui-kit';
 import Styled from './LocationSingle.styles';
 import { showModal, useModalDispatch } from 'providers/ModalProvider';
-import { useCurrentBreakpoint } from 'hooks';
+import { useCurrentBreakpoint, useActionBanner } from 'hooks';
 
 const LocationHeader = (props = {}) => {
+  const { actionBanner } = useActionBanner();
   const modalDispatch = useModalDispatch();
   let currentBreakpoint = useCurrentBreakpoint();
+
+  // checks for banner to adjust title height
+  const isBanner = !!actionBanner;
 
   return (
     <Box
@@ -44,7 +48,7 @@ const LocationHeader = (props = {}) => {
         zIndex={1}
       >
         <Box
-          height={{ _: '80vh', sm: 'auto' }}
+          height={{ _: isBanner ? '65vh' : '80vh', sm: 'auto' }}
           display={{ _: 'flex', sm: 'block' }}
           flexDirection="column"
           justifyContent="space-between"
