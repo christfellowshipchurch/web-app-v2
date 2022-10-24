@@ -83,8 +83,32 @@ const CampusInfo = ({
     };
   });
 
+  /** Get the Most Out of Life messaging */
+  const getTheMost =
+    name === 'Trinity'
+      ? {
+          title: 'Experience Something New!',
+          body: 'Have you been searching for a meaningful community but haven’t found it yet? If so, you’re not alone. Trinity Church by Christ Fellowship is a new church experience coming to your neighborhood! This community location in Palm Beach Gardens offers a different way to experience church so you can get to know people in your neighborhood and enjoy a more traditional worship setting. Find a place for you and your family to belong with even more regional events offered just down the street—it’s big church made small, and you’ll feel right at home!',
+        }
+      : {
+          title: 'Get the Most Out of Life',
+          body: `Here at Christ Fellowship Church in ${name}, we want to help you live the life you were created for. Every Sunday, we have church services where you can experience uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—and it all starts here!`,
+        };
+
   /** Instagram and Google Map URLs */
   const campusLink = find(campusLinks, { name: name });
+
+  /** Directions to all Campuses except Trinity Campus (has special link) */
+  const allCampusesDirections = campusLink?.googleMap
+    ? campusLink?.googleMap
+    : `https://www.google.com/maps/place/${address?.replace(' ', '+')}`;
+
+  /** Trinity Campus Directions Link */
+  const trinityCampusDirections =
+    'https://www.google.com/maps/place/Trinity+Church+by+Christ+Fellowship/@26.8145836,-80.1182792,16z/data=!4m6!3m5!1s0x88d92b3990eb6687:0xb308c56e1ba6c5d4!8m2!3d26.8180426!4d-80.1071754!15sCiN0cmluaXR5IGNodXJjaCBieSBjaHJpc3QgZmVsbG93c2hpcJIBBmNodXJjaOABAA?shorturl=1';
+
+  const handleCampusDirections =
+    name === 'Trinity' ? trinityCampusDirections : allCampusesDirections;
 
   return (
     <Box bg="white">
@@ -167,14 +191,7 @@ const CampusInfo = ({
                     <Button
                       as="a"
                       target="_blank"
-                      href={
-                        campusLink?.googleMap
-                          ? campusLink?.googleMap
-                          : `https://www.google.com/maps/place/${address?.replace(
-                              ' ',
-                              '+'
-                            )}`
-                      }
+                      href={handleCampusDirections}
                       borderRadius="xxl"
                       size="s"
                       px="base"
@@ -193,13 +210,11 @@ const CampusInfo = ({
             <Box display={{ _: 'none', md: 'flex' }} mt="l">
               <Box flex="1">
                 <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
-                  Get the Most Out of Life
+                  {getTheMost?.title}
                 </Box>
               </Box>
               <Box flex="2">
-                <Box as="p">
-                  {`Here at Christ Fellowship Church in ${name}, we want to help you live the life you were created for. Every Sunday, we have church services where you can experience uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—and it all starts here!`}
-                </Box>
+                <Box as="p">{getTheMost?.body}</Box>
               </Box>
             </Box>
           </Box>
@@ -317,12 +332,10 @@ const CampusInfo = ({
         textAlign="center"
       >
         <Box as="h2" color="secondary">
-          Get the Most Out of Life
+          {getTheMost?.title}
         </Box>
         <Box mx={{ _: 'base', sm: 'xl' }}>
-          <Box as="p">
-            {`Here at Christ Fellowship Church in ${name}, we want to help you live the life you were created for. Every Sunday, we have church services where you can experience uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—and it all starts here!`}
-          </Box>
+          <Box as="p">{getTheMost?.body}</Box>
         </Box>
       </Box>
     </Box>
