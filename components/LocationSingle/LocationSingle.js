@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { find, includes, startCase, upperFirst } from 'lodash';
+import { find, includes, replace, startCase, upperFirst } from 'lodash';
 
 import {
   CollectionPreview,
@@ -51,6 +51,11 @@ function LocationSingle(props = {}) {
 
   // note : Gets Campus Name from pathname
   let campus = startCase(routing?.pathname.substring(10));
+
+  // note : Fixes campus name for Port St. Lucie
+  if (includes(campus, 'St ')) {
+    campus = replace(campus, 'St ', 'St. ');
+  }
 
   // note : We need to override the campus name to for CFE to properly format it for querying purposes
   if (includes(campus, 'Español')) {
