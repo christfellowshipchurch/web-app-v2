@@ -116,11 +116,11 @@ const navigation = {
         },
         {
           call: 'Young Adults',
-          action: 'young-adults',
+          action: '/young-adults',
         },
         {
           call: 'Sisterhood',
-          action: 'sisterhood',
+          action: '/sisterhood',
         },
         {
           call: 'Men',
