@@ -116,11 +116,11 @@ const navigation = {
         },
         {
           call: 'Young Adults',
-          action: '/discover/young-adults?id=1121835fdcef90201fb42675c92bd0a9',
+          action: '/young-adults',
         },
         {
           call: 'Sisterhood',
-          action: '/discover/sisterhood?id=49de7405752fb756e36856e32b732207',
+          action: '/sisterhood',
         },
         {
           call: 'Men',
