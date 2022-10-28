@@ -431,9 +431,9 @@ const headerData = [
   {
     name: 'Trinity',
     primaryButton: {
-      call: 'Join Us Sunday',
-      action: '#service-times',
-      newTab: false,
+      call: 'Set a Reminder',
+      modal: 'SetReminder',
+      newTab: true,
     },
     backgroundVideo: {
       mobile: '/location-pages/trinity.mp4',
