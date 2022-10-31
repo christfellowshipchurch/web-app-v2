@@ -103,7 +103,7 @@ const navigation = {
     {
       headerLink: {
         call: 'Ministries',
-        action: '/discover?c=ministries',
+        action: '/ministries',
       },
       subLinks: [
         {

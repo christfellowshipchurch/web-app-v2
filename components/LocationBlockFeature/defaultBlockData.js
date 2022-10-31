@@ -74,7 +74,7 @@ const locationBlockData = [
         relatedNode: {
           __typename: 'Url',
           id: 'Url:f4974a223763b3a06ea2cd73ff30952be89d6281e05bc41f7ee423cd227a2b00ac473ab51d6349eb947f770d463c04fc83a72f8b7a0522333e94950a0fc721fc10f4fb466bd6d032935690b552c306ca3b00fdd2fe74edeadb0f0b65b8070e31',
-          url: 'https://www.christfellowship.church/events/cf-young-adults',
+          url: 'https://www.christfellowship.church/young-adults',
         },
         title: 'LEARN MORE',
       },
