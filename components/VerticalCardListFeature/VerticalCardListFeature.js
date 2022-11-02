@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
 
 import { CustomLink } from 'components';
-import { Box, CardGrid, HorizontalHighlightCard } from 'ui-kit';
+import { Box, CardGrid, HorizontalHighlightCard, HtmlRenderer } from 'ui-kit';
 import { getUrlFromRelatedNode, transformISODates } from 'utils';
 import Styled from './VerticalCardListFeature.styles';
 
@@ -21,7 +21,7 @@ function VerticalCardListFeature(props = {}) {
   return (
     <Box textAlign="center">
       {!isEmpty(title) && <Box as="h2">{title}</Box>}
-      {!isEmpty(subtitle) && <Box as="p">{subtitle}</Box>}
+      <HtmlRenderer htmlContent={subtitle} />
       {cards && cards.length > 0 && (
         <CardGrid marginBottom="base" marginTop="base" columns={'12'}>
           {cards.map((card, i) => (
