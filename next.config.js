@@ -269,7 +269,7 @@ module.exports = {
       { source: '/events/lh-kids-baptism-classes', destination: '/kids-baptism-classes', permanent: true },
       { source: '/events/supporting-those-who-struggle-event', destination: '/supporting-those-who-struggle-event', permanent: true },
       { source: '/events/light-up-the-pike', destination: 'https://lightupthepike.com', permanent: true },
-      { source: '/notes', destination: 'http://bible.com/events/48976262', permanent: true }
+      { source: '/notes', destination: 'http://bible.com/events/48980053', permanent: true }
     ];
   },
 };
