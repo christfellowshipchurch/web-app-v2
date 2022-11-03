@@ -182,7 +182,7 @@ module.exports = {
       { source: '/volunteer', destination: '/next-steps/volunteer', permanent: true },
       { source: '/trips', destination: '/next-steps/get-involved-with-missions', permanent: true },
       { source: '/go', destination: '/next-steps/get-involved-with-missions', permanent: true },
-      { source: '/serve', destination: '/next-steps/starting-point', permanent: true },
+      { source: '/serve', destination: '/next-steps/volunteer', permanent: true },
       { source: '/grow', destination: '/next-steps/find-a-life-group', permanent: true },
       // { source: '/replicateapp', destination: 'TBD - App Page', permanent: true },
       { source: '/hendersonville-groups', destination: '/next-steps/find-a-life-group', permanent: true },
