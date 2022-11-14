@@ -4,7 +4,11 @@ import { Box, Button, Icon } from 'ui-kit';
 
 import Styled from './NavMenu.styles';
 import { SignIn, GetHelp } from './navComponents';
+import { useAnalytics } from 'providers/AnalyticsProvider';
+import { loadGetInitialProps } from 'next/dist/shared/lib/utils';
 function NavigationMenu(props = {}) {
+  const analytics = useAnalytics();
+
   const { mainMenuLinks, subMenuLinks, additionalLinks } = props?.data;
 
   return (
@@ -35,7 +39,17 @@ function NavigationMenu(props = {}) {
           </Styled.NavLink>
           {mainMenuLinks &&
             mainMenuLinks.map(link => (
-              <Styled.NavLink href={link.action}>{link.call}</Styled.NavLink>
+              <Styled.NavLink
+                href={link.action}
+                onClick={() =>
+                  analytics.track({
+                    event: 'Nav Button Click',
+                    properties: { text: link.call, link: link.action },
+                  })
+                }
+              >
+                {link.call}
+              </Styled.NavLink>
             ))}
         </Styled.NavColumn>
 

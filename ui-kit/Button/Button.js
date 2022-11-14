@@ -28,7 +28,7 @@ function childrenIcons(children) {
   return null;
 }
 function Button(props = {}) {
-  const { trackEvent, eventKeys } = useAnalytics();
+  const analytics = useAnalytics();
 
   if (props.status === 'LOADING') {
     return (
@@ -50,15 +50,21 @@ function Button(props = {}) {
         }
 
         if (!isEmpty(props?.href)) {
-          trackEvent(eventKeys.openLink, {
-            text: childrenText(props?.children),
-            icon: childrenIcons(props?.children),
-            link: props?.href,
+          analytics.track({
+            event: 'Button Click',
+            properties: {
+              text: childrenText(props?.children),
+              icon: childrenIcons(props?.children),
+              link: props?.href,
+            },
           });
         } else {
-          trackEvent(eventKeys.clickButton, {
-            text: childrenText(props?.children),
-            icon: childrenIcons(props?.children),
+          analytics.track({
+            event: 'Button Click',
+            properties: {
+              text: childrenText(props?.children),
+              icon: childrenIcons(props?.children),
+            },
           });
         }
 
