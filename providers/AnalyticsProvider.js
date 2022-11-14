@@ -50,7 +50,7 @@ AnalyticsProvider.propTypes = {
 };
 
 AnalyticsProvider.defaultProps = {
-  writeKey: 'GHcrGAA60J5kKYQjN5cSqwJMoMQYAZVO',
+  writeKey: '',
 };
 
 export default AnalyticsProvider;

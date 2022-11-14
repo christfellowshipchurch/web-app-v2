@@ -5,6 +5,8 @@ import isEmpty from 'lodash/isEmpty';
 import { Box, Icon, Loader, systemPropTypes } from 'ui-kit';
 import Styled from './Button.styles';
 import { useAnalytics } from 'providers/AnalyticsProvider';
+import { includes, toString } from 'lodash';
+import { useRouter } from 'next/router';
 
 function childrenText(children) {
   if (Array.isArray(children)) {
@@ -29,6 +31,12 @@ function childrenIcons(children) {
 }
 function Button(props = {}) {
   const analytics = useAnalytics();
+  const router = useRouter();
+  let isFunction = null;
+
+  if (props?.onClick) {
+    isFunction = 'Triggers Function';
+  }
 
   if (props.status === 'LOADING') {
     return (
@@ -48,25 +56,20 @@ function Button(props = {}) {
             props?.onClick(e);
           }
         }
-
-        if (!isEmpty(props?.href)) {
-          analytics.track({
-            event: 'Button Click',
-            properties: {
-              text: childrenText(props?.children),
-              icon: childrenIcons(props?.children),
-              link: props?.href,
-            },
-          });
-        } else {
-          analytics.track({
-            event: 'Button Click',
-            properties: {
-              text: childrenText(props?.children),
-              icon: childrenIcons(props?.children),
-            },
-          });
-        }
+        analytics.track({
+          event: 'CTA Click',
+          properties: {
+            destination: isFunction || props?.href || 'N/A',
+            location: router?.asPath || 'N/A',
+            text: props?.children,
+            type: 'Button',
+            url: props?.href,
+            category: 'Call to Action',
+            subcategory: 'N/A',
+            tags: 'N/A',
+            site_exit: props?.target && props?.target === '_blank',
+          },
+        });
 
         handleClick();
       }}

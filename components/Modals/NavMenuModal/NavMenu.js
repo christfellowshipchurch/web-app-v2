@@ -39,17 +39,7 @@ function NavigationMenu(props = {}) {
           </Styled.NavLink>
           {mainMenuLinks &&
             mainMenuLinks.map(link => (
-              <Styled.NavLink
-                href={link.action}
-                onClick={() =>
-                  analytics.track({
-                    event: 'Nav Button Click',
-                    properties: { text: link.call, link: link.action },
-                  })
-                }
-              >
-                {link.call}
-              </Styled.NavLink>
+              <Styled.NavLink href={link.action}>{link.call}</Styled.NavLink>
             ))}
         </Styled.NavColumn>
 
