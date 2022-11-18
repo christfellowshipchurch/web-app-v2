@@ -3,17 +3,24 @@ import PropTypes from 'prop-types';
 import { ApolloProvider } from '@apollo/client';
 
 import { useApollo } from 'lib/apolloClient';
-import { AnalyticsProvider, AuthProvider, ModalProvider, GroupFiltersProvider } from 'providers';
+import {
+  AnalyticsProvider,
+  AuthProvider,
+  ModalProvider,
+  GroupFiltersProvider,
+} from 'providers';
 import { ModalManager } from 'providers/ModalProvider';
 import modals from 'config/modals';
 import { ThemeProvider } from 'ui-kit';
 
 function AppProvider(props = {}) {
   const apolloClient = useApollo(props.initialApolloState);
+  const writeKey = process.env.NEXT_PUBLIC_SEGMENT_KEY;
+
   return (
     <ApolloProvider client={apolloClient}>
       <AuthProvider>
-        <AnalyticsProvider>
+        <AnalyticsProvider writeKey={writeKey}>
           <ThemeProvider>
             <GroupFiltersProvider>
               <ModalProvider modals={modals}>
