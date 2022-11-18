@@ -15,10 +15,12 @@ import { ThemeProvider } from 'ui-kit';
 
 function AppProvider(props = {}) {
   const apolloClient = useApollo(props.initialApolloState);
+  const writeKey = process.env.NEXT_PUBLIC_SEGMENT_KEY;
+
   return (
     <ApolloProvider client={apolloClient}>
       <AuthProvider>
-        <AnalyticsProvider writeKey={process.env.SEGMENT_KEY}>
+        <AnalyticsProvider writeKey={writeKey}>
           <ThemeProvider>
             <GroupFiltersProvider>
               <ModalProvider modals={modals}>
