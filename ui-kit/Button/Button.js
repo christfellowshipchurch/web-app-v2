@@ -5,7 +5,7 @@ import isEmpty from 'lodash/isEmpty';
 import { Box, Icon, Loader, systemPropTypes } from 'ui-kit';
 import Styled from './Button.styles';
 import { useAnalytics } from 'providers/AnalyticsProvider';
-import { includes, toString } from 'lodash';
+import { flattenDeep, includes, isObject, toString } from 'lodash';
 import { useRouter } from 'next/router';
 
 function childrenText(children) {
@@ -14,18 +14,6 @@ function childrenText(children) {
   }
 
   if (typeof children === 'string') return children;
-
-  return null;
-}
-
-function childrenIcons(children) {
-  if (Array.isArray(children)) {
-    return children.map(childrenIcons).filter(c => typeof c === 'string');
-  }
-
-  if (children && children?.type === Icon) {
-    if (!isEmpty(children?.props?.name)) return children?.props?.name;
-  }
 
   return null;
 }
@@ -61,12 +49,12 @@ function Button(props = {}) {
           properties: {
             destination: isFunction || props?.href || 'N/A',
             location: router?.asPath || 'N/A',
-            text: props?.children,
-            type: 'Button',
+            text: props?.call || childrenText(props?.children),
             url: props?.href,
-            category: 'Call to Action',
-            subcategory: 'N/A',
-            tags: 'N/A',
+            // type: 'Information',
+            // category: 'Call to Action',
+            // subcategory: 'N/A',
+            // tags: 'N/A',
             site_exit: props?.target && props?.target === '_blank',
           },
         });
