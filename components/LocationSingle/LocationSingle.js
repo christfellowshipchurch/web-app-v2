@@ -71,8 +71,6 @@ function LocationSingle(props = {}) {
   const campusAdditionalInfo = find(additionalInfoCampusData, { name: campus });
   const headerContent = find(headerData, { name: campus });
 
-  console.log({ campus });
-
   return (
     <Layout
       contentMaxWidth={'100vw'}

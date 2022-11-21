@@ -6,8 +6,6 @@ import { useCampus } from 'hooks';
 function CampusProvider({ Component, options, ...props }) {
   const { loading, error, campus } = useCampus(options);
 
-  console.log({ campus });
-
   return <Component {...campus} loading={loading} error={error} {...props} />;
 }
 
