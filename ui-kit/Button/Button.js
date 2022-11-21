@@ -5,8 +5,6 @@ import isEmpty from 'lodash/isEmpty';
 import { Box, Icon, Loader, systemPropTypes } from 'ui-kit';
 import Styled from './Button.styles';
 import { useAnalytics } from 'providers/AnalyticsProvider';
-import { flattenDeep, includes, isObject, toString } from 'lodash';
-import { useRouter } from 'next/router';
 
 function childrenText(children) {
   if (Array.isArray(children)) {
@@ -17,14 +15,20 @@ function childrenText(children) {
 
   return null;
 }
-function Button(props = {}) {
-  const analytics = useAnalytics();
-  const router = useRouter();
-  let isFunction = null;
 
-  if (props?.onClick) {
-    isFunction = 'Triggers Function';
+function childrenIcons(children) {
+  if (Array.isArray(children)) {
+    return children.map(childrenIcons).filter(c => typeof c === 'string');
   }
+
+  if (children && children?.type === Icon) {
+    if (!isEmpty(children?.props?.name)) return children?.props?.name;
+  }
+
+  return null;
+}
+function Button(props = {}) {
+  const { trackEvent, eventKeys } = useAnalytics();
 
   if (props.status === 'LOADING') {
     return (
@@ -44,20 +48,19 @@ function Button(props = {}) {
             props?.onClick(e);
           }
         }
-        analytics.track({
-          event: 'CTA Click',
-          properties: {
-            destination: isFunction || props?.href || 'N/A',
-            location: router?.asPath || 'N/A',
-            text: props?.call || childrenText(props?.children),
-            url: props?.href,
-            // type: 'Information',
-            // category: 'Call to Action',
-            // subcategory: 'N/A',
-            // tags: 'N/A',
-            site_exit: props?.target && props?.target === '_blank',
-          },
-        });
+
+        if (!isEmpty(props?.href)) {
+          trackEvent(eventKeys.openLink, {
+            text: childrenText(props?.children),
+            icon: childrenIcons(props?.children),
+            link: props?.href,
+          });
+        } else {
+          trackEvent(eventKeys.clickButton, {
+            text: childrenText(props?.children),
+            icon: childrenIcons(props?.children),
+          });
+        }
 
         handleClick();
       }}

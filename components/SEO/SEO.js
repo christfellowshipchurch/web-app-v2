@@ -29,6 +29,8 @@ function getPageTitle(title) {
 function SEO(props = {}) {
   const pageTitle = getPageTitle(props.title);
 
+  console.log({ props });
+
   return (
     <Head>
       <meta property="og:type" content={props.type} key="og:type" />

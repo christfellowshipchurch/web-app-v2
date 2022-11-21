@@ -48,8 +48,10 @@ function Nav(props = {}) {
         borderColor={props?.transparentMode ? 'white' : 'primary'}
         hoverColor={props?.transparentMode ? 'neutrals.400' : null}
         display={{ _: 'none', md: 'inline' }}
-        call="Join Us Online"
-        action="https://cf.church/watchonline"
+        data={{
+          call: 'Join Us Online',
+          action: 'https://cf.church/watchonline',
+        }}
       />
 
       <Box
@@ -93,9 +95,9 @@ function Nav(props = {}) {
 
 function QuickAction(props = {}) {
   return (
-    <Button {...props} as="a" href={props.action} target="_blank">
+    <Button {...props} as="a" href={props.data.action} target="_blank">
       {props?.icon && <Icon color="primary" name="play" mr={'s'} size="18" />}
-      {props.call}
+      {props.data.call}
     </Button>
   );
 }

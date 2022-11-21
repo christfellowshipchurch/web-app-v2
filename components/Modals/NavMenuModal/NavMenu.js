@@ -4,11 +4,7 @@ import { Box, Button, Icon } from 'ui-kit';
 
 import Styled from './NavMenu.styles';
 import { SignIn, GetHelp } from './navComponents';
-import { useAnalytics } from 'providers/AnalyticsProvider';
-import { loadGetInitialProps } from 'next/dist/shared/lib/utils';
 function NavigationMenu(props = {}) {
-  const analytics = useAnalytics();
-
   const { mainMenuLinks, subMenuLinks, additionalLinks } = props?.data;
 
   return (
