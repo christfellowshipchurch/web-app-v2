@@ -292,13 +292,6 @@ const VERTICAL_CARD_LIST_FEATURE_FRAGMENT = gql`
     isFeatured
     title
     subtitle
-    actions {
-      title
-      action
-      relatedNode {
-        ...RelatedFeatureNodeFragment
-      }
-    }
     cards {
       id
       action
