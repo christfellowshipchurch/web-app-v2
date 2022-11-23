@@ -56,7 +56,7 @@ module.exports = {
       },
       {
         source: '/info',
-        destination: '/link-tree/info',
+        destination: 'https://lnk.bio/christfellowship.church',
         permanent: true,
       },
       {
@@ -79,11 +79,6 @@ module.exports = {
       {
         source: '/devotionals/dont-let-anyone-despise-you',
         destination: '/devotionals/dont-let-anyone-look-down-on-you',
-        permanent: true,
-      },
-      {
-        source: '/link-tree/info',
-        destination: 'https://lnk.bio/christfellowship.church',
         permanent: true,
       },
       // TODO: Uncomment these lines to hide Group Finder.
