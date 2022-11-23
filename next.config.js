@@ -56,7 +56,7 @@ module.exports = {
       },
       {
         source: '/info',
-        destination: '/link-tree/info',
+        destination: 'https://lnk.bio/christfellowship.church',
         permanent: true,
       },
       {
