@@ -20,9 +20,9 @@ const StyledTextInput = props => (
 );
 
 const StyledCheckBox = props => (
-  <Box display="flex">
+  <Box display="flex" mt="s">
     <Checkbox id={props?.id} size={18} onChange={props?.onChange} mr="s" />
-    <Box as="p" mt="0.1rem">
+    <Box as="p" mt="0.2rem">
       {props?.text}
     </Box>
   </Box>
