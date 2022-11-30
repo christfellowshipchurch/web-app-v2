@@ -44,6 +44,7 @@ const StyledForm = ({
       alignItems="center"
       mx={{ _: '', md: 'xs' }}
       p={{ _: 'base', md: '' }}
+      pt={0}
     >
       <Box as="h1" mb="base" color="secondary">
         Get Connected
@@ -177,7 +178,7 @@ const StyledForm = ({
               text="Use my gifts by serving on the Dream Team."
             />
             <StyledCheckBox
-              id="discoverAt"
+              id="discoverAtTheJourney"
               onChange={handleChange}
               text="Discover what’s next for me at The Journey."
             />
