@@ -42,10 +42,10 @@ const StyledForm = ({
       display="flex"
       flexDirection="column"
       alignItems="center"
-      mx={{ _: '', md: 'base' }}
+      mx={{ _: '', md: 'xs' }}
       p={{ _: 'base', md: '' }}
     >
-      <Box as="h1" mb="xl" color="secondary">
+      <Box as="h1" mb="base" color="secondary">
         Get Connected
       </Box>
       {errors?.generalError ? (
@@ -138,21 +138,51 @@ const StyledForm = ({
         <Box as="p" fontStyle="italic">
           Please select all that apply to you:
         </Box>
-        <StyledCheckBox
-          id="firstVisit"
-          onChange={handleChange}
-          text="This is my first visit to Christ Fellowship"
-        />
-        <StyledCheckBox
-          id="cfChurchHome"
-          onChange={handleChange}
-          text="I call Christ Fellowship my church home"
-        />
-        <StyledCheckBox
-          id="cfChdiscoverWhatsHereurchHome"
-          onChange={handleChange}
-          text="I'd like to discover what is here for me"
-        />
+        <Box
+          display="grid"
+          gridTemplateColumns={{ _: '', md: '1fr 1fr' }}
+          gridColumnGap="base"
+        >
+          <Box mb="xs">
+            <StyledCheckBox
+              id="findCommunity"
+              onChange={handleChange}
+              text="Find meaningful community."
+            />
+            <StyledCheckBox
+              id="growFaith"
+              onChange={handleChange}
+              text="Grow in my faith."
+            />
+            <StyledCheckBox
+              id="placeForKids"
+              onChange={handleChange}
+              text="Find a fun place for my kid(s) to grow and make friends."
+            />
+            <StyledCheckBox
+              id="strongerMarriage"
+              onChange={handleChange}
+              text="Make my marriage stronger than it’s ever been."
+            />
+          </Box>
+          <Box>
+            <StyledCheckBox
+              id="improveFinances"
+              onChange={handleChange}
+              text="Improve my finances."
+            />
+            <StyledCheckBox
+              id="useMyGifts"
+              onChange={handleChange}
+              text="Use my gifts by serving on the Dream Team."
+            />
+            <StyledCheckBox
+              id="discoverAt"
+              onChange={handleChange}
+              text="Discover what’s next for me at The Journey."
+            />
+          </Box>
+        </Box>
       </Box>
       {errors?.networkError && (
         <Box display="flex" alignItems="center" color="alert" mb="s">
