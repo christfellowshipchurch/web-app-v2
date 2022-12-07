@@ -58,7 +58,11 @@ const DefaultCard = (props = {}) => {
           </Box>
         ) : null}
         {props.description ? (
-          <Styled.Description color="neutrals.600" fontSize="s">
+          <Styled.Description
+            color="neutrals.600"
+            fontSize="s"
+            lineLimit={props?.lineLimit}
+          >
             {props.description}
           </Styled.Description>
         ) : null}
@@ -88,6 +92,7 @@ DefaultCard.defaultProps = {
   coverImageContentPosition: 'bottomLeft',
   coverImageOverlay: false,
   largeCard: false,
+  lineLimit: true,
 };
 
 export default DefaultCard;

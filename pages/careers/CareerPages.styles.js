@@ -1,9 +1,9 @@
-// Styling for our JobDetails Page
+// Styling for our CareerPages
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 import { system, utils } from 'ui-kit';
 
-const JobDetails = styled.div``;
+const CareerPages = styled.div``;
 
 const Hero = styled.div`
   align-items: center;
@@ -28,6 +28,6 @@ const Hero = styled.div`
   ${system}
 `;
 
-JobDetails.Hero = Hero;
+CareerPages.Hero = Hero;
 
-export default JobDetails;
+export default CareerPages;

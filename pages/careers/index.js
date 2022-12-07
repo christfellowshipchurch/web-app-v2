@@ -21,6 +21,7 @@ import {
 import Styled from './CareerPages.styles';
 import testData from './menuTestData';
 import Cell from 'ui-kit/Cell/Cell.styles';
+import CardMenuSelect from './CardMenuSelect';
 
 console.log(testData.departments);
 
@@ -57,35 +58,25 @@ const JobMenu = props => {
         py={{ _: 's', lg: 'base' }}
       >
         <CardGrid columns="3" mx="xs" my="xs" p="xs">
-          {testData.departments.map((n, i) => (
-            <CustomLink
-              key={i}
-              Component={n?.name ? DefaultCard : HorizontalHighlightCard}
-              as="a"
-              boxShadow="none"
-              coverImage="/ask-a-question.jpeg"
-              description={
-                <Select>
-                  <Select.Option value={null}>{n?.name}</Select.Option>
-                  {testData?.departments[1]?.jobs?.length > 0
-                    ? testData.departments[1].jobs.map(({ id, name }) => {
-                        return (
-                          <Select.Option key={id} value={name}>
-                            {name}
-                          </Select.Option>
-                        );
-                      })
-                    : null}
-                </Select>
-              }
-              // href={getUrlFromRelatedNode(n)}
-              href=""
-              scaleCard={true}
-              scaleCoverImage={false}
-              title={n?.name}
-              type="HIGHLIGHT_SMALL"
-            />
-          ))}
+          {testData.departments.map(
+            (department, i) =>
+              department?.jobs?.length > 0 && (
+                <DefaultCard
+                  key={i}
+                  coverImage="/ask-a-question.jpeg"
+                  description={
+                    <CardMenuSelect
+                      title={department?.name}
+                      items={department?.jobs}
+                    />
+                  }
+                  lineLimit="false"
+                  scaleCard={true}
+                  scaleCoverImage={false}
+                  type="HIGHLIGHT_SMALL"
+                />
+              )
+          )}
         </CardGrid>
 
         <Box display="flex" flexDirection="column" alignItems="center">
