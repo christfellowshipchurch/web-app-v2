@@ -21,6 +21,8 @@ const DiscoverFilterSection = ({ contentId, title }) => {
     variables: { id: contentId, first: 3 },
   });
 
+  console.log('contentItems', { contentItems });
+
   const content = useDiscoverFilterCategoriesPreview({
     variables: { id: contentId },
   }).contentItems.length;
