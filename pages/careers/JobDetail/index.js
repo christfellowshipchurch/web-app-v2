@@ -4,16 +4,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { HeroLanding, Layout } from 'components';
 import { Box, Button, Card, HtmlRenderer, Icon, Image } from 'ui-kit';
+import { parseHtmlContent } from 'ui-kit/HtmlRenderer/HtmlRenderer';
 
 import Styled from '../CareerPages.styles';
 import JobForm from './JobForm';
+import getPhoto from '../GetDeptPhoto';
 
 import testData from './testData';
+import menuTestData from '../menuTestData';
+
+const otherJobs = menuTestData?.departments[3]?.jobs;
 
 const JobDetails = props => {
   return (
     <Layout>
-      <Styled.Hero src="/ask-a-question.jpeg">
+      <Styled.Hero src={getPhoto(testData?.departments[0]?.name)}>
         <Box
           display="flex"
           flexDirection="column"
@@ -21,7 +26,7 @@ const JobDetails = props => {
           justifyContent="center"
         >
           <Box as="h1" fontSize={{ md: '70px' }}>
-            Campus Coordinator
+            {testData?.title}
           </Box>
           <Box
             as="h2"
@@ -29,7 +34,7 @@ const JobDetails = props => {
             px={{ _: 's', sm: '80px', md: '140px', lg: '190px' }}
             mb="s"
           >
-            Palm Beach Gardens
+            {testData?.location?.name}
           </Box>
         </Box>
       </Styled.Hero>
@@ -47,23 +52,63 @@ const JobDetails = props => {
           width="100%"
           p="l"
         >
-          <Box maxWidth={600}>
-            <HtmlRenderer htmlContent={`${testData?.content}`} />
+          <Box maxWidth={600} mt="l">
+            <HtmlRenderer htmlContent={parseHtmlContent(testData?.content)} />
           </Box>
-          <Box maxWidth={350}>
-            <Card p="base" width="100%" mb="l">
-              <Box as="h4">What's it like working for Christ Fellowhship?</Box>
-              <Button size="s" mb="base">
+          <Box maxWidth={400}>
+            <Card p="l" width="100%" mb="l">
+              <Box as="h4" fontStyle="italic">
+                What's it like working for Christ Fellowship?
+              </Box>
+              <Button
+                as="a"
+                size="s"
+                href="/career-opportunities"
+                mb="base"
+                px="base"
+              >
                 Learn More
               </Button>
-              <Box as="h4">Looking for something else?</Box>
-              <Button as="a" href="careers" size="s">
+              <Box as="h4" fontStyle="italic">
+                Looking for something else?
+              </Box>
+              <Button as="a" href="/careers" size="s" px="base">
                 See All Jobs
               </Button>
             </Card>
 
-            <Card p="base" width="100%">
-              <JobForm />
+            <Card p="base" width="100%" textAlign="center">
+              <Box as="h3" my="base">
+                Do you like what you see?
+              </Box>
+              <Button>Apply Now!</Button>
+              {/* <JobForm /> */}
+            </Card>
+
+            <Card mt="base" p="base" width="100%">
+              <Box as="h3" my="base">
+                Similar Positions:
+              </Box>
+              <Box>
+                {otherJobs.map(({ id, title, location }) => (
+                  <Styled.CardMenuOption
+                    onClick={() => router.push(`${kebabCase(title)}-${id}`)}
+                    key={id}
+                  >
+                    <Box
+                      textDecoration="none"
+                      color="secondary"
+                      fontWeight="bold"
+                      fontSize="base"
+                      mb="0"
+                    >
+                      {title}
+                    </Box>
+                    <Box>{location?.name}</Box>
+                  </Styled.CardMenuOption>
+                ))}
+              </Box>
+              {/* <JobForm /> */}
             </Card>
           </Box>
         </Box>

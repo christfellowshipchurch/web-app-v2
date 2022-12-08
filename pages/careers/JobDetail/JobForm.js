@@ -45,6 +45,8 @@ const JobForm = ({
       mx={{ _: '', md: 'base' }}
       p={{ _: 'base', md: '' }}
     >
+      <Box as="h2">Apply for this Job</Box>
+
       {errors?.generalError ? (
         <Box as="p" color="alert" fontSize="s" mt="-1.8rem" mb="s">
           {errors.generalError}

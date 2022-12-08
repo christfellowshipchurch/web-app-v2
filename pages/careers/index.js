@@ -3,32 +3,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { HeroLanding, Layout, CustomLink } from 'components';
-import {
-  Box,
-  Button,
-  CardGrid,
-  Card,
-  HtmlRenderer,
-  Icon,
-  Image,
-  DefaultCard,
-  Loader,
-  HorizontalHighlightCard,
-  utils,
-  Select,
-} from 'ui-kit';
+import { Box, Button, CardGrid, DefaultCard, utils } from 'ui-kit';
+import Cell from 'ui-kit/Cell/Cell.styles';
 
 import Styled from './CareerPages.styles';
+import CardDropdown from './CardDropdown';
+import photos from './GetDeptPhoto';
 import testData from './menuTestData';
-import Cell from 'ui-kit/Cell/Cell.styles';
-import CardMenuSelect from './CardMenuSelect';
-
-console.log(testData.departments);
+import { camelCase } from 'lodash';
+import getPhoto from './GetDeptPhoto';
 
 const JobMenu = props => {
   return (
     <Layout>
-      <Styled.Hero src="/ask-a-question.jpeg">
+      <Styled.Hero src="/careers/careers.jpeg">
         <Box
           display="flex"
           flexDirection="column"
@@ -58,14 +46,14 @@ const JobMenu = props => {
         py={{ _: 's', lg: 'base' }}
       >
         <CardGrid columns="3" mx="xs" my="xs" p="xs">
-          {testData.departments.map(
-            (department, i) =>
+          {testData.departments.map((department, i) => {
+            return (
               department?.jobs?.length > 0 && (
                 <DefaultCard
                   key={i}
-                  coverImage="/ask-a-question.jpeg"
+                  coverImage={getPhoto(department?.name)}
                   description={
-                    <CardMenuSelect
+                    <CardDropdown
                       title={department?.name}
                       items={department?.jobs}
                     />
@@ -76,7 +64,8 @@ const JobMenu = props => {
                   type="HIGHLIGHT_SMALL"
                 />
               )
-          )}
+            );
+          })}
         </CardGrid>
 
         <Box display="flex" flexDirection="column" alignItems="center">
