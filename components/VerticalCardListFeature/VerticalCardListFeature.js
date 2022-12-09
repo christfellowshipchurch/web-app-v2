@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
 
 import { CustomLink } from 'components';
-import { Box, CardGrid, HorizontalHighlightCard, HtmlRenderer } from 'ui-kit';
+import {
+  Box,
+  Button,
+  CardGrid,
+  HorizontalHighlightCard,
+  HtmlRenderer,
+} from 'ui-kit';
 import { getUrlFromRelatedNode, transformISODates } from 'utils';
 import Styled from './VerticalCardListFeature.styles';
 
@@ -14,9 +20,7 @@ function VerticalCardListFeature(props = {}) {
     return null;
   }
 
-  let title = data?.title;
-  let subtitle = data?.subtitle;
-  let cards = data?.cards;
+  const { title, subtitle, cards, actions } = data;
 
   return (
     <Box textAlign="center">
@@ -42,6 +46,18 @@ function VerticalCardListFeature(props = {}) {
           ))}
         </CardGrid>
       )}
+      {actions &&
+        actions.length > 0 &&
+        actions.map(action => (
+          <Button
+            as="a"
+            mt="base"
+            mx="s"
+            href={getUrlFromRelatedNode(action?.relatedNode)}
+          >
+            {action?.title}
+          </Button>
+        ))}
     </Box>
   );
 }

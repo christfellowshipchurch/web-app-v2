@@ -56,7 +56,7 @@ module.exports = {
       },
       {
         source: '/info',
-        destination: '/link-tree/info',
+        destination: 'https://lnk.bio/christfellowship.church',
         permanent: true,
       },
       {
@@ -79,6 +79,17 @@ module.exports = {
       {
         source: '/devotionals/dont-let-anyone-despise-you',
         destination: '/devotionals/dont-let-anyone-look-down-on-you',
+        permanent: true,
+      },
+      {
+        source: '/trinity-church',
+        destination: '/locations/trinity',
+        permanent: true,
+      },
+      {
+        source: '/christ-birthday-offering',
+        destination:
+          'https://www.christfellowship.church/2022-christ-birthday-offering',
         permanent: true,
       },
       // TODO: Uncomment these lines to hide Group Finder.
