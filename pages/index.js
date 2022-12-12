@@ -5,7 +5,7 @@ import { initializeApollo } from 'lib/apolloClient';
 import { GET_FEATURE_FEED } from 'hooks/useFeatureFeed';
 import { FeatureFeedProvider } from 'providers';
 import { Layout, FeatureFeed } from 'components';
-import { Cell, utils } from 'ui-kit';
+import { Box, Cell, utils } from 'ui-kit';
 import { useAuth } from 'providers/AuthProvider';
 
 import ExternalLandingPage from './external-home';
@@ -46,6 +46,7 @@ export default function Home(props = {}) {
           px="base"
           py={{ _: 'xs', lg: 's' }}
         >
+          <Box>test test</Box>
           <FeatureFeedProvider Component={FeatureFeed} options={options} />
         </Cell>
       </Layout>
