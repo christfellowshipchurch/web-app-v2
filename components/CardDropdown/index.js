@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Box, Icon } from 'ui-kit';
 
-import Styled from './CareerPages.styles';
+import Styled from './CardDropdown.styles';
 import { useRouter } from 'next/router';
 import { kebabCase } from 'lodash';
 

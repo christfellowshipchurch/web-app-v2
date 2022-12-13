@@ -5,6 +5,7 @@ import dateTextFormat from './dateTextFormat';
 import formatPhoneNumber from './formatPhoneNumber';
 import getAge from './getAge';
 import getComponent from './getComponent';
+import getCareerPhoto from './getCareerPhoto';
 import getUrlFromRelatedNode from './getUrlFromRelatedNode';
 import getURLFromType from './getURLFromType';
 import htmlToReactParser from './htmlToReactParser';
@@ -24,6 +25,7 @@ export {
   formatPhoneNumber,
   getAge,
   getComponent,
+  getCareerPhoto,
   getUrlFromRelatedNode,
   getURLFromType,
   htmlToReactParser,

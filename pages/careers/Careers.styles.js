@@ -26,30 +26,6 @@ const Hero = styled.div`
   ${system}
 `;
 
-const CardMenu = styled.div`
-  z-index: 1;
-  background-color: ${themeGet('colors.white')};
-  position: absolute;
-  border-radius: ${themeGet('radii.base')};
-  box-shadow: ${themeGet('shadows.base')} ${system};
-
-  ${system}
-`;
-
-const CardMenuOption = styled.div`
-  padding: ${themeGet('space.base')};
-
-  cursor: pointer;
-
-  &:hover {
-    background-color: ${themeGet('colors.neutrals.200')};
-  }
-
-  ${system}
-`;
-
 CareerPages.Hero = Hero;
-CareerPages.CardMenu = CardMenu;
-CareerPages.CardMenuOption = CardMenuOption;
 
 export default CareerPages;

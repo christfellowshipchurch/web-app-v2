@@ -3,13 +3,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Layout } from 'components';
-import { Box, Button, CardGrid, DefaultCard, utils } from 'ui-kit';
+import {
+  Box,
+  Button,
+  CardGrid,
+  DefaultCard,
+  utils,
+  CardDropdown,
+} from 'ui-kit';
 import Cell from 'ui-kit/Cell/Cell.styles';
+import { getCareerPhoto } from 'utils';
 
-import Styled from './CareerPages.styles';
-import CardDropdown from './CardDropdown';
-import { departmentData } from './careerTestData';
-import getPhoto from './GetDeptPhoto';
+import Styled from './Careers.styles';
+import { departmentData } from '../../config/careerTestData';
 
 const JobMenu = props => {
   return (
@@ -49,7 +55,7 @@ const JobMenu = props => {
               department?.jobs?.length > 0 && (
                 <DefaultCard
                   key={i}
-                  coverImage={getPhoto(department?.name)}
+                  coverImage={getCareerPhoto(department?.name)}
                   description={
                     <CardDropdown
                       title={department?.name}
