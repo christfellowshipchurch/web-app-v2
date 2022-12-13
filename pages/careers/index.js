@@ -2,15 +2,13 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { HeroLanding, Layout, CustomLink } from 'components';
+import { Layout } from 'components';
 import { Box, Button, CardGrid, DefaultCard, utils } from 'ui-kit';
 import Cell from 'ui-kit/Cell/Cell.styles';
 
 import Styled from './CareerPages.styles';
 import CardDropdown from './CardDropdown';
-import photos from './GetDeptPhoto';
-import testData from './menuTestData';
-import { camelCase } from 'lodash';
+import { departmentData } from './careerTestData';
 import getPhoto from './GetDeptPhoto';
 
 const JobMenu = props => {
@@ -46,7 +44,7 @@ const JobMenu = props => {
         py={{ _: 's', lg: 'base' }}
       >
         <CardGrid columns="3" mx="xs" my="xs" p="xs">
-          {testData.departments.map((department, i) => {
+          {departmentData.departments.map((department, i) => {
             return (
               department?.jobs?.length > 0 && (
                 <DefaultCard

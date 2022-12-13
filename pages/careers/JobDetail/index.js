@@ -10,15 +10,14 @@ import Styled from '../CareerPages.styles';
 import JobForm from './JobForm';
 import getPhoto from '../GetDeptPhoto';
 
-import testData from './testData';
-import menuTestData from '../menuTestData';
+import { departmentData, jobData } from '../careerTestData';
 
-const otherJobs = menuTestData?.departments[3]?.jobs;
+const otherJobs = departmentData?.departments[3]?.jobs;
 
 const JobDetails = props => {
   return (
     <Layout>
-      <Styled.Hero src={getPhoto(testData?.departments[0]?.name)}>
+      <Styled.Hero src={getPhoto(departmentData?.departments[0]?.name)}>
         <Box
           display="flex"
           flexDirection="column"
@@ -26,7 +25,7 @@ const JobDetails = props => {
           justifyContent="center"
         >
           <Box as="h1" fontSize={{ md: '70px' }}>
-            {testData?.title}
+            {jobData?.title}
           </Box>
           <Box
             as="h2"
@@ -34,7 +33,7 @@ const JobDetails = props => {
             px={{ _: 's', sm: '80px', md: '140px', lg: '190px' }}
             mb="s"
           >
-            {testData?.location?.name}
+            {jobData?.location?.name}
           </Box>
         </Box>
       </Styled.Hero>
@@ -53,7 +52,7 @@ const JobDetails = props => {
           p="l"
         >
           <Box maxWidth={600} mt="l">
-            <HtmlRenderer htmlContent={parseHtmlContent(testData?.content)} />
+            <HtmlRenderer htmlContent={parseHtmlContent(jobData?.content)} />
           </Box>
           <Box maxWidth={400}>
             <Card p="l" width="100%" mb="l">
