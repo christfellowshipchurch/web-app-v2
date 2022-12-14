@@ -5,7 +5,6 @@ import AddToCalendar from './AddToCalendar';
 import AppHead from './AppHead';
 import AvatarListFeature from './AvatarListFeature';
 import BirthDateField from './BirthDateField';
-import CardDropdown from './CardDropdown';
 import Chat from './Chat';
 import ClientSideComponent from './ClientSideComponent';
 import CollectionPreview from './CollectionPreview';
@@ -74,7 +73,6 @@ export {
   AppHead,
   AvatarListFeature,
   BirthDateField,
-  CardDropdown,
   Chat,
   ClientSideComponent,
   CollectionPreview,
