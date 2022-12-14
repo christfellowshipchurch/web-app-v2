@@ -4,10 +4,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Layout } from 'components';
 import { Box, Button, Card, HtmlRenderer, Icon, JobForm } from 'ui-kit';
-import { parseHtmlContent } from 'ui-kit/HtmlRenderer/HtmlRenderer';
-
-import Styled from './Careers.styles';
 import { getCareerPhoto } from 'utils';
+
+import { parseHtmlContent } from 'ui-kit/HtmlRenderer/HtmlRenderer';
+import StyledCardDropdown from 'ui-kit/CardDropdown/CardDropdown.styles';
+import Styled from './Careers.styles';
 
 import { departmentData, jobData } from '../../config/careerTestData';
 
@@ -49,6 +50,7 @@ const JobDetails = props => {
           p="l"
         >
           <Box maxWidth={600} mt="l">
+            {/* We need to parse the HTML twice in order to render properly */}
             <HtmlRenderer htmlContent={parseHtmlContent(jobData?.content)} />
           </Box>
           <Box maxWidth={400}>
@@ -86,8 +88,8 @@ const JobDetails = props => {
                 Similar Positions:
               </Box>
               <Box>
-                {/* {departmentData?.departments[3]?.jobs?.map(job => (
-                  <Styled.CardMenuOption
+                {departmentData?.departments[3]?.jobs?.map(job => (
+                  <StyledCardDropdown.CardMenuOption
                     onClick={() =>
                       router.push(`${kebabCase(job?.title)}-${job?.id}`)
                     }
@@ -103,8 +105,8 @@ const JobDetails = props => {
                       {job?.title}
                     </Box>
                     <Box>{job?.location?.name}</Box>
-                  </Styled.CardMenuOption>
-                ))} */}
+                  </StyledCardDropdown.CardMenuOption>
+                ))}
               </Box>
               {/* <JobForm /> */}
             </Card>

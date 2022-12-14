@@ -23,7 +23,6 @@ const CardDropdown = props => {
         justifyContent="center"
         alignItems="center"
         onClick={() => setMenuOpen(!menuOpen)}
-        onClickOutside={() => setMenuOpen(false)}
       >
         <Box as="h3" color="neutrals.800" mb="0">
           {props?.title}
@@ -35,6 +34,7 @@ const CardDropdown = props => {
       </Box>
       {menuOpen && (
         <Styled.CardMenu
+          onMouseLeave={() => setMenuOpen(false)}
           width={{ _: 260, sm: 500, md: 278, lg: 333 }}
           ml={{ _: '-0.6rem', md: '-1.25rem' }}
           mt="s"
