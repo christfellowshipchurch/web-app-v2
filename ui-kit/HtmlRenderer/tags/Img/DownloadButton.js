@@ -4,6 +4,21 @@ import PropTypes from 'prop-types';
 import { Box, Icon } from 'ui-kit';
 import Styled from './Img.styles';
 
+/**
+ * const handleShareButton = () => {
+    // Check if navigator.share is supported by the browser
+    if (navigator.share) {
+      console.log("Congrats! Your browser supports Web Share API");
+      navigator
+        .share({
+          url: #enter-url
+        })
+    } else {
+      // return default button
+    }
+  };
+ */
+
 const DownloadButton = (props = {}) => {
   const [status, setStatus] = useState('IDLE'); // IDLE | ACTIVE | DONE
 

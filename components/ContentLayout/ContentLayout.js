@@ -78,26 +78,7 @@ function ContentLayout(props = {}) {
           <>
             <Card boxShadow="base" p={{ _: 's', md: 'base' }}>
               <Longform>
-                <HtmlRenderer
-                  htmlContent={props?.htmlContent}
-                  customProcessing={[
-                    {
-                      //add download button for images
-                      shouldProcessNode: function (node) {
-                        return node.name && node.name === 'img';
-                      },
-                      processNode: function (node, children) {
-                        return (
-                          <Image
-                            source={node?.attribs.src}
-                            disableRatio
-                            download
-                          />
-                        );
-                      },
-                    },
-                  ]}
-                />
+                <HtmlRenderer htmlContent={props?.htmlContent} />
               </Longform>
             </Card>
             <Box py="l">
