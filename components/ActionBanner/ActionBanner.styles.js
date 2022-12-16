@@ -44,7 +44,7 @@ const PrimaryButton = styled(Button)`
 
 const SecondaryButton = styled(Button)`
   background-color: ${props =>
-    props?.isLight ? themeGet('colors.neutrals.500') : 'white'};
+    props?.isLight ? themeGet('colors.neutrals.800') : 'white'};
   color: ${themeGet('colors.secondary')};
 
   &:hover {

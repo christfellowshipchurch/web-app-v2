@@ -84,7 +84,7 @@ function Nav(props = {}) {
         <CurrentUserProvider
           Component={UserAvatar}
           handleAuthClick={handleAuthClick}
-          size={40}
+          size={'40'}
         />
       )}
     </Styled>
