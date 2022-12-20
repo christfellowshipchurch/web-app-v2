@@ -44,17 +44,26 @@ const JobDetails = props => {
         </Box>
         <Box
           display="flex"
+          flexDirection={{ _: 'column', md: 'row' }}
           maxWidth={1200}
           justifyContent="space-between"
           width="100%"
           p="l"
+          pt="s"
         >
-          <Box maxWidth={600} mt="l">
+          <Box maxWidth={600} my="l">
             {/* We need to parse the HTML twice in order to render properly */}
             <HtmlRenderer htmlContent={parseHtmlContent(jobData?.content)} />
           </Box>
           <Box maxWidth={400}>
-            <Card p="l" width="100%" mb="l">
+            <Card p="base" mb="base" width="100%" textAlign="center">
+              <Box as="h3" my="base">
+                Do you like what you see?
+              </Box>
+              <Button>Apply Now!</Button>
+            </Card>
+
+            <Card p="base" width="100%">
               <Box as="h4" fontStyle="italic">
                 What's it like working for Christ Fellowship?
               </Box>
@@ -73,14 +82,6 @@ const JobDetails = props => {
               <Button as="a" href="/careers" size="s" px="base">
                 See All Jobs
               </Button>
-            </Card>
-
-            <Card p="base" width="100%" textAlign="center">
-              <Box as="h3" my="base">
-                Do you like what you see?
-              </Box>
-              <Button>Apply Now!</Button>
-              {/* <JobForm /> */}
             </Card>
 
             <Card mt="base" p="base" width="100%">
@@ -108,9 +109,9 @@ const JobDetails = props => {
                   </StyledCardDropdown.CardMenuOption>
                 ))}
               </Box>
-              {/* <JobForm /> */}
             </Card>
           </Box>
+          {/* <JobForm /> */}
         </Box>
       </Box>
     </Layout>
