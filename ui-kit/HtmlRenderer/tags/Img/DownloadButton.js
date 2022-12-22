@@ -4,15 +4,12 @@ import PropTypes from 'prop-types';
 import { Box, Icon } from 'ui-kit';
 import Styled from './Img.styles';
 
-const handleShareButton = () => {
-  // Check if navigator.share is supported by the browser
-  if (navigator.share) {
-    console.log('Congrats! Your browser supports Web Share API');
-    navigator.share({
-      url: '',
-    });
-  } else {
-    // return default button
+const handleShareButton = async shareData => {
+  try {
+    await navigator.share(shareData);
+    console.log('success');
+  } catch (err) {
+    console.log('share failed');
   }
 };
 
@@ -33,7 +30,13 @@ const DownloadButton = (props = {}) => {
       // onClick={() => {
       //   setStatus('DONE');
       // }}
-      onClick={handleShareButton}
+      onClick={() =>
+        handleShareButton({
+          title: 'CF Images',
+          text: 'Share this image!',
+          file: `/api/image?src=${props?.source}`,
+        })
+      }
       onMouseEnter={() => setStatus('ACTIVE')}
       onMouseLeave={() => {
         if (status === 'DONE') return;
