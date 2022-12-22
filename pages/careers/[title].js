@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Layout } from 'components';
-import { Box, Button, Card, HtmlRenderer, Icon, JobForm } from 'ui-kit';
+import { Box, Button, Card, HtmlRenderer, Icon } from 'ui-kit';
 import { getCareerPhoto } from 'utils';
 
 import { parseHtmlContent } from 'ui-kit/HtmlRenderer/HtmlRenderer';
@@ -60,7 +60,13 @@ const JobDetails = props => {
               <Box as="h3" my="base">
                 Do you like what you see?
               </Box>
-              <Button>Apply Now!</Button>
+              <Button
+                as="a"
+                href={`${jobData?.absolute_url}#app`}
+                target="_blank"
+              >
+                Apply Now!
+              </Button>
             </Card>
 
             <Card p="base" width="100%">
@@ -111,7 +117,6 @@ const JobDetails = props => {
               </Box>
             </Card>
           </Box>
-          {/* <JobForm /> */}
         </Box>
       </Box>
     </Layout>
