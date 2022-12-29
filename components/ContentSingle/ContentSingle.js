@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
+import { get, keyBy } from 'lodash';
 
-import { Box, Avatar, Loader, Card, Button } from 'ui-kit';
+import { Box, Avatar, Loader, Button } from 'ui-kit';
 import { ContentLayout, Share } from 'components';
 import { useNodeActions } from 'hooks';
 import { getUrlFromRelatedNode } from 'utils';
+import { useAnalytics } from 'providers/AnalyticsProvider';
 
 import ContentVideo from './ContentVideo';
 import ContentVideosList from './ContentVideosList';
 import Styled from './ContentSingle.styles';
-import { find, findIndex, includes, keyBy } from 'lodash';
 function ContentSingle(props = {}) {
   const [currentVideo, setCurrentVideo] = useState(
     Array.isArray(props.data?.videos) ? props.data.videos[0] : null
   );
+  const analytics = useAnalytics();
 
   const { actions } = useNodeActions({
     variables: {
@@ -29,6 +31,19 @@ function ContentSingle(props = {}) {
       setCurrentVideo(props.data.videos[0]);
     }
   }, [props.data?.videos, currentVideo]);
+
+  /**
+   * note : Page view tracking for Segment Analytics
+   */
+  if (props?.data?.segmentData) {
+    analytics.page({
+      name: props?.data?.title,
+      properties: {
+        category: get(props?.data?.segmentData, 'category', null),
+        contentTags: get(props?.data?.segmentData, 'contentTags', null),
+      },
+    });
+  }
 
   if (props.loading) {
     return (
