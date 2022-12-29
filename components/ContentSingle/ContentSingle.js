@@ -38,10 +38,8 @@ function ContentSingle(props = {}) {
   if (props?.data?.segmentData) {
     analytics.page({
       name: props?.data?.title,
-      properties: {
-        category: get(props?.data?.segmentData, 'category', null),
-        contentTags: get(props?.data?.segmentData, 'contentTags', null),
-      },
+      category: get(props?.data?.segmentData, 'category', null),
+      contentTags: get(props?.data?.segmentData, 'contentTags', null),
     });
   }
 
