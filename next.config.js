@@ -118,7 +118,7 @@ module.exports = {
       { source: '/memberprofile', destination: 'https://rock.longhollow.com/registration/memberprofile', permanent: true },
       { source: '/grouplink', destination: '/join-a-life-group', permanent: true },
       { source: '/infertility', destination: '/womens-infertility-and-miscarriage', permanent: true },
-      { source: '/devotion', destination: '/', permanent: true },
+      { source: '/devotion', destination: '/https://longhollow.com/devotion', permanent: true },
       { source: '/struggle', destination: '/supporting-those-who-struggle-2021', permanent: true },
       { source: '/safe', destination: '/safe-people', permanent: true },
       { source: '/upload', destination: 'https://forms.gle/WS4rZnbmwWNCZ6tL6', permanent: true },
