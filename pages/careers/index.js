@@ -1,6 +1,5 @@
 // Main Job Page
-
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Layout } from 'components';
 import {
@@ -10,14 +9,27 @@ import {
   DefaultCard,
   utils,
   CardDropdown,
+  Loader,
 } from 'ui-kit';
 import Cell from 'ui-kit/Cell/Cell.styles';
 import { getCareerPhoto } from 'utils';
+import greenhouseAPI from 'pages/api/greenhouse';
 
 import Styled from './Careers.styles';
-import { departmentData } from '../../config/careerTestData';
+import { isString } from 'lodash';
 
-const JobMenu = props => {
+function JobMenu(props) {
+  const [departmentData, setDepartmentsData] = useState('loading');
+
+  useEffect(() => {
+    const fetchDepartments = async () => {
+      const departments = await greenhouseAPI('/departments');
+      setDepartmentsData(departments);
+    };
+
+    fetchDepartments();
+  }, []);
+
   return (
     <Layout>
       <Styled.Hero src="/careers/careers.jpeg">
@@ -49,28 +61,36 @@ const JobMenu = props => {
         px="base"
         py={{ _: 's', lg: 'base' }}
       >
-        <CardGrid columns="3" mx="xs" my="xs" p="xs">
-          {departmentData.departments.map((department, i) => {
-            return (
-              department?.jobs?.length > 0 && (
-                <DefaultCard
-                  key={i}
-                  coverImage={getCareerPhoto(department?.name)}
-                  description={
-                    <CardDropdown
-                      title={department?.name}
-                      items={department?.jobs}
+        {departmentData === 'loading' ? (
+          <Loader />
+        ) : (
+          <CardGrid columns="3" mx="xs" my="xs" p="xs">
+            {!!isString(departmentData) ? (
+              <Box as="h1"> No Jobs Available</Box>
+            ) : (
+              departmentData.departments.map((department, i) => {
+                return (
+                  department?.jobs?.length > 0 && (
+                    <DefaultCard
+                      key={i}
+                      coverImage={getCareerPhoto(department?.name)}
+                      description={
+                        <CardDropdown
+                          title={department?.name}
+                          items={department?.jobs}
+                        />
+                      }
+                      lineLimit="false"
+                      scaleCard={true}
+                      scaleCoverImage={false}
+                      type="HIGHLIGHT_SMALL"
                     />
-                  }
-                  lineLimit="false"
-                  scaleCard={true}
-                  scaleCoverImage={false}
-                  type="HIGHLIGHT_SMALL"
-                />
-              )
-            );
-          })}
-        </CardGrid>
+                  )
+                );
+              })
+            )}
+          </CardGrid>
+        )}
 
         <Box display="flex" flexDirection="column" alignItems="center">
           {/* Add Title and Menu Here */}
@@ -81,7 +101,7 @@ const JobMenu = props => {
       </Cell>
     </Layout>
   );
-};
+}
 
 JobMenu.propTypes = {};
 
