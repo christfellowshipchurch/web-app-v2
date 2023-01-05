@@ -268,7 +268,7 @@ module.exports = {
       { source: '/events/lh-kids-baptism-classes', destination: '/kids-baptism-classes', permanent: true },
       { source: '/events/supporting-those-who-struggle-event', destination: '/supporting-those-who-struggle-event', permanent: true },
       { source: '/events/light-up-the-pike', destination: 'https://lightupthepike.com', permanent: true },
-      { source: '/groupserve', destination: '/my.longhollow.com/groupserve', permanent: true },
+      { source: '/groupserve', destination: 'https://my.longhollow.com/groupserve', permanent: true },
       { source: '/notes', destination: 'http://bible.com/events/49009670', permanent: true }
     ];
   },
