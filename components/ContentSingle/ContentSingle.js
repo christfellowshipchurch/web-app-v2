@@ -6,7 +6,7 @@ import { get, keyBy } from 'lodash';
 import { Box, Avatar, Loader, Button } from 'ui-kit';
 import { ContentLayout, Share } from 'components';
 import { useNodeActions } from 'hooks';
-import { getUrlFromRelatedNode } from 'utils';
+import { getMediaType, getUrlFromRelatedNode } from 'utils';
 import { useAnalytics } from 'providers/AnalyticsProvider';
 
 import ContentVideo from './ContentVideo';
@@ -40,6 +40,7 @@ function ContentSingle(props = {}) {
       name: props?.data?.title,
       category: get(props?.data?.segmentData, 'category', null),
       contentTags: get(props?.data?.segmentData, 'contentTags', null),
+      mediaType: getMediaType(props?.data),
     });
   }
 
