@@ -10,6 +10,7 @@ import {
   CustomLink,
   DiscoverFiltersMap,
 } from 'components';
+import { useAnalytics } from 'providers/AnalyticsProvider';
 
 import { useSearchContentItems, useForm, useDiscoverFilters } from 'hooks';
 import {
@@ -21,6 +22,7 @@ const PAGE_SIZE = 100;
 
 const Discover = () => {
   const router = useRouter();
+  const analytics = useAnalytics();
   const [searchVisible, setSearchVisible] = useState(false);
   const { values, handleSubmit, handleChange, reset } = useForm();
 
@@ -72,6 +74,13 @@ const Discover = () => {
     setSearchVisible(false);
     reset();
   }
+
+  //Segment Page Tracking
+  useEffect(() => {
+    analytics.page({
+      mediaType: 'Information',
+    });
+  }, []);
 
   useEffect(() => {
     search({

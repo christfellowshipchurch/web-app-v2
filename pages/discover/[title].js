@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import startCase from 'lodash/startCase';
 
@@ -16,9 +17,11 @@ import {
   HorizontalHighlightCard,
 } from 'ui-kit';
 import { Layout, CustomLink } from 'components';
+import { useAnalytics } from 'providers/AnalyticsProvider';
 
 export default function DiscoverFilterCategoriesPreview(props) {
   const { query, back } = useRouter();
+  const analytics = useAnalytics();
   const type = 'UniversalContentItem';
   const contentId = type.concat(':', query?.id);
 
@@ -27,6 +30,14 @@ export default function DiscoverFilterCategoriesPreview(props) {
       variables: { id: contentId, first: 100 },
       fetchPolicy: 'cache-and-network',
     });
+
+  //Segment Page Tracking
+  useEffect(() => {
+    analytics.page({
+      title: `View All "${categoryTitle}" Category`,
+      mediaType: 'Information',
+    });
+  }, []);
 
   return (
     <Layout title={startCase(categoryTitle)}>

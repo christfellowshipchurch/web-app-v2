@@ -12,10 +12,12 @@ import { useAnalytics } from 'providers/AnalyticsProvider';
 import ContentVideo from './ContentVideo';
 import ContentVideosList from './ContentVideosList';
 import Styled from './ContentSingle.styles';
+import { useRouter } from 'next/router';
 function ContentSingle(props = {}) {
   const [currentVideo, setCurrentVideo] = useState(
     Array.isArray(props.data?.videos) ? props.data.videos[0] : null
   );
+  const router = useRouter();
   const analytics = useAnalytics();
 
   const { actions } = useNodeActions({
@@ -35,14 +37,16 @@ function ContentSingle(props = {}) {
   /**
    * note : Page view tracking for Segment Analytics
    */
-  if (props?.data?.segmentData) {
-    analytics.page({
-      name: props?.data?.title,
-      category: get(props?.data?.segmentData, 'category', null),
-      contentTags: get(props?.data?.segmentData, 'contentTags', null),
-      mediaType: getMediaType(props?.data),
-    });
-  }
+  useEffect(() => {
+    if (props?.data?.segmentData) {
+      analytics.page({
+        name: props?.data?.title,
+        category: get(props?.data?.segmentData, 'category', null),
+        contentTags: get(props?.data?.segmentData, 'contentTags', null),
+        mediaType: getMediaType({ url: router?.pathname, ...props?.data }),
+      });
+    }
+  }, []);
 
   if (props.loading) {
     return (

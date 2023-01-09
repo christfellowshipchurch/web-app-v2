@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { Box, Loader } from 'ui-kit';
 import { ContentLayout, Share } from 'components';
 
 import EventGroupings from './EventGroupings';
+import { useAnalytics } from 'providers/AnalyticsProvider';
 
 function EventSingle(props = {}) {
+  const analytics = useAnalytics();
   if (props.loading) {
     return (
       <Box
@@ -21,6 +23,13 @@ function EventSingle(props = {}) {
       </Box>
     );
   }
+
+  useEffect(() => {
+    analytics.page({
+      contentCategory: 'Information',
+      mediaType: 'Information',
+    });
+  }, []);
 
   const author = props?.data?.author;
   const coverImage = props?.data?.coverImage;

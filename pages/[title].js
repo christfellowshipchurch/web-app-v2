@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { kebabCase, toLower, capitalize } from 'lodash';
 
@@ -6,12 +6,24 @@ import { initializeApollo } from 'lib/apolloClient';
 import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
 import { FeatureFeedProvider, ContentItemProvider } from 'providers';
 import { Layout, FeatureFeed, PageSingle } from 'components';
+import { useAnalytics } from 'providers/AnalyticsProvider';
 
 export default function PageBuilder(props = {}) {
+  const analytics = useAnalytics();
   const router = useRouter();
   const { query } = router;
   const { title } = query;
   const formatTitleAsUrl = title => kebabCase(toLower(title));
+
+  console.log({ router });
+
+  useEffect(() => {
+    analytics.page({
+      title: title,
+      contentCategory: 'Information',
+      mediaType: 'Information',
+    });
+  }, []);
 
   const options = {
     variables: {
