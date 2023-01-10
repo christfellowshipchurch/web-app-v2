@@ -5,6 +5,9 @@ import { Box, Icon } from 'ui-kit';
 import Styled from './Img.styles';
 
 const handleShareButton = async shareData => {
+  const blob = await (await fetch(shareData)).blob();
+  const file = new File([blob], shareData.image, { type: blob.type });
+
   try {
     await navigator.share(shareData);
     console.log('success');
@@ -24,6 +27,8 @@ const DownloadButton = (props = {}) => {
     }
   }, [status]);
 
+  // const file = new File([blob], image, { type: 'image/jpeg' });
+
   return (
     <Styled.DownloadButton
       status={status}
@@ -34,7 +39,8 @@ const DownloadButton = (props = {}) => {
         handleShareButton({
           title: 'CF Images',
           text: 'Share this image!',
-          file: `/api/image?src=${props?.source}`,
+          image: `/api/image?src=${props?.source}`,
+          // files: [file],
         })
       }
       onMouseEnter={() => setStatus('ACTIVE')}
