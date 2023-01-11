@@ -1,4 +1,8 @@
-// Main Job Page
+/**
+ * Career Menu
+ *
+ * This page retrieves and displays all the departments with Job openings from Greenhouse
+ */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Layout } from 'components';
@@ -18,7 +22,7 @@ import greenhouseAPI from 'pages/api/greenhouse';
 import Styled from './Careers.styles';
 import { isString } from 'lodash';
 
-function JobMenu(props) {
+function CareerMenu(props) {
   const [departmentData, setDepartmentsData] = useState('loading');
 
   useEffect(() => {
@@ -103,6 +107,6 @@ function JobMenu(props) {
   );
 }
 
-JobMenu.propTypes = {};
+CareerMenu.propTypes = {};
 
-export default JobMenu;
+export default CareerMenu;
