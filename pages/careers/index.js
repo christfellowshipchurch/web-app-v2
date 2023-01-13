@@ -95,13 +95,6 @@ function CareerMenu(props) {
             )}
           </CardGrid>
         )}
-
-        <Box display="flex" flexDirection="column" alignItems="center">
-          {/* Add Title and Menu Here */}
-          <Button as="a" href="/careers/job-detail" m="l">
-            Job Detail Page
-          </Button>
-        </Box>
       </Cell>
     </Layout>
   );
