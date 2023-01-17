@@ -62,9 +62,9 @@ export default function Video(props = {}) {
               analytics.track({
                 event: 'Video Played',
                 properties: {
-                  content_title: '',
-                  content_tag: '',
-                  video_url: '',
+                  content_title: `${props.title}`,
+                  content_tag: `${props.segmentData.contentTags}`,
+                  video_url: `${props?.src}`,
                 },
               });
               playing();
