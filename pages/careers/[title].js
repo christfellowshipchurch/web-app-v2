@@ -85,7 +85,7 @@ const JobDetails = props => {
 
       <Box display="flex" flexDirection="column" alignItems="center">
         <Box width="100%" maxWidth={1200}>
-          <Button as="a" variant="link" href="/careers">
+          <Button onClick={() => router.back()} variant="link">
             <Icon mb="0.15rem" name="angleLeft" color="primary" />
             Go Back
           </Button>

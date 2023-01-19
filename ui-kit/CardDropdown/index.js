@@ -1,4 +1,6 @@
-// Main Job Page
+/**
+ * This component was created for the /career page and allows us to pass a dropdown menu in the DefaultCard component.
+ */
 
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
@@ -10,8 +12,18 @@ import { kebabCase } from 'lodash';
 
 const CardDropdown = props => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuItems = props?.items;
 
   const router = useRouter();
+
+  // We don't want to show more than 7 items, so we'll chunk the array and then display all on a separate page
+  let itemsChunk = menuItems?.slice(0, 6);
+  if (props?.items?.length > 7) {
+    itemsChunk?.push({
+      title: 'See All',
+      url: `/careers/department/${kebabCase(props?.title)}-${props?.id}`,
+    });
+  }
 
   return (
     <Box bg="white">
@@ -39,9 +51,13 @@ const CardDropdown = props => {
           ml={{ _: '-0.6rem', md: '-1.25rem' }}
           mt="s"
         >
-          {props?.items?.map(({ id, title, location }) => (
+          {itemsChunk?.map(({ id, title, location, url }) => (
             <Styled.CardMenuOption
-              onClick={() => router.push(`/careers/${kebabCase(title)}-${id}`)}
+              onClick={() => {
+                title === 'See All'
+                  ? router.push(url)
+                  : router.push(`/careers/${kebabCase(title)}-${id}`);
+              }}
               key={id}
             >
               <Box

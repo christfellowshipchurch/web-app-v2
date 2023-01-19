@@ -82,6 +82,7 @@ function CareerMenu(props) {
                         <CardDropdown
                           title={department?.name}
                           items={department?.jobs}
+                          id={department?.id}
                         />
                       }
                       lineLimit="false"
