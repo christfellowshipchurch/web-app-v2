@@ -143,7 +143,17 @@ const Discover = () => {
         <SearchField
           handleChange={handleChange}
           handleClear={handleClearAllClick}
-          handleClick={handleClick}
+          handleClick={e => {
+            analytics.track({
+              event: 'Site Searched',
+              properties: {
+                search_term: values?.text,
+                number_of_results: contentItems?.length,
+                search_type: 'content',
+              },
+            });
+            handleClick();
+          }}
           handleSubmit={handleSubmit}
           mb="base"
           placeholder="Search..."
@@ -151,7 +161,6 @@ const Discover = () => {
         >
           Search
         </SearchField>
-
         {showEmptyState && searchVisible && (
           <Box my="xxl" pb="xxl" textAlign="center">
             <Box as="h2">Looks like we couldn't find any results</Box>
