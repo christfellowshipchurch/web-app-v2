@@ -73,6 +73,7 @@ function ContentSingle(props = {}) {
   const summary = props?.data?.summary;
   const title = props?.data?.title;
   const videos = props?.data?.videos;
+  const segmentData = props?.data?.segmentData;
 
   const coverImageUri = coverImage?.sources[0]?.uri;
   const authorName = author
@@ -107,7 +108,12 @@ function ContentSingle(props = {}) {
       summary={schedule?.friendlyScheduleText || summary}
       coverImage={currentVideo ? null : coverImageUri}
       renderA={() => (
-        <ContentVideo video={currentVideo} poster={coverImageUri} />
+        <ContentVideo
+          segmentData={segmentData}
+          title={title}
+          video={currentVideo}
+          poster={coverImageUri}
+        />
       )}
       renderContentB={() =>
         author && (
