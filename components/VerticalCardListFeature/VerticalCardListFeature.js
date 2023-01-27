@@ -28,22 +28,37 @@ function VerticalCardListFeature(props = {}) {
       <HtmlRenderer htmlContent={subtitle} />
       {cards && cards.length > 0 && (
         <CardGrid marginBottom="base" marginTop="base" columns={'12'}>
-          {cards.map((card, i) => (
-            <Styled.CardSpacing key={i} index={i} total={cards.length}>
-              <CustomLink
-                as="a"
-                key={i}
-                href={getUrlFromRelatedNode(card?.relatedNode)}
-                Component={props?.Component ?? HorizontalHighlightCard}
-                coverImage={card?.coverImage?.sources[0]?.uri}
-                coverImageOverlay={true}
-                title={card?.title}
-                description={card?.summary}
-                type={cards.length < 2 ? 'DEFAULT' : 'HIGHLIGHT_SMALL'}
-                label={transformISODates(card?.labelText)}
-              />
-            </Styled.CardSpacing>
-          ))}
+          {cards.map((card, i) => {
+            const url = getUrlFromRelatedNode(card?.relatedNode);
+            const nonClickable = url === '#no-click';
+            return (
+              <Styled.CardSpacing key={i} index={i} total={cards.length}>
+                {nonClickable ? (
+                  <HorizontalHighlightCard
+                    coverImage={card?.coverImage?.sources[0]?.uri}
+                    coverImageOverlay={true}
+                    title={card?.title}
+                    description={card?.summary}
+                    type={cards.length < 2 ? 'DEFAULT' : 'HIGHLIGHT_SMALL'}
+                    label={transformISODates(card?.labelText)}
+                  />
+                ) : (
+                  <CustomLink
+                    as="a"
+                    href={url}
+                    key={i}
+                    Component={props?.Component ?? HorizontalHighlightCard}
+                    coverImage={card?.coverImage?.sources[0]?.uri}
+                    coverImageOverlay={true}
+                    title={card?.title}
+                    description={card?.summary}
+                    type={cards.length < 2 ? 'DEFAULT' : 'HIGHLIGHT_SMALL'}
+                    label={transformISODates(card?.labelText)}
+                  />
+                )}
+              </Styled.CardSpacing>
+            );
+          })}
         </CardGrid>
       )}
       {actions &&
