@@ -92,6 +92,11 @@ module.exports = {
           'https://www.christfellowship.church/2022-christ-birthday-offering',
         permanent: true,
       },
+      {
+        source: '/nexus-platform',
+        destination: 'https://www.nexusplatform.com',
+        permanent: true,
+      },
       // TODO: Uncomment these lines to hide Group Finder.
       // NOTE: We can't get `config/flags` in this file.
       // {
