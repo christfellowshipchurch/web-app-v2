@@ -66,13 +66,13 @@ const Department = props => {
         </Styled.Hero>
       )}
 
-      <Cell as="main" maxWidth={utils.rem('1100px')} px="base" py="s">
-        <Box width="100%" maxWidth={1200} mb="base" mt="-1rem">
-          <Button onClick={() => router.back()} variant="link">
-            <Icon mb="0.15rem" name="angleLeft" color="primary" />
-            Go Back
-          </Button>
-        </Box>
+      <Box width="100%" maxWidth={1200} mx="auto" mb="base">
+        <Button onClick={() => router.back()} variant="link">
+          <Icon mb="0.15rem" name="angleLeft" color="primary" />
+          Go Back
+        </Button>
+      </Box>
+      <Cell as="main" maxWidth={1200} px="base" py="s">
         {loading ? (
           <Loader />
         ) : (
