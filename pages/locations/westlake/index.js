@@ -192,7 +192,9 @@ const Westlake = props => {
               },
               {
                 title: 'Join the Launch Team',
-                relatedNode: { url: '#join-the-launch' },
+                relatedNode: {
+                  url: 'https://rock.christfellowship.church/dreamteam/locations/opportunities?CampusId=19',
+                },
               },
             ]}
             contentLayout="right"
