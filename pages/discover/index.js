@@ -45,7 +45,8 @@ const Discover = () => {
 
   const hasResults = contentItems?.length > 0;
   const showEmptyState = !loading && !hasResults;
-  const hasMorePages = contentItems?.length < data?.search?.totalResults;
+  const pageResults = data?.search?.totalResults;
+  const hasMorePages = contentItems?.length < pageResults;
 
   // NOT IN USE FOR NOW
   // const handleLoadMore = () => {
@@ -68,6 +69,19 @@ const Discover = () => {
       },
     });
   };
+
+  useEffect(() => {
+    values?.text &&
+      pageResults &&
+      analytics.track({
+        event: 'Site Searched',
+        properties: {
+          search_term: values?.text,
+          number_of_results: pageResults,
+          search_type: 'content',
+        },
+      });
+  }, [pageResults]);
 
   function handleClearAllClick(event) {
     event.preventDefault();
@@ -143,17 +157,7 @@ const Discover = () => {
         <SearchField
           handleChange={handleChange}
           handleClear={handleClearAllClick}
-          handleClick={e => {
-            analytics.track({
-              event: 'Site Searched',
-              properties: {
-                search_term: values?.text,
-                number_of_results: contentItems?.length,
-                search_type: 'content',
-              },
-            });
-            handleClick();
-          }}
+          handleClick={handleClick}
           handleSubmit={handleSubmit}
           mb="base"
           placeholder="Search..."
