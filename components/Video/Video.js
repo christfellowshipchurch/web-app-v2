@@ -23,11 +23,13 @@ export default function Video(props = {}) {
   return (
     <Box
       position="relative"
-      height="100%"
-      width="100%"
+      height={props?.height}
+      width={props?.width}
       className="react-player"
     >
       <ReactPlayer
+        height="100%"
+        width="100%"
         url={props?.src}
         controls={true}
         playing={isPlaying}
@@ -60,3 +62,8 @@ export default function Video(props = {}) {
     </Box>
   );
 }
+
+Video.defaultProps = {
+  height: '100%',
+  width: '100%',
+};
