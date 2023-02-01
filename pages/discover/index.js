@@ -45,7 +45,8 @@ const Discover = () => {
 
   const hasResults = contentItems?.length > 0;
   const showEmptyState = !loading && !hasResults;
-  const hasMorePages = contentItems?.length < data?.search?.totalResults;
+  const pageResults = data?.search?.totalResults;
+  const hasMorePages = contentItems?.length < pageResults;
 
   // NOT IN USE FOR NOW
   // const handleLoadMore = () => {
@@ -68,6 +69,19 @@ const Discover = () => {
       },
     });
   };
+
+  useEffect(() => {
+    values?.text &&
+      pageResults &&
+      analytics.track({
+        event: 'Site Searched',
+        properties: {
+          search_term: values?.text,
+          number_of_results: pageResults,
+          search_type: 'content',
+        },
+      });
+  }, [pageResults]);
 
   function handleClearAllClick(event) {
     event.preventDefault();
@@ -151,7 +165,6 @@ const Discover = () => {
         >
           Search
         </SearchField>
-
         {showEmptyState && searchVisible && (
           <Box my="xxl" pb="xxl" textAlign="center">
             <Box as="h2">Looks like we couldn't find any results</Box>
