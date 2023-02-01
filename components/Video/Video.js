@@ -21,12 +21,15 @@ export default function Video(props = {}) {
   const notPlaying = () => setIsPlaying(false);
 
   return (
-    <Box position="relative" height="100%" width="100%" className='react-player'>
+    <Box
+      position="relative"
+      height="100%"
+      width="100%"
+      className="react-player"
+    >
       <ReactPlayer
         url={props?.src}
         controls={true}
-        width="100%"
-        height="100%"
         playing={isPlaying}
         onPause={notPlaying}
         onSeek={playing}
