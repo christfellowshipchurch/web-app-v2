@@ -50,7 +50,7 @@ const additionalInfoCampusData = [
   },
   {
     name: 'Riviera Beach',
-    info: ['Kids services take place at each service'],
+    info: ['Kids services take place during service'],
   },
   {
     name: 'Boca Raton',
