@@ -268,7 +268,7 @@ module.exports = {
       { source: '/events/supporting-those-who-struggle-event', destination: '/supporting-those-who-struggle-event', permanent: true },
       { source: '/events/light-up-the-pike', destination: 'https://lightupthepike.com', permanent: true },
       { source: '/groupserve', destination: 'https://my.longhollow.com/groupserve', permanent: true },
-      { source: '/notes', destination: 'http://bible.com/events/49024347', permanent: true }
+      { source: '/notes', destination: 'http://bible.com/events/49028015', permanent: true }
     ];
   },
 };
