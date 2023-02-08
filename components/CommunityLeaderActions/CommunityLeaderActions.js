@@ -45,6 +45,7 @@ export default function CommunityLeaderActions(props) {
               Already in a group? Log in to view your groups.
             </Box>
             <Button
+              as="a"
               size="s"
               variant="secondary"
               rounded={true}
