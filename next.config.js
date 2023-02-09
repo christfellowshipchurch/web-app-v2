@@ -57,7 +57,7 @@ module.exports = {
       { source: '/camp', destination: 'https://longhollow.com/student-camp-2022', permanent: true },
       { source: '/mvmnt', destination: 'https://longhollow.com/mvmnt-2022', permanent: true },
       { source: '/game', destination: 'https://longhollow.com/family-game-night', permanent: true },
-      { source: '/studentmissions', destination: 'https://longhollow.com/student-spring-break-missions', permanent: true },
+      { source: '/studentmissions', destination: 'hhttps://longhollow.com/studentspringbreakmissions2023', permanent: true },
       { source: '/21days', destination: 'https://longhollow.com/start-the-new-year-with-21-days-of-devotion', permanent: true },
       { source: '/share', destination: 'https://my.longhollow.com/Registration/share', permanent: true },
       { source: '/report', destination: 'https://annualreport.longhollow.com', permanent: true },
