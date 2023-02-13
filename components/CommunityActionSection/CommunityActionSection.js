@@ -23,7 +23,7 @@ export default function CommunityActionSection(props) {
         Search All Groups & Classes
       </Button>
       <CustomLink target="_blank" href="https://rock.gocf.org/page/2113">
-        Help Me Find a Group
+        Help Me Find a Group or Class
       </CustomLink>
     </Box>
   );

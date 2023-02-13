@@ -170,7 +170,7 @@ const Westlake = props => {
                 title: 'Join the Launch Team',
                 target: '_blank',
                 relatedNode: {
-                  url: 'https://rock.gocf.org/WestlakeInterest',
+                  url: 'https://rock.christfellowship.church/dreamteam/locations/opportunities?CampusId=19',
                 },
               },
             ]}
@@ -192,7 +192,9 @@ const Westlake = props => {
               },
               {
                 title: 'Join the Launch Team',
-                relatedNode: { url: '#join-the-launch' },
+                relatedNode: {
+                  url: 'https://rock.christfellowship.church/dreamteam/locations/opportunities?CampusId=19',
+                },
               },
             ]}
             contentLayout="right"
