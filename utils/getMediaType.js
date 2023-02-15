@@ -1,19 +1,24 @@
 import React from 'react';
-import { get, has } from 'lodash';
+import { get, includes } from 'lodash';
 
 function getMediaType(props) {
   const videos = get(props, 'videos.[0].sources', []);
   const audios = get(props, 'audios.[0].sources', []);
   const url = props?.url;
 
-  let type = 'information';
+  let type = 'Information';
 
   if (videos.length > 0) {
-    type = 'video';
+    type = 'Video';
   } else if (audios.length > 0) {
-    type = 'audio';
-  } else if (has(url, ['articles', 'devotionals', 'studies', 'keep-talking'])) {
-    type = 'article';
+    type = 'Audio';
+  } else if (
+    includes(url, 'articles') ||
+    includes(url, 'devotionals') ||
+    includes(url, 'studies') ||
+    includes(url, 'keep-talking')
+  ) {
+    type = 'Article';
   }
 
   return type;

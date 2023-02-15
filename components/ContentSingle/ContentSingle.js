@@ -47,7 +47,7 @@ function ContentSingle(props = {}) {
           ? 'Messages'
           : 'Resources',
         contentTags: get(props?.data?.segmentData, 'contentTags', null),
-        mediaType: getMediaType({ url: router?.pathname, ...props?.data }),
+        mediaType: getMediaType({ url: asPath, ...props?.data }),
       });
     }
   }, [router]);
