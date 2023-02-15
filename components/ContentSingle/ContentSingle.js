@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
-import { get, keyBy } from 'lodash';
+import { get, includes, keyBy } from 'lodash';
 
 import { Box, Avatar, Loader, Button } from 'ui-kit';
 import { ContentLayout, Share } from 'components';
@@ -38,15 +38,19 @@ function ContentSingle(props = {}) {
    * note : Page view tracking for Segment Analytics
    */
   useEffect(() => {
-    if (props?.data?.segmentData) {
+    const { asPath } = router;
+    if (props?.data?.segmentData && asPath) {
       analytics.page({
         name: props?.data?.title,
-        category: get(props?.data?.segmentData, 'category', null),
+        // Checks to see if content is a sermon, if not category should be 'Resource'
+        contentCategory: includes(asPath, 'messages')
+          ? 'Messages'
+          : 'Resources',
         contentTags: get(props?.data?.segmentData, 'contentTags', null),
         mediaType: getMediaType({ url: router?.pathname, ...props?.data }),
       });
     }
-  }, []);
+  }, [router]);
 
   if (props.loading) {
     return (
