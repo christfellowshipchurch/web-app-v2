@@ -31,7 +31,7 @@ export default function CommunityLeaderActions(props) {
         display="grid"
         px={{ _: 'base', md: 'xxl' }}
         py={{ _: 'l', md: 'xxl' }}
-        gridTemplateColumns={{ _: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)' }}
+        gridTemplateColumns={{ _: 'repeat(1, 1fr)', md: 'repeat(3, 1fr)' }}
         gridColumnGap="l"
         textAlign="center"
       >
@@ -51,6 +51,27 @@ export default function CommunityLeaderActions(props) {
               onClick={handleMyGroups}
             >
               View My Groups
+            </Button>
+          </Box>
+        </Box>
+
+        <Box mb={{ _: 'xl', md: 0 }}>
+          <Icon name="book" size="40" mb="s" color="subdued" />
+          <Box>
+            <Box as="h2" mb="s">
+              Studies and Resources
+            </Box>
+            <Box as="p" mb="base">
+              Looking for a study for your group or personal growth?
+            </Box>
+            <Button
+              as="a"
+              size="s"
+              variant="secondary"
+              href="/studies-and-resources"
+              rounded={true}
+            >
+              Preview Resources
             </Button>
           </Box>
         </Box>
