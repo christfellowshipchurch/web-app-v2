@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
 import { kebabCase, toLower, capitalize } from 'lodash';
 
@@ -14,16 +14,6 @@ export default function PageBuilder(props = {}) {
   const { query } = router;
   const { title } = query;
   const formatTitleAsUrl = title => kebabCase(toLower(title));
-
-  console.log({ router });
-
-  useEffect(() => {
-    analytics.page({
-      title: title,
-      contentCategory: 'Information',
-      mediaType: 'Information',
-    });
-  }, []);
 
   const options = {
     variables: {
