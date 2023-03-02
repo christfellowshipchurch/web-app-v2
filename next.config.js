@@ -211,6 +211,7 @@ module.exports = {
       { source: '/food', destination: '/next-steps/get-involved-with-missions', permanent: true },
       { source: '/foodpantry', destination: '/connect/connect-with-us', permanent: true },
       { source: '/baby', destination: '/connect/kids', permanent: true },
+      { source: '/local', destination: '/search?category=Service%20Opportunities&p=1', permanent: true },
       { source: '/seniors', destination: '/', permanent: true },
       { source: '/easter', destination: '/come-celebrate-with-us-this-easter', permanent: true },
       { source: '/lhkids', destination: '/connect/kids', permanent: true },
