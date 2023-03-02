@@ -419,9 +419,9 @@ function HomeFeedContent(props = {}) {
           mb="s"
           px="m"
         >
-          Starting Point is a fun four-part experience that will introduce you
+          Starting Point is a fun two-part experience that will introduce you
           to our church, help you learn more about yourself, and give you
-          practical ways to take the next step on your&nbsp;
+          practical ways to take the next step in your&nbsp;
           <Text
             color="neutrals.100"
             opacity="60%"
@@ -429,7 +429,7 @@ function HomeFeedContent(props = {}) {
             fontWeight="600"
             onClick={() => router.push('/about/our-mission-and-strategy')}
           >
-            Discipleship Journey
+            journey as a disciple
           </Text>
         </Text>
         <Text
