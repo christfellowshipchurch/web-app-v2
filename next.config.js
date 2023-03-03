@@ -106,7 +106,7 @@ module.exports = {
       { source: '/app', destination: '/the-long-hollow-app', permanent: true },
       { source: '/supportgroups', destination: '/connect/support-groups', permanent: true },
       { source: '/beliefs', destination: '/about/beliefs', permanent: true },
-      { source: '/guide', destination: 'https://rock.longhollow.com/Content/ExternalSite/Downloads/StartingPointGuide.pdf', permanent: true },
+      { source: '/guide', destination: 'https://rock.longhollow.com/Content/ExternalSite/Downloads/StartingPointGuide2023.pdf', permanent: true },
       { source: '/weekday', destination: '/weekday-preschool', permanent: true },
       { source: '/weekdaypreschool', destination: '/weekday-preschool', permanent: true },
       { source: '/removeme', destination: 'https://longhollow.wufoo.com/forms/pcbkc9o0kzgn5z/', permanent: true },
