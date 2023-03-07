@@ -448,6 +448,10 @@ const headerData = [
       modal: 'SetReminder',
       newTab: true,
     },
+    backgroundVideo: {
+      mobile: '/location-pages/westlake-desktop.mp4',
+      desktop: '/location-pages/westlake-desktop.mp4',
+    },
   },
 ];
 
