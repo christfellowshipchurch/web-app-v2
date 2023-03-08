@@ -1,7 +1,16 @@
 import { useState, useEffect } from 'react';
-import { Button, Box, Card, ContentBlock, List } from 'ui-kit';
+import {
+  Button,
+  Box,
+  Card,
+  ContentBlock,
+  List,
+  HorizontalHighlightCard,
+  DefaultCard,
+  utils,
+} from 'ui-kit';
 import { rem } from 'ui-kit/_utils';
-import { Layout } from 'components';
+import { Layout, VerticalCardListFeature } from 'components';
 import { useRouter } from 'next/router';
 import { includes } from 'lodash';
 
@@ -43,9 +52,9 @@ export default function About() {
           your purpose and impact the world. We believe that church isn’t just a
           building you walk in to, but a family you can belong to—so whether you
           call one of our many locations home or join from home, church is
-          wherever you are! Led by senior pastors Todd & Julie Mullins, our
-          mission is to impact the world with the love and message of Jesus
-          Christ—everyone, everyday,&nbsp;everywhere.
+          wherever you are! Led by senior pastors Todd & Julie Mullins, God has
+          given us a vision to lead a radical transformation for Jesus Christ in
+          this region and beyond. Everyone, Everyday, Everywhere.
         </Box>
       </Styled.Hero>
       <Styled.Section>
@@ -117,6 +126,18 @@ export default function About() {
                 <ContentBlock {...item} key={i} />
               </Box>
             ))}
+            <VerticalCardListFeature data={data.teachingTeam} />
+            <Box
+              fontStyle="italic"
+              fontWeight="bold"
+              m="xl"
+              textAlign={'center'}
+            >
+              Discover our campus pastors through our{' '}
+              <Box as="a" href="/locations">
+                campus location pages.
+              </Box>{' '}
+            </Box>
           </Box>
         )}
         {active === 'beliefs' && (
