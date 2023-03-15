@@ -111,8 +111,6 @@ const CampusInfo = ({
   const handleCampusDirections =
     name === 'Trinity' ? trinityCampusDirections : allCampusesDirections;
 
-  console.log(street1);
-
   return (
     <Box bg="white">
       {/* Campus Information */}
