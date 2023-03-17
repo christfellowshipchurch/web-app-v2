@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import find from 'lodash/find';
 import startCase from 'lodash/startCase';
@@ -16,6 +16,7 @@ import {
   campusMetaData,
   campusLinks,
 } from 'components/LocationSingle/locationData';
+import { useAnalytics } from 'providers/AnalyticsProvider';
 
 const OLD_LOCATION_PAGES = [
   'prison-locations',
@@ -24,11 +25,20 @@ const OLD_LOCATION_PAGES = [
 ];
 
 export default function Location(props = {}) {
+  const analytics = useAnalytics();
+
   const router = useRouter();
   const { query } = router;
   const { title } = query;
   const metaData = find(campusMetaData, { key: title });
   const campusLink = find(campusLinks, { name: startCase(title) });
+
+  useEffect(() => {
+    analytics.page({
+      contentCategory: 'Information',
+      mediaType: 'Information',
+    });
+  }, []);
 
   const options = {
     variables: {

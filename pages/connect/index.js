@@ -3,18 +3,28 @@ import { useRouter } from 'next/router';
 
 import { FeatureFeedProvider } from 'providers';
 import { useAuth } from 'providers/AuthProvider';
+import { useAnalytics } from 'providers/AnalyticsProvider';
 
 import { Layout, FeatureFeed } from 'components';
 import { Box, Cell, utils } from 'ui-kit';
 
 export default function Connect(props = {}) {
   const router = useRouter();
+  const analytics = useAnalytics();
   const [{ authenticated }] = useAuth();
   const options = {
     variables: {
       pathname: 'connect',
     },
   };
+
+  //Segment Page Tracking
+  useEffect(() => {
+    analytics.page({
+      contentCategory: 'Information',
+      mediaType: 'Information',
+    });
+  }, []);
 
   useEffect(() => {
     if (!authenticated) {

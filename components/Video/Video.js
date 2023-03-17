@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import muxjs from 'mux.js';
 import { Box, Button, Icon } from 'ui-kit';
+import { useAnalytics } from 'providers/AnalyticsProvider';
 
 import ReactPlayer from 'react-player';
 
@@ -11,6 +12,7 @@ if (typeof window !== 'undefined') {
 }
 
 export default function Video(props = {}) {
+  const analytics = useAnalytics();
   const [isPlaying, setIsPlaying] = useState(false);
   const [hasPlayed, setHasPlayed] = useState(false);
 
@@ -54,7 +56,20 @@ export default function Video(props = {}) {
           }
           backgroundSize="cover"
         >
-          <Button onClick={playing} variant="link">
+          <Button
+            variant="link"
+            onClick={e => {
+              analytics.track({
+                event: 'Video Played',
+                properties: {
+                  content_title: `${props.title}`,
+                  content_tag: props.segmentData.contentTags,
+                  video_url: `${props?.src}`,
+                },
+              });
+              playing();
+            }}
+          >
             <Icon name="play" color="white" size="40%" opacity="0.95" />
           </Button>
         </Box>

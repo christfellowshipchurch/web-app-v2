@@ -1,14 +1,23 @@
-import { useLinkTree } from 'hooks';
+import React, { useEffect } from 'react';
 
+import { useLinkTree } from 'hooks';
 import { Box, Cell, ContentBlock, Loader, utils } from 'ui-kit';
 import { Layout } from 'components';
+import { useAnalytics } from 'providers/AnalyticsProvider';
 
 export default function Info(props = {}) {
+  const analytics = useAnalytics();
+
+  useEffect(() => {
+    analytics.page({ title: `LinkTree - Info`, mediaType: 'Information' });
+  }, []);
+
   const options = {
     variables: {
       pathname: 'info',
     },
   };
+
   const { loading, data } = useLinkTree(options);
 
   if (loading) {
