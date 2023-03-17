@@ -441,6 +441,14 @@ const headerData = [
     },
     videoBackgroundImage: '/location-pages/trinity-background.png',
   },
+  {
+    name: 'Westlake',
+    primaryButton: {
+      call: 'Set a Reminder',
+      modal: 'SetReminder',
+      newTab: true,
+    },
+  },
 ];
 
 export { additionalInfoCampusData, campusMetaData, campusLinks, headerData };
