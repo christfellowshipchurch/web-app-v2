@@ -26,9 +26,6 @@ export default function WistiaChannel(props = {}) {
     }
   }, [router]);
 
-  /**
-   * todo : I don't know why, but adding the snippet twice somehow fixed the loading states for Wistia embed 🤔
-   */
   return (
     <Layout>
       {!loading && channelId ? (
@@ -50,19 +47,6 @@ export default function WistiaChannel(props = {}) {
           <Loader />
         </Box>
       )}
-      <>
-        <script
-          src="https://fast.wistia.com/assets/external/channel.js"
-          async
-        ></script>
-        <link
-          rel="stylesheet"
-          href={`https://fast.wistia.com/embed/channel/project/${channelId}/font.css`}
-        />
-        <div
-          class={`wistia_channel wistia_async_${channelId} mode=inline`}
-        ></div>
-      </>
     </Layout>
   );
 }
