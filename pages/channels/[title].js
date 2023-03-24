@@ -15,13 +15,11 @@ export default function WistiaChannel(props = {}) {
   const [loading, setLoading] = useState(true);
 
   const router = useRouter();
-  const { query } = router;
-  const { title } = query;
 
   useEffect(() => {
     setLoading(true);
-    if (title) {
-      setChannelId(title);
+    if (router?.query?.title) {
+      setChannelId(router?.query?.title);
       setLoading(false);
     }
   }, [router]);
@@ -30,10 +28,6 @@ export default function WistiaChannel(props = {}) {
     <Layout>
       {!loading && channelId ? (
         <>
-          <script
-            src="https://fast.wistia.com/assets/external/channel.js"
-            async
-          ></script>
           <link
             rel="stylesheet"
             href={`https://fast.wistia.com/embed/channel/project/${channelId}/font.css`}
@@ -43,7 +37,7 @@ export default function WistiaChannel(props = {}) {
           ></div>
         </>
       ) : (
-        <Box width="100%" p="l" textAlign="center">
+        <Box width="100%" p="xxl" display="flex" justifyContent="center">
           <Loader />
         </Box>
       )}
