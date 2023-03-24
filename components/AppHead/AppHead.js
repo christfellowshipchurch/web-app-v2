@@ -198,6 +198,12 @@ function AppHead({ Component, pageProps }) {
         }}
       />
       <style>{'html { scroll-behavior: smooth; }'}</style>
+
+      {/* Wistia Embed */}
+      <script
+        src="https://fast.wistia.com/assets/external/channel.js"
+        async
+      ></script>
     </Head>
   );
 }
