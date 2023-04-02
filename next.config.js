@@ -97,6 +97,11 @@ module.exports = {
         destination: 'https://www.nexusplatform.com',
         permanent: true,
       },
+      {
+        source: '/events/amazing-a-sisterhood-event',
+        destination: '/events/amazing',
+        permanent: true,
+      },
       // TODO: Uncomment these lines to hide Group Finder.
       // NOTE: We can't get `config/flags` in this file.
       // {
