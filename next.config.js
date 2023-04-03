@@ -42,7 +42,7 @@ module.exports = {
       { source: '/kidssummer', destination: 'https://longhollow.com/join-lh-kids-for-a-fun-filled-summer', permanent: true },
       { source: '/backtoschool', destination: 'https://my.longhollow.com/Registration/backtoschool-2022', permanent: true },
       { source: '/statement', destination: '/an-important-message-from-long-hollow-church', permanent: true },
-      { source: '/israel', destination: 'https://signature.rezdy.com/502175/pastor-robby-gallaty-10-day-journey-to-the-holy-land-march-12-21-2023', permanent: true },
+      { source: '/israel', destination: 'https://signature.rezdy.com/542911/the-forgotten-jesus-tour-with-dr-robby-and-kandi-gallaty-march-16-25-2024', permanent: true },
       { source: '/lightupthepike', destination: 'https://lightupthepike.com/', permanent: true },
       { source: '/cruisein', destination: 'https://longhollow.wufoo.com/forms/pyyg54d1egc91m/', permanent: true },
       { source: '/young-adults-weekly-gathering', destination: '/tuesday-night-gathering', permanent: true },
