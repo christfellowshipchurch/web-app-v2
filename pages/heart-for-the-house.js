@@ -5,18 +5,18 @@ import { useCurrentBreakpoint } from 'hooks';
 import { CoverImage } from 'ui-kit';
 
 function HeartForTheHouse(props = {}) {
-  const [headerImage, setHeaderImage] = useState('');
+  const [imageSize, setImageSize] = useState('');
   const currentBreakpoint = useCurrentBreakpoint();
 
-  //changes header image base on screen size.
+  //changes banner image based on screen size.
   useEffect(() => {
     switch (currentBreakpoint?.name) {
       case 'sm':
-        setHeaderImage('-mobile');
+        return setImageSize('-mobile');
       case 'xl':
-        setHeaderImage('-large');
+        return setImageSize('-large');
       default:
-        setHeaderImage('');
+        return setImageSize('');
     }
   }, [currentBreakpoint]);
 
@@ -24,7 +24,19 @@ function HeartForTheHouse(props = {}) {
     <Layout>
       <CoverImage
         type="hero-glass"
-        src={`/heart-for-house/header${headerImage}.jpg`}
+        src={`/heart-for-house/banners/header${imageSize}.jpg`}
+      />
+      <CoverImage
+        type="hero-glass"
+        src={`/heart-for-house/banners/year-review${
+          imageSize === '-large' ? '' : imageSize
+        }.jpg`}
+      />
+      <CoverImage
+        type="hero-glass"
+        src={`/heart-for-house/banners/vision${
+          imageSize === '-large' ? '' : imageSize
+        }.jpg`}
       />
     </Layout>
   );
