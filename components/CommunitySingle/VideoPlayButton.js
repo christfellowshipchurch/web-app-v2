@@ -9,17 +9,18 @@ import { useModalDispatch, showModal } from 'providers/ModalProvider';
 // todo : the quickest way to ship this feature was to hardcode these values. A more elegant solution should be worked out at some point in the future.
 const VIDEO_URI = {
   sisterhood:
-    'https://link.theplatform.com/s/IfSiAC/media/gMIs5lxTQwK1/file.m3u8?format=redirect&formats=m3u,mpeg4',
-  crew: 'https://link.theplatform.com/s/IfSiAC/media/ZWXl6MnuPxWk/file.m3u8?format=redirect&formats=m3u,mpeg4',
+    'https://embed-ssl.wistia.com/deliveries/5d8991034a88d1603dd84f4643ffb14e/file.mp4',
+  crew: 'https://embed-ssl.wistia.com/deliveries/ad8b07c4b0fc53c989e06fabbe4e4bbecf5f601f/file.mp4',
   marriedPeople:
-    'https://link.theplatform.com/s/IfSiAC/media/YzTluBLlGRWE/file.m3u8?format=redirect&formats=m3u,mpeg4',
+    'https://embed-ssl.wistia.com/deliveries/16722c2758ed52f8695a1626ba90fe2087a7988b/file.mp4',
   everyone:
-    'https://link.theplatform.com/s/IfSiAC/media/MfzW24ax8KJB/file.m3u8?format=redirect&formats=m3u,mpeg4',
+    'https://embed-ssl.wistia.com/deliveries/239e00728753517b278a453af6a02fc830ecdd2b/file.mp4',
   youngAdults:
-    'https://link.theplatform.com/s/IfSiAC/media/VH3iIxwYPf_X/file.m3u8?format=redirect&formats=m3u,mpeg4',
+    'https://embed-ssl.wistia.com/deliveries/2b6bd8002765ac55e6ecb3d37b8142966007151d/file.mp4',
   freedomCare:
-    'https://link.theplatform.com/s/IfSiAC/media/ulPNeyTh2y55/file.m3u8?format=redirect&formats=m3u,mpeg4',
-  classes: 'http://link.theplatform.com/s/IfSiAC/media/gPUhOJHomYsB',
+    'https://embed-ssl.wistia.com/deliveries/89d211c465d24fa309feabc46e7e9e28c11d89fb/file.mp4',
+  classes:
+    'https://embed-ssl.wistia.com/deliveries/37eccdfa6d350bb0c1e2d895cfe164a4ffb81c4d/file.mp4',
 };
 
 /**
@@ -29,7 +30,7 @@ const VIDEO_URI = {
  * @param {string} poster | The uri of the poster image for the video
  * @returns {array}       | Function that runs on click
  */
-function useHandleButtonClick(uri, poster) {
+function useHandleButtonClick(uri, poster, title) {
   const modalDispatch = useModalDispatch();
 
   const method = () => {
@@ -40,6 +41,7 @@ function useHandleButtonClick(uri, poster) {
         step: 0,
         uri,
         poster,
+        title,
       })
     );
   };
@@ -48,7 +50,7 @@ function useHandleButtonClick(uri, poster) {
 }
 function VideoPlayButton(props = {}) {
   const videoUri = VIDEO_URI[camelCase(props?.title)];
-  const [onClick] = useHandleButtonClick(videoUri, props?.poster);
+  const [onClick] = useHandleButtonClick(videoUri, props?.poster, props?.title);
 
   if (isEmpty(videoUri)) return null;
 
