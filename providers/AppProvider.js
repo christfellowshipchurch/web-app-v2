@@ -12,6 +12,7 @@ import {
 import { ModalManager } from 'providers/ModalProvider';
 import modals from 'config/modals';
 import { ThemeProvider } from 'ui-kit';
+import { WistiaProvider } from '@wistia/react-embeds';
 
 function AppProvider(props = {}) {
   const apolloClient = useApollo(props.initialApolloState);
@@ -21,14 +22,16 @@ function AppProvider(props = {}) {
     <ApolloProvider client={apolloClient}>
       <AuthProvider>
         <AnalyticsProvider writeKey={writeKey}>
-          <ThemeProvider>
-            <GroupFiltersProvider>
-              <ModalProvider modals={modals}>
-                {props.children}
-                <ModalManager />
-              </ModalProvider>
-            </GroupFiltersProvider>
-          </ThemeProvider>
+          <WistiaProvider>
+            <ThemeProvider>
+              <GroupFiltersProvider>
+                <ModalProvider modals={modals}>
+                  {props.children}
+                  <ModalManager />
+                </ModalProvider>
+              </GroupFiltersProvider>
+            </ThemeProvider>
+          </WistiaProvider>
         </AnalyticsProvider>
       </AuthProvider>
     </ApolloProvider>
