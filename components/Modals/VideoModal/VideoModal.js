@@ -12,7 +12,13 @@ function VideoModal(props = {}) {
     <Modal {...props} width="50vw">
       <Box borderRadius={8} overflow={'hidden'}>
         {!isEmpty(uri) && (
-          <Video src={uri} poster={poster} autoPlay={true} playsInline={true} />
+          <Video
+            title={props?.title}
+            src={uri}
+            poster={poster}
+            autoPlay={true}
+            playsInline={true}
+          />
         )}
       </Box>
     </Modal>
