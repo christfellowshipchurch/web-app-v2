@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
-import { Layout, Testimonials } from 'components';
+import { FAQ, Layout, Testimonials } from 'components';
 import { useCurrentBreakpoint } from 'hooks';
 import { Box, CoverImage, ThemeMixin } from 'ui-kit';
+import { faqHeartForHouseData } from 'components/FAQ/faqData';
 
 function HeartForTheHouse(props = {}) {
   const [imageSize, setImageSize] = useState('');
@@ -73,6 +74,11 @@ function HeartForTheHouse(props = {}) {
               },
             ]}
           />
+        </Box>
+        <Box px="base" py="xl" width="100%">
+          <Box mx="auto" maxWidth={1200}>
+            <FAQ showDescription={false} data={faqHeartForHouseData} />
+          </Box>
         </Box>
       </ThemeMixin>
     </Layout>

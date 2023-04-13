@@ -22,15 +22,19 @@ function FAQ(props = {}) {
         <Box as="h2" fontSize={32} color="neutrals.300" mb="base">
           FAQ
         </Box>
-        <Box as="h4" color="tertiary" fontStyle="italic" mb={0}>
-          Have additional questions?
-        </Box>
-        <Box fontWeight="bold" mb="base" maxWidth={450}>
-          Someone from our team is happy to answer any of your questions!
-        </Box>
-        <Box as="a" href="https://rock.gocf.org/contactus" target="_blank">
-          Contact Us
-        </Box>
+        {props?.showDescription && (
+          <>
+            <Box as="h4" color="tertiary" fontStyle="italic" mb={0}>
+              Have additional questions?
+            </Box>
+            <Box fontWeight="bold" mb="base" maxWidth={450}>
+              Someone from our team is happy to answer any of your questions!
+            </Box>
+            <Box as="a" href="https://rock.gocf.org/contactus" target="_blank">
+              Contact Us
+            </Box>
+          </>
+        )}
       </Box>
       <Box>
         {props?.data?.map((n, i) => (
@@ -65,6 +69,7 @@ function FAQ(props = {}) {
 FAQ.propTypes = {
   ...systemPropTypes,
   data: PropTypes.array,
+  showDescription: PropTypes.bool,
   scrollPosition: PropTypes.shape({
     desktop: PropTypes.number,
     mobile: PropTypes.number,
@@ -73,6 +78,7 @@ FAQ.propTypes = {
 
 FAQ.defaultProps = {
   data: [],
+  showDescription: true,
   scrollPosition: {
     desktop: 2800,
     mobile: 4450,
