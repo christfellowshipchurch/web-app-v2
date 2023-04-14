@@ -80,8 +80,10 @@ function HeartForTheHouse(props = {}) {
         />
         <Box
           id="give"
-          p="xxl"
+          py="xxl"
+          px="base"
           backgroundImage="url(/heart-for-house/give-bg.jpeg)"
+          backgroundPosition="center"
           backgroundSize="cover"
           display="flex"
           justifyContent="center"
@@ -96,7 +98,13 @@ function HeartForTheHouse(props = {}) {
           <Box as="h3" color="neutrals.200">
             GIVE TOWARD HEART FOR THE HOUSE ON MAY 21, 2023.
           </Box>
-          <Box m="l" bg="neutrals.200" py="base" px="l" borderRadius="base">
+          <Box
+            my="l"
+            bg="neutrals.200"
+            py="base"
+            px={{ _: 's', md: 'l' }}
+            borderRadius="base"
+          >
             <Box color="secondary">Choose a Giving Option:</Box>
             <GiveButton
               title="Give Now"
