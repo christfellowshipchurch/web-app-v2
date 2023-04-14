@@ -166,34 +166,19 @@ const faqTrinityData = [
 
 export const faqHeartForHouseData = [
   {
-    title: 'What does Christ Fellowship believe?',
+    title: 'What should I give',
     description:
-      'Christ Fellowship is a church in South Florida with a passion to help you know God and grow in your relationships so that you can discover your purpose and impact your world. Led by senior pastors Todd & Julie Mullins, our mission is to impact the world with the love and message of Jesus Christ—everyone, everyday, everywhere. <br />  <br />  Find out more about <a target="_blank" href="/about">our church and our beliefs.</a>',
+      "Heart for the House is a special offering we get to be a part of every year, where we give above our regular tithes and offerings. There isn't a set amount you should give, but as we often say,  it’s not the size of your gift—it's the size of your sacrifice! We encourage you to pray about how God wants you to be a part of it.",
   },
 
   {
-    title: 'Are there any expectations for visitors?',
-    description: `Not at all. When we say "welcome home", we mean it! Be yourself, relax, and enjoy the service. We can't wait to see you!`,
+    title: 'Can I give to Heart for the House later?',
+    description: `Yes! You can give to Heart for the House any time throughout 2023, either as a one-time gift or you can set up a recurring gift (weekly/monthly) through December 31.`,
   },
   {
-    title: 'How long are the services?',
+    title: 'What does Heart for the House go to?',
     description:
-      "Our church services last a little over an hour. We'll sing a few worship songs and hear a message from our pastors or guest speakers. We suggest arriving a little early so you can park, get coffee, and find your seat!",
-  },
-  {
-    title: 'What should I wear?',
-    description:
-      'You can wear whatever you feel most comfortable in! Every Sunday, we have casual, relaxing services where everyone is welcome. Come as you are and expect to feel right at home!',
-  },
-  {
-    title: 'Where do I park?',
-    description:
-      'As you pull onto the campus, our parking team will help you find a great spot! We reserve the best parking spots for our visitors right in front of the main entrance, and can help you locate accessible parking if needed.',
-  },
-  {
-    title: 'Is childcare provided?',
-    description:
-      'Yes! We have a fun, safe, and clean area for kids & students (newborn–grade 5). <br/> <br/> <b> New to Christ Fellowship Kids?</b> <br/> We’d love to meet you! Let us know a little about your family using this <a target="_blank" href="https://rock.gocf.org/FamilyRegistration">brief form</a> so that our team can help get you connected when you arrive. <br/> <br/> If you are planning on visiting Christ Fellowship Kids this Sunday, <a target="_blank" href="https://rock.gocf.org/CFKidsPlanaVisit">let us know</a> so we can help your family experience all that CFKids has to offer! <br/> <br/> You can learn more about Christ Fellowship Kids programming <a target="_blank" href="https://www.christfellowship.church/christ-fellowship-kids">here</a>!',
+      "Heart for the House goes toward Christ Fellowship's efforts in reaching more people for Jesus—whether that's new campuses or new initiatives, both inside and outside the walls of our church. <a target='_blank' href='https://issuu.com/christfellowshipchurch/docs/clients_heartforthehouse_print_handouts_7.5x10_web?fr=sNDM3ZjU5MDEzMDk'>Read more</a> about the Heart for the House vision for 2023!",
   },
 ];
 

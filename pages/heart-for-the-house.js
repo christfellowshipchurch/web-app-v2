@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { FAQ, Layout, Testimonials } from 'components';
 import { useCurrentBreakpoint } from 'hooks';
-import { Box, CoverImage, ThemeMixin } from 'ui-kit';
+import { Box, CoverImage, HtmlRenderer, Image, ThemeMixin } from 'ui-kit';
 import { faqHeartForHouseData } from 'components/FAQ/faqData';
 
 function HeartForTheHouse(props = {}) {
@@ -35,15 +35,19 @@ function HeartForTheHouse(props = {}) {
           type="hero-glass"
           src={`/heart-for-house/banners/header${imageSize}.jpg`}
         />
-        <CoverImage
-          type="hero-glass"
-          src={`/heart-for-house/banners/year-review${
+        <Image
+          width="100%"
+          aspectRatio="none"
+          borderRadius="0px"
+          source={`/heart-for-house/banners/year-review${
             imageSize === '-large' ? '' : imageSize
           }.jpg`}
         />
-        <CoverImage
-          type="hero-glass"
-          src={`/heart-for-house/banners/vision${
+        <Image
+          width="100%"
+          aspectRatio="none"
+          borderRadius="0px"
+          source={`/heart-for-house/banners/vision${
             imageSize === '-large' ? '' : imageSize
           }.jpg`}
         />
@@ -80,6 +84,12 @@ function HeartForTheHouse(props = {}) {
             <FAQ showDescription={false} data={faqHeartForHouseData} />
           </Box>
         </Box>
+        <Image
+          width="100%"
+          aspectRatio="none"
+          borderRadius="0px"
+          source={`/heart-for-house/banners/bottom-banner.png`}
+        />
       </ThemeMixin>
     </Layout>
   );
