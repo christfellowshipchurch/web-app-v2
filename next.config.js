@@ -101,6 +101,10 @@ module.exports = {
         source:
           '/items/god-lives-in-you-joyce-meyer-9638eed9752c44acffee9861ef2db161',
         destination: '/messages/god-lives-in-you-joyce-meyer',
+      },
+      {
+        source: '/events/amazing-a-sisterhood-event',
+        destination: '/events/amazing',
         permanent: true,
       },
       // TODO: Uncomment these lines to hide Group Finder.
