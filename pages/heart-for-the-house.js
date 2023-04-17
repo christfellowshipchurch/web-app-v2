@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 
 import { FAQ, Layout, Testimonials } from 'components';
 import { useCurrentBreakpoint } from 'hooks';
-import {
-  Box,
-  Button,
-  CoverImage,
-  HtmlRenderer,
-  Image,
-  ThemeMixin,
-} from 'ui-kit';
+import { Box, CoverImage, HtmlRenderer, Image, ThemeMixin } from 'ui-kit';
 import { faqHeartForHouseData } from 'components/FAQ/faqData';
-import { toUpper } from 'lodash';
+
+const StyledCard = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 const GiveButton = ({ title, description, type, url }) => {
   return (
