@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from 'react';
 
-import { FAQ, Layout, Testimonials } from 'components';
+import {
+  CollectionPreview,
+  ContentBlockFeature,
+  FAQ,
+  Layout,
+  Testimonials,
+} from 'components';
 import { useCurrentBreakpoint } from 'hooks';
 import { Box, CoverImage, HtmlRenderer, Image, ThemeMixin } from 'ui-kit';
 import { faqHeartForHouseData } from 'components/FAQ/faqData';
 import data from 'lib/heartForHouseData';
+import { ContentBlockProvider } from 'providers';
 
 const GiveButton = ({ title, description, type, url }) => {
   return (
@@ -55,6 +62,17 @@ function HeartForTheHouse(props = {}) {
           type="hero-glass"
           src={`/heart-for-house/banners/header${imageSize}.jpg`}
         />
+        <Box p="xl">
+          <ContentBlockProvider
+            Component={ContentBlockFeature}
+            options={{
+              variables: {
+                id: 'ContentBlockFeature:d0d7407920381ab5b3b4d32cd65762c6ab4c005bc498663ad01a13a3194f3b3e',
+              },
+            }}
+          />
+        </Box>
+
         <Image
           width="100%"
           aspectRatio="none"
@@ -117,6 +135,7 @@ function HeartForTheHouse(props = {}) {
             imageSize === '-large' ? '' : imageSize
           }.jpg`}
         />
+
         <Box
           id="give"
           py="xxl"

@@ -12,6 +12,7 @@ import CommunityActionSection from './CommunityActionSection';
 import CommunityLeaderActions from './CommunityLeaderActions';
 import CommunityList from './CommunityList';
 import CommunitySingle from './CommunitySingle';
+import ContentBlockFeature from './ContentBlockFeature';
 import ContentLayout from './ContentLayout';
 import ContentList from './ContentList';
 import ContentSingle from './ContentSingle';
@@ -79,6 +80,7 @@ export {
   CommunityLeaderActions,
   CommunityList,
   CommunitySingle,
+  ContentBlockFeature,
   ContentLayout,
   ContentList,
   ContentSingle,

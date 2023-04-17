@@ -6,6 +6,7 @@ import CampusesProvider from './CampusesProvider';
 import CampusProvider from './CampusProvider';
 import ChatConnectionProvider from './ChatConnectionProvider';
 import CommunitiesProvider from './CommunitiesProvider';
+import ContentBlockProvider from './ContentBlockProvider';
 import ContentFeedProvider from './ContentFeedProvider';
 import ContentItemProvider from './ContentItemProvider';
 import ContentItemsSearchProvider from './ContentItemsSearchProvider';
@@ -37,6 +38,7 @@ export {
   CampusProvider,
   ChatConnectionProvider,
   CommunitiesProvider,
+  ContentBlockProvider,
   DiscoverFiltersCategoriesProvider,
   DiscoverFiltersProvider,
   ContentFeedProvider,
