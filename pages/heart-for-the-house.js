@@ -1,25 +1,36 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import { themeGet } from '@styled-system/theme-get';
+
 import { FAQ, Layout, Testimonials } from 'components';
 import { useCurrentBreakpoint } from 'hooks';
 import {
   Box,
+  Button,
   CoverImage,
   HtmlRenderer,
   Image,
   ThemeMixin,
-  CustomLink,
 } from 'ui-kit';
 import { faqHeartForHouseData } from 'components/FAQ/faqData';
+import { toUpper } from 'lodash';
 
-const StyledCard = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-// padding: ${themeGet('space.s')};
-// padding-bottom: ${themeGet('space.l')};
+const GiveButton = ({ title, description, type, url }) => {
+  return (
+    <Box as="a" href={url} target="_blank" textDecoration="none">
+      <Box
+        m="base"
+        py="base"
+        maxWidth={300}
+        bg={type === 'secondary' ? 'white' : 'secondary'}
+        color={type === 'secondary' ? 'secondary' : 'white'}
+        borderRadius="l"
+        px="base"
+      >
+        <Box as="h4">{title}</Box>
+        {description}
+      </Box>
+    </Box>
+  );
+};
 
 function HeartForTheHouse(props = {}) {
   const [imageSize, setImageSize] = useState('');
@@ -135,6 +146,52 @@ function HeartForTheHouse(props = {}) {
             imageSize === '-large' ? '' : imageSize
           }.jpg`}
         />
+        <Box
+          id="give"
+          py="xxl"
+          px="base"
+          backgroundImage="url(/heart-for-house/give-bg.jpeg)"
+          backgroundPosition="center"
+          backgroundSize="cover"
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          flexDirection="column"
+          textAlign="center"
+          color="white"
+        >
+          <Box as="h1" color="white">
+            <HtmlRenderer htmlContent='Be a part of the <span style="color:#133156">heart.</span>' />
+          </Box>
+          <Box as="h3" color="neutrals.200">
+            GIVE TOWARD HEART FOR THE HOUSE ON MAY 21, 2023.
+          </Box>
+          <Box
+            my="l"
+            bg="neutrals.200"
+            py="base"
+            px={{ _: 's', md: 'l' }}
+            borderRadius="base"
+          >
+            <Box color="secondary">Choose a Giving Option:</Box>
+            <GiveButton
+              title="Give Now"
+              description="One-time gifts can be given any time throughout 2023."
+              url="https://pushpay.com/g/christfellowship"
+            />
+            <GiveButton
+              type="secondary"
+              title="Setup Recurring Gift"
+              description="Set up a recurring (weekly/monthly) gift throughout 2023."
+              url="https://pushpay.com/g/christfellowship?r=weekly"
+            />
+            <Box as="a" color="secondary" href="#faq" fontSize={14}>
+              Need help? Check out these FAQs.
+            </Box>
+          </Box>
+
+          <HtmlRenderer htmlContent='GIVE IN PERSON<br/>Give by cash or check through a giving station at your campus location.<br/><br/> GIVE BY MAIL<br/>Christ Fellowship Church Contributions<br/>5343 Northlake Blvd. Palm Beach Gardens, FL 33418<br/>*Note: Please designate "Heart for the House" on the memo line.' />
+        </Box>
         <Box py="xxl" bg="secondary">
           <Testimonials
             py="l"
@@ -163,7 +220,7 @@ function HeartForTheHouse(props = {}) {
             ]}
           />
         </Box>
-        <Box px="base" py="xl" width="100%">
+        <Box id="faq" px="base" py="xl" width="100%">
           <Box mx="auto" maxWidth={1200}>
             <FAQ showDescription={false} data={faqHeartForHouseData} />
           </Box>
