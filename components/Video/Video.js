@@ -69,7 +69,7 @@ export default function Video(props = {}) {
                     event: 'Video Played',
                     properties: {
                       content_title: `${props.title}`,
-                      content_tag: props.segmentData.contentTags,
+                      content_tag: props?.segmentData?.contentTags,
                       video_url: `${props?.src}`,
                     },
                   });
