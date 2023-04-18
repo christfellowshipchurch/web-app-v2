@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+
 import muxjs from 'mux.js';
 import { Box, Button, Icon } from 'ui-kit';
 import { useAnalytics } from 'providers/AnalyticsProvider';
@@ -86,7 +88,14 @@ export default function Video(props = {}) {
   );
 }
 
+Video.propTypes = {
+  height: PropTypes.string,
+  width: PropTypes.string,
+  wistiaId: PropTypes.string,
+};
+
 Video.defaultProps = {
   height: '100%',
   width: '100%',
+  wistiaId: null,
 };
