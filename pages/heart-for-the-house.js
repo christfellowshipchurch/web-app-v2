@@ -32,8 +32,6 @@ const GiveButton = ({ title, description, type, url }) => {
   );
 };
 
-const { GetThereFirst } = data;
-
 function HeartForTheHouse(props = {}) {
   const [imageSize, setImageSize] = useState('');
   const currentBreakpoint = useCurrentBreakpoint();
@@ -74,7 +72,6 @@ function HeartForTheHouse(props = {}) {
             }}
           />
         </Box>
-
         <Image
           width="100%"
           aspectRatio="none"
@@ -83,7 +80,6 @@ function HeartForTheHouse(props = {}) {
             imageSize === '-large' ? '' : imageSize
           }.jpg`}
         />
-
         <Box bg="white">
           <Box as="h1" py="l" color="secondary" size="16" textAlign="center">
             Year in Review
@@ -137,11 +133,26 @@ function HeartForTheHouse(props = {}) {
             imageSize === '-large' ? '' : imageSize
           }.jpg`}
         />
-
-        <Box mx="auto" py="xl" maxWidth={1000}>
-          <GetThereFirst />
+        <Box p="xl" bg="white">
+          <ContentBlockProvider
+            Component={ContentBlockFeature}
+            options={{
+              variables: {
+                id: 'ContentBlockFeature:d0d7407920381ab5b3b4d32cd65762c62da2d96d2608ecf241da5ba54117e825',
+              },
+            }}
+          />
         </Box>
-
+        <Box p="l" bg="white">
+          <ContentBlockProvider
+            Component={ContentBlockFeature}
+            options={{
+              variables: {
+                id: 'ContentBlockFeature:d0d7407920381ab5b3b4d32cd65762c6d00073b82ab3e729ba8e0fce1561d464',
+              },
+            }}
+          />
+        </Box>
         <Box
           id="give"
           py="xxl"
@@ -185,9 +196,20 @@ function HeartForTheHouse(props = {}) {
               Need help? Check out these FAQs.
             </Box>
           </Box>
-
           <HtmlRenderer htmlContent='GIVE IN PERSON<br/>Give by cash or check through a giving station at your campus location.<br/><br/> GIVE BY MAIL<br/>Christ Fellowship Church Contributions<br/>5343 Northlake Blvd. Palm Beach Gardens, FL 33418<br/>*Note: Please designate "Heart for the House" on the memo line.' />
         </Box>
+
+        <Box p="9rem" bg="white">
+          <ContentBlockProvider
+            Component={ContentBlockFeature}
+            options={{
+              variables: {
+                id: 'ContentBlockFeature:d0d7407920381ab5b3b4d32cd65762c65c0241e0df70da97c3c8cd8ea3f73a92',
+              },
+            }}
+          />
+        </Box>
+
         <Box py="xxl" bg="secondary">
           <Testimonials
             py="l"
