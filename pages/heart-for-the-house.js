@@ -32,6 +32,8 @@ const GiveButton = ({ title, description, type, url }) => {
   );
 };
 
+const { GetThereFirst } = data;
+
 function HeartForTheHouse(props = {}) {
   const [imageSize, setImageSize] = useState('');
   const currentBreakpoint = useCurrentBreakpoint();
@@ -135,6 +137,10 @@ function HeartForTheHouse(props = {}) {
             imageSize === '-large' ? '' : imageSize
           }.jpg`}
         />
+
+        <Box mx="auto" py="xl" maxWidth={1000}>
+          <GetThereFirst />
+        </Box>
 
         <Box
           id="give"
