@@ -151,7 +151,7 @@ function HeartForTheHouse(props = {}) {
                   lineHeight="1.65rem"
                   mt="l"
                 >
-                  {subtitle}
+                  <HtmlRenderer htmlContent={subtitle} />
                 </Box>
               </Box>
             ))}
