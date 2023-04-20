@@ -279,7 +279,7 @@ function HeartForTheHouse(props = {}) {
           <HtmlRenderer htmlContent='GIVE IN PERSON<br/>Give by cash or check through a giving station at your campus location.<br/><br/> GIVE BY MAIL<br/>Christ Fellowship Church Contributions<br/>5343 Northlake Blvd. Palm Beach Gardens, FL 33418<br/>*Note: Please designate "Heart for the House" on the memo line.' />
         </Box>
 
-        <Box p="9rem" bg="white">
+        <Box p="l" bg="white">
           <ContentBlockProvider
             Component={ContentBlockFeature}
             options={{
