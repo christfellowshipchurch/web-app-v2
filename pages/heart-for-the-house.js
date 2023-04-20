@@ -168,27 +168,33 @@ function HeartForTheHouse(props = {}) {
             }.png`}
             mb="l"
           />
-          {loading ? (
-            <Loader />
-          ) : wistiaData?.length > 1 ? (
-            <CardCarousel p="xxl">
-              {wistiaData?.map(video => (
-                <Box boxShadow="l" m="base" borderRadius="xl" overflow="hidden">
-                  <Video wistiaId={video?.hashed_id} />
-                </Box>
-              ))}
-            </CardCarousel>
+          {!loading && wistiaData?.length > 0 ? (
+            wistiaData?.length > 1 ? (
+              <CardCarousel p="xxl">
+                {wistiaData?.map(video => (
+                  <Box
+                    boxShadow="l"
+                    m="base"
+                    borderRadius="xl"
+                    overflow="hidden"
+                  >
+                    <Video wistiaId={video?.hashed_id} />
+                  </Box>
+                ))}
+              </CardCarousel>
+            ) : (
+              <Box
+                boxShadow="l"
+                m="base"
+                borderRadius="xl"
+                overflow="hidden"
+                mx="auto"
+              >
+                <Video wistiaId={wistiaData[0]?.hashed_id} />
+              </Box>
+            )
           ) : (
-            <Box
-              maxWidth={800}
-              boxShadow="l"
-              m="base"
-              borderRadius="xl"
-              overflow="hidden"
-              mx="auto"
-            >
-              <Video wistiaId={wistiaData[0]?.hashed_id} />
-            </Box>
+            <Loader />
           )}
         </Box>
 
