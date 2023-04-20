@@ -10,6 +10,7 @@ import {
 import { useCurrentBreakpoint } from 'hooks';
 import {
   Box,
+  Button,
   CardCarousel,
   CoverImage,
   HtmlRenderer,
@@ -155,6 +156,15 @@ function HeartForTheHouse(props = {}) {
                 </Box>
               </Box>
             ))}
+          </Box>
+          <Box textAlign="center" p="base">
+            <Button
+              as="a"
+              target="blank"
+              href="https://issuu.com/christfellowshipchurch/docs/clients_heartforthehouse_print_handouts_7.5x10_web/8?fr=sMjRlZDU5NDI2ODA"
+            >
+              SEE MORE YEAR IN REVIEW
+            </Button>
           </Box>
         </Box>
 
