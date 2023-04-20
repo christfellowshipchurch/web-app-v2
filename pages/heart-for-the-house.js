@@ -246,7 +246,7 @@ function HeartForTheHouse(props = {}) {
           textAlign="center"
           color="white"
         >
-          <Box as="h1" color="white">
+          <Box as="h1" id="give" color="white">
             <HtmlRenderer htmlContent='Be a part of the <span style="color:#133156">heart.</span>' />
           </Box>
           <Box as="h3" color="neutrals.200">
