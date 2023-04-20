@@ -184,6 +184,7 @@ function HeartForTheHouse(props = {}) {
               </CardCarousel>
             ) : (
               <Box
+                maxWidth={800}
                 boxShadow="l"
                 m="base"
                 borderRadius="xl"
