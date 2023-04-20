@@ -1,17 +1,26 @@
 import React, { useEffect, useState } from 'react';
 
 import {
-  CollectionPreview,
   ContentBlockFeature,
   FAQ,
   Layout,
   Testimonials,
+  Video,
 } from 'components';
 import { useCurrentBreakpoint } from 'hooks';
-import { Box, CoverImage, HtmlRenderer, Image, ThemeMixin } from 'ui-kit';
+import {
+  Box,
+  CardCarousel,
+  CoverImage,
+  HtmlRenderer,
+  Image,
+  Loader,
+  ThemeMixin,
+} from 'ui-kit';
 import { faqHeartForHouseData } from 'components/FAQ/faqData';
 import data from 'lib/heartForHouseData';
 import { ContentBlockProvider } from 'providers';
+import wistiaAPI from 'pages/api/wistia';
 
 const GiveButton = ({ title, description, type, url }) => {
   return (
@@ -32,9 +41,31 @@ const GiveButton = ({ title, description, type, url }) => {
   );
 };
 
+//Heart for the House Data
+const { GetThereFirst, statistics, testimonies } = data;
+
 function HeartForTheHouse(props = {}) {
   const [imageSize, setImageSize] = useState('');
+  const [wistiaData, setWistiaData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   const currentBreakpoint = useCurrentBreakpoint();
+
+  // Fetches Wistia Data for for Video Carousel
+  useEffect(() => {
+    const fetchVideos = async () => {
+      setLoading(true);
+      //project Id for H4H videos
+      const wistiaId = 'dt78oks1hq';
+      if (wistiaId !== '') {
+        const wistiaProject = await wistiaAPI({ wistiaId });
+        setWistiaData(wistiaProject?.medias);
+        setLoading(false);
+      }
+    };
+
+    fetchVideos();
+  }, []);
 
   //changes banner image based on screen size.
   useEffect(() => {
@@ -72,6 +103,7 @@ function HeartForTheHouse(props = {}) {
             }}
           />
         </Box>
+
         <Image
           width="100%"
           aspectRatio="none"
@@ -80,7 +112,8 @@ function HeartForTheHouse(props = {}) {
             imageSize === '-large' ? '' : imageSize
           }.jpg`}
         />
-        <Box bg="white">
+
+        <Box py="l" bg="white">
           <Box as="h1" py="l" color="secondary" size="16" textAlign="center">
             Year in Review
           </Box>
@@ -104,7 +137,7 @@ function HeartForTheHouse(props = {}) {
             margin="auto"
             p="l"
           >
-            {data?.statistics?.map(({ image, subtitle }) => (
+            {statistics?.map(({ image, subtitle }) => (
               <Box display="flex" flexDirection="column">
                 <Image
                   mb="-3rem"
@@ -125,6 +158,40 @@ function HeartForTheHouse(props = {}) {
           </Box>
         </Box>
 
+        <Box px="base" py="xl">
+          <Image
+            maxWidth={900}
+            aspectRatio="none"
+            borderRadius="0px"
+            source={`/heart-for-house/special-header-text${
+              imageSize === '-large' ? '' : imageSize
+            }.png`}
+            mb="l"
+          />
+          {loading ? (
+            <Loader />
+          ) : wistiaData?.length > 1 ? (
+            <CardCarousel p="xxl">
+              {wistiaData?.map(video => (
+                <Box boxShadow="l" m="base" borderRadius="xl" overflow="hidden">
+                  <Video wistiaId={video?.hashed_id} />
+                </Box>
+              ))}
+            </CardCarousel>
+          ) : (
+            <Box
+              maxWidth={800}
+              boxShadow="l"
+              m="base"
+              borderRadius="xl"
+              overflow="hidden"
+              mx="auto"
+            >
+              <Video wistiaId={wistiaData[0]?.hashed_id} />
+            </Box>
+          )}
+        </Box>
+
         <Image
           width="100%"
           aspectRatio="none"
@@ -133,17 +200,21 @@ function HeartForTheHouse(props = {}) {
             imageSize === '-large' ? '' : imageSize
           }.jpg`}
         />
+
         <Box p="xl" bg="white">
-          <ContentBlockProvider
-            Component={ContentBlockFeature}
-            options={{
-              variables: {
-                id: 'ContentBlockFeature:d0d7407920381ab5b3b4d32cd65762c62da2d96d2608ecf241da5ba54117e825',
-              },
-            }}
-          />
-        </Box>
-        <Box p="l" bg="white">
+          <Box py="xl" mx="auto" maxWidth={1000}>
+            <GetThereFirst />
+          </Box>
+          <Box my="xxl">
+            <ContentBlockProvider
+              Component={ContentBlockFeature}
+              options={{
+                variables: {
+                  id: 'ContentBlockFeature:d0d7407920381ab5b3b4d32cd65762c62da2d96d2608ecf241da5ba54117e825',
+                },
+              }}
+            />
+          </Box>
           <ContentBlockProvider
             Component={ContentBlockFeature}
             options={{
@@ -153,6 +224,7 @@ function HeartForTheHouse(props = {}) {
             }}
           />
         </Box>
+
         <Box
           id="give"
           py="xxl"
@@ -184,18 +256,19 @@ function HeartForTheHouse(props = {}) {
             <GiveButton
               title="Give Now"
               description="One-time gifts can be given any time throughout 2023."
-              url="https://pushpay.com/g/christfellowship"
+              url="https://rock.christfellowship.church/heartforthehouse"
             />
             <GiveButton
               type="secondary"
-              title="Setup Recurring Gift"
+              title="Plan to Give"
               description="Set up a recurring (weekly/monthly) gift throughout 2023."
-              url="https://pushpay.com/g/christfellowship?r=weekly"
+              url="https://rock.christfellowship.church/heartforthehouse"
             />
             <Box as="a" color="secondary" href="#faq" fontSize={14}>
               Need help? Check out these FAQs.
             </Box>
           </Box>
+
           <HtmlRenderer htmlContent='GIVE IN PERSON<br/>Give by cash or check through a giving station at your campus location.<br/><br/> GIVE BY MAIL<br/>Christ Fellowship Church Contributions<br/>5343 Northlake Blvd. Palm Beach Gardens, FL 33418<br/>*Note: Please designate "Heart for the House" on the memo line.' />
         </Box>
 
@@ -216,7 +289,7 @@ function HeartForTheHouse(props = {}) {
             maxWidth={1200}
             m="auto"
             title='<span style="color:#FFFFFF">This is our </span><span style="color:#E63E51">heart.</span>'
-            testimonies={data?.testimonies}
+            testimonies={testimonies}
           />
         </Box>
         <Box id="faq" px="base" py="xl" width="100%">
