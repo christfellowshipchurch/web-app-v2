@@ -17,7 +17,12 @@ function FeatureProvider({ Component, options, ...props }) {
   }
 
   return (
-    <Component data={feature} loading={loading} error={error} {...props} />
+    <Component
+      data={{ ...feature, ...props?.dataOverride }}
+      loading={loading}
+      error={error}
+      {...props}
+    />
   );
 }
 

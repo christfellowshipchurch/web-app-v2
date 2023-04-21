@@ -94,7 +94,7 @@ function ContentBlock(props = {}) {
         pt={hasMedia && horizontalLayout ? 'base' : '0'}
       >
         <ConditionalBox condition={hasTitle} order={horizontalLayout ? 1 : 0}>
-          <Box as="h1">
+          <Box as="h1" color={props?.titleColor}>
             {props.title}
             <CustomLink
               as="a"

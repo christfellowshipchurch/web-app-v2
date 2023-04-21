@@ -3,10 +3,10 @@ import React, { useEffect, useState } from 'react';
 import {
   ContentBlockFeature,
   FAQ,
-  HorizontalCardListFeature,
   Layout,
   Testimonials,
   Video,
+  VerticalCardListFeature,
 } from 'components';
 import { useCurrentBreakpoint } from 'hooks';
 import {
@@ -103,6 +103,7 @@ function HeartForTheHouse(props = {}) {
                 id: 'ContentBlockFeature:d0d7407920381ab5b3b4d32cd65762c6ab4c005bc498663ad01a13a3194f3b3e',
               },
             }}
+            titleColor="secondary"
             newTab
           />
         </Box>
@@ -223,7 +224,15 @@ function HeartForTheHouse(props = {}) {
         <Box p={{ _: 'base', md: 'xl' }} bg="white">
           <Box py={{ _: 'l', md: 'xl' }} mx="auto" maxWidth={1000}>
             <FeatureProvider
-              Component={HorizontalCardListFeature}
+              Component={VerticalCardListFeature}
+              customCardSize="HIGHLIGHT_MEDIUM"
+              /**
+               * ! Could not load subtitle correctly, please fix if possible
+               */
+              dataOverride={{
+                subtitle:
+                  '<h1 style="color: #133156;">Get There First</h1><p style="text-align:center"><b>VISION 2023</b></p><div>Starting this year, we’re doing more to reach the next generation than ever before. This isn’t just a vision to lead a radical transformation in our region—<b>we’re believing for a radical transformation of a generation.</b> And this isn’t just a vision for 2023—it marks the starting line for a new era in who our church will be.</div>',
+              }}
               options={{
                 variables: {
                   id: getThereFirstId,
@@ -234,6 +243,7 @@ function HeartForTheHouse(props = {}) {
           <Box my="xxl">
             <ContentBlockProvider
               Component={ContentBlockFeature}
+              titleColor="secondary"
               newTab
               options={{
                 variables: {
@@ -244,6 +254,7 @@ function HeartForTheHouse(props = {}) {
           </Box>
           <ContentBlockProvider
             Component={ContentBlockFeature}
+            titleColor="secondary"
             newTab
             options={{
               variables: {
@@ -303,6 +314,7 @@ function HeartForTheHouse(props = {}) {
         <Box p="l" bg="white">
           <ContentBlockProvider
             Component={ContentBlockFeature}
+            titleColor="secondary"
             newTab
             options={{
               variables: {
