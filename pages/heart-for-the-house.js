@@ -218,8 +218,8 @@ function HeartForTheHouse(props = {}) {
           }.jpg`}
         />
 
-        <Box p="xl" bg="white">
-          <Box py="xl" mx="auto" maxWidth={1000}>
+        <Box p={{ _: 'base', md: 'xl' }} bg="white">
+          <Box py={{ _: 'l', md: 'xl' }} mx="auto" maxWidth={1000}>
             <GetThereFirst />
           </Box>
           <Box my="xxl">
