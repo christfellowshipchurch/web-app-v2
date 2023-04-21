@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import {
   ContentBlockFeature,
   FAQ,
+  HorizontalCardListFeature,
   Layout,
   Testimonials,
   Video,
@@ -20,7 +21,7 @@ import {
 } from 'ui-kit';
 import { faqHeartForHouseData } from 'components/FAQ/faqData';
 import data from 'lib/heartForHouseData';
-import { ContentBlockProvider } from 'providers';
+import { ContentBlockProvider, FeatureProvider } from 'providers';
 import wistiaAPI from 'pages/api/wistia';
 
 const GiveButton = ({ title, description, type, url }) => {
@@ -43,7 +44,7 @@ const GiveButton = ({ title, description, type, url }) => {
 };
 
 //Heart for the House Data
-const { GetThereFirst, statistics, testimonies } = data;
+const { getThereFirstId, statistics, testimonies } = data;
 
 function HeartForTheHouse(props = {}) {
   const [imageSize, setImageSize] = useState('');
@@ -220,7 +221,14 @@ function HeartForTheHouse(props = {}) {
 
         <Box p={{ _: 'base', md: 'xl' }} bg="white">
           <Box py={{ _: 'l', md: 'xl' }} mx="auto" maxWidth={1000}>
-            <GetThereFirst />
+            <FeatureProvider
+              Component={HorizontalCardListFeature}
+              options={{
+                variables: {
+                  id: getThereFirstId,
+                },
+              }}
+            />
           </Box>
           <Box my="xxl">
             <ContentBlockProvider
