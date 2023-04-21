@@ -9,7 +9,7 @@ import {
   HORIZONTAL_CARD_LIST_FEATURE_FRAGMENT,
   RELATED_FEATURE_NODE_FRAGMENT,
   VERTICAL_CARD_LIST_FEATURE_FRAGMENT,
-  THEMED_NODE_FRAGMENT,
+  THEME_FRAGMENT,
 } from 'fragments';
 
 export const GET_FEATURE = gql`
@@ -47,7 +47,7 @@ export const GET_FEATURE = gql`
   ${HORIZONTAL_CARD_LIST_FEATURE_FRAGMENT}
   ${VERTICAL_CARD_LIST_FEATURE_FRAGMENT}
   ${RELATED_FEATURE_NODE_FRAGMENT}
-  ${THEMED_NODE_FRAGMENT}
+  ${THEME_FRAGMENT}
 `;
 
 function useFeature(options = {}) {
@@ -56,13 +56,13 @@ function useFeature(options = {}) {
     ...options,
   });
 
-  console.log({ query });
-
-  const feature = query?.data?.node;
+  //temp hide title (Fix Get There First feature cache)
+  const feature = { ...query?.data?.node, title: null };
 
   return {
     feature,
     loading: query?.loading && !query?.data,
+    error: query?.error?.message,
   };
 }
 
