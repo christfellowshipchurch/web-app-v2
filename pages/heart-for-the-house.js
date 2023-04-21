@@ -94,7 +94,7 @@ function HeartForTheHouse(props = {}) {
           type="hero-glass"
           src={`/heart-for-house/banners/header${imageSize}.jpg`}
         />
-        <Box p="xl">
+        <Box p={{ _: 'l', md: 'xl' }}>
           <ContentBlockProvider
             Component={ContentBlockFeature}
             options={{
