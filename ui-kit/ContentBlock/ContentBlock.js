@@ -137,6 +137,7 @@ function ContentBlock(props = {}) {
               variant={i === 0 ? 'primary' : 'secondary'}
               m="xs"
               textTransform="capitalize!important"
+              target={action?.newTab && '_blank'}
               /**
                * todo : We want to eventually add functionality with the 'onPressActionItem' to be able to perform more actions in the future.
                */

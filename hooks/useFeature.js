@@ -47,6 +47,7 @@ export const GET_FEATURE = gql`
   ${HORIZONTAL_CARD_LIST_FEATURE_FRAGMENT}
   ${VERTICAL_CARD_LIST_FEATURE_FRAGMENT}
   ${RELATED_FEATURE_NODE_FRAGMENT}
+  ${THEMED_NODE_FRAGMENT}
 `;
 
 function useFeature(options = {}) {
@@ -54,6 +55,8 @@ function useFeature(options = {}) {
     fetchPolicy: 'cache-and-network',
     ...options,
   });
+
+  console.log({ query });
 
   const feature = query?.data?.node;
 

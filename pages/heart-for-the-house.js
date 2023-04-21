@@ -103,6 +103,7 @@ function HeartForTheHouse(props = {}) {
                 id: 'ContentBlockFeature:d0d7407920381ab5b3b4d32cd65762c6ab4c005bc498663ad01a13a3194f3b3e',
               },
             }}
+            newTab
           />
         </Box>
 
@@ -233,6 +234,7 @@ function HeartForTheHouse(props = {}) {
           <Box my="xxl">
             <ContentBlockProvider
               Component={ContentBlockFeature}
+              newTab
               options={{
                 variables: {
                   id: 'ContentBlockFeature:d0d7407920381ab5b3b4d32cd65762c62da2d96d2608ecf241da5ba54117e825',
@@ -242,6 +244,7 @@ function HeartForTheHouse(props = {}) {
           </Box>
           <ContentBlockProvider
             Component={ContentBlockFeature}
+            newTab
             options={{
               variables: {
                 id: 'ContentBlockFeature:d0d7407920381ab5b3b4d32cd65762c6d00073b82ab3e729ba8e0fce1561d464',
@@ -300,6 +303,7 @@ function HeartForTheHouse(props = {}) {
         <Box p="l" bg="white">
           <ContentBlockProvider
             Component={ContentBlockFeature}
+            newTab
             options={{
               variables: {
                 id: 'ContentBlockFeature:d0d7407920381ab5b3b4d32cd65762c65c0241e0df70da97c3c8cd8ea3f73a92',
