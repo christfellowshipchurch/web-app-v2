@@ -336,9 +336,9 @@ function HeartForTheHouse(props = {}) {
         <Box id="faq" px="base" py="xl" width="100%">
           <Box mx="auto" maxWidth={1200}>
             <FAQ
+              displayAll
               showDescription={false}
               data={faqHeartForHouseData}
-              scrollPosition={{ mobile: 8635, desktop: 7350 }}
             />
           </Box>
         </Box>

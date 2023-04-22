@@ -38,7 +38,10 @@ function FAQ(props = {}) {
       </Box>
       <Box>
         {props?.data?.map((n, i) => (
-          <Box key={i} display={i > 1 ? display : null}>
+          <Box
+            key={i}
+            display={props?.displayAll ? null : i > 1 ? display : null}
+          >
             <Box as="h3" color="secondary" fontStyle="italic">
               {n.title}
             </Box>
@@ -46,21 +49,23 @@ function FAQ(props = {}) {
             <Divider my="base" />
           </Box>
         ))}
-        <Box width="100%" textAlign="center">
-          <Button
-            onClick={() => {
-              window.scrollTo({
-                top: seeLessScrollPosition,
-                behavior: 'smooth',
-              });
-              setDisplay(display ? null : 'none');
-            }}
-            mx="auto"
-            variant="link"
-          >
-            {`See ${display === 'none' ? 'More' : 'Less'}`}
-          </Button>
-        </Box>
+        {!props?.displayAll && (
+          <Box width="100%" textAlign="center">
+            <Button
+              onClick={() => {
+                window.scrollTo({
+                  top: seeLessScrollPosition,
+                  behavior: 'smooth',
+                });
+                setDisplay(display ? null : 'none');
+              }}
+              mx="auto"
+              variant="link"
+            >
+              {`See ${display === 'none' ? 'More' : 'Less'}`}
+            </Button>
+          </Box>
+        )}
       </Box>
     </Styled>
   );
@@ -69,6 +74,7 @@ function FAQ(props = {}) {
 FAQ.propTypes = {
   ...systemPropTypes,
   data: PropTypes.array,
+  displayAll: PropTypes.bool,
   showDescription: PropTypes.bool,
   scrollPosition: PropTypes.shape({
     desktop: PropTypes.number,
@@ -78,6 +84,7 @@ FAQ.propTypes = {
 
 FAQ.defaultProps = {
   data: [],
+  displayAll: false,
   showDescription: true,
   scrollPosition: {
     desktop: 2800,
