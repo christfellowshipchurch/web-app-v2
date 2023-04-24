@@ -67,17 +67,20 @@ function ContentSingle(props = {}) {
     );
   }
 
-  const author = props?.data?.author;
-  const coverImage = props?.data?.coverImage;
-  const featureFeed = props?.data?.featureFeed;
-  const htmlContent = props?.data?.htmlContent;
-  const mode = props?.data?.mode;
-  const publishDate = props?.data?.publishDate;
-  const schedule = props?.data?.schedule;
-  const summary = props?.data?.summary;
-  const title = props?.data?.title;
-  const videos = props?.data?.videos;
-  const segmentData = props?.data?.segmentData;
+  const {
+    author,
+    coverImage,
+    featureFeed,
+    htmlContent,
+    mode,
+    publishDate,
+    schedule,
+    summary,
+    title,
+    videos,
+    segmentData,
+    wistiaId,
+  } = props?.data;
 
   const coverImageUri = coverImage?.sources[0]?.uri;
   const authorName = author
@@ -117,6 +120,7 @@ function ContentSingle(props = {}) {
           title={title}
           video={currentVideo}
           poster={coverImageUri}
+          wistiaId={wistiaId}
         />
       )}
       renderContentB={() =>

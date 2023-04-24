@@ -173,6 +173,7 @@ export const GET_CONTENT_ITEM = gql`
       }
 
       ... on MediaContentItem {
+        wistiaId
         metadata {
           name
           content
