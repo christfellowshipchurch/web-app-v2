@@ -171,7 +171,7 @@ function HeartForTheHouse(props = {}) {
           </Box>
         </Box>
 
-        <Box px="base" py="xl">
+        <Box id="video" px="base" py="xl">
           <Image
             maxWidth={900}
             aspectRatio="none"
