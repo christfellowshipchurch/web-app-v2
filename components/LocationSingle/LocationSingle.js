@@ -8,6 +8,7 @@ import {
   Layout,
   LocationBlockFeature,
   NotFound,
+  InfoCardList,
   Testimonials,
 } from 'components';
 
@@ -15,9 +16,14 @@ import { Box, Button, Divider, Loader } from 'ui-kit';
 import CampusInfo from './CampusInfo';
 import LocationHeader from './LocationHeader';
 import defaultBlockData from '../LocationBlockFeature/defaultBlockData';
-import { additionalInfoCampusData, headerData } from './locationData';
+import {
+  additionalInfoCampusData,
+  headerData,
+  setReminderData,
+} from './locationData';
 import { CampusProvider } from 'providers';
 import faqData from 'components/FAQ/faqData';
+import { showModal, useModalDispatch } from 'providers/ModalProvider';
 
 function LocationSingle(props = {}) {
   if (props.loading) {
@@ -41,6 +47,8 @@ function LocationSingle(props = {}) {
       </Layout>
     );
   }
+
+  const modalDispatch = useModalDispatch();
 
   // note : this means that there is not a valid page found on the API, so we'll render the 404 message
   if (!props.loading && !props?.data?.id) {
@@ -92,7 +100,21 @@ function LocationSingle(props = {}) {
         <Divider bg="secondarySubdued" />
       </Box>
 
-      {/* At this Campus Section */}
+      {/* Set a Reminder */}
+      <Box width="100%" px={{ _: 'base', md: 'xl' }} pt="base">
+        <InfoCardList
+          {...setReminderData}
+          button={{
+            title: 'Set a Reminder',
+            onClick: () =>
+              modalDispatch(
+                showModal('SetReminder', { defaultCampus: campus })
+              ),
+          }}
+        />
+      </Box>
+
+      {/* At this Location Section */}
       <Box width="100%" px={{ _: 'base', md: 'xl' }} pt="base">
         <LocationBlockFeature
           mx="auto"

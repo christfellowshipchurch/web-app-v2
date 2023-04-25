@@ -42,6 +42,7 @@ import Header from './Header';
 import HeroListFeature from './HeroListFeature';
 import HomeFeed from './HomeFeed';
 import HorizontalCardListFeature from './HorizontalCardListFeature';
+import InfoCardList from './InfoCardList';
 import JsonLD from './JsonLD';
 import ContentBlockCollection from './ContentBlockCollection';
 import Layout from './Layout';
@@ -108,6 +109,7 @@ export {
   GroupsResultsList,
   Header,
   HeroListFeature,
+  InfoCardList,
   HomeFeed,
   HorizontalCardListFeature,
   JsonLD,
