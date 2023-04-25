@@ -115,7 +115,7 @@ function LocationSingle(props = {}) {
       </Box>
 
       {/* At this Location Section */}
-      <Box width="100%" px={{ _: 'base', md: 'xl' }} pt="base">
+      <Box bg="white" width="100%" px={{ _: 'base', md: 'xl' }} pt="base">
         <LocationBlockFeature
           mx="auto"
           campusName={campus}
@@ -129,7 +129,7 @@ function LocationSingle(props = {}) {
       </Box>
 
       {/* What's Coming Up Section */}
-      <Box bg="white" py={{ _: 'l', sm: 'xl' }}>
+      <Box py={{ _: 'l', sm: 'xl' }}>
         <Box mx="auto" maxWidth={1200}>
           <CollectionPreview
             horizontalScroll
@@ -141,21 +141,21 @@ function LocationSingle(props = {}) {
       </Box>
 
       {/* FAQs Section */}
-      <Box px="base" py="xl" width="100%">
+      <Box bg="white" px="base" py="xl" width="100%">
         <Box mx="auto" maxWidth={1200}>
           <FAQ data={faqData(campus)} />
         </Box>
       </Box>
 
       {/* Testimonial Section */}
-      <Box bg="white" px="base" py="xl" width="100%">
+      <Box px="base" py="xl" width="100%">
         <Box mx="auto" maxWidth={1200}>
           <Testimonials />
         </Box>
       </Box>
 
       {/* Never Miss a Thing Section */}
-      <Box px="base" py="xl">
+      <Box bg="white" px="base" py="xl">
         <Box textAlign="center" maxWidth={500} mx="auto">
           <Box as="h2" color="secondary">
             Never miss a thing.
