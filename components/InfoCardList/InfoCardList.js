@@ -11,11 +11,12 @@ function InfoCardList(props) {
       <Box as="p" mx="auto" maxWidth={800} mb="l">
         {props?.subtitle}
       </Box>
-      <Box display="flex">
+      <Box display="flex" flexDirection={{ _: 'column', lg: 'row' }}>
         {props?.cards?.map(card => (
           <Box
             bg={props?.cardColor}
             mx="base"
+            my="s"
             borderRadius="l"
             display="flex"
             flexDirection="column"
@@ -25,7 +26,6 @@ function InfoCardList(props) {
             color="white"
             p="l"
             width={300}
-            hieght="100%"
           >
             <Icon size={28} name={card?.icon} />
             <Box as="h4" my="s">
