@@ -183,7 +183,7 @@ function HeartForTheHouse(props = {}) {
           />
           {!loading && wistiaData?.length > 0 ? (
             wistiaData?.length > 1 ? (
-              <CardCarousel p="xxl">
+              <CardCarousel p={{ _: 0, lg: 'xxl' }}>
                 {wistiaData?.map(video => (
                   <Box
                     boxShadow="l"
