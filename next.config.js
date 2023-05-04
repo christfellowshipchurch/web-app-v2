@@ -270,7 +270,7 @@ module.exports = {
       { source: '/events/light-up-the-pike', destination: 'https://lightupthepike.com', permanent: true },
       { source: '/groupserve', destination: 'https://my.longhollow.com/groupserve', permanent: true },
       { source: '/vendor', destination: 'https://longhollow.wufoo.com/forms/phu7t8c0lslify/', permanent: true },
-      { source: '/notes', destination: 'http://bible.com/events/49069457', permanent: true }
+      { source: '/notes', destination: 'http://bible.com/events/49073633', permanent: true }
     ];
   },
 };
