@@ -221,7 +221,7 @@ function HeartForTheHouse(props = {}) {
           }.jpg`}
         />
 
-        <Box p={{ _: 'base', md: 'xl' }} bg="white">
+        <Box id="vision" p={{ _: 'base', md: 'xl' }} bg="white">
           <Box py={{ _: 'l', md: 'xl' }} mx="auto" maxWidth={1000}>
             <FeatureProvider
               Component={VerticalCardListFeature}
