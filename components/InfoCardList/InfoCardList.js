@@ -4,7 +4,16 @@ import { Box, Button, Icon } from 'ui-kit';
 
 function InfoCardList(props) {
   return (
-    <Box maxWidth={1000} textAlign="center" mx="auto" my="xl">
+    <Box
+      maxWidth={1000}
+      textAlign="center"
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+      my="xl"
+      mx="auto"
+    >
       <Box as="h1" mb="base">
         {props?.title}
       </Box>
@@ -15,8 +24,8 @@ function InfoCardList(props) {
         {props?.cards?.map(card => (
           <Box
             bg={props?.cardColor}
-            mx="base"
             my="s"
+            mx="base"
             borderRadius="l"
             display="flex"
             flexDirection="column"
