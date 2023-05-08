@@ -171,7 +171,7 @@ function HeartForTheHouse(props = {}) {
           </Box>
         </Box>
 
-        <Box px="base" py="xl">
+        <Box id="video" px="base" py="xl">
           <Image
             maxWidth={900}
             aspectRatio="none"
@@ -183,7 +183,7 @@ function HeartForTheHouse(props = {}) {
           />
           {!loading && wistiaData?.length > 0 ? (
             wistiaData?.length > 1 ? (
-              <CardCarousel p="xxl">
+              <CardCarousel p={{ _: 0, lg: 'xxl' }}>
                 {wistiaData?.map(video => (
                   <Box
                     boxShadow="l"
@@ -221,7 +221,7 @@ function HeartForTheHouse(props = {}) {
           }.jpg`}
         />
 
-        <Box p={{ _: 'base', md: 'xl' }} bg="white">
+        <Box id="vision" p={{ _: 'base', md: 'xl' }} bg="white">
           <Box py={{ _: 'l', md: 'xl' }} mx="auto" maxWidth={1000}>
             <FeatureProvider
               Component={VerticalCardListFeature}
