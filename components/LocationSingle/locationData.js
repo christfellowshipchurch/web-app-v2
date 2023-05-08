@@ -453,6 +453,18 @@ const headerData = [
       desktop: '/location-pages/westlake-desktop.mp4',
     },
   },
+  {
+    name: 'Cf Everywhere',
+    primaryButton: {
+      call: 'Join Us Online',
+      action: '#service-times',
+      newTab: false,
+    },
+    backgroundVideo: {
+      mobile: '/location-pages/gardens-mobile.mp4',
+      desktop: '/location-pages/gardens-desktop.mp4',
+    },
+  },
 ];
 
 export { additionalInfoCampusData, campusMetaData, campusLinks, headerData };

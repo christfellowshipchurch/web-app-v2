@@ -79,7 +79,11 @@ function LocationSingle(props = {}) {
       transparentHeader
     >
       {/* Header Section */}
-      <LocationHeader title={props?.data?.title} {...headerContent} />
+      <LocationHeader
+        title={props?.data?.title}
+        subtitle={props?.data?.summary}
+        {...headerContent}
+      />
 
       {/* Service Times and Campus Pastors sections */}
       <CampusProvider

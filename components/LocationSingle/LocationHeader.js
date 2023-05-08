@@ -52,7 +52,11 @@ const LocationHeader = (props = {}) => {
           display={{ _: 'flex', sm: 'block' }}
           flexDirection="column"
           justifyContent="space-between"
-          maxWidth={{ _: 500, md: 600, lg: 750 }}
+          maxWidth={
+            props?.title != 'Christ Fellowship Everywhere'
+              ? { _: 500, md: 600, lg: 750 }
+              : null
+          }
         >
           <Box
             as="h1"
@@ -63,10 +67,22 @@ const LocationHeader = (props = {}) => {
           >
             {props?.title}
           </Box>
+          {props?.subtitle ? (
+            <Box
+              as="h2"
+              fontSize={{ _: 16, sm: 19, md: 24, lg: 30 }}
+              color="white"
+              textShadow="4px 4px 4px rgb(0 0 0 / 30%)"
+              mb={{ _: 300, sm: 0, md: 0, lg: 0 }}
+            >
+              {props?.subtitle}
+            </Box>
+          ) : null}
           <Box
             display="flex"
             flexDirection={{ _: 'column', sm: 'column-reverse' }}
             gap={'1rem'}
+            maxWidth={{ _: 500, md: 600, lg: 750 }}
           >
             <Box
               display="flex"
