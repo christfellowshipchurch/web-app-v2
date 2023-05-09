@@ -457,8 +457,8 @@ const headerData = [
     name: 'Cf Everywhere',
     primaryButton: {
       call: 'Join Us Online',
-      action: '#service-times',
-      newTab: false,
+      action: 'https://www.youtube.com/user/christfellowship',
+      newTab: true,
     },
     backgroundVideo: {
       mobile: '/location-pages/gardens-mobile.mp4',
