@@ -60,6 +60,14 @@ const additionalInfoCampusData = [
     name: 'Trinity',
     info: ['Kids programming up to grade 5 during service'],
   },
+  {
+    name: 'Cf Everywhere',
+    info: [
+      'Live and on-demand Services',
+      'Content to help the entire family grow their faith',
+      'Virtual Groups & Classes',
+    ],
+  },
 ];
 
 const campusMetaData = [

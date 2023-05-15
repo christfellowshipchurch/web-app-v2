@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { find, includes, replace, startCase, upperFirst } from 'lodash';
+import { find, includes, replace, startCase } from 'lodash';
 
 import {
   CollectionPreview,
@@ -88,7 +88,12 @@ function LocationSingle(props = {}) {
       {/* Service Times and Campus Pastors sections */}
       <CampusProvider
         Component={CampusInfo}
-        options={{ variables: { campusName: campus } }}
+        options={{
+          variables: {
+            campusName:
+              campus === 'Cf Everywhere' ? 'Online (CF Everywhere)' : campus,
+          },
+        }}
         additionalInfo={campusAdditionalInfo?.info}
       />
 

@@ -35,7 +35,7 @@ const DAY_KEYS = {
 
 function parseTimeAsInt(_time) {
   const time = _time?.toString().trim().toUpperCase();
-  const a = time.match(/(AM)|(PM)/g).join();
+  const a = time.match(/(AM)|(PM)/g)?.join();
   const [hour, minute] = time
     .replace(/(AM)|(PM)/g, '')
     .trim()
@@ -45,6 +45,59 @@ function parseTimeAsInt(_time) {
 
   return [hour24, minute];
 }
+
+const CfEverywhereButtons = () => (
+  <>
+    <Box
+      display="flex"
+      flexDirection={{ _: 'column', md: 'row' }}
+      alignItems={{ _: 'center', md: 'start' }}
+      mx={{ _: 'l', md: 0 }}
+      py="l"
+      mt={{ _: 0, md: 'base' }}
+    >
+      <Box
+        display={{ _: 'none', md: 'flex' }}
+        as="h3"
+        color="secondary"
+        flex="1"
+        maxWidth={200}
+      >
+        Ways to Join Online
+      </Box>
+      <Box
+        textAlign={{ _: 'center', md: 'left' }}
+        ml={{ _: '', lg: 'xl' }}
+        flex="1"
+      >
+        <Button
+          as="a"
+          target="_blank"
+          href="https://www.youtube.com/c/ChristFellowshipWelcomeHome"
+          size="s"
+          borderRadius="l"
+          mr={{ _: '', sm: 's' }}
+          px="l"
+          mb="s"
+        >
+          <Icon name="youtube" mr="xs" /> YOUTUBE
+        </Button>
+        <Button
+          as="a"
+          variant="secondary"
+          target="_blank"
+          href="https://www.facebook.com/CFimpact/live_videos/?ref=page_internal&mt_nav=0&paipv=0&eav=AfaX2V8rVqlFtW-qLuhGIRf6Py7OSSDqCPlEW3n5s4eajw8i8rtnNvffvttlBENVG-k&_rdr"
+          size="s"
+          borderRadius="l"
+          px="l"
+        >
+          <Icon name="facebook" mr="xs" /> FACEBOOK
+        </Button>
+      </Box>
+    </Box>
+    <StyledDivider display={{ _: 'none', md: 'flex' }} width="100%" />
+  </>
+);
 
 const StyledDivider = props => <Divider bg="secondarySubdued" {...props} />;
 
@@ -85,16 +138,27 @@ const CampusInfo = ({
   });
 
   /** Get the Most Out of Life messaging */
-  const getTheMost =
-    name === 'Trinity'
-      ? {
-          title: 'Experience Something New!',
-          body: 'Have you been searching for a meaningful community but haven’t found it yet? If so, you’re not alone. Trinity Church by Christ Fellowship is a new church experience coming to your neighborhood! This community location in Palm Beach Gardens offers a different way to experience church so you can get to know people in your neighborhood and enjoy a more traditional worship setting. Find a place for you and your family to belong with even more regional events offered just down the street—it’s big church made small, and you’ll feel right at home!',
-        }
-      : {
-          title: 'Get the Most Out of Life',
-          body: `Here at Christ Fellowship Church in ${name}, we want to help you live the life you were created for. Every Sunday, we have church services where you can experience uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—and it all starts here!`,
-        };
+  let getTheMost = {};
+  switch (name) {
+    case 'Trinity':
+      returngetTheMost = {
+        title: 'Experience Something New!',
+        body: 'Have you been searching for a meaningful community but haven’t found it yet? If so, you’re not alone. Trinity Church by Christ Fellowship is a new church experience coming to your neighborhood! This community location in Palm Beach Gardens offers a different way to experience church so you can get to know people in your neighborhood and enjoy a more traditional worship setting. Find a place for you and your family to belong with even more regional events offered just down the street—it’s big church made small, and you’ll feel right at home!',
+      };
+      break;
+    case 'Online (CF Everywhere)':
+      getTheMost = {
+        title: 'Church Wherever You Are',
+        body: `Church isn’t just a building you walk in to, it's a family you can belong to. Whether you're near or far, through Christ Fellowship Everywhere, church is wherever you are! Every Sunday, we host online services where you can experience uplifting worship music, hear an encouraging messages, and get connected to a digital community. Throughout the week, there are online groups and classes, as well as on-demand content, to help you and your entire family grow in your faith.`,
+      };
+      break;
+    default:
+      getTheMost = {
+        title: 'Get the Most Out of Life',
+        body: `Here at Christ Fellowship Church in ${name}, we want to help you live the life you were created for. Every Sunday, we have church services where you can experience uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—and it all starts here!`,
+      };
+      break;
+  }
 
   /** Instagram and Google Map URLs */
   const campusLink = find(campusLinks, { name: name });
@@ -130,7 +194,9 @@ const CampusInfo = ({
         {/* Service Times */}
         <Box width="100%">
           <Styled.ServiceTimeContainer>
-            <Styled.ServiceTimeTitle>Every Sunday</Styled.ServiceTimeTitle>
+            <Styled.ServiceTimeTitle>{`${
+              name === 'Online (CF Everywhere)' && 'Live '
+            }Every Sunday`}</Styled.ServiceTimeTitle>
             <Styled.FlexBreak />
             {serviceTimes &&
               serviceTimes?.map((n, i) => (
@@ -162,7 +228,7 @@ const CampusInfo = ({
               </Styled.InfoBox>
             )}
             {/* Address and Church You Call Home */}
-            {addressFirst && (
+            {addressFirst && name !== 'Online (CF Everywhere)' ? (
               <>
                 <Box
                   display="flex"
@@ -208,7 +274,10 @@ const CampusInfo = ({
                   width="100%"
                 />
               </>
+            ) : (
+              <CfEverywhereButtons />
             )}
+
             <Box display={{ _: 'none', md: 'flex' }} mt="l">
               <Box flex="1">
                 <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
