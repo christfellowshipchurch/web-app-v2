@@ -275,6 +275,10 @@ const campusLinks = [
     name: 'en Español Palm Beach Gardens',
     instagram: 'https://www.instagram.com/cf.espanol/',
   },
+  {
+    name: 'Cf Everywhere',
+    instagram: 'https://www.instagram.com/christfellowship.church/',
+  },
 ];
 
 const headerData = [

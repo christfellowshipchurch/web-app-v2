@@ -316,49 +316,57 @@ const CampusInfo = ({
             color="neutrals.700"
             mb={0}
           >
-            {`Campus Pastor${includes(pastor?.firstName, ' and ') ? 's' : ''}`}
+            {name === 'Online (CF Everywhere)'
+              ? 'Digital Discipleship Pastor'
+              : `Campus Pastor${
+                  includes(pastor?.firstName, ' and ') ? 's' : ''
+                }`}
           </Box>
           <StyledDivider width="100%" my="l" />
-          <Box as="h4" fontStyle="italic" mb="base">
-            We can’t wait to see you this week!
-          </Box>
-          <Box display={{ _: 'inline', lg: 'flex' }}>
-            <Button
-              onClick={() => {
-                modalDispatch(
-                  showModal('AddToCalendar', {
-                    title: 'What service would you like to attend?',
-                    events: icsLinkEvents,
-                  })
-                );
-              }}
-              size="xs"
-              px="base"
-              borderRadius="xxl"
-              variant="secondary"
-              mr="xs"
-            >
-              ADD TO CALENDAR
-            </Button>
+          {name !== 'Online (CF Everywhere)' ? (
+            <Box as="h4" fontStyle="italic" mb="base">
+              We can’t wait to see you this week!
+            </Box>
+          ) : null}
+          {name !== 'Online (CF Everywhere)' ? (
+            <Box display={{ _: 'inline', lg: 'flex' }}>
+              <Button
+                onClick={() => {
+                  modalDispatch(
+                    showModal('AddToCalendar', {
+                      title: 'What service would you like to attend?',
+                      events: icsLinkEvents,
+                    })
+                  );
+                }}
+                size="xs"
+                px="base"
+                borderRadius="xxl"
+                variant="secondary"
+                mr="xs"
+              >
+                ADD TO CALENDAR
+              </Button>
 
-            <Button
-              size="xs"
-              px="base"
-              borderRadius="xxl"
-              ml={{ _: 0, lg: 'xs' }}
-              m={{ _: 'xs', lg: 0 }}
-              onClick={() =>
-                handleSocialShare({
-                  shareType: 'sms',
-                  shareMessages: {
-                    sms: `Would you like to join me for service at Christ Fellowship Church? Here’s a link with all the details. ${document.URL}`,
-                  },
-                })
-              }
-            >
-              INVITE A FRIEND
-            </Button>
-          </Box>
+              <Button
+                size="xs"
+                px="base"
+                borderRadius="xxl"
+                ml={{ _: 0, lg: 'xs' }}
+                m={{ _: 'xs', lg: 0 }}
+                onClick={() =>
+                  handleSocialShare({
+                    shareType: 'sms',
+                    shareMessages: {
+                      sms: `Would you like to join me for service at Christ Fellowship Church? Here’s a link with all the details. ${document.URL}`,
+                    },
+                  })
+                }
+              >
+                INVITE A FRIEND
+              </Button>
+            </Box>
+          ) : null}
           <Box as="i" pt="base">
             Have any questions? <br /> Give us a call at{' '}
             <Box as="a" href={`tel:${phoneNumber}`}>
