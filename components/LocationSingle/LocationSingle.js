@@ -8,6 +8,7 @@ import {
   Layout,
   LocationBlockFeature,
   NotFound,
+  InfoCardList,
   Testimonials,
 } from 'components';
 
@@ -15,9 +16,14 @@ import { Box, Button, Divider, Loader } from 'ui-kit';
 import CampusInfo from './CampusInfo';
 import LocationHeader from './LocationHeader';
 import defaultBlockData from '../LocationBlockFeature/defaultBlockData';
-import { additionalInfoCampusData, headerData } from './locationData';
+import {
+  additionalInfoCampusData,
+  headerData,
+  setReminderData,
+} from './locationData';
 import { CampusProvider } from 'providers';
 import faqData from 'components/FAQ/faqData';
+import { showModal, useModalDispatch } from 'providers/ModalProvider';
 
 function LocationSingle(props = {}) {
   if (props.loading) {
@@ -41,6 +47,8 @@ function LocationSingle(props = {}) {
       </Layout>
     );
   }
+
+  const modalDispatch = useModalDispatch();
 
   // note : this means that there is not a valid page found on the API, so we'll render the 404 message
   if (!props.loading && !props?.data?.id) {
@@ -101,8 +109,22 @@ function LocationSingle(props = {}) {
         <Divider bg="secondarySubdued" />
       </Box>
 
-      {/* At this Campus Section */}
+      {/* Set a Reminder */}
       <Box width="100%" px={{ _: 'base', md: 'xl' }} pt="base">
+        <InfoCardList
+          {...setReminderData}
+          button={{
+            title: 'Set a Reminder',
+            onClick: () =>
+              modalDispatch(
+                showModal('SetReminder', { defaultCampus: campus })
+              ),
+          }}
+        />
+      </Box>
+
+      {/* At this Location Section */}
+      <Box bg="white" width="100%" px={{ _: 'base', md: 'xl' }} pt="base">
         <LocationBlockFeature
           mx="auto"
           campusName={campus}
@@ -116,7 +138,7 @@ function LocationSingle(props = {}) {
       </Box>
 
       {/* What's Coming Up Section */}
-      <Box bg="white" py={{ _: 'l', sm: 'xl' }}>
+      <Box py={{ _: 'l', sm: 'xl' }}>
         <Box mx="auto" maxWidth={1200}>
           <CollectionPreview
             horizontalScroll
@@ -128,21 +150,21 @@ function LocationSingle(props = {}) {
       </Box>
 
       {/* FAQs Section */}
-      <Box px="base" py="xl" width="100%">
+      <Box bg="white" px="base" py="xl" width="100%">
         <Box mx="auto" maxWidth={1200}>
           <FAQ data={faqData(campus)} />
         </Box>
       </Box>
 
       {/* Testimonial Section */}
-      <Box bg="white" px="base" py="xl" width="100%">
+      <Box px="base" py="xl" width="100%">
         <Box mx="auto" maxWidth={1200}>
           <Testimonials />
         </Box>
       </Box>
 
       {/* Never Miss a Thing Section */}
-      <Box px="base" py="xl">
+      <Box bg="white" px="base" py="xl">
         <Box textAlign="center" maxWidth={500} mx="auto">
           <Box as="h2" color="secondary">
             Never miss a thing.
