@@ -22,19 +22,26 @@ function FAQ(props = {}) {
         <Box as="h2" fontSize={32} color="neutrals.300" mb="base">
           FAQ
         </Box>
-        <Box as="h4" color="tertiary" fontStyle="italic" mb={0}>
-          Have additional questions?
-        </Box>
-        <Box fontWeight="bold" mb="base" maxWidth={450}>
-          Someone from our team is happy to answer any of your questions!
-        </Box>
-        <Box as="a" href="https://rock.gocf.org/contactus" target="_blank">
-          Contact Us
-        </Box>
+        {props?.showDescription && (
+          <>
+            <Box as="h4" color="tertiary" fontStyle="italic" mb={0}>
+              Have additional questions?
+            </Box>
+            <Box fontWeight="bold" mb="base" maxWidth={450}>
+              Someone from our team is happy to answer any of your questions!
+            </Box>
+            <Box as="a" href="https://rock.gocf.org/contactus" target="_blank">
+              Contact Us
+            </Box>
+          </>
+        )}
       </Box>
       <Box>
         {props?.data?.map((n, i) => (
-          <Box key={i} display={i > 1 ? display : null}>
+          <Box
+            key={i}
+            display={props?.displayAll ? null : i > 1 ? display : null}
+          >
             <Box as="h3" color="secondary" fontStyle="italic">
               {n.title}
             </Box>
@@ -42,21 +49,23 @@ function FAQ(props = {}) {
             <Divider my="base" />
           </Box>
         ))}
-        <Box width="100%" textAlign="center">
-          <Button
-            onClick={() => {
-              window.scrollTo({
-                top: seeLessScrollPosition,
-                behavior: 'smooth',
-              });
-              setDisplay(display ? null : 'none');
-            }}
-            mx="auto"
-            variant="link"
-          >
-            {`See ${display === 'none' ? 'More' : 'Less'}`}
-          </Button>
-        </Box>
+        {!props?.displayAll && (
+          <Box width="100%" textAlign="center">
+            <Button
+              onClick={() => {
+                window.scrollTo({
+                  top: seeLessScrollPosition,
+                  behavior: 'smooth',
+                });
+                setDisplay(display ? null : 'none');
+              }}
+              mx="auto"
+              variant="link"
+            >
+              {`See ${display === 'none' ? 'More' : 'Less'}`}
+            </Button>
+          </Box>
+        )}
       </Box>
     </Styled>
   );
@@ -65,6 +74,8 @@ function FAQ(props = {}) {
 FAQ.propTypes = {
   ...systemPropTypes,
   data: PropTypes.array,
+  displayAll: PropTypes.bool,
+  showDescription: PropTypes.bool,
   scrollPosition: PropTypes.shape({
     desktop: PropTypes.number,
     mobile: PropTypes.number,
@@ -73,6 +84,8 @@ FAQ.propTypes = {
 
 FAQ.defaultProps = {
   data: [],
+  displayAll: false,
+  showDescription: true,
   scrollPosition: {
     desktop: 2800,
     mobile: 4450,

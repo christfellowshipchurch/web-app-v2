@@ -18,14 +18,21 @@ import Styled from './About.styles';
 
 import data from 'lib/aboutData';
 import { htmlToReactParser } from 'utils';
+import { useAnalytics } from 'providers/AnalyticsProvider';
 
 export default function About() {
   const [active, setActive] = useState('leadership');
   const router = useRouter();
+  const analytics = useAnalytics();
 
   useEffect(() => {
     const { asPath } = router;
     const lastOfPath = asPath.substring(7);
+
+    //track pageload for Segment
+    analytics.page({
+      mediaType: 'Information',
+    });
 
     if (includes(asPath, lastOfPath)) {
       setActive(lastOfPath);

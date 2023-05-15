@@ -12,6 +12,7 @@ import CommunityActionSection from './CommunityActionSection';
 import CommunityLeaderActions from './CommunityLeaderActions';
 import CommunityList from './CommunityList';
 import CommunitySingle from './CommunitySingle';
+import ContentBlockFeature from './ContentBlockFeature';
 import ContentLayout from './ContentLayout';
 import ContentList from './ContentList';
 import ContentSingle from './ContentSingle';
@@ -41,6 +42,7 @@ import Header from './Header';
 import HeroListFeature from './HeroListFeature';
 import HomeFeed from './HomeFeed';
 import HorizontalCardListFeature from './HorizontalCardListFeature';
+import InfoCardList from './InfoCardList';
 import JsonLD from './JsonLD';
 import ContentBlockCollection from './ContentBlockCollection';
 import Layout from './Layout';
@@ -79,6 +81,7 @@ export {
   CommunityLeaderActions,
   CommunityList,
   CommunitySingle,
+  ContentBlockFeature,
   ContentLayout,
   ContentList,
   ContentSingle,
@@ -106,6 +109,7 @@ export {
   GroupsResultsList,
   Header,
   HeroListFeature,
+  InfoCardList,
   HomeFeed,
   HorizontalCardListFeature,
   JsonLD,

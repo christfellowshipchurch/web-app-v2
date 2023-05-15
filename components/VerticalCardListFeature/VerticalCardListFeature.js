@@ -39,7 +39,13 @@ function VerticalCardListFeature(props = {}) {
                     coverImageOverlay={true}
                     title={card?.title}
                     description={card?.summary}
-                    type={cards.length < 2 ? 'DEFAULT' : 'HIGHLIGHT_SMALL'}
+                    type={
+                      props?.customCardSize
+                        ? props?.customCardSize
+                        : cards.length < 2
+                        ? 'DEFAULT'
+                        : 'HIGHLIGHT_SMALL'
+                    }
                     label={transformISODates(card?.labelText)}
                   />
                 ) : (
@@ -52,7 +58,13 @@ function VerticalCardListFeature(props = {}) {
                     coverImageOverlay={true}
                     title={card?.title}
                     description={card?.summary}
-                    type={cards.length < 2 ? 'DEFAULT' : 'HIGHLIGHT_SMALL'}
+                    type={
+                      props?.customCardSize
+                        ? props?.customCardSize
+                        : cards.length < 2
+                        ? 'DEFAULT'
+                        : 'HIGHLIGHT_SMALL'
+                    }
                     label={transformISODates(card?.labelText)}
                   />
                 )}

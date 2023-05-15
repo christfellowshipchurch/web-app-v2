@@ -6,6 +6,7 @@ import CampusesProvider from './CampusesProvider';
 import CampusProvider from './CampusProvider';
 import ChatConnectionProvider from './ChatConnectionProvider';
 import CommunitiesProvider from './CommunitiesProvider';
+import ContentBlockProvider from './ContentBlockProvider';
 import ContentFeedProvider from './ContentFeedProvider';
 import ContentItemProvider from './ContentItemProvider';
 import ContentItemsSearchProvider from './ContentItemsSearchProvider';
@@ -13,6 +14,7 @@ import CurrentPersonProvider from './CurrentPersonProvider';
 import CurrentUserProvider from './CurrentUserProvider';
 import EventProvider from './EventProvider';
 import FeatureFeedProvider from './FeatureFeedProvider';
+import FeatureProvider from './FeatureProvider';
 import GroupCoverImagesProvider from './GroupCoverImagesProvider';
 import GroupFiltersProvider from './GroupFiltersProvider';
 import GroupLeadersProvider from './GroupLeadersProvider';
@@ -37,6 +39,7 @@ export {
   CampusProvider,
   ChatConnectionProvider,
   CommunitiesProvider,
+  ContentBlockProvider,
   DiscoverFiltersCategoriesProvider,
   DiscoverFiltersProvider,
   ContentFeedProvider,
@@ -46,6 +49,7 @@ export {
   CurrentUserProvider,
   EventProvider,
   FeatureFeedProvider,
+  FeatureProvider,
   GroupCoverImagesProvider,
   GroupFiltersProvider,
   GroupLeadersProvider,

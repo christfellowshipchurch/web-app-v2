@@ -164,6 +164,24 @@ const faqTrinityData = [
   },
 ];
 
+export const faqHeartForHouseData = [
+  {
+    title: 'What should I give',
+    description:
+      "Heart for the House is a special offering we get to be a part of every year, where we give above our regular tithes and offerings. There isn't a set amount you should give, but as we often say,  it’s not the size of your gift—it's the size of your sacrifice! We encourage you to pray about how God wants you to be a part of it.",
+  },
+
+  {
+    title: 'Can I give to Heart for the House later?',
+    description: `Yes! You can give to Heart for the House any time throughout 2023, either as a one-time gift or you can set up a recurring gift (weekly/monthly) through December 31.`,
+  },
+  {
+    title: 'What does Heart for the House go to?',
+    description:
+      "Heart for the House goes toward Christ Fellowship's efforts in reaching more people for Jesus—whether that's new campuses or new initiatives, both inside and outside the walls of our church. <a target='_blank' href='https://issuu.com/christfellowshipchurch/docs/clients_heartforthehouse_print_handouts_7.5x10_web?fr=sNDM3ZjU5MDEzMDk'>Read more</a> about the Heart for the House vision for 2023!",
+  },
+];
+
 const faqData = campus => {
   switch (campus) {
     case 'Downtown West Palm Beach':

@@ -1,16 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { kebabCase, toLower, capitalize } from 'lodash';
 
 import { initializeApollo } from 'lib/apolloClient';
 import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
 import { FeatureFeedProvider, ContentItemProvider } from 'providers';
 import { Layout, FeatureFeed, PageSingle } from 'components';
+import { useAnalytics } from 'providers/AnalyticsProvider';
 
 // note : We need to create this file to make sure the URL still pulls in the correct Page Builder page for So Good Sisterhood
 
 export default function SoGoodSisterhoodPage() {
+  const analytics = useAnalytics();
+
   const title = 'so-good-sisterhood';
   const formatTitleAsUrl = title => kebabCase(toLower(title));
+
+  useEffect(() => {
+    analytics.page({
+      contentCategory: 'Information',
+      mediaType: 'Information',
+    });
+  }, []);
 
   const options = {
     variables: {
