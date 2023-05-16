@@ -8,6 +8,7 @@ import {
   Box,
   CardCarousel,
   HorizontalHighlightCard,
+  HtmlRenderer,
   Loader,
   PrayerCard,
 } from 'ui-kit';
@@ -54,7 +55,7 @@ function HorizontalCardListFeature(props = {}) {
       <Loader text="Loading your prayers" />
     ) : (
       <Box>
-        {!isEmpty(title) && <Box as="h2">{title}</Box>}
+        {!isEmpty(title) && <Box as="h1">{title}</Box>}
         {!isEmpty(subtitle) && <Box as="p">{subtitle}</Box>}
         <CardCarousel
           cardsDisplayed={4}
@@ -78,9 +79,9 @@ function HorizontalCardListFeature(props = {}) {
   }
 
   return (
-    <Box>
-      {!isEmpty(title) && <Box as="h2">{title}</Box>}
-      {!isEmpty(subtitle) && <Box as="p">{subtitle}</Box>}
+    <Box textAlign="center">
+      {!isEmpty(title) && <Box as="h1">{title}</Box>}
+      {!isEmpty(subtitle) && <HtmlRenderer htmlContent={subtitle} />}
       <CardCarousel
         cardsDisplayed={cardsDisplayed}
         hideArrows={!cards || cards.length < 2}

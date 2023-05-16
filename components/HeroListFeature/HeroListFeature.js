@@ -4,7 +4,7 @@ import dropRight from 'lodash/dropRight';
 import isEmpty from 'lodash/isEmpty';
 
 import { CustomLink } from '..';
-import { Box, CardGrid, DefaultCard, RowCard } from 'ui-kit';
+import { Box, CardGrid, DefaultCard, HtmlRenderer, RowCard } from 'ui-kit';
 import { getUrlFromRelatedNode, transformISODates } from 'utils';
 
 function HeroListFeature(props = {}) {
@@ -28,7 +28,7 @@ function HeroListFeature(props = {}) {
   return (
     <Box>
       {!isEmpty(title) && <Box as="h2">{title}</Box>}
-      {!isEmpty(subtitle) && <Box as="p">{subtitle}</Box>}
+      {!isEmpty(subtitle) && <HtmlRenderer htmlContent={subtitle} />}
       <CustomLink
         as="a"
         href={getUrlFromRelatedNode(heroCard?.relatedNode)}

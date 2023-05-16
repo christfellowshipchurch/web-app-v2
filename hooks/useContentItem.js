@@ -130,6 +130,35 @@ export const INFORMATIONAL_ITEM_FRAGMENT = gql`
   }
 `;
 
+export const SEGMENT_FRAGMENT = gql`
+  fragment segmentFragment on ContentItem {
+    ... on ContentSeriesContentItem {
+      segmentData {
+        category
+        contentTags
+      }
+    }
+    ... on UniversalContentItem {
+      segmentData {
+        category
+        contentTags
+      }
+    }
+    ... on DevotionalContentItem {
+      segmentData {
+        category
+        contentTags
+      }
+    }
+    ... on MediaContentItem {
+      segmentData {
+        category
+        contentTags
+      }
+    }
+  }
+`;
+
 export const GET_CONTENT_ITEM = gql`
   query getContentItem($pathname: String) {
     getNodeByPathname(pathname: $pathname) {
@@ -140,9 +169,11 @@ export const GET_CONTENT_ITEM = gql`
         ...eventContentItemFragment
         ...informationalContentItemFragment
         ...publishFragment
+        ...segmentFragment
       }
 
       ... on MediaContentItem {
+        wistiaId
         metadata {
           name
           content
@@ -169,6 +200,7 @@ export const GET_CONTENT_ITEM = gql`
   ${CONTENT_ITEM_FRAGMENT}
   ${PUBLISH_FRAGMENT}
   ${INFORMATIONAL_ITEM_FRAGMENT}
+  ${SEGMENT_FRAGMENT}
 
   ${ACTION_BAR_FEATURE_FRAGMENT}
   ${ACTION_LIST_FEATURE_FRAGMENT}

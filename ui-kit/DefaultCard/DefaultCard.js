@@ -14,7 +14,11 @@ const DefaultCard = (props = {}) => {
         <Styled.Cover
           src={props.coverImage}
           hasContent={hasContent}
-          overlay={props.coverImageOverlay}
+          overlay={
+            props.coverImageTitle || props.coverImageDescription
+              ? props.coverImageOverlay
+              : null
+          }
           largeCard={props.largeCard}
           scaleCoverImage={props.scaleCoverImage}
         >

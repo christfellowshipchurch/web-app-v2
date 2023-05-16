@@ -92,6 +92,22 @@ module.exports = {
           'https://www.christfellowship.church/2022-christ-birthday-offering',
         permanent: true,
       },
+      {
+        source: '/nexus-platform',
+        destination: 'https://www.nexusplatform.com',
+        permanent: true,
+      },
+      {
+        source: '/events/amazing-a-sisterhood-event',
+        destination: '/events/amazing',
+        permanent: true,
+      },
+      {
+        source:
+          '/items/god-lives-in-you-joyce-meyer-9638eed9752c44acffee9861ef2db161',
+        destination: '/messages/god-lives-in-you-joyce-meyer',
+        permanent: true,
+      },
       // TODO: Uncomment these lines to hide Group Finder.
       // NOTE: We can't get `config/flags` in this file.
       // {

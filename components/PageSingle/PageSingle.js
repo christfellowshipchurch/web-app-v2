@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { createMarkup } from 'utils';
@@ -56,6 +56,19 @@ const formatTitleForSEO = path => {
 };
 
 function PageSingle(props = {}) {
+  //Tracking Segment Data
+  useEffect(() => {
+    const { segmentData } = props?.data;
+    if (segmentData) {
+      analytics.page({
+        title: title,
+        contentCategory: segmentData?.category,
+        contentTags: segmentData?.contentTags,
+        mediaType: 'Information',
+      });
+    }
+  }, []);
+
   const router = useRouter();
   const { asPath } = router;
 

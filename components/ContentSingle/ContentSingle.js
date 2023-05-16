@@ -1,20 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
+import { get, includes, keyBy } from 'lodash';
 
-import { Box, Avatar, Loader, Card, Button } from 'ui-kit';
+import { Box, Avatar, Loader, Button } from 'ui-kit';
 import { ContentLayout, Share } from 'components';
 import { useNodeActions } from 'hooks';
-import { getUrlFromRelatedNode } from 'utils';
+import { getMediaType, getUrlFromRelatedNode } from 'utils';
+import { useAnalytics } from 'providers/AnalyticsProvider';
 
 import ContentVideo from './ContentVideo';
 import ContentVideosList from './ContentVideosList';
 import Styled from './ContentSingle.styles';
-import { find, findIndex, includes, keyBy } from 'lodash';
+import { useRouter } from 'next/router';
 function ContentSingle(props = {}) {
   const [currentVideo, setCurrentVideo] = useState(
     Array.isArray(props.data?.videos) ? props.data.videos[0] : null
   );
+  const router = useRouter();
+  const analytics = useAnalytics();
 
   const { actions } = useNodeActions({
     variables: {
@@ -29,6 +33,24 @@ function ContentSingle(props = {}) {
       setCurrentVideo(props.data.videos[0]);
     }
   }, [props.data?.videos, currentVideo]);
+
+  /**
+   * note : Page view tracking for Segment Analytics
+   */
+  useEffect(() => {
+    const { asPath } = router;
+    if (props?.data?.segmentData && asPath) {
+      analytics.page({
+        name: props?.data?.title,
+        // Checks to see if content is a sermon, if not category should be 'Resource'
+        contentCategory: includes(asPath, 'messages')
+          ? 'Messages'
+          : 'Resources',
+        contentTags: get(props?.data?.segmentData, 'contentTags', null),
+        mediaType: getMediaType({ url: asPath, ...props?.data }),
+      });
+    }
+  }, [router]);
 
   if (props.loading) {
     return (
@@ -45,16 +67,20 @@ function ContentSingle(props = {}) {
     );
   }
 
-  const author = props?.data?.author;
-  const coverImage = props?.data?.coverImage;
-  const featureFeed = props?.data?.featureFeed;
-  const htmlContent = props?.data?.htmlContent;
-  const mode = props?.data?.mode;
-  const publishDate = props?.data?.publishDate;
-  const schedule = props?.data?.schedule;
-  const summary = props?.data?.summary;
-  const title = props?.data?.title;
-  const videos = props?.data?.videos;
+  const {
+    author,
+    coverImage,
+    featureFeed,
+    htmlContent,
+    mode,
+    publishDate,
+    schedule,
+    summary,
+    title,
+    videos,
+    segmentData,
+    wistiaId,
+  } = props?.data;
 
   const coverImageUri = coverImage?.sources[0]?.uri;
   const authorName = author
@@ -89,7 +115,13 @@ function ContentSingle(props = {}) {
       summary={schedule?.friendlyScheduleText || summary}
       coverImage={currentVideo ? null : coverImageUri}
       renderA={() => (
-        <ContentVideo video={currentVideo} poster={coverImageUri} />
+        <ContentVideo
+          segmentData={segmentData}
+          title={title}
+          video={currentVideo}
+          poster={coverImageUri}
+          wistiaId={wistiaId}
+        />
       )}
       renderContentB={() =>
         author && (
