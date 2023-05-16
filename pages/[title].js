@@ -6,8 +6,10 @@ import { initializeApollo } from 'lib/apolloClient';
 import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
 import { FeatureFeedProvider, ContentItemProvider } from 'providers';
 import { Layout, FeatureFeed, PageSingle } from 'components';
+import { useAnalytics } from 'providers/AnalyticsProvider';
 
 export default function PageBuilder(props = {}) {
+  const analytics = useAnalytics();
   const router = useRouter();
   const { query } = router;
   const { title } = query;

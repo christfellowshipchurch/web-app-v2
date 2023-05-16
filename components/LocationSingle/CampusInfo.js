@@ -60,7 +60,8 @@ const CampusInfo = ({
   additionalInfo,
 }) => {
   const modalDispatch = useModalDispatch();
-  const address = `${street1} ${city}, ${state} ${postalCode?.substring(0, 5)}`;
+  const addressFirst = `${street1}`;
+  const addressLast = `${city}, ${state} ${postalCode?.substring(0, 5)}`;
 
   const icsLinkEvents = serviceTimes?.map(({ day, time }) => {
     const dayKey = DAY_KEYS[day.toUpperCase()] ?? 0;
@@ -76,7 +77,7 @@ const CampusInfo = ({
       event: {
         title: 'Sunday service at Christ Fellowship Church',
         description: `Join us this Sunday!`,
-        address,
+        addressFirst,
         startTime: sunday,
         endTime: addMinutes(sunday, 90),
       },
@@ -101,7 +102,7 @@ const CampusInfo = ({
   /** Directions to all Campuses except Trinity Campus (has special link) */
   const allCampusesDirections = campusLink?.googleMap
     ? campusLink?.googleMap
-    : `https://www.google.com/maps/place/${address?.replace(' ', '+')}`;
+    : `https://www.google.com/maps/place/${addressFirst?.replace(' ', '+')}`;
 
   /** Trinity Campus Directions Link */
   const trinityCampusDirections =
@@ -161,7 +162,7 @@ const CampusInfo = ({
               </Styled.InfoBox>
             )}
             {/* Address and Church You Call Home */}
-            {address && (
+            {addressFirst && (
               <>
                 <Box
                   display="flex"
@@ -185,7 +186,8 @@ const CampusInfo = ({
                     maxWidth={300}
                     flex="1"
                   >
-                    {address}
+                    <Box>{addressFirst}</Box>
+                    <Box>{addressLast}</Box>
                   </Box>
                   <Box textAlign="right" flex="1">
                     <Button

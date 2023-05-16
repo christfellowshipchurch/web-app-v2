@@ -22,6 +22,9 @@ export default function ContentVideo(props = {}) {
   return (
     <Styled.VideoContainer>
       <Video
+        segmentData={props.segmentData}
+        wistiaId={props?.wistiaId}
+        title={props.title}
         src={props.video.sources[0].uri}
         poster={props.poster}
         autoPlay={true}

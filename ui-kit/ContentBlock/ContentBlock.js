@@ -72,6 +72,9 @@ function ContentBlock(props = {}) {
 
           <Conditional condition={hasVideo}>
             <Video
+              // for some reason width and height are not responding correctly in this component so we must set them manually here
+              height={{ _: 180, md: 325, lg: 450 }}
+              width={{ _: 300, md: 600, lg: 800 }}
               src={props?.videos[0]?.sources[0]?.uri}
               autoPlay={false}
               playsInline={true}
@@ -91,7 +94,7 @@ function ContentBlock(props = {}) {
         pt={hasMedia && horizontalLayout ? 'base' : '0'}
       >
         <ConditionalBox condition={hasTitle} order={horizontalLayout ? 1 : 0}>
-          <Box as="h1">
+          <Box as="h1" color={props?.titleColor}>
             {props.title}
             <CustomLink
               as="a"
@@ -134,6 +137,7 @@ function ContentBlock(props = {}) {
               variant={i === 0 ? 'primary' : 'secondary'}
               m="xs"
               textTransform="capitalize!important"
+              target={action?.newTab && '_blank'}
               /**
                * todo : We want to eventually add functionality with the 'onPressActionItem' to be able to perform more actions in the future.
                */

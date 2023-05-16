@@ -1,12 +1,19 @@
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useLinkTree } from 'hooks';
 
 import { Box, Cell, ContentBlock, Loader, ThemeMixin, utils } from 'ui-kit';
 import { Layout } from 'components';
+import { useAnalytics } from 'providers/AnalyticsProvider';
 
 export default function Info(props = {}) {
   const router = useRouter();
+  const analytics = useAnalytics();
   const { title } = router.query;
+
+  useEffect(() => {
+    analytics.page({ title: `LinkTree - ${title}`, mediaType: 'Information' });
+  }, []);
 
   const options = {
     variables: {

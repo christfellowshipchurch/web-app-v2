@@ -1,17 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { initializeApollo } from 'lib/apolloClient';
 import { GET_FEATURE_FEED } from 'hooks/useFeatureFeed';
 import { FeatureFeedProvider } from 'providers';
 import { Layout, FeatureFeed } from 'components';
 import { Cell, utils } from 'ui-kit';
+import { useAnalytics } from 'providers/AnalyticsProvider';
 
 export default function Give(props) {
+  const analytics = useAnalytics();
   const options = {
     variables: {
       pathname: 'give',
     },
   };
+
+  //Segment Page Tracking
+  useEffect(() => {
+    analytics.page();
+  }, []);
 
   return (
     <Layout title="Give">

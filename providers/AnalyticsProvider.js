@@ -31,10 +31,14 @@ export const AnalyticsProvider = ({ children, writeKey }) => {
     [writeKey]
   );
 
+  const userId = currentUser?.profile?.id;
+
   // note : tracks user if logged in
   useEffect(() => {
     if (currentUser?.id) {
-      analytics.identify({ ...currentUser?.profile });
+      analytics.identify(userId, {
+        ...currentUser?.profile,
+      });
     }
   }, [currentUser]);
 

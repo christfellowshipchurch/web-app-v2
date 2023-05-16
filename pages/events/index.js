@@ -1,17 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { initializeApollo } from 'lib/apolloClient';
 import { GET_FEATURE_FEED } from 'hooks/useFeatureFeed';
 import { FeatureFeedProvider } from 'providers';
 import { Layout, FeatureFeed } from 'components';
 import { Box, Cell, utils } from 'ui-kit';
+import { useAnalytics } from 'providers/AnalyticsProvider';
 
 export default function Events(props = {}) {
+  const analytics = useAnalytics();
   const options = {
     variables: {
       pathname: 'events',
     },
   };
+
+  //Segment Page Tracking
+  useEffect(() => {
+    analytics.page({
+      contentCategory: 'Information',
+      mediaType: 'Information',
+    });
+  }, []);
 
   return (
     <Layout title="Events">

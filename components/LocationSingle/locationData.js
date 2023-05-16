@@ -50,7 +50,7 @@ const additionalInfoCampusData = [
   },
   {
     name: 'Riviera Beach',
-    info: ['Kids services take place at each service'],
+    info: ['Kids services take place during service'],
   },
   {
     name: 'Boca Raton',
@@ -441,6 +441,50 @@ const headerData = [
     },
     videoBackgroundImage: '/location-pages/trinity-background.png',
   },
+  {
+    name: 'Westlake',
+    primaryButton: {
+      call: 'Set a Reminder',
+      modal: 'SetReminder',
+      newTab: true,
+    },
+    backgroundVideo: {
+      mobile: '/location-pages/westlake-desktop.mp4',
+      desktop: '/location-pages/westlake-desktop.mp4',
+    },
+  },
 ];
 
-export { additionalInfoCampusData, campusMetaData, campusLinks, headerData };
+const setReminderData = {
+  title: 'Set a Reminder for an Upcoming Service',
+  subtitle:
+    'Attending church for the first time has never been easier. We’ve created a simple way for you to schedule a visit and receive a reminder. Here’s how to do it.',
+  cardColor: 'primary',
+  cards: [
+    {
+      title: 'Step 1',
+      description:
+        'Fill out your information and select the service you plan to attend. ',
+      icon: 'pen',
+    },
+    {
+      title: 'Step 2',
+      description: 'Receive a friendly reminder so you don’t miss service.',
+      icon: 'bell',
+    },
+    {
+      title: 'Step 3',
+      description:
+        'Attend a Sunday service and start living the life you were created for.',
+      icon: 'bible',
+    },
+  ],
+};
+
+export {
+  additionalInfoCampusData,
+  campusMetaData,
+  campusLinks,
+  headerData,
+  setReminderData,
+};

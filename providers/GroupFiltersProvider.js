@@ -11,6 +11,7 @@ const GroupFiltersProviderDispatchContext = createContext();
 const options = Object.freeze({
   campuses: [],
   days: [
+    'Daily',
     'Sunday',
     'Monday',
     'Tuesday',
