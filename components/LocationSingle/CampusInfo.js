@@ -35,7 +35,7 @@ const DAY_KEYS = {
 
 function parseTimeAsInt(_time) {
   const time = _time?.toString().trim().toUpperCase();
-  const a = time.match(/(AM)|(PM)/g)?.join();
+  const a = time.match(/(AM)|(PM)/g).join();
   const [hour, minute] = time
     .replace(/(AM)|(PM)/g, '')
     .trim()
