@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import muxjs from 'mux.js';
 import { Box, Button, Icon } from 'ui-kit';
 import { useAnalytics } from 'providers/AnalyticsProvider';
+import { WistiaPlayer } from 'components';
 
 import ReactPlayer from 'react-player';
-import { WistiaPlayer } from '@wistia/react-embeds';
 
 // Mux is used to deal with encodings and low-level video nonsense.
 // Without it, streams are unlikely to work on iOS and Safari.
@@ -34,7 +34,10 @@ export default function Video(props = {}) {
     >
       {/* If an ID for a Wistia Content Item is being passed through, use the Wistia player instead. */}
       {props?.wistiaId ? (
-        <WistiaPlayer hashedId={props?.wistiaId} />
+        <WistiaPlayer
+          videoId={props?.wistiaId}
+          wrapper="wistia-player-container-1"
+        />
       ) : (
         <>
           <ReactPlayer

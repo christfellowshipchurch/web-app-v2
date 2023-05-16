@@ -24,7 +24,6 @@
     "@storybook/addon-controls": "^6.3.7",
     "@storybook/cli": "^6.3.7",
     "@styled-system/theme-get": "^5.1.2",
-    "@wistia/react-embeds": "^0.0.14",
     "amplitude-js": "^8.1.0",
     "apollo3-cache-persist": "^0.13.0",
     "color": "^3.1.3",
