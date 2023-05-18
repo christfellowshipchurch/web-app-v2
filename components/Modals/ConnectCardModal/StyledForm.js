@@ -137,7 +137,7 @@ const StyledForm = ({
       {/* All that Applies */}
       <Box display="grid" gridRowGap="s" textAlign="left" my="l" mr="auto">
         <Box as="p" fontStyle="italic">
-          Please select all that apply to you:
+          I am looking to:
         </Box>
         <Box
           display="grid"
@@ -180,7 +180,36 @@ const StyledForm = ({
             <StyledCheckBox
               id="discoverAtTheJourney"
               onChange={handleChange}
-              text="Discover what’s next for me at The Journey."
+              text="Discover what's next for me at The Journey."
+            />
+            <StyledCheckBox
+              id="other"
+              onChange={handleChange}
+              text="Other."
+            />
+          </Box>
+
+        </Box>
+
+        <Box as="p" px="s" fontStyle="italic">
+          I am looking to: (Other)
+        </Box>
+
+        <Box
+        display="grid"
+        gridTemplateColumns={{ _: '', md: '1fr 1fr' }}
+        gridColumnGap="base"
+        gridRowGap={{ _: 'base', md: 'l' }}
+        >
+          <Box>
+            <StyledTextInput
+              padding-top = "l"
+              id="other"
+              label="Other"
+              placeholder="Other"
+              onChange={handleChange}
+              value={values?.lastName}
+              errors={errors.lastName}
             />
           </Box>
         </Box>
