@@ -52,23 +52,27 @@ const CfEverywhereButtons = () => (
       display="flex"
       flexDirection={{ _: 'column', md: 'row' }}
       alignItems={{ _: 'center', md: 'start' }}
-      mx={{ _: 'l', md: 0 }}
+      mx={{ _: 'base', md: 0 }}
       py="l"
       mt={{ _: 0, md: 'base' }}
     >
       <Box
-        display={{ _: 'none', md: 'flex' }}
         as="h3"
+        display="flex"
+        fontSize={{ _: '1.5rem' }}
         color="secondary"
         flex="1"
-        maxWidth={200}
+        maxWidth={{ _: '', md: 200 }}
+        textAlign={{ _: 'center', md: 'left' }}
+        mb="base"
       >
         Ways to Join Online
       </Box>
       <Box
         textAlign={{ _: 'center', md: 'left' }}
         ml={{ _: '', lg: 'xl' }}
-        flex="1"
+        flex={{ _: '', md: 1 }}
+        display={{ _: 'flex', md: 'block' }}
       >
         <Button
           as="a"
@@ -76,9 +80,8 @@ const CfEverywhereButtons = () => (
           href="https://www.youtube.com/c/ChristFellowshipWelcomeHome"
           size="s"
           borderRadius="l"
-          mr={{ _: '', sm: 's' }}
-          px="l"
-          mb="s"
+          mr="s"
+          px="base"
         >
           <Icon name="youtube" mr="xs" /> YOUTUBE
         </Button>
@@ -89,9 +92,9 @@ const CfEverywhereButtons = () => (
           href="https://www.facebook.com/CFimpact/live_videos/?ref=page_internal&mt_nav=0&paipv=0&eav=AfaX2V8rVqlFtW-qLuhGIRf6Py7OSSDqCPlEW3n5s4eajw8i8rtnNvffvttlBENVG-k&_rdr"
           size="s"
           borderRadius="l"
-          px="l"
+          px="base"
         >
-          <Icon name="facebook" mr="xs" /> FACEBOOK
+          <Icon name="facebook" mr="xs" /> FACEBOOK LIVE
         </Button>
       </Box>
     </Box>
@@ -149,7 +152,7 @@ const CampusInfo = ({
     case 'Online (CF Everywhere)':
       getTheMost = {
         title: 'Church Wherever You Are',
-        body: `Church isn’t just a building you walk in to, it's a family you can belong to. Whether you're near or far, through Christ Fellowship Everywhere, church is wherever you are! Every Sunday, we host online services where you can experience uplifting worship music, hear an encouraging messages, and get connected to a digital community. Throughout the week, there are online groups and classes, as well as on-demand content, to help you and your entire family grow in your faith.`,
+        body: `Church isn’t just a building you walk in to, it's a family you can belong to. Whether you're near or far, through Christ Fellowship Everywhere, church is wherever you are! Every Sunday, we host online services where you can experience uplifting worship music, hear an encouraging message, and get connected to a digital community. Throughout the week, there are online groups and classes, as well as on-demand content, to help you and your entire family grow in your faith.`,
       };
       break;
     default:
@@ -199,21 +202,25 @@ const CampusInfo = ({
             }Every Sunday`}</Styled.ServiceTimeTitle>
             <Styled.FlexBreak />
             {serviceTimes &&
-              serviceTimes?.map((n, i) => (
-                <React.Fragment key={i}>
-                  <Box
-                    display="flex"
-                    flex={1}
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <Styled.ServiceTime>{n?.time}</Styled.ServiceTime>
-                  </Box>
-                  {i < serviceTimes.length - 1 && (
-                    <Styled.VerticalDivider key={`dividier-${i}`} />
-                  )}
-                </React.Fragment>
-              ))}
+              serviceTimes?.map(
+                (n, i) =>
+                  n?.time &&
+                  n?.time !== '' && (
+                    <React.Fragment key={i}>
+                      <Box
+                        display="flex"
+                        flex={1}
+                        justifyContent="center"
+                        alignItems="center"
+                      >
+                        <Styled.ServiceTime>{n?.time}</Styled.ServiceTime>
+                      </Box>
+                      {i < serviceTimes.length - 1 && (
+                        <Styled.VerticalDivider key={`dividier-${i}`} />
+                      )}
+                    </React.Fragment>
+                  )
+              )}
           </Styled.ServiceTimeContainer>
 
           {/* Addtional Information - Orange Box */}
