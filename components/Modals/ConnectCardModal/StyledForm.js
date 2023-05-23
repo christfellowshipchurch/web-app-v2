@@ -192,10 +192,10 @@ const StyledForm = ({
 
         <Box maxWidth={300}>
           <StyledTextInput
-            id="other"
+            id="otherText"
             onChange={handleChange}
-            value={values?.other}
-            errors={errors?.other}
+            value={values?.otherText}
+            errors={errors?.otherText}
           />
         </Box>
       </Box>
