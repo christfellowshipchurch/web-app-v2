@@ -182,6 +182,32 @@ export const faqHeartForHouseData = [
   },
 ];
 
+export const faqCfEverywhereData = [
+  {
+    title: 'Which campus is live-streamed?',
+    description:
+      'We broadcast Sunday services, including the worship and teaching, from our Palm Beach Gardens location in South Florida.',
+  },
+  {
+    title: 'What can I expect from a live-streamed service?',
+    description:
+      'Every Sunday, we craft a unique livestream experience for our Christ Fellowship Everywhere audience. We start a couple minutes before our services begin to welcome guests to church and help them get connected in the live chat. After a time of worship, our hosts share specific events and connection opportunities for our online audience. All of our campuses experience the same powerful teaching from one of our pastors and then our hosts share practical next steps.',
+  },
+  {
+    title: 'How can I get campus-specific information?',
+    description: `If you are in South Florida, we hope you are getting connected to your local campus! <a href="/locations">Find a campus location near you here.</a>`,
+  },
+  {
+    title: 'How can I get in contact with a pastor?',
+    description: `One of our pastors would love to connect with you! If you have a question, please reach out <a target="blank" href="https://rock.gocf.org/contactus">here</a>. If you are in need of prayer, let us know on the <a target="blank" href="https://rock.gocf.org/RequestPrayer">prayer form</a> so we can follow up with you.`,
+  },
+  {
+    title: 'How can I get involved?',
+    description: `We are so excited to get you involved with Christ Fellowship Everywhere and want to help you take your next step. <a href=/events/journey>The Journey</a> is a great first step that will lay out a variety of ways to get involved. You might also consider a <a href="/groups">group or class</a>, <a href="/give">giving financially</a>, or serving with us on the <a target="blank" href="https://rock.christfellowship.church/dreamteam/locations/opportunities?CampusId=9">Christ Fellowship Everywhere Dream Team</a>. No matter where you are, or what you need, we can all start somewhere! Discover the offerings and resources available for you and your whole family <a target="blank" href="/it-all-starts-here">here</a>.
+    `,
+  },
+];
+
 const faqData = campus => {
   switch (campus) {
     case 'Downtown West Palm Beach':
@@ -192,6 +218,8 @@ const faqData = campus => {
       return faqWestlakeData;
     case 'Trinity':
       return faqTrinityData;
+    case 'Cf Everywhere':
+      return faqCfEverywhereData;
     default:
       return faqDefaultData;
   }
