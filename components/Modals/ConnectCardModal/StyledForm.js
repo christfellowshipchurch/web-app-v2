@@ -182,34 +182,29 @@ const StyledForm = ({
               onChange={handleChange}
               text="Discover what's next for me at The Journey."
             />
-            <StyledCheckBox
-              id="other"
-              onChange={handleChange}
-              text="Other."
-            />
+            <StyledCheckBox id="other" onChange={handleChange} text="Other." />
           </Box>
-
         </Box>
 
-        <Box as="p" px="s" fontStyle="italic">
+        <Box mt="base" as="p" px="s" fontStyle="italic">
           I am looking to: (Other)
         </Box>
 
         <Box
-        display="grid"
-        gridTemplateColumns={{ _: '', md: '1fr 1fr' }}
-        gridColumnGap="base"
-        gridRowGap={{ _: 'base', md: 'l' }}
+          display="grid"
+          gridTemplateColumns={{ _: '', md: '1fr 1fr' }}
+          gridColumnGap="base"
+          gridRowGap={{ _: 'base', md: 'l' }}
         >
           <Box>
             <StyledTextInput
-              padding-top = "l"
+              padding-top="l"
               id="other"
               label="Other"
               placeholder="Other"
               onChange={handleChange}
-              value={values?.lastName}
-              errors={errors.lastName}
+              value={values?.other}
+              errors={errors?.other}
             />
           </Box>
         </Box>

@@ -102,6 +102,7 @@ function ConnectCardForm(props = {}) {
       campus: values.campusId || '',
       decision: decision || ' ',
       allThatApplies: allThatApplies || ' ',
+      other: values?.other || ' ',
     };
 
     try {
