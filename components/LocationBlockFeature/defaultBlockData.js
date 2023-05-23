@@ -1,4 +1,4 @@
-const locationBlockData = [
+export const defaultBlockData = [
   {
     __typename: 'ContentBlockFeature',
     actions: [
@@ -131,5 +131,153 @@ const locationBlockData = [
     videos: [],
   },
 ];
+
+export const CfEverywhereBlockData = [
+  {
+    __typename: 'ContentBlockFeature',
+    actions: [
+      {
+        __typename: 'FeatureAction',
+        action: 'OPEN_URL',
+        new_tab: false,
+        relatedNode: {
+          __typename: 'Url',
+          id: 'Url:f4974a223763b3a06ea2cd73ff30952be89d6281e05bc41f7ee423cd227a2b00ac473ab51d6349eb947f770d463c04fc83a72f8b7a0522333e94950a0fc721fc7072f037d6a7dd2f84bf0a108a662de3',
+          url: 'https://www.christfellowship.church/groups/search?meetingType=Virtual',
+        },
+        title: 'LEARN MORE',
+      },
+    ],
+    coverImage: {
+      __typename: 'ImageMedia',
+      sources: [
+        {
+          __typename: 'ImageMediaSource',
+          uri: '/cf-everywhere/cf-everywhere-groups&classes.png',
+        },
+      ],
+    },
+    htmlContent:
+      'Choose from a variety of virtual groups and classes where you can connect with others and grow in your faith.',
+    id: 'ContentBlockFeature:d0d7407920381ab5b3b4d32cd65762c64989d8e83682072935738f853c71dde9',
+    imageAlt: null,
+    imageRatio: null,
+    orientation: 'RIGHT',
+    subtitle: 'Everyone',
+    title: 'Groups & Classes',
+    videos: [],
+  },
+  {
+    __typename: 'ContentBlockFeature',
+    actions: [
+      {
+        __typename: 'FeatureAction',
+        action: 'OPEN_URL',
+        new_tab: true,
+        relatedNode: {
+          __typename: 'Url',
+          id: 'Url:f4974a223763b3a06ea2cd73ff30952be89d6281e05bc41f7ee423cd227a2b00ac473ab51d6349eb947f770d463c04fc83a72f8b7a0522333e94950a0fc721fc7072f037d6a7dd2f84bf0a108a662de3',
+          url: 'https://www.youtube.com/@christfellowshipkids',
+        },
+        title: 'WATCH NOW',
+      },
+    ],
+    coverImage: {
+      __typename: 'ImageMedia',
+      sources: [
+        {
+          __typename: 'ImageMediaSource',
+          uri: '/cf-everywhere/cf-everywhere-kids.png',
+        },
+      ],
+    },
+    htmlContent:
+      'Enjoy God-centered lessons and songs designed specifically for kids to learn about the love of Jesus.',
+    id: 'ContentBlockFeature:d0d7407920381ab5b3b4d32cd65762c64989d8e83682072935738f853c71dde9',
+    imageAlt: null,
+    imageRatio: null,
+    orientation: 'RIGHT',
+    subtitle: 'Babies to Elementary',
+    title: 'For Kids',
+    videos: [],
+  },
+  {
+    __typename: 'ContentBlockFeature',
+    actions: [
+      {
+        __typename: 'FeatureAction',
+        action: 'OPEN_URL',
+        new_tab: true,
+        relatedNode: {
+          __typename: 'Url',
+          id: 'Url:f4974a223763b3a06ea2cd73ff30952be89d6281e05bc41f7ee423cd227a2b00ac473ab51d6349eb947f770d463c04fc83a72f8b7a0522333e94950a0fc721fcfdab85895f0b5055043fe0a42e50277efd830a93c8139273e438a07a5780ed1a',
+          url: 'https://www.youtube.com/@cfstudentsfl',
+        },
+        title: 'WATCH NOW',
+      },
+    ],
+    coverImage: {
+      __typename: 'ImageMedia',
+      sources: [
+        {
+          __typename: 'ImageMediaSource',
+          uri: '/cf-everywhere/cf-everywhere-students.png',
+        },
+      ],
+    },
+    htmlContent:
+      'Content to help students learn what it means to follow Jesus, and discover their God-given identity and purpose.',
+    id: 'ContentBlockFeature:d0d7407920381ab5b3b4d32cd65762c691ceb48572398404155d02495cbfdc34',
+    imageAlt: null,
+    imageRatio: null,
+    orientation: 'LEFT',
+    subtitle: 'Middle School & High School',
+    title: 'For Students',
+    videos: [],
+  },
+  {
+    __typename: 'ContentBlockFeature',
+    actions: [
+      {
+        __typename: 'FeatureAction',
+        action: 'OPEN_URL',
+        new_tab: true,
+        relatedNode: {
+          __typename: 'Url',
+          id: 'Url:f4974a223763b3a06ea2cd73ff30952be89d6281e05bc41f7ee423cd227a2b00ac473ab51d6349eb947f770d463c04fc83a72f8b7a0522333e94950a0fc721fc10f4fb466bd6d032935690b552c306ca3b00fdd2fe74edeadb0f0b65b8070e31',
+          url: 'https://www.youtube.com/@cf.youngadults',
+        },
+        title: 'WATCH NOW',
+      },
+    ],
+    coverImage: {
+      __typename: 'ImageMedia',
+      sources: [
+        {
+          __typename: 'ImageMediaSource',
+          uri: '/cf-everywhere/cf-everywhere-young-adults.png',
+        },
+      ],
+    },
+    htmlContent:
+      'Messages and podcasts to help young adults, from college-age to 20s & 30s, figure out life, meaning, and their God-given purpose.',
+    id: 'ContentBlockFeature:d0d7407920381ab5b3b4d32cd65762c673360cfc4b7e19fe2d220468dd77d66a',
+    imageAlt: null,
+    imageRatio: null,
+    orientation: 'RIGHT',
+    subtitle: 'College & Young Adults',
+    title: 'For Young Adults',
+    videos: [],
+  },
+];
+
+const locationBlockData = campus => {
+  switch (campus) {
+    case 'Cf Everywhere':
+      return CfEverywhereBlockData;
+    default:
+      return defaultBlockData;
+  }
+};
 
 export default locationBlockData;

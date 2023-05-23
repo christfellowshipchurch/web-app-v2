@@ -43,7 +43,9 @@ const LocationBlockFeature = props => {
   return (
     <Box textAlign="center" {...props}>
       <Box mt="l" mb={0} as="h2" color="secondary">
-        At This Location
+        {props?.campusName === 'Cf Everywhere'
+          ? 'Digital Offerings for Everyone'
+          : 'At This Location'}
       </Box>
       <Styled.Container>
         {content?.map(block => (
@@ -78,6 +80,7 @@ const LocationBlockFeature = props => {
                 mt="base"
                 textTransform="capitalize!important"
                 px="base"
+                target={action?.new_tab && 'blank'}
                 /**
                  * todo : We want to eventually add functionality with the 'onPressActionItem' to be able to perform more actions in the future.
                  */

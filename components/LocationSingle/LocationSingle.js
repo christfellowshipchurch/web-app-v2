@@ -129,7 +129,8 @@ function LocationSingle(props = {}) {
           mx="auto"
           campusName={campus}
           maxWidth={1000}
-          data={defaultBlockData}
+          data={defaultBlockData(campus)}
+
           /**
            * todo :  These would be the content blocks we pull in from Rock, but since the content doesn't match Figma we'll hard code the content for now.
            *  */
