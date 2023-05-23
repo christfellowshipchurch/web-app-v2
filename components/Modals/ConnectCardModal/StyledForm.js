@@ -190,23 +190,13 @@ const StyledForm = ({
           I am looking to: (Other)
         </Box>
 
-        <Box
-          display="grid"
-          gridTemplateColumns={{ _: '', md: '1fr 1fr' }}
-          gridColumnGap="base"
-          gridRowGap={{ _: 'base', md: 'l' }}
-        >
-          <Box>
-            <StyledTextInput
-              padding-top="l"
-              id="other"
-              label="Other"
-              placeholder="Other"
-              onChange={handleChange}
-              value={values?.other}
-              errors={errors?.other}
-            />
-          </Box>
+        <Box maxWidth={300}>
+          <StyledTextInput
+            id="other"
+            onChange={handleChange}
+            value={values?.other}
+            errors={errors?.other}
+          />
         </Box>
       </Box>
       {errors?.networkError && (
