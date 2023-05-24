@@ -198,7 +198,7 @@ const CampusInfo = ({
         <Box width="100%">
           <Styled.ServiceTimeContainer>
             <Styled.ServiceTimeTitle>{`${
-              name === 'Online (CF Everywhere)' && 'Live '
+              name === 'Online (CF Everywhere)' ? 'Live ' : ''
             }Every Sunday`}</Styled.ServiceTimeTitle>
             <Styled.FlexBreak />
             {serviceTimes &&

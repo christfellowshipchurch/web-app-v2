@@ -10,6 +10,7 @@ import {
   NotFound,
   InfoCardList,
   Testimonials,
+  HeroListFeature,
 } from 'components';
 
 import { Box, Button, Divider, Loader } from 'ui-kit';
@@ -20,8 +21,9 @@ import {
   additionalInfoCampusData,
   headerData,
   setReminderData,
+  thisWeekFeatureId,
 } from './locationData';
-import { CampusProvider } from 'providers';
+import { CampusProvider, FeatureProvider } from 'providers';
 import faqData from 'components/FAQ/faqData';
 import { showModal, useModalDispatch } from 'providers/ModalProvider';
 
@@ -107,6 +109,23 @@ function LocationSingle(props = {}) {
 
       <Box px="base" bg="white" display={{ _: 'block', md: 'none' }}>
         <Divider bg="secondarySubdued" />
+      </Box>
+
+      {/* This Week Feature */}
+      <Box maxWidth={1100} mx="auto" width="100%" px="base" pt="xl">
+        <Box
+          as="h2"
+          color="secondary"
+          width="100%"
+          textAlign="center"
+          mb="base"
+        >
+          This Week
+        </Box>
+        <FeatureProvider
+          Component={HeroListFeature}
+          options={{ variables: { id: thisWeekFeatureId } }}
+        />
       </Box>
 
       {/* Set a Reminder */}
