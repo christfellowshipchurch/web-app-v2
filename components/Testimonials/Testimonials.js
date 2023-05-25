@@ -17,13 +17,16 @@ function Testimonials(props = {}) {
             {n?.image && (
               <Image mb="base" height={70} width={70} source={n?.image} />
             )}
-            {n.rating && <RatingStars rating={n.rating} />}
+            {n?.rating && <RatingStars rating={n.rating} />}
             <Box color="secondary" my="s">
               <HtmlRenderer htmlContent={n.description} />
             </Box>
             <Box mt="base">
               <Box as="h4">
                 <HtmlRenderer htmlContent={n.name} />
+              </Box>
+              <Box>
+                <HtmlRenderer htmlContent={n.country} />
               </Box>
               {n?.icon && (
                 <Icon mt="base" size="30" color="neutrals.300" name={n.icon} />
