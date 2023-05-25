@@ -184,27 +184,26 @@ function LocationSingle(props = {}) {
       {/* Testimonial Section */}
       <Box px="base" py="xl" width="100%">
         <Box mx="auto" maxWidth={1200}>
-        {campus === 'Cf Everywhere' ?
           <Testimonials 
-            testimonies= { [{
+            testimonies={campus === 'Cf Everywhere' ? [{
               name: '<i>Amal</i>',
               description:
                 "Christ Fellowship is a home away from home. I always feel welcomed by genuine, godly, and friendly people. Worship is amazing and every sermon adds value to my spiritual growth. I look forward to the service every week.",
-              country: '<i>India<i>'
+                region: '<i>India<i>'
             },
             {
               name:'<i>Jim and Tammy Walter</i>',
               description:
                 'We attended CF online for 2 years prior to moving to FL and now we are attending in person. While attending online we were surprised by how connected and included we felt. When attending online you are not simply watching a church service from a distance, you are joining a family!',
-                country: '<i>South Florida<i>'
+                region: '<i>South Florida<i>'
             },
             {
               name: '<i>Marah</i>',
               description:
                 "Christ Fellowship provides plenty of ways for you to stay connected. And not just on Sunday's! You can find tons of resources, groups, and events that'll help you grow in your faith, have a deeper relationship with God, and be a part of a family-oriented community. You'll feel at home no matter where you live in the world.",
-                country: '<i>Massachusetts<i>'
-            }]}
-          /> : <Testimonials />}
+                region: '<i>Massachusetts<i>'
+            }]: undefined}
+          />
         </Box>
       </Box>
 
