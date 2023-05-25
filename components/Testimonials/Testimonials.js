@@ -26,7 +26,7 @@ function Testimonials(props = {}) {
                 <HtmlRenderer htmlContent={n.name} />
               </Box>
               <Box>
-                <HtmlRenderer htmlContent={n.country} />
+                <HtmlRenderer htmlContent={n.region} />
               </Box>
               {n?.icon && (
                 <Icon mt="base" size="30" color="neutrals.300" name={n.icon} />
