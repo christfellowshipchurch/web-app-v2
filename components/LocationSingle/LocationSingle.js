@@ -192,16 +192,16 @@ function LocationSingle(props = {}) {
                 region: '<i>India<i>'
             },
             {
-              name:'<i>Jim and Tammy Walter</i>',
+              name:'<i>Jim & Tammy</i>',
               description:
                 'We attended CF online for 2 years prior to moving to FL and now we are attending in person. While attending online we were surprised by how connected and included we felt. When attending online you are not simply watching a church service from a distance, you are joining a family!',
                 region: '<i>South Florida<i>'
             },
             {
-              name: '<i>Marah</i>',
+              name: '<i>Tom & Margie</i>',
               description:
-                "Christ Fellowship provides plenty of ways for you to stay connected. And not just on Sunday's! You can find tons of resources, groups, and events that'll help you grow in your faith, have a deeper relationship with God, and be a part of a family-oriented community. You'll feel at home no matter where you live in the world.",
-                region: '<i>Massachusetts<i>'
+                'We live in New Jersey and were invited to attend Christ Fellowship Everywhere. We knew at once we had found our new church home. From Pastors Todd & Julie to all the other pastors/congregation, we immediately felt a part of a church community. Every Sunday, we pour our coffee and jump into a great service - all from the comfort of our home. God has truly blessed us by connecting us to CF Everywhere.',                
+                region: '<i>New Jersey<i>'
             }]: undefined}
           />
         </Box>
