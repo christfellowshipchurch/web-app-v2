@@ -7,6 +7,7 @@ import {
   Testimonials,
   Video,
   VerticalCardListFeature,
+  WistiaPlayer,
 } from 'components';
 import { useCurrentBreakpoint } from 'hooks';
 import {
@@ -184,14 +185,17 @@ function HeartForTheHouse(props = {}) {
           {!loading && wistiaData?.length > 0 ? (
             wistiaData?.length > 1 ? (
               <CardCarousel p={{ _: 0, lg: 'xxl' }}>
-                {wistiaData?.map(video => (
+                {wistiaData?.map((video, i) => (
                   <Box
                     boxShadow="l"
                     m="base"
                     borderRadius="xl"
                     overflow="hidden"
                   >
-                    <Video wistiaId={video?.hashed_id} />
+                    <WistiaPlayer
+                      videoId={video?.hashed_id}
+                      wrapper={`wistia-player-container-${i}}`}
+                    />
                   </Box>
                 ))}
               </CardCarousel>
