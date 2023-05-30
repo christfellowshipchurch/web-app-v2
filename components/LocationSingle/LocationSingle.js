@@ -79,6 +79,29 @@ function LocationSingle(props = {}) {
   const campusAdditionalInfo = find(additionalInfoCampusData, { name: campus });
   const headerContent = find(headerData, { name: campus });
 
+  function campusScroll(campus) {
+    switch (campus) {
+      case 'Trinity': {
+        return {
+          desktop: 3490,
+          mobile: 5420,
+       }
+      }
+      case 'Downtown West Palm Beach': {
+        return {
+          desktop: 3470,
+          mobile: 4750,
+       }
+       }
+       default: {
+        return {
+          desktop: 3470,
+          mobile: 5270,
+        }
+      }
+    }
+  }
+
   return (
     <Layout
       contentMaxWidth={'100vw'}
@@ -143,7 +166,10 @@ function LocationSingle(props = {}) {
       {/* FAQs Section */}
       <Box bg="white" px="base" py="xl" width="100%">
         <Box mx="auto" maxWidth={1200}>
-          <FAQ data={faqData(campus)} />
+          <FAQ 
+            data={faqData(campus)}
+            scrollPosition={campusScroll(campus)}
+          />
         </Box>
       </Box>
 
