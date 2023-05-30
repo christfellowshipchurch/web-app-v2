@@ -87,8 +87,8 @@ FAQ.defaultProps = {
   displayAll: false,
   showDescription: true,
   scrollPosition: {
-    desktop: 2800,
-    mobile: 4450,
+    desktop: 3470,
+    mobile: 5270,
   },
 };
 
