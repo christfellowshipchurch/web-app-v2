@@ -282,7 +282,7 @@ function HeartForTheHouse(props = {}) {
             <HtmlRenderer htmlContent='Be a part of the <span style="color:#133156">heart.</span>' />
           </Box>
           <Box as="h3" color="neutrals.200">
-            GIVE TOWARD HEART FOR THE HOUSE ON MAY 21, 2023.
+            GIVE TOWARD HEART FOR THE HOUSE UNTIL DECEMBER 31, 2023.
           </Box>
           <Box
             my="l"
