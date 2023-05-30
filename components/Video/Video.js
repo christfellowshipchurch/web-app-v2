@@ -36,7 +36,7 @@ export default function Video(props = {}) {
       {props?.wistiaId ? (
         <WistiaPlayer
           videoId={props?.wistiaId}
-          wrapper="wistia-player-container-1"
+          wrapper={`wistia-player-container-${props?.wistiaId}`}
         />
       ) : (
         <>

@@ -80,7 +80,7 @@ function HorizontalCardListFeature(props = {}) {
 
   return (
     <Box textAlign="center">
-      {!isEmpty(title) && <Box as="h1">{title}</Box>}
+      {!isEmpty(title) && <Box as="h2">{title}</Box>}
       {!isEmpty(subtitle) && <HtmlRenderer htmlContent={subtitle} />}
       <CardCarousel
         cardsDisplayed={cardsDisplayed}
