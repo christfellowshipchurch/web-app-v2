@@ -51,7 +51,9 @@ const LocationBlockFeature = props => {
         {content?.map(block => (
           <Styled.LocationBlock key={block.id}>
             <Image
-              aspectRatio={'16by9'}
+              aspectRatio={
+                props?.campusName === 'Cf Everywhere' ? '14by9' : '16by9'
+              }
               source={block?.coverImage?.sources[0]?.uri}
             />
             <Box fontSize={{ _: 30, sm: 'auto' }} mt="base" as="h2">
