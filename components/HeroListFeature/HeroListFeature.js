@@ -44,7 +44,7 @@ function HeroListFeature(props = {}) {
         coverImageLabel={transformISODates(heroCard?.labelText)}
       />
       {cards.length > 0 && (
-        <CardGrid columns={col} marginBottom="l">
+        <CardGrid columns={col} marginBottom="base">
           {cards.map((card, i) => {
             return (
               <CustomLink
