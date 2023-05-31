@@ -237,7 +237,7 @@ function GroupManageMembers(props = {}) {
           gridColumnGap="15px"
           gridRowGap="15px"
         >
-          {groupMembers.map(({ id, person, role, status }) => (
+          {groupMembers.map(({ id, person, role, status, groupRoleId }) => (
             <GroupMember
               id={id}
               key={id}
@@ -245,6 +245,7 @@ function GroupManageMembers(props = {}) {
               role={role}
               person={person}
               groupId={groupId}
+              groupRoleId={groupRoleId}
             />
           ))}
         </Box>
