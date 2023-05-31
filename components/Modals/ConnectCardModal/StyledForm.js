@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Box, Button, Checkbox, Icon, Loader, Select, TextInput } from 'ui-kit';
 
@@ -37,6 +37,8 @@ const StyledForm = ({
   defaultUserCampus,
   campuses,
 }) => {
+  const [showOther, setShowOther] = useState(false);
+
   return (
     <Box
       display="flex"
@@ -182,21 +184,34 @@ const StyledForm = ({
               onChange={handleChange}
               text="Discover what's next for me at The Journey."
             />
-            <StyledCheckBox id="other" onChange={handleChange} text="Other." />
+            <StyledCheckBox
+              id="other"
+              onChange={() => {
+                setShowOther(!showOther);
+                handleChange;
+              }}
+              text="Other."
+            />
           </Box>
         </Box>
 
-        <Box mt="base" as="p" px="s" fontStyle="italic">
-          I am looking to: (Other)
-        </Box>
+        <Box>
+          {showOther && (
+            <>
+              <Box mt="base" as="p" px="s" fontStyle="italic">
+                I am looking to: (Other)
+              </Box>
 
-        <Box maxWidth={300}>
-          <StyledTextInput
-            id="otherText"
-            onChange={handleChange}
-            value={values?.otherText}
-            errors={errors?.otherText}
-          />
+              <Box maxWidth={300}>
+                <StyledTextInput
+                  id="otherText"
+                  onChange={handleChange}
+                  value={values?.otherText}
+                  errors={errors?.otherText}
+                />
+              </Box>
+            </>
+          )}
         </Box>
       </Box>
       {errors?.networkError && (
