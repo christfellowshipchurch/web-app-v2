@@ -473,8 +473,8 @@ const headerData = [
       newTab: true,
     },
     backgroundVideo: {
-      mobile: '/location-pages/gardens-mobile.mp4',
-      desktop: '/location-pages/gardens-desktop.mp4',
+      mobile: '/location-pages/cf-everywhere-desktop.mp4',
+      desktop: '/location-pages/cf-everywhere-desktop.mp4'
     },
   },
 ];
