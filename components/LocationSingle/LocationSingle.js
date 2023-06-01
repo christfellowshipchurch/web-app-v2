@@ -142,7 +142,7 @@ function LocationSingle(props = {}) {
       </Box>
 
       {/* This Week Feature */}
-      <Box maxWidth={1100} mx="auto" width="100%" px="base" pt="xl">
+      <Box maxWidth={1100} mx="auto" width="100%" px="base" py="xl">
         <Box
           as="h2"
           color="secondary"
@@ -166,7 +166,12 @@ function LocationSingle(props = {}) {
             title: 'Set a Reminder',
             onClick: () =>
               modalDispatch(
-                showModal('SetReminder', { defaultCampus: campus })
+                showModal('SetReminder', {
+                  defaultCampus:
+                    campus === 'Cf Everywhere'
+                      ? 'Online (CF Everywhere)'
+                      : campus,
+                })
               ),
           }}
         />
