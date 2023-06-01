@@ -203,7 +203,9 @@ function LocationSingle(props = {}) {
                 ? 'UniversalContentItem:04f022613f5beaca2532ef3a8e052cd6'
                 : 'UniversalContentItem:ddf0d380759e8404fb6b70aa941c06f7'
             }
-            buttonOverride={campus !== 'Cf Everywhere' ? '/events' : ''}
+            buttonOverride={
+              campus !== 'Cf Everywhere' ? '/events' : '/discover'
+            }
           />
         </Box>
       </Box>

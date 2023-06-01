@@ -89,7 +89,7 @@ const CfEverywhereButtons = () => (
           as="a"
           variant="secondary"
           target="_blank"
-          href="https://www.facebook.com/CFimpact/live_videos/?ref=page_internal&mt_nav=0&paipv=0&eav=AfaX2V8rVqlFtW-qLuhGIRf6Py7OSSDqCPlEW3n5s4eajw8i8rtnNvffvttlBENVG-k&_rdr"
+          href="https://www.facebook.com/CFimpact/"
           size="s"
           borderRadius="l"
           px="base"
