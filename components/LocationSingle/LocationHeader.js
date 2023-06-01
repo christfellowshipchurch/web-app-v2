@@ -69,7 +69,7 @@ const LocationHeader = (props = {}) => {
             {props?.subtitle ? (
               <Box
                 as="h2"
-                fontSize={{ _: 16, sm: 19, md: 24, lg: 30 }}
+                fontSize={{ _: 20, sm: 19, md: 24, lg: 30 }}
                 color="white"
                 textShadow="4px 4px 4px rgb(0 0 0 / 30%)"
                 mt={{ _: 10, sm: 0, md: 8, lg: 8 }}
