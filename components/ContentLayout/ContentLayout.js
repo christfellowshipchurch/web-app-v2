@@ -100,9 +100,6 @@ function ContentLayout(props = {}) {
                 />
               </Longform>
             </Card>
-            <Box py="l">
-              <Share />
-            </Box>
           </>
         ) : (
           props.renderContentD && (
