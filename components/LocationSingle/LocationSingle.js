@@ -98,8 +98,8 @@ function LocationSingle(props = {}) {
       }
       case 'Cf Everywhere': {
         return {
-          desktop: 4110,
-          mobile: 5930,
+          desktop: 3580,
+          mobile: 4925,
         };
       }
       default: {
@@ -157,7 +157,6 @@ function LocationSingle(props = {}) {
           options={{ variables: { id: thisWeekFeatureId } }}
         />
       </Box>
-
 
       {/* At this Location Section */}
       <Box bg="white" width="100%" px={{ _: 'base', md: 'xl' }} pt="base">
