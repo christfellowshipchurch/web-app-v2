@@ -99,7 +99,15 @@ const ServiceTimeContainer = styled.div`
   border-top-left-radius: ${themeGet('radii.base')};
   border-bottom-left-radius: ${themeGet('radii.base')};
   display: flex;
-  flex-wrap: wrap;
+
+  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+    flex-wrap: wrap;
+  }
+
+  @media screen and (min-width: ${themeGet('breakpoints.sm')}) {
+    flex-wrap: nowrap;
+  }
+
   justify-content: space-around;
   margin-top: ${themeGet('space.base')};
   padding-top: ${themeGet('space.base')};
