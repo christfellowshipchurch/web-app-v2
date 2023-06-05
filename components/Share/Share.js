@@ -5,6 +5,7 @@ import uniqueId from 'lodash/uniqueId';
 import { Box, Menu, List, Button, Icon } from 'ui-kit';
 
 import { handleSocialShare, shareMessaging } from './shareUtils.js';
+import useCurrentBreakpoint from 'hooks/useCurrentBreakpoint.js';
 
 const Share = props => {
   const _isNotBrowser =
@@ -15,6 +16,8 @@ const Share = props => {
   // If alternate shareMessages prop is passed through it will replace the default with this `shareMessaging` util method.
   const messages = shareMessaging({ ...props, url: document.URL });
 
+  const breakpoints = useCurrentBreakpoint()
+
   return (
     <Menu
       space="0"
@@ -22,7 +25,7 @@ const Share = props => {
       renderTrigger={({ toggle }) => (
         <Button id={uniqueId('share-')} onClick={toggle} display="flex">
           <Icon name="share" mr="xs" />
-          {props.shareTitle}
+          { breakpoints.isLarge ? props.shareTitle : '' }
         </Button>
       )}
       display="inline-flex"
