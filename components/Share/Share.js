@@ -25,7 +25,7 @@ const Share = props => {
       renderTrigger={({ toggle }) => (
         <Button id={uniqueId('share-')} onClick={toggle} display="flex">
           <Icon name="share" mr="xs" />
-          { breakpoints.isLarge ? props.shareTitle : '' }
+          { breakpoints.isXLarge || breakpoints.isLarge ? props.shareTitle : '' }
         </Button>
       )}
       display="inline-flex"
