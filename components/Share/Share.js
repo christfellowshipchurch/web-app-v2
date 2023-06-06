@@ -16,7 +16,7 @@ const Share = props => {
   // If alternate shareMessages prop is passed through it will replace the default with this `shareMessaging` util method.
   const messages = shareMessaging({ ...props, url: document.URL });
 
-  const breakpoints = useCurrentBreakpoint()
+  const currentBreakpoint = useCurrentBreakpoint();
 
   return (
     <Menu
@@ -24,8 +24,8 @@ const Share = props => {
       side={{ lg: 'right' }}
       renderTrigger={({ toggle }) => (
         <Button id={uniqueId('share-')} onClick={toggle} display="flex">
-          <Icon name="share" mr="xs" />
-          { breakpoints.isXLarge || breakpoints.isLarge ? props.shareTitle : '' }
+          <Icon name="share" mr={{ _: '', md: 'xs' }} />
+          {!currentBreakpoint.isSmall && props.shareTitle}
         </Button>
       )}
       display="inline-flex"

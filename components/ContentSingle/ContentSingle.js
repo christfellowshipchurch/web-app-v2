@@ -5,7 +5,7 @@ import { get, includes, keyBy } from 'lodash';
 
 import { Box, Avatar, Loader, Button } from 'ui-kit';
 import { ContentLayout, Share } from 'components';
-import { useNodeActions } from 'hooks';
+import { useCurrentBreakpoint, useNodeActions } from 'hooks';
 import { getMediaType, getUrlFromRelatedNode } from 'utils';
 import { useAnalytics } from 'providers/AnalyticsProvider';
 
@@ -17,14 +17,26 @@ function ContentSingle(props = {}) {
   const [currentVideo, setCurrentVideo] = useState(
     Array.isArray(props.data?.videos) ? props.data.videos[0] : null
   );
+  const [showShare, setShowShare] = useState(true);
   const router = useRouter();
   const analytics = useAnalytics();
+  const currentBreakpoint = useCurrentBreakpoint();
 
   const { actions } = useNodeActions({
     variables: {
       nodeId: props?.data?.id,
     },
   });
+
+  useEffect(() => {
+    if (currentBreakpoint.isSmall && !author) {
+      setShowShare(true);
+    } else if (currentBreakpoint.isSmall && author) {
+      setShowShare(false);
+    } else if (currentBreakpoint.isLarge) {
+      setShowShare(true);
+    }
+  }, [currentBreakpoint]);
 
   useEffect(() => {
     // Do we have videos now, when we didn't before?
@@ -125,29 +137,48 @@ function ContentSingle(props = {}) {
       )}
       renderContentB={() =>
         author && (
-          <Box display="flex" mt="base">
-            <Box mr="base">
-              <Avatar
-                name={author.firstName}
-                src={author.photo?.uri}
-                height="60px"
-                width="60px"
-              />
-            </Box>
-            <Box display="flex" justifyContent="center" flexDirection="column">
-              <Box as="h4" mb="0">
-                {authorName}
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
+            mt="base"
+          >
+            <Box display="flex">
+              <Box mr="base">
+                <Avatar
+                  name={author.firstName}
+                  src={author.photo?.uri}
+                  height="60px"
+                  width="60px"
+                />
               </Box>
-              <Box>{format(new Date(publishDate), 'MMMM d, yyyy')}</Box>
+              <Box
+                display="flex"
+                justifyContent="center"
+                flexDirection="column"
+              >
+                <Box as="h4" mb="0">
+                  {authorName}
+                </Box>
+                <Box>{format(new Date(publishDate), 'MMMM d, yyyy')}</Box>
+              </Box>
             </Box>
+            {!!currentBreakpoint.isSmall && <Share title={title} />}
           </Box>
         )
       }
-      renderC={() => (
-        <Box justifySelf="flex-end" alignSelf="start">
-          <Share title={title} />
-        </Box>
-      )}
+      renderC={() =>
+        showShare && (
+          <Box
+            display="flex"
+            justifySelf="flex-end"
+            alignSelf="start"
+            mb="base"
+          >
+            <Share title={title} />
+          </Box>
+        )
+      }
       contentTitleE={videos?.length >= 2 ? 'Videos' : null}
       renderContentE={() => (
         <>

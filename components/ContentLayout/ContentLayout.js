@@ -142,7 +142,7 @@ function ContentLayout(props = {}) {
             alignItems="center"
             display={{ lg: 'grid' }}
             gridTemplateColumns="70% 30%"
-            mb="l"
+            mb={{ _: '', md: 'l' }}
           >
             {renderB()}
             {renderC()}
