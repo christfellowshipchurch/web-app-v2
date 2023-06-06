@@ -108,6 +108,11 @@ module.exports = {
         destination: '/messages/god-lives-in-you-joyce-meyer',
         permanent: true,
       },
+      {
+        source: '/locations/riviera-beach',
+        destination: '/riviera-beach',
+        permanent: true,
+      },
       // TODO: Uncomment these lines to hide Group Finder.
       // NOTE: We can't get `config/flags` in this file.
       // {
