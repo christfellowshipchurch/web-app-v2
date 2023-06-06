@@ -21,7 +21,7 @@
     "@fingerprintjs/fingerprintjs-pro": "^3.5.3",
     "@n8tb1t/use-scroll-position": "^2.0.3",
     "@segment/analytics-next": "^1.46.0",
-    "@storybook/addon-controls": "^6.3.7",
+    "@storybook/addon-controls": "^7.0.18",
     "@storybook/cli": "^6.3.7",
     "@styled-system/theme-get": "^5.1.2",
     "amplitude-js": "^8.1.0",
