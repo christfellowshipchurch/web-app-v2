@@ -33,7 +33,7 @@ function ContentSingle(props = {}) {
       setShowShare(true);
     } else if (currentBreakpoint.isSmall && author) {
       setShowShare(false);
-    } else if (currentBreakpoint.isLarge) {
+    } else if (!currentBreakpoint.isSmall) {
       setShowShare(true);
     }
   }, [currentBreakpoint]);
@@ -163,7 +163,7 @@ function ContentSingle(props = {}) {
                 <Box>{format(new Date(publishDate), 'MMMM d, yyyy')}</Box>
               </Box>
             </Box>
-            {!!currentBreakpoint.isSmall && <Share title={title} />}
+            {!showShare && <Share title={title} />}
           </Box>
         )
       }

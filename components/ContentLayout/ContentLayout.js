@@ -140,7 +140,7 @@ function ContentLayout(props = {}) {
           {renderA()}
           <Box
             alignItems="center"
-            display={{ lg: 'grid' }}
+            display={{ md: 'grid' }}
             gridTemplateColumns="70% 30%"
             mb={{ _: '', md: 'l' }}
           >
