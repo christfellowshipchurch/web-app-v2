@@ -50,12 +50,17 @@ function HorizontalCardListFeature(props = {}) {
       </Box>
     );
   }
+
+  console.log(cards.length);
+  if (cards.length === 0) {
+    return <Box>You don't have any prayers right now</Box>;
+  }
   if (cards && cards[0]?.action === 'READ_PRAYER') {
     return props.loading ? (
       <Loader text="Loading your prayers" />
     ) : (
       <Box>
-        {!isEmpty(title) && <Box as="h1">{title}</Box>}
+        {!isEmpty(title) && <Box as="h2">{title}</Box>}
         {!isEmpty(subtitle) && <Box as="p">{subtitle}</Box>}
         <CardCarousel
           cardsDisplayed={4}
