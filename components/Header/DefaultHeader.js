@@ -13,7 +13,8 @@ function DefaultHeader(props = {}) {
     <>
       <ActionBannerProvider Component={ActionBanner} />
       <Styled bg="white" position="relative" boxShadow="base" {...props}>
-        <Link href="/">
+        {/* Next 13 doesn't support a tags as children of Link comoonent so we need to add legacyBehavior prop */}
+        <Link legacyBehavior href="/">
           <a>
             <Box as={Logo} mx={{ _: 'auto', md: '0' }} mb="0" />
           </a>
