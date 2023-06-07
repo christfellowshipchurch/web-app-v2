@@ -53,7 +53,19 @@ function HorizontalCardListFeature(props = {}) {
 
   console.log(cards.length);
   if (cards.length === 0) {
-    return <Box>You don't have any prayers right now</Box>;
+    return (
+      <Box>
+        {!isEmpty(title) && <Box as="h2">{title}</Box>}
+        {!isEmpty(subtitle) && <Box as="p">{subtitle}</Box>}
+        <Box>
+          {' '}
+          <Box as="a" href="/connect">
+            Click here
+          </Box>{' '}
+          to let us know how we can pray for you.
+        </Box>
+      </Box>
+    );
   }
   if (cards && cards[0]?.action === 'READ_PRAYER') {
     return props.loading ? (
