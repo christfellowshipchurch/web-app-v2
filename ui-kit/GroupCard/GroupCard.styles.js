@@ -77,7 +77,6 @@ const GroupCardContent = styled.div`
   display: flex;
   flex-direction: column;
   padding: ${themeGet('space.base')};
-  height: 100%;
 
   ${system}
 `;
