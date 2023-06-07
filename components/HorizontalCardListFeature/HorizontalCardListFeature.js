@@ -59,7 +59,7 @@ function HorizontalCardListFeature(props = {}) {
         {!isEmpty(subtitle) && <Box as="p">{subtitle}</Box>}
         <Box>
           {' '}
-          <Box as="a" href="/connect">
+          <Box as="a" href="https://rock.gocf.org/RequestPrayer">
             Click here
           </Box>{' '}
           to let us know how we can pray for you.
