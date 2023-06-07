@@ -31,6 +31,16 @@ export default function Community(props = {}) {
   const [filtersState, filtersDispatch] = useGroupFilters();
   const modalDispatch = useModalDispatch();
 
+  // Logic for Search bar: sets values and handles search
+  const { values, handleSubmit, handleChange, setValues, reset } = useForm(
+    () => {
+      router.push({
+        pathname: `/groups/search`,
+        query: filtersState.valuesSerialized,
+      });
+    }
+  );
+
   // Reset Filter State
   useEffect(() => {
     filtersDispatch(resetValues());
@@ -45,16 +55,6 @@ export default function Community(props = {}) {
       setValues({ text: filtersState.values.text[0] });
     }
   }, [filtersState.values.text, setValues, router]);
-
-  // Logic for Search bar: sets values and handles search
-  const { values, handleSubmit, handleChange, setValues, reset } = useForm(
-    () => {
-      router.push({
-        pathname: `/groups/search`,
-        query: filtersState.valuesSerialized,
-      });
-    }
-  );
 
   function ensureAuthentication(onSuccess) {
     if (!authenticated) {
