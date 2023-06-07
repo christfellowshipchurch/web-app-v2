@@ -68,7 +68,7 @@ const FeatureFeed = (props = {}) => {
         const el = window.document.getElementById(id);
         const r = el?.getBoundingClientRect();
         window.top.scroll({
-          top: scrollY + r?.top,
+          top: window.scrollY + r?.top,
           behavior: 'smooth',
         });
       }, 600);

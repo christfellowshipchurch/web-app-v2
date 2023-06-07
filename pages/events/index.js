@@ -9,11 +9,6 @@ import { useAnalytics } from 'providers/AnalyticsProvider';
 
 export default function Events(props = {}) {
   const analytics = useAnalytics();
-  const options = {
-    variables: {
-      pathname: 'events',
-    },
-  };
 
   //Segment Page Tracking
   useEffect(() => {
@@ -22,6 +17,12 @@ export default function Events(props = {}) {
       mediaType: 'Information',
     });
   }, []);
+
+  const options = {
+    variables: {
+      pathname: 'events',
+    },
+  };
 
   return (
     <Layout title="Events">
