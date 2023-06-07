@@ -31,6 +31,31 @@ export default function Community(props = {}) {
   const [filtersState, filtersDispatch] = useGroupFilters();
   const modalDispatch = useModalDispatch();
 
+  // Logic for Search bar: sets values and handles search
+  const { values, handleSubmit, handleChange, setValues, reset } = useForm(
+    () => {
+      router.push({
+        pathname: `/groups/search`,
+        query: filtersState.valuesSerialized,
+      });
+    }
+  );
+
+  // Reset Filter State
+  useEffect(() => {
+    filtersDispatch(resetValues());
+  }, [filtersDispatch]);
+
+  useEffect(() => {
+    if (!flags.GROUP_FINDER) router.push('/');
+  }, [router]);
+
+  useEffect(() => {
+    if (filtersState.values.text.length) {
+      setValues({ text: filtersState.values.text[0] });
+    }
+  }, [filtersState.values.text, setValues, router]);
+
   function ensureAuthentication(onSuccess) {
     if (!authenticated) {
       modalDispatch(showModal('Auth'));
@@ -49,40 +74,15 @@ export default function Community(props = {}) {
     ensureAuthentication(navigateToConnect);
   }
 
-  // Reset Filter State
-  useEffect(() => {
-    filtersDispatch(resetValues());
-  }, [filtersDispatch]);
-
-  useEffect(() => {
-    if (!flags.GROUP_FINDER) router.push('/');
-  }, [router]);
-
   function handleOnClick() {
     router.push('/groups/search');
   }
 
-  if (!flags.GROUP_FINDER) return null;
-
-  // Logic for Search bar: sets values and handles search
-  const { values, handleSubmit, handleChange, setValues, reset } = useForm(
-    () => {
-      router.push({
-        pathname: `/groups/search`,
-        query: filtersState.valuesSerialized,
-      });
-    }
-  );
-
-  useEffect(() => {
-    if (filtersState.values.text.length) {
-      setValues({ text: filtersState.values.text[0] });
-    }
-  }, [filtersState.values.text, setValues, router]);
-
   const handleClick = event => {
     filtersDispatch(update({ text: [values.text] }));
   };
+
+  if (!flags.GROUP_FINDER) return null;
 
   return (
     <>

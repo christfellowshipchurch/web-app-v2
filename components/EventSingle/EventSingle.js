@@ -9,6 +9,14 @@ import { useAnalytics } from 'providers/AnalyticsProvider';
 
 function EventSingle(props = {}) {
   const analytics = useAnalytics();
+
+  useEffect(() => {
+    analytics.page({
+      contentCategory: 'Information',
+      mediaType: 'Information',
+    });
+  }, []);
+
   if (props.loading) {
     return (
       <Box
@@ -23,13 +31,6 @@ function EventSingle(props = {}) {
       </Box>
     );
   }
-
-  useEffect(() => {
-    analytics.page({
-      contentCategory: 'Information',
-      mediaType: 'Information',
-    });
-  }, []);
 
   const author = props?.data?.author;
   const coverImage = props?.data?.coverImage;

@@ -21,7 +21,7 @@ import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
 import { campusLinks } from './locationData';
 import Styled from './LocationSingle.styles';
-import { find, includes } from 'lodash';
+import { add, find, includes } from 'lodash';
 
 const DAY_KEYS = {
   SUNDAY: 0,
@@ -60,7 +60,7 @@ const CampusInfo = ({
   additionalInfo,
 }) => {
   const modalDispatch = useModalDispatch();
-  const addressFirst = `${street1}`;
+  const addressFirst = street1 ? `${street1}` : null;
   const addressLast = `${city}, ${state} ${postalCode?.substring(0, 5)}`;
 
   const icsLinkEvents = serviceTimes?.map(({ day, time }) => {
@@ -162,53 +162,54 @@ const CampusInfo = ({
               </Styled.InfoBox>
             )}
             {/* Address and Church You Call Home */}
-            {addressFirst && (
-              <>
+            <>
+              <Box
+                display="flex"
+                flexDirection={{ _: 'column', md: 'row' }}
+                alignItems={{ _: 'center', md: 'start' }}
+                mx={{ _: 'l', md: 0 }}
+                py="l"
+                mt={{ _: 0, md: 'base' }}
+              >
                 <Box
-                  display="flex"
-                  flexDirection={{ _: 'column', md: 'row' }}
-                  alignItems={{ _: 'center', md: 'start' }}
-                  mx={{ _: 'l', md: 0 }}
-                  py="l"
-                  mt={{ _: 0, md: 'base' }}
-                >
-                  <Box
-                    display={{ _: 'none', md: 'flex' }}
-                    as="h3"
-                    color="secondary"
-                    flex="1"
-                  >
-                    Address
-                  </Box>
-                  <Box
-                    as="h3"
-                    textAlign={{ _: 'center', md: 'start' }}
-                    maxWidth={300}
-                    flex="1"
-                  >
-                    <Box>{addressFirst}</Box>
-                    <Box>{addressLast}</Box>
-                  </Box>
-                  <Box textAlign="right" flex="1">
-                    <Button
-                      as="a"
-                      target="_blank"
-                      href={handleCampusDirections}
-                      borderRadius="xxl"
-                      size="s"
-                      px="base"
-                      mt="base"
-                    >
-                      GET DIRECTIONS
-                    </Button>
-                  </Box>
-                </Box>
-                <StyledDivider
                   display={{ _: 'none', md: 'flex' }}
-                  width="100%"
-                />
-              </>
-            )}
+                  as="h3"
+                  color="secondary"
+                  flex="1"
+                >
+                  Address
+                </Box>
+                <Box
+                  as="h3"
+                  textAlign={{ _: 'center', md: 'start' }}
+                  maxWidth={300}
+                  flex="1"
+                >
+                  {addressFirst ? (
+                    <>
+                      <Box>{addressFirst}</Box>
+                      <Box>{addressLast}</Box>
+                    </>
+                  ) : (
+                    <Loader noLabel />
+                  )}
+                </Box>
+                <Box textAlign="right" flex="1">
+                  <Button
+                    as="a"
+                    target="_blank"
+                    href={handleCampusDirections}
+                    borderRadius="xxl"
+                    size="s"
+                    px="base"
+                    mt="base"
+                  >
+                    GET DIRECTIONS
+                  </Button>
+                </Box>
+              </Box>
+              <StyledDivider display={{ _: 'none', md: 'flex' }} width="100%" />
+            </>
             <Box display={{ _: 'none', md: 'flex' }} mt="l">
               <Box flex="1">
                 <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
@@ -238,7 +239,7 @@ const CampusInfo = ({
               {`${pastor?.firstName} ${pastor?.lastName}`}
             </Box>
           ) : (
-            <Loader mt="base" mb="xs" />
+            <Loader noLabel mt="base" mb="xs" />
           )}
           <Box
             as="h5"
