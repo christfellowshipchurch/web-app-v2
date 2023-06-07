@@ -6,7 +6,6 @@ module.exports = {
   images: {
     domains: ['cloudfront.christfellowship.church'],
   },
-  target: 'serverless',
   async redirects() {
     return [
       {

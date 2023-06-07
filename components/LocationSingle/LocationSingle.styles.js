@@ -131,7 +131,7 @@ const VideoCover = styled.video`
   top: 0;
   left: 0;
 
-  object-fit cover;
+  object-fit: cover;
 
   ${system}
 `;

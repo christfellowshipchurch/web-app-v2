@@ -26,6 +26,8 @@ import faqData from 'components/FAQ/faqData';
 import { showModal, useModalDispatch } from 'providers/ModalProvider';
 
 function LocationSingle(props = {}) {
+  const modalDispatch = useModalDispatch();
+
   if (props.loading) {
     return (
       <Layout
@@ -47,8 +49,6 @@ function LocationSingle(props = {}) {
       </Layout>
     );
   }
-
-  const modalDispatch = useModalDispatch();
 
   // note : this means that there is not a valid page found on the API, so we'll render the 404 message
   if (!props.loading && !props?.data?.id) {
@@ -85,19 +85,19 @@ function LocationSingle(props = {}) {
         return {
           desktop: 3490,
           mobile: 5420,
-       }
+        };
       }
       case 'Downtown West Palm Beach': {
         return {
           desktop: 3470,
           mobile: 4750,
-       }
-       }
-       default: {
+        };
+      }
+      default: {
         return {
           desktop: 3470,
           mobile: 5270,
-        }
+        };
       }
     }
   }
@@ -166,10 +166,7 @@ function LocationSingle(props = {}) {
       {/* FAQs Section */}
       <Box bg="white" px="base" py="xl" width="100%">
         <Box mx="auto" maxWidth={1200}>
-          <FAQ 
-            data={faqData(campus)}
-            scrollPosition={campusScroll(campus)}
-          />
+          <FAQ data={faqData(campus)} scrollPosition={campusScroll(campus)} />
         </Box>
       </Box>
 
