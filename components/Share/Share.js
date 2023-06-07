@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import uniqueId from 'lodash/uniqueId';
 
 import { Box, Menu, List, Button, Icon } from 'ui-kit';
+import { useCurrentBreakpoint } from 'hooks';
 
 import { handleSocialShare, shareMessaging } from './shareUtils.js';
-import useCurrentBreakpoint from 'hooks/useCurrentBreakpoint.js';
 
 const Share = props => {
+  const currentBreakpoint = useCurrentBreakpoint();
+
   const _isNotBrowser =
     typeof window === 'undefined' || typeof document === 'undefined';
 
@@ -15,8 +17,6 @@ const Share = props => {
 
   // If alternate shareMessages prop is passed through it will replace the default with this `shareMessaging` util method.
   const messages = shareMessaging({ ...props, url: document.URL });
-
-  const currentBreakpoint = useCurrentBreakpoint();
 
   return (
     <Menu
