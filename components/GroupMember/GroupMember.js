@@ -11,11 +11,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useApolloClient } from '@apollo/client';
 
-import { useModalDispatch, showModal, hideModal } from 'providers/ModalProvider';
+import {
+  useModalDispatch,
+  showModal,
+  hideModal,
+} from 'providers/ModalProvider';
 import { Box, Button, GroupMemberStatusBadge, SquareAvatar } from 'ui-kit';
 import { isEmpty } from 'lodash';
 
-const GroupMember = ({ id, person, role, status, groupId }) => {
+const GroupMember = ({ id, person, role, status, groupId, groupRoleId }) => {
   const modalDispatch = useModalDispatch();
   const client = useApolloClient();
   const handlePressView = groupMemberId => {
@@ -26,7 +30,7 @@ const GroupMember = ({ id, person, role, status, groupId }) => {
         id: groupMemberId,
         groupId,
         onEmail: () => {
-          modalDispatch(hideModal())
+          modalDispatch(hideModal());
         },
         onSave: ({ status, inactiveStatusReason }) => {
           client.cache.modify({
@@ -89,19 +93,20 @@ const GroupMember = ({ id, person, role, status, groupId }) => {
           </Box>
         </Box>
       </Box>
-
-      <Button
-        size="s"
-        rounded
-        variant="secondary"
-        fontSize="0.65rem"
-        py="3px"
-        px="6px"
-        disabled={isEmpty(id)}
-        onClick={() => handlePressView(id)}
-      >
-        VIEW
-      </Button>
+      {groupRoleId !== '48' && (
+        <Button
+          size="s"
+          rounded
+          variant="secondary"
+          fontSize="0.65rem"
+          py="3px"
+          px="6px"
+          disabled={isEmpty(id)}
+          onClick={() => handlePressView(id)}
+        >
+          VIEW
+        </Button>
+      )}
     </Box>
   );
 };
