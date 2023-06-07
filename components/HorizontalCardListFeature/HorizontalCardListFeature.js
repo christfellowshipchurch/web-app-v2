@@ -51,7 +51,6 @@ function HorizontalCardListFeature(props = {}) {
     );
   }
 
-  console.log(cards.length);
   if (cards.length === 0) {
     return (
       <Box>
