@@ -21,7 +21,7 @@ const Share = props => {
   return (
     <Menu
       space="0"
-      side={{ lg: 'right' }}
+      side={{ lg: 'right', ...props.side }}
       renderTrigger={({ toggle }) => (
         <Button id={uniqueId('share-')} onClick={toggle} display="flex">
           <Icon name="share" mr={{ _: '', md: 'xs' }} />

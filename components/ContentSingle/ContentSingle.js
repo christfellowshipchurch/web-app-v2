@@ -163,7 +163,7 @@ function ContentSingle(props = {}) {
                 <Box>{format(new Date(publishDate), 'MMMM d, yyyy')}</Box>
               </Box>
             </Box>
-            {!showShare && <Share title={title} />}
+            {!showShare && <Share side="right" title={title} />}
           </Box>
         )
       }
