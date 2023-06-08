@@ -32,36 +32,6 @@ export default function ContentVideo(props = {}) {
       />
     </Styled.VideoContainer>
   );
-
-  return (
-    <DefaultCard
-      position="relative"
-      height={{ _: '258px', md: '596px' }}
-      cursor="pointer"
-      contentProps={{
-        p: '0 !important',
-      }}
-      onClick={handlePlay}
-      scaleCoverImage={!playClicked && !currentBreakpoint.isSmall}
-      coverImage={props.poster}
-      coverImageContentPosition="center"
-      coverImageContent={() =>
-        playClicked || currentBreakpoint.isSmall ? (
-          <Styled.VideoContainer>
-            <Video
-              src={props.video.sources[0].uri}
-              poster={props.poster}
-              autoPlay={true}
-              playsInline={true}
-            />
-          </Styled.VideoContainer>
-        ) : (
-          <Icon name="play" color="white" size="40%" opacity="0.95" />
-        )
-      }
-      mb="l"
-    />
-  );
 }
 
 ContentVideo.propTypes = {
