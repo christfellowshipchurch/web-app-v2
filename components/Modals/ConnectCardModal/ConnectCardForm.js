@@ -28,8 +28,10 @@ function ConnectCardForm(props = {}) {
         /**
          * note : 🚨 Warning 🚨 Right now the Rock workflow is returning an invalid reponse error even though the workflow is working. If it returns that error this statment makes sure it still returns a success state. We'll need to revisit this issue on our API later on.
          */
-        if (includes(toString(e), 'invalid json response body')) {
-          setSuccess(true);
+        if (
+          includes(toString(e), 'ApolloError: invalid json response body at')
+        ) {
+          return setSuccess(true);
         }
         setSuccess(false);
         const currentErrors = {};

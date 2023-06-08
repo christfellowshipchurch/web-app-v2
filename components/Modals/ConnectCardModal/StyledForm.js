@@ -137,7 +137,15 @@ const StyledForm = ({
         </Box>
       </Box>
       {/* All that Applies */}
-      <Box display="grid" gridRowGap="s" textAlign="left" my="l" mr="auto">
+      <Box
+        display="grid"
+        gridColumnGap="base"
+        gridRowGap="s"
+        textAlign="left"
+        my="l"
+        mr="auto"
+        maxWidth={650}
+      >
         <Box as="p" fontStyle="italic">
           I am looking to:
         </Box>
@@ -186,10 +194,7 @@ const StyledForm = ({
             />
             <StyledCheckBox
               id="other"
-              onChange={() => {
-                setShowOther(!showOther);
-                handleChange;
-              }}
+              onChange={() => setShowOther(!showOther)}
               text="Other."
             />
           </Box>
