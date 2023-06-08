@@ -13,6 +13,8 @@ export const GROUP_MEMBER_FRAGMENT = gql`
   fragment groupMemberFragment on GroupMember {
     id
 
+    groupRoleId
+
     note
 
     status {

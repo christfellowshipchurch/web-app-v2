@@ -11,7 +11,6 @@ const Radio = styled.div`
 
 const Input = styled.input`
   margin-right: ${themeGet('space.xs')};
-  position: relative;
   top: 4px;
 
   ${system}

@@ -11,10 +11,6 @@ function FAQ(props = {}) {
   /**
    * note : This is a custom scroll position setup for the Location Pages so it properly scrolls back to the FAQ section when pressing the See Less button. We may want to revisit how we determine the scroll position so its more dynamic.
    */
-  let currentBreakpoint = useCurrentBreakpoint();
-  let seeLessScrollPosition = currentBreakpoint.isSmall
-    ? props?.scrollPosition?.mobile
-    : props?.scrollPosition?.desktop;
 
   return (
     <Styled id="faq" {...props}>
@@ -54,7 +50,6 @@ function FAQ(props = {}) {
             <Button
               onClick={() => {
                 window.scrollTo({
-                  top: seeLessScrollPosition,
                   behavior: 'smooth',
                 });
                 setDisplay(display ? null : 'none');
@@ -76,20 +71,12 @@ FAQ.propTypes = {
   data: PropTypes.array,
   displayAll: PropTypes.bool,
   showDescription: PropTypes.bool,
-  scrollPosition: PropTypes.shape({
-    desktop: PropTypes.number,
-    mobile: PropTypes.number,
-  }),
 };
 
 FAQ.defaultProps = {
   data: [],
   displayAll: false,
   showDescription: true,
-  scrollPosition: {
-    desktop: 2800,
-    mobile: 4450,
-  },
 };
 
 export default FAQ;

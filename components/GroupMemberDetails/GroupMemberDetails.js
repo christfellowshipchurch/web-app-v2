@@ -157,12 +157,6 @@ const GroupMemberDetails = ({
         </Row>
       )}
 
-      {!isEmpty(person?.address) && (
-        <Row label="Address">
-          <Styled.Label as="h4">{renderAddress(person?.address)}</Styled.Label>
-        </Row>
-      )}
-
       <Row label="Notes">
         <TextArea
           id="group-leader-notes"

@@ -54,7 +54,7 @@ const GroupMemberDetailsStory = () => {
   const groupMember = {
     status: {
       id: 'some-status-identifier',
-      label: status,
+      label: 'status',
     },
     role: 'Member',
     person: {

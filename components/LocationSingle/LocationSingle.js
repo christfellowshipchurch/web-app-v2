@@ -26,6 +26,8 @@ import faqData from 'components/FAQ/faqData';
 import { showModal, useModalDispatch } from 'providers/ModalProvider';
 
 function LocationSingle(props = {}) {
+  const modalDispatch = useModalDispatch();
+
   if (props.loading) {
     return (
       <Layout
@@ -47,8 +49,6 @@ function LocationSingle(props = {}) {
       </Layout>
     );
   }
-
-  const modalDispatch = useModalDispatch();
 
   // note : this means that there is not a valid page found on the API, so we'll render the 404 message
   if (!props.loading && !props?.data?.id) {
@@ -78,6 +78,17 @@ function LocationSingle(props = {}) {
    */
   const campusAdditionalInfo = find(additionalInfoCampusData, { name: campus });
   const headerContent = find(headerData, { name: campus });
+
+  let element;
+  if (typeof document !== 'undefined') {
+    element = document.getElementById('FAQ');
+  }
+
+  function faqScroll() {
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 
   return (
     <Layout
@@ -141,9 +152,9 @@ function LocationSingle(props = {}) {
       </Box>
 
       {/* FAQs Section */}
-      <Box bg="white" px="base" py="xl" width="100%">
+      <Box id="FAQ" bg="white" px="base" py="xl" width="100%">
         <Box mx="auto" maxWidth={1200}>
-          <FAQ data={faqData(campus)} />
+          <FAQ data={faqData(campus)} onClick={faqScroll} />
         </Box>
       </Box>
 
