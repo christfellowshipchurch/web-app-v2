@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import startCase from 'lodash/startCase';
 
@@ -19,7 +19,9 @@ import {
 import { Layout, CustomLink } from 'components';
 import { useAnalytics } from 'providers/AnalyticsProvider';
 
+
 export default function DiscoverFilterCategoriesPreview(props) {
+  const router = useRouter();
   const { query, back } = useRouter();
   const analytics = useAnalytics();
   const type = 'UniversalContentItem';
@@ -46,6 +48,8 @@ export default function DiscoverFilterCategoriesPreview(props) {
         maxWidth={utils.rem('1100px')}
         px="base"
         py={{ _: 'l', lg: 'xl' }}
+
+        
       >
         <Box
           alignItems="center"
@@ -54,12 +58,18 @@ export default function DiscoverFilterCategoriesPreview(props) {
           mb="l"
         >
           <Box as="h1" mb="0">
-            {categoryTitle}
+            {categoryTitle} 
           </Box>
-          <Button variant="link" onClick={() => back()} pr="0">
-            <Icon name="angleLeft" /> Back
-          </Button>
+            <Box>
+            <Button display="flex" py="none"
+               variant="link" onClick={() => router.back()}>
+              &larr; Back
+            </Button>
+            <Box as="h1">{props?.data?.title}</Box>
+          </Box>
         </Box>
+      
+
         <CardGrid columns="3" mb="xl">
           {loading ? (
             <Loader />
