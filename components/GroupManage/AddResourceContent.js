@@ -18,7 +18,7 @@ function AddResourceContent({ data, loading, currentResources }) {
 
   useEffect(() => {
     if (!loading) {
-      // Simulating a delay of 500 milliseconds before setting isDataLoaded to true
+      // Adding a delay to the loading to make sure all the data is loaded for the categories to be created
       const delay = setTimeout(() => {
         const categorizedItems = categorizeItemsByTitle(data);
         setCategories(categorizedItems);
