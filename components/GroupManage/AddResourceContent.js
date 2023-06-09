@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { useGroupManage, update } from 'providers/GroupManageProvider';
@@ -11,10 +11,23 @@ function AddResourceContent({ data, loading, currentResources }) {
   const setStatus = s => dispatch(update({ resourceStatus: s }));
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedItem, setSelectedItem] = useState('');
+  const [categories, setCategories] = useState({});
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
 
   const [updateGroupResourceContentItem] = useUpdateGroupResourceContentItem();
 
-  const categories = categorizeItemsByTitle(data);
+  useEffect(() => {
+    if (!loading) {
+      // Simulating a delay of 500 milliseconds before setting isDataLoaded to true
+      const delay = setTimeout(() => {
+        const categorizedItems = categorizeItemsByTitle(data);
+        setCategories(categorizedItems);
+        setIsDataLoaded(true);
+      }, 1500);
+
+      return () => clearTimeout(delay);
+    }
+  }, [data, loading]);
 
   const handleCategoryChange = event => {
     setSelectedCategory(event.target.value);
@@ -61,9 +74,7 @@ function AddResourceContent({ data, loading, currentResources }) {
           {message}
         </Box>
       )}
-      {loading ? (
-        <Loader pt="s" pb="base" />
-      ) : (
+      {isDataLoaded ? (
         <>
           <Select
             defaultValue=""
@@ -106,6 +117,8 @@ function AddResourceContent({ data, loading, currentResources }) {
               ))}
           </Select>
         </>
+      ) : (
+        <Loader pt="s" pb="base" />
       )}
       <Box alignItems="center" display="flex">
         <Button

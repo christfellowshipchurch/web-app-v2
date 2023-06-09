@@ -19,6 +19,8 @@ const Select = styled.select`
   max-width: 100%;
   padding: ${themeGet('space.s')};
   width: 100%;
+  word-wrap: break-word;
+  padding-right: 30px;
 
   :focus {
     border-color: ${themeGet('colors.primary')};
