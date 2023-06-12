@@ -5,7 +5,7 @@ import { useGroupManage, update } from 'providers/GroupManageProvider';
 import { useUpdateGroupResourceContentItem } from 'hooks';
 import { Box, Button, Loader, Select } from 'ui-kit';
 
-function AddResourceContent({ data, loading, currentResources }) {
+function AddResourceContent({ data, loading, totalCount, currentResources }) {
   const [{ resourceStatus: status, groupData, message }, dispatch] =
     useGroupManage();
   const setStatus = s => dispatch(update({ resourceStatus: s }));
@@ -16,18 +16,14 @@ function AddResourceContent({ data, loading, currentResources }) {
 
   const [updateGroupResourceContentItem] = useUpdateGroupResourceContentItem();
 
+  // ** We evetually want to update the way we load all the content items for Group resources in the backround and not have to wait for them to load all at once.
   useEffect(() => {
-    if (!loading) {
-      // Adding a delay to the loading to make sure all the data is loaded for the categories to be created
-      const delay = setTimeout(() => {
-        const categorizedItems = categorizeItemsByTitle(data);
-        setCategories(categorizedItems);
-        setIsDataLoaded(true);
-      }, 1500);
-
-      return () => clearTimeout(delay);
+    if (!loading && data && data.length === totalCount) {
+      const categorizedItems = categorizeItemsByTitle(data);
+      setCategories(categorizedItems);
+      setIsDataLoaded(true);
     }
-  }, [data, loading]);
+  }, [data, loading, totalCount]);
 
   const handleCategoryChange = event => {
     setSelectedCategory(event.target.value);
@@ -146,6 +142,7 @@ AddResourceContent.propTypes = {
     })
   ),
   loading: PropTypes.bool,
+  totalCount: PropTypes.number,
   currentResources: PropTypes.arrayOf(PropTypes.string),
 };
 
