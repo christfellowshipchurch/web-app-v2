@@ -5,7 +5,8 @@ import { Box } from 'ui-kit';
 function CustomLink({ Component: _Component, href, ...props }) {
   if (!_Component) {
     return (
-      <Link href={href} passHref={true}>
+      // Next 13 doesn't support a tags as children of Link comoonent so we need to add legacyBehavior prop
+      <Link legacyBehavior href={href} passHref={true}>
         <Box as="a" cursor="pointer" textDecoration="none" {...props}>
           {props.children}
         </Box>
@@ -14,7 +15,8 @@ function CustomLink({ Component: _Component, href, ...props }) {
   }
 
   return (
-    <Link href={href} passHref>
+    // Next 13 doesn't support a tags as children of Link comoonent so we need to add legacyBehavior prop
+    <Link legacyBehavior href={href} passHref>
       <WrappedComponent Component={_Component} {...props} />
     </Link>
   );

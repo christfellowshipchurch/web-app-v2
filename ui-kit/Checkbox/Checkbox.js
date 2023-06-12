@@ -39,7 +39,7 @@ Checkbox.propTypes = {
 
 Checkbox.defaultProps = {
   type: 'checkbox',
-  validationMessage: 'Select this checkbox to continue',
+  validationmessage: 'Select this checkbox to continue',
   size: 15,
 };
 
