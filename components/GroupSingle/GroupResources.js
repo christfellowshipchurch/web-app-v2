@@ -19,7 +19,7 @@ export default function GroupResources(props = {}) {
       {props.resources
         .filter(resource => resource.title || resource.relatedNode?.title)
         .map(resource => (
-          <Box key={resource.relatedNode?.id} as="li">
+          <Box key={resource.relatedNode?.id} as="li" display="flex">
             <CustomLink
               key={resource.relatedNode?.id}
               href={getUrlFromRelatedNode(resource.relatedNode)}
