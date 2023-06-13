@@ -34,6 +34,7 @@ const GroupDateTime = ({
     return notes.trim();
   };
   const notes = getNotes();
+  const isTime = dateTime?.start && dateTime?.end;
 
   return (
     <Box
@@ -48,22 +49,24 @@ const GroupDateTime = ({
         NEXT MEETING
       </Box>
       <Box as="h3" mb="base">
-        {dateTextFormat(dateTime?.start)}
+        {isTime && dateTextFormat(dateTime?.start)}
       </Box>
 
-      <AddToCalendar
-        event={{
-          title,
-          summary,
-          // Location is the webUrl for now because we have multiple potential video calls endpoints
-          address,
-          startTime: dateTime.start,
-          endTime: dateTime.end,
-          description: notes,
-        }}
-        alternateDescription={notes}
-        label={true}
-      />
+      {isTime && (
+        <AddToCalendar
+          event={{
+            title,
+            summary,
+            // Location is the webUrl for now because we have multiple potential video calls endpoints
+            address,
+            startTime: dateTime.start,
+            endTime: dateTime.end,
+            description: notes,
+          }}
+          alternateDescription={notes}
+          label={true}
+        />
+      )}
     </Box>
   );
 };
