@@ -94,7 +94,7 @@ function ConnectCardForm(props = {}) {
       ? 'I made a decision to follow Christ today.'
       : '';
     // prettier-ignore
-    const allThatApplies = `${values?.findCommunity ? 'f848c630-4a0d-4264-8c20-e6b77825f001,' : ''}${values?.growFaith ? '581dcac5-acad-498c-89dc-09245b3ad4df,' : ''}${values?.placeForKids ? '29e3b03c-4e3b-442b-8acf-2835ab13b262,' : ''}${values?.strongerMarriage ? '3b2af312-e888-4956-bc05-8a7e318fc68e,' : ''}${values?.improveFinances ? 'c0024735-e0e9-45d1-a3d3-6f42cb58b239,' : ''}${values?.useMyGifts ? '00546698-374e-4746-a99e-6d4381b5262d,' : ''}${values?.discoverAtTheJourney ? 'e989c798-cf52-44d8-8ddd-c8831e7601a1,' : ''}`;
+    const allThatApplies = `${values?.findCommunity ? 'f848c630-4a0d-4264-8c20-e6b77825f001,' : ''}${values?.growFaith ? '581dcac5-acad-498c-89dc-09245b3ad4df,' : ''}${values?.placeForKids ? '29e3b03c-4e3b-442b-8acf-2835ab13b262,' : ''}${values?.strongerMarriage ? '3b2af312-e888-4956-bc05-8a7e318fc68e,' : ''}${values?.improveFinances ? 'c0024735-e0e9-45d1-a3d3-6f42cb58b239,' : ''}${values?.useMyGifts ? '00546698-374e-4746-a99e-6d4381b5262d,' : ''}${values?.discoverAtTheJourney ? 'e989c798-cf52-44d8-8ddd-c8831e7601a1,' : ''}${values?.other ? '1d408930-f300-46f8-8200-b465a51049e3,' : ''}}`;
 
     const input = {
       firstName: values.firstName || '',
