@@ -105,7 +105,26 @@ function HorizontalCardListFeature(props = {}) {
       >
         {!isEmpty(cards) &&
           cards?.map((card, i) => {
+            const url = getUrlFromRelatedNode(card?.relatedNode);
+            const nonClickable = url === '#no-click';
             return (
+              <>
+              {nonClickable ? (
+                  <HorizontalHighlightCard
+                    coverImage={card?.coverImage?.sources[0]?.uri}
+                    coverImageOverlay={true}
+                    title={card?.title}
+                    description={card?.summary}
+                    type={
+                      props?.customCardSize
+                        ? props?.customCardSize
+                        : cards.length < 2
+                        ? 'DEFAULT'
+                        : 'HIGHLIGHT_SMALL'
+                    }
+                    label={transformISODates(card?.labelText)}
+                  />
+                ) :
               <CustomLink
                 as="a"
                 key={i}
@@ -120,6 +139,8 @@ function HorizontalCardListFeature(props = {}) {
                 type={cardType}
                 label={transformISODates(card?.labelText)}
               />
+              }
+            </>
             );
           })}
       </CardCarousel>
