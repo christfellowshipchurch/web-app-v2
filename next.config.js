@@ -108,15 +108,18 @@ module.exports = {
         permanent: true,
       },
       {
-        source:
-          '/items/:title',
+        source: '/items/:title',
         destination: '/',
         permanent: true,
       },
       {
-        source:
-          '/content/:title',
+        source: '/content/:title',
         destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/locations/riviera-beach',
+        destination: '/riviera-beach',
         permanent: true,
       },
       // TODO: Uncomment these lines to hide Group Finder.
