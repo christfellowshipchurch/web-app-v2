@@ -40,9 +40,8 @@ function HeroListFeature(props = {}) {
       {!isEmpty(title) && <Box as="h2">{title}</Box>}
       {!isEmpty(subtitle) && <HtmlRenderer htmlContent={subtitle} />}
       <>
-      { nonClickable ?  
+      { nonClickable ? ( 
         <DefaultCard
-        as="a"
         coverImage={heroCard?.coverImage?.sources[0]?.uri}
         coverImageOverlay={true}
         coverImageTitle={heroCard?.title}
@@ -52,7 +51,7 @@ function HeroListFeature(props = {}) {
         marginBottom="base"
         coverImageLabel={transformISODates(heroCard?.labelText)}
        />
-      : <CustomLink
+        ) : <CustomLink
         as="a"
         href={getUrlFromRelatedNode(heroCard?.relatedNode)}
         Component={DefaultCard}
@@ -75,7 +74,6 @@ function HeroListFeature(props = {}) {
               <>
               {nonClickable ? (
                <RowCard
-               //as="a"
                key={i}
                coverImage={card?.image?.sources[0]?.uri}
                coverImageOverlay={true}
@@ -101,14 +99,14 @@ function HeroListFeature(props = {}) {
         </CardGrid>
       )}
       {bottomCard && (
-        nonClickable ? <RowCard
-        //as="a"
+        nonClickable ? (
+        <RowCard
         coverImage={bottomCard?.image?.sources[0]?.uri}
         coverImageOverlay={true}
         title={bottomCard?.title}
         description={bottomCard?.summary}
         label={transformISODates(bottomCard?.labelText)}
-      /> : 
+      />) : 
         <CustomLink
           as="a"
           href={getUrlFromRelatedNode(bottomCard?.relatedNode)}
