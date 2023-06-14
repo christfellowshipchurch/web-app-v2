@@ -25,11 +25,34 @@ function HeroListFeature(props = {}) {
     cards = dropRight(cards, 1);
   }
 
+  var url;
+  var nonClickable;
+
+  if (!(isEmpty(cards))) {
+    cards.map((card, i) => {
+       url = getUrlFromRelatedNode(card?.relatedNode);
+       nonClickable = url === '#no-click';
+    });
+  }
+
   return (
     <Box>
       {!isEmpty(title) && <Box as="h2">{title}</Box>}
       {!isEmpty(subtitle) && <HtmlRenderer htmlContent={subtitle} />}
-      <CustomLink
+      <>
+      { nonClickable ?  
+        <DefaultCard
+        as="a"
+        coverImage={heroCard?.coverImage?.sources[0]?.uri}
+        coverImageOverlay={true}
+        coverImageTitle={heroCard?.title}
+        coverImageDescription={heroCard?.summary}
+        height={{ _: '250px', md: '450px' }}
+        display="block"
+        marginBottom="base"
+        coverImageLabel={transformISODates(heroCard?.labelText)}
+       />
+      : <CustomLink
         as="a"
         href={getUrlFromRelatedNode(heroCard?.relatedNode)}
         Component={DefaultCard}
@@ -42,11 +65,25 @@ function HeroListFeature(props = {}) {
         marginBottom="base"
         onClick={e => onPressActionItem(e, heroCard)}
         coverImageLabel={transformISODates(heroCard?.labelText)}
-      />
+      /> }
+      </>
+
       {cards.length > 0 && (
         <CardGrid columns={col} marginBottom="l">
           {cards.map((card, i) => {
             return (
+              <>
+              {nonClickable ? (
+               <RowCard
+               //as="a"
+               key={i}
+               coverImage={card?.image?.sources[0]?.uri}
+               coverImageOverlay={true}
+               title={card?.title}
+               description={card?.summary}
+               label={transformISODates(card?.labelText)}
+             />
+              ) : 
               <CustomLink
                 as="a"
                 key={i}
@@ -57,12 +94,21 @@ function HeroListFeature(props = {}) {
                 title={card?.title}
                 description={card?.subtitle}
                 label={transformISODates(card?.labelText)}
-              />
+              /> }
+              </>
             );
           })}
         </CardGrid>
       )}
       {bottomCard && (
+        nonClickable ? <RowCard
+        //as="a"
+        coverImage={bottomCard?.image?.sources[0]?.uri}
+        coverImageOverlay={true}
+        title={bottomCard?.title}
+        description={bottomCard?.summary}
+        label={transformISODates(bottomCard?.labelText)}
+      /> : 
         <CustomLink
           as="a"
           href={getUrlFromRelatedNode(bottomCard?.relatedNode)}
