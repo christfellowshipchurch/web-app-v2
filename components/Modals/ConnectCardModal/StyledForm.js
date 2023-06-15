@@ -202,7 +202,7 @@ const StyledForm = ({
         <Box>
           {showOther && (
             <>
-              <Box mt="base" as="p" px="s" fontStyle="italic">
+              <Box mt="xs" as="p" px="s" fontStyle="italic">
                 I am looking to: (Other)
               </Box>
 
