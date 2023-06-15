@@ -125,7 +125,6 @@ export async function getStaticPaths() {
     'okeechobee',
     'palm-beach-gardens',
     'port-st-lucie',
-    'riviera-beach',
     'royal-palm-beach',
     'stuart',
     'vero-beach',

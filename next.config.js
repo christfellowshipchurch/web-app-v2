@@ -108,6 +108,16 @@ module.exports = {
         permanent: true,
       },
       {
+        source: '/items/:title',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/content/:title',
+        destination: '/',
+        permanent: true,
+      },
+      {
         source: '/locations/riviera-beach',
         destination: '/riviera-beach',
         permanent: true,
