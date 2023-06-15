@@ -1,33 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { useGroupManage, update } from 'providers/GroupManageProvider';
 import { useUpdateGroupResourceContentItem } from 'hooks';
 import { Box, Button, Loader, Select } from 'ui-kit';
 
-function AddResourceContent(props = {}) {
-  const [
-    { resourceStatus: status, groupData, message },
-    dispatch,
-  ] = useGroupManage();
+function AddResourceContent({ data, loading, totalCount, currentResources }) {
+  const [{ resourceStatus: status, groupData, message }, dispatch] =
+    useGroupManage();
   const setStatus = s => dispatch(update({ resourceStatus: s }));
-  const [selection, setSelection] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedItem, setSelectedItem] = useState('');
+  const [categories, setCategories] = useState({});
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
 
   const [updateGroupResourceContentItem] = useUpdateGroupResourceContentItem();
 
-  function handleChange(event) {
-    setSelection(event.target.value);
-  }
+  // ** We evetually want to update the way we load all the content items for Group resources in the backround and not have to wait for them to load all at once.
+  useEffect(() => {
+    if (!loading && data && data.length === totalCount) {
+      const categorizedItems = categorizeItemsByTitle(data);
+      setCategories(categorizedItems);
+      setIsDataLoaded(true);
+    }
+  }, [data, loading, totalCount]);
 
-  async function handleSave(event) {
+  const handleCategoryChange = event => {
+    setSelectedCategory(event.target.value);
+    setSelectedItem('');
+  };
+
+  const handleItemChange = event => {
+    setSelectedItem(event.target.value);
+  };
+
+  const handleSave = async event => {
     event.preventDefault();
 
-    const noSelection = selection === '';
+    const noSelection = selectedCategory === '' || selectedItem === '';
     if (noSelection) {
       dispatch(
-        update({
-          message: `You need to select an item in the menu.`,
-        })
+        update({ message: 'You need to select both a category and an item.' })
       );
       return;
     }
@@ -36,19 +49,19 @@ function AddResourceContent(props = {}) {
 
     await updateGroupResourceContentItem({
       variables: {
-        contentItemId: selection,
+        contentItemId: selectedItem,
         groupId: groupData.id,
       },
       refetchQueries: ['getGroup'],
     });
 
     setStatus('IDLE');
-  }
+  };
 
-  function handleBackClick(event) {
+  const handleBackClick = event => {
     event.preventDefault();
     setStatus('IDLE');
-  }
+  };
 
   return (
     <>
@@ -57,33 +70,51 @@ function AddResourceContent(props = {}) {
           {message}
         </Box>
       )}
-      {props.loading ? (
-        <Loader pt="s" pb="base" />
-      ) : (
-        <Select
-          defaultValue=""
-          id="contentOption"
-          name="contentOption"
-          onChange={handleChange}
-          mb="base"
-        >
-          <Select.Option value="" disabled={true}>
-            Select...
-          </Select.Option>
-          {props.data?.map(item => {
-            return (
-              <Select.Option
-                key={item.node.id}
-                value={item.node.id}
-                disabled={props.currentResources?.find(
-                  resourceId => item.node.id === resourceId
-                )}
-              >
-                {item.node.title}
+      {isDataLoaded ? (
+        <>
+          <Select
+            defaultValue=""
+            id="categoryOption"
+            name="categoryOption"
+            value={selectedCategory}
+            onChange={handleCategoryChange}
+            mb="base"
+          >
+            <Select.Option value="" disabled>
+              Select a Category...
+            </Select.Option>
+            {Object.keys(categories).map(category => (
+              <Select.Option key={category} value={category}>
+                {category}
               </Select.Option>
-            );
-          })}
-        </Select>
+            ))}
+          </Select>
+          <Select
+            defaultValue=""
+            id="itemOption"
+            name="itemOption"
+            value={selectedItem}
+            onChange={handleItemChange}
+            mb="base"
+            disabled={!selectedCategory}
+          >
+            <Select.Option value="" disabled={!selectedCategory}>
+              Select an Item...
+            </Select.Option>
+            {selectedCategory &&
+              categories[selectedCategory].map(item => (
+                <Select.Option
+                  key={item.node.id}
+                  value={item.node.id}
+                  disabled={currentResources?.includes(item.node.id)}
+                >
+                  {item.node.title}
+                </Select.Option>
+              ))}
+          </Select>
+        </>
+      ) : (
+        <Loader pt="s" pb="base" />
       )}
       <Box alignItems="center" display="flex">
         <Button
@@ -110,6 +141,27 @@ AddResourceContent.propTypes = {
       }),
     })
   ),
+  loading: PropTypes.bool,
+  totalCount: PropTypes.number,
+  currentResources: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default AddResourceContent;
+
+// Helper function to categorize items based on words before the "|" symbol in the "title" attribute
+function categorizeItemsByTitle(data) {
+  const categories = {};
+
+  data.forEach(({ node }) => {
+    const titleParts = node.title.split('|');
+    const categoryName = titleParts.length > 1 ? titleParts[0].trim() : 'Other';
+
+    if (!categories[categoryName]) {
+      categories[categoryName] = [];
+    }
+
+    categories[categoryName].push({ node });
+  });
+
+  return categories;
+}
