@@ -191,7 +191,7 @@ export const faqCfEverywhereData = [
   {
     title: 'What can I expect from a live-streamed service?',
     description:
-      'Every Sunday, we craft a unique livestream experience for our Christ Fellowship Everywhere audience. We start a couple minutes before our services begin to welcome guests to church and help them get connected in the live chat. After a time of worship, our hosts share specific events and connection opportunities for our online audience. All of our campuses experience the same powerful teaching from one of our pastors and then our hosts share practical next steps.',
+      'Every Sunday, we craft a unique livestream experience for our Christ Fellowship Everywhere audience. We have live services at 8:30, 10, and 11:45AM every Sunday but we would love to see you for our interactive pre-service segment that begins 6 minutes before services. You never know what’s going to happen, but we promise it’ll always be fun.',
   },
   {
     title: 'How can I get campus-specific information?',
@@ -203,8 +203,7 @@ export const faqCfEverywhereData = [
   },
   {
     title: 'How can I get involved?',
-    description: `We are so excited to get you involved with Christ Fellowship Everywhere and want to help you take your next step. <a href=/events/journey>The Journey</a> is a great first step that will lay out a variety of ways to get involved. You might also consider a <a href="/groups">group or class</a>, <a href="/give">giving financially</a>, or serving with us on the <a target="blank" href="https://rock.christfellowship.church/dreamteam/locations/opportunities?CampusId=9">Christ Fellowship Everywhere Dream Team</a>. No matter where you are, or what you need, we can all start somewhere! Discover the offerings and resources available for you and your whole family <a target="blank" href="/it-all-starts-here">here</a>.
-    `,
+    description: `We are so excited to get you involved with Christ Fellowship Everywhere and want to help you take your next step. <a href=/events/journey> Journey</a> is a great first step that will lay out a variety of ways to get involved. Looking for your next step? <a href="online@christfellowship.church"> Send us an email</a> so we can help you discover your next step!`,
   },
 ];
 

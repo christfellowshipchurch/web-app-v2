@@ -187,7 +187,7 @@ export const CfEverywhereBlockData = [
       sources: [
         {
           __typename: 'ImageMediaSource',
-          uri: '/cf-everywhere/cf-everywhere-kids.png',
+          uri: '/cf-everywhere/cf-everywhere-kids.jpeg',
         },
       ],
     },
@@ -221,7 +221,7 @@ export const CfEverywhereBlockData = [
       sources: [
         {
           __typename: 'ImageMediaSource',
-          uri: '/cf-everywhere/cf-everywhere-students.png',
+          uri: '/cf-everywhere/cf-everywhere-students.jpeg',
         },
       ],
     },
@@ -255,7 +255,7 @@ export const CfEverywhereBlockData = [
       sources: [
         {
           __typename: 'ImageMediaSource',
-          uri: '/cf-everywhere/cf-everywhere-young-adults.png',
+          uri: '/cf-everywhere/cf-everywhere-young-adults.jpeg',
         },
       ],
     },

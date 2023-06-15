@@ -142,21 +142,23 @@ function LocationSingle(props = {}) {
       </Box>
 
       {/* This Week Feature */}
-      <Box maxWidth={1100} mx="auto" width="100%" px="base" py="xl">
-        <Box
-          as="h2"
-          color="secondary"
-          width="100%"
-          textAlign="center"
-          mb="base"
-        >
-          This Week
+      {campus === 'Cf Everywhere' && (
+        <Box maxWidth={1100} mx="auto" width="100%" px="base" py="xl">
+          <Box
+            as="h2"
+            color="secondary"
+            width="100%"
+            textAlign="center"
+            mb="base"
+          >
+            This Week
+          </Box>
+          <FeatureProvider
+            Component={HeroListFeature}
+            options={{ variables: { id: thisWeekFeatureId } }}
+          />
         </Box>
-        <FeatureProvider
-          Component={HeroListFeature}
-          options={{ variables: { id: thisWeekFeatureId } }}
-        />
-      </Box>
+      )}
 
       {/* At this Location Section */}
       <Box bg="white" width="100%" px={{ _: 'base', md: 'xl' }} pt="base">
@@ -214,7 +216,7 @@ function LocationSingle(props = {}) {
                     {
                       name: '<i>Jim & Tammy</i>',
                       description:
-                        'We attended CF online for 2 years prior to moving to FL and now we are attending in person. While attending online we were surprised by how connected and included we felt. When attending online you are not simply watching a church service from a distance, you are joining a family!',
+                        'We attended CF online for 2 years prior to moving to Florida and now we are attending in person. While attending online, we were surprised by how connected and included we felt. When attending online you are not simply watching a church service from a distance, you are joining a family!',
                       region: '<i>South Florida<i>',
                     },
                     {
