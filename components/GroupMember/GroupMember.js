@@ -34,7 +34,7 @@ const GroupMember = ({ id, person, role, status, groupId, groupRoleId }) => {
         },
         onSave: ({ status, inactiveStatusReason }) => {
           client.cache.modify({
-            id: cache.identify({ id }),
+            id: client.cache.identify({ id }),
             fields(fieldValue, details) {
               return details.INVALIDATE;
             },

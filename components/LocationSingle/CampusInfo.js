@@ -21,7 +21,7 @@ import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
 import { campusLinks } from './locationData';
 import Styled from './LocationSingle.styles';
-import { find, includes } from 'lodash';
+import { add, find, includes } from 'lodash';
 
 const DAY_KEYS = {
   SUNDAY: 0,
@@ -116,7 +116,7 @@ const CampusInfo = ({
   additionalInfo,
 }) => {
   const modalDispatch = useModalDispatch();
-  const addressFirst = `${street1}`;
+  const addressFirst = street1 ? `${street1}` : null;
   const addressLast = `${city}, ${state} ${postalCode?.substring(0, 5)}`;
 
   const icsLinkEvents = serviceTimes?.map(({ day, time }) => {
@@ -314,7 +314,7 @@ const CampusInfo = ({
               {`${pastor?.firstName} ${pastor?.lastName}`}
             </Box>
           ) : (
-            <Loader mt="base" mb="xs" />
+            <Loader noLabel mt="base" mb="xs" />
           )}
           <Box
             as="h5"

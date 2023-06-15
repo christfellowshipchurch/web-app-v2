@@ -124,7 +124,6 @@ export async function getStaticPaths() {
     'okeechobee',
     'palm-beach-gardens',
     'port-st-lucie',
-    'riviera-beach',
     'royal-palm-beach',
     'stuart',
     'vero-beach',
@@ -141,7 +140,7 @@ export async function getStaticPaths() {
 // This also gets called at build time
 export async function getStaticProps({ params }) {
   const apolloClient = initializeApollo();
-  await apolloClient.query({
+  const data = await apolloClient.query({
     query: GET_CONTENT_ITEM,
     variables: { pathname: `locations/${params.title}` },
   });
@@ -157,6 +156,7 @@ export async function getStaticProps({ params }) {
     props: {
       initialApolloState: apolloClient.cache.extract(),
       campus: campus?.data?.campus ?? {},
+      data: data ?? {},
     },
     revalidate: 1,
   };

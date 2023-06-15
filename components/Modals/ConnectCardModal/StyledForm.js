@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Box, Button, Checkbox, Icon, Loader, Select, TextInput } from 'ui-kit';
 
@@ -37,6 +37,8 @@ const StyledForm = ({
   defaultUserCampus,
   campuses,
 }) => {
+  const [showOther, setShowOther] = useState(false);
+
   return (
     <Box
       display="flex"
@@ -135,9 +137,17 @@ const StyledForm = ({
         </Box>
       </Box>
       {/* All that Applies */}
-      <Box display="grid" gridRowGap="s" textAlign="left" my="l" mr="auto">
+      <Box
+        display="grid"
+        gridColumnGap="base"
+        gridRowGap="s"
+        textAlign="left"
+        my="l"
+        mr="auto"
+        maxWidth={650}
+      >
         <Box as="p" fontStyle="italic">
-          Please select all that apply to you:
+          I am looking to:
         </Box>
         <Box
           display="grid"
@@ -180,9 +190,36 @@ const StyledForm = ({
             <StyledCheckBox
               id="discoverAtTheJourney"
               onChange={handleChange}
-              text="Discover what’s next for me at The Journey."
+              text="Discover what's next for me at The Journey."
+            />
+            <StyledCheckBox
+              id="other"
+              onChange={e => {
+                handleChange(e);
+                setShowOther(!showOther);
+              }}
+              text="Other."
             />
           </Box>
+        </Box>
+
+        <Box>
+          {showOther && (
+            <>
+              <Box mt="base" as="p" px="s" fontStyle="italic">
+                I am looking to: (Other)
+              </Box>
+
+              <Box maxWidth={300}>
+                <StyledTextInput
+                  id="otherText"
+                  onChange={handleChange}
+                  value={values?.otherText}
+                  errors={errors?.otherText}
+                />
+              </Box>
+            </>
+          )}
         </Box>
       </Box>
       {errors?.networkError && (
