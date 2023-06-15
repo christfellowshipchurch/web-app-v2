@@ -100,9 +100,6 @@ function ContentLayout(props = {}) {
                 />
               </Longform>
             </Card>
-            <Box py="l">
-              <Share />
-            </Box>
           </>
         ) : (
           props.renderContentD && (
@@ -143,9 +140,9 @@ function ContentLayout(props = {}) {
           {renderA()}
           <Box
             alignItems="center"
-            display={{ lg: 'grid' }}
+            display={{ md: 'grid' }}
             gridTemplateColumns="70% 30%"
-            mb="l"
+            mb={{ _: '', md: 'l' }}
           >
             {renderB()}
             {renderC()}

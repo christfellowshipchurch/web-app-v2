@@ -194,7 +194,10 @@ const StyledForm = ({
             />
             <StyledCheckBox
               id="other"
-              onChange={() => setShowOther(!showOther)}
+              onChange={e => {
+                handleChange(e);
+                setShowOther(!showOther);
+              }}
               text="Other."
             />
           </Box>
