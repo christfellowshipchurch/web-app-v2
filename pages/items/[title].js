@@ -1,3 +1,7 @@
+/**
+ * ! This file is now deprecated, all `/items` routes are redirected to home
+ */
+
 import { isEmpty } from 'lodash';
 import { useRouter } from 'next/router';
 
