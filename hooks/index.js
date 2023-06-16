@@ -15,6 +15,7 @@ import useCurrentChatUser from './useCurrentChatUser';
 import useCurrentPerson from './useCurrentPerson';
 import useCurrentUser from './useCurrentUser';
 import useCurrentUserRoleForChatChannel from './useCurrentUserRoleForChatChannel';
+import useDefinedValueList from './useDefinedValueList';
 import useDiscoverFilterCategories from './useDiscoverFilterCategories';
 import useDiscoverFilterCategoriesPreview from './useDiscoverFilterCategoriesPreview';
 import useDiscoverFilters from './useDiscoverFilters';
@@ -87,6 +88,7 @@ export {
   useCurrentPerson,
   useCurrentUser,
   useCurrentUserRoleForChatChannel,
+  useDefinedValueList,
   useDiscoverFilterCategories,
   useDiscoverFilterCategoriesPreview,
   useDiscoverFilters,

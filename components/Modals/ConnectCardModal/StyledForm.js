@@ -1,6 +1,10 @@
+import { useQuery } from '@apollo/client';
 import { React, useState } from 'react';
-import PropTypes from 'prop-types';
 import { Box, Button, Checkbox, Icon, Loader, Select, TextInput } from 'ui-kit';
+import { GET_DEFINED_VALUE_LIST } from 'hooks/useDefinedValueList';
+
+// DefineType Id for the checkbox values
+const CHECKBOX_VALUES_ID = '389';
 
 const StyledTextInput = props => (
   <Box>
@@ -28,6 +32,27 @@ const StyledCheckBox = props => (
   </Box>
 );
 
+const StyledCheckBoxList = ({ data, handleChange, handleHook }) => {
+  return (
+    data?.length &&
+    data?.map(value => (
+      <StyledCheckBox
+        id={value?.guid}
+        // If checkbox is "other" then show the text input by calling the handleHook function
+        onChange={
+          value?.value === 'Other'
+            ? e => {
+                handleChange(e);
+                handleHook();
+              }
+            : handleChange
+        }
+        text={value?.value}
+      />
+    ))
+  );
+};
+
 const StyledForm = ({
   handleChange,
   handleSubmit,
@@ -38,6 +63,12 @@ const StyledForm = ({
   campuses,
 }) => {
   const [showOther, setShowOther] = useState(false);
+  /**
+   * todo : For some reason, the DefinedValueListProvider is not working here or any provider for that matter. I am not sure why, but I am going to use the useQuery hook instead. We'll want to come back to this and figure out why the provider is not working.
+   */
+  const checkBoxValues = useQuery(GET_DEFINED_VALUE_LIST, {
+    variables: { id: CHECKBOX_VALUES_ID },
+  });
 
   return (
     <Box
@@ -149,64 +180,29 @@ const StyledForm = ({
         <Box as="p" fontStyle="italic">
           I am looking to:
         </Box>
+        <Box>
+          {checkBoxValues?.data ? (
+            <StyledCheckBoxList
+              data={
+                checkBoxValues?.data?.getDefinedValueListByIdentifier?.values
+              }
+              handleChange={handleChange}
+              handleHook={() => setShowOther(!showOther)}
+            />
+          ) : (
+            <Loader />
+          )}
+        </Box>
         <Box
           display="grid"
           gridTemplateColumns={{ _: '', md: '1fr 1fr' }}
           gridColumnGap="base"
-        >
-          <Box mb="xs">
-            <StyledCheckBox
-              id="findCommunity"
-              onChange={handleChange}
-              text="Find meaningful community."
-            />
-            <StyledCheckBox
-              id="growFaith"
-              onChange={handleChange}
-              text="Grow in my faith."
-            />
-            <StyledCheckBox
-              id="placeForKids"
-              onChange={handleChange}
-              text="Find a fun place for my kid(s) to grow and make friends."
-            />
-            <StyledCheckBox
-              id="strongerMarriage"
-              onChange={handleChange}
-              text="Make my marriage stronger than it’s ever been."
-            />
-          </Box>
-          <Box>
-            <StyledCheckBox
-              id="improveFinances"
-              onChange={handleChange}
-              text="Improve my finances."
-            />
-            <StyledCheckBox
-              id="useMyGifts"
-              onChange={handleChange}
-              text="Use my gifts by serving on the Dream Team."
-            />
-            <StyledCheckBox
-              id="discoverAtTheJourney"
-              onChange={handleChange}
-              text="Discover what's next for me at The Journey."
-            />
-            <StyledCheckBox
-              id="other"
-              onChange={e => {
-                handleChange(e);
-                setShowOther(!showOther);
-              }}
-              text="Other."
-            />
-          </Box>
-        </Box>
+        ></Box>
 
         <Box>
           {showOther && (
             <>
-              <Box mt="base" as="p" px="s" fontStyle="italic">
+              <Box mt="xs" as="p" px="s" fontStyle="italic">
                 I am looking to: (Other)
               </Box>
 

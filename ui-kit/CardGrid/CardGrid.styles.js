@@ -5,7 +5,7 @@ import { system } from 'ui-kit';
 
 const CardGrid = styled.div`
   > *:not(:last-child) {
-    margin-bottom: ${themeGet('space.l')};
+    margin-bottom: ${themeGet('space.base')};
   }
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {

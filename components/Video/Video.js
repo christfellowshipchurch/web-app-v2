@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import muxjs from 'mux.js';
 import { Box, Button, Icon } from 'ui-kit';
 import { useAnalytics } from 'providers/AnalyticsProvider';
+import { WistiaPlayer } from 'components';
 
 import ReactPlayer from 'react-player';
-import { WistiaPlayer } from 'components';
 
 // Mux is used to deal with encodings and low-level video nonsense.
 // Without it, streams are unlikely to work on iOS and Safari.

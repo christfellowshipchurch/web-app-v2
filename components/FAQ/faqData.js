@@ -182,6 +182,31 @@ export const faqHeartForHouseData = [
   },
 ];
 
+export const faqCfEverywhereData = [
+  {
+    title: 'Which campus is live-streamed?',
+    description:
+      'We broadcast Sunday services, including the worship and teaching, from our Palm Beach Gardens location in South Florida.',
+  },
+  {
+    title: 'What can I expect from a live-streamed service?',
+    description:
+      'Every Sunday, we craft a unique livestream experience for our Christ Fellowship Everywhere audience. We have live services at 8:30, 10, and 11:45AM every Sunday but we would love to see you for our interactive pre-service segment that begins 6 minutes before services. You never know what’s going to happen, but we promise it’ll always be fun.',
+  },
+  {
+    title: 'How can I get campus-specific information?',
+    description: `If you are in South Florida, we hope you are getting connected to your local campus! <a href="/locations">Find a campus location near you here.</a>`,
+  },
+  {
+    title: 'How can I get in contact with a pastor?',
+    description: `One of our pastors would love to connect with you! If you have a question, please reach out <a target="blank" href="https://rock.gocf.org/contactus">here</a>. If you are in need of prayer, let us know on the <a target="blank" href="https://rock.gocf.org/RequestPrayer">prayer form</a> so we can follow up with you.`,
+  },
+  {
+    title: 'How can I get involved?',
+    description: `We are so excited to get you involved with Christ Fellowship Everywhere and want to help you take your next step. <a href=/events/journey> Journey</a> is a great first step that will lay out a variety of ways to get involved. Looking for your next step? <a target="blank" href="mailto:online@christfellowship.church"> Send us an email</a> so we can help you discover your next step!`,
+  },
+];
+
 const faqData = campus => {
   switch (campus) {
     case 'Downtown West Palm Beach':
@@ -192,6 +217,8 @@ const faqData = campus => {
       return faqWestlakeData;
     case 'Trinity':
       return faqTrinityData;
+    case 'Cf Everywhere':
+      return faqCfEverywhereData;
     default:
       return faqDefaultData;
   }

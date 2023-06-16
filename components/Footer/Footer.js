@@ -18,7 +18,7 @@ function Footer(props = {}) {
           <Box
             ml={{ _: 'base', md: 0 }}
             mt={{ _: 'l', md: 0 }}
-            display={{ _: 'grid', lg: 'grid' }}
+            display={{ _: 'grid', md: 'flex', lg: 'grid' }}
             gridTemplateColumns={{
               _: '35% repeat(1, 55%)',
               md: '30% repeat(4, 13%)',
