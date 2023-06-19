@@ -8,7 +8,6 @@ import { useCurrentBreakpoint, useCurrentUser, useCheckIn } from 'hooks';
 import { ChatConnectionProvider } from 'providers';
 import { currentUserIsLeader, transformISODates } from 'utils';
 import { Box, Button, Card, Icon } from 'ui-kit';
-import { CustomLink } from 'components';
 
 import GroupChat from './GroupChat';
 import GroupDateTime from './GroupDateTime';
@@ -75,26 +74,29 @@ function GroupSingle(props = {}) {
         </Box>
       )}
 
-      <Box>
-        <GroupDateTime
-          title={props.data?.title}
-          summary={props.data?.summary}
-          address={document.URL}
-          dateTime={props.data?.dateTime}
-          parentVideoCall={props.data?.parentVideoCall}
-          videoCall={props.data?.videoCall}
-        />
-        <GroupActions
-          userName={
-            currentUser?.profile?.nickName || currentUser?.profile?.firstName
-          }
-          parentVideoCall={props.data?.parentVideoCall}
-          videoCall={props.data?.videoCall}
-          onClickVideoCall={handleOnClickVideoCall}
-          onClickParentVideoCall={handleOnClickVideoCall}
-          checkInCompleted={checkInCompleted}
-        />
-      </Box>
+      {/* If there's no start or end time that means the group has ended and we'll want to hide the following components */}
+      {props?.data?.dateTime?.start && props?.data?.dateTime?.end && (
+        <Box>
+          <GroupDateTime
+            title={props.data?.title}
+            summary={props.data?.summary}
+            address={document.URL}
+            dateTime={props.data?.dateTime}
+            parentVideoCall={props.data?.parentVideoCall}
+            videoCall={props.data?.videoCall}
+          />
+          <GroupActions
+            userName={
+              currentUser?.profile?.nickName || currentUser?.profile?.firstName
+            }
+            parentVideoCall={props.data?.parentVideoCall}
+            videoCall={props.data?.videoCall}
+            onClickVideoCall={handleOnClickVideoCall}
+            onClickParentVideoCall={handleOnClickVideoCall}
+            checkInCompleted={checkInCompleted}
+          />
+        </Box>
+      )}
     </Box>
   );
 
