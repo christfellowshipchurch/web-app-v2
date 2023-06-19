@@ -18,12 +18,6 @@ const StyledCard = styled.div`
 
   box-shadow: ${themeGet('shadows.base')};
   transition: box-shadow ease 0.3s, transform ease 0.3s;
-
-  :hover {
-    box-shadow: ${themeGet('shadows.xl')};
-    cursor: pointer;
-    transform: scale(1.03);
-  }
 `;
 
 const StartHere = ({ maxWidth }) => {
