@@ -9,19 +9,17 @@ import {
   DefaultCard,
   CardGrid,
   Cell,
-  Icon,
   Button,
   utils,
   Loader,
   HorizontalHighlightCard,
+  Icon,
 } from 'ui-kit';
 import { Layout, CustomLink } from 'components';
 import { useAnalytics } from 'providers/AnalyticsProvider';
 
-
 export default function DiscoverFilterCategoriesPreview(props) {
-  const router = useRouter();
-  const { query, back } = useRouter();
+  const { query, push } = useRouter();
   const analytics = useAnalytics();
   const type = 'UniversalContentItem';
   const contentId = type.concat(':', query?.id);
@@ -47,8 +45,6 @@ export default function DiscoverFilterCategoriesPreview(props) {
         maxWidth={utils.rem('1100px')}
         px="base"
         py={{ _: 'l', lg: 'xl' }}
-
-        
       >
         <Box
           alignItems="center"
@@ -57,17 +53,21 @@ export default function DiscoverFilterCategoriesPreview(props) {
           mb="l"
         >
           <Box as="h1" mb="0">
-            {categoryTitle} 
+            {categoryTitle}
           </Box>
-            <Box>
-            <Button display="flex" py="none"
-              variant="link" onClick={() => router.push('/discover')}>
-              &larr; Back
+          <Box>
+            <Button
+              display="flex"
+              py="none"
+              variant="link"
+              onClick={() => push(`/discover?c=${query?.c}`)}
+            >
+              <Icon name="angle-left" color="primary" />
+              Back
             </Button>
             <Box as="h1">{props?.data?.title}</Box>
           </Box>
         </Box>
-      
 
         <CardGrid columns="3" mb="xl">
           {loading ? (
