@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import startCase from 'lodash/startCase';
-
 import { getUrlFromRelatedNode } from 'utils';
 import { useDiscoverFilterCategoriesPreview } from 'hooks';
 
@@ -62,7 +61,7 @@ export default function DiscoverFilterCategoriesPreview(props) {
           </Box>
             <Box>
             <Button display="flex" py="none"
-               variant="link" onClick={() => router.back()}>
+              variant="link" onClick={() => router.push('/discover')}>
               &larr; Back
             </Button>
             <Box as="h1">{props?.data?.title}</Box>
