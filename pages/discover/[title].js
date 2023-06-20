@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import startCase from 'lodash/startCase';
 import { getUrlFromRelatedNode } from 'utils';
@@ -18,7 +18,7 @@ import {
 import { Layout, CustomLink } from 'components';
 import { useAnalytics } from 'providers/AnalyticsProvider';
 
-export default function DiscoverFilterCategoriesPreview(props) {
+export default function DiscoverFilterCategoriesPreview() {
   const { query, push } = useRouter();
   const analytics = useAnalytics();
   const type = 'UniversalContentItem';
@@ -65,7 +65,6 @@ export default function DiscoverFilterCategoriesPreview(props) {
               <Icon name="angle-left" color="primary" />
               Back
             </Button>
-            <Box as="h1">{props?.data?.title}</Box>
           </Box>
         </Box>
 
