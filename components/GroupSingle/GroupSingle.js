@@ -54,8 +54,9 @@ function GroupSingle(props = {}) {
     <Box
       display="flex"
       flexDirection="column"
-      justifyContent="center"
+      justifyContent="start"
       alignItems="center"
+      height="100%"
       pb="l"
       mt={{ _: 'l', md: '0' }}
     >
