@@ -113,7 +113,6 @@ export default function Location(props = {}) {
   );
 }
 
-// This function gets called at build time to generate the titles for _all_ messages
 export async function getStaticPaths() {
   // todo : make this a Network request so that it's dynamic
   const titles = [
@@ -125,11 +124,9 @@ export async function getStaticPaths() {
     'okeechobee',
     'palm-beach-gardens',
     'port-st-lucie',
-    'riviera-beach',
     'royal-palm-beach',
     'stuart',
     'vero-beach',
-    'trinity',
   ];
 
   return {

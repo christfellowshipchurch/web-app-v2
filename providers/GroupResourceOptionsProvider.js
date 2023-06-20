@@ -2,14 +2,11 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { useGroupResourceOptions } from 'hooks';
+import { Attachment } from 'stream-chat-react';
 
 function GroupResourceOptionsProvider({ Component, options, ...props }) {
-  const {
-    loading,
-    error,
-    groupResourceOptions,
-    fetchMore,
-  } = useGroupResourceOptions(options);
+  const { loading, error, groupResourceOptions, fetchMore } =
+    useGroupResourceOptions(options);
   const endCursor = groupResourceOptions?.pageInfo?.endCursor;
   const totalCount = groupResourceOptions?.totalCount;
   const data = groupResourceOptions?.edges;
@@ -46,7 +43,15 @@ function GroupResourceOptionsProvider({ Component, options, ...props }) {
     }
   }, [loading, error, data, endCursor, fetchMore, totalCount]);
 
-  return <Component data={data} loading={loading} error={error} {...props} />;
+  return (
+    <Component
+      data={data}
+      totalCount={totalCount}
+      loading={loading}
+      error={error}
+      {...props}
+    />
+  );
 }
 
 GroupResourceOptionsProvider.propTypes = {

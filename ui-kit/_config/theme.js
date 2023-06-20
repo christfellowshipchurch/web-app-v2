@@ -13,7 +13,8 @@ const theme = {
     base: 'Proxima-Nova, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
     heading:
       'Proxima-Nova, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
-    serif: 'Merriweather, "Times New Roman", "Georgia", "Garamond", serif, -apple-system, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+    serif:
+      'Merriweather, "Times New Roman", "Georgia", "Garamond", serif, -apple-system, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
   },
   fontSizes: {
     base: rem('16px'),

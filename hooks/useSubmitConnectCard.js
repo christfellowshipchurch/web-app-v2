@@ -18,6 +18,7 @@ export const SUBMIT_CONNNECT_CARD = gql`
     $campus: String!
     $decision: String!
     $allThatApplies: String!
+    $other: String!
   ) {
     submitConnectCard(
       input: [
@@ -28,6 +29,7 @@ export const SUBMIT_CONNNECT_CARD = gql`
         { field: "campus", value: $campus }
         { field: "decision", value: $decision }
         { field: "allThatApplies", value: $allThatApplies }
+        { field: "other", value: $other }
       ]
     )
   }

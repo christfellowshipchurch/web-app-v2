@@ -35,7 +35,7 @@ const DAY_KEYS = {
 
 function parseTimeAsInt(_time) {
   const time = _time?.toString().trim().toUpperCase();
-  const a = time.match(/(AM)|(PM)/g).join();
+  const a = time.match(/(AM)|(PM)/g)?.join();
   const [hour, minute] = time
     .replace(/(AM)|(PM)/g, '')
     .trim()
@@ -45,6 +45,62 @@ function parseTimeAsInt(_time) {
 
   return [hour24, minute];
 }
+
+const CfEverywhereButtons = () => (
+  <>
+    <Box
+      display="flex"
+      flexDirection={{ _: 'column', md: 'row' }}
+      alignItems={{ _: 'center', md: 'start' }}
+      mx={{ _: 'base', md: 0 }}
+      py="l"
+      mt={{ _: 0, md: 'base' }}
+    >
+      <Box
+        as="h3"
+        display="flex"
+        fontSize={{ _: '1.5rem' }}
+        color="secondary"
+        flex="1"
+        maxWidth={{ _: '', md: 200 }}
+        textAlign={{ _: 'center', md: 'left' }}
+        mb="base"
+      >
+        Ways to Join Online
+      </Box>
+      <Box
+        textAlign={{ _: 'center', md: 'left' }}
+        ml={{ _: '', lg: 'xl' }}
+        flex={{ _: '', md: 1 }}
+        display={{ _: 'flex', md: 'block' }}
+      >
+        <Button
+          as="a"
+          target="_blank"
+          href="https://www.youtube.com/c/ChristFellowshipWelcomeHome"
+          size="s"
+          borderRadius="l"
+          mr="s"
+          px="base"
+        >
+          <Icon name="youtube" mr="xs" /> YOUTUBE
+        </Button>
+        <Button
+          as="a"
+          variant="secondary"
+          target="_blank"
+          href="https://www.facebook.com/CFimpact/"
+          size="s"
+          borderRadius="l"
+          px="base"
+        >
+          <Icon name="facebook" mr="xs" /> FACEBOOK LIVE
+        </Button>
+      </Box>
+    </Box>
+    <StyledDivider display={{ _: 'none', md: 'flex' }} width="100%" />
+  </>
+);
 
 const StyledDivider = props => <Divider bg="secondarySubdued" {...props} />;
 
@@ -85,16 +141,27 @@ const CampusInfo = ({
   });
 
   /** Get the Most Out of Life messaging */
-  const getTheMost =
-    name === 'Trinity'
-      ? {
-          title: 'Experience Something New!',
-          body: 'Have you been searching for a meaningful community but haven’t found it yet? If so, you’re not alone. Trinity Church by Christ Fellowship is a new church experience coming to your neighborhood! This community location in Palm Beach Gardens offers a different way to experience church so you can get to know people in your neighborhood and enjoy a more traditional worship setting. Find a place for you and your family to belong with even more regional events offered just down the street—it’s big church made small, and you’ll feel right at home!',
-        }
-      : {
-          title: 'Get the Most Out of Life',
-          body: `Here at Christ Fellowship Church in ${name}, we want to help you live the life you were created for. Every Sunday, we have church services where you can experience uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—and it all starts here!`,
-        };
+  let getTheMost = {};
+  switch (name) {
+    case 'Trinity':
+      getTheMost = {
+        title: 'Experience Something New!',
+        body: 'Have you been searching for a meaningful community but haven’t found it yet? If so, you’re not alone. Trinity Church by Christ Fellowship is a new church experience coming to your neighborhood! This community location in Palm Beach Gardens offers a different way to experience church so you can get to know people in your neighborhood and enjoy a more traditional worship setting. Find a place for you and your family to belong with even more regional events offered just down the street—it’s big church made small, and you’ll feel right at home!',
+      };
+      break;
+    case 'Online (CF Everywhere)':
+      getTheMost = {
+        title: 'Church Wherever You Are',
+        body: `Church isn’t just a building you walk in to, it's a family you can belong to. Whether you're near or far, through Christ Fellowship Everywhere, church is wherever you are! Every Sunday, we host online services where you can experience uplifting worship music, hear an encouraging message, and get connected to a digital community. Throughout the week, there are online groups and classes, as well as on-demand content, to help you and your entire family grow in your faith.`,
+      };
+      break;
+    default:
+      getTheMost = {
+        title: 'Get the Most Out of Life',
+        body: `Here at Christ Fellowship Church in ${name}, we want to help you live the life you were created for. Every Sunday, we have church services where you can experience uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—and it all starts here!`,
+      };
+      break;
+  }
 
   /** Instagram and Google Map URLs */
   const campusLink = find(campusLinks, { name: name });
@@ -130,24 +197,30 @@ const CampusInfo = ({
         {/* Service Times */}
         <Box width="100%">
           <Styled.ServiceTimeContainer>
-            <Styled.ServiceTimeTitle>Every Sunday</Styled.ServiceTimeTitle>
+            <Styled.ServiceTimeTitle>{`${
+              name === 'Online (CF Everywhere)' ? 'Live ' : ''
+            }Every Sunday`}</Styled.ServiceTimeTitle>
             <Styled.FlexBreak />
             {serviceTimes &&
-              serviceTimes?.map((n, i) => (
-                <React.Fragment key={i}>
-                  <Box
-                    display="flex"
-                    flex={1}
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <Styled.ServiceTime>{n?.time}</Styled.ServiceTime>
-                  </Box>
-                  {i < serviceTimes.length - 1 && (
-                    <Styled.VerticalDivider key={`dividier-${i}`} />
-                  )}
-                </React.Fragment>
-              ))}
+              serviceTimes?.map(
+                (n, i) =>
+                  n?.time &&
+                  n?.time !== '' && (
+                    <React.Fragment key={i}>
+                      <Box
+                        display="flex"
+                        flex={1}
+                        justifyContent="center"
+                        alignItems="center"
+                      >
+                        <Styled.ServiceTime>{n?.time}</Styled.ServiceTime>
+                      </Box>
+                      {i < serviceTimes.length - 1 && (
+                        <Styled.VerticalDivider key={`dividier-${i}`} />
+                      )}
+                    </React.Fragment>
+                  )
+              )}
           </Styled.ServiceTimeContainer>
 
           {/* Addtional Information - Orange Box */}
@@ -162,54 +235,56 @@ const CampusInfo = ({
               </Styled.InfoBox>
             )}
             {/* Address and Church You Call Home */}
-            <>
-              <Box
-                display="flex"
-                flexDirection={{ _: 'column', md: 'row' }}
-                alignItems={{ _: 'center', md: 'start' }}
-                mx={{ _: 'l', md: 0 }}
-                py="l"
-                mt={{ _: 0, md: 'base' }}
-              >
+            {addressFirst && name !== 'Online (CF Everywhere)' ? (
+              <>
                 <Box
-                  display={{ _: 'none', md: 'flex' }}
-                  as="h3"
-                  color="secondary"
-                  flex="1"
+                  display="flex"
+                  flexDirection={{ _: 'column', md: 'row' }}
+                  alignItems={{ _: 'center', md: 'start' }}
+                  mx={{ _: 'l', md: 0 }}
+                  py="l"
+                  mt={{ _: 0, md: 'base' }}
                 >
-                  Address
-                </Box>
-                <Box
-                  as="h3"
-                  textAlign={{ _: 'center', md: 'start' }}
-                  maxWidth={300}
-                  flex="1"
-                >
-                  {addressFirst ? (
-                    <>
-                      <Box>{addressFirst}</Box>
-                      <Box>{addressLast}</Box>
-                    </>
-                  ) : (
-                    <Loader noLabel />
-                  )}
-                </Box>
-                <Box textAlign="right" flex="1">
-                  <Button
-                    as="a"
-                    target="_blank"
-                    href={handleCampusDirections}
-                    borderRadius="xxl"
-                    size="s"
-                    px="base"
-                    mt="base"
+                  <Box
+                    display={{ _: 'none', md: 'flex' }}
+                    as="h3"
+                    color="secondary"
+                    flex="1"
                   >
-                    GET DIRECTIONS
-                  </Button>
+                    Address
+                  </Box>
+                  <Box
+                    as="h3"
+                    textAlign={{ _: 'center', md: 'start' }}
+                    maxWidth={300}
+                    flex="1"
+                  >
+                    <Box>{addressFirst}</Box>
+                    <Box>{addressLast}</Box>
+                  </Box>
+                  <Box textAlign="right" flex="1">
+                    <Button
+                      as="a"
+                      target="_blank"
+                      href={handleCampusDirections}
+                      borderRadius="xxl"
+                      size="s"
+                      px="base"
+                      mt="base"
+                    >
+                      GET DIRECTIONS
+                    </Button>
+                  </Box>
                 </Box>
-              </Box>
-              <StyledDivider display={{ _: 'none', md: 'flex' }} width="100%" />
-            </>
+                <StyledDivider
+                  display={{ _: 'none', md: 'flex' }}
+                  width="100%"
+                />
+              </>
+            ) : (
+              <CfEverywhereButtons />
+            )}
+
             <Box display={{ _: 'none', md: 'flex' }} mt="l">
               <Box flex="1">
                 <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
@@ -248,49 +323,57 @@ const CampusInfo = ({
             color="neutrals.700"
             mb={0}
           >
-            {`Campus Pastor${includes(pastor?.firstName, ' and ') ? 's' : ''}`}
+            {name === 'Online (CF Everywhere)'
+              ? 'Digital Discipleship Pastor'
+              : `Campus Pastor${
+                  includes(pastor?.firstName, ' and ') ? 's' : ''
+                }`}
           </Box>
           <StyledDivider width="100%" my="l" />
-          <Box as="h4" fontStyle="italic" mb="base">
-            We can’t wait to see you this week!
-          </Box>
-          <Box display={{ _: 'inline', lg: 'flex' }}>
-            <Button
-              onClick={() => {
-                modalDispatch(
-                  showModal('AddToCalendar', {
-                    title: 'What service would you like to attend?',
-                    events: icsLinkEvents,
-                  })
-                );
-              }}
-              size="xs"
-              px="base"
-              borderRadius="xxl"
-              variant="secondary"
-              mr="xs"
-            >
-              ADD TO CALENDAR
-            </Button>
+          {name !== 'Online (CF Everywhere)' ? (
+            <Box as="h4" fontStyle="italic" mb="base">
+              We can’t wait to see you this week!
+            </Box>
+          ) : null}
+          {name !== 'Online (CF Everywhere)' ? (
+            <Box display={{ _: 'inline', lg: 'flex' }}>
+              <Button
+                onClick={() => {
+                  modalDispatch(
+                    showModal('AddToCalendar', {
+                      title: 'What service would you like to attend?',
+                      events: icsLinkEvents,
+                    })
+                  );
+                }}
+                size="xs"
+                px="base"
+                borderRadius="xxl"
+                variant="secondary"
+                mr="xs"
+              >
+                ADD TO CALENDAR
+              </Button>
 
-            <Button
-              size="xs"
-              px="base"
-              borderRadius="xxl"
-              ml={{ _: 0, lg: 'xs' }}
-              m={{ _: 'xs', lg: 0 }}
-              onClick={() =>
-                handleSocialShare({
-                  shareType: 'sms',
-                  shareMessages: {
-                    sms: `Would you like to join me for service at Christ Fellowship Church? Here’s a link with all the details. ${document.URL}`,
-                  },
-                })
-              }
-            >
-              INVITE A FRIEND
-            </Button>
-          </Box>
+              <Button
+                size="xs"
+                px="base"
+                borderRadius="xxl"
+                ml={{ _: 0, lg: 'xs' }}
+                m={{ _: 'xs', lg: 0 }}
+                onClick={() =>
+                  handleSocialShare({
+                    shareType: 'sms',
+                    shareMessages: {
+                      sms: `Would you like to join me for service at Christ Fellowship Church? Here’s a link with all the details. ${document.URL}`,
+                    },
+                  })
+                }
+              >
+                INVITE A FRIEND
+              </Button>
+            </Box>
+          ) : null}
           <Box as="i" pt="base">
             Have any questions? <br /> Give us a call at{' '}
             <Box as="a" href={`tel:${phoneNumber}`}>
