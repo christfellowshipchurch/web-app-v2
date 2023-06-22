@@ -1,6 +1,6 @@
 const metadata = {
   links: {
-    churchOnline: 'https://cf.church/watchonline',
+    churchOnline: 'https://christfellowship.church/locations/cf-everywhere',
     pastMessages:
       'https://www.youtube.com/playlist?list=PLUQ7jSnRB_efXMDq9Lka6stS02awWoaz4',
     giveOnline: 'https://christfellowship.church/give',
@@ -16,7 +16,7 @@ const metadata = {
     youtube: 'https://www.youtube.com/user/christfellowship',
     cfSeu: 'https://cfseu.com/',
     cfConf: 'https://www.christfellowshipconference.com/',
-    cfApp: "https://apps.apple.com/us/app/christ-fellowship-app/id785979426",
+    cfApp: 'https://apps.apple.com/us/app/christ-fellowship-app/id785979426',
   },
 };
 
