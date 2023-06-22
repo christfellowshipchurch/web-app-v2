@@ -6,7 +6,12 @@ const DiscoverFiltersMap = props => {
   return props.data
     .map(edge => edge.node)
     .map((node, i) => (
-      <DiscoverFilterSection key={i} contentId={node?.id} title={node?.title} />
+      <DiscoverFilterSection
+        key={i}
+        contentId={node?.id}
+        title={node?.title}
+        filter={props?.filter}
+      />
     ));
 };
 
