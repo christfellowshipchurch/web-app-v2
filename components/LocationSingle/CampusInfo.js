@@ -324,7 +324,7 @@ const CampusInfo = ({
             mb={0}
           >
             {name === 'Online (CF Everywhere)'
-              ? 'Digital Discipleship Pastor'
+              ? 'Online Community Pastor'
               : `Campus Pastor${
                   includes(pastor?.firstName, ' and ') ? 's' : ''
                 }`}
