@@ -148,7 +148,7 @@ module.exports = {
       { source: '/reallove', destination: '/watch/71ec2079298288ea22cabf29ff907d73/real-love', permanent: true },
       { source: '/care', destination: 'https://my.longhollow.com/NextSteps', permanent: true },
       { source: '/worship', destination: '/worship-team', permanent: true },
-      { source: '/deacons', destination: '/nominate-a-deacon-2021', permanent: true },
+      { source: '/deacons', destination: '/nominate-a-deacon-2023', permanent: true },
       { source: '/deacon', destination: '/nominate-a-deacon-2021', permanent: true },
       { source: '/live', destination: '/next-steps/join-us-online', permanent: true },
       { source: '/greece', destination: 'https://discoverycruisesandtravel.com/tour/robby-and-kandi-gallaty/', permanent: true },
