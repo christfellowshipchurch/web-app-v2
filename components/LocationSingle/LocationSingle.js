@@ -142,6 +142,24 @@ function LocationSingle(props = {}) {
         </Box>
       )}
 
+      {/* Set a Reminder */}
+      {campus !== 'Cf Everywhere' && (
+        <>
+          <Box width="100%" px={{ _: 'base', md: 'xl' }} pt="base">
+            <InfoCardList
+              {...setReminderData}
+              button={{
+                title: 'Set a Reminder',
+                onClick: () =>
+                  modalDispatch(
+                    showModal('SetReminder', { defaultCampus: campus })
+                  ),
+              }}
+            />
+          </Box>
+        </>
+      )}
+
       {/* At this Location Section */}
       <Box bg="white" width="100%" px={{ _: 'base', md: 'xl' }} pt="base">
         <LocationBlockFeature

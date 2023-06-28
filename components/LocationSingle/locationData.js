@@ -285,9 +285,9 @@ const headerData = [
   {
     name: 'Palm Beach Gardens',
     primaryButton: {
-      call: 'Join Us Sunday',
-      action: '#service-times',
-      newTab: false,
+      call: 'Set a Reminder',
+      modal: 'SetReminder',
+      newTab: true,
     },
     backgroundVideo: {
       mobile: '/location-pages/gardens-mobile.mp4',
@@ -298,9 +298,9 @@ const headerData = [
   {
     name: 'Port St. Lucie',
     primaryButton: {
-      call: 'Join Us Sunday',
-      action: '#service-times',
-      newTab: false,
+      call: 'Set a Reminder',
+      modal: 'SetReminder',
+      newTab: true,
     },
     backgroundVideo: {
       mobile: '/location-pages/psl-mobile.mp4',
@@ -311,9 +311,9 @@ const headerData = [
   {
     name: 'Boynton Beach',
     primaryButton: {
-      call: 'Join Us Sunday',
-      action: '#service-times',
-      newTab: false,
+      call: 'Set a Reminder',
+      modal: 'SetReminder',
+      newTab: true,
     },
     backgroundVideo: {
       mobile: '/location-pages/boynton-mobile.mp4',
@@ -324,9 +324,9 @@ const headerData = [
   {
     name: 'Belle Glade',
     primaryButton: {
-      call: 'Join Us Sunday',
-      action: '#service-times',
-      newTab: false,
+      call: 'Set a Reminder',
+      modal: 'SetReminder',
+      newTab: true,
     },
     backgroundVideo: {
       mobile: '/location-pages/belle-glade-mobile.mp4',
@@ -337,9 +337,9 @@ const headerData = [
   {
     name: 'Downtown West Palm Beach',
     primaryButton: {
-      call: 'Join Us Sunday',
-      action: '#service-times',
-      newTab: false,
+      call: 'Set a Reminder',
+      modal: 'SetReminder',
+      newTab: true,
     },
     backgroundVideo: {
       mobile: '/location-pages/downtown-mobile.mp4',
@@ -364,9 +364,9 @@ const headerData = [
   {
     name: 'Jupiter',
     primaryButton: {
-      call: 'Join Us Sunday',
-      action: '#service-times',
-      newTab: false,
+      call: 'Set a Reminder',
+      modal: 'SetReminder',
+      newTab: true,
     },
     backgroundVideo: {
       mobile: '/location-pages/jupiter-mobile.mp4',
@@ -377,9 +377,9 @@ const headerData = [
   {
     name: 'Stuart',
     primaryButton: {
-      call: 'Join Us Sunday',
-      action: '#service-times',
-      newTab: false,
+      call: 'Set a Reminder',
+      modal: 'SetReminder',
+      newTab: true,
     },
     backgroundVideo: {
       mobile: '/location-pages/stuart-mobile.mp4',
@@ -390,9 +390,9 @@ const headerData = [
   {
     name: 'Vero Beach',
     primaryButton: {
-      call: 'Join Us Sunday',
-      action: '#service-times',
-      newTab: false,
+      call: 'Set a Reminder',
+      modal: 'SetReminder',
+      newTab: true,
     },
     backgroundVideo: {
       mobile: '/location-pages/vero-mobile.mp4',
@@ -417,9 +417,9 @@ const headerData = [
   {
     name: 'Boca Raton',
     primaryButton: {
-      call: 'Join Us Sunday',
-      action: '#service-times',
-      newTab: false,
+      call: 'Set a Reminder',
+      modal: 'SetReminder',
+      newTab: true,
     },
     backgroundVideo: {
       mobile: '/location-pages/boca-mobile.mp4',
@@ -430,9 +430,9 @@ const headerData = [
   {
     name: 'Okeechobee',
     primaryButton: {
-      call: 'Join Us Sunday',
-      action: '#service-times',
-      newTab: false,
+      call: 'Set a Reminder',
+      modal: 'SetReminder',
+      newTab: true,
     },
     backgroundVideo: {
       mobile: '/location-pages/okee-mobile.mp4',
@@ -474,7 +474,7 @@ const headerData = [
     },
     backgroundVideo: {
       mobile: '/location-pages/cf-everywhere-desktop.mp4',
-      desktop: '/location-pages/cf-everywhere-desktop.mp4'
+      desktop: '/location-pages/cf-everywhere-desktop.mp4',
     },
   },
 ];
