@@ -71,15 +71,27 @@ function ContentBlock(props = {}) {
           </Conditional>
 
           <Conditional condition={hasVideo}>
-            <Video
-              // for some reason width and height are not responding correctly in this component so we must set them manually here
-              height={{ _: 180, md: 325, lg: 450 }}
-              width={{ _: 300, md: 600, lg: 800 }}
-              src={props?.videos[0]?.sources[0]?.uri}
-              autoPlay={false}
-              playsInline={true}
-              poster={props?.image}
-            />
+            {horizontalLayout ? (
+              <Video
+                // for some reason width and height are not responding correctly in this component so we must set them manually here
+                height={{ _: 180, md: 325, lg: 450 }}
+                width={{ _: 300, md: 400, lg: 520 }}
+                src={props?.videos[0]?.sources[0]?.uri}
+                autoPlay={false}
+                playsInline={true}
+                poster={props?.image}
+              />
+            ) : (
+              <Video
+                // for some reason width and height are not responding correctly in this component so we must set them manually here
+                height={{ _: 180, md: 325, lg: 450 }}
+                width={{ _: 300, md: 600, lg: 800 }}
+                src={props?.videos[0]?.sources[0]?.uri}
+                autoPlay={false}
+                playsInline={true}
+                poster={props?.image}
+              />
+            )}
           </Conditional>
         </Box>
       </Conditional>
