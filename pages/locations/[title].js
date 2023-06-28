@@ -113,7 +113,6 @@ export default function Location(props = {}) {
   );
 }
 
-// This function gets called at build time to generate the titles for _all_ messages
 export async function getStaticPaths() {
   // todo : make this a Network request so that it's dynamic
   const titles = [
@@ -125,11 +124,9 @@ export async function getStaticPaths() {
     'okeechobee',
     'palm-beach-gardens',
     'port-st-lucie',
-    'riviera-beach',
     'royal-palm-beach',
     'stuart',
     'vero-beach',
-    'trinity',
   ];
 
   return {
@@ -143,7 +140,7 @@ export async function getStaticPaths() {
 // This also gets called at build time
 export async function getStaticProps({ params }) {
   const apolloClient = initializeApollo();
-  await apolloClient.query({
+  const data = await apolloClient.query({
     query: GET_CONTENT_ITEM,
     variables: { pathname: `locations/${params.title}` },
   });
@@ -159,6 +156,7 @@ export async function getStaticProps({ params }) {
     props: {
       initialApolloState: apolloClient.cache.extract(),
       campus: campus?.data?.campus ?? {},
+      data: data ?? {},
     },
     revalidate: 1,
   };

@@ -139,9 +139,11 @@ const StyledForm = ({
               <Select.Option value={null}>Select a Service Time</Select.Option>
               {serviceTimes.map(({ id, time }) => {
                 return (
-                  <Select.Option key={id} value={time}>
-                    {time}
-                  </Select.Option>
+                  time && (
+                    <Select.Option key={id} value={time}>
+                      {time}
+                    </Select.Option>
+                  )
                 );
               })}
             </Select>

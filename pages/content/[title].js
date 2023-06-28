@@ -1,3 +1,7 @@
+/**
+ * ! This file is now deprecated, all `/content` routes are redirected to home
+ */
+
 import { LegacyNodeRouter } from 'components';
 
 /**

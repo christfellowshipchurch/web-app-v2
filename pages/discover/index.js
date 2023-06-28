@@ -238,6 +238,7 @@ const Discover = () => {
                 },
                 fetchPolicy: 'cache-and-network',
               }}
+              filter={router?.query?.c}
               Component={DiscoverFiltersMap}
             />
           </Box>

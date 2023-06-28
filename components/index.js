@@ -67,6 +67,7 @@ import UserProfile from './UserProfile';
 import VerticalCardListFeature from './VerticalCardListFeature';
 import VerticalModalCardListFeature from './VerticalModalCardListFeature';
 import Video from './Video';
+import WistiaPlayer from './WistiaPlayer';
 
 export {
   ActionBarFeature,
@@ -137,5 +138,6 @@ export {
   VerticalCardListFeature,
   VerticalModalCardListFeature,
   Video,
+  WistiaPlayer,
   modals,
 };

@@ -29,7 +29,7 @@ const Card = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: ${props => (props?.noIcons ? 'center' : 'space-between')};
 
   @media screen and (max-width: ${themeGet('breakpoints.sm')}) {
     margin-left: 0px;

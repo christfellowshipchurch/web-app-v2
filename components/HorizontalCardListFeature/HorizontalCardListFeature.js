@@ -50,12 +50,28 @@ function HorizontalCardListFeature(props = {}) {
       </Box>
     );
   }
+
+  if (cards.length === 0) {
+    return (
+      <Box>
+        {!isEmpty(title) && <Box as="h2">{title}</Box>}
+        {!isEmpty(subtitle) && <Box as="p">{subtitle}</Box>}
+        <Box>
+          {' '}
+          <Box as="a" target="blank" href="https://rock.gocf.org/RequestPrayer">
+            Click here
+          </Box>{' '}
+          to let us know how we can pray for you.
+        </Box>
+      </Box>
+    );
+  }
   if (cards && cards[0]?.action === 'READ_PRAYER') {
     return props.loading ? (
       <Loader text="Loading your prayers" />
     ) : (
       <Box>
-        {!isEmpty(title) && <Box as="h1">{title}</Box>}
+        {!isEmpty(title) && <Box as="h2">{title}</Box>}
         {!isEmpty(subtitle) && <Box as="p">{subtitle}</Box>}
         <CardCarousel
           cardsDisplayed={4}
@@ -80,7 +96,7 @@ function HorizontalCardListFeature(props = {}) {
 
   return (
     <Box textAlign="center">
-      {!isEmpty(title) && <Box as="h1">{title}</Box>}
+      {!isEmpty(title) && <Box as="h2">{title}</Box>}
       {!isEmpty(subtitle) && <HtmlRenderer htmlContent={subtitle} />}
       <CardCarousel
         cardsDisplayed={cardsDisplayed}
@@ -89,7 +105,26 @@ function HorizontalCardListFeature(props = {}) {
       >
         {!isEmpty(cards) &&
           cards?.map((card, i) => {
+            const url = getUrlFromRelatedNode(card?.relatedNode);
+            const nonClickable = url === '#no-click';
             return (
+              <>
+              {nonClickable ? (
+                  <HorizontalHighlightCard
+                    coverImage={card?.coverImage?.sources[0]?.uri}
+                    coverImageOverlay={true}
+                    title={card?.title}
+                    description={card?.summary}
+                    type={
+                      props?.customCardSize
+                        ? props?.customCardSize
+                        : cards.length < 2
+                        ? 'DEFAULT'
+                        : 'HIGHLIGHT_SMALL'
+                    }
+                    label={transformISODates(card?.labelText)}
+                  />
+                ) :
               <CustomLink
                 as="a"
                 key={i}
@@ -104,6 +139,8 @@ function HorizontalCardListFeature(props = {}) {
                 type={cardType}
                 label={transformISODates(card?.labelText)}
               />
+              }
+            </>
             );
           })}
       </CardCarousel>

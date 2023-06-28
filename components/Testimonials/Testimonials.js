@@ -12,21 +12,38 @@ function Testimonials(props = {}) {
         <HtmlRenderer htmlContent={props.title} />
       </Box>
       <Styled {...props}>
-        {props?.testimonies?.map((n, i) => (
-          <Styled.Card key={i}>
-            {n?.image && (
-              <Image mb="base" height={70} width={70} source={n?.image} />
+        {props?.testimonies?.map((testimony, i) => (
+          <Styled.Card noIcons={!testimony?.rating && !testimony?.icon} key={i}>
+            {testimony?.image && (
+              <Image
+                mb="base"
+                height={70}
+                width={70}
+                source={testimony?.image}
+              />
             )}
-            {n.rating && <RatingStars rating={n.rating} />}
+            {testimony?.rating && <RatingStars rating={testimony?.rating} />}
             <Box color="secondary" my="s">
-              <HtmlRenderer htmlContent={n.description} />
+              <HtmlRenderer htmlContent={testimony?.description} />
             </Box>
             <Box mt="base">
-              <Box as="h4">
-                <HtmlRenderer htmlContent={n.name} />
-              </Box>
-              {n?.icon && (
-                <Icon mt="base" size="30" color="neutrals.300" name={n.icon} />
+              {testimony?.name && (
+                <Box as="h4">
+                  <HtmlRenderer htmlContent={testimony?.name} />
+                </Box>
+              )}
+              {testimony?.region && (
+                <Box>
+                  <HtmlRenderer htmlContent={testimony?.region} />
+                </Box>
+              )}
+              {testimony?.icon && (
+                <Icon
+                  mt="base"
+                  size="30"
+                  color="neutrals.300"
+                  name={testimony?.icon}
+                />
               )}
             </Box>
           </Styled.Card>

@@ -7,6 +7,7 @@ import {
   Testimonials,
   Video,
   VerticalCardListFeature,
+  WistiaPlayer,
 } from 'components';
 import { useCurrentBreakpoint } from 'hooks';
 import {
@@ -184,14 +185,17 @@ function HeartForTheHouse(props = {}) {
           {!loading && wistiaData?.length > 0 ? (
             wistiaData?.length > 1 ? (
               <CardCarousel p={{ _: 0, lg: 'xxl' }}>
-                {wistiaData?.map(video => (
+                {wistiaData?.map((video, i) => (
                   <Box
                     boxShadow="l"
                     m="base"
                     borderRadius="xl"
                     overflow="hidden"
                   >
-                    <Video wistiaId={video?.hashed_id} />
+                    <WistiaPlayer
+                      videoId={video?.hashed_id}
+                      wrapper={`wistia-player-container-${i}}`}
+                    />
                   </Box>
                 ))}
               </CardCarousel>
@@ -282,7 +286,7 @@ function HeartForTheHouse(props = {}) {
             <HtmlRenderer htmlContent='Be a part of the <span style="color:#133156">heart.</span>' />
           </Box>
           <Box as="h3" color="neutrals.200">
-            GIVE TOWARD HEART FOR THE HOUSE ON MAY 21, 2023.
+            GIVE TOWARD HEART FOR THE HOUSE UNTIL DECEMBER 31, 2023.
           </Box>
           <Box
             my="l"
