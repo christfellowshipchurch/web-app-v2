@@ -46,8 +46,6 @@ function ContentBlock(props = {}) {
   const hasVideo = !isEmpty(props?.videos[0]?.sources[0]?.uri);
   const hasMedia = hasImage || hasVideo;
 
-  const noMedia =
-    !(props.image || props.image !== '') && !(props.videos?.length >= 1);
   const idRegex = /\D/g;
   const containerId = hasTitle ? kebabCase(title) : id?.replace(idRegex, '');
 
@@ -56,7 +54,9 @@ function ContentBlock(props = {}) {
       {/* // MARK : Media */}
       <Conditional condition={hasMedia}>
         <Box
-          flex={3}
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
           borderRadius="base"
           maxWidth={horizontalLayout ? '500px' : '800px'}
         >
@@ -71,27 +71,21 @@ function ContentBlock(props = {}) {
           </Conditional>
 
           <Conditional condition={hasVideo}>
-            {horizontalLayout ? (
-              <Video
-                // for some reason width and height are not responding correctly in this component so we must set them manually here
-                height={{ _: 180, md: 325, lg: 450 }}
-                width={{ _: 300, md: 400, lg: 520 }}
-                src={props?.videos[0]?.sources[0]?.uri}
-                autoPlay={false}
-                playsInline={true}
-                poster={props?.image}
-              />
-            ) : (
-              <Video
-                // for some reason width and height are not responding correctly in this component so we must set them manually here
-                height={{ _: 180, md: 325, lg: 450 }}
-                width={{ _: 300, md: 600, lg: 800 }}
-                src={props?.videos[0]?.sources[0]?.uri}
-                autoPlay={false}
-                playsInline={true}
-                poster={props?.image}
-              />
-            )}
+            <Video
+              // for some reason width and height are not responding correctly in this component so we must set them manually here
+              height="auto"
+              width={
+                horizontalLayout
+                  ? { _: 350, md: 400, lg: 520 }
+                  : { _: 350, md: 600, lg: 800 }
+              }
+              src={props?.videos[0]?.sources[0]?.uri}
+              autoPlay={false}
+              playsInline={true}
+              poster={props?.image}
+              // all videos will defatult to 16:9 aspect ratio keeping sizing consistent
+              aspectRatio="16/9"
+            />
           </Conditional>
         </Box>
       </Conditional>
