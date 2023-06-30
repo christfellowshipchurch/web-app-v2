@@ -114,6 +114,7 @@ const CampusInfo = ({
   phoneNumber,
   serviceTimes,
   additionalInfo,
+  mapLink,
 }) => {
   const modalDispatch = useModalDispatch();
   const addressFirst = street1 ? `${street1}` : null;
@@ -166,10 +167,11 @@ const CampusInfo = ({
   /** Instagram and Google Map URLs */
   const campusLink = find(campusLinks, { name: name });
 
-  /** Directions to all Campuses except Trinity Campus (has special link) */
-  const allCampusesDirections = campusLink?.googleMap
-    ? campusLink?.googleMap
-    : `https://www.google.com/maps/place/${addressFirst?.replace(' ', '+')}`;
+  /** Directions to campus using the "mapLink" attribute from Rock campuses, if not found we'll generate a link using the campus address */
+  const allCampusesDirections =
+    mapLink && mapLink !== ''
+      ? mapLink
+      : `https://www.google.com/maps/place/${addressFirst?.replace(' ', '+')}`;
 
   /** Trinity Campus Directions Link */
   const trinityCampusDirections =
