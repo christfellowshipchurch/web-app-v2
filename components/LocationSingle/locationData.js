@@ -209,66 +209,53 @@ const campusLinks = [
   {
     name: 'Palm Beach Gardens',
     instagram: 'https://www.instagram.com/cf.gardens/',
-    googleMap: 'https://goo.gl/maps/oaAmU8d3PiyFKqb56',
   },
   {
     name: 'Port St. Lucie',
     instagram: 'https://www.instagram.com/cf.psl/',
-    googleMap: 'https://goo.gl/maps/ueVZs2zeZsQktb4q6',
   },
   {
     name: 'Boynton Beach',
     instagram: 'https://www.instagram.com/cf.boynton/',
-    googleMap: 'https://goo.gl/maps/V2vem5hz5eMHAjQZA',
   },
   {
     name: 'Belle Glade',
     instagram: 'https://www.instagram.com/cf.belleglade/',
-    googleMap: 'https://goo.gl/maps/NJcvaKo7btse434GA',
   },
   {
     name: 'Downtown West Palm Beach',
     instagram: 'https://www.instagram.com/cf.downtownwpb/',
-    googleMap: 'https://goo.gl/maps/wRHEkPkP6PM6YSvXA',
   },
   {
     name: 'Royal Palm Beach',
     instagram: 'https://www.instagram.com/cf.royalpalm/',
-    googleMap: 'https://goo.gl/maps/RQCSvNAJ8uFo9atR6',
   },
   {
     name: 'Jupiter',
     instagram: 'https://www.instagram.com/cf.jupiter/',
-    googleMap: 'https://goo.gl/maps/nCgqzQUJw2FyZ4WK7',
   },
   {
     name: 'Stuart',
     instagram: 'https://www.instagram.com/cf.stuart/',
-    googleMap: 'https://goo.gl/maps/6pxgRULscdFFefXZ7',
   },
   {
     name: 'Vero Beach',
     instagram: 'https://www.instagram.com/cf.verobeach/',
-    googleMap: 'https://goo.gl/maps/Wny5uvv1BRNnTdDZ9',
   },
   {
     name: 'Riviera Beach',
     instagram: 'https://www.instagram.com/cf.riviera/',
-    googleMap: 'https://goo.gl/maps/zRZmHMwgoNBhD5L29',
   },
   {
     name: 'Boca Raton',
     instagram: 'https://www.instagram.com/cf.boca/',
-    googleMap: 'https://goo.gl/maps/GqXgUzqwZXTPpn9T7',
   },
   {
     name: 'Okeechobee',
     instagram: 'https://www.instagram.com/cf.okeechobee/',
-    googleMap: 'https://goo.gl/maps/EjYCSoh8Zsi4fnfp6',
   },
   {
     name: 'en Español Royal Palm Beach',
-    googleMap: 'https://goo.gl/maps/RQCSvNAJ8uFo9atR6',
     instagram: 'https://www.instagram.com/cf.espanol/',
   },
   {
