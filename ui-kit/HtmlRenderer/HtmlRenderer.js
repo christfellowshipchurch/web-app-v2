@@ -56,6 +56,29 @@ const HtmlRenderer = ({ htmlContent, customProcessing }) => {
   return <Styled>{parsedHtmlContent}</Styled>;
 };
 
+export const parseHtmlContent = htmlContent => {
+  const processNodeDefinitions = new HtmlToReact.ProcessNodeDefinitions(React);
+
+  const processingInstructions = [
+    ...defaultProcessing,
+    {
+      // Anything else
+      shouldProcessNode: function (node) {
+        return true;
+      },
+      processNode: processNodeDefinitions.processDefaultNode,
+    },
+  ];
+
+  const parsedHtmlContent = htmlToReactParser.parseWithInstructions(
+    htmlContent,
+    isValidNode,
+    processingInstructions
+  );
+
+  return parsedHtmlContent;
+};
+
 HtmlRenderer.propTypes = {
   htmlContent: PropTypes.string.isRequired,
   customProcessing: PropTypes.array,

@@ -42,6 +42,7 @@ import Header from './Header';
 import HeroListFeature from './HeroListFeature';
 import HomeFeed from './HomeFeed';
 import HorizontalCardListFeature from './HorizontalCardListFeature';
+import JobForm from './JobForm';
 import InfoCardList from './InfoCardList';
 import JsonLD from './JsonLD';
 import ContentBlockCollection from './ContentBlockCollection';
@@ -113,6 +114,7 @@ export {
   InfoCardList,
   HomeFeed,
   HorizontalCardListFeature,
+  JobForm,
   JsonLD,
   ContentBlockCollection,
   Layout,
