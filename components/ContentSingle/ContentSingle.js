@@ -42,7 +42,6 @@ function ContentSingle(props = {}) {
     // Do we have videos now, when we didn't before?
     // ( Loading just finished, so we can properly select the first video if present )
     if (props.data?.wistiaId?.length >= 1 && currentVideo === null) {
-      console.log('TRUE');
       setCurrentVideo(props.data.wistiaId[0]);
     }
   }, [props.data?.wistiaId, currentVideo]);
@@ -94,8 +93,6 @@ function ContentSingle(props = {}) {
     segmentData,
     wistiaId,
   } = props?.data;
-  console.log(wistiaId);
-  console.log(videos);
 
   const coverImageUri = coverImage?.sources[0]?.uri;
   const authorName = author

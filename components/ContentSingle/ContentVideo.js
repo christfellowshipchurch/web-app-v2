@@ -25,7 +25,6 @@ export default function ContentVideo(props = {}) {
         segmentData={props.segmentData}
         wistiaId={props?.wistiaId}
         title={props.title}
-        //src={props.video.sources[0].uri}
         poster={props.poster}
         autoPlay={true}
         playsInline={true}
