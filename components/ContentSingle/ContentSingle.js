@@ -15,7 +15,7 @@ import Styled from './ContentSingle.styles';
 import { useRouter } from 'next/router';
 function ContentSingle(props = {}) {
   const [currentVideo, setCurrentVideo] = useState(
-    Array.isArray(props.data?.videos) ? props.data.videos[0] : null
+    Array.isArray(props.data?.wistiaId) ? props.data.wistiaId[0] : null
   );
   const [showShare, setShowShare] = useState(true);
   const router = useRouter();
@@ -41,10 +41,11 @@ function ContentSingle(props = {}) {
   useEffect(() => {
     // Do we have videos now, when we didn't before?
     // ( Loading just finished, so we can properly select the first video if present )
-    if (props.data?.videos?.length >= 1 && currentVideo === null) {
-      setCurrentVideo(props.data.videos[0]);
+    if (props.data?.wistiaId?.length >= 1 && currentVideo === null) {
+      console.log('TRUE');
+      setCurrentVideo(props.data.wistiaId[0]);
     }
-  }, [props.data?.videos, currentVideo]);
+  }, [props.data?.wistiaId, currentVideo]);
 
   /**
    * note : Page view tracking for Segment Analytics
@@ -93,15 +94,17 @@ function ContentSingle(props = {}) {
     segmentData,
     wistiaId,
   } = props?.data;
+  console.log(wistiaId);
+  console.log(videos);
 
   const coverImageUri = coverImage?.sources[0]?.uri;
   const authorName = author
     ? `${author.firstName} ${author.lastName}`
     : undefined;
 
-  const handleSelectVideo = video => {
-    if (video !== currentVideo) {
-      setCurrentVideo(video);
+  const handleSelectVideo = wistiaId => {
+    if (wistiaId !== currentVideo) {
+      setCurrentVideo(wistiaId);
     }
   };
 
@@ -120,7 +123,7 @@ function ContentSingle(props = {}) {
         image: coverImageUri,
         author: authorName,
         url: typeof window !== 'undefined' ? window.location.href : undefined,
-        video: currentVideo?.sources[0]?.uri,
+        video: currentVideo?.wistiaId,
         keywords: metadata?.keywords?.content,
         title: metadata?.title?.content || title,
       }}
@@ -179,7 +182,7 @@ function ContentSingle(props = {}) {
           </Box>
         )
       }
-      contentTitleE={videos?.length >= 2 ? 'Videos' : null}
+      contentTitleE={wistiaId?.length >= 2 ? 'Videos' : null}
       renderContentE={() => (
         <>
           {actions?.length > 0 && (
@@ -201,7 +204,7 @@ function ContentSingle(props = {}) {
           <ContentVideosList
             key={`videos-${props?.data?.id}`}
             thumbnail={coverImageUri}
-            videos={videos}
+            videos={wistiaId}
             onSelectVideo={handleSelectVideo}
           />
         </>

@@ -25,7 +25,7 @@ export default function ContentVideo(props = {}) {
         segmentData={props.segmentData}
         wistiaId={props?.wistiaId}
         title={props.title}
-        src={props.video.sources[0].uri}
+        //src={props.video.sources[0].uri}
         poster={props.poster}
         autoPlay={true}
         playsInline={true}
@@ -36,6 +36,7 @@ export default function ContentVideo(props = {}) {
 
 ContentVideo.propTypes = {
   poster: PropTypes.string,
+  wistiaID: PropTypes.string,
   video: PropTypes.shape({
     sources: PropTypes.arrayOf(
       PropTypes.shape({
