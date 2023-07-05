@@ -179,7 +179,7 @@ function ContentSingle(props = {}) {
           </Box>
         )
       }
-      contentTitleE={wistiaId?.length >= 2 ? 'Videos' : null}
+      contentTitleE={videos?.length >= 2 ? 'Videos' : null}
       renderContentE={() => (
         <>
           {actions?.length > 0 && (
