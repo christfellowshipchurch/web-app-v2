@@ -6,7 +6,6 @@ import { DefaultCard, CardGrid } from 'ui-kit';
 import { CustomLink } from 'components';
 
 function EventsList(props = {}) {
-  console.log('data', props.data);
   return (
     <CardGrid>
       {props.data.map(event => (
