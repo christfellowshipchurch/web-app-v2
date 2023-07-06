@@ -277,10 +277,10 @@ const headerData = [
       newTab: true,
     },
     backgroundVideo: {
-      mobile: '/location-pages/gardens-mobile.mp4',
-      desktop: '/location-pages/gardens-desktop.mp4',
-     /* mobile: 'http://embed.wistia.com/deliveries/a2d8ff303071438c901c358dc99d9c82.mp4',
-      desktop: 'http://embed.wistia.com/deliveries/d7da7955aeaabad13c81b0d28eb0a906.mp4',*/
+      /*mobile: '/location-pages/gardens-mobile.mp4',
+      desktop: '/location-pages/gardens-desktop.mp4',*/
+      mobile: 'http://embed.wistia.com/deliveries/a2d8ff303071438c901c358dc99d9c82.mp4',
+      desktop: 'http://embed.wistia.com/deliveries/d7da7955aeaabad13c81b0d28eb0a906.mp4',
     },
     videoBackgroundImage: '/location-pages/gardens-background.png',
   },
