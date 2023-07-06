@@ -9,7 +9,7 @@ const LifeToTheFullest = () => {
       title: 'Know God personally',
       subtitle:
         'You can know Jesus on a personal level. See how a relationship with Him changes your life for the better.',
-      image: '/external-home-1.png',
+      image: 'external-landing/external-home-1.png',
       highlightWidth: '57%',
       highlightWidthSmall: '80%',
     },
@@ -17,7 +17,7 @@ const LifeToTheFullest = () => {
       title: 'Grow in your relationships',
       subtitle:
         'You weren’t meant to do life alone. Find friends and build stronger relationships with God and others.',
-      image: 'external-home-2.png',
+      image: 'external-landing/external-home-2.png',
       highlightWidth: '69%',
       highlightWidthSmall: '98%',
     },
@@ -25,7 +25,7 @@ const LifeToTheFullest = () => {
       title: 'Discover your purpose',
       subtitle:
         "You're here for a reason. Find out who God created <i>you</i> to be and learn how to live life on purpose.",
-      image: 'external-home-3.png',
+      image: 'external-landing/external-home-3.png',
       highlightWidth: '61%',
       highlightWidthSmall: '85%',
     },
@@ -33,7 +33,7 @@ const LifeToTheFullest = () => {
       title: 'Impact your world',
       subtitle:
         'You can make a difference. Learn how to impact people in your sphere of influence, your community, and on the other side of the world.',
-      image: 'external-home-4.png',
+      image: 'external-landing/external-home-4.png',
       highlightWidth: '52%',
       highlightWidthSmall: '70%',
     },
