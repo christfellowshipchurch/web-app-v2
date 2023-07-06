@@ -277,8 +277,8 @@ const headerData = [
       newTab: true,
     },
     backgroundVideo: {
-      mobile: '/location-pages/gardens-mobile.mp4',
-      desktop: '/location-pages/gardens-desktop.mp4',
+      mobile: 'http://embed.wistia.com/deliveries/a2d8ff303071438c901c358dc99d9c82.mp4',
+      desktop: 'http://embed.wistia.com/deliveries/d7da7955aeaabad13c81b0d28eb0a906.mp4',
     },
     videoBackgroundImage: '/location-pages/gardens-background.png',
   },
@@ -290,8 +290,8 @@ const headerData = [
       newTab: true,
     },
     backgroundVideo: {
-      mobile: '/location-pages/psl-mobile.mp4',
-      desktop: '/location-pages/psl-desktop.mp4',
+      mobile: 'http://embed.wistia.com/deliveries/b7c69eddef263f8642c3cf6a40119da6.mp4',
+      desktop: 'http://embed.wistia.com/deliveries/871d157415af66e33b856f0f45a80ac5.mp4',
     },
     videoBackgroundImage: '/location-pages/psl-background.png',
   },
