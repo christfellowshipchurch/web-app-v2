@@ -15,8 +15,9 @@ import Styled from './ContentSingle.styles';
 import { useRouter } from 'next/router';
 function ContentSingle(props = {}) {
   const [currentVideo, setCurrentVideo] = useState(
-    Array.isArray(props.data?.wistiaId) ? props.data.wistiaId[0] : null
+    Array.isArray(props.data?.videos) ? props.data.videos[0] : null
   );
+
   const [showShare, setShowShare] = useState(true);
   const router = useRouter();
   const analytics = useAnalytics();
@@ -41,10 +42,12 @@ function ContentSingle(props = {}) {
   useEffect(() => {
     // Do we have videos now, when we didn't before?
     // ( Loading just finished, so we can properly select the first video if present )
-    if (props.data?.wistiaId?.length >= 1 && currentVideo === null) {
-      setCurrentVideo(props.data.wistiaId[0]);
+    if (props.data?.videos?.length >= 1 && currentVideo === null) {
+      setCurrentVideo(props.data.videos[0]);
+    } else if (props.data?.wistiaId?.length >= 1 && currentVideo === null) {
+      setCurrentVideo(props.data.wistiaId);
     }
-  }, [props.data?.wistiaId, currentVideo]);
+  }, [props.data?.videos, props.data?.wistiaId, currentVideo]);
 
   /**
    * note : Page view tracking for Segment Analytics
@@ -94,18 +97,29 @@ function ContentSingle(props = {}) {
     wistiaId,
   } = props?.data;
 
+  if (!currentVideo && wistiaId) {
+    setCurrentVideo(props.data.wistiaId);
+  }
+
   const coverImageUri = coverImage?.sources[0]?.uri;
   const authorName = author
     ? `${author.firstName} ${author.lastName}`
     : undefined;
 
-  const handleSelectVideo = wistiaId => {
-    if (wistiaId !== currentVideo) {
-      setCurrentVideo(wistiaId);
+  const handleSelectVideo = video => {
+    if (video !== currentVideo) {
+      setCurrentVideo(video);
     }
   };
 
   const metadata = keyBy(props?.data?.metadata, 'name');
+
+  var contentLayoutVideo;
+  if (wistiaId) {
+    contentLayoutVideo = currentVideo?.wistiaId;
+  } else {
+    contentLayoutVideo = currentVideo?.sources[0]?.uri;
+  }
 
   return (
     <ContentLayout
@@ -120,7 +134,7 @@ function ContentSingle(props = {}) {
         image: coverImageUri,
         author: authorName,
         url: typeof window !== 'undefined' ? window.location.href : undefined,
-        video: currentVideo?.wistiaId,
+        video: contentLayoutVideo,
         keywords: metadata?.keywords?.content,
         title: metadata?.title?.content || title,
       }}
@@ -201,7 +215,7 @@ function ContentSingle(props = {}) {
           <ContentVideosList
             key={`videos-${props?.data?.id}`}
             thumbnail={coverImageUri}
-            videos={wistiaId}
+            videos={wistiaId ? wistiaId : videos}
             onSelectVideo={handleSelectVideo}
           />
         </>
