@@ -37,6 +37,7 @@ export const AnalyticsProvider = ({ children, writeKey }) => {
   useEffect(() => {
     if (currentUser?.id) {
       analytics.identify(userId, {
+        rock_id: currentUser?.guid,
         ...currentUser?.profile,
       });
     }
