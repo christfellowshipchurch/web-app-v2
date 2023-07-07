@@ -1,3 +1,7 @@
+/**
+ * takes an array of service times and an address. Returns an array of event objects to create an ics file
+ */
+
 import addMinutes from 'date-fns/addMinutes';
 import nextSunday from 'date-fns/nextSunday';
 import setMinutes from 'date-fns/setMinutes';

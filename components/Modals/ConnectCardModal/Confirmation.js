@@ -1,18 +1,25 @@
 import React from 'react';
-import {
-  hideModal,
-  useModalDispatch,
-  showModal,
-} from 'providers/ModalProvider';
+import { hideModal, useModalDispatch } from 'providers/ModalProvider';
 import { Box, Button, Icon } from 'ui-kit';
 import { useRouter } from 'next/router';
 import { icsLinkEvents } from 'utils';
+import { useCampus } from 'hooks';
+import { icsLink } from 'components/AddToCalendar/utils';
 
-const ConfirmationScreen = props => {
+const ConfirmationScreen = (props = {}) => {
   const modalDispatch = useModalDispatch();
   const router = useRouter();
+  //grabs address from current campus
+  const { city, street1, state, postalCode } = useCampus({
+    variables: {
+      campusName: props?.campus,
+    },
+  });
 
-  console.log('confirmationprops', props);
+  const events = icsLinkEvents(
+    [{ day: 'Sunday', time: props?.serviceTime }],
+    `${street1}, ${city}, ${state} ${postalCode}`
+  );
 
   return (
     <Box
@@ -32,14 +39,9 @@ const ConfirmationScreen = props => {
 
       <Box display={{ _: 'inline', lg: 'flex' }}>
         <Button
-          onClick={() => {
-            modalDispatch(
-              showModal('AddToCalendar', {
-                title: 'What service would you like to attend?',
-                events: icsLinkEvents(props?.serviceTimes, 'address'),
-              })
-            );
-          }}
+          as="a"
+          download="ChristFellowshipChurch.ics"
+          href={icsLink(events[0])}
           borderRadius="xxl"
           size="s"
           px="l"

@@ -1,46 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Modal } from 'ui-kit';
-import { useCurrentUser, useSubmitSetReminder } from 'hooks';
+import { useCurrentUser } from 'hooks';
 import Confirmation from '../ConnectCardModal/Confirmation';
 import SetAReminderForm from './SetAReminderForm';
-import { icsLinkEvents } from 'utils';
+import { set } from 'lodash';
 
 function SetAReminder(props = {}) {
   const { currentUser } = useCurrentUser();
-
-  const [test] = useSubmitSetReminder();
-
-  console.log('test', test);
-
-  console.log('SetAReminder', { props });
-
-  //data.serviceTime is what I need to not need a time
-
-  function setAddtoCalendar(data) {
-    // add logic for calendar button
-    // createSundayLink({time: data?.serviceTime, day: 'Sunday})
-    // icsLinkEvents({ time: data?.serviceTime, address: 'test' });
-
-    // return console.log('data', { data });
-
-    return data;
-  }
+  const [serviceTime, setServiceTime] = useState(null);
 
   function render(step) {
-    // console.log('modal:', { step, props });
     switch (step) {
       case 0: {
         return (
           <SetAReminderForm
             {...currentUser?.profile}
             defaultCampus={props?.defaultCampus}
-            handleCallBack={setAddtoCalendar}
+            handleCallBack={e => setServiceTime(e)}
           />
         );
       }
       case 1: {
-        return <Confirmation data={setAddtoCalendar()} />;
+        return (
+          <Confirmation
+            serviceTime={serviceTime}
+            campus={props?.defaultCampus}
+          />
+        );
       }
       default: {
         return <SetAReminderForm />;
