@@ -150,6 +150,7 @@ function SetAReminderForm(props = {}) {
   useEffect(() => {
     if (success) {
       setErrors({});
+      props?.handleCallBack(values);
       modalDispatch(showStep(1));
     }
   }, [success]);
