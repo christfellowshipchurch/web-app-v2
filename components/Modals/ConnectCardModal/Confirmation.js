@@ -38,9 +38,6 @@ const ConfirmationScreen = (props = {}) => {
     props?.campus
   );
 
-  console.log('events', events[0].event);
-  console.log('campusAddress', campusAddress);
-
   return (
     <Box
       display="flex"
