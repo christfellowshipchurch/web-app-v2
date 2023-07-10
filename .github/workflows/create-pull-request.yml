@@ -1,0 +1,22 @@
+name: Weekly PR
+on:
+  schedule:
+    - cron: '0 0 * * 0'
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if dev branch exists
+        run: |
+          if [[ ! -d "dev" ]]; then
+            echo "dev branch does not exist"
+            echo "Creating dev branch"
+            git checkout -b dev
+          fi
+      - uses: peter-evans/create-pull-request@v1
+        with:
+          branch: 'dev'
+          base: 'master'
+          title: 'Weekly PR - $(date +'%Y-%m-%d')'
+          body: ${{ template_file('.github/WEEKLY_PULL_REQUEST_TEMPLATE.md') }}
