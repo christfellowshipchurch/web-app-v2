@@ -92,7 +92,9 @@ const CampusInfo = ({
   const modalDispatch = useModalDispatch();
   const addressFirst = street1 ? `${street1}` : null;
   const addressLast = `${city}, ${state} ${postalCode?.substring(0, 5)}`;
-  const links = serviceTimes ? icsLinkEvents(serviceTimes, addressFirst) : [];
+  const links = serviceTimes
+    ? icsLinkEvents(serviceTimes, addressFirst, name)
+    : [];
 
   /** Get the Most Out of Life messaging */
   let getTheMost = {};

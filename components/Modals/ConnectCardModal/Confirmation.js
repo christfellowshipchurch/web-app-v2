@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { hideModal, useModalDispatch } from 'providers/ModalProvider';
 import { Box, Button, Icon } from 'ui-kit';
 import { useRouter } from 'next/router';
@@ -9,17 +9,37 @@ import { icsLink } from 'components/AddToCalendar/utils';
 const ConfirmationScreen = (props = {}) => {
   const modalDispatch = useModalDispatch();
   const router = useRouter();
-  //grabs address from current campus
-  const { city, street1, state, postalCode } = useCampus({
+  const [campusAddress, setCampusAddress] = useState(
+    'Christ Fellowship Church'
+  );
+  const { campus: eventCampus } = useCampus({
     variables: {
       campusName: props?.campus,
     },
   });
 
+  useEffect(() => {
+    async function getCampusAddress() {
+      try {
+        const { street1, city, state, postalCode } = await eventCampus;
+        setCampusAddress(
+          [street1, city, state, postalCode.substring(0, 5)].join(', ')
+        );
+      } catch (error) {
+        setCampusAddress('Christ Fellowship Church');
+      }
+    }
+    getCampusAddress();
+  }, [eventCampus]);
+
   const events = icsLinkEvents(
     [{ day: 'Sunday', time: props?.serviceTime }],
-    `${street1}, ${city}, ${state} ${postalCode}`
+    campusAddress,
+    props?.campus
   );
+
+  console.log('events', events[0].event);
+  console.log('campusAddress', campusAddress);
 
   return (
     <Box
@@ -41,10 +61,10 @@ const ConfirmationScreen = (props = {}) => {
         <Button
           as="a"
           download="ChristFellowshipChurch.ics"
-          href={icsLink(events[0])}
+          href={icsLink(events[0].event)}
           borderRadius="xxl"
           size="s"
-          px="l"
+          px="base"
           variant="secondary"
           mr="xs"
         >
@@ -53,7 +73,9 @@ const ConfirmationScreen = (props = {}) => {
         <Button
           borderRadius="xxl"
           size="s"
-          px="l"
+          px="base"
+          ml={{ _: 0, lg: 'xs' }}
+          m={{ _: 'xs', lg: 0 }}
           onClick={() => modalDispatch(hideModal())}
         >
           CONTINUE

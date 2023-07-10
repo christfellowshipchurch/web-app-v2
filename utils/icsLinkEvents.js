@@ -21,7 +21,7 @@ function parseTimeAsInt(_time) {
   return [hour24, minute];
 }
 
-function icsLinkEvents(serviceTimes, address) {
+function icsLinkEvents(serviceTimes, address, campusName) {
   return serviceTimes.map(({ day, time }) => {
     let now = new Date();
     let [hour, minute] = parseTimeAsInt(time);
@@ -33,7 +33,10 @@ function icsLinkEvents(serviceTimes, address) {
     return {
       label: `${time}`,
       event: {
-        title: 'Sunday service at Christ Fellowship Church',
+        title:
+          campusName !== 'Trinity'
+            ? `Sunday service at Christ Fellowship Church in ${campusName}`
+            : 'Sunday service at Trinity Church by Christ Fellowship',
         description: `Join us this Sunday!`,
         address,
         startTime: sunday,
