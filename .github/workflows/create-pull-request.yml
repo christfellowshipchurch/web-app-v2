@@ -23,11 +23,8 @@ jobs:
           else
             echo "dev branch already exists"
             git checkout dev
-            git pull origin dev
+            git pull origin dev || true
           fi
-
-      - name: Fetch origin/dev branch
-        run: git fetch origin dev:dev
 
       - name: Render template
         id: render-template
