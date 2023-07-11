@@ -10,38 +10,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-
-      - name: Change to repository directory
-        run: cd $GITHUB_WORKSPACE
-
-      - name: Fetch latest changes
-        run: git fetch
-
-      - name: Check if dev branch exists
-        id: check-dev-branch
-        run: echo "::set-output name=exists::$(git show-ref --quiet refs/heads/dev && echo exists || echo not_exists)"
-
-      - name: Create dev branch if it doesn't exist
-        run: |
-          if [[ "${{ steps.check-dev-branch.outputs.exists }}" == "not_exists" ]]; then
-            echo "dev branch does not exist"
-            echo "Creating dev branch"
-            git checkout -b dev
-            git push -u --force origin dev
-          else
-            echo "dev branch already exists"
-            git checkout dev
-            git pull --ff-only origin dev
-          fi
-
-      - name: Add dummy commit to dev branch to show changes
-        run: |
-          git config user.email "developer@christfellowship.church"
-          git config user.name "christfellowshipdev"
-          echo "Dummy commit" >> dummy-file.txt
-          git add dummy-file.txt
-          git commit -m "Dummy commit"
-          git push origin dev
+        
+      - name: Make changes to pull request
+        run: date +%s > report.txt
 
       - name: Render template
         id: render-template
@@ -50,14 +21,15 @@ jobs:
           template: .github/WEEKLY_PULL_REQUEST_TEMPLATE.md
 
       - name: Create PR
-        uses: peter-evans/create-pull-request@v3
+        id: cpr
+        uses: peter-evans/create-pull-request@v5
         with:
           base: 'main'
           branch: 'dev'
           title: "Weekly PR - $(date +'%d %B %Y')"
           body: ${{ steps.render-template.outputs.result }}
           delete-branch: true
-          commit-message: Weekly PR
+          commit-message: Weekly PR Update
           committer: GitHub <noreply@github.com>
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           signoff: false
