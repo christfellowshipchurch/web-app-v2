@@ -15,7 +15,7 @@ jobs:
         run: cd $GITHUB_WORKSPACE
 
       - name: Fetch latest changes
-        run: git fetch
+        run: git fetch --all
 
       - name: Check if dev branch exists
         run: |
