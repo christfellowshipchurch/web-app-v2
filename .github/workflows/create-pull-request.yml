@@ -19,23 +19,23 @@ jobs:
 
       - name: Check if dev branch exists
         run: |
-          if [[ ! $(git show-ref --quiet refs/heads/dev) ]]; then
+          if git rev-parse --verify --quiet dev; then
+            echo "dev branch already exists"
+            git checkout dev
+            git pull origin dev
+          else
             echo "dev branch does not exist"
             echo "Creating dev branch"
             git checkout -b dev
             git push -u origin dev
-          else
-            echo "dev branch already exists"
-            git checkout dev
-            git pull origin dev
           fi
 
       - name: Add dummy commit to dev branch to show changes
-        run: |          
+        run: |
           git config user.email "developer@christfellowship.church"
           git config user.name "christfellowshipdev"
           echo "Dummy commit" >> dummy-file.txt
-          git commit -m "Dummy commit"
+          git commit -am "Dummy commit"
           git push origin dev
 
       - name: Render template
