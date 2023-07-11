@@ -21,6 +21,7 @@ jobs:
             echo "Creating dev branch"
             git branch dev
             git checkout dev
+            git branch -u origin/dev
           else
             echo "dev branch already exists"
             git checkout dev
