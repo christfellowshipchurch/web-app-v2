@@ -19,7 +19,7 @@ jobs:
           if [[ ! -d "dev" ]]; then
             echo "dev branch does not exist"
             echo "Creating dev branch"
-            git checkout -b dev
+            git checkout -b dev origin/dev
           fi
 
       - name: Render template
@@ -35,4 +35,3 @@ jobs:
           base: 'main'
           title: "Weekly PR - $(date +'%d %B %Y')"
           body: ${{ steps.render-template.outputs.result }}
-
