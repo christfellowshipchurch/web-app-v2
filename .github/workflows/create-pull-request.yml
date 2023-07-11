@@ -14,13 +14,15 @@ jobs:
       - name: Change to repository directory
         run: cd $GITHUB_WORKSPACE
 
+      - name: Fetch latest changes
+        run: git fetch
+
       - name: Check if dev branch exists
         run: |
           if [[ ! -d "dev" ]]; then
             echo "dev branch does not exist"
             echo "Creating dev branch"
-            git branch dev
-            git checkout dev
+            git checkout -b dev
             git branch -u origin/dev
           else
             echo "dev branch already exists"
