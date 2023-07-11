@@ -39,7 +39,8 @@ jobs:
           git config user.email "developer@christfellowship.church"
           git config user.name "christfellowshipdev"
           echo "Dummy commit" >> dummy-file.txt
-          git commit -am "Dummy commit"
+          git add dummy-file.txt
+          git commit -m "Dummy commit"
           git push origin dev
 
       - name: Render template
