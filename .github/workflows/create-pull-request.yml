@@ -14,21 +14,20 @@ jobs:
       - name: Change to repository directory
         run: cd $GITHUB_WORKSPACE
 
+      - name: Fetch latest changes
+        run: git fetch origin dev:refs/remotes/origin/dev
+
       - name: Check if dev branch exists
         run: |
           if [[ ! -d "dev" ]]; then
             echo "dev branch does not exist"
             echo "Creating dev branch"
-            git checkout -b dev
-            git push -u origin dev
+            git checkout -b dev origin/dev
           else
             echo "dev branch already exists"
             git checkout dev
             git pull origin dev
           fi
-
-      - name: Add commit to dev branch
-        run: echo "Dummy commit" >> dummy-file.txt && git add dummy-file.txt && git commit -m "Dummy commit" && git push origin dev
 
       - name: Render template
         id: render-template
@@ -43,3 +42,4 @@ jobs:
           base: 'main'
           title: "Weekly PR - $(date +'%d %B %Y')"
           body: ${{ steps.render-template.outputs.result }}
+          delete-branch: true
