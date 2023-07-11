@@ -18,5 +18,5 @@ jobs:
         with:
           branch: 'dev'
           base: 'master'
-          title: 'Weekly PR - $(date +'%Y-%m-%d')'
+          title: 'Weekly PR - `r format(Sys.Date(), "%d %B %Y")`'
           body: ${{ template_file('.github/WEEKLY_PULL_REQUEST_TEMPLATE.md') }}
