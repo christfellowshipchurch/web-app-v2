@@ -10,19 +10,19 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          ref: 'refs/heads/dev'
 
       - name: Change to repository directory
         run: cd $GITHUB_WORKSPACE
-
-      - name: Fetch latest changes
-        run: git fetch origin dev:refs/remotes/origin/dev
 
       - name: Check if dev branch exists
         run: |
           if [[ ! -d "dev" ]]; then
             echo "dev branch does not exist"
             echo "Creating dev branch"
-            git checkout -b dev origin/dev
+            git checkout -b dev
+            git push -u origin dev
           else
             echo "dev branch already exists"
             git checkout dev
