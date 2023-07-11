@@ -8,6 +8,12 @@ jobs:
   create-pr:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Change to repository directory
+        run: cd <path/to/repository>
+
       - name: Check if dev branch exists
         run: |
           if [[ ! -d "dev" ]]; then
@@ -20,12 +26,12 @@ jobs:
         id: render-template
         uses: chuhlomin/render-template@v1.4
         with:
-          template: .github/pull-request-template.md
+          template: .github/WEEKLY_PULL_REQUEST_TEMPLATE.md
 
       - name: Create PR
-        uses: peter-evans/create-pull-request@v1
+        uses: peter-evans/create-pull-request@v3
         with:
           branch: 'dev'
           base: 'main'
-          title: 'Weekly PR - `r format(Sys.Date(), "%d %B %Y")`'
+          title: "Weekly PR - $(date +'%d %B %Y')"
           body: ${{ steps.render-template.outputs.result }}
