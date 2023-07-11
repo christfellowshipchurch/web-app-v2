@@ -210,6 +210,7 @@ module.exports = {
       { source: '/ministryplan', destination: '/the-2023-ministry-plan', permanent: true },
       { source: '/griefshare', destination: '/grief-share', permanent: true },
       { source: '/food', destination: '/next-steps/get-involved-with-missions', permanent: true },
+      { source: '/breakfast', destination: '/first-responder-wives-breakfast-2023', permanent: true },
       { source: '/foodpantry', destination: '/connect/connect-with-us', permanent: true },
       { source: '/baby', destination: '/connect/kids', permanent: true },
       { source: '/local', destination: '/search?category=Service%20Opportunities&p=1', permanent: true },
