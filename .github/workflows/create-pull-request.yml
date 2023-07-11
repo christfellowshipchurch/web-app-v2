@@ -26,7 +26,7 @@ jobs:
         with:
           base: 'main'
           branch: 'dev'
-          title: "Weekly PR - $(date +'%d %B %Y')"
+          title: "Weekly PR - `r format(Sys.Date(), '%d %B %Y')`"
           body: ${{ steps.render-template.outputs.result }}
           delete-branch: true
           commit-message: Weekly PR Update
