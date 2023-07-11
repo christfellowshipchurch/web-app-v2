@@ -53,7 +53,15 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           branch: 'dev'
-          base: 'main'
           title: "Weekly PR - $(date +'%d %B %Y')"
           body: ${{ steps.render-template.outputs.result }}
           delete-branch: true
+          commit-message: Weekly PR
+          committer: GitHub <noreply@github.com>
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          signoff: false
+          labels: |
+            automated pr
+          assignees: christfellowshipdev
+          reviewers: dzwood, codingwithlis
+          draft: false
