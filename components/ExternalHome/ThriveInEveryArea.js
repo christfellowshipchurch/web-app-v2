@@ -20,7 +20,7 @@ const ThriveInEveryArea = ({ maxWidth }) => {
       <ContentBlock
         title="Thrive in every area of your life."
         htmlContent={content}
-        image={'thrive-in-every-area.png'}
+        image={'external-landing/thrive-in-every-area.png'}
         objectFit="contain"
         contentLayout="RIGHT"
         imageRatio="3by4"
