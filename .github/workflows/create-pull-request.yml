@@ -15,8 +15,7 @@ jobs:
             echo "Creating dev branch"
             git checkout -b dev
           fi
-      - name: Render template
-        id: template
+      - id: template
         uses: chuhlomin/render-template@v1.4
         with:
           template: .github/pull-request-template.md
