@@ -20,10 +20,11 @@ jobs:
             echo "dev branch does not exist"
             echo "Creating dev branch"
             git checkout -b dev
+            git push -u origin dev
           else
             echo "dev branch already exists"
             git checkout dev
-            git pull origin dev || true
+            git pull origin dev
           fi
 
       - name: Render template
