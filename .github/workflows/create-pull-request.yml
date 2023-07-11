@@ -8,11 +8,6 @@ jobs:
   create-pr:
     runs-on: ubuntu-latest
     steps:
-      - name: Set Git config
-        run: |
-          git config user.email "developer@christfellowship.church"
-          git config user.name "christfellowshipdev"
-
       - name: Checkout repository
         uses: actions/checkout@v2
 
@@ -36,9 +31,10 @@ jobs:
           fi
 
       - name: Add dummy commit to dev branch to show changes
-        run: |
+        run: |          
+          git config user.email "developer@christfellowship.church"
+          git config user.name "christfellowshipdev"
           echo "Dummy commit" >> dummy-file.txt
-          git add dummy-file.txt
           git commit -m "Dummy commit"
           git push origin dev
 
