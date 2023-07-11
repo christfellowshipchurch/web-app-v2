@@ -9,21 +9,21 @@ const buttonData = [
     title: 'Find a Location',
     subtitle:
       'Attend a Sunday service, in person or online. We would love to meet you!',
-    image: 'find-a-location.jpg',
+    image: 'external-landing/find-a-location.jpg',
     url: '/locations',
   },
   {
     title: 'Discover What’s Here',
     subtitle:
       'We’ve designed a path for you and your family to grow in your faith, find friends, and serve others.',
-    image: 'discover-whats-here.jpeg',
+    image: 'external-landing/discover-whats-here.jpeg',
     url: '/it-all-starts-here',
   },
   {
     title: 'Ask a Question',
     subtitle:
       'Have a question or need prayer? Let us know and our team will reach out to you!',
-    image: 'ask-a-question.jpeg',
+    image: 'external-landing/ask-a-question.jpeg',
     url: 'https://rock.gocf.org/contactus',
     target: '_blank',
   },
