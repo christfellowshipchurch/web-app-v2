@@ -27,11 +27,11 @@ jobs:
             echo "dev branch does not exist"
             echo "Creating dev branch"
             git checkout -b dev
-            git push -u origin dev
+            git push -u --force origin dev
           else
             echo "dev branch already exists"
             git checkout dev
-            git pull origin dev
+            git pull --ff-only origin dev
           fi
 
       - name: Add dummy commit to dev branch to show changes
