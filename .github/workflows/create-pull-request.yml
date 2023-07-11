@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v2
         
       - name: Make changes to pull request
-        run: date +%s > report.txt
+        run: date +%s > dummy-change.txt
 
       - name: Render template
         id: render-template
@@ -26,7 +26,7 @@ jobs:
         with:
           base: 'main'
           branch: 'dev'
-          title: "Weekly PR - `r format(Sys.Date(), '%d %B %Y')`"
+          title: "Weekly PR"
           body: ${{ steps.render-template.outputs.result }}
           delete-branch: true
           commit-message: Weekly PR Update
@@ -34,7 +34,7 @@ jobs:
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           signoff: false
           labels: |
-            automated pr
+            Automated PR ⚙️
           assignees: christfellowshipdev
           reviewers: dzwood, codingwithlis
           draft: false
