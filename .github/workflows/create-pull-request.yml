@@ -52,6 +52,7 @@ jobs:
       - name: Create PR
         uses: peter-evans/create-pull-request@v3
         with:
+          base: 'main'
           branch: 'dev'
           title: "Weekly PR - $(date +'%d %B %Y')"
           body: ${{ steps.render-template.outputs.result }}
