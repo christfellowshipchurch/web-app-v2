@@ -27,6 +27,7 @@ jobs:
             echo "dev branch does not exist"
             echo "Creating dev branch"
             git checkout -b dev
+            git pull origin dev --allow-unrelated-histories
             git push -u origin dev
           fi
 
