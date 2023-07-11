@@ -27,6 +27,9 @@ jobs:
             git pull origin dev
           fi
 
+      - name: Add commit to dev branch
+        run: echo "Dummy commit" >> dummy-file.txt && git add dummy-file.txt && git commit -m "Dummy commit" && git push origin dev
+
       - name: Render template
         id: render-template
         uses: chuhlomin/render-template@v1.4
