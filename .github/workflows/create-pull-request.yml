@@ -15,14 +15,17 @@ jobs:
             echo "Creating dev branch"
             git checkout -b dev
           fi
-      - id: template
+
+      - name: Render template
+        id: render-template
         uses: chuhlomin/render-template@v1.4
         with:
           template: .github/pull-request-template.md
+
       - name: Create PR
-      - uses: peter-evans/create-pull-request@v1
+        uses: peter-evans/create-pull-request@v1
         with:
           branch: 'dev'
-          base: 'master'
+          base: 'main'
           title: 'Weekly PR - `r format(Sys.Date(), "%d %B %Y")`'
-          body: ${{ steps.template.outputs.result }}
+          body: ${{ steps.render-template.outputs.result }}
