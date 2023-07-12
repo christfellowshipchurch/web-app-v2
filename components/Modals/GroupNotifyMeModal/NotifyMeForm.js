@@ -31,7 +31,6 @@ function CampusSelect(props = {}) {
 }
 
 function NotifyMeForm(props = {}) {
-  const { currentUser } = useCurrentUser();
   const [campusId, setCampusId] = useState(props.initialCampusId || '');
   const [subscribeToGroupPreferenceUpdates] = useGroupPreferenceUpdates({
     onCompleted: () => {
