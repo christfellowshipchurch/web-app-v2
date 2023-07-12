@@ -27,6 +27,7 @@
     "amplitude-js": "^8.1.0",
     "apollo3-cache-persist": "^0.14.1",
     "color": "^4.2.3",
+    "create-pull-request": "^1.4.0",
     "cross-fetch": "^3.0.6",
     "date-fns": "^2.16.1",
     "graphql": "^16.6.0",
