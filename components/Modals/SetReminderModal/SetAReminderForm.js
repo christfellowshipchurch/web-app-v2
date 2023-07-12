@@ -52,7 +52,6 @@ function SetAReminderForm(props = {}) {
     const currentErrors = {};
     let { email, phoneNumber, serviceTime, campus, firstName, lastName } =
       values;
-    let hasEmailOrPhoneNumber = false;
 
     if (
       isEmpty(email) ||
@@ -65,16 +64,12 @@ function SetAReminderForm(props = {}) {
     }
 
     if (email && !isEmpty(email)) {
-      hasEmailOrPhoneNumber = true;
-
       if (!validateEmail(email)) {
         currentErrors.email = 'Please enter a valid email address';
       }
     }
 
     if (phoneNumber && !isEmpty(phoneNumber)) {
-      hasEmailOrPhoneNumber = true;
-
       if (!validatePhoneNumber(phoneNumber)) {
         currentErrors.phoneNumber = 'Please enter a valid phone number';
       }
