@@ -92,7 +92,7 @@ const Discover = () => {
     analytics.page({
       mediaType: 'Information',
     });
-  }, []);
+  });
 
   useEffect(() => {
     search({
