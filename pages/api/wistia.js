@@ -18,10 +18,10 @@ export default async function handler({ type, wistiaId }) {
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_WISTIA_API_KEY}`,
       },
     });
+    const data = await res.json();
     if (res.status !== 200) {
       throw new Error(data.message);
     }
-    const data = await res.json();
     return data;
   } catch {
     return 'Failed to fetch data from Wistia.';
