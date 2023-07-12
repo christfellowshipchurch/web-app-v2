@@ -16,7 +16,7 @@ export default function Events(props = {}) {
       contentCategory: 'Information',
       mediaType: 'Information',
     });
-  }, []);
+  });
 
   const options = {
     variables: {

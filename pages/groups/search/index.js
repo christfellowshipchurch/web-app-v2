@@ -103,7 +103,7 @@ export default function CommunitySearch() {
         after: cursor.current,
       },
     });
-  }, [cursor]);
+  }, [cursor, filtersState.queryData, searchGroups]);
 
   useEffect(() => {
     // Don't execute search if state hasn't been hydrated OR a modal is open
@@ -128,14 +128,7 @@ export default function CommunitySearch() {
         first: PAGE_SIZE,
       },
     });
-  }, [
-    filtersState.hydrated,
-    filtersState.queryData,
-    filtersState.values.text,
-    searchGroups,
-    setValues,
-    router,
-  ]);
+  }, [filtersState.hydrated, filtersState.queryData, filtersState.values.text, searchGroups, setValues, router, modalState.activeModal.component]);
 
   useEffect(() => {
     window.scrollTo(0, 0);

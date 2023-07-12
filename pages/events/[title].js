@@ -1,8 +1,6 @@
 import { useRouter } from 'next/router';
 
-import { initializeApollo } from 'lib/apolloClient';
 import { ContentItemProvider } from 'providers';
-import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
 import { EventSingle, Layout } from 'components';
 
 export default function Event(props) {

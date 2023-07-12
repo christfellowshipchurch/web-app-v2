@@ -5,7 +5,7 @@
 import { isEmpty } from 'lodash';
 import { useRouter } from 'next/router';
 
-import { LegacyNodeRouter, ContentLayout, Layout } from 'components';
+import { ContentLayout, Layout } from 'components';
 import ContentVideo from '../../components/ContentSingle/ContentVideo';
 import { Box, Button, Card, Loader } from 'ui-kit';
 
