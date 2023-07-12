@@ -5,11 +5,6 @@ import { ContentSingle, Layout } from 'components';
 import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
 import { initializeApollo } from 'lib/apolloClient';
 
-function getItemId(slug) {
-  const id = slug.split('-').pop();
-  return `MediaContentItem:${id}`;
-}
-
 export default function Study(props) {
   const router = useRouter();
   const { title } = router.query;
