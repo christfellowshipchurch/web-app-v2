@@ -17,6 +17,7 @@ const ConfirmationScreen = (props = {}) => {
       campusName: props?.campus,
     },
   });
+  let events = null;
 
   useEffect(() => {
     async function getCampusAddress() {
@@ -32,11 +33,13 @@ const ConfirmationScreen = (props = {}) => {
     getCampusAddress();
   }, [eventCampus]);
 
-  const events = icsLinkEvents(
-    [{ day: 'Sunday', time: props?.serviceTime }],
-    campusAddress,
-    props?.campus
-  );
+  if (props?.serviceTime && props?.campus) {
+    events = icsLinkEvents(
+      [{ day: 'Sunday', time: props?.serviceTime }],
+      campusAddress,
+      props?.campus
+    );
+  }
 
   return (
     <Box
@@ -55,18 +58,20 @@ const ConfirmationScreen = (props = {}) => {
       </Box>
 
       <Box display={{ _: 'inline', lg: 'flex' }}>
-        <Button
-          as="a"
-          download="ChristFellowshipChurch.ics"
-          href={icsLink(events[0].event)}
-          borderRadius="xxl"
-          size="s"
-          px="base"
-          variant="secondary"
-          mr="xs"
-        >
-          ADD TO CALENDAR
-        </Button>
+        {events && (
+          <Button
+            as="a"
+            download="ChristFellowshipChurch.ics"
+            href={icsLink(events[0].event)}
+            borderRadius="xxl"
+            size="s"
+            px="base"
+            variant="secondary"
+            mr="xs"
+          >
+            ADD TO CALENDAR
+          </Button>
+        )}
         <Button
           borderRadius="xxl"
           size="s"
