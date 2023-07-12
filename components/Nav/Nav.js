@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 
 import { CurrentUserProvider } from 'providers';
 import { logout, useAuth } from 'providers/AuthProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
-import { Box, Button, Icon, Menu, systemPropTypes } from 'ui-kit';
+import { Box, Button, Icon, systemPropTypes } from 'ui-kit';
 import { UserAvatar } from 'components';
 import Styled from './Nav.styles';
 import { useCurrentBreakpoint } from 'hooks';
@@ -29,12 +29,6 @@ function Nav(props = {}) {
   function handleAuthClick(event) {
     event.preventDefault();
     modalDispatch(showModal('Auth'));
-  }
-
-  function handleLogoutClick(event) {
-    event.preventDefault();
-    authDispatch(logout());
-    handleRouterReload(router.pathname);
   }
 
   return (
