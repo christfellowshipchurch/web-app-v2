@@ -1,4 +1,4 @@
-import { shareMessaging, handleSocialShare } from './shareUtils.js';
+import { shareMessaging } from './shareUtils.js';
 
 describe('shareMessaging', () => {
   it('returns the default messaging for SMS from the Share Button', async () => {
