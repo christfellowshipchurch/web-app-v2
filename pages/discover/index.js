@@ -7,7 +7,6 @@ import {
   SearchField,
   Layout,
   DiscoverItemsList,
-  CustomLink,
   DiscoverFiltersMap,
 } from 'components';
 import { useAnalytics } from 'providers/AnalyticsProvider';
@@ -27,7 +26,7 @@ const Discover = () => {
   const { values, handleSubmit, handleChange, reset } = useForm();
 
   const { loading: loadingFilters, filters } = useDiscoverFilters();
-  const [search, { loading, contentItems, data, fetchMore }] =
+  const [search, { loading, contentItems, data }] =
     useSearchContentItems({
       notifyOnNetworkStatusChange: true,
     });
@@ -46,7 +45,6 @@ const Discover = () => {
   const hasResults = contentItems?.length > 0;
   const showEmptyState = !loading && !hasResults;
   const pageResults = data?.search?.totalResults;
-  const hasMorePages = contentItems?.length < pageResults;
 
   // NOT IN USE FOR NOW
   // const handleLoadMore = () => {
