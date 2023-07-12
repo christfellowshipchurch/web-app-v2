@@ -8,7 +8,6 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import chunk from 'lodash/chunk';
 
 import { ThemeProvider as SCThemeProvider } from 'styled-components';
