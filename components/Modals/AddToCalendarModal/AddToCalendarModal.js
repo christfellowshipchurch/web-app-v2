@@ -7,7 +7,7 @@
  * Add service time to calendar.
  */
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Box, Button, Modal } from 'ui-kit';
 import { icsLink } from 'components/AddToCalendar/utils';

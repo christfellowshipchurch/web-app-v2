@@ -23,10 +23,6 @@ function GroupFilterWhereWhen(props = {}) {
     filtersDispatch(update({ [name]: value === '' ? [] : [value] }));
   };
 
-  const handleDayChange = value => {
-    filtersDispatch(toggleValue({ name: 'days', value }));
-  };
-
   const handleSubmit = event => {
     event.preventDefault();
     router.push({

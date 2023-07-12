@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { Box, Button } from 'ui-kit';
+import { Box } from 'ui-kit';
 import { Footer, SEO } from 'components';
 import { Header, MobileNavScreen } from 'components';
 function Layout(props = {}) {

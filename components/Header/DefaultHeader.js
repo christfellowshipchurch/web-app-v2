@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 
-import { ActionBannerProvider, NavigationProvider } from 'providers';
+import { ActionBannerProvider } from 'providers';
 import { Box, systemPropTypes } from 'ui-kit';
 import { Logo, Nav } from 'components';
 import Styled from './Header.styles';

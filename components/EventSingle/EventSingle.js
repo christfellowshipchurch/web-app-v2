@@ -15,7 +15,7 @@ function EventSingle(props = {}) {
       contentCategory: 'Information',
       mediaType: 'Information',
     });
-  }, []);
+  }, [analytics]);
 
   if (props.loading) {
     return (

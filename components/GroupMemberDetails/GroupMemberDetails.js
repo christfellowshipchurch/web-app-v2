@@ -12,7 +12,6 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { isEmpty } from 'lodash';
 import { parseISO, format } from 'date-fns';
-import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
 import { Box, Button, Icon, SquareAvatar, Select, TextArea } from 'ui-kit';
 import { Row } from './GroupMemberDetails.components';

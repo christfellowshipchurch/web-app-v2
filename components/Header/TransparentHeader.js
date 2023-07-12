@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 
 import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 
-import { ActionBannerProvider, NavigationProvider } from 'providers';
+import { ActionBannerProvider } from 'providers';
 import { Box, systemPropTypes } from 'ui-kit';
-import { CustomLink, Logo, Nav } from 'components';
+import {Logo, Nav } from 'components';
 import { useCurrentBreakpoint } from 'hooks';
 import Styled from './Header.styles';
 import ActionBanner from '../ActionBanner/ActionBanner';

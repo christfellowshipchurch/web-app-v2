@@ -1,23 +1,11 @@
-import { useState } from 'react';
 import PropTypes from 'prop-types';
-
-import { useCurrentBreakpoint } from 'hooks';
 import { Video } from 'components';
-import { DefaultCard, Icon } from 'ui-kit';
-
 import Styled from './ContentSingle.styles';
-
 export default function ContentVideo(props = {}) {
-  const currentBreakpoint = useCurrentBreakpoint();
-  const [playClicked, setPlayClicked] = useState(false);
 
   if (!props.video) {
     return null;
   }
-
-  const handlePlay = () => {
-    setPlayClicked(true);
-  };
 
   return (
     <Styled.VideoContainer>

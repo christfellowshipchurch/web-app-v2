@@ -44,7 +44,7 @@ const GroupEmailComposer = (props = {}) => {
   const router = useRouter();
   const modalDispatch = useModalDispatch();
   const { currentUser } = useCurrentUser();
-  const [searchGroupMembers, { groupMembers, loading }] =
+  const [searchGroupMembers, { groupMembers }] =
     useSearchGroupMembers();
   const { recipients, toggleRecipient, setRecipients } =
     useGroupEmailRecipients({

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { CustomLink, Layout } from 'components';
+import { CustomLink } from 'components';
 import { Box, Button } from 'ui-kit';
 
 import Styled from './HeroLanding.styles';
