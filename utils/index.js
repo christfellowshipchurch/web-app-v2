@@ -9,7 +9,6 @@ import getMediaType from './getMediaType';
 import getUrlFromRelatedNode from './getUrlFromRelatedNode';
 import getURLFromType from './getURLFromType';
 import htmlToReactParser from './htmlToReactParser';
-import icsLinkEvents from './icsLinkEvents';
 import normalizeUserData from './normalizeUserData';
 import parseLiveStreamDates from './parseLiveStreamDates';
 import slugify from './slugify';
@@ -30,7 +29,6 @@ export {
   getUrlFromRelatedNode,
   getURLFromType,
   htmlToReactParser,
-  icsLinkEvents,
   normalizeUserData,
   parseLiveStreamDates,
   slugify,

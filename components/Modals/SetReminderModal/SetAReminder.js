@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+
 import { Modal } from 'ui-kit';
 import { useCurrentUser } from 'hooks';
 import Confirmation from '../ConnectCardModal/Confirmation';
 import SetAReminderForm from './SetAReminderForm';
-import { set } from 'lodash';
 
 function SetAReminder(props = {}) {
   const { currentUser } = useCurrentUser();
-  const [serviceTime, setServiceTime] = useState(null);
 
   function render(step) {
     switch (step) {
@@ -17,17 +16,11 @@ function SetAReminder(props = {}) {
           <SetAReminderForm
             {...currentUser?.profile}
             defaultCampus={props?.defaultCampus}
-            handleCallBack={e => setServiceTime(e)}
           />
         );
       }
       case 1: {
-        return (
-          <Confirmation
-            serviceTime={serviceTime}
-            campus={props?.defaultCampus}
-          />
-        );
+        return <Confirmation />;
       }
       default: {
         return <SetAReminderForm />;

@@ -150,8 +150,6 @@ function SetAReminderForm(props = {}) {
   useEffect(() => {
     if (success) {
       setErrors({});
-      // pass serviceTimes to ConfirmationModal
-      props?.handleCallBack(values?.serviceTime);
       modalDispatch(showStep(1));
     }
   }, [success]);
