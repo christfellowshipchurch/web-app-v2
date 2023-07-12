@@ -24,7 +24,7 @@ export default function Connect(props = {}) {
       contentCategory: 'Information',
       mediaType: 'Information',
     });
-  }, []);
+  }, [analytics]);
 
   useEffect(() => {
     if (!authenticated) {

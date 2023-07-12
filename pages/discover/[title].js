@@ -36,7 +36,7 @@ export default function DiscoverFilterCategoriesPreview() {
       title: `View All "${categoryTitle}" Category`,
       mediaType: 'Information',
     });
-  }, []);
+  }, [analytics, categoryTitle]);
 
   return (
     <Layout title={startCase(categoryTitle)}>

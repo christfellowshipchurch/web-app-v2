@@ -7,8 +7,7 @@
  * Form to request a pin to reset your password for the given email address.
  */
 
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 
 import useForm from 'hooks/useForm'
 import useRequestEmailPin from 'hooks/useRequestEmailPin'
@@ -17,7 +16,7 @@ import validateEmail from 'utils/validateEmail'
 import { Box, Button, TextInput } from 'ui-kit'
 import Styled from './PasswordReset.styles'
 
-const PasswordReset = ({ }) => {
+const PasswordReset = () => {
     const [status, setStatus] = useState("IDLE")
     const [submitted, setSubmitted] = useState(false)
     const [error, setError] = useState(null)
