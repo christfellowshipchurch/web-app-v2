@@ -11,7 +11,6 @@ import {
   InfoCardList,
   Testimonials,
   HeroListFeature,
-  VerticalCardListFeature,
 } from 'components';
 
 import { Box, Button, Divider, Loader } from 'ui-kit';
