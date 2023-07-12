@@ -38,7 +38,7 @@ export default function Location(props = {}) {
       contentCategory: 'Information',
       mediaType: 'Information',
     });
-  }, []);
+  }, [analytics]);
 
   const options = {
     variables: {
