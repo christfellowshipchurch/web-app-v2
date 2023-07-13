@@ -41,7 +41,7 @@ const Content = styled.div`
   left: 50%;
   /* margin-top: -${themeGet('space.xxl')}; */
   max-width: 100vw;
-  max-width: 100vw;
+  max-height: 54vw;
   overflow: scroll;
   padding: ${themeGet('space.l')};
   padding-top: ${themeGet('space.xl')};
