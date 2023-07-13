@@ -9,7 +9,6 @@
 
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useApolloClient } from '@apollo/client';
 
 import { hideModal, showModal, useModalDispatch } from 'providers/ModalProvider';
 import {

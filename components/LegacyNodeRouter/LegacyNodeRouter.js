@@ -38,7 +38,7 @@ export default function LegacyNodeRouter(props) {
     } else {
       router.push(`/items/${title}`);
     }
-  }, [node]);
+  }, [node, router, title]);
 
   return (
     <Layout title={title}>

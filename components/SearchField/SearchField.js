@@ -16,7 +16,7 @@ function SearchField(props = {}) {
       }
       return setIconOnly(false);
     }
-  }, [currentBreakpoint]);
+  }, [currentBreakpoint, props?.children]);
 
   // Default placeholder for group search that adjusts to mobile
   const defaultPlaceholder = currentBreakpoint.isSmall
