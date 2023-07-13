@@ -11,8 +11,11 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Box, Button, Modal } from 'ui-kit';
 import { icsLink } from 'components/AddToCalendar/utils';
+import { hideModal, useModalDispatch } from 'providers/ModalProvider';
 
 const AddToCalendarModal = ({ title, events }) => {
+  const modalDispatch = useModalDispatch();
+
   return (
     <Modal>
       <Box px="l" py="base">
@@ -38,6 +41,7 @@ const AddToCalendarModal = ({ title, events }) => {
                 as="a"
                 download="ChristFellowshipChurch.ics"
                 href={icsLink(n?.event)}
+                onClick={() => modalDispatch(hideModal())}
                 mx="auto"
                 my="s"
                 minWidth={{ _: 115, sm: 150 }}
