@@ -53,7 +53,7 @@ const LocationHeader = (props = {}) => {
           flexDirection="column"
           justifyContent="space-between"
           maxWidth={
-            props?.title != 'Christ Fellowship Everywhere'
+            props?.title !== 'Christ Fellowship Everywhere'
               ? { _: 500, md: 600, lg: 750 }
               : null
           }

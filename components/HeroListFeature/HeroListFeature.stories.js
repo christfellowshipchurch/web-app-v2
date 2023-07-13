@@ -4,10 +4,12 @@ import { Box } from 'ui-kit';
 
 import { HeroListFeature } from 'components';
 
-export default {
+const exportedObject = {
   title: 'components/HeroListFeature',
   component: HeroListFeature,
 };
+
+export default exportedObject;
 
 const cardData = altTitle => {
   return {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 
 import { CurrentUserProvider } from 'providers';
-import { logout, useAuth } from 'providers/AuthProvider';
+import { useAuth } from 'providers/AuthProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 import { Box, Button, Icon, systemPropTypes } from 'ui-kit';
 import { UserAvatar } from 'components';
@@ -11,7 +11,7 @@ import Styled from './Nav.styles';
 import { useCurrentBreakpoint } from 'hooks';
 
 function Nav(props = {}) {
-  const [{ authenticated }, authDispatch] = useAuth();
+  const [{ authenticated } ] = useAuth();
   const currentBreakpoint = useCurrentBreakpoint();
   const modalDispatch = useModalDispatch();
   const router = useRouter();
@@ -19,12 +19,6 @@ function Nav(props = {}) {
   /**
    * todo : Update the handleRouterReload to take a list a specific pages that need to be reloaded after logging as user out. To skip the rest of the pages and continue to reduce the amount of unnecessary reloads.
    */
-  function handleRouterReload(pathname) {
-    if (pathname === '/') {
-      return null;
-    }
-    return router.reload();
-  }
 
   function handleAuthClick(event) {
     event.preventDefault();

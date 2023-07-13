@@ -3,8 +3,7 @@ import { useRouter } from 'next/router';
 
 import {
   useGroupFilters,
-  update,
-  toggleValue,
+  update
 } from 'providers/GroupFiltersProvider';
 import { showStep, hideModal, useModalDispatch } from 'providers/ModalProvider';
 

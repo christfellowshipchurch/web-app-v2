@@ -21,7 +21,7 @@ import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
 import { campusLinks } from './locationData';
 import Styled from './LocationSingle.styles';
-import { add, find, includes } from 'lodash';
+import { find, includes } from 'lodash';
 
 const DAY_KEYS = {
   SUNDAY: 0,
@@ -121,7 +121,6 @@ const CampusInfo = ({
   const addressLast = `${city}, ${state} ${postalCode?.substring(0, 5)}`;
 
   const icsLinkEvents = serviceTimes?.map(({ day, time }) => {
-    const dayKey = DAY_KEYS[day.toUpperCase()] ?? 0;
     let now = new Date();
     let [hour, minute] = parseTimeAsInt(time);
     let sunday = nextSunday(now);

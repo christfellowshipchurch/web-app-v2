@@ -18,16 +18,6 @@ import { Row } from './GroupMemberDetails.components';
 import Styled from './GroupMemberDetails.styles';
 import { useGroupEmailRecipients } from 'hooks';
 
-const sortAlphabetically = (a, b) => {
-  if (a < b) {
-    return -1;
-  }
-  if (a > b) {
-    return 1;
-  }
-  return 0;
-};
-
 const GroupMemberDetails = ({
   id,
   person,
@@ -55,14 +45,6 @@ const GroupMemberDetails = ({
   const fullName = [person?.firstName, person?.lastName]
     .filter(name => !isEmpty(name))
     .join(' ');
-
-  const renderAddress = address => {
-    const cityLine = `${address?.city}, ${address?.state} ${address?.postalCode}`;
-
-    return [address?.street1, address?.street2, cityLine]
-      .filter(line => !isEmpty(line))
-      .join('\n');
-  };
 
   const onSave = () => {
     callback({ groupMemberId: id, note, status, inactiveStatusReason });

@@ -10,8 +10,7 @@ import {
   NotFound,
   InfoCardList,
   Testimonials,
-  HeroListFeature,
-  VerticalCardListFeature,
+  HeroListFeature
 } from 'components';
 
 import { Box, Button, Divider, Loader } from 'ui-kit';
