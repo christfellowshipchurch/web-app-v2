@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useRouter } from 'next/router';
 
 import { CurrentUserProvider } from 'providers';
 import { useAuth } from 'providers/AuthProvider';
@@ -14,7 +13,6 @@ function Nav(props = {}) {
   const [{ authenticated } ] = useAuth();
   const currentBreakpoint = useCurrentBreakpoint();
   const modalDispatch = useModalDispatch();
-  const router = useRouter();
 
   /**
    * todo : Update the handleRouterReload to take a list a specific pages that need to be reloaded after logging as user out. To skip the rest of the pages and continue to reduce the amount of unnecessary reloads.
