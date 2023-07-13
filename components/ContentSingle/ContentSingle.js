@@ -37,7 +37,7 @@ function ContentSingle(props = {}) {
     } else if (!currentBreakpoint.isSmall) {
       setShowShare(true);
     }
-  }, [currentBreakpoint]);
+  }, [author, currentBreakpoint]);
 
   useEffect(() => {
     // Do we have videos now, when we didn't before?
