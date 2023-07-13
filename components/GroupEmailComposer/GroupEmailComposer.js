@@ -107,7 +107,7 @@ const GroupEmailComposer = (props = {}) => {
         },
       },
     });
-  }, []);
+  }, [groupId, props?.data?.id, searchGroupMembers]);
 
   useEffect(() => {
     if (status === 'IDLE') return;
@@ -118,7 +118,7 @@ const GroupEmailComposer = (props = {}) => {
         statusMessage,
       })
     );
-  }, [status]);
+  }, [modalDispatch, status, statusMessage]);
 
   return (
     <Box>
