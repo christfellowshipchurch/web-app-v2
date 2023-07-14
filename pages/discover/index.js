@@ -79,7 +79,7 @@ const Discover = () => {
           search_type: 'content',
         },
       });
-  }, [pageResults]);
+  }, [analytics, pageResults, values?.text]);
 
   function handleClearAllClick(event) {
     event.preventDefault();
@@ -112,6 +112,7 @@ const Discover = () => {
         },
       });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterValues]);
 
   useEffect(() => {
@@ -139,6 +140,7 @@ const Discover = () => {
         });
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters, loadingFilters]);
 
   return (

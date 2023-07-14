@@ -32,6 +32,7 @@ function GroupManage(props = {}) {
           columnGap="15px"
           rowGap="15px"
           // ! : keep for backwards css compatibility
+          // eslint-disable-next-line react/jsx-no-duplicate-props
           gridColumnGap="15px"
           gridRowGap="15px"
         >
