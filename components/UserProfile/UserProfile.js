@@ -16,7 +16,7 @@ function UserProfile(props = {}) {
       );
       return router.push('/error');
     }
-  }, [props?.currentPerson?.length]);
+  }, [props?.currentPerson?.length, props?.loading, router]);
 
   if (props.loading) return <Loader text="Loading your profile" />;
 

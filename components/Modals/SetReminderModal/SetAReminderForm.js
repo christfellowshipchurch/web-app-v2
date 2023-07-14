@@ -132,7 +132,7 @@ function SetAReminderForm(props = {}) {
       phoneNumber: props?.phoneNumber,
       campus: props?.defaultCampus,
     });
-  }, []);
+  }, [props?.defaultCampus, props?.email, props?.firstName, props?.lastName, props?.phoneNumber, setValues]);
 
   useEffect(() => {
     setCurrentCampus(values?.campus);
@@ -147,7 +147,7 @@ function SetAReminderForm(props = {}) {
       setErrors({});
       modalDispatch(showStep(1));
     }
-  }, [success]);
+  }, [modalDispatch, success]);
 
   return (
     <StyledForm

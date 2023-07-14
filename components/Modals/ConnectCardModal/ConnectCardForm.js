@@ -65,6 +65,7 @@ function ConnectCardForm(props = {}) {
     }
 
     if (phoneNumber && !isEmpty(phoneNumber)) {
+      // eslint-disable-next-line no-unused-vars
       hasEmailOrPhoneNumber = true;
 
       if (!validatePhoneNumber(phoneNumber)) {
@@ -147,7 +148,7 @@ function ConnectCardForm(props = {}) {
       phoneNumber: props?.phoneNumber,
       campusId: props?.campus?.name,
     });
-  }, []);
+  }, [props?.campus?.name, props?.email, props?.firstName, props?.lastName, props?.phoneNumber, setValues]);
 
   useEffect(() => {
     setIsLoading(mutationLoading || campusesLoading);
@@ -158,7 +159,7 @@ function ConnectCardForm(props = {}) {
       setErrors({});
       modalDispatch(showStep(1));
     }
-  }, [success]);
+  }, [modalDispatch, success]);
 
   return (
     <StyledForm

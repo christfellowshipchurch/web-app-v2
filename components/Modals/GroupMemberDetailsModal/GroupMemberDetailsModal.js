@@ -69,6 +69,7 @@ const GroupMemberDetailsModal = ({ id, onSave: callback, groupId, onEmail }) => 
     const statusPromise = async() => {
       if (status !== groupMember.status.id) {
         try {
+          // eslint-disable-next-line no-unused-vars
           const response = await updateStatus({
             variables: {
               groupMemberId,
@@ -118,7 +119,7 @@ const GroupMemberDetailsModal = ({ id, onSave: callback, groupId, onEmail }) => 
         statusMessage,
       })
     );
-  }, [status]);
+  }, [modalDispatch, status, statusMessage]);
 
   return (
     <Modal>
