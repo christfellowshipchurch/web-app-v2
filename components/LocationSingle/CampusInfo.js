@@ -23,16 +23,6 @@ import { campusLinks } from './locationData';
 import Styled from './LocationSingle.styles';
 import { find, includes } from 'lodash';
 
-const DAY_KEYS = {
-  SUNDAY: 0,
-  MONDAY: 1,
-  TUESDAY: 2,
-  WEDNESDAY: 3,
-  THURSDAY: 4,
-  FRIDAY: 5,
-  SATURDAY: 6,
-};
-
 function parseTimeAsInt(_time) {
   const time = _time?.toString().trim().toUpperCase();
   const a = time.match(/(AM)|(PM)/g)?.join();
