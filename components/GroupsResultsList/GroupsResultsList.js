@@ -74,7 +74,7 @@ function GroupCardWithMember({ relatedNode, ...props }) {
           break;
       }
     }
-  }, [data, loading]);
+  }, [data, loading, props?.contactButtonText, props?.handleConnectClick, relatedNode]);
 
   return <GroupCard {...props} callToAction={callToAction} />;
 }
