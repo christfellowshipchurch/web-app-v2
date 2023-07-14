@@ -41,7 +41,7 @@ const Content = styled.div`
   left: 50%;
   /* margin-top: -${themeGet('space.xxl')}; */
   max-width: 100vw;
-  max-height: 54vw;
+  max-height: 780px;
   overflow: scroll;
   padding: ${themeGet('space.l')};
   padding-top: ${themeGet('space.xl')};
@@ -56,7 +56,7 @@ const Content = styled.div`
     margin-top: -${themeGet('space.l')};
     padding: ${themeGet('space.base')};
     padding-top: ${themeGet('space.xl')};
-    width: calc(100vw - ${themeGet('space.base')});
+    width: calc(88vw - ${themeGet('space.base')});
     max-height: 85vh;
   }
 `;
