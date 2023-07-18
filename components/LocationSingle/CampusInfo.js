@@ -10,11 +10,6 @@ import {
   Loader,
   utils,
 } from 'ui-kit';
-import nextSunday from 'date-fns/nextSunday';
-import setMinutes from 'date-fns/setMinutes';
-import setHours from 'date-fns/setHours';
-import addMinutes from 'date-fns/addMinutes';
-import setSeconds from 'date-fns/setSeconds';
 
 import { handleSocialShare } from 'components/Share/shareUtils';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
@@ -22,19 +17,7 @@ import { useModalDispatch, showModal } from 'providers/ModalProvider';
 import { campusLinks } from './locationData';
 import Styled from './LocationSingle.styles';
 import { find, includes } from 'lodash';
-
-function parseTimeAsInt(_time) {
-  const time = _time?.toString().trim().toUpperCase();
-  const a = time.match(/(AM)|(PM)/g)?.join();
-  const [hour, minute] = time
-    .replace(/(AM)|(PM)/g, '')
-    .trim()
-    .split(':')
-    .map(n => parseInt(n));
-  let hour24 = a === 'PM' ? hour + 12 : hour;
-
-  return [hour24, minute];
-}
+import { icsLinkEvents } from 'utils';
 
 const CfEverywhereButtons = () => (
   <>
@@ -109,26 +92,9 @@ const CampusInfo = ({
   const modalDispatch = useModalDispatch();
   const addressFirst = street1 ? `${street1}` : null;
   const addressLast = `${city}, ${state} ${postalCode?.substring(0, 5)}`;
-
-  const icsLinkEvents = serviceTimes?.map(({ day, time }) => {
-    let now = new Date();
-    let [hour, minute] = parseTimeAsInt(time);
-    let sunday = nextSunday(now);
-    sunday = setMinutes(sunday, minute ?? 0);
-    sunday = setHours(sunday, hour ?? 0);
-    sunday = setSeconds(sunday, 0);
-
-    return {
-      label: `${time}`,
-      event: {
-        title: 'Sunday service at Christ Fellowship Church',
-        description: `Join us this Sunday!`,
-        addressFirst,
-        startTime: sunday,
-        endTime: addMinutes(sunday, 90),
-      },
-    };
-  });
+  const links = serviceTimes
+    ? icsLinkEvents(serviceTimes, addressFirst, name)
+    : [];
 
   /** Get the Most Out of Life messaging */
   let getTheMost = {};
@@ -333,7 +299,7 @@ const CampusInfo = ({
                   modalDispatch(
                     showModal('AddToCalendar', {
                       title: 'What service would you like to attend?',
-                      events: icsLinkEvents,
+                      events: links,
                     })
                   );
                 }}
