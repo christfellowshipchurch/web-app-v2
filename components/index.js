@@ -35,6 +35,7 @@ import GroupManage from './GroupManage';
 import GroupMember from './GroupMember';
 import GroupMemberDetails from './GroupMemberDetails';
 import GroupSearchFilters from './GroupSearchFilters';
+import GroupSearchSideBar from './GroupSearchSideBar';
 import GroupSingle from './GroupSingle';
 import GroupsList from './GroupsList';
 import GroupsResultsList from './GroupsResultsList';
@@ -105,6 +106,7 @@ export {
   GroupMember,
   GroupMemberDetails,
   GroupSearchFilters,
+  GroupSearchSideBar,
   GroupSingle,
   GroupsList,
   GroupsResultsList,
