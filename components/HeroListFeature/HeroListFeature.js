@@ -4,8 +4,16 @@ import dropRight from 'lodash/dropRight';
 import isEmpty from 'lodash/isEmpty';
 
 import { CustomLink } from '..';
-import { Box, CardGrid, DefaultCard, HtmlRenderer, RowCard } from 'ui-kit';
+import {
+  Box,
+  Button,
+  CardGrid,
+  DefaultCard,
+  HtmlRenderer,
+  RowCard,
+} from 'ui-kit';
 import { getUrlFromRelatedNode, transformISODates } from 'utils';
+import { includes } from 'lodash';
 
 function isClickable(url) {
   return url !== '#no-click';
@@ -17,6 +25,7 @@ function HeroListFeature(props = {}) {
   let title = props?.data?.title;
   let subtitle = props?.data?.subtitle;
   let cards = props?.data?.actions || [];
+  let callToAction = props?.data?.callToAction;
 
   let col = cards.length > 1 ? '2' : '1';
 
@@ -116,6 +125,17 @@ function HeroListFeature(props = {}) {
             label={transformISODates(bottomCard?.labelText)}
           />
         ))}
+      {callToAction && (
+        <Box width="100%" textAlign="center" mt="l">
+          <Button
+            as="a"
+            target={includes(callToAction?.action, 'https') && '_blank'}
+            href={callToAction?.action}
+          >
+            {callToAction?.call}
+          </Button>
+        </Box>
+      )}
     </Box>
   );
 }
