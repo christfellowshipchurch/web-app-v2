@@ -39,9 +39,9 @@ const Content = styled.div`
   border-radius: ${themeGet('radii.base')};
   box-shadow: ${themeGet('shadows.xl')};
   left: 50%;
-  /* margin-top: -${themeGet('space.xxl')}; */
   max-width: 100vw;
-  max-width: 100vw;
+  max-height: 80vh;
+  width: max-content;
   overflow: scroll;
   padding: ${themeGet('space.l')};
   padding-top: ${themeGet('space.xl')};
@@ -56,7 +56,8 @@ const Content = styled.div`
     margin-top: -${themeGet('space.l')};
     padding: ${themeGet('space.base')};
     padding-top: ${themeGet('space.xl')};
-    width: calc(100vw - ${themeGet('space.base')});
+    width: max-content;
+    max-width: calc(100vw - ${themeGet('space.base')});
     max-height: 85vh;
   }
 `;
