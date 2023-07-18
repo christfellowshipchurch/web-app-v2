@@ -28,6 +28,8 @@ function SetAReminderForm(props = {}) {
   const { campuses, loading: campusesLoading } = useCampuses();
   const [errors, setErrors] = useState({});
 
+  const { handleCallBack } = props;
+
   /**
    * todo : update with new Rock Workflow
    */
@@ -132,7 +134,14 @@ function SetAReminderForm(props = {}) {
       phoneNumber: props?.phoneNumber,
       campus: props?.defaultCampus,
     });
-  }, [props?.defaultCampus, props?.email, props?.firstName, props?.lastName, props?.phoneNumber, setValues]);
+  }, [
+    props?.defaultCampus,
+    props?.email,
+    props?.firstName,
+    props?.lastName,
+    props?.phoneNumber,
+    setValues,
+  ]);
 
   useEffect(() => {
     setCurrentCampus(values?.campus);
@@ -146,10 +155,10 @@ function SetAReminderForm(props = {}) {
     if (success) {
       setErrors({});
       // pass serviceTimes to ConfirmationModal
-      props?.handleCallBack(values?.serviceTime);
+      handleCallBack(values?.serviceTime);
       modalDispatch(showStep(1));
     }
-  }, [modalDispatch, success]);
+  }, [modalDispatch, success, handleCallBack, values?.serviceTime]);
 
   return (
     <StyledForm

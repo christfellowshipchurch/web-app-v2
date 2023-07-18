@@ -4,7 +4,6 @@ import { Modal } from 'ui-kit';
 import { useCurrentUser } from 'hooks';
 import Confirmation from '../ConnectCardModal/Confirmation';
 import SetAReminderForm from './SetAReminderForm';
-import { set } from 'lodash';
 
 function SetAReminder(props = {}) {
   const { currentUser } = useCurrentUser();
