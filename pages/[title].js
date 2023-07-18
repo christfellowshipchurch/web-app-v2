@@ -1,19 +1,16 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { kebabCase, toLower, capitalize } from 'lodash';
+import { capitalize } from 'lodash';
 
 import { initializeApollo } from 'lib/apolloClient';
 import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
 import { FeatureFeedProvider, ContentItemProvider } from 'providers';
 import { Layout, FeatureFeed, PageSingle } from 'components';
-import { useAnalytics } from 'providers/AnalyticsProvider';
 
 export default function PageBuilder(props = {}) {
-  const analytics = useAnalytics();
   const router = useRouter();
   const { query } = router;
   const { title } = query;
-  const formatTitleAsUrl = title => kebabCase(toLower(title));
 
   const options = {
     variables: {

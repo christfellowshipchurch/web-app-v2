@@ -33,7 +33,7 @@ const CollectionPreview = ({
     });
 
   const handleSeeMore = event => {
-    const [type, id] = contentId.split(':');
+    const [id] = contentId.split(':');
 
     event.preventDefault();
     router.push(`/discover/${slugify(categoryTitle)}?id=${slugify(id)}`);

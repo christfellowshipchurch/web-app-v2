@@ -28,6 +28,8 @@ function SetAReminderForm(props = {}) {
   const { campuses, loading: campusesLoading } = useCampuses();
   const [errors, setErrors] = useState({});
 
+  const { handleCallBack } = props;
+
   /**
    * todo : update with new Rock Workflow
    */
@@ -52,7 +54,6 @@ function SetAReminderForm(props = {}) {
     const currentErrors = {};
     let { email, phoneNumber, serviceTime, campus, firstName, lastName } =
       values;
-    let hasEmailOrPhoneNumber = false;
 
     if (
       isEmpty(email) ||
@@ -65,16 +66,12 @@ function SetAReminderForm(props = {}) {
     }
 
     if (email && !isEmpty(email)) {
-      hasEmailOrPhoneNumber = true;
-
       if (!validateEmail(email)) {
         currentErrors.email = 'Please enter a valid email address';
       }
     }
 
     if (phoneNumber && !isEmpty(phoneNumber)) {
-      hasEmailOrPhoneNumber = true;
-
       if (!validatePhoneNumber(phoneNumber)) {
         currentErrors.phoneNumber = 'Please enter a valid phone number';
       }
@@ -137,7 +134,14 @@ function SetAReminderForm(props = {}) {
       phoneNumber: props?.phoneNumber,
       campus: props?.defaultCampus,
     });
-  }, []);
+  }, [
+    props?.defaultCampus,
+    props?.email,
+    props?.firstName,
+    props?.lastName,
+    props?.phoneNumber,
+    setValues,
+  ]);
 
   useEffect(() => {
     setCurrentCampus(values?.campus);
@@ -151,10 +155,10 @@ function SetAReminderForm(props = {}) {
     if (success) {
       setErrors({});
       // pass serviceTimes to ConfirmationModal
-      props?.handleCallBack(values?.serviceTime);
+      handleCallBack(values?.serviceTime);
       modalDispatch(showStep(1));
     }
-  }, [success]);
+  }, [modalDispatch, success, handleCallBack, values?.serviceTime]);
 
   return (
     <StyledForm

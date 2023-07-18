@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 
-import { slugify } from 'utils';
 import { GroupManageProvider } from 'providers';
 import { Box, Button, Card } from 'ui-kit';
-import { CustomLink } from 'components';
 
 // todo : figure out where/how to support this
-import GroupManagePhoto from './GroupManagePhoto';
 import GroupManageResources from './GroupManageResources';
 import GroupManageMembers from './GroupManageMembers';
 function GroupManage(props = {}) {
@@ -35,6 +32,7 @@ function GroupManage(props = {}) {
           columnGap="15px"
           rowGap="15px"
           // ! : keep for backwards css compatibility
+          // eslint-disable-next-line react/jsx-no-duplicate-props
           gridColumnGap="15px"
           gridRowGap="15px"
         >

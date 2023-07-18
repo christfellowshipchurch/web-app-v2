@@ -44,7 +44,7 @@ const GroupEmailComposer = (props = {}) => {
   const router = useRouter();
   const modalDispatch = useModalDispatch();
   const { currentUser } = useCurrentUser();
-  const [searchGroupMembers, { groupMembers, loading }] =
+  const [searchGroupMembers, { groupMembers }] =
     useSearchGroupMembers();
   const { recipients, toggleRecipient, setRecipients } =
     useGroupEmailRecipients({
@@ -107,7 +107,7 @@ const GroupEmailComposer = (props = {}) => {
         },
       },
     });
-  }, []);
+  }, [groupId, props?.data?.id, searchGroupMembers]);
 
   useEffect(() => {
     if (status === 'IDLE') return;
@@ -118,7 +118,7 @@ const GroupEmailComposer = (props = {}) => {
         statusMessage,
       })
     );
-  }, [status]);
+  }, [modalDispatch, status, statusMessage]);
 
   return (
     <Box>

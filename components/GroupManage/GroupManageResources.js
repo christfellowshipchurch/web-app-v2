@@ -2,7 +2,7 @@ import React from 'react';
 
 import { GroupResourceOptionsProvider } from 'providers';
 import { useGroupManage, update } from 'providers/GroupManageProvider';
-import { Box, Button, Icon, List, Menu } from 'ui-kit';
+import { Box, List, Menu } from 'ui-kit';
 import { CardTitle, SmallPillButton } from './GroupManage.components';
 
 import AddResourceContent from './AddResourceContent';

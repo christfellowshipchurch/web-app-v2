@@ -177,6 +177,7 @@ function AppHead({ Component, pageProps }) {
               height="1"
               width="1"
               style={{ display: 'none' }}
+              alt=''
               src={`https://www.facebook.com/tr?id=${process.env.NEXT_PUBLIC_FB_CODE}&ev=PageView&noscript=1`}
             />
           </noscript>

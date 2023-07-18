@@ -1,11 +1,7 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import { Box, Icon } from 'ui-kit';
 
 import Styled from './NavScreen.styles';
-import navData from 'config/mobile-nav-links';
-import { GetHelp } from 'components/Modals/NavMenuModal/navComponents';
-import { includes } from 'lodash';
 
 function SubMenu(props) {
   const { links, title } = props;

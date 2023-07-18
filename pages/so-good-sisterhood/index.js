@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { kebabCase, toLower, capitalize } from 'lodash';
+import { capitalize } from 'lodash';
 
 import { initializeApollo } from 'lib/apolloClient';
 import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
@@ -13,14 +13,13 @@ export default function SoGoodSisterhoodPage() {
   const analytics = useAnalytics();
 
   const title = 'so-good-sisterhood';
-  const formatTitleAsUrl = title => kebabCase(toLower(title));
 
   useEffect(() => {
     analytics.page({
       contentCategory: 'Information',
       mediaType: 'Information',
     });
-  }, []);
+  }, [analytics]);
 
   const options = {
     variables: {

@@ -277,8 +277,10 @@ const headerData = [
       newTab: true,
     },
     backgroundVideo: {
-      mobile: 'https://embed.wistia.com/deliveries/a2d8ff303071438c901c358dc99d9c82.mp4',
-      desktop: 'https://embed.wistia.com/deliveries/d7da7955aeaabad13c81b0d28eb0a906.mp4',
+      mobile:
+        'https://embed.wistia.com/deliveries/a2d8ff303071438c901c358dc99d9c82.mp4',
+      desktop:
+        'https://embed.wistia.com/deliveries/d7da7955aeaabad13c81b0d28eb0a906.mp4',
     },
     videoBackgroundImage: '/location-pages/gardens-background.png',
   },
@@ -290,8 +292,10 @@ const headerData = [
       newTab: true,
     },
     backgroundVideo: {
-      mobile: 'https://embed.wistia.com/deliveries/b7c69eddef263f8642c3cf6a40119da6.mp4',
-      desktop: 'https://embed.wistia.com/deliveries/871d157415af66e33b856f0f45a80ac5.mp4',
+      mobile:
+        'https://embed.wistia.com/deliveries/b7c69eddef263f8642c3cf6a40119da6.mp4',
+      desktop:
+        'https://embed.wistia.com/deliveries/871d157415af66e33b856f0f45a80ac5.mp4',
     },
     videoBackgroundImage: '/location-pages/psl-background.png',
   },
@@ -303,8 +307,10 @@ const headerData = [
       newTab: true,
     },
     backgroundVideo: {
-      mobile: 'https://embed.wistia.com/deliveries/dfdb08cf10f9fadfcfd9d121eb6c42bc.mp4',
-      desktop: 'https://embed.wistia.com/deliveries/026c00073f7334567627d2fcb6607b83.mp4',
+      mobile:
+        'https://embed.wistia.com/deliveries/dfdb08cf10f9fadfcfd9d121eb6c42bc.mp4',
+      desktop:
+        'https://embed.wistia.com/deliveries/026c00073f7334567627d2fcb6607b83.mp4',
     },
     videoBackgroundImage: '/location-pages/boynton-background.png',
   },
@@ -316,8 +322,10 @@ const headerData = [
       newTab: true,
     },
     backgroundVideo: {
-      mobile: 'https://embed.wistia.com/deliveries/0f8b817c7df7a8da80d2c6f87010f071.mp4',
-      desktop: 'https://embed.wistia.com/deliveries/54e0709b9b5664cdbee79bd2c9f8955d.mp4',
+      mobile:
+        'https://embed.wistia.com/deliveries/0f8b817c7df7a8da80d2c6f87010f071.mp4',
+      desktop:
+        'https://embed.wistia.com/deliveries/54e0709b9b5664cdbee79bd2c9f8955d.mp4',
     },
     videoBackgroundImage: '/location-pages/belle-glade-background.png',
   },
@@ -329,8 +337,10 @@ const headerData = [
       newTab: true,
     },
     backgroundVideo: {
-      mobile: 'https://embed.wistia.com/deliveries/1d08e68f264c1e3f0cf3af7d7aa66381.mp4',
-      desktop: 'https://embed.wistia.com/deliveries/a6c198de2d3850d58b1b36b90500446a.mp4',
+      mobile:
+        'https://embed.wistia.com/deliveries/1d08e68f264c1e3f0cf3af7d7aa66381.mp4',
+      desktop:
+        'https://embed.wistia.com/deliveries/a6c198de2d3850d58b1b36b90500446a.mp4',
     },
     videoBackgroundImage: '/location-pages/downtown-background.png',
   },
@@ -343,8 +353,10 @@ const headerData = [
       newTab: true,
     },
     backgroundVideo: {
-      mobile: 'https://embed.wistia.com/deliveries/b47e8645abe7867dd93f49d8659ae7a4.mp4',
-      desktop: 'https://embed.wistia.com/deliveries/9d27f19076ee7f4334e23ef8cba8556f.mp4',
+      mobile:
+        'https://embed.wistia.com/deliveries/b47e8645abe7867dd93f49d8659ae7a4.mp4',
+      desktop:
+        'https://embed.wistia.com/deliveries/9d27f19076ee7f4334e23ef8cba8556f.mp4',
     },
     videoBackgroundImage: '/location-pages/rp-background.png',
   },
@@ -356,8 +368,10 @@ const headerData = [
       newTab: true,
     },
     backgroundVideo: {
-      mobile: 'https://embed.wistia.com/deliveries/1f1eb41659eb843d4edc9e087be8425c.mp4',
-      desktop: 'https://embed.wistia.com/deliveries/4cd6c53698ae63abbb69aff4e0a4a5b0.mp4',
+      mobile:
+        'https://embed.wistia.com/deliveries/1f1eb41659eb843d4edc9e087be8425c.mp4',
+      desktop:
+        'https://embed.wistia.com/deliveries/4cd6c53698ae63abbb69aff4e0a4a5b0.mp4',
     },
     videoBackgroundImage: '/location-pages/jupiter-background.png',
   },
@@ -369,8 +383,10 @@ const headerData = [
       newTab: true,
     },
     backgroundVideo: {
-      mobile: 'https://embed.wistia.com/deliveries/cd692559bc51a345d790b4cb20f0d570.mp4',
-      desktop: 'https://embed.wistia.com/deliveries/e82b789e1e946b35b9d66000bdbe3967.mp4',
+      mobile:
+        'https://embed.wistia.com/deliveries/cd692559bc51a345d790b4cb20f0d570.mp4',
+      desktop:
+        'https://embed.wistia.com/deliveries/e82b789e1e946b35b9d66000bdbe3967.mp4',
     },
     videoBackgroundImage: '/location-pages/stuart-background.png',
   },
@@ -382,8 +398,10 @@ const headerData = [
       newTab: true,
     },
     backgroundVideo: {
-      mobile: 'https://embed.wistia.com/deliveries/5949fa11ef3e52831f37aa37964eea62.mp4',
-      desktop: 'https://embed.wistia.com/deliveries/c42e1403c833256951dd323baea07b02.mp4',
+      mobile:
+        'https://embed.wistia.com/deliveries/5949fa11ef3e52831f37aa37964eea62.mp4',
+      desktop:
+        'https://embed.wistia.com/deliveries/c42e1403c833256951dd323baea07b02.mp4',
     },
     videoBackgroundImage: '/location-pages/vero-background.png',
   },
@@ -396,8 +414,10 @@ const headerData = [
       newTab: true,
     },
     backgroundVideo: {
-      mobile: 'https://embed.wistia.com/deliveries/ab8b6ebede5bb73ef96e0d3daa0bb5ae.mp4',
-      desktop: 'https://embed.wistia.com/deliveries/260d47e96ba194d91d2ec62406a4d515.mp4',
+      mobile:
+        'https://embed.wistia.com/deliveries/ab8b6ebede5bb73ef96e0d3daa0bb5ae.mp4',
+      desktop:
+        'https://embed.wistia.com/deliveries/260d47e96ba194d91d2ec62406a4d515.mp4',
     },
     videoBackgroundImage: '/location-pages/riviera-background.png',
   },
@@ -409,8 +429,10 @@ const headerData = [
       newTab: true,
     },
     backgroundVideo: {
-      mobile: 'https://embed.wistia.com/deliveries/cae05954d1c14267bad9342bf65642bd.mp4',
-      desktop: 'https://embed.wistia.com/deliveries/ea4558a53807bdb1b5058426477b0342.mp4',
+      mobile:
+        'https://embed.wistia.com/deliveries/cae05954d1c14267bad9342bf65642bd.mp4',
+      desktop:
+        'https://embed.wistia.com/deliveries/ea4558a53807bdb1b5058426477b0342.mp4',
     },
     videoBackgroundImage: '/location-pages/boca-background.png',
   },
@@ -422,8 +444,10 @@ const headerData = [
       newTab: true,
     },
     backgroundVideo: {
-      mobile: 'https://embed.wistia.com/deliveries/df01e5a40919c9bb9c43624af6bcde5e.mp4',
-      desktop: 'https://embed.wistia.com/deliveries/834757e42d489390000ec7e84b0be435.mp4',
+      mobile:
+        'https://embed.wistia.com/deliveries/df01e5a40919c9bb9c43624af6bcde5e.mp4',
+      desktop:
+        'https://embed.wistia.com/deliveries/834757e42d489390000ec7e84b0be435.mp4',
     },
     videoBackgroundImage: '/location-pages/okee-background.png',
   },
@@ -435,8 +459,10 @@ const headerData = [
       newTab: true,
     },
     backgroundVideo: {
-      mobile: 'https://embed.wistia.com/deliveries/fec8203d81f5a4982e2196cce1bd27e9.mp4',
-      desktop: 'https://embed.wistia.com/deliveries/fec8203d81f5a4982e2196cce1bd27e9.mp4',
+      mobile:
+        'https://embed.wistia.com/deliveries/fec8203d81f5a4982e2196cce1bd27e9.mp4',
+      desktop:
+        'https://embed.wistia.com/deliveries/fec8203d81f5a4982e2196cce1bd27e9.mp4',
     },
     videoBackgroundImage: '/location-pages/trinity-background.png',
   },
@@ -448,8 +474,10 @@ const headerData = [
       newTab: true,
     },
     backgroundVideo: {
-      mobile: 'https://embed.wistia.com/deliveries/fa7adf01b9dfec9d86eba123b6c2e3f8.mp4',
-      desktop: 'https://embed.wistia.com/deliveries/fa7adf01b9dfec9d86eba123b6c2e3f8.mp4',
+      mobile:
+        'https://embed.wistia.com/deliveries/fa7adf01b9dfec9d86eba123b6c2e3f8.mp4',
+      desktop:
+        'https://embed.wistia.com/deliveries/fa7adf01b9dfec9d86eba123b6c2e3f8.mp4',
     },
   },
   {
@@ -460,8 +488,10 @@ const headerData = [
       newTab: true,
     },
     backgroundVideo: {
-      mobile: 'https://embed.wistia.com/deliveries/a4bd8b00db57ac41a7feda8ac3d3117b.mp4',
-      desktop: 'https://embed.wistia.com/deliveries/a4bd8b00db57ac41a7feda8ac3d3117b.mp4',
+      mobile:
+        'https://embed.wistia.com/deliveries/a4bd8b00db57ac41a7feda8ac3d3117b.mp4',
+      desktop:
+        'https://embed.wistia.com/deliveries/a4bd8b00db57ac41a7feda8ac3d3117b.mp4',
     },
   },
 ];

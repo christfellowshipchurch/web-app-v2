@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { createMarkup } from 'utils';
-import { SEO, FeatureFeed, Share } from 'components';
+import { SEO, FeatureFeed } from 'components';
 import {
   Box,
   Card,

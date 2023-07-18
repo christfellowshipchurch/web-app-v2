@@ -10,7 +10,7 @@ export default function Info(props = {}) {
 
   useEffect(() => {
     analytics.page({ title: `LinkTree - Info`, mediaType: 'Information' });
-  }, []);
+  }, [analytics]);
 
   const options = {
     variables: {

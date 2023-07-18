@@ -2,11 +2,6 @@ import { useRouter } from 'next/router';
 import { ContentItemProvider } from 'providers';
 import { ContentSingle, Layout } from 'components';
 
-function getItemId(slug) {
-  const id = slug.split('-').pop();
-  return `MediaContentItem:${id}`;
-}
-
 export default function Devotionals(props) {
   const router = useRouter();
   const { title } = router.query;

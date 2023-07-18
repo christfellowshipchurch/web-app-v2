@@ -3,8 +3,7 @@ import { useRouter } from 'next/router';
 
 import {
   useGroupFilters,
-  update,
-  toggleValue,
+  update
 } from 'providers/GroupFiltersProvider';
 import { showStep, hideModal, useModalDispatch } from 'providers/ModalProvider';
 
@@ -21,10 +20,6 @@ function GroupFilterWhereWhen(props = {}) {
     // Campus selection is stored as a multi-select, but the input
     // is a single-select. Handle it's value specially.
     filtersDispatch(update({ [name]: value === '' ? [] : [value] }));
-  };
-
-  const handleDayChange = value => {
-    filtersDispatch(toggleValue({ name: 'days', value }));
   };
 
   const handleSubmit = event => {

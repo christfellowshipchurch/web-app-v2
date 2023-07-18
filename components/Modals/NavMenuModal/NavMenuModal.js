@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Box, Modal } from 'ui-kit';
+import { Modal } from 'ui-kit';
 
 import NavMenu from './NavMenu';
 import navData from 'config/new-nav-links';

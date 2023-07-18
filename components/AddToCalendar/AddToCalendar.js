@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import uniqueId from 'lodash/uniqueId';
 
-import { Box, Menu, List, Button, Icon } from 'ui-kit';
+import { Box, Menu, List, Icon } from 'ui-kit';
 import { CustomLink } from 'components';
 import { googleCalLink, icsLink } from './utils';
 

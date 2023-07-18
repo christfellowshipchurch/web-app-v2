@@ -7,7 +7,6 @@ import { Box, RowCard } from 'ui-kit';
 import { getUrlFromRelatedNode, transformISODates } from 'utils';
 
 function ActionListFeature(props = {}) {
-  const onPressActionItem = props?.onPressActionItem;
   let title = props?.data?.title;
   let subtitle = props?.data?.subtitle;
   let cards = props?.data?.actions || [];

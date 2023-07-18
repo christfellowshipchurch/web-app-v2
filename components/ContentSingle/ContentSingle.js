@@ -29,6 +29,21 @@ function ContentSingle(props = {}) {
     },
   });
 
+  const {
+    author,
+    coverImage,
+    featureFeed,
+    htmlContent,
+    mode,
+    publishDate,
+    schedule,
+    summary,
+    title,
+    videos,
+    segmentData,
+    wistiaId,
+  } = props?.data;
+
   useEffect(() => {
     if (currentBreakpoint.isSmall && !author) {
       setShowShare(true);
@@ -37,7 +52,7 @@ function ContentSingle(props = {}) {
     } else if (!currentBreakpoint.isSmall) {
       setShowShare(true);
     }
-  }, [currentBreakpoint]);
+  }, [author, currentBreakpoint]);
 
   useEffect(() => {
     // Do we have videos now, when we didn't before?
@@ -65,7 +80,7 @@ function ContentSingle(props = {}) {
         mediaType: getMediaType({ url: asPath, ...props?.data }),
       });
     }
-  }, [router]);
+  }, [analytics, props?.data, router]);
 
   if (props.loading) {
     return (
@@ -82,20 +97,7 @@ function ContentSingle(props = {}) {
     );
   }
 
-  const {
-    author,
-    coverImage,
-    featureFeed,
-    htmlContent,
-    mode,
-    publishDate,
-    schedule,
-    summary,
-    title,
-    videos,
-    segmentData,
-    wistiaId,
-  } = props?.data;
+  
 
   if (!currentVideo && wistiaId) {
     setCurrentVideo(props.data.wistiaId);

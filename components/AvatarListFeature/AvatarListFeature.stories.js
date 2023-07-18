@@ -4,10 +4,12 @@ import { Box } from 'ui-kit';
 
 import { AvatarListFeature } from 'components';
 
-export default {
+const exportedObject = {
   title: 'components/AvatarListFeature',
   component: AvatarListFeature,
 };
+
+export default exportedObject;
 
 const data = {
   onPressItem: () => {},

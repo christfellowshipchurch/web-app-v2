@@ -23,7 +23,7 @@ export default function Home(props = {}) {
     if (includes(asPath, '#connect-card')) {
       modalDispatch(showModal('ConnectCardModal'));
     }
-  }, []);
+  }, [modalDispatch, router]);
 
   useEffect(() => {
     setIsTransparent(!authenticated);

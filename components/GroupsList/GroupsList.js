@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 
 import { slugify } from 'utils';
-import { Box, CardGrid, GroupCard, Loader } from 'ui-kit';
+import { Box, GroupCard, Loader } from 'ui-kit';
 import { rem } from 'ui-kit/_utils';
 import { CustomLink } from 'components';
 import { useCurrentBreakpoint, useGroupLeaders, useGroupMembers } from 'hooks';
