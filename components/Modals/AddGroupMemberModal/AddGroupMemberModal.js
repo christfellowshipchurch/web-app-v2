@@ -110,6 +110,7 @@ const AddGroupMemberModal = ({ groupId }) => {
         }, 1000);
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [success]);
 
   return (

@@ -29,6 +29,7 @@ import {
 import { useModalState } from 'providers/ModalProvider';
 import { GroupsProvider } from 'providers';
 import { useSearchGroups, useForm, useCurrentBreakpoint } from 'hooks';
+// eslint-disable-next-line no-unused-vars
 import { Cursor } from 'react-simple-typewriter';
 
 const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
@@ -103,6 +104,7 @@ export default function CommunitySearch() {
         after: cursor.current,
       },
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cursor]);
 
   useEffect(() => {
