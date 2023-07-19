@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 import { initializeApollo } from 'lib/apolloClient';
 import { GET_FEATURE_FEED } from 'hooks/useFeatureFeed';
-import { FeatureFeedProvider } from 'providers';
-import { Layout, FeatureFeed, ClientSideComponent } from 'components';
-import { Cell, utils } from 'ui-kit';
+import { Layout } from 'components';
 import { useAuth } from 'providers/AuthProvider';
 
 import ExternalLandingPage from './external-home';
@@ -22,13 +20,13 @@ export default function ExternalHomePage() {
     if (includes(asPath, '#connect-card')) {
       modalDispatch(showModal('ConnectCardModal'));
     }
-  });
+  }, [modalDispatch, router]);
 
   useEffect(() => {
     if (authenticated) {
       router.push('/home');
     }
-  }, [authenticated]);
+  }, [authenticated, router]);
 
   return (
     <Layout

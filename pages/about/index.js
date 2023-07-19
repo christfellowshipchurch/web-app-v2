@@ -5,9 +5,6 @@ import {
   Card,
   ContentBlock,
   List,
-  HorizontalHighlightCard,
-  DefaultCard,
-  utils,
 } from 'ui-kit';
 import { rem } from 'ui-kit/_utils';
 import { Layout, VerticalCardListFeature } from 'components';
@@ -41,6 +38,7 @@ export default function About() {
         hash: lastOfPath,
       });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

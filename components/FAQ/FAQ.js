@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import { Box, Button, Divider, HtmlRenderer, systemPropTypes } from 'ui-kit';
 import Styled from './FAQ.styles';
-import { useCurrentBreakpoint } from 'hooks';
 
 function FAQ(props = {}) {
   const [display, setDisplay] = useState('none');

@@ -1,10 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { initializeApollo } from 'lib/apolloClient';
-import { slugify } from 'utils';
 import { LiveStreamProvider } from 'providers';
-import { GET_LIVE_STREAM } from 'hooks/useLiveStream';
-import { GET_LIVE_STREAMS } from 'hooks/useLiveStreamsQuery';
 import { Layout, LiveStreamSingle } from 'components';
 
 export default function LiveStream(props) {

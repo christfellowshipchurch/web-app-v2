@@ -18,6 +18,7 @@ import {
   GroupsResultsList,
   CustomLink,
   Layout,
+  GroupSearchSideBar,
 } from 'components';
 
 import {
@@ -28,8 +29,6 @@ import {
 import { useModalState } from 'providers/ModalProvider';
 import { GroupsProvider } from 'providers';
 import { useSearchGroups, useForm, useCurrentBreakpoint } from 'hooks';
-
-import Sidebar from './Sidebar';
 
 const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
 const LARGE_SCREEN_CONTENT_WIDTH = utils.rem('1350px');
@@ -103,7 +102,7 @@ export default function CommunitySearch() {
         after: cursor.current,
       },
     });
-  }, [cursor]);
+  }, [cursor, filtersState.queryData, searchGroups]);
 
   useEffect(() => {
     // Don't execute search if state hasn't been hydrated OR a modal is open
@@ -128,14 +127,7 @@ export default function CommunitySearch() {
         first: PAGE_SIZE,
       },
     });
-  }, [
-    filtersState.hydrated,
-    filtersState.queryData,
-    filtersState.values.text,
-    searchGroups,
-    setValues,
-    router,
-  ]);
+  }, [filtersState.hydrated, filtersState.queryData, filtersState.values.text, searchGroups, setValues, router, modalState.activeModal.component]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -226,7 +218,7 @@ export default function CommunitySearch() {
           gridTemplateColumns="250px 1fr"
           gridGap="28px"
         >
-          {currentBreakpoint.isXLarge && <Sidebar />}
+          {currentBreakpoint.isXLarge && <GroupSearchSideBar />}
           {showEmptyState && (
             <Box my="xxl" pb="xxl" textAlign="center">
               <Box as="h2">Looks like we couldn't find any results</Box>

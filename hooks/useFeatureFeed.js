@@ -43,14 +43,14 @@ export const GET_FEATURE_FEED = gql`
 `;
 
 const customGiveContentBlockCollection = {
-  __typename: "ContentBlockCollectionFeature",
+  __typename: 'ContentBlockCollectionFeature',
   title: "What You're Giving To:",
   cards: [
     {
       title: 'Everyone',
       summary:
         'What started as 40 people in a living room is now thousands gathering across the region and online through Christ Fellowship Everywhere. When you faithfully give toward tithes & offerings, you’re a part of reaching even more people with the love and message of Jesus Christ.',
-      coverImage: {sources: [{uri: '/give1.png'}]},
+      coverImage: { sources: [{ uri: '/give/give1.png' }] },
       highlightWidth: '100%',
       highlightWidthSmall: '10%',
     },
@@ -58,7 +58,7 @@ const customGiveContentBlockCollection = {
       title: 'Everyday',
       summary:
         'Our vision is to lead a radical transformation in our region and beyond. Your faithful giving throughout the year is what equips us to do just that through the ongoing operations of the church—including our ministries, buildings, and platform of digital resources.',
-      coverImage: {sources: [{uri: '/give2.png'}]},
+      coverImage: { sources: [{ uri: '/give/give2.png' }] },
       highlightWidth: '100%',
       highlightWidthSmall: '10%',
     },
@@ -66,12 +66,12 @@ const customGiveContentBlockCollection = {
       title: 'Everywhere',
       summary:
         'Through our regional and global missions partners, we’re positioned to meet needs as soon as they arise. Whether through regular tithes & offerings or through Christ Birthday Offering in December, every dollar you give makes a difference for those in need.',
-      coverImage: {sources: [{uri: '/give3.png'}]},
+      coverImage: { sources: [{ uri: '/give/give3.png' }] },
       highlightWidth: '100%',
       highlightWidthSmall: '10%',
-    }
-  ]
-}
+    },
+  ],
+};
 
 function useFeatureFeed(options = {}) {
   const query = useQuery(GET_FEATURE_FEED, {
@@ -79,10 +79,12 @@ function useFeatureFeed(options = {}) {
     ...options,
   });
 
-  const isGivePage = options?.variables?.pathname === "give"
-  let features = Array.isArray(query?.data?.featuresFeed?.features) ? clone(query?.data?.featuresFeed?.features) : []
+  const isGivePage = options?.variables?.pathname === 'give';
+  let features = Array.isArray(query?.data?.featuresFeed?.features)
+    ? clone(query?.data?.featuresFeed?.features)
+    : [];
 
-  if(isGivePage && features.length > 2){
+  if (isGivePage && features.length > 2) {
     features[2] = customGiveContentBlockCollection;
   }
 
@@ -93,4 +95,3 @@ function useFeatureFeed(options = {}) {
 }
 
 export default useFeatureFeed;
-

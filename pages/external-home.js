@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CollectionPreview, HeroLanding, Layout, SEO } from 'components';
+import { CollectionPreview, HeroLanding } from 'components';
 import {
   LifeIsCrazy,
   LifeToTheFullest,

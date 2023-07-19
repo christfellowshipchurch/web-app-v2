@@ -1,8 +1,4 @@
-import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import get from 'lodash/get';
-import find from 'lodash/find';
-import isEmpty from 'lodash/isEmpty';
 
 import flags from 'config/flags';
 import { CommunitiesProvider } from 'providers';

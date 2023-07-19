@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
-import { system, utils, Button, Box } from 'ui-kit';
+import { system, Button, Box } from 'ui-kit';
 
 const SearchField = {};
 

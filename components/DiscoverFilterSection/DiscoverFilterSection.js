@@ -15,7 +15,7 @@ import {
 } from 'ui-kit';
 import { CustomLink } from 'components';
 
-const DiscoverFilterSection = ({ contentId, title }) => {
+const DiscoverFilterSection = ({ contentId, title, filter }) => {
   const router = useRouter();
   const { contentItems, loading } = useDiscoverFilterCategoriesPreview({
     variables: { id: contentId, first: 3 },
@@ -26,10 +26,10 @@ const DiscoverFilterSection = ({ contentId, title }) => {
   }).contentItems.length;
 
   const handleSeeMore = event => {
-    const [type, id] = contentId.split(':');
+    const [id] = contentId.split(':');
 
     event.preventDefault();
-    router.push(`/discover/${slugify(title)}?id=${slugify(id)}`);
+    router.push(`/discover/${slugify(title)}?id=${slugify(id)}&c=${filter}`);
   };
 
   return (

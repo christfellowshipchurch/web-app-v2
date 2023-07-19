@@ -219,7 +219,7 @@ const navigation = {
         },
         {
           call: 'Online',
-          action: '/events/tune-in-online',
+          action: '/locations/cf-everywhere',
           color: 'primary',
         },
       ],

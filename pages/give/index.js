@@ -18,7 +18,7 @@ export default function Give(props) {
   //Segment Page Tracking
   useEffect(() => {
     analytics.page();
-  }, []);
+  }, [analytics]);
 
   return (
     <Layout title="Give">

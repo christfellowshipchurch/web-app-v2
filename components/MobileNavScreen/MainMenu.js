@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import { Box, Icon } from 'ui-kit';
 
 import Styled from './NavScreen.styles';

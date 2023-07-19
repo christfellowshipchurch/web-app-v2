@@ -10,8 +10,6 @@ import {
 import { Box, Icon } from 'ui-kit';
 
 function GetHelp(props = {}) {
-  const modalDispatch = useModalDispatch();
-
   return (
     <Box
       as="a"

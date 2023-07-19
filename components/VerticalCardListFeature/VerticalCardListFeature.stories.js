@@ -4,10 +4,12 @@ import { Box } from 'ui-kit';
 
 import { VerticalCardListFeature } from 'components';
 
-export default {
+const exportedObject = {
   title: 'components/VerticalCardListFeature',
   component: VerticalCardListFeature,
 };
+
+export default exportedObject;
 
 const cardData = altTitle => {
   return {

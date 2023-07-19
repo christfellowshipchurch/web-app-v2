@@ -3,12 +3,6 @@ import PropTypes from 'prop-types';
 
 import { useAuthState } from 'providers/AuthProvider';
 
-const objectToGqlInput = (props = {}) =>
-  Object.keys(props).map(key => ({
-    field: key,
-    value: props[key],
-  }));
-
 const TrackEventWhenLoaded = ({ loaded, eventName, properties }) => {
   const { authenticated } = useAuthState();
 

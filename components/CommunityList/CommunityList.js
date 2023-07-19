@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { rem } from 'ui-kit/_utils';
-import { slugify } from 'utils';
 import { Box, Loader } from 'ui-kit';
 import { CustomLink } from 'components';
 

@@ -65,6 +65,7 @@ function ConnectCardForm(props = {}) {
     }
 
     if (phoneNumber && !isEmpty(phoneNumber)) {
+      // eslint-disable-next-line no-unused-vars
       hasEmailOrPhoneNumber = true;
 
       if (!validatePhoneNumber(phoneNumber)) {
@@ -93,8 +94,14 @@ function ConnectCardForm(props = {}) {
     const decision = values?.madeDecision
       ? 'I made a decision to follow Christ today.'
       : '';
-    // prettier-ignore
-    const allThatApplies = `${values?.findCommunity ? 'f848c630-4a0d-4264-8c20-e6b77825f001,' : ''}${values?.growFaith ? '581dcac5-acad-498c-89dc-09245b3ad4df,' : ''}${values?.placeForKids ? '29e3b03c-4e3b-442b-8acf-2835ab13b262,' : ''}${values?.strongerMarriage ? '3b2af312-e888-4956-bc05-8a7e318fc68e,' : ''}${values?.improveFinances ? 'c0024735-e0e9-45d1-a3d3-6f42cb58b239,' : ''}${values?.useMyGifts ? '00546698-374e-4746-a99e-6d4381b5262d,' : ''}${values?.discoverAtTheJourney ? 'e989c798-cf52-44d8-8ddd-c8831e7601a1,' : ''}${values?.other ? '1d408930-f300-46f8-8200-b465a51049e3,' : ''}}`;
+
+    // Convert the checkbox values into a string of guids that Rock can read
+    const asArray = Object.entries(values);
+    const filterCheckboxes = asArray.filter(
+      ([key, value]) => typeof value === 'boolean' && value === true
+    );
+    const justIds = Object.keys(Object.fromEntries(filterCheckboxes));
+    const allThatApplies = justIds.join(',');
 
     const input = {
       firstName: values.firstName || '',
@@ -141,7 +148,7 @@ function ConnectCardForm(props = {}) {
       phoneNumber: props?.phoneNumber,
       campusId: props?.campus?.name,
     });
-  }, []);
+  }, [props?.campus?.name, props?.email, props?.firstName, props?.lastName, props?.phoneNumber, setValues]);
 
   useEffect(() => {
     setIsLoading(mutationLoading || campusesLoading);
@@ -152,7 +159,7 @@ function ConnectCardForm(props = {}) {
       setErrors({});
       modalDispatch(showStep(1));
     }
-  }, [success]);
+  }, [modalDispatch, success]);
 
   return (
     <StyledForm

@@ -16,6 +16,7 @@ export const GET_CAMPUS = gql`
       street1
       state
       postalCode
+      mapLink
       phoneNumber
       serviceTimes {
         day

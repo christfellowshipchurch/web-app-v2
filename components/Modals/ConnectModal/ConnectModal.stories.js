@@ -2,10 +2,12 @@ import React from 'react';
 
 import ConnectModal from './ConnectModal';
 
-export default {
+const exportedObject = {
   title: 'components/ConnectModal',
   component: ConnectModal,
 };
+
+export default exportedObject;
 
 export const Default = () => {
   return (

@@ -1,18 +1,24 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { styled } from 'styled-components';
 
 import muxjs from 'mux.js';
-import { Box, Button, Icon } from 'ui-kit';
+import { Box, Button, Icon, system } from 'ui-kit';
 import { useAnalytics } from 'providers/AnalyticsProvider';
+import { WistiaPlayer } from 'components';
 
 import ReactPlayer from 'react-player';
-import { WistiaPlayer } from 'components';
 
 // Mux is used to deal with encodings and low-level video nonsense.
 // Without it, streams are unlikely to work on iOS and Safari.
 if (typeof window !== 'undefined') {
   window.muxjs = muxjs;
 }
+
+const StyledVideo = styled(ReactPlayer)`
+  aspect-ratio: ${props => props.aspectRatio};
+  ${system}
+`;
 
 export default function Video(props = {}) {
   const analytics = useAnalytics();
@@ -40,9 +46,10 @@ export default function Video(props = {}) {
         />
       ) : (
         <>
-          <ReactPlayer
+          <StyledVideo
             height="100%"
             width="100%"
+            aspectRatio={props?.aspectRatio}
             url={props?.src}
             controls={true}
             playing={isPlaying}
@@ -66,6 +73,7 @@ export default function Video(props = {}) {
                   : `radial-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.0)), url(${props?.poster})`
               }
               backgroundSize="cover"
+              backgroundPosition="center"
             >
               <Button
                 variant="link"

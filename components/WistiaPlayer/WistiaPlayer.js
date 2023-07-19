@@ -20,7 +20,7 @@ function WistiaPlayer({ videoId, wrapper }) {
       // Cleanup code
       container.innerHTML = '';
     };
-  }, []);
+  }, [videoId, wrapper]);
 
   return <div id={`${wrapper}`}></div>;
 }

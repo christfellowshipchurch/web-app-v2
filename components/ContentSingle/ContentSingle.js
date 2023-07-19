@@ -17,6 +17,7 @@ function ContentSingle(props = {}) {
   const [currentVideo, setCurrentVideo] = useState(
     Array.isArray(props.data?.videos) ? props.data.videos[0] : null
   );
+
   const [showShare, setShowShare] = useState(true);
   const router = useRouter();
   const analytics = useAnalytics();
@@ -28,6 +29,21 @@ function ContentSingle(props = {}) {
     },
   });
 
+  const {
+    author,
+    coverImage,
+    featureFeed,
+    htmlContent,
+    mode,
+    publishDate,
+    schedule,
+    summary,
+    title,
+    videos,
+    segmentData,
+    wistiaId,
+  } = props?.data;
+
   useEffect(() => {
     if (currentBreakpoint.isSmall && !author) {
       setShowShare(true);
@@ -36,15 +52,17 @@ function ContentSingle(props = {}) {
     } else if (!currentBreakpoint.isSmall) {
       setShowShare(true);
     }
-  }, [currentBreakpoint]);
+  }, [author, currentBreakpoint]);
 
   useEffect(() => {
     // Do we have videos now, when we didn't before?
     // ( Loading just finished, so we can properly select the first video if present )
     if (props.data?.videos?.length >= 1 && currentVideo === null) {
       setCurrentVideo(props.data.videos[0]);
+    } else if (props.data?.wistiaId?.length >= 1 && currentVideo === null) {
+      setCurrentVideo(props.data.wistiaId);
     }
-  }, [props.data?.videos, currentVideo]);
+  }, [props.data?.videos, props.data?.wistiaId, currentVideo]);
 
   /**
    * note : Page view tracking for Segment Analytics
@@ -62,7 +80,7 @@ function ContentSingle(props = {}) {
         mediaType: getMediaType({ url: asPath, ...props?.data }),
       });
     }
-  }, [router]);
+  }, [analytics, props?.data, router]);
 
   if (props.loading) {
     return (
@@ -79,20 +97,11 @@ function ContentSingle(props = {}) {
     );
   }
 
-  const {
-    author,
-    coverImage,
-    featureFeed,
-    htmlContent,
-    mode,
-    publishDate,
-    schedule,
-    summary,
-    title,
-    videos,
-    segmentData,
-    wistiaId,
-  } = props?.data;
+  
+
+  if (!currentVideo && wistiaId) {
+    setCurrentVideo(props.data.wistiaId);
+  }
 
   const coverImageUri = coverImage?.sources[0]?.uri;
   const authorName = author
@@ -107,6 +116,13 @@ function ContentSingle(props = {}) {
 
   const metadata = keyBy(props?.data?.metadata, 'name');
 
+  var contentLayoutVideo;
+  if (wistiaId) {
+    contentLayoutVideo = currentVideo?.wistiaId;
+  } else {
+    contentLayoutVideo = currentVideo?.sources[0]?.uri;
+  }
+
   return (
     <ContentLayout
       mode={mode}
@@ -120,7 +136,7 @@ function ContentSingle(props = {}) {
         image: coverImageUri,
         author: authorName,
         url: typeof window !== 'undefined' ? window.location.href : undefined,
-        video: currentVideo?.sources[0]?.uri,
+        video: contentLayoutVideo,
         keywords: metadata?.keywords?.content,
         title: metadata?.title?.content || title,
       }}
@@ -201,7 +217,7 @@ function ContentSingle(props = {}) {
           <ContentVideosList
             key={`videos-${props?.data?.id}`}
             thumbnail={coverImageUri}
-            videos={videos}
+            videos={wistiaId ? wistiaId : videos}
             onSelectVideo={handleSelectVideo}
           />
         </>
