@@ -15,6 +15,7 @@ function EventSingle(props = {}) {
       contentCategory: 'Information',
       mediaType: 'Information',
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (props.loading) {

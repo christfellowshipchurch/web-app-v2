@@ -128,6 +128,7 @@ const GroupMemberDetailsModal = ({
         statusMessage,
       })
     );
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
 
   return (

@@ -36,6 +36,7 @@ export default function DiscoverFilterCategoriesPreview() {
       title: `View All "${categoryTitle}" Category`,
       mediaType: 'Information',
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

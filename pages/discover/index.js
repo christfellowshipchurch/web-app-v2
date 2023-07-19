@@ -78,6 +78,7 @@ const Discover = () => {
           search_type: 'content',
         },
       });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageResults]);
 
   function handleClearAllClick(event) {
@@ -91,6 +92,7 @@ const Discover = () => {
     analytics.page({
       mediaType: 'Information',
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

@@ -18,6 +18,7 @@ const EventGroupings = (props = {}) => {
     if (eventGroupings && eventGroupings[0]?.name) {
       setValues({ campusSelect: eventGroupings[0]?.name });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setValues]);
 
   const selectedGroup = eventGroupings?.find(
