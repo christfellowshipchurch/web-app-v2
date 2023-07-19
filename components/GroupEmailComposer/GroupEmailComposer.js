@@ -15,7 +15,7 @@ import isEmpty from 'lodash/isEmpty';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 import { useSendGroupEmail } from 'hooks';
 import { Box, Button, Card, Icon, RichTextEditor } from 'ui-kit';
-import { sanitizeAllTags } from 'utils/sanitizeHtml'
+import { sanitizeAllTags } from 'utils/sanitizeHtml';
 
 import Styled from './GroupEmailComposer.styles';
 import AvatarRow from './AvatarRow';
@@ -44,8 +44,7 @@ const GroupEmailComposer = (props = {}) => {
   const router = useRouter();
   const modalDispatch = useModalDispatch();
   const { currentUser } = useCurrentUser();
-  const [searchGroupMembers, { groupMembers }] =
-    useSearchGroupMembers();
+  const [searchGroupMembers, { groupMembers }] = useSearchGroupMembers();
   const { recipients, toggleRecipient, setRecipients } =
     useGroupEmailRecipients({
       groupId: props?.data?.id,
@@ -57,11 +56,12 @@ const GroupEmailComposer = (props = {}) => {
   const [statusMessage, setStatusMessage] = useState('STATUS MESSAGE');
   const fromEmail = currentUser?.profile?.email;
   const allSelected = recipients.length >= groupMembers?.length;
-  const bodyExceedsCharacterCount = sanitizeAllTags(emailBody).length > 10000
-  const disabled = submitting 
-    || isEmpty(emailBody) 
-    || recipients?.length < 1
-    || bodyExceedsCharacterCount;
+  const bodyExceedsCharacterCount = sanitizeAllTags(emailBody).length > 10000;
+  const disabled =
+    submitting ||
+    isEmpty(emailBody) ||
+    recipients?.length < 1 ||
+    bodyExceedsCharacterCount;
   const groupId = props?.data?.id;
 
   const [sendEmailMutation] = useSendGroupEmail();
@@ -107,7 +107,7 @@ const GroupEmailComposer = (props = {}) => {
         },
       },
     });
-  }, [groupId, props?.data?.id, searchGroupMembers]);
+  }, []);
 
   useEffect(() => {
     if (status === 'IDLE') return;
@@ -118,7 +118,7 @@ const GroupEmailComposer = (props = {}) => {
         statusMessage,
       })
     );
-  }, [modalDispatch, status, statusMessage]);
+  }, [status]);
 
   return (
     <Box>
@@ -229,15 +229,14 @@ const GroupEmailComposer = (props = {}) => {
               />
             </Box>
 
-            {bodyExceedsCharacterCount && <Box
-              position="relative"
-              color="danger"
-              my="base"
-            >
-              <Box as="i" color="alert">
-                We're unable to send your email because it exceeds 10,000 characters. Please shorten and try again.
+            {bodyExceedsCharacterCount && (
+              <Box position="relative" color="danger" my="base">
+                <Box as="i" color="alert">
+                  We're unable to send your email because it exceeds 10,000
+                  characters. Please shorten and try again.
+                </Box>
               </Box>
-            </Box>}
+            )}
 
             <Box position="relative" mt="base">
               <RichTextEditor value={emailBody} onChange={setEmailBody} />

@@ -110,7 +110,7 @@ const AddGroupMemberModal = ({ groupId }) => {
         }, 1000);
       }
     }
-  }, [router, success]);
+  }, [success]);
 
   return (
     <Modal>
