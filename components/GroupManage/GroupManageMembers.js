@@ -134,7 +134,7 @@ function GroupManageMembers(props = {}) {
         },
       },
     });
-  }, [groupData?.id, searchArgs, searchGroupMembers]);
+  }, [searchArgs]);
 
   useEffect(() => {
     searchGroupMembers({
@@ -145,12 +145,12 @@ function GroupManageMembers(props = {}) {
         },
       },
     });
-  }, [groupData?.id, searchArgs, searchGroupMembers]);
+  }, []);
 
   useEffect(() => {
     // if (loading) return
     setRecipients(groupMembers?.map(m => m?.id));
-  }, [groupMembers, setRecipients]);
+  }, [groupMembers]);
 
   return (
     <>
