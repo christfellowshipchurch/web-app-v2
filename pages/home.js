@@ -1,4 +1,4 @@
-import { ClientSideComponent, FeatureFeed, Layout } from 'components';
+import { FeatureFeed, Layout } from 'components';
 import { useRouter } from 'next/router';
 import { FeatureFeedProvider } from 'providers';
 import { useAuth } from 'providers/AuthProvider';
@@ -13,7 +13,7 @@ function InternalHomeFeed() {
     if (!authenticated) {
       router.push('/');
     }
-  }, [authenticated, router]);
+  }, [authenticated]);
 
   const options = {
     variables: {
@@ -22,18 +22,16 @@ function InternalHomeFeed() {
   };
 
   return (
-    <ClientSideComponent>
-      <Layout title="Home">
-        <Cell
-          as="main"
-          maxWidth={utils.rem('1100px')}
-          px="base"
-          py={{ _: 'xs', lg: 's' }}
-        >
-          <FeatureFeedProvider Component={FeatureFeed} options={options} />
-        </Cell>
-      </Layout>
-    </ClientSideComponent>
+    <Layout title="Home">
+      <Cell
+        as="main"
+        maxWidth={utils.rem('1100px')}
+        px="base"
+        py={{ _: 'xs', lg: 's' }}
+      >
+        <FeatureFeedProvider Component={FeatureFeed} options={options} />
+      </Cell>
+    </Layout>
   );
 }
 
