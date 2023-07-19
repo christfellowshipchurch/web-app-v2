@@ -74,7 +74,8 @@ function GroupCardWithMember({ relatedNode, ...props }) {
           break;
       }
     }
-  }, [data, loading, props?.contactButtonText, props?.handleConnectClick, relatedNode]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data, loading]);
 
   return <GroupCard {...props} callToAction={callToAction} />;
 }

@@ -10,7 +10,11 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import { hideModal, showModal, useModalDispatch } from 'providers/ModalProvider';
+import {
+  hideModal,
+  showModal,
+  useModalDispatch,
+} from 'providers/ModalProvider';
 import {
   useEditGroupMember,
   useGroupMember,
@@ -19,7 +23,12 @@ import {
 import { GroupMemberDetails } from 'components';
 import { Box, Modal, Loader } from 'ui-kit';
 
-const GroupMemberDetailsModal = ({ id, onSave: callback, groupId, onEmail }) => {
+const GroupMemberDetailsModal = ({
+  id,
+  onSave: callback,
+  groupId,
+  onEmail,
+}) => {
   const modalDispatch = useModalDispatch();
   const { groupMemberStatuses, inactiveStatusReasons } =
     useGroupMemberStatuses();
@@ -66,7 +75,7 @@ const GroupMemberDetailsModal = ({ id, onSave: callback, groupId, onEmail }) => 
   }) => {
     setIsLoading(true);
     // note : only run the mutation if the value has actually changed
-    const statusPromise = async() => {
+    const statusPromise = async () => {
       if (status !== groupMember.status.id) {
         try {
           // eslint-disable-next-line no-unused-vars
@@ -119,7 +128,8 @@ const GroupMemberDetailsModal = ({ id, onSave: callback, groupId, onEmail }) => 
         statusMessage,
       })
     );
-  }, [modalDispatch, status, statusMessage]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [status]);
 
   return (
     <Modal>
@@ -149,7 +159,7 @@ GroupMemberDetailsModal.propTypes = {
 };
 GroupMemberDetailsModal.defaultProps = {
   onSave: () => null,
-  onEmail: () => null
+  onEmail: () => null,
 };
 
 export default GroupMemberDetailsModal;

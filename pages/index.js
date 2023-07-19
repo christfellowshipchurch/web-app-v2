@@ -74,11 +74,6 @@ export async function getStaticProps() {
       },
     };
   } catch (err) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: '/error',
-      },
-    };
+    console.log({ err });
   }
 }

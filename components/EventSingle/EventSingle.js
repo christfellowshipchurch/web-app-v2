@@ -15,7 +15,8 @@ function EventSingle(props = {}) {
       contentCategory: 'Information',
       mediaType: 'Information',
     });
-  }, [analytics]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (props.loading) {
     return (

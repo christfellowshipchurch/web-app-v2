@@ -36,7 +36,8 @@ export default function DiscoverFilterCategoriesPreview() {
       title: `View All "${categoryTitle}" Category`,
       mediaType: 'Information',
     });
-  }, [analytics, categoryTitle]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Layout title={startCase(categoryTitle)}>

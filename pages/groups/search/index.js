@@ -29,6 +29,8 @@ import {
 import { useModalState } from 'providers/ModalProvider';
 import { GroupsProvider } from 'providers';
 import { useSearchGroups, useForm, useCurrentBreakpoint } from 'hooks';
+// eslint-disable-next-line no-unused-vars
+import { Cursor } from 'react-simple-typewriter';
 
 const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
 const LARGE_SCREEN_CONTENT_WIDTH = utils.rem('1350px');
@@ -102,7 +104,8 @@ export default function CommunitySearch() {
         after: cursor.current,
       },
     });
-  }, [cursor, filtersState.queryData, searchGroups]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cursor]);
 
   useEffect(() => {
     // Don't execute search if state hasn't been hydrated OR a modal is open
@@ -127,7 +130,15 @@ export default function CommunitySearch() {
         first: PAGE_SIZE,
       },
     });
-  }, [filtersState.hydrated, filtersState.queryData, filtersState.values.text, searchGroups, setValues, router, modalState.activeModal.component]);
+  }, [
+    filtersState.hydrated,
+    filtersState.queryData,
+    filtersState.values.text,
+    searchGroups,
+    setValues,
+    router,
+    modalState.activeModal.component,
+  ]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
