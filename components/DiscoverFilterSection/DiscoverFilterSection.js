@@ -26,6 +26,7 @@ const DiscoverFilterSection = ({ contentId, title, filter }) => {
   }).contentItems.length;
 
   const handleSeeMore = event => {
+    // eslint-disable-next-line no-unused-vars
     const [type,id] = contentId.split(':');
 
     event.preventDefault();

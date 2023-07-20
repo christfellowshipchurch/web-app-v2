@@ -26,7 +26,7 @@ const Discover = () => {
   const { values, handleSubmit, handleChange, reset } = useForm();
 
   const { loading: loadingFilters, filters } = useDiscoverFilters();
-  const [search, { loading, contentItems, data }] = useSearchContentItems({
+  const [search, { loading, contentItems, data}] = useSearchContentItems({
     notifyOnNetworkStatusChange: true,
   });
 

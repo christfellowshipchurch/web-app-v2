@@ -38,7 +38,8 @@ export default function LegacyNodeRouter(props) {
     } else {
       router.push(`/items/${title}`);
     }
-  }, [node, router, title]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [node]);
 
   return (
     <Layout title={title}>
