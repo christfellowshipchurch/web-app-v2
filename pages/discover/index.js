@@ -26,10 +26,9 @@ const Discover = () => {
   const { values, handleSubmit, handleChange, reset } = useForm();
 
   const { loading: loadingFilters, filters } = useDiscoverFilters();
-  const [search, { loading, contentItems, data }] =
-    useSearchContentItems({
-      notifyOnNetworkStatusChange: true,
-    });
+  const [search, { loading, contentItems, data}] = useSearchContentItems({
+    notifyOnNetworkStatusChange: true,
+  });
 
   const [filterValues, setFilterValues] = useState({
     title: null,
@@ -79,7 +78,8 @@ const Discover = () => {
           search_type: 'content',
         },
       });
-  }, [analytics, pageResults, values?.text]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pageResults]);
 
   function handleClearAllClick(event) {
     event.preventDefault();
@@ -92,7 +92,8 @@ const Discover = () => {
     analytics.page({
       mediaType: 'Information',
     });
-  }, [analytics]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     search({
@@ -112,7 +113,7 @@ const Discover = () => {
         },
       });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterValues]);
 
   useEffect(() => {
@@ -140,7 +141,7 @@ const Discover = () => {
         });
       }
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters, loadingFilters]);
 
   return (

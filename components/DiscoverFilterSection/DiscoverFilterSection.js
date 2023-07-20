@@ -26,7 +26,8 @@ const DiscoverFilterSection = ({ contentId, title, filter }) => {
   }).contentItems.length;
 
   const handleSeeMore = event => {
-    const [id] = contentId.split(':');
+    // eslint-disable-next-line no-unused-vars
+    const [type,id] = contentId.split(':');
 
     event.preventDefault();
     router.push(`/discover/${slugify(title)}?id=${slugify(id)}&c=${filter}`);

@@ -16,7 +16,8 @@ function UserProfile(props = {}) {
       );
       return router.push('/error');
     }
-  }, [props?.currentPerson?.length, props?.loading, router]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props?.currentPerson?.length]);
 
   if (props.loading) return <Loader text="Loading your profile" />;
 

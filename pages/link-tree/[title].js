@@ -13,7 +13,8 @@ export default function Info(props = {}) {
 
   useEffect(() => {
     analytics.page({ title: `LinkTree - ${title}`, mediaType: 'Information' });
-  }, [analytics, title]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const options = {
     variables: {

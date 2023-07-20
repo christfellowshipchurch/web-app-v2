@@ -38,7 +38,8 @@ export default function Location(props = {}) {
       contentCategory: 'Information',
       mediaType: 'Information',
     });
-  }, [analytics]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const options = {
     variables: {

@@ -20,7 +20,8 @@ function WistiaPlayer({ videoId, wrapper }) {
       // Cleanup code
       container.innerHTML = '';
     };
-  }, [videoId, wrapper]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return <div id={`${wrapper}`}></div>;
 }

@@ -19,7 +19,8 @@ export default function SoGoodSisterhoodPage() {
       contentCategory: 'Information',
       mediaType: 'Information',
     });
-  }, [analytics]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const options = {
     variables: {
