@@ -8,6 +8,7 @@ import {
   Video,
   VerticalCardListFeature,
   WistiaPlayer,
+  ClientSideComponent,
 } from 'components';
 import { useCurrentBreakpoint } from 'hooks';
 import {
@@ -27,6 +28,7 @@ import wistiaAPI from 'pages/api/wistia';
 
 const GiveButton = ({ title, description, type, url }) => {
   return (
+    <ClientSideComponent>
     <Box as="a" href={url} target="_blank" textDecoration="none">
       <Box
         m="base"
@@ -41,6 +43,7 @@ const GiveButton = ({ title, description, type, url }) => {
         {description}
       </Box>
     </Box>
+    </ClientSideComponent>
   );
 };
 
@@ -97,6 +100,7 @@ function HeartForTheHouse(props = {}) {
           src={`/heart-for-house/banners/header${imageSize}.jpg`}
         />
         <Box p={{ _: 'l', md: 'xl' }}>
+          <ClientSideComponent>
           <ContentBlockProvider
             Component={ContentBlockFeature}
             options={{
@@ -107,6 +111,7 @@ function HeartForTheHouse(props = {}) {
             titleColor="secondary"
             newTab
           />
+          </ClientSideComponent>
         </Box>
 
         <Image
@@ -182,8 +187,11 @@ function HeartForTheHouse(props = {}) {
             }.png`}
             mb="l"
           />
+          <ClientSideComponent>
           {!loading && wistiaData?.length > 0 ? (
+            
             wistiaData?.length > 1 ? (
+              
               <CardCarousel p={{ _: 0, lg: 'xxl' }}>
                 {wistiaData?.map((video, i) => (
                   <Box
@@ -197,8 +205,11 @@ function HeartForTheHouse(props = {}) {
                       wrapper={`wistia-player-container-${i}}`}
                     />
                   </Box>
-                ))}
+                 
+                )) 
+               }
               </CardCarousel>
+              
             ) : (
               <Box
                 maxWidth={800}
@@ -214,6 +225,7 @@ function HeartForTheHouse(props = {}) {
           ) : (
             <Loader />
           )}
+          </ClientSideComponent>
         </Box>
 
         <Image
@@ -227,6 +239,7 @@ function HeartForTheHouse(props = {}) {
 
         <Box id="vision" p={{ _: 'base', md: 'xl' }} bg="white">
           <Box py={{ _: 'l', md: 'xl' }} mx="auto" maxWidth={1000}>
+          <ClientSideComponent>
             <FeatureProvider
               Component={VerticalCardListFeature}
               customCardSize="HIGHLIGHT_MEDIUM"
@@ -243,8 +256,10 @@ function HeartForTheHouse(props = {}) {
                 },
               }}
             />
+            </ClientSideComponent>
           </Box>
           <Box my="xxl">
+          <ClientSideComponent>
             <ContentBlockProvider
               Component={ContentBlockFeature}
               titleColor="secondary"
@@ -255,7 +270,9 @@ function HeartForTheHouse(props = {}) {
                 },
               }}
             />
+            </ClientSideComponent>
           </Box>
+          <ClientSideComponent>
           <ContentBlockProvider
             Component={ContentBlockFeature}
             titleColor="secondary"
@@ -266,6 +283,7 @@ function HeartForTheHouse(props = {}) {
               },
             }}
           />
+          </ClientSideComponent>
         </Box>
 
         <Box
@@ -316,6 +334,7 @@ function HeartForTheHouse(props = {}) {
         </Box>
 
         <Box p="l" bg="white">
+          <ClientSideComponent>
           <ContentBlockProvider
             Component={ContentBlockFeature}
             titleColor="secondary"
@@ -326,6 +345,7 @@ function HeartForTheHouse(props = {}) {
               },
             }}
           />
+          </ClientSideComponent>
         </Box>
 
         <Box py="xxl" bg="secondary">
@@ -339,11 +359,13 @@ function HeartForTheHouse(props = {}) {
         </Box>
         <Box id="faq" px="base" py="xl" width="100%">
           <Box mx="auto" maxWidth={1200}>
+            <ClientSideComponent>
             <FAQ
               displayAll
               showDescription={false}
               data={faqHeartForHouseData}
             />
+            </ClientSideComponent>
           </Box>
         </Box>
         <Image
