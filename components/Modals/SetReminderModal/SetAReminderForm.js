@@ -134,14 +134,8 @@ function SetAReminderForm(props = {}) {
       phoneNumber: props?.phoneNumber,
       campus: props?.defaultCampus,
     });
-  }, [
-    props?.defaultCampus,
-    props?.email,
-    props?.firstName,
-    props?.lastName,
-    props?.phoneNumber,
-    setValues,
-  ]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     setCurrentCampus(values?.campus);
@@ -158,7 +152,8 @@ function SetAReminderForm(props = {}) {
       handleCallBack(values?.serviceTime);
       modalDispatch(showStep(1));
     }
-  }, [modalDispatch, success, handleCallBack, values?.serviceTime]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [success]);
 
   return (
     <StyledForm

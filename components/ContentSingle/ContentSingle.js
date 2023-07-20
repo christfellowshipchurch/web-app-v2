@@ -52,7 +52,8 @@ function ContentSingle(props = {}) {
     } else if (!currentBreakpoint.isSmall) {
       setShowShare(true);
     }
-  }, [author, currentBreakpoint]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentBreakpoint]);
 
   useEffect(() => {
     // Do we have videos now, when we didn't before?
@@ -80,7 +81,8 @@ function ContentSingle(props = {}) {
         mediaType: getMediaType({ url: asPath, ...props?.data }),
       });
     }
-  }, [analytics, props?.data, router]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router]);
 
   if (props.loading) {
     return (

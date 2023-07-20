@@ -16,7 +16,8 @@ function SearchField(props = {}) {
       }
       return setIconOnly(false);
     }
-  }, [currentBreakpoint, props?.children]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentBreakpoint]);
 
   // Default placeholder for group search that adjusts to mobile
   const defaultPlaceholder = currentBreakpoint.isSmall

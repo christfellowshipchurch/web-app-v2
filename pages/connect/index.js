@@ -24,7 +24,8 @@ export default function Connect(props = {}) {
       contentCategory: 'Information',
       mediaType: 'Information',
     });
-  }, [analytics]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (!authenticated) {
