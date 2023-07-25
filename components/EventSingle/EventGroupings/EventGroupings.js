@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 import { Box, Button, Card, Select } from 'ui-kit';
-import { useCurrentBreakpoint, useForm } from 'hooks';
+import { useForm } from 'hooks';
 
 import DateTime from './DateTime';
 
@@ -24,8 +24,6 @@ const EventGroupings = (props = {}) => {
   const selectedGroup = eventGroupings?.find(
     i => i.name === values.campusSelect
   );
-
-  const breakpoints = useCurrentBreakpoint;
 
   return (
     <Box as="form" onSubmit={handleSubmit}>
