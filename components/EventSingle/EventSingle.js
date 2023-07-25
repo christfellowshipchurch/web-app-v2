@@ -6,6 +6,8 @@ import { ContentLayout, Share } from 'components';
 
 import EventGroupings from './EventGroupings';
 import { useAnalytics } from 'providers/AnalyticsProvider';
+import { useCurrentBreakpoint } from 'hooks';
+const screen = useCurrentBreakpoint
 
 function EventSingle(props = {}) {
   const analytics = useAnalytics();
@@ -71,7 +73,7 @@ function EventSingle(props = {}) {
       renderC={() => (
         <Box justifySelf="flex-end">
           <Share
-            mb={{ _: 's'}}
+            mb={{ _:'base'}}
             title={props.data.title}
             shareTitle="Invite"
             shareMessages={eventShareMessages}
