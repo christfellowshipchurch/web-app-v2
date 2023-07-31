@@ -1,16 +1,4 @@
 import React, { useEffect, useState } from 'react';
-
-import {
-  ContentBlockFeature,
-  FAQ,
-  Layout,
-  Testimonials,
-  Video,
-  VerticalCardListFeature,
-  WistiaPlayer,
-  ClientSideComponent,
-} from 'components';
-import { useCurrentBreakpoint } from 'hooks';
 import {
   Box,
   Button,
@@ -21,11 +9,21 @@ import {
   Loader,
   ThemeMixin,
 } from 'ui-kit';
-import { faqHeartForHouseData } from 'components/FAQ/faqData';
-import data from 'lib/heartForHouseData';
 import { ContentBlockProvider, FeatureProvider } from 'providers';
+import { faqHeartForHouseData } from 'components/FAQ/faqData';
 import wistiaAPI from 'pages/api/wistia';
 
+import {
+  ContentBlockFeature,
+  Layout,
+  Testimonials,
+  Video,
+  VerticalCardListFeature,
+  WistiaPlayer,
+  FAQ,
+} from 'components';
+import { useCurrentBreakpoint } from 'hooks';
+import data from 'lib/heartForHouseData';
 
 const GiveButton = ({ title, description, type, url }) => {
   return (
@@ -46,34 +44,16 @@ const GiveButton = ({ title, description, type, url }) => {
   );
 };
 
-//Heart for the House Data
-const { getThereFirstId, statistics, testimonies } = data;
-
-function HeartForTheHouse(props = {}) {
+function HeartForTheHouse({
+  videos,
+  getThereFirstId,
+  statistics,
+  testimonies,
+}) {
   const [imageSize, setImageSize] = useState('');
-  const [wistiaData, setWistiaData] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   const currentBreakpoint = useCurrentBreakpoint();
 
-  // Fetches Wistia Data for for Video Carousel
-  useEffect(() => {
-    const fetchVideos = async () => {
-      setLoading(true);
-      //project Id for H4H videos
-      const wistiaId = 'dt78oks1hq';
-      if (wistiaId !== '') {
-        const wistiaProject = await wistiaAPI({ wistiaId });
-        setWistiaData(wistiaProject?.medias);
-        setLoading(false);
-      }       
-    };
-    
-    fetchVideos();
-  }, []);
-
-
-  //changes banner image based on screen size.
   useEffect(() => {
     switch (currentBreakpoint?.name) {
       case 'sm':
@@ -87,7 +67,6 @@ function HeartForTheHouse(props = {}) {
 
   return (
     <Layout>
-      <ClientSideComponent>
       <ThemeMixin
         theme={{
           colors: {
@@ -100,6 +79,8 @@ function HeartForTheHouse(props = {}) {
           type="hero-glass"
           src={`/heart-for-house/banners/header${imageSize}.jpg`}
         />
+
+        {/* ContentBlockFeature */}
         <Box p={{ _: 'l', md: 'xl' }}>
           <ContentBlockProvider
             Component={ContentBlockFeature}
@@ -111,22 +92,23 @@ function HeartForTheHouse(props = {}) {
             titleColor="secondary"
             newTab
           />
-        </Box>  
+        </Box>
+
+        {/* Year in Review */}
         <Image
           width="100%"
           aspectRatio="none"
-          borderRadius="0px"
           source={`/heart-for-house/banners/year-review${
             imageSize === '-large' ? '' : imageSize
           }.jpg`}
         />
 
+        {/* Statistics */}
         <Box py="l" bg="white">
-          <Box as="h1" py="l" color="secondary" size="16" textAlign="center">
+          <Box as="h1" py="l" color="secondary" textAlign="center">
             Year in Review
           </Box>
           <Box
-            as="h4"
             color="neutrals.600"
             textAlign="center"
             textTransform="uppercase"
@@ -137,30 +119,22 @@ function HeartForTheHouse(props = {}) {
           <Box
             display={{ _: 'block', md: 'grid' }}
             gridTemplateColumns="1fr 1fr"
-            gridTemplateRows="1fr 1fr"
             gridGap="1rem 5.5rem"
-            gridTemplateAreas={`". ."`}
             textAlign="center"
             maxWidth={800}
             margin="auto"
             p="l"
           >
-            {statistics?.map(({ image, subtitle }) => (
-              <Box display="flex" flexDirection="column">
-                <Image
-                  mb="-3rem"
-                  maxWidth={250}
-                  source={image}
-                  aspectRatio="16by9"
-                />
-                <Box
-                  as="p"
-                  fontSize={{ _: '1rem', lg: '1rem' }}
-                  lineHeight="1.65rem"
-                  mt="l"
-                >
-                  <HtmlRenderer htmlContent={subtitle} />
-                </Box>
+            {statistics?.map(({ image, subtitle }, index) => (
+              <Box
+                key={index}
+                display="flex"
+                flexDirection="column"
+                fontSize="1rem"
+                lineHeight="1.65rem"
+              >
+                <Image maxWidth={250} source={image} aspectRatio="16by9" />
+                <HtmlRenderer htmlContent={subtitle} />
               </Box>
             ))}
           </Box>
@@ -175,21 +149,22 @@ function HeartForTheHouse(props = {}) {
           </Box>
         </Box>
 
+        {/* Videos */}
         <Box id="video" px="base" py="xl">
           <Image
             maxWidth={900}
             aspectRatio="none"
-            borderRadius="0px"
             source={`/heart-for-house/special-header-text${
               imageSize === '-large' ? '' : imageSize
             }.png`}
             mb="l"
           />
-          {!loading && wistiaData?.length > 0 ? (
-            wistiaData?.length > 1 ? (
+          {videos?.length > 0 ? (
+            videos?.length > 1 ? (
               <CardCarousel p={{ _: 0, lg: 'xxl' }}>
-                {wistiaData?.map((video, i) => (
+                {videos?.map((video, index) => (
                   <Box
+                    key={index}
                     boxShadow="l"
                     m="base"
                     borderRadius="xl"
@@ -197,11 +172,10 @@ function HeartForTheHouse(props = {}) {
                   >
                     <WistiaPlayer
                       videoId={video?.hashed_id}
-                      wrapper={`wistia-player-container-${i}}`}
+                      wrapper={`wistia-player-container-${index}`}
                     />
                   </Box>
-                )) 
-               }
+                ))}
               </CardCarousel>
             ) : (
               <Box
@@ -212,7 +186,7 @@ function HeartForTheHouse(props = {}) {
                 overflow="hidden"
                 mx="auto"
               >
-                <Video wistiaId={wistiaData[0]?.hashed_id} />
+                <Video wistiaId={videos[0]?.hashed_id} />
               </Box>
             )
           ) : (
@@ -220,6 +194,7 @@ function HeartForTheHouse(props = {}) {
           )}
         </Box>
 
+        {/* Vision */}
         <Image
           width="100%"
           aspectRatio="none"
@@ -234,12 +209,17 @@ function HeartForTheHouse(props = {}) {
             <FeatureProvider
               Component={VerticalCardListFeature}
               customCardSize="HIGHLIGHT_MEDIUM"
-              /**
-               * ! Could not load subtitle correctly, please fix if possible
-               */
               dataOverride={{
-                subtitle:
-                  '<h1 style="color: #133156;">Get There First</h1><p style="text-align:center"><b>VISION 2023</b></p><div>Starting this year, we’re doing more to reach the next generation than ever before. This isn’t just a vision to lead a radical transformation in our region—<b>we’re believing for a radical transformation of a generation.</b> And this isn’t just a vision for 2023—it marks the starting line for a new era in who our church will be.</div>',
+                subtitle: `
+                  <h1 style="color: #133156;">Get There First</h1>
+                  <p style="text-align:center"><b>VISION 2023</b></p>
+                  <div>
+                    Starting this year, we’re doing more to reach the next generation than ever before.
+                    This isn’t just a vision to lead a radical transformation in our region—
+                    <b>we’re believing for a radical transformation of a generation.</b>
+                    And this isn’t just a vision for 2023—it marks the starting line for a new era in who our church will be.
+                  </div>
+                `,
               }}
               options={{
                 variables: {
@@ -272,6 +252,7 @@ function HeartForTheHouse(props = {}) {
           />
         </Box>
 
+        {/* Give */}
         <Box
           id="give"
           py="xxl"
@@ -319,6 +300,7 @@ function HeartForTheHouse(props = {}) {
           <HtmlRenderer htmlContent='GIVE IN PERSON<br/>Give by cash or check through a giving station at your campus location.<br/><br/> GIVE BY MAIL<br/>Christ Fellowship Church Contributions<br/>5343 Northlake Blvd. Palm Beach Gardens, FL 33418<br/> <i style="font-size:15px;" >*Note: Please designate "Heart for the House" on the memo line.</i>' />
         </Box>
 
+        {/* Resources */}
         <Box p="l" bg="white">
           <ContentBlockProvider
             Component={ContentBlockFeature}
@@ -332,15 +314,23 @@ function HeartForTheHouse(props = {}) {
           />
         </Box>
 
+        {/* Testimonials */}
         <Box py="xxl" bg="secondary">
           <Testimonials
             py="l"
             maxWidth={1200}
             m="auto"
-            title='<span style="color:#FFFFFF">This is our </span><span style="color:#E63E51">heart.</span>'
+            title={
+              <>
+                <span style={{ color: '#FFFFFF' }}>This is our </span>
+                <span style={{ color: '#E63E51' }}>heart.</span>
+              </>
+            }
             testimonies={testimonies}
           />
         </Box>
+
+        {/* FAQs */}
         <Box id="faq" px="base" py="xl" width="100%">
           <Box mx="auto" maxWidth={1200}>
             <FAQ
@@ -350,6 +340,8 @@ function HeartForTheHouse(props = {}) {
             />
           </Box>
         </Box>
+
+        {/* Bottom Banner */}
         <Image
           width="100%"
           aspectRatio="none"
@@ -357,9 +349,27 @@ function HeartForTheHouse(props = {}) {
           source={`/heart-for-house/banners/bottom-banner.png`}
         />
       </ThemeMixin>
-      </ClientSideComponent>
     </Layout>
   );
 }
 
 export default HeartForTheHouse;
+
+export async function getStaticProps() {
+  // Wistia Videos
+  const wistiaId = 'dt78oks1hq';
+  const wistiaProject = await wistiaAPI({ wistiaId });
+  const videos = wistiaProject?.medias;
+
+  // H4H Static Data
+  const { getThereFirstId, statistics, testimonies } = data;
+
+  return {
+    props: {
+      videos,
+      getThereFirstId,
+      statistics,
+      testimonies,
+    },
+  };
+}
