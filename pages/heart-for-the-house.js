@@ -114,7 +114,7 @@ function HeartForTheHouse({
             textTransform="uppercase"
             mt="-2rem"
           >
-            what we were able to do because of you
+            <b>what we were able to do because of you</b>
           </Box>
           <Box
             display={{ _: 'block', md: 'grid' }}
