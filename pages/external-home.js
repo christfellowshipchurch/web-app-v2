@@ -8,31 +8,11 @@ import {
   ThriveInEveryArea,
 } from 'components/ExternalHome';
 import { Box, ContentBlock, ValueStack } from 'ui-kit';
-import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
 const BASE_MAX_WIDTH = 1200;
 const BASE_VERITCAL_PADDING = 'xl';
 
 export default function ExternalLandingPage(props = {}) {
-  const modalDispatch = useModalDispatch();
-
-  const handleLoginClick = event => {
-    event.preventDefault();
-    modalDispatch(showModal('Auth'));
-  };
-
-  /**
-   * note : Commenting out the Welcome Modal for now, but may implement in the future.
-   */
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     function showLandingModal() {
-  //       modalDispatch(showModal('Welcome'));
-  //     }
-  //     showLandingModal();
-  //   }, 1000);
-  // }, [modalDispatch]);
-
   return (
     <HeroLanding
       heroTitle="Get the most out of life."
@@ -41,16 +21,16 @@ export default function ExternalLandingPage(props = {}) {
       backgroundImage="/external-landing/external-bg-video-frame-1.png"
       actions={[
         {
-          title: 'Start Now',
-          url: '#start-here',
+          greenTitle: 'WATCH THE LATEST MESSAGE',
+          title: 'The Works of the Holy Spirit',
+          subtitle: 'Experiencing the Holy Spirit',
+          url: '/the-works-of-the-holy-spirit',
         },
         {
-          title: 'I Already Attend',
-          onClick: e => handleLoginClick(e),
-          url: '#login',
-          color: 'white',
-          borderColor: 'white',
-          hoverColor: 'neutrals.400',
+          greenTitle: 'TICKETS ON SALE NOW',
+          title: 'Amazing: A Sisterhood Event',
+          subtitle: 'May 11, 12 or 13',
+          url: '/amazing',
         },
       ]}
     >

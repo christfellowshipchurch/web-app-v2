@@ -42,9 +42,33 @@ const Content = styled.div`
     padding: 10px;
   }
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-    max-width: 60%;
+    max-width: 70%;
     margin-top: ${themeGet('space.base')};
     padding: 20px;
+  }
+
+  ${system}
+`;
+
+const Buttons = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  position: absolute;
+  bottom: 0px;
+  color: ${themeGet('colors.white')};
+
+  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+    max-width: 100%;
+    padding: 10px;
+  }
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    max-width: 100%;
+    margin-top: ${themeGet('space.base')};
+    padding: 20px;
+    flex-direction: row;
   }
 
   ${system}
@@ -57,6 +81,8 @@ const Title = styled.h1`
     font-size: 2rem;
     line-height: 2rem;
     margin-bottom: ${themeGet('space.xs')};
+    position: absolute;
+    top: 240px;
   }
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     font-size: 4rem;
@@ -72,6 +98,8 @@ const Summary = styled.h2`
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
     font-size: 1.4rem;
+    position: absolute;
+    top: 280px;
   }
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     font-size: 2rem;
@@ -81,7 +109,6 @@ const Summary = styled.h2`
 
 const BackgroundVideo = styled.video`
   z-index: 0;
-
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -110,6 +137,7 @@ HeroLanding.BackgroundVideo = BackgroundVideo;
 HeroLanding.VideoOverlay = VideoOverlay;
 HeroLanding.Content = Content;
 HeroLanding.Title = Title;
+HeroLanding.Buttons = Buttons;
 HeroLanding.Summary = Summary;
 
 export default HeroLanding;
