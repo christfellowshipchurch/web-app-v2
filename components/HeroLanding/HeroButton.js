@@ -7,7 +7,7 @@ import { gtag } from 'lib/analytics';
 import { useCurrentBreakpoint } from 'hooks';
 import Styled from './HeroLanding.styles';
 
-const ButtonsComponent = ({ actions, iconNames, ...props }) => {
+const HeroButton = ({ actions, iconNames, ...props }) => {
   const currentBreakpoint = useCurrentBreakpoint();
   let marginLeft;
   if (iconNames.length === 2 && currentBreakpoint.isSmall) {
@@ -67,14 +67,14 @@ const ButtonsComponent = ({ actions, iconNames, ...props }) => {
   );
 };
 
-ButtonsComponent.propTypes = {
+HeroButton.propTypes = {
   actions: PropTypes.array,
   iconNames: PropTypes.array,
 };
 
-ButtonsComponent.defaultProps = {
+HeroButton.defaultProps = {
   actions: [],
   iconNames: [],
 };
 
-export default ButtonsComponent;
+export default HeroButton;
