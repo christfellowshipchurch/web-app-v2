@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { useRouter } from 'next/router';
-import { Layout } from 'components';
+import { ClientSideComponent, Layout } from 'components';
 import { Box, Loader } from 'ui-kit';
 
 /**
@@ -26,21 +26,23 @@ export default function WistiaChannel(props = {}) {
 
   return (
     <Layout>
-      {!loading && channelId ? (
-        <>
-          <link
-            rel="stylesheet"
-            href={`https://fast.wistia.com/embed/channel/project/${channelId}/font.css`}
-          />
-          <div
-            class={`wistia_channel wistia_async_${channelId} mode=inline`}
-          ></div>
-        </>
-      ) : (
-        <Box width="100%" p="xxl" display="flex" justifyContent="center">
-          <Loader />
-        </Box>
-      )}
+      <ClientSideComponent>
+        {!loading && channelId ? (
+          <>
+            <link
+              rel="stylesheet"
+              href={`https://fast.wistia.com/embed/channel/project/${channelId}/font.css`}
+            />
+            <div
+              class={`wistia_channel wistia_async_${channelId} mode=inline`}
+            ></div>
+          </>
+        ) : (
+          <Box width="100%" p="xxl" display="flex" justifyContent="center">
+            <Loader />
+          </Box>
+        )}
+      </ClientSideComponent>
     </Layout>
   );
 }
