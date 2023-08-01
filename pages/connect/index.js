@@ -24,16 +24,19 @@ export default function Connect(props = {}) {
       contentCategory: 'Information',
       mediaType: 'Information',
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  /**
+   * todo : Add loading state while waiting for authentication/redirect
+   */
 
   useEffect(() => {
     if (!authenticated) {
       router.push('/');
     }
-  }, [router, authenticated]);
-
-  if (!authenticated) return null;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [authenticated]);
 
   return (
     <Layout title="Connect">

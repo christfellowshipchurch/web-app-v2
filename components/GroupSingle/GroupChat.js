@@ -1,21 +1,10 @@
 import PropTypes from 'prop-types';
-
 import { Chat } from 'components';
-import { useCurrentBreakpoint } from 'hooks';
-
-import GroupChatMobile from './GroupChatMobile';
-
 import Styled from './GroupSingle.styles';
 
 export default function GroupChat(props = {}) {
-  const currentBreakpoint = useCurrentBreakpoint();
-
   if (!props.streamChatChannel) {
     return null;
-  }
-
-  if (currentBreakpoint.isSmall) {
-    return <GroupChatMobile />;
   }
 
   return (
