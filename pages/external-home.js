@@ -32,7 +32,14 @@ export default function ExternalLandingPage(props = {}) {
           subtitle: 'May 11, 12 or 13',
           url: '/amazing',
         },
+        {
+          greenTitle: 'FREE EVENT',
+          title: 'Vive Night: A Students Event',
+          subtitle: 'May 11, 12 or 13',
+          url: '/students',
+        },
       ]}
+      iconNames={['play', 'book', 'users']}
     >
       {/* Value Stack */}
       <ValueStack

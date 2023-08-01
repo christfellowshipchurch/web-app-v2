@@ -21,7 +21,10 @@ export default function HeroLanding(props = {}) {
         <Styled.Content>
           <Styled.Title>{props?.heroTitle}</Styled.Title>
           <Styled.Summary>{props?.heroSummary}</Styled.Summary>
-          <ButtonsComponent actions={props?.actions}></ButtonsComponent>
+          <ButtonsComponent
+            actions={props?.actions}
+            iconNames={props?.iconNames}
+          ></ButtonsComponent>
         </Styled.Content>
       </Styled>
       <Box mx="auto">{props?.children}</Box>

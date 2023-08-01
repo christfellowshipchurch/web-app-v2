@@ -2,16 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { CustomLink } from 'components';
-import { Box, Button } from 'ui-kit';
+import { Box, Button, Icon } from 'ui-kit';
 import { gtag } from 'lib/analytics';
 import { useCurrentBreakpoint } from 'hooks';
 import Styled from './HeroLanding.styles';
-// import Icon from 'ui-kit';
 
-const ButtonsComponent = ({ actions, ...props }) => {
+const ButtonsComponent = ({ actions, iconNames, ...props }) => {
   const currentBreakpoint = useCurrentBreakpoint();
-  console.log(actions);
-
+  let marginLeft;
+  if (iconNames.length === 2 && currentBreakpoint.isSmall) {
+    marginLeft = '0';
+  } else if (iconNames.length === 2 && !currentBreakpoint.isSmall) {
+    marginLeft = 'l';
+  }
   return (
     <Styled.Buttons>
       {actions.map((action, i) => (
@@ -29,14 +32,15 @@ const ButtonsComponent = ({ actions, ...props }) => {
           width={{ _: '100%', md: 'auto' }}
           href={action.url}
           my={{ _: 'xs', md: 'base' }}
-          mr={{ _: '0', md: i > 0 ? '' : 's' }}
+          mr={{ _: '0', md: i > 1 ? '' : 's' }}
+          ml={marginLeft}
           backgroundColor="rgba(0, 114, 188, 0.40)"
           borderRadius="100px"
           py="s"
           px="base"
           lineHeight="1"
           display="flex"
-          flexDirection={{ _: 'column', md: 'row' }}
+          flexDirection="row"
           {...action}
         >
           <Box>
@@ -56,7 +60,7 @@ const ButtonsComponent = ({ actions, ...props }) => {
               </Box>
             ) : null}
           </Box>
-          {/* <Icon name="youtube" size="32" /> */}
+          <Icon name={iconNames[i]} size="32" ml="s" />
         </CustomLink>
       ))}
     </Styled.Buttons>
@@ -65,10 +69,12 @@ const ButtonsComponent = ({ actions, ...props }) => {
 
 ButtonsComponent.propTypes = {
   actions: PropTypes.array,
+  iconNames: PropTypes.array,
 };
 
 ButtonsComponent.defaultProps = {
   actions: [],
+  iconNames: [],
 };
 
 export default ButtonsComponent;
