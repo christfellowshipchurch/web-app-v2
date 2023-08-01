@@ -25,21 +25,23 @@ export default function ExternalLandingPage(props = {}) {
           title: 'The Works of the Holy Spirit',
           subtitle: 'Experiencing the Holy Spirit',
           url: '/the-works-of-the-holy-spirit',
+          iconName: 'play',
         },
         {
           greenTitle: 'TICKETS ON SALE NOW',
           title: 'Amazing: A Sisterhood Event',
           subtitle: 'May 11, 12 or 13',
           url: '/amazing',
+          iconName: 'book',
         },
         {
           greenTitle: 'FREE EVENT',
           title: 'Vive Night: A Students Event',
           subtitle: 'May 11, 12 or 13',
           url: '/students',
+          iconName: 'users',
         },
       ]}
-      iconNames={['play', 'book', 'users']}
     >
       {/* Value Stack */}
       <ValueStack

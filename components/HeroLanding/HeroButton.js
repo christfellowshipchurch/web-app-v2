@@ -10,9 +10,9 @@ import Styled from './HeroLanding.styles';
 const HeroButton = ({ actions, iconNames, ...props }) => {
   const currentBreakpoint = useCurrentBreakpoint();
   let marginLeft;
-  if (iconNames.length === 2 && currentBreakpoint.isSmall) {
+  if (actions.length === 2 && currentBreakpoint.isSmall) {
     marginLeft = '0';
-  } else if (iconNames.length === 2 && !currentBreakpoint.isSmall) {
+  } else if (actions.length === 2 && !currentBreakpoint.isSmall) {
     marginLeft = 'l';
   }
   return (
@@ -60,7 +60,7 @@ const HeroButton = ({ actions, iconNames, ...props }) => {
               </Box>
             ) : null}
           </Box>
-          <Icon name={iconNames[i]} size="32" ml="s" />
+          <Icon name={action.iconName} size="32" ml="s" />
         </CustomLink>
       ))}
     </Styled.Buttons>
@@ -69,12 +69,10 @@ const HeroButton = ({ actions, iconNames, ...props }) => {
 
 HeroButton.propTypes = {
   actions: PropTypes.array,
-  iconNames: PropTypes.array,
 };
 
 HeroButton.defaultProps = {
   actions: [],
-  iconNames: [],
 };
 
 export default HeroButton;
