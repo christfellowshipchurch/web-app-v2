@@ -1,11 +1,7 @@
 
 import { Widget } from '@typeform/embed-react'
-import { useRouter } from 'next/router';
 
-export default function Quiz() {
-
-    const router = useRouter();
-    const { title } = router.query;
+export default function Quiz({title}) {
 
     return (
         <div>
