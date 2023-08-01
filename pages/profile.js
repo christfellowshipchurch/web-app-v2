@@ -1,4 +1,4 @@
-import { Layout, UserProfile } from 'components';
+import { ClientSideComponent, Layout, UserProfile } from 'components';
 import { CurrentPersonProvider } from 'providers';
 import { Cell, utils } from 'ui-kit';
 
@@ -11,7 +11,9 @@ export default function Profile(props = {}) {
         px="base"
         py={{ _: 'l', lg: 'xl' }}
       >
-        <CurrentPersonProvider Component={UserProfile} />
+        <ClientSideComponent>
+          <CurrentPersonProvider Component={UserProfile} />
+        </ClientSideComponent>
       </Cell>
     </Layout>
   );
