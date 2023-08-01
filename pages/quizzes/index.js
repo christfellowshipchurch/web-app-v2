@@ -1,11 +1,10 @@
+import Quiz from "components/Quiz";
 
-import { Widget } from '@typeform/embed-react'
-
-export default function Quiz() {
+export default function Quizzes(props) {
     return (
-        <div>
-         <Widget id="jJ7aDEPM" style={{ width: '100%', height:'800px'}} className="my-form" />
-      </div>
-    )
+    <Quiz>
+        Component={Quiz}
+        data ={}
+    </Quiz>
+    );
 }
-
