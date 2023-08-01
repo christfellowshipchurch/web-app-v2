@@ -133,6 +133,10 @@ const navigation = {
           call: 'Special Needs',
           action: '/special-needs',
         },
+        {
+          call: 'Get Your Degree',
+          action: 'https://www.cfseu.com/',
+        },
       ],
     },
     {
