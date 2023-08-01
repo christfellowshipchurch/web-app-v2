@@ -6,8 +6,6 @@ import { ContentLayout, Share } from 'components';
 
 import EventGroupings from './EventGroupings';
 import { useAnalytics } from 'providers/AnalyticsProvider';
-import { useCurrentBreakpoint } from 'hooks';
-const screen = useCurrentBreakpoint
 
 function EventSingle(props = {}) {
   const analytics = useAnalytics();
@@ -17,7 +15,7 @@ function EventSingle(props = {}) {
       contentCategory: 'Information',
       mediaType: 'Information',
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (props.loading) {
@@ -73,7 +71,7 @@ function EventSingle(props = {}) {
       renderC={() => (
         <Box justifySelf="flex-end">
           <Share
-            mb={{ _:'base'}}
+            mb={{ _: 'base' }}
             title={props.data.title}
             shareTitle="Invite"
             shareMessages={eventShareMessages}
