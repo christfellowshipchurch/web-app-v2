@@ -16,7 +16,7 @@ const HeroButton = ({ actions, iconNames, ...props }) => {
     marginLeft = 'l';
   }
   return (
-    <Styled.Buttons>
+    <Styled.ButtonContainer>
       {actions.map((action, i) => (
         <CustomLink
           key={i}
@@ -44,9 +44,9 @@ const HeroButton = ({ actions, iconNames, ...props }) => {
           {...action}
         >
           <Box>
-            {action.greenTitle && (
-              <Box color="#6BCABA" fontSize="11px" py="0" textAlign="left">
-                {action.greenTitle}
+            {action.subtitle && (
+              <Box color="tertiary" fontSize="11px" py="0" textAlign="left">
+                {action.subtitle}
               </Box>
             )}
             {action.title && (
@@ -54,16 +54,16 @@ const HeroButton = ({ actions, iconNames, ...props }) => {
                 {action.title}
               </Box>
             )}
-            {action.subtitle && !currentBreakpoint.isSmall ? (
-              <Box color="#F6F6F6" fontSize="13px" py="0" textAlign="left">
-                {action.subtitle}
+            {action.description && !currentBreakpoint.isSmall ? (
+              <Box color="neutrals.100" fontSize="13px" py="0" textAlign="left">
+                {action.description}
               </Box>
             ) : null}
           </Box>
           <Icon name={action.iconName} size="32" ml="s" />
         </CustomLink>
       ))}
-    </Styled.Buttons>
+    </Styled.ButtonContainer>
   );
 };
 

@@ -50,7 +50,7 @@ const Content = styled.div`
   ${system}
 `;
 
-const Buttons = styled.div`
+const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -137,7 +137,7 @@ HeroLanding.BackgroundVideo = BackgroundVideo;
 HeroLanding.VideoOverlay = VideoOverlay;
 HeroLanding.Content = Content;
 HeroLanding.Title = Title;
-HeroLanding.Buttons = Buttons;
+HeroLanding.ButtonContainer = ButtonContainer;
 HeroLanding.Summary = Summary;
 
 export default HeroLanding;

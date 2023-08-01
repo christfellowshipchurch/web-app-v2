@@ -21,23 +21,23 @@ export default function ExternalLandingPage(props = {}) {
       backgroundImage="/external-landing/external-bg-video-frame-1.png"
       actions={[
         {
-          greenTitle: 'WATCH THE LATEST MESSAGE',
+          subtitle: 'WATCH THE LATEST MESSAGE',
           title: 'The Works of the Holy Spirit',
-          subtitle: 'Experiencing the Holy Spirit',
+          description: 'Experiencing the Holy Spirit',
           url: '/the-works-of-the-holy-spirit',
           iconName: 'play',
         },
         {
-          greenTitle: 'TICKETS ON SALE NOW',
+          subtitle: 'TICKETS ON SALE NOW',
           title: 'Amazing: A Sisterhood Event',
-          subtitle: 'May 11, 12 or 13',
+          description: 'May 11, 12 or 13',
           url: '/amazing',
           iconName: 'book',
         },
         {
-          greenTitle: 'FREE EVENT',
+          subtitle: 'FREE EVENT',
           title: 'Vive Night: A Students Event',
-          subtitle: 'May 11, 12 or 13',
+          description: 'May 11, 12 or 13',
           url: '/students',
           iconName: 'users',
         },
