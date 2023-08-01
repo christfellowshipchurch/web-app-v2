@@ -33,7 +33,7 @@ module.exports = {
         permanent: false,
       }, // reboot this stupid thing
       { source: '/fall', destination: '/fallatlh', permanent: true },
-      { source: '/wednesday', destination: '/longhollow.com/wednesdaysatlh', permanent: true },
+      { source: '/wednesday', destination: '/wednesdaysatlh', permanent: true },
       { source: '/partner', destination: '/kaylawhittakerbulgaria', permanent: true },
       { source: '/feedback', destination: 'https://longhollow.wufoo.com/forms/vision-plan-strategy-feedback/', permanent: true },
       { source: '/identity', destination: 'https://longhollow.com/resources-about-sexuality-gender-and-identity', permanent: true },
