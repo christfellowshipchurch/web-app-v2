@@ -8,40 +8,24 @@ import {
   ThriveInEveryArea,
 } from 'components/ExternalHome';
 import { Box, ContentBlock, ValueStack } from 'ui-kit';
+import { useExternalHomeActions } from 'hooks';
 
 const BASE_MAX_WIDTH = 1200;
 const BASE_VERITCAL_PADDING = 'xl';
 
 export default function ExternalLandingPage(props = {}) {
+  /**
+   * todo : If we can, I would like to see if we can pull in the 'actions' prop from getStaticProps 🤔
+   */
+  const { actions } = useExternalHomeActions();
+
   return (
     <HeroLanding
       heroTitle="Get the most out of life."
       heroSummary="A church that wants to help you live the life you were created for."
       backgroundVideo="/external-landing/external-bg-vid.mp4"
       backgroundImage="/external-landing/external-bg-video-frame-1.png"
-      actions={[
-        {
-          subtitle: 'WATCH THE LATEST MESSAGE',
-          title: 'The Works of the Holy Spirit',
-          description: 'Experiencing the Holy Spirit',
-          url: '/the-works-of-the-holy-spirit',
-          iconName: 'play',
-        },
-        {
-          subtitle: 'TICKETS ON SALE NOW',
-          title: 'Amazing: A Sisterhood Event',
-          description: 'May 11, 12 or 13',
-          url: '/amazing',
-          iconName: 'book',
-        },
-        {
-          subtitle: 'FREE EVENT',
-          title: 'Vive Night: A Students Event',
-          description: 'May 11, 12 or 13',
-          url: '/students',
-          iconName: 'users',
-        },
-      ]}
+      actions={actions}
     >
       {/* Value Stack */}
       <ValueStack

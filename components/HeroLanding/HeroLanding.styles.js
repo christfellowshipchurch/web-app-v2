@@ -85,15 +85,15 @@ const Button = styled.button`
   border: 2px solid transparent;
   color: ${themeGet('colors.white')};
   cursor: pointer;
-  display: inline-block;
+  display: flex;
+  justify-content: start;
   font-family: ${themeGet('fonts.base')};
   font-size: ${themeGet('fontSizes.base')};
   font-weight: ${themeGet('fontWeights.bold')};
   padding-top: ${themeGet('space.s')};
   padding-bottom: ${themeGet('space.s')};
-  padding-left: ${themeGet('space.base')};
-  padding-right: ${themeGet('space.base')};
-  text-align: center;
+  padding-left: ${themeGet('space.l')};
+  padding-right: ${themeGet('space.l')};
   text-decoration: none;
   transition: 0.3s ease-in-out;
 

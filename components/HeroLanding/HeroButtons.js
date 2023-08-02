@@ -7,7 +7,7 @@ import { gtag } from 'lib/analytics';
 import { useCurrentBreakpoint } from 'hooks';
 import Styled from './HeroLanding.styles';
 
-const HeroButtons = ({ actions, iconNames, ...props }) => {
+const HeroButtons = ({ actions, ...props }) => {
   const currentBreakpoint = useCurrentBreakpoint();
   let marginLeft;
   if (actions.length === 2 && currentBreakpoint.isSmall) {
@@ -60,7 +60,7 @@ const HeroButtons = ({ actions, iconNames, ...props }) => {
               </Box>
             ) : null}
           </Box>
-          <Icon name={action.iconName} size="32" ml="s" />
+          <Icon name={action.icon} size="32" ml="s" />
         </CustomLink>
       ))}
     </Styled.ButtonContainer>
