@@ -13,8 +13,9 @@ const HeroButtons = ({ actions, iconNames, ...props }) => {
   if (actions.length === 2 && currentBreakpoint.isSmall) {
     marginLeft = '0';
   } else if (actions.length === 2 && !currentBreakpoint.isSmall) {
-    marginLeft = 'l';
+    marginLeft = 'base';
   }
+
   return (
     <Styled.ButtonContainer>
       {actions.map((action, i) => (
@@ -22,6 +23,7 @@ const HeroButtons = ({ actions, iconNames, ...props }) => {
           key={i}
           size="l"
           Component={Styled.Button}
+          href={action.url}
           onClick={() => [
             gtag.trackEvent({
               category: `Hero Landing - ${props?.heroTitle}`,
@@ -30,9 +32,8 @@ const HeroButtons = ({ actions, iconNames, ...props }) => {
             }),
           ]}
           width={{ _: '100%', md: 'auto' }}
-          href={action.url}
           my={{ _: 'xs', md: 'base' }}
-          mr={{ _: '0', md: i > 1 ? '' : 's' }}
+          mr={{ _: '0', md: i > 1 ? '' : 'base' }}
           ml={marginLeft}
           {...action}
         >
