@@ -1,9 +1,14 @@
-import { FeatureFeed, Layout } from 'components';
+import { ActionBarFeature, FeatureFeed, Layout } from 'components';
 import { useRouter } from 'next/router';
 import { FeatureFeedProvider } from 'providers';
 import { useAuth } from 'providers/AuthProvider';
 import React, { useEffect } from 'react';
-import { Cell, utils } from 'ui-kit';
+import { Box, Cell, utils } from 'ui-kit';
+
+/**
+ * todo : For now we will manage the ActionBar data from here, but eventually we may want to move it over to the home-feed from the API
+ */
+import actionBarData from 'lib/actionBarData';
 
 function InternalHomeFeed() {
   const [{ authenticated }] = useAuth();
@@ -29,6 +34,9 @@ function InternalHomeFeed() {
         px="base"
         py={{ _: 'xs', lg: 's' }}
       >
+        <Box mt="l">
+          <ActionBarFeature data={actionBarData} />
+        </Box>
         <FeatureFeedProvider Component={FeatureFeed} options={options} />
       </Cell>
     </Layout>
