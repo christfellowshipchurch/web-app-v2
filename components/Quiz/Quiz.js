@@ -1,12 +1,11 @@
+import { Widget } from '@typeform/embed-react';
 
-import { Widget } from '@typeform/embed-react'
-
-export default function Quiz({title}) {
-
-    return (
-        <div>
-         <Widget id={title} style={{ width: '100%', height:'800px'}} className="my-form" />
-      </div>
-    )
+export default function Quiz({ id }) {
+  return (
+    <Widget
+      id={id}
+      style={{ width: '100%', height: '80vh' }}
+      className="my-form"
+    />
+  );
 }
-
