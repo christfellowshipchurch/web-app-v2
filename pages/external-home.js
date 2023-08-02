@@ -27,17 +27,6 @@ export default function ExternalLandingPage(props = {}) {
       backgroundImage="/external-landing/external-bg-video-frame-1.png"
       actions={actions}
     >
-      {/* Value Stack */}
-      <ValueStack
-        display={{ _: 'none', md: 'flex' }}
-        backgroundColorMap={['secondary', 'secondary']}
-        items={[
-          'Know God Personally',
-          'Grow In Relationships',
-          'Discover Your Purpose',
-        ]}
-      />
-
       {/* Text Carousel */}
       <Box
         bg="neutral-200"
