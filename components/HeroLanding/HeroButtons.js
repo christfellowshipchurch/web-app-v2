@@ -60,7 +60,7 @@ const HeroButtons = ({ actions, ...props }) => {
               </Box>
             ) : null}
           </Box>
-          <Icon name={action.icon} size="32" ml="s" />
+          {action.icon && <Icon name={action.icon} size="32" ml="s" />}
         </CustomLink>
       ))}
     </Styled.ButtonContainer>
