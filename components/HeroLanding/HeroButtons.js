@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { CustomLink } from 'components';
-import { Box, Button, Icon } from 'ui-kit';
+import { Box, Icon } from 'ui-kit';
 import { gtag } from 'lib/analytics';
 import { useCurrentBreakpoint } from 'hooks';
 import Styled from './HeroLanding.styles';
 
-const HeroButton = ({ actions, iconNames, ...props }) => {
+const HeroButtons = ({ actions, iconNames, ...props }) => {
   const currentBreakpoint = useCurrentBreakpoint();
   let marginLeft;
   if (actions.length === 2 && currentBreakpoint.isSmall) {
@@ -21,7 +21,7 @@ const HeroButton = ({ actions, iconNames, ...props }) => {
         <CustomLink
           key={i}
           size="l"
-          Component={Button}
+          Component={Styled.Button}
           onClick={() => [
             gtag.trackEvent({
               category: `Hero Landing - ${props?.heroTitle}`,
@@ -34,13 +34,6 @@ const HeroButton = ({ actions, iconNames, ...props }) => {
           my={{ _: 'xs', md: 'base' }}
           mr={{ _: '0', md: i > 1 ? '' : 's' }}
           ml={marginLeft}
-          backgroundColor="rgba(0, 114, 188, 0.40)"
-          borderRadius="100px"
-          py="s"
-          px="base"
-          lineHeight="1"
-          display="flex"
-          flexDirection="row"
           {...action}
         >
           <Box>
@@ -55,7 +48,13 @@ const HeroButton = ({ actions, iconNames, ...props }) => {
               </Box>
             )}
             {action.description && !currentBreakpoint.isSmall ? (
-              <Box color="neutrals.100" fontSize="13px" py="0" textAlign="left">
+              <Box
+                color="neutrals.100"
+                fontSize="13px"
+                py="0"
+                textAlign="left"
+                fontWeight="normal"
+              >
                 {action.description}
               </Box>
             ) : null}
@@ -67,12 +66,12 @@ const HeroButton = ({ actions, iconNames, ...props }) => {
   );
 };
 
-HeroButton.propTypes = {
+HeroButtons.propTypes = {
   actions: PropTypes.array,
 };
 
-HeroButton.defaultProps = {
+HeroButtons.defaultProps = {
   actions: [],
 };
 
-export default HeroButton;
+export default HeroButtons;

@@ -1,7 +1,13 @@
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
-
+import Color from 'color';
 import { system } from 'ui-kit';
+
+export const primaryHover = () => props => {
+  const primaryColor = themeGet('colors.primary')(props);
+
+  return Color(primaryColor).saturate(0.1).darken(0.35).hex();
+};
 
 const HeroLanding = styled.div`
   z-index: 0;
@@ -74,6 +80,46 @@ const ButtonContainer = styled.div`
   ${system}
 `;
 
+const Button = styled.button`
+  background-color: rgba(0, 114, 188, 0.4);
+  border: 2px solid transparent;
+  color: ${themeGet('colors.white')};
+  cursor: pointer;
+  display: inline-block;
+  font-family: ${themeGet('fonts.base')};
+  font-size: ${themeGet('fontSizes.base')};
+  font-weight: ${themeGet('fontWeights.bold')};
+  padding-top: ${themeGet('space.s')};
+  padding-bottom: ${themeGet('space.s')};
+  padding-left: ${themeGet('space.base')};
+  padding-right: ${themeGet('space.base')};
+  text-align: center;
+  text-decoration: none;
+  transition: 0.3s ease-in-out;
+
+  &:disabled {
+    opacity: 0.5;
+  }
+
+  border-radius: 100px;
+  py: s;
+  px: base;
+  lineheight: 1;
+  display: flex;
+  flex-direction: row;
+  backdrop-filter: blur(10px);
+  boxshadow: 0px 5px 12px 0px rgba(0, 0, 0, 0.25);
+
+  &:active,
+  &:focus,
+  &:hover {
+    background-color: ${primaryHover};
+    color: ${themeGet('colors.white')};
+  }
+
+  ${system}
+`;
+
 const Title = styled.h1`
   text-align: center;
 
@@ -138,6 +184,7 @@ HeroLanding.VideoOverlay = VideoOverlay;
 HeroLanding.Content = Content;
 HeroLanding.Title = Title;
 HeroLanding.ButtonContainer = ButtonContainer;
+HeroLanding.Button = Button;
 HeroLanding.Summary = Summary;
 
 export default HeroLanding;

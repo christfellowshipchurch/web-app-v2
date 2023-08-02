@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Box } from 'ui-kit';
 import Styled from './HeroLanding.styles';
-import HeroButton from './HeroButton';
+import HeroButtons from './HeroButtons';
 export default function HeroLanding(props = {}) {
   return (
     <>
@@ -20,7 +20,7 @@ export default function HeroLanding(props = {}) {
         <Styled.Content>
           <Styled.Title>{props?.heroTitle}</Styled.Title>
           <Styled.Summary>{props?.heroSummary}</Styled.Summary>
-          <HeroButton actions={props?.actions}></HeroButton>
+          <HeroButtons actions={props?.actions}></HeroButtons>
         </Styled.Content>
       </Styled>
       <Box mx="auto">{props?.children}</Box>
