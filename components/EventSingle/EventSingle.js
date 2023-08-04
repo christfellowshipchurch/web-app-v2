@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { Box, Loader } from 'ui-kit';
@@ -10,6 +10,10 @@ import { useAnalytics } from 'providers/AnalyticsProvider';
 function EventSingle(props = {}) {
   const analytics = useAnalytics();
 
+  const [currentVideo, setCurrentVideo] = useState(
+    Array.isArray(props.data?.videos) ? props.data.videos[0] : null
+  );
+
   useEffect(() => {
     analytics.page({
       contentCategory: 'Information',
@@ -17,6 +21,18 @@ function EventSingle(props = {}) {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const videos = props?.data?.videos;
+  const wistiaId = props?.data?.wistiaId
+
+  useEffect(() => {
+    if (videos.length >= 1 && currentVideo === null) {
+      setCurrentVideo(props.data.videos[0]);
+    } else if (props.data?.wistiaId?.length >= 1 && currentVideo === null) {
+      setCurrentVideo(props.data.wistiaId);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [videos, wistiaId, currentVideo]);  
 
   if (props.loading) {
     return (
@@ -43,6 +59,8 @@ function EventSingle(props = {}) {
   const authorName = author
     ? `${author.firstName} ${author.lastName}`
     : undefined;
+
+    
 
   const eventShareMessages = {
     faceBook: `Check out ${title} happening at Christ Fellowship Church!`,
