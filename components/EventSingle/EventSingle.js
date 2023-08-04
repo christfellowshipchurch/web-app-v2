@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 import { Box, Loader } from 'ui-kit';
 import { ContentLayout, Share } from 'components';
-
+import ContentVideo from 'components/ContentSingle/ContentVideo';
+import ContentVideosList from 'components/ContentSingle/ContentVideosList';
 import EventGroupings from './EventGroupings';
 import { useAnalytics } from 'providers/AnalyticsProvider';
 
@@ -24,15 +25,18 @@ function EventSingle(props = {}) {
 
   const videos = props?.data?.videos;
   const wistiaId = props?.data?.wistiaId
-
+  console.log(videos);
+  
   useEffect(() => {
-    if (videos.length >= 1 && currentVideo === null) {
+    // Do we have videos now, when we didn't before?
+    // ( Loading just finished, so we can properly select the first video if present)
+    if (props.data?.videos?.length >= 1 && currentVideo === null) {
       setCurrentVideo(props.data.videos[0]);
     } else if (props.data?.wistiaId?.length >= 1 && currentVideo === null) {
       setCurrentVideo(props.data.wistiaId);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [videos, wistiaId, currentVideo]);  
+  }, [props.data?.videos, props.data?.wistiaId, currentVideo]);
+
 
   if (props.loading) {
     return (
@@ -60,7 +64,15 @@ function EventSingle(props = {}) {
     ? `${author.firstName} ${author.lastName}`
     : undefined;
 
-    
+  if (!currentVideo && wistiaId) {
+      setCurrentVideo(props.data.wistiaId);
+  }
+
+  const handleSelectVideo = video => {
+    if (video !== currentVideo) {
+      setCurrentVideo(video);
+    }
+  };
 
   const eventShareMessages = {
     faceBook: `Check out ${title} happening at Christ Fellowship Church!`,
@@ -71,6 +83,13 @@ function EventSingle(props = {}) {
     },
     sms: `Join me for ${title} at Christ Fellowship! ${document?.URL}`,
   };
+
+  var contentLayoutVideo;
+  if (wistiaId) {
+    contentLayoutVideo = currentVideo?.wistiaId;
+  } else {
+    contentLayoutVideo = currentVideo?.sources[0]?.uri;
+  }
 
   return (
     <ContentLayout
@@ -83,9 +102,11 @@ function EventSingle(props = {}) {
         image: coverImageUri,
         author: authorName,
         url: typeof window !== 'undefined' ? window.location.href : undefined,
+        video: contentLayoutVideo,
       }}
       summary={props.data.summary}
       coverImage={props.data?.coverImage?.sources[0]?.uri}
+      
       renderC={() => (
         <Box justifySelf="flex-end">
           <Share
@@ -94,7 +115,7 @@ function EventSingle(props = {}) {
             shareTitle="Invite"
             shareMessages={eventShareMessages}
           />
-        </Box>
+        </Box>   
       )}
       htmlContent={props.data.htmlContent}
       features={featureFeed?.features}
