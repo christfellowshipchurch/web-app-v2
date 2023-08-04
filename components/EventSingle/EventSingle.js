@@ -106,7 +106,14 @@ function EventSingle(props = {}) {
       }}
       summary={props.data.summary}
       coverImage={props.data?.coverImage?.sources[0]?.uri}
-      
+      renderA={() => (
+        <ContentVideo
+          title={title}
+          video={currentVideo}
+          poster={coverImageUri}
+          wistiaId={wistiaId}
+        />
+      )}
       renderC={() => (
         <Box justifySelf="flex-end">
           <Share
