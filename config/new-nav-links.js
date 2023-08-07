@@ -143,7 +143,7 @@ const navigation = {
           action: '/special-needs',
         },
         {
-          call: 'Get Your Degree',
+          call: 'CFSEU',
           action: 'https://www.cfseu.com/',
         },
       ],
