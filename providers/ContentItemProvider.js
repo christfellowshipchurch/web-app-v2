@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { useContentItem } from 'hooks';
-import { NotFound } from 'components';
+import { ClientSideComponent, NotFound } from 'components';
 import { Loader } from 'ui-kit';
 
 function ContentItemProvider({ Component, options, ...props }) {

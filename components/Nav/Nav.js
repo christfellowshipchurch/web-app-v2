@@ -5,12 +5,12 @@ import { CurrentUserProvider } from 'providers';
 import { useAuth } from 'providers/AuthProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 import { Box, Button, Icon, systemPropTypes } from 'ui-kit';
-import { UserAvatar } from 'components';
+import { ClientSideComponent, UserAvatar } from 'components';
 import Styled from './Nav.styles';
 import { useCurrentBreakpoint } from 'hooks';
 
 function Nav(props = {}) {
-  const [{ authenticated } ] = useAuth();
+  const [{ authenticated }] = useAuth();
   const currentBreakpoint = useCurrentBreakpoint();
   const modalDispatch = useModalDispatch();
 
@@ -66,13 +66,15 @@ function Nav(props = {}) {
         </Box>
       </Box>
 
-      {authenticated && (
-        <CurrentUserProvider
-          Component={UserAvatar}
-          handleAuthClick={handleAuthClick}
-          size={'40'}
-        />
-      )}
+      <ClientSideComponent>
+        {authenticated && (
+          <CurrentUserProvider
+            Component={UserAvatar}
+            handleAuthClick={handleAuthClick}
+            size={'40'}
+          />
+        )}
+      </ClientSideComponent>
     </Styled>
   );
 }
