@@ -33,7 +33,7 @@ module.exports = {
         permanent: false,
       }, // reboot this stupid thing
       { source: '/fall', destination: '/fallatlh', permanent: true },
-      { source: '/marriageconference', destination: '/theknotmarriageconference', permanent: true },
+      { source: '/knot', destination: '/theknotmarriageconference', permanent: true },
       { source: '/wednesday', destination: '/wednesdaysatlh', permanent: true },
       { source: '/partner', destination: '/kaylawhittakerbulgaria', permanent: true },
       { source: '/feedback', destination: 'https://longhollow.wufoo.com/forms/vision-plan-strategy-feedback/', permanent: true },
