@@ -133,6 +133,10 @@ const navigation = {
           call: 'Special Needs',
           action: '/special-needs',
         },
+        {
+          call: 'CFSEU',
+          action: 'https://www.cfseu.com/',
+        },
       ],
     },
     {
