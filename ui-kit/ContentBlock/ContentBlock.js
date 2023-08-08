@@ -43,7 +43,8 @@ function ContentBlock(props = {}) {
   const hasHtmlContent = !isEmpty(htmlContent);
   const hasActions = actions?.length > 0;
   const hasImage = !isEmpty(props?.image);
-  const hasVideo = !isEmpty(props?.videos[0]?.sources[0]?.uri);
+  const hasVideo =
+    !isEmpty(props?.videos[0]?.sources[0]?.uri) || !isEmpty(props?.wistiaId);
   const hasMedia = hasImage || hasVideo;
 
   const idRegex = /\D/g;
@@ -85,6 +86,7 @@ function ContentBlock(props = {}) {
               poster={props?.image}
               // all videos will defatult to 16:9 aspect ratio keeping sizing consistent
               aspectRatio="16/9"
+              wistiaId={props?.wistiaId}
             />
           </Conditional>
         </Box>
