@@ -33,6 +33,7 @@ module.exports = {
         permanent: false,
       }, // reboot this stupid thing
       { source: '/fall', destination: '/fallatlh', permanent: true },
+      { source: '/foster', destination: '/fosterandadoptivefamilynight', permanent: true },
       { source: '/knot', destination: '/theknotmarriageconference', permanent: true },
       { source: '/wednesday', destination: '/wednesdaysatlh', permanent: true },
       { source: '/partner', destination: '/kaylawhittakerbulgaria', permanent: true },
