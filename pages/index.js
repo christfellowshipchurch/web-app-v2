@@ -9,7 +9,11 @@ import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
 
 export default function Home({ dropdownData, ...props } = {}) {
   return (
-    <Layout title="Home" dropdownData={dropdownData}>
+    <Layout
+      title="Home"
+      meta={{ description: '', image: '' }}
+      dropdownData={dropdownData}
+    >
       <FeedFeaturesProvider Component={HomeFeed} {...props} />
     </Layout>
   );
