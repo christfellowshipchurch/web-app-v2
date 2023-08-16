@@ -165,7 +165,7 @@ module.exports = {
       { source: '/budget', destination: '/the-2023-ministry-plan', permanent: true },
       { source: '/card', destination: 'https://longhollow.wufoo.com/forms/wios9x40o6ivto/', permanent: true },
       { source: '/baptismclass', destination: '/kids-baptism-classes', permanent: true },
-      { source: '/story', destination: '/', permanent: true },
+      { source: '/story', destination: 'https://longhollow.wufoo.com/forms/p1458a8i05jpcl6/', permanent: true },
       { source: '/stories', destination: '/', permanent: true },
       { source: '/specialneeds', destination: '/special-needs', permanent: true },
       { source: '/24', destination: 'https://prayerteam.longhollow.com', permanent: true },
