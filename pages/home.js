@@ -34,6 +34,7 @@ function InternalHomeFeed() {
         px="base"
         py={{ _: 'xs', lg: 's' }}
       >
+        {/* Hard coded Actionbar on top of HomeFeed. */}
         <Box mt="l">
           <ActionBarFeature data={actionBarData} />
         </Box>
