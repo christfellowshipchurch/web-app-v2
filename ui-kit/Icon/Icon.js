@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withTheme } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 import camelCase from 'lodash/camelCase';
-//
+
 import { icons, systemPropTypes, theme } from 'ui-kit';
 import Styled from './Icon.styles';
 
