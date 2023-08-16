@@ -72,31 +72,14 @@ export default function ResetPassword(props) {
     }
   }, [queryEmail, setValues]);
 
-  if (status === 'SUCCESS') {
-    return (
-      <Layout title="Password Reset">
-        <Cell
-          as="main"
-          maxWidth={utils.rem('1100px')}
-          px="base"
-          py={{ _: 'l', lg: 'xl' }}
-          mb="xxl"
-        >
-          <Card maxWidth="62%" margin="auto" p="base" pb="l">
-            <Box my="l" textAlign="center">
-              <Icon name="checkCircle" color="success" size="64" mb="base" />
-              <Box as="h1" color="success">
-                Password Reset
-              </Box>
-              <Box as="p">Your password has been successfully reset!</Box>
-            </Box>
-          </Card>
-        </Cell>
-      </Layout>
-    );
-  }
+  //On status change / submission forces scroll to the top to see the success message
+  useEffect(() => {
+    if (window) {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+  }, [status]);
 
-  return (
+  return status === 'SUCCESS' ? (
     <Layout title="Password Reset">
       <Cell
         as="main"
@@ -105,14 +88,40 @@ export default function ResetPassword(props) {
         py={{ _: 'l', lg: 'xl' }}
         mb="xxl"
       >
-        <Card width='620px' maxWidth="100%" margin="auto" p="base" pb="l">
+        <Card maxWidth="62%" margin="auto" p="base" pb="l">
+          <Box my="l" textAlign="center">
+            <Icon name="checkCircle" color="success" size="64" mb="base" />
+            <Box as="h1" color="success">
+              Password Reset
+            </Box>
+            <Box as="p">Your password has been successfully reset!</Box>
+          </Box>
+        </Card>
+      </Cell>
+    </Layout>
+  ) : (
+    <Layout title="Password Reset">
+      <Cell
+        as="main"
+        maxWidth={utils.rem('1100px')}
+        px="base"
+        py={{ _: 'l', lg: 'xl' }}
+        mb="xxl"
+      >
+        <Card width="620px" maxWidth="100%" margin="auto" p="base" pb="l">
           {/* Form Header */}
           <Box my="l" textAlign="center">
             <Box as="h1">Password Reset</Box>
             <Box as="p">Forgot your password? We’ve got you covered!</Box>
           </Box>
 
-          <Box as="form" action="" onSubmit={handleSubmit} my="l" textAlign="center">
+          <Box
+            as="form"
+            action=""
+            onSubmit={handleSubmit}
+            my="l"
+            textAlign="center"
+          >
             {/* Email & Confirmation Code*/}
             <Box as="section" mb="l">
               <Box
