@@ -14,6 +14,7 @@ import { ThemeProvider as SCThemeProvider } from 'styled-components';
 
 import { ActionBar, ActionBarItem, Box } from 'ui-kit';
 import { getUrlFromRelatedNode } from 'utils';
+import { includes } from 'lodash';
 
 const ActionBarFeature = props => {
   const id = props?.data?.id;
@@ -45,6 +46,10 @@ const ActionBarFeature = props => {
                 <Box
                   as="a"
                   href={getUrlFromRelatedNode(relatedNode)}
+                  target={
+                    includes(getUrlFromRelatedNode(relatedNode), 'https') &&
+                    '_blank'
+                  }
                   textDecoration="none"
                 >
                   <ActionBarItem
