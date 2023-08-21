@@ -96,9 +96,7 @@ const Button = styled.button`
   }
 
   border-radius: 100px;
-  py: s;
-  px: base;
-  lineheight: 1;
+  line-height: 1;
   display: flex;
   flex-direction: row;
   backdrop-filter: blur(10px);

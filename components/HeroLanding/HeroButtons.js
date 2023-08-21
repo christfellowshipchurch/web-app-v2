@@ -33,18 +33,25 @@ const HeroButtons = ({ actions, ...props }) => {
           ]}
           width={{ _: '100%', md: 'auto' }}
           my={{ _: 'xs', md: 'base' }}
-          mr={{ _: '0', md: i > 1 ? '' : 'base' }}
+          mr={{ _: '0', md: i > 1 ? '' : 'l' }}
           ml={marginLeft}
           {...action}
         >
+          {action.icon && <Icon name={action.icon} size="32" mr="base" />}
           <Box>
             {action.subtitle && (
-              <Box color="tertiary" fontSize="11px" py="0" textAlign="left">
+              <Box fontSize="11px" py="0" textAlign="left">
                 {action.subtitle}
               </Box>
             )}
             {action.title && (
-              <Box fontSize="18px" py="xs" px="b" textAlign="left">
+              <Box
+                fontSize="20px"
+                py="xs"
+                px="b"
+                textAlign="left"
+                fontWeight="normal"
+              >
                 {action.title}
               </Box>
             )}
@@ -60,7 +67,6 @@ const HeroButtons = ({ actions, ...props }) => {
               </Box>
             ) : null}
           </Box>
-          {action.icon && <Icon name={action.icon} size="32" ml="s" />}
         </CustomLink>
       ))}
     </Styled.ButtonContainer>

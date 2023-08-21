@@ -7,7 +7,7 @@ import {
   StartHere,
   ThriveInEveryArea,
 } from 'components/ExternalHome';
-import { Box, ContentBlock, ValueStack } from 'ui-kit';
+import { Box, ContentBlock } from 'ui-kit';
 import { useExternalHomeActions } from 'hooks';
 
 const BASE_MAX_WIDTH = 1200;
