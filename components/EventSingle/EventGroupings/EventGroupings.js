@@ -18,7 +18,7 @@ const EventGroupings = (props = {}) => {
     if (eventGroupings && eventGroupings[0]?.name) {
       setValues({ campusSelect: eventGroupings[0]?.name });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setValues]);
 
   const selectedGroup = eventGroupings?.find(
@@ -73,6 +73,7 @@ const EventGroupings = (props = {}) => {
           boxShadow="base"
           display="flex"
           flexDirection="column"
+          mb={{ _: '', lg: 'xl' }}
           p={{ _: 's', md: 'base' }}
         >
           {props.data?.callsToAction?.map((n, i) => (
