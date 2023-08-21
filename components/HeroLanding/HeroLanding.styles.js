@@ -16,7 +16,7 @@ const HeroLanding = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 
   height: 100vh;
   width: 100vw;
@@ -36,10 +36,12 @@ const Content = styled.div`
   justify-content: center;
   z-index: 2;
   color: ${themeGet('colors.white')};
+  margin-top: 18%;
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
     max-width: 100%;
     padding: 10px;
+    margin-top: 54%;
   }
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     max-width: 70%;
@@ -56,13 +58,12 @@ const ButtonContainer = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 2;
-  position: absolute;
-  bottom: 0px;
   color: ${themeGet('colors.white')};
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
     max-width: 100%;
     padding: 10px;
+    margin-bottom: 10px;
   }
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     max-width: 100%;
@@ -119,8 +120,6 @@ const Title = styled.h1`
     font-size: 2rem;
     line-height: 2rem;
     margin-bottom: ${themeGet('space.xs')};
-    position: absolute;
-    top: 240px;
     max-width: 480px;
   }
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
@@ -137,8 +136,6 @@ const Summary = styled.h2`
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
     font-size: 1.4rem;
-    position: absolute;
-    top: 280px;
     max-width: 480px;
   }
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
