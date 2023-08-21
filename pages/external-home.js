@@ -95,6 +95,7 @@ export default function ExternalLandingPage(props = {}) {
       <Box px="base" py={BASE_VERITCAL_PADDING} bg="neutrals.100">
         <Box mx="auto" maxWidth={1200}>
           <CollectionPreview
+            horizontalScroll
             contentId="UniversalContentItem:e45a213bba4f171708ef051041a22046"
             buttonOverride="/discover/relevant-messages?id=47a5a31f61ac5a4fb65576d0d47564e0"
           />
@@ -105,6 +106,7 @@ export default function ExternalLandingPage(props = {}) {
       <Box px="base" py={BASE_VERITCAL_PADDING} bg="neutrals.100">
         <Box mx="auto" maxWidth={1200}>
           <CollectionPreview
+            horizontalScroll
             contentId="UniversalContentItem:d29e24e1873b0c4f4f645218ca3338ea"
             buttonOverride="/discover"
           />
