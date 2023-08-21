@@ -4,14 +4,13 @@ import { useRouter } from 'next/router';
 
 import { getUrlFromRelatedNode, slugify } from 'utils';
 import { useDiscoverFilterCategoriesPreview } from 'hooks';
-
 import {
   Button,
   Box,
   DefaultCard,
+  HorizontalHighlightCard,
   CardGrid,
   Loader,
-  HorizontalHighlightCard,
   CardCarousel,
 } from 'ui-kit';
 import { CustomLink } from 'components';
@@ -41,14 +40,17 @@ const CollectionPreview = ({
 
   return (
     <Box>
+      {/* Title */}
       <Box
         color="secondary"
         textAlign={'center'}
         as={size === 's' ? 'h2' : 'h1'}
         mb="l"
       >
-        {titleOverride ? titleOverride : categoryTitle}
+        {titleOverride || categoryTitle}
       </Box>
+
+      {/* Summary */}
       {summary && (
         <Box
           maxWidth={600}
@@ -61,6 +63,8 @@ const CollectionPreview = ({
           {summary}
         </Box>
       )}
+
+      {/* Horizontal Carousel */}
       {horizontalScroll && (
         <CardCarousel display={{ md: 'none' }}>
           {loading ? (
@@ -68,14 +72,14 @@ const CollectionPreview = ({
           ) : (
             contentItems.map((n, i) => (
               <CustomLink
+                as="a"
                 key={i}
                 Component={
                   cardType === 'default' ? DefaultCard : HorizontalHighlightCard
                 }
                 coverImageOverlay={true}
                 type={size === 's' ? 'HIGHLIGHT_SMALL' : 'HIGHLIGHT_MEDIUM'}
-                mx={size === 's' ? 'base' : 0}
-                as="a"
+                mx="s"
                 coverImage={n?.coverImage?.sources[0]?.uri}
                 description={n?.summary}
                 href={getUrlFromRelatedNode(n)}
@@ -87,6 +91,8 @@ const CollectionPreview = ({
           )}
         </CardCarousel>
       )}
+
+      {/* Grid of Cards */}
       <CardGrid
         display={horizontalScroll ? { _: 'none', md: null } : null}
         columns="3"
@@ -114,7 +120,9 @@ const CollectionPreview = ({
           ))
         )}
       </CardGrid>
-      {contentItems?.length > 2 && !hideButton ? (
+
+      {/* See More Button */}
+      {contentItems?.length > 2 && !hideButton && (
         <Box textAlign="center" width="100%">
           <Button
             variant="secondary"
@@ -130,7 +138,7 @@ const CollectionPreview = ({
             See More
           </Button>
         </Box>
-      ) : null}
+      )}
     </Box>
   );
 };
@@ -140,12 +148,20 @@ CollectionPreview.propTypes = {
   buttonOverride: PropTypes.string,
   horizontalScroll: PropTypes.bool,
   size: PropTypes.oneOf(['s', 'l']),
+  cardType: PropTypes.oneOf(['default', 'horizontal']),
+  hideButton: PropTypes.bool,
+  titleOverride: PropTypes.string,
+  summary: PropTypes.string,
 };
 
 CollectionPreview.defaultProps = {
   buttonOverride: '',
   horizontalScroll: false,
   size: 'l',
+  cardType: 'highlight',
+  hideButton: false,
+  titleOverride: '',
+  summary: '',
 };
 
 export default CollectionPreview;
