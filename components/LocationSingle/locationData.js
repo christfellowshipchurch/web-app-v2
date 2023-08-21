@@ -496,6 +496,22 @@ const headerData = [
   },
 ];
 
+const setReminderVideos = {
+  palmBeachGardens: 'hokgxn0k8r',
+  portStLucie: 'vjon73vjg8',
+  royalPalmBeach: 'kq2yuo3glr',
+  boyntonBeach: '69oo6qhvvg',
+  downtownWestPalmBeach: '6fy7j3t3n5',
+  jupiter: 'upnyuxh8x6',
+  stuart: 'do6e26lx36',
+  okeechobee: '2id77bfxem',
+  belleGlade: 't4so17kwrf',
+  veroBeach: 'jo1p0qsz3s',
+  bocaRaton: 'de1dcyyel6',
+  westlake: '7tadieucep',
+  trinity: 'dd5cju1pn6',
+};
+
 const setReminderData = {
   title: 'Set a Reminder for an Upcoming Service',
   subtitle:
@@ -530,6 +546,7 @@ export {
   campusMetaData,
   campusLinks,
   headerData,
+  setReminderVideos,
   setReminderData,
   thisWeekFeatureId,
 };
