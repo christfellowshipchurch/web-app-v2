@@ -20,6 +20,7 @@ const CollectionPreview = ({
   summary,
   cardType,
   hideButton,
+  hideTitle,
   buttonOverride,
   titleOverride,
   size,
@@ -41,14 +42,16 @@ const CollectionPreview = ({
   return (
     <Box>
       {/* Title */}
-      <Box
-        color="secondary"
-        textAlign={'center'}
-        as={size === 's' ? 'h2' : 'h1'}
-        mb="l"
-      >
-        {titleOverride || categoryTitle}
-      </Box>
+      {!hideTitle && (
+        <Box
+          color="secondary"
+          textAlign={'center'}
+          as={size === 's' ? 'h2' : 'h1'}
+          mb="l"
+        >
+          {titleOverride || categoryTitle}
+        </Box>
+      )}
 
       {/* Summary */}
       {summary && (
@@ -144,6 +147,7 @@ const CollectionPreview = ({
 };
 
 CollectionPreview.propTypes = {
+  hideTitle: PropTypes.bool,
   contentId: PropTypes.string,
   buttonOverride: PropTypes.string,
   horizontalScroll: PropTypes.bool,
@@ -155,6 +159,7 @@ CollectionPreview.propTypes = {
 };
 
 CollectionPreview.defaultProps = {
+  hideTitle: false,
   buttonOverride: '',
   horizontalScroll: false,
   size: 'l',

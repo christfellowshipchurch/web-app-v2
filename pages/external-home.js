@@ -77,18 +77,25 @@ export default function ExternalLandingPage(props = {}) {
         <StartHere maxWidth={BASE_MAX_WIDTH} />
       </Box>
 
-      {/* Do more than just get by.*/}
-      <Box
-        px="base"
-        pt={BASE_VERITCAL_PADDING}
-        bg="white"
-        style={{
-          backgroundImage: 'url(/blue-dots.png)',
-          backgroundPosition: '100% 119%',
-          backgroundRepeat: 'no-repeat',
-        }}
-      >
-        <ThriveInEveryArea maxWidth={BASE_MAX_WIDTH} />
+      {/* Get There First */}
+      <Box id="get-there-first" px="base" py={{ _: 'xxl', md: 150 }} bg="white">
+        <Box mx="auto" maxWidth={1000}>
+          <Box textAlign="center" mb="l">
+            <Box as="h1" color="secondary" fontSize={{ _: 35, md: 64 }}>
+              A church for every generation.
+            </Box>
+            <Box as="p" fontSize={{ _: 16, md: 24 }}>
+              In the race to the heart of the next generation, the first one
+              there wins.
+            </Box>
+          </Box>
+          <CollectionPreview
+            hideTitle
+            hideButton
+            // todo: Create a new collection in Rock for this content
+            contentId="UniversalContentItem:d29e24e1873b0c4f4f645218ca3338ea"
+          />
+        </Box>
       </Box>
 
       {/* Relevant Messages */}
@@ -111,6 +118,20 @@ export default function ExternalLandingPage(props = {}) {
             buttonOverride="/discover"
           />
         </Box>
+      </Box>
+
+      {/* Do more than just get by.*/}
+      <Box
+        px="base"
+        pt={BASE_VERITCAL_PADDING}
+        bg="white"
+        style={{
+          backgroundImage: 'url(/blue-dots.png)',
+          backgroundPosition: '100% 119%',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+        <ThriveInEveryArea maxWidth={BASE_MAX_WIDTH} />
       </Box>
 
       <Box px="base" py={BASE_VERITCAL_PADDING} bg="white">
