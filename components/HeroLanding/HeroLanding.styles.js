@@ -36,12 +36,12 @@ const Content = styled.div`
   justify-content: center;
   z-index: 2;
   color: ${themeGet('colors.white')};
-  margin-top: 18%;
+  margin-top: 20%;
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
     max-width: 100%;
     padding: 10px;
-    margin-top: 54%;
+    margin-top: 66%;
   }
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     max-width: 70%;
@@ -59,16 +59,15 @@ const ButtonContainer = styled.div`
   justify-content: center;
   z-index: 2;
   color: ${themeGet('colors.white')};
+  padding: 10px;
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
     max-width: 100%;
-    padding: 10px;
     margin-bottom: 10px;
   }
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     max-width: 100%;
     margin-top: ${themeGet('space.base')};
-    padding: 20px;
     flex-direction: row;
   }
 
@@ -94,6 +93,11 @@ const Button = styled.button`
 
   &:disabled {
     opacity: 0.5;
+  }
+
+  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+    padding-left: ${themeGet('space.base')};
+    padding-right: ${themeGet('space.base')};
   }
 
   border-radius: 100px;
@@ -135,7 +139,7 @@ const Summary = styled.h2`
   text-align: center;
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     max-width: 480px;
   }
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {

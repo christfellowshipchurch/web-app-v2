@@ -40,13 +40,18 @@ const HeroButtons = ({ actions, ...props }) => {
           {action.icon && <Icon name={action.icon} size="32" mr="base" />}
           <Box>
             {action.subtitle && (
-              <Box fontSize="11px" py="0" textAlign="left">
+              <Box
+                fontSize={{ _: '10px', md: '12px' }}
+                fontWeight="bold"
+                py="0"
+                textAlign="left"
+              >
                 {action.subtitle}
               </Box>
             )}
             {action.title && (
               <Box
-                fontSize="20px"
+                fontSize={{ _: '14px', md: '20px' }}
                 py="xs"
                 px="b"
                 textAlign="left"
