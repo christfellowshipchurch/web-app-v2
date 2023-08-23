@@ -66,6 +66,25 @@ function Nav(props = {}) {
         </Box>
       </Box>
 
+      {/* SignIn Icon*/}
+      {!currentBreakpoint.isSmall && (
+        <Box cursor="pointer" textDecoration="none" onClick={handleAuthClick}>
+          <Box
+            display="flex"
+            border="2px solid white"
+            justifyContent="center"
+            borderRadius="50%"
+            size="36px"
+          >
+            <Icon
+              name="user"
+              size={20}
+              color={props?.transparentMode ? 'white' : 'fg'}
+            />
+          </Box>
+        </Box>
+      )}
+
       <ClientSideComponent>
         {authenticated && (
           <CurrentUserProvider
