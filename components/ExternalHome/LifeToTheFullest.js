@@ -32,7 +32,7 @@ const LifeToTheFullest = () => {
     <Box
       mx="auto"
       p="base"
-      pt="l"
+      pt="0"
       maxWidth={1200}
       display="flex"
       flexDirection={{ _: 'column', md: 'row' }}

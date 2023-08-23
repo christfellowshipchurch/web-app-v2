@@ -40,8 +40,8 @@ export default function ExternalLandingPage(props = {}) {
           pb="l"
           mx="auto"
           style={{
-            backgroundImage: 'url(/background-dots.png)',
-            backgroundPosition: '-20px -18px',
+            backgroundImage: 'url(/background-dots-orange.png)',
+            backgroundPosition: '10px 0px',
             backgroundRepeat: 'no-repeat',
           }}
         >
