@@ -117,6 +117,62 @@ const Button = styled.button`
   ${system}
 `;
 
+const ButtonSubtitle = styled.p`
+  font-size: 12px;
+  font-weight: bold;
+  padding-top: 0;
+  text-align: left;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+    font-size: 10px;
+  }
+
+  ${system}
+`;
+
+const ButtonTitle = styled.p`
+  font-size: 20px;
+  font-weight: normal;
+  text-align: left;
+  padding-top: ${themeGet('space.xs')};
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+    font-size: 14px;
+  }
+
+  ${system}
+`;
+
+const ButtonDescription = styled.p`
+  font-size: 13px;
+  font-weight: normal;
+  text-align: left;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  color: neutrals.100;
+  padding-top: ${themeGet('space.xs')};
+  padding-bottom: 0;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  ${system}
+`;
+
 const Title = styled.h1`
   text-align: center;
 
@@ -181,5 +237,8 @@ HeroLanding.Title = Title;
 HeroLanding.ButtonContainer = ButtonContainer;
 HeroLanding.Button = Button;
 HeroLanding.Summary = Summary;
+HeroLanding.ButtonSubtitle = ButtonSubtitle;
+HeroLanding.ButtonTitle = ButtonTitle;
+HeroLanding.ButtonDescription = ButtonDescription;
 
 export default HeroLanding;

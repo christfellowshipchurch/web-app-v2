@@ -40,36 +40,15 @@ const HeroButtons = ({ actions, ...props }) => {
           {action.icon && <Icon name={action.icon} size="32" mr="base" />}
           <Box>
             {action.subtitle && (
-              <Box
-                fontSize={{ _: '10px', md: '12px' }}
-                fontWeight="bold"
-                py="0"
-                textAlign="left"
-              >
-                {action.subtitle}
-              </Box>
+              <Styled.ButtonSubtitle>{action.subtitle}</Styled.ButtonSubtitle>
             )}
             {action.title && (
-              <Box
-                fontSize={{ _: '14px', md: '20px' }}
-                py="xs"
-                px="b"
-                textAlign="left"
-                fontWeight="normal"
-              >
-                {action.title}
-              </Box>
+              <Styled.ButtonTitle>{action.title}</Styled.ButtonTitle>
             )}
             {action.description && !currentBreakpoint.isSmall ? (
-              <Box
-                color="neutrals.100"
-                fontSize="13px"
-                py="0"
-                textAlign="left"
-                fontWeight="normal"
-              >
+              <Styled.ButtonDescription>
                 {action.description}
-              </Box>
+              </Styled.ButtonDescription>
             ) : null}
           </Box>
         </CustomLink>

@@ -5,7 +5,7 @@ import { htmlToReactParser } from 'utils';
 
 const LifeToTheFullest = () => {
   const data = [
-    // Each is a column
+    // Each element is a column
     {
       title: 'Know God personally',
       subtitle:

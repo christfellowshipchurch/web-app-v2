@@ -9,7 +9,12 @@ import { showModal, useModalDispatch } from 'providers/ModalProvider';
 function Footer(props = {}) {
   return (
     <Styled {...props}>
-      <Box bg="screen" color="white" p={{ _: 'base', md: 'l', lg: 'xl' }}>
+      <Box
+        bg="screen"
+        color="white"
+        p={{ _: 'base', md: 'l', lg: 'xl' }}
+        fontSize={{ md: '12px', lg: '14px' }}
+      >
         <Cell>
           <Contact
             ml={{ _: 'base', md: 0 }}
