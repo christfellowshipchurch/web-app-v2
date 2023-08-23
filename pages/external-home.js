@@ -8,16 +8,31 @@ import {
   ThriveInEveryArea,
 } from 'components/ExternalHome';
 import { Box, ContentBlock } from 'ui-kit';
-import { useExternalHomeActions } from 'hooks';
+import { useCurrentBreakpoint, useExternalHomeActions } from 'hooks';
 
 const BASE_MAX_WIDTH = 1200;
 const BASE_VERITCAL_PADDING = 'xl';
+
+const webStyle = {
+  backgroundImage:
+    'url(/external-landing/external-home-wedge-web.png), url(/external-landing/external-home-dots-web.png), url(/external-landing/external-home-corner-web.png)',
+  backgroundPosition: 'top right, bottom right, bottom left',
+  backgroundRepeat: 'no-repeat',
+};
+
+const mobileStyle = {
+  backgroundImage:
+    'url(/external-landing/external-home-wedge-mobile.png), url(/external-landing/external-home-dots-mobile.png), url(/external-landing/external-home-corner-mobile.png)',
+  backgroundPosition: 'top right, bottom right, bottom left',
+  backgroundRepeat: 'no-repeat',
+};
 
 export default function ExternalLandingPage(props = {}) {
   /**
    * todo : If we can, I would like to see if we can pull in the 'actions' prop from getStaticProps 🤔
    */
   const { actions } = useExternalHomeActions();
+  const currentBreakpoint = useCurrentBreakpoint();
 
   return (
     <HeroLanding
@@ -49,24 +64,21 @@ export default function ExternalLandingPage(props = {}) {
         </Box>
 
         {/* Life to the Fullest Blocks */}
-        <Box bg="white" mt={{ _: 0, md: 's' }} mb="l">
+        <Box bg="white" mt={{ _: 0, md: 's' }}>
           <LifeToTheFullest />
         </Box>
       </Box>
 
       {/* It all starts here. */}
       <Box
-        mt="base"
         id="start-here"
-        bg="primary"
-        px="base"
-        py={BASE_VERITCAL_PADDING}
-        style={{
-          backgroundImage:
-            'url(/start-here-corners.png), url(/start-here-dots.png), url(start-here-wedge.png)',
-          backgroundPosition: 'right, -100px -62px, bottom left',
-          backgroundRepeat: 'no-repeat',
-        }}
+        px={{ _: 'xs', md: 'xl' }}
+        py={{ _: 'xxs', md: 'xxs' }}
+        style={
+          currentBreakpoint.isLarge || currentBreakpoint.isXLarge
+            ? webStyle
+            : mobileStyle
+        }
       >
         <StartHere maxWidth={BASE_MAX_WIDTH} />
       </Box>
