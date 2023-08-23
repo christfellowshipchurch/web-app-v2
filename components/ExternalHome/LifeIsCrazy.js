@@ -31,10 +31,11 @@ const LifeIsCrazy = () => (
       </Box>
       .
     </Box>
-    <Box as="h2" mv="s" fontWeight="normal">
-      But it doesn’t have to be. We want to help you live life to the fullest.
+    <Box as="h3" mv="s" fontWeight="normal" width="54%" mt="base">
+      But it doesn’t have to be. At Christ Fellowship Church we want to help you
+      live life to the fullest.
     </Box>
-    <Box as="h2" mb={0} fontWeight="normal">
+    <Box as="h3" mb={0} fontWeight="normal">
       <b>And here’s how.</b>
     </Box>
   </>

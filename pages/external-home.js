@@ -28,36 +28,30 @@ export default function ExternalLandingPage(props = {}) {
       actions={actions}
     >
       {/* Text Carousel */}
-      <Box
-        bg="neutral-200"
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        textAlign="center"
-        px="base"
-        py="xxl"
-        mx="auto"
-        style={{
-          backgroundImage: 'url(/background-dots.png)',
-          backgroundPosition: '-100px -18px',
-          backgroundRepeat: 'no-repeat',
-        }}
-      >
-        <LifeIsCrazy />
-      </Box>
+      <Box bg="white">
+        <Box
+          bg="white"
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          textAlign="center"
+          px="base"
+          pt="xxl"
+          pb="l"
+          mx="auto"
+          style={{
+            backgroundImage: 'url(/background-dots.png)',
+            backgroundPosition: '-20px -18px',
+            backgroundRepeat: 'no-repeat',
+          }}
+        >
+          <LifeIsCrazy />
+        </Box>
 
-      {/* Life to the Fullest Blocks */}
-      <Box
-        style={{
-          backgroundImage: 'url(/background-blob-white.png)',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
-        }}
-        mt={{ _: 0, md: 'l' }}
-        mb="l"
-      >
-        <LifeToTheFullest />
+        {/* Life to the Fullest Blocks */}
+        <Box bg="white" mt={{ _: 0, md: 's' }} mb="l">
+          <LifeToTheFullest />
+        </Box>
       </Box>
 
       {/* It all starts here. */}
