@@ -8,7 +8,7 @@ import {
   ThriveInEveryArea,
 } from 'components/ExternalHome';
 import { Box, ContentBlock } from 'ui-kit';
-import { useCurrentBreakpoint, useExternalHomeActions } from 'hooks';
+import { useExternalHomeActions, useCurrentBreakpoint } from 'hooks';
 
 const BASE_MAX_WIDTH = 1200;
 const BASE_VERITCAL_PADDING = 'xl';
@@ -55,7 +55,9 @@ export default function ExternalLandingPage(props = {}) {
           pb="l"
           mx="auto"
           style={{
-            backgroundImage: 'url(/background-dots-orange.png)',
+            backgroundImage: currentBreakpoint.isSmall
+              ? ''
+              : 'url(/background-dots-orange.png)',
             backgroundPosition: '10px 0px',
             backgroundRepeat: 'no-repeat',
           }}
