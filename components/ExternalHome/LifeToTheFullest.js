@@ -30,9 +30,10 @@ const LifeToTheFullest = () => {
 
   return (
     <Box
-      mx="auto"
+      mx={{ _: '0', md: 'auto' }}
       p="base"
       pt="0"
+      pb="l"
       maxWidth={1200}
       display="flex"
       flexDirection={{ _: 'column', md: 'row' }}
@@ -44,7 +45,7 @@ const LifeToTheFullest = () => {
           display="flex"
           flexDirection="column"
           alignItems="center"
-          mx="l"
+          mx={{ _: '0', md: 'l' }}
           mt={{ _: '0', md: 'l' }}
           mb={{ _: '0', md: 'xxl' }}
         >
@@ -55,7 +56,7 @@ const LifeToTheFullest = () => {
             color="black"
             fontWeight="normal"
             mt="l"
-            width="460px"
+            gridGap={{ _: '0.5em 0.5em', md: '1em 1em' }}
           >
             <Icon name={icon} color="tertiary" size="48" alignSelf="normal" />
             <Box maxWidth="360px">
@@ -65,13 +66,9 @@ const LifeToTheFullest = () => {
                   _: '24px',
                   md: '28px',
                 }}
-                mb="base"
+                mb={{ _: 'xs', md: 'base' }}
               >{`${title}`}</Box>
-              <Box
-                as="p"
-                fontSize={{ _: '15px', md: '16px' }}
-                color="neutrals.800"
-              >
+              <Box as="p" fontSize="16px" color="neutrals.800">
                 {htmlToReactParser.parse(subtitle)}
               </Box>
             </Box>
@@ -84,7 +81,7 @@ const LifeToTheFullest = () => {
             color="black"
             fontWeight="normal"
             mt="l"
-            width="460px"
+            gridGap={{ _: '0.5em 0.5em', md: '1em 1em' }}
           >
             <Icon name={icon2} color="tertiary" size="48" alignSelf="normal" />
             <Box maxWidth="360px">
@@ -94,13 +91,9 @@ const LifeToTheFullest = () => {
                   _: '24px',
                   md: '28px',
                 }}
-                mb="base"
+                mb={{ _: 'xs', md: 'base' }}
               >{`${title2}`}</Box>
-              <Box
-                as="p"
-                fontSize={{ _: '15px', md: '16px' }}
-                color="neutrals.800"
-              >
+              <Box as="p" fontSize="16px" color="neutrals.800">
                 {htmlToReactParser.parse(subtitle2)}
               </Box>
             </Box>

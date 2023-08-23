@@ -8,7 +8,7 @@ import {
   ThriveInEveryArea,
 } from 'components/ExternalHome';
 import { Box, ContentBlock } from 'ui-kit';
-import { useExternalHomeActions } from 'hooks';
+import { useExternalHomeActions, useCurrentBreakpoint } from 'hooks';
 
 const BASE_MAX_WIDTH = 1200;
 const BASE_VERITCAL_PADDING = 'xl';
@@ -18,6 +18,7 @@ export default function ExternalLandingPage(props = {}) {
    * todo : If we can, I would like to see if we can pull in the 'actions' prop from getStaticProps 🤔
    */
   const { actions } = useExternalHomeActions();
+  const currentBreakpoint = useCurrentBreakpoint();
 
   return (
     <HeroLanding
@@ -40,7 +41,9 @@ export default function ExternalLandingPage(props = {}) {
           pb="l"
           mx="auto"
           style={{
-            backgroundImage: 'url(/background-dots-orange.png)',
+            backgroundImage: currentBreakpoint.isSmall
+              ? ''
+              : 'url(/background-dots-orange.png)',
             backgroundPosition: '10px 0px',
             backgroundRepeat: 'no-repeat',
           }}
