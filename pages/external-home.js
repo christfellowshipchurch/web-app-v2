@@ -74,7 +74,7 @@ export default function ExternalLandingPage(props = {}) {
       {/* It all starts here. */}
       <Box
         id="start-here"
-        px={{ _: 'xs', md: 'xl' }}
+        px={{ _: 'xs', md: 'xs', lg: 'xl' }}
         py={{ _: 'xxs', md: 'xxs' }}
         style={
           currentBreakpoint.isLarge || currentBreakpoint.isXLarge

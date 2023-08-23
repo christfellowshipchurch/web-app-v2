@@ -25,20 +25,20 @@ const buttonData = [
 const StartHere = () => {
   return (
     <Box
-      px={{ _: 'xs', md: 'xxl' }}
-      py={{ _: 'xs', md: 'xl' }}
+      px={{ _: 'xs', md: 's', lg: 'xxl' }}
+      py={{ _: 'xs', md: 'xxs', lg: 'xl' }}
       pb={{ _: 'xl' }}
     >
       <Box
         display="grid"
         gridTemplateColumns={{ _: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)' }}
-        gridColumnGap="xxl"
+        gridColumnGap="xs"
         textAlign="center"
         px={{ _: 'xs', md: 'xxl' }}
         py={{ _: 'l', md: 'base' }}
       >
         {buttonData.map(({ title, subtitle, image, cta, url }, i) => (
-          <Box p="l">
+          <Box p={{ _: 'xs', md: 'xs', lg: 'l' }}>
             <Image source={image} />
             <Box>
               <Box as="h2" mb="s">
