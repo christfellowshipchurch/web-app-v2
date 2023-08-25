@@ -66,8 +66,8 @@ function Nav(props = {}) {
         </Box>
       </Box>
 
-      {/* SignIn Icon*/}
-      {!currentBreakpoint.isSmall && (
+      {/* SignIn Icon External Home Page*/}
+      {!currentBreakpoint.isSmall && !authenticated && (
         <Box cursor="pointer" textDecoration="none" onClick={handleAuthClick}>
           <Box
             display="flex"

@@ -51,13 +51,14 @@ export default function ExternalLandingPage(props = {}) {
           alignItems="center"
           textAlign="center"
           px="base"
-          pt="xxl"
+          pt={{ _: 'xl', md: 'xxl' }}
           pb="l"
           mx="auto"
           style={{
-            backgroundImage: currentBreakpoint.isSmall
-              ? ''
-              : 'url(/background-dots-orange.png)',
+            backgroundImage:
+              !currentBreakpoint.isSmall && !currentBreakpoint.isMedium
+                ? 'url(/background-dots-orange.png)'
+                : '',
             backgroundPosition: '10px 0px',
             backgroundRepeat: 'no-repeat',
           }}
