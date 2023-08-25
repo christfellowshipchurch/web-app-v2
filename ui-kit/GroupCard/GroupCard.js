@@ -7,19 +7,11 @@ import get from 'lodash/get';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
 import { CustomLink } from 'components';
-import {
-  Avatar,
-  Box,
-  Button,
-  Icon,
-  SquareAvatar,
-  systemPropTypes,
-} from 'ui-kit';
+import { Box, Button, Icon, SquareAvatar, systemPropTypes } from 'ui-kit';
 
 import Styled from './GroupCard.styles';
 import { themeGet } from '@styled-system/theme-get';
 import camelCase from 'lodash.camelcase';
-import { getUrlFromRelatedNode } from 'utils';
 
 const GroupCard = (props = {}) => {
   const modalDispatch = useModalDispatch();
@@ -158,7 +150,6 @@ const GroupCard = (props = {}) => {
                   height="100%"
                   name="Group Member"
                   src={n?.photo?.uri}
-                  name="Group Member"
                 />
                 {avatarsDiff > 0 && props.avatars.length === i + 1 && (
                   <Styled.AvatarCount>{`+${avatarsDiff}`}</Styled.AvatarCount>
