@@ -16,7 +16,7 @@ import Styled from './Nav.styles';
 import { useCurrentBreakpoint } from 'hooks';
 
 function Nav(props = {}) {
-  const [{ authenticated, authDispatch }] = useAuth();
+  const [{ authenticated }, authDispatch] = useAuth();
   const currentBreakpoint = useCurrentBreakpoint();
   const modalDispatch = useModalDispatch();
   const router = useRouter();
