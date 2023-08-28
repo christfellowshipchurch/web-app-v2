@@ -3,6 +3,7 @@ import useAddGroupMember from './useAddGroupMember';
 import useAuthIdentity from './useAuthIdentity';
 import useAuthQuery from './useAuthQuery';
 import useAuthenticateCredentials from './useAuthenticateCredentials';
+import useAuthenticateRockPersonId from './useAuthenticateRockPersonId';
 import useCampus from './useCampus';
 import useCampuses from './useCampuses';
 import useCheckIn from './useCheckIn';
@@ -76,6 +77,7 @@ export {
   useAuthIdentity,
   useAuthQuery,
   useAuthenticateCredentials,
+  useAuthenticateRockPersonId,
   useCampus,
   useCampuses,
   useCheckIn,
