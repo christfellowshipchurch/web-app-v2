@@ -119,7 +119,7 @@ export default function ExternalLandingPage(props = {}) {
       </Box>
 
       {/* Just for You */}
-      <Box px="base" py={BASE_VERITCAL_PADDING} bg="neutrals.100">
+      <Box px="base" py={BASE_VERITCAL_PADDING} bg="white">
         <Box mx="auto" maxWidth={1200}>
           <CollectionPreview
             horizontalScroll
@@ -130,16 +130,7 @@ export default function ExternalLandingPage(props = {}) {
       </Box>
 
       {/* Do more than just get by.*/}
-      <Box
-        px="base"
-        pt={BASE_VERITCAL_PADDING}
-        bg="white"
-        style={{
-          backgroundImage: 'url(/blue-dots.png)',
-          backgroundPosition: '100% 119%',
-          backgroundRepeat: 'no-repeat',
-        }}
-      >
+      <Box px="base" pt={BASE_VERITCAL_PADDING} pb="l" bg="neutrals.100">
         <ThriveInEveryArea maxWidth={BASE_MAX_WIDTH} />
       </Box>
 
