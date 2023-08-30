@@ -60,11 +60,11 @@ const ThriveInEveryArea = ({ maxWidth }) => {
             <Image
               ml="0"
               mr="s"
-              mt={{ _: '1.4rem', lg: '22px' }}
+              mt={{ _: '1.4rem', lg: '25px' }}
               width="auto"
               aspectRatio="auto"
-              height="260px"
-              source="external-landing/thrive-line-dots.png"
+              height={{ _: '255px', md: '280px' }}
+              source="external-landing/thrive-line-dots5x.png"
             />
             <HtmlRenderer htmlContent={content} />
           </Box>
