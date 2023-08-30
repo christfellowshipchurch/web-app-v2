@@ -34,54 +34,24 @@ const ThriveInEveryArea = ({ maxWidth }) => {
       mx="auto"
     >
       <Box
-        display={{ _: 'block', lg: 'flex' }}
-        justifyContent={
-          !currentBreakpoint.isSmall && !currentBreakpoint.isMedium && 'end'
-        }
+        display="flex"
         flexDirection={{ _: 'column', lg: 'row' }}
-        heigh={
-          currentBreakpoint.isSmall || (currentBreakpoint.isMedium && 'auto')
-        }
+        position="relative"
       >
-        <Box
-          mb={{ _: '-240px', md: '200px', lg: '0px' }}
-          position={{ md: 'relative', lg: 'relative' }}
-        >
-          <Image
-            position={{ _: 'relative', lg: 'absolute' }}
-            left={{ _: '-45px', lg: '0px' }}
-            top={'0px'}
-            source="external-landing/thrive-rectangle.png"
-            width={{ _: '68%', lg: '30%' }}
-            height={{ _: '230px', md: '500px', lg: '54%' }}
-          />
-          <Image
-            position={{ _: 'relative', md: 'absolute', lg: 'absolute' }}
-            left={{ _: '-5px', md: '16%', lg: '30px' }}
-            top={{ _: '-200px', md: '40px', lg: '28px' }}
-            source="external-landing/pastors-image.png"
-            width={{ _: '78%', lg: '32%' }}
-            height={{ _: '300px', md: '600px', lg: '72%' }}
-            zIndex="2"
-          />
-          <Image
-            position={{ _: 'relative', md: 'absolute', lg: 'absolute' }}
-            left={{ _: '26%', md: '79%', lg: '23%' }}
-            top={{ _: '-280px', md: '112%', lg: '63%' }}
-            source="external-landing/dots-pastors.png"
-            borderRadius="0"
-            width="auto"
-          />
-        </Box>
-        <Box mx={{ _: 'auto', lg: '0px' }}>
-          <Box as="h1" mb="base" mt={{ _: '30px', lg: '0px' }}>
+        <Image
+          source={'external-landing/thrive-web.png'}
+          width={{ _: '460px', md: '560px' }}
+          height={{ _: '460px', md: '560px' }}
+          mb={{ _: '-40px', lg: '0px' }}
+        />
+        <Box mx={{ _: 'auto', lg: '0px' }} mt={{ _: '0', lg: 'l' }}>
+          <Box as="h1" mb="base">
             Thrive in every area of your life.
           </Box>
           <Box
             as="p"
             fontSize={{ _: '16px', md: '18px' }}
             maxWidth={{ _: '320px', md: '490px' }}
-            mb={{ _: '20px', lg: '0px' }}
           >
             For the past 35 years, we’ve helped thousands of people just like
             you to...
@@ -111,10 +81,10 @@ const ThriveInEveryArea = ({ maxWidth }) => {
             href={getUrlFromRelatedNode(actions.relatedNode)}
             Component={Button}
             variant={'primary'}
-            mx="auto"
             mt="base"
-            width={currentBreakpoint.isSmall && '140px'}
-            textTransform="capitalize!important"
+            mx={{ _: 'auto', md: '0px' }}
+            maxWidth={{ _: 'fit-content', md: 'auto' }}
+            display={{ _: 'flex', md: 'block' }}
             target={actions.newTab && '_blank'}
             {...actions}
           >

@@ -130,7 +130,12 @@ export default function ExternalLandingPage(props = {}) {
       </Box>
 
       {/* Do more than just get by.*/}
-      <Box px="base" pt={BASE_VERITCAL_PADDING} pb="l" bg="neutrals.100">
+      <Box
+        px="base"
+        pb={{ BASE_VERITCAL_PADDING }}
+        bg="neutrals.100"
+        pt={{ lg: BASE_VERITCAL_PADDING }}
+      >
         <ThriveInEveryArea maxWidth={BASE_MAX_WIDTH} />
       </Box>
 
