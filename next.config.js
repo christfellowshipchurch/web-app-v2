@@ -38,7 +38,7 @@ module.exports = {
       { source: '/foster', destination: '/fosterandadoptivefamilynight', permanent: true },
       { source: '/knot', destination: '/theknotmarriageconference', permanent: true },
       { source: '/wednesday', destination: '/wednesdaysatlh', permanent: true },
-      { source: '/partner', destination: '/kaylawhittakerbulgaria', permanent: true },
+      { source: '/partner', destination: '/therobbfamily', permanent: true },
       { source: '/feedback', destination: 'https://longhollow.wufoo.com/forms/vision-plan-strategy-feedback/', permanent: true },
       { source: '/identity', destination: 'https://longhollow.com/resources-about-sexuality-gender-and-identity', permanent: true },
       { source: '/retreat', destination: 'https://www.eventcreate.com/e/longhollowstaffretreat', permanent: true },
