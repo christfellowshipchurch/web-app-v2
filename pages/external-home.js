@@ -8,31 +8,17 @@ import {
   ThriveInEveryArea,
 } from 'components/ExternalHome';
 import { Box, ContentBlock } from 'ui-kit';
-import { useExternalHomeActions, useCurrentBreakpoint } from 'hooks';
+import { useExternalHomeActions } from 'hooks';
+import { churchForEveryGeneration } from 'lib/externalHomeData';
 
 const BASE_MAX_WIDTH = 1200;
 const BASE_VERITCAL_PADDING = 'xl';
-
-const webStyle = {
-  backgroundImage:
-    'url(/external-landing/external-home-wedge-web.png), url(/external-landing/external-home-dots-web.png), url(/external-landing/external-home-corner-web.png)',
-  backgroundPosition: 'top right, bottom right, bottom left',
-  backgroundRepeat: 'no-repeat',
-};
-
-const mobileStyle = {
-  backgroundImage:
-    'url(/external-landing/external-home-wedge-mobile.png), url(/external-landing/external-home-dots-mobile.png), url(/external-landing/external-home-corner-mobile.png)',
-  backgroundPosition: 'top right, bottom right, bottom left',
-  backgroundRepeat: 'no-repeat',
-};
 
 export default function ExternalLandingPage(props = {}) {
   /**
    * todo : If we can, I would like to see if we can pull in the 'actions' prop from getStaticProps 🤔
    */
   const { actions } = useExternalHomeActions();
-  const currentBreakpoint = useCurrentBreakpoint();
 
   return (
     <HeroLanding
@@ -44,47 +30,16 @@ export default function ExternalLandingPage(props = {}) {
     >
       {/* Text Carousel */}
       <Box bg="white">
-        <Box
-          bg="white"
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          textAlign="center"
-          px="base"
-          pt={{ _: 'xl', md: 'xxl' }}
-          pb="l"
-          mx="auto"
-          style={{
-            backgroundImage:
-              !currentBreakpoint.isSmall && !currentBreakpoint.isMedium
-                ? 'url(/background-dots-orange.png)'
-                : '',
-            backgroundPosition: '10px 0px',
-            backgroundRepeat: 'no-repeat',
-          }}
-        >
-          <LifeIsCrazy />
-        </Box>
+        <LifeIsCrazy />
 
         {/* Life to the Fullest Blocks */}
-        <Box bg="white" mt={{ _: 0, md: 's' }}>
+        <Box mt={{ _: 0, md: 's' }}>
           <LifeToTheFullest />
         </Box>
       </Box>
 
       {/* It all starts here. */}
-      <Box
-        id="start-here"
-        px={{ _: 'xs', md: 'xs', lg: 'xl' }}
-        py={{ _: 'xxs', md: 'xxs' }}
-        style={
-          currentBreakpoint.isLarge || currentBreakpoint.isXLarge
-            ? webStyle
-            : mobileStyle
-        }
-      >
-        <StartHere maxWidth={BASE_MAX_WIDTH} />
-      </Box>
+      <StartHere maxWidth={BASE_MAX_WIDTH} />
 
       {/* Get There First */}
       <Box id="get-there-first" px="base" py={{ _: 'xxl', md: 150 }} bg="white">
@@ -101,8 +56,7 @@ export default function ExternalLandingPage(props = {}) {
           <CollectionPreview
             hideTitle
             hideButton
-            // todo: Create a new collection in Rock for this content
-            contentId="UniversalContentItem:d29e24e1873b0c4f4f645218ca3338ea"
+            contentOverride={churchForEveryGeneration}
           />
         </Box>
       </Box>
@@ -139,6 +93,7 @@ export default function ExternalLandingPage(props = {}) {
         <ThriveInEveryArea maxWidth={BASE_MAX_WIDTH} />
       </Box>
 
+      {/* Never miss a thing. */}
       <Box px="base" py={BASE_VERITCAL_PADDING} bg="white">
         <Box mt={{ _: '-0.5rem', md: 'base' }} mx="auto" maxWidth={1200}>
           <ContentBlock

@@ -3,32 +3,7 @@ import React from 'react';
 import { Box, Icon } from 'ui-kit';
 import { htmlToReactParser } from 'utils';
 
-const data = [
-  {
-    title: 'Know God personally',
-    subtitle:
-      'You can know Jesus on a personal level. See how a relationship with Him changes your life for the better.',
-    icon: 'heart',
-  },
-  {
-    title: 'Discover your purpose',
-    subtitle:
-      "You're here for a reason. Find out who God created <i>you</i> to be and learn how to live life on purpose.",
-    icon: 'search',
-  },
-  {
-    title: 'Grow in your relationships',
-    subtitle:
-      'You weren’t meant to do life alone. Find friends and build stronger relationships with God and others.',
-    icon: 'handshake',
-  },
-  {
-    title: 'Impact your world',
-    subtitle:
-      'You can make a difference. Learn how to impact people in your sphere of influence, your community, and on the other side of the world.',
-    icon: 'earth',
-  },
-];
+import { lifeToTheFullest } from 'lib/externalHomeData';
 
 const LifeToTheFullest = () => (
   <Box
@@ -40,7 +15,7 @@ const LifeToTheFullest = () => (
     justifyContent="center"
     gridTemplateColumns={{ _: 'auto', md: 'auto auto' }}
   >
-    {data.map(({ title, subtitle, icon }, i) => (
+    {lifeToTheFullest.map(({ title, subtitle, icon }, i) => (
       <Box
         key={i}
         display="flex"

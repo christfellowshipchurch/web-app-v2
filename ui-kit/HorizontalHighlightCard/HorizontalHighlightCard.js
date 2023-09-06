@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { textTrimmer } from 'utils';
 import { systemPropTypes } from 'ui-kit';
 import Styled from 'ui-kit/DefaultCard';
 
 const HorizontalHighlightCard = (props = {}) => {
   let height = 0;
-  let trimmedDescription = false;
 
   // specifies card height based on type
   if (!!props.type) {

@@ -7,7 +7,25 @@ import { useCurrentBreakpoint } from 'hooks';
 const LifeIsCrazy = () => {
   const currentBreakpoint = useCurrentBreakpoint();
   return (
-    <>
+    <Box
+      bg="white"
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      textAlign="center"
+      px="base"
+      pt={{ _: 'xl', md: 'xxl' }}
+      pb="l"
+      mx="auto"
+      style={{
+        backgroundImage:
+          !currentBreakpoint.isSmall && !currentBreakpoint.isMedium
+            ? 'url(/background-dots-orange.png)'
+            : '',
+        backgroundPosition: '10px 0px',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
       <Box
         as="h1"
         mt="l"
@@ -75,7 +93,7 @@ const LifeIsCrazy = () => {
       <Box as="h3" mb={0} fontWeight="normal">
         <b>And here’s how.</b>
       </Box>
-    </>
+    </Box>
   );
 };
 

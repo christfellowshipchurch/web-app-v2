@@ -25,12 +25,18 @@ const CollectionPreview = ({
   titleOverride,
   size,
   horizontalScroll,
+  contentOverride,
 }) => {
+  let contentItems = [];
   const router = useRouter();
-  const { categoryTitle, contentItems, loading } =
-    useDiscoverFilterCategoriesPreview({
-      variables: { id: contentId, first: 3 },
-    });
+  const {
+    categoryTitle,
+    contentItems: queriedContent,
+    loading,
+  } = useDiscoverFilterCategoriesPreview({
+    variables: { id: contentId, first: 3 },
+  });
+  contentItems = queriedContent;
 
   const handleSeeMore = event => {
     const [id] = contentId.split(':');
@@ -38,6 +44,10 @@ const CollectionPreview = ({
     event.preventDefault();
     router.push(`/discover/${slugify(categoryTitle)}?id=${slugify(id)}`);
   };
+
+  if (contentOverride) {
+    contentItems = contentOverride;
+  }
 
   return (
     <Box>
