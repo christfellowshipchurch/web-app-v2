@@ -26,7 +26,6 @@ import {
   update,
   resetValues,
 } from 'providers/GroupFiltersProvider';
-import { useModalState } from 'providers/ModalProvider';
 import { GroupsProvider } from 'providers';
 import { useSearchGroups, useForm, useCurrentBreakpoint } from 'hooks';
 // eslint-disable-next-line no-unused-vars
@@ -44,8 +43,6 @@ export default function CommunitySearch() {
     if (!flags.GROUP_FINDER) router.push('/');
   }, [router]);
 
-  const modalState = useModalState();
-  const [modalClosed, setModalClosed] = useState(false);
   const [cursor, setCursor] = useState({
     page: 1,
     current: null,
@@ -111,11 +108,7 @@ export default function CommunitySearch() {
   useEffect(() => {
     // Don't execute search if state hasn't been hydrated OR a modal is open
     // And if modal was just closed?
-    if (
-      !filtersState.hydrated ||
-      modalState.activeModal.component ||
-      modalClosed
-    ) {
+    if (!filtersState.hydrated) {
       return;
     }
 
@@ -143,16 +136,13 @@ export default function CommunitySearch() {
     searchGroups,
     setValues,
     router,
-    modalState.activeModal.component,
-    modalClosed,
   ]);
 
   useEffect(() => {
-    if (!filtersState.hydrated && modalState.activeModal.component) {
+    if (!filtersState.hydrated) {
       window.scrollTo(0, 0);
     }
-    setModalClosed(true);
-  }, [filtersState.hydrated, modalState.activeModal.component, modalClosed]);
+  }, [filtersState.hydrated]);
 
   const handleClick = event => {
     filtersDispatch(update({ text: [values.text] }));
