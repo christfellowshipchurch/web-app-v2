@@ -24,6 +24,7 @@
     "@storybook/addon-controls": "^7.0.18",
     "@storybook/cli": "^7.0.18",
     "@styled-system/theme-get": "^5.1.2",
+    "@typeform/embed-react": "^2.30.0",
     "amplitude-js": "^8.1.0",
     "apollo3-cache-persist": "^0.14.1",
     "color": "^4.2.3",
