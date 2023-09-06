@@ -32,9 +32,9 @@ const StartHere = () => {
         gridTemplateColumns={{ _: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)' }}
         gridColumnGap="xs"
         textAlign="center"
-        maxWidth="900px"
-        mx={{ l: 'auto' }}
-        px={{ _: 'xs', md: 'xxl' }}
+        maxWidth="1080px"
+        mx={{ lg: 'auto' }}
+        px={{ _: 'xs', md: 's' }}
         py={{ _: 'l', md: 'base' }}
       >
         {buttonData.map(({ title, subtitle, image, cta, url }, i) => (
