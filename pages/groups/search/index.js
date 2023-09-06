@@ -45,6 +45,7 @@ export default function CommunitySearch() {
   }, [router]);
 
   const modalState = useModalState();
+  const [modalClosed, setModalClosed] = useState(false);
   const [cursor, setCursor] = useState({
     page: 1,
     current: null,
@@ -104,12 +105,17 @@ export default function CommunitySearch() {
         after: cursor.current,
       },
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cursor]);
 
   useEffect(() => {
     // Don't execute search if state hasn't been hydrated OR a modal is open
-    if (!filtersState.hydrated || modalState.activeModal.component) {
+    // And if modal was just closed?
+    if (
+      !filtersState.hydrated ||
+      modalState.activeModal.component ||
+      modalClosed
+    ) {
       return;
     }
 
@@ -138,11 +144,15 @@ export default function CommunitySearch() {
     setValues,
     router,
     modalState.activeModal.component,
+    modalClosed,
   ]);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [data]);
+    if (!filtersState.hydrated && modalState.activeModal.component) {
+      window.scrollTo(0, 0);
+    }
+    setModalClosed(true);
+  }, [filtersState.hydrated, modalState.activeModal.component, modalClosed]);
 
   const handleClick = event => {
     filtersDispatch(update({ text: [values.text] }));
