@@ -23,7 +23,7 @@ const ThriveInEveryArea = ({ maxWidth }) => {
   const currentBreakpoint = useCurrentBreakpoint();
 
   const content = currentBreakpoint.isSmall
-    ? '<h3> Find people to do life with </h3><h3> Break free from the pain of their past</h3><h3> Thrive in their marriage</h3><h3> Become a better parent </h3><h3> Experience financial freedom </h3><h3> Learn how to make a difference</h3>'
+    ? '<h3 style="font-size: 16px"> Find people to do life with </h3><h3 style="font-size: 16px"> Break free from the pain of their past</h3><h3 style="font-size: 16px"> Thrive in their marriage</h3><h3 style="font-size: 16px"> Become a better parent </h3><h3 style="font-size: 16px"> Experience financial freedom </h3><h3 style="font-size: 16px"> Learn how to make a difference</h3>'
     : '<h3> Find people to do life with </h3><h3> Break free from the pain of their past</h3><h3> Thrive in their marriage</h3><h3> Become a better parent </h3><h3> Experience financial freedom </h3><h3> Learn how to make a difference</h3>';
 
   return (
@@ -45,7 +45,7 @@ const ThriveInEveryArea = ({ maxWidth }) => {
           p={{ lg: '50px' }}
           pt={{ _: 'base', md: 'l', lg: '0px' }}
         />
-        <Box mx={{ _: 'auto', lg: '0px' }} mt={{ _: '0', lg: 'l' }}>
+        <Box mx={{ _: 'auto', lg: '0px' }} mt="l">
           <Box as="h1" mb="base">
             Thrive in every area of your life.
           </Box>
@@ -64,7 +64,7 @@ const ThriveInEveryArea = ({ maxWidth }) => {
               mt={{ _: '1.4rem', lg: '25px' }}
               width="auto"
               aspectRatio="auto"
-              height={{ _: '255px', md: '280px' }}
+              height={{ _: '240px', md: '280px' }}
               source="external-landing/thrive-line-dots15x.png"
             />
             <HtmlRenderer htmlContent={content} />
