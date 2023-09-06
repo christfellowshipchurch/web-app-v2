@@ -40,8 +40,8 @@ const ThriveInEveryArea = ({ maxWidth }) => {
       >
         <Image
           source={'external-landing/thrive-web3.png'}
-          width={{ md: '560px' }}
-          height={{ md: '560px' }}
+          width={{ md: '600px' }}
+          height={{ md: '600px' }}
           p={{ lg: '50px' }}
           pt={{ _: 'base', md: 'l', lg: '0px' }}
         />
