@@ -43,6 +43,7 @@ const ThriveInEveryArea = ({ maxWidth }) => {
           width={{ md: '560px' }}
           height={{ md: '560px' }}
           p={{ lg: '50px' }}
+          pt={{ _: 'base', md: 'l', lg: '0px' }}
         />
         <Box mx={{ _: 'auto', lg: '0px' }} mt={{ _: '0', lg: 'l' }}>
           <Box as="h1" mb="base">
