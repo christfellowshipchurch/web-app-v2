@@ -527,7 +527,7 @@ const setReminderData = {
     {
       title: 'Step 2',
       description: 'Receive a friendly reminder so you don’t miss service.',
-      icon: 'bell',
+      icon: 'notification',
     },
     {
       title: 'Step 3',
