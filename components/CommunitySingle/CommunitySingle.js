@@ -114,6 +114,7 @@ function CommunitySingle(props = {}) {
   // }
 
   // Bypassing group filter modal temporarily
+
   const handleSubPreferenceSelect = subPreference => {
     filtersDispatch(update({ subPreferences: [subPreference.title] }));
     router.push({

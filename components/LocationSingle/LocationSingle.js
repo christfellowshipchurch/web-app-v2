@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { find, includes, replace, startCase } from 'lodash';
+import { find, includes, replace, startCase, camelCase } from 'lodash';
 
 import {
   CollectionPreview,
@@ -11,6 +11,7 @@ import {
   InfoCardList,
   Testimonials,
   HeroListFeature,
+  Video,
 } from 'components';
 
 import { Box, Button, Divider, Loader } from 'ui-kit';
@@ -20,6 +21,7 @@ import defaultBlockData from '../LocationBlockFeature/defaultBlockData';
 import {
   additionalInfoCampusData,
   headerData,
+  setReminderVideos,
   setReminderData,
   thisWeekFeatureId,
 } from './locationData';
@@ -92,6 +94,9 @@ function LocationSingle(props = {}) {
     }
   }
 
+  // note : import hard coded wistia ids
+  const setAReminderVideo = setReminderVideos[camelCase(campus)];
+
   return (
     <Layout
       contentMaxWidth={'100vw'}
@@ -144,6 +149,16 @@ function LocationSingle(props = {}) {
       {/* Set a Reminder */}
       {campus !== 'Cf Everywhere' && (
         <>
+          <Box
+            maxWidth={{ _: 350, md: 600, lg: 800 }}
+            boxShadow="l"
+            mt="xxl"
+            borderRadius="xl"
+            overflow="hidden"
+            mx="auto"
+          >
+            <Video wistiaId={setAReminderVideo} />
+          </Box>
           <Box width="100%" px={{ _: 'base', md: 'xl' }} pt="base">
             <InfoCardList
               {...setReminderData}
