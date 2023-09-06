@@ -39,10 +39,10 @@ const ThriveInEveryArea = ({ maxWidth }) => {
         position="relative"
       >
         <Image
-          source={'external-landing/thrive-web.png'}
-          width={{ _: '460px', md: '560px' }}
-          height={{ _: '460px', md: '560px' }}
-          mb={{ _: '-40px', lg: '0px' }}
+          source={'external-landing/thrive-web3.png'}
+          width={{ md: '560px' }}
+          height={{ md: '560px' }}
+          p={{ lg: '50px' }}
         />
         <Box mx={{ _: 'auto', lg: '0px' }} mt={{ _: '0', lg: 'l' }}>
           <Box as="h1" mb="base">
@@ -64,7 +64,7 @@ const ThriveInEveryArea = ({ maxWidth }) => {
               width="auto"
               aspectRatio="auto"
               height={{ _: '255px', md: '280px' }}
-              source="external-landing/thrive-line-dots5x.png"
+              source="external-landing/thrive-line-dots15x.png"
             />
             <HtmlRenderer htmlContent={content} />
           </Box>
