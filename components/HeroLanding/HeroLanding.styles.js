@@ -19,6 +19,7 @@ const HeroLanding = styled.div`
   justify-content: space-between;
 
   height: 100vh;
+  min-height: 736px;
   width: 100vw;
   overflow: none;
 

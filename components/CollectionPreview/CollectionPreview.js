@@ -26,6 +26,7 @@ const CollectionPreview = ({
   size,
   horizontalScroll,
   contentOverride,
+  cardProps,
 }) => {
   let contentItems = [];
   const router = useRouter();
@@ -99,6 +100,7 @@ const CollectionPreview = ({
                 scaleCard={false}
                 scaleCoverImage={true}
                 title={n?.title}
+                {...cardProps}
               />
             ))
           )}
@@ -129,6 +131,7 @@ const CollectionPreview = ({
               scaleCard={false}
               scaleCoverImage={true}
               title={n?.title}
+              {...cardProps}
             />
           ))
         )}

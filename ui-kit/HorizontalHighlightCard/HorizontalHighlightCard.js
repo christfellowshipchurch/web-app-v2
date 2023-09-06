@@ -30,14 +30,8 @@ const HorizontalHighlightCard = (props = {}) => {
       {...props}
       // Overriding the default props from DefaultCard
       // so that the component only uses the coverImage props
-      coverImageDescription={
-        props.coverImageDescription
-          ? props.coverImageDescription
-          : props.description
-      }
-      coverImageTitle={
-        props.coverImageTitle ? props.coverImageTitle : props.title
-      }
+      coverImageDescription={props.coverImageDescription || props.description}
+      coverImageTitle={props.coverImageTitle || props.title}
       description={null}
       height={{ _: '250px', md: height }}
       title={null}
