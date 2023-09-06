@@ -1,6 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
-import { themeGet } from '@styled-system/theme-get';
 import { Box, Image, Button } from 'ui-kit';
 
 const buttonData = [
@@ -34,6 +32,8 @@ const StartHere = () => {
         gridTemplateColumns={{ _: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)' }}
         gridColumnGap="xs"
         textAlign="center"
+        maxWidth="900px"
+        mx={{ l: 'auto' }}
         px={{ _: 'xs', md: 'xxl' }}
         py={{ _: 'l', md: 'base' }}
       >
