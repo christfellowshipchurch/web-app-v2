@@ -6,7 +6,7 @@ import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 
 import { ActionBannerProvider } from 'providers';
 import { Box, systemPropTypes } from 'ui-kit';
-import {Logo, Nav } from 'components';
+import { Logo, Nav } from 'components';
 import { useCurrentBreakpoint } from 'hooks';
 import Styled from './Header.styles';
 import ActionBanner from '../ActionBanner/ActionBanner';
@@ -30,7 +30,7 @@ function TransparentHeader(props = {}) {
   });
 
   return (
-    <Box position="fixed" zIndex={9} width="100%">
+    <Box position="fixed" zIndex={2000} width="100%">
       <ActionBannerProvider Component={ActionBanner} />
       <Styled
         boxShadow="none"
