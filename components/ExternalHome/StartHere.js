@@ -18,11 +18,7 @@ const StartHere = () => {
       backgroundPosition="top right, bottom right, bottom left"
       backgroundRepeat="no-repeat"
     >
-      <Box
-        px={{ _: 'xs', md: 's', lg: 'xxl' }}
-        py={{ _: 'xs', md: 'xxs', lg: 'xl' }}
-        pb={{ _: 'xl' }}
-      >
+      <Box pb={{ _: 'xl', md: 'base' }}>
         <Box
           display="grid"
           gridTemplateColumns={{ _: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)' }}

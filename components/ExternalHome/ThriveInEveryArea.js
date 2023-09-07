@@ -39,9 +39,9 @@ const ThriveInEveryArea = ({ maxWidth }) => {
         position="relative"
       >
         <Image
-          source={'external-landing/thrive-web3.png'}
-          width={{ md: '600px' }}
-          height={{ md: '600px' }}
+          source={'external-landing/thrive-in-every-area.png'}
+          objectFit="contain"
+          maxWidth={{ _: '100%', lg: '50%' }}
           p={{ lg: '50px' }}
           pt={{ _: 'base', md: 'l', lg: '0px' }}
         />
