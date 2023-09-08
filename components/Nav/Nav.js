@@ -125,7 +125,7 @@ function Nav(props = {}) {
               fontSize="12px"
               cursor="pointer"
               onClick={handleLogoutClick}
-              color="fg"
+              color={props?.transparentMode ? 'white' : 'fg'}
             >
               Sign Out
             </Box>
