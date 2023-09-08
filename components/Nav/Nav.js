@@ -120,7 +120,7 @@ function Nav(props = {}) {
               size={'40'}
             />
             <Box
-              as="a"
+              as="span"
               mt="xs"
               fontSize="12px"
               cursor="pointer"
