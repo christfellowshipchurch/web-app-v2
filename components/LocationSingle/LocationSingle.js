@@ -24,6 +24,7 @@ import {
   setReminderVideos,
   setReminderData,
   thisWeekFeatureId,
+  whatToExpectVideos,
 } from './locationData';
 import { CampusProvider, FeatureProvider } from 'providers';
 import faqData from 'components/FAQ/faqData';
@@ -96,6 +97,7 @@ function LocationSingle(props = {}) {
 
   // note : import hard coded wistia ids
   const setAReminderVideo = setReminderVideos[camelCase(campus)];
+  const whatToExpectVideo = whatToExpectVideos[camelCase(campus)];
 
   return (
     <Layout
