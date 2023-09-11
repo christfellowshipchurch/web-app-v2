@@ -23,6 +23,7 @@ import useEditGroupMember from './useEditGroupMember';
 import useEvent from './useEvent';
 import useEvents from './useEvents';
 import useEventsFeedFeatures from './useEventsFeedFeatures';
+import useExternalHomeActions from './useExternalHomeActions';
 import useFeature from './useFeature';
 import useFeatureAction from './useFeatureAction';
 import useFeatureFeed from './useFeatureFeed';
@@ -96,6 +97,7 @@ export {
   useEvent,
   useEvents,
   useEventsFeedFeatures,
+  useExternalHomeActions,
   useFeature,
   useFeatureAction,
   useGroupFacetFilters,

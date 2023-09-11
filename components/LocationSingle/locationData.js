@@ -15,7 +15,7 @@ const additionalInfoCampusData = [
     name: 'Port St. Lucie',
     info: [
       'Kids services take place at each service',
-      'Traducciones al español ofrecidas a las 10AM',
+      'Traducciones al español ofrecidas a las 10:15AM',
     ],
   },
   {
