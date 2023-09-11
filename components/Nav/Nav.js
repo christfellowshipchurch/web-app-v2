@@ -1,18 +1,25 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 
 import { CurrentUserProvider } from 'providers';
-import { useAuth } from 'providers/AuthProvider';
-import { useModalDispatch, showModal } from 'providers/ModalProvider';
+import { logout, useAuth } from 'providers/AuthProvider';
+import {
+  hideModal,
+  useModalDispatch,
+  showModal,
+} from 'providers/ModalProvider';
+
 import { Box, Button, Icon, systemPropTypes } from 'ui-kit';
 import { ClientSideComponent, UserAvatar } from 'components';
 import Styled from './Nav.styles';
 import { useCurrentBreakpoint } from 'hooks';
 
 function Nav(props = {}) {
-  const [{ authenticated }] = useAuth();
+  const [{ authenticated }, authDispatch] = useAuth();
   const currentBreakpoint = useCurrentBreakpoint();
   const modalDispatch = useModalDispatch();
+  const router = useRouter();
 
   /**
    * todo : Update the handleRouterReload to take a list a specific pages that need to be reloaded after logging as user out. To skip the rest of the pages and continue to reduce the amount of unnecessary reloads.
@@ -21,6 +28,20 @@ function Nav(props = {}) {
   function handleAuthClick(event) {
     event.preventDefault();
     modalDispatch(showModal('Auth'));
+  }
+
+  function handleRouterReload(pathname) {
+    if (pathname === '/') {
+      return null;
+    }
+    return router.reload();
+  }
+
+  function handleLogoutClick(event) {
+    event.preventDefault();
+    authDispatch(logout());
+    handleRouterReload(router.pathname);
+    modalDispatch(hideModal());
   }
 
   return (
@@ -66,13 +87,49 @@ function Nav(props = {}) {
         </Box>
       </Box>
 
+      {/* SignIn Icon External Home Page*/}
+      {!currentBreakpoint.isSmall && !authenticated && (
+        <Box cursor="pointer" textDecoration="none" onClick={handleAuthClick}>
+          <Box
+            display="flex"
+            border="2px solid white"
+            justifyContent="center"
+            borderRadius="50%"
+            size="36px"
+          >
+            <Icon
+              name="user"
+              size={20}
+              color={props?.transparentMode ? 'white' : 'fg'}
+            />
+          </Box>
+        </Box>
+      )}
+
       <ClientSideComponent>
         {authenticated && (
-          <CurrentUserProvider
-            Component={UserAvatar}
-            handleAuthClick={handleAuthClick}
-            size={'40'}
-          />
+          <Box
+            textAlign="center"
+            display="flex"
+            alignItems="center"
+            flexDirection="column"
+          >
+            <CurrentUserProvider
+              Component={UserAvatar}
+              handleAuthClick={handleAuthClick}
+              size={'40'}
+            />
+            <Box
+              as="a"
+              mt="xs"
+              fontSize="12px"
+              cursor="pointer"
+              onClick={handleLogoutClick}
+              color="fg"
+            >
+              Sign Out
+            </Box>
+          </Box>
         )}
       </ClientSideComponent>
     </Styled>

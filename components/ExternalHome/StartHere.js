@@ -1,92 +1,53 @@
+import { useCurrentBreakpoint } from 'hooks';
 import React from 'react';
-import styled from 'styled-components';
-import { themeGet } from '@styled-system/theme-get';
+import { Box, Image, Button } from 'ui-kit';
 
-import { Box, Image } from 'ui-kit';
+import { startsHereButtons } from 'lib/externalHomeData';
 
-const buttonData = [
-  {
-    title: 'Find a Location',
-    subtitle:
-      'Attend a Sunday service, in person or online. We would love to meet you!',
-    image: 'external-landing/find-a-location.jpg',
-    url: '/locations',
-  },
-  {
-    title: 'Discover What’s Here',
-    subtitle:
-      'We’ve designed a path for you and your family to grow in your faith, find friends, and serve others.',
-    image: 'external-landing/discover-whats-here.jpeg',
-    url: '/it-all-starts-here',
-  },
-  {
-    title: 'Ask a Question',
-    subtitle:
-      'Have a question or need prayer? Let us know and our team will reach out to you!',
-    image: 'external-landing/ask-a-question.jpeg',
-    url: 'https://rock.gocf.org/contactus',
-    target: '_blank',
-  },
-];
+const StartHere = () => {
+  const currentBreakpoint = useCurrentBreakpoint();
 
-const StyledCard = styled.a`
-  background: white;
-  border-radius: ${themeGet('radii.base')};
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: ${themeGet('space.base')};
-  padding-bottom: ${themeGet('space.l')};
-  box-shadow: ${themeGet('shadows.base')};
-  margin: ${themeGet('space.s')};
-  text-align: center;
-  transition: box-shadow ease 0.3s, transform ease 0.3s;
-  text-decoration: none;
-  flex: 1;
+  const viewPort = currentBreakpoint?.name === 'sm' ? 'mobile' : 'desktop';
 
-  &:hover {
-    box-shadow: ${themeGet('shadows.xl')};
-    cursor: pointer;
-    transform: scale(1.03);
-  }
-`;
-
-const StartHere = ({ maxWidth }) => {
   return (
-    <Box my="xl">
-      <Box textAlign="center" my="l">
-        <Box as="h1" color="white" fontSize="3.5rem">
-          It all starts here.
+    <Box
+      id="start-here"
+      px={{ _: 'xs', md: 'xs', lg: 'xl' }}
+      py={{ _: 'xxs', md: 'xxs' }}
+      backgroundImage={`url(/external-landing/wedge-${viewPort}.png), url(/external-landing/dots-${viewPort}.png), url(/external-landing/corner-${viewPort}.png)`}
+      backgroundPosition="top right, bottom right, bottom left"
+      backgroundRepeat="no-repeat"
+    >
+      <Box pb={{ _: 'xl', md: 'base' }}>
+        <Box
+          display="grid"
+          gridTemplateColumns={{ _: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)' }}
+          gridColumnGap="xs"
+          textAlign="center"
+          maxWidth="1080px"
+          mx={{ lg: 'auto' }}
+          px={{ _: 'xs', md: 's' }}
+          py={{ _: 'l', md: 'base' }}
+        >
+          {startsHereButtons.map(
+            ({ title, subtitle, image, call, action }, i) => (
+              <Box key={i} p={{ _: 'base', lg: 'l' }}>
+                <Image source={image} />
+                <Box>
+                  <Box as="h2" mb="s">
+                    {title}
+                  </Box>
+                  <Box as="p" mb="base">
+                    {subtitle}
+                  </Box>
+                  <Button as="a" size="base" variant="primary" href={action}>
+                    {call}
+                  </Button>
+                </Box>
+              </Box>
+            )
+          )}
         </Box>
-      </Box>
-      <Box
-        display="flex"
-        flexGrow="1 1 0"
-        flexDirection={{ _: 'column', lg: 'row' }}
-        mx="auto"
-        maxWidth={1200}
-      >
-        {buttonData.map(({ title, subtitle, image, url, target }, i) => (
-          <StyledCard href={url} target={target}>
-            <Image aspectRatio="16by9" source={image} />
-            <Box
-              as="h3"
-              bg="secondary"
-              borderRadius="base"
-              p="s"
-              my="base"
-              color="white"
-              fontWeight="bold"
-              width="fit-content"
-              px="l"
-            >
-              {title}
-            </Box>
-            <Box as="p" color="black">
-              {subtitle}
-            </Box>
-          </StyledCard>
-        ))}
       </Box>
     </Box>
   );
