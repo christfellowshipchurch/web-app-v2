@@ -13,9 +13,8 @@ import {
 } from 'providers/ModalProvider';
 
 function SignIn(props = {}) {
-  const authenticated = useAuth();
+  const [{ authenticated }, authDispatch] = useAuth();
   const currentBreakpoint = useCurrentBreakpoint();
-  const authDispatch = useAuth();
   const modalDispatch = useModalDispatch();
   const router = useRouter();
 
