@@ -8,6 +8,7 @@ import Styled from './Nav.styles';
 import { useCurrentBreakpoint } from 'hooks';
 
 import SignIn from './SignIn';
+import ClientSideComponent from 'components/ClientSideComponent';
 function Nav(props = {}) {
   const modalDispatch = useModalDispatch();
   const currentBreakpoint = useCurrentBreakpoint();
@@ -60,7 +61,9 @@ function Nav(props = {}) {
       </Box>
 
       {/* SignIn/SignOut Icon External Home Page*/}
-      <SignIn transparentMode={props.transparentMode}></SignIn>
+      <ClientSideComponent>
+        <SignIn transparentMode={props.transparentMode}></SignIn>
+      </ClientSideComponent>
     </Styled>
   );
 }

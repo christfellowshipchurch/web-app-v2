@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Box, Icon, systemPropTypes } from 'ui-kit';
 import { CurrentUserProvider } from 'providers';
 import { logout, useAuth } from 'providers/AuthProvider';
-import { UserAvatar, ClientSideComponent } from 'components';
+import { UserAvatar } from 'components';
 import { useCurrentBreakpoint } from 'hooks';
 import {
   hideModal,
@@ -19,13 +19,6 @@ function SignIn(props = {}) {
   const router = useRouter();
 
   const [isHover, setIsHover] = useState(false);
-  const [isHoverImg, setIsHoverImg] = useState(false);
-  const handleMouse = () => {
-    setIsHover(!isHover);
-  };
-  const handleMouseImg = () => {
-    setIsHoverImg(!isHoverImg);
-  };
 
   function handleAuthClick(event) {
     event.preventDefault();
@@ -46,59 +39,52 @@ function SignIn(props = {}) {
     modalDispatch(hideModal());
   }
 
-  return (
-    <>
-      {!currentBreakpoint.isSmall && !authenticated && (
-        <Box cursor="pointer" textDecoration="none" onClick={handleAuthClick}>
-          <Box
-            display="flex"
-            border="2px solid white"
-            justifyContent="center"
-            borderRadius="50%"
-            size="36px"
-          >
-            <Icon
-              name="user"
-              size={20}
-              color={props?.transparentMode ? 'white' : 'fg'}
-            />
-          </Box>
+  return authenticated ? (
+    <Box
+      textAlign="center"
+      display="flex"
+      alignItems="center"
+      flexDirection="column"
+    >
+      <CurrentUserProvider
+        Component={UserAvatar}
+        handleAuthClick={handleAuthClick}
+        size={'40'}
+        //Opacity is set to 0.7 when the user hovers over the avatar
+        opacity={0.7}
+      />
+      <Box
+        as="span"
+        mt="xs"
+        fontSize="12px"
+        cursor="pointer"
+        onClick={handleLogoutClick}
+        color={props?.transparentMode ? 'white' : 'fg'}
+        onMouseEnter={() => setIsHover(!isHover)}
+        onMouseLeave={() => setIsHover(!isHover)}
+        textDecoration={isHover && 'underline'}
+      >
+        Sign Out
+      </Box>
+    </Box>
+  ) : (
+    !currentBreakpoint.isSmall && (
+      <Box cursor="pointer" textDecoration="none" onClick={handleAuthClick}>
+        <Box
+          display="flex"
+          border="2px solid white"
+          justifyContent="center"
+          borderRadius="50%"
+          size="36px"
+        >
+          <Icon
+            name="user"
+            size={20}
+            color={props?.transparentMode ? 'white' : 'fg'}
+          />
         </Box>
-      )}
-
-      <ClientSideComponent>
-        {authenticated && (
-          <Box
-            textAlign="center"
-            display="flex"
-            alignItems="center"
-            flexDirection="column"
-          >
-            <CurrentUserProvider
-              Component={UserAvatar}
-              handleAuthClick={handleAuthClick}
-              size={'40'}
-              onMouseEnter={handleMouseImg}
-              onMouseLeave={handleMouseImg}
-              opacity={isHoverImg && '0.5'}
-            />
-            <Box
-              as="span"
-              mt="xs"
-              fontSize="12px"
-              cursor="pointer"
-              onClick={handleLogoutClick}
-              color={props?.transparentMode ? 'white' : 'fg'}
-              onMouseEnter={handleMouse}
-              onMouseLeave={handleMouse}
-              textDecoration={isHover && 'underline'}
-            >
-              Sign Out
-            </Box>
-          </Box>
-        )}
-      </ClientSideComponent>
-    </>
+      </Box>
+    )
   );
 }
 
