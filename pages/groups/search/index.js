@@ -104,7 +104,7 @@ export default function CommunitySearch() {
         after: cursor.current,
       },
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cursor]);
 
   useEffect(() => {

@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import isEmpty from 'lodash/isEmpty';
 
-import { Box, Icon, Loader, systemPropTypes } from 'ui-kit';
+import { Box, Loader, systemPropTypes } from 'ui-kit';
 import Styled from './Button.styles';
 import { useAnalytics } from 'providers/AnalyticsProvider';
-import { flattenDeep, includes, isObject, toString } from 'lodash';
 import { useRouter } from 'next/router';
 
 function childrenText(children) {
