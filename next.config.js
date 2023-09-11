@@ -257,7 +257,7 @@ module.exports = {
       { source: '/children', destination: '/connect/kids', permanent: true },
       { source: '/middleschool', destination: '/connect/students', permanent: true },
       { source: '/highschool', destination: '/connect/students', permanent: true },
-      { source: '/men', destination: '/next-steps/find-a-life-group', permanent: true },
+      { source: '/men', destination: '/connect/men', permanent: true },
       { source: '/institute', destination: '/', permanent: true },
       { source: '/women', destination: '/connect/women', permanent: true },
       { source: '/mental-health-support-groups', destination: '/mental-health', permanent: true },
