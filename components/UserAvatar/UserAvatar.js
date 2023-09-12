@@ -18,6 +18,7 @@ function UserAvatar(props = {}) {
       height={props?.size}
       width={props?.size}
       cursor="pointer"
+      {...props}
     />
   );
 }
