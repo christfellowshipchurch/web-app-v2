@@ -10,7 +10,7 @@ function FeatureFeedProvider({ Component, options, ...props }) {
   if (loading) {
     return (
       <Box py="xxl">
-        <Loader text="Loading Feed" />
+        <Loader />
       </Box>
     );
   }

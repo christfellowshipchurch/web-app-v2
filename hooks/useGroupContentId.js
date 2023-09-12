@@ -43,12 +43,14 @@ function reducer(state, action) {
 function useGroupContentId({ title, id }) {
   const router = useRouter();
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { authenticated } = useAuthState();
+  const { rockPersonId, authenticated } = useAuthState();
   const apolloClient = initializeApollo();
 
   useEffect(() => {
-    // If the user isn't signed in, let's send them to /groups.
-    if (!authenticated) router.push('/groups');
+    // If the user isn't signed in, let's send them to /groups. We also want to check for a Rock Person ID being passed in the URL and give it a chance to authenticate.
+    if (!authenticated && rockPersonId === 'invalid') {
+      router.push('/groups');
+    }
 
     async function getGroups() {
       try {
@@ -75,10 +77,11 @@ function useGroupContentId({ title, id }) {
       !id &&
       !state.contentId &&
       !state.groups.length &&
-      state.status === 'IDLE';
+      state.status === 'IDLE' &&
+      authenticated;
 
     if (shouldRun) getGroups();
-  }, [id, authenticated, router, apolloClient, state, dispatch]);
+  }, [id, authenticated, apolloClient, state, dispatch, rockPersonId]); // eslint-disable-line
 
   useEffect(() => {
     if (state.contentId) return;
