@@ -189,7 +189,7 @@ function LocationSingle(props = {}) {
       )}
 
       {/* What to Expect */}
-      {campus !== 'Cf Everywhere' && ( // It will not be in other locations as well
+      {expectData && ( // It will not be in other locations as well
         <Box bg="white" width="100%">
           <Box
             bg="white"
@@ -210,7 +210,12 @@ function LocationSingle(props = {}) {
       )}
 
       {/* At this Location Section */}
-      <Box width="100%" px={{ _: 'base', md: 'xl' }} pt="base">
+      <Box
+        width="100%"
+        px={{ _: 'base', md: 'xl' }}
+        pt="base"
+        bg={!expectData && 'white'}
+      >
         <LocationBlockFeature
           mx="auto"
           campusName={campus}
@@ -225,7 +230,7 @@ function LocationSingle(props = {}) {
       </Box>
 
       {/* What's Coming Up Section */}
-      <Box bg="white" py={{ _: 'l', sm: 'xl' }}>
+      <Box bg={expectData && 'white'} py={{ _: 'l', sm: 'xl' }}>
         <Box mx="auto" maxWidth={1200}>
           <CollectionPreview
             horizontalScroll
@@ -243,14 +248,14 @@ function LocationSingle(props = {}) {
       </Box>
 
       {/* FAQs Section */}
-      <Box id="FAQ" px="base" py="xl" width="100%">
+      <Box id="FAQ" px="base" py="xl" width="100%" bg={!expectData && 'white'}>
         <Box mx="auto" maxWidth={1200}>
           <FAQ data={faqData(campus)} onClick={faqScroll} />
         </Box>
       </Box>
 
       {/* Testimonial Section */}
-      <Box bg="white" px="base" py="xl" width="100%">
+      <Box bg={expectData && 'white'} px="base" py="xl" width="100%">
         <Box mx="auto" maxWidth={1200}>
           <Testimonials
             testimonies={
@@ -282,7 +287,7 @@ function LocationSingle(props = {}) {
       </Box>
 
       {/* Never Miss a Thing Section */}
-      <Box bg="white" px="base" py="xl">
+      <Box bg={expectData && 'white'} px="base" py="xl">
         <Box textAlign="center" maxWidth={500} mx="auto">
           <Box as="h2" color="secondary">
             Never miss a thing.
