@@ -14,7 +14,7 @@ import {
   Video,
 } from 'components';
 
-import { Box, Button, Divider, Loader } from 'ui-kit';
+import { Box, Button, Divider, Loader, ContentBlock } from 'ui-kit';
 import CampusInfo from './CampusInfo';
 import LocationHeader from './LocationHeader';
 import defaultBlockData from '../LocationBlockFeature/defaultBlockData';
@@ -98,7 +98,24 @@ function LocationSingle(props = {}) {
   // note : import hard coded wistia ids
   const setAReminderVideo = setReminderVideos[camelCase(campus)];
   const whatToExpectVideo = whatToExpectVideos[camelCase(campus)];
-
+  const expectTitle = `What to Expect at ${campus}`;
+  const expectSubtitle = `Here at Christ Fellowship Church in ${campus}, you can expect to experience church services with uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—it all starts here!`;
+  const expectActions = [
+    {
+      title: 'Set a Reminder',
+      variant: 'secondary',
+      onClick: () =>
+        modalDispatch(showModal('SetReminder', { defaultCampus: campus })),
+      relatedNode: {
+        url: '#set-reminder',
+      },
+    },
+  ];
+  const roundVideo = {
+    boxShadow: 'l',
+    borderRadius: 'xl',
+    overflow: 'hidden',
+  };
   return (
     <Layout
       contentMaxWidth={'100vw'}
@@ -154,9 +171,9 @@ function LocationSingle(props = {}) {
           <Box
             maxWidth={{ _: 350, md: 600, lg: 800 }}
             boxShadow="l"
-            mt="xxl"
             borderRadius="xl"
             overflow="hidden"
+            mt="xxl"
             mx="auto"
           >
             <Video wistiaId={setAReminderVideo} />
@@ -176,8 +193,25 @@ function LocationSingle(props = {}) {
         </>
       )}
 
+      {/* What to Expect */}
+      {campus !== 'Cf Everywhere' && ( // It will not be in other locations as well
+        <ContentBlock
+          bg="white"
+          title={expectTitle}
+          subtitle={expectSubtitle}
+          wistiaId={whatToExpectVideo}
+          actions={expectActions}
+          contentLayout="left"
+          roundVideo={roundVideo}
+          as="p"
+          transform="none"
+          color="black"
+          p="xxl"
+        />
+      )}
+
       {/* At this Location Section */}
-      <Box bg="white" width="100%" px={{ _: 'base', md: 'xl' }} pt="base">
+      <Box width="100%" px={{ _: 'base', md: 'xl' }} pt="base">
         <LocationBlockFeature
           mx="auto"
           campusName={campus}
@@ -192,7 +226,7 @@ function LocationSingle(props = {}) {
       </Box>
 
       {/* What's Coming Up Section */}
-      <Box py={{ _: 'l', sm: 'xl' }}>
+      <Box bg="white" py={{ _: 'l', sm: 'xl' }}>
         <Box mx="auto" maxWidth={1200}>
           <CollectionPreview
             horizontalScroll
@@ -210,14 +244,14 @@ function LocationSingle(props = {}) {
       </Box>
 
       {/* FAQs Section */}
-      <Box id="FAQ" bg="white" px="base" py="xl" width="100%">
+      <Box id="FAQ" px="base" py="xl" width="100%">
         <Box mx="auto" maxWidth={1200}>
           <FAQ data={faqData(campus)} onClick={faqScroll} />
         </Box>
       </Box>
 
       {/* Testimonial Section */}
-      <Box px="base" py="xl" width="100%">
+      <Box bg="white" px="base" py="xl" width="100%">
         <Box mx="auto" maxWidth={1200}>
           <Testimonials
             testimonies={

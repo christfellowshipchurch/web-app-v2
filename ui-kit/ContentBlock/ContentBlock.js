@@ -50,8 +50,9 @@ function ContentBlock(props = {}) {
   const idRegex = /\D/g;
   const containerId = hasTitle ? kebabCase(title) : id?.replace(idRegex, '');
 
+  console.log(props?.roundVideo);
   return (
-    <Styled id={containerId} contentLayout={contentLayout}>
+    <Styled id={containerId} contentLayout={contentLayout} {...props}>
       {/* // MARK : Media */}
       <Conditional condition={hasMedia}>
         <Box
@@ -84,9 +85,12 @@ function ContentBlock(props = {}) {
               autoPlay={false}
               playsInline={true}
               poster={props?.image}
+              wistiaId={props?.wistiaId}
+              boxShadow={props?.roundVideo?.boxShadow}
+              borderRadius={props?.roundVideo?.borderRadius}
+              overflow={props?.roundVideo?.overflow}
               // all videos will defatult to 16:9 aspect ratio keeping sizing consistent
               aspectRatio="16/9"
-              wistiaId={props?.wistiaId}
             />
           </Conditional>
         </Box>
@@ -101,7 +105,7 @@ function ContentBlock(props = {}) {
         textAlign={horizontalLayout ? 'left' : 'center'}
         pt={hasMedia && horizontalLayout ? 'base' : '0'}
       >
-        <ConditionalBox condition={hasTitle} order={horizontalLayout ? 1 : 0}>
+        <ConditionalBox condition={hasTitle} order={horizontalLayout ? 0 : 1}>
           <Box as="h1" color={props?.titleColor}>
             {props.title}
             <CustomLink
@@ -121,7 +125,11 @@ function ContentBlock(props = {}) {
           condition={hasSubtitle}
           order={horizontalLayout ? 0 : 1}
         >
-          <Box as="h4" color="neutrals.600" textTransform="uppercase">
+          <Box
+            as={props?.as ? props?.as : 'h4'}
+            color={props?.color ? props?.color : 'neutrals.600'}
+            textTransform={props?.transform ? props?.transform : 'uppercase'}
+          >
             {props.subtitle}
           </Box>
         </ConditionalBox>
@@ -146,6 +154,7 @@ function ContentBlock(props = {}) {
               m="xs"
               textTransform="capitalize!important"
               target={action?.newTab && '_blank'}
+              onClick={action?.onClick}
               /**
                * todo : We want to eventually add functionality with the 'onPressActionItem' to be able to perform more actions in the future.
                */
