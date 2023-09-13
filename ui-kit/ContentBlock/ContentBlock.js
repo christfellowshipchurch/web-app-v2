@@ -50,8 +50,6 @@ function ContentBlock(props = {}) {
   const idRegex = /\D/g;
   const containerId = hasTitle ? kebabCase(title) : id?.replace(idRegex, '');
 
-  console.log({ props });
-
   return (
     <Styled id={containerId} contentLayout={contentLayout}>
       {/* // MARK : Media */}
@@ -84,7 +82,7 @@ function ContentBlock(props = {}) {
                 height="auto"
                 width={
                   horizontalLayout
-                    ? { _: 350, md: 400, lg: 520 }
+                    ? { _: 350, md: 600, lg: 520 }
                     : { _: 350, md: 600, lg: 800 }
                 }
                 src={props?.videos[0]?.sources[0]?.uri}

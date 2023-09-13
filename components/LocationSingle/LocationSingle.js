@@ -98,7 +98,7 @@ function LocationSingle(props = {}) {
 
   const setAReminderVideo = setReminderVideos[camelCase(campus)];
   const whatToExpectVideo = whatToExpectVideos[camelCase(campus)];
-  const expectData = find(whatToExpectData, { name: campus });
+  const expectData = whatToExpectData(campus);
   const expectActions = [
     {
       title: 'Set a Reminder',
@@ -194,12 +194,12 @@ function LocationSingle(props = {}) {
           <Box
             bg="white"
             mx="auto"
-            maxWidth={{ _: 350, md: 600, lg: 1100 }}
+            maxWidth={{ _: 400, md: 800, lg: 1200 }}
             py="8rem"
+            px={{ _: 'base', md: 'xl' }}
           >
             <ContentBlock
-              title={expectData.title}
-              htmlContent={expectData.subtitle}
+              {...expectData}
               wistiaId={whatToExpectVideo}
               actions={expectActions}
               contentLayout="left"
