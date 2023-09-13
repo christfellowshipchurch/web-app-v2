@@ -25,6 +25,7 @@ import {
   setReminderData,
   thisWeekFeatureId,
   whatToExpectVideos,
+  whatToExpectData,
 } from './locationData';
 import { CampusProvider, FeatureProvider } from 'providers';
 import faqData from 'components/FAQ/faqData';
@@ -97,9 +98,7 @@ function LocationSingle(props = {}) {
 
   const setAReminderVideo = setReminderVideos[camelCase(campus)];
   const whatToExpectVideo = whatToExpectVideos[camelCase(campus)];
-
-  const expectTitle = `What to Expect at ${campus}`;
-  const expectSubtitle = `Here at Christ Fellowship Church in ${campus}, you can expect to experience church services with uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—it all starts here!`;
+  const expectData = find(whatToExpectData, { name: campus });
   const expectActions = [
     {
       title: 'Set a Reminder',
@@ -199,8 +198,8 @@ function LocationSingle(props = {}) {
             py="8rem"
           >
             <ContentBlock
-              title={expectTitle}
-              htmlContent={expectSubtitle}
+              title={expectData.title}
+              htmlContent={expectData.subtitle}
               wistiaId={whatToExpectVideo}
               actions={expectActions}
               contentLayout="left"
