@@ -84,6 +84,9 @@ function AuthProvider(props = {}) {
               type: actionTypes.update,
               payload: { authenticated: true, token: rockPersonToken },
             });
+            //update url to remove rpid so we don't keep trying to authenticate
+            const url = window.location.href.split('?')[0];
+            window.history.replaceState({}, '', url);
           }
         } catch (err) {
           if (includes(err.message, 'Invalid Rock Person ID')) {

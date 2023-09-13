@@ -30,7 +30,10 @@ export default function Connect(props = {}) {
 
   useEffect(() => {
     // If the user isn't signed in, let's send them to home page. We also want to check for a Rock Person ID being passed in the URL and give it a chance to authenticate.
-    if (!authenticated && rockPersonId === 'invalid') {
+    if (
+      (!authenticated && rockPersonId === 'invalid') ||
+      (!authenticated && rockPersonId === null)
+    ) {
       setLoadingMessage('User not logged in');
       router.push('/');
     }

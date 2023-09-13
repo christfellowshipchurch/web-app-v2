@@ -21,7 +21,10 @@ function InternalHomeFeed() {
 
   useEffect(() => {
     // If the user isn't signed in, let's send them to home page. We also want to check for a Rock Person ID being passed in the URL and give it a chance to authenticate.
-    if (!authenticated && rockPersonId === 'invalid') {
+    if (
+      (!authenticated && rockPersonId === 'invalid') ||
+      (!authenticated && rockPersonId === null)
+    ) {
       router.push('/');
     }
   }, [authenticated, rockPersonId]); // eslint-disable-line
@@ -41,10 +44,18 @@ function InternalHomeFeed() {
         py={{ _: 'xs', lg: 's' }}
       >
         {/* Hard coded Actionbar on top of HomeFeed. */}
-        <Box mt="l">
-          <ActionBarFeature data={actionBarData} />
-        </Box>
-        <FeatureFeedProvider Component={FeatureFeed} options={options} />
+        {authenticated ? (
+          <>
+            <Box mt="l">
+              <ActionBarFeature data={actionBarData} />
+            </Box>
+            <FeatureFeedProvider Component={FeatureFeed} options={options} />
+          </>
+        ) : (
+          <Box p="xxl" width="100%" display="flex" justifyContent="center">
+            <Loader />
+          </Box>
+        )}
       </Cell>
     </Layout>
   );
