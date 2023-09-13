@@ -287,7 +287,7 @@ function LocationSingle(props = {}) {
       </Box>
 
       {/* Never Miss a Thing Section */}
-      <Box bg={expectData && 'white'} px="base" py="xl">
+      <Box bg={!expectData && 'white'} px="base" py="xl">
         <Box textAlign="center" maxWidth={500} mx="auto">
           <Box as="h2" color="secondary">
             Never miss a thing.
