@@ -95,9 +95,9 @@ function LocationSingle(props = {}) {
     }
   }
 
-  // note : import hard coded wistia ids
   const setAReminderVideo = setReminderVideos[camelCase(campus)];
   const whatToExpectVideo = whatToExpectVideos[camelCase(campus)];
+
   const expectTitle = `What to Expect at ${campus}`;
   const expectSubtitle = `Here at Christ Fellowship Church in ${campus}, you can expect to experience church services with uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—it all starts here!`;
   const expectActions = [
@@ -111,11 +111,7 @@ function LocationSingle(props = {}) {
       },
     },
   ];
-  const roundVideo = {
-    boxShadow: 'l',
-    borderRadius: 'xl',
-    overflow: 'hidden',
-  };
+
   return (
     <Layout
       contentMaxWidth={'100vw'}
@@ -195,19 +191,23 @@ function LocationSingle(props = {}) {
 
       {/* What to Expect */}
       {campus !== 'Cf Everywhere' && ( // It will not be in other locations as well
-        <ContentBlock
-          bg="white"
-          title={expectTitle}
-          subtitle={expectSubtitle}
-          wistiaId={whatToExpectVideo}
-          actions={expectActions}
-          contentLayout="left"
-          roundVideo={roundVideo}
-          as="p"
-          transform="none"
-          color="black"
-          p="xxl"
-        />
+        <Box bg="white" width="100%">
+          <Box
+            bg="white"
+            mx="auto"
+            maxWidth={{ _: 350, md: 600, lg: 1100 }}
+            py="8rem"
+          >
+            <ContentBlock
+              title={expectTitle}
+              htmlContent={expectSubtitle}
+              wistiaId={whatToExpectVideo}
+              actions={expectActions}
+              contentLayout="left"
+              roundVideo
+            />
+          </Box>
+        </Box>
       )}
 
       {/* At this Location Section */}
