@@ -1,16 +1,20 @@
 import React, { createContext, useContext, useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
-
 import { AUTH_TOKEN_KEY } from 'config/keys';
+import { useAuthenticateRockPersonId } from 'hooks';
+import { includes } from 'lodash';
 
+// Define context objects
 const AuthStateContext = createContext();
 const AuthDispatchContext = createContext();
 
+// Define initial state and action types
 const initialState = {
   authenticated: false,
   identity: null,
   step: 0,
   token: null,
+  rockPersonId: null,
   type: null,
   userExists: false,
   onSuccess: () => false,
@@ -23,26 +27,23 @@ const actionTypes = {
   reset: 'reset',
 };
 
+// Reducer function
 function reducer(state, action) {
   switch (action.type) {
-    case actionTypes.update: {
+    case actionTypes.update:
       return {
         ...state,
         ...action.payload,
       };
-    }
-    case actionTypes.logout: {
+    case actionTypes.logout:
+    case actionTypes.reset:
       return initialState;
-    }
-    case actionTypes.reset: {
-      return initialState;
-    }
-    default: {
+    default:
       throw new Error(`Unhandled action type: ${action.type}`);
-    }
   }
 }
 
+// Function to get initial state
 function getInitialState(state) {
   if (typeof window !== 'undefined') {
     const token = window.localStorage.getItem(AUTH_TOKEN_KEY);
@@ -52,28 +53,68 @@ function getInitialState(state) {
         authenticated: true,
         token,
       };
+    } else if (includes(window.location.href, 'rpid')) {
+      const rpid = window.location.href.split('rpid=')[1];
+      return {
+        ...state,
+        rockPersonId: rpid,
+      };
     }
     return state;
   }
   return state;
 }
 
+// AuthProvider component
 function AuthProvider(props = {}) {
   const [state, dispatch] = useReducer(reducer, initialState, getInitialState);
-  const { authenticated, token } = state;
+  const [authenticateRpid] = useAuthenticateRockPersonId();
+  const { authenticated, token, rockPersonId } = state;
 
   useEffect(() => {
+    const getRockPersonToken = async rpid => {
+      if (rpid && rpid !== 'invalid') {
+        try {
+          const options = { variables: { personId: rpid } };
+          const { data } = await authenticateRpid(options);
+          const rockPersonToken = data?.authenticateRockPersonId?.token;
+          if (rockPersonToken) {
+            window.localStorage.setItem(AUTH_TOKEN_KEY, rockPersonToken);
+            dispatch({
+              type: actionTypes.update,
+              payload: { authenticated: true, token: rockPersonToken },
+            });
+            //update url to remove rpid so we don't keep trying to authenticate
+            const url = window.location.href.split('?')[0];
+            window.history.replaceState({}, '', url);
+          }
+        } catch (err) {
+          if (includes(err.message, 'Invalid Rock Person ID')) {
+            dispatch({
+              type: actionTypes.update,
+              payload: { rockPersonId: 'invalid' },
+            });
+          }
+        }
+      }
+    };
+
     if (typeof window !== 'undefined') {
       if (token) {
         window.localStorage.setItem(AUTH_TOKEN_KEY, token);
-        dispatch({ type: 'update', payload: { authenticated: true } });
+        dispatch({
+          type: actionTypes.update,
+          payload: { authenticated: true },
+        });
+      } else if (rockPersonId && rockPersonId !== 'invalid') {
+        getRockPersonToken(rockPersonId);
       } else {
         if (!authenticated) {
           window.localStorage.removeItem(AUTH_TOKEN_KEY);
         }
       }
     }
-  }, [token, authenticated]);
+  }, [token, authenticated, rockPersonId]); // eslint-disable-line
 
   return (
     <AuthStateContext.Provider value={state}>
@@ -84,44 +125,43 @@ function AuthProvider(props = {}) {
   );
 }
 
-// const state = useAuthState();
+// Custom hooks
 function useAuthState() {
   const context = useContext(AuthStateContext);
   if (context === undefined) {
-    throw new Error(`useAuthState must be used within a AuthProvider`);
+    throw new Error(`useAuthState must be used within an AuthProvider`);
   }
   return context;
 }
 
-// const dispatch = useAuthDispatch();
 function useAuthDispatch() {
   const context = useContext(AuthDispatchContext);
   if (context === undefined) {
-    throw new Error(`useAuthDispatch must be used within a AuthProvider`);
+    throw new Error(`useAuthDispatch must be used within an AuthProvider`);
   }
   return context;
 }
 
-// const [state, dispatch] = useAuth();
 function useAuth() {
   const context = [useAuthState(), useAuthDispatch()];
   if (context === undefined) {
-    throw new Error(`useAuth must be used within a AuthProvider`);
+    throw new Error(`useAuth must be used within an AuthProvider`);
   }
   return context;
 }
 
+// Action creators
 const update = payload => ({
-  type: 'update',
+  type: actionTypes.update,
   payload,
 });
 
 const logout = payload => ({
-  type: 'logout',
+  type: actionTypes.logout,
 });
 
 const reset = payload => ({
-  type: 'reset',
+  type: actionTypes.reset,
 });
 
 AuthProvider.propTypes = {
