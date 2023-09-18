@@ -204,6 +204,7 @@ function LocationSingle(props = {}) {
               actions={expectActions}
               contentLayout="left"
               roundVideo
+              centerContent
             />
           </Box>
         </Box>

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
 import kebabCase from 'lodash/kebabCase';
+import { useCurrentBreakpoint } from 'hooks';
 
 import {
   Box,
@@ -50,8 +51,20 @@ function ContentBlock(props = {}) {
   const idRegex = /\D/g;
   const containerId = hasTitle ? kebabCase(title) : id?.replace(idRegex, '');
 
+  const currentBreakpoint = useCurrentBreakpoint();
+  if (
+    props?.centerContent &&
+    (currentBreakpoint.isSmall || currentBreakpoint.isMedium)
+  ) {
+    var center = true;
+  }
+
   return (
-    <Styled id={containerId} contentLayout={contentLayout}>
+    <Styled
+      id={containerId}
+      contentLayout={contentLayout}
+      alignItems={props?.centerContent && 'center'}
+    >
       {/* // MARK : Media */}
       <Conditional condition={hasMedia}>
         <Box
@@ -104,7 +117,7 @@ function ContentBlock(props = {}) {
         flexDirection="column"
         display="flex"
         gridRowGap="0.15rem"
-        textAlign={horizontalLayout ? 'left' : 'center'}
+        textAlign={horizontalLayout && !center ? 'left' : 'center'}
         pt={hasMedia && horizontalLayout ? 'base' : '0'}
       >
         <ConditionalBox condition={hasTitle} order={horizontalLayout ? 1 : 0}>
