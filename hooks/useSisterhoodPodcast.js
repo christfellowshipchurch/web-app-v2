@@ -31,10 +31,6 @@ function useSisterhoodPodcast(options = {}) {
 
   if (query.loading) {
     return { loading: true };
-  } else {
-    // REMOVE THIS
-    console.log(query);
-    console.log('data: ', query?.data);
   }
 
   return {

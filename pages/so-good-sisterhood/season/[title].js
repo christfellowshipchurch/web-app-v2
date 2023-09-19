@@ -37,7 +37,6 @@ export default function DiscoverFilterCategoriesPreview() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log('contentItems: ', contentItems);
   return (
     <Layout title={`Season ${seasonNumber}`}>
       <Cell
