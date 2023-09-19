@@ -2,31 +2,48 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { useGroupManage, update } from 'providers/GroupManageProvider';
-import { useUpdateGroupResourceContentItem } from 'hooks';
+import {
+  useUpdateGroupResourceContentItem,
+  useGroupResourceOptions,
+  useGetTaggedItems,
+} from 'hooks';
 import { Box, Button, Loader, Select } from 'ui-kit';
 
-function AddResourceContent({ data, loading, totalCount, currentResources }) {
+function AddResourceContent() {
   const [{ resourceStatus: status, groupData, message }, dispatch] =
     useGroupManage();
   const setStatus = s => dispatch(update({ resourceStatus: s }));
+
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedItem, setSelectedItem] = useState('');
-  const [categories, setCategories] = useState({});
   const [isDataLoaded, setIsDataLoaded] = useState(false);
+  const [taggedItems, setTaggedItems] = useState([]);
 
   const [updateGroupResourceContentItem] = useUpdateGroupResourceContentItem();
 
   // ** We evetually want to update the way we load all the content items for Group resources in the backround and not have to wait for them to load all at once.
-  useEffect(() => {
-    if (!loading && data && data.length === totalCount) {
-      const categorizedItems = categorizeItemsByTitle(data);
-      setCategories(categorizedItems);
-      setIsDataLoaded(true);
-    }
-  }, [data, loading, totalCount]);
+  const { categories } = useGroupResourceOptions({
+    variables: { tagCategory: 'group resources' },
+    fetchPolicy: 'cache-and-network',
+  });
 
+  useEffect(() => {
+    if (categories) {
+      setIsDataLoaded(true);
+      console.log(categories);
+    }
+  }, [categories]);
   const handleCategoryChange = event => {
     setSelectedCategory(event.target.value);
+    // RUN QUERY TO GET TAGGED ITEMS - NEED CONTENT ITEM ID, TITLE AND GROUP ID ???
+    setTaggedItems(
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      useGetTaggedItems({
+        // Potential error in line above?
+        variables: { tagName: selectedCategory },
+        fetchPolicy: 'cache-and-network',
+      })
+    );
     setSelectedItem('');
   };
 
@@ -83,7 +100,7 @@ function AddResourceContent({ data, loading, totalCount, currentResources }) {
             <Select.Option value="" disabled>
               Select a Category...
             </Select.Option>
-            {Object.keys(categories).map(category => (
+            {categories.map(category => (
               <Select.Option key={category} value={category}>
                 {category}
               </Select.Option>
@@ -102,13 +119,13 @@ function AddResourceContent({ data, loading, totalCount, currentResources }) {
               Select an Item...
             </Select.Option>
             {selectedCategory &&
-              categories[selectedCategory].map(item => (
+              // MAP THE RESULTS FROM LINE 29 INSTEAD
+              taggedItems.map(taggedItem => (
                 <Select.Option
-                  key={item.node.id}
-                  value={item.node.id}
-                  disabled={currentResources?.includes(item.node.id)}
+                  key={taggedItem.node.id}
+                  value={taggedItem.value}
                 >
-                  {item.node.title}
+                  HOLA
                 </Select.Option>
               ))}
           </Select>
@@ -147,21 +164,3 @@ AddResourceContent.propTypes = {
 };
 
 export default AddResourceContent;
-
-// Helper function to categorize items based on words before the "|" symbol in the "title" attribute
-function categorizeItemsByTitle(data) {
-  const categories = {};
-
-  data.forEach(({ node }) => {
-    const titleParts = node.title.split('|');
-    const categoryName = titleParts.length > 1 ? titleParts[0].trim() : 'Other';
-
-    if (!categories[categoryName]) {
-      categories[categoryName] = [];
-    }
-
-    categories[categoryName].push({ node });
-  });
-
-  return categories;
-}
