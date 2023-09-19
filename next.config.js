@@ -74,7 +74,7 @@ module.exports = {
       { source: '/report', destination: 'https://annualreport.longhollow.com', permanent: true },
       { source: '/annualreport', destination: 'https://annualreport.longhollow.com', permanent: true },
       { source: '/feed', destination: '/first-responder-meal-deliveries', permanent: true },
-      { source: '/spirit', destination: '/spirit-of-christmas-2021', permanent: true },
+      { source: '/spirit', destination: '/spiritofchristmas2023', permanent: true },
       { source: '/growtogether', destination: '/grow-together-november-2021', permanent: true },
       { source: '/legacy', destination: '/the-legacy-park-project', permanent: true },
       { source: '/legacypark', destination: '/legacy-park-is-now-open', permanent: true },
