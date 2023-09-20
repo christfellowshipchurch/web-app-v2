@@ -59,7 +59,7 @@ const additionalInfoCampusData = [
     name: 'Trinity',
     info: [
       'Kids programming up to grade 5 during service',
-      'ASL interpretation offered at 10am',
+      'ASL interpretation available',
     ],
   },
   {
