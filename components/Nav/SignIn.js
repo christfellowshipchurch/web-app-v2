@@ -72,9 +72,10 @@ function SignIn(props = {}) {
       <Box cursor="pointer" textDecoration="none" onClick={handleAuthClick}>
         <Box
           display="flex"
-          border="2px solid white"
+          border="2px solid"
           justifyContent="center"
           borderRadius="50%"
+          borderColor={props?.transparentMode ? 'white' : 'fg'}
           size="36px"
         >
           <Icon
