@@ -107,7 +107,7 @@ const GroupCard = (props = {}) => {
       <Styled.GroupCardContent>
         {props.campus && (
           <Styled.DateTimeLabel>
-            <Icon name="map" size="16" mr="xs" />
+            <Icon name="location" size="16" mr="xs" />
             {props.campus}
           </Styled.DateTimeLabel>
         )}
