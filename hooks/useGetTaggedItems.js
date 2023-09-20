@@ -15,6 +15,7 @@ function useGetTaggedItems() {
     fetchPolicy: 'cache-and-network',
   });
 
+  console.log('query: ', query);
   return {
     taggedItems: query?.data?.getTaggedItems,
     ...query,

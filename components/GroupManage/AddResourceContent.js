@@ -10,14 +10,20 @@ import {
 import { Box, Button, Loader, Select } from 'ui-kit';
 
 function AddResourceContent() {
+  const [selectedCategory, setSelectedCategory] = useState('');
+
+  const { taggedItems, refetch } = useGetTaggedItems({
+    variables: { tagName: selectedCategory },
+    fetchPolicy: 'cache-and-network',
+  });
+
   const [{ resourceStatus: status, groupData, message }, dispatch] =
     useGroupManage();
+
   const setStatus = s => dispatch(update({ resourceStatus: s }));
 
-  const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedItem, setSelectedItem] = useState('');
   const [isDataLoaded, setIsDataLoaded] = useState(false);
-  const [taggedItems, setTaggedItems] = useState([]);
 
   const [updateGroupResourceContentItem] = useUpdateGroupResourceContentItem();
 
@@ -30,20 +36,14 @@ function AddResourceContent() {
   useEffect(() => {
     if (categories) {
       setIsDataLoaded(true);
-      console.log(categories);
     }
   }, [categories]);
+
   const handleCategoryChange = event => {
     setSelectedCategory(event.target.value);
-    // RUN QUERY TO GET TAGGED ITEMS - NEED CONTENT ITEM ID, TITLE AND GROUP ID ???
-    setTaggedItems(
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      useGetTaggedItems({
-        // Potential error in line above?
-        variables: { tagName: selectedCategory },
-        fetchPolicy: 'cache-and-network',
-      })
-    );
+    console.log('refetching with SelectedCategory: ', selectedCategory);
+    refetch();
+    console.log('refetched');
     setSelectedItem('');
   };
 
@@ -119,6 +119,7 @@ function AddResourceContent() {
               Select an Item...
             </Select.Option>
             {selectedCategory &&
+              taggedItems &&
               // MAP THE RESULTS FROM LINE 29 INSTEAD
               taggedItems.map(taggedItem => (
                 <Select.Option
