@@ -71,7 +71,6 @@ export default function DiscoverFilterCategoriesPreview() {
           {loading ? (
             <Loader />
           ) : (
-            // <Box></Box>
             contentItems.map(n => (
               <CustomLink
                 Component={n?.title ? DefaultCard : HorizontalHighlightCard}
