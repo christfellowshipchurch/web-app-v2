@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import startCase from 'lodash/startCase';
 import { getUrlFromRelatedNode } from 'utils';
-import { useDiscoverFilterCategoriesPreview } from 'hooks';
+import { useSisterhoodPodcast } from 'hooks';
 
 import {
   Box,
@@ -19,28 +18,27 @@ import { Layout, CustomLink } from 'components';
 import { useAnalytics } from 'providers/AnalyticsProvider';
 
 export default function DiscoverFilterCategoriesPreview() {
-  const { query, push } = useRouter();
+  const { push } = useRouter();
   const analytics = useAnalytics();
-  const type = 'UniversalContentItem';
-  const contentId = type.concat(':', query?.id);
+  const router = useRouter();
+  const seasonNumber = parseInt(router.query.title);
 
-  const { categoryTitle, contentItems, loading } =
-    useDiscoverFilterCategoriesPreview({
-      variables: { id: contentId, first: 100 },
-      fetchPolicy: 'cache-and-network',
-    });
+  const { contentItems, loading } = useSisterhoodPodcast({
+    variables: { seasonNumber: seasonNumber },
+    fetchPolicy: 'cache-and-network',
+  });
 
   //Segment Page Tracking
   useEffect(() => {
     analytics.page({
-      title: `View All "${categoryTitle}" Category`,
+      title: `View All Season "${seasonNumber}" Category`,
       mediaType: 'Information',
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <Layout title={startCase(categoryTitle)}>
+    <Layout title={`Season ${seasonNumber}`}>
       <Cell
         as="main"
         maxWidth={utils.rem('1100px')}
@@ -54,14 +52,14 @@ export default function DiscoverFilterCategoriesPreview() {
           mb="l"
         >
           <Box as="h1" mb="0">
-            {categoryTitle}
+            Season {seasonNumber}
           </Box>
           <Box>
             <Button
               display="flex"
               py="none"
               variant="link"
-              onClick={() => push(`/discover?c=${query?.c}`)}
+              onClick={() => push(`/so-good-sisterhood`)}
             >
               <Icon name="angle-left" color="primary" />
               Back

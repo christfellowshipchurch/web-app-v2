@@ -60,6 +60,7 @@ import useRemoveGroupResource from './useRemoveGroupResource';
 import useRequestEmailPin from './useRequestEmailPin';
 import useRequestPasswordChange from './useRequestPasswordChange';
 import useRequestPin from './useRequestPin';
+import useSisterhoodPodcast from './useSisterhoodPodcast';
 import useSearchContentItems from './useSearchContentItems';
 import useSearchGroups from './useSearchGroups';
 import useSendGroupEmail from './useSendGroupEmail';
@@ -140,6 +141,7 @@ export {
   useSearchGroups,
   useSendGroupEmail,
   useSearchGroupMembers,
+  useSisterhoodPodcast,
   useSubmitConnectCard,
   useSubmitSetReminder,
   useUpdateCurrentUser,
