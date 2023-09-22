@@ -49,7 +49,7 @@ const LocationBlockFeature = props => {
       </Box>
       <Styled.Container>
         {content?.map(block => (
-          <Styled.LocationBlock key={block.id}>
+          <Styled.LocationBlock key={block.id} mr={{ md: 'l', lg: '0' }}>
             <Image
               aspectRatio={
                 props?.campusName === 'Cf Everywhere' ? '14by9' : '16by9'
