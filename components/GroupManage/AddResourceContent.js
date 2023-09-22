@@ -120,9 +120,13 @@ function AddResourceContent() {
               taggedItems &&
               // MAP THE RESULTS FROM LINE 29 INSTEAD
               taggedItems.map(taggedItem => (
-                <Select.Option key={taggedItem.id} value={taggedItem.title}>
-                  {taggedItem.title}
-                </Select.Option>
+                <>
+                  {taggedItem?.title && (
+                    <Select.Option key={taggedItem.id} value={taggedItem.id}>
+                      {taggedItem.title}
+                    </Select.Option>
+                  )}
+                </>
               ))}
           </Select>
         </>

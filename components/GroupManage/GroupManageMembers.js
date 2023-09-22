@@ -134,7 +134,7 @@ function GroupManageMembers(props = {}) {
         },
       },
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchArgs]);
 
   useEffect(() => {
@@ -146,13 +146,13 @@ function GroupManageMembers(props = {}) {
         },
       },
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     // if (loading) return
     setRecipients(groupMembers?.map(m => m?.id));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [groupMembers]);
 
   return (
