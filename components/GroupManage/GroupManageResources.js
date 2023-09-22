@@ -10,7 +10,7 @@ import AddResourceLink from './AddResourceLink';
 import ResourcesList from './ResourcesList';
 
 function GroupManageResources(props = {}) {
-  const [{ resourceStatus: status, groupData }, dispatch] = useGroupManage();
+  const [{ resourceStatus: status }, dispatch] = useGroupManage();
   const setStatus = s => dispatch(update({ resourceStatus: s }));
 
   const handleAddLinkClick = toggle => event => {

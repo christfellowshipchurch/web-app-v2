@@ -10,12 +10,12 @@ export const TAGGED_ITEMS = gql`
   }
 `;
 
-function useGetTaggedItems() {
+function useGetTaggedItems(options = {}) {
   const query = useQuery(TAGGED_ITEMS, {
     fetchPolicy: 'cache-and-network',
+    ...options,
   });
 
-  console.log('query: ', query);
   return {
     taggedItems: query?.data?.getTaggedItems,
     ...query,

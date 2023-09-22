@@ -41,9 +41,7 @@ function AddResourceContent() {
 
   const handleCategoryChange = event => {
     setSelectedCategory(event.target.value);
-    console.log('refetching with SelectedCategory: ', selectedCategory);
     refetch();
-    console.log('refetched');
     setSelectedItem('');
   };
 
@@ -122,11 +120,8 @@ function AddResourceContent() {
               taggedItems &&
               // MAP THE RESULTS FROM LINE 29 INSTEAD
               taggedItems.map(taggedItem => (
-                <Select.Option
-                  key={taggedItem.node.id}
-                  value={taggedItem.value}
-                >
-                  HOLA
+                <Select.Option key={taggedItem.id} value={taggedItem.title}>
+                  {taggedItem.title}
                 </Select.Option>
               ))}
           </Select>
