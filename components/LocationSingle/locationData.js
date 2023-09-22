@@ -8,7 +8,6 @@ const additionalInfoCampusData = [
     info: [
       'Kids services take place at each service',
       'Traducciones al español ofrecidas a las 11:45am',
-      'ASL interpretation offered at 10am',
     ],
   },
   {
@@ -58,7 +57,10 @@ const additionalInfoCampusData = [
   },
   {
     name: 'Trinity',
-    info: ['Kids programming up to grade 5 during service'],
+    info: [
+      'Kids programming up to grade 5 during service',
+      'ASL interpretation available',
+    ],
   },
   {
     name: 'Cf Everywhere',
