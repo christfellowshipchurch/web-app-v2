@@ -17,7 +17,7 @@ import {
 import { Layout, CustomLink } from 'components';
 import { useAnalytics } from 'providers/AnalyticsProvider';
 
-export default function DiscoverFilterCategoriesPreview() {
+export default function SisterhoodPodcastSeason() {
   const { push } = useRouter();
   const analytics = useAnalytics();
   const router = useRouter();

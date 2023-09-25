@@ -1,8 +1,24 @@
 import { useQuery, gql } from '@apollo/client';
 
 export const GROUP_RESOURCE_OPTIONS = gql`
-  query groupResourceOptions($tagCategory: String!) {
-    getTags(tagCategory: $tagCategory)
+  query groupResourceOptions(
+    $groupId: ID!
+    $input: ContentItemsConnectionInput
+  ) {
+    groupResourceOptions(groupId: $groupId, input: $input) {
+      totalCount
+      pageInfo {
+        startCursor
+        endCursor
+      }
+      edges {
+        cursor
+        node {
+          id
+          title
+        }
+      }
+    }
   }
 `;
 
@@ -13,7 +29,7 @@ function useGroupResourceOptions(options = {}) {
   });
 
   return {
-    categories: query?.data?.getTags || [],
+    groupResourceOptions: query?.data?.groupResourceOptions || [],
     ...query,
   };
 }

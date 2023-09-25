@@ -4,11 +4,18 @@ import PropTypes from 'prop-types';
 import { useGroupManage, update } from 'providers/GroupManageProvider';
 import {
   useUpdateGroupResourceContentItem,
-  useGroupResourceOptions,
+  useGetTags,
   useGetTaggedItems,
 } from 'hooks';
 import { Box, Button, Loader, Select } from 'ui-kit';
 
+function existingResources(groupData) {
+  if (!groupData) {
+    return [];
+  }
+
+  return groupData.resources.map(resource => resource.title);
+}
 function AddResourceContent() {
   const [selectedCategory, setSelectedCategory] = useState('');
 
@@ -24,11 +31,11 @@ function AddResourceContent() {
 
   const [selectedItem, setSelectedItem] = useState('');
   const [isDataLoaded, setIsDataLoaded] = useState(false);
+  const [resources, setResources] = useState([]); // [resource1, resource2, ...
 
   const [updateGroupResourceContentItem] = useUpdateGroupResourceContentItem();
 
-  // ** We evetually want to update the way we load all the content items for Group resources in the backround and not have to wait for them to load all at once.
-  const { categories } = useGroupResourceOptions({
+  const { categories } = useGetTags({
     variables: { tagCategory: 'group resources' },
     fetchPolicy: 'cache-and-network',
   });
@@ -37,6 +44,8 @@ function AddResourceContent() {
     if (categories) {
       setIsDataLoaded(true);
     }
+    setResources(existingResources(groupData));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categories]);
 
   const handleCategoryChange = event => {
@@ -99,8 +108,8 @@ function AddResourceContent() {
               Select a Category...
             </Select.Option>
             {categories.map(category => (
-              <Select.Option key={category} value={category}>
-                {category}
+              <Select.Option key={category.title} value={category.title}>
+                {category.name}
               </Select.Option>
             ))}
           </Select>
@@ -118,14 +127,14 @@ function AddResourceContent() {
             </Select.Option>
             {selectedCategory &&
               taggedItems &&
-              // MAP THE RESULTS FROM LINE 29 INSTEAD
               taggedItems.map(taggedItem => (
                 <>
-                  {taggedItem?.title && (
-                    <Select.Option key={taggedItem.id} value={taggedItem.id}>
-                      {taggedItem.title}
-                    </Select.Option>
-                  )}
+                  {taggedItem?.title &&
+                    !resources.includes(taggedItem.title) && (
+                      <Select.Option key={taggedItem.id} value={taggedItem.id}>
+                        {taggedItem.title}
+                      </Select.Option>
+                    )}
                 </>
               ))}
           </Select>

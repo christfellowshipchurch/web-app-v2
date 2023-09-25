@@ -30,6 +30,7 @@ import useFeatureAction from './useFeatureAction';
 import useFeatureFeed from './useFeatureFeed';
 import useFeedFeatures from './useFeedFeatures';
 import useForm from './useForm';
+import useGetTags from './useGetTags';
 import useGetTaggedItems from './useGetTaggedItems';
 import useGroup from './useGroup';
 import useGroupContentId from './useGroupContentId';
@@ -107,6 +108,7 @@ export {
   useFeatureFeed,
   useFeedFeatures,
   useForm,
+  useGetTags,
   useGetTaggedItems,
   useGroup,
   useGroupContentId,
