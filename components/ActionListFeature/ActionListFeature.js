@@ -12,9 +12,9 @@ function ActionListFeature(props = {}) {
   let cards = props?.data?.actions || [];
 
   // Hardcoded Images for the Podcast Seasons
-  let PodcastImages;
+  let podcastImages;
   if (title === 'Podcast Seasons') {
-    PodcastImages = [
+    podcastImages = [
       'https://cloudfront.christfellowship.church/GetImage.ashx?guid=f6f2a8ae-f2b8-4693-99dd-201aec038381',
       'https://cloudfront.christfellowship.church/GetImage.ashx?guid=c18e9876-f47e-407d-b2c7-222815512586',
       'https://cloudfront.christfellowship.church/GetImage.ashx?guid=42d3721c-c07d-46ce-9595-75a49a8f21a2',
@@ -46,7 +46,7 @@ function ActionListFeature(props = {}) {
                 coverImage={
                   card?.image?.sources
                     ? card?.image?.sources[0]?.uri
-                    : PodcastImages[i]
+                    : podcastImages[i]
                 }
                 coverImageOverlay={true}
                 title={card?.title}
