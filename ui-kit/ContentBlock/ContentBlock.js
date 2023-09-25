@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
 import kebabCase from 'lodash/kebabCase';
+import { useCurrentBreakpoint } from 'hooks';
 
 import {
   Box,
@@ -50,8 +51,20 @@ function ContentBlock(props = {}) {
   const idRegex = /\D/g;
   const containerId = hasTitle ? kebabCase(title) : id?.replace(idRegex, '');
 
+  const currentBreakpoint = useCurrentBreakpoint();
+  if (
+    props?.centerContent &&
+    (currentBreakpoint.isSmall || currentBreakpoint.isMedium)
+  ) {
+    var center = true;
+  }
+
   return (
-    <Styled id={containerId} contentLayout={contentLayout}>
+    <Styled
+      id={containerId}
+      contentLayout={contentLayout}
+      alignItems={props?.centerContent && 'center'}
+    >
       {/* // MARK : Media */}
       <Conditional condition={hasMedia}>
         <Box
@@ -59,7 +72,7 @@ function ContentBlock(props = {}) {
           justifyContent="center"
           alignItems="center"
           borderRadius="base"
-          maxWidth={horizontalLayout ? '500px' : '800px'}
+          maxWidth={horizontalLayout ? (hasVideo ? 600 : 500) : 800}
         >
           <Conditional condition={hasImage && !hasVideo}>
             <Image
@@ -72,22 +85,28 @@ function ContentBlock(props = {}) {
           </Conditional>
 
           <Conditional condition={hasVideo}>
-            <Video
-              // for some reason width and height are not responding correctly in this component so we must set them manually here
-              height="auto"
-              width={
-                horizontalLayout
-                  ? { _: 350, md: 400, lg: 520 }
-                  : { _: 350, md: 600, lg: 800 }
-              }
-              src={props?.videos[0]?.sources[0]?.uri}
-              autoPlay={false}
-              playsInline={true}
-              poster={props?.image}
-              // all videos will defatult to 16:9 aspect ratio keeping sizing consistent
-              aspectRatio="16/9"
-              wistiaId={props?.wistiaId}
-            />
+            <Box
+              boxShadow={props?.roundVideo && 'xl'}
+              borderRadius={props?.roundVideo && 'l'}
+              overflow={props?.roundVideo && 'hidden'}
+            >
+              <Video
+                // for some reason width and height are not responding correctly in this component so we must set them manually here
+                height="auto"
+                width={
+                  horizontalLayout
+                    ? { _: 350, md: 600, lg: 520 }
+                    : { _: 350, md: 600, lg: 800 }
+                }
+                src={props?.videos[0]?.sources[0]?.uri}
+                autoPlay={false}
+                playsInline={true}
+                poster={props?.image}
+                wistiaId={props?.wistiaId}
+                // all videos will defatult to 16:9 aspect ratio keeping sizing consistent
+                aspectRatio="16/9"
+              />
+            </Box>
           </Conditional>
         </Box>
       </Conditional>
@@ -98,7 +117,7 @@ function ContentBlock(props = {}) {
         flexDirection="column"
         display="flex"
         gridRowGap="0.15rem"
-        textAlign={horizontalLayout ? 'left' : 'center'}
+        textAlign={horizontalLayout && !center ? 'left' : 'center'}
         pt={hasMedia && horizontalLayout ? 'base' : '0'}
       >
         <ConditionalBox condition={hasTitle} order={horizontalLayout ? 1 : 0}>
@@ -146,6 +165,7 @@ function ContentBlock(props = {}) {
               m="xs"
               textTransform="capitalize!important"
               target={action?.newTab && '_blank'}
+              onClick={action?.onClick}
               /**
                * todo : We want to eventually add functionality with the 'onPressActionItem' to be able to perform more actions in the future.
                */

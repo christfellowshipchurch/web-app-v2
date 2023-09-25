@@ -24,6 +24,13 @@ const LocationBlock = styled.div`
     margin-top: ${themeGet('space.base')};
     margin-bottom: ${themeGet('space.l')};
     margin-left: 0px;
+    margin-right: 10px;
+  }
+
+  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+    margin-top: ${themeGet('space.base')};
+    margin-bottom: ${themeGet('space.l')};
+    margin-left: 0px;
     margin-right: 0px;
   }
 `;
