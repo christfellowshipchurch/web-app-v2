@@ -21,8 +21,7 @@ function ActionListFeature(props = {}) {
       'https://cloudfront.christfellowship.church/GetImage.ashx?guid=736dcb16-9e8b-4c0b-b515-e65d2b4d0e6b',
       'https://cloudfront.christfellowship.church/GetImage.ashx?guid=648e350b-45d6-42b5-8782-40dd439ac533',
       'https://cloudfront.christfellowship.church/GetImage.ashx?guid=297a613d-2169-4500-a6d0-9fc68af9d56e',
-      'https://cloudfront.christfellowship.church/GetImage.ashx?guid=6e2b0b0e-4b9a-4b9e-9b0a-1b6b0b0e4b9a',
-      // Season 7 empty for now
+      'https://cloudfront.christfellowship.church/GetImage.ashx?guid=608dc9f9-d842-448d-9f87-c28ef6b0f77d',
     ];
   }
   return (
