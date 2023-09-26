@@ -53,11 +53,12 @@ const Content = styled.div`
 
   /* Small Only */
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+    margin-top: ${themeGet('space.base')};
     padding: ${themeGet('space.base')};
     padding-top: ${themeGet('space.xl')};
     width: max-content;
     max-width: calc(100vw - ${themeGet('space.base')});
-    max-height: 75vh;
+    max-height: 80vh;
   }
 `;
 
