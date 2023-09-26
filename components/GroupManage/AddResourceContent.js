@@ -108,7 +108,7 @@ function AddResourceContent() {
               Select a Category...
             </Select.Option>
             {categories.map(category => (
-              <Select.Option key={category.title} value={category.title}>
+              <Select.Option key={category.name} value={category.name}>
                 {category.name}
               </Select.Option>
             ))}
