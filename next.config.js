@@ -33,6 +33,7 @@ module.exports = {
         permanent: false,
       }, // reboot this stupid thing
       { source: '/fall', destination: '/fallatlh', permanent: true },
+      { source: '/onboarding', destination: 'https://rock.longhollow.com/page/827', permanent: true },
       { source: '/bettermangroups', destination: 'https://my.longhollow.com/Registration/bettermanstudy-oct2023', permanent: true },
       { source: '/hangout', destination: '/lhkidshomeschoolwheelsandreels', permanent: true },
       { source: '/lhkidswheelsandreels', destination: '/lhkidshomeschoolwheelsandreels', permanent: true },
