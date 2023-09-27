@@ -9,40 +9,42 @@ const Menu = styled.div`
   ${system}
 `;
 
-const side = ({ side }) => props => {
-  if (typeof side === 'string') {
-    if (side === 'right') {
-      return css`
-        right: 0;
-      `;
+const side =
+  ({ side }) =>
+  props => {
+    if (typeof side === 'string') {
+      if (side === 'right') {
+        return css`
+          right: 0;
+        `;
+      }
     }
-  }
 
-  if (typeof side === 'object') {
-    let styles = '';
+    if (typeof side === 'object') {
+      let styles = '';
 
-    for (const [key, value] of Object.entries(side)) {
-      const breakpoint = theme.breakpoints[key];
-      styles += `
+      for (const [key, value] of Object.entries(side)) {
+        const breakpoint = theme.breakpoints[key];
+        styles += `
         @media screen and (min-width: ${breakpoint}) {
           ${value}: 0;
         }
       `;
+      }
+      return css`
+        ${styles}
+      `;
     }
-    return css`
-      ${styles}
-    `;
-  }
 
-  return css`
-    left: 0;
-  `;
-};
+    return css`
+      left: 0;
+    `;
+  };
 
 const Content = styled.div`
   position: absolute;
   top: 100%;
-  z-index: 20;
+  z-index: 10;
 
   ${side}
   ${system}

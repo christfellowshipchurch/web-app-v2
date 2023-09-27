@@ -66,7 +66,7 @@ function LocationSingle(props = {}) {
           color="white"
           position="absolute"
           mb="base"
-          zIndex={1000}
+          zIndex={8}
           mx="base"
           bottom="0"
         >
