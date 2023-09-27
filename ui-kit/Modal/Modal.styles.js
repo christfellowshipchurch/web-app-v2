@@ -49,16 +49,16 @@ const Content = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   width: ${props => props.width};
-  z-index: 10;
+  z-index: 1002;
 
   /* Small Only */
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
-    margin-top: -${themeGet('space.l')};
+    margin-top: ${themeGet('space.base')};
     padding: ${themeGet('space.base')};
     padding-top: ${themeGet('space.xl')};
     width: max-content;
     max-width: calc(100vw - ${themeGet('space.base')});
-    max-height: 85vh;
+    max-height: 80vh;
   }
 `;
 
@@ -72,7 +72,7 @@ const Overlay = styled.div`
   right: 0;
   top: 0;
   width: 100%;
-  z-index: 9;
+  z-index: 1001;
 `;
 
 Modal.Close = Close;
