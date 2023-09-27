@@ -9,8 +9,8 @@ const flexLayout =
       case 'right':
         return css`
           flex-direction: column;
-          
-          @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+
+          @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
             flex-direction: row;
           }
         `;
@@ -18,7 +18,7 @@ const flexLayout =
         return css`
           flex-direction: column;
 
-          @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+          @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
             flex-direction: row-reverse;
           }
         `;
@@ -45,37 +45,44 @@ const ContentBlock = styled.div`
   ${system};
 `;
 
-const textAlign = ({ contentLayout }) => props => {
-  if (contentLayout === "left" || contentLayout === "right") {
-    return css`  
-      text-align: left;
+const textAlign =
+  ({ contentLayout }) =>
+  props => {
+    if (contentLayout === 'left' || contentLayout === 'right') {
+      return css`
+        @media screen and (max-width: ${themeGet('breakpoints.lg')}) {
+          text-align: center;
+        }
+        text-align: left;
+      `;
+    }
+
+    return css`
+      text-align: center;
     `;
-  }
+  };
 
-  return css`  
-    text-align: center;
-  `;
-};
+const gridTemplate =
+  ({ contentLayout }) =>
+  props => {
+    if (contentLayout === 'left' || contentLayout === 'right') {
+      return css`
+        grid-template-areas:
+          'subtitle'
+          'title'
+          'htmlContent'
+          'actions';
+      `;
+    }
 
-const gridTemplate = ({ contentLayout }) => props => {
-  if (contentLayout === "left" || contentLayout === "right") {
-    return css`  
-      grid-template-areas:  
-        'subtitle'
+    return css`
+      grid-template-areas:
         'title'
-        'htmlContent'
-        'actions';
-    `;
-  }
-
-  return css`  
-      grid-template-areas:  
-        'title'  
         'subtitle'
         'htmlContent'
         'actions';
     `;
-};
+  };
 
 const Content = styled.div`
   flex: 4;

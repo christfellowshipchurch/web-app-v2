@@ -14,7 +14,7 @@ import {
   Video,
 } from 'components';
 
-import { Box, Button, Divider, Loader } from 'ui-kit';
+import { Box, Button, Divider, Loader, ContentBlock } from 'ui-kit';
 import CampusInfo from './CampusInfo';
 import LocationHeader from './LocationHeader';
 import defaultBlockData from '../LocationBlockFeature/defaultBlockData';
@@ -24,6 +24,8 @@ import {
   setReminderVideos,
   setReminderData,
   thisWeekFeatureId,
+  whatToExpectVideos,
+  whatToExpectData,
 } from './locationData';
 import { CampusProvider, FeatureProvider } from 'providers';
 import faqData from 'components/FAQ/faqData';
@@ -94,8 +96,20 @@ function LocationSingle(props = {}) {
     }
   }
 
-  // note : import hard coded wistia ids
   const setAReminderVideo = setReminderVideos[camelCase(campus)];
+  const whatToExpectVideo = whatToExpectVideos[camelCase(campus)];
+  const expectData = whatToExpectData(campus);
+  const expectActions = [
+    {
+      title: 'Set a Reminder',
+      variant: 'secondary',
+      onClick: () =>
+        modalDispatch(showModal('SetReminder', { defaultCampus: campus })),
+      relatedNode: {
+        url: '#set-reminder',
+      },
+    },
+  ];
 
   return (
     <Layout
@@ -152,9 +166,9 @@ function LocationSingle(props = {}) {
           <Box
             maxWidth={{ _: 350, md: 600, lg: 800 }}
             boxShadow="l"
-            mt="xxl"
             borderRadius="xl"
             overflow="hidden"
+            mt="xxl"
             mx="auto"
           >
             <Video wistiaId={setAReminderVideo} />
@@ -174,8 +188,35 @@ function LocationSingle(props = {}) {
         </>
       )}
 
+      {/* What to Expect */}
+      {expectData && ( // It will not be in other locations as well
+        <Box bg="white" width="100%">
+          <Box
+            bg="white"
+            mx="auto"
+            maxWidth={{ _: 400, md: 800, lg: 1200 }}
+            py="8rem"
+            px={{ _: 'base', md: 'xl' }}
+          >
+            <ContentBlock
+              {...expectData}
+              wistiaId={whatToExpectVideo}
+              actions={expectActions}
+              contentLayout="left"
+              roundVideo
+              centerContent
+            />
+          </Box>
+        </Box>
+      )}
+
       {/* At this Location Section */}
-      <Box bg="white" width="100%" px={{ _: 'base', md: 'xl' }} pt="base">
+      <Box
+        width="100%"
+        px={{ _: 'base', md: 'xl' }}
+        pt="base"
+        bg={!expectData && 'white'}
+      >
         <LocationBlockFeature
           mx="auto"
           campusName={campus}
@@ -190,7 +231,7 @@ function LocationSingle(props = {}) {
       </Box>
 
       {/* What's Coming Up Section */}
-      <Box py={{ _: 'l', sm: 'xl' }}>
+      <Box bg={expectData && 'white'} py={{ _: 'l', sm: 'xl' }}>
         <Box mx="auto" maxWidth={1200}>
           <CollectionPreview
             horizontalScroll
@@ -208,14 +249,14 @@ function LocationSingle(props = {}) {
       </Box>
 
       {/* FAQs Section */}
-      <Box id="FAQ" bg="white" px="base" py="xl" width="100%">
+      <Box id="FAQ" px="base" py="xl" width="100%" bg={!expectData && 'white'}>
         <Box mx="auto" maxWidth={1200}>
           <FAQ data={faqData(campus)} onClick={faqScroll} />
         </Box>
       </Box>
 
       {/* Testimonial Section */}
-      <Box px="base" py="xl" width="100%">
+      <Box bg={expectData && 'white'} px="base" py="xl" width="100%">
         <Box mx="auto" maxWidth={1200}>
           <Testimonials
             testimonies={
@@ -247,7 +288,7 @@ function LocationSingle(props = {}) {
       </Box>
 
       {/* Never Miss a Thing Section */}
-      <Box bg="white" px="base" py="xl">
+      <Box bg={!expectData && 'white'} px="base" py="xl">
         <Box textAlign="center" maxWidth={500} mx="auto">
           <Box as="h2" color="secondary">
             Never miss a thing.

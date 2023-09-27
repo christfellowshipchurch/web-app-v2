@@ -26,7 +26,6 @@ import {
   update,
   resetValues,
 } from 'providers/GroupFiltersProvider';
-import { useModalState } from 'providers/ModalProvider';
 import { GroupsProvider } from 'providers';
 import { useSearchGroups, useForm, useCurrentBreakpoint } from 'hooks';
 // eslint-disable-next-line no-unused-vars
@@ -44,7 +43,6 @@ export default function CommunitySearch() {
     if (!flags.GROUP_FINDER) router.push('/');
   }, [router]);
 
-  const modalState = useModalState();
   const [cursor, setCursor] = useState({
     page: 1,
     current: null,
@@ -104,12 +102,13 @@ export default function CommunitySearch() {
         after: cursor.current,
       },
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cursor]);
 
   useEffect(() => {
     // Don't execute search if state hasn't been hydrated OR a modal is open
-    if (!filtersState.hydrated || modalState.activeModal.component) {
+    // And if modal was just closed?
+    if (!filtersState.hydrated) {
       return;
     }
 
@@ -137,12 +136,13 @@ export default function CommunitySearch() {
     searchGroups,
     setValues,
     router,
-    modalState.activeModal.component,
   ]);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [data]);
+    if (!filtersState.hydrated) {
+      window.scrollTo(0, 0);
+    }
+  }, [filtersState.hydrated]);
 
   const handleClick = event => {
     filtersDispatch(update({ text: [values.text] }));

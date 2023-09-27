@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import { FeatureFeedProvider } from 'providers';
@@ -6,12 +6,13 @@ import { useAuth } from 'providers/AuthProvider';
 import { useAnalytics } from 'providers/AnalyticsProvider';
 
 import { Layout, FeatureFeed } from 'components';
-import { Box, Cell, utils } from 'ui-kit';
+import { Box, Cell, Loader, utils } from 'ui-kit';
 
 export default function Connect(props = {}) {
   const router = useRouter();
   const analytics = useAnalytics();
-  const [{ authenticated }] = useAuth();
+  const [loadingMessage, setLoadingMessage] = useState('Loading');
+  const [{ authenticated, rockPersonId }] = useAuth();
   const options = {
     variables: {
       pathname: 'connect',
@@ -27,16 +28,16 @@ export default function Connect(props = {}) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  /**
-   * todo : Add loading state while waiting for authentication/redirect
-   */
-
   useEffect(() => {
-    if (!authenticated) {
+    // If the user isn't signed in, let's send them to home page. We also want to check for a Rock Person ID being passed in the URL and give it a chance to authenticate.
+    if (
+      (!authenticated && rockPersonId === 'invalid') ||
+      (!authenticated && rockPersonId === null)
+    ) {
+      setLoadingMessage('User not logged in');
       router.push('/');
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [authenticated]);
+  }, [authenticated, rockPersonId]); // eslint-disable-line
 
   return (
     <Layout title="Connect">
@@ -49,7 +50,13 @@ export default function Connect(props = {}) {
         <Box as="h1" mb={'-1rem'}>
           Connect
         </Box>
-        <FeatureFeedProvider Component={FeatureFeed} options={options} />
+        {!authenticated ? (
+          <Box my="xl" py="l">
+            <Loader text={loadingMessage} />
+          </Box>
+        ) : (
+          <FeatureFeedProvider Component={FeatureFeed} options={options} />
+        )}
       </Cell>
     </Layout>
   );

@@ -21,7 +21,9 @@ function EventSingle(props = {}) {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  
+
+  const videos = props?.data?.videos;
+
   useEffect(() => {
     if (props.data?.videos?.length >= 1 && currentVideo === null) {
       setCurrentVideo(props.data.videos[0]);
@@ -29,7 +31,6 @@ function EventSingle(props = {}) {
       setCurrentVideo(props.data.wistiaId);
     }
   }, [props.data?.videos, props.data?.wistiaId, currentVideo]);
-
 
   if (props.loading) {
     return (
@@ -59,7 +60,7 @@ function EventSingle(props = {}) {
   const wistiaId = props?.data?.wistiaId;
 
   if (!currentVideo && wistiaId) {
-      setCurrentVideo(props.data.wistiaId);
+    setCurrentVideo(props.data.wistiaId);
   }
 
   const eventShareMessages = {
@@ -97,7 +98,7 @@ function EventSingle(props = {}) {
       renderA={() => (
         <ContentVideo
           title={title}
-          video={currentVideo}
+          video={wistiaId ? wistiaId : videos[0]}
           poster={coverImageUri}
           wistiaId={wistiaId}
         />
@@ -110,7 +111,7 @@ function EventSingle(props = {}) {
             shareTitle="Invite"
             shareMessages={eventShareMessages}
           />
-        </Box>   
+        </Box>
       )}
       htmlContent={props.data.htmlContent}
       features={featureFeed?.features}

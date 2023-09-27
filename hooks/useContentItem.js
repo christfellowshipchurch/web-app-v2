@@ -64,6 +64,7 @@ export const EVENT_ITEM_FRAGMENT = gql`
         end
       }
     }
+    wistiaId
     labelText
     callsToAction {
       call
@@ -217,7 +218,8 @@ export const GET_CONTENT_ITEM = gql`
 
 /**
  * todo : there is a bug that I can't explain going on here
- * For some reason, EventContentItems are NOT getting updated from the network after pulling the cached data. This means that if I have an event with title `My Event Name` cached and I update the name to `My New Event Name`, I won't see that UNLESS I change the cache policy to `no-cache`
+ * For some reason, EventContentItems are NOT getting updated from the network after pulling the cached data. This means that if I have an event with title
+ * `My Event Name` cached and I update the name to `My New Event Name`, I won't see that UNLESS I change the cache policy to `no-cache`
  *
  * :: Possible Long Term Solutions
  * Cache merge isn't working properly for the `EventContentItem` type
