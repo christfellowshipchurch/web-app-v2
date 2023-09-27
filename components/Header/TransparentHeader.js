@@ -30,7 +30,7 @@ function TransparentHeader(props = {}) {
   });
 
   return (
-    <Box position="fixed" zIndex={2000} width="100%">
+    <Box position="fixed" zIndex={9} width="100%">
       <ActionBannerProvider Component={ActionBanner} />
       <Styled
         boxShadow="none"
