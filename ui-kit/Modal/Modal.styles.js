@@ -49,7 +49,7 @@ const Content = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   width: ${props => props.width};
-  z-index: 10;
+  z-index: 1002;
 
   /* Small Only */
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
@@ -72,7 +72,7 @@ const Overlay = styled.div`
   right: 0;
   top: 0;
   width: 100%;
-  z-index: 9;
+  z-index: 1001;
 `;
 
 Modal.Close = Close;

@@ -11,7 +11,7 @@ const Header = styled.header`
   padding: ${themeGet('space.base')};
   position: ${props => props.position};
   width: 100%;
-  z-index: 9;
+  z-index: 1001;
   transition: background-color ease-in 0.2s, opacity ease-in 0.2s;
 
   > *:last-child {
