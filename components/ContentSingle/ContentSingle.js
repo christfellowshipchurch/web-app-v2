@@ -52,7 +52,7 @@ function ContentSingle(props = {}) {
     } else if (!currentBreakpoint.isSmall) {
       setShowShare(true);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentBreakpoint]);
 
   useEffect(() => {
@@ -81,7 +81,7 @@ function ContentSingle(props = {}) {
         mediaType: getMediaType({ url: asPath, ...props?.data }),
       });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router]);
 
   if (props.loading) {
@@ -98,8 +98,6 @@ function ContentSingle(props = {}) {
       </Box>
     );
   }
-
-  
 
   if (!currentVideo && wistiaId) {
     setCurrentVideo(props.data.wistiaId);
