@@ -18,9 +18,7 @@ const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
 
 function ContentLayout(props = {}) {
   function renderA() {
-    if (props.renderA) {
-      return props.renderA();
-    } else if (props.coverImage) {
+    if (props.coverImage) {
       return (
         <DefaultCard
           coverImage={props.coverImage}
@@ -29,6 +27,7 @@ function ContentLayout(props = {}) {
         />
       );
     }
+    if (props.renderA) return props.renderA();
     return null;
   }
 
