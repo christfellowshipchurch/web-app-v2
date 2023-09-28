@@ -92,7 +92,7 @@ function EventSingle(props = {}) {
         video: contentLayoutVideo,
       }}
       summary={props.data.summary}
-      coverImage={props.data?.coverImage?.sources[0]?.uri}
+      coverImage={currentVideo ? null : coverImageUri}
       renderA={() => (
         <ContentVideo
           title={title}
