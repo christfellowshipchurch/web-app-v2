@@ -8,6 +8,7 @@ import { useAnalytics } from 'providers/AnalyticsProvider';
 import { WistiaPlayer } from 'components';
 
 import ReactPlayer from 'react-player';
+import { random } from 'lodash';
 
 // Mux is used to deal with encodings and low-level video nonsense.
 // Without it, streams are unlikely to work on iOS and Safari.
@@ -31,9 +32,6 @@ export default function Video(props = {}) {
   };
   const notPlaying = () => setIsPlaying(false);
 
-  //generate a random Id for Wistia Wrapper so we can show the same video multiple times on a single page
-  const randomId = Math.floor(Math.random() * 10000);
-
   return (
     <Box
       position="relative"
@@ -45,7 +43,7 @@ export default function Video(props = {}) {
       {props?.wistiaId ? (
         <WistiaPlayer
           videoId={props?.wistiaId}
-          wrapper={`wistia-player-container-${props?.wistiaId}-${randomId}`}
+          wrapper={`wistia-player-container-${props?.wistiaId}`}
         />
       ) : (
         <>
