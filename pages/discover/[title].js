@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import startCase from 'lodash/startCase';
-
 import { getUrlFromRelatedNode } from 'utils';
 import { useDiscoverFilterCategoriesPreview } from 'hooks';
 
@@ -10,17 +9,17 @@ import {
   DefaultCard,
   CardGrid,
   Cell,
-  Icon,
   Button,
   utils,
   Loader,
   HorizontalHighlightCard,
+  Icon,
 } from 'ui-kit';
 import { Layout, CustomLink } from 'components';
 import { useAnalytics } from 'providers/AnalyticsProvider';
 
-export default function DiscoverFilterCategoriesPreview(props) {
-  const { query, back } = useRouter();
+export default function DiscoverFilterCategoriesPreview() {
+  const { query, push } = useRouter();
   const analytics = useAnalytics();
   const type = 'UniversalContentItem';
   const contentId = type.concat(':', query?.id);
@@ -37,6 +36,7 @@ export default function DiscoverFilterCategoriesPreview(props) {
       title: `View All "${categoryTitle}" Category`,
       mediaType: 'Information',
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -56,10 +56,19 @@ export default function DiscoverFilterCategoriesPreview(props) {
           <Box as="h1" mb="0">
             {categoryTitle}
           </Box>
-          <Button variant="link" onClick={() => back()} pr="0">
-            <Icon name="angleLeft" /> Back
-          </Button>
+          <Box>
+            <Button
+              display="flex"
+              py="none"
+              variant="link"
+              onClick={() => push(`/discover?c=${query?.c}`)}
+            >
+              <Icon name="angle-left" color="primary" />
+              Back
+            </Button>
+          </Box>
         </Box>
+
         <CardGrid columns="3" mb="xl">
           {loading ? (
             <Loader />

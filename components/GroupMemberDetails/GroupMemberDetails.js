@@ -12,22 +12,11 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { isEmpty } from 'lodash';
 import { parseISO, format } from 'date-fns';
-import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
 import { Box, Button, Icon, SquareAvatar, Select, TextArea } from 'ui-kit';
 import { Row } from './GroupMemberDetails.components';
 import Styled from './GroupMemberDetails.styles';
 import { useGroupEmailRecipients } from 'hooks';
-
-const sortAlphabetically = (a, b) => {
-  if (a < b) {
-    return -1;
-  }
-  if (a > b) {
-    return 1;
-  }
-  return 0;
-};
 
 const GroupMemberDetails = ({
   id,
@@ -56,14 +45,6 @@ const GroupMemberDetails = ({
   const fullName = [person?.firstName, person?.lastName]
     .filter(name => !isEmpty(name))
     .join(' ');
-
-  const renderAddress = address => {
-    const cityLine = `${address?.city}, ${address?.state} ${address?.postalCode}`;
-
-    return [address?.street1, address?.street2, cityLine]
-      .filter(line => !isEmpty(line))
-      .join('\n');
-  };
 
   const onSave = () => {
     callback({ groupMemberId: id, note, status, inactiveStatusReason });
@@ -154,12 +135,6 @@ const GroupMemberDetails = ({
       {!isEmpty(person?.email) && (
         <Row label="Email">
           <Styled.Label as="h4">{person?.email}</Styled.Label>
-        </Row>
-      )}
-
-      {!isEmpty(person?.address) && (
-        <Row label="Address">
-          <Styled.Label as="h4">{renderAddress(person?.address)}</Styled.Label>
         </Row>
       )}
 

@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { themeGet } from '@styled-system/theme-get';
 
 import { system } from 'ui-kit';
 
@@ -33,7 +32,7 @@ const cardSpan = ({ index, total }) => {
   }
 
   if (total === 1) {
-    span = 12
+    span = 12;
   }
 
   return css`

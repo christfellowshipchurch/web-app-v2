@@ -1,7 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Box, Button, Checkbox, Icon, Loader, Select, TextInput } from 'ui-kit';
-import { useDiscoverFilterCategoriesPreview } from 'hooks';
+import { Box, Button, Icon, Loader, Select, TextInput } from 'ui-kit';
 
 const StyledTextInput = props => (
   <Box>
@@ -17,15 +15,6 @@ const StyledTextInput = props => (
         {props?.errors}
       </Box>
     ) : null}
-  </Box>
-);
-
-const StyledCheckBox = props => (
-  <Box display="flex">
-    <Checkbox id={props?.id} size={18} onChange={props?.onChange} mr="s" />
-    <Box as="p" mt="0.1rem">
-      {props?.text}
-    </Box>
   </Box>
 );
 
@@ -139,9 +128,11 @@ const StyledForm = ({
               <Select.Option value={null}>Select a Service Time</Select.Option>
               {serviceTimes.map(({ id, time }) => {
                 return (
-                  <Select.Option key={id} value={time}>
-                    {time}
-                  </Select.Option>
+                  time && (
+                    <Select.Option key={id} value={time}>
+                      {time}
+                    </Select.Option>
+                  )
                 );
               })}
             </Select>
@@ -155,7 +146,7 @@ const StyledForm = ({
       </Box>
       {errors?.networkError && (
         <Box display="flex" alignItems="center" color="alert" mb="s">
-          <Icon name="gear" />
+          <Icon name="settings" />
           Oops! Network error, please try again later.
         </Box>
       )}

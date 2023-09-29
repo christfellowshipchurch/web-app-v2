@@ -1,17 +1,22 @@
-import React from 'react';
+'use client';
 
-import { Box, systemPropTypes } from 'ui-kit';
+// Imports
+// ========================================================
+import React, { useState, useEffect } from 'react';
 
-function ClientSideComponent(props = {}) {
-  return (
-    <Box suppressHydrationWarning={true} {...props}>
-      {process.browser ? props.children : null}
-    </Box>
-  );
+// Page
+// ========================================================
+export default function ClientSideComponent({ children }) {
+  // State / Props
+  const [hasMounted, setHasMounted] = useState(false);
+
+  // Hooks
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  // Render
+  if (!hasMounted) return null;
+
+  return <div>{children}</div>;
 }
-
-ClientSideComponent.propTypes = {
-  ...systemPropTypes,
-};
-
-export default ClientSideComponent;

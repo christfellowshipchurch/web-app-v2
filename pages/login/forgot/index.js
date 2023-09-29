@@ -8,11 +8,10 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Layout, PasswordReset } from 'components';
 
 
-const Forgot = ({ }) => {
+const Forgot = () => {
     return <Layout title="Forgot My Password">
         <PasswordReset />
     </Layout>

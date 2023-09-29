@@ -18,6 +18,7 @@ export default function Give(props) {
   //Segment Page Tracking
   useEffect(() => {
     analytics.page();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

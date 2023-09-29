@@ -1,3 +1,4 @@
+'use client';
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 import { useAuth } from 'providers/AuthProvider';
@@ -33,13 +34,13 @@ const ChatConnectionProvider = ({ children }) => {
 
     async function connectUser() {
       setConnectionStatus(ConnectionStatus.CONNECTING);
-      await StreamChatClient.connectUser(chatUser, chatToken);
+      await StreamChatClient?.connectUser(chatUser, chatToken);
       setConnectionStatus(ConnectionStatus.CONNECTED);
     }
 
     async function connectAnonymously() {
       setConnectionStatus(ConnectionStatus.CONNECTING);
-      await StreamChatClient.connectAnonymousUser();
+      await StreamChatClient?.connectAnonymousUser();
       setConnectionStatus(ConnectionStatus.CONNECTED);
     }
 
@@ -70,7 +71,7 @@ const ChatConnectionProvider = ({ children }) => {
     return async () => {
       if (connectionStatus === ConnectionStatus.CONNECTED) {
         setConnectionStatus(ConnectionStatus.DISCONNECTED);
-        await StreamChatClient.disconnectUser();
+        await StreamChatClient?.disconnectUser();
       }
     };
   }, [isClient, authenticated, chatUser, chatToken, connectionStatus]);

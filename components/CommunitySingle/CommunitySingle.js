@@ -32,10 +32,6 @@ import VideoPlayButton from './VideoPlayButton';
 import Styled from './CommunitySingle.styles';
 
 // Redundant (and brittle) mapping, but easier to read than integers
-const ModalSteps = Object.freeze({
-  SUB_PREFERENCES: 1,
-  WHERE_WHEN: 2,
-});
 
 function CommunitySingle(props = {}) {
   const [{ authenticated }, authDispatch] = useAuth();
@@ -118,6 +114,7 @@ function CommunitySingle(props = {}) {
   // }
 
   // Bypassing group filter modal temporarily
+
   const handleSubPreferenceSelect = subPreference => {
     filtersDispatch(update({ subPreferences: [subPreference.title] }));
     router.push({

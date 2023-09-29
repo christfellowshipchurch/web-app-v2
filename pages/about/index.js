@@ -1,14 +1,5 @@
 import { useState, useEffect } from 'react';
-import {
-  Button,
-  Box,
-  Card,
-  ContentBlock,
-  List,
-  HorizontalHighlightCard,
-  DefaultCard,
-  utils,
-} from 'ui-kit';
+import { Button, Box, Card, ContentBlock, List } from 'ui-kit';
 import { rem } from 'ui-kit/_utils';
 import { Layout, VerticalCardListFeature } from 'components';
 import { useRouter } from 'next/router';
@@ -41,6 +32,7 @@ export default function About() {
         hash: lastOfPath,
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

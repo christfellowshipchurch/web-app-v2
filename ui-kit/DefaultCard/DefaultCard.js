@@ -28,6 +28,7 @@ const DefaultCard = (props = {}) => {
             <Styled.CoverContent
               position={props.coverImageContentPosition}
               size={props.cardSize}
+              textAlign={props.textAlign}
             >
               {props.coverImageTitle || props.coverImageDescription ? (
                 <Box color="white">

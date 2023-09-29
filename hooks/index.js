@@ -3,6 +3,7 @@ import useAddGroupMember from './useAddGroupMember';
 import useAuthIdentity from './useAuthIdentity';
 import useAuthQuery from './useAuthQuery';
 import useAuthenticateCredentials from './useAuthenticateCredentials';
+import useAuthenticateRockPersonId from './useAuthenticateRockPersonId';
 import useCampus from './useCampus';
 import useCampuses from './useCampuses';
 import useCheckIn from './useCheckIn';
@@ -15,6 +16,7 @@ import useCurrentChatUser from './useCurrentChatUser';
 import useCurrentPerson from './useCurrentPerson';
 import useCurrentUser from './useCurrentUser';
 import useCurrentUserRoleForChatChannel from './useCurrentUserRoleForChatChannel';
+import useDefinedValueList from './useDefinedValueList';
 import useDiscoverFilterCategories from './useDiscoverFilterCategories';
 import useDiscoverFilterCategoriesPreview from './useDiscoverFilterCategoriesPreview';
 import useDiscoverFilters from './useDiscoverFilters';
@@ -22,6 +24,7 @@ import useEditGroupMember from './useEditGroupMember';
 import useEvent from './useEvent';
 import useEvents from './useEvents';
 import useEventsFeedFeatures from './useEventsFeedFeatures';
+import useExternalHomeActions from './useExternalHomeActions';
 import useFeature from './useFeature';
 import useFeatureAction from './useFeatureAction';
 import useFeatureFeed from './useFeatureFeed';
@@ -55,6 +58,7 @@ import useRemoveGroupResource from './useRemoveGroupResource';
 import useRequestEmailPin from './useRequestEmailPin';
 import useRequestPasswordChange from './useRequestPasswordChange';
 import useRequestPin from './useRequestPin';
+import useSisterhoodPodcast from './useSisterhoodPodcast';
 import useSearchContentItems from './useSearchContentItems';
 import useSearchGroups from './useSearchGroups';
 import useSendGroupEmail from './useSendGroupEmail';
@@ -75,6 +79,7 @@ export {
   useAuthIdentity,
   useAuthQuery,
   useAuthenticateCredentials,
+  useAuthenticateRockPersonId,
   useCampus,
   useCampuses,
   useCheckIn,
@@ -87,6 +92,7 @@ export {
   useCurrentPerson,
   useCurrentUser,
   useCurrentUserRoleForChatChannel,
+  useDefinedValueList,
   useDiscoverFilterCategories,
   useDiscoverFilterCategoriesPreview,
   useDiscoverFilters,
@@ -94,6 +100,7 @@ export {
   useEvent,
   useEvents,
   useEventsFeedFeatures,
+  useExternalHomeActions,
   useFeature,
   useFeatureAction,
   useGroupFacetFilters,
@@ -132,6 +139,7 @@ export {
   useSearchGroups,
   useSendGroupEmail,
   useSearchGroupMembers,
+  useSisterhoodPodcast,
   useSubmitConnectCard,
   useSubmitSetReminder,
   useUpdateCurrentUser,

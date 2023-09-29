@@ -19,6 +19,7 @@ const labelColor = props => {
 const GroupCard = styled(Card)`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 
   ${system}
 `;
@@ -77,7 +78,6 @@ const GroupCardContent = styled.div`
   display: flex;
   flex-direction: column;
   padding: ${themeGet('space.base')};
-  height: 100%;
 
   ${system}
 `;

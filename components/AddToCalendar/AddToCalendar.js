@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import uniqueId from 'lodash/uniqueId';
 
-import { Box, Menu, List, Button, Icon } from 'ui-kit';
+import { Box, Menu, List, Icon } from 'ui-kit';
 import { CustomLink } from 'components';
 import { googleCalLink, icsLink } from './utils';
 
@@ -21,6 +21,7 @@ const AddToCalendar = (
         onClick={toggle}
         textDecoration="none"
         display="flex"
+        alignItems="center"
       >
         <Icon name="calendarPlus" mr={label && 'xs'} />
         {label && (
@@ -42,6 +43,8 @@ const AddToCalendar = (
           Component={Menu.Link}
           px="base"
           py="xs"
+          display="flex"
+          alignItems="center"
         >
           <Icon name="apple" size="30" mr="s" />
           Apple
@@ -54,6 +57,8 @@ const AddToCalendar = (
           px="base"
           py="xs"
           target="_blank"
+          display="flex"
+          alignItems="center"
         >
           <Icon name="google" mr="s" />
           Google
@@ -65,6 +70,8 @@ const AddToCalendar = (
           Component={Menu.Link}
           px="base"
           py="xs"
+          display="flex"
+          alignItems="center"
         >
           <Icon name="microsoft" mr="s" />
           Outlook

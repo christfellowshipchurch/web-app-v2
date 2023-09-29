@@ -3,10 +3,11 @@ import React from 'react';
 import { AppProvider } from 'providers';
 import GroupFilterModal from './GroupFilterModal';
 
-export default {
+const exportedObject = {
   title: 'components/GroupFilterModal',
   component: GroupFilterModal,
 };
+export default exportedObject;
 
 export const Default = () => {
   return (

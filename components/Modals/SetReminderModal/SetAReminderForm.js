@@ -28,6 +28,8 @@ function SetAReminderForm(props = {}) {
   const { campuses, loading: campusesLoading } = useCampuses();
   const [errors, setErrors] = useState({});
 
+  const { handleCallBack } = props;
+
   /**
    * todo : update with new Rock Workflow
    */
@@ -52,7 +54,6 @@ function SetAReminderForm(props = {}) {
     const currentErrors = {};
     let { email, phoneNumber, serviceTime, campus, firstName, lastName } =
       values;
-    let hasEmailOrPhoneNumber = false;
 
     if (
       isEmpty(email) ||
@@ -65,16 +66,12 @@ function SetAReminderForm(props = {}) {
     }
 
     if (email && !isEmpty(email)) {
-      hasEmailOrPhoneNumber = true;
-
       if (!validateEmail(email)) {
         currentErrors.email = 'Please enter a valid email address';
       }
     }
 
     if (phoneNumber && !isEmpty(phoneNumber)) {
-      hasEmailOrPhoneNumber = true;
-
       if (!validatePhoneNumber(phoneNumber)) {
         currentErrors.phoneNumber = 'Please enter a valid phone number';
       }
@@ -137,6 +134,7 @@ function SetAReminderForm(props = {}) {
       phoneNumber: props?.phoneNumber,
       campus: props?.defaultCampus,
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -150,8 +148,11 @@ function SetAReminderForm(props = {}) {
   useEffect(() => {
     if (success) {
       setErrors({});
+      // pass serviceTimes to ConfirmationModal
+      handleCallBack(values?.serviceTime);
       modalDispatch(showStep(1));
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [success]);
 
   return (

@@ -1,0 +1,40 @@
+name: Weekly PR
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 0'
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
+      - name: Make changes to pull request
+        run: date +%s > dummy-change.txt
+
+      - name: Render template
+        id: render-template
+        uses: chuhlomin/render-template@v1.4
+        with:
+          template: .github/WEEKLY_PULL_REQUEST_TEMPLATE.md
+
+      - name: Create PR
+        id: cpr
+        uses: peter-evans/create-pull-request@v5
+        with:
+          base: 'main'
+          branch: 'dev'
+          title: "Weekly PR"
+          body: ${{ steps.render-template.outputs.result }}
+          delete-branch: true
+          commit-message: Weekly PR Update
+          committer: GitHub <noreply@github.com>
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          signoff: false
+          labels: |
+            Automated PR ⚙️
+          assignees: christfellowshipdev
+          reviewers: dzwood, codingwithlis
+          draft: false

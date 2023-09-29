@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'ui-kit';
-import { CustomLink } from 'components';
-
 // add any additional parameters to the video urls
 const videoCallURLWithParameters = (videoURL, parameters) => {
   const isMSIE = /*@cc_on!@*/ false || !!document.documentMode; //eslint-disable-line spaced-comment

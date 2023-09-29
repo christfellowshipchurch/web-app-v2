@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { useModalDispatch, showStep } from 'providers/ModalProvider';
-import { useCampuses, useCurrentUser, useGroupPreferenceUpdates } from 'hooks';
+import { useCampuses, useGroupPreferenceUpdates } from 'hooks';
 
 import { Box, Button, FormLabel, Select } from 'ui-kit';
 
@@ -31,7 +31,6 @@ function CampusSelect(props = {}) {
 }
 
 function NotifyMeForm(props = {}) {
-  const { currentUser } = useCurrentUser();
   const [campusId, setCampusId] = useState(props.initialCampusId || '');
   const [subscribeToGroupPreferenceUpdates] = useGroupPreferenceUpdates({
     onCompleted: () => {

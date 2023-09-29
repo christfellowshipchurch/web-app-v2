@@ -7,7 +7,6 @@ import {
   SearchField,
   Layout,
   DiscoverItemsList,
-  CustomLink,
   DiscoverFiltersMap,
 } from 'components';
 import { useAnalytics } from 'providers/AnalyticsProvider';
@@ -27,10 +26,9 @@ const Discover = () => {
   const { values, handleSubmit, handleChange, reset } = useForm();
 
   const { loading: loadingFilters, filters } = useDiscoverFilters();
-  const [search, { loading, contentItems, data, fetchMore }] =
-    useSearchContentItems({
-      notifyOnNetworkStatusChange: true,
-    });
+  const [search, { loading, contentItems, data}] = useSearchContentItems({
+    notifyOnNetworkStatusChange: true,
+  });
 
   const [filterValues, setFilterValues] = useState({
     title: null,
@@ -46,7 +44,6 @@ const Discover = () => {
   const hasResults = contentItems?.length > 0;
   const showEmptyState = !loading && !hasResults;
   const pageResults = data?.search?.totalResults;
-  const hasMorePages = contentItems?.length < pageResults;
 
   // NOT IN USE FOR NOW
   // const handleLoadMore = () => {
@@ -81,6 +78,7 @@ const Discover = () => {
           search_type: 'content',
         },
       });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageResults]);
 
   function handleClearAllClick(event) {
@@ -94,6 +92,7 @@ const Discover = () => {
     analytics.page({
       mediaType: 'Information',
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -114,6 +113,7 @@ const Discover = () => {
         },
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterValues]);
 
   useEffect(() => {
@@ -141,6 +141,7 @@ const Discover = () => {
         });
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters, loadingFilters]);
 
   return (
@@ -238,6 +239,7 @@ const Discover = () => {
                 },
                 fetchPolicy: 'cache-and-network',
               }}
+              filter={router?.query?.c}
               Component={DiscoverFiltersMap}
             />
           </Box>

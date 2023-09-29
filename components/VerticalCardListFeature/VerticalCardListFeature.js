@@ -12,6 +12,7 @@ import {
 } from 'ui-kit';
 import { getUrlFromRelatedNode, transformISODates } from 'utils';
 import Styled from './VerticalCardListFeature.styles';
+import { includes } from 'lodash';
 
 function VerticalCardListFeature(props = {}) {
   let data = props?.data;
@@ -20,7 +21,7 @@ function VerticalCardListFeature(props = {}) {
     return null;
   }
 
-  const { title, subtitle, cards, actions } = data;
+  const { title, subtitle, cards, actions, callToAction } = data;
 
   return (
     <Box textAlign="center">
@@ -73,6 +74,7 @@ function VerticalCardListFeature(props = {}) {
           })}
         </CardGrid>
       )}
+      {/* Note: this is deprecated and is only support with Content Categories */}
       {actions &&
         actions.length > 0 &&
         actions.map(action => (
@@ -85,6 +87,18 @@ function VerticalCardListFeature(props = {}) {
             {action?.title}
           </Button>
         ))}
+      {/* Feature Call to Action from Content Collections */}
+      {callToAction && (
+        <Box width="100%" textAlign="center" mt="l">
+          <Button
+            as="a"
+            target={includes(callToAction?.action, 'https') && '_blank'}
+            href={callToAction?.action}
+          >
+            {callToAction?.call}
+          </Button>
+        </Box>
+      )}
     </Box>
   );
 }

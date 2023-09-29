@@ -12,6 +12,7 @@ import ContentItemProvider from './ContentItemProvider';
 import ContentItemsSearchProvider from './ContentItemsSearchProvider';
 import CurrentPersonProvider from './CurrentPersonProvider';
 import CurrentUserProvider from './CurrentUserProvider';
+import DefinedValueListProvider from './DefinedValueListProvider';
 import EventProvider from './EventProvider';
 import FeatureFeedProvider from './FeatureFeedProvider';
 import FeatureProvider from './FeatureProvider';
@@ -47,6 +48,7 @@ export {
   ContentItemsSearchProvider,
   CurrentPersonProvider,
   CurrentUserProvider,
+  DefinedValueListProvider,
   EventProvider,
   FeatureFeedProvider,
   FeatureProvider,

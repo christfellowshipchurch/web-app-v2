@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 
 import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 
-import { ActionBannerProvider, NavigationProvider } from 'providers';
+import { ActionBannerProvider } from 'providers';
 import { Box, systemPropTypes } from 'ui-kit';
-import { CustomLink, Logo, Nav } from 'components';
+import { Logo, Nav } from 'components';
 import { useCurrentBreakpoint } from 'hooks';
 import Styled from './Header.styles';
 import ActionBanner from '../ActionBanner/ActionBanner';
@@ -30,7 +30,7 @@ function TransparentHeader(props = {}) {
   });
 
   return (
-    <Box position="fixed" zIndex={9} width="100%">
+    <Box position="fixed" zIndex={1001} width="100%">
       <ActionBannerProvider Component={ActionBanner} />
       <Styled
         boxShadow="none"
@@ -46,8 +46,9 @@ function TransparentHeader(props = {}) {
           justifyContent="space-between"
           width="100%"
         >
-          <Link href="/">
-            <a>
+          {/* Next 13 doesn't support a tags as children of Link comoonent so we need to add legacyBehavior prop */}
+          <Link legacyBehavior href="/">
+            <a href="!#">
               <Box as={Logo} dark={true} mx={{ _: 'auto', md: '0' }} mb="0" />
             </a>
           </Link>

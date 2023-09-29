@@ -134,6 +134,7 @@ function GroupManageMembers(props = {}) {
         },
       },
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchArgs]);
 
   useEffect(() => {
@@ -145,11 +146,13 @@ function GroupManageMembers(props = {}) {
         },
       },
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     // if (loading) return
     setRecipients(groupMembers?.map(m => m?.id));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [groupMembers]);
 
   return (
@@ -237,7 +240,7 @@ function GroupManageMembers(props = {}) {
           gridColumnGap="15px"
           gridRowGap="15px"
         >
-          {groupMembers.map(({ id, person, role, status }) => (
+          {groupMembers.map(({ id, person, role, status, groupRoleId }) => (
             <GroupMember
               id={id}
               key={id}
@@ -245,6 +248,7 @@ function GroupManageMembers(props = {}) {
               role={role}
               person={person}
               groupId={groupId}
+              groupRoleId={groupRoleId}
             />
           ))}
         </Box>

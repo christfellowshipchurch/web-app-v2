@@ -20,6 +20,7 @@ import CustomLink from './CustomLink';
 import DiscoverFilterSection from './DiscoverFilterSection';
 import DiscoverFiltersMap from './DiscoverFiltersMap';
 import DiscoverItemsList from './DiscoverItemsList';
+import DisplayAllIcons from './DisplayAllIcons';
 import EventSingle from './EventSingle';
 import EventsList from './EventsList';
 import HeroLanding from './HeroLanding';
@@ -35,6 +36,7 @@ import GroupManage from './GroupManage';
 import GroupMember from './GroupMember';
 import GroupMemberDetails from './GroupMemberDetails';
 import GroupSearchFilters from './GroupSearchFilters';
+import GroupSearchSideBar from './GroupSearchSideBar';
 import GroupSingle from './GroupSingle';
 import GroupsList from './GroupsList';
 import GroupsResultsList from './GroupsResultsList';
@@ -66,6 +68,7 @@ import UserProfile from './UserProfile';
 import VerticalCardListFeature from './VerticalCardListFeature';
 import VerticalModalCardListFeature from './VerticalModalCardListFeature';
 import Video from './Video';
+import WistiaPlayer from './WistiaPlayer';
 
 export {
   ActionBarFeature,
@@ -89,6 +92,7 @@ export {
   DiscoverFilterSection,
   DiscoverFiltersMap,
   DiscoverItemsList,
+  DisplayAllIcons,
   EventSingle,
   EventsList,
   HeroLanding,
@@ -104,6 +108,7 @@ export {
   GroupMember,
   GroupMemberDetails,
   GroupSearchFilters,
+  GroupSearchSideBar,
   GroupSingle,
   GroupsList,
   GroupsResultsList,
@@ -135,5 +140,6 @@ export {
   VerticalCardListFeature,
   VerticalModalCardListFeature,
   Video,
+  WistiaPlayer,
   modals,
 };

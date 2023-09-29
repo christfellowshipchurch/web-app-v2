@@ -1,14 +1,12 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import { createMarkup } from 'utils';
 import capitalize from 'lodash/capitalize';
 import isEmpty from 'lodash/isEmpty';
 
 import { Layout, NotFound, FeatureFeed } from 'components';
-
 import { Box, CoverImage, Loader, ThemeMixin, HtmlRenderer } from 'ui-kit';
-import Styled from './PageSingle.styles';
+import { useAnalytics } from 'providers/AnalyticsProvider';
 
 const renderBody = ({ title, summary, htmlContent, coverImage }) => {
   const hasTitle = !isEmpty(title) && isEmpty(coverImage);
@@ -57,6 +55,7 @@ const formatTitleForSEO = path => {
 
 function PageSingle(props = {}) {
   //Tracking Segment Data
+  const analytics = useAnalytics();
   useEffect(() => {
     const { segmentData } = props?.data;
     if (segmentData) {
@@ -67,6 +66,7 @@ function PageSingle(props = {}) {
         mediaType: 'Information',
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const router = useRouter();

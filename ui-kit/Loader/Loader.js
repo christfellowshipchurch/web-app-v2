@@ -1,11 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { systemPropTypes } from 'ui-kit';
+import { Box, systemPropTypes } from 'ui-kit';
 import Styled from './Loader.styles';
 
 function Loader(props = {}) {
-  if (props.noLabel) return <SVG />;
+  if (props.noLabel)
+    return (
+      <Box {...props}>
+        <SVG />
+      </Box>
+    );
 
   return (
     <Styled {...props}>

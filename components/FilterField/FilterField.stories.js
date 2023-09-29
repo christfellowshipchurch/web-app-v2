@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 
 import FilterField from './FilterField';
 
-export default {
+const exportedObject = {
   title: 'components/FilterField',
   component: FilterField,
 };
+
+export default exportedObject;
 
 export const MultiSelect = () => {
   const [values, setValues] = useState(['Lettuce', 'Onions']);

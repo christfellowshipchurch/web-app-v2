@@ -25,6 +25,7 @@ const ContentBlockFeature = props => {
         image={content?.coverImage?.sources[0]?.uri}
         imageRatio={content?.imageRatio}
         videos={content?.videos}
+        wistiaId={content?.wistiaId}
         {...props}
       />
     </Box>

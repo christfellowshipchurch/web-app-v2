@@ -1,41 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { useRouter } from 'next/router';
 
-import { CurrentUserProvider } from 'providers';
-import { logout, useAuth } from 'providers/AuthProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
-import { Box, Button, Icon, Menu, systemPropTypes } from 'ui-kit';
-import { UserAvatar } from 'components';
+
+import { Box, Button, Icon, systemPropTypes } from 'ui-kit';
 import Styled from './Nav.styles';
 import { useCurrentBreakpoint } from 'hooks';
 
+import SignIn from './SignIn';
+import ClientSideComponent from 'components/ClientSideComponent';
 function Nav(props = {}) {
-  const [{ authenticated }, authDispatch] = useAuth();
-  const currentBreakpoint = useCurrentBreakpoint();
   const modalDispatch = useModalDispatch();
-  const router = useRouter();
+  const currentBreakpoint = useCurrentBreakpoint();
 
   /**
    * todo : Update the handleRouterReload to take a list a specific pages that need to be reloaded after logging as user out. To skip the rest of the pages and continue to reduce the amount of unnecessary reloads.
    */
-  function handleRouterReload(pathname) {
-    if (pathname === '/') {
-      return null;
-    }
-    return router.reload();
-  }
-
-  function handleAuthClick(event) {
-    event.preventDefault();
-    modalDispatch(showModal('Auth'));
-  }
-
-  function handleLogoutClick(event) {
-    event.preventDefault();
-    authDispatch(logout());
-    handleRouterReload(router.pathname);
-  }
 
   return (
     <Styled>
@@ -80,13 +60,10 @@ function Nav(props = {}) {
         </Box>
       </Box>
 
-      {authenticated && (
-        <CurrentUserProvider
-          Component={UserAvatar}
-          handleAuthClick={handleAuthClick}
-          size={'40'}
-        />
-      )}
+      {/* SignIn/SignOut Icon External Home Page*/}
+      <ClientSideComponent>
+        <SignIn transparentMode={props.transparentMode}></SignIn>
+      </ClientSideComponent>
     </Styled>
   );
 }

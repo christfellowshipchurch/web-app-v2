@@ -38,6 +38,7 @@ export default function LegacyNodeRouter(props) {
     } else {
       router.push(`/items/${title}`);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [node]);
 
   return (

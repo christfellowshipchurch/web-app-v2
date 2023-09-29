@@ -6,6 +6,7 @@ import { GroupsProvider } from 'providers';
 import { CustomLink, GroupsList } from '..';
 import {
   Box,
+  Button,
   CardCarousel,
   HorizontalHighlightCard,
   HtmlRenderer,
@@ -13,9 +14,10 @@ import {
   PrayerCard,
 } from 'ui-kit';
 import { getUrlFromRelatedNode, transformISODates } from 'utils';
+import { includes } from 'lodash';
 
 function HorizontalCardListFeature(props = {}) {
-  const { title, subtitle, cards } = props?.data;
+  const { title, subtitle, cards, callToAction } = props?.data;
 
   if (!props.data) {
     return null;
@@ -50,12 +52,44 @@ function HorizontalCardListFeature(props = {}) {
       </Box>
     );
   }
+
+  if (cards.length === 0 && title === 'My Groups') {
+    return (
+      <Box>
+        {!isEmpty(title) && <Box as="h2">{title}</Box>}
+        {!isEmpty(subtitle) && <Box as="p">{subtitle}</Box>}
+        <Box>
+          {' '}
+          <Box as="a" target="blank" href="https://www.christfellowship.church/groups">
+            Click here
+          </Box>{' '}
+          to discover all kinds of groups.
+        </Box>
+      </Box>
+    );
+  }
+
+  if (cards.length === 0 && title === 'My Prayers') {
+    return (
+      <Box>
+        {!isEmpty(title) && <Box as="h2">{title}</Box>}
+        {!isEmpty(subtitle) && <Box as="p">{subtitle}</Box>}
+        <Box>
+          {' '}
+          <Box as="a" target="blank" href="https://rock.gocf.org/RequestPrayer">
+            Click here
+          </Box>{' '}
+          to let us know how we can pray for you.
+        </Box>
+      </Box>
+    );
+  }
   if (cards && cards[0]?.action === 'READ_PRAYER') {
     return props.loading ? (
       <Loader text="Loading your prayers" />
     ) : (
       <Box>
-        {!isEmpty(title) && <Box as="h1">{title}</Box>}
+        {!isEmpty(title) && <Box as="h2">{title}</Box>}
         {!isEmpty(subtitle) && <Box as="p">{subtitle}</Box>}
         <CardCarousel
           cardsDisplayed={4}
@@ -80,7 +114,7 @@ function HorizontalCardListFeature(props = {}) {
 
   return (
     <Box textAlign="center">
-      {!isEmpty(title) && <Box as="h1">{title}</Box>}
+      {!isEmpty(title) && <Box as="h2">{title}</Box>}
       {!isEmpty(subtitle) && <HtmlRenderer htmlContent={subtitle} />}
       <CardCarousel
         cardsDisplayed={cardsDisplayed}
@@ -89,24 +123,58 @@ function HorizontalCardListFeature(props = {}) {
       >
         {!isEmpty(cards) &&
           cards?.map((card, i) => {
+            const url = getUrlFromRelatedNode(card?.relatedNode);
+            const nonClickable = url === '#no-click';
             return (
-              <CustomLink
-                as="a"
-                key={i}
-                m="s"
-                boxShadow="none"
-                href={getUrlFromRelatedNode(card?.relatedNode)}
-                Component={HorizontalHighlightCard}
-                coverImage={card?.coverImage?.sources[0]?.uri || '/cf-logo.png'}
-                coverImageOverlay={true}
-                title={card?.title}
-                description={card?.summary}
-                type={cardType}
-                label={transformISODates(card?.labelText)}
-              />
+              <>
+                {nonClickable ? (
+                  <HorizontalHighlightCard
+                    coverImage={card?.coverImage?.sources[0]?.uri}
+                    coverImageOverlay={true}
+                    title={card?.title}
+                    description={card?.summary}
+                    type={
+                      props?.customCardSize
+                        ? props?.customCardSize
+                        : cards.length < 2
+                        ? 'DEFAULT'
+                        : 'HIGHLIGHT_SMALL'
+                    }
+                    label={transformISODates(card?.labelText)}
+                  />
+                ) : (
+                  <CustomLink
+                    as="a"
+                    key={i}
+                    m="s"
+                    boxShadow="none"
+                    href={getUrlFromRelatedNode(card?.relatedNode)}
+                    Component={HorizontalHighlightCard}
+                    coverImage={
+                      card?.coverImage?.sources[0]?.uri || '/cf-logo.png'
+                    }
+                    coverImageOverlay={true}
+                    title={card?.title}
+                    description={card?.summary}
+                    type={cardType}
+                    label={transformISODates(card?.labelText)}
+                  />
+                )}
+              </>
             );
           })}
       </CardCarousel>
+      {callToAction && (
+        <Box width="100%" textAlign="center" mt="l">
+          <Button
+            as="a"
+            target={includes(callToAction?.action, 'https') && '_blank'}
+            href={callToAction?.action}
+          >
+            {callToAction?.call}
+          </Button>
+        </Box>
+      )}
     </Box>
   );
 }

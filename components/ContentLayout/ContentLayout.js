@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { createMarkup } from 'utils';
-import { SEO, FeatureFeed, Share } from 'components';
+import { SEO, FeatureFeed } from 'components';
 import {
   Box,
   Card,
@@ -81,9 +80,6 @@ function ContentLayout(props = {}) {
                 <HtmlRenderer htmlContent={props?.htmlContent} />
               </Longform>
             </Card>
-            <Box py="l">
-              <Share />
-            </Box>
           </>
         ) : (
           props.renderContentD && (
@@ -124,9 +120,9 @@ function ContentLayout(props = {}) {
           {renderA()}
           <Box
             alignItems="center"
-            display={{ lg: 'grid' }}
+            display={{ md: 'grid' }}
             gridTemplateColumns="70% 30%"
-            mb="l"
+            mb={{ _: '', md: 'l' }}
           >
             {renderB()}
             {renderC()}

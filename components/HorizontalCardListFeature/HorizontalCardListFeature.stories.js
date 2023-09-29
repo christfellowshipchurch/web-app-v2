@@ -4,10 +4,12 @@ import { Box } from 'ui-kit';
 
 import { HorizontalCardListFeature } from 'components';
 
-export default {
+const exportedObject = {
   title: 'components/HorizontalCardListFeature',
   component: HorizontalCardListFeature,
 };
+
+export default exportedObject
 
 const cardData = altTitle => {
   return {

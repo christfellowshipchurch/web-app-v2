@@ -3,10 +3,13 @@ import PropTypes from 'prop-types';
 import uniqueId from 'lodash/uniqueId';
 
 import { Box, Menu, List, Button, Icon } from 'ui-kit';
+import { useCurrentBreakpoint } from 'hooks';
 
 import { handleSocialShare, shareMessaging } from './shareUtils.js';
 
 const Share = props => {
+  const currentBreakpoint = useCurrentBreakpoint();
+
   const _isNotBrowser =
     typeof window === 'undefined' || typeof document === 'undefined';
 
@@ -18,11 +21,11 @@ const Share = props => {
   return (
     <Menu
       space="0"
-      side={{ lg: 'right' }}
+      side={{ lg: 'right', ...props.side }}
       renderTrigger={({ toggle }) => (
         <Button id={uniqueId('share-')} onClick={toggle} display="flex">
-          <Icon name="share" mr="xs" />
-          {props.shareTitle}
+          <Icon name="share" mr={{ _: '', md: 'xs' }} />
+          {!currentBreakpoint.isSmall && props.shareTitle}
         </Button>
       )}
       display="inline-flex"

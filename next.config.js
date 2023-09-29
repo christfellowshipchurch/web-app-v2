@@ -6,7 +6,6 @@ module.exports = {
   images: {
     domains: ['cloudfront.christfellowship.church'],
   },
-  target: 'serverless',
   async redirects() {
     return [
       {
@@ -106,6 +105,26 @@ module.exports = {
         source:
           '/items/god-lives-in-you-joyce-meyer-9638eed9752c44acffee9861ef2db161',
         destination: '/messages/god-lives-in-you-joyce-meyer',
+        permanent: true,
+      },
+      {
+        source: '/items/:title',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/content/:title',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/locations/riviera-beach',
+        destination: '/riviera-beach',
+        permanent: true,
+      },
+      {
+        source: '/studies/sisterhood-sogoodsummer',
+        destination: '/studies/sisterhood-shownotes-plus',
         permanent: true,
       },
       // TODO: Uncomment these lines to hide Group Finder.

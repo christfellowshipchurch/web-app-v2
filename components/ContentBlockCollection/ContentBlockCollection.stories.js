@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { Box } from 'ui-kit';
-
 import { ContentBlockCollection } from 'components';
 
 import testImage from '../../public/external-home-1.png' 

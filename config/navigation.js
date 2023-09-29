@@ -29,7 +29,7 @@ const navigation = {
     {
       action: '/locations',
       call: 'Locations',
-      icon: 'map',
+      icon: 'location',
     },
     {
       action: '/discover',

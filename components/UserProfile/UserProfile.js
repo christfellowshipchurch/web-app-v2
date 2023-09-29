@@ -9,8 +9,6 @@ import { useRouter } from 'next/router';
 function UserProfile(props = {}) {
   const router = useRouter();
 
-  if (props.loading) return <Loader text="Loading your profile" />;
-
   useEffect(() => {
     if (!props?.loading && props?.currentPerson?.length < 1) {
       console.error(
@@ -18,7 +16,10 @@ function UserProfile(props = {}) {
       );
       return router.push('/error');
     }
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props?.currentPerson?.length]);
+
+  if (props.loading) return <Loader text="Loading your profile" />;
 
   return (
     <UserProfileProvider currentUser={props.currentPerson}>

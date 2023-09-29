@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { useModalDispatch, hideModal } from 'providers/ModalProvider';
 
-import { Box, Button, Icon } from 'ui-kit';
+import { Box, Button } from 'ui-kit';
 
 function NotifyMeError(props = {}) {
   const modalDispatch = useModalDispatch();

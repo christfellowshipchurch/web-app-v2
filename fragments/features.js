@@ -159,6 +159,7 @@ const CONTENT_BLOCK_FEATURE_FRAGMENT = gql`
         uri
       }
     }
+    wistiaId
   }
 `;
 
@@ -203,6 +204,10 @@ const HERO_LIST_FEATURE_FRAGMENT = gql`
       relatedNode {
         ...RelatedFeatureNodeFragment
       }
+    }
+    callToAction {
+      call
+      action
     }
     heroCard {
       action
@@ -253,6 +258,10 @@ const HORIZONTAL_CARD_LIST_FEATURE_FRAGMENT = gql`
         ...RelatedFeatureNodeFragment
       }
     }
+    callToAction {
+      call
+      action
+    }
   }
 `;
 
@@ -298,6 +307,10 @@ const VERTICAL_CARD_LIST_FEATURE_FRAGMENT = gql`
       relatedNode {
         ...RelatedFeatureNodeFragment
       }
+    }
+    callToAction {
+      call
+      action
     }
     cards {
       id
