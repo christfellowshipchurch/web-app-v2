@@ -10,6 +10,9 @@ const DownloadButton = (props = {}) => {
   const currentBreakpoint = useCurrentBreakpoint();
 
   const handleShareButton = async shareData => {
+    const blob = await (await fetch(shareData)).blob();
+    const file = new File([blob], shareData.image, { type: blob.type });
+
     if (currentBreakpoint.isSmall || currentBreakpoint.isMedium) {
       try {
         await navigator.share(shareData);
