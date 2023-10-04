@@ -18,7 +18,10 @@ const Share = props => {
   let url = messages.url;
   let title = messages.title;
   let text = messages.sms;
-  const shareDetails = { title, text, url };
+  let image = props?.data?.coverImage?.sources[0]?.uri;
+  //const shareDetails = { title, text, url };
+  const shareDetails = { title };
+  console.log(props);
 
   const handleSharing = async () => {
     if (navigator.share) {
