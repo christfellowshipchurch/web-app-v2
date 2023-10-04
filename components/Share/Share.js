@@ -20,7 +20,7 @@ const Share = props => {
   let text = messages.sms;
   let image = props?.data?.coverImage?.sources[0]?.uri;
   //const shareDetails = { title, text, url };
-  const shareDetails = { title, url, text };
+  const shareDetails = { title, url };
   console.log(props);
 
   const handleSharing = async () => {
