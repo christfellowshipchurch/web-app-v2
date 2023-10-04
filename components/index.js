@@ -20,6 +20,7 @@ import CustomLink from './CustomLink';
 import DiscoverFilterSection from './DiscoverFilterSection';
 import DiscoverFiltersMap from './DiscoverFiltersMap';
 import DiscoverItemsList from './DiscoverItemsList';
+import DisplayAllIcons from './DisplayAllIcons';
 import EventSingle from './EventSingle';
 import EventsList from './EventsList';
 import HeroLanding from './HeroLanding';
@@ -91,6 +92,7 @@ export {
   DiscoverFilterSection,
   DiscoverFiltersMap,
   DiscoverItemsList,
+  DisplayAllIcons,
   EventSingle,
   EventsList,
   HeroLanding,

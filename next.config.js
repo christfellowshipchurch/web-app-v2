@@ -122,6 +122,11 @@ module.exports = {
         destination: '/riviera-beach',
         permanent: true,
       },
+      {
+        source: '/studies/sisterhood-sogoodsummer',
+        destination: '/studies/sisterhood-shownotes-plus',
+        permanent: true,
+      },
       // TODO: Uncomment these lines to hide Group Finder.
       // NOTE: We can't get `config/flags` in this file.
       // {

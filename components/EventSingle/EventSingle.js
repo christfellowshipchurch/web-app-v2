@@ -22,8 +22,6 @@ function EventSingle(props = {}) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const videos = props?.data?.videos;
-
   useEffect(() => {
     if (props.data?.videos?.length >= 1 && currentVideo === null) {
       setCurrentVideo(props.data.videos[0]);
@@ -94,11 +92,11 @@ function EventSingle(props = {}) {
         video: contentLayoutVideo,
       }}
       summary={props.data.summary}
-      coverImage={props.data?.coverImage?.sources[0]?.uri}
+      coverImage={currentVideo ? null : coverImageUri}
       renderA={() => (
         <ContentVideo
           title={title}
-          video={wistiaId ? wistiaId : videos[0]}
+          video={wistiaId ? wistiaId : props?.data?.videos[0]}
           poster={coverImageUri}
           wistiaId={wistiaId}
         />

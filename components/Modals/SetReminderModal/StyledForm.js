@@ -146,7 +146,7 @@ const StyledForm = ({
       </Box>
       {errors?.networkError && (
         <Box display="flex" alignItems="center" color="alert" mb="s">
-          <Icon name="gear" />
+          <Icon name="settings" />
           Oops! Network error, please try again later.
         </Box>
       )}

@@ -21,6 +21,7 @@ const AddToCalendar = (
         onClick={toggle}
         textDecoration="none"
         display="flex"
+        alignItems="center"
       >
         <Icon name="calendarPlus" mr={label && 'xs'} />
         {label && (
@@ -42,6 +43,8 @@ const AddToCalendar = (
           Component={Menu.Link}
           px="base"
           py="xs"
+          display="flex"
+          alignItems="center"
         >
           <Icon name="apple" size="30" mr="s" />
           Apple
@@ -54,6 +57,8 @@ const AddToCalendar = (
           px="base"
           py="xs"
           target="_blank"
+          display="flex"
+          alignItems="center"
         >
           <Icon name="google" mr="s" />
           Google
@@ -65,6 +70,8 @@ const AddToCalendar = (
           Component={Menu.Link}
           px="base"
           py="xs"
+          display="flex"
+          alignItems="center"
         >
           <Icon name="microsoft" mr="s" />
           Outlook
