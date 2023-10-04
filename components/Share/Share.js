@@ -15,14 +15,13 @@ const Share = props => {
 
   // If alternate shareMessages prop is passed through it will replace the default with this `shareMessaging` util method.
   const messages = shareMessaging({ ...props, url: document.URL });
-  console.log('messages: ', messages);
   let url = messages.url;
   let title = messages.title;
   let text = messages.sms;
   const shareDetails = { title, text, url };
 
   const handleSharing = async () => {
-    if (navigator.canShare()) {
+    if (navigator.share()) {
       navigator
         .share(shareDetails)
         .then(() => console.log('Successful share'))
