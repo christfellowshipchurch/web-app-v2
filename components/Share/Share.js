@@ -19,10 +19,10 @@ const Share = props => {
   let url = messages.url;
   let title = messages.title;
   let text = messages.sms;
-  const shareDetails = { url, title, text };
+  const shareDetails = { title, text, url };
 
   const handleSharing = async () => {
-    if (navigator.share) {
+    if (navigator.canShare()) {
       navigator
         .share(shareDetails)
         .then(() => console.log('Successful share'))
