@@ -15,7 +15,7 @@ const Share = props => {
 
   // If alternate shareMessages prop is passed through it will replace the default with this `shareMessaging` util method.
   const messages = shareMessaging({ ...props, url: document.URL });
-  let url = messages.url;
+  let url = document.URL;
   let title = messages.title;
   let text = messages.sms;
   let image = props?.data?.coverImage?.sources[0]?.uri;
