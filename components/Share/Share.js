@@ -15,8 +15,7 @@ const Share = props => {
 
   // If alternate shareMessages prop is passed through it will replace the default with this `shareMessaging` util method.
   const messages = shareMessaging({ ...props, url: document.URL });
-  // export default Share;
-  let url = '/discover';
+  let url = messages.url;
   let title = props?.shareTitle;
   let text = messages.sms;
   const shareDetails = { url, title, text };
@@ -26,9 +25,9 @@ const Share = props => {
       navigator
         .share(shareDetails)
         .then(() => console.log('Successful share'))
-        .catch(error => console.log('Error sharing', error));
+        .catch(error => console.log('Error sharing: ', error));
     } else {
-      console.log('Navigator.share error');
+      console.log('Navigator.share is not a function');
     }
   };
 

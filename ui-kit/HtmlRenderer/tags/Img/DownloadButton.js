@@ -9,7 +9,7 @@ const DownloadButton = (props = {}) => {
   const [status, setStatus] = useState('IDLE'); // IDLE | ACTIVE | DONE
   const currentBreakpoint = useCurrentBreakpoint();
 
-  const handleShareButton = async shareData => {
+  const handleDownloadButton = async shareData => {
     const blob = await (await fetch(shareData)).blob();
     const file = new File([blob], shareData.image, { type: blob.type });
 
@@ -35,7 +35,7 @@ const DownloadButton = (props = {}) => {
       status={status}
       onClick={() => {
         setStatus('DONE');
-        handleShareButton({
+        handleDownloadButton({
           title: 'CF Images',
           text: 'Share this image!',
           image: `/api/image?src=${props?.source}`,
