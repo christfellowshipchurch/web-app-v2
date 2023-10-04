@@ -21,7 +21,7 @@ const Share = props => {
   const shareDetails = { title, text, url };
 
   const handleSharing = async () => {
-    if (navigator.share()) {
+    if (navigator.share) {
       navigator
         .share(shareDetails)
         .then(() => console.log('Successful share'))
