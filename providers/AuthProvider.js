@@ -53,8 +53,8 @@ function getInitialState(state) {
         authenticated: true,
         token,
       };
-    } else if (includes(window.location.href, 'rpid')) {
-      const rpid = window.location.href.split('rpid=')[1];
+    } else if (includes(window.location.href, 'rckipid')) {
+      const rpid = window.location.href.split('rckipid=')[1];
       return {
         ...state,
         rockPersonId: rpid,
