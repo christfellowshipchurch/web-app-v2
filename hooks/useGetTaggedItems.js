@@ -18,6 +18,7 @@ function useGetTaggedItems(options = {}) {
 
   return {
     taggedItems: query?.data?.getTaggedItems,
+    loading: query?.loading,
     ...query,
   };
 }

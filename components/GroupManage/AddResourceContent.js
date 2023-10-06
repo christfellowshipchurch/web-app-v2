@@ -19,7 +19,7 @@ function existingResources(groupData) {
 function AddResourceContent() {
   const [selectedCategory, setSelectedCategory] = useState('');
 
-  const { taggedItems, refetch } = useGetTaggedItems({
+  const { taggedItems, loading, refetch } = useGetTaggedItems({
     variables: { tagName: selectedCategory },
     fetchPolicy: 'cache-and-network',
   });
@@ -49,9 +49,7 @@ function AddResourceContent() {
 
   const handleCategoryChange = event => {
     setSelectedCategory(event.target.value);
-    setIsDataLoaded(false);
     refetch();
-    setIsDataLoaded(true); // Maybe?
     setSelectedItem('');
   };
 
@@ -95,7 +93,7 @@ function AddResourceContent() {
           {message}
         </Box>
       )}
-      {isDataLoaded ? (
+      {isDataLoaded && !loading ? (
         <>
           <Select
             defaultValue=""
