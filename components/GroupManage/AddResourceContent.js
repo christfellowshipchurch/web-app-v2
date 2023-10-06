@@ -32,7 +32,6 @@ function AddResourceContent() {
   const [selectedItem, setSelectedItem] = useState('');
   const [isDataLoaded, setIsDataLoaded] = useState(false);
   const [resources, setResources] = useState([]); // [resource1, resource2, ...
-
   const [updateGroupResourceContentItem] = useUpdateGroupResourceContentItem();
 
   const { categories } = useGetTags({
@@ -50,7 +49,9 @@ function AddResourceContent() {
 
   const handleCategoryChange = event => {
     setSelectedCategory(event.target.value);
+    setIsDataLoaded(false);
     refetch();
+    setIsDataLoaded(true); // Maybe?
     setSelectedItem('');
   };
 
