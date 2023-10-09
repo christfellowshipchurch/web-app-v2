@@ -34,7 +34,23 @@ function ResourceCoverImage(props = {}) {
 
 function ResourcesList(props = {}) {
   const { groupData } = useGroupManageState();
-
+  console.log(groupData.resources);
+  // const myData = groupData.resources
+  //   .sort((a, b) => a.title.localeCompare(b.title))
+  //   .map((item, i) => <List key={i} data={item} />);
+  // console.log(myData);
+  const sortedResources = [groupData.resources];
+  sortedResources.sort(function (a, b) {
+    console.log(a.title, b.title);
+    if (a.title < b.title) {
+      return -1;
+    }
+    if (a.title > b.title) {
+      return 1;
+    }
+    return 0;
+  });
+  console.log(sortedResources);
   return (
     <List>
       {groupData?.resources?.map(
