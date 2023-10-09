@@ -9,18 +9,14 @@ import { Box, Button, Card } from 'ui-kit';
 import GroupManageResources from './GroupManageResources';
 import GroupManageMembers from './GroupManageMembers';
 function GroupManage(props = {}) {
-  const router = useRouter()
+  const router = useRouter();
 
   return (
     <GroupManageProvider groupData={props.data}>
       <Box>
         <Box mb="l">
-          <Button 
-              ml="-1rem"
-              variant="link"
-              onClick={() => router.back()}
-          >
-              &larr; Back
+          <Button ml="-1rem" variant="link" onClick={() => router.back()}>
+            &larr; Back
           </Button>
           <Box as="h1">{props?.data?.title}</Box>
         </Box>
@@ -31,9 +27,6 @@ function GroupManage(props = {}) {
           gridColumnGap="base"
           columnGap="15px"
           rowGap="15px"
-          // ! : keep for backwards css compatibility
-          // eslint-disable-next-line react/jsx-no-duplicate-props
-          gridColumnGap="15px"
           gridRowGap="15px"
         >
           <Card p="base">

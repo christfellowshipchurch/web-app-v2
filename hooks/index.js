@@ -30,10 +30,13 @@ import useFeatureAction from './useFeatureAction';
 import useFeatureFeed from './useFeatureFeed';
 import useFeedFeatures from './useFeedFeatures';
 import useForm from './useForm';
+import useGetTags from './useGetTags';
+import useGetTaggedItems from './useGetTaggedItems';
 import useGroup from './useGroup';
 import useGroupContentId from './useGroupContentId';
 import useGroupCoverImages from './useGroupCoverImages';
 import useGroupEmailRecipients from './useGroupEmailRecipients';
+import useGroupFacetFilters from './useGroupFacetFilters';
 import useGroupLeaders from './useGroupLeaders';
 import useGroupMember from './useGroupMember';
 import useGroupMembers from './useGroupMembers';
@@ -71,7 +74,6 @@ import useUpdateGroupResourceContentItem from './useUpdateGroupResourceContentIt
 import useUpdateGroupResourceUrl from './useUpdateGroupResourceUrl';
 import useUserExists from './useUserExists';
 import useVerifyPin from './useVerifyPin';
-import useGroupFacetFilters from './useGroupFacetFilters';
 
 export {
   useActionBanner,
@@ -103,14 +105,16 @@ export {
   useExternalHomeActions,
   useFeature,
   useFeatureAction,
-  useGroupFacetFilters,
   useFeatureFeed,
   useFeedFeatures,
   useForm,
+  useGetTags,
+  useGetTaggedItems,
   useGroup,
   useGroupContentId,
   useGroupCoverImages,
   useGroupEmailRecipients,
+  useGroupFacetFilters,
   useGroupLeaders,
   useGroupMember,
   useGroupMembers,

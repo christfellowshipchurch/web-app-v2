@@ -10,11 +10,8 @@ import AddResourceLink from './AddResourceLink';
 import ResourcesList from './ResourcesList';
 
 function GroupManageResources(props = {}) {
-  const [{ resourceStatus: status, groupData }, dispatch] = useGroupManage();
+  const [{ resourceStatus: status }, dispatch] = useGroupManage();
   const setStatus = s => dispatch(update({ resourceStatus: s }));
-  const currentResources = groupData?.resources?.map(
-    ({ relatedNode }) => relatedNode.id
-  );
 
   const handleAddLinkClick = toggle => event => {
     event.preventDefault();
@@ -38,13 +35,7 @@ function GroupManageResources(props = {}) {
     }
 
     if (status === 'ADD_CONTENT') {
-      return (
-        <GroupResourceOptionsProvider
-          Component={AddResourceContent}
-          currentResources={currentResources}
-          options={{ variables: { groupId: groupData.id } }}
-        />
-      );
+      return <GroupResourceOptionsProvider Component={AddResourceContent} />;
     }
 
     return null;

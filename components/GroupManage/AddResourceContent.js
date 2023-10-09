@@ -2,31 +2,54 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { useGroupManage, update } from 'providers/GroupManageProvider';
-import { useUpdateGroupResourceContentItem } from 'hooks';
+import {
+  useUpdateGroupResourceContentItem,
+  useGetTags,
+  useGetTaggedItems,
+} from 'hooks';
 import { Box, Button, Loader, Select } from 'ui-kit';
 
-function AddResourceContent({ data, loading, totalCount, currentResources }) {
+function existingResources(groupData) {
+  if (!groupData) {
+    return [];
+  }
+
+  return groupData.resources.map(resource => resource.title);
+}
+function AddResourceContent() {
+  const [selectedCategory, setSelectedCategory] = useState('');
+
+  const { taggedItems, loading, refetch } = useGetTaggedItems({
+    variables: { tagName: selectedCategory },
+    fetchPolicy: 'cache-and-network',
+  });
+
   const [{ resourceStatus: status, groupData, message }, dispatch] =
     useGroupManage();
-  const setStatus = s => dispatch(update({ resourceStatus: s }));
-  const [selectedCategory, setSelectedCategory] = useState('');
-  const [selectedItem, setSelectedItem] = useState('');
-  const [categories, setCategories] = useState({});
-  const [isDataLoaded, setIsDataLoaded] = useState(false);
 
+  const setStatus = s => dispatch(update({ resourceStatus: s }));
+
+  const [selectedItem, setSelectedItem] = useState('');
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
+  const [resources, setResources] = useState([]); // [resource1, resource2, ...
   const [updateGroupResourceContentItem] = useUpdateGroupResourceContentItem();
 
-  // ** We evetually want to update the way we load all the content items for Group resources in the backround and not have to wait for them to load all at once.
+  const { categories } = useGetTags({
+    variables: { tagCategory: 'group resources' },
+    fetchPolicy: 'cache-and-network',
+  });
+
   useEffect(() => {
-    if (!loading && data && data.length === totalCount) {
-      const categorizedItems = categorizeItemsByTitle(data);
-      setCategories(categorizedItems);
+    if (categories) {
       setIsDataLoaded(true);
     }
-  }, [data, loading, totalCount]);
+    setResources(existingResources(groupData));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [categories]);
 
   const handleCategoryChange = event => {
     setSelectedCategory(event.target.value);
+    refetch();
     setSelectedItem('');
   };
 
@@ -70,7 +93,7 @@ function AddResourceContent({ data, loading, totalCount, currentResources }) {
           {message}
         </Box>
       )}
-      {isDataLoaded ? (
+      {isDataLoaded && !loading ? (
         <>
           <Select
             defaultValue=""
@@ -83,9 +106,9 @@ function AddResourceContent({ data, loading, totalCount, currentResources }) {
             <Select.Option value="" disabled>
               Select a Category...
             </Select.Option>
-            {Object.keys(categories).map(category => (
-              <Select.Option key={category} value={category}>
-                {category}
+            {categories.map(category => (
+              <Select.Option key={category.name} value={category.name}>
+                {category.name}
               </Select.Option>
             ))}
           </Select>
@@ -102,14 +125,16 @@ function AddResourceContent({ data, loading, totalCount, currentResources }) {
               Select an Item...
             </Select.Option>
             {selectedCategory &&
-              categories[selectedCategory].map(item => (
-                <Select.Option
-                  key={item.node.id}
-                  value={item.node.id}
-                  disabled={currentResources?.includes(item.node.id)}
-                >
-                  {item.node.title}
-                </Select.Option>
+              taggedItems &&
+              taggedItems.map(taggedItem => (
+                <>
+                  {taggedItem?.title &&
+                    !resources.includes(taggedItem.title) && (
+                      <Select.Option key={taggedItem.id} value={taggedItem.id}>
+                        {taggedItem.title}
+                      </Select.Option>
+                    )}
+                </>
               ))}
           </Select>
         </>
@@ -147,21 +172,3 @@ AddResourceContent.propTypes = {
 };
 
 export default AddResourceContent;
-
-// Helper function to categorize items based on words before the "|" symbol in the "title" attribute
-function categorizeItemsByTitle(data) {
-  const categories = {};
-
-  data.forEach(({ node }) => {
-    const titleParts = node.title.split('|');
-    const categoryName = titleParts.length > 1 ? titleParts[0].trim() : 'Other';
-
-    if (!categories[categoryName]) {
-      categories[categoryName] = [];
-    }
-
-    categories[categoryName].push({ node });
-  });
-
-  return categories;
-}
