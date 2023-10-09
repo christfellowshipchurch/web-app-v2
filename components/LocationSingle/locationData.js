@@ -371,9 +371,9 @@ const headerData = [
     },
     backgroundVideo: {
       mobile:
-        'https://embed.wistia.com/deliveries/1f1eb41659eb843d4edc9e087be8425c.mp4',
+        'https://embed.wistia.com/deliveries/d7da7955aeaabad13c81b0d28eb0a906.mp4',
       desktop:
-        'https://embed.wistia.com/deliveries/4cd6c53698ae63abbb69aff4e0a4a5b0.mp4',
+        'https://embed.wistia.com/deliveries/d7da7955aeaabad13c81b0d28eb0a906.mp4',
     },
     videoBackgroundImage: '/location-pages/jupiter-background.png',
   },
@@ -504,7 +504,7 @@ const setReminderVideos = {
   royalPalmBeach: 'kq2yuo3glr',
   boyntonBeach: '69oo6qhvvg',
   downtownWestPalmBeach: '6fy7j3t3n5',
-  jupiter: 'upnyuxh8x6',
+  //jupiter: 'upnyuxh8x6', // Location was changed so this video needs to be swapped for a new one
   stuart: 'do6e26lx36',
   okeechobee: '2id77bfxem',
   belleGlade: 't4so17kwrf',

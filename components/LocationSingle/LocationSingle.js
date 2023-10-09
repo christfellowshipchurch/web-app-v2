@@ -189,7 +189,7 @@ function LocationSingle(props = {}) {
       )}
 
       {/* What to Expect */}
-      {expectData && ( // It will not be in other locations as well
+      {whatToExpectVideo && (
         <Box bg="white" width="100%">
           <Box
             bg="white"
