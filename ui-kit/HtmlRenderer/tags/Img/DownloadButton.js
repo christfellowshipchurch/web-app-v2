@@ -3,10 +3,25 @@ import PropTypes from 'prop-types';
 
 import { Box, Icon } from 'ui-kit';
 import Styled from './Img.styles';
+import { useCurrentBreakpoint } from 'hooks';
 
 const DownloadButton = (props = {}) => {
   const [status, setStatus] = useState('IDLE'); // IDLE | ACTIVE | DONE
+  const currentBreakpoint = useCurrentBreakpoint();
 
+  const handleDownloadButton = async shareData => {
+    const blob = await (await fetch(shareData)).blob();
+    const file = new File([blob], shareData.image, { type: blob.type });
+
+    if (currentBreakpoint.isSmall || currentBreakpoint.isMedium) {
+      try {
+        await navigator.share(shareData);
+        console.log('success');
+      } catch (err) {
+        console.log('share failed');
+      }
+    }
+  };
   useEffect(() => {
     if (status === 'DONE') {
       setTimeout(() => {
@@ -20,6 +35,11 @@ const DownloadButton = (props = {}) => {
       status={status}
       onClick={() => {
         setStatus('DONE');
+        handleDownloadButton({
+          title: 'CF Images',
+          text: 'Share this image!',
+          image: `/api/image?src=${props?.source}`,
+        });
       }}
       onMouseEnter={() => setStatus('ACTIVE')}
       onMouseLeave={() => {

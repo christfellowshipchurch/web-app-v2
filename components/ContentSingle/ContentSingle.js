@@ -191,7 +191,7 @@ function ContentSingle(props = {}) {
             alignSelf="start"
             mb="base"
           >
-            <Share title={title} />
+            <Share title={title} {...props} />
           </Box>
         )
       }

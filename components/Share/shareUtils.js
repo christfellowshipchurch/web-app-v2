@@ -39,7 +39,8 @@ export const handleSocialShare = ({ shareType, shareMessages }) => {
 
 export const shareMessaging = ({ title, shareMessages, url }) => {
   const defaultShareMessages = {
-    faceBook: `Check out this article Christ Fellowship Church!`,
+    title: `${title}`,
+    faceBook: `Check out this article from Christ Fellowship Church!`,
     twitter: `${title} at Christ Fellowship Church`,
     email: {
       subject: `${title} - Christ Fellowship Church`,
