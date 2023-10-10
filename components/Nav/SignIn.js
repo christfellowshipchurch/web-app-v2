@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { Box, Icon, systemPropTypes } from 'ui-kit';

@@ -1,12 +1,11 @@
 import React from 'react';
-import { addDecorator } from '@storybook/react';
 
 import { ModalProvider } from 'providers';
 import { ModalManager } from 'providers/ModalProvider';
 import modals from 'config/modals';
-import { Box, GlobalStyles, ThemeProvider } from 'ui-kit';
+import { GlobalStyles, ThemeProvider } from 'ui-kit';
 
-addDecorator(story => (
+const withTheme = story => (
   <ThemeProvider>
     <ModalProvider modals={modals}>
       <GlobalStyles />
@@ -14,4 +13,6 @@ addDecorator(story => (
       <ModalManager />
     </ModalProvider>
   </ThemeProvider>
-));
+);
+
+export const decorators = [withTheme];

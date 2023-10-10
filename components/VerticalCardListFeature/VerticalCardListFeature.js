@@ -105,11 +105,6 @@ function VerticalCardListFeature(props = {}) {
 
 VerticalCardListFeature.propTypes = {
   data: PropTypes.object,
-  Component: PropTypes.any,
-};
-
-VerticalCardListFeature.defaultProps = {
-  Component: HorizontalHighlightCard,
 };
 
 export default VerticalCardListFeature;
