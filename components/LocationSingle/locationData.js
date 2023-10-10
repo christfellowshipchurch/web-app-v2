@@ -363,6 +363,7 @@ const headerData = [
     videoBackgroundImage: '/location-pages/rp-background.png',
   },
   {
+    //
     name: 'Jupiter',
     primaryButton: {
       call: 'Set a Reminder',
@@ -370,10 +371,8 @@ const headerData = [
       newTab: true,
     },
     backgroundVideo: {
-      mobile:
-        'https://embed.wistia.com/deliveries/d7da7955aeaabad13c81b0d28eb0a906.mp4',
-      desktop:
-        'https://embed.wistia.com/deliveries/d7da7955aeaabad13c81b0d28eb0a906.mp4',
+      mobile: '/external-landing/external-bg-vid.mp4',
+      desktop: '/external-landing/external-bg-vid.mp4',
     },
     videoBackgroundImage: '/location-pages/jupiter-background.png',
   },
