@@ -32,6 +32,7 @@ module.exports = {
         destination: '/:slug',
         permanent: false,
       }, // reboot this stupid thing
+      { source: '/family', destination: 'https://nsb2r6cpbt4.typeform.com/to/rv4waLbv', permanent: true },
       { source: '/fall', destination: '/fallatlh', permanent: true },
       { source: '/onboarding', destination: 'https://rock.longhollow.com/page/827', permanent: true },
       { source: '/bettermangroups', destination: 'https://my.longhollow.com/Registration/bettermanstudy-oct2023', permanent: true },
