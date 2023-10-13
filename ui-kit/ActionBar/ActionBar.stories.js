@@ -6,6 +6,7 @@ import ActionBarItem from './ActionBarItem';
 export default {
   title: 'ui-kit/ActionBar',
   component: ActionBar,
+  tags: ['autodocs'],
 };
 
 export const Default = () => (

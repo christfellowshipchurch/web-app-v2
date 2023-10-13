@@ -5,6 +5,10 @@ import Avatar from './Avatar';
 export default {
   title: 'ui-kit/Avatar',
   component: Avatar,
+  parameters: {
+    layout: 'centered',
+  },
+  tags: ['autodocs'],
 };
 
 export const Default = () => (

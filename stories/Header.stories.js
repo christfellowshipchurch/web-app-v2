@@ -10,6 +10,7 @@ export default {
     layout: 'fullscreen',
   },
 };
+
 export const LoggedIn = {
   args: {
     user: {
