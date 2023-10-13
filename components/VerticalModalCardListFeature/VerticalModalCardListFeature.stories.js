@@ -7,6 +7,7 @@ import { VerticalCardListFeature } from 'components';
 const exportedObject = {
   title: 'components/VerticalModalCardListFeature',
   component: VerticalCardListFeature,
+  tags: ['autodocs'],
 };
 
 export default exportedObject;

@@ -7,6 +7,7 @@ import { HeroListFeature } from 'components';
 const exportedObject = {
   title: 'components/HeroListFeature',
   component: HeroListFeature,
+  tags: ['autodocs'],
 };
 
 export default exportedObject;

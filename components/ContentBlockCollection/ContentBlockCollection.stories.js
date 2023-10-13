@@ -5,6 +5,7 @@ import { ContentBlockCollection } from 'components';
 const config = {
   title: 'components/ContentBlockCollection',
   component: ContentBlockCollection,
+  tags: ['autodocs'],
   argTypes: {
     items: {
       control: { type: 'range', min: 1, max: 6, step: 1 },
@@ -31,7 +32,7 @@ function renderItems(n) {
 }
 
 const ContentBlockCollectionStory = ({ items }) => {
-  return <ContentBlockCollection icons={renderItems(items)} />;
+  return <ContentBlockCollection data={{ cards: renderItems(items) }} />;
 };
 
 export const Default = ContentBlockCollectionStory.bind({});

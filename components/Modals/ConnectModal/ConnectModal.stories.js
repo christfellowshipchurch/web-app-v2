@@ -5,6 +5,7 @@ import ConnectModal from './ConnectModal';
 const exportedObject = {
   title: 'components/ConnectModal',
   component: ConnectModal,
+  tags: ['autodocs'],
 };
 
 export default exportedObject;
