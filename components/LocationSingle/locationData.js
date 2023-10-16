@@ -554,11 +554,17 @@ const setReminderData = {
 };
 
 const whatToExpectData = name => {
-  return {
-    name,
-    title: `What to Expect at ${name}`,
-    htmlContent: `Here at Christ Fellowship Church in ${name}, you can expect to experience church services with uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—it all starts here!`,
-  };
+  return name === 'Cf Everywhere'
+    ? {
+        name,
+        title: `What to Expect at Christ Fellowship Everywhere`,
+        htmlContent: `Here at Christ Fellowship Everywhere, you can expect to experience church services with uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—it all starts here!`,
+      }
+    : {
+        name,
+        title: `What to Expect at ${name}`,
+        htmlContent: `Here at Christ Fellowship Church in ${name}, you can expect to experience church services with uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—it all starts here!`,
+      };
 };
 
 const thisWeekFeatureId =
