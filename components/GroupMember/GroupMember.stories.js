@@ -13,7 +13,6 @@ import GroupMember from './GroupMember';
 import { Box } from 'ui-kit';
 
 const config = {
-  title: 'components/GroupMember',
   component: GroupMember,
   tags: ['autodocs'],
   argTypes: {
