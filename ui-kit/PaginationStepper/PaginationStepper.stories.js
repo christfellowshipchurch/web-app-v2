@@ -11,8 +11,8 @@ import React from 'react';
 import PaginationStepper from './PaginationStepper';
 
 const config = {
-  title: 'ui-kit/PaginationStepper',
   component: PaginationStepper,
+  tags: ['autodocs'],
   argTypes: {
     cursor: {
       control: { type: 'range', min: 1, max: 10, step: 1 },

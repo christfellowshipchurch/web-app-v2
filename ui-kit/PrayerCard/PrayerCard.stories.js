@@ -5,8 +5,8 @@ import PrayerCard from './PrayerCard';
 import { CardCarousel } from '../';
 
 export default {
-  title: 'ui-kit/PrayerCard',
   component: PrayerCard,
+  tags: ['autodocs'],
 };
 
 const cardProps = {

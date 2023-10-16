@@ -1,18 +1,16 @@
 import React from 'react';
 
-import { ModalProvider } from 'providers';
+import { AppProvider } from 'providers';
 import { ModalManager } from 'providers/ModalProvider';
 import modals from 'config/modals';
-import { GlobalStyles, ThemeProvider } from 'ui-kit';
+import { GlobalStyles } from 'ui-kit';
 
 const withTheme = story => (
-  <ThemeProvider>
-    <ModalProvider modals={modals}>
-      <GlobalStyles />
-      {story()}
-      <ModalManager />
-    </ModalProvider>
-  </ThemeProvider>
+  <AppProvider>
+    <GlobalStyles />
+    {story()}
+    <ModalManager />
+  </AppProvider>
 );
 
 export const decorators = [withTheme];

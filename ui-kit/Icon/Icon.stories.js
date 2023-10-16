@@ -12,8 +12,8 @@ import Icon from './Icon';
 import icons from '../_config/icons';
 
 const config = {
-  title: 'ui-kit/Icon',
   component: Icon,
+  tags: ['autodocs'],
   argTypes: {
     name: {
       options: Object.keys(icons),

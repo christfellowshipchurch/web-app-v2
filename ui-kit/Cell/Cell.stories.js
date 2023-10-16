@@ -3,8 +3,8 @@ import React from 'react';
 import Cell from './Cell';
 
 export default {
-  title: 'ui-kit/Cell',
   component: Cell,
+  tags: ['autodocs'],
 };
 
 export const Default = () => <Cell>Cell</Cell>;

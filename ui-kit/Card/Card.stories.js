@@ -3,8 +3,8 @@ import React from 'react';
 import Card from './';
 
 export default {
-  title: 'ui-kit/Card',
   component: Card,
+  tags: ['autodocs'],
 };
 
 export const Default = () => (

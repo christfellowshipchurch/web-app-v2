@@ -4,8 +4,11 @@ import { Button } from 'ui-kit';
 import Menu from './Menu';
 
 export default {
-  title: 'ui-kit/Menu',
   component: Menu,
+  tags: ['autodocs'],
+  parameters: {
+    layout: 'centered',
+  },
 };
 
 export const Default = () => (

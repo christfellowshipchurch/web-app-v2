@@ -3,8 +3,8 @@ import React from 'react';
 import { Box, CardGrid, DefaultCard } from 'ui-kit';
 
 export default {
-  title: 'ui-kit/CardGrid',
   component: CardGrid,
+  tags: ['autodocs'],
 };
 
 const cardProps = {

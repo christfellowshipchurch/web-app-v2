@@ -4,8 +4,8 @@ import { CardGrid } from '..';
 import HorizontalHighlightCard from './HorizontalHighlightCard';
 
 export default {
-  title: 'ui-kit/HorizontalHighlightCard',
   component: HorizontalHighlightCard,
+  tags: ['autodocs'],
 };
 
 const card = cardType => {

@@ -3,8 +3,8 @@ import React from 'react';
 import SquareAvatar from './SquareAvatar';
 
 export default {
-  title: 'ui-kit/SquareAvatar',
   component: SquareAvatar,
+  tags: ['autodocs'],
 };
 
 export const Default = () => (

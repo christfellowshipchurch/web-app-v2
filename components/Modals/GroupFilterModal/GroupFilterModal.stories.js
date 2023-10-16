@@ -11,41 +11,21 @@ const exportedObject = {
 export default exportedObject;
 
 export const Default = () => {
-  return (
-    <AppProvider>
-      <GroupFilterModal />
-    </AppProvider>
-  );
+  return <GroupFilterModal />;
 };
 
 export const Preferences = () => {
-  return (
-    <AppProvider>
-      <GroupFilterModal step={0} />
-    </AppProvider>
-  );
+  return <GroupFilterModal step={0} />;
 };
 
 export const SubPreferences = () => {
-  return (
-    <AppProvider>
-      <GroupFilterModal step={1} />
-    </AppProvider>
-  );
+  return <GroupFilterModal step={1} />;
 };
 
 export const WhereAndWhen = () => {
-  return (
-    <AppProvider>
-      <GroupFilterModal step={2} />
-    </AppProvider>
-  );
+  return <GroupFilterModal step={2} />;
 };
 
 export const AllFilters = () => {
-  return (
-    <AppProvider>
-      <GroupFilterModal step={3} />
-    </AppProvider>
-  );
+  return <GroupFilterModal step={3} />;
 };

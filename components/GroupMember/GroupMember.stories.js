@@ -38,7 +38,7 @@ const GroupMemberStory = ({ status, role, firstName, lastName }) => {
   const groupMember = {
     status: {
       id: 'some-status-identifier',
-      label: status,
+      label: 'Active',
     },
     role,
     person: {
@@ -52,17 +52,25 @@ const GroupMemberStory = ({ status, role, firstName, lastName }) => {
 
   return (
     <Box maxWidth="300px">
-      <GroupMember {...groupMember} />
+      <GroupMember data={{ ...groupMember }} />
     </Box>
   );
 };
 
 export const Default = GroupMemberStory.bind({});
 Default.args = {
-  status: 'Active',
+  status: {
+    id: 'some-status-identifier',
+    label: 'Active',
+  },
   role: 'Member',
-  firstName: 'Ted',
-  lastName: 'Lasso',
+  person: {
+    firstName: 'Ted',
+    lastName: 'Lasso',
+    photo: {
+      uri: 'https://source.unsplash.com/random',
+    },
+  },
 };
 
 export default config;

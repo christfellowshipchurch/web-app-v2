@@ -6,6 +6,9 @@ import Button from './Button';
 export default {
   component: Button,
   tags: ['autodocs'],
+  parameters: {
+    layout: 'centered',
+  },
   args: {
     size: 'l',
     variant: 'primary',

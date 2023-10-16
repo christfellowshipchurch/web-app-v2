@@ -48,6 +48,15 @@ const GroupMember = ({ id, person, role, status, groupId, groupRoleId }) => {
     .filter(name => !isEmpty(name))
     .join(' ');
 
+  let upperStatus = '';
+  if (status.label !== undefined) {
+    upperStatus = status?.label?.toUpperCase();
+  }
+  if (role !== undefined) {
+    role = role.toUpperCase;
+  }
+
+  console.log(id);
   return (
     <Box
       display="flex"
@@ -64,7 +73,7 @@ const GroupMember = ({ id, person, role, status, groupId, groupRoleId }) => {
             width="56px"
             name={fullName || 'Group Member'}
           />
-          {role?.toUpperCase() === 'LEADER' && (
+          {role === 'LEADER' && (
             <Box
               position="absolute"
               bottom="0"
@@ -83,11 +92,8 @@ const GroupMember = ({ id, person, role, status, groupId, groupRoleId }) => {
           )}
         </Box>
 
-        <Box
-          mx="s"
-          opacity={status?.label?.toUpperCase() === 'INACTIVE' ? 0.4 : 1.0}
-        >
-          <GroupMemberStatusBadge status={status?.label} />
+        <Box mx="s" opacity={upperStatus === 'INACTIVE' ? 0.4 : 1.0}>
+          <GroupMemberStatusBadge status={upperStatus} />
           <Box as="h4" mb="0">
             {fullName}
           </Box>
