@@ -189,26 +189,24 @@ function LocationSingle(props = {}) {
       )}
 
       {/* What to Expect */}
-      {expectData && ( // It will not be in other locations as well
-        <Box bg="white" width="100%">
-          <Box
-            bg="white"
-            mx="auto"
-            maxWidth={{ _: 400, md: 800, lg: 1200 }}
-            py="8rem"
-            px={{ _: 'base', md: 'xl' }}
-          >
-            <ContentBlock
-              {...expectData}
-              wistiaId={whatToExpectVideo}
-              actions={expectActions}
-              contentLayout="left"
-              roundVideo
-              centerContent
-            />
-          </Box>
+      <Box bg="white" width="100%">
+        <Box
+          bg="white"
+          mx="auto"
+          maxWidth={{ _: 400, md: 800, lg: 1200 }}
+          py="8rem"
+          px={{ _: 'base', md: 'xl' }}
+        >
+          <ContentBlock
+            {...expectData}
+            wistiaId={whatToExpectVideo && whatToExpectVideo}
+            actions={expectActions}
+            contentLayout="left"
+            roundVideo
+            centerContent
+          />
         </Box>
-      )}
+      </Box>
 
       {/* At this Location Section */}
       <Box

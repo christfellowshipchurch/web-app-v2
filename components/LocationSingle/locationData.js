@@ -363,6 +363,7 @@ const headerData = [
     videoBackgroundImage: '/location-pages/rp-background.png',
   },
   {
+    //
     name: 'Jupiter',
     primaryButton: {
       call: 'Set a Reminder',
@@ -370,10 +371,8 @@ const headerData = [
       newTab: true,
     },
     backgroundVideo: {
-      mobile:
-        'https://embed.wistia.com/deliveries/1f1eb41659eb843d4edc9e087be8425c.mp4',
-      desktop:
-        'https://embed.wistia.com/deliveries/4cd6c53698ae63abbb69aff4e0a4a5b0.mp4',
+      mobile: '/external-landing/external-bg-vid.mp4',
+      desktop: '/external-landing/external-bg-vid.mp4',
     },
     videoBackgroundImage: '/location-pages/jupiter-background.png',
   },
@@ -504,7 +503,7 @@ const setReminderVideos = {
   royalPalmBeach: 'kq2yuo3glr',
   boyntonBeach: '69oo6qhvvg',
   downtownWestPalmBeach: '6fy7j3t3n5',
-  jupiter: 'upnyuxh8x6',
+  //jupiter: 'upnyuxh8x6', // Location was changed so this video needs to be swapped for a new one
   stuart: 'do6e26lx36',
   okeechobee: '2id77bfxem',
   belleGlade: 't4so17kwrf',

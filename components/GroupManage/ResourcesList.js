@@ -34,10 +34,19 @@ function ResourceCoverImage(props = {}) {
 
 function ResourcesList(props = {}) {
   const { groupData } = useGroupManageState();
+  const sortedResources = [...groupData.resources].sort((a, b) => {
+    if (a.title < b.title) {
+      return -1;
+    }
+    if (a.title > b.title) {
+      return 1;
+    }
+    return 0;
+  });
 
   return (
     <List>
-      {groupData?.resources?.map(
+      {sortedResources.map(
         (resource, idx) =>
           resource?.title && (
             <Box as="li" key={idx} display="flex" alignItems="center">
