@@ -5,10 +5,7 @@
 const additionalInfoCampusData = [
   {
     name: 'Palm Beach Gardens',
-    info: [
-      'Kids services take place at each service',
-      'Traducciones al español ofrecidas a las 11:45am',
-    ],
+    info: ['Kids services take place at each service'],
   },
   {
     name: 'Port St. Lucie',
