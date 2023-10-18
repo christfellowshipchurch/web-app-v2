@@ -5,7 +5,7 @@ import {
   Channel,
   ChannelHeader,
   Chat as StreamChat,
-  MessageInputSmall,
+  MessageInput,
   MessageList,
   Thread,
   Window,
@@ -36,14 +36,12 @@ export default function Chat(props = {}) {
   const { channelType, channelId } = props.streamChatChannel;
   const isLivestream = channelType === 'livestream';
 
-  const {
-    getCurrentUserRoleForChatChannel,
-    streamChatRole,
-  } = useCurrentUserRoleForChatChannel({
-    variables: {
-      channelId,
-    },
-  });
+  const { getCurrentUserRoleForChatChannel, streamChatRole } =
+    useCurrentUserRoleForChatChannel({
+      variables: {
+        channelId,
+      },
+    });
 
   // Semantic shortcuts
   const connected = connectionStatus === CONNECTED;
@@ -139,7 +137,7 @@ export default function Chat(props = {}) {
               </Box>
             )}
             <MessageList />
-            {authenticated && <MessageInputSmall noFiles={noFileUploads} />}
+            {authenticated && <MessageInput noFiles={noFileUploads} />}
             {!authenticated && (
               <Styled.CenteredContent p="base">
                 <Button variant="secondary" onClick={handleLoginClick}>
