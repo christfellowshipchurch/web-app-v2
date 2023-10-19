@@ -21,7 +21,7 @@ function renderItems(n) {
       title: '78,350',
       summary: 'Water projects funded',
       coverImage: {
-        sources: [{ uri: '/external-landing/external-home-1.png' }],
+        sources: [{ uri: 'https://picsum.photos/300/300' }],
       },
       highlightWidth: '100%',
       highlightWidthSmall: '10%',
@@ -31,7 +31,7 @@ function renderItems(n) {
   return arr;
 }
 
-const ContentBlockCollectionStory = ({ items }) => {
+const ContentBlockCollectionStory = ({ items = 1 }) => {
   return <ContentBlockCollection data={{ cards: renderItems(items) }} />;
 };
 

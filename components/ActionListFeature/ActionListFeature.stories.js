@@ -62,7 +62,7 @@ const mockData = {
   },
 };
 
-const ActionListFeatureStory = ({ items }) => {
+const ActionListFeatureStory = ({ items = 1 }) => {
   return (
     <Box maxWidth={1060} margin="auto">
       <ActionListFeature data={{ ...mockData, actions: renderItems(items) }} />

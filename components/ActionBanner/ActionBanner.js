@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import get from 'lodash/get';
 
 import { CustomLink } from 'components';
 import { Box, HtmlRenderer, ThemeMixin } from 'ui-kit';
@@ -13,31 +12,31 @@ import Color from 'color';
 /**
  * Renders a banner with a title, content, and two buttons. Used for displaying site-wide announcements.
  */
-const ActionBanner = (props = {}) => {
-  const primaryButton = get(props, 'actions[0]');
-  const secondaryButton = get(props, 'actions[1]');
+const ActionBanner = ({ title, htmlContent, actions, theme }) => {
+  const primaryButton = actions?.[0];
+  const secondaryButton = actions?.[1];
 
   return (
     <ThemeMixin
       theme={{
-        colors: props?.theme?.colors ?? {},
+        colors: theme?.colors ?? {},
       }}
     >
       <Styled>
         <Box>
-          {props?.title && props?.title !== '' && (
+          {title && title !== '' && (
             <Box as="h3" mb="2px" opacity={0.85}>
-              {props?.title}
+              {title}
             </Box>
           )}
-          <HtmlRenderer htmlContent={props?.htmlContent} />
+          <HtmlRenderer htmlContent={htmlContent} />
         </Box>
 
         <Box display="flex" flexDirection="row">
-          {props?.actions[0] && (
+          {primaryButton && (
             <CustomLink
               Component={Styled.PrimaryButton}
-              isLight={Color(props?.theme?.colors?.secondary).isLight()}
+              isLight={Color(theme?.colors?.secondary).isLight()}
               size="s"
               ml={{ _: 0, md: 'base' }}
               px="base"
@@ -48,10 +47,10 @@ const ActionBanner = (props = {}) => {
               {primaryButton?.title}
             </CustomLink>
           )}
-          {props?.actions[1] && (
+          {secondaryButton && (
             <CustomLink
               Component={Styled.SecondaryButton}
-              isLight={Color(props?.theme?.colors?.secondary).isLight()}
+              isLight={Color(theme?.colors?.secondary).isLight()}
               size="s"
               ml="s"
               border="none"
@@ -79,13 +78,14 @@ ActionBanner.propTypes = {
    */
   htmlContent: PropTypes.string,
   /**
-   * Color of the banner.
+   * Color theme that sets background color of the banner(primary) and color of primary button(secondary).
    */
-  bannerColor: PropTypes.string,
-  /**
-   * Color of the primary button.
-   */
-  buttonColor: PropTypes.string,
+  theme: PropTypes.shape({
+    colors: PropTypes.shape({
+      primary: PropTypes.string,
+      secondary: PropTypes.string,
+    }),
+  }),
   /**
    * Actions to display in the banner.
    */

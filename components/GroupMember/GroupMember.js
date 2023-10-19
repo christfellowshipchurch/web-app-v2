@@ -118,21 +118,36 @@ const GroupMember = ({ id, person, role, status, groupId, groupRoleId }) => {
 };
 
 GroupMember.propTypes = {
+  /** The unique identifier for the group member, required. */
   id: PropTypes.string.isRequired,
+
+  /** A note or additional information about the group member. */
   note: PropTypes.string,
+
+  /** The status of the group member, containing an id and label. */
   status: PropTypes.shape({
     id: PropTypes.string,
     label: PropTypes.string,
   }),
+
+  /** The role or position of the group member. */
   role: PropTypes.string,
+
+  /** The person object the this component accepts */
   person: PropTypes.shape({
+    /** The first name of the group member. */
     firstName: PropTypes.string,
+
+    /** The last name of the group member. */
     lastName: PropTypes.string,
+
+    /** The photo of the group member, with a URI. */
     photo: PropTypes.shape({
       uri: PropTypes.string,
     }),
   }),
 };
+
 GroupMember.defaultProps = {};
 
 export default GroupMember;

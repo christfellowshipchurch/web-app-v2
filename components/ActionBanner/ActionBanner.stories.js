@@ -1,7 +1,6 @@
-import React from 'react';
 import ActionBanner from './ActionBanner';
 
-const config = {
+export default {
   component: ActionBanner,
   tags: ['autodocs'],
   argTypes: {
@@ -13,13 +12,9 @@ const config = {
       name: 'HTML Content',
       control: 'text',
     },
-    bannerColor: {
-      name: 'Banner Color',
-      control: 'color',
-    },
-    buttonColor: {
-      name: 'Button Color',
-      control: 'color',
+    theme: {
+      name: 'Theme Color',
+      control: 'object',
     },
     actions: {
       name: 'Actions',
@@ -28,30 +23,29 @@ const config = {
   },
 };
 
-export const Default = () => {
-  return (
-    <ActionBanner
-      {...{
-        htmlContent: '<p>Help us build a better world.</p>',
-        bannerColor: '#F5F5F5',
-        buttonColor: '#F5F5F6',
-        actions: [
-          {
-            title: 'Donate',
-            relatedNode: {
-              url: 'https://www.google.com',
-            },
-          },
-          {
-            title: 'Learn More',
-            relatedNode: {
-              url: 'https://www.google.com',
-            },
-          },
-        ],
-      }}
-    />
-  );
+export const Default = {
+  args: {
+    title: 'Thank You',
+    htmlContent: '<p>Help us build a better world.</p>',
+    theme: {
+      colors: {
+        primary: '#133157',
+        secondary: '#FFC107',
+      },
+    },
+    actions: [
+      {
+        title: 'Donate',
+        relatedNode: {
+          url: 'https://www.google.com',
+        },
+      },
+      {
+        title: 'Learn More',
+        relatedNode: {
+          url: 'https://www.google.com',
+        },
+      },
+    ],
+  },
 };
-
-export default config;

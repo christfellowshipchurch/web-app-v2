@@ -20,7 +20,7 @@ const config = {
   },
 };
 
-const PaginationStepperStory = ({ data, cursor }) => {
+const PaginationStepperStory = ({ data, cursor = 1 }) => {
   return <PaginationStepper total={10} cursor={cursor} stepBy={1} />;
 };
 
