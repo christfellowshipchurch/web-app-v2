@@ -56,7 +56,6 @@ const GroupMember = ({ id, person, role, status, groupId, groupRoleId }) => {
     role = role.toUpperCase;
   }
 
-  console.log(id);
   return (
     <Box
       display="flex"
