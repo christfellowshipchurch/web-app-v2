@@ -14,7 +14,14 @@ import {
   Video,
 } from 'components';
 
-import { Box, Button, Divider, Loader, ContentBlock } from 'ui-kit';
+import {
+  Box,
+  Button,
+  DistanceCalculator,
+  Divider,
+  Loader,
+  ContentBlock,
+} from 'ui-kit';
 import CampusInfo from './CampusInfo';
 import LocationHeader from './LocationHeader';
 import defaultBlockData from '../LocationBlockFeature/defaultBlockData';
@@ -33,6 +40,10 @@ import { showModal, useModalDispatch } from 'providers/ModalProvider';
 
 function LocationSingle(props = {}) {
   const modalDispatch = useModalDispatch();
+
+  const distance = DistanceCalculator();
+  console.log('distance: ', distance);
+  console.log('distance: ', distance);
 
   if (props.loading) {
     return (
