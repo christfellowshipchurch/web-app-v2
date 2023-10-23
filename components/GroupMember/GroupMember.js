@@ -17,7 +17,7 @@ import {
   hideModal,
 } from 'providers/ModalProvider';
 import { Box, Button, GroupMemberStatusBadge, SquareAvatar } from 'ui-kit';
-import { isEmpty } from 'lodash';
+import { isEmpty, upperCase } from 'lodash';
 
 const GroupMember = ({ id, person, role, status, groupId, groupRoleId }) => {
   const modalDispatch = useModalDispatch();
@@ -53,9 +53,10 @@ const GroupMember = ({ id, person, role, status, groupId, groupRoleId }) => {
     upperStatus = status?.label?.toUpperCase();
   }
   if (role !== undefined) {
-    role = role.toUpperCase;
+    role = upperCase(role);
   }
 
+  console.log({ role, groupRoleId });
   return (
     <Box
       display="flex"
@@ -98,6 +99,9 @@ const GroupMember = ({ id, person, role, status, groupId, groupRoleId }) => {
           </Box>
         </Box>
       </Box>
+      {/* 
+        If the group member is a Hub Leader(48) then we don't want to show the view button
+      */}
       {groupRoleId !== '48' && (
         <Button
           size="s"

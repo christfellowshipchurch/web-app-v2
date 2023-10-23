@@ -35,7 +35,7 @@ const rounded =
   };
 
 const variant =
-  ({ variant, active, hoverColor }) =>
+  ({ variant }) =>
   props => {
     if (variant === 'secondary') {
       return css`

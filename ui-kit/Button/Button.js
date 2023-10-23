@@ -49,10 +49,6 @@ function Button(props = {}) {
             location: router?.asPath || 'N/A',
             text: props?.call || childrenText(props?.children),
             url: props?.href,
-            // type: 'Information',
-            // category: 'Call to Action',
-            // subcategory: 'N/A',
-            // tags: 'N/A',
             site_exit: props?.target && props?.target === '_blank',
           },
         });
@@ -65,8 +61,21 @@ function Button(props = {}) {
 
 Button.propTypes = {
   ...systemPropTypes,
+  /**
+   * The text of the button
+   */
+  children: PropTypes.string,
+  /**
+   * The size of the button
+   */
   size: PropTypes.oneOf(['xs', 's', 'l']),
+  /**
+   * The status of the button
+   */
   status: PropTypes.oneOf(['IDLE', 'LOADING', 'ERROR', 'SUCCESS', 'SELECTED']),
+  /**
+   * The variant or style of the button
+   */
   variant: PropTypes.oneOf([
     'link',
     'primary',
@@ -74,17 +83,14 @@ Button.propTypes = {
     'tertiary',
     'chip',
   ]),
-  hoverColor: PropTypes.string,
+  /**
+   * The URL to navigate to when the button is clicked, specified as a string
+   */
   href: PropTypes.string,
 };
 
 Button.defaultProps = {
   status: 'IDLE',
-  hoverColor: 'primaryHover',
 };
 
-const ButtonWithRef = React.forwardRef(({ onClick, href, ...props }, ref) => (
-  <Button onClick={onClick} href={href} ref={ref} {...props} />
-));
-
-export default ButtonWithRef;
+export default Button;

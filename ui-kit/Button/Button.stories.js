@@ -9,43 +9,14 @@ export default {
   parameters: {
     layout: 'centered',
   },
-  args: {
-    size: 'l',
-    variant: 'primary',
-    status: 'IDLE',
-  },
-  argTypes: {
-    children: {
-      description: 'content of the button',
-      control: {
-        type: 'text',
-      },
-    },
-    size: {
-      description: 'size of the button',
-      options: ['xs', 's', 'l'],
-      control: {
-        type: 'radio',
-      },
-    },
-    variant: {
-      description: 'variant of the button',
-      options: ['link', 'primary', 'secondary', 'tertiary', 'chip'],
-      control: {
-        type: 'select',
-      },
-    },
-    status: {
-      description: 'The status of the button',
-      options: ['IDLE', 'LOADING', 'ERROR', 'SUCCESS', 'SELECTED'],
-      control: {
-        type: 'select',
-      },
-    },
-  },
 };
 
-export const Default = () => <Button>Button</Button>;
+export const Default = {
+  args: {
+    children: 'Button',
+    variant: 'primary',
+  },
+};
 
 export const Sizes = () => (
   <Box>

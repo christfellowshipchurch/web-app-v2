@@ -15,6 +15,6 @@ export const Default = () => (
   <Menu
     renderTrigger={({ toggle }) => <Button onClick={toggle}>Toggle</Button>}
   >
-    Hello!
+    Hello there!
   </Menu>
 );

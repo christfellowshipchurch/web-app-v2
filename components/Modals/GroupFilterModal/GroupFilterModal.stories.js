@@ -1,12 +1,10 @@
 import React from 'react';
 
-import { AppProvider } from 'providers';
 import GroupFilterModal from './GroupFilterModal';
 
 const exportedObject = {
   title: 'components/GroupFilterModal',
   component: GroupFilterModal,
-  tags: ['autodocs'],
 };
 export default exportedObject;
 

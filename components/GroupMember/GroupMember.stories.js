@@ -15,6 +15,11 @@ const statuses = {
   pending: { id: '456', label: 'Pending' },
 };
 
+const roleIds = {
+  isHubLeader: '48',
+  notHubLeader: 'null',
+};
+
 export default {
   component: GroupMember,
   tags: ['autodocs'],
@@ -27,8 +32,17 @@ export default {
       },
     },
     role: {
-      options: ['Member', 'Leader'],
-      control: { type: 'radio' },
+      options: ['Leader', 'Member'],
+      control: {
+        type: 'radio',
+      },
+    },
+    groupRoleId: {
+      options: Object.keys(roleIds),
+      mapping: roleIds,
+      control: {
+        type: 'select',
+      },
     },
   },
 };
@@ -39,7 +53,7 @@ export const Default = {
       id: 'some-status-identifier',
       label: 'Active',
     },
-    role: 'Member',
+    role: 'Leader',
     person: {
       firstName: 'Ted',
       lastName: 'Lasso',

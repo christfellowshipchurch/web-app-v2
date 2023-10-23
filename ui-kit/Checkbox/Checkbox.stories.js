@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Checkbox from './Checkbox';
 
 export default {
@@ -7,6 +5,6 @@ export default {
   tags: ['autodocs'],
 };
 
-export const Default = () => (
-  <Checkbox id="checkbox" label="This is the label" />
-);
+export const Default = {
+  args: { id: 'checkbox', label: 'This is the label' },
+};
