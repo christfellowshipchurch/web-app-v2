@@ -4,15 +4,28 @@ import ActionBar from './ActionBar';
 import ActionBarItem from './ActionBarItem';
 
 export default {
-  title: 'ui-kit/ActionBar',
   component: ActionBar,
   tags: ['autodocs'],
 };
 
+const data = {
+  children: [
+    { icon: 'x', label: 'Hello', tint: '' },
+    { icon: 'x', label: 'There', tint: '' },
+    { icon: 'x', label: 'WOOHOO', tint: '' },
+  ],
+};
+
 export const Default = () => (
   <ActionBar>
-    <ActionBarItem icon="x" label="Hello" tint="" />
-    <ActionBarItem icon="x" label="There" tint="" />
-    <ActionBarItem icon="x" label="WOOHOO" tint="" />
+    {data.children.map((child, i) => {
+      return (
+        <ActionBarItem
+          icon={child.icon}
+          label={child.label}
+          tint={child.tint}
+        />
+      );
+    })}
   </ActionBar>
 );
