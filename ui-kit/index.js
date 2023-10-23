@@ -20,7 +20,6 @@ import Checkbox from './Checkbox';
 import ContentBlock from './ContentBlock';
 import CoverImage from './CoverImage';
 import DefaultCard from './DefaultCard';
-import DistanceCalculator from './DistanceCalculator';
 import Divider from './Divider';
 import FormLabel from './FormLabel';
 import GroupCard from './GroupCard';
@@ -66,7 +65,6 @@ export {
   ContentBlock,
   CoverImage,
   DefaultCard,
-  DistanceCalculator,
   Divider,
   FormLabel,
   GroupCard,

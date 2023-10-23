@@ -41,10 +41,6 @@ import { showModal, useModalDispatch } from 'providers/ModalProvider';
 function LocationSingle(props = {}) {
   const modalDispatch = useModalDispatch();
 
-  const distance = DistanceCalculator();
-  console.log('distance: ', distance);
-  console.log('distance: ', distance);
-
   if (props.loading) {
     return (
       <Layout
