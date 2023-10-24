@@ -19,8 +19,21 @@ const FindNearestLocation = () => {
     }
   );
 
+  // sort campuses by distance from location
+  let sortedCampuses = [...campuses].sort((a, b) => {
+    return a.distanceFromLocation - b.distanceFromLocation;
+  });
+
+  // Remove Online Campus from sortedCampuses array to ensure it is always the first item in the list
+  const onlineCampusIndex = sortedCampuses.findIndex(campus => {
+    return campus.name === 'Online (CF Everywhere)';
+  });
+  const onlineCampus = sortedCampuses[onlineCampusIndex];
+  sortedCampuses.splice(onlineCampusIndex, 1);
+
   const getCoordinates = async () => {
     if (address) {
+      // get coordinates from address
       const response = await fetch(`/api/googlemaps?place=${address}`);
       const data = await response.json();
       setResults(data.results);
@@ -29,6 +42,7 @@ const FindNearestLocation = () => {
       setResults([{ geometry: { location: {} } }]);
     }
   };
+
   return (
     <Box p="base">
       <Box>
@@ -42,6 +56,7 @@ const FindNearestLocation = () => {
         />
         <button
           onClick={() => {
+            //When users clicks search button we want to get the coordinates and refetch the campuses to get distance from location
             getCoordinates();
             refetch();
           }}
@@ -53,14 +68,25 @@ const FindNearestLocation = () => {
         <Loader />
       ) : (
         <CardGrid>
-          {campuses?.map(campus => (
-            <DefaultCard key={campus.id}>
-              <p>{campus.name}</p>
-              {campus?.distanceFromLocation && (
-                <p>{Number(campus?.distanceFromLocation.toFixed(1))} miles</p>
-              )}
+          {/* We want to display Online campus separately */}
+          {onlineCampus && (
+            <DefaultCard>
+              <p>{onlineCampus.name}</p>
+              {onlineCampus?.distanceFromLocation && <p>{`Right here!`}</p>}
             </DefaultCard>
-          ))}
+          )}
+          {sortedCampuses?.map((campus, i) => {
+            return (
+              <DefaultCard key={i}>
+                <p>{campus.name}</p>
+                {campus?.distanceFromLocation && (
+                  <p>
+                    {`${Number(campus?.distanceFromLocation.toFixed(1))} miles`}
+                  </p>
+                )}
+              </DefaultCard>
+            );
+          })}
         </CardGrid>
       )}
     </Box>

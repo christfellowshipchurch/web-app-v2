@@ -4,8 +4,6 @@ export const GET_CAMPUSES = gql`
   query getCampuses($latitude: Float, $longitude: Float) {
     campuses {
       name
-      longitude
-      latitude
       distanceFromLocation(
         location: { latitude: $latitude, longitude: $longitude }
       )
