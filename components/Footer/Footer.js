@@ -133,7 +133,7 @@ function Connect() {
         </Box>
         <Box as="li">
           <Styled.Link target="_blank" href={links.webAndAppFeedback}>
-            Website & App Feedback
+            Web & App Feedback
           </Styled.Link>
         </Box>
       </List>
