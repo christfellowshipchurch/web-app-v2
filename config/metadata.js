@@ -10,6 +10,7 @@ const metadata = {
     submitPrayerRequest: 'https://rock.gocf.org/RequestPrayer',
     subscribeToUpdates: 'http://eepurl.com/hAk7aP',
     contactUs: 'https://rock.gocf.org/contactus',
+    webAndAppFeedback: 'https://form.jotform.com/201343828801148',
     careerOpportunities: 'https://boards.greenhouse.io/christfellowship',
     facebook: 'https://www.facebook.com/CFimpact/',
     instagram: 'https://www.instagram.com/christfellowship.church/',
