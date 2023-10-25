@@ -131,6 +131,11 @@ function Connect() {
             Contact Us
           </Styled.Link>
         </Box>
+        <Box as="li">
+          <Styled.Link target="_blank" href={links.webAndAppFeedback}>
+            Website & App Feedback
+          </Styled.Link>
+        </Box>
       </List>
     </Box>
   );
