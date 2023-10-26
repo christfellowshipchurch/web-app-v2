@@ -14,14 +14,7 @@ import {
   Video,
 } from 'components';
 
-import {
-  Box,
-  Button,
-  DistanceCalculator,
-  Divider,
-  Loader,
-  ContentBlock,
-} from 'ui-kit';
+import { Box, Button, Divider, Loader, ContentBlock } from 'ui-kit';
 import CampusInfo from './CampusInfo';
 import LocationHeader from './LocationHeader';
 import defaultBlockData from '../LocationBlockFeature/defaultBlockData';

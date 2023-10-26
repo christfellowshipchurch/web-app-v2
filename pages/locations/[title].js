@@ -20,8 +20,8 @@ import { useAnalytics } from 'providers/AnalyticsProvider';
 
 const OLD_LOCATION_PAGES = [
   'prison-locations',
-  'iglesia-royal-palm-beach',
-  'iglesia-palm-beach-gardens',
+  'en-espanol-royal-palm-beach',
+  'en-espanol-palm-beach-gardens',
 ];
 
 export default function Location(props = {}) {
@@ -30,6 +30,7 @@ export default function Location(props = {}) {
   const router = useRouter();
   const { query } = router;
   const { title } = query;
+  console.log(title);
   const metaData = find(campusMetaData, { key: title });
   const campusLink = find(campusLinks, { name: startCase(title) });
 
@@ -38,7 +39,7 @@ export default function Location(props = {}) {
       contentCategory: 'Information',
       mediaType: 'Information',
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const options = {

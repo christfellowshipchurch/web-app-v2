@@ -1,5 +1,6 @@
 import React from 'react';
-import { useCampuses } from 'hooks';
+import { useCampuses, useCurrentBreakpoint } from 'hooks';
+import { kebabCase } from 'lodash';
 import { useState } from 'react';
 import {
   Box,
@@ -10,11 +11,12 @@ import {
   TextInput,
   HorizontalHighlightCard,
 } from 'ui-kit';
-import { Layout } from 'components';
+import { Layout, CustomLink } from 'components';
 
 const FindNearestLocation = () => {
   const [results, setResults] = useState([{ geometry: { location: {} } }]);
   const [address, setAddress] = useState();
+  const currentBreakpoint = useCurrentBreakpoint();
 
   const userCoordinatesExists =
     results[0]?.geometry?.location?.lat && results[0]?.geometry?.location?.lng;
@@ -56,24 +58,45 @@ const FindNearestLocation = () => {
     <Layout>
       <Image
         source={'external-landing/new-here-1.jpeg'}
-        height="40vh"
+        height="50vh"
         borderRadius="0"
         m="0px"
       />
-      <Box p="base">
+      <Box p="base" px={{ _: 'l', md: 'xl' }}>
         <Box textAlign="center" mt="l">
-          <Box as="h2" color="secondary">
+          {currentBreakpoint.isSmall && (
+            <>
+              <Box as="h1" color="secondary" pb="s">
+                One Church with Many Locations
+              </Box>
+              <Box as="p" width="300px" mx="auto" mb="l">
+                We believe that church isn’t just a building you walk in to, but
+                a family you can belong to—so whether you call one of our many
+                locations home or join from home, church is wherever you are!
+              </Box>
+            </>
+          )}
+          <Box as="h2" color="secondary" pb={{ _: 'base', md: '0' }}>
             See what campus is near you
           </Box>
-          <Box as="p" width="600px" mx="auto" mb="l">
-            We believe that church isn’t just a building you walk in to, but a
-            family you can belong to—so whether you call one of our many
-            locations home or join from home, church is wherever you are!
-          </Box>
+          {!currentBreakpoint.isSmall && (
+            <Box as="p" width="600px" mx="auto" mb="l">
+              We believe that church isn’t just a building you walk in to, but a
+              family you can belong to—so whether you call one of our many
+              locations home or join from home, church is wherever you are!
+            </Box>
+          )}
 
-          <Box display="flex" flexDirection="column" width="30%" mx="auto">
+          <Box
+            display="flex"
+            flexDirection="column"
+            width={{ _: '75%', md: '45%', lg: '30%' }}
+            mx="auto"
+          >
             <TextInput
-              placeholder="Enter an address"
+              fontSize={{ _: '13px', lg: '16px' }}
+              textAlign="center"
+              placeholder="Enter an address or a zip code here"
               onChange={e => setAddress(e.target.value)}
               mb="base"
             />
@@ -81,7 +104,7 @@ const FindNearestLocation = () => {
               width="55%"
               borderRadius="6px"
               mx="auto"
-              mb="xl"
+              mb={{ _: 'l', md: 'xl' }}
               onClick={() => {
                 //When users clicks search button we want to get the coordinates and refetch the campuses to get distance from location
                 getCoordinates();
@@ -96,26 +119,36 @@ const FindNearestLocation = () => {
         {loading ? (
           <Loader mb="l" />
         ) : (
-          <CardGrid mb="xl">
+          <CardGrid mb="xl" mx={{ _: '0', lg: 'xl' }} px={{ _: '0', md: 'l' }}>
             {/* We want to display Online campus separately */}
             {onlineCampus && (
-              <HorizontalHighlightCard
-                type="HIGHLIGHT_SMALL"
-                coverImage={onlineCampus.image.uri}
-                label={onlineCampus?.distanceFromLocation && 'Right here!'}
+              <CustomLink
+                as="a"
+                boxShadow="none"
+                href={`'/locations/cf-everywhere'`}
+                Component={HorizontalHighlightCard}
+                coverImage={onlineCampus?.image?.uri}
+                coverImageOverlay={true}
                 title={onlineCampus.name}
+                type="HIGHLIGHT_SMALL"
+                label={onlineCampus?.distanceFromLocation && 'Right here!'}
               />
             )}
             {sortedCampuses?.map((campus, i) => {
               return (
-                <HorizontalHighlightCard
-                  type="HIGHLIGHT_SMALL"
+                <CustomLink
+                  as="a"
+                  boxShadow="none"
+                  href={`/locations/${kebabCase(campus.name)}`}
+                  Component={HorizontalHighlightCard}
                   coverImage={campus?.image?.uri}
+                  coverImageOverlay={true}
+                  title={campus?.name}
+                  type="HIGHLIGHT_SMALL"
                   label={
                     campus?.distanceFromLocation > 1 &&
                     `${Number(campus?.distanceFromLocation).toFixed(1)} miles`
                   }
-                  title={campus?.name}
                 />
               );
             })}
