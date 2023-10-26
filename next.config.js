@@ -33,6 +33,7 @@ module.exports = {
         permanent: false,
       }, // reboot this stupid thing
       { source: '/family', destination: 'https://nsb2r6cpbt4.typeform.com/to/rv4waLbv', permanent: true },
+      { source: '/hope', destination: '/hopefortheholidays-november2023', permanent: true },
       { source: '/fall', destination: '/fallatlh', permanent: true },
       { source: '/good', destination: '/get-involved', permanent: true },
       { source: '/wild', destination: 'https://my.longhollow.com/page/1759?ProjectId=140rpr189K&LocationId=x5yjnKGyeL&ScheduleId=n8YWP1X0Bv', permanent: true }
