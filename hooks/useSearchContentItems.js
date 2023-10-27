@@ -54,8 +54,6 @@ function useSearchContentItems(options = {}) {
     );
   }
 
-  console.log(query?.data?.search?.edges);
-
   return [
     search,
     {
