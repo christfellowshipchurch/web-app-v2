@@ -30,7 +30,6 @@ export default function Location(props = {}) {
   const router = useRouter();
   const { query } = router;
   const { title } = query;
-  console.log(title);
   const metaData = find(campusMetaData, { key: title });
   const campusLink = find(campusLinks, { name: startCase(title) });
 

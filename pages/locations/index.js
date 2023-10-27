@@ -11,7 +11,7 @@ import {
   TextInput,
   HorizontalHighlightCard,
 } from 'ui-kit';
-import { Layout, CustomLink } from 'components';
+import { Layout, CustomLink, Video } from 'components';
 
 const FindNearestLocation = () => {
   const [results, setResults] = useState([{ geometry: { location: {} } }]);
@@ -37,7 +37,7 @@ const FindNearestLocation = () => {
 
   // Remove Online Campus from sortedCampuses array to ensure it is always the first item in the list
   const onlineCampusIndex = sortedCampuses.findIndex(campus => {
-    return campus.name === 'Online (CF Everywhere)' && campus.image.uri;
+    return campus.name === 'Online (CF Everywhere)';
   });
   const onlineCampus = sortedCampuses[onlineCampusIndex];
   sortedCampuses.splice(onlineCampusIndex, 1);
@@ -58,10 +58,11 @@ const FindNearestLocation = () => {
     <Layout>
       <Image
         source={'external-landing/new-here-1.jpeg'}
-        height="50vh"
+        height="55vh"
         borderRadius="0"
         m="0px"
       />
+      {/* <Video src="" height="55vh" borderRadius="0" m="0px" /> */}
       <Box p="base" px={{ _: 'l', md: 'xl' }}>
         <Box textAlign="center" mt="l">
           {currentBreakpoint.isSmall && (
@@ -119,7 +120,11 @@ const FindNearestLocation = () => {
         {loading ? (
           <Loader mb="l" />
         ) : (
-          <CardGrid mb="xl" mx={{ _: '0', lg: 'xl' }} px={{ _: '0', md: 'l' }}>
+          <CardGrid
+            mb="xl"
+            mx={{ _: '0', lg: 'xl' }}
+            px={{ _: '0', md: 'l', lg: 'xl' }}
+          >
             {/* We want to display Online campus separately */}
             {onlineCampus && (
               <CustomLink
