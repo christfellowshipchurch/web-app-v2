@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
+import { toUpper } from 'lodash';
 
 import { system } from 'ui-kit';
 
@@ -213,11 +214,16 @@ const CoverContent = styled.div`
 `;
 
 const CoverLabel = styled.b`
-  background-color: ${themeGet('colors.primary')};
+  background-color: ${props =>
+    toUpper(props.coverImageLabelBgColor) === 'WHITE'
+      ? `white`
+      : themeGet('colors.primary')};
+
   backdrop-filter: blur(25px);
   box-shadow: ${themeGet('shadows.l')};
-  border-radius: ${themeGet('radii.xxl')};
-  color: ${themeGet('colors.white')};
+  border-radius: ${themeGet('radii.l')};
+  color: ${props =>
+    toUpper(props.coverImageLabelBgColor) === 'WHITE' ? '#0092bc' : 'white'};
   top: 0;
   font-size: ${themeGet('fontSizes.xs')};
   font-weight: ${themeGet('fontWeights.bold')};

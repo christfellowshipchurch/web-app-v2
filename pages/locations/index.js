@@ -134,6 +134,7 @@ const FindNearestLocation = () => {
                 Component={HorizontalHighlightCard}
                 coverImage={onlineCampus?.image?.uri}
                 coverImageOverlay={true}
+                coverImageLabelBgColor="WHITE"
                 title={onlineCampus.name}
                 type="HIGHLIGHT_SMALL"
                 label={onlineCampus?.distanceFromLocation && 'Right here!'}
@@ -147,6 +148,7 @@ const FindNearestLocation = () => {
                   href={`/locations/${kebabCase(campus.name)}`}
                   Component={HorizontalHighlightCard}
                   coverImage={campus?.image?.uri}
+                  coverImageLabelBgColor="white"
                   coverImageOverlay={true}
                   title={campus?.name}
                   type="HIGHLIGHT_SMALL"
