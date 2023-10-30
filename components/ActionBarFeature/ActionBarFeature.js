@@ -17,6 +17,7 @@ import { getUrlFromRelatedNode } from 'utils';
 import { includes } from 'lodash';
 
 const ActionBarFeature = props => {
+  console.log('props: ', props);
   const id = props?.data?.id;
   const actions = props?.data?.actions || [];
   const onPressActionItem = props?.onPressActionItem;
@@ -29,6 +30,7 @@ const ActionBarFeature = props => {
    *  than 4 items, we just create multiple bars
    */
   const chunkedActions = chunk(actions, 4);
+  console.log('props: ', props);
 
   return (
     <>
