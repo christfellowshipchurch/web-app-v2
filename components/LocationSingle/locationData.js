@@ -5,10 +5,7 @@
 const additionalInfoCampusData = [
   {
     name: 'Palm Beach Gardens',
-    info: [
-      'Kids services take place at each service',
-      'Traducciones al español ofrecidas a las 11:45am',
-    ],
+    info: ['Kids services take place at each service'],
   },
   {
     name: 'Port St. Lucie',
@@ -556,8 +553,14 @@ const setReminderData = {
 const whatToExpectData = name => {
   return {
     name,
-    title: `What to Expect at ${name}`,
-    htmlContent: `Here at Christ Fellowship Church in ${name}, you can expect to experience church services with uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—it all starts here!`,
+    title: `What to Expect at ${
+      name === 'Cf Everywhere' ? 'Christ Fellowship Everywhere' : name
+    }`,
+    htmlContent: `${
+      name === 'Cf Everywhere'
+        ? 'Here at Christ Fellowship Everywhere'
+        : 'Here at Christ Fellowship Church in ' + name
+    }, you can expect to experience church services with uplifting worship music, encouraging messages from our pastors, special programming for your family, and opportunities for you to find people to do life with all throughout the week—it all starts here!`,
   };
 };
 
