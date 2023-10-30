@@ -87,7 +87,7 @@ module.exports = {
       { source: '/park', destination: '/legacy-park-is-now-open', permanent: true },
       { source: '/food', destination: 'https://longhollow.com/foodforfamilies2023', permanent: true },
       { source: '/girls-weekend', destination: 'https://longhollow.com/girlsweekend-2023', permanent: true },
-      { source: '/guys-weekend', destination: 'https://longhollow.com/guys-weekend-2021', permanent: true },
+      { source: '/guys-weekend', destination: 'https://longhollow.com/guysweekend2024', permanent: true },
       { source: '/vote', destination: 'https://rock.longhollow.com/page/1267', permanent: true },
       { source: '/fallfamily', destination: '/fall-family-fun-day-2021', permanent: true },
       { source: '/rhythms', destination: '/rhythms-september-2022', permanent: true },
