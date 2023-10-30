@@ -5,7 +5,7 @@ import JsonLD from 'components/JsonLD';
 import configureNProgress from 'config/nprogress';
 import { AppProvider } from 'providers';
 
-import 'stream-chat-react/dist/css/index.css';
+import 'stream-chat-react/dist/css/v2/index.css';
 import './StreamChatOverrides.css';
 
 import 'react-quill/dist/quill.snow.css';
