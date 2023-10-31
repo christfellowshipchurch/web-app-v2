@@ -24,13 +24,25 @@ function TextInput(props = {}) {
 
 TextInput.propTypes = {
   ...systemPropTypes,
+  /**
+   * Props passed down to the container
+   */
   containerProps: PropTypes.shape({
     ...systemPropTypes,
   }),
+  /**
+   * Props passed down to the label
+   */
   labelProps: PropTypes.shape({
     ...systemPropTypes,
   }),
+  /**
+   * Id
+   */
   id: PropTypes.string.isRequired,
+  /**
+   * Label
+   */
   label: PropTypes.string,
 };
 

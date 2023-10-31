@@ -38,7 +38,7 @@ export default function Location(props = {}) {
       contentCategory: 'Information',
       mediaType: 'Information',
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const options = {

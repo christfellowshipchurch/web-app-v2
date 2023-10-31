@@ -30,7 +30,6 @@ const ActionBarFeature = props => {
    *  than 4 items, we just create multiple bars
    */
   const chunkedActions = chunk(actions, 4);
-  console.log('props: ', props);
 
   return (
     <>

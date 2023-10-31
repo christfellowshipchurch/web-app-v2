@@ -17,8 +17,17 @@ function BirthDateField(props = {}) {
 }
 
 BirthDateField.propTypes = {
+  /**
+   * Error message to display
+   */
   error: PropTypes.string,
+  /**
+   * Function to call when the value changes
+   */
   onChange: PropTypes.func,
+  /**
+   * Is this field required
+   */
   required: PropTypes.bool,
 };
 
