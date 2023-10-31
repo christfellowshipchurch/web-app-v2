@@ -118,7 +118,7 @@ const FindNearestLocation = () => {
         </Box>
 
         {loading ? (
-          <Loader mb="l" />
+          <Loader justifyContent="center" mb="l" />
         ) : (
           <CardGrid
             mb="xl"
@@ -130,7 +130,7 @@ const FindNearestLocation = () => {
               <CustomLink
                 as="a"
                 boxShadow="none"
-                href={`'/locations/cf-everywhere'`}
+                href={'/locations/cf-everywhere'}
                 Component={HorizontalHighlightCard}
                 coverImage={onlineCampus?.image?.uri}
                 coverImageOverlay={true}
