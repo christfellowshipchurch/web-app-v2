@@ -13,8 +13,8 @@ import {
   HeroListFeature,
   Video,
 } from 'components';
-
 import { Box, Button, Divider, Loader, ContentBlock } from 'ui-kit';
+
 import CampusInfo from './CampusInfo';
 import LocationHeader from './LocationHeader';
 import defaultBlockData from '../LocationBlockFeature/defaultBlockData';
@@ -26,7 +26,7 @@ import {
   thisWeekFeatureId,
   whatToExpectVideos,
   whatToExpectData,
-} from './locationData';
+} from '../../lib/locationData';
 import { CampusProvider, FeatureProvider } from 'providers';
 import faqData from 'components/FAQ/faqData';
 import { showModal, useModalDispatch } from 'providers/ModalProvider';
