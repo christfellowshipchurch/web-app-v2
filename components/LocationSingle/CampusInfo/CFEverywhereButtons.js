@@ -20,12 +20,12 @@ const CfEverywhereButtons = () => (
       <Box
         as="h3"
         display="flex"
-        fontSize={{ _: '1.5rem' }}
         color="secondary"
         flex="1"
         maxWidth={{ _: '', md: 200 }}
         textAlign={{ _: 'center', md: 'left' }}
         mb="base"
+        ml="base"
       >
         Ways to Join Online
       </Box>

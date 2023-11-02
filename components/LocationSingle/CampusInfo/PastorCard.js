@@ -47,61 +47,73 @@ const PastorCard = ({
           ? 'Online Community Pastor'
           : `Campus Pastor${includes(pastor?.firstName, ' and ') ? 's' : ''}`}
       </Box>
-      <Divider width="100%" my="l" />
-      <Box
-        width="100%"
-        display="flex"
-        flexDirection="column"
-        alignItems="flex-start"
-        px="l"
-      >
-        {address && campusName !== 'Online (CF Everywhere)' ? (
-          <>
-            <Image
-              mb="base"
-              maxWidth={250}
-              aspectRatio="16by9"
-              source="/cfdp-default-map.jpg"
-            />
-            <Box as="h4" mt="base" mb="xs">
-              Address
-            </Box>
-            <Box as="a" textAlign="left" href={mapLink}>
-              {addressFirst}
-              {'\n'}
-              {addressLast}
-            </Box>
-          </>
-        ) : null}
-        <Box as="h4" mt="base" mb="xs">
-          Phone
-        </Box>
-        <Box as="a" href={`tel:${phoneNumber}`}>
-          {phoneNumber}
-        </Box>
-      </Box>
-      <Box my="base">
-        <Button
-          size="xs"
+      <Divider width="100%" my="base" />
+      {address && campusName !== 'Online (CF Everywhere)' ? (
+        <Box
+          width="100%"
+          display="flex"
+          flexDirection="column"
+          alignItems="flex-start"
           px="l"
-          borderRadius="xxl"
-          ml={{ _: 0, lg: 'xs' }}
-          m={{ _: 'xs', lg: 0 }}
-          onClick={() =>
-            handleSocialShare({
-              shareType: 'sms',
-              shareMessages: {
-                sms: `Would you like to join me for service at Christ Fellowship Church? Here’s a link with all the details. ${document.URL}`,
-              },
-            })
-          }
         >
-          INVITE A FRIEND
-        </Button>
+          <Image
+            maxWidth={250}
+            aspectRatio="16by9"
+            source="/cfdp-default-map.jpg"
+          />
+          <Box as="h4" mt="base" mb="xs">
+            Address
+          </Box>
+          <Box as="a" textAlign="left" href={mapLink}>
+            {addressFirst}
+            {'\n'}
+            {addressLast}
+          </Box>
+          <Box as="h4" mt="base" mb="xs">
+            Phone
+          </Box>
+          <Box as="a" href={`tel:${phoneNumber}`}>
+            {phoneNumber}
+          </Box>
+        </Box>
+      ) : null}
+      <Box my="base">
+        {campusName === 'Online (CF Everywhere)' ? (
+          /**
+           * todo : Add url to contact us button
+           */
+          <Button size="xs" px="l" borderRadius="xxl">
+            CONTACT US
+          </Button>
+        ) : (
+          [
+            <Button
+              size="xs"
+              px="l"
+              borderRadius="xxl"
+              ml={{ _: 0, lg: 'xs' }}
+              m={{ _: 'xs', lg: 0 }}
+              onClick={() =>
+                handleSocialShare({
+                  shareType: 'sms',
+                  shareMessages: {
+                    sms: `Would you like to join me for service at Christ Fellowship Church? Here’s a link with all the details. ${document.URL}`,
+                  },
+                })
+              }
+            >
+              INVITE A FRIEND
+            </Button>,
+            /**
+             * todo : Add url to espanol links
+             */
+            <Box mt="base" as="p" fontStyle="italic">
+              Servicios en Español en <a href="">Royal Palm Beach</a> y{' '}
+              <a href="">Palm Beach Gardens</a>
+            </Box>,
+          ]
+        )}
       </Box>
-      {/**
-       * todo : Add urls to social media links, maybe setup those up from Rock???
-       **/}
       <Box mt="base">
         <Box
           as="a"
