@@ -30,3 +30,8 @@
 .str-chat__message-livestream-author {
   margin-bottom: 0;
 }
+
+.str-chat__message-actions-box:not(.str-chat__message-actions-box-angular):not(.str-chat__message-actions-box--mine) {
+  inset-block-end: 100%;
+  inset-inline-end: 0%;
+}
