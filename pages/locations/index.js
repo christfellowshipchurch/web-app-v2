@@ -6,12 +6,12 @@ import {
   Box,
   CardGrid,
   Loader,
-  Image,
   Button,
   TextInput,
   HorizontalHighlightCard,
 } from 'ui-kit';
-import { Layout, CustomLink, Video } from 'components';
+import { Layout, CustomLink } from 'components';
+import LocationsPageHeader from './locationsPageHeader';
 
 const FindNearestLocation = () => {
   const [results, setResults] = useState([{ geometry: { location: {} } }]);
@@ -54,15 +54,16 @@ const FindNearestLocation = () => {
     }
   };
 
+  const headerContent = '';
+
   return (
     <Layout>
-      <Image
-        source={'external-landing/new-here-1.jpeg'}
-        height="55vh"
-        borderRadius="0"
-        m="0px"
+      <LocationsPageHeader
+        videoBackgroundImage="/location-pages/gardens-background.png"
+        backgroundVideo="/external-landing/external-bg-vid.mp4"
+        {...headerContent}
       />
-      {/* <Video src="" height="55vh" borderRadius="0" m="0px" /> */}
+
       <Box p="base" px={{ _: 'l', md: 'xl' }}>
         <Box textAlign="center" mt="l">
           {currentBreakpoint.isSmall && (

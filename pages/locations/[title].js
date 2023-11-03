@@ -20,8 +20,8 @@ import { useAnalytics } from 'providers/AnalyticsProvider';
 
 const OLD_LOCATION_PAGES = [
   'prison-locations',
-  'en-espanol-royal-palm-beach',
-  'en-espanol-palm-beach-gardens',
+  'iglesia-royal-palm-beach',
+  'iglesia-palm-beach-gardens',
 ];
 
 export default function Location(props = {}) {
