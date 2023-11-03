@@ -371,8 +371,10 @@ const headerData = [
       newTab: true,
     },
     backgroundVideo: {
-      mobile: '/external-landing/external-bg-vid.mp4',
-      desktop: '/external-landing/external-bg-vid.mp4',
+      mobile:
+        'https://embed.wistia.com/deliveries/7303cac0c27c67523dd7f79bfc1c1127.mp4',
+      desktop:
+        'https://embed.wistia.com/deliveries/7303cac0c27c67523dd7f79bfc1c1127.mp4',
     },
     videoBackgroundImage: '/location-pages/jupiter-background.png',
   },
