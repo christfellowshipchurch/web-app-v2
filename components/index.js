@@ -61,6 +61,7 @@ import PasswordReset from './PasswordReset';
 import SEO from './SEO';
 import SearchField from './SearchField';
 import Share from './Share';
+import Tabs from './Tabs';
 import Testimonials from './Testimonials';
 import TrackEventWhenLoaded from './TrackEventWhenLoaded';
 import UserAvatar from './UserAvatar';
@@ -133,6 +134,7 @@ export {
   SEO,
   SearchField,
   Share,
+  Tabs,
   Testimonials,
   TrackEventWhenLoaded,
   UserAvatar,
