@@ -10,7 +10,11 @@ const christBirthdayOffering = () => {
       {/* FAQs Section */}
       <Box id="FAQ" px="base" py="xl" width="100%">
         <Box mx="auto" maxWidth={1200}>
-          <FAQ data={faqData('CBO')} showDescription={false} />
+          <FAQ
+            data={faqData('CBO')}
+            showDescription={false}
+            customTheme={{ primary: '#CB2C30', secondary: '#39383A' }}
+          />
         </Box>
       </Box>
     </Layout>
