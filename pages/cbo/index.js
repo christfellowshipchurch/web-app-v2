@@ -6,7 +6,7 @@ import { Layout, FAQ, Tabs, Video } from 'components';
 import Box from 'ui-kit/Box/Box.styles';
 import faqData from 'components/FAQ/faqData';
 import { useCurrentBreakpoint } from 'hooks';
-import { CustomTab, customTabs } from './customTabs';
+import { CustomTab, customTabs } from '../../components/Tabs/cboCustomTabs';
 import { Button, Image } from 'ui-kit';
 
 const ChristBirthdayOffering = () => {

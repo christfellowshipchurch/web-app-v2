@@ -1,6 +1,7 @@
 import Tabs from './Tabs';
 
-import { CustomTab, customTabs } from 'pages/cbo/customTabs';
+/** For the default story we used the custom components from our CBO page. But feel free to create other custom components as well! */
+import { CustomTab, customTabs } from 'components/Tabs/cboCustomTabs';
 
 export default {
   component: Tabs,
