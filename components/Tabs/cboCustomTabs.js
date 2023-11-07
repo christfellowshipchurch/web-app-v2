@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Video } from 'components';
-import { Avatar, Box } from 'ui-kit';
+import { Box } from 'ui-kit';
 
 /**
  * Custom Tabs for Christ Birthday Offering page
@@ -9,19 +9,17 @@ import { Avatar, Box } from 'ui-kit';
 
 export const CustomTab = ({ title, image, isSelected }) => {
   return (
-    <Box
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
-    >
-      <Avatar
+    <Box mx="base" display="flex" flexDirection="column" alignItems="center">
+      {/* For some reason our Avatar and Image components are breaking something on the horiztonal scroll so I'm using a regular img tag for now */}
+      <Box
+        as="img"
+        borderRadius="50%"
         maxWidth={60}
-        src={image ? image : 'https://via.placeholder.com/60'}
-        border={isSelected ? `solid 3px #CB2C30` : 'none'}
-        name={title}
+        alt={title}
+        src={image}
+        border={isSelected ? '2px solid #CB2C30' : 'none'}
       />
-      <Box mt="s" as="h5">
+      <Box textAlign="center" mt="s" as="h5">
         {title}
       </Box>
     </Box>

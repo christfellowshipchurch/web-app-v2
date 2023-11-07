@@ -47,7 +47,6 @@ function Tabs({ TabComponent, tabs, title, summary }) {
         mt="base"
         display="flex"
         overflow="scroll"
-        flexWrap="wrap"
       >
         {tabs?.map((props, index) => (
           <Box
@@ -55,8 +54,6 @@ function Tabs({ TabComponent, tabs, title, summary }) {
             id={`tab-${index}`}
             key={index}
             onClick={() => setSelectedTab(index)}
-            // mx="base"
-            pr="10px"
           >
             <TabComponent
               {...props?.tabProps}
