@@ -6,7 +6,7 @@ import { Layout, FAQ, Tabs } from 'components';
 import Box from 'ui-kit/Box/Box.styles';
 import faqData from 'components/FAQ/faqData';
 
-import { CustomTab, customTabs } from './customTabs';
+import { CustomTab, customTabs } from '../../components/Tabs/cboCustomTabs';
 
 const christBirthdayOffering = () => {
   return (

@@ -3,6 +3,10 @@ import React from 'react';
 import { Video } from 'components';
 import { Avatar, Box } from 'ui-kit';
 
+/**
+ * Custom Tabs for Christ Birthday Offering page
+ */
+
 export const CustomTab = ({ title, image, isSelected }) => {
   return (
     <Box

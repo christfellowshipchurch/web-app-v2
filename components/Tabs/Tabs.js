@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { upperCase } from 'lodash';
-
-import { Box } from 'ui-kit';
 import { useRouter } from 'next/router';
 
+import { Box } from 'ui-kit';
+import StyledTabContent from './Tabs.styles';
 function Tabs({ TabComponent, tabs, title, summary }) {
   const [selectedTab, setSelectedTab] = useState(0);
 
@@ -47,6 +47,7 @@ function Tabs({ TabComponent, tabs, title, summary }) {
         mt="base"
         display="flex"
         overflow="scroll"
+        flexWrap="wrap"
       >
         {tabs?.map((props, index) => (
           <Box
@@ -64,11 +65,11 @@ function Tabs({ TabComponent, tabs, title, summary }) {
         ))}
       </Box>
       {/* Content */}
-      <Box>
+      <StyledTabContent key={selectedTab}>
         {tabs[selectedTab]?.tabContent
           ? tabs[selectedTab]?.tabContent()
           : 'Error: No tab content provided.'}
-      </Box>
+      </StyledTabContent>
     </Box>
   );
 }
