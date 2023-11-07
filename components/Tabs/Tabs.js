@@ -14,7 +14,7 @@ function Tabs({ TabComponent, tabs, title, summary }) {
       my="xl"
       mx="auto"
       textAlign="center"
-      maxWidth={1100}
+      maxWidth={{ _: 390, md: 1100 }}
       width="100%"
     >
       {title && (
@@ -31,7 +31,7 @@ function Tabs({ TabComponent, tabs, title, summary }) {
       <Box
         mx="auto"
         width="100%"
-        maxWidth={1000}
+        maxWidth={{ _: 390, md: 1000 }}
         mt="base"
         display="flex"
         overflow="scroll"
@@ -41,7 +41,8 @@ function Tabs({ TabComponent, tabs, title, summary }) {
             flex="1"
             key={index}
             onClick={() => setSelectedTab(index)}
-            mx="base"
+            // mx="base"
+            pr="10px"
           >
             <TabComponent
               {...props?.tabProps}

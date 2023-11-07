@@ -90,7 +90,12 @@ export default function Video(props = {}) {
                   playing();
                 }}
               >
-                <Icon name="play" color="white" size="40%" opacity="0.95" />
+                <Icon
+                  name="play"
+                  color={props?.buttonColor ? props?.buttonColor : 'white'}
+                  size="40%"
+                  opacity="0.95"
+                />
               </Button>
             </Box>
           )}
