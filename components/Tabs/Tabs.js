@@ -1,11 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { upperCase } from 'lodash';
 
 import { Box } from 'ui-kit';
+import { useRouter } from 'next/router';
 
 function Tabs({ TabComponent, tabs, title, summary }) {
   const [selectedTab, setSelectedTab] = useState(0);
+
+  const router = useRouter();
+
+  // Set selected tab based on url hash
+  useEffect(() => {
+    const { asPath } = router;
+    if (asPath.includes('#tab-')) {
+      const tabNumber = asPath.split('#tab-')[1] - 1;
+      setSelectedTab(tabNumber);
+    }
+  }, [router]);
 
   return (
     <Box
@@ -38,7 +50,8 @@ function Tabs({ TabComponent, tabs, title, summary }) {
       >
         {tabs?.map((props, index) => (
           <Box
-            flex="1"
+            flex={1}
+            id={`tab-${index}`}
             key={index}
             onClick={() => setSelectedTab(index)}
             mx="base"
