@@ -56,34 +56,54 @@ const ChristBirthdayOffering = () => {
             top={{ _: '110px', lg: '100px', xl: '300px' }}
             left={{ xl: '120px' }}
             zIndex="10"
+            aspectRatio={{ _: '1 / 1', md: 'auto' }}
           />
         </Box>
 
         {/* Header */}
-        <Box textAlign="center" my="l">
-          <Box as="h2">Give A Different Kind of Gift This Christmas</Box>
-          <Box my="base">CHRIST BIRTHDAY OFFERING 2023</Box>
-          <Box mb="base" maxWidth="650px" mx="auto">
-            Every Christmas, we come together as a church to give a special
-            offering that helps to fund our mission projects throughout the
-            year. Every dollar you give through your Christ Birthday Offering
-            will deliver hope to those who need it most.
-          </Box>
-          <Box as="a" href="#" color="primary">
-            Lea el libro Ofrenda Especial de Navidad de este año en español.
-          </Box>
-
-          <Box display="flex" pt="base" pb="l" justifyContent="center">
-            <Button> GIVE MY OFFERING</Button>
-            <Button variant="secondary">READ BOOK</Button>
+        <Box textAlign="center" my="xl">
+          <Box mx="s">
+            <Box as="h2">Give A Different Kind of Gift This Christmas</Box>
+            <Box my="base">CHRIST BIRTHDAY OFFERING 2023</Box>
+            <Box mb="base" maxWidth="650px" mx="auto">
+              Every Christmas, we come together as a church to give a special
+              offering that helps to fund our mission projects throughout the
+              year. Every dollar you give through your Christ Birthday Offering
+              will deliver hope to those who need it most.
+            </Box>
+            <Box as="a" href="#" color="primary">
+              Lea el libro Ofrenda Especial de Navidad de este año en español.
+            </Box>
           </Box>
 
-          <Box mx="auto" px="auto">
+          <Box
+            display="flex"
+            pt="base"
+            mb={{ _: 'l', md: 'xl' }}
+            justifyContent="center"
+          >
+            <Button as="a" href="#" mr="s" fontSize={{ _: 's', md: 'base' }}>
+              GIVE MY OFFERING
+            </Button>
+            <Button
+              as="a"
+              href="#"
+              variant="secondary"
+              fontSize={{ _: 's', md: 'base' }}
+            >
+              READ BOOK
+            </Button>
+          </Box>
+
+          <Box mx="auto" display="flex" justifyContent="center">
             <Video
+              src="external-landing/external-bg-vid.mp4"
+              playsInline={true}
+              poster="christ-birthday-offering/why-we-give.png"
               buttonColor="primary"
               px="l"
-              width={{ _: '200px', md: '400px' }}
-              height={{ _: '100px', md: '260px' }}
+              width={{ _: '310px', md: '600px' }}
+              height={{ _: '150px', md: '340px' }}
             />
           </Box>
         </Box>

@@ -8,7 +8,6 @@ import { useAnalytics } from 'providers/AnalyticsProvider';
 import { WistiaPlayer } from 'components';
 
 import ReactPlayer from 'react-player';
-import { random } from 'lodash';
 
 // Mux is used to deal with encodings and low-level video nonsense.
 // Without it, streams are unlikely to work on iOS and Safari.
