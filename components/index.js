@@ -70,6 +70,7 @@ import VerticalCardListFeature from './VerticalCardListFeature';
 import VerticalModalCardListFeature from './VerticalModalCardListFeature';
 import Video from './Video';
 import VideoHeader from './VideoHeader';
+import VisionCardCarousel from './VisionCardCarousel';
 import WistiaPlayer from './WistiaPlayer';
 
 export {
@@ -144,6 +145,7 @@ export {
   VerticalModalCardListFeature,
   Video,
   VideoHeader,
+  VisionCardCarousel,
   WistiaPlayer,
   modals,
 };

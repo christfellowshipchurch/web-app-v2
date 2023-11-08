@@ -2,12 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { ThemeProvider as SCThemeProvider } from 'styled-components';
 
 import colors from 'ui-kit/_config/colors';
-import { Layout, FAQ, Tabs, Video, VideoHeader } from 'components';
-import Box from 'ui-kit/Box/Box.styles';
+import {
+  Layout,
+  FAQ,
+  Tabs,
+  Video,
+  VideoHeader,
+  VisionCardCarousel,
+} from 'components';
 import faqData from 'components/FAQ/faqData';
 import { useCurrentBreakpoint } from 'hooks';
 import { CustomTab, customTabs } from '../../components/Tabs/cboCustomTabs';
-import { Button, Image } from 'ui-kit';
+import { Button, Image, Box } from 'ui-kit';
 
 const ChristBirthdayOffering = () => {
   const [imageSize, setImageSize] = useState('');
@@ -110,6 +116,8 @@ const ChristBirthdayOffering = () => {
             tabs={customTabs}
           />
         </Box>
+        {/* Vision Card Carousel */}
+        <VisionCardCarousel />
 
         {/* FAQs Section */}
         <Box id="FAQ" px="base" py="xl" width="100%">
