@@ -29,7 +29,8 @@ const LocationHeader = (props = {}) => {
           mx="auto"
           src={
             currentBreakpoint.isSmall
-              ? props?.backgroundVideo?.mobile
+              ? props?.backgroundVideo?.mobile ||
+                props?.backgroundVideo?.desktop
               : props?.backgroundVideo?.desktop
           }
           autoPlay

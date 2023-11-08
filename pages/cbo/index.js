@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ThemeProvider as SCThemeProvider } from 'styled-components';
 
 import colors from 'ui-kit/_config/colors';
-import { Layout, FAQ, Tabs, Video } from 'components';
+import { Layout, FAQ, Tabs, Video, VideoHeader } from 'components';
 import Box from 'ui-kit/Box/Box.styles';
 import faqData from 'components/FAQ/faqData';
 import { useCurrentBreakpoint } from 'hooks';
@@ -19,7 +19,7 @@ const ChristBirthdayOffering = () => {
       case 'sm':
         return setImageSize('-mobile');
       case 'xl':
-        return setImageSize('-large');
+        return setImageSize('-desktop');
       default:
         return setImageSize('-desktop');
     }
@@ -36,29 +36,11 @@ const ChristBirthdayOffering = () => {
           },
         }}
       >
-        {/* Header Video - Look at h4h */}
-        <Box m="0px">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            src="/external-landing/external-bg-vid.mp4"
-            type="video/mp4"
-            width="100%"
-            height="100%"
-          />
-          <Image
-            source="christ-birthday-offering/banners/header-large.png"
-            position="absolute"
-            maxWidth={{ _: '390px', lg: '1360px', xl: '2000px' }}
-            maxHeight={{ _: '160px', lg: '500px', xl: '740px' }}
-            top={{ _: '110px', lg: '100px', xl: '300px' }}
-            left={{ xl: '120px' }}
-            zIndex="10"
-            aspectRatio={{ _: '1 / 1', md: 'auto' }}
-          />
-        </Box>
+        {/* Header Video */}
+        <VideoHeader
+          backgroundVideo={{ desktop: '/external-landing/external-bg-vid.mp4' }}
+          logoOverlay={'christ-birthday-offering/banners/header-large.png'}
+        />
 
         {/* Header */}
         <Box textAlign="center" my="xl">
@@ -71,7 +53,12 @@ const ChristBirthdayOffering = () => {
               year. Every dollar you give through your Christ Birthday Offering
               will deliver hope to those who need it most.
             </Box>
-            <Box as="a" href="#" color="primary">
+            <Box
+              as="a"
+              target="_blank"
+              href="https://issuu.com/christfellowshipchurch/docs/events_2023_cbo_print_handouts_8.5x11_spanish_web_?fr=xKAE9_zU1NQ"
+              color="primary"
+            >
               Lea el libro Ofrenda Especial de Navidad de este año en español.
             </Box>
           </Box>
@@ -82,12 +69,18 @@ const ChristBirthdayOffering = () => {
             mb={{ _: 'l', md: 'xl' }}
             justifyContent="center"
           >
-            <Button as="a" href="#" mr="s" fontSize={{ _: 's', md: 'base' }}>
+            <Button
+              as="a"
+              href="#give"
+              mr="s"
+              fontSize={{ _: 's', md: 'base' }}
+            >
               GIVE MY OFFERING
             </Button>
             <Button
               as="a"
-              href="#"
+              target="_blank"
+              href="https://issuu.com/christfellowshipchurch/docs/events_2023_cbo_print_handouts_8.5x11_web_final?fr=xKAE9_zU1NQ"
               variant="secondary"
               fontSize={{ _: 's', md: 'base' }}
             >
