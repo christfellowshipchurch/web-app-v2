@@ -46,7 +46,7 @@ module.exports = {
       { source: '/foster', destination: '/fosterandadoptivefamilynight', permanent: true },
       { source: '/knot', destination: '/theknotmarriageconference', permanent: true },
       { source: '/wednesday', destination: '/wednesdaysatlh', permanent: true },
-      { source: '/partner', destination: '/thegayhartfamily', permanent: true },
+      { source: '/partner', destination: '/thepribblefamily', permanent: true },
       { source: '/seven', destination: 'https://signature.rezdy.com/582215/pastor-robby-gallaty-11-day-journey-to-the-seven-churches-october-4-14-2024', permanent: true },
       { source: '/sevenchurches', destination: 'https://signature.rezdy.com/582215/pastor-robby-gallaty-11-day-journey-to-the-seven-churches-october-4-14-2024', permanent: true },
       { source: '/turkey', destination: 'https://signature.rezdy.com/582215/pastor-robby-gallaty-11-day-journey-to-the-seven-churches-october-4-14-2024', permanent: true },
