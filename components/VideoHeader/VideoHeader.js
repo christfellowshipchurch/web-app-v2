@@ -31,10 +31,12 @@ function VideoHeader(props = {}) {
       </Box>
       <Styled.VideoOverlay />
       {/* Logo */}
-      <Styled.LogoOverlay
-        width={{ _: 'auto', md: '80%' }}
-        src={props?.logoOverlay}
-      />
+      {props?.logoOverlay && (
+        <Styled.LogoOverlay
+          width={{ _: 'auto', md: '80%' }}
+          src={props?.logoOverlay}
+        />
+      )}
     </Box>
   );
 }

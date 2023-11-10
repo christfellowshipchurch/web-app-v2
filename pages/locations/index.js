@@ -59,8 +59,7 @@ const FindNearestLocation = () => {
   return (
     <Layout>
       <LocationsPageHeader
-        videoBackgroundImage="/location-pages/gardens-background.png"
-        backgroundVideo="/external-landing/external-bg-vid.mp4"
+        backgroundVideo={{ desktop: '/external-landing/external-bg-vid.mp4' }}
         {...headerContent}
       />
 
@@ -125,6 +124,7 @@ const FindNearestLocation = () => {
             mb="xl"
             mx={{ _: '0', lg: 'xl' }}
             px={{ _: '0', md: 'l', lg: 'xl' }}
+            maxWidth={1100}
           >
             {/* We want to display Online campus separately */}
             {onlineCampus && (
@@ -142,11 +142,20 @@ const FindNearestLocation = () => {
               />
             )}
             {sortedCampuses?.map((campus, i) => {
+              let cfe = '';
+              if (campus.name.includes('Español')) {
+                cfe = campus.name.substring(11, campus.name.length);
+              }
+
               return (
                 <CustomLink
                   as="a"
                   boxShadow="none"
-                  href={`/locations/${kebabCase(campus.name)}`}
+                  href={
+                    !campus.name.includes('Español')
+                      ? `/locations/${kebabCase(campus.name)}`
+                      : `/locations/iglesia-${kebabCase(cfe)}`
+                  }
                   Component={HorizontalHighlightCard}
                   coverImage={campus?.image?.uri}
                   coverImageLabelBgColor="white"
