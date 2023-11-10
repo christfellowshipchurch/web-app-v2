@@ -1,30 +1,49 @@
 import React from 'react';
 
 import { Video } from 'components';
-import { Avatar, Box } from 'ui-kit';
+import { Box } from 'ui-kit';
+import styled from 'styled-components';
 
 /**
  * Custom Tabs for Christ Birthday Offering page
  */
+const CustomTabStyle = styled(Box)`
+  cursor: pointer;
+  transition: all 200ms ease-out;
+
+  &:hover {
+    transform: scale(1.06);
+    transition: all 200ms ease-in;
+  }
+`;
 
 export const CustomTab = ({ title, image, isSelected }) => {
   return (
-    <Box
+    <CustomTabStyle
+      mx="base"
+      my="base"
       display="flex"
       flexDirection="column"
-      justifyContent="center"
       alignItems="center"
     >
-      <Avatar
+      {/* For some reason our Avatar and Image components are breaking something on the horiztonal scroll so I'm using a regular img tag for now */}
+      <Box
+        as="img"
+        borderRadius="50%"
         maxWidth={60}
-        src={image ? image : 'https://via.placeholder.com/60'}
-        border={isSelected ? `solid 3px #CB2C30` : 'none'}
-        name={title}
+        alt={title}
+        src={image}
+        border={isSelected ? '3px solid #CB2C30' : 'none'}
       />
-      <Box mt="s" as="h5">
+      <Box
+        as="h5"
+        textAlign="center"
+        mt="s"
+        color={isSelected ? '#CB2C30' : 'none'}
+      >
         {title}
       </Box>
-    </Box>
+    </CustomTabStyle>
   );
 };
 
