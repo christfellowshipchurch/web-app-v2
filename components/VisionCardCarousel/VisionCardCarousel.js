@@ -12,9 +12,7 @@ import visionCards from './visionCards';
 
 function VisionCardCarousel() {
   const ref = useRef(); // We will use React useRef hook to reference the wrapping div:
-  const { events } = useDraggable(ref, {
-    applyRubberBandEffect: true,
-  }); // Now we pass the reference to the useDraggable hook:
+  const { events } = useDraggable(ref); // Now we pass the reference to the useDraggable hook:
 
   return (
     <Box
