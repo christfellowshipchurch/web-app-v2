@@ -209,7 +209,7 @@ const AddGroupMemberModal = ({ groupId }) => {
           <Box as="label" for="campusId" fontWeight="bold" mb="s" fontSize="s">
             Primary Campus
           </Box>
-          {/* <Select
+          <Select
             id="campusId"
             name="campusId"
             onChange={handleChange}
@@ -223,7 +223,7 @@ const AddGroupMemberModal = ({ groupId }) => {
                 </Select.Option>
               );
             })}
-          </Select> */}
+          </Select>
           {errors?.campusId ? (
             <Box as="p" color="alert" fontSize="s" mt="s">
               {errors.campus}
