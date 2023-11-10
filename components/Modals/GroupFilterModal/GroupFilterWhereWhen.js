@@ -1,10 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 
-import {
-  useGroupFilters,
-  update
-} from 'providers/GroupFiltersProvider';
+import { useGroupFilters, update } from 'providers/GroupFiltersProvider';
 import { showStep, hideModal, useModalDispatch } from 'providers/ModalProvider';
 
 import { Box, Button, Select, Icon, FormLabel } from 'ui-kit';
@@ -58,7 +55,7 @@ function GroupFilterWhereWhen(props = {}) {
           onChange={handleCampusChange}
           defaultValue={filtersState.values.campuses[0] || ''}
         >
-          <Select.Option value="">Select a campus...</Select.Option>
+          <Select.Option value="">Select a campus...fff</Select.Option>
           {filtersState.options.campuses.map(value => (
             <Select.Option key={value} value={value}>
               {value}
