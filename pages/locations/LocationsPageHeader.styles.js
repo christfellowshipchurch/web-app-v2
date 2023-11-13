@@ -45,14 +45,16 @@ const TitleBox = styled.h1`
     left: 0px;
   }
 
-  @media screen and (min-width: ${themeGet(
-      'breakpoints.md'
-    )} and max-width: ${themeGet('breakpoints.lg')}) {
-    font-size: 90px;
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    font-size: 36px;
   }
 
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
-    font-size: 46px;
+    font-size: 42px;
+  }
+
+  @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
+    font-size: 48px;
   }
 `;
 
