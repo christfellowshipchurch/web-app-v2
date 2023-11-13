@@ -38,20 +38,21 @@ const TitleBox = styled.h1`
   border-radius: 10px;
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
-    font-size: 32px;
+    font-size: 34px;
     width: 95%;
-    // margin-top: 80%;
+    position: absolute;
+    top: -255px;
+    left: 0px;
   }
 
   @media screen and (min-width: ${themeGet(
       'breakpoints.md'
     )} and max-width: ${themeGet('breakpoints.lg')}) {
-    font-size: 40px;
+    font-size: 90px;
   }
 
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
-    font-size: 26px;
-    width: 540px;
+    font-size: 46px;
   }
 `;
 

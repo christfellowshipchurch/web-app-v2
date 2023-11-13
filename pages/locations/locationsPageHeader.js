@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 
 import { Box } from 'ui-kit';
 import Styled from './LocationsPageHeader.styles';
-import { useCurrentBreakpoint, useActionBanner } from 'hooks';
+import { useActionBanner } from 'hooks';
 
 const LocationsPageHeader = (props = {}) => {
   const { actionBanner } = useActionBanner();
-  let currentBreakpoint = useCurrentBreakpoint();
 
   // checks for banner to adjust title height
   const isBanner = !!actionBanner;
@@ -22,14 +21,10 @@ const LocationsPageHeader = (props = {}) => {
       backgroundPosition="center"
       backgroundSize="cover"
     >
-      <Box height={{ _: 300, md: 400, lg: 500 }}>
+      <Box height={{ _: '40vh', md: '50vh', lg: '80vh' }}>
         <Styled.VideoCover
           mx="auto"
-          src={
-            currentBreakpoint.isSmall
-              ? props?.backgroundVideo?.mobile
-              : props?.backgroundVideo?.desktop
-          }
+          src={props.backgroundVideo}
           autoPlay
           muted
           loop
@@ -41,7 +36,7 @@ const LocationsPageHeader = (props = {}) => {
       <Box
         position="absolute"
         mx="base"
-        width={{ _: 'auto', md: '90%' }}
+        width="90%"
         maxWidth={1200}
         zIndex={1}
         display="flex"
@@ -50,7 +45,7 @@ const LocationsPageHeader = (props = {}) => {
         alignItems="center"
       >
         <Box
-          height={{ _: isBanner ? '65vh' : '80vh', sm: 'auto' }}
+          height={{ _: isBanner ? '65vh' : 'auto', sm: 'auto' }}
           display={{ _: 'flex', sm: 'block' }}
           flexDirection="column"
           justifyContent="space-between"
