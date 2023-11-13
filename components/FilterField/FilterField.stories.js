@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import FilterField from './FilterField';
 
 const exportedObject = {
-  title: 'components/FilterField',
   component: FilterField,
   tags: ['autodocs'],
 };

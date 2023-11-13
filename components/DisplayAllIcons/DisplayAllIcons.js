@@ -17,21 +17,11 @@ function DisplayAllIcons() {
         gridRowGap="l"
         padding="base"
         textAlign="center"
-        // maxWidth="12.5rem"
         p="l"
       >
         {iconNames.map((icon, index) => (
           <Button variant="tertiary">
-            <Icon
-              // display="flex"
-              // flex-direction="column"
-              // align-items="center"
-              // justify-content="center"
-
-              size="50"
-              key={index}
-              name={icon}
-            />
+            <Icon size="50" key={index} name={icon} />
             <Box mt="s" as="h4" color="secondary">
               {icon}
             </Box>
