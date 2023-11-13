@@ -160,14 +160,41 @@ const CollectionPreview = ({
 };
 
 CollectionPreview.propTypes = {
+  /**
+   * Whether or not to hide the title
+   */
   hideTitle: PropTypes.bool,
+  /**
+   * The content id to query
+   */
   contentId: PropTypes.string,
+  /**
+   * The content to override the button with
+   */
   buttonOverride: PropTypes.string,
+  /**
+   * Whether or not to scroll horizontally
+   */
   horizontalScroll: PropTypes.bool,
+  /**
+   * The size of the component
+   */
   size: PropTypes.oneOf(['s', 'l']),
+  /**
+   * The type of card to display
+   */
   cardType: PropTypes.oneOf(['default', 'horizontal']),
+  /**
+   * Whether or not to hide the button
+   */
   hideButton: PropTypes.bool,
+  /**
+   * The title override
+   */
   titleOverride: PropTypes.string,
+  /**
+   * The summary of the collection
+   */
   summary: PropTypes.string,
 };
 

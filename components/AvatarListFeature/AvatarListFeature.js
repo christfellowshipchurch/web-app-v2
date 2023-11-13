@@ -65,8 +65,17 @@ const AvatarListFeature = ({
 };
 
 AvatarListFeature.propTypes = {
+  /**
+   * function to handle the press of an action item
+   */
   onPressItem: PropTypes.func,
+  /**
+   * Whether or not the component is loading
+   */
   isLoading: PropTypes.bool,
+  /**
+   * The primary action
+   */
   primaryAction: PropTypes.shape({
     action: PropTypes.string,
     icon: PropTypes.string,
@@ -75,6 +84,9 @@ AvatarListFeature.propTypes = {
       id: PropTypes.string,
     }),
   }),
+  /**
+   * The person to be displayed
+   */
   people: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,

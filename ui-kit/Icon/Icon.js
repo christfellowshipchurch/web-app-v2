@@ -74,11 +74,29 @@ function Icon({ color, height, name, size, width, ...rest }) {
 
 Icon.propTypes = {
   ...systemPropTypes,
+  /**
+   * Name of the icon to render.
+   */
   name: PropTypes.string.isRequired,
+  /**
+   * Color of the icon.
+   */
   color: PropTypes.string,
+  /**
+   * Height of the icon.
+   */
   height: PropTypes.string,
+  /**
+   * Size of the icon.
+   */
   size: PropTypes.string,
+  /**
+   * Theme of the icon.
+   */
   theme: PropTypes.object,
+  /**
+   * Width of the icon.
+   */
   width: PropTypes.string,
 };
 

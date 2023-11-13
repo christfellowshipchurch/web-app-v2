@@ -1,8 +1,9 @@
-import Box from './Box';
+import Longform from './Longform';
 
 export default {
+  component: Longform,
   tags: ['autodocs'],
-  component: Box,
+  argTypes: {},
   parameters: {
     layout: 'centered',
   },

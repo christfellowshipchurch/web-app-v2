@@ -23,11 +23,25 @@ export default Image;
 const RATIOS = ['1by1', '4by3', '16by9', '21by9', '3by4'];
 
 Image.propTypes = {
+  /**
+   * Image's aspect ratio
+   */
   aspectRatio: PropTypes.oneOf(RATIOS),
+  /**
+   * Image's object fit
+   */
   objectFit: PropTypes.string,
+  /**
+   * Image's source
+   */
   source: PropTypes.string,
+  /**
+   * Image's mask
+   */
   mask: PropTypes.string,
-  download: PropTypes.bool,
+  /**
+   * Whether or not to disable the aspect ratio
+   */
   disableRatio: PropTypes.bool,
 };
 
@@ -37,5 +51,5 @@ Image.defaultProps = {
   objectFit: 'cover',
   download: false,
   disableRatio: false,
-  altText: "Christ Fellowship Church"
+  altText: 'Christ Fellowship Church',
 };
