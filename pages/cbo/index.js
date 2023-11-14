@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { ThemeProvider as SCThemeProvider } from 'styled-components';
-
 import colors from 'ui-kit/_config/colors';
-import { HtmlRenderer, Select, TextInput, Button, Image, Box } from 'ui-kit';
-import { useCurrentBreakpoint } from 'hooks';
+import {
+  HtmlRenderer,
+  Select,
+  TextInput,
+  Button,
+  Image,
+  Box,
+  Icon,
+} from 'ui-kit';
+import { useCurrentBreakpoint, useForm } from 'hooks';
 import {
   Layout,
   FAQ,
@@ -21,8 +28,13 @@ import { CustomTab, customTabs } from '../../components/Tabs/cboCustomTabs';
 
 const ChristBirthdayOffering = () => {
   const [imageSize, setImageSize] = useState('');
+  const { values, handleSubmit, setValues, handleChange } = useForm();
+  console.log('values', { values });
 
   const currentBreakpoint = useCurrentBreakpoint();
+
+  const link = 'https://pushpay.com/g/cfchristbirthdayoffering?f[0]=';
+  //jupiter&a=1000.60'
 
   useEffect(() => {
     switch (currentBreakpoint?.name) {
@@ -35,7 +47,23 @@ const ChristBirthdayOffering = () => {
     }
   }, [currentBreakpoint]);
 
-  const campuses = ['psl', 'stuart', 'Palm Beach Gardens'];
+  const campuses = [
+    'Belle Glade',
+    'Boca Raton',
+    'Boynton Beach',
+    'CF Everywhere (Online)',
+    'Downtown West Palm Beach',
+    'En Español',
+    'Jupiter',
+    'Okeechobee',
+    'Palm Beach Gardens',
+    'Port St. Lucie',
+    'Royal Palm Beach',
+    'Stuart',
+    'Trinity',
+    'Vero Beach',
+    'Westlake',
+  ];
 
   return (
     /**
@@ -182,33 +210,84 @@ const ChristBirthdayOffering = () => {
             </Box>
             <Box
               my="l"
-              bg="#F5F5F5"
+              bg="none"
               py="base"
               px={{ _: 's', md: 'l' }}
               borderRadius="base"
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
             >
-              <Box as="h4" color="secondary">
-                Give Online
-              </Box>
-              <Box as="form">
-                {/* on submit */}
-                <Select borderColor="primary">
+              <Box
+                as="form"
+                display="flex"
+                flexDirection="column"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <Box as="h4" color="secondary">
+                  Give Online
+                </Box>
+
+                <Select
+                  mt="s"
+                  width="330px"
+                  borderColor="primary"
+                  onChange={handleChange}
+                  name="campus"
+                >
                   <Select.Option value={null}>Select a Campus</Select.Option>
                   {campuses.map(name => {
                     return <Select.Option>{name}</Select.Option>;
                   })}
                 </Select>
-                <TextInput
-                  border="none"
-                  bg="#F5F5F5"
-                  color="primary"
-                  placeholder="$0.00"
-                />
-              </Box>
 
-              {/* <Box color="primary">$0.00</Box> */}
+                <Box display="flex" flexDirection="column">
+                  <TextInput
+                    border="none"
+                    bg="neutrals.100"
+                    color="neutrals.300"
+                    fontSize="80px"
+                    fontWeight="bold"
+                    placeholder="$0.00"
+                    textAlign="center"
+                    type="text"
+                    mt="s"
+                    name="amount"
+                    onChange={handleChange}
+                  />
+
+                  <Box
+                    mb="base"
+                    mt="-5px"
+                    color="neutrals.500"
+                    fontSize="30px"
+                    fontWeight="bold"
+                  >
+                    Your gift amount
+                  </Box>
+                </Box>
+
+                <Button
+                  as="a"
+                  target="blank"
+                  href={link + values.campus + '&a=' + values.amount}
+                  bg="#E63E51"
+                  px="xl"
+                >
+                  {' '}
+                  GIVE WITH <Icon name="pushPay" /> PUSHPAY
+                </Button>
+              </Box>
             </Box>
-            <Box my="l" bg="primary" py="base" px={{ _: 's', md: 'l' }}>
+            <Box
+              transform="skew(15deg, 15deg)"
+              my="l"
+              bg="primary"
+              py="base"
+              px={{ _: 's', md: 'l' }}
+            >
               <Box fontWeight="bold">GIVE BY MAIL</Box>
               <HtmlRenderer
                 py="xl"
