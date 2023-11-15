@@ -32,10 +32,10 @@ const ChristBirthdayOffering = () => {
       setTimeout(() => {
         const id = path.replace('#', '');
         const el = window.document.getElementById(id);
-        const r = el.getBoundingClientRect();
+        const r = el?.getBoundingClientRect();
         window.top.scroll({
           // eslint-disable-next-line
-          top: scrollY + r.top,
+          top: scrollY + r?.top,
           behavior: 'smooth',
         });
       }, 600);
