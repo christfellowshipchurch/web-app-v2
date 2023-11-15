@@ -27,7 +27,6 @@ import { FeatureProvider } from 'providers';
 
 import faqData from 'components/FAQ/faqData';
 import { CustomTab, customTabs } from '../../components/Tabs/cboCustomTabs';
-import { StyledCard } from 'components/VisionCardCarousel/VisionCardCarousel.styles';
 
 const campuses = [
   'Belle Glade',
@@ -207,7 +206,8 @@ const ChristBirthdayOffering = () => {
           {/* Give Section */}
           <Box
             id="give"
-            py="xxl"
+            pt="xxl"
+            pb={{ _: 'l', md: 'xxl' }}
             px="base"
             backgroundImage="url(/cbo/cbp-give-background.png)"
             backgroundPosition="center"
@@ -315,11 +315,13 @@ const ChristBirthdayOffering = () => {
 
           {/* FAQs Section */}
           <Box id="FAQ" px="base" py="xl" width="100%">
-            <Box mx="auto" maxWidth={1200}>
+            <Box mx="auto" maxWidth={1200} mb={{ md: 'base' }}>
               <FAQ
                 data={faqData('CBO')}
                 showDescription={false}
                 customTheme={{ primary: '#CB2C30', secondary: '#39383A' }}
+                fullWidth
+                displayAll={true}
               />
             </Box>
           </Box>

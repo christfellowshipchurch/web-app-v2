@@ -18,8 +18,17 @@ function FAQ(props = {}) {
       theme={{ colors: { ...colors?.light, ...props?.customTheme } }}
     >
       <Styled id="faq" {...props}>
-        <Box mb="xl" pr="l">
-          <Box as="h2" fontSize={32} color="neutrals.300" mb="base">
+        <Box
+          mb={!props?.fullWidth ? 'xl' : 'base'}
+          pr="l"
+          mt={props?.fullWidth && { md: 's' }}
+        >
+          <Box
+            as="h2"
+            fontSize={32}
+            color="neutrals.300"
+            mb={props?.fullWidth ? 's' : 'base'}
+          >
             FAQ
           </Box>
           {props?.showDescription && (
