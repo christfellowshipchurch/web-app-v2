@@ -68,6 +68,7 @@ import UserProfile from './UserProfile';
 import VerticalCardListFeature from './VerticalCardListFeature';
 import VerticalModalCardListFeature from './VerticalModalCardListFeature';
 import Video from './Video';
+import VideoHeader from './VideoHeader';
 import WistiaPlayer from './WistiaPlayer';
 
 export {
@@ -140,6 +141,7 @@ export {
   VerticalCardListFeature,
   VerticalModalCardListFeature,
   Video,
+  VideoHeader,
   WistiaPlayer,
   modals,
 };
