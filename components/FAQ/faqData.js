@@ -194,7 +194,7 @@ export const faqCBO = [
     description: `Traditionally, we give to the Christ Birthday Offering during our Christmas Services. However, you can give your offering any time throughout the Christmas season!`,
   },
   {
-    title: 'What does Heart for the House go to?',
+    title: 'What does the Christ Birthday Offering go towards?',
     description:
       "Every dollar you give to Christ Birthday Offering will make a difference toward continuing our impact both locally and globally through our mission projects throughout the year. <a style='color: #CB2C30' target='_blank' href='https://issuu.com/christfellowshipchurch/docs/events_2023_cbo_print_handouts_8.5x11_web_final?fr=xKAE9_zU1NQ'>Read more about the Vision for 2024.</a>",
   },
