@@ -35,7 +35,7 @@ function CardGridFeature(props = {}) {
   return (
     <Box textAlign="center">
       {!isEmpty(title) && (
-        <Box as="h2" color="primary">
+        <Box as={props?.titleLarge ? 'h1' : 'h2'} color="primary">
           {title}
         </Box>
       )}
@@ -122,11 +122,13 @@ function CardGridFeature(props = {}) {
 
 CardGridFeature.propTypes = {
   data: PropTypes.object,
+  titleLarge: PropTypes.bool,
   Component: PropTypes.any,
 };
 
 CardGridFeature.defaultProps = {
   Component: HorizontalHighlightCard,
+  titleLarge: false,
 };
 
 export default CardGridFeature;
