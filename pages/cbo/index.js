@@ -1,18 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { ThemeProvider as SCThemeProvider } from 'styled-components';
 import colors from 'ui-kit/_config/colors';
-import Styled from './ChristBirthdayOffering.styles';
-
-import {
-  HtmlRenderer,
-  Select,
-  TextInput,
-  Button,
-  Image,
-  Box,
-  Icon,
-} from 'ui-kit';
-import { useCurrentBreakpoint, useForm } from 'hooks';
+import { Button, Image, Box } from 'ui-kit';
+import { useCurrentBreakpoint } from 'hooks';
 import {
   Layout,
   FAQ,
@@ -22,35 +12,18 @@ import {
   VisionCardCarousel,
   ClientSideComponent,
   CardGridFeature,
+  GiveWithPushpay,
 } from 'components';
 import { FeatureProvider } from 'providers';
 
 import faqData from 'components/FAQ/faqData';
 import { CustomTab, customTabs } from '../../components/Tabs/cboCustomTabs';
 
-const campuses = [
-  'Belle Glade',
-  'Boca Raton',
-  'Boynton Beach',
-  'CF Everywhere (Online)',
-  'Downtown West Palm Beach',
-  'En Español',
-  'Jupiter',
-  'Okeechobee',
-  'Palm Beach Gardens',
-  'Port St. Lucie',
-  'Royal Palm Beach',
-  'Stuart',
-  'Trinity',
-  'Vero Beach',
-  'Westlake',
-];
-
 const ChristBirthdayOffering = () => {
   const [imageSize, setImageSize] = useState('');
-  const { values, setValues, handleChange } = useForm();
   const currentBreakpoint = useCurrentBreakpoint();
-  const link = 'https://pushpay.com/g/cfchristbirthdayoffering?f[0]=';
+  const link =
+    'https://pushpay.com/g/cfchristbirthdayoffering?f[1]=Christ%20Birthday%20Offering&f[0]=';
 
   //Fix for anchor links not scrolling on page load
   useEffect(() => {
@@ -79,25 +52,6 @@ const ChristBirthdayOffering = () => {
         return setImageSize('-desktop');
     }
   }, [currentBreakpoint]);
-
-  const handleAmount = event => {
-    const { name, value } = event.target;
-
-    setValues(values => ({
-      ...values,
-      [name]: value.slice(1),
-    }));
-  };
-
-  const handleRemoveZeros = event => {
-    console.log('works', values.amount);
-
-    values.amount === undefined &&
-      setValues(values => ({
-        ...values,
-        [event.target.name]: '',
-      }));
-  };
 
   return (
     /**
@@ -218,113 +172,18 @@ const ChristBirthdayOffering = () => {
           <VisionCardCarousel />
 
           {/* Give Section */}
-          <Box
-            id="give"
-            pt="xxl"
-            pb={{ _: 'l', md: 'xxl' }}
-            px="base"
-            backgroundImage="url(/cbo/cbp-give-background.png)"
-            backgroundPosition="center"
-            backgroundSize="cover"
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            flexDirection="column"
-            textAlign="center"
-            color="white"
-          >
-            <Box as="h2" color="secondary">
-              Give Your Christ Birthday Offering
-            </Box>
-            <Box as="h4" color="secondary" fontWeight="normal">
-              GIVE IN PERSON DURING CHRISTMAS SERVICES OR ONLINE & BY MAIL ANY
-              TIME
-            </Box>
-            <Box
-              my="l"
-              bg="none"
-              py="base"
-              px={{ _: 's', md: 'l' }}
-              borderRadius="base"
-              display="flex"
-              flexDirection="column"
-              justifyContent="center"
-              alignItems="center"
-            >
-              <Box
-                as="form"
-                display="flex"
-                flexDirection="column"
-                justifyContent="center"
-                alignItems="center"
-              >
-                <Box as="h4" color="secondary">
-                  Give Online
-                </Box>
-
-                <Select
-                  mt="s"
-                  width="330px"
-                  borderColor="primary"
-                  onChange={handleChange}
-                  name="campus"
-                >
-                  <Select.Option value={null}>Select a Campus</Select.Option>
-                  {campuses.map(name => {
-                    return <Select.Option>{name}</Select.Option>;
-                  })}
-                </Select>
-
-                <Box display="flex" flexDirection="column">
-                  <TextInput
-                    border="none"
-                    bg="neutrals.100"
-                    color="neutrals.300"
-                    fontSize="80px"
-                    fontWeight="bold"
-                    textAlign="center"
-                    value={'$' + (values.amount ?? '0.00')}
-                    type="text"
-                    mt="s"
-                    name="amount"
-                    onChange={handleAmount}
-                    onClick={handleRemoveZeros}
-                    autocomplete="off"
-                  />
-
-                  <Box
-                    mb="base"
-                    mt="-5px"
-                    color="neutrals.500"
-                    fontSize="30px"
-                    fontWeight="bold"
-                  >
-                    Your gift amount
-                  </Box>
-                </Box>
-
-                <Button
-                  as="a"
-                  target="blank"
-                  href={link + values.campus + '&a=' + values.amount}
-                  bg="#E63E51"
-                  px="xl"
-                >
-                  {' '}
-                  GIVE WITH <Icon name="pushPay" /> PUSHPAY
-                </Button>
-              </Box>
-            </Box>
-
-            <Styled.Rhombus>
-              <Styled.InnerBox>
-                <Box fontWeight="bold">GIVE BY MAIL</Box>
-                <HtmlRenderer
-                  py="xl"
-                  htmlContent='Christ Fellowship Church Contributions<br/>5343 Northlake Blvd. Palm Beach Gardens, FL 33418<br/> <i style="font-size:13px;" >*Note: Please designate "Heart for the House" on the memo line.</i>'
-                />
-              </Styled.InnerBox>
-            </Styled.Rhombus>
+          <Box>
+            <GiveWithPushpay
+              title="Give Your Christ Birthday Offering"
+              subtitle="GIVE IN PERSON DURING CHRISTMAS SERVICES OR ONLINE & BY MAIL ANYTIME"
+              buttonColor="#E63E51"
+              backgroundImage="url(/cbo/cbp-give-background.png)"
+              showOtherGiveOptions
+              buttonLink={link}
+              //giveByMailDesc and giveInPersonDesc are only applicable to mobile view
+              // giveByMailDesc='<span style="font-size:20px; color:#CB2C30">Christ Fellowship Church Contributions<br/>5343 Northlake Blvd. Palm Beach Gardens, FL 33418<br/> <i style="font-size:18px;" >*Note: Please designate "Chirst Birthday Offering" on the memo line.</i></span>'
+              // giveInPersonDesc='<span style="font-size:20px; color:#CB2C30">Give cash or check at your campus location.</span>'
+            />
           </Box>
 
           {/* FAQs Section */}
