@@ -328,7 +328,13 @@ const ChristBirthdayOffering = () => {
           </Box>
 
           {/* FAQs Section */}
-          <Box id="FAQ" px="base" py="xl" width="100%">
+          <Box
+            id="FAQ"
+            px="base"
+            pb="xl"
+            pt={{ _: 'base', md: 'xl' }}
+            width="100%"
+          >
             <Box mx="auto" maxWidth={1200} mb={{ md: 'base' }}>
               <FAQ
                 data={faqData('CBO')}
