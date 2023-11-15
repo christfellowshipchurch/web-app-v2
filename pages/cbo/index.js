@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { ThemeProvider as SCThemeProvider } from 'styled-components';
 import colors from 'ui-kit/_config/colors';
+import Styled from './ChristBirthdayOffering.styles';
+
 import {
   HtmlRenderer,
   Select,
@@ -25,16 +27,50 @@ import { FeatureProvider } from 'providers';
 
 import faqData from 'components/FAQ/faqData';
 import { CustomTab, customTabs } from '../../components/Tabs/cboCustomTabs';
+import { StyledCard } from 'components/VisionCardCarousel/VisionCardCarousel.styles';
+
+const campuses = [
+  'Belle Glade',
+  'Boca Raton',
+  'Boynton Beach',
+  'CF Everywhere (Online)',
+  'Downtown West Palm Beach',
+  'En Español',
+  'Jupiter',
+  'Okeechobee',
+  'Palm Beach Gardens',
+  'Port St. Lucie',
+  'Royal Palm Beach',
+  'Stuart',
+  'Trinity',
+  'Vero Beach',
+  'Westlake',
+];
 
 const ChristBirthdayOffering = () => {
   const [imageSize, setImageSize] = useState('');
-  const { values, handleSubmit, setValues, handleChange } = useForm();
-  console.log('values', { values });
-
+  const { values, setValues, handleChange } = useForm();
   const currentBreakpoint = useCurrentBreakpoint();
-
   const link = 'https://pushpay.com/g/cfchristbirthdayoffering?f[0]=';
-  //jupiter&a=1000.60'
+
+  const handleAmount = event => {
+    const { name, value } = event.target;
+
+    setValues(values => ({
+      ...values,
+      [name]: value.slice(1),
+    }));
+  };
+
+  const handleRemoveZeros = event => {
+    console.log('works', values.amount);
+
+    values.amount === undefined &&
+      setValues(values => ({
+        ...values,
+        [event.target.name]: '',
+      }));
+  };
 
   useEffect(() => {
     switch (currentBreakpoint?.name) {
@@ -46,24 +82,6 @@ const ChristBirthdayOffering = () => {
         return setImageSize('-desktop');
     }
   }, [currentBreakpoint]);
-
-  const campuses = [
-    'Belle Glade',
-    'Boca Raton',
-    'Boynton Beach',
-    'CF Everywhere (Online)',
-    'Downtown West Palm Beach',
-    'En Español',
-    'Jupiter',
-    'Okeechobee',
-    'Palm Beach Gardens',
-    'Port St. Lucie',
-    'Royal Palm Beach',
-    'Stuart',
-    'Trinity',
-    'Vero Beach',
-    'Westlake',
-  ];
 
   return (
     /**
@@ -250,12 +268,14 @@ const ChristBirthdayOffering = () => {
                     color="neutrals.300"
                     fontSize="80px"
                     fontWeight="bold"
-                    placeholder="$0.00"
                     textAlign="center"
+                    value={'$' + (values.amount ?? '0.00')}
                     type="text"
                     mt="s"
                     name="amount"
-                    onChange={handleChange}
+                    onChange={handleAmount}
+                    onClick={handleRemoveZeros}
+                    autocomplete="off"
                   />
 
                   <Box
@@ -281,22 +301,16 @@ const ChristBirthdayOffering = () => {
                 </Button>
               </Box>
             </Box>
-            <Box
-              transform="skew(15deg, 15deg)"
-              my="l"
-              bg="primary"
-              py="base"
-              px={{ _: 's', md: 'l' }}
-            >
-              <Box fontWeight="bold">GIVE BY MAIL</Box>
-              <HtmlRenderer
-                py="xl"
-                htmlContent='Christ Fellowship Church Contributions<br/>5343 Northlake Blvd. Palm Beach Gardens, FL 33418<br/> <i style="font-size:13px;" >*Note: Please designate "Heart for the House" on the memo line.</i>'
-              />
-              <Box as="a" color="white" href="#faq" fontStyle="italic">
-                Need help? Check out these FAQs.
-              </Box>
-            </Box>
+
+            <Styled.Rhombus>
+              <Styled.InnerBox>
+                <Box fontWeight="bold">GIVE BY MAIL</Box>
+                <HtmlRenderer
+                  py="xl"
+                  htmlContent='Christ Fellowship Church Contributions<br/>5343 Northlake Blvd. Palm Beach Gardens, FL 33418<br/> <i style="font-size:13px;" >*Note: Please designate "Heart for the House" on the memo line.</i>'
+                />
+              </Styled.InnerBox>
+            </Styled.Rhombus>
           </Box>
 
           {/* FAQs Section */}
