@@ -225,7 +225,7 @@ module.exports = {
       { source: '/bylaws', destination: '/about/beliefs', permanent: true },
       { source: '/divorcecare', destination: '/divorce-care', permanent: true },
       { source: '/offering', destination: '/be-a-part-of-the-fall-family-offering', permanent: true },
-      { source: '/ministryplan', destination: '/the-2023-ministry-plan', permanent: true },
+      { source: '/ministryplan', destination: '/the-2024-ministry-plan', permanent: true },
       { source: '/griefshare', destination: '/grief-share', permanent: true },
       { source: '/food', destination: '/next-steps/get-involved-with-missions', permanent: true },
       { source: '/breakfast', destination: '/first-responder-wives-breakfast-2023', permanent: true },
