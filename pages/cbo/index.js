@@ -52,6 +52,23 @@ const ChristBirthdayOffering = () => {
   const currentBreakpoint = useCurrentBreakpoint();
   const link = 'https://pushpay.com/g/cfchristbirthdayoffering?f[0]=';
 
+  //Fix for anchor links not scrolling on page load
+  useEffect(() => {
+    const path = window.location.hash;
+    if (path && path.includes('#')) {
+      setTimeout(() => {
+        const id = path.replace('#', '');
+        const el = window.document.getElementById(id);
+        const r = el.getBoundingClientRect();
+        window.top.scroll({
+          // eslint-disable-next-line
+          top: scrollY + r.top,
+          behavior: 'smooth',
+        });
+      }, 600);
+    }
+  });
+
   const handleAmount = event => {
     const { name, value } = event.target;
 

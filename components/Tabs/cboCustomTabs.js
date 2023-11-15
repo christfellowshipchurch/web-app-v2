@@ -66,12 +66,14 @@ export const CustomTabContent = ({ wistiaId, summary }) => (
 export const customTabs = [
   {
     tabProps: {
+      id: 'cynthia',
       title: 'Cynthia',
       image: '/christ-birthday-offering/cynthia.jpg',
     },
     tabContent: () => (
       <CustomTabContent
-        wistiaId="0tftcigocv"
+        id="cynthia"
+        wistiaId="p3jjqz3cxe"
         summary="Hear Cynthia share in her own words how this water well built by Christ
     Fellowship will impact her life."
       />
@@ -79,24 +81,28 @@ export const customTabs = [
   },
   {
     tabProps: {
-      title: 'Water Trucks',
+      id: 'worldserve',
+      title: 'WorldServe Water Trucks',
       image: '/christ-birthday-offering/water-trucks.jpg',
     },
     tabContent: () => (
       <CustomTabContent
-        wistiaId="0tftcigocv"
+        id="worldserve"
+        wistiaId="97uyps7c33"
         summary="See how WorldServe’s rapid water supply trucks transform lives through water and the Word of Jesus!"
       />
     ),
   },
   {
     tabProps: {
-      title: 'Honduras Housing',
+      id: 'abigail',
+      title: 'Abigail',
       image: '/christ-birthday-offering/honduras-housing.jpg',
     },
     tabContent: () => (
       <CustomTabContent
-        wistiaId="0tftcigocv"
+        id="abigail"
+        wistiaId="1lf2qk5a3g"
         summary="In 2022, our kids and students gave their Christ Birthday Offering to open additional housing at 
           Children’s Impact Network in Honduras. Hear how one of these children, Abigail, has found the love and hope of Jesus!"
       />
@@ -104,36 +110,42 @@ export const customTabs = [
   },
   {
     tabProps: {
+      id: 'andre',
       title: 'Andre',
       image: '/christ-birthday-offering/andre.jpg',
     },
     tabContent: () => (
       <CustomTabContent
-        wistiaId="0tftcigocv"
+        id="andre"
+        wistiaId="8irbcr51vt"
         summary="See how we showed up at just the right time to help Andre after Hurricane Idalia!"
       />
     ),
   },
   {
     tabProps: {
+      id: 'mama-susan',
       title: 'Mama Susan',
       image: '/christ-birthday-offering/mama-susan.jpg',
     },
     tabContent: () => (
       <CustomTabContent
-        wistiaId="0tftcigocv"
+        id="mama-susan"
+        wistiaId="g2yh0v2jb0"
         summary="Hear from Mama Susan, one of the many moms raising a generation of world-changers through a Watoto Village!"
       />
     ),
   },
   {
     tabProps: {
+      id: 'steven',
       title: 'Steven',
       image: '/christ-birthday-offering/steven.jpg',
     },
     tabContent: () => (
       <CustomTabContent
-        wistiaId="0tftcigocv"
+        id="steven"
+        wistiaId="0cl5ypddiu"
         summary="Steven is just one story of how Watoto raises Africa's future leaders. Hear Steven share how Watoto equipped him at every age!"
       />
     ),
