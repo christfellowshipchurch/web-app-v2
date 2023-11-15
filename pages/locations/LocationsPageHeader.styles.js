@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
-import { system } from 'ui-kit';
+import { TextInput, system } from 'ui-kit';
 
 const Locations = styled.div`
   ${system}
@@ -29,37 +29,88 @@ const VideoOverlay = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
-const TitleBox = styled.h1`
+const ContentBox = styled.div`
   color: white;
   text-align: center;
-  padding: ${themeGet('space.base')};
+  padding: ${themeGet('space.base')} ${themeGet('space.l')};
   background-color: rgba(0, 0, 0, 0.35);
   backdrop-filter: blur(5.5px);
   border-radius: 10px;
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
-    font-size: 34px;
-    width: 95%;
-    position: absolute;
-    top: -255px;
-    left: 0px;
+    margin-bottom: 35%;
   }
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-    font-size: 36px;
-  }
-
-  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
-    font-size: 42px;
+    padding: ${themeGet('space.s')} ${themeGet('space.base')};
+    margin-right: 5%;
+    margin-left: 5%;
   }
 
   @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
-    font-size: 48px;
+    padding: ${themeGet('space.s')} ${themeGet('space.l')};
+  }
+`;
+
+const TitleBox = styled.h1`
+  color: white;
+  font-weight: bold;
+  padding-bottom: ${themeGet('space.s')};
+
+  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+    font-size: 24px;
+  }
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    font-size: 28px;
+  }
+
+  @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
+    font-size: 42px;
+  }
+
+  ${system}
+`;
+
+const SubtitleBox = styled.p`
+  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+    font-size: 16px;
+    margin-bottom: ${themeGet('space.s')};
+  }
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    font-size: 20px;
+    width: 80%;
+    margin-bottom: ${themeGet('space.l')};
+  }
+
+  @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
+    font-size: 24px;
+    width: 70%;
+  }
+`;
+
+const LocationInput = styled(TextInput)`
+  text-align: center;
+  margin-bottom: ${themeGet('space.l')};
+  font-size: 20px;
+
+  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+    font-size: 14px;
+  }
+
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    font-size: 22px;
+  }
+
+  &::placeholder {
+    color: ${themeGet('colors.neutrals.700')};
   }
 `;
 
 Locations.VideoCover = VideoCover;
 Locations.VideoOverlay = VideoOverlay;
+Locations.ContentBox = ContentBox;
 Locations.TitleBox = TitleBox;
+Locations.SubtitleBox = SubtitleBox;
+Locations.LocationInput = LocationInput;
 
 export default Locations;

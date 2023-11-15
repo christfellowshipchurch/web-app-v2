@@ -1,21 +1,18 @@
 import React from 'react';
-import { useCampuses } from 'hooks';
+import { useActionBanner, useCampuses } from 'hooks';
 import { kebabCase } from 'lodash';
 import { useState } from 'react';
-import {
-  Box,
-  CardGrid,
-  Loader,
-  Button,
-  TextInput,
-  HorizontalHighlightCard,
-} from 'ui-kit';
+import { Box, CardGrid, Loader, Button, HorizontalHighlightCard } from 'ui-kit';
 import { Layout, CustomLink } from 'components';
-import LocationsPageHeader from './locationsPageHeader';
+import Styled from './LocationsPageHeader.styles';
 
 const FindNearestLocation = () => {
   const [results, setResults] = useState([{ geometry: { location: {} } }]);
   const [address, setAddress] = useState();
+  const { actionBanner } = useActionBanner();
+
+  // checks for banner to adjust title height
+  const isBanner = !!actionBanner;
 
   const userCoordinatesExists =
     results[0]?.geometry?.location?.lat && results[0]?.geometry?.location?.lng;
@@ -53,62 +50,91 @@ const FindNearestLocation = () => {
     }
   };
 
-  const headerContent = '';
-
   return (
     <Layout>
-      <LocationsPageHeader
-        backgroundVideo="/location-pages/locations-bg-vid.mp4"
+      <Box
+        position="relative"
+        display="flex"
+        justifyContent={{ _: 'flex-start', lg: 'center' }}
+        alignItems={{ _: 'flex-end', sm: 'center' }}
+        backgroundImage="/location-pages/locations-bg-video-frame-1.png"
+        backgroundPosition="center"
+        backgroundSize="cover"
         videoBackgroundImage="/location-pages/locations-bg-video-frame-1.png"
-        {...headerContent}
-      />
-
-      <Box p="base" px={{ _: 's', md: 'xl' }}>
-        <Box textAlign="center" mt="l">
-          <Box as="h1" color="secondary" pb="s">
-            Find a Campus Near You
-          </Box>
-          <Box
-            as="p"
-            width={{ _: '100%', md: '600px' }}
+        mb={{ _: 'base', md: 'l', lg: 'xl' }}
+      >
+        <Box height={{ _: '70vh', md: '50vh', lg: '80vh' }}>
+          <Styled.VideoCover
             mx="auto"
-            mb={{ _: 's', md: 'l' }}
-          >
-            We believe that church isn’t just a building you walk in to, but a
-            family you can belong to—so whether you call one of our many
-            locations home or join from home, church is wherever you are!
-          </Box>
-
+            src={'/location-pages/locations-bg-vid.mp4'}
+            autoPlay
+            muted
+            loop
+            playsInline
+            type="video/mp4"
+          />
+        </Box>
+        <Styled.VideoOverlay />
+        <Box
+          mx={{ _: 'base', md: 'auto', lg: 'base' }}
+          width={{ _: '90%', md: '80%', lg: '90%' }}
+          maxWidth={1200}
+          zIndex={1}
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+        >
           <Box
-            display="flex"
+            height={{ _: isBanner ? '65vh' : 'auto', sm: 'auto' }}
+            display={{ _: 'flex', sm: 'block' }}
             flexDirection="column"
-            width={{ _: '75%', md: '45%', lg: '30%' }}
-            mx="auto"
+            justifyContent="space-between"
           >
-            <TextInput
-              fontSize={{ _: '20px', lg: '16px' }}
-              textAlign="center"
-              placeholder="Enter address or zip code"
-              onChange={e => setAddress(e.target.value)}
-              mb="base"
-            />
-            <Button
-              width="55%"
-              borderRadius="6px"
-              mx="auto"
-              fontSize="20px"
-              mb={{ _: 'l', md: 'xl' }}
-              onClick={() => {
-                //When users clicks search button we want to get the coordinates and refetch the campuses to get distance from location
-                getCoordinates();
-                refetch();
-              }}
-            >
-              Search
-            </Button>
+            <Styled.ContentBox>
+              <Box textAlign="center" mt={{ _: 'base', md: 'l' }}>
+                <Styled.TitleBox>
+                  Christ Fellowship Church Locations
+                </Styled.TitleBox>
+                <Styled.SubtitleBox width={{ _: '100%', md: '600px' }}>
+                  Church isn’t just a building you walk in to, but a family you
+                  can belong to.
+                </Styled.SubtitleBox>
+
+                <Box
+                  display="flex"
+                  flexDirection="column"
+                  width={{ _: '80%', md: '60%', lg: '60%' }}
+                  color="red"
+                  mx="auto"
+                  mt={{ _: 'base', md: '' }}
+                >
+                  <Styled.LocationInput
+                    placeholder="Enter address or zip code here"
+                    onChange={e => setAddress(e.target.value)}
+                  />
+                  <Button
+                    width={{ _: '70%', md: '55%' }}
+                    borderRadius="6px"
+                    mx="auto"
+                    fontSize={{ _: '14px', md: '16px', lg: '22px' }}
+                    mb={{ _: 'base', lg: 'xl' }}
+                    onClick={() => {
+                      //When users clicks search button we want to get the coordinates and refetch the campuses to get distance from location
+                      getCoordinates();
+                      refetch();
+                    }}
+                  >
+                    Find a Location
+                  </Button>
+                </Box>
+              </Box>
+            </Styled.ContentBox>
           </Box>
         </Box>
+      </Box>
 
+      <Box p="base" px={{ _: 's', md: 'xl' }}>
         {loading ? (
           <Loader justifyContent="center" mb="l" />
         ) : (
