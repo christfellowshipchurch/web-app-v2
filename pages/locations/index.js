@@ -1,5 +1,5 @@
 import React from 'react';
-import { useCampuses, useCurrentBreakpoint } from 'hooks';
+import { useCampuses } from 'hooks';
 import { kebabCase } from 'lodash';
 import { useState } from 'react';
 import {
@@ -16,7 +16,6 @@ import LocationsPageHeader from './locationsPageHeader';
 const FindNearestLocation = () => {
   const [results, setResults] = useState([{ geometry: { location: {} } }]);
   const [address, setAddress] = useState();
-  const currentBreakpoint = useCurrentBreakpoint();
 
   const userCoordinatesExists =
     results[0]?.geometry?.location?.lat && results[0]?.geometry?.location?.lng;
