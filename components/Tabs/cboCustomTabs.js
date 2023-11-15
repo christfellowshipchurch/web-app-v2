@@ -97,7 +97,7 @@ export const customTabs = [
     tabProps: {
       id: 'abigail',
       title: 'Abigail',
-      image: '/christ-birthday-offering/honduras-housing.jpg',
+      image: '/christ-birthday-offering/abigail.jpg',
     },
     tabContent: () => (
       <CustomTabContent

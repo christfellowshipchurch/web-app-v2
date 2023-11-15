@@ -35,7 +35,7 @@ function Tabs({ TabComponent, tabs, title, summary }) {
       width="100%"
     >
       {title && (
-        <Box as="h2" color="primary">
+        <Box as="h1" color="primary">
           {title}
         </Box>
       )}
