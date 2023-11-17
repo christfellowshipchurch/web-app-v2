@@ -153,6 +153,7 @@ const FindNearestLocation = () => {
                 coverImageOverlay={true}
                 coverImageLabelBgColor="WHITE"
                 title={'Online'}
+                type="HIGHLIGHT_SMALL"
                 mobileHeight="150px"
                 label={onlineCampus?.distanceFromLocation && 'Right here!'}
               />
@@ -177,6 +178,7 @@ const FindNearestLocation = () => {
                   coverImageLabelBgColor="white"
                   coverImageOverlay={true}
                   title={campus?.name}
+                  type="HIGHLIGHT_SMALL"
                   mobileHeight="150px"
                   label={
                     campus?.distanceFromLocation > 1 &&

@@ -89,11 +89,8 @@ const SubtitleBox = styled.p`
 
 const LocationInput = styled(TextInput)`
   text-align: center;
-
-  @media screen and (min-width: ${themeGet('breakpoints.sm')}) {
-    font-size: 14px;
-    margin-bottom: ${themeGet('space.base')};
-  }
+  font-size: 14px;
+  margin-bottom: ${themeGet('space.base')};
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     font-size: 20px;
