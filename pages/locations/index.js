@@ -55,15 +55,13 @@ const FindNearestLocation = () => {
       <Box
         position="relative"
         display="flex"
-        justifyContent={{ _: 'flex-start', lg: 'center' }}
-        alignItems={{ _: 'flex-end', sm: 'center' }}
-        backgroundImage="/location-pages/locations-bg-video-frame-1.png"
+        justifyContent={{ _: 'center', lg: 'center' }}
+        alignItems={{ _: 'center', sm: 'center' }}
         backgroundPosition="center"
         backgroundSize="cover"
-        videoBackgroundImage="/location-pages/locations-bg-video-frame-1.png"
         mb={{ _: 'base', md: 'l', lg: 'xl' }}
       >
-        <Box height={{ _: '70vh', md: '50vh', lg: '80vh' }}>
+        <Box height={{ _: '65vh', md: '50vh', lg: '80vh' }}>
           <Styled.VideoCover
             mx="auto"
             src={'/location-pages/locations-bg-vid.mp4'}
@@ -114,10 +112,10 @@ const FindNearestLocation = () => {
                     onChange={e => setAddress(e.target.value)}
                   />
                   <Button
-                    width={{ _: '70%', md: '55%' }}
+                    width={{ _: '70%', md: '60%', lg: '55%' }}
                     borderRadius="6px"
                     mx="auto"
-                    fontSize={{ _: '14px', md: '16px', lg: '22px' }}
+                    fontSize={{ _: '14px', md: '16px', lg: '18px' }}
                     mb={{ _: 'base', lg: 'xl' }}
                     onClick={() => {
                       //When users clicks search button we want to get the coordinates and refetch the campuses to get distance from location
@@ -155,7 +153,7 @@ const FindNearestLocation = () => {
                 coverImageOverlay={true}
                 coverImageLabelBgColor="WHITE"
                 title={'Online'}
-                type="HIGHLIGHT_SMALL"
+                mobileHeight="150px"
                 label={onlineCampus?.distanceFromLocation && 'Right here!'}
               />
             )}
@@ -179,7 +177,7 @@ const FindNearestLocation = () => {
                   coverImageLabelBgColor="white"
                   coverImageOverlay={true}
                   title={campus?.name}
-                  type="HIGHLIGHT_SMALL"
+                  mobileHeight="150px"
                   label={
                     campus?.distanceFromLocation > 1 &&
                     `${Number(campus?.distanceFromLocation).toFixed(1)} miles`

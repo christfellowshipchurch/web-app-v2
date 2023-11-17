@@ -37,14 +37,8 @@ const ContentBox = styled.div`
   backdrop-filter: blur(5.5px);
   border-radius: 10px;
 
-  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
-    margin-bottom: 35%;
-  }
-
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     padding: ${themeGet('space.s')} ${themeGet('space.base')};
-    margin-right: 5%;
-    margin-left: 5%;
   }
 
   @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
@@ -63,6 +57,9 @@ const TitleBox = styled.h1`
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     font-size: 28px;
   }
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    font-size: 34px;
+  }
 
   @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
     font-size: 42px;
@@ -72,6 +69,8 @@ const TitleBox = styled.h1`
 `;
 
 const SubtitleBox = styled.p`
+  margin-right: auto;
+  margin-left: auto;
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
     font-size: 16px;
     margin-bottom: ${themeGet('space.s')};
@@ -84,21 +83,24 @@ const SubtitleBox = styled.p`
 
   @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
     font-size: 24px;
-    width: 70%;
+    width: 80%;
   }
 `;
 
 const LocationInput = styled(TextInput)`
   text-align: center;
-  margin-bottom: ${themeGet('space.l')};
-  font-size: 20px;
 
-  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+  @media screen and (min-width: ${themeGet('breakpoints.sm')}) {
     font-size: 14px;
+    margin-bottom: ${themeGet('space.base')};
+  }
+
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    font-size: 20px;
   }
 
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
-    font-size: 22px;
+    margin-bottom: ${themeGet('space.l')};
   }
 
   &::placeholder {
