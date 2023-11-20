@@ -139,13 +139,19 @@ function GiveWithPushpay(props = {}) {
           //mobile view only
           <Box>
             <Box>
-              <Box fontWeight="bold" color="primary" fontSize="l">
+              <Box as="h3" fontWeight="bold" color="primary" fontSize="l">
                 Give In Person
               </Box>
               <HtmlRenderer py="xl" htmlContent={props?.giveInPersonDesc} />
             </Box>
             <Box>
-              <Box fontWeight="bold" color="primary" mt="base" fontSize="l">
+              <Box
+                as="h3"
+                fontWeight="bold"
+                color="primary"
+                mt="base"
+                fontSize="l"
+              >
                 Give By Mail
               </Box>
               <HtmlRenderer py="xl" htmlContent={props?.giveByMailDesc} />
@@ -193,9 +199,9 @@ GiveWithPushpay.propTypes = {
 
 GiveWithPushpay.defaultProps = {
   giveByMailDesc:
-    '<span style="font-size:20px; color:black">Christ Fellowship Church Contributions<br/>5343 Northlake Blvd.<br/> Palm Beach Gardens, FL 33418<br/> <i style="font-size:18px;" >*Note: "Chirst Birthday Offering" on memo line.</i></span>',
+    '<span style="font-size:1rem; color:black">Christ Fellowship Church Contributions<br/>5343 Northlake Blvd.<br/> Palm Beach Gardens, FL 33418<br/> <i style="font-size:1rem;" >*Note: "Chirst Birthday Offering" on memo line.</i></span>',
   giveInPersonDesc:
-    '<span style="font-size:20px; color:black">At your campus location.</span>',
+    '<span style="font-size:1rem; color:black">At your campus location.</span>',
   buttonLink: 'https://pushpay.com/g/cfchristbirthdayoffering?',
 };
 

@@ -25,6 +25,7 @@ const OverrideCardGrid = styled(CardGrid)`
 
 function CardGridFeature(props = {}) {
   let data = props?.data;
+  console.log(props);
 
   if (!data) {
     return null;

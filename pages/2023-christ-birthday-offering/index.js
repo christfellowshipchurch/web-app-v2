@@ -163,7 +163,6 @@ const ChristBirthdayOffering = () => {
           <Box id="stories" my="xl">
             <Tabs
               title="Stories of Impact"
-              summary="HEAR HOW YOUR CHRIST BIRTHDAY OFFERING DELIVERS HOPE"
               TabComponent={CustomTab}
               tabs={customTabs}
             />
@@ -180,9 +179,6 @@ const ChristBirthdayOffering = () => {
               backgroundImage="url(/cbo/cbp-give-background.png)"
               showOtherGiveOptions
               buttonLink={link}
-              //giveByMailDesc and giveInPersonDesc are only applicable to mobile view
-              // giveByMailDesc='<span style="font-size:20px; color:#CB2C30">Christ Fellowship Church Contributions<br/>5343 Northlake Blvd. Palm Beach Gardens, FL 33418<br/> <i style="font-size:18px;" >*Note: Please designate "Chirst Birthday Offering" on the memo line.</i></span>'
-              // giveInPersonDesc='<span style="font-size:20px; color:#CB2C30">Give cash or check at your campus location.</span>'
             />
           </Box>
 

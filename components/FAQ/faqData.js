@@ -184,13 +184,13 @@ export const faqHeartForHouseData = [
 
 export const faqCBO = [
   {
-    title: 'What should I give',
+    title: 'What should I give?',
     description:
       "Christ Birthday Offering is a special offering we get to be a part of every Christmas, where we give above our regular tithes and offerings to help fund our mission projects throughout the year. There isn't a set amount you should give, but we often say our Christ Birthday Offering is the greatest gift on our list because its joy will outlast and outlive any other gift we will give! We encourage you to pray about how God wants you to be a part of it.",
   },
 
   {
-    title: 'When can I give my offering',
+    title: 'When can I give my offering?',
     description: `Traditionally, we give to the Christ Birthday Offering during our Christmas Services. However, you can give your offering any time throughout the Christmas season!`,
   },
   {

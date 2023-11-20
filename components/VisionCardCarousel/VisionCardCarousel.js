@@ -36,7 +36,7 @@ function VisionCardCarousel() {
         px="base"
       >
         Every dollar you give to Christ Birthday Offering will make a difference
-        toward continuing our impact both locally and globally
+        toward continuing our impact both locally and globally.
       </Box>
 
       {/* Card Scroll */}
