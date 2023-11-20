@@ -34,11 +34,7 @@ function Tabs({ TabComponent, tabs, title, summary }) {
       maxWidth={{ _: 390, md: 1100 }}
       width="100%"
     >
-      {title && (
-        <Box as="h1" color="primary">
-          {title}
-        </Box>
-      )}
+      {title && <Box as="h1">{title}</Box>}
       {summary && (
         <Box as="h5" color="neutrals.500">
           {upperCase(summary)}
@@ -49,7 +45,7 @@ function Tabs({ TabComponent, tabs, title, summary }) {
         mx="auto"
         width="100%"
         maxWidth={{ _: 390, md: 1000 }}
-        mt="base"
+        mt="s"
         display="flex"
         overflow="scroll"
       >

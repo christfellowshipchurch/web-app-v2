@@ -36,7 +36,10 @@ function CardGridFeature(props = {}) {
   return (
     <Box textAlign="center">
       {!isEmpty(title) && (
-        <Box as={props?.titleLarge ? 'h1' : 'h2'} color="primary">
+        <Box
+          as={props?.titleLarge ? 'h1' : 'h2'}
+          color={props?.titleColor ? props?.titleColor : 'primary'}
+        >
           {title}
         </Box>
       )}
@@ -123,6 +126,9 @@ function CardGridFeature(props = {}) {
 
 CardGridFeature.propTypes = {
   data: PropTypes.object,
+  /**
+   * Whether the title should be rendered as an h1 or h2
+   */
   titleLarge: PropTypes.bool,
   Component: PropTypes.any,
 };
