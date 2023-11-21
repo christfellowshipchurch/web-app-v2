@@ -166,7 +166,7 @@ const ChristBirthdayOffering = () => {
                 display="flex"
                 mx="auto"
                 width="fit-content"
-                href="https://issuu.com/christfellowshipchurch/docs/events_2023_cbo_print_handouts_8.5x11_spanish_web_?fr=xKAE9_zU1NQ"
+                href="#give"
               >
                 GIVE YOUR OFFERING
               </Button>
@@ -185,7 +185,7 @@ const ChristBirthdayOffering = () => {
           <VisionCardCarousel />
 
           {/* Give Section */}
-          <Box>
+          <Box id="give">
             <GiveWithPushpay
               title="Give Your Christ Birthday Offering"
               subtitle="GIVE IN PERSON DURING CHRISTMAS SERVICES OR ONLINE & BY MAIL ANYTIME"
