@@ -20,11 +20,12 @@ const CustomTabStyle = styled(Box)`
 export const CustomTab = ({ title, image, isSelected }) => {
   return (
     <CustomTabStyle
-      mx="base"
+      mx={{ _: 'xs', md: 'base' }}
       my="base"
       display="flex"
       flexDirection="column"
       alignItems="center"
+      width={{ _: '100px', md: 'auto' }}
     >
       {/* For some reason our Avatar and Image components are breaking something on the horiztonal scroll so I'm using a regular img tag for now */}
       <Box

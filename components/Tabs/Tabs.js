@@ -50,12 +50,7 @@ function Tabs({ TabComponent, tabs, title, summary }) {
         overflow="scroll"
       >
         {tabs?.map((props, index) => (
-          <Box
-            id={`tab-${index}`}
-            flex={1}
-            key={index}
-            onClick={() => setSelectedTab(index)}
-          >
+          <Box flex={1} key={index} onClick={() => setSelectedTab(index)}>
             <TabComponent
               {...props?.tabProps}
               isSelected={index === selectedTab}
