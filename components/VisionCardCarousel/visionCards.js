@@ -27,7 +27,7 @@ const visionCards = [
   },
   {
     icon: 'earth-thin',
-    text: `Through our various partners around the world,  <b style="color:${highlightColor}">Christ Fellowship</b> Missions will lead international mission trips to Africa, Asia, and South and Central America.`,
+    text: `Through our various partners around the world,  <b style="color:${highlightColor}">Christ Fellowship Missions</b> will lead international mission trips to Africa, Asia, and South and Central America.`,
   },
   {
     icon: 'medkit-thin',
