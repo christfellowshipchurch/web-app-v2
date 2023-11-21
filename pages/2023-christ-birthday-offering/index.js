@@ -74,7 +74,7 @@ const ChristBirthdayOffering = () => {
               desktop: '/christ-birthday-offering/cbo-header-vid.mp4',
             }}
             logoOverlay={'christ-birthday-offering/banners/header.png'}
-            backgroundImage="/christ-birthday-offering/cbo-header-frame-1.png"
+            backgroundImage="url(/christ-birthday-offering/cbo-header-frame-1.png)"
             backgroundPosition="center"
             backgroundSize="cover"
           />
