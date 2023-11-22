@@ -37,6 +37,7 @@ function CardGridFeature(props = {}) {
       {!isEmpty(title) && (
         <Box
           as={props?.titleLarge ? 'h1' : 'h2'}
+          p="base"
           color={props?.titleColor ? props?.titleColor : 'primary'}
         >
           {title}

@@ -23,7 +23,7 @@ function VisionCardCarousel() {
     >
       <Box
         as="img"
-        maxWidth={400}
+        maxWidth={{ _: 360, md: 400 }}
         mx="auto"
         src="/christ-birthday-offering/vision-logo.png"
       />

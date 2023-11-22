@@ -25,13 +25,13 @@ export const CustomTab = ({ title, image, isSelected }) => {
       display="flex"
       flexDirection="column"
       alignItems="center"
-      width={{ _: '80px', md: 'auto' }}
+      width={{ _: '100px', md: 'auto' }}
     >
       {/* For some reason our Avatar and Image components are breaking something on the horiztonal scroll so I'm using a regular img tag for now */}
       <Box
         as="img"
         borderRadius="50%"
-        maxWidth={50}
+        maxWidth={60}
         alt={title}
         src={image}
         border={isSelected ? '3px solid #CB2C30' : 'none'}
