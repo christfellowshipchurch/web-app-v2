@@ -68,10 +68,11 @@ const LocationHeader = (props = {}) => {
             {props?.title}
             {props?.subtitle ? (
               <Box
-                as="h2"
-                fontSize={{ _: 20, sm: 19, md: 24, lg: 30 }}
+                // as="h2"
+                fontSize={{ _: 22, sm: 22, md: 24, lg: 30 }}
+                fontWeight="lighter"
                 color="white"
-                textShadow="4px 4px 4px rgb(0 0 0 / 30%)"
+                textShadow="4px 4px 4px rgb(0 0 0 / 10%)"
                 mt={{ _: 10, sm: 0, md: 8, lg: 8 }}
                 // mb={{ _: 0, sm: 0, md: 0, lg:  }}
               >
@@ -93,6 +94,7 @@ const LocationHeader = (props = {}) => {
               <Button
                 as="a"
                 href={props?.primaryButton?.action}
+                bg="hues.orange"
                 onClick={() =>
                   modalDispatch(
                     showModal(props?.primaryButton?.modal, {

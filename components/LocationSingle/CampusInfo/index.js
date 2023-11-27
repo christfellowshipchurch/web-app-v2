@@ -60,8 +60,12 @@ const CampusInfo = ({
         <Box width="100%">
           <Styled.ServiceTimeContainer>
             <Styled.ServiceTimeTitle>{`${
-              name === 'Online (CF Everywhere)' ? 'Live ' : ''
-            }Every Sunday`}</Styled.ServiceTimeTitle>
+              name === 'Online (CF Everywhere)'
+                ? 'Live '
+                : name === 'Iglesia Palm Beach Gardens'
+                ? 'Domingo'
+                : ''
+            }Every Sundaydddd`}</Styled.ServiceTimeTitle>
             <Styled.FlexBreak />
             {serviceTimes &&
               serviceTimes?.map(
