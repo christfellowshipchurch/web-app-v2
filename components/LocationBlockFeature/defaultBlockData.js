@@ -273,7 +273,7 @@ export const CfEverywhereBlockData = [
 
 const locationBlockData = campus => {
   switch (campus) {
-    case 'Cf Everywhere':
+    case 'Online (CF Everywhere)':
       return CfEverywhereBlockData;
     default:
       return defaultBlockData;

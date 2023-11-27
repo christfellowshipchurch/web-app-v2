@@ -87,7 +87,7 @@ function LocationSingle(props = {}) {
       </Box>
 
       {/* This Week Feature */}
-      {campus === 'Cf Everywhere' && (
+      {campus === 'Online (CF Everywhere)' && (
         <Box maxWidth={1100} mx="auto" width="100%" px="base" py="xl">
           <Box
             as="h2"
@@ -106,7 +106,7 @@ function LocationSingle(props = {}) {
       )}
 
       {/* Set a Reminder */}
-      {campus !== 'Cf Everywhere' && (
+      {campus !== 'Online (CF Everywhere)' && (
         <>
           <Box
             maxWidth={{ _: 350, md: 600, lg: 800 }}
@@ -195,12 +195,12 @@ function LocationSingle(props = {}) {
             horizontalScroll
             size="s"
             contentId={
-              campus === 'Cf Everywhere'
+              campus === 'Online (CF Everywhere)'
                 ? 'UniversalContentItem:04f022613f5beaca2532ef3a8e052cd6'
                 : 'UniversalContentItem:ddf0d380759e8404fb6b70aa941c06f7'
             }
             buttonOverride={
-              campus !== 'Cf Everywhere' ? '/events' : '/discover'
+              campus !== 'Online (CF Everywhere)' ? '/events' : '/discover'
             }
           />
         </Box>
@@ -224,7 +224,7 @@ function LocationSingle(props = {}) {
         <Box mx="auto" maxWidth={1200}>
           <Testimonials
             testimonies={
-              campus === 'Cf Everywhere'
+              campus === 'Online (CF Everywhere)'
                 ? [
                     {
                       name: '<i>Amal</i>',

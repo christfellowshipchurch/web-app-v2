@@ -119,7 +119,7 @@ const CampusInfo = ({
                   Discover groups and classes to help you grow in your
                   relationship with God and others.
                 </Box>
-                <Button size="s" mt="s">
+                <Button as="a" href="/groups" size="s" mt="s">
                   Find a Group or Class
                 </Button>
               </Box>

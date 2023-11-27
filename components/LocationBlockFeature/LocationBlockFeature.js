@@ -43,7 +43,7 @@ const LocationBlockFeature = props => {
   return (
     <Box textAlign="center" {...props}>
       <Box mt="l" mb={0} as="h2" color="secondary">
-        {props?.campusName === 'Cf Everywhere'
+        {props?.campusName === 'Online (CF Everywhere)'
           ? 'Digital Offerings for Everyone'
           : 'At This Location'}
       </Box>
@@ -52,7 +52,9 @@ const LocationBlockFeature = props => {
           <Styled.LocationBlock key={block.id} mr={{ md: 'l', lg: '0' }}>
             <Image
               aspectRatio={
-                props?.campusName === 'Cf Everywhere' ? '14by9' : '16by9'
+                props?.campusName === 'Online (CF Everywhere)'
+                  ? '14by9'
+                  : '16by9'
               }
               source={block?.coverImage?.sources[0]?.uri}
             />
