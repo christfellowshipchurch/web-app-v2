@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { find, includes, replace, startCase, camelCase } from 'lodash';
+import { find, startCase, camelCase } from 'lodash';
 
 import {
   CollectionPreview,
@@ -13,7 +13,7 @@ import {
   HeroListFeature,
   Video,
 } from 'components';
-import { Box, Button, Divider, Loader, ContentBlock } from 'ui-kit';
+import { Box, Button, Divider, ContentBlock } from 'ui-kit';
 
 import CampusInfo from './CampusInfo';
 import LocationHeader from './LocationHeader';
@@ -30,86 +30,32 @@ import {
 import { CampusProvider, FeatureProvider } from 'providers';
 import faqData from 'components/FAQ/faqData';
 import { showModal, useModalDispatch } from 'providers/ModalProvider';
+import { campusNameFormatted } from './utils';
 
 function LocationSingle(props = {}) {
   const modalDispatch = useModalDispatch();
 
-  if (props.loading) {
-    return (
-      <Layout
-        title="Location"
-        contentMaxWidth={'100vw'}
-        contentHorizontalPadding={'0'}
-        contentVerticalPadding={'0'}
-      >
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignContent="center"
-          alignItems="center"
-          width="100%"
-          minHeight="50vh"
-        >
-          <Loader />
-        </Box>
-      </Layout>
-    );
-  }
-
-  // note : this means that there is not a valid page found on the API, so we'll render the 404 message
+  /**
+   * note : this means that there is not a valid page found on the API, so we'll render the 404 message
+   */
   if (!props.loading && !props?.data?.id) {
     return <NotFound />;
   }
 
-  const { title, routing } = props?.data;
-
-  // note : Gets Campus Name from pathname
-  let campus = startCase(routing?.pathname.substring(10));
-
-  // note : Fixes campus name for Port St. Lucie
-  if (includes(campus, 'St ')) {
-    campus = replace(campus, 'St ', 'St. ');
-  }
-
-  // note : We need to override the campus name to for CFE to properly format it for querying purposes
-  if (includes(campus, 'Español')) {
-    const intitialString = title.substring(25, title.length - 4);
-    const firstHalf = intitialString.substring(0, 10);
-    const secondHalf = intitialString.substring(12, intitialString.length);
-    campus = firstHalf + secondHalf;
-  }
+  /**
+   *  note : Gets Campus Name from pathname
+   */
+  const { routing } = props?.data;
+  const campus = campusNameFormatted(
+    startCase(routing?.pathname.substring(10))
+  );
 
   /**
    * note : import hard coded data
    */
   const campusAdditionalInfo = find(additionalInfoCampusData, { name: campus });
   const headerContent = find(headerData, { name: campus });
-
-  let element;
-  if (typeof document !== 'undefined') {
-    element = document.getElementById('FAQ');
-  }
-
-  function faqScroll() {
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  }
-
-  const setAReminderVideo = setReminderVideos[camelCase(campus)];
-  const whatToExpectVideo = whatToExpectVideos[camelCase(campus)];
   const expectData = whatToExpectData(campus);
-  const expectActions = [
-    {
-      title: 'Set a Reminder',
-      variant: 'secondary',
-      onClick: () =>
-        modalDispatch(showModal('SetReminder', { defaultCampus: campus })),
-      relatedNode: {
-        url: '#set-reminder',
-      },
-    },
-  ];
 
   return (
     <Layout
@@ -130,8 +76,7 @@ function LocationSingle(props = {}) {
         Component={CampusInfo}
         options={{
           variables: {
-            campusName:
-              campus === 'Cf Everywhere' ? 'Online (CF Everywhere)' : campus,
+            campusName: campus,
           },
         }}
         additionalInfo={campusAdditionalInfo?.info}
@@ -171,7 +116,7 @@ function LocationSingle(props = {}) {
             mt="xxl"
             mx="auto"
           >
-            <Video wistiaId={setAReminderVideo} />
+            <Video wistiaId={setReminderVideos[camelCase(campus)]} />
           </Box>
           <Box width="100%" px={{ _: 'base', md: 'xl' }} pt="base">
             <InfoCardList
@@ -199,8 +144,23 @@ function LocationSingle(props = {}) {
         >
           <ContentBlock
             {...expectData}
-            wistiaId={whatToExpectVideo && whatToExpectVideo}
-            actions={expectActions}
+            wistiaId={
+              whatToExpectVideos[camelCase(campus)] &&
+              whatToExpectVideos[camelCase(campus)]
+            }
+            actions={[
+              {
+                title: 'Set a Reminder',
+                variant: 'secondary',
+                onClick: () =>
+                  modalDispatch(
+                    showModal('SetReminder', { defaultCampus: campus })
+                  ),
+                relatedNode: {
+                  url: '#set-reminder',
+                },
+              },
+            ]}
             contentLayout="left"
             roundVideo
             centerContent
@@ -247,9 +207,15 @@ function LocationSingle(props = {}) {
       </Box>
 
       {/* FAQs Section */}
-      <Box id="FAQ" px="base" py="xl" width="100%" bg={!expectData && 'white'}>
+      <Box
+        id="location-faq"
+        px="base"
+        py="xl"
+        width="100%"
+        bg={!expectData && 'white'}
+      >
         <Box mx="auto" maxWidth={1200}>
-          <FAQ data={faqData(campus)} onClick={faqScroll} />
+          <FAQ data={faqData(campus)} customScrollPosition="location-faq" />
         </Box>
       </Box>
 
