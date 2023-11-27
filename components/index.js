@@ -5,6 +5,7 @@ import AddToCalendar from './AddToCalendar';
 import AppHead from './AppHead';
 import AvatarListFeature from './AvatarListFeature';
 import BirthDateField from './BirthDateField';
+import CardGridFeature from './CardGridFeature';
 import Chat from './Chat';
 import ClientSideComponent from './ClientSideComponent';
 import CollectionPreview from './CollectionPreview';
@@ -30,6 +31,7 @@ import FilterField from './FilterField';
 import Footer from './Footer';
 import GenderField from './GenderField';
 import GenericError from './GenericError';
+import GiveWithPushpay from './GiveWithPushpay';
 import GradientBackground from './GradientBackground';
 import GroupEmailComposer from './GroupEmailComposer';
 import GroupManage from './GroupManage';
@@ -61,6 +63,7 @@ import PasswordReset from './PasswordReset';
 import SEO from './SEO';
 import SearchField from './SearchField';
 import Share from './Share';
+import Tabs from './Tabs';
 import Testimonials from './Testimonials';
 import TrackEventWhenLoaded from './TrackEventWhenLoaded';
 import UserAvatar from './UserAvatar';
@@ -69,6 +72,7 @@ import VerticalCardListFeature from './VerticalCardListFeature';
 import VerticalModalCardListFeature from './VerticalModalCardListFeature';
 import Video from './Video';
 import VideoHeader from './VideoHeader';
+import VisionCardCarousel from './VisionCardCarousel';
 import WistiaPlayer from './WistiaPlayer';
 
 export {
@@ -78,6 +82,7 @@ export {
   AppHead,
   AvatarListFeature,
   BirthDateField,
+  CardGridFeature,
   Chat,
   ClientSideComponent,
   CollectionPreview,
@@ -103,6 +108,7 @@ export {
   Footer,
   GenderField,
   GenericError,
+  GiveWithPushpay,
   GradientBackground,
   GroupEmailComposer,
   GroupManage,
@@ -134,6 +140,7 @@ export {
   SEO,
   SearchField,
   Share,
+  Tabs,
   Testimonials,
   TrackEventWhenLoaded,
   UserAvatar,
@@ -142,6 +149,7 @@ export {
   VerticalModalCardListFeature,
   Video,
   VideoHeader,
+  VisionCardCarousel,
   WistiaPlayer,
   modals,
 };

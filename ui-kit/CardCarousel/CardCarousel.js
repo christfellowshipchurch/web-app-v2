@@ -93,7 +93,9 @@ const CardCarousel = (props = {}) => {
         ref={el => (carousel = el)}
         renderButtonGroupOutside={isCarousel && !props.hideArrows}
         customButtonGroup={
-          isCarousel && !props.hideArrows && largeDisplay ? <CustomArrows /> : null
+          isCarousel && !props.hideArrows && largeDisplay ? (
+            <CustomArrows />
+          ) : null
         }
       >
         {props.children}
@@ -108,7 +110,6 @@ CardCarousel.propTypes = {
   cardsDisplayed: PropTypes.number,
   hideArrows: PropTypes.bool,
   isCarousel: PropTypes.bool,
-  noArrows: PropTypes.bool,
   slideInterval: PropTypes.number,
 };
 
@@ -117,7 +118,6 @@ CardCarousel.defaultProps = {
   cardsDisplayed: 2,
   hideArrows: false,
   isCarousel: false,
-  noArrows: false,
   slideInterval: 4000,
 };
 

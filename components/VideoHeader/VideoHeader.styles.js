@@ -21,7 +21,7 @@ const VideoOverlay = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: rgba(0, 0, 0, 0.45);
 `;
 
 const LogoOverlay = styled.img`

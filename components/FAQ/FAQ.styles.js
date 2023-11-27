@@ -4,9 +4,14 @@ import { themeGet } from '@styled-system/theme-get';
 import { system } from 'ui-kit';
 
 const FAQ = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1.5fr;
   margin: ${themeGet('space.l')};
+  display: grid;
+  grid-template-columns: ${props => (props?.fullWidth ? '1fr' : '1fr 1.5fr')};
+
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    max-width: ${props => props?.fullWidth && '900px'};
+    margin: ${props => props?.fullWidth && '0 auto'};
+  }
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
     grid-template-columns: 1fr;
