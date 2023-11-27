@@ -14,7 +14,6 @@ import {
   CfEverywhereButtons,
   WeekdayScheduleDisplay,
 } from './customComponents';
-import { is } from 'date-fns/locale';
 
 const CampusInfo = ({
   name,
@@ -100,6 +99,7 @@ const CampusInfo = ({
 
             {/* Custom Info for CF Everywhere and Trinity */}
             {name === 'Online (CF Everywhere)' && <CfEverywhereButtons />}
+
             {name === 'Trinity' && <TrinityButtons />}
 
             {/* Weekday Schedule */}

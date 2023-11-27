@@ -3,7 +3,7 @@ import { Avatar, Box, Button, Divider, Icon, Image, Loader } from 'ui-kit';
 
 import Styled from '../LocationSingle.styles';
 import { handleSocialShare } from 'components/Share/shareUtils';
-import { includes } from 'lodash';
+import { includes, kebabCase } from 'lodash';
 
 /**
  * This component displays Pastor and Campus information
@@ -17,6 +17,7 @@ const PastorCard = ({
   mapLink,
 }) => {
   const { addressFirst, addressLast } = address;
+
   return (
     <Styled.PastorsCard>
       <Box display="flex" alignItems="center">
@@ -59,7 +60,7 @@ const PastorCard = ({
           <Image
             maxWidth={250}
             aspectRatio="16by9"
-            source="/cfdp-default-map.jpg"
+            source={`/location-pages/maps/${kebabCase(campusName)}.jpg`}
           />
           <Box as="h4" mt="base" mb="xs">
             Address

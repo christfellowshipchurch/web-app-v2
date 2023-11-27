@@ -47,14 +47,16 @@ function FAQ(props = {}) {
         {!props?.displayAll && (
           <Box width="100%" textAlign="center">
             <Button
-              onClick={() => {
-                window.scrollTo({
-                  behavior: 'smooth',
-                });
-                setDisplay(display ? null : 'none');
-              }}
               mx="auto"
               variant="link"
+              onClick={() => {
+                if (typeof document !== 'undefined') {
+                  document
+                    .getElementById(props?.customScrollPosition ?? 'faq')
+                    .scrollIntoView({ behavior: 'smooth' });
+                }
+                setDisplay(display ? null : 'none');
+              }}
             >
               {`See ${display === 'none' ? 'More' : 'Less'}`}
             </Button>

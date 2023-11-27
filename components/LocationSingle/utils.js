@@ -18,3 +18,14 @@ export const validDaysOfWeek = scheduleData => {
     };
   });
 };
+
+export const campusNameFormatted = campusName => {
+  switch (campusName) {
+    case 'Cf Everywhere':
+      return 'Online (CF Everywhere)';
+    case 'Port St Lucie':
+      return 'Port St. Lucie';
+    default:
+      return campusName;
+  }
+};
