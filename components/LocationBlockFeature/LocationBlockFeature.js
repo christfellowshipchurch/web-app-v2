@@ -27,19 +27,6 @@ const LocationBlockFeature = props => {
     content = drop(content);
   }
 
-  if (props?.campusName === 'Trinity') {
-    //replaces default content with Trinity specific content
-    content[0].subtitle = 'Babies to Elementary – Every Sunday at 10AM';
-    content[0].htmlContent =
-      'Every Sunday, while you attend service, Christ Fellowship Kids is a place designed with your kids in mind where they’ll learn to love Jesus, love others, and love life.';
-    content[1].subtitle = 'Middle School & High School – Available Regionally';
-    content[1].htmlContent =
-      'CFStudents is available just down the road at Christ Fellowship Palm Beach Gardens. Your student will find a strong community, learn what it means to follow Jesus, and discover their God-given identity and purpose.';
-    content[2].subtitle = 'College & Young Adults – Available Regionally';
-    content[2].htmlContent =
-      'Christ Fellowship Young Adults meets down the road at Christ Fellowship Palm Beach Gardens. Join a community of college students, young adults, and young professionals.';
-  }
-
   return (
     <Box textAlign="center" {...props}>
       <Box mt="l" mb={0} as="h2" color="secondary">
