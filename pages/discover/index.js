@@ -117,6 +117,8 @@ const Discover = () => {
     if (filterValues.title) {
       if (router?.query?.s) {
         values.text = router?.query?.s;
+
+        handleClick();
       }
       router.push({
         pathname: '/discover',
