@@ -2,8 +2,9 @@ import React from 'react';
 import { useActionBanner, useCampuses } from 'hooks';
 import { kebabCase } from 'lodash';
 import { useState } from 'react';
-import { Box, CardGrid, Loader, Button, HorizontalHighlightCard } from 'ui-kit';
+import { Box, CardGrid, Button, HorizontalHighlightCard } from 'ui-kit';
 import { Layout, CustomLink } from 'components';
+import LocationsLoader from './LocationsLoader';
 import Styled from './LocationsPageHeader.styles';
 
 const FindNearestLocation = () => {
@@ -134,7 +135,8 @@ const FindNearestLocation = () => {
 
       <Box p="base" px={{ _: 's', md: 'xl' }}>
         {loading ? (
-          <Loader justifyContent="center" mb="l" />
+          // New Skeleton Loader
+          <LocationsLoader mb="l" loading={true} />
         ) : (
           <CardGrid
             mb="xl"
@@ -155,6 +157,7 @@ const FindNearestLocation = () => {
                 title={'Online'}
                 type="HIGHLIGHT_SMALL"
                 mobileHeight="150px"
+                loading={loading}
                 label={onlineCampus?.distanceFromLocation && 'Right here!'}
               />
             )}
@@ -180,6 +183,7 @@ const FindNearestLocation = () => {
                   title={campus?.name}
                   type="HIGHLIGHT_SMALL"
                   mobileHeight="150px"
+                  loading={loading}
                   label={
                     campus?.distanceFromLocation > 1 &&
                     `${Number(campus?.distanceFromLocation).toFixed(1)} miles`
