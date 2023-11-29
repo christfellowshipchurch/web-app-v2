@@ -115,8 +115,16 @@ const CampusInfo = ({
                   Discover groups and classes to help you grow in your
                   relationship with God and others.
                 </Box>
-                <Button as="a" href="/groups" size="s" mt="s">
-                  Find a Group or Class
+                <Button
+                  variant="secondary"
+                  borderRadius="xxl"
+                  px="base"
+                  as="a"
+                  href="/groups"
+                  size="s"
+                  mt="s"
+                >
+                  Learn More
                 </Button>
               </Box>
             </Box>
@@ -141,14 +149,25 @@ const CampusInfo = ({
             isMobile
             weekdaySchedules={weekdaySchedules}
           />
+          <Divider mb="l" width="80%" />
           <Box pb="xl" mx="base" textAlign="center" flex="2">
-            <Box as="h3">Groups & Classes</Box>
+            <Box as="h2" color="secondary">
+              Groups & Classes
+            </Box>
             <Box>
               Discover groups and classes to help you grow in your relationship
               with God and others.
             </Box>
-            <Button as="a" href="/groups" size="s" mt="s">
-              Find a Group or Class
+            <Button
+              as="a"
+              variant="secondary"
+              borderRadius="xxl"
+              px="base"
+              href="/groups"
+              size="s"
+              mt="s"
+            >
+              Learn More
             </Button>
           </Box>
         </Box>

@@ -150,7 +150,7 @@ const WeekdayScheduleDisplay = ({ weekdaySchedules, isMobile }) => {
       <Box>
         {validDaysOfWeek(weekdaySchedules)?.map(day => {
           return (
-            <Box mt="base">
+            <Box mt="base" textAlign="center">
               <Box as="h3" mb="xs">
                 {capitalize(Object?.keys(day))}
               </Box>
@@ -161,7 +161,11 @@ const WeekdayScheduleDisplay = ({ weekdaySchedules, isMobile }) => {
                   'h:mm a'
                 );
                 return (
-                  <Box display="flex" alignItems="center">
+                  <Box
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                  >
                     {`${formattedTime} - 
                 ${event?.title}`}
                     {event?.url && (

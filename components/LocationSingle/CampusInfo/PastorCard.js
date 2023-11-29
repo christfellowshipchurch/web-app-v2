@@ -54,7 +54,7 @@ const PastorCard = ({
           width="100%"
           display="flex"
           flexDirection="column"
-          alignItems="flex-start"
+          alignItems="center"
           px="l"
         >
           <Image
@@ -65,7 +65,7 @@ const PastorCard = ({
           <Box as="h4" mt="base" mb="xs">
             Address
           </Box>
-          <Box as="a" textAlign="left" href={mapLink}>
+          <Box as="a" textAlign="center" href={mapLink}>
             {addressFirst}
             {'\n'}
             {addressLast}
@@ -105,13 +105,6 @@ const PastorCard = ({
             >
               INVITE A FRIEND
             </Button>,
-            /**
-             * todo : Add url to espanol links
-             */
-            <Box mt="base" as="p" fontStyle="italic">
-              Servicios en Español en <a href="">Royal Palm Beach</a> y{' '}
-              <a href="">Palm Beach Gardens</a>
-            </Box>,
           ]
         )}
       </Box>
@@ -127,6 +120,13 @@ const PastorCard = ({
         </Box>
         <Box as="a" target="_blank" href={instagram} color="tertiary">
           <Icon name="instagram" size="32" />
+        </Box>
+        {/**
+         * todo : add urls
+         *  */}
+        <Box mt="base" as="p" fontStyle="italic" fontSize="14px">
+          Servicios en Español en <a href="">Royal Palm Beach</a> y{' '}
+          <a href="">Palm Beach Gardens</a>
         </Box>
       </Box>
     </Styled.PastorsCard>
