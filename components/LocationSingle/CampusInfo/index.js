@@ -59,13 +59,14 @@ const CampusInfo = ({
         {/* Service Times */}
         <Box width="100%">
           <Styled.ServiceTimeContainer>
-            <Styled.ServiceTimeTitle>{`${
-              name === 'Online (CF Everywhere)'
-                ? 'Live '
-                : name === 'Iglesia Palm Beach Gardens'
-                ? 'Domingo'
-                : ''
-            }Every Sundaydddd`}</Styled.ServiceTimeTitle>
+            <Styled.ServiceTimeTitle>
+              {name === 'Online (CF Everywhere)'
+                ? 'Live Every Sunday'
+                : name === 'Christ Fellowship Español Palm Beach Gardens' ||
+                  name === 'Christ Fellowship Español Royal Palm Beach'
+                ? 'Cada Domingo'
+                : 'Every Sunday'}
+            </Styled.ServiceTimeTitle>
             <Styled.FlexBreak />
             {serviceTimes &&
               serviceTimes?.map(
@@ -108,7 +109,10 @@ const CampusInfo = ({
 
             {/* Weekday Schedule */}
             {isWeekdaySchedule && (
-              <WeekdayScheduleDisplay weekdaySchedules={weekdaySchedules} />
+              <WeekdayScheduleDisplay
+                campus={name}
+                weekdaySchedules={weekdaySchedules}
+              />
             )}
 
             {/* Groups and Classes Section */}
@@ -144,6 +148,7 @@ const CampusInfo = ({
       {isWeekdaySchedule && (
         <Box mt="xxl" display={{ _: 'inline', md: 'none' }}>
           <WeekdayScheduleDisplay
+            campus={name}
             isMobile
             weekdaySchedules={weekdaySchedules}
           />

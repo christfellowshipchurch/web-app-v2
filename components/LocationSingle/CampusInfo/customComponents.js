@@ -4,8 +4,7 @@
 
 import React from 'react';
 import { format } from 'date-fns';
-
-import { validDaysOfWeek } from '../utils';
+import { validDaysOfWeek, weekdaySpanishTranslation } from '../utils';
 import { Box, Button, Divider, Icon } from 'ui-kit';
 import { capitalize } from 'lodash';
 
@@ -88,13 +87,19 @@ const TrinityButtons = () => [
   <StyledDivider display={{ _: 'none', md: 'flex' }} width="100%" />,
 ];
 
-const WeekdayScheduleDisplay = ({ weekdaySchedules, isMobile }) => {
+const WeekdayScheduleDisplay = ({ weekdaySchedules, isMobile, campus }) => {
+  //Christ Fellowship Español campus names
+  const CFEPBG = 'Christ Fellowship Español Palm Beach Gardens';
+  const CFERPB = 'Christ Fellowship Español Royal Palm Beach';
+
   return !isMobile ? (
     [
       <Box display={{ _: 'none', md: 'flex' }} my="l">
         <Box flex="1">
           <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
-            During the Week
+            {campus === CFEPBG || campus === CFERPB
+              ? 'Durante la Semana'
+              : 'During the Week'}
           </Box>
         </Box>
         <Box
@@ -105,10 +110,13 @@ const WeekdayScheduleDisplay = ({ weekdaySchedules, isMobile }) => {
           gridTemplateColumns="repeat(2, 1fr)"
         >
           {validDaysOfWeek(weekdaySchedules)?.map(day => {
+            const formattedDay = capitalize(Object?.keys(day));
             return (
               <Box>
                 <Box as="h3" mb="xs">
-                  {capitalize(Object?.keys(day))}
+                  {campus === CFEPBG || campus === CFERPB
+                    ? weekdaySpanishTranslation(formattedDay)
+                    : formattedDay}
                 </Box>
                 {day[Object?.keys(day)]?.map(event => {
                   const formattedTime = format(
@@ -145,14 +153,19 @@ const WeekdayScheduleDisplay = ({ weekdaySchedules, isMobile }) => {
       pb="xxl"
     >
       <Box as="h2" color="secondary">
-        During the Week
+        {campus === CFEPBG || campus === CFERPB
+          ? 'Durante la Semana'
+          : 'During the Week'}
       </Box>
       <Box>
         {validDaysOfWeek(weekdaySchedules)?.map(day => {
+          const formattedDay = capitalize(Object?.keys(day));
           return (
             <Box mt="base">
               <Box as="h3" mb="xs">
-                {capitalize(Object?.keys(day))}
+                {campus === CFEPBG || campus === CFERPB
+                  ? weekdaySpanishTranslation(formattedDay)
+                  : formattedDay}
               </Box>
               {day[Object?.keys(day)]?.map(event => {
                 const formattedTime = format(

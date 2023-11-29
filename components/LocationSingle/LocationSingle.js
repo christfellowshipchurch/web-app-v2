@@ -131,7 +131,13 @@ function LocationSingle(props = {}) {
         options={{
           variables: {
             campusName:
-              campus === 'Cf Everywhere' ? 'Online (CF Everywhere)' : campus,
+              campus === 'Cf Everywhere'
+                ? 'Online (CF Everywhere)'
+                : campus === 'Iglesia Palm Beach Gardens'
+                ? 'Christ Fellowship Español Palm Beach Gardens'
+                : campus === 'Iglesia Royal Palm Beach'
+                ? 'Christ Fellowship Español Royal Palm Beach'
+                : campus,
           },
         }}
         additionalInfo={campusAdditionalInfo?.info}
