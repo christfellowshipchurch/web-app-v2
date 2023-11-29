@@ -1,5 +1,5 @@
 import React from 'react';
-import { useActionBanner, useCampuses } from 'hooks';
+import { useActionBanner, useCampuses, useForm } from 'hooks';
 import { kebabCase } from 'lodash';
 import { useState } from 'react';
 import { Box, CardGrid, Button, HorizontalHighlightCard } from 'ui-kit';
@@ -11,7 +11,7 @@ const FindNearestLocation = () => {
   const [results, setResults] = useState([{ geometry: { location: {} } }]);
   const [address, setAddress] = useState();
   const { actionBanner } = useActionBanner();
-
+  const { handleSubmit } = useForm();
   // checks for banner to adjust title height
   const isBanner = !!actionBanner;
 
@@ -107,6 +107,8 @@ const FindNearestLocation = () => {
                   color="red"
                   mx="auto"
                   mt={{ _: 'base', md: '' }}
+                  as="form"
+                  onSubmit={handleSubmit}
                 >
                   <Styled.LocationInput
                     placeholder="Enter address or zip code here"
@@ -185,7 +187,7 @@ const FindNearestLocation = () => {
                   mobileHeight="150px"
                   loading={loading}
                   label={
-                    campus?.distanceFromLocation > 1 &&
+                    campus?.distanceFromLocation > 0 &&
                     `${Number(campus?.distanceFromLocation).toFixed(1)} miles`
                   }
                 />

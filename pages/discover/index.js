@@ -26,7 +26,7 @@ const Discover = () => {
   const { values, handleSubmit, handleChange, reset } = useForm();
 
   const { loading: loadingFilters, filters } = useDiscoverFilters();
-  const [search, { loading, contentItems, data}] = useSearchContentItems({
+  const [search, { loading, contentItems, data }] = useSearchContentItems({
     notifyOnNetworkStatusChange: true,
   });
 
@@ -78,7 +78,7 @@ const Discover = () => {
           search_type: 'content',
         },
       });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageResults]);
 
   function handleClearAllClick(event) {
@@ -92,7 +92,7 @@ const Discover = () => {
     analytics.page({
       mediaType: 'Information',
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
