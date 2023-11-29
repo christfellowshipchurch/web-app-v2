@@ -65,7 +65,7 @@ const PastorCard = ({
           <Box as="h4" mt="base" mb="xs">
             Address
           </Box>
-          <Box as="a" textAlign="center" href={mapLink}>
+          <Box as="a" target="_blank" textAlign="center" href={mapLink}>
             {addressFirst}
             {'\n'}
             {addressLast}
