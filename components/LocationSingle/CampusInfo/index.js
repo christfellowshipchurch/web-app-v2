@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { find } from 'lodash';
 
-import { Box, Button, Cell, utils } from 'ui-kit';
+import { Box, Button, Cell, Divider, utils } from 'ui-kit';
 
 import { campusLinks } from '../../../lib/locationData';
 import Styled from '../LocationSingle.styles';
@@ -108,12 +108,8 @@ const CampusInfo = ({
             )}
 
             {/* Groups and Classes Section */}
-            <Box display="flex" mt="l" px="base">
-              <Box
-                textAlign={{ _: 'center', md: 'left' }}
-                ml={!isWeekdaySchedule && 'base'}
-                flex="2"
-              >
+            <Box display={{ _: 'none', md: 'flex' }} mt="l" px="base">
+              <Box textAlign={{ _: 'center', md: 'left' }} flex="2">
                 <Box as="h3">Groups & Classes</Box>
                 <Box>
                   Discover groups and classes to help you grow in your
@@ -137,12 +133,24 @@ const CampusInfo = ({
         />
       </Cell>
 
+      {/* Mobile layout */}
       {isWeekdaySchedule && (
         <Box mt="xxl" display={{ _: 'inline', md: 'none' }}>
+          <Divider my="l" width="80%" />
           <WeekdayScheduleDisplay
             isMobile
             weekdaySchedules={weekdaySchedules}
           />
+          <Box pb="xl" mx="base" textAlign="center" flex="2">
+            <Box as="h3">Groups & Classes</Box>
+            <Box>
+              Discover groups and classes to help you grow in your relationship
+              with God and others.
+            </Box>
+            <Button as="a" href="/groups" size="s" mt="s">
+              Find a Group or Class
+            </Button>
+          </Box>
         </Box>
       )}
     </Box>

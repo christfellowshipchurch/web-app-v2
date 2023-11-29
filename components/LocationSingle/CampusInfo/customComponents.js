@@ -92,7 +92,7 @@ const WeekdayScheduleDisplay = ({ weekdaySchedules, isMobile }) => {
   return !isMobile ? (
     [
       <Box display={{ _: 'none', md: 'flex' }} my="l">
-        <Box flex="1">
+        <Box ml="base" flex="1">
           <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
             During the Week
           </Box>
