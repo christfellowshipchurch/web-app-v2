@@ -111,7 +111,10 @@ const FindNearestLocation = () => {
                   onSubmit={handleSubmit}
                 >
                   <Styled.LocationInput
-                    placeholder="Enter address or zip code here"
+                    placeholder={{
+                      _: 'Enter address or zip',
+                      md: 'Enter address or zip code here',
+                    }}
                     onChange={e => setAddress(e.target.value)}
                   />
                   <Button
