@@ -75,7 +75,7 @@ const ChristBirthdayOffering = () => {
         />
 
         {/* Give a Different Gift - Content Block */}
-        <Box textAlign="center" my="xl">
+        <Box textAlign="center" mt="xl">
           <Box mx="s">
             <Box as="h1">Give a Different Kind of Gift This Christmas</Box>
             <Box my="base">CHRIST BIRTHDAY OFFERING 2023</Box>
@@ -95,12 +95,7 @@ const ChristBirthdayOffering = () => {
             </Box>
           </Box>
 
-          <Box
-            display="flex"
-            pt="base"
-            mb={{ _: 'l', md: 'xl' }}
-            justifyContent="center"
-          >
+          <Box display="flex" pt="base" justifyContent="center">
             <Button
               as="a"
               href="#give"
@@ -120,7 +115,14 @@ const ChristBirthdayOffering = () => {
             </Button>
           </Box>
 
-          <Box mx="auto" display="flex" justifyContent="center">
+          <Box
+            id="why-we-give"
+            py="xl"
+            mx="auto"
+            mb="l"
+            display="flex"
+            justifyContent="center"
+          >
             <Video
               wistiaId="7bkgfs4cwx"
               playsInline={true}
