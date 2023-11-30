@@ -80,7 +80,7 @@ module.exports = {
       { source: '/share', destination: 'https://my.longhollow.com/Registration/share', permanent: true },
       { source: '/report', destination: 'https://annualreport.longhollow.com', permanent: true },
       { source: '/annualreport', destination: 'https://annualreport.longhollow.com', permanent: true },
-      { source: '/feed', destination: '/first-responder-meals-help-us-care-for-our-first-responders-on-thanksgiving', permanent: true },
+      { source: '/feed', destination: '/first-responder-meals-help-us-care-for-our-first-responders-on-christmas', permanent: true },
       { source: '/spirit', destination: '/spiritofchristmas2023', permanent: true },
       { source: '/growtogether', destination: '/grow-together-november-2021', permanent: true },
       { source: '/legacy', destination: '/our-55x35-legacy-55000-legacies-changed-by-2035', permanent: true },
