@@ -6,11 +6,14 @@ import { Box, CardGrid, Button, HorizontalHighlightCard } from 'ui-kit';
 import { Layout, CustomLink } from 'components';
 import LocationsLoader from './LocationsLoader';
 import Styled from './LocationsPageHeader.styles';
+import { useCurrentBreakpoint } from 'hooks';
 
 const FindNearestLocation = () => {
   const [results, setResults] = useState([{ geometry: { location: {} } }]);
   const [address, setAddress] = useState();
+  const [hasLoaded, setHasLoaded] = useState(false);
   const { actionBanner } = useActionBanner();
+  const currentBreakpoint = useCurrentBreakpoint();
   const { handleSubmit } = useForm();
   // checks for banner to adjust title height
   const isBanner = !!actionBanner;
@@ -50,6 +53,43 @@ const FindNearestLocation = () => {
       setResults([{ geometry: { location: {} } }]);
     }
   };
+
+  let placeholder = 'Enter address or zip code here';
+  if (currentBreakpoint.isSmall) placeholder = 'Enter address or zip';
+
+  let scrollTo;
+  if (typeof document !== 'undefined') {
+    scrollTo = document.getElementById('results');
+    // Auto search using the user's current location
+    if (navigator.geolocation && !hasLoaded) {
+      setHasLoaded(true);
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          setResults([
+            {
+              geometry: {
+                location: {
+                  lat: position.coords.latitude,
+                  lng: position.coords.longitude,
+                },
+              },
+            },
+          ]);
+          refetch();
+          searchScroll();
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
+  }
+
+  function searchScroll() {
+    if (scrollTo) {
+      scrollTo.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 
   return (
     <Layout>
@@ -96,8 +136,8 @@ const FindNearestLocation = () => {
                   Christ Fellowship Church Locations
                 </Styled.TitleBox>
                 <Styled.SubtitleBox width={{ _: '100%', md: '600px' }}>
-                  Church isn’t just a building you walk in to, but a family you
-                  can belong to.
+                  Christ Fellowship is one church with many locations across
+                  South Florida, and online—wherever you are!
                 </Styled.SubtitleBox>
 
                 <Box
@@ -111,10 +151,7 @@ const FindNearestLocation = () => {
                   onSubmit={handleSubmit}
                 >
                   <Styled.LocationInput
-                    placeholder={{
-                      _: 'Enter address or zip',
-                      md: 'Enter address or zip code here',
-                    }}
+                    placeholder={placeholder}
                     onChange={e => setAddress(e.target.value)}
                   />
                   <Button
@@ -127,6 +164,7 @@ const FindNearestLocation = () => {
                       //When users clicks search button we want to get the coordinates and refetch the campuses to get distance from location
                       getCoordinates();
                       refetch();
+                      searchScroll();
                     }}
                   >
                     Find a Location
@@ -148,6 +186,7 @@ const FindNearestLocation = () => {
             mx={{ _: 'base', md: 'auto' }}
             px={{ _: '0', md: 'l', lg: 'xl' }}
             maxWidth={1100}
+            id="results"
           >
             {/* We want to display Online campus separately */}
             {onlineCampus && (
