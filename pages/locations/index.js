@@ -175,7 +175,7 @@ const FindNearestLocation = () => {
                     </Styled.MyLocationButton>
                   </Box>
                   <Button
-                    width={{ _: '70%', md: '60%', lg: '55%' }}
+                    width={{ _: '70%', md: '60%', lg: '50%' }}
                     borderRadius="6px"
                     mx="auto"
                     fontSize={{ _: '14px', md: '16px', lg: '18px' }}

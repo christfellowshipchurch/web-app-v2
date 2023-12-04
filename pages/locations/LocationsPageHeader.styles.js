@@ -1,11 +1,18 @@
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
+import Color from 'color';
 
 import { Button, TextInput, system } from 'ui-kit';
 
 const Locations = styled.div`
   ${system}
 `;
+
+export const primaryHover = () => props => {
+  const primaryColor = themeGet('colors.neutrals.500')(props);
+
+  return Color(primaryColor).saturate(0.1).darken(0.35).hex();
+};
 
 const MyLocationButton = styled(Button)`
   padding: 0;
@@ -17,6 +24,13 @@ const MyLocationButton = styled(Button)`
   border-radius: 6px;
   margin-left: ${themeGet('space.s')};
   background-color: ${themeGet('colors.neutrals.500')};
+
+  &:hover {
+    &:hover {
+      background-color: ${primaryHover};
+      border-color: ${primaryHover};
+    }
+  }
 
   ${system}
 `;
