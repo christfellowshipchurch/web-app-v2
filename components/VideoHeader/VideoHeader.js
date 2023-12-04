@@ -12,6 +12,7 @@ function VideoHeader(props = {}) {
       display="flex"
       justifyContent="center"
       alignItems={{ _: 'flex-end', sm: 'center' }}
+      {...props}
     >
       <Box height={{ _: 300, sm: 500, md: 600, lg: 700 }}>
         <Styled.VideoCover
@@ -31,12 +32,11 @@ function VideoHeader(props = {}) {
       </Box>
       <Styled.VideoOverlay />
       {/* Logo */}
-      {props?.logoOverlay && (
-        <Styled.LogoOverlay
-          width={{ _: 'auto', md: '80%' }}
-          src={props?.logoOverlay}
-        />
-      )}
+      <Styled.LogoOverlay
+        maxWidth={1200}
+        width={{ _: '90%', md: '80%' }}
+        src={props?.logoOverlay}
+      />
     </Box>
   );
 }

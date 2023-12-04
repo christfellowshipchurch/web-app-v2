@@ -182,6 +182,24 @@ export const faqHeartForHouseData = [
   },
 ];
 
+export const faqCBO = [
+  {
+    title: 'What should I give?',
+    description:
+      "Christ Birthday Offering is a special offering we get to be a part of every Christmas, where we give above our regular tithes and offerings to help fund our mission projects throughout the year. There isn't a set amount you should give, but we often say our Christ Birthday Offering is the greatest gift on our list because its joy will outlast and outlive any other gift we will give! We encourage you to pray about how God wants you to be a part of it.",
+  },
+
+  {
+    title: 'When can I give my offering?',
+    description: `Traditionally, we give to the Christ Birthday Offering during our Christmas Services. However, you can give your offering any time throughout the Christmas season!`,
+  },
+  {
+    title: 'What does the Christ Birthday Offering go to?',
+    description:
+      "Every dollar you give to Christ Birthday Offering will make a difference toward continuing our impact both locally and globally through our mission projects throughout the year. <a style='color: #CB2C30' target='_blank' href='https://issuu.com/christfellowshipchurch/docs/events_2023_cbo_print_handouts_8.5x11_web_final/36?fr=xKAE9_zU1NQ'>Read more about the Vision for 2024.</a>",
+  },
+];
+
 export const faqCfEverywhereData = [
   {
     title: 'Which campus is live-streamed?',
@@ -219,6 +237,8 @@ const faqData = campus => {
       return faqTrinityData;
     case 'Cf Everywhere':
       return faqCfEverywhereData;
+    case 'CBO':
+      return faqCBO;
     default:
       return faqDefaultData;
   }
