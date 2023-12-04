@@ -2,7 +2,7 @@ import React from 'react';
 import { useActionBanner, useCampuses, useForm } from 'hooks';
 import { kebabCase } from 'lodash';
 import { useState } from 'react';
-import { Box, CardGrid, Button, HorizontalHighlightCard } from 'ui-kit';
+import { Box, CardGrid, Button, HorizontalHighlightCard, Icon } from 'ui-kit';
 import { Layout, CustomLink } from 'components';
 import LocationsLoader from './LocationsLoader';
 import Styled from './LocationsPageHeader.styles';
@@ -57,37 +57,41 @@ const FindNearestLocation = () => {
   let placeholder = 'Enter address or zip code here';
   if (currentBreakpoint.isSmall) placeholder = 'Enter address or zip';
 
+  function searchScroll(scrollTo) {
+    if (scrollTo) {
+      scrollTo.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  function searchCurrentLocation(scrollTo) {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        setResults([
+          {
+            geometry: {
+              location: {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+              },
+            },
+          },
+        ]);
+        refetch();
+        searchScroll(scrollTo);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
   let scrollTo;
   if (typeof document !== 'undefined') {
     scrollTo = document.getElementById('results');
     // Auto search using the user's current location
     if (navigator.geolocation && !hasLoaded) {
       setHasLoaded(true);
-      navigator.geolocation.getCurrentPosition(
-        position => {
-          setResults([
-            {
-              geometry: {
-                location: {
-                  lat: position.coords.latitude,
-                  lng: position.coords.longitude,
-                },
-              },
-            },
-          ]);
-          refetch();
-          searchScroll();
-        },
-        error => {
-          console.log(error);
-        }
-      );
-    }
-  }
-
-  function searchScroll() {
-    if (scrollTo) {
-      scrollTo.scrollIntoView({ behavior: 'smooth' });
+      searchCurrentLocation(scrollTo);
     }
   }
 
@@ -131,11 +135,15 @@ const FindNearestLocation = () => {
             justifyContent="space-between"
           >
             <Styled.ContentBox>
-              <Box textAlign="center" mt={{ _: 'base', md: 'l' }}>
+              <Box
+                textAlign="center"
+                mt={{ _: 'base', md: 'l' }}
+                maxWidth={900}
+              >
                 <Styled.TitleBox>
                   Christ Fellowship Church Locations
                 </Styled.TitleBox>
-                <Styled.SubtitleBox width={{ _: '100%', md: '600px' }}>
+                <Styled.SubtitleBox width={{ _: '100%', md: '560px' }}>
                   Christ Fellowship is one church with many locations across
                   South Florida, and online—wherever you are!
                 </Styled.SubtitleBox>
@@ -150,10 +158,22 @@ const FindNearestLocation = () => {
                   as="form"
                   onSubmit={handleSubmit}
                 >
-                  <Styled.LocationInput
-                    placeholder={placeholder}
-                    onChange={e => setAddress(e.target.value)}
-                  />
+                  <Box display="flex" justifyContent="space-between">
+                    <Styled.LocationInput
+                      containerProps={{ width: '100%' }}
+                      placeholder={placeholder}
+                      onChange={e => setAddress(e.target.value)}
+                    />
+                    <Styled.MyLocationButton
+                      onClick={() => {
+                        //When users clicks search button we want to get the coordinates and refetch the campuses to get distance from location
+                        searchCurrentLocation();
+                        // refetch();
+                      }}
+                    >
+                      <Icon size={26} name="location" />
+                    </Styled.MyLocationButton>
+                  </Box>
                   <Button
                     width={{ _: '70%', md: '60%', lg: '55%' }}
                     borderRadius="6px"

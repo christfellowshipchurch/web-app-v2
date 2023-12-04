@@ -1,9 +1,23 @@
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
-import { TextInput, system } from 'ui-kit';
+import { Button, TextInput, system } from 'ui-kit';
 
 const Locations = styled.div`
+  ${system}
+`;
+
+const MyLocationButton = styled(Button)`
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 12%;
+  height: 50px;
+  border-radius: 6px;
+  margin-left: ${themeGet('space.s')};
+  background-color: ${themeGet('colors.neutrals.500')};
+
   ${system}
 `;
 
@@ -111,5 +125,6 @@ Locations.ContentBox = ContentBox;
 Locations.TitleBox = TitleBox;
 Locations.SubtitleBox = SubtitleBox;
 Locations.LocationInput = LocationInput;
+Locations.MyLocationButton = MyLocationButton;
 
 export default Locations;
