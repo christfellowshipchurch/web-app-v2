@@ -55,7 +55,8 @@ const FindNearestLocation = () => {
   };
 
   let placeholder = 'Enter address or zip code here';
-  if (currentBreakpoint.isSmall) placeholder = 'Enter address or zip';
+  if (currentBreakpoint.isSmall || currentBreakpoint.isMedium)
+    placeholder = 'Enter address/zip';
 
   function searchScroll(scrollTo) {
     if (scrollTo) {
@@ -171,10 +172,11 @@ const FindNearestLocation = () => {
                         // refetch();
                       }}
                     >
-                      <Icon size={26} name="locationArrow" />
+                      <Icon size={{ _: 22, md: 26 }} name="locationArrow" />
                     </Styled.MyLocationButton>
                   </Box>
                   <Button
+                    maxWidth="200px"
                     width={{ _: '70%', md: '60%', lg: '50%' }}
                     borderRadius="6px"
                     mx="auto"

@@ -19,8 +19,8 @@ const MyLocationButton = styled(Button)`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 12%;
-  height: 50px;
+  width: 22%;
+  height: 42px;
   border-radius: 6px;
   margin-left: ${themeGet('space.s')};
   background-color: ${themeGet('colors.neutrals.500')};
@@ -30,6 +30,15 @@ const MyLocationButton = styled(Button)`
       background-color: ${primaryHover};
       border-color: ${primaryHover};
     }
+  }
+
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    height: 50px;
+    width: 20%;
+  }
+
+  @media screen and (min-width: ${themeGet('breakpoints.l')}) {
+    width: 12%;
   }
 
   ${system}
@@ -119,6 +128,7 @@ const LocationInput = styled(TextInput)`
   text-align: center;
   font-size: 14px;
   margin-bottom: ${themeGet('space.base')};
+  max-width: 400px;
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     font-size: 20px;
