@@ -171,7 +171,7 @@ const FindNearestLocation = () => {
                         // refetch();
                       }}
                     >
-                      <Icon size={26} name="location" />
+                      <Icon size={26} name="locationArrow" />
                     </Styled.MyLocationButton>
                   </Box>
                   <Button
