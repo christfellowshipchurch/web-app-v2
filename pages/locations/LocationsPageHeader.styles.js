@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 import Color from 'color';
 
-import { Button, TextInput, system } from 'ui-kit';
+import { TextInput, system } from 'ui-kit';
 
 const Locations = styled.div`
   ${system}
@@ -13,36 +13,6 @@ export const primaryHover = () => props => {
 
   return Color(primaryColor).saturate(0.1).darken(0.35).hex();
 };
-
-const MyLocationButton = styled(Button)`
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 22%;
-  height: 42px;
-  border-radius: 6px;
-  margin-left: ${themeGet('space.s')};
-  background-color: ${themeGet('colors.neutrals.500')};
-
-  &:hover {
-    &:hover {
-      background-color: ${primaryHover};
-      border-color: ${primaryHover};
-    }
-  }
-
-  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-    height: 50px;
-    width: 20%;
-  }
-
-  @media screen and (min-width: ${themeGet('breakpoints.l')}) {
-    width: 12%;
-  }
-
-  ${system}
-`;
 
 const VideoCover = styled.video`
   width: 100%;
@@ -126,8 +96,8 @@ const SubtitleBox = styled.p`
 
 const LocationInput = styled(TextInput)`
   text-align: center;
-  font-size: 14px;
-  margin-bottom: ${themeGet('space.base')};
+  font-size: 16px;
+  margin-bottom: ${themeGet('space.s')};
   max-width: 400px;
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
@@ -135,7 +105,7 @@ const LocationInput = styled(TextInput)`
   }
 
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
-    margin-bottom: ${themeGet('space.l')};
+    margin-bottom: ${themeGet('space.s')};
   }
 
   &::placeholder {
@@ -149,6 +119,5 @@ Locations.ContentBox = ContentBox;
 Locations.TitleBox = TitleBox;
 Locations.SubtitleBox = SubtitleBox;
 Locations.LocationInput = LocationInput;
-Locations.MyLocationButton = MyLocationButton;
 
 export default Locations;

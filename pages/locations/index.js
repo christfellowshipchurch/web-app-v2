@@ -145,8 +145,17 @@ const FindNearestLocation = () => {
                   Christ Fellowship Church Locations
                 </Styled.TitleBox>
                 <Styled.SubtitleBox width={{ _: '100%', md: '560px' }}>
-                  Christ Fellowship is one church with many locations across
-                  South Florida, and online—wherever you are!
+                  {currentBreakpoint.isSmall ? (
+                    <Box>
+                      We are one church with many locations across South Florida
+                      and online.
+                    </Box>
+                  ) : (
+                    <Box>
+                      Christ Fellowship is one church with many locations across
+                      South Florida, and online—wherever you are!{' '}
+                    </Box>
+                  )}
                 </Styled.SubtitleBox>
 
                 <Box
@@ -165,23 +174,14 @@ const FindNearestLocation = () => {
                       placeholder={placeholder}
                       onChange={e => setAddress(e.target.value)}
                     />
-                    <Styled.MyLocationButton
-                      onClick={() => {
-                        //When users clicks search button we want to get the coordinates and refetch the campuses to get distance from location
-                        searchCurrentLocation();
-                        // refetch();
-                      }}
-                    >
-                      <Icon size={{ _: 22, md: 26 }} name="locationArrow" />
-                    </Styled.MyLocationButton>
                   </Box>
                   <Button
                     maxWidth="200px"
                     width={{ _: '70%', md: '60%', lg: '50%' }}
                     borderRadius="6px"
                     mx="auto"
-                    fontSize={{ _: '14px', md: '16px', lg: '18px' }}
-                    mb={{ _: 'base', lg: 'xl' }}
+                    fontSize={{ _: '16px', md: '18px' }}
+                    mb={{ _: 'l', lg: 'base' }}
                     onClick={() => {
                       //When users clicks search button we want to get the coordinates and refetch the campuses to get distance from location
                       getCoordinates();
@@ -191,6 +191,27 @@ const FindNearestLocation = () => {
                   >
                     Find a Location
                   </Button>
+                  <Box mb="base">
+                    <Box
+                      as="a"
+                      mr="s"
+                      color="white"
+                      fontStyle="italic"
+                      textDecoration="underline"
+                      onClick={() => {
+                        //When users clicks search button we want to get the coordinates and refetch the campuses to get distance from location
+                        searchCurrentLocation();
+                        // refetch();
+                      }}
+                    >
+                      Use my current location
+                    </Box>
+                    <Icon
+                      color="white"
+                      size={{ _: 22, md: 26 }}
+                      name="locationArrow"
+                    />
+                  </Box>
                 </Box>
               </Box>
             </Styled.ContentBox>
