@@ -7,7 +7,7 @@ import { Box, Button, Cell, utils } from 'ui-kit';
 import { campusLinks } from '../../../lib/locationData';
 import Styled from '../LocationSingle.styles';
 import PastorCard from './PastorCard';
-import { validDaysOfWeek } from '../utils';
+import { validDaysOfWeek, groupsClassesCampusSection } from '../utils';
 
 import {
   TrinityButtons,
@@ -40,6 +40,10 @@ const CampusInfo = ({
 
   const desktopHeight = name === 'Online (CF Everywhere)' ? 500 : 560;
 
+  /** Spanish Campuses */
+  const CFEPBG = 'Christ Fellowship Español Palm Beach Gardens';
+  const CFERPB = 'Christ Fellowship Español Royal Palm Beach';
+
   return (
     <Box height={{ _: 'auto', md: desktopHeight }} bg="white">
       {/* Campus Information */}
@@ -62,8 +66,7 @@ const CampusInfo = ({
             <Styled.ServiceTimeTitle>
               {name === 'Online (CF Everywhere)'
                 ? 'Live Every Sunday'
-                : name === 'Christ Fellowship Español Palm Beach Gardens' ||
-                  name === 'Christ Fellowship Español Royal Palm Beach'
+                : name === CFEPBG || name === CFERPB
                 ? 'Cada Domingo'
                 : 'Every Sunday'}
             </Styled.ServiceTimeTitle>
@@ -116,21 +119,40 @@ const CampusInfo = ({
             )}
 
             {/* Groups and Classes Section */}
-            <Box display="flex" mt="l" px="base">
+            <Box display="flex" flexDirection="column" mt="l" px="base">
               <Box
                 textAlign={{ _: 'center', md: 'left' }}
                 ml={!isWeekdaySchedule && 'base'}
                 flex="2"
               >
-                <Box as="h3">Groups & Classes</Box>
-                <Box>
-                  Discover groups and classes to help you grow in your
-                  relationship with God and others.
-                </Box>
-                <Button size="s" mt="s">
-                  Find a Group or Class
-                </Button>
+                {name === CFEPBG || name === CFERPB
+                  ? groupsClassesCampusSection('Spanish')
+                  : groupsClassesCampusSection('English')}
               </Box>
+
+              {/* This Section Only Shows on the Espanol Campuses */}
+              {name === CFEPBG || name === CFERPB ? (
+                <Box mt="base" textAlign={{ _: 'center', md: 'left' }}>
+                  <Box as="h3">Tenemos más para ti</Box>
+                  {name === CFEPBG ? (
+                    <Box>
+                      Consulta{' '}
+                      <a href="/locations/iglesia-royal-palm-beach">
+                        Christ Fellowship Church Español en Royal Palm Beach
+                      </a>{' '}
+                      para conocer más espacios entre semana.
+                    </Box>
+                  ) : (
+                    <Box>
+                      Consulta{' '}
+                      <a href="/locations/iglesia-palm-beach-gardens">
+                        Christ Fellowship Church Español en Palm Beach Gardens
+                      </a>{' '}
+                      para conocer más espacios entre semana.
+                    </Box>
+                  )}
+                </Box>
+              ) : null}
             </Box>
           </Box>
         </Box>

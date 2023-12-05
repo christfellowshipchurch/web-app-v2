@@ -17,6 +17,13 @@ const PastorCard = ({
   mapLink,
 }) => {
   const { addressFirst, addressLast } = address;
+
+  /**
+   * Name information for Español campuses
+   */
+  const CFEPBG = 'Christ Fellowship Español Palm Beach Gardens';
+  const CFERPB = 'Christ Fellowship Español Royal Palm Beach';
+
   return (
     <Styled.PastorsCard>
       <Box display="flex" alignItems="center">
@@ -62,7 +69,9 @@ const PastorCard = ({
             source="/cfdp-default-map.jpg"
           />
           <Box as="h4" mt="base" mb="xs">
-            Address
+            {campusName === CFEPBG || campusName === CFERPB
+              ? 'Dirección'
+              : 'Address'}
           </Box>
           <Box as="a" textAlign="left" href={mapLink}>
             {addressFirst}
@@ -70,7 +79,9 @@ const PastorCard = ({
             {addressLast}
           </Box>
           <Box as="h4" mt="base" mb="xs">
-            Phone
+            {campusName === CFEPBG || campusName === CFERPB
+              ? 'Teléfono'
+              : 'Phone'}
           </Box>
           <Box as="a" href={`tel:${phoneNumber}`}>
             {phoneNumber}
@@ -102,14 +113,32 @@ const PastorCard = ({
                 })
               }
             >
-              INVITE A FRIEND
+              {campusName === CFEPBG || campusName === CFERPB
+                ? 'INVITA A UN AMIGO'
+                : 'INVITE A FRIEND'}
             </Button>,
             /**
              * todo : Add url to espanol links
              */
             <Box mt="base" as="p" fontStyle="italic">
-              Servicios en Español en <a href="">Royal Palm Beach</a> y{' '}
-              <a href="">Palm Beach Gardens</a>
+              {campusName === CFEPBG || campusName === CFERPB ? (
+                <>
+                  Otros campuses{' '}
+                  <a href="/locations" target="_blank">
+                    aquí
+                  </a>{' '}
+                  <br />
+                  See all other services and campuses{' '}
+                  <a href="/locations" target="_blank">
+                    here
+                  </a>
+                </>
+              ) : (
+                <>
+                  Servicios en Español en <a href="">Royal Palm Beach</a> y{' '}
+                  <a href="">Palm Beach Gardens</a>
+                </>
+              )}
             </Box>,
           ]
         )}
@@ -118,7 +147,11 @@ const PastorCard = ({
         <Box
           as="a"
           target="_blank"
-          href="https://www.facebook.com/CFimpact"
+          href={
+            campusName === CFEPBG || campusName === CFERPB
+              ? 'https://www.facebook.com/christfellowshipespanol'
+              : 'https://www.facebook.com/CFimpact'
+          }
           color="tertiary"
           mr="xs"
         >

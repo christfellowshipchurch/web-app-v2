@@ -23,6 +23,7 @@ import {
   headerData,
   setReminderVideos,
   setReminderData,
+  setReminderEspanolData,
   thisWeekFeatureId,
   whatToExpectVideos,
   whatToExpectData,
@@ -181,9 +182,16 @@ function LocationSingle(props = {}) {
           </Box>
           <Box width="100%" px={{ _: 'base', md: 'xl' }} pt="base">
             <InfoCardList
-              {...setReminderData}
+              {...(campus === 'Iglesia Palm Beach Gardens' ||
+              campus === 'Iglesia Royal Palm Beach'
+                ? setReminderEspanolData
+                : setReminderData)}
               button={{
-                title: 'Set a Reminder',
+                title:
+                  campus === 'Iglesia Palm Beach Gardens' ||
+                  campus === 'Iglesia Royal Palm Beach'
+                    ? 'Recuérdame'
+                    : 'Set a Reminder',
                 onClick: () =>
                   modalDispatch(
                     showModal('SetReminder', { defaultCampus: campus })

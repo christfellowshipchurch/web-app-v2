@@ -1,3 +1,5 @@
+import { Box, Button } from 'ui-kit';
+
 export const validDaysOfWeek = scheduleData => {
   const validDays = [];
 
@@ -41,6 +43,42 @@ export const weekdaySpanishTranslation = weekDay => {
     }
     case 'Sunday': {
       return 'Domingo';
+    }
+    default: {
+      return '';
+    }
+  }
+};
+
+export const groupsClassesCampusSection = language => {
+  switch (language) {
+    case 'English': {
+      return (
+        <Box>
+          <Box as="h3">Groups & Classes</Box>
+          <Box>
+            Discover groups and classes to help you grow in your relationship
+            with God and others.
+          </Box>
+          <Button size="s" mt="s">
+            Find a Group or Class
+          </Button>
+        </Box>
+      );
+    }
+    case 'Spanish': {
+      return (
+        <Box>
+          <Box as="h3">Grupos y Clases</Box>
+          <Box>
+            Descubre grupos y clases que te ayudarán a crecer en tu relación con
+            Dios y los demás.
+          </Box>
+          <Button size="s" mt="s">
+            Grupos y Clases
+          </Button>
+        </Box>
+      );
     }
     default: {
       return '';
