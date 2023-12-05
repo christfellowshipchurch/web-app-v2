@@ -27,6 +27,7 @@ import {
   thisWeekFeatureId,
   whatToExpectVideos,
   whatToExpectData,
+  whatToExpectDataSpanish,
 } from '../../lib/locationData';
 import { CampusProvider, FeatureProvider } from 'providers';
 import faqData from 'components/FAQ/faqData';
@@ -34,6 +35,12 @@ import { showModal, useModalDispatch } from 'providers/ModalProvider';
 
 function LocationSingle(props = {}) {
   const modalDispatch = useModalDispatch();
+
+  /**
+   * note : Espanol Campuses Names
+   */
+  const CFEPBG = 'Iglesia Palm Beach Gardens';
+  const CFERPB = 'Iglesia Royal Palm Beach';
 
   if (props.loading) {
     return (
@@ -100,9 +107,14 @@ function LocationSingle(props = {}) {
   const setAReminderVideo = setReminderVideos[camelCase(campus)];
   const whatToExpectVideo = whatToExpectVideos[camelCase(campus)];
   const expectData = whatToExpectData(campus);
+  const expectSpanishData = whatToExpectDataSpanish();
+
   const expectActions = [
     {
-      title: 'Set a Reminder',
+      title:
+        campus === CFEPBG || campus === CFERPB
+          ? 'Recuérdame'
+          : 'Set a Reminder',
       variant: 'secondary',
       onClick: () =>
         modalDispatch(showModal('SetReminder', { defaultCampus: campus })),
@@ -134,9 +146,9 @@ function LocationSingle(props = {}) {
             campusName:
               campus === 'Cf Everywhere'
                 ? 'Online (CF Everywhere)'
-                : campus === 'Iglesia Palm Beach Gardens'
+                : campus === CFEPBG
                 ? 'Christ Fellowship Español Palm Beach Gardens'
-                : campus === 'Iglesia Royal Palm Beach'
+                : campus === CFERPB
                 ? 'Christ Fellowship Español Royal Palm Beach'
                 : campus,
           },
@@ -182,14 +194,12 @@ function LocationSingle(props = {}) {
           </Box>
           <Box width="100%" px={{ _: 'base', md: 'xl' }} pt="base">
             <InfoCardList
-              {...(campus === 'Iglesia Palm Beach Gardens' ||
-              campus === 'Iglesia Royal Palm Beach'
+              {...(campus === CFEPBG || campus === CFERPB
                 ? setReminderEspanolData
                 : setReminderData)}
               button={{
                 title:
-                  campus === 'Iglesia Palm Beach Gardens' ||
-                  campus === 'Iglesia Royal Palm Beach'
+                  campus === CFEPBG || campus === CFERPB
                     ? 'Recuérdame'
                     : 'Set a Reminder',
                 onClick: () =>
@@ -212,7 +222,9 @@ function LocationSingle(props = {}) {
           px={{ _: 'base', md: 'xl' }}
         >
           <ContentBlock
-            {...expectData}
+            {...(campus === CFEPBG || campus === CFERPB
+              ? expectSpanishData
+              : expectData)}
             wistiaId={whatToExpectVideo && whatToExpectVideo}
             actions={expectActions}
             contentLayout="left"
