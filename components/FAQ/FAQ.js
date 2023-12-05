@@ -12,7 +12,7 @@ function FAQ(props = {}) {
   /**
    * note : This is a custom scroll position setup for the Location Pages so it properly scrolls back to the FAQ section when pressing the See Less button. We may want to revisit how we determine the scroll position so its more dynamic.
    */
-
+  console.log('props', props);
   return (
     <SCThemeProvider
       theme={{ colors: { ...colors?.light, ...props?.customTheme } }}
@@ -29,22 +29,22 @@ function FAQ(props = {}) {
             color="neutrals.300"
             mb={props?.fullWidth ? 's' : 'base'}
           >
-            FAQ
+            {props?.otherData.title}
           </Box>
           {props?.showDescription && (
             <>
               <Box as="h4" color="tertiary" fontStyle="italic" mb={0}>
-                Have additional questions?
+                {props?.otherData.question}
               </Box>
               <Box fontWeight="bold" mb="base" maxWidth={450}>
-                Someone from our team is happy to answer any of your questions!
+                {props?.otherData.description}
               </Box>
               <Box
                 as="a"
                 href="https://rock.gocf.org/contactus"
                 target="_blank"
               >
-                Contact Us
+                {props?.otherData.contactUs}
               </Box>
             </>
           )}

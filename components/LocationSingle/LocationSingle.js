@@ -30,7 +30,7 @@ import {
   whatToExpectDataSpanish,
 } from '../../lib/locationData';
 import { CampusProvider, FeatureProvider } from 'providers';
-import faqData from 'components/FAQ/faqData';
+import faqData, { otherData } from 'components/FAQ/faqData';
 import { showModal, useModalDispatch } from 'providers/ModalProvider';
 
 function LocationSingle(props = {}) {
@@ -275,7 +275,11 @@ function LocationSingle(props = {}) {
       {/* FAQs Section */}
       <Box id="FAQ" px="base" py="xl" width="100%" bg={!expectData && 'white'}>
         <Box mx="auto" maxWidth={1200}>
-          <FAQ data={faqData(campus)} onClick={faqScroll} />
+          <FAQ
+            data={faqData(campus)}
+            otherData={otherData(campus)}
+            onClick={faqScroll}
+          />
         </Box>
       </Box>
 
