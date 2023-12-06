@@ -90,6 +90,12 @@ FAQ.propTypes = {
   data: PropTypes.array,
   displayAll: PropTypes.bool,
   showDescription: PropTypes.bool,
+  otherData: PropTypes.shape({
+    title: PropTypes.string,
+    question: PropTypes.string,
+    description: PropTypes.string,
+    contactUs: PropTypes.string,
+  }),
 };
 
 FAQ.defaultProps = {
@@ -97,6 +103,13 @@ FAQ.defaultProps = {
   displayAll: false,
   showDescription: true,
   customTheme: colors?.light,
+  otherData: {
+    title: 'FAQ',
+    question: 'Have a question?',
+    description:
+      'Someone from our team is happy to answer any of your questions!',
+    contactUs: 'Contact Us',
+  },
 };
 
 export default FAQ;
