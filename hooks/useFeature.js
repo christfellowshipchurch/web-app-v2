@@ -56,8 +56,12 @@ function useFeature(options = {}) {
     ...options,
   });
 
-  //temp hide title (Fix Get There First feature cache)
-  const feature = { ...query?.data?.node, title: null };
+  const data = { ...query?.data?.node };
+  const feature = {
+    ...data,
+    //temp hide title (Fix H4H - Get There First feature cache)
+    title: data?.title === 'Get There First' ? null : data?.title,
+  };
 
   return {
     feature,
