@@ -7,6 +7,7 @@ import {
   FAQ,
   Layout,
   LocationBlockFeature,
+  LocationBlockFeatureEspanol,
   NotFound,
   InfoCardList,
   Testimonials,
@@ -18,6 +19,8 @@ import { Box, Button, Divider, Loader, ContentBlock } from 'ui-kit';
 import CampusInfo from './CampusInfo';
 import LocationHeader from './LocationHeader';
 import defaultBlockData from '../LocationBlockFeature/defaultBlockData';
+import { defaultBlockDataEspanol } from '../LocationBlockFeatureEspanol/defaultBlockDataEspanol';
+
 import {
   additionalInfoCampusData,
   headerData,
@@ -241,17 +244,26 @@ function LocationSingle(props = {}) {
         pt="base"
         bg={!expectData && 'white'}
       >
-        <LocationBlockFeature
-          mx="auto"
-          campusName={campus}
-          maxWidth={1000}
-          data={defaultBlockData(campus)}
+        {campus === CFEPBG || campus === CFERPB ? (
+          <LocationBlockFeatureEspanol
+            mx="auto"
+            campusName={campus}
+            maxWidth={1000}
+            data={defaultBlockDataEspanol(campus)}
+          />
+        ) : (
+          <LocationBlockFeature
+            mx="auto"
+            campusName={campus}
+            maxWidth={1000}
+            data={defaultBlockData(campus)}
 
-          /**
-           * todo :  These would be the content blocks we pull in from Rock, but since the content doesn't match Figma we'll hard code the content for now.
-           *  */
-          // data={props?.data?.featureFeed?.features}
-        />
+            /**
+             * todo :  These would be the content blocks we pull in from Rock, but since the content doesn't match Figma we'll hard code the content for now.
+             *  */
+            // data={props?.data?.featureFeed?.features}
+          />
+        )}
       </Box>
 
       {/* What's Coming Up Section */}
