@@ -12,7 +12,6 @@ function FAQ(props = {}) {
   /**
    * note : This is a custom scroll position setup for the Location Pages so it properly scrolls back to the FAQ section when pressing the See Less button. We may want to revisit how we determine the scroll position so its more dynamic.
    */
-  console.log('props', props);
   return (
     <SCThemeProvider
       theme={{ colors: { ...colors?.light, ...props?.customTheme } }}
@@ -74,7 +73,9 @@ function FAQ(props = {}) {
                 mx="auto"
                 variant="link"
               >
-                {`See ${display === 'none' ? 'More' : 'Less'}`}
+                {props?.otherData?.title === 'FAQ'
+                  ? `See ${display === 'none' ? 'More' : 'Less'}`
+                  : `Ver ${display === 'none' ? 'Mas' : 'Menos'}`}
               </Button>
             </Box>
           )}
@@ -89,6 +90,12 @@ FAQ.propTypes = {
   data: PropTypes.array,
   displayAll: PropTypes.bool,
   showDescription: PropTypes.bool,
+  otherData: PropTypes.shape({
+    title: PropTypes.string,
+    question: PropTypes.string,
+    description: PropTypes.string,
+    contactUs: PropTypes.string,
+  }),
 };
 
 FAQ.defaultProps = {
@@ -96,6 +103,13 @@ FAQ.defaultProps = {
   displayAll: false,
   showDescription: true,
   customTheme: colors?.light,
+  otherData: {
+    title: 'FAQ',
+    question: 'Have a question?',
+    description:
+      'Someone from our team is happy to answer any of your questions!',
+    contactUs: 'Contact Us',
+  },
 };
 
 export default FAQ;
