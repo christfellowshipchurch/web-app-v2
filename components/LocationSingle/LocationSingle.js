@@ -319,10 +319,14 @@ function LocationSingle(props = {}) {
       <Box bg={!expectData && 'white'} px="base" py="xl">
         <Box textAlign="center" maxWidth={500} mx="auto">
           <Box as="h2" color="secondary">
-            Never miss a thing.
+            {campus !== CFEPBG && campus !== CFERPB
+              ? `Never miss a thing.`
+              : `No te pierdas de nada!`}
           </Box>
           <Box as="h4" color="neutrals.500">
-            Receive events and updates straight to your inbox!
+            {campus !== CFEPBG && campus !== CFERPB
+              ? `Receive events and updates straight to your inbox!`
+              : `Recibe información sobre eventos y actualizaciones directamente en tu inbox.`}
           </Box>
           <Button
             as="a"
@@ -332,7 +336,9 @@ function LocationSingle(props = {}) {
             href="http://eepurl.com/hAk7aP"
             target="_blank"
           >
-            Subscribe
+            {campus !== CFEPBG && campus !== CFERPB
+              ? `Subscribe`
+              : `Suscríbete`}
           </Button>
         </Box>
       </Box>
