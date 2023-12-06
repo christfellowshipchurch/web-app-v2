@@ -177,7 +177,9 @@ const FindNearestLocation = () => {
                     />
                   </Box>
                   <Button
+                    size="s"
                     maxWidth="200px"
+                    minWidth="160px"
                     width={{ _: '70%', md: '60%', lg: '50%' }}
                     borderRadius="6px"
                     mx="auto"
@@ -192,7 +194,7 @@ const FindNearestLocation = () => {
                   >
                     Find a Location
                   </Button>
-                  <Box mb="base">
+                  <Box mt={{ _: 0, md: 'base' }} mb={{ _: 'base', md: 'l' }}>
                     <Styled.CurrentLocation
                       onClick={() => {
                         //When users clicks search button we want to get the coordinates and refetch the campuses to get distance from location
@@ -204,7 +206,7 @@ const FindNearestLocation = () => {
                     </Styled.CurrentLocation>
                     <Icon
                       color="white"
-                      size={{ _: 22, md: 26 }}
+                      size={{ _: 18, md: 22 }}
                       name="locationArrow"
                     />
                   </Box>

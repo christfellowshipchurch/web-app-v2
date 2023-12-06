@@ -69,15 +69,10 @@ const TitleBox = styled.h1`
   color: white;
   font-weight: bold;
   padding-bottom: ${themeGet('space.s')};
+  font-size: 28px;
 
-  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
-    font-size: 24px;
-  }
-  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-    font-size: 28px;
-  }
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
-    font-size: 34px;
+    font-size: 36px;
   }
 
   @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
