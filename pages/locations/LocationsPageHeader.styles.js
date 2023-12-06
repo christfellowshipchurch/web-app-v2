@@ -26,6 +26,18 @@ const VideoCover = styled.video`
   ${system}
 `;
 
+const CurrentLocation = styled.a`
+  color: white;
+  font-style: italic;
+  margin-right: ${themeGet('space.s')};
+  text-decoration: underline;
+
+  &:hover {
+    cursor: pointer;
+    color: ${themeGet('colors.neutrals.500')};
+  }
+`;
+
 const VideoOverlay = styled.div`
   z-index: 1;
   position: absolute;
@@ -119,5 +131,6 @@ Locations.ContentBox = ContentBox;
 Locations.TitleBox = TitleBox;
 Locations.SubtitleBox = SubtitleBox;
 Locations.LocationInput = LocationInput;
+Locations.CurrentLocation = CurrentLocation;
 
 export default Locations;

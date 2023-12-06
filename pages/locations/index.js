@@ -30,6 +30,14 @@ const FindNearestLocation = () => {
     }
   );
 
+  if (typeof document !== 'undefined') {
+    // Auto search using the user's current location
+    if (navigator.geolocation && !hasLoaded) {
+      setHasLoaded(true);
+      searchCurrentLocation();
+    }
+  }
+
   // sort campuses by distance from location
   let sortedCampuses = [...campuses].sort((a, b) => {
     return a.distanceFromLocation - b.distanceFromLocation;
@@ -58,7 +66,8 @@ const FindNearestLocation = () => {
   if (currentBreakpoint.isSmall || currentBreakpoint.isMedium)
     placeholder = 'Enter address/zip';
 
-  function searchScroll(scrollTo) {
+  function searchScroll() {
+    let scrollTo = document.getElementById('results');
     if (scrollTo) {
       scrollTo.scrollIntoView({ behavior: 'smooth' });
     }
@@ -78,22 +87,14 @@ const FindNearestLocation = () => {
           },
         ]);
         refetch();
-        searchScroll(scrollTo);
+        if (hasLoaded) {
+          searchScroll();
+        }
       },
       error => {
         console.log(error);
       }
     );
-  }
-
-  let scrollTo;
-  if (typeof document !== 'undefined') {
-    scrollTo = document.getElementById('results');
-    // Auto search using the user's current location
-    if (navigator.geolocation && !hasLoaded) {
-      setHasLoaded(true);
-      searchCurrentLocation(scrollTo);
-    }
   }
 
   return (
@@ -192,12 +193,7 @@ const FindNearestLocation = () => {
                     Find a Location
                   </Button>
                   <Box mb="base">
-                    <Box
-                      as="a"
-                      mr="s"
-                      color="white"
-                      fontStyle="italic"
-                      textDecoration="underline"
+                    <Styled.CurrentLocation
                       onClick={() => {
                         //When users clicks search button we want to get the coordinates and refetch the campuses to get distance from location
                         searchCurrentLocation();
@@ -205,7 +201,7 @@ const FindNearestLocation = () => {
                       }}
                     >
                       Use my current location
-                    </Box>
+                    </Styled.CurrentLocation>
                     <Icon
                       color="white"
                       size={{ _: 22, md: 26 }}
