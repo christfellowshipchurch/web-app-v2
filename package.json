@@ -46,6 +46,7 @@
     "react-player": "^2.9.0",
     "react-quill": "^2.0.0",
     "react-simple-typewriter": "^5.0.1",
+    "react-use-draggable-scroll": "^0.4.7",
     "sanitize-html": "^2.7.0",
     "storybook": "^7.4.6",
     "stream-chat": "3.1.x",
