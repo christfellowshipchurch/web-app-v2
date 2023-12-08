@@ -31,6 +31,7 @@ import {
   whatToExpectVideos,
   whatToExpectData,
   whatToExpectDataSpanish,
+  whatsComingUp,
 } from '../../lib/locationData';
 import { CampusProvider, FeatureProvider } from 'providers';
 import faqData, { otherData } from 'components/FAQ/faqData';
@@ -111,6 +112,7 @@ function LocationSingle(props = {}) {
   const whatToExpectVideo = whatToExpectVideos[camelCase(campus)];
   const expectData = whatToExpectData(campus);
   const expectSpanishData = whatToExpectDataSpanish();
+  const comingUpSoon = whatsComingUp[camelCase(campus)];
 
   const expectActions = [
     {
@@ -267,14 +269,15 @@ function LocationSingle(props = {}) {
       </Box>
 
       {/* What's Coming Up Section */}
+      {/* ADD SPANISH PAGE EVENTS HERE: https://rock.christfellowship.church/page/1655?ContentItemId=15472*/}
       <Box bg={expectData && 'white'} py={{ _: 'l', sm: 'xl' }}>
         <Box mx="auto" maxWidth={1200}>
           <CollectionPreview
             horizontalScroll
             size="s"
             contentId={
-              campus === 'Cf Everywhere'
-                ? 'UniversalContentItem:04f022613f5beaca2532ef3a8e052cd6'
+              comingUpSoon
+                ? comingUpSoon
                 : 'UniversalContentItem:ddf0d380759e8404fb6b70aa941c06f7'
             }
             buttonOverride={
