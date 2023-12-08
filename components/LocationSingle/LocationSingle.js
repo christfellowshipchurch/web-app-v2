@@ -27,6 +27,7 @@ import {
   setReminderVideos,
   setReminderData,
   setReminderEspanolData,
+  testimonials,
   thisWeekFeatureId,
   whatToExpectVideos,
   whatToExpectData,
@@ -113,6 +114,7 @@ function LocationSingle(props = {}) {
   const expectData = whatToExpectData(campus);
   const expectSpanishData = whatToExpectDataSpanish();
   const comingUpSoon = whatsComingUp[camelCase(campus)];
+  const testimonies = testimonials[camelCase(campus)];
 
   const expectActions = [
     {
@@ -302,30 +304,11 @@ function LocationSingle(props = {}) {
       <Box bg={expectData && 'white'} px="base" py="xl" width="100%">
         <Box mx="auto" maxWidth={1200}>
           <Testimonials
-            testimonies={
-              campus === 'Cf Everywhere'
-                ? [
-                    {
-                      name: '<i>Amal</i>',
-                      description:
-                        'Christ Fellowship is a home away from home. I always feel welcomed by genuine, godly, and friendly people. Worship is amazing and every sermon adds value to my spiritual growth. I look forward to the service every week.',
-                      region: '<i>India<i>',
-                    },
-                    {
-                      name: '<i>Jim & Tammy</i>',
-                      description:
-                        'We attended CF online for 2 years prior to moving to Florida and now we are attending in person. While attending online, we were surprised by how connected and included we felt. When attending online you are not simply watching a church service from a distance, you are joining a family!',
-                      region: '<i>South Florida<i>',
-                    },
-                    {
-                      name: '<i>Tom & Margie</i>',
-                      description:
-                        'We live in New Jersey and were invited to attend Christ Fellowship Everywhere. We knew at once we had found our new church home. From Pastors Todd & Julie to all the other pastors/congregation, we immediately felt a part of a church community. Every Sunday, we pour our coffee and jump into a great service - all from the comfort of our home. God has truly blessed us by connecting us to CF Everywhere.',
-                      region: '<i>New Jersey<i>',
-                    },
-                  ]
-                : undefined
+            title={
+              campus === CFERPB ||
+              (campus === CFEPBG && 'Mira lo que otros dicen')
             }
+            testimonies={testimonies && testimonies}
           />
         </Box>
       </Box>
