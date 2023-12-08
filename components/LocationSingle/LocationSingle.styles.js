@@ -7,6 +7,45 @@ const LocationSingle = styled.div`
   ${system}
 `;
 
+const ChristmasBanner = styled.div`
+  background: ${themeGet('colors.hues.red')};
+  border-top-left-radius: ${themeGet('radii.base')};
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+
+  display: flex;
+  position: absolute;
+  top: -42px;
+  right: 370px;
+
+  max-width: 600px;
+  padding-bottom: ${themeGet('space.s')};
+  padding-left: 20px;
+  padding-right: 32px;
+  padding-top: ${themeGet('space.s')};
+  box-shadow: -7px -5px 19px rgba(0, 0, 0, 0.12);
+
+  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+    margin-right: 0px;
+  }
+
+  @media screen and (max-width: ${themeGet('breakpoints.sm')}) {
+    border-radius: 0px;
+    margin-top: 0px;
+    margin-left: 0px;
+    max-width: none;
+    padding-left: 50px;
+    width: 100%;
+  }
+`;
+
+const ChristmasSubtitle = styled.div`
+  font-weight: normal;
+  font-size: 14px;
+  font-style: italic;
+`;
+
 const FlexBreak = styled.div`
   flex-basis: 100%;
   height: 0;
@@ -163,5 +202,7 @@ LocationSingle.ServiceTimeContainer = ServiceTimeContainer;
 LocationSingle.VerticalDivider = VerticalDivider;
 LocationSingle.VideoCover = VideoCover;
 LocationSingle.VideoOverlay = VideoOverlay;
+LocationSingle.ChristmasBanner = ChristmasBanner;
+LocationSingle.ChristmasSubtitle = ChristmasSubtitle;
 
 export default LocationSingle;

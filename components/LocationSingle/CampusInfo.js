@@ -7,6 +7,7 @@ import {
   Cell,
   Divider,
   Icon,
+  Image,
   Loader,
   utils,
 } from 'ui-kit';
@@ -191,6 +192,27 @@ const CampusInfo = ({
                 ))}
               </Styled.InfoBox>
             )}
+
+            {/* Christmas Banner */}
+            <Styled.ChristmasBanner>
+              <Image
+                width="42px"
+                height="42px"
+                source="/location-pages/christmas-icon-2.jpeg"
+                mr="10px"
+              />
+
+              <Box>
+                Looking for a Christmas Service?
+                <Styled.ChristmasSubtitle>
+                  Times may vary.{' '}
+                  <Box as="a" color="white" href="#" textDecoration="underline">
+                    Find a Christmas service that's right for you.
+                  </Box>
+                </Styled.ChristmasSubtitle>
+              </Box>
+            </Styled.ChristmasBanner>
+
             {/* Address and Church You Call Home */}
             {addressFirst && name !== 'Online (CF Everywhere)' ? (
               <>
