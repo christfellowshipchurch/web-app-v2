@@ -82,7 +82,7 @@ const TitleBox = styled.h1`
   ${system}
 `;
 
-const SubtitleBox = styled.p`
+const SubtitleBox = styled.div`
   margin-right: auto;
   margin-left: auto;
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
