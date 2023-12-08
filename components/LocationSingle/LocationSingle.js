@@ -67,7 +67,11 @@ function LocationSingle(props = {}) {
       {/* Header Section */}
       <LocationHeader
         title={props?.data?.title}
-        subtitle={props?.data?.summary}
+        subtitle={
+          props?.data?.summary
+            ? props?.data?.summary
+            : 'A church that wants to help you live the life you were created for.'
+        }
         {...headerContent}
       />
 
@@ -106,34 +110,35 @@ function LocationSingle(props = {}) {
       )}
 
       {/* Set a Reminder */}
-      {campus !== 'Online (CF Everywhere)' && (
-        <>
-          <Box
-            maxWidth={{ _: 350, md: 600, lg: 800 }}
-            boxShadow="l"
-            borderRadius="xl"
-            overflow="hidden"
-            mt="xxl"
-            mx="auto"
-          >
-            <Video wistiaId={setReminderVideos[camelCase(campus)]} />
-          </Box>
-          <Box width="100%" px={{ _: 'base', md: 'xl' }} pt="base">
-            <InfoCardList
-              {...setReminderData}
-              button={{
-                title: 'Set a Reminder',
-                onClick: () =>
-                  modalDispatch(
-                    showModal('SetReminder', { defaultCampus: campus })
-                  ),
-              }}
-            />
-          </Box>
-        </>
-      )}
+      <Box id="set-a-reminder" pt="xxl">
+        {campus !== 'Online (CF Everywhere)' && (
+          <>
+            <Box
+              maxWidth={{ _: 350, md: 600, lg: 800 }}
+              boxShadow="l"
+              borderRadius="xl"
+              overflow="hidden"
+              mx="auto"
+            >
+              <Video wistiaId={setReminderVideos[camelCase(campus)]} />
+            </Box>
+            <Box width="100%" px={{ _: 'base', md: 'xl' }} pt="base">
+              <InfoCardList
+                {...setReminderData}
+                button={{
+                  title: 'Set a Reminder',
+                  onClick: () =>
+                    modalDispatch(
+                      showModal('SetReminder', { defaultCampus: campus })
+                    ),
+                }}
+              />
+            </Box>
+          </>
+        )}
+      </Box>
 
-      {/* What to Expect */}
+      {/* What To Expect Section */}
       <Box bg="white" width="100%">
         <Box
           bg="white"
@@ -144,11 +149,22 @@ function LocationSingle(props = {}) {
         >
           <ContentBlock
             {...expectData}
-            wistiaId={
-              whatToExpectVideos[camelCase(campus)] &&
-              whatToExpectVideos[camelCase(campus)]
-            }
             actions={[
+              {
+                title: 'Watch Video',
+                variant: 'primary',
+                onClick: () =>
+                  modalDispatch(
+                    showModal('Video', {
+                      step: 0,
+                      wistiaId: whatToExpectVideos[camelCase(campus)],
+                      title: expectData?.title,
+                    })
+                  ),
+                relatedNode: {
+                  url: '#set-reminder',
+                },
+              },
               {
                 title: 'Set a Reminder',
                 variant: 'secondary',
@@ -161,7 +177,6 @@ function LocationSingle(props = {}) {
                 },
               },
             ]}
-            contentLayout="left"
             roundVideo
             centerContent
           />
@@ -169,7 +184,7 @@ function LocationSingle(props = {}) {
       </Box>
 
       {/* Testimonial Section */}
-      <Box bg={expectData && 'white'} px="base" py="xl" width="100%">
+      <Box bg={!expectData && 'white'} px="base" py="xl" width="100%">
         <Box mx="auto" maxWidth={1200}>
           <Testimonials
             testimonies={
@@ -205,7 +220,7 @@ function LocationSingle(props = {}) {
         width="100%"
         px={{ _: 'base', md: 'xl' }}
         pt="base"
-        bg={!expectData && 'white'}
+        bg={expectData && 'white'}
       >
         <LocationBlockFeature
           mx="auto"
@@ -221,7 +236,7 @@ function LocationSingle(props = {}) {
       </Box>
 
       {/* What's Coming Up Section */}
-      <Box bg={expectData && 'white'} py={{ _: 'l', sm: 'xl' }}>
+      <Box bg={!expectData && 'white'} py={{ _: 'l', sm: 'xl' }}>
         <Box mx="auto" maxWidth={1200}>
           <CollectionPreview
             horizontalScroll
@@ -244,7 +259,7 @@ function LocationSingle(props = {}) {
         px="base"
         py="xl"
         width="100%"
-        bg={!expectData && 'white'}
+        bg={expectData && 'white'}
       >
         <Box mx="auto" maxWidth={1200}>
           <FAQ data={faqData(campus)} customScrollPosition="location-faq" />

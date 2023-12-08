@@ -7,19 +7,22 @@ import { Video } from 'components';
 function VideoModal(props = {}) {
   const uri = props?.uri;
   const poster = props?.poster;
+  const wistiaId = props?.wistiaId;
 
   return (
     <Modal {...props} width="50vw">
       <Box borderRadius={8} overflow={'hidden'}>
-        {!isEmpty(uri) && (
-          <Video
-            title={props?.title}
-            src={uri}
-            poster={poster}
-            autoPlay={true}
-            playsInline={true}
-          />
-        )}
+        {!isEmpty(uri) ||
+          (!isEmpty(wistiaId) && (
+            <Video
+              title={props?.title}
+              src={uri}
+              poster={poster}
+              autoPlay={true}
+              playsInline={true}
+              wistiaId={wistiaId}
+            />
+          ))}
       </Box>
     </Modal>
   );
