@@ -206,7 +206,13 @@ const CampusInfo = ({
                 Looking for a Christmas Service?
                 <Styled.ChristmasSubtitle>
                   Times may vary.{' '}
-                  <Box as="a" color="white" href="#" textDecoration="underline">
+                  <Box
+                    as="a"
+                    color="white"
+                    href="https://www.christmasatcf.com/"
+                    target="_blank"
+                    textDecoration="underline"
+                  >
                     Find a Christmas service that's right for you.
                   </Box>
                 </Styled.ChristmasSubtitle>
