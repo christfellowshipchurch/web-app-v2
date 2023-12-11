@@ -33,6 +33,7 @@ module.exports = {
         permanent: false,
       }, // reboot this stupid thing
       { source: '/family', destination: 'https://nsb2r6cpbt4.typeform.com/to/rv4waLbv', permanent: true },
+      { source: '/relief', destination: 'https://longhollow.com/community-relief-at-long-hollow', permanent: true },
       { source: '/hope', destination: '/hopefortheholidays-november2023', permanent: true },
       { source: '/firstrespondermeals', destination: '/first-responder-meals-help-us-care-for-our-first-responders-on-christmas', permanent: true },
       { source: '/fall', destination: '/fallatlh', permanent: true },
