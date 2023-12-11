@@ -248,7 +248,7 @@ const FindNearestLocation = () => {
             {sortedCampuses?.map((campus, i) => {
               let cfe = '';
               if (campus.name.includes('Español')) {
-                cfe = campus.name.substring(11, campus.name.length);
+                cfe = campus.name.substring(25, campus.name.length);
               }
 
               return (
