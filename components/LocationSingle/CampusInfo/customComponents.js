@@ -69,7 +69,7 @@ const CfEverywhereButtons = () => (
 
 const TrinityButtons = () => [
   <Box ml="base" display={{ _: 'none', md: 'flex' }} my="l">
-    <Box flex="1">
+    <Box>
       <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
         Experience Something New!
       </Box>
@@ -92,7 +92,7 @@ const WeekdayScheduleDisplay = ({ weekdaySchedules, isMobile }) => {
   return !isMobile ? (
     [
       <Box display={{ _: 'none', md: 'flex' }} my="l">
-        <Box ml="base" flex="1">
+        <Box ml="base">
           <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
             During the Week
           </Box>

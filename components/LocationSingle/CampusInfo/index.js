@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { find } from 'lodash';
+import { camelCase, find } from 'lodash';
 
 import { Box, Button, Cell, Divider, utils } from 'ui-kit';
 
@@ -14,6 +14,8 @@ import {
   CfEverywhereButtons,
   WeekdayScheduleDisplay,
 } from './customComponents';
+import { showModal, useModalDispatch } from 'providers/ModalProvider';
+import { whatToExpectVideos } from '../../../lib/locationData';
 
 const CampusInfo = ({
   name,
@@ -33,6 +35,7 @@ const CampusInfo = ({
 
   // Make sure there is at least one weekday schedule
   const isWeekdaySchedule = validDaysOfWeek(weekdaySchedules)?.length > 0;
+  const modalDispatch = useModalDispatch();
 
   /** Instagram URLs */
   const campusLink = find(campusLinks, { name: name });
@@ -107,24 +110,39 @@ const CampusInfo = ({
               <WeekdayScheduleDisplay weekdaySchedules={weekdaySchedules} />
             )}
 
-            {/* Groups and Classes Section */}
-            <Box display={{ _: 'none', md: 'flex' }} mt="l" px="base">
-              <Box textAlign={{ _: 'center', md: 'left' }} flex="2">
-                <Box as="h3">Groups & Classes</Box>
-                <Box>
-                  Discover groups and classes to help you grow in your
-                  relationship with God and others.
+            {/* What to Expect Section */}
+            <Box display={{ _: 'none', md: 'flex' }} my="l">
+              <Box ml="base">
+                <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
+                  What to Expect
+                </Box>
+              </Box>
+              <Box maxWidth={500}>
+                <Box mb="s">
+                  Here at Christ Fellowship Church in {name}, you can expect to
+                  experience church services with uplifting worship music,
+                  encouraging messages from our pastors, special programming for
+                  your family, and opportunities for you to find people to do
+                  life with all throughout the week—it all starts here!
                 </Box>
                 <Button
                   variant="secondary"
-                  borderRadius="xxl"
+                  borderRadius="base"
                   px="base"
                   as="a"
-                  href="/groups"
+                  onClick={() =>
+                    modalDispatch(
+                      showModal('Video', {
+                        step: 0,
+                        wistiaId: whatToExpectVideos[camelCase(name)],
+                        title: 'What to Expect',
+                      })
+                    )
+                  }
                   size="s"
                   mt="s"
                 >
-                  Learn More
+                  Watch Video
                 </Button>
               </Box>
             </Box>
@@ -142,32 +160,47 @@ const CampusInfo = ({
       </Cell>
 
       {/* Mobile layout */}
-      {isWeekdaySchedule && (
+      {(isWeekdaySchedule || name === 'Trinity') && (
         <Box mt="xxl" display={{ _: 'inline', md: 'none' }}>
           <Divider my="l" width="80%" />
-          <WeekdayScheduleDisplay
-            isMobile
-            weekdaySchedules={weekdaySchedules}
-          />
-          <Divider mb="l" width="80%" />
+          {isWeekdaySchedule && (
+            <Box>
+              <WeekdayScheduleDisplay
+                isMobile
+                weekdaySchedules={weekdaySchedules}
+              />
+              <Divider mb="l" width="80%" />
+            </Box>
+          )}
           <Box pb="xl" mx="base" textAlign="center" flex="2">
             <Box as="h2" color="secondary">
-              Groups & Classes
+              What to Expect
             </Box>
             <Box>
-              Discover groups and classes to help you grow in your relationship
-              with God and others.
+              Here at Christ Fellowship Church in {name}, you can expect to
+              experience church services with uplifting worship music,
+              encouraging messages from our pastors, special programming for
+              your family, and opportunities for you to find people to do life
+              with all throughout the week—it all starts here!
             </Box>
             <Button
               as="a"
               variant="secondary"
-              borderRadius="xxl"
+              borderRadius="base"
               px="base"
-              href="/groups"
+              onClick={() =>
+                modalDispatch(
+                  showModal('Video', {
+                    step: 0,
+                    wistiaId: whatToExpectVideos[camelCase(name)],
+                    title: 'What to Expect',
+                  })
+                )
+              }
               size="s"
               mt="s"
             >
-              Learn More
+              Watch Video
             </Button>
           </Box>
         </Box>

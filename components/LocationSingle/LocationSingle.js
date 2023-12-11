@@ -13,7 +13,7 @@ import {
   HeroListFeature,
   Video,
 } from 'components';
-import { Box, Button, Divider, ContentBlock } from 'ui-kit';
+import { Box, Button, Divider } from 'ui-kit';
 
 import CampusInfo from './CampusInfo';
 import LocationHeader from './LocationHeader';
@@ -24,7 +24,6 @@ import {
   setReminderVideos,
   setReminderData,
   thisWeekFeatureId,
-  whatToExpectVideos,
   whatToExpectData,
 } from '../../lib/locationData';
 import { CampusProvider, FeatureProvider } from 'providers';
@@ -136,51 +135,6 @@ function LocationSingle(props = {}) {
             </Box>
           </>
         )}
-      </Box>
-
-      {/* What To Expect Section */}
-      <Box bg="white" width="100%">
-        <Box
-          bg="white"
-          mx="auto"
-          maxWidth={{ _: 400, md: 800, lg: 1200 }}
-          py="8rem"
-          px={{ _: 'base', md: 'xl' }}
-        >
-          <ContentBlock
-            {...expectData}
-            actions={[
-              {
-                title: 'Watch Video',
-                variant: 'primary',
-                onClick: () =>
-                  modalDispatch(
-                    showModal('Video', {
-                      step: 0,
-                      wistiaId: whatToExpectVideos[camelCase(campus)],
-                      title: expectData?.title,
-                    })
-                  ),
-                relatedNode: {
-                  url: '#set-reminder',
-                },
-              },
-              {
-                title: 'Set a Reminder',
-                variant: 'secondary',
-                onClick: () =>
-                  modalDispatch(
-                    showModal('SetReminder', { defaultCampus: campus })
-                  ),
-                relatedNode: {
-                  url: '#set-reminder',
-                },
-              },
-            ]}
-            roundVideo
-            centerContent
-          />
-        </Box>
       </Box>
 
       {/* Testimonial Section */}
