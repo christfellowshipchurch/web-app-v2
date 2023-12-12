@@ -250,7 +250,6 @@ const FindNearestLocation = () => {
               if (campus.name.includes('Español')) {
                 cfe = campus.name.substring(25, campus.name.length);
               }
-
               return (
                 <CustomLink
                   as="a"
@@ -264,7 +263,9 @@ const FindNearestLocation = () => {
                   coverImage={campus?.image?.uri}
                   coverImageLabelBgColor="white"
                   coverImageOverlay={true}
-                  title={campus?.name}
+                  title={
+                    campus?.name === 'Trinity' ? 'Trinity Church' : campus?.name
+                  }
                   type="HIGHLIGHT_SMALL"
                   mobileHeight="150px"
                   loading={loading}
