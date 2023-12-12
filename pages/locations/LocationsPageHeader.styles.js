@@ -51,7 +51,7 @@ const VideoOverlay = styled.div`
 const ContentBox = styled.div`
   color: white;
   text-align: center;
-  padding: ${themeGet('space.base')} ${themeGet('space.l')};
+  padding: ${themeGet('space.base')} ${themeGet('space.base')};
   background-color: rgba(0, 0, 0, 0.35);
   backdrop-filter: blur(5.5px);
   border-radius: 10px;
