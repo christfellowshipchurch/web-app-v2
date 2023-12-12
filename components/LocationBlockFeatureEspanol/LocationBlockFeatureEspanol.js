@@ -12,7 +12,16 @@ const LocationBlockFeatureEspanol = props => {
   return (
     <Box textAlign="center" {...props}>
       <Box mt="l" mb={0} as="h2" color="secondary">
-        Toda la Semana
+        Toda la semana
+      </Box>
+      <Box mt="s" mb={0} as="p" fontStyle="italic">
+        <p>
+          *Opciones en español disponibles.{' '}
+          <strong>
+            Algunos eventos se ofrecen solo en inglés o en nuestro campus de
+            Royal Palm Beach.
+          </strong>
+        </p>
       </Box>
       <Styled.Container>
         {content?.map(block => (
@@ -45,7 +54,6 @@ const LocationBlockFeatureEspanol = props => {
                 borderRadius="xxl"
                 size="s"
                 mt="base"
-                textTransform="capitalize!important"
                 px="base"
                 target={action?.new_tab && 'blank'}
                 /**

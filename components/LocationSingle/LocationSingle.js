@@ -299,6 +299,11 @@ function LocationSingle(props = {}) {
       <Box bg={expectData && 'white'} px="base" py="xl" width="100%">
         <Box mx="auto" maxWidth={1200}>
           <Testimonials
+            title={
+              (campus === 'Iglesia Palm Beach Gardens' ||
+                campus === 'Iglesia Royal Palm Beach') &&
+              'Mira lo que otros dicen'
+            }
             testimonies={
               campus === 'Cf Everywhere'
                 ? [
@@ -319,6 +324,27 @@ function LocationSingle(props = {}) {
                       description:
                         'We live in New Jersey and were invited to attend Christ Fellowship Everywhere. We knew at once we had found our new church home. From Pastors Todd & Julie to all the other pastors/congregation, we immediately felt a part of a church community. Every Sunday, we pour our coffee and jump into a great service - all from the comfort of our home. God has truly blessed us by connecting us to CF Everywhere.',
                       region: '<i>New Jersey<i>',
+                    },
+                  ]
+                : campus === 'Iglesia Palm Beach Gardens' ||
+                  campus === 'Iglesia Royal Palm Beach'
+                ? [
+                    {
+                      name: '<i>Paul N.</i>',
+                      description:
+                        'Mi familia ha asistido a esta iglesia por casi 20 años. Aquí crecí rodeado de una comunidad de personas que aman a Cristo. En esta iglesia se predica el evangelio y cada vez que entro a este lugar me siento en casa. ¡Christ Fellowship Español ha sido una bendición para mí y para mi familia!',
+                      rating: 5,
+                    },
+                    {
+                      name: '<i>Maria V.</i>',
+                      description:
+                        'Amo este lugar. Acá me he sentido amada, acompañada, apoyada y vista. Cada domingo es una gran experiencia en donde aprendo y recibo una Palabra transformadora de parte de Dios. Cuando llegué a EE.UU no conocía a nadie, y ahora tengo una familia inmensa. ¡Ven a conocer! No te vas a arrepentir.',
+                      rating: 5,
+                    },
+                    {
+                      name: '<i>Tom & Margie</i>',
+                      description: 'Waiting on this one',
+                      rating: 5,
                     },
                   ]
                 : undefined
