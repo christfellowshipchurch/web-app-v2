@@ -15,7 +15,6 @@ const ChristmasBanner = styled.div`
   font-weight: bold;
   display: flex;
 
-  max-width: 600px;
   padding-bottom: ${themeGet('space.s')};
   padding-left: 20px;
   padding-right: 32px;
@@ -28,8 +27,7 @@ const ChristmasBanner = styled.div`
   @media screen and (min-width: ${themeGet(
       'breakpoints.md'
     )}) and (max-width: ${themeGet('breakpoints.lg')}) {
-    top: -62px;
-    right: 306px;
+    right: 322px;
   }
 
   ${system}
@@ -37,7 +35,6 @@ const ChristmasBanner = styled.div`
 
 const MobileChristmasBanner = styled.div`
   background: ${themeGet('colors.hues.red')};
-  border-top-left-radius: ${themeGet('radii.base')};
   color: white;
   font-size: 14px;
   text-align: center;
@@ -45,13 +42,13 @@ const MobileChristmasBanner = styled.div`
   padding-bottom: ${themeGet('space.s')};
   padding-top: ${themeGet('space.s')};
   box-shadow: -7px -5px 19px rgba(0, 0, 0, 0.12);
+  width: 100%;
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
     margin-right: 0px;
   }
 
   @media screen and (max-width: ${themeGet('breakpoints.sm')}) {
-    border-radius: 0px;
     margin-top: 0px;
     margin-left: 0px;
     padding-left: 10px;
