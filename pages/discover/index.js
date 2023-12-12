@@ -59,6 +59,15 @@ const Discover = () => {
 
   const handleClick = event => {
     setSearchVisible(true);
+    if (values.text) {
+      router.push({
+        pathname: router.pathname,
+        query: {
+          c: kebabCase(filterValues.title),
+          s: kebabCase(values.text),
+        },
+      });
+    }
     search({
       variables: {
         query: values.text,
@@ -106,10 +115,16 @@ const Discover = () => {
 
   useEffect(() => {
     if (filterValues.title) {
+      if (router?.query?.s) {
+        values.text = router?.query?.s;
+
+        handleClick();
+      }
       router.push({
         pathname: '/discover',
         query: {
           c: kebabCase(filterValues.title),
+          s: kebabCase(values.text),
         },
       });
     }
