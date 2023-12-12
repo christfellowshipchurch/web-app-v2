@@ -90,7 +90,6 @@ const TrinityButtons = () => {
         street—it’s big church made small, and you’ll feel right at home!
       </Box>
     </Box>,
-    <StyledDivider display={{ _: 'none', md: 'flex' }} width="100%" />,
     <Box ml="base" display={{ _: 'none', md: 'flex' }} my="l">
       <Box>
         <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
@@ -133,12 +132,14 @@ const TrinityMobileButtons = () => {
   const modalDispatch = useModalDispatch();
 
   return [
+    <StyledDivider display="flex" width="100%" />,
     <Box
       ml="base"
       display={{ _: 'flex', md: 'none' }}
       flexDirection="column"
       alignItems="center"
-      my="base"
+      mt="base"
+      mb={{ _: '0px', md: 'base' }}
       pb="l"
     >
       <Box>
@@ -223,7 +224,6 @@ const WeekdayScheduleDisplay = ({ weekdaySchedules, isMobile }) => {
           })}
         </Box>
       </Box>,
-      <StyledDivider display={{ _: 'none', md: 'flex' }} width="100%" />,
     ]
   ) : (
     <Box
