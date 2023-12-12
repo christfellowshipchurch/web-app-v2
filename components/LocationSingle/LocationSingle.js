@@ -353,9 +353,9 @@ function LocationSingle(props = {}) {
                     },
                   ]
                 : undefined
-           
-            
-       
+            }
+            // testimonies={testimonies && testimonies}
+          />
         </Box>
       </Box>
 
