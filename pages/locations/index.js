@@ -279,6 +279,15 @@ const FindNearestLocation = () => {
           </CardGrid>
         )}
       </Box>
+
+      {/* Prison Location */}
+      <Box fontWeight="bold" textAlign="center" mb="xxl" fontSize="16px">
+        Learn more about Christ Fellowship's reach in{' '}
+        <Box as="a" textDecoration="none" href="/locations/prison-locations">
+          local prisons
+        </Box>
+        .
+      </Box>
     </Layout>
   );
 };
