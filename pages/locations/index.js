@@ -73,9 +73,13 @@ const FindNearestLocation = () => {
     }
   }
 
-  function searchCurrentLocation(scrollTo) {
+  function searchCurrentLocation() {
+    if (hasLoaded) {
+      searchScroll();
+    }
     navigator.geolocation.getCurrentPosition(
       position => {
+        refetch();
         setResults([
           {
             geometry: {
@@ -87,9 +91,6 @@ const FindNearestLocation = () => {
           },
         ]);
         refetch();
-        if (hasLoaded) {
-          searchScroll();
-        }
       },
       error => {
         console.log(error);
@@ -154,7 +155,7 @@ const FindNearestLocation = () => {
                   ) : (
                     <Box>
                       Christ Fellowship is one church with many locations across
-                      South Florida, and online—wherever you are!{' '}
+                      South Florida, and online—wherever you are!
                     </Box>
                   )}
                 </Styled.SubtitleBox>
@@ -197,9 +198,8 @@ const FindNearestLocation = () => {
                   <Box mt={{ _: 0, md: 'base' }} mb={{ _: 'base', md: 'l' }}>
                     <Styled.CurrentLocation
                       onClick={() => {
-                        //When users clicks search button we want to get the coordinates and refetch the campuses to get distance from location
+                        //When users clicks search button we want to get their coordinates and refetch the campuses to get distance from location
                         searchCurrentLocation();
-                        // refetch();
                       }}
                     >
                       Use my current location
@@ -217,7 +217,7 @@ const FindNearestLocation = () => {
         </Box>
       </Box>
 
-      <Box p="base" px={{ _: 's', md: 'xl' }}>
+      <Box p="base" id="results" px={{ _: 's', md: 'xl' }}>
         {loading ? (
           // New Skeleton Loader
           <LocationsLoader mb="l" loading={true} />
@@ -227,7 +227,6 @@ const FindNearestLocation = () => {
             mx={{ _: 'base', md: 'auto' }}
             px={{ _: '0', md: 'l', lg: 'xl' }}
             maxWidth={1100}
-            id="results"
           >
             {/* We want to display Online campus separately */}
             {onlineCampus && (
@@ -249,9 +248,8 @@ const FindNearestLocation = () => {
             {sortedCampuses?.map((campus, i) => {
               let cfe = '';
               if (campus.name.includes('Español')) {
-                cfe = campus.name.substring(11, campus.name.length);
+                cfe = campus.name.substring(25, campus.name.length);
               }
-
               return (
                 <CustomLink
                   as="a"
@@ -265,7 +263,9 @@ const FindNearestLocation = () => {
                   coverImage={campus?.image?.uri}
                   coverImageLabelBgColor="white"
                   coverImageOverlay={true}
-                  title={campus?.name}
+                  title={
+                    campus?.name === 'Trinity' ? 'Trinity Church' : campus?.name
+                  }
                   type="HIGHLIGHT_SMALL"
                   mobileHeight="150px"
                   loading={loading}
