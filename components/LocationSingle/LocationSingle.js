@@ -201,13 +201,7 @@ function LocationSingle(props = {}) {
       </Box>
 
       {/* FAQs Section */}
-      <Box
-        id="location-faq"
-        px="base"
-        py="xl"
-        width="100%"
-        // bg={expectData && 'white'}
-      >
+      <Box id="location-faq" px="base" py="xl" width="100%">
         <Box mx="auto" maxWidth={1200}>
           <FAQ data={faqData(campus)} customScrollPosition="location-faq" />
         </Box>
