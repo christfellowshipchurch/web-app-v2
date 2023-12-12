@@ -121,12 +121,10 @@ const PastorCard = ({
         <Box as="a" target="_blank" href={instagram} color="tertiary">
           <Icon name="instagram" size="32" />
         </Box>
-        {/**
-         * todo : add urls
-         *  */}
         <Box mt="base" as="p" fontStyle="italic" fontSize="14px">
-          Servicios en Español en <a href="">Royal Palm Beach</a> y{' '}
-          <a href="">Palm Beach Gardens</a>
+          Servicios en Español en{' '}
+          <a href="/locations/iglesia-royal-palm-beach">Royal Palm Beach</a> y{' '}
+          <a href="/locations/iglesia-palm-beach-garndes">Palm Beach Gardens</a>
         </Box>
       </Box>
     </Styled.PastorsCard>
