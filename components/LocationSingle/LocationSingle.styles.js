@@ -13,16 +13,36 @@ const ChristmasBanner = styled.div`
   color: white;
   font-size: 17px;
   font-weight: bold;
-
   display: flex;
-  position: absolute;
-  top: -42px;
-  right: 370px;
 
   max-width: 600px;
   padding-bottom: ${themeGet('space.s')};
   padding-left: 20px;
   padding-right: 32px;
+  padding-top: ${themeGet('space.s')};
+  box-shadow: -7px -5px 19px rgba(0, 0, 0, 0.12);
+  position: absolute;
+  top: -42px;
+  right: 370px;
+
+  @media screen and (min-width: ${themeGet(
+      'breakpoints.md'
+    )}) and (max-width: ${themeGet('breakpoints.lg')}) {
+    top: -62px;
+    right: 306px;
+  }
+
+  ${system}
+`;
+
+const MobileChristmasBanner = styled.div`
+  background: ${themeGet('colors.hues.red')};
+  border-top-left-radius: ${themeGet('radii.base')};
+  color: white;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+  padding-bottom: ${themeGet('space.s')};
   padding-top: ${themeGet('space.s')};
   box-shadow: -7px -5px 19px rgba(0, 0, 0, 0.12);
 
@@ -34,10 +54,12 @@ const ChristmasBanner = styled.div`
     border-radius: 0px;
     margin-top: 0px;
     margin-left: 0px;
-    max-width: none;
-    padding-left: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
     width: 100%;
   }
+
+  ${system}
 `;
 
 const ChristmasSubtitle = styled.div`
@@ -193,8 +215,11 @@ const VideoOverlay = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
+LocationSingle.ChristmasBanner = ChristmasBanner;
+LocationSingle.ChristmasSubtitle = ChristmasSubtitle;
 LocationSingle.FlexBreak = FlexBreak;
 LocationSingle.InfoBox = InfoBox;
+LocationSingle.MobileChristmasBanner = MobileChristmasBanner;
 LocationSingle.PastorsCard = PastorsCard;
 LocationSingle.ServiceTime = ServiceTime;
 LocationSingle.ServiceTimeTitle = ServiceTimeTitle;
@@ -202,7 +227,5 @@ LocationSingle.ServiceTimeContainer = ServiceTimeContainer;
 LocationSingle.VerticalDivider = VerticalDivider;
 LocationSingle.VideoCover = VideoCover;
 LocationSingle.VideoOverlay = VideoOverlay;
-LocationSingle.ChristmasBanner = ChristmasBanner;
-LocationSingle.ChristmasSubtitle = ChristmasSubtitle;
 
 export default LocationSingle;

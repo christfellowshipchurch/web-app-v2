@@ -19,6 +19,7 @@ import { campusLinks } from './locationData';
 import Styled from './LocationSingle.styles';
 import { find, includes } from 'lodash';
 import { icsLinkEvents } from 'utils';
+import { useCurrentBreakpoint } from 'hooks';
 
 const CfEverywhereButtons = () => (
   <>
@@ -122,6 +123,7 @@ const CampusInfo = ({
 
   /** Instagram and Google Map URLs */
   const campusLink = find(campusLinks, { name: name });
+  const currentBreakpoints = useCurrentBreakpoint();
 
   /** Directions to campus using the "mapLink" attribute from Rock campuses, if not found we'll generate a link using the campus address */
   const allCampusesDirections =
@@ -152,6 +154,22 @@ const CampusInfo = ({
         zIndex={1}
         width="100%"
       >
+        {/* Christmas Banner For Mobile */}
+        {currentBreakpoints.isSmall && (
+          <Styled.MobileChristmasBanner>
+            Christmas service times differ.{' '}
+            <Box
+              as="a"
+              color="white"
+              href="https://www.christmasatcf.com/"
+              target="_blank"
+              textDecoration="underline"
+            >
+              Find a Christmas service here.
+            </Box>
+          </Styled.MobileChristmasBanner>
+        )}
+
         {/* Service Times */}
         <Box width="100%">
           <Styled.ServiceTimeContainer>
@@ -194,30 +212,35 @@ const CampusInfo = ({
             )}
 
             {/* Christmas Banner */}
-            <Styled.ChristmasBanner>
-              <Image
-                width="42px"
-                height="42px"
-                source="/location-pages/christmas-icon-2.jpeg"
-                mr="10px"
-              />
+            {!currentBreakpoints.isSmall && (
+              <Styled.ChristmasBanner>
+                <Image
+                  width="42px"
+                  height="42px"
+                  source="/location-pages/christmas-icon-2.jpeg"
+                  mr="10px"
+                />
 
-              <Box>
-                Looking for a Christmas Service?
-                <Styled.ChristmasSubtitle>
-                  Times may vary.{' '}
-                  <Box
-                    as="a"
-                    color="white"
-                    href="https://www.christmasatcf.com/"
-                    target="_blank"
-                    textDecoration="underline"
-                  >
-                    Find a Christmas service that's right for you.
-                  </Box>
-                </Styled.ChristmasSubtitle>
-              </Box>
-            </Styled.ChristmasBanner>
+                <Box>
+                  Looking for a Christmas Service?
+                  <Styled.ChristmasSubtitle>
+                    Times may vary.{' '}
+                    <Box
+                      as="a"
+                      color="white"
+                      href="https://www.christmasatcf.com/"
+                      target="_blank"
+                      textDecoration="underline"
+                    >
+                      Find a Christmas service{' '}
+                      {currentBreakpoints.isMedium
+                        ? 'here'
+                        : "that's right for you."}
+                    </Box>
+                  </Styled.ChristmasSubtitle>
+                </Box>
+              </Styled.ChristmasBanner>
+            )}
 
             {/* Address and Church You Call Home */}
             {addressFirst && name !== 'Online (CF Everywhere)' ? (
