@@ -124,7 +124,7 @@ const PastorCard = ({
         <Box mt="base" as="p" fontStyle="italic" fontSize="14px">
           Servicios en Español en{' '}
           <a href="/locations/iglesia-royal-palm-beach">Royal Palm Beach</a> y{' '}
-          <a href="/locations/iglesia-palm-beach-garndes">Palm Beach Gardens</a>
+          <a href="/locations/iglesia-palm-beach-gardens">Palm Beach Gardens</a>
         </Box>
       </Box>
     </Styled.PastorsCard>
