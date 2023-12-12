@@ -44,7 +44,11 @@ const CampusInfo = ({
   const desktopHeight = name === 'Online (CF Everywhere)' ? 500 : 560;
 
   return (
-    <Box height={{ _: 'auto', md: desktopHeight }} bg="white">
+    <Box
+      height={{ _: 'auto', md: desktopHeight }}
+      bg="white"
+      pb={{ _: '0px', md: '39rem' }}
+    >
       {/* Campus Information */}
       <Cell
         alignItems={{ _: 'center', md: 'start' }}

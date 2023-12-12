@@ -73,7 +73,7 @@ const TrinityButtons = () => {
   const modalDispatch = useModalDispatch();
 
   return [
-    <Box ml="base" display={{ _: 'none', md: 'flex' }} my="l">
+    <Box ml="base" display={{ _: 'none', lg: 'flex' }} my="l">
       <Box>
         <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
           Experience Something New!
