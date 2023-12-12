@@ -11,6 +11,7 @@ import { validDaysOfWeek } from '../utils';
 
 import {
   TrinityButtons,
+  TrinityMobileButtons,
   CfEverywhereButtons,
   WeekdayScheduleDisplay,
 } from './customComponents';
@@ -111,41 +112,43 @@ const CampusInfo = ({
             )}
 
             {/* What to Expect Section */}
-            <Box display={{ _: 'none', md: 'flex' }} my="l">
-              <Box ml="base">
-                <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
-                  What to Expect
+            {name !== 'Trinity' && (
+              <Box display={{ _: 'none', md: 'flex' }} my="l">
+                <Box ml="base">
+                  <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
+                    What to Expect
+                  </Box>
+                </Box>
+                <Box maxWidth={500}>
+                  <Box mb="s">
+                    Here at Christ Fellowship Church in {name}, you can expect
+                    to experience church services with uplifting worship music,
+                    encouraging messages from our pastors, special programming
+                    for your family, and opportunities for you to find people to
+                    do life with all throughout the week—it all starts here!
+                  </Box>
+                  <Button
+                    variant="secondary"
+                    borderRadius="base"
+                    px="base"
+                    as="a"
+                    onClick={() =>
+                      modalDispatch(
+                        showModal('Video', {
+                          step: 0,
+                          wistiaId: whatToExpectVideos[camelCase(name)],
+                          title: 'What to Expect',
+                        })
+                      )
+                    }
+                    size="s"
+                    mt="s"
+                  >
+                    Watch Video
+                  </Button>
                 </Box>
               </Box>
-              <Box maxWidth={500}>
-                <Box mb="s">
-                  Here at Christ Fellowship Church in {name}, you can expect to
-                  experience church services with uplifting worship music,
-                  encouraging messages from our pastors, special programming for
-                  your family, and opportunities for you to find people to do
-                  life with all throughout the week—it all starts here!
-                </Box>
-                <Button
-                  variant="secondary"
-                  borderRadius="base"
-                  px="base"
-                  as="a"
-                  onClick={() =>
-                    modalDispatch(
-                      showModal('Video', {
-                        step: 0,
-                        wistiaId: whatToExpectVideos[camelCase(name)],
-                        title: 'What to Expect',
-                      })
-                    )
-                  }
-                  size="s"
-                  mt="s"
-                >
-                  Watch Video
-                </Button>
-              </Box>
-            </Box>
+            )}
           </Box>
         </Box>
         {/* Campus Pastors */}
@@ -160,18 +163,14 @@ const CampusInfo = ({
       </Cell>
 
       {/* Mobile layout */}
-      {(isWeekdaySchedule || name === 'Trinity') && (
+      {isWeekdaySchedule ? (
         <Box mt="xxl" display={{ _: 'inline', md: 'none' }}>
           <Divider my="l" width="80%" />
-          {isWeekdaySchedule && (
-            <Box>
-              <WeekdayScheduleDisplay
-                isMobile
-                weekdaySchedules={weekdaySchedules}
-              />
-              <Divider mb="l" width="80%" />
-            </Box>
-          )}
+          <WeekdayScheduleDisplay
+            isMobile
+            weekdaySchedules={weekdaySchedules}
+          />
+          <Divider mb="l" width="80%" />
           <Box pb="xl" mx="base" textAlign="center" flex="2">
             <Box as="h2" color="secondary">
               What to Expect
@@ -204,6 +203,8 @@ const CampusInfo = ({
             </Button>
           </Box>
         </Box>
+      ) : (
+        name === 'Trinity' && <TrinityMobileButtons />
       )}
     </Box>
   );

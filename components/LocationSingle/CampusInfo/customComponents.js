@@ -8,6 +8,8 @@ import { format } from 'date-fns';
 import { validDaysOfWeek } from '../utils';
 import { Box, Button, Divider, Icon } from 'ui-kit';
 import { capitalize } from 'lodash';
+import { showModal, useModalDispatch } from 'providers/ModalProvider';
+import { whatToExpectVideos } from '../../../lib/locationData';
 
 const StyledDivider = props => <Divider bg="secondarySubdued" {...props} />;
 
@@ -67,26 +69,114 @@ const CfEverywhereButtons = () => (
   </>
 );
 
-const TrinityButtons = () => [
-  <Box ml="base" display={{ _: 'none', md: 'flex' }} my="l">
-    <Box>
-      <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
-        Experience Something New!
+const TrinityButtons = () => {
+  const modalDispatch = useModalDispatch();
+
+  return [
+    <Box ml="base" display={{ _: 'none', md: 'flex' }} my="l">
+      <Box>
+        <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
+          Experience Something New!
+        </Box>
       </Box>
-    </Box>
-    <Box flex="2">
-      Have you been searching for a meaningful community but haven’t found it
-      yet? If so, you’re not alone. Trinity Church by Christ Fellowship is a new
-      church experience coming to your neighborhood! This community location in
-      Palm Beach Gardens offers a different way to experience church so you can
-      get to know people in your neighborhood and enjoy a more traditional
-      worship setting. Find a place for you and your family to belong with even
-      more regional events offered just down the street—it’s big church made
-      small, and you’ll feel right at home!
-    </Box>
-  </Box>,
-  <StyledDivider display={{ _: 'none', md: 'flex' }} width="100%" />,
-];
+      <Box flex="2">
+        Have you been searching for a meaningful community but haven’t found it
+        yet? If so, you’re not alone. Trinity Church by Christ Fellowship is a
+        new church experience coming to your neighborhood! This community
+        location in Palm Beach Gardens offers a different way to experience
+        church so you can get to know people in your neighborhood and enjoy a
+        more traditional worship setting. Find a place for you and your family
+        to belong with even more regional events offered just down the
+        street—it’s big church made small, and you’ll feel right at home!
+      </Box>
+    </Box>,
+    <StyledDivider display={{ _: 'none', md: 'flex' }} width="100%" />,
+    <Box ml="base" display={{ _: 'none', md: 'flex' }} my="l">
+      <Box>
+        <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
+          What to Expect
+        </Box>
+      </Box>
+      <Box flex="2">
+        <Box mb="s">
+          Here at Trinity Church by Christ Fellowship Church you can expect to
+          experience church services with uplifting worship music, encouraging
+          messages from our pastors, special programming for your family, and
+          opportunities for you to find people to do life with all throughout
+          the week—it all starts here!
+        </Box>
+        <Button
+          variant="secondary"
+          borderRadius="base"
+          px="base"
+          as="a"
+          onClick={() =>
+            modalDispatch(
+              showModal('Video', {
+                step: 0,
+                wistiaId: whatToExpectVideos['trinity'],
+                title: 'What to Expect',
+              })
+            )
+          }
+          size="s"
+          mt="s"
+        >
+          Watch Video
+        </Button>
+      </Box>
+    </Box>,
+  ];
+};
+
+const TrinityMobileButtons = () => {
+  const modalDispatch = useModalDispatch();
+
+  return [
+    <Box
+      ml="base"
+      display={{ _: 'flex', md: 'none' }}
+      flexDirection="column"
+      alignItems="center"
+      my="base"
+      pb="l"
+    >
+      <Box>
+        <Box as="h3" color="secondary" maxWidth={200}>
+          What to Expect
+        </Box>
+      </Box>
+      <Box flex="2">
+        <Box mb="s">
+          Here at Trinity Church by Christ Fellowship Church you can expect to
+          experience church services with uplifting worship music, encouraging
+          messages from our pastors, special programming for your family, and
+          opportunities for you to find people to do life with all throughout
+          the week—it all starts here!
+        </Box>
+      </Box>
+      <Button
+        variant="secondary"
+        borderRadius="base"
+        px="base"
+        as="a"
+        onClick={() =>
+          modalDispatch(
+            showModal('Video', {
+              step: 0,
+              wistiaId: whatToExpectVideos['trinity'],
+              title: 'What to Expect',
+            })
+          )
+        }
+        size="s"
+        mt="s"
+      >
+        Watch Video
+      </Button>
+    </Box>,
+  ];
+};
 
 const WeekdayScheduleDisplay = ({ weekdaySchedules, isMobile }) => {
   return !isMobile ? (
@@ -187,6 +277,7 @@ const WeekdayScheduleDisplay = ({ weekdaySchedules, isMobile }) => {
 export {
   CfEverywhereButtons,
   TrinityButtons,
+  TrinityMobileButtons,
   StyledDivider,
   WeekdayScheduleDisplay,
 };
