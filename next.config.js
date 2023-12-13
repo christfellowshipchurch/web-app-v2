@@ -244,7 +244,7 @@ module.exports = {
       { source: '/mobile', destination: '/', permanent: true },
       { source: '/jesus', destination: '/about/who-is-jesus', permanent: true },
       { source: '/gospel', destination: '/about/who-is-jesus', permanent: true },
-      { source: '/discover', destination: '/discover-your-calling', permanent: true },
+      { source: '/discover', destination: '//wednesdaysatlhwinter-2024', permanent: true },
       { source: '/the-good-news', destination: '/about/who-is-jesus', permanent: true },
       { source: '/what-we-believe', destination: '/about/beliefs', permanent: true },
       { source: '/should-i-be-baptized', destination: '/next-steps/baptism', permanent: true },
