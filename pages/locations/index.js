@@ -227,23 +227,26 @@ const FindNearestLocation = () => {
             mx={{ _: 'base', md: 'auto' }}
             px={{ _: '0', md: 'l', lg: 'xl' }}
             maxWidth={1100}
+            columns={'12'}
           >
             {/* We want to display Online campus separately */}
             {onlineCampus && (
-              <CustomLink
-                as="a"
-                boxShadow="none"
-                href={'/locations/cf-everywhere'}
-                Component={HorizontalHighlightCard}
-                coverImage={onlineCampus?.image?.uri}
-                coverImageOverlay={true}
-                coverImageLabelBgColor="WHITE"
-                title={'Online'}
-                type="HIGHLIGHT_SMALL"
-                mobileHeight="150px"
-                loading={loading}
-                label={onlineCampus?.distanceFromLocation && 'Right here!'}
-              />
+              <Styled.CardSpacing key={1} index={1} total={1}>
+                <CustomLink
+                  as="a"
+                  boxShadow="none"
+                  href={'/locations/cf-everywhere'}
+                  Component={HorizontalHighlightCard}
+                  coverImage={onlineCampus?.image?.uri}
+                  coverImageOverlay={true}
+                  coverImageLabelBgColor="WHITE"
+                  title={'Online'}
+                  type="HIGHLIGHT_SMALL"
+                  mobileHeight="150px"
+                  loading={loading}
+                  label={onlineCampus?.distanceFromLocation && 'Right here!'}
+                />
+              </Styled.CardSpacing>
             )}
             {sortedCampuses?.map((campus, i) => {
               let cfe = '';
@@ -251,29 +254,37 @@ const FindNearestLocation = () => {
                 cfe = campus.name.substring(25, campus.name.length);
               }
               return (
-                <CustomLink
-                  as="a"
-                  boxShadow="none"
-                  href={
-                    !campus.name.includes('Español')
-                      ? `/locations/${kebabCase(campus.name)}`
-                      : `/locations/iglesia-${kebabCase(cfe)}`
-                  }
-                  Component={HorizontalHighlightCard}
-                  coverImage={campus?.image?.uri}
-                  coverImageLabelBgColor="white"
-                  coverImageOverlay={true}
-                  title={
-                    campus?.name === 'Trinity' ? 'Trinity Church' : campus?.name
-                  }
-                  type="HIGHLIGHT_SMALL"
-                  mobileHeight="150px"
-                  loading={loading}
-                  label={
-                    campus?.distanceFromLocation > 0 &&
-                    `${Number(campus?.distanceFromLocation).toFixed(1)} miles`
-                  }
-                />
+                <Styled.CardSpacing
+                  key={i + 1}
+                  index={i + 1}
+                  total={sortedCampuses?.length + 1}
+                >
+                  <CustomLink
+                    as="a"
+                    boxShadow="none"
+                    href={
+                      !campus.name.includes('Español')
+                        ? `/locations/${kebabCase(campus.name)}`
+                        : `/locations/iglesia-${kebabCase(cfe)}`
+                    }
+                    Component={HorizontalHighlightCard}
+                    coverImage={campus?.image?.uri}
+                    coverImageLabelBgColor="white"
+                    coverImageOverlay={true}
+                    title={
+                      campus?.name === 'Trinity'
+                        ? 'Trinity Church'
+                        : campus?.name
+                    }
+                    type="HIGHLIGHT_SMALL"
+                    mobileHeight="150px"
+                    loading={loading}
+                    label={
+                      campus?.distanceFromLocation > 0 &&
+                      `${Number(campus?.distanceFromLocation).toFixed(1)} miles`
+                    }
+                  />
+                </Styled.CardSpacing>
               );
             })}
           </CardGrid>

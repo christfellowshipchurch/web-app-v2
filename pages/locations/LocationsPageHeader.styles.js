@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 import Color from 'color';
 
@@ -120,6 +120,36 @@ const LocationInput = styled(TextInput)`
   }
 `;
 
+const cardSpan = ({ index, total }) => {
+  /**
+   * In order to compensate for when there is not an even row of 3 cards, we'll calculate the LAST handful of cards in order to have them fill the gap.
+   *
+   * For Example:
+   *
+   * [][][]
+   * [][][]
+   * [_][_]
+   * [_][_]
+   *
+   */
+  let remainder = total % 3;
+  let span = 4;
+
+  if (remainder === 1 && index > 11) {
+    span = 6;
+  }
+
+  return css`
+    grid-column-end: span ${span};
+  `;
+};
+
+const CardSpacing = styled.div`
+  ${cardSpan}
+  ${system}
+`;
+
+Locations.CardSpacing = CardSpacing;
 Locations.VideoCover = VideoCover;
 Locations.VideoOverlay = VideoOverlay;
 Locations.ContentBox = ContentBox;
