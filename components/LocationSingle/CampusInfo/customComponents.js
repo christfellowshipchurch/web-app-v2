@@ -39,7 +39,7 @@ const CfEverywhereButtons = () => (
         textAlign={{ _: 'center', md: 'left' }}
         ml={{ _: '', lg: 'xl' }}
         flex={{ _: '', md: 1 }}
-        display={{ _: 'flex', md: 'block' }}
+        display="flex"
       >
         <Button
           as="a"
@@ -49,8 +49,13 @@ const CfEverywhereButtons = () => (
           borderRadius="l"
           mr="s"
           px="base"
+          display="flex"
+          width="185px"
+          alignItems="center"
+          justifyContent="center"
         >
-          <Icon name="youtube" mr="xs" /> YOUTUBE
+          <Icon name="youtube" mr="xs" />
+          <Box>YOUTUBE</Box>
         </Button>
         <Button
           as="a"
@@ -60,8 +65,13 @@ const CfEverywhereButtons = () => (
           size="s"
           borderRadius="l"
           px="base"
+          display="flex"
+          width="185px"
+          alignItems="center"
+          justifyContent="center"
         >
-          <Icon name="facebook" mr="xs" /> FACEBOOK LIVE
+          <Icon name="facebook" mr="xs" />
+          <Box>FACEBOOK LIVE</Box>
         </Button>
       </Box>
     </Box>
@@ -161,7 +171,7 @@ const CfEverywhereMobileButtons = () => {
         </Box>
       </Box>
       <Box flex="2">
-        <Box mb="s">
+        <Box mb="s" pr="base">
           Here at Christ Fellowship Everywhere, you can expect to experience
           church services with uplifting worship music, encouraging messages
           from our pastors, special programming for your family, and
@@ -277,7 +287,7 @@ const WeekdayScheduleDisplay = ({ weekdaySchedules, isMobile }) => {
       justifyContent="center"
       alignItems="center"
       pt="l"
-      pb="xxl"
+      pb="5.25rem"
     >
       <Box as="h2" color="secondary">
         During the Week

@@ -77,7 +77,7 @@ const PastorCard = ({
           </Box>
           <Box as="a" target="_blank" textAlign="center" href={mapLink}>
             {addressFirst}
-            {'\n'}
+            <br />
             {addressLast}
           </Box>
           <Box as="h4" mt="base" mb="xs">
@@ -93,7 +93,14 @@ const PastorCard = ({
           /**
            * todo : Add url to contact us button
            */
-          <Button size="xs" variant="secondary" px="base" borderRadius="xxl">
+          <Button
+            size="xs"
+            mr={{ _: 'xs', lg: 0 }}
+            variant="secondary"
+            width="132px"
+            px="base"
+            borderRadius="xxl"
+          >
             CONTACT US
           </Button>
         ) : (

@@ -180,7 +180,7 @@ const CampusInfo = ({
             weekdaySchedules={weekdaySchedules}
           />
           <Divider mb="l" width="80%" />
-          <Box pb="xl" mx="base" textAlign="center" flex="2">
+          <Box pt="l" pb="5.25rem" mx="base" textAlign="center" flex="2">
             <Box as="h2" color="secondary">
               What to Expect
             </Box>
