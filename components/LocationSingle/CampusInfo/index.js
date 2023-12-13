@@ -13,6 +13,7 @@ import {
   TrinityButtons,
   TrinityMobileButtons,
   CfEverywhereButtons,
+  CfEverywhereMobileButtons,
   WeekdayScheduleDisplay,
 } from './customComponents';
 import { showModal, useModalDispatch } from 'providers/ModalProvider';
@@ -37,17 +38,18 @@ const CampusInfo = ({
   // Make sure there is at least one weekday schedule
   const isWeekdaySchedule = validDaysOfWeek(weekdaySchedules)?.length > 0;
   const modalDispatch = useModalDispatch();
+  const expectVideo = whatToExpectVideos[camelCase(name)];
 
   /** Instagram URLs */
   const campusLink = find(campusLinks, { name: name });
 
-  const desktopHeight = name === 'Online (CF Everywhere)' ? 500 : 560;
+  const desktopHeight = name === 'Online (CF Everywhere)' ? null : 560;
 
   return (
     <Box
       height={{ _: 'auto', md: desktopHeight }}
       bg="white"
-      pb={{ _: '0px', md: '39rem' }}
+      pb={name !== 'Online (CF Everywhere)' ? { _: '0px', md: '39rem' } : '0px'}
     >
       {/* Campus Information */}
       <Cell
@@ -116,7 +118,7 @@ const CampusInfo = ({
             )}
 
             {/* What to Expect Section */}
-            {name !== 'Trinity' && (
+            {name !== 'Trinity' && name !== 'Online (CF Everywhere)' && (
               <Box display={{ _: 'none', md: 'flex' }} my="l">
                 <Box ml="base">
                   <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
@@ -131,30 +133,33 @@ const CampusInfo = ({
                     for your family, and opportunities for you to find people to
                     do life with all throughout the week—it all starts here!
                   </Box>
-                  <Button
-                    variant="secondary"
-                    borderRadius="base"
-                    px="base"
-                    as="a"
-                    onClick={() =>
-                      modalDispatch(
-                        showModal('Video', {
-                          step: 0,
-                          wistiaId: whatToExpectVideos[camelCase(name)],
-                          title: 'What to Expect',
-                        })
-                      )
-                    }
-                    size="s"
-                    mt="s"
-                  >
-                    Watch Video
-                  </Button>
+                  {expectVideo && (
+                    <Button
+                      variant="secondary"
+                      borderRadius="base"
+                      px="base"
+                      as="a"
+                      onClick={() =>
+                        modalDispatch(
+                          showModal('Video', {
+                            step: 0,
+                            wistiaId: expectVideo,
+                            title: 'What to Expect',
+                          })
+                        )
+                      }
+                      size="s"
+                      mt="s"
+                    >
+                      Watch Video
+                    </Button>
+                  )}
                 </Box>
               </Box>
             )}
           </Box>
         </Box>
+
         {/* Campus Pastors */}
         <PastorCard
           pastor={pastor}
@@ -210,6 +215,7 @@ const CampusInfo = ({
       ) : (
         name === 'Trinity' && <TrinityMobileButtons />
       )}
+      {name === 'Online (CF Everywhere)' && <CfEverywhereMobileButtons />}
     </Box>
   );
 };

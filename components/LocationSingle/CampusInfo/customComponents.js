@@ -65,7 +65,22 @@ const CfEverywhereButtons = () => (
         </Button>
       </Box>
     </Box>
-    <StyledDivider display={{ _: 'none', md: 'flex' }} width="100%" />
+    <Box ml="base" display={{ _: 'none', md: 'flex' }} my="l">
+      <Box>
+        <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
+          What to Expect
+        </Box>
+      </Box>
+      <Box flex="2">
+        <Box mb="s">
+          Here at Christ Fellowship Everywhere, you can expect to experience
+          church services with uplifting worship music, encouraging messages
+          from our pastors, special programming for your family, and
+          opportunities for you to find people to do life with all throughout
+          the week—it all starts here!
+        </Box>
+      </Box>
+    </Box>
   </>
 );
 
@@ -123,6 +138,36 @@ const TrinityButtons = () => {
         >
           Watch Video
         </Button>
+      </Box>
+    </Box>,
+  ];
+};
+
+const CfEverywhereMobileButtons = () => {
+  return [
+    <StyledDivider display="flex" width="100%" />,
+    <Box
+      ml="base"
+      display={{ _: 'flex', md: 'none' }}
+      flexDirection="column"
+      alignItems="center"
+      mt="base"
+      mb={{ _: '0px', md: 'base' }}
+      pb="l"
+    >
+      <Box>
+        <Box as="h3" color="secondary" maxWidth={200}>
+          What to Expect
+        </Box>
+      </Box>
+      <Box flex="2">
+        <Box mb="s">
+          Here at Christ Fellowship Everywhere, you can expect to experience
+          church services with uplifting worship music, encouraging messages
+          from our pastors, special programming for your family, and
+          opportunities for you to find people to do life with all throughout
+          the week—it all starts here!
+        </Box>
       </Box>
     </Box>,
   ];
@@ -276,6 +321,7 @@ const WeekdayScheduleDisplay = ({ weekdaySchedules, isMobile }) => {
 
 export {
   CfEverywhereButtons,
+  CfEverywhereMobileButtons,
   TrinityButtons,
   TrinityMobileButtons,
   StyledDivider,

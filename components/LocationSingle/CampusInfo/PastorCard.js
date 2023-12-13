@@ -51,7 +51,10 @@ const PastorCard = ({
           ? 'Online Community Pastor'
           : `Campus Pastor${includes(pastor?.firstName, ' and ') ? 's' : ''}`}
       </Box>
-      <Divider width="100%" my="base" />
+
+      {campusName !== 'Online (CF Everywhere)' && (
+        <Divider width="100%" my="base" />
+      )}
       {address && campusName !== 'Online (CF Everywhere)' ? (
         <Box
           width="100%"
@@ -61,11 +64,13 @@ const PastorCard = ({
           px="l"
         >
           {!currentBreakpoints.isSmall && (
-            <Image
-              maxWidth={250}
-              aspectRatio="16by9"
-              source={`/location-pages/maps/${kebabCase(campusName)}.jpg`}
-            />
+            <Box as="a" target="_blank" href={mapLink}>
+              <Image
+                maxWidth={250}
+                aspectRatio="16by9"
+                source={`/location-pages/maps/${kebabCase(campusName)}.jpg`}
+              />
+            </Box>
           )}
           <Box as="h4" mt="base" mb="xs">
             Address
