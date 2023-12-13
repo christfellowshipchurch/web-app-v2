@@ -4,6 +4,8 @@ import { Avatar, Box, Button, Divider, Icon, Image, Loader } from 'ui-kit';
 import Styled from '../LocationSingle.styles';
 import { handleSocialShare } from 'components/Share/shareUtils';
 import { includes, kebabCase } from 'lodash';
+import { useCurrentBreakpoint } from 'hooks';
+import { links } from 'config/metadata';
 
 /**
  * This component displays Pastor and Campus information
@@ -17,6 +19,7 @@ const PastorCard = ({
   mapLink,
 }) => {
   const { addressFirst, addressLast } = address;
+  const currentBreakpoints = useCurrentBreakpoint();
 
   return (
     <Styled.PastorsCard>
@@ -57,11 +60,13 @@ const PastorCard = ({
           alignItems="center"
           px="l"
         >
-          <Image
-            maxWidth={250}
-            aspectRatio="16by9"
-            source={`/location-pages/maps/${kebabCase(campusName)}.jpg`}
-          />
+          {!currentBreakpoints.isSmall && (
+            <Image
+              maxWidth={250}
+              aspectRatio="16by9"
+              source={`/location-pages/maps/${kebabCase(campusName)}.jpg`}
+            />
+          )}
           <Box as="h4" mt="base" mb="xs">
             Address
           </Box>
@@ -83,17 +88,19 @@ const PastorCard = ({
           /**
            * todo : Add url to contact us button
            */
-          <Button size="xs" px="l" borderRadius="xxl">
+          <Button size="xs" variant="secondary" px="base" borderRadius="xxl">
             CONTACT US
           </Button>
         ) : (
           [
             <Button
               size="xs"
-              px="l"
+              px="base"
+              variant="secondary"
               borderRadius="xxl"
               ml={{ _: 0, lg: 'xs' }}
               m={{ _: 'xs', lg: 0 }}
+              width="132px"
               onClick={() =>
                 handleSocialShare({
                   shareType: 'sms',
@@ -107,6 +114,17 @@ const PastorCard = ({
             </Button>,
           ]
         )}
+        <Button
+          size="xs"
+          px="base"
+          borderRadius="xxl"
+          m={{ _: 'xs', lg: 0 }}
+          ml={{ _: 0, lg: 's' }}
+          width="132px"
+          href="/locations"
+        >
+          MORE LOCATIONS
+        </Button>
       </Box>
       <Box mt="base">
         <Box
@@ -114,17 +132,14 @@ const PastorCard = ({
           target="_blank"
           href="https://www.facebook.com/CFimpact"
           color="tertiary"
-          mr="xs"
         >
           <Icon name="facebook" size="32" />
         </Box>
-        <Box as="a" target="_blank" href={instagram} color="tertiary">
+        <Box as="a" target="_blank" href={instagram} color="tertiary" mx="s">
           <Icon name="instagram" size="32" />
         </Box>
-        <Box mt="base" as="p" fontStyle="italic" fontSize="14px">
-          Servicios en Español en{' '}
-          <a href="/locations/iglesia-royal-palm-beach">Royal Palm Beach</a> y{' '}
-          <a href="/locations/iglesia-palm-beach-gardens">Palm Beach Gardens</a>
+        <Box as="a" target="_blank" href={links.youtube} color="tertiary">
+          <Icon name="youtube" size="32" />
         </Box>
       </Box>
     </Styled.PastorsCard>
