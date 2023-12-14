@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { camelCase, find } from 'lodash';
 
-import { Box, Button, Cell, Divider, utils } from 'ui-kit';
+import { Box, Cell, Divider, Icon, utils } from 'ui-kit';
 
 import { campusLinks } from '../../../lib/locationData';
 import Styled from '../LocationSingle.styles';
@@ -134,10 +134,7 @@ const CampusInfo = ({
                     do life with all throughout the week—it all starts here!
                   </Box>
                   {expectVideo && (
-                    <Button
-                      variant="secondary"
-                      borderRadius="base"
-                      px="base"
+                    <Box
                       as="a"
                       onClick={() =>
                         modalDispatch(
@@ -148,11 +145,17 @@ const CampusInfo = ({
                           })
                         )
                       }
-                      size="s"
                       mt="s"
+                      display="flex"
+                      alignItems="center"
+                      width="fit-content"
+                      fontStyle="italic"
+                      textDecoration="underline"
+                      cursor="pointer"
                     >
-                      Watch Video
-                    </Button>
+                      See what to expect here!
+                      <Icon ml="s" name="play" size="24" variant="secondary" />
+                    </Box>
                   )}
                 </Box>
               </Box>
@@ -191,25 +194,31 @@ const CampusInfo = ({
               your family, and opportunities for you to find people to do life
               with all throughout the week—it all starts here!
             </Box>
-            <Button
-              as="a"
-              variant="secondary"
-              borderRadius="base"
-              px="base"
-              onClick={() =>
-                modalDispatch(
-                  showModal('Video', {
-                    step: 0,
-                    wistiaId: whatToExpectVideos[camelCase(name)],
-                    title: 'What to Expect',
-                  })
-                )
-              }
-              size="s"
-              mt="s"
-            >
-              Watch Video
-            </Button>
+            {expectVideo && (
+              <Box
+                as="a"
+                onClick={() =>
+                  modalDispatch(
+                    showModal('Video', {
+                      step: 0,
+                      wistiaId: expectVideo,
+                      title: 'What to Expect',
+                    })
+                  )
+                }
+                mt="s"
+                display="flex"
+                alignItems="center"
+                width="fit-content"
+                fontStyle="italic"
+                textDecoration="underline"
+                cursor="pointer"
+                mx="auto"
+              >
+                See what to expect here!
+                <Icon ml="s" name="play" size="24" variant="secondary" />
+              </Box>
+            )}
           </Box>
         </Box>
       ) : (

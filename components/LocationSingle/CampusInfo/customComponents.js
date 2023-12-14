@@ -129,10 +129,7 @@ const TrinityButtons = () => {
           opportunities for you to find people to do life with all throughout
           the week—it all starts here!
         </Box>
-        <Button
-          variant="secondary"
-          borderRadius="base"
-          px="base"
+        <Box
           as="a"
           onClick={() =>
             modalDispatch(
@@ -143,11 +140,18 @@ const TrinityButtons = () => {
               })
             )
           }
-          size="s"
           mt="s"
+          display="flex"
+          alignItems="center"
+          width="fit-content"
+          fontStyle="italic"
+          textDecoration="underline"
+          cursor="pointer"
+          mx="auto"
         >
-          Watch Video
-        </Button>
+          See what to expect here!
+          <Icon ml="s" name="play" size="24" variant="secondary" />
+        </Box>
       </Box>
     </Box>,
   ];
@@ -203,7 +207,7 @@ const TrinityMobileButtons = () => {
         </Box>
       </Box>
       <Box flex="2">
-        <Box mb="s">
+        <Box mb="s" mr="base">
           Here at Trinity Church by Christ Fellowship Church you can expect to
           experience church services with uplifting worship music, encouraging
           messages from our pastors, special programming for your family, and
@@ -211,10 +215,7 @@ const TrinityMobileButtons = () => {
           the week—it all starts here!
         </Box>
       </Box>
-      <Button
-        variant="secondary"
-        borderRadius="base"
-        px="base"
+      <Box
         as="a"
         onClick={() =>
           modalDispatch(
@@ -225,11 +226,18 @@ const TrinityMobileButtons = () => {
             })
           )
         }
-        size="s"
         mt="s"
+        display="flex"
+        alignItems="center"
+        width="fit-content"
+        fontStyle="italic"
+        textDecoration="underline"
+        cursor="pointer"
+        mx="auto"
       >
-        Watch Video
-      </Button>
+        See what to expect here!
+        <Icon ml="s" name="play" size="24" variant="secondary" />
+      </Box>
     </Box>,
   ];
 };
