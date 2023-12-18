@@ -12,10 +12,7 @@ import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
 import { GET_CAMPUS } from 'hooks/useCampus';
 import { initializeApollo } from 'lib/apolloClient';
 
-import {
-  campusMetaData,
-  campusLinks,
-} from 'components/LocationSingle/locationData';
+import { campusMetaData, campusLinks } from 'lib/locationData';
 import { useAnalytics } from 'providers/AnalyticsProvider';
 
 const OLD_LOCATION_PAGES = [
@@ -38,7 +35,7 @@ export default function Location(props = {}) {
       contentCategory: 'Information',
       mediaType: 'Information',
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const options = {

@@ -29,7 +29,7 @@
     "color": "^4.2.3",
     "create-pull-request": "^1.4.0",
     "cross-fetch": "^3.0.6",
-    "date-fns": "^2.16.1",
+    "date-fns": "^2.30.0",
     "eslint-config-next": "^13.4.10",
     "graphql": "^16.6.0",
     "html-to-react": "^1.4.5",
