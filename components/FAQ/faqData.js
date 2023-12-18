@@ -235,7 +235,7 @@ const faqData = campus => {
       return faqWestlakeData;
     case 'Trinity':
       return faqTrinityData;
-    case 'Cf Everywhere':
+    case 'Online (CF Everywhere)':
       return faqCfEverywhereData;
     case 'CBO':
       return faqCBO;

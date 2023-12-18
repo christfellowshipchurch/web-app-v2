@@ -43,15 +43,15 @@ function NavScreen(props) {
       key: 'Main',
       screen: <MainMenu {...navData} onChange={e => setScreenState(e)} />,
     },
-    {
-      key: 'Locations',
-      screen: (
-        <SubMenu
-          {...navData?.additionalLinks?.find(n => n?.title === 'Locations')}
-          goBack={() => setScreenState('Main')}
-        />
-      ),
-    },
+    // {
+    //   key: 'Locations',
+    //   screen: (
+    //     <SubMenu
+    //       {...navData?.additionalLinks?.find(n => n?.title === 'Locations')}
+    //       goBack={() => setScreenState('Main')}
+    //     />
+    //   ),
+    // },
     {
       key: 'Messages & Content',
       screen: (

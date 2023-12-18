@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { find, includes, replace, startCase, camelCase } from 'lodash';
+import { find, startCase, camelCase } from 'lodash';
 
 import {
   CollectionPreview,
@@ -13,8 +13,8 @@ import {
   HeroListFeature,
   Video,
 } from 'components';
+import { Box, Button, Divider } from 'ui-kit';
 
-import { Box, Button, Divider, Loader, ContentBlock } from 'ui-kit';
 import CampusInfo from './CampusInfo';
 import LocationHeader from './LocationHeader';
 import defaultBlockData from '../LocationBlockFeature/defaultBlockData';
@@ -24,92 +24,35 @@ import {
   setReminderVideos,
   setReminderData,
   thisWeekFeatureId,
-  whatToExpectVideos,
-  whatToExpectData,
-} from './locationData';
+} from '../../lib/locationData';
 import { CampusProvider, FeatureProvider } from 'providers';
 import faqData from 'components/FAQ/faqData';
 import { showModal, useModalDispatch } from 'providers/ModalProvider';
+import { campusNameFormatted } from './utils';
 
 function LocationSingle(props = {}) {
   const modalDispatch = useModalDispatch();
 
-  if (props.loading) {
-    return (
-      <Layout
-        title="Location"
-        contentMaxWidth={'100vw'}
-        contentHorizontalPadding={'0'}
-        contentVerticalPadding={'0'}
-      >
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignContent="center"
-          alignItems="center"
-          width="100%"
-          minHeight="50vh"
-        >
-          <Loader />
-        </Box>
-      </Layout>
-    );
-  }
-
-  // note : this means that there is not a valid page found on the API, so we'll render the 404 message
+  /**
+   * note : this means that there is not a valid page found on the API, so we'll render the 404 message
+   */
   if (!props.loading && !props?.data?.id) {
     return <NotFound />;
   }
 
-  const { title, routing } = props?.data;
-
-  // note : Gets Campus Name from pathname
-  let campus = startCase(routing?.pathname.substring(10));
-
-  // note : Fixes campus name for Port St. Lucie
-  if (includes(campus, 'St ')) {
-    campus = replace(campus, 'St ', 'St. ');
-  }
-
-  // note : We need to override the campus name to for CFE to properly format it for querying purposes
-  if (includes(campus, 'Español')) {
-    const intitialString = title.substring(25, title.length - 4);
-    const firstHalf = intitialString.substring(0, 10);
-    const secondHalf = intitialString.substring(12, intitialString.length);
-    campus = firstHalf + secondHalf;
-  }
+  /**
+   *  note : Gets Campus Name from pathname
+   */
+  const { routing } = props?.data;
+  const campus = campusNameFormatted(
+    startCase(routing?.pathname.substring(10))
+  );
 
   /**
    * note : import hard coded data
    */
   const campusAdditionalInfo = find(additionalInfoCampusData, { name: campus });
   const headerContent = find(headerData, { name: campus });
-
-  let element;
-  if (typeof document !== 'undefined') {
-    element = document.getElementById('FAQ');
-  }
-
-  function faqScroll() {
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  }
-
-  const setAReminderVideo = setReminderVideos[camelCase(campus)];
-  const whatToExpectVideo = whatToExpectVideos[camelCase(campus)];
-  const expectData = whatToExpectData(campus);
-  const expectActions = [
-    {
-      title: 'Set a Reminder',
-      variant: 'secondary',
-      onClick: () =>
-        modalDispatch(showModal('SetReminder', { defaultCampus: campus })),
-      relatedNode: {
-        url: '#set-reminder',
-      },
-    },
-  ];
 
   return (
     <Layout
@@ -121,7 +64,11 @@ function LocationSingle(props = {}) {
       {/* Header Section */}
       <LocationHeader
         title={props?.data?.title}
-        subtitle={props?.data?.summary}
+        subtitle={
+          props?.data?.summary
+            ? props?.data?.summary
+            : 'A church that wants to help you live the life you were created for.'
+        }
         {...headerContent}
       />
 
@@ -130,8 +77,7 @@ function LocationSingle(props = {}) {
         Component={CampusInfo}
         options={{
           variables: {
-            campusName:
-              campus === 'Cf Everywhere' ? 'Online (CF Everywhere)' : campus,
+            campusName: campus,
           },
         }}
         additionalInfo={campusAdditionalInfo?.info}
@@ -142,7 +88,7 @@ function LocationSingle(props = {}) {
       </Box>
 
       {/* This Week Feature */}
-      {campus === 'Cf Everywhere' && (
+      {campus === 'Online (CF Everywhere)' && (
         <Box maxWidth={1100} mx="auto" width="100%" px="base" py="xl">
           <Box
             as="h2"
@@ -161,104 +107,40 @@ function LocationSingle(props = {}) {
       )}
 
       {/* Set a Reminder */}
-      {campus !== 'Cf Everywhere' && (
-        <>
-          <Box
-            maxWidth={{ _: 350, md: 600, lg: 800 }}
-            boxShadow="l"
-            borderRadius="xl"
-            overflow="hidden"
-            mt="xxl"
-            mx="auto"
-          >
-            <Video wistiaId={setAReminderVideo} />
-          </Box>
-          <Box width="100%" px={{ _: 'base', md: 'xl' }} pt="base">
-            <InfoCardList
-              {...setReminderData}
-              button={{
-                title: 'Set a Reminder',
-                onClick: () =>
-                  modalDispatch(
-                    showModal('SetReminder', { defaultCampus: campus })
-                  ),
-              }}
-            />
-          </Box>
-        </>
-      )}
-
-      {/* What to Expect */}
-      <Box bg="white" width="100%">
-        <Box
-          bg="white"
-          mx="auto"
-          maxWidth={{ _: 400, md: 800, lg: 1200 }}
-          py="8rem"
-          px={{ _: 'base', md: 'xl' }}
-        >
-          <ContentBlock
-            {...expectData}
-            wistiaId={whatToExpectVideo && whatToExpectVideo}
-            actions={expectActions}
-            contentLayout="left"
-            roundVideo
-            centerContent
-          />
-        </Box>
-      </Box>
-
-      {/* At this Location Section */}
-      <Box
-        width="100%"
-        px={{ _: 'base', md: 'xl' }}
-        pt="base"
-        bg={!expectData && 'white'}
-      >
-        <LocationBlockFeature
-          mx="auto"
-          campusName={campus}
-          maxWidth={1000}
-          data={defaultBlockData(campus)}
-
-          /**
-           * todo :  These would be the content blocks we pull in from Rock, but since the content doesn't match Figma we'll hard code the content for now.
-           *  */
-          // data={props?.data?.featureFeed?.features}
-        />
-      </Box>
-
-      {/* What's Coming Up Section */}
-      <Box bg={expectData && 'white'} py={{ _: 'l', sm: 'xl' }}>
-        <Box mx="auto" maxWidth={1200}>
-          <CollectionPreview
-            horizontalScroll
-            size="s"
-            contentId={
-              campus === 'Cf Everywhere'
-                ? 'UniversalContentItem:04f022613f5beaca2532ef3a8e052cd6'
-                : 'UniversalContentItem:ddf0d380759e8404fb6b70aa941c06f7'
-            }
-            buttonOverride={
-              campus !== 'Cf Everywhere' ? '/events' : '/discover'
-            }
-          />
-        </Box>
-      </Box>
-
-      {/* FAQs Section */}
-      <Box id="FAQ" px="base" py="xl" width="100%" bg={!expectData && 'white'}>
-        <Box mx="auto" maxWidth={1200}>
-          <FAQ data={faqData(campus)} onClick={faqScroll} />
-        </Box>
+      <Box id="set-a-reminder" pt="xxl">
+        {campus !== 'Online (CF Everywhere)' && (
+          <>
+            <Box
+              maxWidth={{ _: 350, md: 600, lg: 800 }}
+              boxShadow="l"
+              borderRadius="xl"
+              overflow="hidden"
+              mx="auto"
+            >
+              <Video wistiaId={setReminderVideos[camelCase(campus)]} />
+            </Box>
+            <Box width="100%" px={{ _: 'base', md: 'xl' }} pt="base">
+              <InfoCardList
+                {...setReminderData}
+                button={{
+                  title: 'Set a Reminder',
+                  onClick: () =>
+                    modalDispatch(
+                      showModal('SetReminder', { defaultCampus: campus })
+                    ),
+                }}
+              />
+            </Box>
+          </>
+        )}
       </Box>
 
       {/* Testimonial Section */}
-      <Box bg={expectData && 'white'} px="base" py="xl" width="100%">
+      <Box bg="white" px="base" py="xl" width="100%">
         <Box mx="auto" maxWidth={1200}>
           <Testimonials
             testimonies={
-              campus === 'Cf Everywhere'
+              campus === 'Online (CF Everywhere)'
                 ? [
                     {
                       name: '<i>Amal</i>',
@@ -285,8 +167,48 @@ function LocationSingle(props = {}) {
         </Box>
       </Box>
 
+      {/* At this Location Section */}
+      <Box width="100%" px={{ _: 'base', md: 'xl' }} pt="base">
+        <LocationBlockFeature
+          mx="auto"
+          campusName={campus}
+          maxWidth={1000}
+          data={defaultBlockData(campus)}
+
+          /**
+           * todo :  These would be the content blocks we pull in from Rock, but since the content doesn't match Figma we'll hard code the content for now.
+           *  */
+          // data={props?.data?.featureFeed?.features}
+        />
+      </Box>
+
+      {/* What's Coming Up Section */}
+      <Box bg="white" py={{ _: 'l', sm: 'xl' }}>
+        <Box mx="auto" maxWidth={1200}>
+          <CollectionPreview
+            horizontalScroll
+            size="s"
+            contentId={
+              campus === 'Online (CF Everywhere)'
+                ? 'UniversalContentItem:04f022613f5beaca2532ef3a8e052cd6'
+                : 'UniversalContentItem:ddf0d380759e8404fb6b70aa941c06f7'
+            }
+            buttonOverride={
+              campus !== 'Online (CF Everywhere)' ? '/events' : '/discover'
+            }
+          />
+        </Box>
+      </Box>
+
+      {/* FAQs Section */}
+      <Box id="location-faq" px="base" py="xl" width="100%">
+        <Box mx="auto" maxWidth={1200}>
+          <FAQ data={faqData(campus)} customScrollPosition="location-faq" />
+        </Box>
+      </Box>
+
       {/* Never Miss a Thing Section */}
-      <Box bg={!expectData && 'white'} px="base" py="xl">
+      <Box bg="white" px="base" py="xl">
         <Box textAlign="center" maxWidth={500} mx="auto">
           <Box as="h2" color="secondary">
             Never miss a thing.

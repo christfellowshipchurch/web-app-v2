@@ -118,12 +118,17 @@ const PastorsCard = styled.div`
   text-align: center;
   width: 100%;
 
-  @media screen and (min-width: ${themeGet('breakpoints.sm')}) {
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     border: 1px solid ${themeGet('colors.neutrals.300')};
     border-radius: ${themeGet('radii.l')};
     box-shadow: ${themeGet('shadows.l')};
     width: auto;
   }
+
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    top: -150px;
+  }
+
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     min-width: 350px;
   }

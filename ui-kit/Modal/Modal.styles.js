@@ -56,7 +56,6 @@ const Content = styled.div`
     margin-top: ${themeGet('space.base')};
     padding: ${themeGet('space.base')};
     padding-top: ${themeGet('space.xl')};
-    width: max-content;
     max-width: calc(100vw - ${themeGet('space.base')});
     max-height: 80vh;
   }
