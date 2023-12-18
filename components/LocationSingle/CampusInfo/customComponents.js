@@ -175,7 +175,7 @@ const CfEverywhereMobileButtons = () => {
         </Box>
       </Box>
       <Box flex="2">
-        <Box mb="s" pr="base">
+        <Box mb="s" pr="base" textAlign="center">
           Here at Christ Fellowship Everywhere, you can expect to experience
           church services with uplifting worship music, encouraging messages
           from our pastors, special programming for your family, and
@@ -207,7 +207,7 @@ const TrinityMobileButtons = () => {
         </Box>
       </Box>
       <Box flex="2">
-        <Box mb="s" mr="base">
+        <Box mb="s" mr="base" textAlign="center">
           Here at Trinity Church by Christ Fellowship Church you can expect to
           experience church services with uplifting worship music, encouraging
           messages from our pastors, special programming for your family, and
