@@ -141,8 +141,6 @@ const TrinityButtons = () => {
             )
           }
           mt="s"
-          display="flex"
-          alignItems="center"
           width="fit-content"
           fontStyle="italic"
           textDecoration="underline"
