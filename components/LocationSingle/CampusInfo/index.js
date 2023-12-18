@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { camelCase, find } from 'lodash';
+import { useCurrentBreakpoint } from 'hooks';
 
-import { Box, Cell, Divider, Icon, utils } from 'ui-kit';
+import { Box, Cell, Divider, Icon, Image, utils } from 'ui-kit';
 
 import { campusLinks } from '../../../lib/locationData';
 import Styled from '../LocationSingle.styles';
@@ -32,6 +33,8 @@ const CampusInfo = ({
   mapLink,
   weekdaySchedules,
 }) => {
+  const currentBreakpoints = useCurrentBreakpoint();
+
   const addressFirst = street1 ? `${street1}` : null;
   const addressLast = `${city}, ${state} ${postalCode?.substring(0, 5)}`;
 
@@ -65,6 +68,34 @@ const CampusInfo = ({
         zIndex={1}
         width="100%"
       >
+        {/* Christmas Banner For Mobile */}
+        {currentBreakpoints.isSmall && (
+          <Styled.MobileChristmasBanner>
+            <Image
+              width={40}
+              height={40}
+              source="/location-pages/christmas-banner.jpeg"
+              mr="10px"
+            />
+            <Box>
+              <Box as="h3" mb="0">
+                Looking for Christmas Service?
+              </Box>
+              <Box fontStyle="italic">
+                Christmas service times differ.{' '}
+                <Box
+                  as="a"
+                  color="white"
+                  href="https://www.christmasatcf.com/"
+                  target="_blank"
+                  textDecoration="underline"
+                >
+                  Find a Christmas service here.
+                </Box>
+              </Box>
+            </Box>
+          </Styled.MobileChristmasBanner>
+        )}
         {/* Service Times */}
         <Box width="100%">
           <Styled.ServiceTimeContainer>
@@ -105,6 +136,38 @@ const CampusInfo = ({
                 ))}
               </Styled.InfoBox>
             )}
+
+            {/* Christmas Banner */}
+            {!currentBreakpoints.isSmall && (
+              <Styled.ChristmasBanner>
+                <Image
+                  width="42px"
+                  height="42px"
+                  source="/location-pages/christmas-banner.jpeg"
+                  mr="10px"
+                />
+
+                <Box>
+                  Looking for a Christmas Service?
+                  <Styled.ChristmasSubtitle>
+                    Times may vary.{' '}
+                    <Box
+                      as="a"
+                      color="white"
+                      href="https://www.christmasatcf.com/"
+                      target="_blank"
+                      textDecoration="underline"
+                    >
+                      Find a Christmas service{' '}
+                      {currentBreakpoints.isMedium
+                        ? 'here'
+                        : "that's right for you."}
+                    </Box>
+                  </Styled.ChristmasSubtitle>
+                </Box>
+              </Styled.ChristmasBanner>
+            )}
+
             {/* Weekday Schedule / Custom Campus Info */}
 
             {/* Custom Info for CF Everywhere and Trinity */}

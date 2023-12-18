@@ -37,12 +37,14 @@ const MobileChristmasBanner = styled.div`
   background: ${themeGet('colors.hues.red')};
   color: white;
   font-size: 14px;
-  text-align: center;
   font-weight: bold;
   padding-bottom: ${themeGet('space.s')};
   padding-top: ${themeGet('space.s')};
   box-shadow: -7px -5px 19px rgba(0, 0, 0, 0.12);
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
     margin-right: 0px;
