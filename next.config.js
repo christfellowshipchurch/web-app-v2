@@ -164,7 +164,7 @@ module.exports = {
       { source: '/robbynotes', destination: '/wednesday-night-bible-study-notes', permanent: true },
       { source: '/startingpoint', destination: '/next-steps/starting-point', permanent: true },
       { source: '/support', destination: '/connect/support-groups', permanent: true },
-      { source: '/marriage', destination: '/next-steps/find-a-life-group', permanent: true },
+      { source: '/marriage', destination: '/marriage-groups', permanent: true },
       { source: '/testdrive', destination: '/next-steps/volunteer', permanent: true },
       { source: '/reallove', destination: '/watch/71ec2079298288ea22cabf29ff907d73/real-love', permanent: true },
       { source: '/care', destination: 'https://my.longhollow.com/NextSteps', permanent: true },
