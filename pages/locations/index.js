@@ -12,6 +12,7 @@ const FindNearestLocation = () => {
   const [results, setResults] = useState([{ geometry: { location: {} } }]);
   const [address, setAddress] = useState();
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [locationActive, setLocationActive] = useState(false);
   const { actionBanner } = useActionBanner();
   const currentBreakpoint = useCurrentBreakpoint();
   const { handleSubmit } = useForm();
@@ -74,11 +75,9 @@ const FindNearestLocation = () => {
   }
 
   function searchCurrentLocation() {
-    if (hasLoaded) {
-      searchScroll();
-    }
     navigator.geolocation.getCurrentPosition(
       position => {
+        setLocationActive(true);
         refetch();
         setResults([
           {
@@ -91,8 +90,13 @@ const FindNearestLocation = () => {
           },
         ]);
         refetch();
+        if (hasLoaded) {
+          searchScroll();
+        }
       },
       error => {
+        setHasLoaded(true);
+        setLocationActive(false);
         console.log(error);
       }
     );
@@ -195,7 +199,10 @@ const FindNearestLocation = () => {
                   >
                     Find a Location
                   </Button>
-                  <Box mt={{ _: 0, md: 'base' }} mb={{ _: 'base', md: 'l' }}>
+                  <Box
+                    mt={{ _: 0, md: 'base' }}
+                    mb={locationActive && { _: 'base', md: 'l' }}
+                  >
                     <Styled.CurrentLocation
                       onClick={() => {
                         //When users clicks search button we want to get their coordinates and refetch the campuses to get distance from location
@@ -210,6 +217,18 @@ const FindNearestLocation = () => {
                       name="locationArrow"
                     />
                   </Box>
+                  {/* Hydration Error with this? */}
+                  {!locationActive && (
+                    <Box
+                      fontSize="14px"
+                      fontStyle="italic"
+                      color="danger"
+                      mt="xs"
+                      mb={{ _: 'base', md: 'l' }}
+                    >
+                      Enable Location Access & Try Again.
+                    </Box>
+                  )}
                 </Box>
               </Box>
             </Styled.ContentBox>
