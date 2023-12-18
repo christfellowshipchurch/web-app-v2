@@ -32,6 +32,7 @@ import useFeedFeatures from './useFeedFeatures';
 import useForm from './useForm';
 import useGetTags from './useGetTags';
 import useGetTaggedItems from './useGetTaggedItems';
+import useGetTotalCampuses from './useGetTotalCampuses';
 import useGroup from './useGroup';
 import useGroupContentId from './useGroupContentId';
 import useGroupCoverImages from './useGroupCoverImages';
@@ -110,6 +111,7 @@ export {
   useForm,
   useGetTags,
   useGetTaggedItems,
+  useGetTotalCampuses,
   useGroup,
   useGroupContentId,
   useGroupCoverImages,

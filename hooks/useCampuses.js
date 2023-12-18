@@ -1,10 +1,15 @@
 import { gql, useQuery } from '@apollo/client';
 
 export const GET_CAMPUSES = gql`
-  query {
+  query getCampuses($latitude: Float, $longitude: Float) {
     campuses {
-      id
+      image {
+        uri
+      }
       name
+      distanceFromLocation(
+        location: { latitude: $latitude, longitude: $longitude }
+      )
     }
   }
 `;
