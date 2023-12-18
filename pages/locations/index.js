@@ -12,7 +12,7 @@ const FindNearestLocation = () => {
   const [results, setResults] = useState([{ geometry: { location: {} } }]);
   const [address, setAddress] = useState();
   const [hasLoaded, setHasLoaded] = useState(false);
-  const [locationActive, setLocationActive] = useState(false);
+  const [locationActive, setLocationActive] = useState(true);
   const { actionBanner } = useActionBanner();
   const currentBreakpoint = useCurrentBreakpoint();
   const { handleSubmit } = useForm();
@@ -63,10 +63,6 @@ const FindNearestLocation = () => {
     }
   };
 
-  let placeholder = 'Enter address or zip code here';
-  if (currentBreakpoint.isSmall || currentBreakpoint.isMedium)
-    placeholder = 'Enter address/zip';
-
   function searchScroll() {
     let scrollTo = document.getElementById('results');
     if (scrollTo) {
@@ -95,8 +91,10 @@ const FindNearestLocation = () => {
         }
       },
       error => {
+        if (hasLoaded) {
+          setLocationActive(false);
+        }
         setHasLoaded(true);
-        setLocationActive(false);
         console.log(error);
       }
     );
@@ -177,7 +175,7 @@ const FindNearestLocation = () => {
                   <Box display="flex" justifyContent="space-between">
                     <Styled.LocationInput
                       containerProps={{ width: '100%' }}
-                      placeholder={placeholder}
+                      placeholder="Enter zip code here"
                       onChange={e => setAddress(e.target.value)}
                     />
                   </Box>
@@ -195,6 +193,7 @@ const FindNearestLocation = () => {
                       getCoordinates();
                       refetch();
                       searchScroll();
+                      setLocationActive(true);
                     }}
                   >
                     Find a Location
