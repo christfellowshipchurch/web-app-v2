@@ -347,8 +347,9 @@ function LocationSingle(props = {}) {
                       rating: 5,
                     },
                     {
-                      name: '<i>Tom & Margie</i>',
-                      description: 'Waiting on this one',
+                      name: '<i>Nicole G.</i>',
+                      description:
+                        'Christ Fellowship Español es un lugar donde habita el poder de Dios y su amor. Es donde he visto a toda mi familia ser restaurada y amada. Así como mi familia y yo encontramos una gran familia extendida en Cristo y su amor, tú también puedes hallar esperanza y conocer el corazón de nuestro Señor Jesús en este lugar.',
                       rating: 5,
                     },
                   ]
