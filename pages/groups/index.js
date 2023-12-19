@@ -111,9 +111,12 @@ export default function Community(props = {}) {
       >
         <Box>
           <Styled.Hero>
-            <Styled.Content mx="base">
-              <Styled.Title px="s">Groups & Classes</Styled.Title>
-              <Styled.Subtitle>Life is Better Together</Styled.Subtitle>
+            <Styled.LogoOverlay
+              maxWidth={1200}
+              width={{ _: '80%', md: '70%' }}
+              src={'groups-logo.png'}
+            />
+            <Styled.Content>
               <SearchField
                 boxShadow="0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1),
               0 1px 3px rgba(0, 0, 0, 0.3)"
@@ -124,39 +127,7 @@ export default function Community(props = {}) {
                 handleClick={handleClick}
                 handleClear={() => reset()}
                 value={values.text || ''}
-                mb="base"
               />
-              <Box
-                fontStyle="italic"
-                fontSize={{ _: '16px', md: '20px' }}
-                color="white"
-              >
-                Already in a group?{' '}
-                <Box
-                  as="a"
-                  color="white"
-                  onClick={handleMyGroups}
-                  href="/connect"
-                >
-                  Log in
-                </Box>{' '}
-                to see your groups.
-              </Box>
-              <Box
-                fontStyle="italic"
-                fontSize={{ _: '16px', md: '20px' }}
-                color="white"
-              >
-                Interested in starting a Group?{' '}
-                <Box
-                  as="a"
-                  color="white"
-                  target="_blank"
-                  href="https://rock.christfellowship.church/groups/starting-a-group"
-                >
-                  Learn More
-                </Box>{' '}
-              </Box>
             </Styled.Content>
           </Styled.Hero>
           <Box bg="white" textAlign="center" py="xl">

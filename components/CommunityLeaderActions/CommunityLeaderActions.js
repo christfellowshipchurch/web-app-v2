@@ -90,7 +90,8 @@ export default function CommunityLeaderActions(props) {
               as="a"
               size="s"
               variant="secondary"
-              href="https://rock.christfellowship.church/groups/starting-a-group"
+              target="_blank"
+              href="https://rock.christfellowship.church/dreamteam/locations/opportunities/ministries?AreaId=2030&SetContext=Rock.Model.Campus2&CampusId=2"
               rounded={true}
             >
               Learn More

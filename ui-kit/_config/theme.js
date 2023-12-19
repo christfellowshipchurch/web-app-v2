@@ -3,6 +3,7 @@ import colors from './colors';
 
 const theme = {
   breakpoints: {
+    xs: rem('360px'),
     sm: rem('480px'),
     md: rem('768px'),
     lg: rem('1024px'),

@@ -9,27 +9,35 @@ const Community = styled.div`
 `;
 
 const Content = styled.div`
-  position: absolute;
   margin-left: auto;
   margin-right: auto;
   left: 0;
   right: 0;
   text-align: center;
-  margin-top: ${themeGet('space.l')};
+  position: absolute;
+
+  @media screen and (min-width: ${themeGet('breakpoints.xs')}) {
+    top: 35%;
+    padding: ${themeGet('space.base')};
+  }
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-    margin-top: ${themeGet('space.xl')};
+    top: 30%;
   }
 
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
-    margin-top: ${themeGet('space.xxl')};
+    top: 68%;
   }
 
   ${system}
 `;
 
 const Hero = styled.div`
-  background-image: url(/groups-cover-image.png);
+  background-image: linear-gradient(
+      rgba(000, 000, 000, 0.3) 0%,
+      rgba(000, 000, 000, 0.6) 100%
+    ),
+    url(/groups-cover-image.png);
   background-size: cover;
   background-position: center;
 
@@ -44,7 +52,7 @@ const Hero = styled.div`
   }
 
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
-    height: 450px;
+    height: 650px;
   }
 
   ${system}
@@ -71,9 +79,33 @@ const Title = styled.h1`
   ${system}
 `;
 
+const LogoOverlay = styled.img`
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  right: 0;
+  left: 0;
+  text-align: center;
+
+  @media screen and (min-width: ${themeGet('breakpoints.xs')}) {
+    top: 15%;
+  }
+
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    top: 4%;
+  }
+
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    top: 1%;
+  }
+
+  ${system}
+`;
+
 Community.Content = Content;
 Community.Hero = Hero;
 Community.Subtitle = Subtitle;
 Community.Title = Title;
+Community.LogoOverlay = LogoOverlay;
 
 export default Community;
