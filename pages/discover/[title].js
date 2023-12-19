@@ -87,7 +87,6 @@ export default function DiscoverFilterCategoriesPreview() {
                 scaleCard={false}
                 scaleCoverImage={true}
                 title={n?.title}
-                loading
                 type="HIGHLIGHT_SMALL"
               />
             ))
