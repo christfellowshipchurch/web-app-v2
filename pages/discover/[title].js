@@ -11,7 +11,6 @@ import {
   Cell,
   Button,
   utils,
-  Loader,
   HorizontalHighlightCard,
   Icon,
 } from 'ui-kit';
