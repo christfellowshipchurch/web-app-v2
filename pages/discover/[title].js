@@ -61,7 +61,9 @@ export default function DiscoverFilterCategoriesPreview() {
               display="flex"
               py="none"
               variant="link"
-              onClick={() => push(`/discover?c=${query?.c}&s=${query?.s}`)}
+              onClick={() =>
+                push(`/discover?c=${query?.c}&s=${query?.s || ''}`)
+              }
             >
               <Icon name="angle-left" color="primary" />
               Back
