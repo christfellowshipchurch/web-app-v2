@@ -127,6 +127,7 @@ const PastorCard = ({
           ]
         )}
         <Button
+          as="a"
           size="xs"
           px="base"
           borderRadius="xxl"
