@@ -26,7 +26,7 @@ const Discover = () => {
   const { values, handleSubmit, handleChange, reset } = useForm();
 
   const { loading: loadingFilters, filters } = useDiscoverFilters();
-  const [search, { loading, contentItems, data}] = useSearchContentItems({
+  const [search, { loading, contentItems, data }] = useSearchContentItems({
     notifyOnNetworkStatusChange: true,
   });
 
@@ -59,6 +59,15 @@ const Discover = () => {
 
   const handleClick = event => {
     setSearchVisible(true);
+    if (values.text) {
+      router.push({
+        pathname: router.pathname,
+        query: {
+          c: kebabCase(filterValues.title),
+          s: kebabCase(values.text),
+        },
+      });
+    }
     search({
       variables: {
         query: values.text,
@@ -78,7 +87,7 @@ const Discover = () => {
           search_type: 'content',
         },
       });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageResults]);
 
   function handleClearAllClick(event) {
@@ -92,7 +101,7 @@ const Discover = () => {
     analytics.page({
       mediaType: 'Information',
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -106,10 +115,16 @@ const Discover = () => {
 
   useEffect(() => {
     if (filterValues.title) {
+      if (router?.query?.s) {
+        values.text = router?.query?.s;
+
+        handleClick();
+      }
       router.push({
         pathname: '/discover',
         query: {
           c: kebabCase(filterValues.title),
+          s: kebabCase(values.text),
         },
       });
     }

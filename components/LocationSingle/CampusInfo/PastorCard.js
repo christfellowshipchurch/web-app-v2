@@ -3,7 +3,9 @@ import { Avatar, Box, Button, Divider, Icon, Image, Loader } from 'ui-kit';
 
 import Styled from '../LocationSingle.styles';
 import { handleSocialShare } from 'components/Share/shareUtils';
-import { includes } from 'lodash';
+import { includes, kebabCase } from 'lodash';
+import { useCurrentBreakpoint } from 'hooks';
+import { links } from 'config/metadata';
 
 /**
  * This component displays Pastor and Campus information
@@ -23,6 +25,7 @@ const PastorCard = ({
    */
   const CFEPBG = 'Christ Fellowship Español Palm Beach Gardens';
   const CFERPB = 'Christ Fellowship Español Royal Palm Beach';
+  const currentBreakpoints = useCurrentBreakpoint();
 
   return (
     <Styled.PastorsCard>
@@ -54,7 +57,10 @@ const PastorCard = ({
           ? 'Online Community Pastor'
           : `Campus Pastor${includes(pastor?.firstName, ' and ') ? 's' : ''}`}
       </Box>
-      <Divider width="100%" my="base" />
+
+      {campusName !== 'Online (CF Everywhere)' && (
+        <Divider width="100%" my="base" />
+      )}
       {address && campusName !== 'Online (CF Everywhere)' ? (
         <Box
           width="100%"
@@ -66,7 +72,7 @@ const PastorCard = ({
           <Image
             maxWidth={250}
             aspectRatio="16by9"
-            source="/cfdp-default-map.jpg"
+            source={`/location-pages/maps/${kebabCase(campusName)}.jpg`}
           />
           <Box as="h4" mt="base" mb="xs">
             {campusName === CFEPBG || campusName === CFERPB
@@ -75,7 +81,7 @@ const PastorCard = ({
           </Box>
           <Box as="a" textAlign="left" href={mapLink}>
             {addressFirst}
-            {'\n'}
+            <br />
             {addressLast}
           </Box>
           <Box as="h4" mt="base" mb="xs">
@@ -93,17 +99,26 @@ const PastorCard = ({
           /**
            * todo : Add url to contact us button
            */
-          <Button size="xs" px="l" borderRadius="xxl">
+          <Button
+            size="xs"
+            mr={{ _: 'xs', lg: 0 }}
+            variant="secondary"
+            width="132px"
+            px="base"
+            borderRadius="xxl"
+          >
             CONTACT US
           </Button>
         ) : (
           [
             <Button
               size="xs"
-              px="l"
+              px="base"
+              variant="secondary"
               borderRadius="xxl"
               ml={{ _: 0, lg: 'xs' }}
               m={{ _: 'xs', lg: 0 }}
+              width="132px"
               onClick={() =>
                 handleSocialShare({
                   shareType: 'sms',
@@ -113,52 +128,37 @@ const PastorCard = ({
                 })
               }
             >
-              {campusName === CFEPBG || campusName === CFERPB
-                ? 'INVITA A UN AMIGO'
-                : 'INVITE A FRIEND'}
+              INVITE A FRIEND
             </Button>,
-            /**
-             * todo : Add url to espanol links
-             */
-            <Box mt="base" as="p" fontStyle="italic">
-              {campusName === CFEPBG || campusName === CFERPB ? (
-                <>
-                  Otros campuses{' '}
-                  <a href="/locations" target="_blank">
-                    aquí
-                  </a>{' '}
-                  <br />
-                  See all other services and campuses{' '}
-                  <a href="/locations" target="_blank">
-                    here
-                  </a>
-                </>
-              ) : (
-                <>
-                  Servicios en Español en <a href="">Royal Palm Beach</a> y{' '}
-                  <a href="">Palm Beach Gardens</a>
-                </>
-              )}
-            </Box>,
           ]
         )}
+        <Button
+          as="a"
+          size="xs"
+          px="base"
+          borderRadius="xxl"
+          m={{ _: 'xs', lg: 0 }}
+          ml={{ _: 0, lg: 's' }}
+          width="132px"
+          href="/locations"
+        >
+          MORE LOCATIONS
+        </Button>
       </Box>
       <Box mt="base">
         <Box
           as="a"
           target="_blank"
-          href={
-            campusName === CFEPBG || campusName === CFERPB
-              ? 'https://www.facebook.com/christfellowshipespanol'
-              : 'https://www.facebook.com/CFimpact'
-          }
+          href="https://www.facebook.com/CFimpact"
           color="tertiary"
-          mr="xs"
         >
           <Icon name="facebook" size="32" />
         </Box>
-        <Box as="a" target="_blank" href={instagram} color="tertiary">
+        <Box as="a" target="_blank" href={instagram} color="tertiary" mx="s">
           <Icon name="instagram" size="32" />
+        </Box>
+        <Box as="a" target="_blank" href={links.youtube} color="tertiary">
+          <Icon name="youtube" size="32" />
         </Box>
       </Box>
     </Styled.PastorsCard>
@@ -166,3 +166,17 @@ const PastorCard = ({
 };
 
 export default PastorCard;
+
+// href={
+//   campusName === CFEPBG || campusName === CFERPB
+//     ? 'https://www.facebook.com/christfellowshipespanol'
+//     : 'https://www.facebook.com/CFimpact'
+// }
+// color="tertiary"
+// mr="xs"
+// >
+// <Icon name="facebook" size="32" />
+// </Box>
+// <Box as="a" target="_blank" href={instagram} color="tertiary">
+// <Icon name="instagram" size="32" />
+// </Box>

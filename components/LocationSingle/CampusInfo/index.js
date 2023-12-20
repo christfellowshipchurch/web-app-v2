@@ -1,20 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { find } from 'lodash';
-
-import { Box, Button, Cell, utils } from 'ui-kit';
-
+import { camelCase, find } from 'lodash';
+import { useCurrentBreakpoint } from 'hooks';
+import { Box, Cell, Divider, Icon, Image, utils } from 'ui-kit';
 import { campusLinks } from '../../../lib/locationData';
 import Styled from '../LocationSingle.styles';
 import PastorCard from './PastorCard';
-import { validDaysOfWeek, groupsClassesCampusSection } from '../utils';
+import { validDaysOfWeek } from '../utils';
 
 import {
   TrinityButtons,
+  TrinityMobileButtons,
   CfEverywhereButtons,
+  CfEverywhereMobileButtons,
   WeekdayScheduleDisplay,
 } from './customComponents';
-import { is } from 'date-fns/locale';
+import { showModal, useModalDispatch } from 'providers/ModalProvider';
+import { whatToExpectVideos } from '../../../lib/locationData';
 
 const CampusInfo = ({
   name,
@@ -29,11 +31,15 @@ const CampusInfo = ({
   mapLink,
   weekdaySchedules,
 }) => {
+  const currentBreakpoints = useCurrentBreakpoint();
+
   const addressFirst = street1 ? `${street1}` : null;
   const addressLast = `${city}, ${state} ${postalCode?.substring(0, 5)}`;
 
   // Make sure there is at least one weekday schedule
   const isWeekdaySchedule = validDaysOfWeek(weekdaySchedules)?.length > 0;
+  const modalDispatch = useModalDispatch();
+  const expectVideo = whatToExpectVideos[camelCase(name)];
 
   /** Instagram URLs */
   const campusLink = find(campusLinks, { name: name });
@@ -45,7 +51,11 @@ const CampusInfo = ({
   const CFERPB = 'Christ Fellowship Español Royal Palm Beach';
 
   return (
-    <Box height={{ _: 'auto', md: desktopHeight }} bg="white">
+    <Box
+      height={{ _: 'auto', md: desktopHeight }}
+      bg="white"
+      pb={name !== 'Online (CF Everywhere)' ? { _: '0px', md: '39rem' } : '0px'}
+    >
       {/* Campus Information */}
       <Cell
         alignItems={{ _: 'center', md: 'start' }}
@@ -60,6 +70,34 @@ const CampusInfo = ({
         zIndex={1}
         width="100%"
       >
+        {/* Christmas Banner For Mobile */}
+        {currentBreakpoints.isSmall && (
+          <Styled.MobileChristmasBanner>
+            <Image
+              width={40}
+              height={40}
+              source="/location-pages/christmas-banner.jpeg"
+              mr="10px"
+            />
+            <Box>
+              <Box as="h3" mb="0">
+                Looking for Christmas Service?
+              </Box>
+              <Box fontStyle="italic">
+                Christmas service times differ.{' '}
+                <Box
+                  as="a"
+                  color="white"
+                  href="https://www.christmasatcf.com/"
+                  target="_blank"
+                  textDecoration="underline"
+                >
+                  Find a Christmas service here.
+                </Box>
+              </Box>
+            </Box>
+          </Styled.MobileChristmasBanner>
+        )}
         {/* Service Times */}
         <Box width="100%">
           <Styled.ServiceTimeContainer>
@@ -104,58 +142,96 @@ const CampusInfo = ({
                 ))}
               </Styled.InfoBox>
             )}
+
+            {/* Christmas Banner */}
+            {!currentBreakpoints.isSmall && (
+              <Styled.ChristmasBanner>
+                <Image
+                  width="42px"
+                  height="42px"
+                  source="/location-pages/christmas-banner.jpeg"
+                  mr="10px"
+                />
+
+                <Box>
+                  Looking for a Christmas Service?
+                  <Styled.ChristmasSubtitle>
+                    Times may vary.{' '}
+                    <Box
+                      as="a"
+                      color="white"
+                      href="https://www.christmasatcf.com/"
+                      target="_blank"
+                      textDecoration="underline"
+                    >
+                      Find a Christmas service{' '}
+                      {currentBreakpoints.isMedium
+                        ? 'here'
+                        : "that's right for you."}
+                    </Box>
+                  </Styled.ChristmasSubtitle>
+                </Box>
+              </Styled.ChristmasBanner>
+            )}
+
             {/* Weekday Schedule / Custom Campus Info */}
 
             {/* Custom Info for CF Everywhere and Trinity */}
             {name === 'Online (CF Everywhere)' && <CfEverywhereButtons />}
+
             {name === 'Trinity' && <TrinityButtons />}
 
             {/* Weekday Schedule */}
             {isWeekdaySchedule && (
-              <WeekdayScheduleDisplay
-                campus={name}
-                weekdaySchedules={weekdaySchedules}
-              />
+              <WeekdayScheduleDisplay weekdaySchedules={weekdaySchedules} />
             )}
 
-            {/* Groups and Classes Section */}
-            <Box display="flex" flexDirection="column" mt="l" px="base">
-              <Box
-                textAlign={{ _: 'center', md: 'left' }}
-                ml={!isWeekdaySchedule && 'base'}
-                flex="2"
-              >
-                {name === CFEPBG || name === CFERPB
-                  ? groupsClassesCampusSection('Spanish')
-                  : groupsClassesCampusSection('English')}
-              </Box>
-
-              {/* This Section Only Shows on the Espanol Campuses */}
-              {name === CFEPBG || name === CFERPB ? (
-                <Box mt="base" textAlign={{ _: 'center', md: 'left' }}>
-                  <Box as="h3">Tenemos más para ti</Box>
-                  {name === CFEPBG ? (
-                    <Box>
-                      Consulta{' '}
-                      <a href="/locations/iglesia-royal-palm-beach">
-                        Christ Fellowship Church Español en Royal Palm Beach
-                      </a>{' '}
-                      para conocer más espacios entre semana.
-                    </Box>
-                  ) : (
-                    <Box>
-                      Consulta{' '}
-                      <a href="/locations/iglesia-palm-beach-gardens">
-                        Christ Fellowship Church Español en Palm Beach Gardens
-                      </a>{' '}
-                      para conocer más espacios entre semana.
+            {/* What to Expect Section */}
+            {name !== 'Trinity' && name !== 'Online (CF Everywhere)' && (
+              <Box display={{ _: 'none', md: 'flex' }} my="l">
+                <Box ml="base">
+                  <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
+                    What to Expect
+                  </Box>
+                </Box>
+                <Box maxWidth={500}>
+                  <Box mb="s">
+                    Here at Christ Fellowship Church in {name}, you can expect
+                    to experience church services with uplifting worship music,
+                    encouraging messages from our pastors, special programming
+                    for your family, and opportunities for you to find people to
+                    do life with all throughout the week—it all starts here!
+                  </Box>
+                  {expectVideo && (
+                    <Box
+                      as="a"
+                      onClick={() =>
+                        modalDispatch(
+                          showModal('Video', {
+                            step: 0,
+                            wistiaId: expectVideo,
+                            title: 'What to Expect',
+                          })
+                        )
+                      }
+                      mt="s"
+                      display="flex"
+                      alignItems="center"
+                      width="fit-content"
+                      fontStyle="italic"
+                      textDecoration="underline"
+                      cursor="pointer"
+                    >
+                      See what to expect here!
+                      <Icon ml="s" name="play" size="24" variant="secondary" />
                     </Box>
                   )}
                 </Box>
-              ) : null}
-            </Box>
+              </Box>
+            )}
           </Box>
         </Box>
+
         {/* Campus Pastors */}
         <PastorCard
           pastor={pastor}
@@ -167,15 +243,57 @@ const CampusInfo = ({
         />
       </Cell>
 
-      {isWeekdaySchedule && (
+      {/* Mobile layout */}
+      {isWeekdaySchedule ? (
         <Box mt="xxl" display={{ _: 'inline', md: 'none' }}>
+          <Divider my="l" width="80%" />
           <WeekdayScheduleDisplay
-            campus={name}
             isMobile
             weekdaySchedules={weekdaySchedules}
           />
+          <Divider mb="l" width="80%" />
+          <Box pt="l" pb="5.25rem" mx="base" textAlign="center" flex="2">
+            <Box as="h2" color="secondary">
+              What to Expect
+            </Box>
+            <Box>
+              Here at Christ Fellowship Church in {name}, you can expect to
+              experience church services with uplifting worship music,
+              encouraging messages from our pastors, special programming for
+              your family, and opportunities for you to find people to do life
+              with all throughout the week—it all starts here!
+            </Box>
+            {expectVideo && (
+              <Box
+                as="a"
+                onClick={() =>
+                  modalDispatch(
+                    showModal('Video', {
+                      step: 0,
+                      wistiaId: expectVideo,
+                      title: 'What to Expect',
+                    })
+                  )
+                }
+                mt="s"
+                display="flex"
+                alignItems="center"
+                width="fit-content"
+                fontStyle="italic"
+                textDecoration="underline"
+                cursor="pointer"
+                mx="auto"
+              >
+                See what to expect here!
+                <Icon ml="s" name="play" size="24" variant="secondary" />
+              </Box>
+            )}
+          </Box>
         </Box>
+      ) : (
+        name === 'Trinity' && <TrinityMobileButtons />
       )}
+      {name === 'Online (CF Everywhere)' && <CfEverywhereMobileButtons />}
     </Box>
   );
 };

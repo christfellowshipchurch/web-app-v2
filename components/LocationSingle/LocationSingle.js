@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { find, includes, replace, startCase, camelCase } from 'lodash';
+import { find, startCase, camelCase } from 'lodash';
 
 import {
   CollectionPreview,
@@ -37,6 +37,7 @@ import {
 import { CampusProvider, FeatureProvider } from 'providers';
 import faqData, { otherData } from 'components/FAQ/faqData';
 import { showModal, useModalDispatch } from 'providers/ModalProvider';
+import { campusNameFormatted } from './utils';
 
 function LocationSingle(props = {}) {
   const modalDispatch = useModalDispatch();
@@ -74,23 +75,13 @@ function LocationSingle(props = {}) {
     return <NotFound />;
   }
 
-  const { title, routing } = props?.data;
-
-  // note : Gets Campus Name from pathname
-  let campus = startCase(routing?.pathname.substring(10));
-
-  // note : Fixes campus name for Port St. Lucie
-  if (includes(campus, 'St ')) {
-    campus = replace(campus, 'St ', 'St. ');
-  }
-
-  // note : We need to override the campus name to for CFE to properly format it for querying purposes
-  if (includes(campus, 'Español')) {
-    const intitialString = title.substring(25, title.length - 4);
-    const firstHalf = intitialString.substring(0, 10);
-    const secondHalf = intitialString.substring(12, intitialString.length);
-    campus = firstHalf + secondHalf;
-  }
+  /**
+   *  note : Gets Campus Name from pathname
+   */
+  const { routing } = props?.data;
+  const campus = campusNameFormatted(
+    startCase(routing?.pathname.substring(10))
+  );
 
   /**
    * note : import hard coded data
@@ -141,7 +132,11 @@ function LocationSingle(props = {}) {
       {/* Header Section */}
       <LocationHeader
         title={props?.data?.title}
-        subtitle={props?.data?.summary}
+        subtitle={
+          props?.data?.summary
+            ? props?.data?.summary
+            : 'A church that wants to help you live the life you were created for.'
+        }
         {...headerContent}
       />
 
@@ -168,7 +163,7 @@ function LocationSingle(props = {}) {
       </Box>
 
       {/* This Week Feature */}
-      {campus === 'Cf Everywhere' && (
+      {campus === 'Online (CF Everywhere)' && (
         <Box maxWidth={1100} mx="auto" width="100%" px="base" py="xl">
           <Box
             as="h2"
@@ -301,7 +296,7 @@ function LocationSingle(props = {}) {
       </Box>
 
       {/* Testimonial Section */}
-      <Box bg={expectData && 'white'} px="base" py="xl" width="100%">
+      <Box bg="white" px="base" py="xl" width="100%">
         <Box mx="auto" maxWidth={1200}>
           <Testimonials
             title={
@@ -310,7 +305,7 @@ function LocationSingle(props = {}) {
               'Mira lo que otros dicen'
             }
             testimonies={
-              campus === 'Cf Everywhere'
+              campus === 'Online (CF Everywhere)'
                 ? [
                     {
                       name: '<i>Amal</i>',
@@ -360,8 +355,48 @@ function LocationSingle(props = {}) {
         </Box>
       </Box>
 
+      {/* At this Location Section */}
+      <Box width="100%" px={{ _: 'base', md: 'xl' }} pt="base">
+        <LocationBlockFeature
+          mx="auto"
+          campusName={campus}
+          maxWidth={1000}
+          data={defaultBlockData(campus)}
+
+          /**
+           * todo :  These would be the content blocks we pull in from Rock, but since the content doesn't match Figma we'll hard code the content for now.
+           *  */
+          // data={props?.data?.featureFeed?.features}
+        />
+      </Box>
+
+      {/* What's Coming Up Section */}
+      <Box bg="white" py={{ _: 'l', sm: 'xl' }}>
+        <Box mx="auto" maxWidth={1200}>
+          <CollectionPreview
+            horizontalScroll
+            size="s"
+            contentId={
+              campus === 'Online (CF Everywhere)'
+                ? 'UniversalContentItem:04f022613f5beaca2532ef3a8e052cd6'
+                : 'UniversalContentItem:ddf0d380759e8404fb6b70aa941c06f7'
+            }
+            buttonOverride={
+              campus !== 'Online (CF Everywhere)' ? '/events' : '/discover'
+            }
+          />
+        </Box>
+      </Box>
+
+      {/* FAQs Section */}
+      <Box id="location-faq" px="base" py="xl" width="100%">
+        <Box mx="auto" maxWidth={1200}>
+          <FAQ data={faqData(campus)} customScrollPosition="location-faq" />
+        </Box>
+      </Box>
+
       {/* Never Miss a Thing Section */}
-      <Box bg={!expectData && 'white'} px="base" py="xl">
+      <Box bg="white" px="base" py="xl">
         <Box textAlign="center" maxWidth={500} mx="auto">
           <Box as="h2" color="secondary">
             {campus !== CFEPBG && campus !== CFERPB

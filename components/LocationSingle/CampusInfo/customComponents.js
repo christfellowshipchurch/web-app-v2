@@ -7,6 +7,8 @@ import { format } from 'date-fns';
 import { validDaysOfWeek, weekdaySpanishTranslation } from '../utils';
 import { Box, Button, Divider, Icon } from 'ui-kit';
 import { capitalize } from 'lodash';
+import { showModal, useModalDispatch } from 'providers/ModalProvider';
+import { whatToExpectVideos } from '../../../lib/locationData';
 
 const StyledDivider = props => <Divider bg="secondarySubdued" {...props} />;
 
@@ -46,8 +48,13 @@ const CfEverywhereButtons = () => (
           borderRadius="l"
           mr="s"
           px="base"
+          display="flex"
+          width="185px"
+          alignItems="center"
+          justifyContent="center"
         >
-          <Icon name="youtube" mr="xs" /> YOUTUBE
+          <Icon name="youtube" mr="xs" />
+          <Box>YOUTUBE</Box>
         </Button>
         <Button
           as="a"
@@ -57,49 +64,188 @@ const CfEverywhereButtons = () => (
           size="s"
           borderRadius="l"
           px="base"
+          display="flex"
+          width="185px"
+          alignItems="center"
+          justifyContent="center"
         >
-          <Icon name="facebook" mr="xs" /> FACEBOOK LIVE
+          <Icon name="facebook" mr="xs" />
+          <Box>FACEBOOK LIVE</Box>
         </Button>
       </Box>
     </Box>
-    <StyledDivider display={{ _: 'none', md: 'flex' }} width="100%" />
+    <Box ml="base" display={{ _: 'none', md: 'flex' }} my="l">
+      <Box>
+        <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
+          What to Expect
+        </Box>
+      </Box>
+      <Box flex="2">
+        <Box mb="s">
+          Here at Christ Fellowship Everywhere, you can expect to experience
+          church services with uplifting worship music, encouraging messages
+          from our pastors, special programming for your family, and
+          opportunities for you to find people to do life with all throughout
+          the week—it all starts here!
+        </Box>
+      </Box>
+    </Box>
   </>
 );
 
-const TrinityButtons = () => [
-  <Box ml="base" display={{ _: 'none', md: 'flex' }} my="l">
-    <Box flex="1">
-      <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
-        Experience Something New!
+const TrinityButtons = () => {
+  const modalDispatch = useModalDispatch();
+
+  return [
+    <Box ml="base" display={{ _: 'none', lg: 'flex' }} my="l">
+      <Box>
+        <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
+          Experience Something New!
+        </Box>
       </Box>
-    </Box>
-    <Box flex="2">
-      Have you been searching for a meaningful community but haven’t found it
-      yet? If so, you’re not alone. Trinity Church by Christ Fellowship is a new
-      church experience coming to your neighborhood! This community location in
-      Palm Beach Gardens offers a different way to experience church so you can
-      get to know people in your neighborhood and enjoy a more traditional
-      worship setting. Find a place for you and your family to belong with even
-      more regional events offered just down the street—it’s big church made
-      small, and you’ll feel right at home!
-    </Box>
-  </Box>,
-  <StyledDivider display={{ _: 'none', md: 'flex' }} width="100%" />,
-];
+      <Box flex="2">
+        Have you been searching for a meaningful community but haven’t found it
+        yet? If so, you’re not alone. Trinity Church by Christ Fellowship is a
+        new church experience coming to your neighborhood! This community
+        location in Palm Beach Gardens offers a different way to experience
+        church so you can get to know people in your neighborhood and enjoy a
+        more traditional worship setting. Find a place for you and your family
+        to belong with even more regional events offered just down the
+        street—it’s big church made small, and you’ll feel right at home!
+      </Box>
+    </Box>,
+    <Box ml="base" display={{ _: 'none', md: 'flex' }} my="l">
+      <Box>
+        <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
+          What to Expect
+        </Box>
+      </Box>
+      <Box flex="2">
+        <Box mb="s">
+          Here at Trinity Church by Christ Fellowship Church you can expect to
+          experience church services with uplifting worship music, encouraging
+          messages from our pastors, special programming for your family, and
+          opportunities for you to find people to do life with all throughout
+          the week—it all starts here!
+        </Box>
+        <Box
+          as="a"
+          onClick={() =>
+            modalDispatch(
+              showModal('Video', {
+                step: 0,
+                wistiaId: whatToExpectVideos['trinity'],
+                title: 'What to Expect',
+              })
+            )
+          }
+          mt="s"
+          width="fit-content"
+          fontStyle="italic"
+          textDecoration="underline"
+          cursor="pointer"
+          mx="auto"
+        >
+          See what to expect here!
+          <Icon ml="s" name="play" size="24" variant="secondary" />
+        </Box>
+      </Box>
+    </Box>,
+  ];
+};
 
-const WeekdayScheduleDisplay = ({ weekdaySchedules, isMobile, campus }) => {
-  //Christ Fellowship Español campus names
-  const CFEPBG = 'Christ Fellowship Español Palm Beach Gardens';
-  const CFERPB = 'Christ Fellowship Español Royal Palm Beach';
+const CfEverywhereMobileButtons = () => {
+  return [
+    <StyledDivider display="flex" width="100%" />,
+    <Box
+      ml="base"
+      display={{ _: 'flex', md: 'none' }}
+      flexDirection="column"
+      alignItems="center"
+      mt="base"
+      mb={{ _: '0px', md: 'base' }}
+      pb="l"
+    >
+      <Box>
+        <Box as="h3" color="secondary" maxWidth={200}>
+          What to Expect
+        </Box>
+      </Box>
+      <Box flex="2">
+        <Box mb="s" pr="base" textAlign="center">
+          Here at Christ Fellowship Everywhere, you can expect to experience
+          church services with uplifting worship music, encouraging messages
+          from our pastors, special programming for your family, and
+          opportunities for you to find people to do life with all throughout
+          the week—it all starts here!
+        </Box>
+      </Box>
+    </Box>,
+  ];
+};
 
+const TrinityMobileButtons = () => {
+  const modalDispatch = useModalDispatch();
+
+  return [
+    <StyledDivider display="flex" width="100%" />,
+    <Box
+      ml="base"
+      display={{ _: 'flex', md: 'none' }}
+      flexDirection="column"
+      alignItems="center"
+      mt="base"
+      mb={{ _: '0px', md: 'base' }}
+      pb="l"
+    >
+      <Box>
+        <Box as="h3" color="secondary" maxWidth={200}>
+          What to Expect
+        </Box>
+      </Box>
+      <Box flex="2">
+        <Box mb="s" mr="base" textAlign="center">
+          Here at Trinity Church by Christ Fellowship Church you can expect to
+          experience church services with uplifting worship music, encouraging
+          messages from our pastors, special programming for your family, and
+          opportunities for you to find people to do life with all throughout
+          the week—it all starts here!
+        </Box>
+      </Box>
+      <Box
+        as="a"
+        onClick={() =>
+          modalDispatch(
+            showModal('Video', {
+              step: 0,
+              wistiaId: whatToExpectVideos['trinity'],
+              title: 'What to Expect',
+            })
+          )
+        }
+        mt="s"
+        display="flex"
+        alignItems="center"
+        width="fit-content"
+        fontStyle="italic"
+        textDecoration="underline"
+        cursor="pointer"
+        mx="auto"
+      >
+        See what to expect here!
+        <Icon ml="s" name="play" size="24" variant="secondary" />
+      </Box>
+    </Box>,
+  ];
+};
+
+const WeekdayScheduleDisplay = ({ weekdaySchedules, isMobile }) => {
   return !isMobile ? (
     [
       <Box display={{ _: 'none', md: 'flex' }} my="l">
-        <Box flex="1">
+        <Box ml="base">
           <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
-            {campus === CFEPBG || campus === CFERPB
-              ? 'Durante la Semana'
-              : 'During the Week'}
+            During the Week
           </Box>
         </Box>
         <Box
@@ -174,7 +320,11 @@ const WeekdayScheduleDisplay = ({ weekdaySchedules, isMobile, campus }) => {
                   'h:mm a'
                 );
                 return (
-                  <Box display="flex" alignItems="center">
+                  <Box
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                  >
                     {`${formattedTime} - 
                 ${event?.title}`}
                     {event?.url && (
@@ -196,6 +346,8 @@ const WeekdayScheduleDisplay = ({ weekdaySchedules, isMobile, campus }) => {
 export {
   CfEverywhereButtons,
   TrinityButtons,
+  CfEverywhereMobileButtons,
+  TrinityMobileButtons,
   StyledDivider,
   WeekdayScheduleDisplay,
 };

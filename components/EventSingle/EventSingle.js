@@ -102,9 +102,9 @@ function EventSingle(props = {}) {
         />
       )}
       renderC={() => (
-        <Box justifySelf="flex-end">
+        <Box justifySelf="flex-end" mb={{ _: 'base', md: '0px' }}>
           <Share
-            mb={{ _: 'base' }}
+            mb="base"
             title={props.data.title}
             shareTitle="Invite"
             shareMessages={eventShareMessages}
