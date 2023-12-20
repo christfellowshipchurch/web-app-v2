@@ -98,7 +98,6 @@ const LocationHeader = (props = {}) => {
               <Button
                 as="a"
                 href={props?.primaryButton?.action}
-                bg="hues.orange"
                 onClick={() =>
                   modalDispatch(
                     showModal(props?.primaryButton?.modal, {

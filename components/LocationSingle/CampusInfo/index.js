@@ -11,6 +11,7 @@ import { validDaysOfWeek } from '../utils';
 import {
   TrinityButtons,
   TrinityMobileButtons,
+  CFEButtons,
   CfEverywhereButtons,
   CfEverywhereMobileButtons,
   WeekdayScheduleDisplay,
@@ -183,52 +184,66 @@ const CampusInfo = ({
 
             {/* Weekday Schedule */}
             {isWeekdaySchedule && (
-              <WeekdayScheduleDisplay weekdaySchedules={weekdaySchedules} />
+              <WeekdayScheduleDisplay
+                weekdaySchedules={weekdaySchedules}
+                campus={name}
+              />
             )}
 
+            {(name === CFEPBG || name === CFERPB) && <CFEButtons />}
+
             {/* What to Expect Section */}
-            {name !== 'Trinity' && name !== 'Online (CF Everywhere)' && (
-              <Box display={{ _: 'none', md: 'flex' }} my="l">
-                <Box ml="base">
-                  <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
-                    What to Expect
-                  </Box>
-                </Box>
-                <Box maxWidth={500}>
-                  <Box mb="s">
-                    Here at Christ Fellowship Church in {name}, you can expect
-                    to experience church services with uplifting worship music,
-                    encouraging messages from our pastors, special programming
-                    for your family, and opportunities for you to find people to
-                    do life with all throughout the week—it all starts here!
-                  </Box>
-                  {expectVideo && (
-                    <Box
-                      as="a"
-                      onClick={() =>
-                        modalDispatch(
-                          showModal('Video', {
-                            step: 0,
-                            wistiaId: expectVideo,
-                            title: 'What to Expect',
-                          })
-                        )
-                      }
-                      mt="s"
-                      display="flex"
-                      alignItems="center"
-                      width="fit-content"
-                      fontStyle="italic"
-                      textDecoration="underline"
-                      cursor="pointer"
-                    >
-                      See what to expect here!
-                      <Icon ml="s" name="play" size="24" variant="secondary" />
+            {name !== 'Trinity' &&
+              name !== 'Online (CF Everywhere)' &&
+              name !== CFEPBG &&
+              name !== CFERPB && (
+                <Box display={{ _: 'none', md: 'flex' }} my="l">
+                  <Box ml="base">
+                    <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
+                      What to Expect
                     </Box>
-                  )}
+                  </Box>
+                  <Box maxWidth={500}>
+                    <Box mb="s">
+                      Here at Christ Fellowship Church in {name}, you can expect
+                      to experience church services with uplifting worship
+                      music, encouraging messages from our pastors, special
+                      programming for your family, and opportunities for you to
+                      find people to do life with all throughout the week—it all
+                      starts here!
+                    </Box>
+                    {expectVideo && (
+                      <Box
+                        as="a"
+                        onClick={() =>
+                          modalDispatch(
+                            showModal('Video', {
+                              step: 0,
+                              wistiaId: expectVideo,
+                              title: 'What to Expect',
+                            })
+                          )
+                        }
+                        mt="s"
+                        display="flex"
+                        alignItems="center"
+                        width="fit-content"
+                        fontStyle="italic"
+                        textDecoration="underline"
+                        cursor="pointer"
+                      >
+                        See what to expect here!
+                        <Icon
+                          ml="s"
+                          name="play"
+                          size="24"
+                          variant="secondary"
+                        />
+                      </Box>
+                    )}
+                  </Box>
                 </Box>
-              </Box>
-            )}
+              )}
           </Box>
         </Box>
 
@@ -250,6 +265,7 @@ const CampusInfo = ({
           <WeekdayScheduleDisplay
             isMobile
             weekdaySchedules={weekdaySchedules}
+            campus={name}
           />
           <Divider mb="l" width="80%" />
           <Box pt="l" pb="5.25rem" mx="base" textAlign="center" flex="2">

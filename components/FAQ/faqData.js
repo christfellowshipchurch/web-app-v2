@@ -184,19 +184,13 @@ export const faqHeartForHouseData = [
 
 export const faqEspanolData = [
   {
-    title: 'What does Christ Fellowship believe?',
+    title: '¿En qué cree Christ Fellowship?',
     description:
-      'Christ Fellowship is a church in South Florida with a passion to help you know God and grow in your relationships so that you can discover your purpose and impact your world. Led by senior pastors Todd & Julie Mullins, our mission is to impact the world with the love and message of Jesus Christ—everyone, everyday, everywhere. <br />  <br />  Find out more about <a target="_blank" href="/about">our church and our beliefs.</a>',
-  },
-
-  {
-    title: 'Are there any expectations for visitors?',
-    description: `Not at all. When we say "welcome home", we mean it! Be yourself, relax, and enjoy the service. We can't wait to see you!`,
+      'Christ Fellowship es una iglesia en el sur de Florida con una pasión por ayudarte a conocer a Dios y crecer en tus relaciones para que puedas descubrir tu propósito e impactar tu mundo. Dirigidos por los Senior Pastors Todd y Julie Mullins, nuestra misión es impactar al mundo con el amor y el mensaje de Jesucristo: a todos, todos los días, en todas partes. <br />  <br />  Obtén más información sobre <a target="_blank" href="/about">nuestra iglesia y nuestras creencias.</a>',
   },
   {
-    title: '¿Dónde me puedo estacionar?',
-    description:
-      'Al ingresar al campus, nuestro equipo de Parking Host (estacionamiento), te ayudará a encontrar el lugar ideal para ti. Reservamos los mejores lugares de estacionamiento para nuestros visitantes justo en frente de la entrada principal y de ser necesario, podemos ayudarte a ubicar un estacionamiento con mejor accesibilidad a la entrada principal. Cuando llegues, déjale saber al Parking Host que es tu primera vez visitándonos. ',
+    title: '¿Hay alguna expectativa de parte de los visitantes?',
+    description: `Para nada. Cuando decimos "bienvenido a casa", ¡lo decimos en serio! Sé tú mismo, relájate y disfruta del servicio. ¡Estamos emocionados por verte!`,
   },
   {
     title: '¿Cuánto tiempo duran los servicios?',
@@ -204,14 +198,19 @@ export const faqEspanolData = [
       'Nuestros servicios duran un poco más de una hora. Cantaremos juntos algunas canciones de alabanza y escucharemos un mensaje transformador por parte de nuestros pastores. ¡Te sugerimos llegar temprano para que puedas estacionarte, tomar  café y encontrar tu asiento!',
   },
   {
-    title: 'Is childcare provided?',
+    title: '¿Qué debería vestir?',
     description:
-      'Yes! We have a fun, safe, and clean area for kids & students (newborn–grade 5). <br/> <br/> <b> New to Christ Fellowship Kids?</b> <br/> We’d love to meet you! Let us know a little about your family using this <a target="_blank" href="https://rock.gocf.org/FamilyRegistration">brief form</a> so that our team can help get you connected when you arrive. <br/> <br/> If you are planning on visiting Christ Fellowship Kids this Sunday, <a target="_blank" href="https://rock.gocf.org/CFKidsPlanaVisit">let us know</a> so we can help your family experience all that CFKids has to offer! <br/> <br/> You can learn more about Christ Fellowship Kids programming <a target="_blank" href="https://www.christfellowship.church/christ-fellowship-kids">here</a>!',
+      '¡Puedes vestirte como te sientas más cómodo! Todos los domingos contamos con servicios casuales y relajados donde todos son bienvenidos. ¡Ven tal como eres y esperamos que te sientas como en casa!',
   },
   {
-    title: 'Is there anything available for students and young adults?',
+    title: '¿Dónde me puedo estacionar?',
     description:
-      'Yes! There is programming for students and young adults available just down the street at Christ Fellowship Palm Beach Gardens. <br/> <br/> <a target="_blank" href="https://www.christfellowship.church/students"> CFStudents</a> programming available for 6th–12th graders regionally at Christ Fellowship Palm Beach Gardens every Wednesday night at 6:30PM. <br/> <br/> <a target="_blank" href="https://www.christfellowship.church/young-adults"> Christ Fellowship Young Adults</a> gatherings happening regionally at Christ Fellowship Palm Beach Gardens every Thursday night at 7:30PM.',
+      'Al ingresar al campus, nuestro equipo de Parking Host (estacionamiento), te ayudará a encontrar el lugar ideal para ti. Reservamos los mejores lugares de estacionamiento para nuestros visitantes justo en frente de la entrada principal y de ser necesario, podemos ayudarte a ubicar un estacionamiento con mejor accesibilidad a la entrada principal. Cuando llegues, déjale saber al Parking Host que es tu primera vez visitándonos. ',
+  },
+  {
+    title: '¿Tienen cuidado de niños?',
+    description:
+      '¡Sí! Contamos con un área divertida, segura y limpia para niños y estudiantes (desde recién nacidos hasta quinto grado).<br/> <br/> <b> ¿Nuevo en Christ Fellowship Kids?</b> <br/> ¡Nos encantaría conocerte! Agradecemos que nos hagas saber un poco más sobre tu familia utilizando <a target="_blank" href="https://rock.gocf.org/FamilyRegistration">este breve formulario</a> para que nuestro equipo pueda ayudar a tus hijos a conectarse con Christ Fellowship Kids. <br/> <br/> Si planeas visitar Christ Fellowship Kids este domingo, ¡<a target="_blank" href="https://rock.gocf.org/CFKidsPlanaVisit">déjanos saber</a> ,para que podamos ayudar a tu familia a experimentar todo lo que Christ Fellowship Kids tiene para ofrecerte! <br/> <br/> ¡Puedes aprender más sobre la programación de Christ Fellowship Kids <a target="_blank" href="https://www.christfellowship.church/christ-fellowship-kids">aquí</a>!',
   },
 ];
 

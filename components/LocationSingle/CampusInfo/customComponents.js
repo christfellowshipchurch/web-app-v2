@@ -154,6 +154,53 @@ const TrinityButtons = () => {
   ];
 };
 
+const CFEButtons = () => {
+  const modalDispatch = useModalDispatch();
+
+  return (
+    <Box display={{ _: 'none', md: 'flex' }} my="l">
+      <Box ml="base">
+        <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
+          ¿Qué puedo esperar?
+        </Box>
+      </Box>
+      <Box maxWidth={500}>
+        <Box mb="s">
+          En Christ Fellowship Español puedes ser parte de nuestros servicios
+          que cuentan con música y espacios de adoración edificantes, mensajes
+          alentadores de nuestros pastores, programación especial para tu
+          familia y oportunidades para encontrar personas con quienes puedes
+          caminar por la vida y hacer comunidad durante toda la semana—¡todo
+          comienza aquí!
+        </Box>
+
+        <Box
+          as="a"
+          onClick={() =>
+            modalDispatch(
+              showModal('Video', {
+                step: 0,
+                wistiaId: whatToExpectVideos['cfe'],
+                title: '¿Qué puedo esperar?',
+              })
+            )
+          }
+          mt="s"
+          display="flex"
+          alignItems="center"
+          width="fit-content"
+          fontStyle="italic"
+          textDecoration="underline"
+          cursor="pointer"
+        >
+          Mira lo que puedes esperar aquí!
+          <Icon ml="s" name="play" size="24" variant="secondary" />
+        </Box>
+      </Box>
+    </Box>
+  );
+};
+
 const CfEverywhereMobileButtons = () => {
   return [
     <StyledDivider display="flex" width="100%" />,
@@ -239,13 +286,18 @@ const TrinityMobileButtons = () => {
   ];
 };
 
-const WeekdayScheduleDisplay = ({ weekdaySchedules, isMobile }) => {
+const WeekdayScheduleDisplay = ({ weekdaySchedules, isMobile, campus }) => {
+  const CFEPBG = 'Christ Fellowship Español Palm Beach Gardens';
+  const CFERPB = 'Christ Fellowship Español Royal Palm Beach';
+
   return !isMobile ? (
     [
       <Box display={{ _: 'none', md: 'flex' }} my="l">
         <Box ml="base">
           <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
-            During the Week
+            {campus === CFEPBG || campus === CFERPB
+              ? 'Durante la Semana'
+              : 'During the Week'}
           </Box>
         </Box>
         <Box
@@ -253,7 +305,9 @@ const WeekdayScheduleDisplay = ({ weekdaySchedules, isMobile }) => {
           display="grid"
           gridColumnGap="xs"
           gridRowGap="l"
-          gridTemplateColumns="repeat(2, 1fr)"
+          gridTemplateColumns={
+            campus === CFERPB ? 'repeat(1, 1fr)' : 'repeat(2, 1fr)'
+          }
         >
           {validDaysOfWeek(weekdaySchedules)?.map(day => {
             const formattedDay = capitalize(Object?.keys(day));
@@ -307,7 +361,7 @@ const WeekdayScheduleDisplay = ({ weekdaySchedules, isMobile }) => {
         {validDaysOfWeek(weekdaySchedules)?.map(day => {
           const formattedDay = capitalize(Object?.keys(day));
           return (
-            <Box mt="base">
+            <Box mt="base" textAlign="center">
               <Box as="h3" mb="xs">
                 {campus === CFEPBG || campus === CFERPB
                   ? weekdaySpanishTranslation(formattedDay)
@@ -346,6 +400,7 @@ const WeekdayScheduleDisplay = ({ weekdaySchedules, isMobile }) => {
 export {
   CfEverywhereButtons,
   TrinityButtons,
+  CFEButtons,
   CfEverywhereMobileButtons,
   TrinityMobileButtons,
   StyledDivider,

@@ -14,7 +14,7 @@ import {
   HeroListFeature,
   Video,
 } from 'components';
-import { Box, Button, Divider, Loader, ContentBlock } from 'ui-kit';
+import { Box, Button, Divider, Loader } from 'ui-kit';
 
 import CampusInfo from './CampusInfo';
 import LocationHeader from './LocationHeader';
@@ -31,7 +31,6 @@ import {
   thisWeekFeatureId,
   whatToExpectVideos,
   whatToExpectData,
-  whatToExpectDataSpanish,
   whatsComingUp,
 } from '../../lib/locationData';
 import { CampusProvider, FeatureProvider } from 'providers';
@@ -103,24 +102,8 @@ function LocationSingle(props = {}) {
   const setAReminderVideo = setReminderVideos[camelCase(campus)];
   const whatToExpectVideo = whatToExpectVideos[camelCase(campus)];
   const expectData = whatToExpectData(campus);
-  const expectSpanishData = whatToExpectDataSpanish();
   const comingUpSoon = whatsComingUp[camelCase(campus)];
   const testimonies = testimonials[camelCase(campus)];
-
-  const expectActions = [
-    {
-      title:
-        campus === CFEPBG || campus === CFERPB
-          ? 'Recuérdame'
-          : 'Set a Reminder',
-      variant: 'secondary',
-      onClick: () =>
-        modalDispatch(showModal('SetReminder', { defaultCampus: campus })),
-      relatedNode: {
-        url: '#set-reminder',
-      },
-    },
-  ];
 
   return (
     <Layout
@@ -214,24 +197,63 @@ function LocationSingle(props = {}) {
         </>
       )}
 
-      {/* What to Expect */}
-      <Box bg="white" width="100%">
-        <Box
-          bg="white"
-          mx="auto"
-          maxWidth={{ _: 400, md: 800, lg: 1200 }}
-          py="8rem"
-          px={{ _: 'base', md: 'xl' }}
-        >
-          <ContentBlock
-            {...(campus === CFEPBG || campus === CFERPB
-              ? expectSpanishData
-              : expectData)}
-            wistiaId={whatToExpectVideo && whatToExpectVideo}
-            actions={expectActions}
-            contentLayout="left"
-            roundVideo
-            centerContent
+      {/* Testimonial Section */}
+      <Box bg="white" px="base" py="xl" width="100%">
+        <Box mx="auto" maxWidth={1200}>
+          <Testimonials
+            title={
+              campus === 'Iglesia Palm Beach Gardens' ||
+              campus === 'Iglesia Royal Palm Beach'
+                ? 'Mira lo que otros dicen'
+                : 'See What Others Are Saying'
+            }
+            testimonies={
+              campus === 'Online (CF Everywhere)'
+                ? [
+                    {
+                      name: '<i>Amal</i>',
+                      description:
+                        'Christ Fellowship is a home away from home. I always feel welcomed by genuine, godly, and friendly people. Worship is amazing and every sermon adds value to my spiritual growth. I look forward to the service every week.',
+                      region: '<i>India<i>',
+                    },
+                    {
+                      name: '<i>Jim & Tammy</i>',
+                      description:
+                        'We attended CF online for 2 years prior to moving to Florida and now we are attending in person. While attending online, we were surprised by how connected and included we felt. When attending online you are not simply watching a church service from a distance, you are joining a family!',
+                      region: '<i>South Florida<i>',
+                    },
+                    {
+                      name: '<i>Tom & Margie</i>',
+                      description:
+                        'We live in New Jersey and were invited to attend Christ Fellowship Everywhere. We knew at once we had found our new church home. From Pastors Todd & Julie to all the other pastors/congregation, we immediately felt a part of a church community. Every Sunday, we pour our coffee and jump into a great service - all from the comfort of our home. God has truly blessed us by connecting us to CF Everywhere.',
+                      region: '<i>New Jersey<i>',
+                    },
+                  ]
+                : campus === 'Iglesia Palm Beach Gardens' ||
+                  campus === 'Iglesia Royal Palm Beach'
+                ? [
+                    {
+                      name: '<i>Paul N.</i>',
+                      description:
+                        'Mi familia ha asistido a esta iglesia por casi 20 años. Aquí crecí rodeado de una comunidad de personas que aman a Cristo. En esta iglesia se predica el evangelio y cada vez que entro a este lugar me siento en casa. ¡Christ Fellowship Español ha sido una bendición para mí y para mi familia!',
+                      rating: 5,
+                    },
+                    {
+                      name: '<i>Maria V.</i>',
+                      description:
+                        'Amo este lugar. Acá me he sentido amada, acompañada, apoyada y vista. Cada domingo es una gran experiencia en donde aprendo y recibo una Palabra transformadora de parte de Dios. Cuando llegué a EE.UU no conocía a nadie, y ahora tengo una familia inmensa. ¡Ven a conocer! No te vas a arrepentir.',
+                      rating: 5,
+                    },
+                    {
+                      name: '<i>Nicole G.</i>',
+                      description:
+                        'Christ Fellowship Español es un lugar donde habita el poder de Dios y su amor. Es donde he visto a toda mi familia ser restaurada y amada. Así como mi familia y yo encontramos una gran familia extendida en Cristo y su amor, tú también puedes hallar esperanza y conocer el corazón de nuestro Señor Jesús en este lugar.',
+                      rating: 5,
+                    },
+                  ]
+                : undefined
+            }
+            // testimonies={testimonies && testimonies}
           />
         </Box>
       </Box>
@@ -292,106 +314,6 @@ function LocationSingle(props = {}) {
             otherData={otherData(campus)}
             onClick={faqScroll}
           />
-        </Box>
-      </Box>
-
-      {/* Testimonial Section */}
-      <Box bg="white" px="base" py="xl" width="100%">
-        <Box mx="auto" maxWidth={1200}>
-          <Testimonials
-            title={
-              (campus === 'Iglesia Palm Beach Gardens' ||
-                campus === 'Iglesia Royal Palm Beach') &&
-              'Mira lo que otros dicen'
-            }
-            testimonies={
-              campus === 'Online (CF Everywhere)'
-                ? [
-                    {
-                      name: '<i>Amal</i>',
-                      description:
-                        'Christ Fellowship is a home away from home. I always feel welcomed by genuine, godly, and friendly people. Worship is amazing and every sermon adds value to my spiritual growth. I look forward to the service every week.',
-                      region: '<i>India<i>',
-                    },
-                    {
-                      name: '<i>Jim & Tammy</i>',
-                      description:
-                        'We attended CF online for 2 years prior to moving to Florida and now we are attending in person. While attending online, we were surprised by how connected and included we felt. When attending online you are not simply watching a church service from a distance, you are joining a family!',
-                      region: '<i>South Florida<i>',
-                    },
-                    {
-                      name: '<i>Tom & Margie</i>',
-                      description:
-                        'We live in New Jersey and were invited to attend Christ Fellowship Everywhere. We knew at once we had found our new church home. From Pastors Todd & Julie to all the other pastors/congregation, we immediately felt a part of a church community. Every Sunday, we pour our coffee and jump into a great service - all from the comfort of our home. God has truly blessed us by connecting us to CF Everywhere.',
-                      region: '<i>New Jersey<i>',
-                    },
-                  ]
-                : campus === 'Iglesia Palm Beach Gardens' ||
-                  campus === 'Iglesia Royal Palm Beach'
-                ? [
-                    {
-                      name: '<i>Paul N.</i>',
-                      description:
-                        'Mi familia ha asistido a esta iglesia por casi 20 años. Aquí crecí rodeado de una comunidad de personas que aman a Cristo. En esta iglesia se predica el evangelio y cada vez que entro a este lugar me siento en casa. ¡Christ Fellowship Español ha sido una bendición para mí y para mi familia!',
-                      rating: 5,
-                    },
-                    {
-                      name: '<i>Maria V.</i>',
-                      description:
-                        'Amo este lugar. Acá me he sentido amada, acompañada, apoyada y vista. Cada domingo es una gran experiencia en donde aprendo y recibo una Palabra transformadora de parte de Dios. Cuando llegué a EE.UU no conocía a nadie, y ahora tengo una familia inmensa. ¡Ven a conocer! No te vas a arrepentir.',
-                      rating: 5,
-                    },
-                    {
-                      name: '<i>Nicole G.</i>',
-                      description:
-                        'Christ Fellowship Español es un lugar donde habita el poder de Dios y su amor. Es donde he visto a toda mi familia ser restaurada y amada. Así como mi familia y yo encontramos una gran familia extendida en Cristo y su amor, tú también puedes hallar esperanza y conocer el corazón de nuestro Señor Jesús en este lugar.',
-                      rating: 5,
-                    },
-                  ]
-                : undefined
-            }
-            // testimonies={testimonies && testimonies}
-          />
-        </Box>
-      </Box>
-
-      {/* At this Location Section */}
-      <Box width="100%" px={{ _: 'base', md: 'xl' }} pt="base">
-        <LocationBlockFeature
-          mx="auto"
-          campusName={campus}
-          maxWidth={1000}
-          data={defaultBlockData(campus)}
-
-          /**
-           * todo :  These would be the content blocks we pull in from Rock, but since the content doesn't match Figma we'll hard code the content for now.
-           *  */
-          // data={props?.data?.featureFeed?.features}
-        />
-      </Box>
-
-      {/* What's Coming Up Section */}
-      <Box bg="white" py={{ _: 'l', sm: 'xl' }}>
-        <Box mx="auto" maxWidth={1200}>
-          <CollectionPreview
-            horizontalScroll
-            size="s"
-            contentId={
-              campus === 'Online (CF Everywhere)'
-                ? 'UniversalContentItem:04f022613f5beaca2532ef3a8e052cd6'
-                : 'UniversalContentItem:ddf0d380759e8404fb6b70aa941c06f7'
-            }
-            buttonOverride={
-              campus !== 'Online (CF Everywhere)' ? '/events' : '/discover'
-            }
-          />
-        </Box>
-      </Box>
-
-      {/* FAQs Section */}
-      <Box id="location-faq" px="base" py="xl" width="100%">
-        <Box mx="auto" maxWidth={1200}>
-          <FAQ data={faqData(campus)} customScrollPosition="location-faq" />
         </Box>
       </Box>
 

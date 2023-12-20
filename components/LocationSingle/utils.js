@@ -83,14 +83,16 @@ export const groupsClassesCampusSection = language => {
     default: {
       return '';
     }
+  }
+};
 
-    // export const campusNameFormatted = campusName => {
-    //   switch (campusName) {
-    //     case 'Cf Everywhere':
-    //       return 'Online (CF Everywhere)';
-    //     case 'Port St Lucie':
-    //       return 'Port St. Lucie';
-    //     default:
-    //       return campusName;
+export const campusNameFormatted = campusName => {
+  switch (campusName) {
+    case 'Cf Everywhere':
+      return 'Online (CF Everywhere)';
+    case 'Port St Lucie':
+      return 'Port St. Lucie';
+    default:
+      return campusName;
   }
 };

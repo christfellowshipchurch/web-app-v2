@@ -113,7 +113,7 @@ const PastorCard = ({
           [
             <Button
               size="xs"
-              px="base"
+              px="s"
               variant="secondary"
               borderRadius="xxl"
               ml={{ _: 0, lg: 'xs' }}
@@ -128,28 +128,36 @@ const PastorCard = ({
                 })
               }
             >
-              INVITE A FRIEND
+              {campusName === CFERPB || campusName === CFEPBG
+                ? 'INVITA A UN AMIGO'
+                : 'INVITE A FRIEND'}
             </Button>,
           ]
         )}
         <Button
           as="a"
           size="xs"
-          px="base"
+          px="s"
           borderRadius="xxl"
           m={{ _: 'xs', lg: 0 }}
           ml={{ _: 0, lg: 's' }}
           width="132px"
           href="/locations"
         >
-          MORE LOCATIONS
+          {campusName === CFERPB || campusName === CFEPBG
+            ? 'OTRAS UBICACIONES'
+            : 'MORE LOCATIONS'}
         </Button>
       </Box>
       <Box mt="base">
         <Box
           as="a"
           target="_blank"
-          href="https://www.facebook.com/CFimpact"
+          href={
+            campusName === CFERPB || campusName === CFEPBG
+              ? 'https://www.facebook.com/christfellowshipespanol'
+              : 'https://www.facebook.com/CFimpact'
+          }
           color="tertiary"
         >
           <Icon name="facebook" size="32" />
@@ -157,7 +165,16 @@ const PastorCard = ({
         <Box as="a" target="_blank" href={instagram} color="tertiary" mx="s">
           <Icon name="instagram" size="32" />
         </Box>
-        <Box as="a" target="_blank" href={links.youtube} color="tertiary">
+        <Box
+          as="a"
+          target="_blank"
+          href={
+            campusName === CFERPB || campusName === CFEPBG
+              ? 'https://www.youtube.com/@christfellowshipespanol.church'
+              : links.youtube
+          }
+          color="tertiary"
+        >
           <Icon name="youtube" size="32" />
         </Box>
       </Box>
@@ -166,17 +183,3 @@ const PastorCard = ({
 };
 
 export default PastorCard;
-
-// href={
-//   campusName === CFEPBG || campusName === CFERPB
-//     ? 'https://www.facebook.com/christfellowshipespanol'
-//     : 'https://www.facebook.com/CFimpact'
-// }
-// color="tertiary"
-// mr="xs"
-// >
-// <Icon name="facebook" size="32" />
-// </Box>
-// <Box as="a" target="_blank" href={instagram} color="tertiary">
-// <Icon name="instagram" size="32" />
-// </Box>
