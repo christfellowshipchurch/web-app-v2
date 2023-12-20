@@ -23,10 +23,12 @@ const Content = styled.div`
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     top: 30%;
+    width: 600px;
   }
 
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
-    top: 68%;
+    top: 65%;
+    width: 800px;
   }
 
   ${system}
@@ -96,9 +98,8 @@ const LogoOverlay = styled.img`
   }
 
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
-    top: 1%;
+    top: -5%;
   }
-
   ${system}
 `;
 

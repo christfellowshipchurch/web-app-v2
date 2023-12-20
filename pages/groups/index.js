@@ -120,7 +120,6 @@ export default function Community(props = {}) {
               <SearchField
                 boxShadow="0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1),
               0 1px 3px rgba(0, 0, 0, 0.3)"
-                maxWidth={800}
                 mx="auto"
                 handleSubmit={handleSubmit}
                 handleChange={handleChange}
