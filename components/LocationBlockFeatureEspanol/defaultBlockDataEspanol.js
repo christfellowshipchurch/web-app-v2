@@ -108,7 +108,7 @@ export const defaultBlockDataEspanol = () => {
           relatedNode: {
             __typename: 'Url',
             id: 'Url:f4974a223763b3a06ea2cd73ff30952be89d6281e05bc41f7ee423cd227a2b00ac473ab51d6349eb947f770d463c04fc9c28570aa73ca7806e04ced01d81c9f0169f48ff4f5af7b5ff0eb16e38c29c44',
-            url: 'https://christfellowship.church/groups',
+            url: 'https://www.christfellowship.church/groups/search?campuses=en+Espa%C3%B1ol+Royal+Palm+Beach%2Cen+Espa%C3%B1ol+Palm+Beach+Gardens%2CChrist+Fellowship+Everywhere',
           },
           title: 'Encuentra un Grupo o Clase',
         },

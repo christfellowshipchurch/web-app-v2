@@ -190,7 +190,9 @@ const CampusInfo = ({
               />
             )}
 
-            {(name === CFEPBG || name === CFERPB) && <CFEButtons />}
+            {(name === CFEPBG || name === CFERPB) && (
+              <CFEButtons campus={name} />
+            )}
 
             {/* What to Expect Section */}
             {name !== 'Trinity' &&

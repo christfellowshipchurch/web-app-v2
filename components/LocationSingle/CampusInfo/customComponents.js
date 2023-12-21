@@ -154,47 +154,86 @@ const TrinityButtons = () => {
   ];
 };
 
-const CFEButtons = () => {
+const CFEButtons = name => {
   const modalDispatch = useModalDispatch();
+  const campusName = name.campus;
 
   return (
     <Box display={{ _: 'none', md: 'flex' }} my="l">
-      <Box ml="base">
-        <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
-          ¿Qué puedo esperar?
-        </Box>
-      </Box>
-      <Box maxWidth={500}>
-        <Box mb="s">
-          En Christ Fellowship Español puedes ser parte de nuestros servicios
-          que cuentan con música y espacios de adoración edificantes, mensajes
-          alentadores de nuestros pastores, programación especial para tu
-          familia y oportunidades para encontrar personas con quienes puedes
-          caminar por la vida y hacer comunidad durante toda la semana—¡todo
-          comienza aquí!
+      <Box display="flex" flexDirection="column">
+        <Box display="flex" flexDirection="row">
+          <Box ml="base">
+            <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
+              ¿Qué puedo esperar?
+            </Box>
+          </Box>
+
+          <Box maxWidth={500}>
+            <Box mb="s">
+              En Christ Fellowship Español puedes ser parte de nuestros
+              servicios que cuentan con música y espacios de adoración
+              edificantes, mensajes alentadores de nuestros pastores,
+              programación especial para tu familia y oportunidades para
+              encontrar personas con quienes puedes caminar por la vida y hacer
+              comunidad durante toda la semana—¡todo comienza aquí!
+            </Box>
+
+            <Box
+              as="a"
+              onClick={() =>
+                modalDispatch(
+                  showModal('Video', {
+                    step: 0,
+                    wistiaId: whatToExpectVideos['cfe'],
+                    title: '¿Qué puedo esperar?',
+                  })
+                )
+              }
+              mt="s"
+              display="flex"
+              alignItems="center"
+              width="fit-content"
+              fontStyle="italic"
+              textDecoration="underline"
+              cursor="pointer"
+            >
+              Mira lo que puedes esperar aquí!
+              <Icon ml="s" name="play" size="24" variant="secondary" />
+            </Box>
+          </Box>
         </Box>
 
-        <Box
-          as="a"
-          onClick={() =>
-            modalDispatch(
-              showModal('Video', {
-                step: 0,
-                wistiaId: whatToExpectVideos['cfe'],
-                title: '¿Qué puedo esperar?',
-              })
-            )
-          }
-          mt="s"
-          display="flex"
-          alignItems="center"
-          width="fit-content"
-          fontStyle="italic"
-          textDecoration="underline"
-          cursor="pointer"
-        >
-          Mira lo que puedes esperar aquí!
-          <Icon ml="s" name="play" size="24" variant="secondary" />
+        <Box display="flex" flexDirection="row" mt="base">
+          <Box ml="base">
+            <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
+              Tenemos más para ti
+            </Box>
+          </Box>
+          <Box maxWidth={500}>
+            <Box mb="s" fontStyle="italic">
+              {campusName === 'Christ Fellowship Español Palm Beach Gardens' ? (
+                <Box fontStyle="italic">
+                  Consulta{' '}
+                  <Box as="a" href="/locations/iglesia-royal-palm-beach">
+                    Christ Fellowship Church Español en Royal Palm Beach
+                  </Box>
+                  <Box fontStyle="italic">
+                    para conocer más espacios entre semana.
+                  </Box>
+                </Box>
+              ) : (
+                <Box fontStyle="italic">
+                  Consulta{' '}
+                  <Box as="a" href="/locations/iglesia-palm-beach-gardens">
+                    Christ Fellowship Church Español en Palm Beach Gardens
+                  </Box>
+                  <Box fontStyle="italic">
+                    para conocer más espacios entre semana.
+                  </Box>
+                </Box>
+              )}
+            </Box>
+          </Box>
         </Box>
       </Box>
     </Box>
