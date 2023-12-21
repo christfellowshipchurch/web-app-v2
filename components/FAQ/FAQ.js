@@ -77,7 +77,7 @@ function FAQ(props = {}) {
               >
                 {props?.otherData?.title === 'FAQ'
                   ? `See ${display === 'none' ? 'More' : 'Less'}`
-                  : `Ver ${display === 'none' ? 'Mas' : 'Menos'}`}
+                  : `Ver ${display === 'none' ? 'Más' : 'Menos'}`}
               </Button>
             </Box>
           )}
