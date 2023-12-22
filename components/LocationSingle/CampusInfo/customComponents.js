@@ -184,7 +184,11 @@ const CFEButtons = name => {
                 modalDispatch(
                   showModal('Video', {
                     step: 0,
-                    wistiaId: whatToExpectVideos['cfe'],
+                    wistiaId:
+                      campusName ===
+                      'Christ Fellowship Español Palm Beach Gardens'
+                        ? whatToExpectVideos['cfe']
+                        : whatToExpectVideos['royalPalmBeach'],
                     title: '¿Qué puedo esperar?',
                   })
                 )
