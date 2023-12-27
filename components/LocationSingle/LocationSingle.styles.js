@@ -21,13 +21,15 @@ const ChristmasBanner = styled.div`
   padding-top: ${themeGet('space.s')};
   box-shadow: -7px -5px 19px rgba(0, 0, 0, 0.12);
   position: absolute;
-  top: -42px;
+  top: -21px;
   right: 370px;
 
   @media screen and (min-width: ${themeGet(
       'breakpoints.md'
     )}) and (max-width: ${themeGet('breakpoints.lg')}) {
-    right: 322px;
+    right: 306px;
+    top: -37px;
+    font-size: 14px;
   }
 
   ${system}
