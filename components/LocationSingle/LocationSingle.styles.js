@@ -7,6 +7,7 @@ const LocationSingle = styled.div`
   ${system}
 `;
 
+// 2023 Christmas Banner Styled Components - Not in use at the moment
 const ChristmasBanner = styled.div`
   background: ${themeGet('colors.hues.red')};
   border-top-left-radius: ${themeGet('radii.base')};
