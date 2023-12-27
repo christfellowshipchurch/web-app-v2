@@ -69,7 +69,7 @@ const CampusInfo = ({
         width="100%"
       >
         {/* Christmas Banner For Mobile */}
-        {currentBreakpoints.isSmall && (
+        {currentBreakpoints.isSmall && name === 'Palm Beach Gardens' && (
           <Styled.MobileChristmasBanner>
             <Box fontStyle="italic">
               *Note: There will be no 5PM service on New Year's Eve
@@ -118,7 +118,7 @@ const CampusInfo = ({
             )}
 
             {/* Christmas Banner */}
-            {!currentBreakpoints.isSmall && (
+            {!currentBreakpoints.isSmall && name === 'Palm Beach Gardens' && (
               <Styled.ChristmasBanner>
                 <Box fontStyle="italic">
                   *Note: There will be no 5PM service on New Year's Eve

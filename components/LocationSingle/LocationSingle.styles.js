@@ -12,7 +12,6 @@ const ChristmasBanner = styled.div`
   border-top-left-radius: ${themeGet('radii.base')};
   color: white;
   font-size: 17px;
-  font-weight: bold;
   display: flex;
 
   padding-bottom: ${themeGet('space.s')};
@@ -39,7 +38,6 @@ const MobileChristmasBanner = styled.div`
   background: ${themeGet('colors.hues.red')};
   color: white;
   font-size: 14px;
-  font-weight: bold;
   padding-bottom: ${themeGet('space.s')};
   padding-top: ${themeGet('space.s')};
   box-shadow: -7px -5px 19px rgba(0, 0, 0, 0.12);
