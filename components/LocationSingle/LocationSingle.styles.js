@@ -7,12 +7,12 @@ const LocationSingle = styled.div`
   ${system}
 `;
 
+// 2023 Christmas Banner Styled Components - Not in use at the moment
 const ChristmasBanner = styled.div`
   background: ${themeGet('colors.hues.red')};
   border-top-left-radius: ${themeGet('radii.base')};
   color: white;
   font-size: 17px;
-  font-weight: bold;
   display: flex;
 
   padding-bottom: ${themeGet('space.s')};
@@ -21,13 +21,15 @@ const ChristmasBanner = styled.div`
   padding-top: ${themeGet('space.s')};
   box-shadow: -7px -5px 19px rgba(0, 0, 0, 0.12);
   position: absolute;
-  top: -42px;
+  top: -21px;
   right: 370px;
 
   @media screen and (min-width: ${themeGet(
       'breakpoints.md'
     )}) and (max-width: ${themeGet('breakpoints.lg')}) {
-    right: 322px;
+    right: 306px;
+    top: -37px;
+    font-size: 14px;
   }
 
   ${system}
@@ -37,7 +39,6 @@ const MobileChristmasBanner = styled.div`
   background: ${themeGet('colors.hues.red')};
   color: white;
   font-size: 14px;
-  font-weight: bold;
   padding-bottom: ${themeGet('space.s')};
   padding-top: ${themeGet('space.s')};
   box-shadow: -7px -5px 19px rgba(0, 0, 0, 0.12);
