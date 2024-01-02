@@ -17,8 +17,17 @@ import StyledForm from './StyledForm';
 function SetAReminderForm(props = {}) {
   const modalDispatch = useModalDispatch();
   const [success, setSuccess] = useState(null);
+
   //This sets the current campus being selected and its default
   const [currentCampus, setCurrentCampus] = useState(props?.defaultCampus);
+
+  //This checks and updates the CFE campus names to the correct ones
+  if (currentCampus === 'Iglesia Palm Beach Gardens') {
+    setCurrentCampus('Christ Fellowship Español Palm Beach Gardens');
+  } else if (currentCampus === 'Iglesia Royal Palm Beach') {
+    setCurrentCampus('Christ Fellowship Español Royal Palm Beach');
+  }
+
   //This grabs the campus object with service times using the currentCampus for the campusName
   const { loading: serviceTimesLoading, campus: selectedCampus } = useCampus({
     variables: {
@@ -134,7 +143,7 @@ function SetAReminderForm(props = {}) {
       phoneNumber: props?.phoneNumber,
       campus: props?.defaultCampus,
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -152,7 +161,7 @@ function SetAReminderForm(props = {}) {
       handleCallBack(values?.serviceTime);
       modalDispatch(showStep(1));
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [success]);
 
   return (

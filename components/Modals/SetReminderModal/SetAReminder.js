@@ -15,7 +15,13 @@ function SetAReminder(props = {}) {
         return (
           <SetAReminderForm
             {...currentUser?.profile}
-            defaultCampus={props?.defaultCampus}
+            defaultCampus={
+              props?.defaultCampus === 'Iglesia Palm Beach Gardens'
+                ? 'Christ Fellowship Español Palm Beach Gardens'
+                : props?.defaultCampus === 'Iglesia Royal Palm Beach'
+                ? 'Christ Fellowship Español Royal Palm Beach'
+                : props?.defaultCampus
+            }
             handleCallBack={e => setServiceTime(e)}
           />
         );
