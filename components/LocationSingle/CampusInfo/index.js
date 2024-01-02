@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { camelCase, find } from 'lodash';
-import { useCurrentBreakpoint } from 'hooks';
 
 import { Box, Cell, Divider, Icon, utils } from 'ui-kit';
 
@@ -33,8 +32,6 @@ const CampusInfo = ({
   mapLink,
   weekdaySchedules,
 }) => {
-  const currentBreakpoints = useCurrentBreakpoint();
-
   const addressFirst = street1 ? `${street1}` : null;
   const addressLast = `${city}, ${state} ${postalCode?.substring(0, 5)}`;
 
@@ -68,14 +65,6 @@ const CampusInfo = ({
         zIndex={1}
         width="100%"
       >
-        {/* Christmas Banner For Mobile */}
-        {currentBreakpoints.isSmall && name === 'Palm Beach Gardens' && (
-          <Styled.MobileChristmasBanner>
-            <Box fontStyle="italic">
-              *Note: There will be no 5PM service on New Year's Eve
-            </Box>
-          </Styled.MobileChristmasBanner>
-        )}
         {/* Service Times */}
         <Box width="100%">
           <Styled.ServiceTimeContainer>
@@ -116,17 +105,6 @@ const CampusInfo = ({
                 ))}
               </Styled.InfoBox>
             )}
-
-            {/* Christmas Banner */}
-            {!currentBreakpoints.isSmall && name === 'Palm Beach Gardens' && (
-              <Styled.ChristmasBanner>
-                <Box fontStyle="italic">
-                  *Note: There will be no 5PM service on New Year's Eve
-                </Box>
-              </Styled.ChristmasBanner>
-            )}
-
-            {/* Weekday Schedule / Custom Campus Info */}
 
             {/* Custom Info for CF Everywhere and Trinity */}
             {name === 'Online (CF Everywhere)' && <CfEverywhereButtons />}
