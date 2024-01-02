@@ -106,8 +106,6 @@ const CampusInfo = ({
               </Styled.InfoBox>
             )}
 
-            {/* Weekday Schedule / Custom Campus Info */}
-
             {/* Custom Info for CF Everywhere and Trinity */}
             {name === 'Online (CF Everywhere)' && <CfEverywhereButtons />}
 
