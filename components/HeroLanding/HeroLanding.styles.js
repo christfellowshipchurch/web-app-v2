@@ -91,6 +91,8 @@ const Button = styled.button`
   padding-right: ${themeGet('space.l')};
   text-decoration: none;
   transition: 0.3s ease-in-out;
+  max-width: 350px;
+  flex: 1;
 
   &:disabled {
     opacity: 0.5;
@@ -145,7 +147,7 @@ const ButtonTitle = styled.p`
   padding-top: ${themeGet('space.xs')};
 
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: ${props => (props.isSubtitle ? '1' : '2')};
   -webkit-box-orient: vertical;
   overflow: hidden;
 
