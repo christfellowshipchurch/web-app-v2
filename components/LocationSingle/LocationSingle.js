@@ -7,26 +7,33 @@ import {
   FAQ,
   Layout,
   LocationBlockFeature,
+  LocationBlockFeatureEspanol,
   NotFound,
   InfoCardList,
   Testimonials,
   HeroListFeature,
   Video,
 } from 'components';
-import { Box, Button, Divider } from 'ui-kit';
+import { Box, Button, Divider, Loader } from 'ui-kit';
 
 import CampusInfo from './CampusInfo';
 import LocationHeader from './LocationHeader';
 import defaultBlockData from '../LocationBlockFeature/defaultBlockData';
+import { defaultBlockDataEspanol } from '../LocationBlockFeatureEspanol/defaultBlockDataEspanol';
+
 import {
   additionalInfoCampusData,
   headerData,
   setReminderVideos,
   setReminderData,
+  setReminderEspanolData,
+  testimonials,
   thisWeekFeatureId,
+  whatToExpectData,
+  whatsComingUp,
 } from '../../lib/locationData';
 import { CampusProvider, FeatureProvider } from 'providers';
-import faqData from 'components/FAQ/faqData';
+import faqData, { otherData } from 'components/FAQ/faqData';
 import { showModal, useModalDispatch } from 'providers/ModalProvider';
 import { campusNameFormatted } from './utils';
 
@@ -34,8 +41,34 @@ function LocationSingle(props = {}) {
   const modalDispatch = useModalDispatch();
 
   /**
-   * note : this means that there is not a valid page found on the API, so we'll render the 404 message
+   * note : Espanol Campuses Names
    */
+  const CFEPBG = 'Christ Fellowship Español Palm Beach Gardens';
+  const CFERPB = 'Christ Fellowship Español Royal Palm Beach';
+
+  if (props.loading) {
+    return (
+      <Layout
+        title="Location"
+        contentMaxWidth={'100vw'}
+        contentHorizontalPadding={'0'}
+        contentVerticalPadding={'0'}
+      >
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignContent="center"
+          alignItems="center"
+          width="100%"
+          minHeight="50vh"
+        >
+          <Loader />
+        </Box>
+      </Layout>
+    );
+  }
+
+  // note : this means that there is not a valid page found on the API, so we'll render the 404 message
   if (!props.loading && !props?.data?.id) {
     return <NotFound />;
   }
@@ -53,6 +86,22 @@ function LocationSingle(props = {}) {
    */
   const campusAdditionalInfo = find(additionalInfoCampusData, { name: campus });
   const headerContent = find(headerData, { name: campus });
+
+  let element;
+  if (typeof document !== 'undefined') {
+    element = document.getElementById('FAQ');
+  }
+
+  function faqScroll() {
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  const setAReminderVideo = setReminderVideos[camelCase(campus)];
+  const expectData = whatToExpectData(campus);
+  const comingUpSoon = whatsComingUp[camelCase(campus)];
+  const testimonies = testimonials[camelCase(campus)];
 
   return (
     <Layout
@@ -77,7 +126,7 @@ function LocationSingle(props = {}) {
         Component={CampusInfo}
         options={{
           variables: {
-            campusName: campus,
+            campusName: campusNameFormatted(campus),
           },
         }}
         additionalInfo={campusAdditionalInfo?.info}
@@ -107,103 +156,114 @@ function LocationSingle(props = {}) {
       )}
 
       {/* Set a Reminder */}
-      <Box id="set-a-reminder" pt="xxl">
-        {campus !== 'Online (CF Everywhere)' && (
-          <>
-            <Box
-              maxWidth={{ _: 350, md: 600, lg: 800 }}
-              boxShadow="l"
-              borderRadius="xl"
-              overflow="hidden"
-              mx="auto"
-            >
-              <Video wistiaId={setReminderVideos[camelCase(campus)]} />
-            </Box>
-            <Box width="100%" px={{ _: 'base', md: 'xl' }} pt="base">
-              <InfoCardList
-                {...setReminderData}
-                button={{
-                  title: 'Set a Reminder',
-                  onClick: () =>
-                    modalDispatch(
-                      showModal('SetReminder', { defaultCampus: campus })
-                    ),
-                }}
-              />
-            </Box>
-          </>
-        )}
-      </Box>
+      {campus !== 'Cf Everywhere' && (
+        <>
+          <Box
+            maxWidth={{ _: 350, md: 600, lg: 800 }}
+            boxShadow="l"
+            borderRadius="xl"
+            overflow="hidden"
+            mt={setAReminderVideo ? 'xxl' : 'xs'}
+            mx="auto"
+          >
+            <Video wistiaId={setAReminderVideo} />
+          </Box>
+          <Box width="100%" px={{ _: 'base', md: 'xl' }} pt="base">
+            <InfoCardList
+              {...(campus === CFEPBG || campus === CFERPB
+                ? setReminderEspanolData
+                : setReminderData)}
+              button={{
+                title:
+                  campus === CFEPBG || campus === CFERPB
+                    ? 'Recuérdame'
+                    : 'Set a Reminder',
+                onClick: () =>
+                  modalDispatch(
+                    showModal('SetReminder', { defaultCampus: campus })
+                  ),
+              }}
+            />
+          </Box>
+        </>
+      )}
 
       {/* Testimonial Section */}
       <Box bg="white" px="base" py="xl" width="100%">
         <Box mx="auto" maxWidth={1200}>
           <Testimonials
+            title={
+              campus === CFEPBG || campus === CFERPB
+                ? 'Mira lo que otros dicen'
+                : 'See What Others Are Saying'
+            }
             testimonies={
               campus === 'Online (CF Everywhere)'
-                ? [
-                    {
-                      name: '<i>Amal</i>',
-                      description:
-                        'Christ Fellowship is a home away from home. I always feel welcomed by genuine, godly, and friendly people. Worship is amazing and every sermon adds value to my spiritual growth. I look forward to the service every week.',
-                      region: '<i>India<i>',
-                    },
-                    {
-                      name: '<i>Jim & Tammy</i>',
-                      description:
-                        'We attended CF online for 2 years prior to moving to Florida and now we are attending in person. While attending online, we were surprised by how connected and included we felt. When attending online you are not simply watching a church service from a distance, you are joining a family!',
-                      region: '<i>South Florida<i>',
-                    },
-                    {
-                      name: '<i>Tom & Margie</i>',
-                      description:
-                        'We live in New Jersey and were invited to attend Christ Fellowship Everywhere. We knew at once we had found our new church home. From Pastors Todd & Julie to all the other pastors/congregation, we immediately felt a part of a church community. Every Sunday, we pour our coffee and jump into a great service - all from the comfort of our home. God has truly blessed us by connecting us to CF Everywhere.',
-                      region: '<i>New Jersey<i>',
-                    },
-                  ]
-                : undefined
+                ? testimonials.cfEverywhere
+                : campus === CFEPBG || campus === CFERPB
+                ? testimonials.españolCampuses
+                : testimonies
             }
           />
         </Box>
       </Box>
 
       {/* At this Location Section */}
-      <Box width="100%" px={{ _: 'base', md: 'xl' }} pt="base">
-        <LocationBlockFeature
-          mx="auto"
-          campusName={campus}
-          maxWidth={1000}
-          data={defaultBlockData(campus)}
+      <Box
+        width="100%"
+        px={{ _: 'base', md: 'xl' }}
+        pt="base"
+        bg={!expectData && 'white'}
+      >
+        {campus === CFEPBG || campus === CFERPB ? (
+          <LocationBlockFeatureEspanol
+            mx="auto"
+            campusName={campus}
+            maxWidth={1000}
+            data={defaultBlockDataEspanol(campus)}
+          />
+        ) : (
+          <LocationBlockFeature
+            mx="auto"
+            campusName={campus}
+            maxWidth={1000}
+            data={defaultBlockData(campus)}
 
-          /**
-           * todo :  These would be the content blocks we pull in from Rock, but since the content doesn't match Figma we'll hard code the content for now.
-           *  */
-          // data={props?.data?.featureFeed?.features}
-        />
+            /**
+             * todo :  These would be the content blocks we pull in from Rock, but since the content doesn't match Figma we'll hard code the content for now.
+             *  */
+            // data={props?.data?.featureFeed?.features}
+          />
+        )}
       </Box>
 
       {/* What's Coming Up Section */}
-      <Box bg="white" py={{ _: 'l', sm: 'xl' }}>
+      {/* ADD SPANISH PAGE EVENTS HERE: https://rock.christfellowship.church/page/1655?ContentItemId=15472*/}
+      <Box bg={expectData && 'white'} py={{ _: 'l', sm: 'xl' }}>
         <Box mx="auto" maxWidth={1200}>
           <CollectionPreview
             horizontalScroll
             size="s"
             contentId={
-              campus === 'Online (CF Everywhere)'
-                ? 'UniversalContentItem:04f022613f5beaca2532ef3a8e052cd6'
+              comingUpSoon
+                ? comingUpSoon
                 : 'UniversalContentItem:ddf0d380759e8404fb6b70aa941c06f7'
             }
             buttonOverride={
-              campus !== 'Online (CF Everywhere)' ? '/events' : '/discover'
+              campus !== 'Cf Everywhere' ? '/events' : '/discover'
             }
           />
         </Box>
       </Box>
 
       {/* FAQs Section */}
-      <Box id="location-faq" px="base" py="xl" width="100%">
+      <Box id="FAQ" px="base" py="xl" width="100%" bg={!expectData && 'white'}>
         <Box mx="auto" maxWidth={1200}>
-          <FAQ data={faqData(campus)} customScrollPosition="location-faq" />
+          <FAQ
+            data={faqData(campus)}
+            otherData={otherData(campus)}
+            onClick={faqScroll}
+          />
         </Box>
       </Box>
 
@@ -211,10 +271,14 @@ function LocationSingle(props = {}) {
       <Box bg="white" px="base" py="xl">
         <Box textAlign="center" maxWidth={500} mx="auto">
           <Box as="h2" color="secondary">
-            Never miss a thing.
+            {campus !== CFEPBG && campus !== CFERPB
+              ? `Never miss a thing.`
+              : `No te pierdas de nada!`}
           </Box>
           <Box as="h4" color="neutrals.500">
-            Receive events and updates straight to your inbox!
+            {campus !== CFEPBG && campus !== CFERPB
+              ? `Receive events and updates straight to your inbox!`
+              : `Recibe información sobre eventos y actualizaciones directamente en tu inbox.`}
           </Box>
           <Button
             as="a"
@@ -224,7 +288,9 @@ function LocationSingle(props = {}) {
             href="http://eepurl.com/hAk7aP"
             target="_blank"
           >
-            Subscribe
+            {campus !== CFEPBG && campus !== CFERPB
+              ? `Subscribe`
+              : `Suscríbete`}
           </Button>
         </Box>
       </Box>
