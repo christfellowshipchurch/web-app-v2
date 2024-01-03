@@ -172,7 +172,7 @@ function LocationSingle(props = {}) {
             boxShadow="l"
             borderRadius="xl"
             overflow="hidden"
-            mt="xxl"
+            mt={setAReminderVideo ? 'xxl' : 'xs'}
             mx="auto"
           >
             <Video wistiaId={setAReminderVideo} />
