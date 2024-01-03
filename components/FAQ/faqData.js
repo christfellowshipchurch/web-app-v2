@@ -287,9 +287,9 @@ const faqData = campus => {
       return faqCfEverywhereData;
     case 'CBO':
       return faqCBO;
-    case 'Iglesia Palm Beach Gardens':
+    case 'Christ Fellowship Español Palm Beach Gardens':
       return faqEspanolData;
-    case 'Iglesia Royal Palm Beach':
+    case 'Christ Fellowship Español Royal Palm Beach':
       return faqEspanolData;
     default:
       return faqDefaultData;
@@ -298,9 +298,9 @@ const faqData = campus => {
 
 export const otherData = campus => {
   switch (campus) {
-    case 'Iglesia Palm Beach Gardens':
+    case 'Christ Fellowship Español Palm Beach Gardens':
       return faqEspanolOtherData;
-    case 'Iglesia Royal Palm Beach':
+    case 'Christ Fellowship Español Royal Palm Beach':
       return faqEspanolOtherData;
     default:
       return faqDefaultOtherData;

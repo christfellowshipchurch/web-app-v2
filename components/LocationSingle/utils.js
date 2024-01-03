@@ -92,6 +92,10 @@ export const campusNameFormatted = campusName => {
       return 'Online (CF Everywhere)';
     case 'Port St Lucie':
       return 'Port St. Lucie';
+    case 'Iglesia Palm Beach Gardens':
+      return 'Christ Fellowship Español Palm Beach Gardens';
+    case 'Iglesia Royal Palm Beach':
+      return 'Christ Fellowship Español Royal Palm Beach';
     default:
       return campusName;
   }

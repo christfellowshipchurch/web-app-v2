@@ -29,7 +29,6 @@ import {
   setReminderEspanolData,
   testimonials,
   thisWeekFeatureId,
-  whatToExpectVideos,
   whatToExpectData,
   whatsComingUp,
 } from '../../lib/locationData';
@@ -44,8 +43,8 @@ function LocationSingle(props = {}) {
   /**
    * note : Espanol Campuses Names
    */
-  const CFEPBG = 'Iglesia Palm Beach Gardens';
-  const CFERPB = 'Iglesia Royal Palm Beach';
+  const CFEPBG = 'Christ Fellowship Español Palm Beach Gardens';
+  const CFERPB = 'Christ Fellowship Español Royal Palm Beach';
 
   if (props.loading) {
     return (
@@ -100,7 +99,6 @@ function LocationSingle(props = {}) {
   }
 
   const setAReminderVideo = setReminderVideos[camelCase(campus)];
-  const whatToExpectVideo = whatToExpectVideos[camelCase(campus)];
   const expectData = whatToExpectData(campus);
   const comingUpSoon = whatsComingUp[camelCase(campus)];
   const testimonies = testimonials[camelCase(campus)];
@@ -128,14 +126,7 @@ function LocationSingle(props = {}) {
         Component={CampusInfo}
         options={{
           variables: {
-            campusName:
-              campus === 'Cf Everywhere'
-                ? 'Online (CF Everywhere)'
-                : campus === CFEPBG
-                ? 'Christ Fellowship Español Palm Beach Gardens'
-                : campus === CFERPB
-                ? 'Christ Fellowship Español Royal Palm Beach'
-                : campus,
+            campusName: campusNameFormatted(campus),
           },
         }}
         additionalInfo={campusAdditionalInfo?.info}
@@ -202,58 +193,17 @@ function LocationSingle(props = {}) {
         <Box mx="auto" maxWidth={1200}>
           <Testimonials
             title={
-              campus === 'Iglesia Palm Beach Gardens' ||
-              campus === 'Iglesia Royal Palm Beach'
+              campus === CFEPBG || campus === CFERPB
                 ? 'Mira lo que otros dicen'
                 : 'See What Others Are Saying'
             }
             testimonies={
               campus === 'Online (CF Everywhere)'
-                ? [
-                    {
-                      name: '<i>Amal</i>',
-                      description:
-                        'Christ Fellowship is a home away from home. I always feel welcomed by genuine, godly, and friendly people. Worship is amazing and every sermon adds value to my spiritual growth. I look forward to the service every week.',
-                      region: '<i>India<i>',
-                    },
-                    {
-                      name: '<i>Jim & Tammy</i>',
-                      description:
-                        'We attended CF online for 2 years prior to moving to Florida and now we are attending in person. While attending online, we were surprised by how connected and included we felt. When attending online you are not simply watching a church service from a distance, you are joining a family!',
-                      region: '<i>South Florida<i>',
-                    },
-                    {
-                      name: '<i>Tom & Margie</i>',
-                      description:
-                        'We live in New Jersey and were invited to attend Christ Fellowship Everywhere. We knew at once we had found our new church home. From Pastors Todd & Julie to all the other pastors/congregation, we immediately felt a part of a church community. Every Sunday, we pour our coffee and jump into a great service - all from the comfort of our home. God has truly blessed us by connecting us to CF Everywhere.',
-                      region: '<i>New Jersey<i>',
-                    },
-                  ]
-                : campus === 'Iglesia Palm Beach Gardens' ||
-                  campus === 'Iglesia Royal Palm Beach'
-                ? [
-                    {
-                      name: '<i>Paul N.</i>',
-                      description:
-                        'Mi familia ha asistido a esta iglesia por casi 20 años. Aquí crecí rodeado de una comunidad de personas que aman a Cristo. En esta iglesia se predica el evangelio y cada vez que entro a este lugar me siento en casa. ¡Christ Fellowship Español ha sido una bendición para mí y para mi familia!',
-                      rating: 5,
-                    },
-                    {
-                      name: '<i>Maria V.</i>',
-                      description:
-                        'Amo este lugar. Acá me he sentido amada, acompañada, apoyada y vista. Cada domingo es una gran experiencia en donde aprendo y recibo una Palabra transformadora de parte de Dios. Cuando llegué a EE.UU no conocía a nadie, y ahora tengo una familia inmensa. ¡Ven a conocer! No te vas a arrepentir.',
-                      rating: 5,
-                    },
-                    {
-                      name: '<i>Nicole G.</i>',
-                      description:
-                        'Christ Fellowship Español es un lugar donde habita el poder de Dios y su amor. Es donde he visto a toda mi familia ser restaurada y amada. Así como mi familia y yo encontramos una gran familia extendida en Cristo y su amor, tú también puedes hallar esperanza y conocer el corazón de nuestro Señor Jesús en este lugar.',
-                      rating: 5,
-                    },
-                  ]
-                : undefined
+                ? testimonials.cfEverywhere
+                : campus === CFEPBG || campus === CFERPB
+                ? testimonials.españolCampuses
+                : testimonies
             }
-            // testimonies={testimonies && testimonies}
           />
         </Box>
       </Box>

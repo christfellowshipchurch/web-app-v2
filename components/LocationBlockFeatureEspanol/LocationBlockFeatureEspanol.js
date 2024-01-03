@@ -9,8 +9,6 @@ import Styled from '../LocationBlockFeature/LocationBlockFeature.styles';
 const LocationBlockFeatureEspanol = props => {
   let content = props?.data;
 
-  console.log('content', { props });
-
   return (
     <Box textAlign="center" {...props}>
       <Box mt="l" mb={0} as="h2" color="secondary">
@@ -21,7 +19,8 @@ const LocationBlockFeatureEspanol = props => {
           *Opciones en español disponibles.{' '}
           <strong>
             Algunos eventos se ofrecen solo en inglés o en nuestro campus de
-            {props?.campusName === 'Iglesia Palm Beach Gardens'
+            {props?.campusName ===
+            'Christ Fellowship Español Palm Beach Gardens'
               ? ' Royal Palm Beach'
               : ' Palm Beach Gardens'}
             .

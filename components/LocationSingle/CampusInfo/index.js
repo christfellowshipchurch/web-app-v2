@@ -15,6 +15,7 @@ import {
   CFEButtons,
   CfEverywhereButtons,
   CfEverywhereMobileButtons,
+  CFEMobileButtons,
   WeekdayScheduleDisplay,
 } from './customComponents';
 import { showModal, useModalDispatch } from 'providers/ModalProvider';
@@ -199,7 +200,7 @@ const CampusInfo = ({
       </Cell>
 
       {/* Mobile layout */}
-      {isWeekdaySchedule ? (
+      {isWeekdaySchedule && name !== CFEPBG && name !== CFERPB ? (
         <Box mt="xxl" display={{ _: 'inline', md: 'none' }}>
           <Divider my="l" width="80%" />
           <WeekdayScheduleDisplay
@@ -249,6 +250,11 @@ const CampusInfo = ({
       ) : (
         name === 'Trinity' && <TrinityMobileButtons />
       )}
+
+      {(name === CFEPBG || name === CFERPB) && (
+        <CFEMobileButtons campus={name} />
+      )}
+
       {name === 'Online (CF Everywhere)' && <CfEverywhereMobileButtons />}
     </Box>
   );

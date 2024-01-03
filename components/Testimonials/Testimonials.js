@@ -55,6 +55,7 @@ function Testimonials(props = {}) {
 
 Testimonials.propTypes = {
   ...systemPropTypes,
+  title: PropTypes.string,
   testimonies: PropTypes.array,
 };
 

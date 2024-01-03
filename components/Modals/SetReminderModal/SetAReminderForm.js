@@ -21,13 +21,6 @@ function SetAReminderForm(props = {}) {
   //This sets the current campus being selected and its default
   const [currentCampus, setCurrentCampus] = useState(props?.defaultCampus);
 
-  //This checks and updates the CFE campus names to the correct ones
-  if (currentCampus === 'Iglesia Palm Beach Gardens') {
-    setCurrentCampus('Christ Fellowship Español Palm Beach Gardens');
-  } else if (currentCampus === 'Iglesia Royal Palm Beach') {
-    setCurrentCampus('Christ Fellowship Español Royal Palm Beach');
-  }
-
   //This grabs the campus object with service times using the currentCampus for the campusName
   const { loading: serviceTimesLoading, campus: selectedCampus } = useCampus({
     variables: {
