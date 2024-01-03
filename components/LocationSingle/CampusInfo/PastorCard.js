@@ -19,6 +19,12 @@ const PastorCard = ({
   mapLink,
 }) => {
   const { addressFirst, addressLast } = address;
+
+  /**
+   * Name information for Español campuses
+   */
+  const CFEPBG = 'Christ Fellowship Español Palm Beach Gardens';
+  const CFERPB = 'Christ Fellowship Español Royal Palm Beach';
   const currentBreakpoints = useCurrentBreakpoint();
 
   return (
@@ -60,28 +66,28 @@ const PastorCard = ({
           width="100%"
           display="flex"
           flexDirection="column"
-          alignItems="center"
+          alignItems="flex-start"
           px="l"
         >
-          {!currentBreakpoints.isSmall && (
-            <Box as="a" target="_blank" href={mapLink}>
-              <Image
-                maxWidth={250}
-                aspectRatio="16by9"
-                source={`/location-pages/maps/${kebabCase(campusName)}.jpg`}
-              />
-            </Box>
-          )}
+          <Image
+            maxWidth={250}
+            aspectRatio="16by9"
+            source={`/location-pages/maps/${kebabCase(campusName)}.jpg`}
+          />
           <Box as="h4" mt="base" mb="xs">
-            Address
+            {campusName === CFEPBG || campusName === CFERPB
+              ? 'Dirección'
+              : 'Address'}
           </Box>
-          <Box as="a" target="_blank" textAlign="center" href={mapLink}>
+          <Box as="a" textAlign="left" href={mapLink}>
             {addressFirst}
             <br />
             {addressLast}
           </Box>
           <Box as="h4" mt="base" mb="xs">
-            Phone
+            {campusName === CFEPBG || campusName === CFERPB
+              ? 'Teléfono'
+              : 'Phone'}
           </Box>
           <Box as="a" href={`tel:${phoneNumber}`}>
             {phoneNumber}
@@ -107,7 +113,7 @@ const PastorCard = ({
           [
             <Button
               size="xs"
-              px="base"
+              px="s"
               variant="secondary"
               borderRadius="xxl"
               ml={{ _: 0, lg: 'xs' }}
@@ -122,28 +128,36 @@ const PastorCard = ({
                 })
               }
             >
-              INVITE A FRIEND
+              {campusName === CFERPB || campusName === CFEPBG
+                ? 'INVITA A UN AMIGO'
+                : 'INVITE A FRIEND'}
             </Button>,
           ]
         )}
         <Button
           as="a"
           size="xs"
-          px="base"
+          px="s"
           borderRadius="xxl"
           m={{ _: 'xs', lg: 0 }}
           ml={{ _: 0, lg: 's' }}
           width="132px"
           href="/locations"
         >
-          MORE LOCATIONS
+          {campusName === CFERPB || campusName === CFEPBG
+            ? 'OTRAS UBICACIONES'
+            : 'MORE LOCATIONS'}
         </Button>
       </Box>
       <Box mt="base">
         <Box
           as="a"
           target="_blank"
-          href="https://www.facebook.com/CFimpact"
+          href={
+            campusName === CFERPB || campusName === CFEPBG
+              ? 'https://www.facebook.com/christfellowshipespanol'
+              : 'https://www.facebook.com/CFimpact'
+          }
           color="tertiary"
         >
           <Icon name="facebook" size="32" />
@@ -151,7 +165,16 @@ const PastorCard = ({
         <Box as="a" target="_blank" href={instagram} color="tertiary" mx="s">
           <Icon name="instagram" size="32" />
         </Box>
-        <Box as="a" target="_blank" href={links.youtube} color="tertiary">
+        <Box
+          as="a"
+          target="_blank"
+          href={
+            campusName === CFERPB || campusName === CFEPBG
+              ? 'https://www.youtube.com/@christfellowshipespanol.church'
+              : links.youtube
+          }
+          color="tertiary"
+        >
           <Icon name="youtube" size="32" />
         </Box>
       </Box>
