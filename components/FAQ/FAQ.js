@@ -12,7 +12,6 @@ function FAQ(props = {}) {
   /**
    * note : This is a custom scroll position setup for the Location Pages so it properly scrolls back to the FAQ section when pressing the See Less button. We may want to revisit how we determine the scroll position so its more dynamic.
    */
-
   return (
     <SCThemeProvider
       theme={{ colors: { ...colors?.light, ...props?.customTheme } }}
@@ -29,22 +28,22 @@ function FAQ(props = {}) {
             color="neutrals.300"
             mb={props?.fullWidth ? 's' : 'base'}
           >
-            FAQ
+            {props?.otherData.title}
           </Box>
           {props?.showDescription && (
             <>
               <Box as="h4" color="tertiary" fontStyle="italic" mb={0}>
-                Have additional questions?
+                {props?.otherData.question}
               </Box>
               <Box fontWeight="bold" mb="base" maxWidth={450}>
-                Someone from our team is happy to answer any of your questions!
+                {props?.otherData.description}
               </Box>
               <Box
                 as="a"
                 href="https://rock.gocf.org/contactus"
                 target="_blank"
               >
-                Contact Us
+                {props?.otherData.contactUs}
               </Box>
             </>
           )}
@@ -65,16 +64,20 @@ function FAQ(props = {}) {
           {!props?.displayAll && (
             <Box width="100%" textAlign="center">
               <Button
-                onClick={() => {
-                  window.scrollTo({
-                    behavior: 'smooth',
-                  });
-                  setDisplay(display ? null : 'none');
-                }}
                 mx="auto"
                 variant="link"
+                onClick={() => {
+                  if (typeof document !== 'undefined') {
+                    document
+                      .getElementById(props?.customScrollPosition ?? 'faq')
+                      .scrollIntoView({ behavior: 'smooth' });
+                  }
+                  setDisplay(display ? null : 'none');
+                }}
               >
-                {`See ${display === 'none' ? 'More' : 'Less'}`}
+                {props?.otherData?.title === 'FAQ'
+                  ? `See ${display === 'none' ? 'More' : 'Less'}`
+                  : `Ver ${display === 'none' ? 'Más' : 'Menos'}`}
               </Button>
             </Box>
           )}
@@ -89,6 +92,12 @@ FAQ.propTypes = {
   data: PropTypes.array,
   displayAll: PropTypes.bool,
   showDescription: PropTypes.bool,
+  otherData: PropTypes.shape({
+    title: PropTypes.string,
+    question: PropTypes.string,
+    description: PropTypes.string,
+    contactUs: PropTypes.string,
+  }),
 };
 
 FAQ.defaultProps = {
@@ -96,6 +105,13 @@ FAQ.defaultProps = {
   displayAll: false,
   showDescription: true,
   customTheme: colors?.light,
+  otherData: {
+    title: 'FAQ',
+    question: 'Have a question?',
+    description:
+      'Someone from our team is happy to answer any of your questions!',
+    contactUs: 'Contact Us',
+  },
 };
 
 export default FAQ;

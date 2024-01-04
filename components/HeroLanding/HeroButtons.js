@@ -9,12 +9,6 @@ import Styled from './HeroLanding.styles';
 
 const HeroButtons = ({ actions, ...props }) => {
   const currentBreakpoint = useCurrentBreakpoint();
-  let marginLeft;
-  if (actions.length === 2 && currentBreakpoint.isSmall) {
-    marginLeft = '0';
-  } else if (actions.length === 2 && !currentBreakpoint.isSmall) {
-    marginLeft = 'base';
-  }
 
   return (
     <Styled.ButtonContainer>
@@ -33,17 +27,24 @@ const HeroButtons = ({ actions, ...props }) => {
           ]}
           width={{ _: '100%', md: 'auto' }}
           my={{ _: 'xs', md: 'base' }}
-          mr={{ _: '0', md: i > 1 ? '' : 'l' }}
-          ml={marginLeft}
+          mx="s"
           {...action}
         >
-          {action.icon && <Icon name={action.icon} size="32" mr="base" />}
+          {action.icon && (
+            <Box flex={{ _: 'none', md: 'auto' }} my="auto" mr="s">
+              <Icon name={action.icon} size="32px" />
+            </Box>
+          )}
           <Box>
             {action.subtitle && (
               <Styled.ButtonSubtitle>{action.subtitle}</Styled.ButtonSubtitle>
             )}
             {action.title && (
-              <Styled.ButtonTitle>{action.title}</Styled.ButtonTitle>
+              <Styled.ButtonTitle
+                isSubtitle={!!action.subtitle && !!action.description}
+              >
+                {action.title}
+              </Styled.ButtonTitle>
             )}
             {action.description && !currentBreakpoint.isSmall ? (
               <Styled.ButtonDescription>

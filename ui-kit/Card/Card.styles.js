@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
+import { toUpper } from 'lodash';
 
 import { system } from 'ui-kit';
 
@@ -83,6 +84,40 @@ const Content = styled.div`
   }
 
   ${system}
+`;
+
+const Loading = styled.div`
+  border-radius: ${themeGet('radii.xl')};
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  display: block;
+
+  background: #eee;
+  background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+  background-size: 200% 100%;
+  animation: 1.5s shine linear infinite;
+
+  @keyframes shine {
+    to {
+      background-position-x: -200%;
+    }
+  }
+
+  animation: 1.5s shine linear infinite;
+  ${system}
+`;
+
+const CoverLabelLoading = styled.div`
+  background-color: ${themeGet('colors.white')};
+  backdrop-filter: blur(25px);
+  box-shadow: ${themeGet('shadows.l')};
+  border-radius: ${themeGet('radii.l')};
+  top: 0;
+  right: 0;
+  margin: 0.5rem ${themeGet('space.xs')};
+  width: 80px;
+  height: 22px;
+  position: absolute;
+  z-index: 10;
 `;
 
 const content =
@@ -172,6 +207,23 @@ const Cover = styled.div`
   ${system}
 `;
 
+const CoverLoading = styled.div`
+  align-items: flex-end;
+  background-image: url(${props => props.src});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+
+  ${content}
+  ${scaleCover}
+
+  ${system}
+`;
+
 const position =
   ({ position, size }) =>
   props => {
@@ -213,11 +265,16 @@ const CoverContent = styled.div`
 `;
 
 const CoverLabel = styled.b`
-  background-color: ${themeGet('colors.primary')};
+  background-color: ${props =>
+    toUpper(props.coverImageLabelBgColor) === 'WHITE'
+      ? `white`
+      : themeGet('colors.primary')};
+
   backdrop-filter: blur(25px);
   box-shadow: ${themeGet('shadows.l')};
-  border-radius: ${themeGet('radii.xxl')};
-  color: ${themeGet('colors.white')};
+  border-radius: ${themeGet('radii.l')};
+  color: ${props =>
+    toUpper(props.coverImageLabelBgColor) === 'WHITE' ? '#0092bc' : 'white'};
   top: 0;
   font-size: ${themeGet('fontSizes.xs')};
   font-weight: ${themeGet('fontWeights.bold')};
@@ -244,5 +301,8 @@ Card.Cover = Cover;
 Card.CoverContent = CoverContent;
 Card.CoverLabel = CoverLabel;
 Card.Description = Description;
+Card.Loading = Loading;
+Card.CoverLoading = CoverLoading;
+Card.CoverLabelLoading = CoverLabelLoading;
 
 export default Card;

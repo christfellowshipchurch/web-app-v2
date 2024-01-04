@@ -6,7 +6,7 @@ const navigation = {
     },
     {
       call: 'Locations',
-      action: '#open-sub-menu',
+      action: '/locations',
     },
     {
       call: 'Messages & Content',

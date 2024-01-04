@@ -116,8 +116,8 @@ function ContentSingle(props = {}) {
 
   const metadata = keyBy(props?.data?.metadata, 'name');
 
-  var contentLayoutVideo = currentVideo?.sources[0]?.uri;
-  if (wistiaId) contentLayoutVideo = currentVideo?.wistiaId;
+  let contentLayoutVideo = null;
+  if (currentVideo?.wistiaId) contentLayoutVideo = currentVideo?.wistiaId;
 
   return (
     <ContentLayout
