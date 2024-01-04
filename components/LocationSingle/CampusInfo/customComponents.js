@@ -285,7 +285,7 @@ const CFEMobileButtons = name => {
       display={{ _: 'flex', md: 'none' }}
       flexDirection="column"
       alignItems="center"
-      mt="base"
+      mt="xl"
       mb={{ _: '0px', md: 'base' }}
       pb="l"
     >

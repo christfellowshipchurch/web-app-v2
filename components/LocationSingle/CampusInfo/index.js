@@ -252,7 +252,15 @@ const CampusInfo = ({
       )}
 
       {(name === CFEPBG || name === CFERPB) && (
-        <CFEMobileButtons campus={name} />
+        <Box>
+          <Divider my="l" width="80%" />
+          <WeekdayScheduleDisplay
+            isMobile
+            weekdaySchedules={weekdaySchedules}
+            campus={name}
+          />
+          <CFEMobileButtons campus={name} />
+        </Box>
       )}
 
       {name === 'Online (CF Everywhere)' && <CfEverywhereMobileButtons />}
