@@ -15,8 +15,6 @@ const Content = styled.div`
   left: 0;
   right: 0;
   text-align: center;
-  // margin-top: ${themeGet('space.l')};
-
   ${system}
 `;
 
@@ -28,17 +26,13 @@ const Hero = styled.div`
     url(/groups-cover-image.png);
   background-size: cover;
   background-position: center;
-
   @media screen and (min-width: ${themeGet('breakpoints.xs')}) {
     height: 35vh;
   }
-
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     height: 75vh;
   }
-
   z-index: 3;
-
   ${system}
 `;
 
@@ -52,11 +46,9 @@ const Title = styled.h1`
   font-size: ${rem('50px')};
   text-shadow: 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1),
     0 1px 3px rgba(0, 0, 0, 0.3);
-
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     font-size: ${rem('65px')};
   }
-
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     font-size: ${rem('75px')};
   }
@@ -64,39 +56,26 @@ const Title = styled.h1`
 `;
 
 const Logo = styled.img`
-  // position: absolute;
-  // margin-left: auto;
-  // margin-right: auto;
-  // right: 0;
-  // left: 0;
-  // text-align: center;
-
   @media screen and (min-width: ${themeGet('breakpoints.xs')}) {
     transform: scale(0.6);
     margin-top: 3vh;
     margin-bottom: -3vh;
   }
-
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     transform: scale(0.4);
     margin-top: -3vh;
     margin-bottom: -5vh;
   }
-
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     transform: scale(0.4);
     margin-top: -10vh;
     margin-bottom: -20vh;
   }
-
   @media screen and (min-width: ${themeGet('breakpoints.xlg')}) {
     transform: scale(0.3);
     margin-top: -10vh;
     margin-bottom: -20vh;
   }
-
-  // z-index: 1;
-  // height: 100vh;
   ${system};
 `;
 
