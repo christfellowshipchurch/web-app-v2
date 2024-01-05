@@ -15,37 +15,29 @@ const Content = styled.div`
   left: 0;
   right: 0;
   text-align: center;
-  margin-top: ${themeGet('space.l')};
-
-  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-    margin-top: ${themeGet('space.xl')};
-  }
-
-  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
-    margin-top: ${themeGet('space.xxl')};
-  }
+  // margin-top: ${themeGet('space.l')};
 
   ${system}
 `;
 
 const Hero = styled.div`
-  background-image: url(/groups-cover-image.png);
+  background-image: linear-gradient(
+      rgba(000, 000, 000, 0.3) 0%,
+      rgba(000, 000, 000, 0.6) 100%
+    ),
+    url(/groups-cover-image.png);
   background-size: cover;
   background-position: center;
 
-  height: 375px;
-
-  @media screen and (min-width: ${themeGet('breakpoints.sm')}) {
-    height: 300px;
-  }
-
-  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-    height: 400px;
+  @media screen and (min-width: ${themeGet('breakpoints.xs')}) {
+    height: 35vh;
   }
 
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
-    height: 450px;
+    height: 75vh;
   }
+
+  z-index: 3;
 
   ${system}
 `;
@@ -71,9 +63,47 @@ const Title = styled.h1`
   ${system}
 `;
 
+const Logo = styled.img`
+  // position: absolute;
+  // margin-left: auto;
+  // margin-right: auto;
+  // right: 0;
+  // left: 0;
+  // text-align: center;
+
+  @media screen and (min-width: ${themeGet('breakpoints.xs')}) {
+    transform: scale(0.6);
+    margin-top: 3vh;
+    margin-bottom: -3vh;
+  }
+
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    transform: scale(0.4);
+    margin-top: -3vh;
+    margin-bottom: -5vh;
+  }
+
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    transform: scale(0.4);
+    margin-top: -10vh;
+    margin-bottom: -20vh;
+  }
+
+  @media screen and (min-width: ${themeGet('breakpoints.xlg')}) {
+    transform: scale(0.3);
+    margin-top: -10vh;
+    margin-bottom: -20vh;
+  }
+
+  // z-index: 1;
+  // height: 100vh;
+  ${system};
+`;
+
 Community.Content = Content;
 Community.Hero = Hero;
 Community.Subtitle = Subtitle;
 Community.Title = Title;
+Community.Logo = Logo;
 
 export default Community;
