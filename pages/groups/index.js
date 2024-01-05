@@ -20,7 +20,7 @@ import { CommunitiesProvider } from 'providers';
 import { update as updateAuth, useAuth } from 'providers/AuthProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
-import Styled from './Community.styles';
+import Styled from './Groups.styles';
 import { useForm } from 'hooks';
 
 const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
@@ -110,53 +110,22 @@ export default function Community(props = {}) {
         }}
       >
         <Box>
-          <Styled.Hero>
-            <Styled.Content mx="base">
-              <Styled.Title px="s">Groups & Classes</Styled.Title>
-              <Styled.Subtitle>Life is Better Together</Styled.Subtitle>
+          <Styled.Hero height={{ _: 300, sm: 500, md: 600, lg: 700 }}>
+            <Styled.Content>
+              <Box
+                as="img"
+                maxWidth={{ _: 350, sm: 450, md: 500, lg: 600 }}
+                mb="base"
+                src="/groups-logo.png"
+              />
               <SearchField
-                boxShadow="0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1),
-              0 1px 3px rgba(0, 0, 0, 0.3)"
-                maxWidth={800}
-                mx="auto"
+                minWidth={{ _: 'none', sm: '120%' }}
                 handleSubmit={handleSubmit}
                 handleChange={handleChange}
                 handleClick={handleClick}
                 handleClear={() => reset()}
                 value={values.text || ''}
-                mb="base"
               />
-              <Box
-                fontStyle="italic"
-                fontSize={{ _: '16px', md: '20px' }}
-                color="white"
-              >
-                Already in a group?{' '}
-                <Box
-                  as="a"
-                  color="white"
-                  onClick={handleMyGroups}
-                  href="/connect"
-                >
-                  Log in
-                </Box>{' '}
-                to see your groups.
-              </Box>
-              <Box
-                fontStyle="italic"
-                fontSize={{ _: '16px', md: '20px' }}
-                color="white"
-              >
-                Interested in starting a Group?{' '}
-                <Box
-                  as="a"
-                  color="white"
-                  target="_blank"
-                  href="https://rock.christfellowship.church/groups/starting-a-group"
-                >
-                  Learn More
-                </Box>{' '}
-              </Box>
             </Styled.Content>
           </Styled.Hero>
           <Box bg="white" textAlign="center" py="xl">
