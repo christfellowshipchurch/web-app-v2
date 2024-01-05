@@ -115,6 +115,7 @@ export default function Community(props = {}) {
               <Box
                 as="img"
                 maxWidth={{ _: 350, sm: 450, md: 500, lg: 600 }}
+                mb="base"
                 src="/groups-logo.png"
               />
               <SearchField
