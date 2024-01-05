@@ -76,23 +76,21 @@ function Resources() {
           </Styled.Link>
         </Box>
         <Box as="li">
+          <Styled.Link href={links.cfApp}>App</Styled.Link>
+        </Box>
+        <Box as="li">
           <Styled.Link target="_blank" href={links.pastMessages}>
             Past Messages
           </Styled.Link>
         </Box>
         <Box as="li">
           <Styled.Link target="_blank" href={links.giveOnline}>
-            Give Online
+            Give
           </Styled.Link>
         </Box>
         <Box as="li">
           <Styled.Link target="_blank" href={links.shopOnline}>
-            Shop Online
-          </Styled.Link>
-        </Box>
-        <Box as="li">
-          <Styled.Link target="_blank" href={links.cfApp}>
-            CF App
+            Shop
           </Styled.Link>
         </Box>
       </List>
@@ -180,13 +178,13 @@ function Opportunities() {
           <Styled.Link href="/career-opportunities">Careers</Styled.Link>
         </Box>
         <Box as="li">
-          <Styled.Link target="_blank" href={links.cfConf}>
-            CF Conference
+          <Styled.Link target="_blank" href={links.cfSeu}>
+            Get Your Degree
           </Styled.Link>
         </Box>
         <Box as="li">
-          <Styled.Link target="_blank" href={links.cfSeu}>
-            Get Your Degree
+          <Styled.Link target="_blank" href={links.cfConf}>
+            Conference
           </Styled.Link>
         </Box>
       </List>
