@@ -66,8 +66,7 @@ const PastorCard = ({
           width="100%"
           display="flex"
           flexDirection="column"
-          alignItems={{ _: 'center', md: 'flex-start' }}
-          textAlign={{ _: 'center', md: 'left' }}
+          alignItems="center"
           px="l"
         >
           {!currentBreakpoints.isSmall && (
