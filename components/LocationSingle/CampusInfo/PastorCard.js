@@ -66,20 +66,25 @@ const PastorCard = ({
           width="100%"
           display="flex"
           flexDirection="column"
-          alignItems="flex-start"
+          alignItems={{ _: 'center', md: 'flex-start' }}
+          textAlign={{ _: 'center', md: 'left' }}
           px="l"
         >
-          <Image
-            maxWidth={250}
-            aspectRatio="16by9"
-            source={`/location-pages/maps/${kebabCase(campusName)}.jpg`}
-          />
+          {!currentBreakpoints.isSmall && (
+            <Box as="a" target="_blank" href={mapLink}>
+              <Image
+                maxWidth={250}
+                aspectRatio="16by9"
+                source={`/location-pages/maps/${kebabCase(campusName)}.jpg`}
+              />
+            </Box>
+          )}
           <Box as="h4" mt="base" mb="xs">
             {campusName === CFEPBG || campusName === CFERPB
               ? 'Dirección'
               : 'Address'}
           </Box>
-          <Box as="a" textAlign="left" href={mapLink}>
+          <Box as="a" target="_blank" href={mapLink}>
             {addressFirst}
             <br />
             {addressLast}
