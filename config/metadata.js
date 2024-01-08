@@ -17,7 +17,7 @@ const metadata = {
     youtube: 'https://www.youtube.com/user/christfellowship',
     cfSeu: 'https://cfseu.com/',
     cfConf: 'https://www.christfellowshipconference.com/',
-    cfApp: 'https://apps.apple.com/us/app/christ-fellowship-app/id785979426',
+    cfApp: 'https://www.christfellowship.church/new-app-experience',
   },
 };
 
