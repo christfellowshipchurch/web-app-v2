@@ -4,7 +4,6 @@ import { Avatar, Box, Button, Divider, Icon, Image, Loader } from 'ui-kit';
 import Styled from '../LocationSingle.styles';
 import { handleSocialShare } from 'components/Share/shareUtils';
 import { includes, kebabCase } from 'lodash';
-import { useCurrentBreakpoint } from 'hooks';
 import { links } from 'config/metadata';
 
 /**
@@ -25,7 +24,6 @@ const PastorCard = ({
    */
   const CFEPBG = 'Christ Fellowship Español Palm Beach Gardens';
   const CFERPB = 'Christ Fellowship Español Royal Palm Beach';
-  const currentBreakpoints = useCurrentBreakpoint();
 
   return (
     <Styled.PastorsCard>

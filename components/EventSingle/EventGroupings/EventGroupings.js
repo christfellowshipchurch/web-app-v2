@@ -44,7 +44,7 @@ const EventGroupings = (props = {}) => {
             onChange={handleChange}
           >
             <Select.Option value="" disabled={true}>
-              Select a campus...
+              Select a location...
             </Select.Option>
             {eventGroupings?.map(({ name }) => {
               return (
