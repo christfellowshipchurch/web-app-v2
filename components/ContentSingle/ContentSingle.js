@@ -9,7 +9,6 @@ import { useCurrentBreakpoint, useNodeActions } from 'hooks';
 import { getMediaType, getUrlFromRelatedNode } from 'utils';
 import { useAnalytics } from 'providers/AnalyticsProvider';
 
-import ContentVideo from './ContentVideo';
 import ContentVideosList from './ContentVideosList';
 import Styled from './ContentSingle.styles';
 import { useRouter } from 'next/router';
@@ -40,7 +39,6 @@ function ContentSingle(props = {}) {
     summary,
     title,
     videos,
-    segmentData,
     wistiaId,
   } = props?.data;
 
@@ -138,15 +136,7 @@ function ContentSingle(props = {}) {
       }}
       summary={schedule?.friendlyScheduleText || summary}
       coverImage={currentVideo ? null : coverImageUri}
-      renderA={() => (
-        <ContentVideo
-          segmentData={segmentData}
-          title={title}
-          video={currentVideo}
-          poster={coverImageUri}
-          wistiaId={wistiaId}
-        />
-      )}
+      {...props}
       renderContentB={() =>
         author && (
           <Box
