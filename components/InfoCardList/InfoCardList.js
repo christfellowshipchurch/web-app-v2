@@ -30,7 +30,7 @@ function InfoCardList(props) {
             display="flex"
             flexDirection="column"
             alignItems="center"
-            jsutifyContent="center"
+            justifyContent="center"
             textAlign="center"
             color="white"
             p="l"

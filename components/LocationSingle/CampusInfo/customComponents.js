@@ -279,7 +279,6 @@ const CFEMobileButtons = name => {
   const campusName = name.campus;
 
   return [
-    <StyledDivider display="flex" width="100%" />,
     <Box
       ml="base"
       display={{ _: 'flex', md: 'none' }}
