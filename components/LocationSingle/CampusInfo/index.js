@@ -119,11 +119,16 @@ const CampusInfo = ({
             {/* Custom Info for CF Everywhere and Trinity */}
             {name === 'Online (CF Everywhere)' && <CfEverywhereButtons />}
 
-            {name === 'Trinity' && <TrinityButtons />}
-
             {/* Weekday Schedule */}
             {isWeekdaySchedule && (
               <WeekdayScheduleDisplay
+                weekdaySchedules={weekdaySchedules}
+                campus={name}
+              />
+            )}
+
+            {name === 'Trinity' && (
+              <TrinityButtons
                 weekdaySchedules={weekdaySchedules}
                 campus={name}
               />
@@ -248,7 +253,14 @@ const CampusInfo = ({
           </Box>
         </Box>
       ) : (
-        name === 'Trinity' && <TrinityMobileButtons />
+        name === 'Trinity' && (
+          <Box display={{ _: 'inline', md: 'none' }}>
+            <TrinityMobileButtons
+              weekdaySchedules={weekdaySchedules}
+              campus={name}
+            />
+          </Box>
+        )
       )}
 
       {(name === CFEPBG || name === CFERPB) && (
