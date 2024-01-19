@@ -12,71 +12,71 @@ const DefaultCard = (props = {}) => {
     <Box>
       {!props?.loading ? (
         <Styled {...props}>
-          {props.coverImage ? (
+          {props?.coverImage ? (
             <Styled.Cover
-              src={props.coverImage}
+              src={props?.coverImage}
               hasContent={hasContent}
               overlay={
-                props.coverImageTitle || props.coverImageDescription
-                  ? props.coverImageOverlay
+                props?.coverImageTitle || props?.coverImageDescription
+                  ? props?.coverImageOverlay
                   : null
               }
-              largeCard={props.largeCard}
-              scaleCoverImage={props.scaleCoverImage}
+              largeCard={props?.largeCard}
+              scaleCoverImage={props?.scaleCoverImage}
             >
-              {props.coverImageTitle ||
-              props.coverImageDescription ||
-              props.coverImageContent ? (
+              {props?.coverImageTitle ||
+              props?.coverImageDescription ||
+              props?.coverImageContent ? (
                 <Styled.CoverContent
                   position={props.coverImageContentPosition}
                   size={props.cardSize}
                   textAlign={props.textAlign}
                 >
-                  {props.coverImageTitle || props.coverImageDescription ? (
+                  {props?.coverImageTitle || props?.coverImageDescription ? (
                     <Box color="white">
-                      {props.coverImageTitle ? (
+                      {props?.coverImageTitle ? (
                         <Box as={props.cardSize === 's' ? 'h3' : 'h2'} mb="xs">
                           {props.coverImageTitle}
                         </Box>
                       ) : null}
-                      {props.coverImageDescription ? (
+                      {props?.coverImageDescription ? (
                         <Styled.Description>
                           {props.coverImageDescription}
                         </Styled.Description>
                       ) : null}
                     </Box>
                   ) : null}
-                  {props.coverImageContent ? props.coverImageContent() : null}
+                  {props?.coverImageContent ? props.coverImageContent() : null}
                 </Styled.CoverContent>
               ) : null}
-              {props.coverImageLabel ? (
+              {props?.coverImageLabel ? (
                 <Styled.CoverLabel
-                  coverImageLabelBgColor={props.coverImageLabelBgColor}
+                  coverImageLabelBgColor={props?.coverImageLabelBgColor}
                 >
                   {props.coverImageLabel}
                 </Styled.CoverLabel>
               ) : null}
             </Styled.Cover>
           ) : null}
-          <Styled.Content {...props.contentProps}>
+          <Styled.Content {...props?.contentProps}>
             {props.title ? (
               <Box as="h3" mb={{ _: 'xs', md: 's' }}>
                 {props.title}
               </Box>
             ) : null}
-            {props.description ? (
+            {props?.description ? (
               <Styled.Description color="neutrals.600" fontSize="s">
                 {props.description}
               </Styled.Description>
             ) : null}
-            {props.children ? props.children : null}
+            {props?.children ? props.children : null}
           </Styled.Content>
         </Styled>
       ) : (
         // When loading - skeleton for the cards - implemented for the locations search page
         <Styled.Loading {...props}>
           <Styled.CoverLoading>
-            {props.coverImageLabel && <Styled.CoverLabelLoading />}
+            {props?.coverImageLabel && <Styled.CoverLabelLoading />}
           </Styled.CoverLoading>
         </Styled.Loading>
       )}
