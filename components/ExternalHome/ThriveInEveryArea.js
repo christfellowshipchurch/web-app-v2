@@ -4,6 +4,7 @@ import { gtag } from 'lib/analytics';
 import { useCurrentBreakpoint } from 'hooks';
 import { getUrlFromRelatedNode } from 'utils';
 import { CustomLink } from 'components';
+import { showModal, useModalDispatch } from 'providers/ModalProvider';
 
 const actions = {
   title: 'About Us',
@@ -20,6 +21,7 @@ const actions = {
 };
 
 const ThriveInEveryArea = ({ maxWidth }) => {
+  const modalDispatch = useModalDispatch();
   const currentBreakpoint = useCurrentBreakpoint();
 
   const content = currentBreakpoint.isSmall
@@ -44,7 +46,16 @@ const ThriveInEveryArea = ({ maxWidth }) => {
           maxWidth={{ _: '100%', lg: '50%' }}
           p={{ lg: '50px' }}
           pt={{ _: 'base', md: 'l', lg: '0px' }}
+          onClick={() =>
+            modalDispatch(
+              showModal('Video', {
+                step: 0,
+                wistiaId: 'd546j0jc4g',
+              })
+            )
+          }
         />
+
         <Box mx={{ _: 'auto', lg: '0px' }} mt="l">
           <Box as="h1" mb="base">
             Thrive in every area of your life.
