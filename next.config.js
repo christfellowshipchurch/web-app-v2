@@ -40,6 +40,7 @@ module.exports = {
       { source: '/wednesdays', destination: '/wednesdaysatlhwinter-2024', permanent: true },
       { source: '/firstrespondermeals', destination: '/first-responder-meals-help-us-care-for-our-first-responders-on-christmas', permanent: true },
       { source: '/fall', destination: '/fallatlh', permanent: true },
+      { source: '/winter', destination: '/winteratlh', permanent: true },
       { source: '/good', destination: '/get-involved', permanent: true },
       { source: '/wild', destination: 'https://my.longhollow.com/page/1759?ProjectId=140rpr189K&LocationId=x5yjnKGyeL&ScheduleId=n8YWP1X0Bv', permanent: true },
       { source: '/hang', destination: '/momandmehang-jan2024', permanent: true },
