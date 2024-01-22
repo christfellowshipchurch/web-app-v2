@@ -1,8 +1,9 @@
-import { Layout } from 'components';
+import { ContentBlockFeature, Layout } from 'components';
 import { getThereFirstCards } from './utils';
 import React from 'react';
 
 import { Box, Button, CoverImage, HtmlRenderer, Image } from 'ui-kit';
+import { ContentBlockProvider } from 'providers';
 
 function getThereFirst() {
   return (
@@ -25,8 +26,20 @@ function getThereFirst() {
         <CoverImage type="hero-glass" src="/get-there-first/banner.jpg" />
       </Box>
 
-      {/* Race Section */}
-      <Box height="200px"></Box>
+      {/* Join the Race with Video Section*/}
+      <Box my="xxl">
+        <ContentBlockProvider
+          Component={ContentBlockFeature}
+          titleColor="secondary"
+          newTab
+          options={{
+            variables: {
+              // Change ID to the right feature ID once it is made
+              id: 'ContentBlockFeature:d0d7407920381ab5b3b4d32cd65762c62da2d96d2608ecf241da5ba54117e825',
+            },
+          }}
+        />
+      </Box>
 
       {/* How We're Getting There Section */}
       <Box
@@ -98,8 +111,20 @@ function getThereFirst() {
         </Box>
       </Box>
 
-      {/* Rock Section*/}
-      <Box height="200px"></Box>
+      {/* Join the Race Section*/}
+      <Box my="xxl">
+        <ContentBlockProvider
+          Component={ContentBlockFeature}
+          titleColor="secondary"
+          newTab
+          options={{
+            variables: {
+              // Change ID to the right feature ID once it is made
+              id: 'ContentBlockFeature:d0d7407920381ab5b3b4d32cd65762c62da2d96d2608ecf241da5ba54117e825',
+            },
+          }}
+        />
+      </Box>
 
       {/* Last Section */}
       <Box
