@@ -26,10 +26,16 @@ function getThereFirst() {
       </Box>
 
       {/* Race Section */}
+      <Box height="200px"></Box>
 
       {/* How We're Getting There Section */}
-      <Box my="l" mx="s">
-        <Box as="h1" textAlign="center" color="secondary" mx="auto">
+      <Box
+        py="xl"
+        px={{ _: 's', md: '0px' }}
+        color="white"
+        backgroundImage="url(/get-there-first/background.jpg)"
+      >
+        <Box as="h1" textAlign="center" mx={{ _: 'base', md: 'auto' }}>
           How We Are Getting There First in 2024
         </Box>
         <Box
@@ -51,23 +57,31 @@ function getThereFirst() {
           display="flex"
           flexDirection={{ _: 'column', md: 'row' }}
           alignItems="center"
+          justifyContent="center"
           maxWidth="100vw"
-          overFlow="scroll"
+          mb="l"
         >
           {getThereFirstCards?.map((card, index) => (
             <Box
               display="flex"
               flexDirection="column"
-              justifyContent="space-between"
+              justifyContent="space-around"
               alignItems="center"
               width={{ _: '90%', md: '400px' }}
+              height={{ _: 'auto', md: '310px' }}
+              bg="white"
+              color="black"
+              py="base"
+              my={{ _: 'base', md: '0px' }}
+              mx={{ _: 's', md: 'base', xl: 'l' }}
+              borderRadius="l"
             >
               <Box
                 minWidth={{ _: 250, md: 300 }}
                 mx="base"
                 textAlign="center"
-                mt={{ _: 'base', md: 'l' }}
-                pt="l"
+                mt={{ _: 'base', md: '0px' }}
+                pt="s"
               >
                 <Box as="h2" textAlign="center" mx="auto" maxWidth={320}>
                   {card?.title}
@@ -83,7 +97,47 @@ function getThereFirst() {
           ))}
         </Box>
       </Box>
-      {/* Cards */}
+
+      {/* Rock Section*/}
+      <Box height="200px"></Box>
+
+      {/* Last Section */}
+      <Box
+        backgroundImage="url(/get-there-first/background.jpg)"
+        textAlign="center"
+        py="xl"
+      >
+        <Box
+          px={{ _: 's', md: '0px' }}
+          mx={{ _: '0px', md: 'auto' }}
+          maxWidth={{ _: 'auto', md: '800px' }}
+          color="white"
+        >
+          <Box as="h2" mb="s">
+            Want to learn more about available resources for your family?
+          </Box>
+          <Box>
+            Check out our{' '}
+            <Box color="white" as="a" href="/christ-fellowship-kids">
+              kids
+            </Box>
+            ,{' '}
+            <Box color="white" as="a" href="/students">
+              students
+            </Box>
+            ,{' '}
+            <Box color="white" as="a" href="/young-adults">
+              young adults
+            </Box>
+            , and{' '}
+            <Box color="white" as="a" href="https://www.cfseu.com/">
+              Southeastern University
+            </Box>{' '}
+            at Christ Fellowship ministry pages to see everything we’ve made
+            avaialble for your family.
+          </Box>
+        </Box>
+      </Box>
     </Layout>
   );
 }
