@@ -10,12 +10,13 @@ import {
   Cell,
   Button,
   utils,
-  Loader,
   HorizontalHighlightCard,
   Icon,
 } from 'ui-kit';
 import { Layout, CustomLink } from 'components';
 import { useAnalytics } from 'providers/AnalyticsProvider';
+
+const CARDS_LOADING = 6;
 
 export default function SisterhoodPodcastSeason() {
   const { push } = useRouter();
@@ -68,26 +69,25 @@ export default function SisterhoodPodcastSeason() {
         </Box>
 
         <CardGrid columns="3" mb="xl">
-          {loading ? (
-            <Loader />
-          ) : (
-            contentItems.map(n => (
-              <CustomLink
-                Component={n?.title ? DefaultCard : HorizontalHighlightCard}
-                as="a"
-                boxShadow="none"
-                coverImage={n?.coverImage?.sources[0]?.uri}
-                description={n?.summary}
-                href={getUrlFromRelatedNode(n)}
-                key={n?.id}
-                scaleCard={false}
-                scaleCoverImage={true}
-                title={n?.title}
-                loading
-                type="HIGHLIGHT_SMALL"
-              />
-            ))
-          )}
+          {loading
+            ? [...Array(CARDS_LOADING)].map(n => (
+                <DefaultCard key={n} height={250} loading={true} />
+              ))
+            : contentItems.map(n => (
+                <CustomLink
+                  Component={n?.title ? DefaultCard : HorizontalHighlightCard}
+                  as="a"
+                  boxShadow="none"
+                  coverImage={n?.coverImage?.sources[0]?.uri}
+                  description={n?.summary}
+                  href={getUrlFromRelatedNode(n)}
+                  key={n?.id}
+                  scaleCard={false}
+                  scaleCoverImage={true}
+                  title={n?.title}
+                  type="HIGHLIGHT_SMALL"
+                />
+              ))}
         </CardGrid>
       </Cell>
     </Layout>
