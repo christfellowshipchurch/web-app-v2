@@ -130,14 +130,16 @@ export default function Community(props = {}) {
           </Styled.Hero>
           <Box bg="white" textAlign="center" py="xl">
             <Box as="h1" color="secondary">
-              Why Groups?
+              Life is Better Together!
             </Box>
             <Box px="l" mx="auto" maxWidth={800}>
               You weren’t meant to do life alone. You were made for community.
-              But not just any community. Groups and classes help you find
-              people to do life with so that you can know where to look for
-              direction, and have someone to keep you accountable and encouraged
-              as you grow in your relationship with God and others.
+              But not just any community! Groups & Classes help you find people
+              to share life with and grow in your relationship with God. No
+              matter where you are in life or your walk with God, Groups &
+              Classes are the place to find people who will encourage you and
+              help you discover your best next step for growth and then hold you
+              accountable to take it.
             </Box>
           </Box>
           <Box>
@@ -153,11 +155,20 @@ export default function Community(props = {}) {
                   textAlign="center"
                   mt={{ _: 'l', lg: 0 }}
                 >
-                  Discover All Kinds of Groups
+                  Find Yours
                 </Box>
-                <Box as="p" textAlign="center" mb="l">
-                  Tap on a group category below to see what’s available.
+                <Box as="p" textAlign="center" mb="l" mx="auto" maxWidth={800}>
+                  Whether an activity-based group like pickleball or moms at the
+                  park, or digging deeper into God’s Word or a specific
+                  topic—there’s a Group or Class for you! To get started, tap on
+                  a category below to filter the available Groups & Classes OR
+                  use the{' '}
+                  <Box as="a" href="/groups/search">
+                    search feature
+                  </Box>{' '}
+                  to see all the possibilities.
                 </Box>
+
                 <CommunitiesProvider Component={CommunityList} />
               </Box>
             </Cell>
