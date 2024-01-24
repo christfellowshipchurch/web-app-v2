@@ -30,7 +30,6 @@ function ContentLayout(props = {}) {
         />
       );
     }
-    if (props.renderA) return props.renderA();
     if (videos.length > 0 || wistiaId) {
       return (
         <ContentVideo

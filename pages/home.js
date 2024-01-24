@@ -1,8 +1,13 @@
-import { ActionBarFeature, FeatureFeed, Layout } from 'components';
+import {
+  ActionBarFeature,
+  ClientSideComponent,
+  FeatureFeed,
+  Layout,
+} from 'components';
 import { useRouter } from 'next/router';
 import { FeatureFeedProvider } from 'providers';
 import { useAuth } from 'providers/AuthProvider';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Cell, Loader, utils } from 'ui-kit';
 
 /**
