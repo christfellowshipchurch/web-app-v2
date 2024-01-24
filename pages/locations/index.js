@@ -291,7 +291,7 @@ const FindNearestLocation = () => {
                     coverImageOverlay={true}
                     title={
                       campus?.name === 'Trinity'
-                        ? 'Trinity Church'
+                        ? 'Trinity in Palm Beach Gardens'
                         : campus?.name
                     }
                     type="HIGHLIGHT_SMALL"
