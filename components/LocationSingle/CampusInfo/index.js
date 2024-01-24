@@ -264,13 +264,14 @@ const CampusInfo = ({
       )}
 
       {(name === CFEPBG || name === CFERPB) && (
-        <Box>
+        <Box display={{ _: 'inline', md: 'none' }}>
           <Divider my="l" width="80%" />
           <WeekdayScheduleDisplay
             isMobile
             weekdaySchedules={weekdaySchedules}
             campus={name}
           />
+          <Divider width="80%" />
           <CFEMobileButtons campus={name} />
         </Box>
       )}
