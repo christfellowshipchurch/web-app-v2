@@ -11,14 +11,13 @@ import {
   ThemeMixin,
   utils,
   HtmlRenderer,
-  Image,
 } from 'ui-kit';
 
 const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
 
 function ContentLayout(props = {}) {
   function renderA() {
-    if (props.coverImage) {
+    if (props.coverImage && !props?.renderA) {
       return (
         <DefaultCard
           coverImage={props.coverImage}
