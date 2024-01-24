@@ -93,7 +93,7 @@ const CfEverywhereButtons = () => (
   </>
 );
 
-const TrinityButtons = () => {
+const TrinityButtons = ({ weekdaySchedules }) => {
   const modalDispatch = useModalDispatch();
 
   return [
@@ -361,11 +361,10 @@ const CFEMobileButtons = name => {
   ];
 };
 
-const TrinityMobileButtons = () => {
+const TrinityMobileButtons = ({ weekdaySchedules }) => {
   const modalDispatch = useModalDispatch();
 
   return [
-    <StyledDivider display="flex" width="100%" />,
     <Box
       ml="base"
       display={{ _: 'flex', md: 'none' }}
@@ -375,6 +374,7 @@ const TrinityMobileButtons = () => {
       mb={{ _: '0px', md: 'base' }}
       pb="l"
     >
+      <StyledDivider display={{ _: 'none', md: 'flex' }} width="100%" />
       <Box>
         <Box as="h3" color="secondary" maxWidth={200}>
           What to Expect
