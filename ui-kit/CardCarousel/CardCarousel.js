@@ -89,7 +89,7 @@ const CardCarousel = (props = {}) => {
         ssr
         responsive={responsive}
         arrows={currentBreakpoint.isMedium || currentBreakpoint.isSmall}
-        customTransition={`transform ${props?.animationSpeed}ms ease-in-out`}
+        customTransition={`transform ${props.animationSpeed}ms ease-in-out`}
         ref={el => (carousel = el)}
         renderButtonGroupOutside={isCarousel && !props.hideArrows}
         customButtonGroup={

@@ -21,10 +21,10 @@ function ContentLayout(props = {}) {
   const coverImageUri = coverImage?.sources[0]?.uri;
 
   function renderA() {
-    if (props?.coverImage && !props?.data?.videos.length > 0) {
+    if (props.coverImage && !props?.data?.videos.length > 0) {
       return (
         <DefaultCard
-          coverImage={props?.coverImage}
+          coverImage={props.coverImage}
           height={{ _: '298px', md: '596px' }}
           mb="l"
         />
