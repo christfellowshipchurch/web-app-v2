@@ -135,31 +135,32 @@ function getThereFirst() {
         <Box
           px={{ _: 's', md: '0px' }}
           mx={{ _: '0px', md: 'auto' }}
-          maxWidth={{ _: 'auto', md: '800px' }}
+          maxWidth={{ _: 'auto', md: '1000px' }}
           color="white"
         >
-          <Box as="h2" mb="s">
+          <Box as="h1" mb="s" fontSize="2rem">
             Want to learn more about available resources for your family?
           </Box>
-          <Box>
-            Check out our{' '}
+          <Box
+            mt="l"
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+            fontSize="l"
+          >
             <Box color="white" as="a" href="/christ-fellowship-kids">
-              kids
+              Kids (Babies - 5th Grade)
             </Box>
-            ,{' '}
             <Box color="white" as="a" href="/students">
-              students
+              Students (6th - 12th Grade)
             </Box>
-            ,{' '}
             <Box color="white" as="a" href="/young-adults">
-              young adults
+              Young Adults (College and 20s + 30s)
             </Box>
-            , and{' '}
             <Box color="white" as="a" href="https://www.cfseu.com/">
-              Southeastern University
-            </Box>{' '}
-            at Christ Fellowship ministry pages to see everything we’ve made
-            avaialble for your family.
+              Southeastern University at Christ Fellowship
+            </Box>
           </Box>
         </Box>
       </Box>
