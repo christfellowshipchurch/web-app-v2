@@ -11,17 +11,14 @@ import {
   ThemeMixin,
   utils,
   HtmlRenderer,
+  Image,
 } from 'ui-kit';
-import ContentVideo from 'components/ContentSingle/ContentVideo';
 
 const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
 
 function ContentLayout(props = {}) {
-  const { coverImage, title, segmentData, videos, wistiaId } = props?.data;
-  const coverImageUri = coverImage?.sources[0]?.uri;
-
   function renderA() {
-    if (props.coverImage && !props?.data?.videos.length > 0) {
+    if (props.coverImage) {
       return (
         <DefaultCard
           coverImage={props.coverImage}
@@ -30,17 +27,8 @@ function ContentLayout(props = {}) {
         />
       );
     }
-    if (videos.length > 0 || wistiaId) {
-      return (
-        <ContentVideo
-          segmentData={segmentData}
-          title={title}
-          video={videos[0] && videos[0]}
-          poster={coverImageUri}
-          wistiaId={wistiaId}
-        />
-      );
-    } else return null;
+    if (props.renderA) return props.renderA();
+    return null;
   }
 
   function renderB() {

@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { Video } from 'components';
 import Styled from './ContentSingle.styles';
 export default function ContentVideo(props = {}) {
+
   if (!props.video) {
     return null;
   }
