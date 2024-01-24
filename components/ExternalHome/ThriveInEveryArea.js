@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box, Image, HtmlRenderer, Button } from 'ui-kit';
+import styled from 'styled-components';
+import { Box, Image, HtmlRenderer, Button, system } from 'ui-kit';
 import { gtag } from 'lib/analytics';
 import { useCurrentBreakpoint } from 'hooks';
 import { getUrlFromRelatedNode } from 'utils';
@@ -20,13 +21,35 @@ const actions = {
   ],
 };
 
+const THRIVE_POINTS = [
+  'Find people to do life with',
+  'Break free from the pain of their past',
+  'Thrive in their marriage',
+  'Become a better parent',
+  'Experience financial freedom',
+  'Learn how to make a difference',
+];
+
+const StyledImage = styled.img`
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.03);
+    top: 0px;
+  }
+
+  position: relative;
+  top: 20px;
+  transition: top 0.5s ease;
+  border-radius: 10px;
+
+  object-fit: contain;
+
+  ${system}
+`;
+
 const ThriveInEveryArea = ({ maxWidth }) => {
   const modalDispatch = useModalDispatch();
   const currentBreakpoint = useCurrentBreakpoint();
-
-  const content = currentBreakpoint.isSmall
-    ? '<h3 style="font-size: 16px"> Find people to do life with </h3><h3 style="font-size: 16px"> Break free from the pain of their past</h3><h3 style="font-size: 16px"> Thrive in their marriage</h3><h3 style="font-size: 16px"> Become a better parent </h3><h3 style="font-size: 16px"> Experience financial freedom </h3><h3 style="font-size: 16px"> Learn how to make a difference</h3>'
-    : '<h3> Find people to do life with </h3><h3> Break free from the pain of their past</h3><h3> Thrive in their marriage</h3><h3> Become a better parent </h3><h3> Experience financial freedom </h3><h3> Learn how to make a difference</h3>';
 
   return (
     <Box
@@ -40,21 +63,35 @@ const ThriveInEveryArea = ({ maxWidth }) => {
         flexDirection={{ _: 'column', lg: 'row' }}
         position="relative"
       >
-        <Image
-          source={'external-landing/thrive-in-every-area.png'}
-          objectFit="contain"
-          maxWidth={{ _: '100%', lg: '50%' }}
-          p={{ lg: '50px' }}
-          pt={{ _: 'base', md: 'l', lg: '0px' }}
-          onClick={() =>
-            modalDispatch(
-              showModal('Video', {
-                step: 0,
-                wistiaId: 'd546j0jc4g',
-              })
-            )
-          }
-        />
+        <Box
+          display="flex"
+          justifyContent="center"
+          height={{ _: 'auto', md: 'auto', lg: 'auto' }}
+          maxWidth={{ _: 'auto', md: '60%', lg: '45%' }}
+          p={{ _: '50px', lg: '50px' }}
+          pt={{ _: '30px', md: 'l', lg: '0px' }}
+          mr={{ _: 'none', md: 'auto', lg: 'xl' }}
+          ml={{ _: 'none', md: 'auto' }}
+          mt="base"
+          backgroundImage="url('external-landing/thrive-background-shapes.png')"
+          backgroundRepeat="no-repeat"
+          backgroundSize="contain"
+          backgroundPosition="center"
+        >
+          <StyledImage
+            src={'external-landing/thrive-thumbnail.png'}
+            cursor="pointer"
+            maxWidth={{ _: '300px', md: '80%' }}
+            onClick={() =>
+              modalDispatch(
+                showModal('Video', {
+                  step: 0,
+                  wistiaId: 'd546j0jc4g',
+                })
+              )
+            }
+          />
+        </Box>
 
         <Box mx={{ _: 'auto', lg: '0px' }} mt="l">
           <Box as="h1" mb="base">
@@ -78,7 +115,14 @@ const ThriveInEveryArea = ({ maxWidth }) => {
               height={{ _: '240px', md: '280px' }}
               source="external-landing/thrive-line-dots15x.png"
             />
-            <HtmlRenderer htmlContent={content} />
+            <HtmlRenderer
+              htmlContent={THRIVE_POINTS.map(
+                point =>
+                  `<h3 ${
+                    currentBreakpoint.isSmall && 'style="font-size: 16px"'
+                  }>${point}</h3>`
+              ).join('')}
+            />
           </Box>
           <Box
             as="p"
