@@ -20,7 +20,7 @@ import { CommunitiesProvider } from 'providers';
 import { update as updateAuth, useAuth } from 'providers/AuthProvider';
 import { useModalDispatch, showModal } from 'providers/ModalProvider';
 
-import Styled from './Community.styles';
+import Styled from './Groups.styles';
 import { useForm } from 'hooks';
 
 const DEFAULT_CONTENT_WIDTH = utils.rem('1100px');
@@ -110,65 +110,36 @@ export default function Community(props = {}) {
         }}
       >
         <Box>
-          <Styled.Hero>
-            <Styled.Content mx="base">
-              <Styled.Title px="s">Groups & Classes</Styled.Title>
-              <Styled.Subtitle>Life is Better Together</Styled.Subtitle>
+          <Styled.Hero height={{ _: 300, sm: 500, md: 600, lg: 700 }}>
+            <Styled.Content>
+              <Box
+                as="img"
+                maxWidth={{ _: 350, sm: 450, md: 500, lg: 600 }}
+                mb="base"
+                src="/groups-logo.png"
+              />
               <SearchField
-                boxShadow="0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1),
-              0 1px 3px rgba(0, 0, 0, 0.3)"
-                maxWidth={800}
-                mx="auto"
+                minWidth={{ _: 'none', sm: '120%' }}
                 handleSubmit={handleSubmit}
                 handleChange={handleChange}
                 handleClick={handleClick}
                 handleClear={() => reset()}
                 value={values.text || ''}
-                mb="base"
               />
-              <Box
-                fontStyle="italic"
-                fontSize={{ _: '16px', md: '20px' }}
-                color="white"
-              >
-                Already in a group?{' '}
-                <Box
-                  as="a"
-                  color="white"
-                  onClick={handleMyGroups}
-                  href="/connect"
-                >
-                  Log in
-                </Box>{' '}
-                to see your groups.
-              </Box>
-              <Box
-                fontStyle="italic"
-                fontSize={{ _: '16px', md: '20px' }}
-                color="white"
-              >
-                Interested in starting a Group?{' '}
-                <Box
-                  as="a"
-                  color="white"
-                  target="_blank"
-                  href="https://rock.christfellowship.church/groups/starting-a-group"
-                >
-                  Learn More
-                </Box>{' '}
-              </Box>
             </Styled.Content>
           </Styled.Hero>
           <Box bg="white" textAlign="center" py="xl">
             <Box as="h1" color="secondary">
-              Why Groups?
+              Life is Better Together!
             </Box>
             <Box px="l" mx="auto" maxWidth={800}>
               You weren’t meant to do life alone. You were made for community.
-              But not just any community. Groups and classes help you find
-              people to do life with so that you can know where to look for
-              direction, and have someone to keep you accountable and encouraged
-              as you grow in your relationship with God and others.
+              But not just any community! Groups & Classes help you find people
+              to share life with and grow in your relationship with God. No
+              matter where you are in life or your walk with God, Groups &
+              Classes are the place to find people who will encourage you and
+              help you discover your best next step for growth and then hold you
+              accountable to take it.
             </Box>
           </Box>
           <Box>
@@ -184,11 +155,20 @@ export default function Community(props = {}) {
                   textAlign="center"
                   mt={{ _: 'l', lg: 0 }}
                 >
-                  Discover All Kinds of Groups
+                  Find Yours
                 </Box>
-                <Box as="p" textAlign="center" mb="l">
-                  Tap on a group category below to see what’s available.
+                <Box as="p" textAlign="center" mb="l" mx="auto" maxWidth={800}>
+                  Whether an activity-based group like pickleball or moms at the
+                  park, or digging deeper into God’s Word or a specific
+                  topic—there’s a Group or Class for you! To get started, tap on
+                  a category below to filter the available Groups & Classes OR
+                  use the{' '}
+                  <Box as="a" href="/groups/search">
+                    search feature
+                  </Box>{' '}
+                  to see all the possibilities.
                 </Box>
+
                 <CommunitiesProvider Component={CommunityList} />
               </Box>
             </Cell>

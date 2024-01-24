@@ -182,6 +182,38 @@ export const faqHeartForHouseData = [
   },
 ];
 
+export const faqEspanolData = [
+  {
+    title: '¿En qué cree Christ Fellowship?',
+    description:
+      'Christ Fellowship es una iglesia en el sur de Florida con una pasión por ayudarte a conocer a Dios y crecer en tus relaciones para que puedas descubrir tu propósito e impactar tu mundo. Dirigidos por los Senior Pastors Todd y Julie Mullins, nuestra misión es impactar al mundo con el amor y el mensaje de Jesucristo: a todos, todos los días, en todas partes. <br />  <br />  Obtén más información sobre <a target="_blank" href="/about">nuestra iglesia y nuestras creencias.</a>',
+  },
+  {
+    title: '¿Hay alguna expectativa de parte de los visitantes?',
+    description: `Para nada. Cuando decimos "bienvenido a casa", ¡lo decimos en serio! Sé tú mismo, relájate y disfruta del servicio. ¡Estamos emocionados por verte!`,
+  },
+  {
+    title: '¿Cuánto tiempo duran los servicios?',
+    description:
+      'Nuestros servicios duran un poco más de una hora. Cantaremos juntos algunas canciones de alabanza y escucharemos un mensaje transformador por parte de nuestros pastores. ¡Te sugerimos llegar temprano para que puedas estacionarte, tomar  café y encontrar tu asiento!',
+  },
+  {
+    title: '¿Qué debería vestir?',
+    description:
+      '¡Puedes vestirte como te sientas más cómodo! Todos los domingos contamos con servicios casuales y relajados donde todos son bienvenidos. ¡Ven tal como eres y esperamos que te sientas como en casa!',
+  },
+  {
+    title: '¿Dónde me puedo estacionar?',
+    description:
+      'Al ingresar al campus, nuestro equipo de Parking Host (estacionamiento), te ayudará a encontrar el lugar ideal para ti. Reservamos los mejores lugares de estacionamiento para nuestros visitantes justo en frente de la entrada principal y de ser necesario, podemos ayudarte a ubicar un estacionamiento con mejor accesibilidad a la entrada principal. Cuando llegues, déjale saber al Parking Host que es tu primera vez visitándonos. ',
+  },
+  {
+    title: '¿Tienen cuidado de niños?',
+    description:
+      '¡Sí! Contamos con un área divertida, segura y limpia para niños y estudiantes (desde recién nacidos hasta quinto grado).<br/> <br/> <b> ¿Nuevo en Christ Fellowship Kids?</b> <br/> ¡Nos encantaría conocerte! Agradecemos que nos hagas saber un poco más sobre tu familia utilizando <a target="_blank" href="https://rock.gocf.org/FamilyRegistration">este breve formulario</a> para que nuestro equipo pueda ayudar a tus hijos a conectarse con Christ Fellowship Kids. <br/> <br/> Si planeas visitar Christ Fellowship Kids este domingo, ¡<a target="_blank" href="https://rock.gocf.org/CFKidsPlanaVisit">déjanos saber</a> ,para que podamos ayudar a tu familia a experimentar todo lo que Christ Fellowship Kids tiene para ofrecerte! <br/> <br/> ¡Puedes aprender más sobre la programación de Christ Fellowship Kids <a target="_blank" href="https://www.christfellowship.church/christ-fellowship-kids">aquí</a>!',
+  },
+];
+
 export const faqCBO = [
   {
     title: 'What should I give?',
@@ -199,6 +231,22 @@ export const faqCBO = [
       "Every dollar you give to Christ Birthday Offering will make a difference toward continuing our impact both locally and globally through our mission projects throughout the year. <a style='color: #CB2C30' target='_blank' href='https://issuu.com/christfellowshipchurch/docs/events_2023_cbo_print_handouts_8.5x11_web_final/36?fr=xKAE9_zU1NQ'>Read more about the Vision for 2024.</a>",
   },
 ];
+
+export const faqEspanolOtherData = {
+  title: 'Preguntas Frecuentes',
+  question: '¿Tienes preguntas adicionales?',
+  description:
+    'Alguien de nuestro equipo estará encatado de responder a tus preguntas',
+  contactUs: 'Contáctanos',
+};
+
+export const faqDefaultOtherData = {
+  title: 'FAQ',
+  question: 'Have additional questions?',
+  description:
+    'Someone from our team is happy to answer any of your questions!',
+  contactUs: 'Contact Us',
+};
 
 export const faqCfEverywhereData = [
   {
@@ -235,12 +283,27 @@ const faqData = campus => {
       return faqWestlakeData;
     case 'Trinity':
       return faqTrinityData;
-    case 'Cf Everywhere':
+    case 'Online (CF Everywhere)':
       return faqCfEverywhereData;
     case 'CBO':
       return faqCBO;
+    case 'Christ Fellowship Español Palm Beach Gardens':
+      return faqEspanolData;
+    case 'Christ Fellowship Español Royal Palm Beach':
+      return faqEspanolData;
     default:
       return faqDefaultData;
+  }
+};
+
+export const otherData = campus => {
+  switch (campus) {
+    case 'Christ Fellowship Español Palm Beach Gardens':
+      return faqEspanolOtherData;
+    case 'Christ Fellowship Español Royal Palm Beach':
+      return faqEspanolOtherData;
+    default:
+      return faqDefaultOtherData;
   }
 };
 

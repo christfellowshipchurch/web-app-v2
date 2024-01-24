@@ -18,14 +18,14 @@ import CardGrid from './CardGrid';
 import Cell from './Cell';
 import Checkbox from './Checkbox';
 import ContentBlock from './ContentBlock';
-import CoverImage from './CoverImage'
+import CoverImage from './CoverImage';
 import DefaultCard from './DefaultCard';
 import Divider from './Divider';
 import FormLabel from './FormLabel';
 import GroupCard from './GroupCard';
 import GroupMemberStatusBadge from './GroupMemberStatusBadge';
 import HorizontalHighlightCard from './HorizontalHighlightCard';
-import HtmlRenderer from './HtmlRenderer'
+import HtmlRenderer from './HtmlRenderer';
 import Icon from './Icon';
 import Image from './Image';
 import List from './List';

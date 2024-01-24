@@ -11,7 +11,6 @@ import {
   Cell,
   Button,
   utils,
-  Loader,
   HorizontalHighlightCard,
   Icon,
 } from 'ui-kit';
@@ -61,7 +60,9 @@ export default function DiscoverFilterCategoriesPreview() {
               display="flex"
               py="none"
               variant="link"
-              onClick={() => push(`/discover?c=${query?.c}`)}
+              onClick={() =>
+                push(`/discover?c=${query?.c}&s=${query?.s || ''}`)
+              }
             >
               <Icon name="angle-left" color="primary" />
               Back
@@ -70,26 +71,36 @@ export default function DiscoverFilterCategoriesPreview() {
         </Box>
 
         <CardGrid columns="3" mb="xl">
-          {loading ? (
-            <Loader />
-          ) : (
-            contentItems.map(n => (
-              <CustomLink
-                Component={n?.title ? DefaultCard : HorizontalHighlightCard}
-                as="a"
-                boxShadow="none"
-                coverImage={n?.coverImage?.sources[0]?.uri}
-                description={n?.summary}
-                href={getUrlFromRelatedNode(n)}
-                key={n?.id}
-                scaleCard={false}
-                scaleCoverImage={true}
-                title={n?.title}
-                loading
-                type="HIGHLIGHT_SMALL"
-              />
-            ))
-          )}
+          {loading
+            ? contentItems.map(n => (
+                <CustomLink
+                  as="a"
+                  boxShadow="none"
+                  href=""
+                  Component={HorizontalHighlightCard}
+                  label={'true'}
+                  coverImageLabelBgColor="black"
+                  coverImageOverlay={true}
+                  type="HIGHLIGHT_SMALL"
+                  mobileHeight="150px"
+                  loading={true}
+                />
+              ))
+            : contentItems.map(n => (
+                <CustomLink
+                  Component={n?.title ? DefaultCard : HorizontalHighlightCard}
+                  as="a"
+                  boxShadow="none"
+                  coverImage={n?.coverImage?.sources[0]?.uri}
+                  description={n?.summary}
+                  href={getUrlFromRelatedNode(n)}
+                  key={n?.id}
+                  scaleCard={false}
+                  scaleCoverImage={true}
+                  title={n?.title}
+                  type="HIGHLIGHT_SMALL"
+                />
+              ))}
         </CardGrid>
       </Cell>
     </Layout>

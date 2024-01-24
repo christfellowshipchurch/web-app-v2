@@ -12,17 +12,10 @@ import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
 import { GET_CAMPUS } from 'hooks/useCampus';
 import { initializeApollo } from 'lib/apolloClient';
 
-import {
-  campusMetaData,
-  campusLinks,
-} from 'components/LocationSingle/locationData';
+import { campusMetaData, campusLinks } from 'lib/locationData';
 import { useAnalytics } from 'providers/AnalyticsProvider';
 
-const OLD_LOCATION_PAGES = [
-  'prison-locations',
-  'iglesia-royal-palm-beach',
-  'iglesia-palm-beach-gardens',
-];
+const OLD_LOCATION_PAGES = ['prison-locations'];
 
 export default function Location(props = {}) {
   const analytics = useAnalytics();
