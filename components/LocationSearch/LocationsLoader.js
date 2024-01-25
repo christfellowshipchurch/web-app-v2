@@ -2,7 +2,7 @@ import { CustomLink } from 'components';
 import { useGetTotalCampuses } from 'hooks';
 import React from 'react';
 import { CardGrid, HorizontalHighlightCard } from 'ui-kit';
-import Styled from './LocationsPageHeader.styles';
+import Styled from './LocationSearch.styles';
 
 const LocationsLoader = ({ props }) => {
   const { totalCampuses } = useGetTotalCampuses(); // to know how many cards to map
