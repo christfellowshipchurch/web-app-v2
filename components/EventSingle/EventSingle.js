@@ -26,7 +26,7 @@ function EventSingle(props = {}) {
     if (props.data?.videos?.length >= 1 && currentVideo === null) {
       setCurrentVideo(props.data.videos[0]);
     } else if (props.data?.wistiaId?.length >= 1 && currentVideo === null) {
-      setCurrentVideo(props.data.wistiaId);
+      setCurrentVideo(null);
     }
   }, [props.data?.videos, props.data?.wistiaId, currentVideo]);
 
@@ -45,21 +45,21 @@ function EventSingle(props = {}) {
     );
   }
 
-  const author = props?.data?.author;
-  const coverImage = props?.data?.coverImage;
-  const featureFeed = props?.data?.featureFeed;
-  const schedule = props?.data?.schedule;
-  const summary = props?.data?.summary;
-  const title = props?.data?.title;
+  const {
+    author,
+    coverImage,
+    featureFeed,
+    schedule,
+    summary,
+    title,
+    videos,
+    wistiaId,
+  } = props?.data;
+
   const coverImageUri = coverImage?.sources[0]?.uri;
   const authorName = author
     ? `${author.firstName} ${author.lastName}`
     : undefined;
-  const wistiaId = props?.data?.wistiaId;
-
-  if (!currentVideo && wistiaId) {
-    setCurrentVideo(props.data.wistiaId);
-  }
 
   const eventShareMessages = {
     faceBook: `Check out ${title} happening at Christ Fellowship Church!`,
@@ -92,15 +92,19 @@ function EventSingle(props = {}) {
         video: contentLayoutVideo,
       }}
       summary={props.data.summary}
-      coverImage={currentVideo ? null : coverImageUri}
-      renderA={() => (
-        <ContentVideo
-          title={title}
-          video={wistiaId ? wistiaId : props?.data?.videos[0]}
-          poster={coverImageUri}
-          wistiaId={wistiaId}
-        />
-      )}
+      coverImage={coverImageUri}
+      renderA={
+        videos[0] || wistiaId
+          ? () => (
+              <ContentVideo
+                title={title}
+                video={videos[0]}
+                poster={coverImageUri}
+                wistiaId={wistiaId}
+              />
+            )
+          : null
+      }
       renderC={() => (
         <Box justifySelf="flex-end" mb={{ _: 'base', md: '0px' }}>
           <Share
