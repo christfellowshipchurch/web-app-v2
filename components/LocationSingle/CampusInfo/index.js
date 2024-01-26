@@ -205,7 +205,10 @@ const CampusInfo = ({
       </Cell>
 
       {/* Mobile layout */}
-      {isWeekdaySchedule && name !== CFEPBG && name !== CFERPB ? (
+      {isWeekdaySchedule &&
+      name !== CFEPBG &&
+      name !== CFERPB &&
+      name !== 'Trinity' ? (
         <Box mt="xxl" display={{ _: 'inline', md: 'none' }}>
           <Divider my="l" width="80%" />
           <WeekdayScheduleDisplay

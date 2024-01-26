@@ -105,11 +105,14 @@ const TrinityButtons = ({ weekdaySchedules }) => {
       </Box>
       <Box flex="2">
         <Box mb="s">
-          Here at Trinity Church by Christ Fellowship Church you can expect to
-          experience church services with uplifting worship music, encouraging
-          messages from our pastors, special programming for your family, and
-          opportunities for you to find people to do life with all throughout
-          the week—it all starts here!
+          Here at Christ Fellowship Church Trinity in Palm Beach Gardens, you
+          can expect to experience church services with uplifting worship music,
+          encouraging messages from our pastors, special programming for your
+          family, and opportunities for you to find people to do life with all
+          throughout the week. This community location in Palm Beach Gardens is
+          everything you love about Christ Fellowship in a smaller church
+          setting, with even more regional events offered just down the street
+          at our Palm Beach Gardens location.
         </Box>
         <Box
           as="a"
@@ -365,11 +368,14 @@ const TrinityMobileButtons = ({ weekdaySchedules }) => {
       </Box>
       <Box flex="2">
         <Box mb="s" mr="base" textAlign="center">
-          Here at Trinity Church by Christ Fellowship Church you can expect to
-          experience church services with uplifting worship music, encouraging
-          messages from our pastors, special programming for your family, and
-          opportunities for you to find people to do life with all throughout
-          the week—it all starts here!
+          Here at Christ Fellowship Church Trinity in Palm Beach Gardens, you
+          can expect to experience church services with uplifting worship music,
+          encouraging messages from our pastors, special programming for your
+          family, and opportunities for you to find people to do life with all
+          throughout the week. This community location in Palm Beach Gardens is
+          everything you love about Christ Fellowship in a smaller church
+          setting, with even more regional events offered just down the street
+          at our Palm Beach Gardens location.
         </Box>
       </Box>
       <Box
