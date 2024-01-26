@@ -1,9 +1,9 @@
-import { ContentBlockFeature, Layout } from 'components';
+import { CardGridFeature, ContentBlockFeature, Layout } from 'components';
 import { getThereFirstCards } from './utils';
 import React from 'react';
 
 import { Box, Button, CoverImage, HtmlRenderer, Image } from 'ui-kit';
-import { ContentBlockProvider } from 'providers';
+import { ContentBlockProvider, FeatureProvider } from 'providers';
 
 function getThereFirst() {
   return (
@@ -35,7 +35,7 @@ function getThereFirst() {
           options={{
             variables: {
               // Change ID to the right feature ID once it is made
-              id: 'ContentBlockFeature:d0d7407920381ab5b3b4d32cd65762c62da2d96d2608ecf241da5ba54117e825',
+              id: 'ContentBlockFeature:d0d7407920381ab5b3b4d32cd65762c6f4973fc873ff33960e350b761fddccdf',
             },
           }}
         />
@@ -111,16 +111,15 @@ function getThereFirst() {
         </Box>
       </Box>
 
-      {/* Join the Race Section*/}
-      <Box my="xxl">
-        <ContentBlockProvider
-          Component={ContentBlockFeature}
-          titleColor="secondary"
-          newTab
+      {/* Vertical Cardlist Feature Section*/}
+      <Box my="xxl" mx="l">
+        <FeatureProvider
+          Component={CardGridFeature}
+          titleLarge
+          titleColor="#353535"
           options={{
             variables: {
-              // Change ID to the right feature ID once it is made
-              id: 'ContentBlockFeature:d0d7407920381ab5b3b4d32cd65762c62da2d96d2608ecf241da5ba54117e825',
+              id: 'VerticalCardListFeature:f6b30a38eb547f1f75676ce0557a7e05bed66de665564bd0c5e37f0692676795e12dca024e16de4c6d7782ed0288eb10570bc45a488bee66c93ee7b8735beb7675d6a9ab1a060d39594fa3a2468a99fb7243ca9b485554978c1c16ebd9815f1d47bb23af5338a1a665b992c2047ab2680659fa39eeb61d2f48e231f89d8c3e8899ce1951f9ddfe389234d07f8628d01bf06517512005c5b99c3da0fb0648d299c2595763216223a7cac01b25b792dbb612f14d2489fabae48801ac628f8885755016ac7a78a23bb8a44c8731e781162112e7591fe1596a793249c1eccefbbfc460ea060f0caaa352ac56adf1184a985d21e74f3faf174e18468fac9da317f441',
             },
           }}
         />
