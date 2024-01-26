@@ -136,7 +136,7 @@ const faqTrinityData = [
   {
     title: 'Is Trinity Church a part of Christ Fellowship?',
     description:
-      'Yes! Trinity Church by Christ Fellowship is a unique location that features a smaller and more traditional church setting while still being a part of Christ Fellowship as a whole. Conveniently located just down the street from Christ Fellowship Palm Beach Gardens, Trinity Church has access to even more classes, groups, and special events!',
+      'Yes! Christ Fellowship Church at Trinity is a unique location that features a smaller church setting while still being a part of Christ Fellowship as a whole. Conveniently located just down the street from Christ Fellowship Palm Beach Gardens, the Christ Fellowship Trinity location has access to even more classes, groups, and special events!',
   },
   {
     title: 'What does Christ Fellowship believe?',
@@ -148,6 +148,11 @@ const faqTrinityData = [
     description: `Not at all. When we say "welcome home", we mean it! Be yourself, relax, and enjoy the service. We can't wait to see you!`,
   },
   {
+    title: 'Is there nearby parking available?',
+    description:
+      "Yes! Parking is located on-site, and the best part—it's free!",
+  },
+  {
     title: 'How long are the services?',
     description:
       "Our church services last a little over an hour. We'll sing a few worship songs and hear a message from our pastors or guest speakers. We suggest arriving a little early so you can park, get coffee, and find your seat!",
@@ -155,12 +160,12 @@ const faqTrinityData = [
   {
     title: 'Is childcare provided?',
     description:
-      'Yes! We have a fun, safe, and clean area for kids & students (newborn–grade 5). <br/> <br/> <b> New to Christ Fellowship Kids?</b> <br/> We’d love to meet you! Let us know a little about your family using this <a target="_blank" href="https://rock.gocf.org/FamilyRegistration">brief form</a> so that our team can help get you connected when you arrive. <br/> <br/> If you are planning on visiting Christ Fellowship Kids this Sunday, <a target="_blank" href="https://rock.gocf.org/CFKidsPlanaVisit">let us know</a> so we can help your family experience all that CFKids has to offer! <br/> <br/> You can learn more about Christ Fellowship Kids programming <a target="_blank" href="https://www.christfellowship.church/christ-fellowship-kids">here</a>!',
+      'Yes! We have a fun, safe, and clean area for kids & students (newborn–grade 5). <br/> <br/> <b> New to Christ Fellowship Kids?</b> <br/> We’d love to meet you! Let us know a little about your family using this <a target="_blank" href="https://rock.gocf.org/FamilyRegistration">brief form</a> so that our team can help get you connected when you arrive. <br/> <br/> If you are planning on visiting this Sunday, <a target="_blank" href="https://rock.gocf.org/CFKidsPlanaVisit">let us know</a> so we can help your family experience all that Christ Fellowship Kids has to offer! <br/> <br/> You can learn more about Christ Fellowship Kids programming <a target="_blank" href="https://www.christfellowship.church/christ-fellowship-kids">here</a>!',
   },
   {
     title: 'Is there anything available for students and young adults?',
     description:
-      'Yes! There is programming for students and young adults available just down the street at Christ Fellowship Palm Beach Gardens. <br/> <br/> <a target="_blank" href="https://www.christfellowship.church/students"> CFStudents</a> programming available for 6th–12th graders regionally at Christ Fellowship Palm Beach Gardens every Wednesday night at 6:30PM. <br/> <br/> <a target="_blank" href="https://www.christfellowship.church/young-adults"> Christ Fellowship Young Adults</a> gatherings happening regionally at Christ Fellowship Palm Beach Gardens every Thursday night at 7:30PM.',
+      'Yes! There is programming for middle and high school students available just down the street at Christ Fellowship Palm Beach Gardens. <br/> <br/><a target="_blank" href="https://www.christfellowship.church/students"> CFStudents</a> (6th–12th grade) meet regionally at Christ Fellowship Palm Beach Gardens every Wednesday night at 6:30PM. <br/> <br/>Christ Fellowship Young Adults gatherings for <a target="_blank" href="https://www.christfellowship.church/events/20s-30s">20s + 30s</a> happen regionally at Christ Fellowship Palm Beach Gardens every Tuesday night at 7PM. <br/> <br/>Young Adults also hosts <a href="https://www.christfellowship.church/events/college-nights">College Nights</a> right here at the Christ Fellowship Trinity location every Thursday night at 7:30PM in the fall and spring semesters.',
   },
 ];
 

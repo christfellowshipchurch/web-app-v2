@@ -54,6 +54,7 @@ import LegacyNodeRouter from './LegacyNodeRouter';
 import LiveStreamSingle from './LiveStreamSingle';
 import LocationBlockFeature from './LocationBlockFeature';
 import LocationBlockFeatureEspanol from './LocationBlockFeatureEspanol';
+import LocationSearch from './LocationSearch';
 import LocationSingle from './LocationSingle';
 import Logo from './Logo';
 import MobileNavScreen from './MobileNavScreen';
@@ -132,6 +133,7 @@ export {
   LiveStreamSingle,
   LocationBlockFeature,
   LocationBlockFeatureEspanol,
+  LocationSearch,
   LocationSingle,
   Logo,
   MobileNavScreen,

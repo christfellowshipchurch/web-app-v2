@@ -93,27 +93,10 @@ const CfEverywhereButtons = () => (
   </>
 );
 
-const TrinityButtons = () => {
+const TrinityButtons = ({ weekdaySchedules }) => {
   const modalDispatch = useModalDispatch();
 
   return [
-    <Box ml="base" display={{ _: 'none', lg: 'flex' }} my="l">
-      <Box>
-        <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
-          Experience Something New!
-        </Box>
-      </Box>
-      <Box flex="2">
-        Have you been searching for a meaningful community but haven’t found it
-        yet? If so, you’re not alone. Trinity Church by Christ Fellowship is a
-        new church experience coming to your neighborhood! This community
-        location in Palm Beach Gardens offers a different way to experience
-        church so you can get to know people in your neighborhood and enjoy a
-        more traditional worship setting. Find a place for you and your family
-        to belong with even more regional events offered just down the
-        street—it’s big church made small, and you’ll feel right at home!
-      </Box>
-    </Box>,
     <Box ml="base" display={{ _: 'none', md: 'flex' }} my="l">
       <Box>
         <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
@@ -361,11 +344,10 @@ const CFEMobileButtons = name => {
   ];
 };
 
-const TrinityMobileButtons = () => {
+const TrinityMobileButtons = ({ weekdaySchedules }) => {
   const modalDispatch = useModalDispatch();
 
   return [
-    <StyledDivider display="flex" width="100%" />,
     <Box
       ml="base"
       display={{ _: 'flex', md: 'none' }}
@@ -375,6 +357,7 @@ const TrinityMobileButtons = () => {
       mb={{ _: '0px', md: 'base' }}
       pb="l"
     >
+      <StyledDivider display={{ _: 'none', md: 'flex' }} width="100%" />
       <Box>
         <Box as="h3" color="secondary" maxWidth={200}>
           What to Expect
