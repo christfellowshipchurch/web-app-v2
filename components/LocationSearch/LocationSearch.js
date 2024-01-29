@@ -156,7 +156,9 @@ const LocationSearch = () => {
                     boxShadow="none"
                     href={
                       !campus.name.includes('Español')
-                        ? `/locations/${kebabCase(campus.name)}`
+                        ? campus.name.includes('Downtown')
+                          ? `/dwpb`
+                          : `/locations/${kebabCase(campus.name)}`
                         : `/locations/iglesia-${kebabCase(cfe)}`
                     }
                     Component={HorizontalHighlightCard}
