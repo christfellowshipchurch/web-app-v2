@@ -127,6 +127,11 @@ module.exports = {
         destination: '/studies/sisterhood-shownotes-plus',
         permanent: true,
       },
+      {
+        source: '/locations/downtown-west-palm-beach',
+        destination: '/dwpb',
+        permanent: true,
+      },
       // TODO: Uncomment these lines to hide Group Finder.
       // NOTE: We can't get `config/flags` in this file.
       // {
