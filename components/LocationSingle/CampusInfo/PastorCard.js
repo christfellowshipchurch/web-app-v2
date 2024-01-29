@@ -106,7 +106,6 @@ const PastorCard = ({
           <Button
             size="xs"
             mr={{ _: 'xs', lg: 0 }}
-            variant="secondary"
             width="132px"
             px="base"
             borderRadius="xxl"
@@ -140,6 +139,7 @@ const PastorCard = ({
         )}
         <Button
           as="a"
+          variant="secondary"
           size="xs"
           px="s"
           borderRadius="xxl"
