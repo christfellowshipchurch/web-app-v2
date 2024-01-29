@@ -21,7 +21,7 @@ import {
   CFEMobileButtons,
   WeekdayScheduleDisplay,
   CfEverywhereSection,
-} from './customComponents';
+} from './AdditionalComponents';
 import { showModal, useModalDispatch } from 'providers/ModalProvider';
 import { whatToExpectVideos } from '../../../lib/locationData';
 
