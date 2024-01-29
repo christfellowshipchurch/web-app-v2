@@ -117,7 +117,6 @@ const PastorCard = ({
             <Button
               size="xs"
               px="s"
-              variant="secondary"
               borderRadius="xxl"
               ml={{ _: 0, lg: 'xs' }}
               m={{ _: 'xs', lg: 0 }}
