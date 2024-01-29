@@ -1,7 +1,7 @@
 import { TrinityButtons, TrinityMobileButtons } from './Trinity';
 import { CfEverywhereSection, CfEverywhereMobileSection } from './CFEverywhere';
 import { CFEMobileButtons, CFEButtons } from './CFEspanol';
-import { WeekdayScheduleDisplay } from './MainComponents';
+import { WeekdayScheduleDisplay } from './WeekdaySchedules';
 
 export {
   TrinityButtons,

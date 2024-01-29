@@ -6,7 +6,7 @@ import React from 'react';
 import { Box, Icon } from 'ui-kit';
 import { showModal, useModalDispatch } from 'providers/ModalProvider';
 import { whatToExpectVideos } from '../../../../lib/locationData';
-import { StyledDivider } from './MainComponents';
+import { StyledDivider } from './WeekdaySchedules';
 
 const TrinityButtons = () => {
   const modalDispatch = useModalDispatch();

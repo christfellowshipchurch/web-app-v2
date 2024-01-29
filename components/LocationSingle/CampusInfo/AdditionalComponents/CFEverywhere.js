@@ -4,7 +4,7 @@
 
 import React from 'react';
 import { Box, Button, Icon } from 'ui-kit';
-import { StyledDivider } from './MainComponents';
+import { StyledDivider } from './WeekdaySchedules';
 import _ from 'lodash';
 
 const CfEverywhereButton = ({ type, title, url, icon }) => (
