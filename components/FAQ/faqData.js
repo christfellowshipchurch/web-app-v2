@@ -134,7 +134,7 @@ const faqWestlakeData = [
 
 const faqTrinityData = [
   {
-    title: 'Is Trinity Church a part of Christ Fellowship?',
+    title: 'Is Trinity a part of Christ Fellowship Church?',
     description:
       'Yes! Christ Fellowship Church at Trinity is a unique location that features a smaller church setting while still being a part of Christ Fellowship as a whole. Conveniently located just down the street from Christ Fellowship Palm Beach Gardens, the Christ Fellowship Trinity location has access to even more classes, groups, and special events!',
   },
