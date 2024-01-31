@@ -7,67 +7,6 @@ const LocationSingle = styled.div`
   ${system}
 `;
 
-// 2023 Christmas Banner Styled Components - Not in use at the moment
-const ChristmasBanner = styled.div`
-  background: ${themeGet('colors.hues.red')};
-  border-top-left-radius: ${themeGet('radii.base')};
-  color: white;
-  font-size: 17px;
-  display: flex;
-
-  padding-bottom: ${themeGet('space.s')};
-  padding-left: 20px;
-  padding-right: 32px;
-  padding-top: ${themeGet('space.s')};
-  box-shadow: -7px -5px 19px rgba(0, 0, 0, 0.12);
-  position: absolute;
-  top: -21px;
-  right: 370px;
-
-  @media screen and (min-width: ${themeGet(
-      'breakpoints.md'
-    )}) and (max-width: ${themeGet('breakpoints.lg')}) {
-    right: 306px;
-    top: -37px;
-    font-size: 14px;
-  }
-
-  ${system}
-`;
-
-const MobileChristmasBanner = styled.div`
-  background: ${themeGet('colors.hues.red')};
-  color: white;
-  font-size: 14px;
-  padding-bottom: ${themeGet('space.s')};
-  padding-top: ${themeGet('space.s')};
-  box-shadow: -7px -5px 19px rgba(0, 0, 0, 0.12);
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
-    margin-right: 0px;
-  }
-
-  @media screen and (max-width: ${themeGet('breakpoints.sm')}) {
-    margin-top: 0px;
-    margin-left: 0px;
-    padding-left: 10px;
-    padding-right: 10px;
-    width: 100%;
-  }
-
-  ${system}
-`;
-
-const ChristmasSubtitle = styled.div`
-  font-weight: normal;
-  font-size: 14px;
-  font-style: italic;
-`;
-
 const FlexBreak = styled.div`
   flex-basis: 100%;
   height: 0;
@@ -220,11 +159,8 @@ const VideoOverlay = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
-LocationSingle.ChristmasBanner = ChristmasBanner;
-LocationSingle.ChristmasSubtitle = ChristmasSubtitle;
 LocationSingle.FlexBreak = FlexBreak;
 LocationSingle.InfoBox = InfoBox;
-LocationSingle.MobileChristmasBanner = MobileChristmasBanner;
 LocationSingle.PastorsCard = PastorsCard;
 LocationSingle.ServiceTime = ServiceTime;
 LocationSingle.ServiceTimeTitle = ServiceTimeTitle;
@@ -232,5 +168,72 @@ LocationSingle.ServiceTimeContainer = ServiceTimeContainer;
 LocationSingle.VerticalDivider = VerticalDivider;
 LocationSingle.VideoCover = VideoCover;
 LocationSingle.VideoOverlay = VideoOverlay;
+// LocationSingle.ChristmasBanner = ChristmasBanner;
+// LocationSingle.ChristmasSubtitle = ChristmasSubtitle;
+// LocationSingle.MobileChristmasBanner = MobileChristmasBanner;
 
 export default LocationSingle;
+
+// ----------------------------------------------
+
+// 2023 Christmas Banner Styled Components - Not in use at the moment leaving here in case we need to use it again next year
+
+// const ChristmasBanner = styled.div`
+//   background: ${themeGet('colors.hues.red')};
+//   border-top-left-radius: ${themeGet('radii.base')};
+//   color: white;
+//   font-size: 17px;
+//   display: flex;
+
+//   padding-bottom: ${themeGet('space.s')};
+//   padding-left: 20px;
+//   padding-right: 32px;
+//   padding-top: ${themeGet('space.s')};
+//   box-shadow: -7px -5px 19px rgba(0, 0, 0, 0.12);
+//   position: absolute;
+//   top: -21px;
+//   right: 370px;
+
+//   @media screen and (min-width: ${themeGet(
+//       'breakpoints.md'
+//     )}) and (max-width: ${themeGet('breakpoints.lg')}) {
+//     right: 306px;
+//     top: -37px;
+//     font-size: 14px;
+//   }
+
+//   ${system}
+// `;
+
+// const MobileChristmasBanner = styled.div`
+//   background: ${themeGet('colors.hues.red')};
+//   color: white;
+//   font-size: 14px;
+//   padding-bottom: ${themeGet('space.s')};
+//   padding-top: ${themeGet('space.s')};
+//   box-shadow: -7px -5px 19px rgba(0, 0, 0, 0.12);
+//   width: 100%;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+
+//   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+//     margin-right: 0px;
+//   }
+
+//   @media screen and (max-width: ${themeGet('breakpoints.sm')}) {
+//     margin-top: 0px;
+//     margin-left: 0px;
+//     padding-left: 10px;
+//     padding-right: 10px;
+//     width: 100%;
+//   }
+
+//   ${system}
+// `;
+
+// const ChristmasSubtitle = styled.div`
+//   font-weight: normal;
+//   font-size: 14px;
+//   font-style: italic;
+// `;
