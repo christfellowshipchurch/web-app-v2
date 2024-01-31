@@ -7,7 +7,7 @@ import { Box, Icon } from 'ui-kit';
 import { showModal, useModalDispatch } from 'providers/ModalProvider';
 import { whatToExpectVideos } from '../../../../lib/locationData';
 
-const CFEButtons = name => {
+const CFESections = name => {
   const modalDispatch = useModalDispatch();
   const campusName = name.campus;
 
@@ -60,7 +60,7 @@ const CFEButtons = name => {
           </Box>
         </Box>
 
-        <Box display="flex" flexDirection="row" mt="base">
+        <Box display="flex" flexDirection="row" mt="base" mr="xs">
           <Box ml="base">
             <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
               Tenemos más para ti
@@ -184,4 +184,4 @@ const CFEMobileButtons = name => {
   ];
 };
 
-export { CFEButtons, CFEMobileButtons };
+export { CFESections, CFEMobileButtons };

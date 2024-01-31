@@ -16,7 +16,7 @@ import { validDaysOfWeek } from '../utils';
 import {
   TrinityButtons,
   TrinityMobileButtons,
-  CFEButtons,
+  CFESections,
   CfEverywhereMobileSection,
   CFEMobileButtons,
   WeekdayScheduleDisplay,
@@ -109,7 +109,7 @@ const CampusInfo = ({
           </Styled.ServiceTimeContainer>
 
           {/* Addtional Information - Orange Box */}
-          <Box mr={{ _: 0, md: 'base' }}>
+          <Box mr={{ _: 0, lg: 'base' }}>
             {additionalInfo && additionalInfo?.length > 0 && (
               <Styled.InfoBox>
                 {additionalInfo.map(n => (
@@ -139,7 +139,7 @@ const CampusInfo = ({
             )}
 
             {(name === CFEPBG || name === CFERPB) && (
-              <CFEButtons campus={name} />
+              <CFESections campus={name} />
             )}
 
             {/* What to Expect Section */}
@@ -154,7 +154,7 @@ const CampusInfo = ({
                     </Box>
                   </Box>
                   <Box maxWidth={500}>
-                    <Box mb="s">
+                    <Box mb="s" mr="s">
                       Here at Christ Fellowship Church in {name}, you can expect
                       to experience church services with uplifting worship
                       music, encouraging messages from our pastors, special

@@ -16,7 +16,7 @@ const WeekdayScheduleDisplay = ({ weekdaySchedules, isMobile, campus }) => {
 
   return !isMobile ? (
     [
-      <Box display={{ _: 'none', md: 'flex' }} my="l">
+      <Box display={{ _: 'none', md: 'flex' }} mt="l">
         <Box ml="base">
           <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
             {campus === CFEPBG || campus === CFERPB
@@ -26,7 +26,7 @@ const WeekdayScheduleDisplay = ({ weekdaySchedules, isMobile, campus }) => {
         </Box>
         <Box
           flex="2"
-          display="grid"
+          display={{ _: 'block', lg: 'grid' }}
           gridColumnGap="xs"
           gridRowGap="l"
           gridTemplateColumns={
@@ -36,7 +36,7 @@ const WeekdayScheduleDisplay = ({ weekdaySchedules, isMobile, campus }) => {
           {validDaysOfWeek(weekdaySchedules)?.map(day => {
             const formattedDay = capitalize(Object?.keys(day));
             return (
-              <Box>
+              <Box mb="base">
                 <Box as="h3" mb="xs">
                   {campus === CFEPBG || campus === CFERPB
                     ? weekdaySpanishTranslation(formattedDay)

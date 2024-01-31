@@ -27,7 +27,7 @@ const CfEverywhereButton = ({ type, title, url, icon }) => (
 
 const CfEverywhereMobileSection = () => {
   return [
-    <StyledDivider display="flex" width="100%" />,
+    <StyledDivider display={{ _: 'flex', md: 'none' }} width="100%" />,
     <Box
       ml="base"
       display={{ _: 'flex', md: 'none' }}
@@ -82,6 +82,7 @@ const CfEverywhereSection = () => (
         flex={{ _: '', md: 1 }}
         width="100%"
         display="flex"
+        flexDirection={{ _: 'column', lg: 'row' }}
         justifyContent={{ _: 'space-around', md: 'flex-start' }}
         style={{ gap: '12px' }}
       >
@@ -99,7 +100,13 @@ const CfEverywhereSection = () => (
         />
       </Box>
     </Box>
-    <Box ml="base" display={{ _: 'none', md: 'flex' }} my="l">
+    <Box
+      ml="base"
+      position={{ _: 'relative', sm: 'absolute', lg: 'relative' }}
+      pr="base"
+      display={{ _: 'none', md: 'flex' }}
+      my="l"
+    >
       <Box>
         <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
           What to Expect
