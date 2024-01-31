@@ -82,8 +82,8 @@ const CfEverywhereSection = () => (
         flex={{ _: '', md: 1 }}
         width="100%"
         display="flex"
-        flexDirection={{ _: 'column', lg: 'row' }}
-        justifyContent={{ _: 'space-around', md: 'flex-start' }}
+        flexDirection={{ _: 'row', md: 'column', lg: 'row' }}
+        justifyContent={{ _: 'center', md: 'flex-start' }}
         style={{ gap: '12px' }}
       >
         <CfEverywhereButton
