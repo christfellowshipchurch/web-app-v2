@@ -2,6 +2,7 @@ import CustomLink from 'components/CustomLink';
 import { Box, Button, HorizontalHighlightCard, HtmlRenderer } from 'ui-kit';
 import { getThereFirstCards, imageCards } from './getThereFirstData';
 import Styled from './getThereFirstComponents.styles';
+import Video from 'components/Video';
 
 export const GettingThereFirst = () => {
   return (
@@ -159,6 +160,13 @@ export const RaceToTheNextGen = () => {
         </Box>
       </Box>
       {/* Video */}
+      <Box mt="base">
+        <Video
+          width={{ _: 380, md: 560 }}
+          aspectRation="16by9"
+          wistiaId={'gfrdbo72d0'}
+        />
+      </Box>
       <Button mt={{ _: 'base', md: 'l' }} href="#testing">
         JOIN THE RACE
       </Button>
