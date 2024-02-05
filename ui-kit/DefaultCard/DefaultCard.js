@@ -8,6 +8,7 @@ import Styled from 'ui-kit/Card/Card.styles';
 const DefaultCard = (props = {}) => {
   const hasContent = props.title || props.description || props.children;
 
+  console.log(props);
   return (
     <Box>
       {!props?.loading ? (

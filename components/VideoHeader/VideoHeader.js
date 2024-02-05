@@ -34,7 +34,8 @@ function VideoHeader(props = {}) {
       {/* Logo */}
       <Styled.LogoOverlay
         maxWidth={1200}
-        width={{ _: '90%', md: '80%' }}
+        width={props?.logoWidth ? props?.logoWidth : { _: '90%', md: '80%' }}
+        aspectRatio={props?.logoAspectRatio}
         src={props?.logoOverlay}
       />
     </Box>

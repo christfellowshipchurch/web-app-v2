@@ -121,7 +121,14 @@ function ContentBlock(props = {}) {
         pt={hasMedia && horizontalLayout ? 'base' : '0'}
       >
         <ConditionalBox condition={hasTitle} order={horizontalLayout ? 1 : 0}>
-          <Box as="h1" color={props?.titleColor}>
+          <Box
+            as="h1"
+            color={
+              props?.titleColor
+                ? props?.titleColor
+                : props?.color && props?.color
+            }
+          >
             {props.title}
             <CustomLink
               as="a"
@@ -140,13 +147,17 @@ function ContentBlock(props = {}) {
           condition={hasSubtitle}
           order={horizontalLayout ? 0 : 1}
         >
-          <Box as="h4" color="neutrals.600" textTransform="uppercase">
+          <Box
+            as="h4"
+            color={props?.color ? props?.color : 'neutrals.600'}
+            textTransform="uppercase"
+          >
             {props.subtitle}
           </Box>
         </ConditionalBox>
 
         <ConditionalBox condition={hasHtmlContent} order={2}>
-          <HtmlRenderer htmlContent={props?.htmlContent} />
+          <HtmlRenderer htmlContent={props?.htmlContent} color="white" />
         </ConditionalBox>
 
         <ConditionalBox
