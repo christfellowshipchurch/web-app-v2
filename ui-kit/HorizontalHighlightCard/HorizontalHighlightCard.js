@@ -6,7 +6,6 @@ import Styled from 'ui-kit/DefaultCard';
 
 const HorizontalHighlightCard = (props = {}) => {
   let height = props?.height;
-  console.log(height);
   let mobileHeight = props?.mobileHeight || 250;
 
   // specifies card height based on type
