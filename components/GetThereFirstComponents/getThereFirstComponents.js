@@ -33,7 +33,7 @@ export const GettingThereFirst = () => {
         {getThereFirstCards?.map((card, index) => (
           <Styled.GetThereFirstCards ml="base" mr={index === 2 ? 'base' : 0}>
             <Box
-              minWidth={{ _: 250, md: 300 }}
+              minWidth={{ _: 340, md: 300 }}
               textAlign="center"
               mx={{ _: 's', md: 'base' }}
               mt="base"
@@ -96,7 +96,7 @@ export const Resources = () => {
           {imageCards?.map((card, i) => (
             <CustomLink
               as="a"
-              width={{ _: '80vw', md: 230, lg: 260 }}
+              width={{ _: '80vw', md: 230, lg: 240 }}
               height={230}
               mobileHeight="80vw"
               mx="s"

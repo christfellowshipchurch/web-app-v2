@@ -34,7 +34,9 @@ function CardGridFeature(props = {}) {
 
   return (
     <Box textAlign="center">
-      {!isEmpty(title) && (
+      {!isEmpty(title) ? (
+        props?.titleOverride && <HtmlRenderer htmlContent={title} />
+      ) : (
         <Box
           as={props?.titleLarge ? 'h1' : 'h2'}
           p="base"
@@ -43,14 +45,20 @@ function CardGridFeature(props = {}) {
           {title}
         </Box>
       )}
-      <HtmlRenderer htmlContent={subtitle} />
+
+      {!isEmpty(subtitle) && <HtmlRenderer htmlContent={subtitle} />}
       {cards && cards.length > 0 && (
         <OverrideCardGrid marginBottom="base" marginTop="l" columns="12">
           {cards.map((card, i) => {
             const url = getUrlFromRelatedNode(card?.relatedNode);
             const nonClickable = url === '#no-click';
             return (
-              <Styled.CardSpacing key={i} index={i} total={cards.length}>
+              <Styled.CardSpacing
+                maxWidth={props?.maxCardWidth}
+                key={i}
+                index={i}
+                total={cards.length}
+              >
                 {nonClickable ? (
                   <HorizontalHighlightCard
                     mx={{ _: 's', md: 0 }}

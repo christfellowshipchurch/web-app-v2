@@ -18,6 +18,7 @@ const HorizontalHighlightCard = (props = {}) => {
         height = 250;
         break;
       case 'HIGHLIGHT_MEDIUM':
+        mobileHeight = 420;
         height = 450;
         break;
       default:

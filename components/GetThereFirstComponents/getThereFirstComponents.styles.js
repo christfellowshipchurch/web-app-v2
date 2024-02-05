@@ -13,7 +13,7 @@ const ImageCardsContainer = styled.div`
   justify-content: start;
   align-items: center;
 
-  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     flex-direction: row;
     justify-content: center;
   }
@@ -25,6 +25,7 @@ const GetThereFirstCardsContainer = styled.div`
   overflow: auto;
   align-items: center;
   justify-content: start;
+  padding-bottom: ${themeGet('space.base')};
 
   margin-top: ${themeGet('space.base')};
 
@@ -40,21 +41,23 @@ const GetThereFirstCardsContainer = styled.div`
 const GetThereFirstCards = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   background-color: #133156;
   color: white;
   text-align: center;
 
-  height: 360px;
-  width: 360px;
+  width: 340px;
+  height: 340px;
+
+  box-shadow: 0px 8px 20px -5px rgba(0, 0, 0, 0.25);
 
   padding-top: ${themeGet('space.base')};
   padding-bottom: ${themeGet('space.base')};
   margin-top: ${themeGet('space.base')};
   margin-bottom: ${themeGet('space.base')};
 
-  border-radius: ${themeGet('space.l')};
+  border-radius: ${themeGet('space.base')};
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     margin-top: 0px;
@@ -65,18 +68,11 @@ const GetThereFirstCards = styled.div`
     margin-left: ${themeGet('space.s')};
     margin-right: ${themeGet('space.s')};
 
-    padding-top: ${themeGet('space.l')};
     padding-bottom: ${themeGet('space.l')};
-
-    height: 320px;
-    width: 320px;
   }
 
   @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
     margin-right: ${themeGet('space.base')};
-
-    width: 360px;
-    height: 360px;
   }
   ${system}
 `;
