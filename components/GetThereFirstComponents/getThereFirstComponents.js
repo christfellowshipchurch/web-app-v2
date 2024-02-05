@@ -160,10 +160,15 @@ export const RaceToTheNextGen = () => {
         </Box>
       </Box>
       {/* Video */}
-      <Box mt="base">
+      <Box
+        boxShadow="l"
+        borderRadius="base"
+        mx="auto"
+        my="base"
+        overflow="hidden"
+      >
         <Video
-          width={{ _: 380, md: 560 }}
-          aspectRation="16by9"
+          width={{ _: 350, sm: 400, md: 600, lg: 800 }}
           wistiaId={'gfrdbo72d0'}
         />
       </Box>

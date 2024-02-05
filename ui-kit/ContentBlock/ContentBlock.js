@@ -157,7 +157,14 @@ function ContentBlock(props = {}) {
         </ConditionalBox>
 
         <ConditionalBox condition={hasHtmlContent} order={2}>
-          <HtmlRenderer htmlContent={props?.htmlContent} color="white" />
+          <HtmlRenderer
+            htmlContent={props?.htmlContent}
+            color={
+              props?.bodyTextColor
+                ? props?.bodyTextColor
+                : props?.color && props?.color
+            }
+          />
         </ConditionalBox>
 
         <ConditionalBox
