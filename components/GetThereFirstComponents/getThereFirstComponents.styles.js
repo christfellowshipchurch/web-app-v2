@@ -41,9 +41,9 @@ const GetThereFirstCardsContainer = styled.div`
 const GetThereFirstCards = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  background-color: #133156;
+  background-color: #0d264f;
   color: white;
   text-align: center;
 

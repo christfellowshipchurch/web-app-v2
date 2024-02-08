@@ -4,6 +4,63 @@ import { getThereFirstCards, imageCards } from './getThereFirstData';
 import Styled from './getThereFirstComponents.styles';
 import Video from 'components/Video';
 
+export const RaceToTheNextGen = () => {
+  return (
+    <Box
+      py="xl"
+      px="base"
+      backgroundImage="linear-gradient(to right, #2E8A93, #0D264F)"
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+    >
+      <Box
+        color="white"
+        textAlign="center"
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+      >
+        <Box as="h1" maxWidth={820} mb={{ _: 'base', md: 'l' }}>
+          In the race to the heart of the next generation,
+          <br />
+          <Box as="span" textDecoration="underline">
+            the first one there wins.
+          </Box>
+        </Box>
+        <Box maxWidth={860}>
+          In a world where young people are being robbed of their purpose and
+          identity like never before, our church needs a new battle strategy.
+          That’s why we have a vision to{' '}
+          <Box as="span" fontWeight="bold" textDecoration="underline">
+            get there first.
+          </Box>{' '}
+          We are dedicated to share the love and message of Jesus with the next
+          generation before culture tries to convince them otherwise. Our goal
+          is that kids, students, and young adults would know how much God loves
+          them and has a plan and a purpose for their lives.
+        </Box>
+      </Box>
+      {/* Video */}
+      <Box
+        boxShadow="l"
+        borderRadius="base"
+        mx="auto"
+        my="base"
+        overflow="hidden"
+      >
+        <Video
+          width={{ _: 350, sm: 400, md: 600, lg: 800 }}
+          wistiaId={'acwh7blcn4'}
+        />
+      </Box>
+      <Button mt={{ _: 'base', md: 'l' }} href="#testing">
+        JOIN THE RACE
+      </Button>
+    </Box>
+  );
+};
+
 export const GettingThereFirst = () => {
   return (
     <Box py="xl">
@@ -114,67 +171,6 @@ export const Resources = () => {
           ))}
         </Styled.ImageCardsContainer>
       </Box>
-    </Box>
-  );
-};
-
-export const RaceToTheNextGen = () => {
-  return (
-    <Box
-      py="xl"
-      px="base"
-      backgroundImage="linear-gradient(to right, #2E8A93, #0D264F)"
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-    >
-      <Box
-        color="white"
-        textAlign="center"
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-      >
-        <Box as="h1" maxWidth={820} mb={{ _: 'base', md: 'l' }}>
-          In the race to the heart of the next generation,
-          <br />
-          <Box as="span" textDecoration="underline">
-            the first one there wins.
-          </Box>
-        </Box>
-        <Box maxWidth={860}>
-          In a world where young people are being robbed of their purpose and
-          identity like never before, our church needs a new battle strategy.
-          That’s why we have a vision to{' '}
-          <Box as="span" fontWeight="bold" textDecoration="underline">
-            get there first.
-          </Box>{' '}
-          We are dedicated to share the love and message of Jesus with the next
-          generation before culture tries to convince them otherwise. Our goal
-          is that kids, students, and young adults would know how much God loves
-          them and has a plan and a purpose for their lives.
-          <br />
-          <br />
-          Check out this video from our Senior Pastors to learn what Get There
-          First is all about.
-        </Box>
-      </Box>
-      {/* Video */}
-      <Box
-        boxShadow="l"
-        borderRadius="base"
-        mx="auto"
-        my="base"
-        overflow="hidden"
-      >
-        <Video
-          width={{ _: 350, sm: 400, md: 600, lg: 800 }}
-          wistiaId={'gfrdbo72d0'}
-        />
-      </Box>
-      <Button mt={{ _: 'base', md: 'l' }} href="#testing">
-        JOIN THE RACE
-      </Button>
     </Box>
   );
 };
