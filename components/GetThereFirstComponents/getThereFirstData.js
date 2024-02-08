@@ -14,15 +14,15 @@ export const getThereFirstCards = [
     title: 'Camps for Kids and Students',
     description:
       '<div style="font-size: 15px;">This year, we’re offering more camps for kids and students than ever before. <span style="font-weight: bold;">Find a camp for your child or donate to a camp scholarship fund.</span></div>',
-    cta: [{ title: 'SEE ALL CAMPS', action: 'https' }],
+    cta: [
+      { title: 'SEE ALL CAMPS', action: '/summer-camps-for-kids-and-students' },
+    ],
   },
   {
     title: 'Foster and Adoptive Family Support',
     description:
-      '<div style="font-size: 15px;">Though hosting Foster and Adoptive Parent Nights Outs and equipping families with valuable support and resources, we are a part of supporting the most vulnerable children in our region.</div>',
-    cta: [
-      { title: 'LEARN MORE', action: 'https://rock.gocf.org/familyexperience' },
-    ],
+      '<div style="font-size: 15px;">Though hosting <span style="font-weight: bold;">Foster and Adoptive Parent Nights Outs</span> and equipping families with valuable support and resources, we are a part of supporting the most vulnerable children in our region.</div>',
+    cta: [{ title: 'LEARN MORE', action: '/foster-and-adoptive-care' }],
   },
 ];
 

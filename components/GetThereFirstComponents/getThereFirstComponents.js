@@ -54,7 +54,7 @@ export const RaceToTheNextGen = () => {
           wistiaId={'acwh7blcn4'}
         />
       </Box>
-      <Button mt={{ _: 'base', md: 'l' }} href="#testing">
+      <Button as="a" mt={{ _: 'base', md: 'l' }} href="#JoinTheRace">
         JOIN THE RACE
       </Button>
     </Box>
@@ -65,8 +65,8 @@ export const GettingThereFirst = () => {
   return (
     <Box py="xl">
       <Box
-        as="h1"
-        color="secondary"
+        fontSize="28px"
+        fontWeight="700"
         textAlign="center"
         mx={{ _: 'base', md: 'auto' }}
       >
@@ -107,6 +107,7 @@ export const GettingThereFirst = () => {
             {/* CTA Buttons */}
             {card?.cta?.map((cta, index) => (
               <Button
+                as="a"
                 bg="transparent"
                 border="solid 2px white"
                 href={cta?.action}

@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { Box } from 'ui-kit';
 import Styled from './VideoHeader.styles';
 import { useCurrentBreakpoint } from 'hooks';
@@ -30,7 +32,7 @@ function VideoHeader(props = {}) {
           type="video/mp4"
         />
       </Box>
-      <Styled.VideoOverlay />
+      {props?.overlay && <Styled.VideoOverlay />}
       {/* Logo */}
       <Styled.LogoOverlay
         maxWidth={1200}
@@ -41,5 +43,14 @@ function VideoHeader(props = {}) {
     </Box>
   );
 }
+
+VideoHeader.propTypes = {
+  // Whether to display the overlay that darkens the video
+  overlay: PropTypes.bool,
+};
+
+VideoHeader.defaultProps = {
+  overlay: true,
+};
 
 export default VideoHeader;

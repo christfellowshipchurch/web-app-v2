@@ -15,10 +15,9 @@ function GetThereFirst() {
       {/* Hero Section */}
       <VideoHeader
         backgroundVideo={{
-          desktop: '/get-there-first/GetThereFirst.mp4',
+          desktop: '/get-there-first/GetThereFirstHeaderVideo.mp4',
         }}
-        logoOverlay={'/get-there-first/logo.png'}
-        logoWidth={{ _: 300, md: 600, lg: 800 }}
+        overlay={false}
         logoAspectRatio="16/9"
         backgroundImage="url(/get-there-first/banner.jpg)"
         backgroundPosition="center"
@@ -38,7 +37,7 @@ function GetThereFirst() {
         color="white"
       >
         {/* custom title here */}
-        <Box maxWidth={1100} mx="auto">
+        <Box maxWidth={1100} mx="auto" id="JoinTheRace">
           <FeatureProvider
             Component={CardGridFeature}
             customCardSize={'HIGHLIGHT_MEDIUM'}
