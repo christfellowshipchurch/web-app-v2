@@ -212,7 +212,7 @@ function AppHead({ Component, pageProps }) {
         id="hs-script-loader"
         async
         defer
-        src="//js.hs-scripts.com/39903073.js"
+        src={`//js.hs-scripts.com/${process.env.NEXT_PUBLIC_HUBSPOT_API_KEY}.js`}
       ></script>
     </Head>
   );
