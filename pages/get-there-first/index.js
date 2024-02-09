@@ -45,7 +45,7 @@ function GetThereFirst() {
             titleOverride
             dataOverride={{
               title:
-                '<div style="margin-bottom: 18px; font-size: 48px;">JOIN THE <span style="font-weight: bold; text-decoration: underline;">RACE<span></div>',
+                '<div style="margin-bottom: 18px; font-size: 48px;">JOIN THE <span style="font-weight: bold; text-decoration: underline;">RACE</span>.</div>',
               subtitle:
                 '<div style="font-weight: bold;">BE A PART OF MAKING A DIFFERENCE IN THE LIVES OF THE NEXT GENERATION.</div>',
             }}

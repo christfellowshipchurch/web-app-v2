@@ -33,12 +33,12 @@ export const RaceToTheNextGen = () => {
           identity like never before, our church needs a new battle strategy.
           That’s why we have a vision to{' '}
           <Box as="span" fontWeight="bold" textDecoration="underline">
-            get there first.
-          </Box>{' '}
-          We are dedicated to share the love and message of Jesus with the next
-          generation before culture tries to convince them otherwise. Our goal
-          is that kids, students, and young adults would know how much God loves
-          them and has a plan and a purpose for their lives.
+            GET THERE FIRST
+          </Box>
+          . We are dedicated to sharing the love and message of Jesus with the
+          next generation before culture tries to convince them otherwise. Our
+          goal is that kids, students, and young adults would know how much God
+          loves them and has a plan and a purpose for their lives.
         </Box>
       </Box>
       {/* Video */}
@@ -70,7 +70,7 @@ export const GettingThereFirst = () => {
         textAlign="center"
         mx={{ _: 'base', md: 'auto' }}
       >
-        How We Are Getting There First in 2024
+        How We Will Get There First in 2024
       </Box>
       <Box
         as="p"
@@ -147,7 +147,7 @@ export const Resources = () => {
             A church for every generation.
           </Box>
           <Box textAlign="center">
-            Learn about what Christ Fellowship has to offer for all of the kids,
+            Learn what Christ Fellowship has to offer for all of the kids,
             students, and young adults in your life.
           </Box>
         </Box>
@@ -155,7 +155,7 @@ export const Resources = () => {
           {imageCards?.map((card, i) => (
             <CustomLink
               as="a"
-              width={{ _: '80vw', md: 230, lg: 240 }}
+              width={{ _: '80vw', md: 230 }}
               height={230}
               mobileHeight="80vw"
               mx="s"
