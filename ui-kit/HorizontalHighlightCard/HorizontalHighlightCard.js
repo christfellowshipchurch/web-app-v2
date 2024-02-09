@@ -31,6 +31,7 @@ const HorizontalHighlightCard = (props = {}) => {
   return (
     <Styled
       {...props}
+      width={props?.width || { _: '80vw', md: 'auto' }}
       // Overriding the default props from DefaultCard
       // so that the component only uses the coverImage props
       coverImageDescription={props.coverImageDescription || props.description}
