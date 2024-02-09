@@ -13,6 +13,15 @@ import {
 import { getUrlFromRelatedNode, transformISODates } from 'utils';
 import Styled from './CardGridFeature.styles';
 import { includes } from 'lodash';
+import styled from 'styled-components';
+
+// We are overriding the CardGrid component to allow for horizontal scrolling on mobile
+const OverrideCardGrid = styled(CardGrid)`
+  @media (max-width: 767px) {
+    display: flex;
+    overflow: scroll;
+  }
+`;
 
 function CardGridFeature(props = {}) {
   let data = props?.data;
@@ -25,27 +34,18 @@ function CardGridFeature(props = {}) {
 
   return (
     <Box textAlign="center">
-      {!isEmpty(title) &&
-        (props?.titleOverride ? (
-          <HtmlRenderer htmlContent={title} />
-        ) : (
-          <Box
-            as={props?.titleLarge ? 'h1' : 'h2'}
-            p="base"
-            color={props?.titleColor ? props?.titleColor : 'primary'}
-          >
-            {title}
-          </Box>
-        ))}
-
-      {!isEmpty(subtitle) && <HtmlRenderer htmlContent={subtitle} />}
-      {cards && cards.length > 0 && (
-        <CardGrid
-          horizontalScroll={props?.horizontalScroll}
-          marginBottom="base"
-          marginTop="l"
-          columns="12"
+      {!isEmpty(title) && (
+        <Box
+          as={props?.titleLarge ? 'h1' : 'h2'}
+          p="base"
+          color={props?.titleColor ? props?.titleColor : 'primary'}
         >
+          {title}
+        </Box>
+      )}
+      <HtmlRenderer htmlContent={subtitle} />
+      {cards && cards.length > 0 && (
+        <OverrideCardGrid marginBottom="base" marginTop="l" columns="12">
           {cards.map((card, i) => {
             const url = getUrlFromRelatedNode(card?.relatedNode);
             const nonClickable = url === '#no-click';
@@ -71,7 +71,7 @@ function CardGridFeature(props = {}) {
                 ) : (
                   <CustomLink
                     as="a"
-                    width={{ _: 300, md: 'auto' }}
+                    width={{ _: 250, md: 'auto' }}
                     mx={{ _: 's', md: 0 }}
                     href={url}
                     key={i}
@@ -93,7 +93,7 @@ function CardGridFeature(props = {}) {
               </Styled.CardSpacing>
             );
           })}
-        </CardGrid>
+        </OverrideCardGrid>
       )}
       {/* Note: this is deprecated and is only support with Content Categories */}
       {actions &&
@@ -131,13 +131,11 @@ CardGridFeature.propTypes = {
    */
   titleLarge: PropTypes.bool,
   Component: PropTypes.any,
-  horizontalScroll: PropTypes.bool,
 };
 
 CardGridFeature.defaultProps = {
   Component: HorizontalHighlightCard,
   titleLarge: false,
-  horizontalScroll: true,
 };
 
 export default CardGridFeature;

@@ -70,7 +70,7 @@ const cardSpanMedium = ({ index, total }) => {
   `;
 };
 
-const CardGridFeature = styled.div`
+const VerticalCardListFeature = styled.div`
   ${system}
 `;
 
@@ -85,13 +85,9 @@ const CardSpacing = styled.div`
     ${cardSpanMedium}
   }
 
-  // medium devices
-  @media (max-width: 768px) {
-  }
-
   ${system}
 `;
 
-CardGridFeature.CardSpacing = CardSpacing;
+VerticalCardListFeature.CardSpacing = CardSpacing;
 
-export default CardGridFeature;
+export default VerticalCardListFeature;

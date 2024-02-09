@@ -32,7 +32,7 @@ const defaultProcessing = [
   },
 ];
 
-const HtmlRenderer = ({ color, htmlContent, customProcessing }) => {
+const HtmlRenderer = ({ htmlContent, customProcessing }) => {
   const processNodeDefinitions = new HtmlToReact.ProcessNodeDefinitions(React);
 
   const processingInstructions = [
@@ -53,7 +53,7 @@ const HtmlRenderer = ({ color, htmlContent, customProcessing }) => {
     processingInstructions
   );
 
-  return <Styled color={color}>{parsedHtmlContent}</Styled>;
+  return <Styled>{parsedHtmlContent}</Styled>;
 };
 
 HtmlRenderer.propTypes = {

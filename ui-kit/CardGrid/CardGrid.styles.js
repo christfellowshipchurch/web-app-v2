@@ -19,14 +19,6 @@ const CardGrid = styled.div`
     }
   }
 
-  @media (max-width: 767px) {
-    display: flex;
-    overflow: ${props => (props.horizontalScroll ? 'scroll' : 'none')};
-    flex-direction: ${props => (props.horizontalScroll ? 'row' : 'column')};
-    justify-content: center;
-    align-items: center;
-  }
-
   ${system}
 `;
 
