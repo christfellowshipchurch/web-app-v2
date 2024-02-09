@@ -15,7 +15,7 @@ function CustomLink({ Component: _Component, href, ...props }) {
   }
 
   return (
-    // Next 13 doesn't support a tags as children of Link component so we need to add legacyBehavior prop
+    // Next 13 doesn't support a tags as children of Link comoonent so we need to add legacyBehavior prop
     <Link legacyBehavior href={href} passHref>
       <WrappedComponent Component={_Component} {...props} />
     </Link>
