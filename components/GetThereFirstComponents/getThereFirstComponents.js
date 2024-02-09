@@ -21,10 +21,15 @@ export const RaceToTheNextGen = () => {
         flexDirection="column"
         alignItems="center"
       >
-        <Box as="h1" maxWidth={820} mb={{ _: 'base', md: 'l' }}>
+        <Box
+          as="h1"
+          fontWeight="normal"
+          maxWidth={820}
+          mb={{ _: 'base', md: 'l' }}
+        >
           In the race to the heart of the next generation,
           <br />
-          <Box as="span" textDecoration="underline">
+          <Box as="span" fontWeight="bold" textDecoration="underline">
             the first one there wins.
           </Box>
         </Box>
