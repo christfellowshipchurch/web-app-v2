@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 
 import { getUrlFromRelatedNode, slugify } from 'utils';
-import { useDiscoverFilterCategoriesPreview } from 'hooks';
+import {
+  useCurrentBreakpoint,
+  useDiscoverFilterCategoriesPreview,
+} from 'hooks';
 import {
   Button,
   Box,
@@ -30,6 +33,7 @@ const CollectionPreview = ({
 }) => {
   let contentItems = [];
   const router = useRouter();
+  const currentBreakpoint = useCurrentBreakpoint();
   const {
     categoryTitle,
     contentItems: queriedContent,
@@ -108,34 +112,37 @@ const CollectionPreview = ({
       )}
 
       {/* Grid of Cards */}
-      <CardGrid
-        display={horizontalScroll ? { _: 'none', md: null } : null}
-        columns="3"
-      >
-        {loading ? (
-          <Loader />
-        ) : (
-          contentItems.map((n, i) => (
-            <CustomLink
-              key={i}
-              Component={
-                cardType === 'default' ? DefaultCard : HorizontalHighlightCard
-              }
-              coverImageOverlay={true}
-              type={size === 's' ? 'HIGHLIGHT_SMALL' : 'HIGHLIGHT_MEDIUM'}
-              mx={size === 's' ? 'base' : 0}
-              as="a"
-              coverImage={n?.coverImage?.sources[0]?.uri}
-              description={n?.summary}
-              href={getUrlFromRelatedNode(n)}
-              scaleCard={false}
-              scaleCoverImage={true}
-              title={n?.title}
-              {...cardProps}
-            />
-          ))
-        )}
-      </CardGrid>
+      {(!currentBreakpoint.isSmall || !horizontalScroll) && (
+        <CardGrid
+          display={horizontalScroll ? { _: 'none', md: null } : null}
+          columns="3"
+        >
+          {loading ? (
+            <Loader />
+          ) : (
+            contentItems.map((n, i) => (
+              <CustomLink
+                key={i}
+                Component={
+                  cardType === 'default' ? DefaultCard : HorizontalHighlightCard
+                }
+                coverImageOverlay={true}
+                type={size === 's' ? 'HIGHLIGHT_SMALL' : 'HIGHLIGHT_MEDIUM'}
+                mx={size === 's' ? 'base' : 0}
+                as="a"
+                coverImage={n?.coverImage?.sources[0]?.uri}
+                description={n?.summary}
+                href={getUrlFromRelatedNode(n)}
+                scaleCard={false}
+                scaleCoverImage={true}
+                title={n?.title}
+                minWidth={300}
+                {...cardProps}
+              />
+            ))
+          )}
+        </CardGrid>
+      )}
 
       {/* See More Button */}
       {contentItems?.length > 2 && !hideButton && (
