@@ -38,7 +38,7 @@ export const RaceToTheNextGen = () => {
           identity like never before, our church needs a new battle strategy.
           That’s why we have a vision to{' '}
           <Box as="span" fontWeight="bold" textDecoration="underline">
-            GET THERE FIRST
+            Get There First
           </Box>
           . We are dedicated to sharing the love and message of Jesus with the
           next generation before culture tries to convince them otherwise. Our

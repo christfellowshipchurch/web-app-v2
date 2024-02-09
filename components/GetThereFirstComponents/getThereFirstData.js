@@ -34,7 +34,7 @@ export const imageCards = [
     link: '/christ-fellowship-kids',
   },
   {
-    title: 'CF Students',
+    title: 'CFStudents',
     description: '6th - 12th grade',
     img: '/Students.jpg',
     link: '/students',
