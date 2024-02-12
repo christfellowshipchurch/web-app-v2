@@ -80,8 +80,12 @@ function CardGridFeature(props = {}) {
                     coverImageOverlay={true}
                     title={card?.title}
                     description={card?.summary}
-                    ml={i < 1 ? 'base' : 's'}
-                    mr={i === cards.length - 1 ? 'base' : 's'}
+                    ml={i < 1 && !!props?.horizontalScroll ? 'base' : 's'}
+                    mr={
+                      i === cards.length - 1 && !!props?.horizontalScroll
+                        ? 'base'
+                        : 's'
+                    }
                     type={
                       props?.customCardSize
                         ? props?.customCardSize
