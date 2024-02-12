@@ -2,26 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 
-import { getUrlFromRelatedNode, slugify } from 'utils';
-import {
-  useCurrentBreakpoint,
-  useDiscoverFilterCategoriesPreview,
-} from 'hooks';
-import {
-  Button,
-  Box,
-  DefaultCard,
-  HorizontalHighlightCard,
-  CardGrid,
-  Loader,
-  CardCarousel,
-} from 'ui-kit';
-import { CardGridFeature, CustomLink } from 'components';
+import { slugify } from 'utils';
+import { useDiscoverFilterCategoriesPreview } from 'hooks';
+import { Button, Box, Loader } from 'ui-kit';
+import { CardGridFeature } from 'components';
 
 const CollectionPreview = ({
   contentId,
   summary,
-  cardType,
   hideButton,
   hideTitle,
   buttonOverride,
@@ -29,11 +17,10 @@ const CollectionPreview = ({
   size,
   horizontalScroll,
   contentOverride,
-  cardProps,
 }) => {
+  //setting contentItems to an empty array so we can override with hardcoded data if needed
   let contentItems = [];
   const router = useRouter();
-  const currentBreakpoint = useCurrentBreakpoint();
   const {
     categoryTitle,
     contentItems: queriedContent,
@@ -50,6 +37,7 @@ const CollectionPreview = ({
     router.push(`/discover/${slugify(categoryTitle)}?id=${slugify(id)}`);
   };
 
+  // If contentOverride is passed, use that instead of queriedContent
   if (contentOverride) {
     contentItems = contentOverride;
   }
@@ -82,11 +70,15 @@ const CollectionPreview = ({
         </Box>
       )}
 
-      <CardGridFeature
-        data={{ cards: contentItems }}
-        horizontalScroll={horizontalScroll}
-        customCardSize="HIGHLIGHT_MEDIUM"
-      />
+      {loading ? (
+        <Loader />
+      ) : (
+        <CardGridFeature
+          data={{ cards: contentItems }}
+          horizontalScroll={horizontalScroll}
+          customCardSize="HIGHLIGHT_MEDIUM"
+        />
+      )}
 
       {/* See More Button */}
       {contentItems?.length > 2 && !hideButton && (

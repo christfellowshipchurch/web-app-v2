@@ -242,7 +242,6 @@ function LocationSingle(props = {}) {
         <Box mx="auto" px={{ _: 0, md: 'base' }} maxWidth={1200}>
           <CollectionPreview
             horizontalScroll
-            size="s"
             contentId={
               comingUpSoon
                 ? comingUpSoon

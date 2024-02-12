@@ -57,9 +57,6 @@ export default function ExternalLandingPage(props = {}) {
             hideTitle
             hideButton
             contentOverride={churchForEveryGeneration}
-            cardProps={{
-              textAlign: 'center',
-            }}
           />
         </Box>
       </Box>
