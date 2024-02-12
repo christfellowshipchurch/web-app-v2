@@ -82,6 +82,7 @@ const Button = styled.button`
   cursor: pointer;
   display: flex;
   justify-content: start;
+  align-items: center;
   font-family: ${themeGet('fonts.base')};
   font-size: ${themeGet('fontSizes.base')};
   font-weight: ${themeGet('fontWeights.bold')};
@@ -92,6 +93,7 @@ const Button = styled.button`
   text-decoration: none;
   transition: 0.3s ease-in-out;
   max-width: 350px;
+  min-height: 80px;
   flex: 1;
 
   &:disabled {
@@ -101,6 +103,7 @@ const Button = styled.button`
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
     padding-left: ${themeGet('space.base')};
     padding-right: ${themeGet('space.base')};
+    min-height: 56px;
   }
 
   border-radius: 100px;
