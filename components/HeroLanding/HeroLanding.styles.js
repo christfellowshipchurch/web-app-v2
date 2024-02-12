@@ -60,14 +60,11 @@ const ButtonContainer = styled.div`
   justify-content: center;
   z-index: 2;
   color: ${themeGet('colors.white')};
-  padding: 10px;
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
-    max-width: 100%;
     margin-bottom: 10px;
   }
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-    max-width: 100%;
     margin-top: ${themeGet('space.base')};
     flex-direction: row;
   }
