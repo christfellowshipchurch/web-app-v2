@@ -5,7 +5,8 @@ import { system } from 'ui-kit';
 
 const CardGrid = styled.div`
   > *:not(:last-child) {
-    margin-bottom: ${themeGet('space.base')};
+    margin-bottom: ${props =>
+      props.horizontalScroll ? 'none' : themeGet('space.base')};
   }
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
@@ -23,8 +24,8 @@ const CardGrid = styled.div`
     display: flex;
     overflow: ${props => (props.horizontalScroll ? 'scroll' : 'none')};
     flex-direction: ${props => (props.horizontalScroll ? 'row' : 'column')};
-    justify-content: center;
-    align-items: center;
+    justify-content: start;
+    align-items: ${props => (props.horizontalScroll ? 'start' : 'center')};
   }
 
   ${system}

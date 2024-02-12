@@ -25,13 +25,13 @@ const HeroButtons = ({ actions, ...props }) => {
               action: action.url,
             }),
           ]}
-          width={{ _: '100%', md: 'auto' }}
+          width={{ _: '100%', lg: '300px' }}
           my={{ _: 'xs', md: 'base' }}
-          mx="s"
+          mx="xs"
           {...action}
         >
           {action.icon && (
-            <Box flex={{ _: 'none', md: 'auto' }} my="auto" mr="s">
+            <Box mr="base">
               <Icon name={action.icon} size="32px" />
             </Box>
           )}

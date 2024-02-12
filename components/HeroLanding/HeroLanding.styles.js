@@ -60,14 +60,12 @@ const ButtonContainer = styled.div`
   justify-content: center;
   z-index: 2;
   color: ${themeGet('colors.white')};
-  padding: 10px;
+  min-width: 260px;
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
-    max-width: 100%;
     margin-bottom: 10px;
   }
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-    max-width: 100%;
     margin-top: ${themeGet('space.base')};
     flex-direction: row;
   }
@@ -82,6 +80,7 @@ const Button = styled.button`
   cursor: pointer;
   display: flex;
   justify-content: start;
+  align-items: center;
   font-family: ${themeGet('fonts.base')};
   font-size: ${themeGet('fontSizes.base')};
   font-weight: ${themeGet('fontWeights.bold')};
@@ -92,6 +91,7 @@ const Button = styled.button`
   text-decoration: none;
   transition: 0.3s ease-in-out;
   max-width: 350px;
+  min-height: 80px;
   flex: 1;
 
   &:disabled {
@@ -101,6 +101,7 @@ const Button = styled.button`
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
     padding-left: ${themeGet('space.base')};
     padding-right: ${themeGet('space.base')};
+    min-height: 56px;
   }
 
   border-radius: 100px;
@@ -133,10 +134,6 @@ const ButtonSubtitle = styled.p`
   -webkit-box-orient: vertical;
   overflow: hidden;
 
-  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
-    font-size: 10px;
-  }
-
   ${system}
 `;
 
@@ -152,7 +149,7 @@ const ButtonTitle = styled.p`
   overflow: hidden;
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   ${system}
