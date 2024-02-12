@@ -16,7 +16,7 @@ import {
   Loader,
   CardCarousel,
 } from 'ui-kit';
-import { CustomLink } from 'components';
+import { CardGridFeature, CustomLink } from 'components';
 
 const CollectionPreview = ({
   contentId,
@@ -82,67 +82,11 @@ const CollectionPreview = ({
         </Box>
       )}
 
-      {/* Horizontal Carousel */}
-      {horizontalScroll && (
-        <CardCarousel display={{ md: 'none' }}>
-          {loading ? (
-            <Loader />
-          ) : (
-            contentItems.map((n, i) => (
-              <CustomLink
-                as="a"
-                key={i}
-                Component={
-                  cardType === 'default' ? DefaultCard : HorizontalHighlightCard
-                }
-                coverImageOverlay={true}
-                type={size === 's' ? 'HIGHLIGHT_SMALL' : 'HIGHLIGHT_MEDIUM'}
-                mx="s"
-                coverImage={n?.coverImage?.sources[0]?.uri}
-                description={n?.summary}
-                href={getUrlFromRelatedNode(n)}
-                scaleCard={false}
-                scaleCoverImage={true}
-                title={n?.title}
-                {...cardProps}
-              />
-            ))
-          )}
-        </CardCarousel>
-      )}
-
-      {/* Grid of Cards */}
-      {(!currentBreakpoint.isSmall || !horizontalScroll) && (
-        <CardGrid
-          display={horizontalScroll ? { _: 'none', md: null } : null}
-          columns="3"
-        >
-          {loading ? (
-            <Loader />
-          ) : (
-            contentItems.map((n, i) => (
-              <CustomLink
-                key={i}
-                Component={
-                  cardType === 'default' ? DefaultCard : HorizontalHighlightCard
-                }
-                coverImageOverlay={true}
-                type={size === 's' ? 'HIGHLIGHT_SMALL' : 'HIGHLIGHT_MEDIUM'}
-                mx={size === 's' ? 'base' : 0}
-                as="a"
-                coverImage={n?.coverImage?.sources[0]?.uri}
-                description={n?.summary}
-                href={getUrlFromRelatedNode(n)}
-                scaleCard={false}
-                scaleCoverImage={true}
-                title={n?.title}
-                minWidth={300}
-                {...cardProps}
-              />
-            ))
-          )}
-        </CardGrid>
-      )}
+      <CardGridFeature
+        data={{ cards: contentItems }}
+        horizontalScroll={horizontalScroll}
+        customCardSize="HIGHLIGHT_MEDIUM"
+      />
 
       {/* See More Button */}
       {contentItems?.length > 2 && !hideButton && (

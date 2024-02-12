@@ -60,6 +60,7 @@ const ButtonContainer = styled.div`
   justify-content: center;
   z-index: 2;
   color: ${themeGet('colors.white')};
+  min-width: 260px;
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
     margin-bottom: 10px;
@@ -133,10 +134,6 @@ const ButtonSubtitle = styled.p`
   -webkit-box-orient: vertical;
   overflow: hidden;
 
-  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
-    font-size: 10px;
-  }
-
   ${system}
 `;
 
@@ -152,7 +149,7 @@ const ButtonTitle = styled.p`
   overflow: hidden;
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   ${system}

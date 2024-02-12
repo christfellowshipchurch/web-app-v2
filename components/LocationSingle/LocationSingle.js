@@ -239,7 +239,7 @@ function LocationSingle(props = {}) {
 
       {/* What's Coming Up Section */}
       <Box bg={expectData && 'white'} py={{ _: 'l', sm: 'xl' }}>
-        <Box mx="auto" maxWidth={1200}>
+        <Box mx="auto" px={{ _: 0, md: 'base' }} maxWidth={1200}>
           <CollectionPreview
             horizontalScroll
             size="s"

@@ -9,7 +9,7 @@ const DefaultCard = (props = {}) => {
   const hasContent = props.title || props.description || props.children;
 
   return (
-    <Box>
+    <>
       {!props?.loading ? (
         <Styled {...props}>
           {props.coverImage ? (
@@ -58,19 +58,21 @@ const DefaultCard = (props = {}) => {
               ) : null}
             </Styled.Cover>
           ) : null}
-          <Styled.Content {...props.contentProps}>
-            {props.title ? (
-              <Box as="h3" mb={{ _: 'xs', md: 's' }}>
-                {props.title}
-              </Box>
-            ) : null}
-            {props.description ? (
-              <Styled.Description color="neutrals.600" fontSize="s">
-                {props.description}
-              </Styled.Description>
-            ) : null}
-            {props.children ? props.children : null}
-          </Styled.Content>
+          {(props?.title || props?.description) && (
+            <Styled.Content {...props.contentProps}>
+              {props.title ? (
+                <Box as="h3" mb={{ _: 'xs', md: 's' }}>
+                  {props.title}
+                </Box>
+              ) : null}
+              {props.description ? (
+                <Styled.Description color="neutrals.600" fontSize="s">
+                  {props.description}
+                </Styled.Description>
+              ) : null}
+              {props.children ? props.children : null}
+            </Styled.Content>
+          )}
         </Styled>
       ) : (
         // When loading - skeleton for the cards - implemented for the locations search page
@@ -80,7 +82,7 @@ const DefaultCard = (props = {}) => {
           </Styled.CoverLoading>
         </Styled.Loading>
       )}
-    </Box>
+    </>
   );
 };
 
