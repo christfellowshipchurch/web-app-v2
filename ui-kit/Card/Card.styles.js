@@ -69,6 +69,10 @@ const Card = styled.div`
   display: block;
   overflow: ${props => (props.scaleCoverImage ? 'hidden' : 'initial')};
 
+  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+    width: 80vw;
+  }
+
   ${link}
   ${scaleLink}
   ${removeBoxShadow}
