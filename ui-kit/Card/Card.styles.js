@@ -70,7 +70,7 @@ const Card = styled.div`
   overflow: ${props => (props.scaleCoverImage ? 'hidden' : 'initial')};
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
-    width: ${props => (props.mobileWidth ? `${props.mobileWidth}` : 'auto')};
+    width: ${props => props.mobileWidth && `${props.mobileWidth}`};
   }
 
   ${link}
