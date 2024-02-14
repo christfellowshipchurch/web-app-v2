@@ -57,15 +57,16 @@ export default function ExternalLandingPage(props = {}) {
             hideTitle
             hideButton
             contentOverride={churchForEveryGeneration}
-            cardProps={{
-              textAlign: 'center',
-            }}
           />
         </Box>
       </Box>
 
       {/* Relevant Messages */}
-      <Box px="base" py={BASE_VERITCAL_PADDING} bg="neutrals.100">
+      <Box
+        px={{ _: 0, md: 'base' }}
+        py={BASE_VERITCAL_PADDING}
+        bg="neutrals.100"
+      >
         <Box mx="auto" maxWidth={1200}>
           <CollectionPreview
             horizontalScroll
@@ -76,7 +77,7 @@ export default function ExternalLandingPage(props = {}) {
       </Box>
 
       {/* Just for You */}
-      <Box px="base" py={BASE_VERITCAL_PADDING} bg="white">
+      <Box px={{ _: 0, md: 'base' }} py={BASE_VERITCAL_PADDING} bg="white">
         <Box mx="auto" maxWidth={1200}>
           <CollectionPreview
             horizontalScroll
