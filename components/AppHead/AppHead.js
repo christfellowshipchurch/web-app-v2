@@ -177,7 +177,7 @@ function AppHead({ Component, pageProps }) {
               height="1"
               width="1"
               style={{ display: 'none' }}
-              alt=''
+              alt=""
               src={`https://www.facebook.com/tr?id=${process.env.NEXT_PUBLIC_FB_CODE}&ev=PageView&noscript=1`}
             />
           </noscript>
@@ -204,6 +204,15 @@ function AppHead({ Component, pageProps }) {
       <script
         src="https://fast.wistia.com/assets/external/channel.js"
         async
+      ></script>
+
+      {/* HubSpot Script */}
+      <script
+        type="text/javascript"
+        id="hs-script-loader"
+        async
+        defer
+        src={`//js.hs-scripts.com/${process.env.NEXT_PUBLIC_HUBSPOT_API_KEY}.js`}
       ></script>
     </Head>
   );
