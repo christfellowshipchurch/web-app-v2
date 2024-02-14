@@ -37,7 +37,7 @@ const DiscoverFilterSection = ({ contentId, title, filter }) => {
     <Box my="s">
       <Box display="flex" justifyContent="space-between" mb="s">
         <Box as="h3">{title}</Box>
-        {content ? (
+        {content > 3 ? (
           <Button variant="link" paddingRight={0} onClick={handleSeeMore}>
             View All
           </Button>
@@ -56,6 +56,7 @@ const DiscoverFilterSection = ({ contentId, title, filter }) => {
               boxShadow="none"
               coverImage={n?.coverImage?.sources[0]?.uri}
               description={n?.summary}
+              mobileWidth="86vw"
               href={getUrlFromRelatedNode(n)}
               scaleCard={false}
               scaleCoverImage={true}
