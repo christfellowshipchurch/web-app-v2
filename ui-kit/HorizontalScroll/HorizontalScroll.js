@@ -1,6 +1,7 @@
 import Box from 'ui-kit/Box';
 import PropTypes from 'prop-types';
 
+// This component is only for mobile view
 const HorizontalScroll = (props = {}) => {
   return (
     <Box width="100%" display="flex" justifyContent="center">
@@ -8,12 +9,8 @@ const HorizontalScroll = (props = {}) => {
         display="flex"
         flexDirection="row"
         overflow="auto"
-        my={{ _: 's', md: 'base' }}
-        justifyContent={
-          props?.cardsCount <= 3
-            ? { _: 'flex-start', md: 'center' }
-            : 'flex-start'
-        }
+        my="s"
+        justifyContent="flex-start"
         {...props}
       >
         {props.children}
@@ -23,6 +20,7 @@ const HorizontalScroll = (props = {}) => {
 };
 
 HorizontalScroll.propTypes = {
+  // The cards that will be displayed
   children: PropTypes.oneOfType([PropTypes.element, PropTypes.node]).isRequired,
 };
 
