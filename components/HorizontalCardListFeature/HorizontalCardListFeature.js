@@ -9,6 +9,7 @@ import {
   Button,
   CardCarousel,
   HorizontalHighlightCard,
+  HorizontalScroll,
   HtmlRenderer,
   Loader,
   PrayerCard,
@@ -24,22 +25,6 @@ function HorizontalCardListFeature(props = {}) {
   }
 
   const cardType = props?.data?.cardType || 'default';
-  let cardsDisplayed;
-
-  if (cards) {
-    switch (cardType) {
-      case 'HIGHLIGHT_SMALL':
-        cardsDisplayed = 4;
-        break;
-      case 'HIGHLIGHT_MEDIUM':
-        cardsDisplayed = 3;
-        break;
-      default:
-        cardsDisplayed = cards.length < 2 ? 1 : 2;
-        break;
-    }
-  }
-
   /**
    * todo : TEMP SOLUTION - In the future we'll want to update how we pull in Group and Prayer cards. Right now for Groups we switch to GroupsProvider to pull in the required fields for GroupCard correctly, bypassing the CardCarousel. For Prayer we'll need to find a way to pull in the correct fields as well.
    */
@@ -60,7 +45,11 @@ function HorizontalCardListFeature(props = {}) {
         {!isEmpty(subtitle) && <Box as="p">{subtitle}</Box>}
         <Box>
           {' '}
-          <Box as="a" target="blank" href="https://www.christfellowship.church/groups">
+          <Box
+            as="a"
+            target="blank"
+            href="https://www.christfellowship.church/groups"
+          >
             Click here
           </Box>{' '}
           to discover all kinds of groups.
@@ -84,6 +73,7 @@ function HorizontalCardListFeature(props = {}) {
       </Box>
     );
   }
+  // TEST PRAYER CARDS!
   if (cards && cards[0]?.action === 'READ_PRAYER') {
     return props.loading ? (
       <Loader text="Loading your prayers" />
@@ -91,11 +81,7 @@ function HorizontalCardListFeature(props = {}) {
       <Box>
         {!isEmpty(title) && <Box as="h2">{title}</Box>}
         {!isEmpty(subtitle) && <Box as="p">{subtitle}</Box>}
-        <CardCarousel
-          cardsDisplayed={4}
-          hideArrows={!cards || cards.length < 2}
-          mx={'-0.625rem'}
-        >
+        <HorizontalScroll cardsCount={cards.length}>
           {cards.map((card, i) => (
             <PrayerCard
               key={i}
@@ -107,7 +93,7 @@ function HorizontalCardListFeature(props = {}) {
               description={card?.title}
             />
           ))}
-        </CardCarousel>
+        </HorizontalScroll>
       </Box>
     );
   }
@@ -116,11 +102,7 @@ function HorizontalCardListFeature(props = {}) {
     <Box textAlign="center">
       {!isEmpty(title) && <Box as="h2">{title}</Box>}
       {!isEmpty(subtitle) && <HtmlRenderer htmlContent={subtitle} />}
-      <CardCarousel
-        cardsDisplayed={cardsDisplayed}
-        hideArrows={!cards || cards.length < 2}
-        mx={'-0.625rem'}
-      >
+      <HorizontalScroll cardsCount={cards.length}>
         {!isEmpty(cards) &&
           cards?.map((card, i) => {
             const url = getUrlFromRelatedNode(card?.relatedNode);
@@ -147,6 +129,13 @@ function HorizontalCardListFeature(props = {}) {
                     as="a"
                     key={i}
                     m="s"
+                    minWidth={{
+                      _: '300px',
+                      md: '340px',
+                      lg: cards.length >= 3 ? '300px' : '450px',
+                    }}
+                    width={{ _: '300px', md: '40vw' }}
+                    maxWidth={{ _: '86vw', md: '600px' }}
                     boxShadow="none"
                     href={getUrlFromRelatedNode(card?.relatedNode)}
                     Component={HorizontalHighlightCard}
@@ -163,7 +152,7 @@ function HorizontalCardListFeature(props = {}) {
               </>
             );
           })}
-      </CardCarousel>
+      </HorizontalScroll>
       {callToAction && (
         <Box width="100%" textAlign="center" mt="l">
           <Button
