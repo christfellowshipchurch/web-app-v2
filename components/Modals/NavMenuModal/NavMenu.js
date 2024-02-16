@@ -5,7 +5,6 @@ import { Box, Button, Icon } from 'ui-kit';
 import Styled from './NavMenu.styles';
 import { SignIn, GetHelp } from './navComponents';
 function NavigationMenu(props = {}) {
-
   const { mainMenuLinks, subMenuLinks, additionalLinks } = props?.data;
 
   return (

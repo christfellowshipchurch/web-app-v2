@@ -40,6 +40,10 @@ const navigation = {
   ],
   subMenuLinks: [
     {
+      call: 'Get there first',
+      action: '/get-there-first',
+    },
+    {
       call: 'Get involved',
       action: '/it-all-starts-here',
     },
@@ -134,7 +138,7 @@ const navigation = {
           action: '/special-needs',
         },
         {
-          call: 'CFSEU',
+          call: 'Southeastern',
           action: 'https://www.cfseu.com/',
         },
       ],
