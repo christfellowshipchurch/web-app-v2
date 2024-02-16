@@ -8,7 +8,6 @@ import {
   Layout,
   LocationBlockFeature,
   LocationBlockFeatureEspanol,
-  NotFound,
   InfoCardList,
   Testimonials,
   HeroListFeature,
@@ -46,7 +45,11 @@ function LocationSingle(props = {}) {
   const CFEPBG = 'Christ Fellowship Español Palm Beach Gardens';
   const CFERPB = 'Christ Fellowship Español Royal Palm Beach';
 
-  if (props.loading) {
+  /**
+   * note : Loading state
+   **/
+
+  if (props.loading || !props?.data) {
     return (
       <Layout
         title="Location"
@@ -66,11 +69,6 @@ function LocationSingle(props = {}) {
         </Box>
       </Layout>
     );
-  }
-
-  // note : this means that there is not a valid page found on the API, so we'll render the 404 message
-  if (!props.loading && !props?.data?.id) {
-    return <NotFound />;
   }
 
   /**
@@ -149,6 +147,8 @@ function LocationSingle(props = {}) {
             This Week
           </Box>
           <FeatureProvider
+            //hide normal title
+            dataOverride={{ title: '' }}
             Component={HeroListFeature}
             options={{ variables: { id: thisWeekFeatureId } }}
           />
@@ -238,12 +238,10 @@ function LocationSingle(props = {}) {
       </Box>
 
       {/* What's Coming Up Section */}
-      {/* ADD SPANISH PAGE EVENTS HERE: https://rock.christfellowship.church/page/1655?ContentItemId=15472*/}
       <Box bg={expectData && 'white'} py={{ _: 'l', sm: 'xl' }}>
-        <Box mx="auto" maxWidth={1200}>
+        <Box mx="auto" px={{ _: 0, md: 'base' }} maxWidth={1200}>
           <CollectionPreview
             horizontalScroll
-            size="s"
             contentId={
               comingUpSoon
                 ? comingUpSoon

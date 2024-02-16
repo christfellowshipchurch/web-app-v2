@@ -12,7 +12,7 @@ const Hero = styled.div`
       rgba(000, 000, 000, 0.3) 0%,
       rgba(000, 000, 000, 0.6) 100%
     ),
-    url(/groups-cover-image.png);
+    url(/groups-cover-image.jpeg);
   background-size: cover;
   background-position: center;
   position: relative;

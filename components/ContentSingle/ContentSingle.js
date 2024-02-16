@@ -61,7 +61,7 @@ function ContentSingle(props = {}) {
     if (props.data?.videos?.length >= 1 && currentVideo === null) {
       setCurrentVideo(props.data.videos[0]);
     } else if (props.data?.wistiaId?.length >= 1 && currentVideo === null) {
-      setCurrentVideo(props.data.wistiaId);
+      setCurrentVideo(null);
     }
   }, [props.data?.videos, props.data?.wistiaId, currentVideo]);
 
@@ -99,10 +99,6 @@ function ContentSingle(props = {}) {
     );
   }
 
-  if (!currentVideo && wistiaId) {
-    setCurrentVideo(props.data.wistiaId);
-  }
-
   const coverImageUri = coverImage?.sources[0]?.uri;
   const authorName = author
     ? `${author.firstName} ${author.lastName}`
@@ -117,7 +113,7 @@ function ContentSingle(props = {}) {
   const metadata = keyBy(props?.data?.metadata, 'name');
 
   let contentLayoutVideo = null;
-  if (currentVideo?.wistiaId) contentLayoutVideo = currentVideo?.wistiaId;
+  if (props?.wistiaId) contentLayoutVideo = props?.wistiaId;
 
   return (
     <ContentLayout
@@ -137,16 +133,20 @@ function ContentSingle(props = {}) {
         title: metadata?.title?.content || title,
       }}
       summary={schedule?.friendlyScheduleText || summary}
-      coverImage={currentVideo ? null : coverImageUri}
-      renderA={() => (
-        <ContentVideo
-          segmentData={segmentData}
-          title={title}
-          video={currentVideo}
-          poster={coverImageUri}
-          wistiaId={wistiaId}
-        />
-      )}
+      coverImage={coverImageUri}
+      renderA={
+        videos[0] || wistiaId
+          ? () => (
+              <ContentVideo
+                segmentData={segmentData}
+                title={title}
+                video={videos[0]}
+                poster={coverImageUri}
+                wistiaId={wistiaId}
+              />
+            )
+          : null
+      }
       renderContentB={() =>
         author && (
           <Box

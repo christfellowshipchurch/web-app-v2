@@ -190,7 +190,6 @@ const AddGroupMemberModal = ({ groupId }) => {
               label="Email"
               placeholder="email@website.com"
               onChange={handleChange}
-              type="tel"
             />
             {errors?.email ? (
               <Box as="p" color="alert" fontSize="s">

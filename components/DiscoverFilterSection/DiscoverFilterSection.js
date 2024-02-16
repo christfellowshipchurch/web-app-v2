@@ -60,6 +60,7 @@ const DiscoverFilterSection = ({ contentId, title, filter }) => {
               scaleCard={false}
               scaleCoverImage={true}
               title={n?.title}
+              minWidth={350}
               type="HIGHLIGHT_SMALL"
             />
           ))

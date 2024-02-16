@@ -5,9 +5,8 @@ import { systemPropTypes } from 'ui-kit';
 import Styled from 'ui-kit/DefaultCard';
 
 const HorizontalHighlightCard = (props = {}) => {
-  let height = 0;
-  let mobileHeight = 250;
-  if (props?.mobileHeight) mobileHeight = props.mobileHeight;
+  let height = props?.height;
+  let mobileHeight = props?.mobileHeight || 250;
 
   // specifies card height based on type
   if (!!props.type) {
@@ -32,6 +31,7 @@ const HorizontalHighlightCard = (props = {}) => {
   return (
     <Styled
       {...props}
+      width={props?.width || { _: '80vw', md: 'auto' }}
       // Overriding the default props from DefaultCard
       // so that the component only uses the coverImage props
       coverImageDescription={props.coverImageDescription || props.description}
