@@ -40,10 +40,6 @@ const navigation = {
   ],
   subMenuLinks: [
     {
-      call: 'Get there first',
-      action: '/get-there-first',
-    },
-    {
       call: 'Get involved',
       action: '/it-all-starts-here',
     },
@@ -66,6 +62,10 @@ const navigation = {
     {
       call: 'Improve my finances',
       action: '/discover?c=stewardship',
+    },
+    {
+      call: 'Get there first',
+      action: '/get-there-first',
     },
   ],
   additionalLinks: [
