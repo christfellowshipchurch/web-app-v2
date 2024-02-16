@@ -4,7 +4,8 @@ import { themeGet } from '@styled-system/theme-get';
 import { system } from 'ui-kit';
 
 const FAQ = styled.div`
-  margin: ${themeGet('space.l')};
+  margin: ${themeGet('space.l')} ${themeGet('space.l')} 0px
+    ${themeGet('space.l')};
   display: grid;
   grid-template-columns: ${props => (props?.fullWidth ? '1fr' : '1fr 1.5fr')};
 

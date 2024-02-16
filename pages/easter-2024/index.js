@@ -1,17 +1,21 @@
-import { Layout } from 'components';
+import { FAQ, Layout } from 'components';
 import { Box } from 'ui-kit';
+import faqData from 'components/FAQ/faqData';
 
-const EasterPage = () => {
+const Easter = () => {
   return (
     <Layout>
-      {/* Header Section */}
-      <Box> Easter 2024</Box>
-      {/* Video Section Section */}
-      {/* Kids Programming Section */}
-      {/* Serve Section */}
-      {/* FAQ Section Section */}
+      <Box px="base" bg="#fcfce6">
+        {/* Header Section */}
+        <Box height="600px"></Box>
+        {/* Video Section Section */}
+        {/* Kids Programming Section */}
+        {/* Serve Section */}
+        {/* FAQ Section Section */}
+        <FAQ pb="l" data={faqData('Easter')} />
+      </Box>
     </Layout>
   );
 };
 
-export default EasterPage;
+export default Easter;
