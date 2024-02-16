@@ -8,10 +8,10 @@ const FAQ = styled.div`
     ${themeGet('space.l')};
   display: grid;
   grid-template-columns: ${props => (props?.fullWidth ? '1fr' : '1fr 1.5fr')};
-
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     max-width: ${props => props?.fullWidth && '900px'};
     margin: ${props => props?.fullWidth && '0 auto'};
+    grid-gap: 40px;
   }
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
