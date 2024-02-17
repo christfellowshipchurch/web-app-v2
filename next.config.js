@@ -32,6 +32,7 @@ module.exports = {
         destination: '/:slug',
         permanent: false,
       }, // reboot this stupid thing
+      { source: '/freedom', destination: '/freedomfrompornographysupportgroup', permanent: true },
       { source: '/host', destination: '/host-your-event-or-gathering-at-long-hollow', permanent: true },
       { source: '/family', destination: 'https://nsb2r6cpbt4.typeform.com/to/rv4waLbv', permanent: true },
       { source: '/relief', destination: 'https://longhollow.com/tornadodamage-crisisresponse', permanent: true },
