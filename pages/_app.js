@@ -10,8 +10,9 @@ import './StreamChatOverrides.css';
 
 import 'react-quill/dist/quill.snow.css';
 
-import './proxima-nova.css';
 import './merriweather.css';
+import './proxima-nova.css';
+import './retroica.css';
 
 // Tracks the route changes and adds a bar to the top.
 configureNProgress();
