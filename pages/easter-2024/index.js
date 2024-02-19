@@ -1,5 +1,5 @@
 import { FAQ, Layout } from 'components';
-import { Box, Button, Icon, Image } from 'ui-kit';
+import { Box, Button, Image } from 'ui-kit';
 import faqData from 'components/FAQ/faqData';
 
 const Easter = () => {
