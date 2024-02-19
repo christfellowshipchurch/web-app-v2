@@ -1,5 +1,5 @@
 import { FAQ, Layout } from 'components';
-import { Box, Button, Icon, Image } from 'ui-kit';
+import { Box, Button, Image, EasterContentBlock } from 'ui-kit';
 import faqData from 'components/FAQ/faqData';
 
 const Easter = () => {
@@ -76,8 +76,103 @@ const Easter = () => {
             </Box>
           </Box>
         </Box>
+
         {/* Kids Programming Section */}
+        <Box
+          py="xxl"
+          backgroundImage="url(/easter/kids-programming-background.png)"
+          backgroundPosition="center"
+          backgroundSize="cover"
+          borderTop="3px solid black"
+        >
+          <Box
+            m="auto"
+            maxWidth="1100px"
+            p="base"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <EasterContentBlock
+              title={`Special Programming\nfor Kids`}
+              actions={[
+                {
+                  title: 'Find A Service',
+                  border: '2px solid black',
+                  relatedNode: {
+                    url: 'http://eepurl.com/hAk7aP',
+                  },
+                  mt: '-0.8rem',
+                  target: '_blank',
+                  bg: '#FF7D01',
+                  borderRadius: '30px',
+                  paddingLeft: '40px',
+                  paddingRight: '40px',
+                  mt: 's',
+                },
+              ]}
+              contentLayout={'LEFT'}
+              htmlContent={`<div>
+                <p>
+                  Christ Fellowship Kids seeks to lead your kids to love Jesus, love others, and love life! And Easter at Christ Fellowship is designed with your family in mind, including special programming for <b> babies-kindergarten during all Good Friday services and babies-elementary during all Easter services.<b> 
+                </p>
+              </div>
+            `}
+              image={'easter/easter-2024-kids-programming.png'}
+              imageRatio={'12by17'}
+            />
+          </Box>
+        </Box>
+
         {/* Serve Section */}
+        <Box
+          py="xxl"
+          backgroundImage="url(/easter/dream-team-background.png)"
+          backgroundPosition="center"
+          backgroundSize="cover"
+          borderTop="3px solid black"
+          borderBottom="3px solid black"
+        >
+          <Box
+            m="auto"
+            maxWidth="1100px"
+            p="base"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <EasterContentBlock
+              title={`Serve at Easter`}
+              subtitle={'Join the Easter Dream Team'}
+              actions={[
+                {
+                  title: 'Sign Up to Serve',
+                  border: '2px solid black',
+                  relatedNode: {
+                    url: 'http://eepurl.com/hAk7aP',
+                  },
+                  mt: '-0.8rem',
+                  target: '_blank',
+                  bg: '#FFEC7F',
+                  color: 'black',
+                  borderRadius: '30px',
+                  paddingLeft: '40px',
+                  paddingRight: '40px',
+                  mt: 's',
+                },
+              ]}
+              contentLayout={'RIGHT'}
+              htmlContent={`<div>
+                <p>
+                You can play a part in Easter at Christ Fellowship. How you serve is up to you! From the streets to the seats—there’s a spot for everyone on the Easter Dream Team!
+                </p>
+              </div>
+            `}
+              image={'easter/dream-team-image.png'}
+              imageRatio={'13by17'}
+            />
+          </Box>
+        </Box>
         {/* FAQ Section Section */}
         <FAQ
           customTheme={{ secondary: '#39383A' }}
