@@ -51,26 +51,38 @@ const Easter = () => {
           />
           <Box
             position="absolute"
-            // width={{ _: '80%', md: 'auto' }}
             py="l"
-            pr="6rem"
+            pr={{ _: 0, md: '1.5rem', lg: '4.5rem', xl: '6rem' }}
             bg="rgba(59, 125, 217, 0.67)"
             top="50%"
             style={{ transform: 'translateY(-50%)' }}
             color="white"
           >
-            <Box ml="l" fontSize={24}>
+            <Box
+              ml={{ _: 0, md: 'l' }}
+              textAlign={{ _: 'center', md: 'left' }}
+              fontSize={20}
+              fontWeight="bold"
+            >
               Come enjoy an Easter service with
             </Box>
-            <Box mx="l" mt="s" display="flex" alignItems="center">
+            <Box
+              mx="l"
+              mt="s"
+              display="flex"
+              alignItems="center"
+              textAlign={{ _: 'center', md: 'left' }}
+            >
               <Image
+                display={{ _: 'none', md: 'block' }}
                 source="/easter/easter-icon-1.png"
                 height={60}
                 width={100}
                 mr={0}
-                ml="xl"
+                ml={{ _: 0, md: 'xl' }}
               />
-              <Box as="h2" fontSize={42}>
+              {/* Add Word Carrousel */}
+              <Box as="h2" fontSize={{ _: 56, md: 50 }}>
                 a welcoming atmosphere
               </Box>
             </Box>
@@ -116,7 +128,6 @@ const Easter = () => {
                   relatedNode: {
                     url: 'http://eepurl.com/hAk7aP',
                   },
-                  mt: '-0.8rem',
                   target: '_blank',
                   bg: '#FF7D01',
                   borderRadius: '30px',
@@ -165,7 +176,6 @@ const Easter = () => {
                   relatedNode: {
                     url: 'http://eepurl.com/hAk7aP',
                   },
-                  mt: '-0.8rem',
                   target: '_blank',
                   bg: '#FFEC7F',
                   color: 'black',
@@ -192,7 +202,7 @@ const Easter = () => {
           customTheme={{ secondary: '#39383A' }}
           py="l"
           mt="2.5rem !important"
-          px={{ _: 0, md: 'l' }}
+          px={{ _: 's', md: 'l' }}
           data={faqData('Easter')}
           otherData={{
             title: 'FAQ',
