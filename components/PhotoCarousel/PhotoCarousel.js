@@ -3,6 +3,11 @@ import { Box } from 'ui-kit';
 import Styled from './PhotoCarousel.styles';
 import { chunk } from 'lodash';
 
+function calculateFlex(index, chunkIndex) {
+  const isEven = chunkIndex % 2 === 0;
+  return (index === 0 && isEven) || (index === 1 && !isEven) ? 1 : 2;
+}
+
 function PhotoCarousel(props = {}) {
   const chunked = chunk(props?.photos, 2);
 
@@ -19,16 +24,13 @@ function PhotoCarousel(props = {}) {
               width="100%"
               key={chunkIndex}
             >
-              {chunk.map((photo, index) => {
-                const isEven = chunkIndex % 2 === 0;
-                return (
-                  <Styled.GridPhoto
-                    key={index}
-                    backgroundImage={`url(${photo})`}
-                    flex={index === 0 && isEven ? 1 : 2}
-                  />
-                );
-              })}
+              {chunk.map((photo, index) => (
+                <Styled.GridPhoto
+                  key={index}
+                  backgroundImage={`url(${photo})`}
+                  flex={calculateFlex(index, chunkIndex)}
+                />
+              ))}
             </Box>
           );
         })}
@@ -41,16 +43,13 @@ function PhotoCarousel(props = {}) {
               width="100%"
               key={chunkIndex}
             >
-              {chunk.map((photo, index) => {
-                const isEven = chunkIndex % 2 === 0;
-                return (
-                  <Styled.GridPhoto
-                    key={index}
-                    backgroundImage={`url(${photo})`}
-                    flex={index === 0 && isEven ? 1 : 2}
-                  />
-                );
-              })}
+              {chunk.map((photo, index) => (
+                <Styled.GridPhoto
+                  key={index}
+                  backgroundImage={`url(${photo})`}
+                  flex={calculateFlex(index, chunkIndex)}
+                />
+              ))}
             </Box>
           );
         })}
