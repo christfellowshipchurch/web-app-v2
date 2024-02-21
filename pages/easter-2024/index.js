@@ -1,4 +1,4 @@
-import { FAQ, Layout } from 'components';
+import { FAQ, Layout, PhotoCarousel } from 'components';
 import { Box, Button, Image, EasterContentBlock } from 'ui-kit';
 import faqData from 'components/FAQ/faqData';
 
@@ -76,6 +76,20 @@ const Easter = () => {
             </Box>
           </Box>
         </Box>
+
+        {/* Photo Carousel */}
+        <PhotoCarousel
+          photos={[
+            '/easter/photo-carousel/photo-1.jpg',
+            '/easter/photo-carousel/photo-2.jpg',
+            '/easter/photo-carousel/photo-3.jpg',
+            '/easter/photo-carousel/photo-4.jpg',
+            '/easter/photo-carousel/photo-5.jpg',
+            '/easter/photo-carousel/photo-6.jpg',
+            '/easter/photo-carousel/photo-7.jpg',
+            '/easter/photo-carousel/photo-8.jpg',
+          ]}
+        />
 
         {/* Kids Programming Section */}
         <Box

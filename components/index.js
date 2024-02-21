@@ -62,6 +62,7 @@ import Nav from './Nav';
 import NotFound from './NotFound';
 import PageSingle from './PageSingle';
 import PasswordReset from './PasswordReset';
+import PhotoCarousel from './PhotoCarousel';
 import SEO from './SEO';
 import SearchField from './SearchField';
 import Share from './Share';
@@ -141,6 +142,7 @@ export {
   NotFound,
   PageSingle,
   PasswordReset,
+  PhotoCarousel,
   SEO,
   SearchField,
   Share,
