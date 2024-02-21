@@ -73,6 +73,7 @@ import UserAvatar from './UserAvatar';
 import UserProfile from './UserProfile';
 import VerticalCardListFeature from './VerticalCardListFeature';
 import VerticalModalCardListFeature from './VerticalModalCardListFeature';
+import VerticalWordCarousel from './VerticalWordCarousel';
 import Video from './Video';
 import VideoHeader from './VideoHeader';
 import VisionCardCarousel from './VisionCardCarousel';
@@ -153,6 +154,7 @@ export {
   UserProfile,
   VerticalCardListFeature,
   VerticalModalCardListFeature,
+  VerticalWordCarousel,
   Video,
   VideoHeader,
   VisionCardCarousel,

@@ -1,4 +1,4 @@
-import { FAQ, Layout, PhotoCarousel } from 'components';
+import { FAQ, Layout, PhotoCarousel, VerticalWordCarousel } from 'components';
 import { Box, Button, Image, EasterContentBlock } from 'ui-kit';
 import faqData from 'components/FAQ/faqData';
 
@@ -59,31 +59,46 @@ const Easter = () => {
             color="white"
           >
             <Box
-              ml={{ _: 0, md: 'l' }}
-              textAlign={{ _: 'center', md: 'left' }}
-              fontSize={20}
-              fontWeight="bold"
-            >
-              Come enjoy an Easter service with
-            </Box>
-            <Box
-              mx="l"
-              mt="s"
+              position="relative"
+              fontSize={30}
+              width={{ _: '100vw', md: 'auto' }}
               display="flex"
+              flexDirection="column"
               alignItems="center"
-              textAlign={{ _: 'center', md: 'left' }}
             >
-              <Image
-                display={{ _: 'none', md: 'block' }}
-                source="/easter/easter-icon-1.png"
-                height={60}
-                width={100}
-                mr={0}
-                ml={{ _: 0, md: 'xl' }}
-              />
-              {/* Add Word Carrousel */}
-              <Box as="h2" fontSize={{ _: 56, md: 50 }}>
-                a welcoming atmosphere
+              <Box
+                ml={{ _: 0, md: 'l' }}
+                textAlign={{ _: 'center', md: 'left' }}
+                fontSize={20}
+                fontWeight="bold"
+              >
+                Come enjoy an Easter service with
+              </Box>
+              <Box
+                mx="l"
+                mt="s"
+                display="flex"
+                alignItems="center"
+                textAlign={{ _: 'center', md: 'left' }}
+                width={{ _: 200, md: 'auto' }}
+              >
+                <Image
+                  display={{ _: 'none', md: 'block' }}
+                  source="/easter/easter-icon-1.png"
+                  height={60}
+                  width={100}
+                  mr={0}
+                  ml={{ _: 0, md: 'xl' }}
+                />
+                <VerticalWordCarousel
+                  data={[
+                    'A welcoming environment',
+                    'Uplifting worship music',
+                    'An encouraging message',
+                    'Outdoor activities for kids',
+                    'Time to connect with others',
+                  ]}
+                />
               </Box>
             </Box>
           </Box>
