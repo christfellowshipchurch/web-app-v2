@@ -1,4 +1,10 @@
-import { FAQ, Layout, PhotoCarousel, VerticalWordCarousel } from 'components';
+import {
+  FAQ,
+  Layout,
+  PhotoCarousel,
+  VerticalWordCarousel,
+  VideoHeader,
+} from 'components';
 import { Box, Button, Image, EasterContentBlock } from 'ui-kit';
 import faqData from 'components/FAQ/faqData';
 
@@ -44,17 +50,23 @@ const Easter = () => {
 
         {/* Video/Word Carousel Section */}
         <Box my="l" py="base" position="relative">
-          <Image
-            width="100%"
-            height={620}
-            borderRadius={0}
-            source="/easter/video-holder.jpg"
+          <VideoHeader
+            // bgOverlay="rgba(59, 125, 217, 0.50)"
+            backgroundVideo={{
+              desktop: '/external-landing/external-bg-vid.mp4',
+            }}
+            overlay={false}
+            logoAspectRatio="16/9"
+            backgroundImage="url(/get-there-first/banner.jpg)"
+            backgroundPosition="center"
+            backgroundSize="cover"
           />
+
           <Box
             position="absolute"
             py="l"
             pr={{ _: 0, md: '1.5rem', lg: '4.5rem', xl: '6rem' }}
-            bg="rgba(59, 125, 217, 0.67)"
+            bg={{ _: 'transparent', md: 'rgba(59, 125, 217, 0.60)' }}
             top="50%"
             style={{ transform: 'translateY(-50%)' }}
             color="white"
@@ -65,15 +77,15 @@ const Easter = () => {
               width={{ _: '100vw', md: 'auto' }}
               display="flex"
               flexDirection="column"
-              alignItems="center"
+              alignItems={{ _: 'center', md: 'flex-start' }}
             >
               <Box
                 ml={{ _: 0, md: 'l' }}
                 textAlign={{ _: 'center', md: 'left' }}
-                fontSize={20}
+                fontSize={{ _: 20, md: 24, lg: 26, xl: 36 }}
                 fontWeight="bold"
               >
-                Come enjoy an Easter service with
+                Experience an Easter service with
               </Box>
               <Box
                 mx="l"
@@ -86,10 +98,10 @@ const Easter = () => {
                 <Image
                   display={{ _: 'none', md: 'block' }}
                   source="/easter/easter-icon-1.png"
-                  height={60}
-                  width={100}
+                  height={{ _: 60, lg: 80, xl: 110 }}
+                  width={{ _: 100, lg: 140, xl: 200 }}
                   mr={0}
-                  ml={{ _: 0, md: 'xl' }}
+                  mx={{ _: 0, md: 'xl' }}
                 />
                 <VerticalWordCarousel
                   data={[

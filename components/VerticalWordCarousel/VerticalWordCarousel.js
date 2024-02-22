@@ -8,7 +8,11 @@ const WordCarousel = props => {
       {props?.data?.map((word, i) => {
         return (
           <Styled.Inner>
-            <Box as="h1" fontFamily="retroica">
+            <Box
+              as="h1"
+              fontSize={{ md: 28, lg: 36, xl: 56 }}
+              fontFamily="retroica"
+            >
               {word}
             </Box>
           </Styled.Inner>
