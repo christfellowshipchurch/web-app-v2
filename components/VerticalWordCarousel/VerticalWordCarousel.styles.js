@@ -15,32 +15,28 @@ const WordCarousel = styled.div`
 
 const Inner = styled.div`
   position: relative;
-  animation: rotate 16s ease-in-out infinite;
+  animation: rotate 12s ease-in-out infinite;
 
   @keyframes rotate {
     0%,
-    14% {
+    16% {
       transform: translateY(0);
     }
-    17%,
-    31% {
+    20%,
+    36% {
       transform: translateY(-100%);
     }
-    34%,
-    48% {
+    40%,
+    56% {
       transform: translateY(-200%);
     }
-    51%,
-    65% {
+    60%,
+    76% {
       transform: translateY(-300%);
     }
-    67%,
-    81% {
-      transform: translateY(-400%);
-    }
-    84%,
+    80%,
     100% {
-      transform: translateY(-500%);
+      transform: translateY(-400%);
     }
   }
   ${system}

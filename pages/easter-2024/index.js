@@ -80,7 +80,7 @@ const Easter = () => {
                 display="flex"
                 alignItems="center"
                 textAlign={{ _: 'center', md: 'left' }}
-                width={{ _: 200, md: 'auto' }}
+                width={{ _: 260, md: 'auto' }}
               >
                 <Image
                   display={{ _: 'none', md: 'block' }}
