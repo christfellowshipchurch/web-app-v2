@@ -8,7 +8,9 @@ const WordCarousel = props => {
       {props?.data?.map((word, i) => {
         return (
           <Styled.Inner>
-            <Box>{word}</Box>
+            <Box as="h1" fontFamily="retroica">
+              {word}
+            </Box>
           </Styled.Inner>
         );
       })}

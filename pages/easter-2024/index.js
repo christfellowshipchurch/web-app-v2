@@ -41,7 +41,8 @@ const Easter = () => {
             </Button>
           </Box>
         </Box>
-        {/* Video Section */}
+
+        {/* Video/Word Carousel Section */}
         <Box my="l" py="base" position="relative">
           <Image
             width="100%"
@@ -92,11 +93,11 @@ const Easter = () => {
                 />
                 <VerticalWordCarousel
                   data={[
-                    'A welcoming environment',
-                    'Uplifting worship music',
-                    'An encouraging message',
-                    'Outdoor activities for kids',
-                    'Time to connect with others',
+                    'a welcoming environment',
+                    'uplifting worship music',
+                    'an encouraging message',
+                    'outdoor activities for kids',
+                    'time to connect with others',
                   ]}
                 />
               </Box>
