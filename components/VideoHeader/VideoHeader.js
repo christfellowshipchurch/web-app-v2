@@ -14,12 +14,10 @@ function VideoHeader(props = {}) {
       display="flex"
       justifyContent="center"
       alignItems={{ _: 'flex-end', sm: 'center' }}
-      // bg={props?.bgOverlay}
       {...props}
     >
       <Box height={{ _: 300, sm: 500, md: 600, lg: 700 }}>
         <Styled.VideoCover
-          mx="auto"
           src={
             currentBreakpoint.isSmall
               ? props?.backgroundVideo?.mobile ||

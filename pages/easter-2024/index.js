@@ -53,7 +53,8 @@ const Easter = () => {
           <VideoHeader
             // bgOverlay="rgba(59, 125, 217, 0.50)"
             backgroundVideo={{
-              desktop: '/external-landing/external-bg-vid.mp4',
+              desktop:
+                'https://embed.wistia.com/deliveries/a77f306b26810383456d108d6a159db0.mp4',
             }}
             overlay={false}
             logoAspectRatio="16/9"

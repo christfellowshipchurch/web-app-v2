@@ -9,6 +9,9 @@ const VideoCover = styled.video`
   top: 0;
   left: 0;
 
+  margin-left: auto;
+  margin-right: auto;
+
   object-fit: cover;
 
   ${system}
