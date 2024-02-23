@@ -22,6 +22,7 @@ import DiscoverFilterSection from './DiscoverFilterSection';
 import DiscoverFiltersMap from './DiscoverFiltersMap';
 import DiscoverItemsList from './DiscoverItemsList';
 import DisplayAllIcons from './DisplayAllIcons';
+import EasterLocationSearch from './EasterLocationSearch';
 import EventSingle from './EventSingle';
 import EventsList from './EventsList';
 import HeroLanding from './HeroLanding';
@@ -103,6 +104,7 @@ export {
   DiscoverFiltersMap,
   DiscoverItemsList,
   DisplayAllIcons,
+  EasterLocationSearch,
   EventSingle,
   EventsList,
   HeroLanding,

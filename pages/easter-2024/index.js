@@ -1,4 +1,5 @@
 import {
+  EasterLocationSearch,
   FAQ,
   Layout,
   PhotoCarousel,
@@ -119,6 +120,9 @@ const Easter = () => {
             </Box>
           </Box>
         </Box>
+
+        {/* Times and Locations */}
+        <EasterLocationSearch />
 
         {/* Photo Carousel */}
         <PhotoCarousel
