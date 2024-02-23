@@ -87,7 +87,7 @@ const Easter = () => {
                 ml={{ _: 0, md: 'l' }}
                 textAlign={{ _: 'center', md: 'left' }}
                 fontSize={{ _: 20, md: 24, lg: 26, xl: 36 }}
-                fontWeight="bold"
+                fontWeight="normal"
               >
                 Experience an Easter service with
               </Box>
@@ -104,8 +104,8 @@ const Easter = () => {
                   source="/easter/easter-icon.png"
                   height={{ _: 60, lg: 80, xl: 110 }}
                   width={{ _: 100, lg: 140, xl: 200 }}
-                  mr={0}
-                  mx={{ _: 0, md: 'xl' }}
+                  mr="-1rem"
+                  ml={{ _: 0, md: 'xl' }}
                 />
                 <VerticalWordCarousel
                   data={[
