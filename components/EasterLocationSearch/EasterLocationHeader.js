@@ -1,8 +1,7 @@
 import React from 'react';
-import { Box, Button, Icon } from 'ui-kit';
+import { Box } from 'ui-kit';
 
 import Styled from './EasterLocationSearch.styles';
-import { useActionBanner, useCurrentBreakpoint } from 'hooks';
 
 function LocationHeader({
   handleSubmit,
@@ -14,11 +13,6 @@ function LocationHeader({
   locationActive,
   setLocationActive,
 }) {
-  const currentBreakpoint = useCurrentBreakpoint();
-  // checks for banner to adjust title height
-  const { actionBanner } = useActionBanner();
-  const isBanner = !!actionBanner;
-
   return (
     <Box
       position="relative"
@@ -56,6 +50,7 @@ function LocationHeader({
                 color="red"
                 mx="auto"
                 mt={{ _: 'base', md: '' }}
+                mb={{ _: 'base', md: 'l' }}
                 as="form"
                 onSubmit={handleSubmit}
               >
@@ -66,25 +61,16 @@ function LocationHeader({
                     onChange={e => setAddress(e.target.value)}
                   />
                 </Box>
-                <Button
-                  size="s"
-                  maxWidth="200px"
-                  minWidth="160px"
-                  width={{ _: '70%', md: '60%', lg: '50%' }}
-                  borderRadius="6px"
-                  mx="auto"
-                  fontSize={{ _: '16px', md: '18px' }}
-                  mb={{ _: 'l', lg: 'base' }}
-                  onClick={() => {
-                    //When users clicks search button we want to get the coordinates and refetch the campuses to get distance from location
-                    getCoordinates();
-                    refetch();
-                    searchScroll();
-                    setLocationActive(true);
-                  }}
+                <Box
+                  as="a"
+                  color="#3B7DD9"
+                  fontStyle="italic"
+                  fontWeight="bold"
+                  mt="s"
+                  href="/easter-2024-espanol"
                 >
-                  Find a Location
-                </Button>
+                  ¿Buscas un servicio de Pascua en español?
+                </Box>
               </Box>
             </Box>
           </Box>

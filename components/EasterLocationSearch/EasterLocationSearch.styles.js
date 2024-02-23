@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 import Color from 'color';
 
-import { TextInput, system, theme } from 'ui-kit';
+import { TextInput, system } from 'ui-kit';
 
 const EasterLocations = styled.div`
   background: url('/easter/empty-tomb-mobile.png');
@@ -47,6 +47,7 @@ const LocationInput = styled(TextInput)`
   font-size: 16px;
   margin-bottom: ${themeGet('space.s')};
   max-width: 400px;
+  border: 1px solid #3a3a3c;
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     font-size: 20px;
@@ -93,10 +94,12 @@ const LocationCard = styled.div`
   justify-content: space-between;
   height: 80px;
   padding: ${themeGet('space.s')};
+  width: 86vw;
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     height: 100px;
     padding: ${themeGet('space.m')};
+    width: auto;
   }
 
   &:hover {
