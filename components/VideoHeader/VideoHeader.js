@@ -31,7 +31,9 @@ function VideoHeader(props = {}) {
           type="video/mp4"
         />
       </Box>
-      {props?.overlay && <Styled.VideoOverlay />}
+      {props?.overlay && (
+        <Styled.VideoOverlay overlayColor={props?.overlayColor} />
+      )}
       {/* Logo */}
       <Styled.LogoOverlay
         maxWidth={1200}

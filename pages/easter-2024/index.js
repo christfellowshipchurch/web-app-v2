@@ -56,7 +56,8 @@ const Easter = () => {
               desktop:
                 'https://embed.wistia.com/deliveries/a77f306b26810383456d108d6a159db0.mp4',
             }}
-            overlay={false}
+            overlay={true}
+            overlayColor="rgba(70, 113, 194, 0.4)"
             logoAspectRatio="16/9"
             backgroundImage="url(/get-there-first/banner.jpg)"
             backgroundPosition="center"
@@ -71,6 +72,7 @@ const Easter = () => {
             top="50%"
             style={{ transform: 'translateY(-50%)' }}
             color="white"
+            zIndex={2}
           >
             <Box
               position="relative"
@@ -98,7 +100,7 @@ const Easter = () => {
               >
                 <Image
                   display={{ _: 'none', md: 'block' }}
-                  source="/easter/easter-icon-1.png"
+                  source="/easter/easter-icon.png"
                   height={{ _: 60, lg: 80, xl: 110 }}
                   width={{ _: 100, lg: 140, xl: 200 }}
                   mr={0}
