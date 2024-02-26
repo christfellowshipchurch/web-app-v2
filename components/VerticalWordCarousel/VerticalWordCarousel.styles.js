@@ -11,6 +11,10 @@ const WordCarousel = styled.div`
     height: 72px;
   }
 
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    margin-left: ${themeGet('space.base')};
+  }
+
   @media screen and ((min-width: ${themeGet(
       'breakpoints.md'
     )})and (max-width: ${themeGet('breakpoints.lg')})) {

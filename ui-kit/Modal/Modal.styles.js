@@ -49,6 +49,7 @@ const Content = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   width: ${props => props.width};
+  max-width: ${props => props.maxWidth};
   z-index: 1002;
 
   /* Small Only */

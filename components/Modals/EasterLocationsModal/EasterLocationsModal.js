@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { Box, Button, Divider, Modal } from 'ui-kit';
+import { Box, Button, Divider, HtmlRenderer, Modal } from 'ui-kit';
 function EasterLocationsModal(props = {}) {
   return (
-    <Modal width="80vw" {...props}>
+    <Modal width="90vw" maxWidth="1100px" {...props}>
       <Box color="black">
         <Box display="flex" alignItems="flex-end">
           <Box as="h1" fontSize={54} mb={0}>
@@ -14,7 +14,9 @@ function EasterLocationsModal(props = {}) {
           </Box>
         </Box>
         <Box as="h1" fontSize={32}>
-          {props?.location}Palm Beach Gardens
+          {props?.data?.name !== 'Trinity'
+            ? props?.data?.name
+            : 'Trinity in Palm Beach Gardens'}
         </Box>
         <Box
           as="a"
@@ -30,43 +32,58 @@ function EasterLocationsModal(props = {}) {
           flexDirection={{ _: 'column', md: 'row' }}
           justifyContent="space-between"
         >
-          <Box color="#353535" mt="l">
+          <Box color="#353535" mt="l" maxWidth={{ _: '80%', md: '30%' }}>
             <Box>
-              <Box as="h3" fontSize={32} textDecoration="underline">
-                Good Friday
-                <Box>{props?.day1?.day}</Box>
-                <Box>{props?.day1?.time}</Box>
+              <Box>
+                <Box fontSize={32} textDecoration="underline">
+                  Good Friday
+                </Box>
+                <Box fontWeight="bold" fontSize={21} mb="xs">
+                  Friday, March 29
+                </Box>
+                <HtmlRenderer
+                  fontSize={18}
+                  htmlContent={props?.data?.goodFridayServices[0]?.times}
+                />
               </Box>
-              <Box as="h3" fontSize={32} textDecoration="underline" mt="l">
-                Easter
+              <Box>
+                <Box fontSize={32} textDecoration="underline" mt="l">
+                  Easter
+                </Box>
                 {/* MAP DATA*/}
-                <Box>
-                  {/* <Box>{props?.day[i].day}</Box> */}
-                  {/* <Box>{props?.day[i].time}</Box> */}
-                </Box>
+                {props?.data?.easterServices.map((service, i) => {
+                  return (
+                    <Box mt={i !== 0 ? 's' : 0}>
+                      <Box fontWeight="bold" fontSize={21} mb="xs">
+                        {service?.day}
+                      </Box>
+                      <HtmlRenderer
+                        fontSize={18}
+                        htmlContent={service?.times}
+                      />
+                    </Box>
+                  );
+                })}
               </Box>
-
               <Box mt="base" fontSize={12}>
-                <Box color="#818181" fontStyle="italic">
-                  *Spanish Translation
-                </Box>
-                <Box>
-                  Special programming for babies – 6th grade.{' '}
-                  <Box as="a" color="#3B7DD9" href="/christ-fellowship-kids">
-                    Learn More
-                  </Box>
-                </Box>
+                {props?.data?.extraInfo &&
+                  props?.data?.extraInfo.map((info, i) => {
+                    return <HtmlRenderer htmlContent={info} />;
+                  })}
               </Box>
             </Box>
           </Box>
+          {/* Right Half */}
           <Box
             ml={{ md: 'base' }}
             mt="l"
             borderRadius="8px"
             border="1px solid black"
             minWidth={{ md: 350 }}
+            display="flex"
+            alignItems="center"
           >
-            <Box mx="base" my="base">
+            <Box mx="base" my="base" width="100%">
               <Box
                 display="flex"
                 flexDirection="column"

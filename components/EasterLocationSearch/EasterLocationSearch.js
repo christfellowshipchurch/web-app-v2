@@ -6,6 +6,8 @@ import LocationsLoader from './LocationsLoader';
 import Styled from './EasterLocationSearch.styles';
 import EasterLocationHeader from './EasterLocationHeader';
 import { showModal, useModalDispatch } from 'providers/ModalProvider';
+import easterServices from 'lib/easterServiceData';
+import { find } from 'lodash';
 
 const EasterLocationSearch = () => {
   const [results, setResults] = useState([{ geometry: { location: {} } }]);
@@ -96,6 +98,14 @@ const EasterLocationSearch = () => {
     );
   }
 
+  function cardClicked(name) {
+    modalDispatch(
+      showModal('EasterLocations', {
+        data: find(easterServices, { name: name }),
+      })
+    );
+  }
+
   return (
     <Styled>
       <EasterLocationHeader
@@ -127,7 +137,7 @@ const EasterLocationSearch = () => {
                 <Box
                   color="black"
                   textDecoration="none"
-                  onClick={() => modalDispatch(showModal('EasterLocations'))}
+                  onClick={() => cardClicked('Online')}
                 >
                   <Styled.LocationCard>
                     <Box as="h4" mb="0">
@@ -166,7 +176,7 @@ const EasterLocationSearch = () => {
                     as="a"
                     color="black"
                     textDecoration="none"
-                    onClick={() => modalDispatch(showModal('EasterLocations'))}
+                    onClick={() => cardClicked(campus.name)}
                   >
                     <Styled.LocationCard>
                       <Box as="h4" mb="0" maxWidth="200px">
