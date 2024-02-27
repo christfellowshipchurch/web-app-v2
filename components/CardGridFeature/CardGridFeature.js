@@ -47,7 +47,9 @@ function CardGridFeature(props = {}) {
           columns="12"
         >
           {cards.map((card, i) => {
-            const url = getUrlFromRelatedNode(card?.relatedNode);
+            const url = card.routing
+              ? card.routing.pathname
+              : getUrlFromRelatedNode(card?.relatedNode);
             const nonClickable = url === '#no-click';
             return (
               <Styled.CardSpacing key={i} index={i} total={cards.length}>
