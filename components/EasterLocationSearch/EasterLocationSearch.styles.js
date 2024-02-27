@@ -12,7 +12,25 @@ const EasterLocations = styled.div`
   background-position: center bottom;
   background-size: contain;
 
+  @media screen and (min-width: ${themeGet('breakpoints.sm')}) {
+    background: url('/easter/empty-tomb-mobile.png');
+    margin-bottom: ${themeGet('space.l')};
+    padding-bottom: 200px;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: contain;
+  }
+
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    background: url('/easter/empty-tomb.png');
+    margin-bottom: ${themeGet('space.l')};
+    padding-bottom: 200px;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: contain;
+  }
+
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     background: url('/easter/empty-tomb.png');
     margin-bottom: ${themeGet('space.l')};
     padding-bottom: 300px;
@@ -92,12 +110,11 @@ const LocationCard = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 80px;
+  height: 75px;
   padding: ${themeGet('space.s')};
   width: 86vw;
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-    height: 100px;
     padding: ${themeGet('space.m')};
     width: auto;
   }

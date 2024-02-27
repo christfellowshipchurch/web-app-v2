@@ -23,7 +23,7 @@ function EasterLocationsModal(props = {}) {
   }, [campus]);
 
   return (
-    <Modal width="90vw" maxWidth="1100px" {...props}>
+    <Modal width="90vw" maxWidth="900px" {...props}>
       {!loading ? (
         <Box color="black">
           <Box display="flex" alignItems="flex-end">
@@ -41,15 +41,17 @@ function EasterLocationsModal(props = {}) {
               ? 'Online - Christ Fellowship Everywhere'
               : 'Trinity in Palm Beach Gardens'}
           </Box>
-          <Box
-            as="a"
-            color="#3B7DD9"
-            fontSize={24}
-            textDecoration="underline"
-            href={campus?.mapLink}
-          >
-            {campusAddress && props?.data?.name !== 'Online' && campusAddress}
-          </Box>
+          {campusAddress && (
+            <Box
+              as="a"
+              color="#3B7DD9"
+              fontSize={24}
+              textDecoration="underline"
+              href={campus?.mapLink}
+            >
+              {campusAddress && props?.data?.name !== 'Online' && campusAddress}
+            </Box>
+          )}
           <Box
             display="flex"
             flexDirection={{ _: 'column', md: 'row' }}
@@ -58,10 +60,14 @@ function EasterLocationsModal(props = {}) {
             <Box color="#353535" mt="l" maxWidth={{ _: '80%', md: '30%' }}>
               <Box>
                 <Box>
-                  <Box fontSize={32} textDecoration="underline">
-                    Good Friday
+                  <Box
+                    fontFamily="retroica"
+                    fontSize={22}
+                    textDecoration="underline"
+                  >
+                    GOOD FRIDAY
                   </Box>
-                  <Box fontWeight="bold" fontSize={21} mb="xs">
+                  <Box fontWeight="bold" fontSize={20} mb="xs">
                     Friday, March 29
                   </Box>
                   <HtmlRenderer
@@ -72,8 +78,13 @@ function EasterLocationsModal(props = {}) {
                   />
                 </Box>
                 <Box>
-                  <Box fontSize={32} textDecoration="underline" mt="l">
-                    Easter
+                  <Box
+                    fontFamily="retroica"
+                    fontSize={22}
+                    textDecoration="underline"
+                    mt="l"
+                  >
+                    EASTER
                   </Box>
                   {/* MAP DATA*/}
                   {props?.data?.easterServices.map((service, i) => {
@@ -115,7 +126,7 @@ function EasterLocationsModal(props = {}) {
               ml={{ md: 'base' }}
               mt="l"
               borderRadius="8px"
-              border="1px solid black"
+              border="1px solid rgba(85, 83, 82, 0.5)"
               minWidth={{ md: 350 }}
               display="flex"
               alignItems="center"
@@ -179,7 +190,16 @@ function EasterLocationsModal(props = {}) {
           </Box>
         </Box>
       ) : (
-        <Loader />
+        <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+          textAlign="center"
+          padding="xxl"
+        >
+          <Loader />
+        </Box>
       )}
     </Modal>
   );

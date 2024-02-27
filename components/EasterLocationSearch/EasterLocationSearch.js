@@ -107,84 +107,47 @@ const EasterLocationSearch = () => {
   }
 
   return (
-    <Styled>
-      <EasterLocationHeader
-        handleSubmit={handleSubmit}
-        setAddress={setAddress}
-        getCoordinates={getCoordinates}
-        refetch={refetch}
-        searchScroll={searchScroll}
-        searchCurrentLocation={searchCurrentLocation}
-        locationActive={locationActive}
-        setLocationActive={setLocationActive}
-      />
+    <Box
+      background="url('/easter/paper-background.jpg')"
+      backgroundSize="cover"
+    >
+      <Styled>
+        <EasterLocationHeader
+          handleSubmit={handleSubmit}
+          setAddress={setAddress}
+          getCoordinates={getCoordinates}
+          refetch={refetch}
+          searchScroll={searchScroll}
+          searchCurrentLocation={searchCurrentLocation}
+          locationActive={locationActive}
+          setLocationActive={setLocationActive}
+        />
 
-      <Box p="base" id="results" px={{ _: 's', md: 'xl' }}>
-        {loading ? (
-          // New Skeleton Loader
-          <LocationsLoader mb="l" loading={true} />
-        ) : (
-          <CardGrid
-            mb="xl"
-            mx={{ _: 'base', md: 'auto' }}
-            px={{ _: '0', md: 'l', lg: 'xl' }}
-            maxWidth={1100}
-            columns={'12'}
-          >
-            {/* We want to display Online campus separately */}
-            {onlineCampus && (
-              <Styled.CardSpacing key={1} index={1} total={1}>
-                <Box
-                  color="black"
-                  textDecoration="none"
-                  onClick={() => cardClicked('Online')}
-                >
-                  <Styled.LocationCard>
-                    <Box as="h4" mb="0">
-                      Online
-                    </Box>
-                    {onlineCampus?.distanceFromLocation ? (
-                      <Box
-                        as="h5"
-                        mb="0"
-                        bg="#FFEC7F"
-                        p="xs"
-                        borderRadius="base"
-                        color="black"
-                      >
-                        RIGHT HERE
-                      </Box>
-                    ) : (
-                      <Icon name="angle-right" />
-                    )}
-                  </Styled.LocationCard>
-                </Box>
-              </Styled.CardSpacing>
-            )}
-            {sortedCampuses?.map((campus, i) => {
-              let cfe = '';
-              if (campus.name.includes('Español')) {
-                cfe = campus.name.substring(25, campus.name.length);
-              }
-              return (
-                <Styled.CardSpacing
-                  key={i + 1}
-                  index={i + 1}
-                  total={sortedCampuses?.length + 1}
-                >
+        <Box p="base" id="results" px={{ _: 's', md: 'xl' }}>
+          {loading ? (
+            // New Skeleton Loader
+            <LocationsLoader mb="l" loading={true} />
+          ) : (
+            <CardGrid
+              mb="xl"
+              mx={{ _: 'base', md: 'auto' }}
+              px={{ _: '0', md: 'l', lg: 'xl' }}
+              maxWidth={1100}
+              columns={'12'}
+            >
+              {/* We want to display Online campus separately */}
+              {onlineCampus && (
+                <Styled.CardSpacing key={1} index={1} total={1}>
                   <Box
-                    as="a"
                     color="black"
                     textDecoration="none"
-                    onClick={() => cardClicked(campus.name)}
+                    onClick={() => cardClicked('Online')}
                   >
                     <Styled.LocationCard>
-                      <Box as="h4" mb="0" maxWidth="200px">
-                        {!campus.name.includes('Español')
-                          ? campus?.name
-                          : `Español ${cfe}`}
+                      <Box as="h4" mb="0">
+                        Online
                       </Box>
-                      {campus?.distanceFromLocation ? (
+                      {onlineCampus?.distanceFromLocation ? (
                         <Box
                           as="h5"
                           mb="0"
@@ -192,13 +155,8 @@ const EasterLocationSearch = () => {
                           p="xs"
                           borderRadius="base"
                           color="black"
-                          textAlign="center"
-                          width="90px"
                         >
-                          {campus?.distanceFromLocation > 0 &&
-                            `${Number(campus?.distanceFromLocation).toFixed(
-                              1
-                            )} miles`}
+                          RIGHT HERE
                         </Box>
                       ) : (
                         <Icon name="angle-right" />
@@ -206,12 +164,59 @@ const EasterLocationSearch = () => {
                     </Styled.LocationCard>
                   </Box>
                 </Styled.CardSpacing>
-              );
-            })}
-          </CardGrid>
-        )}
-      </Box>
-    </Styled>
+              )}
+              {sortedCampuses?.map((campus, i) => {
+                let cfe = '';
+                if (campus.name.includes('Español')) {
+                  cfe = campus.name.substring(25, campus.name.length);
+                }
+                return (
+                  <Styled.CardSpacing
+                    key={i + 1}
+                    index={i + 1}
+                    total={sortedCampuses?.length + 1}
+                  >
+                    <Box
+                      as="a"
+                      color="black"
+                      textDecoration="none"
+                      onClick={() => cardClicked(campus.name)}
+                    >
+                      <Styled.LocationCard>
+                        <Box as="h4" mb="0" maxWidth="200px">
+                          {!campus.name.includes('Español')
+                            ? campus?.name
+                            : `Español ${cfe}`}
+                        </Box>
+                        {campus?.distanceFromLocation ? (
+                          <Box
+                            as="h5"
+                            mb="0"
+                            bg="#FFEC7F"
+                            p="xs"
+                            borderRadius="base"
+                            color="black"
+                            textAlign="center"
+                            width="90px"
+                          >
+                            {campus?.distanceFromLocation > 0 &&
+                              `${Number(campus?.distanceFromLocation).toFixed(
+                                1
+                              )} miles`}
+                          </Box>
+                        ) : (
+                          <Icon name="angle-right" />
+                        )}
+                      </Styled.LocationCard>
+                    </Box>
+                  </Styled.CardSpacing>
+                );
+              })}
+            </CardGrid>
+          )}
+        </Box>
+      </Styled>
+    </Box>
   );
 };
 

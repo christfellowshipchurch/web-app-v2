@@ -14,7 +14,11 @@ const Easter = () => {
     <Layout>
       <Box bg="#fcfce6">
         {/* Header Section */}
-        <Box pt="l">
+        <Box
+          background="url('/easter/paper-background.jpg')"
+          backgroundSize="cover"
+          pt="l"
+        >
           <Image
             width={{ _: '90vw', md: 600, lg: 800 }}
             aspectRatio="auto"
