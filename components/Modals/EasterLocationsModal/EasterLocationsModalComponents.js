@@ -45,14 +45,13 @@ export const DontMissService = props => {
     'Hey! Come with me to Easter at Christ Fellowship!'
   );
   const [selectedDay, setSelectedDay] = useState(0);
-  const [electedTime, setSelectedTime] = useState(0);
+  const [selectedTime, setSelectedTime] = useState(0);
 
   const setEvent = () => {
     let date = props?.data?.dateTimes[selectedDay]?.date;
-    let time = props?.data?.dateTimes[selectedDay]?.times[electedTime];
+    let time = props?.data?.dateTimes[selectedDay]?.times[selectedTime];
     let milTime = parseTimeAsInt(time);
-    let startTime = new Date(`${date}, 2024 ${milTime}`);
-
+    let startTime = new Date(`${date}, 2024 ${milTime[0]}:${milTime[1]}`);
     return {
       label: props?.data?.dateTimes[selectedDay]?.selectedIndex,
       event: {
@@ -85,7 +84,7 @@ export const DontMissService = props => {
       .map(n => parseInt(n));
     let hour24 = a === 'PM' ? hour + 12 : hour;
 
-    return [hour24, minute];
+    return [hour24, minute || '00'];
   }
 
   return (
