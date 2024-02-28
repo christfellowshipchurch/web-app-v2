@@ -145,11 +145,20 @@ const Easter = () => {
         {/* Kids Programming Section */}
         <Box
           py="xxl"
-          backgroundImage="url(/easter/kids-programming-background.png)"
+          backgroundColor="#EBCD5F"
           backgroundPosition="center"
           backgroundSize="cover"
           borderTop="3px solid black"
+          // source="/easter/easer"
         >
+          {/* <Image
+            display={{ _: 'none', md: 'block' }}
+            source="/easter/easter-elements-1.png"
+            height={{ _: 60, lg: 80, xl: 300 }}
+            width={{ _: 100, lg: 140, xl: 300 }}
+            mr="0rem"
+            ml={{ _: 0, md: 'xl' }}
+          /> */}
           <Box
             m="auto"
             maxWidth="1100px"
@@ -159,7 +168,7 @@ const Easter = () => {
             justifyContent="center"
           >
             <EasterContentBlock
-              title={`Special Programming\nfor Kids`}
+              title={`Special Programming for Kids`}
               actions={[
                 {
                   title: 'Find A Service',
@@ -182,7 +191,7 @@ const Easter = () => {
                 </p>
               </div>
             `}
-              image={'easter/easter-2024-kids-programming.png'}
+              image={'easter/special-kids-programming.png'}
               imageRatio={'12by17'}
             />
           </Box>

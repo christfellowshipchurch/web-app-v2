@@ -12,7 +12,7 @@ function PhotoCarousel(props = {}) {
   const chunked = chunk(props?.photos, 2);
 
   return (
-    <Box overflow="hidden">
+    <Box overflow="hidden" borderTop="3px solid black">
       <Styled.CarouselTrack
         width={{ _: '600%', sm: '400%', md: '300%', lg: '200%' }}
       >

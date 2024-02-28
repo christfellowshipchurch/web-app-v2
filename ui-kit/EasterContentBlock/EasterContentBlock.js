@@ -123,7 +123,7 @@ function EasterContentBlock(props = {}) {
         <ConditionalBox condition={hasTitle} order={horizontalLayout ? 1 : 0}>
           <Box
             as="h1"
-            fontSize="70px"
+            fontSize={{ _: '45px', md: '70px' }}
             color={props?.title.includes('Kids') ? 'black' : 'white'}
           >
             {props.title}
