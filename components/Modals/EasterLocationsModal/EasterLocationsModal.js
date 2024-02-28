@@ -1,8 +1,15 @@
 import { useCampus } from 'hooks';
 import React, { useEffect, useState } from 'react';
 
-import { Box, Button, Divider, HtmlRenderer, Loader, Modal } from 'ui-kit';
+import { Box, HtmlRenderer, Loader, Modal } from 'ui-kit';
+import Styled from './EasterLocationsModal.styles';
+import { useRouter } from 'next/router';
+import {
+  DontMissService,
+  EasterModalTitle,
+} from './EasterLocationsModalComponents';
 function EasterLocationsModal(props = {}) {
+  const router = useRouter();
   const [campusAddress, setCampusAddress] = useState(
     '5343 Northlake Blvd, Palm Beach Gardens, FL 33418'
   );
@@ -26,32 +33,11 @@ function EasterLocationsModal(props = {}) {
     <Modal width="90vw" maxWidth="900px" {...props}>
       {!loading ? (
         <Box color="black">
-          <Box display="flex" alignItems="flex-end">
-            <Box as="h1" fontSize={54} mb={0}>
-              EASTER
-            </Box>
-            <Box width={90} fontWeight="bold" fontSize={12} mb={10}>
-              AT CHRIST FELLOWSHIP
-            </Box>
-          </Box>
-          <Box as="h1" fontSize={32}>
-            {props?.data?.name !== 'Trinity' && props?.data?.name !== 'Online'
-              ? props?.data?.name
-              : props?.data?.name !== 'Trinity'
-              ? 'Online - Christ Fellowship Everywhere'
-              : 'Trinity in Palm Beach Gardens'}
-          </Box>
-          {campusAddress && (
-            <Box
-              as="a"
-              color="#3B7DD9"
-              fontSize={24}
-              textDecoration="underline"
-              href={campus?.mapLink}
-            >
-              {campusAddress && props?.data?.name !== 'Online' && campusAddress}
-            </Box>
-          )}
+          <EasterModalTitle
+            campusAddress={campusAddress}
+            mapLink={campus?.mapLink}
+            name={props?.data?.name}
+          />
           <Box
             display="flex"
             flexDirection={{ _: 'column', md: 'row' }}
@@ -60,13 +46,7 @@ function EasterLocationsModal(props = {}) {
             <Box color="#353535" mt="l" maxWidth={{ _: '80%', md: '30%' }}>
               <Box>
                 <Box>
-                  <Box
-                    fontFamily="retroica"
-                    fontSize={22}
-                    textDecoration="underline"
-                  >
-                    GOOD FRIDAY
-                  </Box>
+                  <Styled.ServiceDayTitle>GOOD FRIDAY</Styled.ServiceDayTitle>
                   <Box fontWeight="bold" fontSize={20} mb="xs">
                     Friday, March 29
                   </Box>
@@ -77,16 +57,8 @@ function EasterLocationsModal(props = {}) {
                     }
                   />
                 </Box>
-                <Box>
-                  <Box
-                    fontFamily="retroica"
-                    fontSize={22}
-                    textDecoration="underline"
-                    mt="l"
-                  >
-                    EASTER
-                  </Box>
-                  {/* MAP DATA*/}
+                <Box mt="l">
+                  <Styled.ServiceDayTitle>EASTER</Styled.ServiceDayTitle>
                   {props?.data?.easterServices.map((service, i) => {
                     return (
                       <Box mt={i !== 0 ? 's' : 0}>
@@ -95,7 +67,7 @@ function EasterLocationsModal(props = {}) {
                         </Box>
                         <HtmlRenderer
                           fontSize={18}
-                          htmlContent={service?.times}
+                          htmlContent={service?.timeDescription}
                         />
                       </Box>
                     );
@@ -107,86 +79,22 @@ function EasterLocationsModal(props = {}) {
                       return <HtmlRenderer htmlContent={info} />;
                     })}
                   {props?.data?.name === 'Online' && (
-                    <Button
-                      fontSize={18}
-                      bg="#D65025"
-                      px="l"
-                      border="1px solid #000"
-                      borderRadius={50}
-                      href="/online-link"
+                    <Styled.JoinOnlineButton
+                      onClick={() => {
+                        router.push('/online-link');
+                      }}
                     >
                       Join Online
-                    </Button>
+                    </Styled.JoinOnlineButton>
                   )}
                 </Box>
               </Box>
             </Box>
-            {/* Right Half */}
-            <Box
-              ml={{ md: 'base' }}
-              mt="l"
-              borderRadius="8px"
-              border="1px solid rgba(85, 83, 82, 0.5)"
-              minWidth={{ md: 350 }}
-              display="flex"
-              alignItems="center"
-            >
-              <Box mx="base" my="base" width="100%">
-                <Box
-                  display="flex"
-                  flexDirection="column"
-                  justifyContent="center"
-                >
-                  <Box fontSize={{ _: 18, md: 24 }} fontWeight="bold">
-                    Don’t Miss Service
-                  </Box>
-                  <Box
-                    display="flex"
-                    justifyContent="space-between"
-                    mt="s"
-                    color="#818181"
-                    fontSize={14}
-                    fontWeight="bold"
-                  >
-                    <Box minWidth="70%">Date</Box>
-                    <Box minWidth="30%">Time</Box>
-                  </Box>
-                  {/* Select Date and Time Section - MISSING */}
-                  <Button
-                    mt="s"
-                    bg="#3B7DD9"
-                    border="1px solid #000"
-                    borderRadius="50px"
-                  >
-                    Add to Calendar
-                  </Button>
-
-                  <Divider mt="base" />
-                </Box>
-                <Box
-                  display="flex"
-                  flexDirection="column"
-                  justifyContent="center"
-                >
-                  <Box fontSize={{ _: 18, md: 24 }} fontWeight="bold" mt="base">
-                    Invite A Friend
-                  </Box>
-                  <Box mt="s" color="#818181" fontSize={14} fontWeight="bold">
-                    Pick your message
-                  </Box>
-                  {/* Select Message Section - MISSING*/}
-                  <Button
-                    mt="s"
-                    bg="#FFEC7F"
-                    color="black"
-                    border="1px solid #000"
-                    borderRadius="50px"
-                  >
-                    Send a Text Message
-                  </Button>
-                </Box>
-              </Box>
-            </Box>
+            <DontMissService
+              campus={props?.data?.name}
+              campusAddress={campusAddress}
+              data={props?.data}
+            />
           </Box>
         </Box>
       ) : (
