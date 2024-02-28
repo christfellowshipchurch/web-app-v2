@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box } from 'ui-kit';
+import { Box, Button } from 'ui-kit';
 
 import Styled from './EasterLocationSearch.styles';
 
@@ -8,9 +8,6 @@ function LocationHeader({
   setAddress,
   getCoordinates,
   refetch,
-  searchScroll,
-  searchCurrentLocation,
-  locationActive,
   setLocationActive,
 }) {
   return (
@@ -61,6 +58,17 @@ function LocationHeader({
                     onChange={e => setAddress(e.target.value)}
                   />
                 </Box>
+                <Button
+                  display="none"
+                  onClick={() => {
+                    //When users clicks search button we want to get the coordinates and refetch the campuses to get distance from location
+                    getCoordinates();
+                    refetch();
+                    setLocationActive(true);
+                  }}
+                >
+                  Find a Location
+                </Button>
                 <Box
                   as="a"
                   color="#3B7DD9"

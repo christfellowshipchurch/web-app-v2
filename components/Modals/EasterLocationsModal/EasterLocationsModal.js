@@ -4,10 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Box, HtmlRenderer, Loader, Modal } from 'ui-kit';
 import Styled from './EasterLocationsModal.styles';
 import { useRouter } from 'next/router';
-import {
-  DontMissService,
-  EasterModalTitle,
-} from './EasterLocationsModalComponents';
+import { DontMissService, EasterModalTitle } from './additionalComponents';
 function EasterLocationsModal(props = {}) {
   const router = useRouter();
   const [campusAddress, setCampusAddress] = useState(
