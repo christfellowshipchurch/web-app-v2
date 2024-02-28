@@ -142,16 +142,7 @@ const Easter = () => {
           ]}
         />
 
-        {/* Kids Programming Section */}
-        <Box
-          py="xxl"
-          backgroundColor="#EBCD5F"
-          backgroundPosition="center"
-          backgroundSize="cover"
-          borderTop="3px solid black"
-          // source="/easter/easer"
-        >
-          {/* <Image
+        {/* <Image
             display={{ _: 'none', md: 'block' }}
             source="/easter/easter-elements-1.png"
             height={{ _: 60, lg: 80, xl: 300 }}
@@ -159,6 +150,25 @@ const Easter = () => {
             mr="0rem"
             ml={{ _: 0, md: 'xl' }}
           /> */}
+
+        {/* Kids Programming Section */}
+        <Box
+          py="xxl"
+          backgroundColor="#EBCD5F"
+          backgroundSize={{ _: '200px', xl: '450px' }}
+          backgroundPosition={{
+            _: 'top -50px right -30px',
+            md: 'top right 0px',
+            xl: 'top -90px right -30px',
+          }}
+          backgroundRepeat="no-repeat"
+          borderTop="3px solid black"
+          backgroundImage={{
+            _: "url('/easter/lines-mobile.png')",
+            md: "url('/easter/lines-desktop.png')",
+            xl: "url('/easter/lines-desktop-xl.png')",
+          }}
+        >
           <Box
             m="auto"
             maxWidth="1100px"
@@ -199,50 +209,58 @@ const Easter = () => {
 
         {/* Serve Section */}
         <Box
-          py="xxl"
-          backgroundImage="url(/easter/dream-team-background.png)"
-          backgroundPosition="center"
-          backgroundSize="cover"
+          background="linear-gradient(0deg, rgba(59,125,217,1) 24%, rgba(138,208,194,1) 91%)"
           borderTop="3px solid black"
           borderBottom="3px solid black"
         >
           <Box
-            m="auto"
-            maxWidth="1100px"
-            p="base"
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
+            py="xxl"
+            backgroundImage="url(/easter/cross-equals-love.png)"
+            backgroundPosition={{
+              _: 'bottom right 30px',
+              md: 'bottom right 100px',
+            }}
+            backgroundSize={{ _: 200, md: 300 }}
+            backgroundRepeat="no-repeat"
           >
-            <EasterContentBlock
-              title={`Serve at Easter`}
-              subtitle={'Join the Easter Dream Team'}
-              actions={[
-                {
-                  title: 'Sign Up to Serve',
-                  border: '2px solid black',
-                  relatedNode: {
-                    url: 'http://eepurl.com/hAk7aP',
+            <Box
+              m="auto"
+              maxWidth="1100px"
+              p="base"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+            >
+              <EasterContentBlock
+                title={`Serve at Easter`}
+                subtitle={'Join the Easter Dream Team'}
+                actions={[
+                  {
+                    title: 'Sign Up to Serve',
+                    border: '2px solid black',
+                    relatedNode: {
+                      url: 'http://eepurl.com/hAk7aP',
+                    },
+                    target: '_blank',
+                    bg: '#FFEC7F',
+                    color: 'black',
+                    borderRadius: '30px',
+                    paddingLeft: '40px',
+                    paddingRight: '40px',
+                    mt: 's',
                   },
-                  target: '_blank',
-                  bg: '#FFEC7F',
-                  color: 'black',
-                  borderRadius: '30px',
-                  paddingLeft: '40px',
-                  paddingRight: '40px',
-                  mt: 's',
-                },
-              ]}
-              contentLayout={'RIGHT'}
-              htmlContent={`<div>
+                ]}
+                contentLayout={'RIGHT'}
+                htmlContent={`<div>
                 <p>
                 You can play a part in Easter at Christ Fellowship. How you serve is up to you! From the streets to the seats—there’s a spot for everyone on the Easter Dream Team!
                 </p>
               </div>
             `}
-              image={'easter/dream-team-image.png'}
-              imageRatio={'13by17'}
-            />
+                image={'easter/dream-team-image.png'}
+                imageRatio={'13by17'}
+              />
+            </Box>
           </Box>
         </Box>
         {/* FAQ Section Section */}
