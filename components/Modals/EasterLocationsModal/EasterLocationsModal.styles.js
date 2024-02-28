@@ -27,12 +27,6 @@ const ServiceDayTitle = styled.div`
   text-decoration: underline;
 `;
 
-export const blueHover = () => props => {
-  const primaryColor = '#3B7DD9';
-
-  return Color(primaryColor).saturate(0.1).darken(0.35).hex();
-};
-
 export const redHover = () => props => {
   const primaryColor = '#d65025';
 
@@ -48,25 +42,18 @@ export const yellowHover = () => props => {
 const JoinOnlineButton = styled(Button)`
   font-size: 18px;
   background-color: #d65025;
-  padding: 0 ${themeGet('space.l')};
+  padding: ${themeGet('space.xs')} ${themeGet('space.l')};
   border: 1px solid #000;
   border-radius: 50px;
+  margin-top: ${themeGet('space.xs')};
 
-  &:hover {
+  &:hover,
+  &:focus,
+  &:active {
     background-color: ${redHover};
   }
 `;
 
-const AddToCalendar = styled(Button)`
-  margin-top: ${themeGet('space.s')};
-  background-color: #3b7dd9;
-  border: 1px solid #000;
-  border-radius: 50px;
-
-  &:hover {
-    background-color: ${blueHover};
-  }
-`;
 const SendTextMessage = styled(Button)`
   color: black;
   margin-top: ${themeGet('space.s')};
@@ -74,7 +61,9 @@ const SendTextMessage = styled(Button)`
   border: 1px solid #000;
   border-radius: 50px;
 
-  &:hover {
+  &:hover,
+  &:focus,
+  &:active {
     color: black;
     background-color: ${yellowHover};
   }
@@ -84,6 +73,5 @@ EasterLocationsModal.DontMissService = DontMissService;
 EasterLocationsModal.ServiceDayTitle = ServiceDayTitle;
 EasterLocationsModal.JoinOnlineButton = JoinOnlineButton;
 EasterLocationsModal.SendTextMessage = SendTextMessage;
-EasterLocationsModal.AddToCalendar = AddToCalendar;
 
 export default EasterLocationsModal;

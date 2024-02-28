@@ -59,8 +59,6 @@ function EasterLocationsModal(props = {}) {
                 </Box>
                 <Box mt="l">
                   <Styled.ServiceDayTitle>EASTER</Styled.ServiceDayTitle>
-
-                  {/* MAP DATA*/}
                   {props?.data?.easterServices.map((service, i) => {
                     return (
                       <Box mt={i !== 0 ? 's' : 0}>
@@ -69,7 +67,7 @@ function EasterLocationsModal(props = {}) {
                         </Box>
                         <HtmlRenderer
                           fontSize={18}
-                          htmlContent={service?.times}
+                          htmlContent={service?.timeDescription}
                         />
                       </Box>
                     );
@@ -92,7 +90,11 @@ function EasterLocationsModal(props = {}) {
                 </Box>
               </Box>
             </Box>
-            <DontMissService />
+            <DontMissService
+              campus={props?.data?.name}
+              campusAddress={campusAddress}
+              data={props?.data}
+            />
           </Box>
         </Box>
       ) : (

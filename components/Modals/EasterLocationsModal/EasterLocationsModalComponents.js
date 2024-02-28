@@ -1,5 +1,9 @@
-import { Box, Divider } from 'ui-kit';
+import { Box, Button, Divider, Select } from 'ui-kit';
 import Styled from './EasterLocationsModal.styles';
+import { handleSocialShare } from 'components/Share/shareUtils';
+import { useState } from 'react';
+import { icsLink } from 'components/AddToCalendar/utils';
+import { addMinutes } from 'date-fns';
 
 export const EasterModalTitle = props => {
   return (
@@ -37,8 +41,52 @@ export const EasterModalTitle = props => {
 };
 
 export const DontMissService = props => {
-  const addToCalendar = () => {};
-  const sendTextMessage = () => {};
+  const [selectedMessage, setSelectedMessage] = useState(
+    'Hey! Come with me to Easter at Christ Fellowship!'
+  );
+  const [selectedDay, setSelectedDay] = useState(0);
+  const [electedTime, setSelectedTime] = useState(0);
+
+  const setEvent = () => {
+    let date = props?.data?.dateTimes[selectedDay]?.date;
+    let time = props?.data?.dateTimes[selectedDay]?.times[electedTime];
+    let milTime = parseTimeAsInt(time);
+    let startTime = new Date(`${date}, 2024 ${milTime}`);
+
+    return {
+      label: props?.data?.dateTimes[selectedDay]?.selectedIndex,
+      event: {
+        title:
+          props?.campus !== 'Trinity' || props?.campus !== 'Online'
+            ? `Easter service at Christ Fellowship Church in ${props?.campus}`
+            : props?.campus === 'Trinity'
+            ? 'Easter service at Trinity Church by Christ Fellowship'
+            : `Easter service online`,
+        description: `Join us this Sunday for Easter!`,
+        address: props?.campusAddress,
+        startTime: startTime,
+        endTime: addMinutes(date, 90),
+      },
+    };
+  };
+
+  const textMessages = [
+    'Hey! Come with me to Easter at Christ Fellowship!',
+    'Check this out! Would you want to come with me to an Easter service?',
+    'Hi! I wanted to invite you to come to Easter with me at my church. Are you free?',
+  ];
+  function parseTimeAsInt(_time) {
+    const time = _time?.toString().trim().toUpperCase();
+    const a = time.match(/(AM)|(PM)/g)?.join();
+    const [hour, minute] = time
+      .replace(/(AM)|(PM)/g, '')
+      .trim()
+      .split(':')
+      .map(n => parseInt(n));
+    let hour24 = a === 'PM' ? hour + 12 : hour;
+
+    return [hour24, minute];
+  }
 
   return (
     <Styled.DontMissService>
@@ -58,11 +106,41 @@ export const DontMissService = props => {
             <Box minWidth="70%">Date</Box>
             <Box minWidth="30%">Time</Box>
           </Box>
-          {/* Select Date and Time Section - MISSING */}
-          <Styled.AddToCalendar onClick={addToCalendar}>
+          <Box display="flex" width="330px">
+            <Select
+              mt="s"
+              mr="base"
+              borderColor="primary"
+              onChange={e => setSelectedDay(e.target.selectedIndex)}
+              name="day"
+            >
+              {props?.data?.dateTimes?.map(event => {
+                return <Select.Option>{event.day}</Select.Option>;
+              })}
+            </Select>
+            <Select
+              mt="s"
+              borderColor="primary"
+              onChange={e => setSelectedTime(e.target.selectedIndex)}
+              name="time"
+              width={160}
+            >
+              {props?.data?.dateTimes[selectedDay]?.times?.map(event => {
+                return <Select.Option>{event}</Select.Option>;
+              })}
+            </Select>
+          </Box>
+          <Button
+            as="a"
+            bg="#3B7DD9"
+            download="ChristFellowshipChurch.ics"
+            // href={icsLink(setEvent)}
+            mt="s"
+            border="1px solid #000"
+            borderRadius={50}
+          >
             Add to Calendar
-          </Styled.AddToCalendar>
-
+          </Button>
           <Divider mt="base" />
         </Box>
         <Box display="flex" flexDirection="column" justifyContent="center">
@@ -72,8 +150,25 @@ export const DontMissService = props => {
           <Box mt="s" color="#818181" fontSize={14} fontWeight="bold">
             Pick your message
           </Box>
-          {/* Select Message Section - MISSING*/}
-          <Styled.SendTextMessage onClick={sendTextMessage}>
+          <Select
+            mt="s"
+            width="330px"
+            borderColor="primary"
+            onChange={e => setSelectedMessage(e.target.value)}
+            name="message"
+          >
+            {textMessages.map(message => {
+              return <Select.Option>{message}</Select.Option>;
+            })}
+          </Select>
+          <Styled.SendTextMessage
+            onClick={() =>
+              handleSocialShare({
+                shareType: 'sms',
+                shareMessages: { sms: selectedMessage },
+              })
+            }
+          >
             Send a Text Message
           </Styled.SendTextMessage>
         </Box>
