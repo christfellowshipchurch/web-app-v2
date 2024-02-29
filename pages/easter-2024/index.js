@@ -153,6 +153,7 @@ const Easter = () => {
 
         {/* Kids Programming Section */}
         <Box
+          id="kids-programming"
           py="xxl"
           backgroundColor="#EBCD5F"
           backgroundSize={{ _: '200px', xl: '450px' }}
