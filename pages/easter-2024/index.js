@@ -130,29 +130,6 @@ const Easter = () => {
         {/* Times and Locations */}
         <EasterLocationSearch additionalInfo='Spread the word about Easter at Christ Fellowship with these easy-to-download <a href="https://rock.gocf.org/easterinvite2024"style="color: #3B7DD9; text-decoration: underline;"> invite graphics</a>.' />
 
-        {/* Photo Carousel */}
-        <PhotoCarousel
-          photos={[
-            '/easter/photo-carousel/photo-1.jpg',
-            '/easter/photo-carousel/photo-2.jpg',
-            '/easter/photo-carousel/photo-3.jpg',
-            '/easter/photo-carousel/photo-4.jpg',
-            '/easter/photo-carousel/photo-5.jpg',
-            '/easter/photo-carousel/photo-6.jpg',
-            '/easter/photo-carousel/photo-7.jpg',
-            '/easter/photo-carousel/photo-8.jpg',
-          ]}
-        />
-
-        {/* <Image
-            display={{ _: 'none', md: 'block' }}
-            source="/easter/easter-elements-1.png"
-            height={{ _: 60, lg: 80, xl: 300 }}
-            width={{ _: 100, lg: 140, xl: 300 }}
-            mr="0rem"
-            ml={{ _: 0, md: 'xl' }}
-          /> */}
-
         {/* Kids Programming Section */}
         <Box
           id="kids-programming"
@@ -208,6 +185,20 @@ const Easter = () => {
             />
           </Box>
         </Box>
+
+        {/* Photo Carousel */}
+        <PhotoCarousel
+          photos={[
+            '/easter/photo-carousel/photo-1.jpg',
+            '/easter/photo-carousel/photo-2.jpg',
+            '/easter/photo-carousel/photo-3.jpg',
+            '/easter/photo-carousel/photo-4.jpg',
+            '/easter/photo-carousel/photo-5.jpg',
+            '/easter/photo-carousel/photo-6.jpg',
+            '/easter/photo-carousel/photo-7.jpg',
+            '/easter/photo-carousel/photo-8.jpg',
+          ]}
+        />
 
         {/* Serve Section */}
         <Box

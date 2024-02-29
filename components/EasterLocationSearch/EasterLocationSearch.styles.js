@@ -31,12 +31,11 @@ const EasterLocations = styled.div`
   }
 
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
-    background: url('/easter/empty-tomb.png');
-    margin-bottom: ${themeGet('space.l')};
     padding-bottom: 300px;
-    background-repeat: no-repeat;
-    background-position: center bottom;
-    background-size: contain;
+  }
+
+  @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
+    padding-bottom: 350px;
   }
 
   ${system}
