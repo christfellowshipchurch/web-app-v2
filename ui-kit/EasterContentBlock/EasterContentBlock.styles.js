@@ -27,7 +27,6 @@ const flexLayout =
       case 'inverted':
         return css`
           flex-direction: column-reverse;
-          align-items: center;
         `;
       case 'default':
       default:
