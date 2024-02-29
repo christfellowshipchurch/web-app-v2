@@ -73,7 +73,11 @@ function EasterLocationsModal(props = {}) {
                 <Box mt="base" fontSize={12}>
                   {props?.data?.extraInfo &&
                     props?.data?.extraInfo.map((info, i) => {
-                      return <HtmlRenderer htmlContent={info} />;
+                      return (
+                        <Box mt={i !== 0 && 'xs'}>
+                          <HtmlRenderer htmlContent={info} />
+                        </Box>
+                      );
                     })}
                   {props?.data?.name === 'Online' && (
                     <Styled.JoinOnlineButton
