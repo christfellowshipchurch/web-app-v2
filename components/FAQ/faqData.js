@@ -80,6 +80,33 @@ export const faqEaster = [
   },
 ];
 
+export const faqEasterCFE = [
+  {
+    title: '¿Qué puedo esperar del servicio?',
+    description:
+      'Cuando cruces las puertas en cualquiera de nuestras localizaciones, alguien estará listo para recibirte. Si tienes hijos bebés hasta primaria, podemos ayudarte a registrarlos en Christ Fellowship Kids con nuestro increíble equipo. Luego, te dirigirás al auditorio principal para un servicio de 70 minutos lleno de música de celebración y un mensaje alentador de Pascua. Después del servicio, quédate para disfrutar de la diversión para toda la familia. ¿No puedes unirte en persona? ¡Obtendrás la misma experiencia en el servicio en línea!',
+  },
+  {
+    title: '¿Hay cuidado de niños disponible?',
+    description: `¡Sí! Tenemos programación de Christ Fellowship Kids disponible para bebés hasta primaria, en todos nuestros servicios de Viernes Santo y Pascua. The MIX para estudiantes en 5to y 6to grado solo se tendrá durante los servicios de Pascua, pero invitamos a todos los niños de 5to grado en adelante a unirse a su familia en el auditorio principal para los servicios del Viernes Santo.`,
+  },
+  {
+    title: '¿Habrá actividades para niños después del servicio?',
+    description:
+      '¡Sí! Cada localización tendrá un After Party después de cada servicio con actividades interactivas para niños.',
+  },
+  {
+    title: '¿A qué hora debo llegar?',
+    description:
+      'Las puertas se abrirán aproximadamente 30 minutos antes de cada servicio. Te recomendamos llegar temprano para que puedas encontrar asientos, sacarte fotos y disfrutar del tiempo con tu familia y amigos antes de que comience la celebración de Pascua.',
+  },
+  {
+    title: '¿Cómo tendría que vestirme?',
+    description:
+      '¡Usa lo que te parezca más cómodo! Ya sea que quieras lucir informal con jeans y una camiseta o vestirte con tu outfit favorito de Pascua, encajarás perfectamente.',
+  },
+];
+
 const faqDowntownData = [
   {
     title: 'What does Christ Fellowship believe?',
@@ -321,6 +348,8 @@ const faqData = campus => {
       return faqCBO;
     case 'Easter':
       return faqEaster;
+    case 'Easter CFE':
+      return faqEasterCFE;
     case 'Christ Fellowship Español Palm Beach Gardens':
       return faqEspanolData;
     case 'Christ Fellowship Español Royal Palm Beach':

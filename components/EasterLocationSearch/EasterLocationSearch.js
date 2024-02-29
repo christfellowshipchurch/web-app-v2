@@ -1,7 +1,7 @@
 import React from 'react';
 import { useCampuses, useForm } from 'hooks';
 import { useState } from 'react';
-import { Box, CardGrid, Icon } from 'ui-kit';
+import { Box, CardGrid, HtmlRenderer, Icon } from 'ui-kit';
 import LocationsLoader from './LocationsLoader';
 import Styled from './EasterLocationSearch.styles';
 import EasterLocationHeader from './EasterLocationHeader';
@@ -9,7 +9,7 @@ import { showModal, useModalDispatch } from 'providers/ModalProvider';
 import easterServices from 'lib/easterServiceData';
 import { find } from 'lodash';
 
-const EasterLocationSearch = () => {
+const EasterLocationSearch = props => {
   const [results, setResults] = useState([{ geometry: { location: {} } }]);
   const [address, setAddress] = useState();
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -110,6 +110,7 @@ const EasterLocationSearch = () => {
     <Box
       background="url('/easter/paper-background.jpg')"
       backgroundSize="cover"
+      id="times-locations"
     >
       <Styled>
         <EasterLocationHeader
@@ -214,6 +215,9 @@ const EasterLocationSearch = () => {
               })}
             </CardGrid>
           )}
+          <Box mt="l" textAlign="center">
+            <HtmlRenderer htmlContent={props?.additionalInfo} />
+          </Box>
         </Box>
       </Styled>
     </Box>
