@@ -8,8 +8,10 @@ import {
 } from 'components';
 import { Box, Button, Image, EasterContentBlock } from 'ui-kit';
 import faqData from 'components/FAQ/faqData';
+import { useCurrentBreakpoint } from 'hooks';
 
 const EasterCFE = () => {
+  const currentBreakpoint = useCurrentBreakpoint();
   return (
     <Layout>
       <Box bg="#fcfce6">
@@ -56,7 +58,7 @@ const EasterCFE = () => {
         </Box>
 
         {/* Video/Word Carousel Section */}
-        <Box my="l" py="base" position="relative">
+        <Box position="relative">
           <VideoHeader
             // bgOverlay="rgba(59, 125, 217, 0.50)"
             backgroundVideo={{
@@ -75,9 +77,8 @@ const EasterCFE = () => {
             position="absolute"
             py="l"
             pr={{ _: 0, md: '1.5rem', lg: '4.5rem', xl: '6rem' }}
-            bg={{ _: 'transparent', md: 'rgba(59, 125, 217, 0.60)' }}
-            top="50%"
-            style={{ transform: 'translateY(-50%)' }}
+            top={{ _: '20%', md: '30%', lg: '10%', xl: '10%' }}
+            right={{ _: 0, md: '20%', lg: '10%', xl: '10%' }}
             color="white"
             zIndex={2}
           >
@@ -98,28 +99,20 @@ const EasterCFE = () => {
                 Ven a disfrutar de un servicio de Pascua con
               </Box>
               <Box
-                mx="l"
+                ml={{ _: 0, md: 200 }}
                 mt="s"
                 display="flex"
                 alignItems="center"
                 textAlign={{ _: 'center', md: 'left' }}
                 width={{ _: 260, md: 'auto' }}
               >
-                <Image
-                  display={{ _: 'none', md: 'block' }}
-                  source="/easter/easter-icon.png"
-                  height={{ _: 60, lg: 80, xl: 110 }}
-                  width={{ _: 100, lg: 140, xl: 200 }}
-                  mr="-1rem"
-                  ml={{ _: 0, md: 'xl' }}
-                />
                 <VerticalWordCarousel
                   data={[
                     'un ambiente lleno de vida',
-                    'música de alabanza y adoración',
+                    'música de adoración ',
                     'un mensaje alentador',
-                    'actividades al aire libre para niños',
-                    'tiempo para conectar con amigos y familia',
+                    'actividades para niños',
+                    'tiempo para conectar',
                   ]}
                 />
               </Box>
@@ -133,33 +126,10 @@ const EasterCFE = () => {
           id="times-locations"
         />
 
-        {/* Photo Carousel */}
-        <PhotoCarousel
-          photos={[
-            '/easter/photo-carousel/photo-1.jpg',
-            '/easter/photo-carousel/photo-2.jpg',
-            '/easter/photo-carousel/photo-3.jpg',
-            '/easter/photo-carousel/photo-4.jpg',
-            '/easter/photo-carousel/photo-5.jpg',
-            '/easter/photo-carousel/photo-6.jpg',
-            '/easter/photo-carousel/photo-7.jpg',
-            '/easter/photo-carousel/photo-8.jpg',
-          ]}
-        />
-
-        {/* <Image
-              display={{ _: 'none', md: 'block' }}
-              source="/easter/easter-elements-1.png"
-              height={{ _: 60, lg: 80, xl: 300 }}
-              width={{ _: 100, lg: 140, xl: 300 }}
-              mr="0rem"
-              ml={{ _: 0, md: 'xl' }}
-            /> */}
-
         {/* Kids Programming Section */}
         <Box
           id="kids-programming"
-          py="xxl"
+          py={{ _: 'l', xl: 'xxl' }}
           backgroundColor="#EBCD5F"
           backgroundSize={{ _: '200px', xl: '450px' }}
           backgroundPosition={{
@@ -170,7 +140,7 @@ const EasterCFE = () => {
           backgroundRepeat="no-repeat"
           borderTop="3px solid black"
           backgroundImage={{
-            _: "url('/easter/lines-mobile.png')",
+            _: '',
             md: "url('/easter/lines-desktop.png')",
             xl: "url('/easter/lines-desktop-xl.png')",
           }}
@@ -178,21 +148,20 @@ const EasterCFE = () => {
           <Box
             m="auto"
             maxWidth="1100px"
-            p="base"
+            px="base"
             display="flex"
             alignItems="center"
             justifyContent="center"
           >
             <EasterContentBlock
-              title={`Special Programming for Kids`}
+              title={`Programación Especial Para Niños`}
               actions={[
                 {
-                  title: 'Find A Service',
+                  title: 'Encuentra Un Servicio',
                   border: '2px solid black',
                   relatedNode: {
-                    url: 'http://eepurl.com/hAk7aP',
+                    url: '#times-locations',
                   },
-                  target: '_blank',
                   bg: '#FF7D01',
                   borderRadius: '30px',
                   paddingLeft: '40px',
@@ -200,19 +169,41 @@ const EasterCFE = () => {
                   mt: 's',
                 },
               ]}
-              contentLayout={'LEFT'}
+              contentLayout={currentBreakpoint.isSmall ? 'INVERTED' : 'LEFT'}
               htmlContent={`<div>
-                  <p>
-                    Christ Fellowship Kids seeks to lead your kids to love Jesus, love others, and love life! And Easter at Christ Fellowship is designed with your family in mind, including special programming for <b> babies-kindergarten during all Good Friday services and babies-elementary during all Easter services.<b> 
-                  </p>
-                </div>
-              `}
-              image={'easter/special-kids-programming.png'}
-              imageRatio={'12by17'}
+                <p>¡Christ Fellowship Kids busca llevar a tus hijos a amar a Jesús, amar a los demás y a amar la vida! </p>
+                <p> La Pascua en Christ Fellowship está diseñada pensando en tu familia, incluyendo una programación especial para <b>bebés hasta primaria</b> durante todos los servicios del <b>Viernes Santo</b> y <b>Pascua</b>.</p>
+              </div>
+            `}
+              image="/easter/special-kids-programming-espanol.png"
+              imageRatio="12by17"
             />
           </Box>
         </Box>
 
+        {/* Photo Carousel */}
+        <PhotoCarousel
+          photos={[
+            '/easter/photo-carousel/1.jpg',
+            '/easter/photo-carousel/2.jpg',
+            '/easter/photo-carousel/3.jpg',
+            '/easter/photo-carousel/4.jpg',
+            '/easter/photo-carousel/5.jpg',
+            '/easter/photo-carousel/6.jpg',
+            '/easter/photo-carousel/7.jpg',
+            '/easter/photo-carousel/8.jpg',
+            '/easter/photo-carousel/9.jpg',
+            '/easter/photo-carousel/10.jpg',
+            '/easter/photo-carousel/11.jpg',
+            '/easter/photo-carousel/12.jpg',
+            '/easter/photo-carousel/13.jpg',
+            '/easter/photo-carousel/14.jpg',
+            '/easter/photo-carousel/15.jpg',
+            '/easter/photo-carousel/16.jpg',
+          ]}
+        />
+
+        {/* Serve Section */}
         {/* Serve Section */}
         <Box
           background="linear-gradient(0deg, rgba(59,125,217,1) 24%, rgba(138,208,194,1) 91%)"
@@ -220,7 +211,7 @@ const EasterCFE = () => {
           borderBottom="3px solid black"
         >
           <Box
-            py="xxl"
+            py={{ _: 'l', xl: 'xxl' }}
             backgroundImage="url(/easter/cross-equals-love.png)"
             backgroundPosition={{
               _: 'bottom right 30px',
@@ -231,6 +222,7 @@ const EasterCFE = () => {
           >
             <Box
               m="auto"
+              mb={{ _: 'xl', md: 'xs' }}
               maxWidth="1100px"
               p="base"
               display="flex"
@@ -238,37 +230,38 @@ const EasterCFE = () => {
               justifyContent="center"
             >
               <EasterContentBlock
-                title={`Serve at Easter`}
-                subtitle={'Join the Easter Dream Team'}
+                title={`Sirve durante la Pascua`}
+                subtitle={'Únete al Dream Team de Pascua'}
                 actions={[
                   {
-                    title: 'Sign Up to Serve',
+                    title: 'Regístrate Para Servir',
                     border: '2px solid black',
                     relatedNode: {
-                      url: 'http://eepurl.com/hAk7aP',
+                      url: '/events/join-easter-dream-team',
                     },
-                    target: '_blank',
                     bg: '#FFEC7F',
                     color: 'black',
+                    hoverColor: 'black',
                     borderRadius: '30px',
                     paddingLeft: '40px',
                     paddingRight: '40px',
                     mt: 's',
                   },
                 ]}
-                contentLayout={'RIGHT'}
+                contentLayout={currentBreakpoint.isSmall ? 'INVERTED' : 'RIGHT'}
                 htmlContent={`<div>
-                  <p>
-                  You can play a part in Easter at Christ Fellowship. How you serve is up to you! From the streets to the seats—there’s a spot for everyone on the Easter Dream Team!
-                  </p>
-                </div>
-              `}
-                image={'easter/dream-team-image.png'}
-                imageRatio={'13by17'}
+                <p>
+                  Puedes ser parte de la Pascua en Christ Fellowship. ¡Cómo sirvas dependerá de ti! Desde las calles hasta los asientos: ¡hay un lugar para todos en el Dream Team de Pascua!
+                </p>
+              </div>
+            `}
+                image="easter/dream-team-espanol.png"
+                imageRatio="13by17"
               />
             </Box>
           </Box>
         </Box>
+
         {/* FAQ Section Section */}
         <FAQ
           customTheme={{ secondary: '#39383A' }}

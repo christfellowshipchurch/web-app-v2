@@ -242,6 +242,7 @@ const Easter = () => {
                     },
                     bg: '#FFEC7F',
                     color: 'black',
+                    hoverColor: 'black',
                     borderRadius: '30px',
                     paddingLeft: '40px',
                     paddingRight: '40px',
@@ -265,6 +266,7 @@ const Easter = () => {
             </Box>
           </Box>
         </Box>
+
         {/* FAQ Section Section */}
         <Box mx="auto" maxWidth={1200} px="base">
           <FAQ

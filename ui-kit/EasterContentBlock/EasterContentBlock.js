@@ -66,6 +66,7 @@ function EasterContentBlock(props = {}) {
           alignItems="center"
           borderRadius="base"
           pt="xs"
+          mt={currentBreakpoint.isSmall ? '-3rem' : '1rem'}
           maxWidth={horizontalLayout ? (hasVideo ? 600 : 500) : 800}
         >
           <Conditional condition={hasImage && !hasVideo}>
@@ -75,6 +76,7 @@ function EasterContentBlock(props = {}) {
               source={props.image}
               aspectRatio={props.imageRatio}
               objectFit={props?.objectFit}
+              borderRadius={'0'}
             />
           </Conditional>
 
@@ -118,7 +120,11 @@ function EasterContentBlock(props = {}) {
           <Box
             as="h1"
             fontSize={{ _: '45px', md: '70px' }}
-            color={props?.title.includes('Kids') ? 'black' : 'white'}
+            color={
+              props?.title.includes('Kids') || props?.title.includes('Niños')
+                ? 'black'
+                : 'white'
+            }
           >
             {props.title}
           </Box>
@@ -133,7 +139,11 @@ function EasterContentBlock(props = {}) {
         <ConditionalBox fontSize="l" condition={hasHtmlContent} order={2}>
           <HtmlRenderer
             htmlContent={props?.htmlContent}
-            color={props?.title.includes('Kids') ? 'black' : 'white'}
+            color={
+              props?.title.includes('Kids') || props?.title.includes('Niños')
+                ? 'black'
+                : 'white'
+            }
           />
         </ConditionalBox>
 
@@ -150,14 +160,11 @@ function EasterContentBlock(props = {}) {
               href={getUrlFromRelatedNode(action?.relatedNode)}
               Component={Button}
               variant={i === 0 ? 'primary' : 'secondary'}
+              customTheme={{ primary: '#EBCD5F', secondary: '#EBCD5F' }}
               m="xs"
               textTransform="capitalize!important"
               target={action?.newTab && '_blank'}
               onClick={action?.onClick}
-              /**
-               * todo : We want to eventually add functionality with the 'onPressActionItem' to be able to perform more actions in the future.
-               */
-              // onClick={e => onPressActionItem(e, heroCard)}
               {...action}
             >
               {action?.title}
