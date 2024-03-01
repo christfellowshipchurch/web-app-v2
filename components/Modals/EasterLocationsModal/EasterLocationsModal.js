@@ -5,7 +5,9 @@ import { Box, HtmlRenderer, Loader, Modal } from 'ui-kit';
 import Styled from './EasterLocationsModal.styles';
 import { useRouter } from 'next/router';
 import { DontMissService, EasterModalTitle } from './additionalComponents';
+import { hideModal, useModalDispatch } from 'providers/ModalProvider';
 function EasterLocationsModal(props = {}) {
+  const modalDispatch = useModalDispatch();
   const router = useRouter();
   const [campusAddress, setCampusAddress] = useState(
     '5343 Northlake Blvd, Palm Beach Gardens, FL 33418'
@@ -17,12 +19,9 @@ function EasterLocationsModal(props = {}) {
   });
   useEffect(() => {
     setCampusAddress(
-      [
-        campus?.street1,
-        campus?.city,
-        campus?.state,
-        campus?.postalCode?.substring(0, 5),
-      ].join(', ')
+      [campus?.city, campus?.state, campus?.postalCode?.substring(0, 5)].join(
+        ', '
+      )
     );
   }, [campus]);
 
@@ -31,6 +30,7 @@ function EasterLocationsModal(props = {}) {
       {!loading ? (
         <Box color="black">
           <EasterModalTitle
+            campusStreet={campus?.street1}
             campusAddress={campusAddress}
             mapLink={campus?.mapLink}
             name={props?.data?.name}
@@ -40,12 +40,12 @@ function EasterLocationsModal(props = {}) {
             flexDirection={{ _: 'column', md: 'row' }}
             justifyContent="space-between"
           >
-            <Box color="#353535" mt="l" maxWidth={{ _: '80%', md: '30%' }}>
+            <Box color="#353535" mt="base" maxWidth={{ _: '80%', md: '45%' }}>
               <Box>
                 <Box>
                   <Styled.ServiceDayTitle>GOOD FRIDAY</Styled.ServiceDayTitle>
                   <Box fontWeight="bold" fontSize={20} mb="xs">
-                    Friday, March 29
+                    {props?.data?.goodFridayServices[0]?.day}
                   </Box>
                   <HtmlRenderer
                     fontSize={18}
@@ -70,12 +70,38 @@ function EasterLocationsModal(props = {}) {
                     );
                   })}
                 </Box>
-                <Box mt="base" fontSize={12}>
+                <Box mt="l" fontSize={12}>
                   {props?.data?.extraInfo &&
                     props?.data?.extraInfo.map((info, i) => {
+                      let displayFlex = false;
+                      let learnMore = 'Learn More >';
+                      if (info.includes('6th') || info.includes('primaria')) {
+                        displayFlex = true;
+                        if (info.includes('primaria')) {
+                          learnMore = 'Aprene Más >';
+                        }
+                      }
                       return (
-                        <Box mt={i !== 0 && 'xs'}>
+                        <Box
+                          mt={i !== 0 && 'xs'}
+                          display={displayFlex && 'flex'}
+                          flexDirection={{ _: 'column', md: 'row' }}
+                        >
                           <HtmlRenderer htmlContent={info} />
+                          {(info.includes('6th') ||
+                            info.includes('primaria')) && (
+                            <Box
+                              as="a"
+                              href="#kids-programming"
+                              color=" #3B7DD9"
+                              ml={{ md: 'xs' }}
+                              onClick={() => {
+                                modalDispatch(hideModal());
+                              }}
+                            >
+                              {learnMore}
+                            </Box>
+                          )}
                         </Box>
                       );
                     })}

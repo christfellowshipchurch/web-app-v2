@@ -99,7 +99,6 @@ const EasterLocationSearch = props => {
   }
 
   function cardClicked(name) {
-    console.log(name);
     modalDispatch(
       showModal('EasterLocations', {
         data: find(easterServices, { name: name }),

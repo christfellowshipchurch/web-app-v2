@@ -130,7 +130,7 @@ const Easter = () => {
         </Box>
 
         {/* Times and Locations */}
-        <EasterLocationSearch additionalInfo='Spread the word about Easter at Christ Fellowship with these easy-to-download <a href="https://rock.gocf.org/easterinvite2024"style="color: #3B7DD9; text-decoration: underline;"> invite graphics</a>.' />
+        <EasterLocationSearch additionalInfo='<span style="font-weight: bold;">Spread the word about Easter at Christ Fellowship with these easy-to-download <a href="https://rock.gocf.org/easterinvite2024"style="color: #3B7DD9; text-decoration: underline;"> invite graphics</a>.</span>' />
 
         {/* Kids Programming Section */}
         <Box

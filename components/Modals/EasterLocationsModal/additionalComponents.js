@@ -4,6 +4,7 @@ import { handleSocialShare } from 'components/Share/shareUtils';
 import { useState } from 'react';
 import { icsLink } from 'components/AddToCalendar/utils';
 import { addMinutes } from 'date-fns';
+import { useCurrentBreakpoint } from 'hooks';
 
 const SMS_OPTIONS = [
   'Hey! Come with me to Easter at Christ Fellowship!',
@@ -55,6 +56,8 @@ const setEasterEvent = ({
 };
 
 export const EasterModalTitle = props => {
+  const currentBreakpoints = useCurrentBreakpoint();
+
   return (
     <Box>
       <Box display="flex" alignItems="flex-end">
@@ -75,14 +78,18 @@ export const EasterModalTitle = props => {
       {props?.campusAddress && (
         <Box
           as="a"
+          target="_blank"
           color="#3B7DD9"
-          fontSize={24}
+          fontSize={20}
           textDecoration="underline"
           href={props?.mapLink}
         >
-          {props?.campusAddress &&
-            props?.name !== 'Online' &&
-            props?.campusAddress}
+          {props?.campusAddress && props?.name !== 'Online' && (
+            <Box>
+              {props?.campusStreet}, {currentBreakpoints.isSmall && <br />}
+              {props?.campusAddress}
+            </Box>
+          )}
         </Box>
       )}
     </Box>
@@ -111,42 +118,49 @@ export const DontMissService = props => {
     <Styled.DontMissService>
       <Box mx="base" my="base" width="100%">
         <Box display="flex" flexDirection="column" justifyContent="center">
-          <Box fontSize={{ _: 18, md: 24 }} fontWeight="bold">
+          <Box fontSize={{ _: 18, md: 20 }} pl={4} fontWeight="bold">
             Don’t Miss Service
           </Box>
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            mt="s"
+            pl={4}
+            color="#818181"
+            fontSize={14}
+            fontWeight="bold"
+          >
+            <Box minWidth="65%">Date</Box>
+            <Box minWidth="35%">Time</Box>
+          </Box>
           <Box display="flex" width="330px">
-            <Select
-              mt="s"
-              mr="base"
-              borderColor="primary"
+            <Styled.CustomSelect
+              width={300}
               onChange={e => setSelectedDay(e.target.selectedIndex)}
               name="day"
             >
               {dateTimes?.map(event => {
                 return (
-                  <Select.Option>{`${event.day} ${event.date}`}</Select.Option>
+                  <Select.Option>{`${event.day}, ${event.date}`}</Select.Option>
                 );
               })}
-            </Select>
-            <Select
-              mt="s"
-              borderColor="primary"
+            </Styled.CustomSelect>
+            <Styled.CustomSelect
               onChange={e => setSelectedTime(e.target.selectedIndex)}
               name="time"
               width={160}
             >
               {dateTimes[selectedDay]?.times?.map(event => {
-                console.log(event, { selectedDay });
                 return <Select.Option>{event}</Select.Option>;
               })}
-            </Select>
+            </Styled.CustomSelect>
           </Box>
           <Button
             as="a"
+            mt="s"
             bg="#3B7DD9"
             download="ChristFellowshipChurch.ics"
             href={icsLink(easterEvent?.event)}
-            mt="s"
             border="1px solid #000"
             borderRadius={50}
           >
@@ -155,28 +169,27 @@ export const DontMissService = props => {
           <Divider mt="base" />
         </Box>
         <Box display="flex" flexDirection="column" justifyContent="center">
-          <Box fontSize={{ _: 18, md: 24 }} fontWeight="bold" mt="base">
+          <Box fontSize={{ _: 18, md: 20 }} pl={4} fontWeight="bold" mt="base">
             Invite A Friend
           </Box>
-          <Box mt="s" color="#818181" fontSize={14} fontWeight="bold">
+          <Box color="#818181" mt="s" pl={4} fontSize={14} fontWeight="bold">
             Pick your message
           </Box>
-          <Select
-            mt="s"
-            width="330px"
-            borderColor="primary"
+          <Styled.MessageSelect
             onChange={e => setSelectedMessage(e.target.value)}
             name="message"
           >
             {SMS_OPTIONS.map(message => {
               return <Select.Option>{message}</Select.Option>;
             })}
-          </Select>
+          </Styled.MessageSelect>
           <Styled.SendTextMessage
             onClick={() =>
               handleSocialShare({
                 shareType: 'sms',
-                shareMessages: { sms: selectedMessage },
+                shareMessages: {
+                  sms: `${selectedMessage} https://www.christfellowship.church/easter-2024`,
+                },
               })
             }
           >
