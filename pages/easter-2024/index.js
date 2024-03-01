@@ -15,14 +15,12 @@ const Easter = () => {
 
   return (
     <Layout>
-      <Box bg="#fcfce6">
+      <Box
+        background="url('/easter/paper-background.jpg')"
+        backgroundSize="contain"
+      >
         {/* Header Section */}
-        <Box
-          background="url('/easter/paper-background.jpg')"
-          backgroundSize="cover"
-          pt="l"
-          pb="xl"
-        >
+        <Box pt="l" pb="xl">
           <Image
             width={{ _: '90vw', md: 600, lg: 800 }}
             aspectRatio="auto"
@@ -197,14 +195,22 @@ const Easter = () => {
         {/* Photo Carousel */}
         <PhotoCarousel
           photos={[
-            '/easter/photo-carousel/photo-1.jpg',
-            '/easter/photo-carousel/photo-2.jpg',
-            '/easter/photo-carousel/photo-3.jpg',
-            '/easter/photo-carousel/photo-4.jpg',
-            '/easter/photo-carousel/photo-5.jpg',
-            '/easter/photo-carousel/photo-6.jpg',
-            '/easter/photo-carousel/photo-7.jpg',
-            '/easter/photo-carousel/photo-8.jpg',
+            '/easter/photo-carousel/1.jpg',
+            '/easter/photo-carousel/2.jpg',
+            '/easter/photo-carousel/3.jpg',
+            '/easter/photo-carousel/4.jpg',
+            '/easter/photo-carousel/5.jpg',
+            '/easter/photo-carousel/6.jpg',
+            '/easter/photo-carousel/7.jpg',
+            '/easter/photo-carousel/8.jpg',
+            '/easter/photo-carousel/9.jpg',
+            '/easter/photo-carousel/10.jpg',
+            '/easter/photo-carousel/11.jpg',
+            '/easter/photo-carousel/12.jpg',
+            '/easter/photo-carousel/13.jpg',
+            '/easter/photo-carousel/14.jpg',
+            '/easter/photo-carousel/15.jpg',
+            '/easter/photo-carousel/16.jpg',
           ]}
         />
 
@@ -268,14 +274,11 @@ const Easter = () => {
           </Box>
         </Box>
         {/* FAQ Section Section */}
-        <Box
-          background="url('/easter/paper-background.jpg')"
-          backgroundSize="cover"
-        >
+        <Box mx="auto" maxWidth={1200}>
           <FAQ
             customTheme={{ secondary: '#39383A' }}
             py="xl"
-            px="base"
+            mt="2.5rem !important"
             data={faqData('Easter')}
             otherData={{
               title: 'FAQ',

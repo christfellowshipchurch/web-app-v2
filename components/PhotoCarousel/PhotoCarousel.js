@@ -1,3 +1,8 @@
+/**
+ * @name PhotoCarousel
+ * @description This is a component that displays a horizontal scrolling carousel of photos. This component is specifically made for the Easter 2024 page. And is designed to be used with 8 or 16 photos.
+ */
+
 import React from 'react';
 import { Box } from 'ui-kit';
 import Styled from './PhotoCarousel.styles';
@@ -35,24 +40,25 @@ function PhotoCarousel(props = {}) {
           );
         })}
         {/* We need to render the photos twice to create the infinite scroll effect with 200% width */}
-        {chunked.map((chunk, chunkIndex) => {
-          return (
-            <Box
-              display="flex"
-              flexDirection="column"
-              width="100%"
-              key={chunkIndex}
-            >
-              {chunk.map((photo, index) => (
-                <Styled.GridPhoto
-                  key={index}
-                  backgroundImage={`url(${photo})`}
-                  flex={calculateFlex(index, chunkIndex)}
-                />
-              ))}
-            </Box>
-          );
-        })}
+        {props?.photos?.length < 9 &&
+          chunked.map((chunk, chunkIndex) => {
+            return (
+              <Box
+                display="flex"
+                flexDirection="column"
+                width="100%"
+                key={chunkIndex}
+              >
+                {chunk.map((photo, index) => (
+                  <Styled.GridPhoto
+                    key={index}
+                    backgroundImage={`url(${photo})`}
+                    flex={calculateFlex(index, chunkIndex)}
+                  />
+                ))}
+              </Box>
+            );
+          })}
       </Styled.CarouselTrack>
     </Box>
   );

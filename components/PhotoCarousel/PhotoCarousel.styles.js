@@ -36,6 +36,7 @@ const GridPhoto = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  border: 2px solid #000000;
 
   ${system}
 `;
