@@ -146,7 +146,7 @@ const Easter = () => {
           backgroundRepeat="no-repeat"
           borderTop="3px solid black"
           backgroundImage={{
-            _: "url('/easter/lines-mobile.png')",
+            _: '',
             md: "url('/easter/lines-desktop.png')",
             xl: "url('/easter/lines-desktop-xl.png')",
           }}
@@ -221,7 +221,7 @@ const Easter = () => {
           borderBottom="3px solid black"
         >
           <Box
-            py="xxl"
+            py={{ _: 'l', xl: 'xxl' }}
             backgroundImage="url(/easter/cross-equals-love.png)"
             backgroundPosition={{
               _: 'bottom right 30px',
@@ -232,6 +232,7 @@ const Easter = () => {
           >
             <Box
               m="auto"
+              mb={{ _: 'xl', md: 'xs' }}
               maxWidth="1100px"
               p="base"
               display="flex"
