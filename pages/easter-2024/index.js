@@ -8,8 +8,11 @@ import {
 } from 'components';
 import { Box, Button, Image, EasterContentBlock } from 'ui-kit';
 import faqData from 'components/FAQ/faqData';
+import { useCurrentBreakpoint } from 'hooks';
 
 const Easter = () => {
+  const currentBreakpoint = useCurrentBreakpoint();
+
   return (
     <Layout>
       <Box bg="#fcfce6">
@@ -133,7 +136,7 @@ const Easter = () => {
         {/* Kids Programming Section */}
         <Box
           id="kids-programming"
-          py="xxl"
+          py={{ _: 'l', xl: 'xxl' }}
           backgroundColor="#EBCD5F"
           backgroundSize={{ _: '200px', xl: '450px' }}
           backgroundPosition={{
@@ -152,7 +155,7 @@ const Easter = () => {
           <Box
             m="auto"
             maxWidth="1100px"
-            p="base"
+            px="base"
             display="flex"
             alignItems="center"
             justifyContent="center"
@@ -173,15 +176,19 @@ const Easter = () => {
                   mt: 's',
                 },
               ]}
-              contentLayout={'LEFT'}
+              contentLayout={currentBreakpoint.isSmall ? 'INVERTED' : 'LEFT'}
               htmlContent={`<div>
                 <p>
-                  Christ Fellowship Kids seeks to lead your kids to love Jesus, love others, and love life! And Easter at Christ Fellowship is designed with your family in mind, including special programming for <b> babies-kindergarten during all Good Friday services and babies-elementary during all Easter services.<b> 
+                  Christ Fellowship Kids seeks to lead your kids to love Jesus, love others, and love life! And Easter at Christ Fellowship is designed with your family in mind, including special programming for  <b>babies-elementary</b> during all <b>Good Friday</b> and  <b>Easter services</b>. When you check in your child to Christ Fellowship Kids, they will enjoy a few worship songs, group time lead by caring leaders, and a lesson on the Easter story.
                 </p>
               </div>
             `}
-              image={'easter/special-kids-programming.png'}
-              imageRatio={'12by17'}
+              image={
+                currentBreakpoint.isSmall
+                  ? '/easter/special-kids-programming-mobile.png'
+                  : 'easter/special-kids-programming.png'
+              }
+              imageRatio={currentBreakpoint.isSmall ? '' : '12by17'}
             />
           </Box>
         </Box>
@@ -242,15 +249,19 @@ const Easter = () => {
                     mt: 's',
                   },
                 ]}
-                contentLayout={'RIGHT'}
+                contentLayout={currentBreakpoint.isSmall ? 'INVERTED' : 'RIGHT'}
                 htmlContent={`<div>
                 <p>
                 You can play a part in Easter at Christ Fellowship. How you serve is up to you! From the streets to the seats—there’s a spot for everyone on the Easter Dream Team!
                 </p>
               </div>
             `}
-                image={'easter/dream-team-image.png'}
-                imageRatio={'13by17'}
+                image={
+                  currentBreakpoint.isSmall
+                    ? 'easter/dream-team-image-mobile.png'
+                    : 'easter/dream-team-image.png'
+                }
+                imageRatio={currentBreakpoint.isSmall ? '' : '13by17'}
               />
             </Box>
           </Box>

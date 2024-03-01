@@ -4,14 +4,7 @@ import isEmpty from 'lodash/isEmpty';
 import kebabCase from 'lodash/kebabCase';
 import { useCurrentBreakpoint } from 'hooks';
 
-import {
-  Box,
-  Button,
-  Icon,
-  Image,
-  HtmlRenderer,
-  systemPropTypes,
-} from 'ui-kit';
+import { Box, Button, Image, HtmlRenderer, systemPropTypes } from 'ui-kit';
 import { getUrlFromRelatedNode } from 'utils';
 import { CustomLink, Video } from 'components';
 
@@ -72,6 +65,7 @@ function EasterContentBlock(props = {}) {
           justifyContent="center"
           alignItems="center"
           borderRadius="base"
+          pt="xs"
           maxWidth={horizontalLayout ? (hasVideo ? 600 : 500) : 800}
         >
           <Conditional condition={hasImage && !hasVideo}>
@@ -117,7 +111,7 @@ function EasterContentBlock(props = {}) {
         flexDirection="column"
         display="flex"
         gridRowGap="0.15rem"
-        textAlign={horizontalLayout && !center ? 'left' : 'center'}
+        textAlign="left"
         pt={hasMedia && horizontalLayout ? 'base' : '0'}
       >
         <ConditionalBox condition={hasTitle} order={horizontalLayout ? 1 : 0}>
@@ -127,16 +121,6 @@ function EasterContentBlock(props = {}) {
             color={props?.title.includes('Kids') ? 'black' : 'white'}
           >
             {props.title}
-            <CustomLink
-              as="a"
-              ml="xs"
-              href={`#${containerId}`}
-              opacity="0.5"
-              color="primary"
-              Component={Icon}
-              name="link"
-              size="16"
-            />
           </Box>
         </ConditionalBox>
 
