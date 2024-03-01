@@ -77,9 +77,8 @@ const Easter = () => {
             position="absolute"
             py="l"
             pr={{ _: 0, md: '1.5rem', lg: '4.5rem', xl: '6rem' }}
-            bg={{ _: 'transparent', md: 'rgba(59, 125, 217, 0.60)' }}
-            top="50%"
-            style={{ transform: 'translateY(-50%)' }}
+            top={{ _: '20%', md: '30%', lg: '10%', xl: '10%' }}
+            right={{ _: 0, md: '20%', lg: '10%', xl: '10%' }}
             color="white"
             zIndex={2}
           >
@@ -100,21 +99,13 @@ const Easter = () => {
                 Experience an Easter service with
               </Box>
               <Box
-                mx="l"
+                ml={{ _: 0, md: 200 }}
                 mt="s"
                 display="flex"
                 alignItems="center"
                 textAlign={{ _: 'center', md: 'left' }}
                 width={{ _: 260, md: 'auto' }}
               >
-                <Image
-                  display={{ _: 'none', md: 'block' }}
-                  source="/easter/easter-icon.png"
-                  height={{ _: 60, lg: 80, xl: 110 }}
-                  width={{ _: 100, lg: 140, xl: 200 }}
-                  mr="-1rem"
-                  ml={{ _: 0, md: 'xl' }}
-                />
                 <VerticalWordCarousel
                   data={[
                     'a welcoming environment',
@@ -275,7 +266,7 @@ const Easter = () => {
           </Box>
         </Box>
         {/* FAQ Section Section */}
-        <Box mx="auto" maxWidth={1200}>
+        <Box mx="auto" maxWidth={1200} px="base">
           <FAQ
             customTheme={{ secondary: '#39383A' }}
             py="xl"

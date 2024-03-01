@@ -133,7 +133,7 @@ export const DontMissService = props => {
             <Box minWidth="65%">Date</Box>
             <Box minWidth="35%">Time</Box>
           </Box>
-          <Box display="flex" width="330px">
+          <Box display="flex" width={{ _: 200, md: 330 }}>
             <Styled.CustomSelect
               width={300}
               onChange={e => setSelectedDay(e.target.selectedIndex)}
@@ -163,6 +163,7 @@ export const DontMissService = props => {
             href={icsLink(easterEvent?.event)}
             border="1px solid #000"
             borderRadius={50}
+            maxWidth={{ _: 275, md: 'none' }}
           >
             Add to Calendar
           </Button>
@@ -176,6 +177,7 @@ export const DontMissService = props => {
             Pick your message
           </Box>
           <Styled.MessageSelect
+            width={{ _: 200, md: 330 }}
             onChange={e => setSelectedMessage(e.target.value)}
             name="message"
           >
@@ -184,6 +186,7 @@ export const DontMissService = props => {
             })}
           </Styled.MessageSelect>
           <Styled.SendTextMessage
+            maxWidth={{ _: 275, md: 'none' }}
             onClick={() =>
               handleSocialShare({
                 shareType: 'sms',

@@ -129,6 +129,8 @@ const SendTextMessage = styled(Button)`
     color: black;
     background-color: ${yellowHover};
   }
+
+  ${system}
 `;
 
 EasterLocationsModal.DontMissService = DontMissService;
