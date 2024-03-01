@@ -112,6 +112,7 @@ const EasterLocationSearch = props => {
       background="url('/easter/paper-background.jpg')"
       backgroundSize="cover"
       id="times-locations"
+      pt="xl"
     >
       <Styled>
         <EasterLocationHeader

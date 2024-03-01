@@ -114,17 +114,6 @@ export const DontMissService = props => {
           <Box fontSize={{ _: 18, md: 24 }} fontWeight="bold">
             Don’t Miss Service
           </Box>
-          <Box
-            display="flex"
-            justifyContent="space-between"
-            mt="s"
-            color="#818181"
-            fontSize={14}
-            fontWeight="bold"
-          >
-            <Box minWidth="70%">Date</Box>
-            <Box minWidth="30%">Time</Box>
-          </Box>
           <Box display="flex" width="330px">
             <Select
               mt="s"

@@ -6,7 +6,6 @@ import { TextInput, system } from 'ui-kit';
 
 const EasterLocations = styled.div`
   background: url('/easter/empty-tomb-mobile.png');
-  margin-bottom: ${themeGet('space.base')};
   padding-bottom: 100px;
   background-repeat: no-repeat;
   background-position: center bottom;
@@ -14,7 +13,6 @@ const EasterLocations = styled.div`
 
   @media screen and (min-width: ${themeGet('breakpoints.sm')}) {
     background: url('/easter/empty-tomb-mobile.png');
-    margin-bottom: ${themeGet('space.l')};
     padding-bottom: 200px;
     background-repeat: no-repeat;
     background-position: center bottom;
@@ -23,7 +21,6 @@ const EasterLocations = styled.div`
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     background: url('/easter/empty-tomb.png');
-    margin-bottom: ${themeGet('space.l')};
     padding-bottom: 200px;
     background-repeat: no-repeat;
     background-position: center bottom;

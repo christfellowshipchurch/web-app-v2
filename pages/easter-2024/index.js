@@ -21,6 +21,7 @@ const Easter = () => {
           background="url('/easter/paper-background.jpg')"
           backgroundSize="cover"
           pt="l"
+          pb="xl"
         >
           <Image
             width={{ _: '90vw', md: 600, lg: 800 }}
@@ -43,7 +44,7 @@ const Easter = () => {
               AT CHRIST FELLOWSHIP
             </Box>
           </Box>
-          <Box my="base" display="flex" justifyContent="center">
+          <Box mt="base" display="flex" justifyContent="center">
             <Button
               as="a"
               bg="#3B7DD9"
@@ -59,7 +60,7 @@ const Easter = () => {
         </Box>
 
         {/* Video/Word Carousel Section */}
-        <Box my="l" py="base" position="relative">
+        <Box position="relative">
           <VideoHeader
             // bgOverlay="rgba(59, 125, 217, 0.50)"
             backgroundVideo={{
@@ -267,21 +268,25 @@ const Easter = () => {
           </Box>
         </Box>
         {/* FAQ Section Section */}
-        <FAQ
-          customTheme={{ secondary: '#39383A' }}
-          py="l"
-          mt="2.5rem !important"
-          px={{ _: 'base', md: 'l' }}
-          data={faqData('Easter')}
-          otherData={{
-            title: 'FAQ',
-            titleColor: 'black',
-            question: 'Have additional questions?',
-            description:
-              '<div>Call <span style="font-weight: bold;">561-776-3380</span> to speak to someone on our team that would love to help you.</div>',
-            descriptionOverride: true,
-          }}
-        />
+        <Box
+          background="url('/easter/paper-background.jpg')"
+          backgroundSize="cover"
+        >
+          <FAQ
+            customTheme={{ secondary: '#39383A' }}
+            py="xl"
+            px="base"
+            data={faqData('Easter')}
+            otherData={{
+              title: 'FAQ',
+              titleColor: 'black',
+              question: 'Have additional questions?',
+              description:
+                '<div>Call <span style="font-weight: bold;">561-776-3380</span> to speak to someone on our team that would love to help you.</div>',
+              descriptionOverride: true,
+            }}
+          />
+        </Box>
       </Box>
     </Layout>
   );
