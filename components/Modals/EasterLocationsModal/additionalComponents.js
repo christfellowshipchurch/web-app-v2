@@ -121,7 +121,7 @@ export const DontMissService = props => {
     url: document.URL,
   });
   let url = document.URL;
-  let title = messages.title;
+  let title = 'Easter at Christ Fellowship';
   let text = messages.sms;
   const shareDetails = { title, url, text };
 
@@ -132,6 +132,12 @@ export const DontMissService = props => {
         .then(() => console.log('Successful share'))
         .catch(error => console.log('Error sharing: ', error));
     } else {
+      handleSocialShare({
+        shareType: 'sms',
+        shareMessages: {
+          sms: `${selectedMessage} https://www.christfellowship.church/easter-2024`,
+        },
+      });
       console.log('Navigator.share is not a function');
     }
   };
