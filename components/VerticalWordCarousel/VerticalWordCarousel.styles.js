@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { system } from 'ui-kit';
 
 const WordCarousel = styled.div`
-  line-height: 45px;
-  height: 45px;
+  line-height: 50px;
+  height: 50px;
   overflow: hidden;
 
   @media screen and (min-width: ${themeGet('breakpoints.xl')}) {
