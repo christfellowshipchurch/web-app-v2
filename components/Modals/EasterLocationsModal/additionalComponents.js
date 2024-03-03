@@ -1,6 +1,6 @@
 import { Box, Button, Divider, Select } from 'ui-kit';
 import Styled from './EasterLocationsModal.styles';
-import { handleSocialShare } from 'components/Share/shareUtils';
+import { handleSocialShare, shareMessaging } from 'components/Share/shareUtils';
 import { useState } from 'react';
 import { icsLink } from 'components/AddToCalendar/utils';
 import { addMinutes } from 'date-fns';
@@ -113,6 +113,34 @@ export const DontMissService = props => {
     campus,
     campusAddress,
   });
+  const messages = shareMessaging({
+    ...props,
+    shareMessages: {
+      sms: `${selectedMessage}`,
+    },
+    url: document.URL,
+  });
+  let url = document.URL;
+  let title = 'Easter at Christ Fellowship';
+  let text = messages.sms;
+  const shareDetails = { title, url, text };
+
+  const handleSharing = async () => {
+    if (navigator.share) {
+      navigator
+        .share(shareDetails)
+        .then(() => console.log('Successful share'))
+        .catch(error => console.log('Error sharing: ', error));
+    } else {
+      handleSocialShare({
+        shareType: 'sms',
+        shareMessages: {
+          sms: `${selectedMessage} https://www.christfellowship.church/easter-2024`,
+        },
+      });
+      console.log('Navigator.share is not a function');
+    }
+  };
 
   return (
     <Styled.DontMissService>
@@ -149,6 +177,7 @@ export const DontMissService = props => {
               onChange={e => setSelectedTime(e.target.selectedIndex)}
               name="time"
               width={160}
+              pr={30}
             >
               {dateTimes[selectedDay]?.times?.map(event => {
                 return <Select.Option>{event}</Select.Option>;
@@ -177,7 +206,7 @@ export const DontMissService = props => {
             Pick your message
           </Box>
           <Styled.MessageSelect
-            width={{ _: 200, md: 330 }}
+            width={{ _: 260, md: 330 }}
             onChange={e => setSelectedMessage(e.target.value)}
             name="message"
           >
@@ -187,14 +216,7 @@ export const DontMissService = props => {
           </Styled.MessageSelect>
           <Styled.SendTextMessage
             maxWidth={{ _: 275, md: 'none' }}
-            onClick={() =>
-              handleSocialShare({
-                shareType: 'sms',
-                shareMessages: {
-                  sms: `${selectedMessage} https://www.christfellowship.church/easter-2024`,
-                },
-              })
-            }
+            onClick={handleSharing}
           >
             Send a Text Message
           </Styled.SendTextMessage>
