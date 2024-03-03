@@ -69,7 +69,8 @@ function LocationHeader({
                 >
                   Find a Location
                 </Button>
-                <Box
+                {/* TODO : Readd this section once Spanish page is complete!!! */}
+                {/* <Box
                   as="a"
                   color="#3B7DD9"
                   fontStyle="italic"
@@ -78,7 +79,7 @@ function LocationHeader({
                   href="/easter-2024-espanol"
                 >
                   ¿Buscas un servicio de Pascua en español?
-                </Box>
+                </Box> */}
               </Box>
             </Box>
           </Box>

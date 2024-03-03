@@ -1,3 +1,4 @@
+import styled from 'styled-components';
 import {
   EasterLocationSearch,
   FAQ,
@@ -6,9 +7,25 @@ import {
   VerticalWordCarousel,
   VideoHeader,
 } from 'components';
-import { Box, Button, Image, EasterContentBlock } from 'ui-kit';
+import { Box, Button, Image, EasterContentBlock, system } from 'ui-kit';
 import faqData from 'components/FAQ/faqData';
 import { useCurrentBreakpoint } from 'hooks';
+
+//temporary spot for custom CSS
+const WordCarouselContainer = styled.div`
+  position: absolute;
+  top: 30%;
+  color: #ffffff;
+  z-index: 2;
+
+  @media (min-width: 768px) {
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  ${system}
+`;
 
 const Easter = () => {
   const currentBreakpoint = useCurrentBreakpoint();
@@ -73,25 +90,16 @@ const Easter = () => {
             backgroundSize="cover"
           />
 
-          <Box
-            position="absolute"
-            py="l"
-            pr={{ _: 0, md: '1.5rem', lg: '4.5rem', xl: '6rem' }}
-            top={{ _: '20%', md: '30%', lg: '10%', xl: '10%' }}
-            right={{ _: 0, md: '20%', lg: '10%', xl: '10%' }}
-            color="white"
-            zIndex={2}
-          >
+          <WordCarouselContainer width={{ _: 100, md: 600, lg: 800, xl: 1050 }}>
             <Box
-              position="relative"
-              fontSize={30}
-              width={{ _: '100vw', md: 'auto' }}
               display="flex"
+              width={{ _: '100vw', md: 'auto' }}
               flexDirection="column"
               alignItems={{ _: 'center', md: 'flex-start' }}
+              justifyContent="center"
             >
               <Box
-                ml={{ _: 0, md: 'l' }}
+                ml="0px"
                 textAlign={{ _: 'center', md: 'left' }}
                 fontSize={{ _: 20, md: 24, lg: 26, xl: 36 }}
                 fontWeight="normal"
@@ -117,7 +125,7 @@ const Easter = () => {
                 />
               </Box>
             </Box>
-          </Box>
+          </WordCarouselContainer>
         </Box>
 
         {/* Times and Locations */}
