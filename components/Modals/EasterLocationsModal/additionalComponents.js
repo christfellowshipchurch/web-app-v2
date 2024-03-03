@@ -116,7 +116,7 @@ export const DontMissService = props => {
   const messages = shareMessaging({
     ...props,
     shareMessages: {
-      sms: `${selectedMessage} https://www.christfellowship.church/easter-2024`,
+      sms: `${selectedMessage}`,
     },
     url: document.URL,
   });
