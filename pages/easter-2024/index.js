@@ -4,7 +4,7 @@ import {
   FAQ,
   Layout,
   PhotoCarousel,
-  VerticalWordCarousel,
+  // VerticalWordCarousel,
   VideoHeader,
 } from 'components';
 import { Box, Button, Image, EasterContentBlock, system } from 'ui-kit';
@@ -114,7 +114,14 @@ const Easter = () => {
                 textAlign={{ _: 'center', md: 'left' }}
                 width={{ _: 260, md: 'auto' }}
               >
-                <VerticalWordCarousel
+                <Box
+                  as="h1"
+                  fontSize={{ md: 28, lg: 32, xl: 56 }}
+                  fontFamily="retroica"
+                >
+                  a welcoming environment
+                </Box>
+                {/* <VerticalWordCarousel
                   data={[
                     'a welcoming environment',
                     'uplifting worship music',
@@ -122,7 +129,7 @@ const Easter = () => {
                     'outdoor activities for kids',
                     'time to connect with others',
                   ]}
-                />
+                /> */}
               </Box>
             </Box>
           </WordCarouselContainer>
