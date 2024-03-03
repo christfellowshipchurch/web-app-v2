@@ -1,0 +1,9 @@
+/* Regular */
+@font-face {
+  font-family: 'Retroica';
+  src: url('/fonts/retroica/Retroica.ttf');
+
+  font-style: normal;
+  font-weight: 300;
+  font-stretch: normal;
+}

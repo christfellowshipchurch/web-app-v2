@@ -22,6 +22,7 @@ import DiscoverFilterSection from './DiscoverFilterSection';
 import DiscoverFiltersMap from './DiscoverFiltersMap';
 import DiscoverItemsList from './DiscoverItemsList';
 import DisplayAllIcons from './DisplayAllIcons';
+import EasterLocationSearch from './EasterLocationSearch';
 import EventSingle from './EventSingle';
 import EventsList from './EventsList';
 import HeroLanding from './HeroLanding';
@@ -62,6 +63,7 @@ import Nav from './Nav';
 import NotFound from './NotFound';
 import PageSingle from './PageSingle';
 import PasswordReset from './PasswordReset';
+import PhotoCarousel from './PhotoCarousel';
 import SEO from './SEO';
 import SearchField from './SearchField';
 import Share from './Share';
@@ -72,6 +74,7 @@ import UserAvatar from './UserAvatar';
 import UserProfile from './UserProfile';
 import VerticalCardListFeature from './VerticalCardListFeature';
 import VerticalModalCardListFeature from './VerticalModalCardListFeature';
+import VerticalWordCarousel from './VerticalWordCarousel';
 import Video from './Video';
 import VideoHeader from './VideoHeader';
 import VisionCardCarousel from './VisionCardCarousel';
@@ -101,6 +104,7 @@ export {
   DiscoverFiltersMap,
   DiscoverItemsList,
   DisplayAllIcons,
+  EasterLocationSearch,
   EventSingle,
   EventsList,
   HeroLanding,
@@ -141,6 +145,7 @@ export {
   NotFound,
   PageSingle,
   PasswordReset,
+  PhotoCarousel,
   SEO,
   SearchField,
   Share,
@@ -151,6 +156,7 @@ export {
   UserProfile,
   VerticalCardListFeature,
   VerticalModalCardListFeature,
+  VerticalWordCarousel,
   Video,
   VideoHeader,
   VisionCardCarousel,

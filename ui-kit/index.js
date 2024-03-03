@@ -21,6 +21,7 @@ import ContentBlock from './ContentBlock';
 import CoverImage from './CoverImage';
 import DefaultCard from './DefaultCard';
 import Divider from './Divider';
+import EasterContentBlock from './EasterContentBlock';
 import FormLabel from './FormLabel';
 import GroupCard from './GroupCard';
 import GroupMemberStatusBadge from './GroupMemberStatusBadge';
@@ -66,6 +67,7 @@ export {
   CoverImage,
   DefaultCard,
   Divider,
+  EasterContentBlock,
   FormLabel,
   GroupCard,
   GroupMemberStatusBadge,
