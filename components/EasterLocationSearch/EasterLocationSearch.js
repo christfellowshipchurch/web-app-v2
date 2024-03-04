@@ -222,9 +222,11 @@ const EasterLocationSearch = props => {
               })}
             </CardGrid>
           ) : (
+            // Español Page
             <Box
               display="flex"
               flexDirection={{ _: 'column', md: 'row' }}
+              alignItems="center"
               justifyContent="center"
               my="l"
             >

@@ -3,7 +3,7 @@ import {
   FAQ,
   Layout,
   PhotoCarousel,
-  // VerticalWordCarousel,
+  VerticalWordCarousel,
   VideoHeader,
 } from 'components';
 import { Box, Button, Image, EasterContentBlock } from 'ui-kit';
@@ -41,7 +41,7 @@ const EasterCFE = () => {
               EN CHRIST FELLOWSHIP
             </Box>
           </Box>
-          <Box my="base" display="flex" justifyContent="center">
+          <Box my="l" display="flex" justifyContent="center">
             <Button
               as="a"
               bg="#3B7DD9"
@@ -104,14 +104,15 @@ const EasterCFE = () => {
                 textAlign={{ _: 'center', md: 'left' }}
                 width={{ _: 260, md: 'auto' }}
               >
-                <Box
+                {/* <Box
                   as="h1"
                   fontSize={{ md: 28, lg: 32, xl: 56 }}
                   fontFamily="retroica"
                 >
                   un ambiente lleno de vida
-                </Box>
-                {/* <VerticalWordCarousel
+                </Box> */}
+                <VerticalWordCarousel
+                  cfe
                   data={[
                     'un ambiente lleno de vida',
                     'música de adoración ',
@@ -119,7 +120,7 @@ const EasterCFE = () => {
                     'actividades para niños',
                     'tiempo para conectar',
                   ]}
-                /> */}
+                />
               </Box>
             </Box>
           </Box>
@@ -191,26 +192,25 @@ const EasterCFE = () => {
         {/* Photo Carousel */}
         <PhotoCarousel
           photos={[
-            '/easter/photo-carousel/1.jpg',
-            '/easter/photo-carousel/2.jpg',
-            '/easter/photo-carousel/3.jpg',
-            '/easter/photo-carousel/4.jpg',
-            '/easter/photo-carousel/5.jpg',
-            '/easter/photo-carousel/6.jpg',
-            '/easter/photo-carousel/7.jpg',
-            '/easter/photo-carousel/8.jpg',
-            '/easter/photo-carousel/9.jpg',
-            '/easter/photo-carousel/10.jpg',
-            '/easter/photo-carousel/11.jpg',
-            '/easter/photo-carousel/12.jpg',
-            '/easter/photo-carousel/13.jpg',
-            '/easter/photo-carousel/14.jpg',
-            '/easter/photo-carousel/15.jpg',
-            '/easter/photo-carousel/16.jpg',
+            '/easter/cfe-photo-carousel/1.jpg',
+            '/easter/cfe-photo-carousel/2.jpg',
+            '/easter/cfe-photo-carousel/3.jpg',
+            '/easter/cfe-photo-carousel/4.jpg',
+            '/easter/cfe-photo-carousel/5.jpg',
+            '/easter/cfe-photo-carousel/6.jpg',
+            '/easter/cfe-photo-carousel/7.jpg',
+            '/easter/cfe-photo-carousel/8.jpg',
+            '/easter/cfe-photo-carousel/9.jpg',
+            '/easter/cfe-photo-carousel/10.jpg',
+            '/easter/cfe-photo-carousel/11.jpg',
+            '/easter/cfe-photo-carousel/12.jpg',
+            '/easter/cfe-photo-carousel/13.jpg',
+            '/easter/cfe-photo-carousel/14.jpg',
+            '/easter/cfe-photo-carousel/15.jpg',
+            '/easter/cfe-photo-carousel/16.jpg',
           ]}
         />
 
-        {/* Serve Section */}
         {/* Serve Section */}
         <Box
           background="linear-gradient(0deg, rgba(59,125,217,1) 24%, rgba(138,208,194,1) 91%)"
