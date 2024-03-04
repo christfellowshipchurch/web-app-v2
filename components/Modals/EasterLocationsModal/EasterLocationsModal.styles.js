@@ -123,6 +123,9 @@ const SendTextMessage = styled(Button)`
   border: 1px solid #000;
   border-radius: 50px;
 
+  align-self: center;
+  padding: ${props => (props?.cfe ? '10px 50px;' : '10px 70px;')};
+
   &:hover,
   &:focus,
   &:active {

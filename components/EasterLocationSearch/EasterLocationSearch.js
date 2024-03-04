@@ -31,7 +31,11 @@ const EasterLocationSearch = props => {
 
   if (typeof document !== 'undefined') {
     // Auto search using the user's current location
-    if (navigator.geolocation && !hasLoaded) {
+    if (
+      navigator.geolocation &&
+      !hasLoaded &&
+      !props?.title.includes('Horarios')
+    ) {
       setHasLoaded(true);
       searchCurrentLocation();
     }
@@ -115,6 +119,8 @@ const EasterLocationSearch = props => {
     >
       <Styled>
         <EasterLocationHeader
+          title={props?.title}
+          description={props?.description}
           handleSubmit={handleSubmit}
           setAddress={setAddress}
           getCoordinates={getCoordinates}
@@ -129,7 +135,7 @@ const EasterLocationSearch = props => {
           {loading ? (
             // New Skeleton Loader
             <LocationsLoader mb="l" loading={true} />
-          ) : (
+          ) : !props?.cfe ? (
             <CardGrid
               mb="xl"
               mx={{ _: 'base', md: 'auto' }}
@@ -215,8 +221,41 @@ const EasterLocationSearch = props => {
                 );
               })}
             </CardGrid>
+          ) : (
+            <Box
+              display="flex"
+              flexDirection={{ _: 'column', md: 'row' }}
+              justifyContent="center"
+              my="l"
+            >
+              {sortedCampuses?.map((campus, i) => {
+                let cfe = campus.name.substring(25, campus.name.length);
+                if (campus.name.includes('Español')) {
+                  return (
+                    <Box
+                      as="a"
+                      display="flex"
+                      color="black"
+                      textDecoration="none"
+                      onClick={() => cardClicked(campus.name)}
+                      mx="s"
+                      mb={{ _: 's', md: 0 }}
+                    >
+                      <Styled.LocationCard cfe>
+                        <Box as="h4" mb="0" maxWidth="220px">
+                          {`Christ Fellowship Español ${cfe}`}
+                        </Box>
+                        <Icon name="angle-right" />
+                      </Styled.LocationCard>
+                    </Box>
+                  );
+                } else {
+                  return null;
+                }
+              })}
+            </Box>
           )}
-          <Box mt="l" textAlign="center">
+          <Box pt="l" mb={{ _: 's', md: 0 }} textAlign="center">
             <HtmlRenderer htmlContent={props?.additionalInfo} />
           </Box>
         </Box>

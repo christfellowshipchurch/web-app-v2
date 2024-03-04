@@ -3,7 +3,7 @@ import {
   FAQ,
   Layout,
   PhotoCarousel,
-  VerticalWordCarousel,
+  // VerticalWordCarousel,
   VideoHeader,
 } from 'components';
 import { Box, Button, Image, EasterContentBlock } from 'ui-kit';
@@ -14,13 +14,12 @@ const EasterCFE = () => {
   const currentBreakpoint = useCurrentBreakpoint();
   return (
     <Layout>
-      <Box bg="#fcfce6">
+      <Box
+        background="url('/easter/paper-background.jpg')"
+        backgroundSize="contain"
+      >
         {/* Header Section */}
-        <Box
-          background="url('/easter/paper-background.jpg')"
-          backgroundSize="cover"
-          pt="l"
-        >
+        <Box pt="l" pb="xl">
           <Image
             width={{ _: '90vw', md: 600, lg: 800 }}
             aspectRatio="auto"
@@ -60,10 +59,9 @@ const EasterCFE = () => {
         {/* Video/Word Carousel Section */}
         <Box position="relative">
           <VideoHeader
-            // bgOverlay="rgba(59, 125, 217, 0.50)"
             backgroundVideo={{
               desktop:
-                'https://embed.wistia.com/deliveries/a77f306b26810383456d108d6a159db0.mp4',
+                'https://embed.wistia.com/deliveries/6ed64294542ce063a441632597b8554c.mp4',
             }}
             overlay={true}
             overlayColor="rgba(70, 113, 194, 0.4)"
@@ -106,7 +104,14 @@ const EasterCFE = () => {
                 textAlign={{ _: 'center', md: 'left' }}
                 width={{ _: 260, md: 'auto' }}
               >
-                <VerticalWordCarousel
+                <Box
+                  as="h1"
+                  fontSize={{ md: 28, lg: 32, xl: 56 }}
+                  fontFamily="retroica"
+                >
+                  un ambiente lleno de vida
+                </Box>
+                {/* <VerticalWordCarousel
                   data={[
                     'un ambiente lleno de vida',
                     'música de adoración ',
@@ -114,7 +119,7 @@ const EasterCFE = () => {
                     'actividades para niños',
                     'tiempo para conectar',
                   ]}
-                />
+                /> */}
               </Box>
             </Box>
           </Box>
@@ -122,8 +127,10 @@ const EasterCFE = () => {
 
         {/* Times and Locations */}
         <EasterLocationSearch
-          additionalInfo='Ten en cuenta que contamos con traducción al inglés disponible en todos los servicios. <br/> Algunas ubicaciones de Christ Fellowship Church ofrecen traducción al español en vivo. <a href="/easter-2024" style="color: #3B7DD9; text-decoration: underline;">Ver todas las ubicaciones en inglés</a>.'
-          id="times-locations"
+          cfe
+          title="Horarios y Localizaciones"
+          description="Contamos con servicios de Pascua y Viernes Santo en el sur de Florida ¡Encuentra uno cerca y elige uno que funcione para ti!"
+          additionalInfo='<span style="font-style:italic;">Ten en cuenta que contamos con traducción al inglés disponible en todos los servicios. <br/> Algunas ubicaciones de Christ Fellowship Church ofrecen traducción al español en vivo. <a href="/easter-2024" style="color: #3B7DD9; text-decoration: underline;">Ver todas las ubicaciones</a>.</span>'
         />
 
         {/* Kids Programming Section */}

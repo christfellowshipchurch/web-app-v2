@@ -136,7 +136,11 @@ const Easter = () => {
         </Box>
 
         {/* Times and Locations */}
-        <EasterLocationSearch additionalInfo='<span style="font-weight: bold;">Spread the word about Easter at Christ Fellowship with these easy-to-download <a href="https://rock.gocf.org/easterinvite2024"style="color: #3B7DD9; text-decoration: underline;"> invite graphics</a>.</span>' />
+        <EasterLocationSearch
+          title="TIMES & LOCATIONS"
+          description="We have Easter and Good Friday services all over South Florida. Find a location near you and pick a service that works for you!"
+          additionalInfo='<span style="font-weight: bold;">Spread the word about Easter at Christ Fellowship with these easy-to-download <a href="https://rock.gocf.org/easterinvite2024"style="color: #3B7DD9; text-decoration: underline;"> invite graphics</a>.</span>'
+        />
 
         {/* Kids Programming Section */}
         <Box
