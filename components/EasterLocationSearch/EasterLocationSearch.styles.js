@@ -115,10 +115,6 @@ const LocationCard = styled.div`
     width: ${props => (props?.cfe ? '320px' : 'auto')};
   }
 
-  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-    width: ${props => props?.cfe && '30vw'};
-  }
-
   &:hover {
     cursor: pointer;
     background-color: ${themeGet('colors.neutrals.900')};

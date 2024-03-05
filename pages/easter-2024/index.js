@@ -1,31 +1,13 @@
-import styled from 'styled-components';
 import {
   EasterLocationSearch,
+  EasterWordCarousel,
   FAQ,
   Layout,
   PhotoCarousel,
-  VerticalWordCarousel,
-  VideoHeader,
 } from 'components';
-import { Box, Button, Image, EasterContentBlock, system } from 'ui-kit';
+import { Box, Button, Image, EasterContentBlock } from 'ui-kit';
 import faqData from 'components/FAQ/faqData';
 import { useCurrentBreakpoint } from 'hooks';
-
-//temporary spot for custom CSS
-const WordCarouselContainer = styled.div`
-  position: absolute;
-  top: 30%;
-  color: #ffffff;
-  z-index: 2;
-
-  @media (min-width: 768px) {
-    top: 25%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  ${system}
-`;
 
 const Easter = () => {
   const currentBreakpoint = useCurrentBreakpoint();
@@ -74,66 +56,16 @@ const Easter = () => {
           </Box>
         </Box>
 
-        {/* Video/Word Carousel Section */}
-        <Box position="relative">
-          <VideoHeader
-            // bgOverlay="rgba(59, 125, 217, 0.50)"
-            backgroundVideo={{
-              desktop:
-                'https://embed.wistia.com/deliveries/a77f306b26810383456d108d6a159db0.mp4',
-            }}
-            overlay={true}
-            overlayColor="rgba(70, 113, 194, 0.4)"
-            logoAspectRatio="16/9"
-            backgroundImage="url(/get-there-first/banner.jpg)"
-            backgroundPosition="center"
-            backgroundSize="cover"
-          />
-
-          <WordCarouselContainer width={{ _: 100, md: 600, lg: 800, xl: 1050 }}>
-            <Box
-              display="flex"
-              width={{ _: '100vw', md: 'auto' }}
-              flexDirection="column"
-              alignItems={{ _: 'center', md: 'flex-start' }}
-              justifyContent="center"
-            >
-              <Box
-                ml="0px"
-                textAlign={{ _: 'center', md: 'left' }}
-                fontSize={{ _: 20, md: 24, lg: 26, xl: 36 }}
-                fontWeight="normal"
-              >
-                Experience an Easter service with
-              </Box>
-              <Box
-                ml={{ _: 0, md: 200 }}
-                mt="s"
-                display="flex"
-                alignItems="center"
-                textAlign={{ _: 'center', md: 'left' }}
-                width={{ _: 260, md: 'auto' }}
-              >
-                {/* <Box
-                  as="h1"
-                  fontSize={{ md: 28, lg: 32, xl: 56 }}
-                  fontFamily="retroica"
-                >
-                  a welcoming environment
-                </Box> */}
-                <VerticalWordCarousel
-                  data={[
-                    'a welcoming environment',
-                    'uplifting worship music',
-                    'an encouraging message',
-                    'outdoor activities for kids',
-                    'time to connect with others',
-                  ]}
-                />
-              </Box>
-            </Box>
-          </WordCarouselContainer>
-        </Box>
+        {/* What to Expect */}
+        <EasterWordCarousel
+          words={[
+            'a welcoming environment',
+            'uplifting worship music',
+            'an encouraging message',
+            'outdoor activities for kids',
+            'time to connect with others',
+          ]}
+        />
 
         {/* Times and Locations */}
         <EasterLocationSearch

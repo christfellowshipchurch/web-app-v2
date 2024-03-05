@@ -1,10 +1,9 @@
 import {
   EasterLocationSearch,
+  EasterWordCarousel,
   FAQ,
   Layout,
   PhotoCarousel,
-  VerticalWordCarousel,
-  VideoHeader,
 } from 'components';
 import { Box, Button, Image, EasterContentBlock } from 'ui-kit';
 import faqData from 'components/FAQ/faqData';
@@ -57,74 +56,16 @@ const EasterCFE = () => {
         </Box>
 
         {/* Video/Word Carousel Section */}
-        <Box position="relative">
-          <VideoHeader
-            backgroundVideo={{
-              desktop:
-                'https://embed.wistia.com/deliveries/6ed64294542ce063a441632597b8554c.mp4',
-            }}
-            overlay={true}
-            overlayColor="rgba(70, 113, 194, 0.4)"
-            logoAspectRatio="16/9"
-            backgroundImage="url(/get-there-first/banner.jpg)"
-            backgroundPosition="center"
-            backgroundSize="cover"
-          />
-
-          <Box
-            position="absolute"
-            py="l"
-            pr={{ _: 0, md: '1.5rem', lg: '4.5rem', xl: '6rem' }}
-            top={{ _: '20%', md: '30%', lg: '10%', xl: '10%' }}
-            right={{ _: 0, md: '20%', lg: '10%', xl: '10%' }}
-            color="white"
-            zIndex={2}
-          >
-            <Box
-              position="relative"
-              fontSize={30}
-              width={{ _: '100vw', md: 'auto' }}
-              display="flex"
-              flexDirection="column"
-              alignItems={{ _: 'center', md: 'flex-start' }}
-            >
-              <Box
-                ml={{ _: 0, md: 'l' }}
-                textAlign={{ _: 'center', md: 'left' }}
-                fontSize={{ _: 20, md: 24, lg: 26, xl: 36 }}
-                fontWeight="normal"
-              >
-                Ven a disfrutar de un servicio de Pascua con
-              </Box>
-              <Box
-                ml={{ _: 0, md: 200 }}
-                mt="s"
-                display="flex"
-                alignItems="center"
-                textAlign={{ _: 'center', md: 'left' }}
-                width={{ _: 260, md: 'auto' }}
-              >
-                {/* <Box
-                  as="h1"
-                  fontSize={{ md: 28, lg: 32, xl: 56 }}
-                  fontFamily="retroica"
-                >
-                  un ambiente lleno de vida
-                </Box> */}
-                <VerticalWordCarousel
-                  cfe
-                  data={[
-                    'un ambiente lleno de vida',
-                    'música de adoración ',
-                    'un mensaje alentador',
-                    'actividades para niños',
-                    'tiempo para conectar',
-                  ]}
-                />
-              </Box>
-            </Box>
-          </Box>
-        </Box>
+        <EasterWordCarousel
+          backgroundVideo="https://embed.wistia.com/deliveries/6ed64294542ce063a441632597b8554c.mp4"
+          words={[
+            'un ambiente lleno de vida',
+            'música de adoración ',
+            'un mensaje alentador',
+            'actividades para niños',
+            'tiempo para conectar',
+          ]}
+        />
 
         {/* Times and Locations */}
         <EasterLocationSearch

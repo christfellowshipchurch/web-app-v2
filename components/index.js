@@ -23,6 +23,7 @@ import DiscoverFiltersMap from './DiscoverFiltersMap';
 import DiscoverItemsList from './DiscoverItemsList';
 import DisplayAllIcons from './DisplayAllIcons';
 import EasterLocationSearch from './EasterLocationSearch';
+import EasterWordCarousel from './EasterWordCarousel';
 import EventSingle from './EventSingle';
 import EventsList from './EventsList';
 import HeroLanding from './HeroLanding';
@@ -74,7 +75,6 @@ import UserAvatar from './UserAvatar';
 import UserProfile from './UserProfile';
 import VerticalCardListFeature from './VerticalCardListFeature';
 import VerticalModalCardListFeature from './VerticalModalCardListFeature';
-import VerticalWordCarousel from './VerticalWordCarousel';
 import Video from './Video';
 import VideoHeader from './VideoHeader';
 import VisionCardCarousel from './VisionCardCarousel';
@@ -105,6 +105,7 @@ export {
   DiscoverItemsList,
   DisplayAllIcons,
   EasterLocationSearch,
+  EasterWordCarousel,
   EventSingle,
   EventsList,
   HeroLanding,
@@ -156,7 +157,6 @@ export {
   UserProfile,
   VerticalCardListFeature,
   VerticalModalCardListFeature,
-  VerticalWordCarousel,
   Video,
   VideoHeader,
   VisionCardCarousel,
