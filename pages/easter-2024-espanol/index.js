@@ -57,6 +57,7 @@ const EasterCFE = () => {
 
         {/* Video/Word Carousel Section */}
         <EasterWordCarousel
+          title="Ven a disfrutar de un servicio de Pascua con"
           backgroundVideo="https://embed.wistia.com/deliveries/6ed64294542ce063a441632597b8554c.mp4"
           words={[
             'un ambiente lleno de vida',
