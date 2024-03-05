@@ -217,7 +217,7 @@ const EasterCFE = () => {
           py="l"
           mt="2.5rem !important"
           px={{ _: 'base', md: 'l' }}
-          data={faqData('Easter')}
+          data={faqData('Easter CFE')}
           otherData={{
             title: 'FAQ',
             titleColor: 'black',
