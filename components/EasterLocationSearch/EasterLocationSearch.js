@@ -129,6 +129,7 @@ const EasterLocationSearch = props => {
           searchCurrentLocation={searchCurrentLocation}
           locationActive={locationActive}
           setLocationActive={setLocationActive}
+          cfeLink={!props?.cfe}
         />
 
         <Box p="base" id="results" px={{ _: 's', md: 'xl' }}>
