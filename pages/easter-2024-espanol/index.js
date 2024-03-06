@@ -1,59 +1,35 @@
 import {
+  EasterContentBlock,
+  EasterHero,
   EasterLocationSearch,
   EasterWordCarousel,
   FAQ,
   Layout,
   PhotoCarousel,
 } from 'components';
-import { Box, Button, Image, EasterContentBlock } from 'ui-kit';
+import { Box } from 'ui-kit';
 import faqData from 'components/FAQ/faqData';
 import { useCurrentBreakpoint } from 'hooks';
 
 const EasterCFE = () => {
   const currentBreakpoint = useCurrentBreakpoint();
   return (
-    <Layout>
+    <Layout
+      title="Pascua en Christ Fellowship | Christ Fellowship Español"
+      seoMetaTags={{
+        description:
+          '¡Celebra la Pascua aquí en Christ Fellowship Español! Con música increíble, un mensaje impactante y mucha diversión para toda tu familia.',
+        keywords:
+          'Pascua en la Iglesia Christ Fellowship, Semana Santa en la Iglesia Christ Fellowship, Servicios de Pascua, Servicios de Semana Santa, Servicios de Pascua cerca de mí, Servicios de Semana Santa cerca de mí, Servicios de Pascua en línea, Servicios de Semana Santa en línea, servicios de viernes santo, Servicios de Viernes Santo cerca de mí, Servicios de Viernes Santo en línea',
+        image: '/easter/easter-logo.png',
+      }}
+    >
       <Box
         background="url('/easter/paper-background.jpg')"
         backgroundSize="contain"
       >
         {/* Header Section */}
-        <Box pt="l" pb="xl">
-          <Image
-            width={{ _: '90vw', md: 600, lg: 800 }}
-            aspectRatio="auto"
-            source="/easter/easter-logo.png"
-          />
-          <Box
-            my="base"
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            fontWeight="bold"
-            mb={0}
-            color="black"
-          >
-            <Box fontSize={{ _: 88, md: 110, lg: 124 }} lineHeight="0.7">
-              PASCUA
-            </Box>
-            <Box mt={0} fontSize={{ _: 27, md: 34, lg: 38 }}>
-              EN CHRIST FELLOWSHIP
-            </Box>
-          </Box>
-          <Box my="l" display="flex" justifyContent="center">
-            <Button
-              as="a"
-              bg="#3B7DD9"
-              fontSize={18}
-              py="xs"
-              px="base"
-              borderRadius="20px"
-              href="#times-locations"
-            >
-              Encuentra Un Servicio
-            </Button>
-          </Box>
-        </Box>
+        <EasterHero title="PASCUA" buttonTitle="Encuentra Un Servicio" />
 
         {/* Video/Word Carousel Section */}
         <EasterWordCarousel
@@ -71,7 +47,7 @@ const EasterCFE = () => {
         {/* Times and Locations */}
         <EasterLocationSearch
           cfe
-          title="Horarios y Localizaciones"
+          title="HORARIOS Y LOCALIZACIONES"
           description="Contamos con servicios de Pascua y Viernes Santo en el sur de Florida ¡Encuentra uno cerca y elige uno que funcione para ti!"
           additionalInfo='<span style="font-style:italic;">Ten en cuenta que contamos con traducción al inglés disponible en todos los servicios. <br/> Algunas ubicaciones de Christ Fellowship Church ofrecen traducción al español en vivo. <a href="/easter-2024" style="color: #3B7DD9; text-decoration: underline;">Ver todas las ubicaciones</a>.</span>'
         />

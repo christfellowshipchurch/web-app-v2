@@ -37,31 +37,6 @@ const flexLayout =
     }
   };
 
-const EasterHeaderButton = styled(Button)`
-  text-decoration: none;
-  font-weight: bold;
-
-  font-size: 18px;
-  padding: ${themeGet('space.xs')} ${themeGet('space.base')};
-  border-radius: 20px;
-
-  margin-top: ${themeGet('space.base')};
-  margin: ${themeGet('space.xs')};
-  background-color: #3b7dd9;
-
-  color: ${props => props?.color || 'white'};
-
-  transition: 0.5s ease-in-out;
-
-  &:hover,
-  &:focus,
-  &:active {
-    background-color: ${props => props?.buttonHover};
-    color: ${props => props?.hoverTextColor};
-  }
-  ${system}
-`;
-
 const EasterContentBlock = styled.div`
   display: flex;
   grid-gap: 5rem;
@@ -112,7 +87,7 @@ const gridTemplate =
 
 const StyledButton = styled(Button)`
   text-decoration: none;
-
+  font-weight: bold;
   margin-top: ${themeGet('space.base')};
   margin: ${themeGet('space.xs')};
   background-color: ${props => props?.bg};
@@ -146,6 +121,5 @@ const Content = styled.div`
 
 EasterContentBlock.Content = Content;
 EasterContentBlock.StyledButton = StyledButton;
-EasterContentBlock.EasterHeaderButton = EasterHeaderButton;
 
 export default EasterContentBlock;

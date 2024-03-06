@@ -8,6 +8,7 @@ function EasterWordCarousel({
   title = 'Experience an Easter service with',
   backgroundVideo = 'https://embed.wistia.com/deliveries/a77f306b26810383456d108d6a159db0.mp4',
   words,
+  customFontStyles = {},
 }) {
   return (
     <Box position="relative">
@@ -46,7 +47,7 @@ function EasterWordCarousel({
             display="flex"
             alignItems="center"
             textAlign={{ _: 'center', md: 'left' }}
-            width={{ _: 300, md: 'auto' }}
+            width={{ _: 260, md: 'auto' }}
           >
             <Box
               display="flex"
@@ -60,7 +61,7 @@ function EasterWordCarousel({
                   mb={16}
                   fontSize={{ md: 28, lg: 42, xl: 56 }}
                   lineHeight={1}
-                  fontFamily="retroica"
+                  {...customFontStyles}
                 >
                   {word}
                 </Styled.Scroll>

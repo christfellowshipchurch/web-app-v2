@@ -34,7 +34,7 @@ const EasterLocationSearch = props => {
     if (
       navigator.geolocation &&
       !hasLoaded &&
-      !props?.title.includes('Horarios')
+      !props?.title?.includes('Horarios')
     ) {
       setHasLoaded(true);
       searchCurrentLocation();

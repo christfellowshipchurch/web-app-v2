@@ -22,6 +22,8 @@ import DiscoverFilterSection from './DiscoverFilterSection';
 import DiscoverFiltersMap from './DiscoverFiltersMap';
 import DiscoverItemsList from './DiscoverItemsList';
 import DisplayAllIcons from './DisplayAllIcons';
+import EasterContentBlock from './EasterContentBlock';
+import EasterHero from './EasterHero';
 import EasterLocationSearch from './EasterLocationSearch';
 import EasterWordCarousel from './EasterWordCarousel';
 import EventSingle from './EventSingle';
@@ -104,6 +106,8 @@ export {
   DiscoverFiltersMap,
   DiscoverItemsList,
   DisplayAllIcons,
+  EasterContentBlock,
+  EasterHero,
   EasterLocationSearch,
   EasterWordCarousel,
   EventSingle,

@@ -4,7 +4,7 @@ import { Box, Button } from 'ui-kit';
 import Styled from './EasterLocationSearch.styles';
 
 function LocationHeader({
-  title,
+  title = null,
   description,
   handleSubmit,
   setAddress,
@@ -36,12 +36,58 @@ function LocationHeader({
         >
           <Box>
             <Box textAlign="center" mt={{ _: 'base', md: 'l' }}>
-              <Box as="h1" fontSize="3.5rem">
-                {title}
+              {title !== null ? (
+                <Box
+                  as="h1"
+                  mb="base"
+                  fontSize={{ _: '2.5rem', md: '3.5rem' }}
+                  fontFamily="retroica"
+                  fontWeight="500"
+                >
+                  {title}
+                </Box>
+              ) : (
+                <Box
+                  display="flex"
+                  flexWrap="wrap"
+                  justifyContent="center"
+                  alignItems="center"
+                  mb="base"
+                >
+                  <Box
+                    as="h1"
+                    mb={0}
+                    fontSize="3.5rem"
+                    fontFamily="retroica"
+                    fontWeight="500"
+                  >
+                    TIMES
+                  </Box>
+                  <Box
+                    mb="s"
+                    lineHeight="1"
+                    mx="base"
+                    fontWeight="600"
+                    fontSize="3.5rem"
+                  >
+                    &
+                  </Box>
+                  <Box
+                    as="h1"
+                    mb={0}
+                    fontSize="3.5rem"
+                    fontFamily="retroica"
+                    fontWeight="500"
+                  >
+                    LOCATIONS
+                  </Box>
+                </Box>
+              )}
+              <Box as="h4" fontWeight={{ _: 'normal', md: 'bold' }}>
+                {description}
               </Box>
-              <Box as="h4">{description}</Box>
 
-              {!title.includes('Horarios') && (
+              {!!title && !title.includes('Horarios') && (
                 <Box
                   display="flex"
                   flexDirection="column"

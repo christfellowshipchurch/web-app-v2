@@ -1,13 +1,14 @@
 import React from 'react';
 import {
+  EasterContentBlock,
+  EasterHero,
   EasterLocationSearch,
   EasterWordCarousel,
   FAQ,
   Layout,
   PhotoCarousel,
 } from 'components';
-import { Box, Image, EasterContentBlock } from 'ui-kit';
-import Styled from 'ui-kit/EasterContentBlock/EasterContentBlock.styles';
+import { Box } from 'ui-kit';
 
 import faqData from 'components/FAQ/faqData';
 import { useCurrentBreakpoint } from 'hooks';
@@ -17,48 +18,27 @@ const Easter = () => {
   const currentBreakpoint = useCurrentBreakpoint();
 
   return (
-    <Layout>
+    <Layout
+      title="Easter at Christ Fellowship | Christ Fellowship Church"
+      seoMetaTags={{
+        description:
+          'Celebrate Easter here at Christ Fellowship Church! Featuring incredible music, an impactful message, and so much fun for your whole family. With locations all over South Florida you are sure to find an Easter service that works well for you.',
+        keywords:
+          'Easter at Christ Fellowship Church, Easter services, Easter services near me, Easter services online, Easter services in Belle Glade FL, Easter services in Boynton Beach FL, Easter services in West Palm Beach FL, Easter services in Jupiter FL, Easter services in Okeechobee FL, Easter services in Palm Beach Gardens FL, Easter services in Port St Lucie FL, Easter services in Riviera Beach FL, Easter services in Royal Palm Beach FL, Easter services in Stuart FL, Easter services in Vero Beach FL, Easter services in Westlake FL, Good Friday services, Good Friday services near me, Good Friday services online',
+        image: '/easter/easter-logo.png',
+      }}
+    >
       <Box
         background="url('/easter/paper-background.jpg')"
         backgroundSize="contain"
       >
         {/* Header Section */}
-        <Box pt="l" pb="xl">
-          <Image
-            width={{ _: '90vw', md: 600, lg: 800 }}
-            aspectRatio="auto"
-            source="/easter/easter-logo.png"
-          />
-          <Box
-            my="base"
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            fontWeight="bold"
-            mb={0}
-            color="black"
-          >
-            <Box fontSize={{ _: 88, md: 110, lg: 124 }} lineHeight="0.7">
-              EASTER
-            </Box>
-            <Box mt={0} fontSize={{ _: 27, md: 34, lg: 38 }}>
-              AT CHRIST FELLOWSHIP
-            </Box>
-          </Box>
-          <Box mt="l" display="flex" justifyContent="center">
-            <Styled.EasterHeaderButton
-              as="a"
-              buttonHover={colorHover('#3B7DD9')}
-              hoverTextColor="white"
-              href="#times-locations"
-            >
-              Find A Service Near Me
-            </Styled.EasterHeaderButton>
-          </Box>
-        </Box>
+        <EasterHero />
 
         {/* What to Expect */}
         <EasterWordCarousel
+          // Only using Custom Font Styles for English due to lack of support for Spanish
+          customFontStyles={{ fontFamily: 'retroica', fontWeight: '500' }}
           words={[
             'a welcoming environment',
             'uplifting worship music',
@@ -70,7 +50,6 @@ const Easter = () => {
 
         {/* Times and Locations */}
         <EasterLocationSearch
-          title="TIMES & LOCATIONS"
           description="We have Easter and Good Friday services all over South Florida. Find one near you and invite someone, too!"
           additionalInfo='<span style="font-weight: bold;">Spread the word about Easter at Christ Fellowship with these easy-to-download <a href="https://rock.gocf.org/easterinvite2024"style="color: #3B7DD9; text-decoration: underline;"> invite graphics</a>.</span>'
         />
@@ -103,6 +82,8 @@ const Easter = () => {
             justifyContent="center"
           >
             <EasterContentBlock
+              // Only using Custom Font Styles for English due to lack of support for Spanish
+              customFontStyles={{ fontFamily: 'retroica', fontWeight: '500' }}
               title={`Special Programming for Kids`}
               actions={[
                 {
@@ -161,6 +142,8 @@ const Easter = () => {
               justifyContent="center"
             >
               <EasterContentBlock
+                // Only using Custom Font Styles for English due to lack of support for Spanish
+                customFontStyles={{ fontFamily: 'retroica', fontWeight: '500' }}
                 title={`Serve at Easter`}
                 subtitle={'Join the Easter Dream Team'}
                 actions={[

@@ -112,6 +112,7 @@ function EasterContentBlock(props = {}) {
                 ? 'black'
                 : 'white'
             }
+            {...props?.customFontStyles}
           >
             {props.title}
           </Box>
