@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   EasterLocationSearch,
   EasterWordCarousel,
@@ -5,9 +6,12 @@ import {
   Layout,
   PhotoCarousel,
 } from 'components';
-import { Box, Button, Image, EasterContentBlock } from 'ui-kit';
+import { Box, Image, EasterContentBlock } from 'ui-kit';
+import Styled from 'ui-kit/EasterContentBlock/EasterContentBlock.styles';
+
 import faqData from 'components/FAQ/faqData';
 import { useCurrentBreakpoint } from 'hooks';
+import { colorHover } from 'utils';
 
 const Easter = () => {
   const currentBreakpoint = useCurrentBreakpoint();
@@ -42,17 +46,14 @@ const Easter = () => {
             </Box>
           </Box>
           <Box mt="l" display="flex" justifyContent="center">
-            <Button
+            <Styled.EasterHeaderButton
               as="a"
-              bg="#3B7DD9"
-              fontSize={18}
-              py="xs"
-              px="base"
-              borderRadius="20px"
+              buttonHover={colorHover('#3B7DD9')}
+              hoverTextColor="white"
               href="#times-locations"
             >
               Find A Service Near Me
-            </Button>
+            </Styled.EasterHeaderButton>
           </Box>
         </Box>
 
@@ -106,15 +107,12 @@ const Easter = () => {
               actions={[
                 {
                   title: 'Find A Service',
-                  border: '2px solid black',
                   relatedNode: {
                     url: '#times-locations',
                   },
                   bg: '#FF7D01',
-                  borderRadius: '30px',
-                  paddingLeft: '40px',
-                  paddingRight: '40px',
-                  mt: 's',
+                  buttonHover: colorHover('#FF7D01'),
+                  hoverTextColor: 'white',
                 },
               ]}
               contentLayout={currentBreakpoint.isSmall ? 'INVERTED' : 'LEFT'}
@@ -168,17 +166,13 @@ const Easter = () => {
                 actions={[
                   {
                     title: 'Sign Up to Serve',
-                    border: '2px solid black',
                     relatedNode: {
                       url: '/events/join-easter-dream-team',
                     },
                     bg: '#FFEC7F',
+                    buttonHover: colorHover('#FFEC7F'),
                     color: 'black',
-                    hoverColor: 'black',
-                    borderRadius: '30px',
-                    paddingLeft: '40px',
-                    paddingRight: '40px',
-                    mt: 's',
+                    hoverTextColor: 'black',
                   },
                 ]}
                 contentLayout={currentBreakpoint.isSmall ? 'INVERTED' : 'RIGHT'}

@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
-import { system } from 'ui-kit';
+import { Button, system } from 'ui-kit';
 
 const flexLayout =
   ({ contentLayout }) =>
@@ -36,6 +36,31 @@ const flexLayout =
         `;
     }
   };
+
+const EasterHeaderButton = styled(Button)`
+  text-decoration: none;
+  font-weight: bold;
+
+  font-size: 18px;
+  padding: ${themeGet('space.xs')} ${themeGet('space.base')};
+  border-radius: 20px;
+
+  margin-top: ${themeGet('space.base')};
+  margin: ${themeGet('space.xs')};
+  background-color: #3b7dd9;
+
+  color: ${props => props?.color || 'white'};
+
+  transition: 0.5s ease-in-out;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: ${props => props?.buttonHover};
+    color: ${props => props?.hoverTextColor};
+  }
+  ${system}
+`;
 
 const EasterContentBlock = styled.div`
   display: flex;
@@ -85,6 +110,30 @@ const gridTemplate =
     `;
   };
 
+const StyledButton = styled(Button)`
+  text-decoration: none;
+
+  margin-top: ${themeGet('space.base')};
+  margin: ${themeGet('space.xs')};
+  background-color: ${props => props?.bg};
+  color: ${props => props?.color || 'white'};
+
+  border: 2px solid black;
+  border-radius: 30px;
+  padding: 10px 40px;
+
+  transition: 0.5s ease-in-out;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: ${props => props?.buttonHover};
+    color: ${props => props?.hoverTextColor};
+  }
+
+  ${system}
+`;
+
 const Content = styled.div`
   flex: 4;
   display: grid;
@@ -96,5 +145,7 @@ const Content = styled.div`
 `;
 
 EasterContentBlock.Content = Content;
+EasterContentBlock.StyledButton = StyledButton;
+EasterContentBlock.EasterHeaderButton = EasterHeaderButton;
 
 export default EasterContentBlock;

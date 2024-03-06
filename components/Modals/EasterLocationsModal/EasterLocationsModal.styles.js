@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
-import Color from 'color';
 
 import { Button, Modal, system } from 'ui-kit';
 import { colorHover } from 'utils';
@@ -118,6 +117,7 @@ const StyledButton = styled(Button)`
   &:focus,
   &:active {
     background-color: ${props => props?.buttonHover};
+    color: ${props => props?.hoverTextColor};
   }
 
   ${system}

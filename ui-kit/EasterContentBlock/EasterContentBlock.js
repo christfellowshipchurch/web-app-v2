@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
 import kebabCase from 'lodash/kebabCase';
-import { useCurrentBreakpoint } from 'hooks';
 
-import { Box, Button, Image, HtmlRenderer, systemPropTypes } from 'ui-kit';
+import { Box, Image, HtmlRenderer, systemPropTypes } from 'ui-kit';
 import { getUrlFromRelatedNode } from 'utils';
 import { CustomLink, Video } from 'components';
 
@@ -27,11 +26,7 @@ function EasterContentBlock(props = {}) {
   const contentLayout = toLower(props?.contentLayout ?? 'default');
   const horizontalLayout =
     contentLayout === 'left' || contentLayout === 'right';
-  const title = props?.title;
-  const subtitle = props?.subtitle;
-  const htmlContent = props?.htmlContent;
-  const actions = props?.actions;
-
+  const { title, subtitle, htmlContent, actions } = props;
   const hasTitle = !isEmpty(title);
   const hasSubtitle = !isEmpty(subtitle);
   const hasHtmlContent = !isEmpty(htmlContent);
@@ -43,14 +38,6 @@ function EasterContentBlock(props = {}) {
 
   const idRegex = /\D/g;
   const containerId = hasTitle ? kebabCase(title) : id?.replace(idRegex, '');
-
-  const currentBreakpoint = useCurrentBreakpoint();
-  if (
-    props?.centerContent &&
-    (currentBreakpoint.isSmall || currentBreakpoint.isMedium)
-  ) {
-    var center = true;
-  }
 
   return (
     <Styled
@@ -66,7 +53,7 @@ function EasterContentBlock(props = {}) {
           alignItems="center"
           borderRadius="base"
           pt="xs"
-          mt={currentBreakpoint.isSmall ? '-3rem' : '1rem'}
+          mt={{ _: '-3rem', md: '1rem' }}
           maxWidth={horizontalLayout ? (hasVideo ? 600 : 500) : 800}
         >
           <Conditional condition={hasImage && !hasVideo}>
@@ -158,10 +145,9 @@ function EasterContentBlock(props = {}) {
               key={i}
               as="a"
               href={getUrlFromRelatedNode(action?.relatedNode)}
-              Component={Button}
+              Component={Styled.StyledButton}
               variant={i === 0 ? 'primary' : 'secondary'}
               customTheme={{ primary: '#EBCD5F', secondary: '#EBCD5F' }}
-              m="xs"
               textTransform="capitalize!important"
               target={action?.newTab && '_blank'}
               onClick={action?.onClick}

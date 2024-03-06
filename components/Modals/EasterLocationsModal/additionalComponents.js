@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Select } from 'ui-kit';
+import { Box, Divider, Select } from 'ui-kit';
 import Styled from './EasterLocationsModal.styles';
 import { handleSocialShare, shareMessaging } from 'components/Share/shareUtils';
 import { useState } from 'react';
@@ -222,7 +222,8 @@ export const DontMissService = props => {
           </Styled.MessageSelect>
           {/* Send a Text Message */}
           <Styled.StyledButton
-            // color="black"
+            hoverTextColor="black"
+            color="black"
             buttonColor="#ffec7f"
             buttonHover={colorHover('#ffec7f')}
             width={{ _: 300, md: 'none' }}
