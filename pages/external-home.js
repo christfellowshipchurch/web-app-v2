@@ -107,7 +107,7 @@ export default function ExternalLandingPage(props = {}) {
               {
                 title: 'Subscribe',
                 relatedNode: {
-                  url: 'http://eepurl.com/hAk7aP',
+                  url: 'https://rock.christfellowship.church/page/4344',
                 },
                 mt: '-0.8rem',
                 target: '_blank',
