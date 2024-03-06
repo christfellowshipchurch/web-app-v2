@@ -76,6 +76,11 @@ function Resources() {
           </Styled.Link>
         </Box>
         <Box as="li">
+          <Styled.Link target="_blank" href={links.iglesiaEspanol}>
+            Iglesia Español
+          </Styled.Link>
+        </Box>
+        <Box as="li">
           <Styled.Link href={links.cfApp}>App</Styled.Link>
         </Box>
         <Box as="li">

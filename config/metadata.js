@@ -1,6 +1,7 @@
 const metadata = {
   links: {
     churchOnline: 'https://christfellowship.church/locations/cf-everywhere',
+    iglesiaEspanol: 'https://christfellowship.church/discover?c=en-espanol&s=',
     pastMessages:
       'https://www.youtube.com/playlist?list=PLUQ7jSnRB_efXMDq9Lka6stS02awWoaz4',
     giveOnline: 'https://christfellowship.church/give',

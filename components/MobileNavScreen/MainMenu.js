@@ -39,8 +39,28 @@ function MainMenu(props) {
               {link.call}
             </Styled.NavLink>
           ))}
-        <Box display="flex" justifyContent="end" width="100%">
+        <Box
+          display="flex"
+          flexDirection="column"
+          width="100%"
+          alignItems="end"
+        >
           <GetHelp color="white" />
+          <Box
+            as="a"
+            cursor="pointer"
+            href="/discover?c=en-espanol"
+            textDecoration="none"
+            display="flex"
+            alignItems="center"
+            color="white"
+            {...props}
+          >
+            <Icon name="campus" size={18} mb={2} mr={3} />
+            <Box as="span" fontSize={14} fontWeight="bold" mb={0}>
+              Iglesia Español
+            </Box>
+          </Box>
         </Box>
       </Styled.LinkContainerColored>
     </>
