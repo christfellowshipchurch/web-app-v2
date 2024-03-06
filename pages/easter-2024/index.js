@@ -1,142 +1,58 @@
-import styled from 'styled-components';
+import React from 'react';
 import {
+  EasterContentBlock,
+  EasterHero,
   EasterLocationSearch,
+  EasterWordCarousel,
   FAQ,
   Layout,
   PhotoCarousel,
-  // VerticalWordCarousel,
-  VideoHeader,
 } from 'components';
-import { Box, Button, Image, EasterContentBlock, system } from 'ui-kit';
+import { Box } from 'ui-kit';
+
 import faqData from 'components/FAQ/faqData';
 import { useCurrentBreakpoint } from 'hooks';
-
-//temporary spot for custom CSS
-const WordCarouselContainer = styled.div`
-  position: absolute;
-  top: 30%;
-  color: #ffffff;
-  z-index: 2;
-
-  @media (min-width: 768px) {
-    top: 25%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  ${system}
-`;
+import { colorHover } from 'utils';
 
 const Easter = () => {
   const currentBreakpoint = useCurrentBreakpoint();
 
   return (
-    <Layout>
+    <Layout
+      title="Easter at Christ Fellowship | Christ Fellowship Church"
+      seoMetaTags={{
+        description:
+          'Celebrate Easter here at Christ Fellowship Church! Featuring incredible music, an impactful message, and so much fun for your whole family. With locations all over South Florida you are sure to find an Easter service that works well for you.',
+        keywords:
+          'Easter at Christ Fellowship Church, Easter services, Easter services near me, Easter services online, Easter services in Belle Glade FL, Easter services in Boynton Beach FL, Easter services in West Palm Beach FL, Easter services in Jupiter FL, Easter services in Okeechobee FL, Easter services in Palm Beach Gardens FL, Easter services in Port St Lucie FL, Easter services in Riviera Beach FL, Easter services in Royal Palm Beach FL, Easter services in Stuart FL, Easter services in Vero Beach FL, Easter services in Westlake FL, Good Friday services, Good Friday services near me, Good Friday services online',
+        image: '/easter/easter-logo.png',
+      }}
+    >
       <Box
         background="url('/easter/paper-background.jpg')"
         backgroundSize="contain"
       >
         {/* Header Section */}
-        <Box pt="l" pb="xl">
-          <Image
-            width={{ _: '90vw', md: 600, lg: 800 }}
-            aspectRatio="auto"
-            source="/easter/easter-logo.png"
-          />
-          <Box
-            my="base"
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            fontWeight="bold"
-            mb={0}
-            color="black"
-          >
-            <Box fontSize={{ _: 88, md: 110, lg: 124 }} lineHeight="0.7">
-              EASTER
-            </Box>
-            <Box mt={0} fontSize={{ _: 27, md: 34, lg: 38 }}>
-              AT CHRIST FELLOWSHIP
-            </Box>
-          </Box>
-          <Box mt="base" display="flex" justifyContent="center">
-            <Button
-              as="a"
-              bg="#3B7DD9"
-              fontSize={18}
-              py="xs"
-              px="base"
-              borderRadius="20px"
-              href="#times-locations"
-            >
-              Find A Service Near Me
-            </Button>
-          </Box>
-        </Box>
+        <EasterHero />
 
-        {/* Video/Word Carousel Section */}
-        <Box position="relative">
-          <VideoHeader
-            // bgOverlay="rgba(59, 125, 217, 0.50)"
-            backgroundVideo={{
-              desktop:
-                'https://embed.wistia.com/deliveries/a77f306b26810383456d108d6a159db0.mp4',
-            }}
-            overlay={true}
-            overlayColor="rgba(70, 113, 194, 0.4)"
-            logoAspectRatio="16/9"
-            backgroundImage="url(/get-there-first/banner.jpg)"
-            backgroundPosition="center"
-            backgroundSize="cover"
-          />
-
-          <WordCarouselContainer width={{ _: 100, md: 600, lg: 800, xl: 1050 }}>
-            <Box
-              display="flex"
-              width={{ _: '100vw', md: 'auto' }}
-              flexDirection="column"
-              alignItems={{ _: 'center', md: 'flex-start' }}
-              justifyContent="center"
-            >
-              <Box
-                ml="0px"
-                textAlign={{ _: 'center', md: 'left' }}
-                fontSize={{ _: 20, md: 24, lg: 26, xl: 36 }}
-                fontWeight="normal"
-              >
-                Experience an Easter service with
-              </Box>
-              <Box
-                ml={{ _: 0, md: 200 }}
-                mt="s"
-                display="flex"
-                alignItems="center"
-                textAlign={{ _: 'center', md: 'left' }}
-                width={{ _: 260, md: 'auto' }}
-              >
-                <Box
-                  as="h1"
-                  fontSize={{ md: 28, lg: 32, xl: 56 }}
-                  fontFamily="retroica"
-                >
-                  a welcoming environment
-                </Box>
-                {/* <VerticalWordCarousel
-                  data={[
-                    'a welcoming environment',
-                    'uplifting worship music',
-                    'an encouraging message',
-                    'outdoor activities for kids',
-                    'time to connect with others',
-                  ]}
-                /> */}
-              </Box>
-            </Box>
-          </WordCarouselContainer>
-        </Box>
+        {/* What to Expect */}
+        <EasterWordCarousel
+          // Only using Custom Font Styles for English due to lack of support for Spanish
+          customFontStyles={{ fontFamily: 'retroica', fontWeight: '500' }}
+          words={[
+            'a welcoming environment',
+            'uplifting worship music',
+            'an encouraging message',
+            'outdoor activities for kids',
+            'time to connect with others',
+          ]}
+        />
 
         {/* Times and Locations */}
-        <EasterLocationSearch additionalInfo='<span style="font-weight: bold;">Spread the word about Easter at Christ Fellowship with these easy-to-download <a href="https://rock.gocf.org/easterinvite2024"style="color: #3B7DD9; text-decoration: underline;"> invite graphics</a>.</span>' />
+        <EasterLocationSearch
+          description="We have Easter and Good Friday services all over South Florida. Find one near you and invite someone, too!"
+          additionalInfo='<span style="font-weight: bold;">Spread the word about Easter at Christ Fellowship with these easy-to-download <a href="https://rock.gocf.org/easterinvite2024"style="color: #3B7DD9; text-decoration: underline;"> invite graphics</a>.</span>'
+        />
 
         {/* Kids Programming Section */}
         <Box
@@ -166,25 +82,24 @@ const Easter = () => {
             justifyContent="center"
           >
             <EasterContentBlock
+              // Only using Custom Font Styles for English due to lack of support for Spanish
+              customFontStyles={{ fontFamily: 'retroica', fontWeight: '500' }}
               title={`Special Programming for Kids`}
               actions={[
                 {
                   title: 'Find A Service',
-                  border: '2px solid black',
                   relatedNode: {
                     url: '#times-locations',
                   },
                   bg: '#FF7D01',
-                  borderRadius: '30px',
-                  paddingLeft: '40px',
-                  paddingRight: '40px',
-                  mt: 's',
+                  buttonHover: colorHover('#FF7D01'),
+                  hoverTextColor: 'white',
                 },
               ]}
               contentLayout={currentBreakpoint.isSmall ? 'INVERTED' : 'LEFT'}
               htmlContent={`<div>
                 <p>
-                  Christ Fellowship Kids seeks to lead your kids to love Jesus, love others, and love life! And Easter at Christ Fellowship is designed with your family in mind, including special programming for  <b>babies-elementary</b> during all <b>Good Friday</b> and  <b>Easter services</b>. When you check in your child to Christ Fellowship Kids, they will enjoy a few worship songs, group time lead by caring leaders, and a lesson on the Easter story.
+                  Christ Fellowship Kids seeks to lead your kids to love Jesus, love others, and love life! And Easter at Christ Fellowship is designed with your family in mind, including special programming for  <b>babies-elementary</b> during all <b>Good Friday</b> and  <b>Easter services</b>. When you check in your child to Christ Fellowship Kids, they will enjoy a few worship songs, group time led by caring leaders, and a lesson on the Easter story.
                 </p>
               </div>
             `}
@@ -199,26 +114,7 @@ const Easter = () => {
         </Box>
 
         {/* Photo Carousel */}
-        <PhotoCarousel
-          photos={[
-            '/easter/photo-carousel/1.jpg',
-            '/easter/photo-carousel/2.jpg',
-            '/easter/photo-carousel/3.jpg',
-            '/easter/photo-carousel/4.jpg',
-            '/easter/photo-carousel/5.jpg',
-            '/easter/photo-carousel/6.jpg',
-            '/easter/photo-carousel/7.jpg',
-            '/easter/photo-carousel/8.jpg',
-            '/easter/photo-carousel/9.jpg',
-            '/easter/photo-carousel/10.jpg',
-            '/easter/photo-carousel/11.jpg',
-            '/easter/photo-carousel/12.jpg',
-            '/easter/photo-carousel/13.jpg',
-            '/easter/photo-carousel/14.jpg',
-            '/easter/photo-carousel/15.jpg',
-            '/easter/photo-carousel/16.jpg',
-          ]}
-        />
+        <PhotoCarousel photo="/easter/photo-carousel.jpg" />
 
         {/* Serve Section */}
         <Box
@@ -246,28 +142,26 @@ const Easter = () => {
               justifyContent="center"
             >
               <EasterContentBlock
+                // Only using Custom Font Styles for English due to lack of support for Spanish
+                customFontStyles={{ fontFamily: 'retroica', fontWeight: '500' }}
                 title={`Serve at Easter`}
                 subtitle={'Join the Easter Dream Team'}
                 actions={[
                   {
                     title: 'Sign Up to Serve',
-                    border: '2px solid black',
                     relatedNode: {
                       url: '/events/join-easter-dream-team',
                     },
                     bg: '#FFEC7F',
+                    buttonHover: colorHover('#FFEC7F'),
                     color: 'black',
-                    hoverColor: 'black',
-                    borderRadius: '30px',
-                    paddingLeft: '40px',
-                    paddingRight: '40px',
-                    mt: 's',
+                    hoverTextColor: 'black',
                   },
                 ]}
                 contentLayout={currentBreakpoint.isSmall ? 'INVERTED' : 'RIGHT'}
                 htmlContent={`<div>
                 <p>
-                You can play a part in Easter at Christ Fellowship. How you serve is up to you! From the streets to the seats—there’s a spot for everyone on the Easter Dream Team!
+                  You can play a part in Easter at Christ Fellowship. And how you serve is up to you! From the streets to the seats to the treats—there’s a spot for everyone on the Easter Dream Team!
                 </p>
               </div>
             `}

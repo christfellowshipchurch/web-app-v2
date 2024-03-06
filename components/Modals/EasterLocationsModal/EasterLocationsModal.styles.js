@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
-import Color from 'color';
 
 import { Button, Modal, system } from 'ui-kit';
+import { colorHover } from 'utils';
 
 const EasterLocationsModal = styled(Modal)`
   ${system}
@@ -89,18 +89,6 @@ const ServiceDayTitle = styled.div`
   text-decoration: underline;
 `;
 
-export const redHover = () => props => {
-  const primaryColor = '#d65025';
-
-  return Color(primaryColor).saturate(0.1).darken(0.35).hex();
-};
-
-export const yellowHover = () => props => {
-  const primaryColor = '#ffec7f';
-
-  return Color(primaryColor).saturate(0.1).darken(0.35).hex();
-};
-
 const JoinOnlineButton = styled(Button)`
   font-size: 18px;
   background-color: #d65025;
@@ -112,22 +100,24 @@ const JoinOnlineButton = styled(Button)`
   &:hover,
   &:focus,
   &:active {
-    background-color: ${redHover};
+    background-color: ${colorHover('#d65025')};
   }
 `;
 
-const SendTextMessage = styled(Button)`
-  color: black;
+const StyledButton = styled(Button)`
   margin-top: ${themeGet('space.s')};
-  background-color: #ffec7f;
+  background-color: ${props => props?.buttonColor};
   border: 1px solid #000;
   border-radius: 50px;
+
+  align-self: center;
+  padding: 10px 50px;
 
   &:hover,
   &:focus,
   &:active {
-    color: black;
-    background-color: ${yellowHover};
+    background-color: ${props => props?.buttonHover};
+    color: ${props => props?.hoverTextColor};
   }
 
   ${system}
@@ -136,7 +126,7 @@ const SendTextMessage = styled(Button)`
 EasterLocationsModal.DontMissService = DontMissService;
 EasterLocationsModal.ServiceDayTitle = ServiceDayTitle;
 EasterLocationsModal.JoinOnlineButton = JoinOnlineButton;
-EasterLocationsModal.SendTextMessage = SendTextMessage;
+EasterLocationsModal.StyledButton = StyledButton;
 EasterLocationsModal.MessageSelect = MessageSelect;
 EasterLocationsModal.CustomSelect = CustomSelect;
 
