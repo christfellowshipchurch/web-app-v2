@@ -63,7 +63,7 @@ const EasterCFE = () => {
             'música de adoración ',
             'un mensaje alentador',
             'actividades para niños',
-            'tiempo para conectar',
+            'tiempo con familia y amigos',
           ]}
         />
 
