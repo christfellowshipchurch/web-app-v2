@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { icsLink } from 'components/AddToCalendar/utils';
 import { addMinutes } from 'date-fns';
 import { useCurrentBreakpoint } from 'hooks';
+import { colorHover } from 'utils';
 
 const SMS_OPTIONS = [
   'Hey! Come with me to Easter at Christ Fellowship!',
@@ -190,20 +191,17 @@ export const DontMissService = props => {
               })}
             </Styled.CustomSelect>
           </Box>
-          <Button
-            as="a"
-            mt="s"
-            alignSelf="center"
-            p={cfe ? '10px 73px' : '10px 88px'}
-            bg="#3B7DD9"
+          {/* Add To Calendar */}
+          <Styled.StyledButton
+            color="white"
+            buttonColor="#3B7DD9"
+            buttonHover={colorHover('#3B7DD9')}
             download="ChristFellowshipChurch.ics"
             href={icsLink(easterEvent?.event)}
-            border="1px solid #000"
-            borderRadius={50}
-            maxWidth={{ _: 300, md: 'none' }}
+            width={{ _: 300, md: 'none' }}
           >
             {!cfe ? 'Add to Calendar' : 'Añadir al Calendario'}
-          </Button>
+          </Styled.StyledButton>
           <Divider mt="base" />
         </Box>
         <Box display="flex" flexDirection="column" justifyContent="center">
@@ -222,12 +220,16 @@ export const DontMissService = props => {
               return <Select.Option>{message}</Select.Option>;
             })}
           </Styled.MessageSelect>
-          <Styled.SendTextMessage
-            maxWidth={{ _: 300, md: 'none' }}
+          {/* Send a Text Message */}
+          <Styled.StyledButton
+            // color="black"
+            buttonColor="#ffec7f"
+            buttonHover={colorHover('#ffec7f')}
+            width={{ _: 300, md: 'none' }}
             onClick={handleSharing}
           >
             {!cfe ? 'Send a Text Message' : 'Envía un Mensaje de Texto'}
-          </Styled.SendTextMessage>
+          </Styled.StyledButton>
         </Box>
       </Box>
     </Styled.DontMissService>

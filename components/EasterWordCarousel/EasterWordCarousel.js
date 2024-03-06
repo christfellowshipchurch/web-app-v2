@@ -11,6 +11,7 @@ function EasterWordCarousel({
 }) {
   return (
     <Box position="relative">
+      {/* Background Video */}
       <VideoHeader
         backgroundVideo={{
           desktop: backgroundVideo,
@@ -22,8 +23,8 @@ function EasterWordCarousel({
         backgroundPosition="center"
         backgroundSize="cover"
       />
-
-      <Styled.Container width={{ _: 100, md: 600, lg: 800, xl: 1050 }}>
+      {/* Word Carousel */}
+      <Styled.Container width={{ _: 300, md: 605, lg: 805, xl: 1050 }}>
         <Box
           display="flex"
           width={{ _: '100vw', md: 'auto' }}
@@ -45,7 +46,7 @@ function EasterWordCarousel({
             display="flex"
             alignItems="center"
             textAlign={{ _: 'center', md: 'left' }}
-            width={{ _: 260, md: 'auto' }}
+            width={{ _: 300, md: 'auto' }}
           >
             <Box
               display="flex"
