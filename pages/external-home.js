@@ -50,7 +50,11 @@ export default function ExternalLandingPage(props = {}) {
             </Box>
             <Box as="p" fontSize={{ _: 16, md: 24 }}>
               In the race to the heart of the next generation, the first one
-              there wins.
+              there wins.{' '}
+              <Box as="a" href="/get-there-first">
+                Learn about our vision
+              </Box>
+              <Box>to Get There First.</Box>
             </Box>
           </Box>
           <CollectionPreview
