@@ -6,18 +6,22 @@ const PhotoCarousel = styled.div`
 `;
 
 const CarouselTrack = styled.div`
-  display: flex;
-  position: relative;
-  height: 400px;
+  animation: slide 45s linear infinite;
 
-  animation: slide 7s linear infinite;
-
-  @media (min-width: 768px) {
-    animation: slide 15s linear infinite;
+  @media only screen and (min-width: 480px) {
+    animation: slide-sm 45s linear infinite;
   }
 
-  @media (min-width: 960px) {
-    animation: slide 20s linear infinite;
+  @media only screen and (min-width: 768px) {
+    animation: slide-md 45s linear infinite;
+  }
+
+  @media only screen and (min-width: 1024px) {
+    animation: slide-lg 45s linear infinite;
+  }
+
+  @media only screen and (min-width: 1350px) {
+    animation: slide-xl 45s linear infinite;
   }
 
   @keyframes slide {
@@ -25,7 +29,43 @@ const CarouselTrack = styled.div`
       left: 0;
     }
     100% {
-      left: -100%;
+      left: -690%;
+    }
+  }
+
+  @keyframes slide-sm {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: -400%;
+    }
+  }
+
+  @keyframes slide-md {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: -360%;
+    }
+  }
+
+  @keyframes slide-lg {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: -250%;
+    }
+  }
+
+  @keyframes slide-xl {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: -190%;
     }
   }
 

@@ -57,6 +57,7 @@ const EasterCFE = () => {
 
         {/* Video/Word Carousel Section */}
         <EasterWordCarousel
+          title="Ven a disfrutar de un servicio de Pascua con"
           backgroundVideo="https://embed.wistia.com/deliveries/6ed64294542ce063a441632597b8554c.mp4"
           words={[
             'un ambiente lleno de vida',
@@ -131,26 +132,7 @@ const EasterCFE = () => {
         </Box>
 
         {/* Photo Carousel */}
-        <PhotoCarousel
-          photos={[
-            '/easter/cfe-photo-carousel/1.jpg',
-            '/easter/cfe-photo-carousel/2.jpg',
-            '/easter/cfe-photo-carousel/3.jpg',
-            '/easter/cfe-photo-carousel/4.jpg',
-            '/easter/cfe-photo-carousel/5.jpg',
-            '/easter/cfe-photo-carousel/6.jpg',
-            '/easter/cfe-photo-carousel/7.jpg',
-            '/easter/cfe-photo-carousel/8.jpg',
-            '/easter/cfe-photo-carousel/9.jpg',
-            '/easter/cfe-photo-carousel/10.jpg',
-            '/easter/cfe-photo-carousel/11.jpg',
-            '/easter/cfe-photo-carousel/12.jpg',
-            '/easter/cfe-photo-carousel/13.jpg',
-            '/easter/cfe-photo-carousel/14.jpg',
-            '/easter/cfe-photo-carousel/15.jpg',
-            '/easter/cfe-photo-carousel/16.jpg',
-          ]}
-        />
+        <PhotoCarousel photo="/easter/photo-carousel-espanol.jpg" />
 
         {/* Serve Section */}
         <Box
@@ -216,7 +198,7 @@ const EasterCFE = () => {
           py="l"
           mt="2.5rem !important"
           px={{ _: 'base', md: 'l' }}
-          data={faqData('Easter')}
+          data={faqData('Easter CFE')}
           otherData={{
             title: 'FAQ',
             titleColor: 'black',

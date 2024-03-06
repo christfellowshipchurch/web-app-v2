@@ -135,26 +135,7 @@ const Easter = () => {
         </Box>
 
         {/* Photo Carousel */}
-        <PhotoCarousel
-          photos={[
-            '/easter/photo-carousel/1.jpg',
-            '/easter/photo-carousel/2.jpg',
-            '/easter/photo-carousel/3.jpg',
-            '/easter/photo-carousel/4.jpg',
-            '/easter/photo-carousel/5.jpg',
-            '/easter/photo-carousel/6.jpg',
-            '/easter/photo-carousel/7.jpg',
-            '/easter/photo-carousel/8.jpg',
-            '/easter/photo-carousel/9.jpg',
-            '/easter/photo-carousel/10.jpg',
-            '/easter/photo-carousel/11.jpg',
-            '/easter/photo-carousel/12.jpg',
-            '/easter/photo-carousel/13.jpg',
-            '/easter/photo-carousel/14.jpg',
-            '/easter/photo-carousel/15.jpg',
-            '/easter/photo-carousel/16.jpg',
-          ]}
-        />
+        <PhotoCarousel photo="/easter/photo-carousel.jpg" />
 
         {/* Serve Section */}
         <Box

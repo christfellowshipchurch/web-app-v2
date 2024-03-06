@@ -11,6 +11,7 @@ function LocationHeader({
   getCoordinates,
   refetch,
   setLocationActive,
+  cfeLink,
 }) {
   return (
     <Box
@@ -73,16 +74,18 @@ function LocationHeader({
                   {/* TODO : Readd this section once Spanish page is complete!!! */}
                 </Box>
               )}
-              <Box
-                as="a"
-                color="#3B7DD9"
-                fontStyle="italic"
-                fontWeight="bold"
-                mt="s"
-                href="/easter-2024-espanol"
-              >
-                ¿Buscas un servicio de Pascua en español?
-              </Box>
+              {cfeLink && (
+                <Box
+                  as="a"
+                  color="#3B7DD9"
+                  fontStyle="italic"
+                  fontWeight="bold"
+                  mt="s"
+                  href="/easter-2024-espanol"
+                >
+                  ¿Buscas un servicio de Pascua en español?
+                </Box>
+              )}
             </Box>
           </Box>
         </Box>

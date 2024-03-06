@@ -5,8 +5,9 @@ import { Box } from 'ui-kit';
 import Styled from './EasterWordCarousel.styles';
 
 function EasterWordCarousel({
-  words,
+  title = 'Experience an Easter service with',
   backgroundVideo = 'https://embed.wistia.com/deliveries/a77f306b26810383456d108d6a159db0.mp4',
+  words,
 }) {
   return (
     <Box position="relative">
@@ -36,7 +37,7 @@ function EasterWordCarousel({
             fontSize={{ _: 20, md: 24, lg: 26, xl: 36 }}
             fontWeight="normal"
           >
-            Experience an Easter service with
+            {title}
           </Box>
           <Box
             ml={{ _: 0, md: 200 }}
@@ -55,18 +56,6 @@ function EasterWordCarousel({
               {words?.map((word, index) => (
                 <Styled.Scroll
                   key={index}
-                  mb={16}
-                  fontSize={{ md: 28, lg: 42, xl: 56 }}
-                  lineHeight={1}
-                  fontFamily="retroica"
-                >
-                  {word}
-                </Styled.Scroll>
-              ))}
-              {words?.map((word, index) => (
-                <Styled.Scroll
-                  key={index}
-                  as="h1"
                   mb={16}
                   fontSize={{ md: 28, lg: 42, xl: 56 }}
                   lineHeight={1}
