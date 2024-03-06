@@ -130,7 +130,7 @@ module.exports = {
       { source: '/session4', destination: 'https://my.longhollow.com/startingpoint4', permanent: true },
       { source: '/servelink', destination: '/https://longhollow.com/next-steps/volunteer', permanent: true },
       { source: '/serve', destination: '/https://longhollow.com/next-steps/volunteer', permanent: true },
-      { source: '/find-a-way-to-use-your-gifts-at-serve-link', destination: '/serve', permanent: true },
+      { source: '/find-a-way-to-use-your-gifts-at-serve-link', destination: '/next-steps/volunteer', permanent: true },
       { source: '/app', destination: '/the-long-hollow-app', permanent: true },
       { source: '/supportgroups', destination: '/connect/support-groups', permanent: true },
       { source: '/beliefs', destination: '/about/beliefs', permanent: true },
