@@ -70,7 +70,7 @@ const Easter = () => {
         {/* Times and Locations */}
         <EasterLocationSearch
           title="TIMES & LOCATIONS"
-          description="We have Easter and Good Friday services all over South Florida. Find a location near you and pick a service that works for you!"
+          description="We have Easter and Good Friday services all over South Florida. Find one near you and invite someone, too!"
           additionalInfo='<span style="font-weight: bold;">Spread the word about Easter at Christ Fellowship with these easy-to-download <a href="https://rock.gocf.org/easterinvite2024"style="color: #3B7DD9; text-decoration: underline;"> invite graphics</a>.</span>'
         />
 
@@ -120,7 +120,7 @@ const Easter = () => {
               contentLayout={currentBreakpoint.isSmall ? 'INVERTED' : 'LEFT'}
               htmlContent={`<div>
                 <p>
-                  Christ Fellowship Kids seeks to lead your kids to love Jesus, love others, and love life! And Easter at Christ Fellowship is designed with your family in mind, including special programming for  <b>babies-elementary</b> during all <b>Good Friday</b> and  <b>Easter services</b>. When you check in your child to Christ Fellowship Kids, they will enjoy a few worship songs, group time lead by caring leaders, and a lesson on the Easter story.
+                  Christ Fellowship Kids seeks to lead your kids to love Jesus, love others, and love life! And Easter at Christ Fellowship is designed with your family in mind, including special programming for  <b>babies-elementary</b> during all <b>Good Friday</b> and  <b>Easter services</b>. When you check in your child to Christ Fellowship Kids, they will enjoy a few worship songs, group time led by caring leaders, and a lesson on the Easter story.
                 </p>
               </div>
             `}
@@ -184,7 +184,7 @@ const Easter = () => {
                 contentLayout={currentBreakpoint.isSmall ? 'INVERTED' : 'RIGHT'}
                 htmlContent={`<div>
                 <p>
-                You can play a part in Easter at Christ Fellowship. How you serve is up to you! From the streets to the seats—there’s a spot for everyone on the Easter Dream Team!
+                  You can play a part in Easter at Christ Fellowship. And how you serve is up to you! From the streets to the seats to the treats—there’s a spot for everyone on the Easter Dream Team!
                 </p>
               </div>
             `}
