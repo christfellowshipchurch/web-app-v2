@@ -13,6 +13,12 @@ const SMS_OPTIONS = [
   'Hi! I wanted to invite you to come to Easter with me at my church. Are you free?',
 ];
 
+const SMS_OPTIONS_ESPANOL = [
+  '¡Hola! Te invito a disfrutar la Pascua en Christ Fellowship.',
+  '¡Mira esto! ¿Quisieras ir conmigo a un servicio de Pascua?',
+  '¡Hola! Me gustaría invitarte a venir conmigo a la iglesia para un servicio de Pascua ¿Estás libre?',
+];
+
 function parseTimeAsInt(_time) {
   const time = _time?.toString().trim().toUpperCase();
   const a = time.match(/(AM)|(PM)/g)?.join();
@@ -216,9 +222,13 @@ export const DontMissService = props => {
             onChange={e => setSelectedMessage(e.target.value)}
             name="message"
           >
-            {SMS_OPTIONS.map(message => {
-              return <Select.Option>{message}</Select.Option>;
-            })}
+            {cfe
+              ? SMS_OPTIONS_ESPANOL.map(message => {
+                  return <Select.Option>{message}</Select.Option>;
+                })
+              : SMS_OPTIONS.map(message => {
+                  return <Select.Option>{message}</Select.Option>;
+                })}
           </Styled.MessageSelect>
           {/* Send a Text Message */}
           <Styled.StyledButton
