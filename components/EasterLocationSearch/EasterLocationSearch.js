@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useCampuses, useForm } from 'hooks';
 import { useState } from 'react';
 import { Box, CardGrid, HtmlRenderer, Icon } from 'ui-kit';
@@ -8,6 +8,7 @@ import EasterLocationHeader from './EasterLocationHeader';
 import { showModal, useModalDispatch } from 'providers/ModalProvider';
 import easterServices from 'lib/easterServiceData';
 import { find } from 'lodash';
+import { useRouter } from 'next/router';
 
 const EasterLocationSearch = props => {
   const [results, setResults] = useState([{ geometry: { location: {} } }]);
@@ -16,6 +17,19 @@ const EasterLocationSearch = props => {
   const [locationActive, setLocationActive] = useState(true);
   const { handleSubmit } = useForm();
   const modalDispatch = useModalDispatch();
+  const { query } = useRouter();
+
+  //Opens specific Location Modal when passing modal parameter through URL
+  useEffect(() => {
+    if (query?.modal) {
+      modalDispatch(
+        showModal('EasterLocations', {
+          data: find(easterServices, { name: query?.modal }),
+        })
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query]);
 
   const userCoordinatesExists =
     results[0]?.geometry?.location?.lat && results[0]?.geometry?.location?.lng;
@@ -103,7 +117,7 @@ const EasterLocationSearch = props => {
   }
 
   function cardClicked(name) {
-    modalDispatch(
+    return modalDispatch(
       showModal('EasterLocations', {
         data: find(easterServices, { name: name }),
       })
