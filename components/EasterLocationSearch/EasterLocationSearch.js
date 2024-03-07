@@ -258,6 +258,7 @@ const EasterLocationSearch = props => {
               })}
             </Box>
           )}
+          {/* Additional Info */}
           <Box pt="l" mb={{ _: 's', md: 0 }} textAlign="center">
             <HtmlRenderer htmlContent={props?.additionalInfo} />
           </Box>
