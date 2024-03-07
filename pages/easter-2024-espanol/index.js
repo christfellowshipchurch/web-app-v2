@@ -21,7 +21,7 @@ const EasterCFE = () => {
           '¡Celebra la Pascua aquí en Christ Fellowship Español! Con música increíble, un mensaje impactante y mucha diversión para toda tu familia.',
         keywords:
           'Pascua en la Iglesia Christ Fellowship, Semana Santa en la Iglesia Christ Fellowship, Servicios de Pascua, Servicios de Semana Santa, Servicios de Pascua cerca de mí, Servicios de Semana Santa cerca de mí, Servicios de Pascua en línea, Servicios de Semana Santa en línea, servicios de viernes santo, Servicios de Viernes Santo cerca de mí, Servicios de Viernes Santo en línea',
-        image: '/easter/easter-logo.png',
+        image: '/easter/easter-metadata-espanol.jpg',
       }}
     >
       <Box

@@ -87,7 +87,7 @@ function LocationHeader({
                 {description}
               </Box>
 
-              {!!title && !title.includes('Horarios') && (
+              {!title && (
                 <Box
                   display="flex"
                   flexDirection="column"
