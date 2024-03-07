@@ -12,6 +12,7 @@ function LocationHeader({
   refetch,
   setLocationActive,
   cfeLink,
+  hideSearch = false,
 }) {
   return (
     <Box
@@ -91,7 +92,7 @@ function LocationHeader({
                 {description}
               </Box>
 
-              {!title && (
+              {!hideSearch && (
                 <Box
                   display="flex"
                   flexDirection="column"

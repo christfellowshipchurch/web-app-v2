@@ -130,6 +130,7 @@ const EasterLocationSearch = props => {
           locationActive={locationActive}
           setLocationActive={setLocationActive}
           cfeLink={!props?.cfe}
+          hideSearch={props?.hideSearch}
         />
 
         <Box p="base" id="results" px={{ _: 's', md: 'xl' }}>

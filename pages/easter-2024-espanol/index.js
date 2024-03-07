@@ -47,6 +47,7 @@ const EasterCFE = () => {
         {/* Times and Locations */}
         <EasterLocationSearch
           cfe
+          hideSearch
           title="HORARIOS Y LOCALIZACIONES"
           description="Contamos con servicios de Pascua y Viernes Santo en el sur de Florida ¡Encuentra uno cerca y elige uno que funcione para ti!"
           additionalInfo='<div style="font-style:italic;"><div style="margin-bottom: 6px;">Ten en cuenta que contamos con traducción al inglés disponible en todos los servicios.</div> Algunas ubicaciones de Christ Fellowship Church ofrecen traducción al español en vivo. <a href="/easter-2024" style="color: #3B7DD9; text-decoration: underline;">Ver todas las ubicaciones</a>.</div>'
