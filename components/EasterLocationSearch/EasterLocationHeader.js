@@ -12,6 +12,7 @@ function LocationHeader({
   refetch,
   setLocationActive,
   cfeLink,
+  hideSearch = false,
 }) {
   return (
     <Box
@@ -83,11 +84,15 @@ function LocationHeader({
                   </Box>
                 </Box>
               )}
-              <Box as="h4" fontWeight={{ _: 'normal', md: 'bold' }}>
+              <Box
+                as="h4"
+                style={{ textWrap: 'pretty' }}
+                fontWeight={{ _: 'normal', md: 'bold' }}
+              >
                 {description}
               </Box>
 
-              {!!title && !title.includes('Horarios') && (
+              {!hideSearch && (
                 <Box
                   display="flex"
                   flexDirection="column"

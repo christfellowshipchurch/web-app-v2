@@ -40,7 +40,7 @@ function FAQ(props = {}) {
                 <HtmlRenderer htmlContent={props?.otherData.description} />
               ) : (
                 <Box fontWeight="bold" mb="base" maxWidth={450}>
-                  props?.otherData.description
+                  {props?.otherData.description}
                 </Box>
               )}
               <Box

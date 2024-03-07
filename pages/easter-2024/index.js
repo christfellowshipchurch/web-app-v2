@@ -25,7 +25,7 @@ const Easter = () => {
           'Celebrate Easter here at Christ Fellowship Church! Featuring incredible music, an impactful message, and so much fun for your whole family. With locations all over South Florida you are sure to find an Easter service that works well for you.',
         keywords:
           'Easter at Christ Fellowship Church, Easter services, Easter services near me, Easter services online, Easter services in Belle Glade FL, Easter services in Boynton Beach FL, Easter services in West Palm Beach FL, Easter services in Jupiter FL, Easter services in Okeechobee FL, Easter services in Palm Beach Gardens FL, Easter services in Port St Lucie FL, Easter services in Riviera Beach FL, Easter services in Royal Palm Beach FL, Easter services in Stuart FL, Easter services in Vero Beach FL, Easter services in Westlake FL, Good Friday services, Good Friday services near me, Good Friday services online',
-        image: '/easter/easter-logo.png',
+        image: '/easter/easter-metadata.jpg',
       }}
     >
       <Box
