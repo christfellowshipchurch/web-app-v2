@@ -25,7 +25,7 @@ function FAQ(props = {}) {
           <Box
             as="h2"
             fontSize={32}
-            color="neutrals.300"
+            color={props?.otherData?.titleColor || 'neutrals.300'}
             mb={props?.fullWidth ? 's' : 'base'}
           >
             {props?.otherData.title}
@@ -35,9 +35,14 @@ function FAQ(props = {}) {
               <Box as="h4" color="tertiary" fontStyle="italic" mb={0}>
                 {props?.otherData.question}
               </Box>
-              <Box fontWeight="bold" mb="base" maxWidth={450}>
-                {props?.otherData.description}
-              </Box>
+
+              {props?.otherData?.descriptionOverride ? (
+                <HtmlRenderer htmlContent={props?.otherData.description} />
+              ) : (
+                <Box fontWeight="bold" mb="base" maxWidth={450}>
+                  {props?.otherData.description}
+                </Box>
+              )}
               <Box
                 as="a"
                 href="https://rock.gocf.org/contactus"
@@ -110,6 +115,7 @@ FAQ.defaultProps = {
     question: 'Have a question?',
     description:
       'Someone from our team is happy to answer any of your questions!',
+    descriptionOverride: false,
     contactUs: 'Contact Us',
   },
 };

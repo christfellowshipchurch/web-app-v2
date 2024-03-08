@@ -35,6 +35,84 @@ const faqDefaultData = [
   },
 ];
 
+export const faqCBO = [
+  {
+    title: 'What should I give?',
+    description:
+      "Christ Birthday Offering is a special offering we get to be a part of every Christmas, where we give above our regular tithes and offerings to help fund our mission projects throughout the year. There isn't a set amount you should give, but we often say our Christ Birthday Offering is the greatest gift on our list because its joy will outlast and outlive any other gift we will give! We encourage you to pray about how God wants you to be a part of it.",
+  },
+
+  {
+    title: 'When can I give my offering?',
+    description: `Traditionally, we give to the Christ Birthday Offering during our Christmas Services. However, you can give your offering any time throughout the Christmas season!`,
+  },
+  {
+    title: 'What does the Christ Birthday Offering go to?',
+    description:
+      "Every dollar you give to Christ Birthday Offering will make a difference toward continuing our impact both locally and globally through our mission projects throughout the year. <a style='color: #CB2C30' target='_blank' href='https://issuu.com/christfellowshipchurch/docs/events_2023_cbo_print_handouts_8.5x11_web_final/36?fr=xKAE9_zU1NQ'>Read more about the Vision for 2024.</a>",
+  },
+];
+
+export const faqEaster = [
+  {
+    title: 'What can I expect from service?',
+    description:
+      'When you walk through the doors at any location, someone will be there to greet you. If you have kids (babies-elementary), we can help you check them into Christ Fellowship Kids with our incredible team. Then, you’ll head to the main auditorium for a 70-minute service filled with celebratory songs and an encouraging Easter message. After service, stick around to enjoy the fun for everyone. Can’t join in person? You’ll get the same experience at an online service!',
+  },
+  {
+    title: 'Is childcare available?',
+    description: `Yes! We have Christ Fellowship Kids programming available for babies–elementary during all Good Friday and Easter services.  The MIX, for 5th and 6th graders, will only be offered during Easter services.`,
+  },
+  {
+    title: 'Will there be activities for children after the service?',
+    description:
+      'Yes! Every location will have an After Party with interactive activities for kids after each service.',
+  },
+  {
+    title: 'What time should I arrive?',
+    description:
+      'Doors will open approximately 30 minutes prior to each service. We recommend arriving early so you can find seats, snap those pictures, and enjoy time with your family and friends before the service starts!',
+  },
+  {
+    title: 'What should I wear?',
+    description:
+      'Wear whatever you’re most comfortable in! Whether you want to keep it casual with jeans and a t-shirt or dress up in your favorite Easter outfit—you’ll fit right in.',
+  },
+  {
+    title: 'Will there be live Spanish translation or ASL Interpretation? ',
+    description:
+      'Yes! <br/> <br/>Many of our locations offer live Spanish translation for family or friends who may need it. When you select a campus, you will see services that will offer Spanish translation  marked with an asterisk (*). <br/><br/><span style="font-style: italic;"><a href="/easter-2024-espanol">¿Buscas un servicio de Pascua en español?</a> Ten en cuenta que contamos con traducción al inglés disponible en todos los servicios.</span> <br/><br/>American Sign Language (ASL) interpretation is available at our Trinity location at 9:30AM.',
+  },
+];
+
+export const faqEasterCFE = [
+  {
+    title: '¿Qué puedo esperar del servicio?',
+    description:
+      'Cuando cruces las puertas en cualquiera de nuestras localizaciones, alguien estará listo para recibirte. Si tienes hijos bebés hasta primaria, podemos ayudarte a registrarlo en Christ Fellowship Kids con nuestro increíble equipo. Luego, te dirigirás al auditorio principal para un servicio de 70 minutos lleno de canciones de celebración y un mensaje alentador de Pascua. Después del servicio, quédate para disfrutar de la diversión para toda la familia. ¿No puedes unirte en persona? ¡Obtendrás la misma experiencia en el servicio en línea!',
+  },
+  {
+    title: '¿Hay cuidado de niños disponible?',
+    description:
+      '¡Sí! Tenemos programación de Christ Fellowship Kids disponible para bebés hasta primaria, en todos nuestros servicios de Viernes Santo y Pascua. The MIX para estudiantes en 5to y 6to grado solo se tendrá durante los servicios de Pascua, pero invitamos a todos los niños de 5to grado en adelante a unirse a su familia en el auditorio principal para el servicio del Viernes Santo.',
+  },
+  {
+    title: '¿Habrá actividades para niños después del servicio?',
+    description:
+      '¡Sí! Cada localización tendrá un After Party después de cada servicio con actividades interactivas para niños.',
+  },
+  {
+    title: '¿A qué hora debo llegar?',
+    description:
+      'Las puertas se abrirán aproximadamente 30 minutos antes de cada servicio. Te recomendamos llegar temprano para que puedas encontrar asientos, sacarte fotos y disfrutar del tiempo con tu familia y amigos antes de que comience la celebración de Pascua.',
+  },
+  {
+    title: '¿Cómo tendría que vestirme?',
+    description:
+      '¡Usa lo que te parezca más cómodo! Ya sea que quieras lucir informal con jeans y una camiseta o vestirte con tu outfit favorito de Pascua, encajarás perfectamente.¡Usa lo que te parezca más cómodo! Ya sea que quieras lucir informal con jeans y una camiseta o vestirte con tu outfit favorito de Pascua, encajarás perfectamente.',
+  },
+];
+
 const faqDowntownData = [
   {
     title: 'What does Christ Fellowship believe?',
@@ -219,24 +297,6 @@ export const faqEspanolData = [
   },
 ];
 
-export const faqCBO = [
-  {
-    title: 'What should I give?',
-    description:
-      "Christ Birthday Offering is a special offering we get to be a part of every Christmas, where we give above our regular tithes and offerings to help fund our mission projects throughout the year. There isn't a set amount you should give, but we often say our Christ Birthday Offering is the greatest gift on our list because its joy will outlast and outlive any other gift we will give! We encourage you to pray about how God wants you to be a part of it.",
-  },
-
-  {
-    title: 'When can I give my offering?',
-    description: `Traditionally, we give to the Christ Birthday Offering during our Christmas Services. However, you can give your offering any time throughout the Christmas season!`,
-  },
-  {
-    title: 'What does the Christ Birthday Offering go to?',
-    description:
-      "Every dollar you give to Christ Birthday Offering will make a difference toward continuing our impact both locally and globally through our mission projects throughout the year. <a style='color: #CB2C30' target='_blank' href='https://issuu.com/christfellowshipchurch/docs/events_2023_cbo_print_handouts_8.5x11_web_final/36?fr=xKAE9_zU1NQ'>Read more about the Vision for 2024.</a>",
-  },
-];
-
 export const faqEspanolOtherData = {
   title: 'Preguntas Frecuentes',
   question: '¿Tienes preguntas adicionales?',
@@ -292,6 +352,10 @@ const faqData = campus => {
       return faqCfEverywhereData;
     case 'CBO':
       return faqCBO;
+    case 'Easter':
+      return faqEaster;
+    case 'Easter CFE':
+      return faqEasterCFE;
     case 'Christ Fellowship Español Palm Beach Gardens':
       return faqEspanolData;
     case 'Christ Fellowship Español Royal Palm Beach':

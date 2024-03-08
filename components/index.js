@@ -22,6 +22,10 @@ import DiscoverFilterSection from './DiscoverFilterSection';
 import DiscoverFiltersMap from './DiscoverFiltersMap';
 import DiscoverItemsList from './DiscoverItemsList';
 import DisplayAllIcons from './DisplayAllIcons';
+import EasterContentBlock from './EasterContentBlock';
+import EasterHero from './EasterHero';
+import EasterLocationSearch from './EasterLocationSearch';
+import EasterWordCarousel from './EasterWordCarousel';
 import EventSingle from './EventSingle';
 import EventsList from './EventsList';
 import HeroLanding from './HeroLanding';
@@ -62,6 +66,7 @@ import Nav from './Nav';
 import NotFound from './NotFound';
 import PageSingle from './PageSingle';
 import PasswordReset from './PasswordReset';
+import PhotoCarousel from './PhotoCarousel';
 import SEO from './SEO';
 import SearchField from './SearchField';
 import Share from './Share';
@@ -101,6 +106,10 @@ export {
   DiscoverFiltersMap,
   DiscoverItemsList,
   DisplayAllIcons,
+  EasterContentBlock,
+  EasterHero,
+  EasterLocationSearch,
+  EasterWordCarousel,
   EventSingle,
   EventsList,
   HeroLanding,
@@ -141,6 +150,7 @@ export {
   NotFound,
   PageSingle,
   PasswordReset,
+  PhotoCarousel,
   SEO,
   SearchField,
   Share,

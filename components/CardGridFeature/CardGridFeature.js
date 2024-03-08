@@ -47,7 +47,9 @@ function CardGridFeature(props = {}) {
           columns="12"
         >
           {cards.map((card, i) => {
-            const url = getUrlFromRelatedNode(card?.relatedNode);
+            const url = card.routing
+              ? card.routing.pathname
+              : getUrlFromRelatedNode(card?.relatedNode);
             const nonClickable = url === '#no-click';
             return (
               <Styled.CardSpacing key={i} index={i} total={cards.length}>
@@ -73,7 +75,7 @@ function CardGridFeature(props = {}) {
                     as="a"
                     width={{ _: 300, md: 'auto' }}
                     mx={{ _: 's', md: 0 }}
-                    href={url}
+                    href={`/${url}`}
                     key={i}
                     Component={props?.Component ?? HorizontalHighlightCard}
                     coverImage={card?.coverImage?.sources[0]?.uri}
