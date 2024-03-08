@@ -63,6 +63,10 @@ const navigation = {
       call: 'Improve my finances',
       action: '/discover?c=stewardship',
     },
+    {
+      call: 'Get there first',
+      action: '/get-there-first',
+    },
   ],
   additionalLinks: [
     {
@@ -134,7 +138,7 @@ const navigation = {
           action: '/special-needs',
         },
         {
-          call: 'CFSEU',
+          call: 'Southeastern',
           action: 'https://www.cfseu.com/',
         },
       ],
