@@ -82,7 +82,6 @@ export default function DiscoverFilterCategoriesPreview() {
                   coverImageLabelBgColor="black"
                   coverImageOverlay={true}
                   type="HIGHLIGHT_SMALL"
-                  mobileHeight="150px"
                   loading={true}
                 />
               ))
@@ -93,6 +92,7 @@ export default function DiscoverFilterCategoriesPreview() {
                   boxShadow="none"
                   coverImage={n?.coverImage?.sources[0]?.uri}
                   description={n?.summary}
+                  mobileWidth="86vw"
                   href={getUrlFromRelatedNode(n)}
                   key={n?.id}
                   scaleCard={false}

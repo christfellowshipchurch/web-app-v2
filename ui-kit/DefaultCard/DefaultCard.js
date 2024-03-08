@@ -77,9 +77,11 @@ const DefaultCard = (props = {}) => {
       ) : (
         // When loading - skeleton for the cards - implemented for the locations search page
         <Styled.Loading {...props}>
-          <Styled.CoverLoading>
-            {props.coverImageLabel && <Styled.CoverLabelLoading />}
-          </Styled.CoverLoading>
+          {props?.coverImageLabel ? (
+            <Styled.CoverLoading>
+              <Styled.CoverLabelLoading />
+            </Styled.CoverLoading>
+          ) : null}
         </Styled.Loading>
       )}
     </>
