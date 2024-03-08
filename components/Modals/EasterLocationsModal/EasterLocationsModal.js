@@ -114,7 +114,9 @@ function EasterLocationsModal(props = {}) {
                   {name === 'Online' && (
                     <Styled.JoinOnlineButton
                       onClick={() => {
-                        router.push('/online-link');
+                        router.push(
+                          'https://www.youtube.com/@ChristFellowship.Church'
+                        );
                       }}
                     >
                       Join Online
@@ -125,7 +127,7 @@ function EasterLocationsModal(props = {}) {
             </Box>
             <DontMissService
               campus={name}
-              campusAddress={campusAddress}
+              campusAddress={[campus?.street1, campusAddress].join(', ')}
               data={data}
             />
           </Box>
