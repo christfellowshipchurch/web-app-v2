@@ -121,6 +121,7 @@ function LocationSingle(props = {}) {
 
       {/* Service Times and Campus Pastors sections */}
       <CampusProvider
+        cfe={campus === CFEPBG || campus === CFERPB}
         Component={CampusInfo}
         options={{
           variables: {

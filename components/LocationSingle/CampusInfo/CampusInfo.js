@@ -29,6 +29,7 @@ import { useCurrentBreakpoint } from 'hooks';
 const CampusInfo = ({
   name,
   pastor,
+  cfe,
   city,
   street1,
   state,
@@ -58,6 +59,17 @@ const CampusInfo = ({
   const CFEPBG = 'Christ Fellowship Español Palm Beach Gardens';
   const CFERPB = 'Christ Fellowship Español Royal Palm Beach';
 
+  let subtitle, title, cta;
+  if (cfe) {
+    title = '¿Buscas un servicio de Pascua?';
+    subtitle =
+      'Mira todos los horarios de los servicios de Pascua y Viernes Santo ';
+    cta = 'aquí';
+  } else {
+    title = 'Looking for an Easter service?';
+    subtitle = 'See all Easter and Good Friday service times ';
+    cta = 'here';
+  }
   return (
     <Box
       height={{ _: 'auto', md: desktopHeight }}
@@ -90,17 +102,17 @@ const CampusInfo = ({
             />
             <Box display="flex" flexDirection="column">
               <Box as="h3" mb="0">
-                Looking for an Easter service?
+                {title}
               </Box>
               <Styled.EventSubtitle>
-                See all Easter and Good Friday service times{' '}
+                {subtitle}
                 <Box
                   as="a"
-                  href="/easter-2024"
+                  href={`/easter-2024${cfe ? '-espanol' : ''}`}
                   color="rgba(59, 125, 217, 1)"
                   textDecoration="underline"
                 >
-                  here
+                  {cta}
                 </Box>
                 .
               </Styled.EventSubtitle>
@@ -151,18 +163,16 @@ const CampusInfo = ({
               />
 
               <Box>
-                Looking for an Easter service?
+                {title}
                 <Styled.EventSubtitle fontSize="14px">
-                  See all Easter and Good Friday service times{' '}
+                  {subtitle}
                   <Box
                     as="a"
                     color="rgba(59, 125, 217, 1)"
-                    href={`/easter-2024${
-                      name === CFEPBG || name === CFERPB ? '-espanol' : ''
-                    }`}
+                    href={`/easter-2024${cfe ? '-espanol' : ''}`}
                     textDecoration="underline"
                   >
-                    here
+                    {cta}
                   </Box>
                   .
                 </Styled.EventSubtitle>
