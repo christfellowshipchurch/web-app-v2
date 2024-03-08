@@ -4,12 +4,11 @@ import PropTypes from 'prop-types';
 import { Box } from 'ui-kit';
 import { Layout, SearchField } from 'components';
 import { useRouter } from 'next/router';
-import { useCurrentBreakpoint, useForm } from 'hooks';
+import { useForm } from 'hooks';
 import { kebabCase } from 'lodash';
 
 const NotFound = (props = {}) => {
   const router = useRouter();
-  const currentBreakpoint = useCurrentBreakpoint();
   const { values, handleSubmit, handleChange, reset } = useForm();
   function handleClearAllClick(event) {
     event.preventDefault();
@@ -35,7 +34,8 @@ const NotFound = (props = {}) => {
         <Box
           as="img"
           alt="Error Image"
-          width="90%%"
+          width="100%"
+          // mx="base"
           maxWidth={750}
           src="/error.png"
           margin="auto"
@@ -68,22 +68,16 @@ const NotFound = (props = {}) => {
               placeholder="Search..."
               value={values.text || ''}
             >
-              {!currentBreakpoint.isSmall && 'Search'}
+              Search
             </SearchField>
           </Box>
         </Box>
-        <Box my="xl" textAlign="left">
-          <Box
-            mt="l"
-            mb="base"
-            width="350px"
-            mx={{ _: 'auto', md: '30%' }}
-            mr={{ md: 0 }}
-          >
-            Here are some of our most visited pages:
-            <Box as="ul" mt="s" color="primary" fontWeight="600">
+        <Box px="base" my="xl" textAlign="left">
+          <Box mx={{ _: 'base', md: 'auto' }} mt="l" mb="base" width="350px">
+            <Box as="h4">Here are some of our most visited pages</Box>
+            <Box as="ul" ml="base" mt="s" color="primary" fontWeight="600">
               {links.map((link, index) => (
-                <Box as="li" key={index}>
+                <Box as="li" mb="s" key={index}>
                   <Box
                     as="a"
                     style={{ listStyleType: 'circle' }}
