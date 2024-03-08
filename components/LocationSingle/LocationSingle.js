@@ -283,7 +283,7 @@ function LocationSingle(props = {}) {
             mx="auto"
             size="s"
             px="base"
-            href="http://eepurl.com/hAk7aP"
+            href="https://rock.christfellowship.church/page/4344"
             target="_blank"
           >
             {campus !== CFEPBG && campus !== CFERPB
