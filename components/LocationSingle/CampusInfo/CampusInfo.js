@@ -6,7 +6,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { camelCase, find } from 'lodash';
 
-import { Box, Cell, Divider, Icon, utils } from 'ui-kit';
+import { Box, Cell, Divider, Icon, Image, utils } from 'ui-kit';
 
 import { campusLinks } from '../../../lib/locationData';
 import Styled from '../LocationSingle.styles';
@@ -24,6 +24,7 @@ import {
 } from './AdditionalComponents';
 import { showModal, useModalDispatch } from 'providers/ModalProvider';
 import { whatToExpectVideos } from '../../../lib/locationData';
+import { useCurrentBreakpoint } from 'hooks';
 
 const CampusInfo = ({
   name,
@@ -38,6 +39,8 @@ const CampusInfo = ({
   mapLink,
   weekdaySchedules,
 }) => {
+  const currentBreakpoints = useCurrentBreakpoint();
+
   const addressFirst = street1 ? `${street1}` : null;
   const addressLast = `${city}, ${state} ${postalCode?.substring(0, 5)}`;
 
@@ -75,6 +78,35 @@ const CampusInfo = ({
         zIndex={1}
         width="100%"
       >
+        {/* Easter Banner For Mobile */}
+        {currentBreakpoints.isSmall && (
+          <Styled.MobileEventBanner>
+            <Image
+              width={50}
+              height={50}
+              objectFit="contain"
+              source="/location-pages/easter-banner.png"
+              m="0px 10px 0px 0px !important"
+            />
+            <Box display="flex" flexDirection="column">
+              <Box as="h3" mb="0">
+                Looking for an Easter service?
+              </Box>
+              <Styled.EventSubtitle>
+                See all Easter and Good Friday service times{' '}
+                <Box
+                  as="a"
+                  href="/easter-2024"
+                  color="rgba(59, 125, 217, 1)"
+                  textDecoration="underline"
+                >
+                  here
+                </Box>
+                .
+              </Styled.EventSubtitle>
+            </Box>
+          </Styled.MobileEventBanner>
+        )}
         {/* Service Times */}
         <Box width="100%">
           <Styled.ServiceTimeContainer>
@@ -107,7 +139,36 @@ const CampusInfo = ({
                   )
               )}
           </Styled.ServiceTimeContainer>
+          {/* Desktop Easter Banner */}
+          {!currentBreakpoints.isSmall && (
+            <Styled.EventBanner>
+              <Image
+                width={50}
+                height={50}
+                objectFit="contain"
+                source="/location-pages/easter-banner.png"
+                mr="10px"
+              />
 
+              <Box>
+                Looking for an Easter service?
+                <Styled.EventSubtitle fontSize="14px">
+                  See all Easter and Good Friday service times{' '}
+                  <Box
+                    as="a"
+                    color="rgba(59, 125, 217, 1)"
+                    href={`/easter-2024${
+                      name === CFEPBG || name === CFERPB ? '-espanol' : ''
+                    }`}
+                    textDecoration="underline"
+                  >
+                    here
+                  </Box>
+                  .
+                </Styled.EventSubtitle>
+              </Box>
+            </Styled.EventBanner>
+          )}
           {/* Addtional Information - Orange Box */}
           <Box mr={{ _: 0, lg: 'base' }}>
             {additionalInfo && additionalInfo?.length > 0 && (
