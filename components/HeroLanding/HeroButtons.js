@@ -25,7 +25,7 @@ const HeroButtons = ({ actions, ...props }) => {
               action: action.url,
             }),
           ]}
-          width={{ _: '100%', lg: '300px' }}
+          width={{ _: '100%', lg: '330px' }}
           my={{ _: 'xs', md: 'base' }}
           mx="xs"
           {...action}
