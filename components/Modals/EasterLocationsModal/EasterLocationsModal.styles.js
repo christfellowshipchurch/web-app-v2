@@ -105,13 +105,16 @@ const JoinOnlineButton = styled(Button)`
 `;
 
 const StyledButton = styled(Button)`
+  text-decoration: none;
+  text-align: center;
+  font-weight: bold;
   margin-top: ${themeGet('space.s')};
   background-color: ${props => props?.buttonColor};
   border: 1px solid #000;
   border-radius: 50px;
 
   align-self: center;
-  padding: 10px 50px;
+  padding: 10px 20px;
 
   &:hover,
   &:focus,

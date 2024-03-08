@@ -155,88 +155,100 @@ export const DontMissService = props => {
   let cfe = campus.includes('Español');
   return (
     <Styled.DontMissService>
-      <Box mx="base" my="base" width="100%">
+      <Box mx="auto" my="base" width="100%">
         <Box display="flex" flexDirection="column" justifyContent="center">
-          <Box fontSize={{ _: 18, md: 20 }} pl={4} fontWeight="bold">
-            {!cfe ? 'Don’t Miss Service' : 'No Te Pierdas el Servicio'}
-          </Box>
-          <Box
-            display="flex"
-            justifyContent="space-between"
-            mt="s"
-            pl={4}
-            color="#818181"
-            fontSize={14}
-            fontWeight="bold"
-          >
-            <Box minWidth="65%">{!cfe ? 'Date' : 'Fecha'}</Box>
-            <Box minWidth="35%">{!cfe ? 'Time' : 'Hora'}</Box>
-          </Box>
-          <Box display="flex" width={{ _: 200, md: 330 }}>
-            <Styled.CustomSelect
-              width={300}
-              onChange={e => setSelectedDay(e.target.selectedIndex)}
-              name="day"
-              pr={cfe && 30}
+          <Box ml="s">
+            <Box fontSize={{ _: 18, md: 20 }} pl={4} fontWeight="bold">
+              {!cfe ? 'Don’t Miss Service' : 'No Te Pierdas el Servicio'}
+            </Box>
+            <Box
+              display="flex"
+              justifyContent="space-between"
+              mt="s"
+              pl={4}
+              color="#818181"
+              fontSize={14}
+              fontWeight="bold"
             >
-              {dateTimes?.map(event => {
-                return (
-                  <Select.Option>{`${event.day}, ${event.date}`}</Select.Option>
-                );
-              })}
-            </Styled.CustomSelect>
-            <Styled.CustomSelect
-              onChange={e => setSelectedTime(e.target.selectedIndex)}
-              name="time"
-              width={160}
-              ml="xs"
-              pr={30}
-            >
-              {dateTimes[selectedDay]?.times?.map(event => {
-                return <Select.Option>{event}</Select.Option>;
-              })}
-            </Styled.CustomSelect>
+              <Box minWidth="68%">{!cfe ? 'Date' : 'Fecha'}</Box>
+              <Box minWidth="32%">{!cfe ? 'Time' : 'Hora'}</Box>
+            </Box>
+            <Box display="flex" width={{ _: 200, md: 330 }}>
+              <Styled.CustomSelect
+                width={300}
+                onChange={e => setSelectedDay(e.target.selectedIndex)}
+                name="day"
+                pr={cfe ? 30 : 24}
+              >
+                {dateTimes?.map(event => {
+                  return (
+                    <Select.Option
+                      key={event.day}
+                    >{`${event.day}, ${event.date}`}</Select.Option>
+                  );
+                })}
+              </Styled.CustomSelect>
+              <Styled.CustomSelect
+                onChange={e => setSelectedTime(e.target.selectedIndex)}
+                name="time"
+                width={160}
+                ml="xs"
+                pr={cfe ? 30 : 24}
+              >
+                {dateTimes[selectedDay]?.times?.map(event => {
+                  return <Select.Option>{event}</Select.Option>;
+                })}
+              </Styled.CustomSelect>
+            </Box>
           </Box>
           {/* Add To Calendar */}
           <Styled.StyledButton
+            as="a"
             color="white"
             buttonColor="#3B7DD9"
             buttonHover={colorHover('#3B7DD9')}
             download="ChristFellowshipChurch.ics"
             href={icsLink(easterEvent?.event)}
-            width={{ _: 300, md: 'none' }}
+            width={{ _: 260, md: 300 }}
           >
             {!cfe ? 'Add to Calendar' : 'Añadir al Calendario'}
           </Styled.StyledButton>
           <Divider mt="base" />
         </Box>
         <Box display="flex" flexDirection="column" justifyContent="center">
-          <Box fontSize={{ _: 18, md: 20 }} pl={4} fontWeight="bold" mt="base">
-            {!cfe ? 'Invite A Friend' : 'Invita A Un Amigo'}
+          <Box ml="s">
+            <Box
+              fontSize={{ _: 18, md: 20 }}
+              pl={4}
+              fontWeight="bold"
+              mt="base"
+            >
+              {!cfe ? 'Invite A Friend' : 'Invita A Un Amigo'}
+            </Box>
+            <Box color="#818181" mt="s" pl={4} fontSize={14} fontWeight="bold">
+              {!cfe ? 'Pick your message' : 'Elige tu Mensaje'}
+            </Box>
+            <Styled.MessageSelect
+              width={{ _: 270, md: 330 }}
+              onChange={e => setSelectedMessage(e.target.value)}
+              name="message"
+            >
+              {cfe
+                ? SMS_OPTIONS_ESPANOL.map((message, i) => {
+                    return <Select.Option key={i}>{message}</Select.Option>;
+                  })
+                : SMS_OPTIONS.map((message, i) => {
+                    return <Select.Option key={i}>{message}</Select.Option>;
+                  })}
+            </Styled.MessageSelect>
           </Box>
-          <Box color="#818181" mt="s" pl={4} fontSize={14} fontWeight="bold">
-            {!cfe ? 'Pick your message' : 'Elige tu Mensaje'}
-          </Box>
-          <Styled.MessageSelect
-            width={{ _: 260, md: 330 }}
-            onChange={e => setSelectedMessage(e.target.value)}
-            name="message"
-          >
-            {cfe
-              ? SMS_OPTIONS_ESPANOL.map(message => {
-                  return <Select.Option>{message}</Select.Option>;
-                })
-              : SMS_OPTIONS.map(message => {
-                  return <Select.Option>{message}</Select.Option>;
-                })}
-          </Styled.MessageSelect>
           {/* Send a Text Message */}
           <Styled.StyledButton
             hoverTextColor="black"
             color="black"
             buttonColor="#ffec7f"
             buttonHover={colorHover('#ffec7f')}
-            width={{ _: 300, md: 'none' }}
+            width={{ _: 270, md: 300 }}
             onClick={handleSharing}
           >
             {!cfe ? 'Send a Text Message' : 'Envía un Mensaje de Texto'}
