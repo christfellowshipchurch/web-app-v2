@@ -56,20 +56,18 @@ const CampusInfo = ({
   const desktopHeight = name === 'Online (CF Everywhere)' ? 500 : 560;
 
   /** Spanish Campuses */
-  const CFEPBG = 'Christ Fellowship Español Palm Beach Gardens';
-  const CFERPB = 'Christ Fellowship Español Royal Palm Beach';
 
   let subtitle, title, cta;
   if (cfe) {
     title = '¿Buscas un servicio de Pascua?';
-    subtitle =
-      'Mira todos los horarios de los servicios de Pascua y Viernes Santo ';
+    subtitle = 'Mira los horarios de los servicios de Pascua y Viernes Santo ';
     cta = 'aquí';
   } else {
     title = 'Looking for an Easter service?';
     subtitle = 'See all Easter and Good Friday service times ';
     cta = 'here';
   }
+
   return (
     <Box
       height={{ _: 'auto', md: desktopHeight }}
@@ -125,7 +123,7 @@ const CampusInfo = ({
             <Styled.ServiceTimeTitle>
               {name === 'Online (CF Everywhere)'
                 ? 'Live Every Sunday'
-                : name === CFEPBG || name === CFERPB
+                : cfe
                 ? 'Cada Domingo'
                 : 'Every Sunday'}
             </Styled.ServiceTimeTitle>
@@ -153,44 +151,30 @@ const CampusInfo = ({
           </Styled.ServiceTimeContainer>
           {/* Desktop Easter Banner */}
           {!currentBreakpoints.isSmall && (
-            <Styled.EventBanner>
+            <Styled.EventBanner fontSize={cfe ? 15 : { md: 16, xl: 18 }}>
               <Image
-                width={50}
-                height={50}
+                m="0px 10px 0px 20px"
+                width={cfe ? 35 : { md: 35, lg: 40 }}
+                height={cfe ? 35 : { md: 35, lg: 40 }}
                 objectFit="contain"
                 source="/location-pages/easter-banner.png"
-                mr="10px"
               />
 
-              <Box>
-                {title}
-                <Styled.EventSubtitle fontSize="14px">
-                  {subtitle}
-                  <Box
-                    as="a"
-                    color="rgba(59, 125, 217, 1)"
-                    href={`/easter-2024${cfe ? '-espanol' : ''}`}
-                    textDecoration="underline"
-                  >
-                    {cta}
-                  </Box>
-                  .
-                </Styled.EventSubtitle>
+              <Box
+                alignItems="center"
+                display=" inline-block"
+                justifyContent="center"
+                textWrap="pretty"
+              >
+                {title} {subtitle}
+                <Styled.EventCTA href={`/easter-2024${cfe ? '-espanol' : ''}`}>
+                  {cta}
+                </Styled.EventCTA>
               </Box>
             </Styled.EventBanner>
           )}
-          {/* Addtional Information - Orange Box */}
-          <Box mr={{ _: 0, lg: 'base' }}>
-            {additionalInfo && additionalInfo?.length > 0 && (
-              <Styled.InfoBox>
-                {additionalInfo.map(n => (
-                  <Box key={n} as="li">
-                    {n}
-                  </Box>
-                ))}
-              </Styled.InfoBox>
-            )}
 
+          <Box mr={{ _: 0, lg: 'base' }}>
             {/* Custom Info for CF Everywhere and Trinity */}
             {name === 'Online (CF Everywhere)' && <CfEverywhereSection />}
 
@@ -209,15 +193,13 @@ const CampusInfo = ({
               />
             )}
 
-            {(name === CFEPBG || name === CFERPB) && (
-              <CFESections campus={name} />
-            )}
+            {cfe && <CFESections campus={name} />}
 
             {/* What to Expect Section */}
             {name !== 'Trinity' &&
               name !== 'Online (CF Everywhere)' &&
-              name !== CFEPBG &&
-              name !== CFERPB && (
+              !cfe &&
+              !cfe && (
                 <Box display={{ _: 'none', md: 'flex' }} my="l">
                   <Box ml="base">
                     <Box as="h3" pr="xl" color="secondary" maxWidth={200}>
@@ -262,6 +244,15 @@ const CampusInfo = ({
                         />
                       </Box>
                     )}
+                    {additionalInfo && additionalInfo?.length > 0 && (
+                      <Box mt="base">
+                        {additionalInfo.map(n => (
+                          <Box key={n} as="li">
+                            {n}
+                          </Box>
+                        ))}
+                      </Box>
+                    )}
                   </Box>
                 </Box>
               )}
@@ -280,10 +271,7 @@ const CampusInfo = ({
       </Cell>
 
       {/* Mobile layout */}
-      {isWeekdaySchedule &&
-      name !== CFEPBG &&
-      name !== CFERPB &&
-      name !== 'Trinity' ? (
+      {isWeekdaySchedule && !cfe && !cfe && name !== 'Trinity' ? (
         <Box mt="xxl" display={{ _: 'inline', md: 'none' }}>
           <Divider my="l" width="80%" />
           <WeekdayScheduleDisplay
@@ -328,6 +316,15 @@ const CampusInfo = ({
                 <Icon ml="s" name="play" size="24" variant="secondary" />
               </Box>
             )}
+            {additionalInfo && additionalInfo?.length > 0 && (
+              <Box ml="base" mt="base">
+                {additionalInfo.map(n => (
+                  <Box key={n} as="li">
+                    {n}
+                  </Box>
+                ))}
+              </Box>
+            )}
           </Box>
         </Box>
       ) : (
@@ -341,7 +338,7 @@ const CampusInfo = ({
         )
       )}
 
-      {(name === CFEPBG || name === CFERPB) && (
+      {cfe && (
         <Box display={{ _: 'inline', md: 'none' }}>
           <Divider my="l" width="80%" />
           <WeekdayScheduleDisplay

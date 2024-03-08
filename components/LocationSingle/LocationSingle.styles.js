@@ -102,7 +102,6 @@ const ServiceTimeContainer = styled.div`
   background: linear-gradient(270.35deg, #0092bc -22.55%, #004f71 106.52%),
     linear-gradient(90.49deg, #6bcaba -24.45%, #0092bc 118.95%);
   border-top-left-radius: ${themeGet('radii.base')};
-  border-bottom-left-radius: ${themeGet('radii.base')};
   display: flex;
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
@@ -164,9 +163,8 @@ const VideoOverlay = styled.div`
 // 2023 Event Banner Styled Components
 const EventBanner = styled.div`
   background-color: #ebcd5f;
-  border-top-left-radius: ${themeGet('radii.l')};
+  border-bottom-left-radius: ${themeGet('radii.base')};
   color: black;
-  font-size: 17px;
   display: flex;
   align-items: center;
 
@@ -174,12 +172,9 @@ const EventBanner = styled.div`
 
   padding-bottom: ${themeGet('space.s')};
   padding-left: 20px;
-  padding-right: 32px;
+  padding-right: 6px;
   padding-top: ${themeGet('space.s')};
   box-shadow: -7px -5px 19px rgba(0, 0, 0, 0.12);
-  position: absolute;
-  top: -50px;
-  right: 370px;
 
   @media screen and (min-width: ${themeGet(
       'breakpoints.md'
@@ -220,10 +215,15 @@ const MobileEventBanner = styled.div`
   ${system}
 `;
 
-const EventSubtitle = styled.div`
+const EventSubtitle = styled.a`
   color: rgba(59, 125, 217, 1);
   font-size: 12px;
   font-style: italic;
+`;
+
+const EventCTA = styled.a`
+  color: rgba(59, 125, 217, 1);
+  text-decoration: underline;
 `;
 
 LocationSingle.FlexBreak = FlexBreak;
@@ -237,6 +237,7 @@ LocationSingle.VideoCover = VideoCover;
 LocationSingle.VideoOverlay = VideoOverlay;
 LocationSingle.EventBanner = EventBanner;
 LocationSingle.EventSubtitle = EventSubtitle;
+LocationSingle.EventCTA = EventCTA;
 LocationSingle.MobileEventBanner = MobileEventBanner;
 
 export default LocationSingle;
