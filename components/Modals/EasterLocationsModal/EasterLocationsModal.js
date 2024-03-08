@@ -12,9 +12,11 @@ function EasterLocationsModal(props = {}) {
   const [campusAddress, setCampusAddress] = useState(
     '5343 Northlake Blvd, Palm Beach Gardens, FL 33418'
   );
+  const { data } = props;
+  const { name, goodFridayServices, easterServices, extraInfo } = data;
   const { campus, loading } = useCampus({
     variables: {
-      campusName: props?.data?.name,
+      campusName: name,
     },
   });
   useEffect(() => {
@@ -33,7 +35,7 @@ function EasterLocationsModal(props = {}) {
             campusStreet={campus?.street1}
             campusAddress={campusAddress}
             mapLink={campus?.mapLink}
-            name={props?.data?.name}
+            name={name}
           />
           <Box
             display="flex"
@@ -43,22 +45,26 @@ function EasterLocationsModal(props = {}) {
             <Box color="#353535" mt="base" maxWidth={{ _: '80%', md: '45%' }}>
               <Box>
                 <Box>
-                  <Styled.ServiceDayTitle>GOOD FRIDAY</Styled.ServiceDayTitle>
-                  <Box fontWeight="bold" fontSize={20} mb="xs">
-                    {props?.data?.goodFridayServices[0]?.day}
+                  <Styled.ServiceDayTitle>
+                    {!name.includes('Español')
+                      ? 'GOOD FRIDAY'
+                      : 'VIERNES SANTO'}
+                  </Styled.ServiceDayTitle>
+                  <Box fontWeight="bold" mt="xs" fontSize={20} mb="xs">
+                    {goodFridayServices[0]?.day}
                   </Box>
                   <HtmlRenderer
                     fontSize={18}
-                    htmlContent={
-                      props?.data?.goodFridayServices[0]?.timeDescription
-                    }
+                    htmlContent={goodFridayServices[0]?.timeDescription}
                   />
                 </Box>
                 <Box mt="l">
-                  <Styled.ServiceDayTitle>EASTER</Styled.ServiceDayTitle>
-                  {props?.data?.easterServices.map((service, i) => {
+                  <Styled.ServiceDayTitle>
+                    {!name.includes('Español') ? 'EASTER' : 'PASCUA'}
+                  </Styled.ServiceDayTitle>
+                  {easterServices.map((service, i) => {
                     return (
-                      <Box mt={i !== 0 ? 's' : 0}>
+                      <Box mt={i !== 0 ? 's' : 'xs'}>
                         <Box fontWeight="bold" fontSize={21} mb="xs">
                           {service?.day}
                         </Box>
@@ -71,8 +77,8 @@ function EasterLocationsModal(props = {}) {
                   })}
                 </Box>
                 <Box mt="l" fontSize={12}>
-                  {props?.data?.extraInfo &&
-                    props?.data?.extraInfo.map((info, i) => {
+                  {extraInfo &&
+                    extraInfo.map((info, i) => {
                       let displayFlex = false;
                       let learnMore = 'Learn More >';
                       if (info.includes('6th') || info.includes('primaria')) {
@@ -105,7 +111,7 @@ function EasterLocationsModal(props = {}) {
                         </Box>
                       );
                     })}
-                  {props?.data?.name === 'Online' && (
+                  {name === 'Online' && (
                     <Styled.JoinOnlineButton
                       onClick={() => {
                         router.push('/online-link');
@@ -118,9 +124,9 @@ function EasterLocationsModal(props = {}) {
               </Box>
             </Box>
             <DontMissService
-              campus={props?.data?.name}
+              campus={name}
               campusAddress={campusAddress}
-              data={props?.data}
+              data={data}
             />
           </Box>
         </Box>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useCampuses, useForm } from 'hooks';
 import { useState } from 'react';
 import { Box, CardGrid, HtmlRenderer, Icon } from 'ui-kit';
@@ -8,6 +8,7 @@ import EasterLocationHeader from './EasterLocationHeader';
 import { showModal, useModalDispatch } from 'providers/ModalProvider';
 import easterServices from 'lib/easterServiceData';
 import { find } from 'lodash';
+import { useRouter } from 'next/router';
 
 const EasterLocationSearch = props => {
   const [results, setResults] = useState([{ geometry: { location: {} } }]);
@@ -16,6 +17,19 @@ const EasterLocationSearch = props => {
   const [locationActive, setLocationActive] = useState(true);
   const { handleSubmit } = useForm();
   const modalDispatch = useModalDispatch();
+  const { query } = useRouter();
+
+  //Opens specific Location Modal when passing modal parameter through URL
+  useEffect(() => {
+    if (query?.modal) {
+      modalDispatch(
+        showModal('EasterLocations', {
+          data: find(easterServices, { name: query?.modal }),
+        })
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query]);
 
   const userCoordinatesExists =
     results[0]?.geometry?.location?.lat && results[0]?.geometry?.location?.lng;
@@ -31,7 +45,11 @@ const EasterLocationSearch = props => {
 
   if (typeof document !== 'undefined') {
     // Auto search using the user's current location
-    if (navigator.geolocation && !hasLoaded) {
+    if (
+      navigator.geolocation &&
+      !hasLoaded &&
+      !props?.title?.includes('Horarios')
+    ) {
       setHasLoaded(true);
       searchCurrentLocation();
     }
@@ -99,7 +117,7 @@ const EasterLocationSearch = props => {
   }
 
   function cardClicked(name) {
-    modalDispatch(
+    return modalDispatch(
       showModal('EasterLocations', {
         data: find(easterServices, { name: name }),
       })
@@ -115,6 +133,8 @@ const EasterLocationSearch = props => {
     >
       <Styled>
         <EasterLocationHeader
+          title={props?.title}
+          description={props?.description}
           handleSubmit={handleSubmit}
           setAddress={setAddress}
           getCoordinates={getCoordinates}
@@ -123,13 +143,15 @@ const EasterLocationSearch = props => {
           searchCurrentLocation={searchCurrentLocation}
           locationActive={locationActive}
           setLocationActive={setLocationActive}
+          cfeLink={!props?.cfe}
+          hideSearch={props?.hideSearch}
         />
 
         <Box p="base" id="results" px={{ _: 's', md: 'xl' }}>
           {loading ? (
             // New Skeleton Loader
             <LocationsLoader mb="l" loading={true} />
-          ) : (
+          ) : !props?.cfe ? (
             <CardGrid
               mb="xl"
               mx={{ _: 'base', md: 'auto' }}
@@ -215,8 +237,44 @@ const EasterLocationSearch = props => {
                 );
               })}
             </CardGrid>
+          ) : (
+            // Español Page
+            <Box
+              display="flex"
+              flexDirection={{ _: 'column', md: 'row' }}
+              alignItems="center"
+              justifyContent="center"
+              my="l"
+            >
+              {sortedCampuses?.map((campus, i) => {
+                let cfe = campus.name.substring(25, campus.name.length);
+                if (campus.name.includes('Español')) {
+                  return (
+                    <Box
+                      as="a"
+                      display="flex"
+                      color="black"
+                      textDecoration="none"
+                      onClick={() => cardClicked(campus.name)}
+                      mx="s"
+                      mb={{ _: 's', md: 0 }}
+                    >
+                      <Styled.LocationCard cfe>
+                        <Box as="h4" mb="0" maxWidth="220px">
+                          {`Christ Fellowship Español ${cfe}`}
+                        </Box>
+                        <Icon name="angle-right" />
+                      </Styled.LocationCard>
+                    </Box>
+                  );
+                } else {
+                  return null;
+                }
+              })}
+            </Box>
           )}
-          <Box mt="l" textAlign="center">
+          {/* Additional Info */}
+          <Box pt="l" mb={{ _: 's', md: 0 }} textAlign="center">
             <HtmlRenderer htmlContent={props?.additionalInfo} />
           </Box>
         </Box>

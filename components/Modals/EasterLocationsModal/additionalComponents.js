@@ -1,15 +1,22 @@
-import { Box, Button, Divider, Select } from 'ui-kit';
+import { Box, Divider, Select } from 'ui-kit';
 import Styled from './EasterLocationsModal.styles';
 import { handleSocialShare, shareMessaging } from 'components/Share/shareUtils';
 import { useState } from 'react';
 import { icsLink } from 'components/AddToCalendar/utils';
 import { addMinutes } from 'date-fns';
 import { useCurrentBreakpoint } from 'hooks';
+import { colorHover } from 'utils';
 
 const SMS_OPTIONS = [
   'Hey! Come with me to Easter at Christ Fellowship!',
   'Check this out! Would you want to come with me to an Easter service?',
   'Hi! I wanted to invite you to come to Easter with me at my church. Are you free?',
+];
+
+const SMS_OPTIONS_ESPANOL = [
+  '¡Hola! Te invito a disfrutar la Pascua en Christ Fellowship.',
+  '¡Mira esto! ¿Quisieras ir conmigo a un servicio de Pascua?',
+  '¡Hola! Me gustaría invitarte a venir conmigo a la iglesia para un servicio de Pascua ¿Estás libre?',
 ];
 
 function parseTimeAsInt(_time) {
@@ -57,15 +64,18 @@ const setEasterEvent = ({
 
 export const EasterModalTitle = props => {
   const currentBreakpoints = useCurrentBreakpoint();
-
+  let cfe = false;
+  if (props?.name.includes('Español')) {
+    cfe = true;
+  }
   return (
     <Box>
       <Box display="flex" alignItems="flex-end">
         <Box as="h1" fontSize={54} mb={0}>
-          EASTER
+          {!cfe ? 'EASTER' : 'PASCUA'}
         </Box>
-        <Box width={90} fontWeight="bold" fontSize={12} mb={10}>
-          AT CHRIST FELLOWSHIP
+        <Box width={90} fontWeight="bold" fontSize={12} mb={10} ml="xs">
+          {!cfe ? 'AT' : 'EN'} CHRIST FELLOWSHIP
         </Box>
       </Box>
       <Box as="h1" fontSize={32}>
@@ -142,12 +152,13 @@ export const DontMissService = props => {
     }
   };
 
+  let cfe = campus.includes('Español');
   return (
     <Styled.DontMissService>
       <Box mx="base" my="base" width="100%">
         <Box display="flex" flexDirection="column" justifyContent="center">
           <Box fontSize={{ _: 18, md: 20 }} pl={4} fontWeight="bold">
-            Don’t Miss Service
+            {!cfe ? 'Don’t Miss Service' : 'No Te Pierdas el Servicio'}
           </Box>
           <Box
             display="flex"
@@ -158,14 +169,15 @@ export const DontMissService = props => {
             fontSize={14}
             fontWeight="bold"
           >
-            <Box minWidth="65%">Date</Box>
-            <Box minWidth="35%">Time</Box>
+            <Box minWidth="65%">{!cfe ? 'Date' : 'Fecha'}</Box>
+            <Box minWidth="35%">{!cfe ? 'Time' : 'Hora'}</Box>
           </Box>
           <Box display="flex" width={{ _: 200, md: 330 }}>
             <Styled.CustomSelect
               width={300}
               onChange={e => setSelectedDay(e.target.selectedIndex)}
               name="day"
+              pr={cfe && 30}
             >
               {dateTimes?.map(event => {
                 return (
@@ -177,6 +189,7 @@ export const DontMissService = props => {
               onChange={e => setSelectedTime(e.target.selectedIndex)}
               name="time"
               width={160}
+              ml="xs"
               pr={30}
             >
               {dateTimes[selectedDay]?.times?.map(event => {
@@ -184,42 +197,50 @@ export const DontMissService = props => {
               })}
             </Styled.CustomSelect>
           </Box>
-          <Button
-            as="a"
-            mt="s"
-            bg="#3B7DD9"
+          {/* Add To Calendar */}
+          <Styled.StyledButton
+            color="white"
+            buttonColor="#3B7DD9"
+            buttonHover={colorHover('#3B7DD9')}
             download="ChristFellowshipChurch.ics"
             href={icsLink(easterEvent?.event)}
-            border="1px solid #000"
-            borderRadius={50}
-            maxWidth={{ _: 275, md: 'none' }}
+            width={{ _: 300, md: 'none' }}
           >
-            Add to Calendar
-          </Button>
+            {!cfe ? 'Add to Calendar' : 'Añadir al Calendario'}
+          </Styled.StyledButton>
           <Divider mt="base" />
         </Box>
         <Box display="flex" flexDirection="column" justifyContent="center">
           <Box fontSize={{ _: 18, md: 20 }} pl={4} fontWeight="bold" mt="base">
-            Invite A Friend
+            {!cfe ? 'Invite A Friend' : 'Invita A Un Amigo'}
           </Box>
           <Box color="#818181" mt="s" pl={4} fontSize={14} fontWeight="bold">
-            Pick your message
+            {!cfe ? 'Pick your message' : 'Elige tu Mensaje'}
           </Box>
           <Styled.MessageSelect
             width={{ _: 260, md: 330 }}
             onChange={e => setSelectedMessage(e.target.value)}
             name="message"
           >
-            {SMS_OPTIONS.map(message => {
-              return <Select.Option>{message}</Select.Option>;
-            })}
+            {cfe
+              ? SMS_OPTIONS_ESPANOL.map(message => {
+                  return <Select.Option>{message}</Select.Option>;
+                })
+              : SMS_OPTIONS.map(message => {
+                  return <Select.Option>{message}</Select.Option>;
+                })}
           </Styled.MessageSelect>
-          <Styled.SendTextMessage
-            maxWidth={{ _: 275, md: 'none' }}
+          {/* Send a Text Message */}
+          <Styled.StyledButton
+            hoverTextColor="black"
+            color="black"
+            buttonColor="#ffec7f"
+            buttonHover={colorHover('#ffec7f')}
+            width={{ _: 300, md: 'none' }}
             onClick={handleSharing}
           >
-            Send a Text Message
-          </Styled.SendTextMessage>
+            {!cfe ? 'Send a Text Message' : 'Envía un Mensaje de Texto'}
+          </Styled.StyledButton>
         </Box>
       </Box>
     </Styled.DontMissService>

@@ -112,7 +112,7 @@ const LocationCard = styled.div`
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     padding: ${themeGet('space.m')};
-    width: auto;
+    width: ${props => (props?.cfe ? '320px' : 'auto')};
   }
 
   &:hover {
@@ -122,6 +122,7 @@ const LocationCard = styled.div`
   }
 
   transition: background-color 0.3s ease;
+  ${system}
 `;
 
 const CardSpacing = styled.div`
