@@ -243,6 +243,7 @@ module.exports = {
       { source: '/local', destination: '/search?category=Service%20Opportunities&p=1', permanent: true },
       { source: '/seniors', destination: '/', permanent: true },
       { source: '/easter', destination: '/easter2024', permanent: true },
+      { source: '/easteroffering', destination: '/leave-a-legacy-through-this-years-easter-offering', permanent: true },
       { source: '/lhkids', destination: '/connect/kids', permanent: true },
       { source: '/christmas', destination: '/christmasatlh', permanent: true },
       { source: '/schedule', destination: '/about/schedule', permanent: true },
