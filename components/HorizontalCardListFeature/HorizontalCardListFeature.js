@@ -9,6 +9,7 @@ import {
   Button,
   CardCarousel,
   HorizontalHighlightCard,
+  HorizontalScroll,
   HtmlRenderer,
   Loader,
   PrayerCard,
@@ -39,7 +40,6 @@ function HorizontalCardListFeature(props = {}) {
         break;
     }
   }
-
   /**
    * todo : TEMP SOLUTION - In the future we'll want to update how we pull in Group and Prayer cards. Right now for Groups we switch to GroupsProvider to pull in the required fields for GroupCard correctly, bypassing the CardCarousel. For Prayer we'll need to find a way to pull in the correct fields as well.
    */
@@ -60,7 +60,11 @@ function HorizontalCardListFeature(props = {}) {
         {!isEmpty(subtitle) && <Box as="p">{subtitle}</Box>}
         <Box>
           {' '}
-          <Box as="a" target="blank" href="https://www.christfellowship.church/groups">
+          <Box
+            as="a"
+            target="blank"
+            href="https://www.christfellowship.church/groups"
+          >
             Click here
           </Box>{' '}
           to discover all kinds of groups.
@@ -84,6 +88,8 @@ function HorizontalCardListFeature(props = {}) {
       </Box>
     );
   }
+
+  // Prayer cards
   if (cards && cards[0]?.action === 'READ_PRAYER') {
     return props.loading ? (
       <Loader text="Loading your prayers" />
@@ -112,11 +118,17 @@ function HorizontalCardListFeature(props = {}) {
     );
   }
 
-  return (
+  /* Change the following return to a component that uses the scroll component for
+   mobile and the carousel for other views, to reduce amount of code */
+
+  return props.loading ? (
+    <Loader />
+  ) : (
     <Box textAlign="center">
       {!isEmpty(title) && <Box as="h2">{title}</Box>}
       {!isEmpty(subtitle) && <HtmlRenderer htmlContent={subtitle} />}
       <CardCarousel
+        display={{ _: 'none', md: 'block' }}
         cardsDisplayed={cardsDisplayed}
         hideArrows={!cards || cards.length < 2}
         mx={'-0.625rem'}
@@ -164,6 +176,57 @@ function HorizontalCardListFeature(props = {}) {
             );
           })}
       </CardCarousel>
+      <HorizontalScroll
+        display={{ _: 'flex', md: 'none' }}
+        cardsCount={cards.length}
+      >
+        {!isEmpty(cards) &&
+          cards?.map((card, i) => {
+            const url = getUrlFromRelatedNode(card?.relatedNode);
+            const nonClickable = url === '#no-click';
+            return (
+              <>
+                {nonClickable ? (
+                  <HorizontalHighlightCard
+                    coverImage={card?.coverImage?.sources[0]?.uri}
+                    coverImageOverlay={true}
+                    title={card?.title}
+                    description={card?.summary}
+                    type={
+                      props?.customCardSize
+                        ? props?.customCardSize
+                        : cards.length < 2
+                        ? 'DEFAULT'
+                        : 'HIGHLIGHT_SMALL'
+                    }
+                    label={transformISODates(card?.labelText)}
+                  />
+                ) : (
+                  <CustomLink
+                    as="a"
+                    key={i}
+                    m="s"
+                    ml={i === 0 ? 'base' : null}
+                    mr={i === cards.length - 1 ? 'base' : null}
+                    minWidth="300px"
+                    maxWidth="90vw"
+                    boxShadow="none"
+                    href={getUrlFromRelatedNode(card?.relatedNode)}
+                    Component={HorizontalHighlightCard}
+                    coverImage={
+                      card?.coverImage?.sources[0]?.uri || '/cf-logo.png'
+                    }
+                    coverImageOverlay={true}
+                    title={card?.title}
+                    description={card?.summary}
+                    type={cardType}
+                    label={transformISODates(card?.labelText)}
+                  />
+                )}
+              </>
+            );
+          })}
+      </HorizontalScroll>
       {callToAction && (
         <Box width="100%" textAlign="center" mt="l">
           <Button
