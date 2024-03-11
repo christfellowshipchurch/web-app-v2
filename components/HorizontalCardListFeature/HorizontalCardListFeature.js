@@ -91,11 +91,11 @@ function HorizontalCardListFeature(props = {}) {
     );
   }
 
-  // TEST PRAYER CARDS!
+  // Prayer cards
   if (cards && cards[0]?.action === 'READ_PRAYER') {
     return props.loading ? (
       <Loader text="Loading your prayers" />
-    ) : !currentBreakpoint.isSmall ? (
+    ) : (
       <Box>
         {!isEmpty(title) && <Box as="h2">{title}</Box>}
         {!isEmpty(subtitle) && <Box as="p">{subtitle}</Box>}
@@ -116,24 +116,6 @@ function HorizontalCardListFeature(props = {}) {
             />
           ))}
         </CardCarousel>
-      </Box>
-    ) : (
-      <Box>
-        {!isEmpty(title) && <Box as="h2">{title}</Box>}
-        {!isEmpty(subtitle) && <Box as="p">{subtitle}</Box>}
-        <HorizontalScroll cardsCount={cards.length}>
-          {cards.map((card, i) => (
-            <PrayerCard
-              key={i}
-              boxShadow="none"
-              height="100%"
-              mx="s"
-              coverImage={card?.coverImage?.sources[0]?.uri || '/cf-logo.png'}
-              coverImageOverlay={true}
-              description={card?.title}
-            />
-          ))}
-        </HorizontalScroll>
       </Box>
     );
   }
@@ -224,8 +206,10 @@ function HorizontalCardListFeature(props = {}) {
                       as="a"
                       key={i}
                       m="s"
+                      ml={i === 0 ? 'base' : null}
+                      mr={i === cards.length - 1 ? 'base' : null}
                       minWidth="300px"
-                      maxWidth="86vw"
+                      maxWidth="90vw"
                       boxShadow="none"
                       href={getUrlFromRelatedNode(card?.relatedNode)}
                       Component={HorizontalHighlightCard}

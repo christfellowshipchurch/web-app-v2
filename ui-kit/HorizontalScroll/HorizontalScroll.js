@@ -8,8 +8,9 @@ const HorizontalScroll = (props = {}) => {
       <Box
         display="flex"
         flexDirection="row"
-        overflow="auto"
+        overflow="scroll"
         my="s"
+        mx="-1.25rem"
         justifyContent="flex-start"
         {...props}
       >

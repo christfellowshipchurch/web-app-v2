@@ -19,7 +19,11 @@ export default function PageBuilder(props = {}) {
   };
 
   if (title && title.length) {
-    return <ContentItemProvider Component={PageSingle} options={options} />;
+    return (
+      <Layout>
+        <ContentItemProvider Component={PageSingle} options={options} />
+      </Layout>
+    );
   }
 
   return (

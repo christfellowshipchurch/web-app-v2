@@ -56,7 +56,7 @@ const DiscoverFilterSection = ({ contentId, title, filter }) => {
               boxShadow="none"
               coverImage={n?.coverImage?.sources[0]?.uri}
               description={n?.summary}
-              mobileWidth="86vw"
+              mobileWidth="90vw"
               href={getUrlFromRelatedNode(n)}
               scaleCard={false}
               scaleCoverImage={true}
