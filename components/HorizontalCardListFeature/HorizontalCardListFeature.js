@@ -16,10 +16,8 @@ import {
 } from 'ui-kit';
 import { getUrlFromRelatedNode, transformISODates } from 'utils';
 import { includes } from 'lodash';
-import { useCurrentBreakpoint } from 'hooks';
 
 function HorizontalCardListFeature(props = {}) {
-  const currentBreakpoint = useCurrentBreakpoint();
   const { title, subtitle, cards, callToAction } = props?.data;
 
   if (!props.data) {
@@ -129,105 +127,106 @@ function HorizontalCardListFeature(props = {}) {
     <Box textAlign="center">
       {!isEmpty(title) && <Box as="h2">{title}</Box>}
       {!isEmpty(subtitle) && <HtmlRenderer htmlContent={subtitle} />}
-      {!currentBreakpoint.isSmall ? (
-        <CardCarousel
-          cardsDisplayed={cardsDisplayed}
-          hideArrows={!cards || cards.length < 2}
-          mx={'-0.625rem'}
-        >
-          {!isEmpty(cards) &&
-            cards?.map((card, i) => {
-              const url = getUrlFromRelatedNode(card?.relatedNode);
-              const nonClickable = url === '#no-click';
-              return (
-                <>
-                  {nonClickable ? (
-                    <HorizontalHighlightCard
-                      coverImage={card?.coverImage?.sources[0]?.uri}
-                      coverImageOverlay={true}
-                      title={card?.title}
-                      description={card?.summary}
-                      type={
-                        props?.customCardSize
-                          ? props?.customCardSize
-                          : cards.length < 2
-                          ? 'DEFAULT'
-                          : 'HIGHLIGHT_SMALL'
-                      }
-                      label={transformISODates(card?.labelText)}
-                    />
-                  ) : (
-                    <CustomLink
-                      as="a"
-                      key={i}
-                      m="s"
-                      boxShadow="none"
-                      href={getUrlFromRelatedNode(card?.relatedNode)}
-                      Component={HorizontalHighlightCard}
-                      coverImage={
-                        card?.coverImage?.sources[0]?.uri || '/cf-logo.png'
-                      }
-                      coverImageOverlay={true}
-                      title={card?.title}
-                      description={card?.summary}
-                      type={cardType}
-                      label={transformISODates(card?.labelText)}
-                    />
-                  )}
-                </>
-              );
-            })}
-        </CardCarousel>
-      ) : (
-        <HorizontalScroll cardsCount={cards.length}>
-          {!isEmpty(cards) &&
-            cards?.map((card, i) => {
-              const url = getUrlFromRelatedNode(card?.relatedNode);
-              const nonClickable = url === '#no-click';
-              return (
-                <>
-                  {nonClickable ? (
-                    <HorizontalHighlightCard
-                      coverImage={card?.coverImage?.sources[0]?.uri}
-                      coverImageOverlay={true}
-                      title={card?.title}
-                      description={card?.summary}
-                      type={
-                        props?.customCardSize
-                          ? props?.customCardSize
-                          : cards.length < 2
-                          ? 'DEFAULT'
-                          : 'HIGHLIGHT_SMALL'
-                      }
-                      label={transformISODates(card?.labelText)}
-                    />
-                  ) : (
-                    <CustomLink
-                      as="a"
-                      key={i}
-                      m="s"
-                      ml={i === 0 ? 'base' : null}
-                      mr={i === cards.length - 1 ? 'base' : null}
-                      minWidth="300px"
-                      maxWidth="90vw"
-                      boxShadow="none"
-                      href={getUrlFromRelatedNode(card?.relatedNode)}
-                      Component={HorizontalHighlightCard}
-                      coverImage={
-                        card?.coverImage?.sources[0]?.uri || '/cf-logo.png'
-                      }
-                      coverImageOverlay={true}
-                      title={card?.title}
-                      description={card?.summary}
-                      type={cardType}
-                      label={transformISODates(card?.labelText)}
-                    />
-                  )}
-                </>
-              );
-            })}
-        </HorizontalScroll>
-      )}
+      <CardCarousel
+        display={{ _: 'none', md: 'block' }}
+        cardsDisplayed={cardsDisplayed}
+        hideArrows={!cards || cards.length < 2}
+        mx={'-0.625rem'}
+      >
+        {!isEmpty(cards) &&
+          cards?.map((card, i) => {
+            const url = getUrlFromRelatedNode(card?.relatedNode);
+            const nonClickable = url === '#no-click';
+            return (
+              <>
+                {nonClickable ? (
+                  <HorizontalHighlightCard
+                    coverImage={card?.coverImage?.sources[0]?.uri}
+                    coverImageOverlay={true}
+                    title={card?.title}
+                    description={card?.summary}
+                    type={
+                      props?.customCardSize
+                        ? props?.customCardSize
+                        : cards.length < 2
+                        ? 'DEFAULT'
+                        : 'HIGHLIGHT_SMALL'
+                    }
+                    label={transformISODates(card?.labelText)}
+                  />
+                ) : (
+                  <CustomLink
+                    as="a"
+                    key={i}
+                    m="s"
+                    boxShadow="none"
+                    href={getUrlFromRelatedNode(card?.relatedNode)}
+                    Component={HorizontalHighlightCard}
+                    coverImage={
+                      card?.coverImage?.sources[0]?.uri || '/cf-logo.png'
+                    }
+                    coverImageOverlay={true}
+                    title={card?.title}
+                    description={card?.summary}
+                    type={cardType}
+                    label={transformISODates(card?.labelText)}
+                  />
+                )}
+              </>
+            );
+          })}
+      </CardCarousel>
+      <HorizontalScroll
+        display={{ _: 'flex', md: 'none' }}
+        cardsCount={cards.length}
+      >
+        {!isEmpty(cards) &&
+          cards?.map((card, i) => {
+            const url = getUrlFromRelatedNode(card?.relatedNode);
+            const nonClickable = url === '#no-click';
+            return (
+              <>
+                {nonClickable ? (
+                  <HorizontalHighlightCard
+                    coverImage={card?.coverImage?.sources[0]?.uri}
+                    coverImageOverlay={true}
+                    title={card?.title}
+                    description={card?.summary}
+                    type={
+                      props?.customCardSize
+                        ? props?.customCardSize
+                        : cards.length < 2
+                        ? 'DEFAULT'
+                        : 'HIGHLIGHT_SMALL'
+                    }
+                    label={transformISODates(card?.labelText)}
+                  />
+                ) : (
+                  <CustomLink
+                    as="a"
+                    key={i}
+                    m="s"
+                    ml={i === 0 ? 'base' : null}
+                    mr={i === cards.length - 1 ? 'base' : null}
+                    minWidth="300px"
+                    maxWidth="90vw"
+                    boxShadow="none"
+                    href={getUrlFromRelatedNode(card?.relatedNode)}
+                    Component={HorizontalHighlightCard}
+                    coverImage={
+                      card?.coverImage?.sources[0]?.uri || '/cf-logo.png'
+                    }
+                    coverImageOverlay={true}
+                    title={card?.title}
+                    description={card?.summary}
+                    type={cardType}
+                    label={transformISODates(card?.labelText)}
+                  />
+                )}
+              </>
+            );
+          })}
+      </HorizontalScroll>
       {callToAction && (
         <Box width="100%" textAlign="center" mt="l">
           <Button
