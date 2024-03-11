@@ -1,5 +1,6 @@
+import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { React, useState } from 'react';
+
 import { Box, Button, Checkbox, Icon, Loader, Select, TextInput } from 'ui-kit';
 import { GET_DEFINED_VALUE_LIST } from 'hooks/useDefinedValueList';
 
@@ -230,7 +231,5 @@ const StyledForm = ({
     </Box>
   );
 };
-
-StyledForm.propTypes = {};
 
 export default StyledForm;

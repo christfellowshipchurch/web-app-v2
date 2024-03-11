@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import get from 'lodash/get';
 
 import { CustomLink } from 'components';
 import { Box, HtmlRenderer, ThemeMixin } from 'ui-kit';
@@ -10,31 +9,34 @@ import Styled from './ActionBanner.styles';
 import { getUrlFromRelatedNode } from 'utils';
 import Color from 'color';
 
-const ActionBanner = (props = {}) => {
-  const primaryButton = get(props, 'actions[0]');
-  const secondaryButton = get(props, 'actions[1]');
+/**
+ * Renders a banner with a title, content, and two buttons. Used for displaying site-wide announcements.
+ */
+const ActionBanner = ({ title, htmlContent, actions, theme }) => {
+  const primaryButton = actions?.[0];
+  const secondaryButton = actions?.[1];
 
   return (
     <ThemeMixin
       theme={{
-        colors: props?.theme?.colors ?? {},
+        colors: theme?.colors ?? {},
       }}
     >
       <Styled>
         <Box>
-          {props?.title && props?.title !== '' && (
+          {title && title !== '' && (
             <Box as="h3" mb="2px" opacity={0.85}>
-              {props?.title}
+              {title}
             </Box>
           )}
-          <HtmlRenderer htmlContent={props?.htmlContent} />
+          <HtmlRenderer htmlContent={htmlContent} />
         </Box>
 
         <Box display="flex" flexDirection="row">
           {primaryButton && (
             <CustomLink
               Component={Styled.PrimaryButton}
-              isLight={Color(props?.theme?.colors?.secondary).isLight()}
+              isLight={Color(theme?.colors?.secondary).isLight()}
               size="s"
               ml={{ _: 0, md: 'base' }}
               px="base"
@@ -48,7 +50,7 @@ const ActionBanner = (props = {}) => {
           {secondaryButton && (
             <CustomLink
               Component={Styled.SecondaryButton}
-              isLight={Color(props?.theme?.colors?.secondary).isLight()}
+              isLight={Color(theme?.colors?.secondary).isLight()}
               size="s"
               ml="s"
               border="none"
@@ -67,17 +69,35 @@ const ActionBanner = (props = {}) => {
 };
 
 ActionBanner.propTypes = {
+  /**
+   * Title to display in the banner.
+   */
+  title: PropTypes.string,
+  /**
+   * Content to display in the banner.
+   */
   htmlContent: PropTypes.string,
-  bannerColor: PropTypes.string,
-  buttonColor: PropTypes.string,
-  primaryButton: PropTypes.shape({
-    call: PropTypes.string,
-    action: PropTypes.string,
+  /**
+   * Color theme that sets background color of the banner(primary) and color of primary button(secondary).
+   */
+  theme: PropTypes.shape({
+    colors: PropTypes.shape({
+      primary: PropTypes.string,
+      secondary: PropTypes.string,
+    }),
   }),
-  secondaryButton: PropTypes.shape({
-    call: PropTypes.string,
-    action: PropTypes.string,
-  }),
+  /**
+   * Actions to display in the banner.
+   */
+  actions: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string,
+      relatedNode: PropTypes.shape({
+        id: PropTypes.string,
+        url: PropTypes.string,
+      }),
+    })
+  ),
 };
 
 ActionBanner.defaultProps = {};

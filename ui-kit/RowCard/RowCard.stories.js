@@ -4,8 +4,8 @@ import { Box } from 'ui-kit';
 import RowCard from './RowCard';
 
 export default {
-  title: 'ui-kit/RowCard',
   component: RowCard,
+  tags: ['autodocs'],
 };
 
 const cardProps = {

@@ -12,8 +12,8 @@ import React from 'react';
 import GroupMemberStatusBadge from './GroupMemberStatusBadge';
 
 const config = {
-  title: 'ui-kit/GroupMemberStatusBadge',
   component: GroupMemberStatusBadge,
+  tags: ['autodocs'],
 };
 
 export const Inactive = () => {

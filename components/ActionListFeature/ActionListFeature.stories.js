@@ -5,8 +5,8 @@ import { Box } from 'ui-kit';
 import { ActionListFeature } from 'components';
 
 const config = {
-  title: 'components/ActionListFeature',
   component: ActionListFeature,
+  tags: ['autodocs'],
   argTypes: {
     items: {
       control: { type: 'range', min: 1, max: 6, step: 1 },
@@ -62,18 +62,12 @@ const mockData = {
   },
 };
 
-const ActionListFeatureStory = ({ items }) => {
+const ActionListFeatureStory = ({ items = 1 }) => {
   return (
     <Box maxWidth={1060} margin="auto">
-      <ActionListFeature
-        data={{ node: { ...mockData, actions: renderItems(items) } }}
-      />
+      <ActionListFeature data={{ ...mockData, actions: renderItems(items) }} />
     </Box>
   );
-};
-
-ActionListFeatureStory.defaultProps = {
-  items: 1,
 };
 
 export const Default = ActionListFeatureStory.bind({});

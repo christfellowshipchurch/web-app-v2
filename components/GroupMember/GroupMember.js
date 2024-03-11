@@ -17,7 +17,7 @@ import {
   hideModal,
 } from 'providers/ModalProvider';
 import { Box, Button, GroupMemberStatusBadge, SquareAvatar } from 'ui-kit';
-import { isEmpty } from 'lodash';
+import { isEmpty, upperCase } from 'lodash';
 
 const GroupMember = ({ id, person, role, status, groupId, groupRoleId }) => {
   const modalDispatch = useModalDispatch();
@@ -48,6 +48,15 @@ const GroupMember = ({ id, person, role, status, groupId, groupRoleId }) => {
     .filter(name => !isEmpty(name))
     .join(' ');
 
+  let upperStatus = '';
+  if (status.label !== undefined) {
+    upperStatus = status?.label?.toUpperCase();
+  }
+  if (role !== undefined) {
+    role = upperCase(role);
+  }
+
+  console.log({ role, groupRoleId });
   return (
     <Box
       display="flex"
@@ -64,7 +73,7 @@ const GroupMember = ({ id, person, role, status, groupId, groupRoleId }) => {
             width="56px"
             name={fullName || 'Group Member'}
           />
-          {role?.toUpperCase() === 'LEADER' && (
+          {role === 'LEADER' && (
             <Box
               position="absolute"
               bottom="0"
@@ -83,16 +92,16 @@ const GroupMember = ({ id, person, role, status, groupId, groupRoleId }) => {
           )}
         </Box>
 
-        <Box
-          mx="s"
-          opacity={status?.label?.toUpperCase() === 'INACTIVE' ? 0.4 : 1.0}
-        >
-          <GroupMemberStatusBadge status={status?.label} />
+        <Box mx="s" opacity={upperStatus === 'INACTIVE' ? 0.4 : 1.0}>
+          <GroupMemberStatusBadge status={upperStatus} />
           <Box as="h4" mb="0">
             {fullName}
           </Box>
         </Box>
       </Box>
+      {/* 
+        If the group member is a Hub Leader(48) then we don't want to show the view button
+      */}
       {groupRoleId !== '48' && (
         <Button
           size="s"
@@ -112,21 +121,36 @@ const GroupMember = ({ id, person, role, status, groupId, groupRoleId }) => {
 };
 
 GroupMember.propTypes = {
+  /** The unique identifier for the group member, required. */
   id: PropTypes.string.isRequired,
+
+  /** A note or additional information about the group member. */
   note: PropTypes.string,
+
+  /** The status of the group member, containing an id and label. */
   status: PropTypes.shape({
     id: PropTypes.string,
     label: PropTypes.string,
   }),
+
+  /** The role or position of the group member. */
   role: PropTypes.string,
+
+  /** The person object the this component accepts */
   person: PropTypes.shape({
+    /** The first name of the group member. */
     firstName: PropTypes.string,
+
+    /** The last name of the group member. */
     lastName: PropTypes.string,
+
+    /** The photo of the group member, with a URI. */
     photo: PropTypes.shape({
       uri: PropTypes.string,
     }),
   }),
 };
+
 GroupMember.defaultProps = {};
 
 export default GroupMember;

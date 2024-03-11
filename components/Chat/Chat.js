@@ -36,14 +36,12 @@ export default function Chat(props = {}) {
   const { channelType, channelId } = props.streamChatChannel;
   const isLivestream = channelType === 'livestream';
 
-  const {
-    getCurrentUserRoleForChatChannel,
-    streamChatRole,
-  } = useCurrentUserRoleForChatChannel({
-    variables: {
-      channelId,
-    },
-  });
+  const { getCurrentUserRoleForChatChannel, streamChatRole } =
+    useCurrentUserRoleForChatChannel({
+      variables: {
+        channelId,
+      },
+    });
 
   // Semantic shortcuts
   const connected = connectionStatus === CONNECTED;
@@ -156,10 +154,16 @@ export default function Chat(props = {}) {
 }
 
 Chat.propTypes = {
+  /**
+   * Stream Chat channel - it's the channel or room that the group is chatting in - user must be authenticated to chat
+   */
   streamChatChannel: PropTypes.shape({
     id: PropTypes.string,
     channelId: PropTypes.string.isRequired,
     channelType: PropTypes.string.isRequired,
   }),
+  /**
+   * Related node
+   */
   relatedNode: PropTypes.object,
 };

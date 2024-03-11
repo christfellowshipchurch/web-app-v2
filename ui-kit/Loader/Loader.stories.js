@@ -3,8 +3,8 @@ import React from 'react';
 import Loader from './Loader';
 
 export default {
-  title: 'ui-kit/Loader',
   component: Loader,
+  tags: ['autodocs'],
 };
 
 export const Default = () => <Loader />;

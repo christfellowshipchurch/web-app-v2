@@ -5,8 +5,8 @@ import { Box, DefaultCard, HorizontalHighlightCard } from 'ui-kit';
 import CardCarousel from './';
 
 export default {
-  title: 'ui-kit/CardCarousel',
   component: CardCarousel,
+  tags: ['autodocs'],
 };
 
 const cardProps = number => {

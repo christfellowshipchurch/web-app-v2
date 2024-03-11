@@ -7,61 +7,59 @@
  * Interactive story to display all the different states of a Group Member
  */
 
-import React from 'react';
-
 import GroupMember from './GroupMember';
-import { Box } from 'ui-kit';
 
-const config = {
-  title: 'components/GroupMember',
+const statuses = {
+  active: { id: '123', label: 'Active' },
+  inactive: { id: '234', label: 'Inactive' },
+  pending: { id: '456', label: 'Pending' },
+};
+
+const roleIds = {
+  isHubLeader: '48',
+  notHubLeader: 'null',
+};
+
+export default {
   component: GroupMember,
+  tags: ['autodocs'],
   argTypes: {
     status: {
-      options: ['Active', 'Inactive', 'Pending'],
-      control: { type: 'radio' },
+      options: Object.keys(statuses),
+      mapping: statuses,
+      control: {
+        type: 'radio',
+      },
     },
     role: {
-      options: ['Member', 'Leader'],
-      control: { type: 'radio' },
+      options: ['Leader', 'Member'],
+      control: {
+        type: 'radio',
+      },
     },
-    firstName: {
-      control: { type: 'text' },
-    },
-    lastName: {
-      control: { type: 'text' },
+    groupRoleId: {
+      options: Object.keys(roleIds),
+      mapping: roleIds,
+      control: {
+        type: 'select',
+      },
     },
   },
 };
 
-const GroupMemberStory = ({ status, role, firstName, lastName }) => {
-  const groupMember = {
+export const Default = {
+  args: {
     status: {
       id: 'some-status-identifier',
-      label: status,
+      label: 'Active',
     },
-    role,
+    role: 'Leader',
     person: {
-      firstName,
-      lastName,
+      firstName: 'Ted',
+      lastName: 'Lasso',
       photo: {
         uri: 'https://source.unsplash.com/random',
       },
     },
-  };
-
-  return (
-    <Box maxWidth="300px">
-      <GroupMember {...groupMember} />
-    </Box>
-  );
+  },
 };
-
-export const Default = GroupMemberStory.bind({});
-Default.args = {
-  status: 'Active',
-  role: 'Member',
-  firstName: 'Ted',
-  lastName: 'Lasso',
-};
-
-export default config;

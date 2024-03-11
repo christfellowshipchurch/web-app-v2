@@ -4,11 +4,19 @@ import { Box } from 'ui-kit';
 import Button from './Button';
 
 export default {
-  title: 'ui-kit/Button',
   component: Button,
+  tags: ['autodocs'],
+  parameters: {
+    layout: 'centered',
+  },
 };
 
-export const Default = () => <Button>Button</Button>;
+export const Default = {
+  args: {
+    children: 'Button',
+    variant: 'primary',
+  },
+};
 
 export const Sizes = () => (
   <Box>

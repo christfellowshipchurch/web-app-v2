@@ -3,8 +3,8 @@ import { Box } from 'ui-kit';
 import ContentBlock from './ContentBlock';
 
 export default {
-  title: 'ui-kit/ContentBlock',
   component: ContentBlock,
+  tags: ['autodocs'],
 };
 
 const htmlDemoContent =

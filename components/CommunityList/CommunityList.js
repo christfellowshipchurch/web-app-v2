@@ -67,6 +67,9 @@ function CommunityList(props = {}) {
 }
 
 CommunityList.propTypes = {
+  /**
+   * The data to be passed into the component
+   */
   data: PropTypes.arrayOf(PropTypes.object),
 };
 

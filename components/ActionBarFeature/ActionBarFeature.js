@@ -17,6 +17,7 @@ import { getUrlFromRelatedNode } from 'utils';
 import { includes } from 'lodash';
 
 const ActionBarFeature = props => {
+  console.log('props: ', props);
   const id = props?.data?.id;
   const actions = props?.data?.actions || [];
   const onPressActionItem = props?.onPressActionItem;

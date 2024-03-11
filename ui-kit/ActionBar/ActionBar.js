@@ -13,6 +13,9 @@ import uniqueId from 'lodash/uniqueId';
 
 import Styled from './ActionBar.styles';
 
+/**
+ * Card that contains a collection of Actions represented by Icons and Labels that can be clicked.
+ */
 const ActionBar = ({ children, ...props }) => {
   return (
     <Styled columns={children.length} {...props}>
@@ -27,6 +30,9 @@ const ActionBar = ({ children, ...props }) => {
 };
 
 ActionBar.propTypes = {
+  /**
+   * Made for ActionBarItem components
+   */
   children: PropTypes.arrayOf(
     PropTypes.oneOfType([PropTypes.element, PropTypes.func, PropTypes.object])
   ),

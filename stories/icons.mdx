@@ -1,0 +1,18 @@
+{/* Iconography.mdx */}
+
+import { Meta, Title, IconGallery, IconItem } from '@storybook/blocks';
+
+import { Icon } from 'ui-kit';
+import icons from 'ui-kit/_config/icons';
+
+<Meta title="Iconography" />
+
+# Iconography
+
+<IconGallery>
+  {Object.keys(icons).map(icon => (
+    <IconItem key={icon} name={icon}>
+      <Icon name={icon} />
+    </IconItem>
+  ))}
+</IconGallery>

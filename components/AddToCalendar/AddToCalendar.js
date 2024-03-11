@@ -82,6 +82,9 @@ const AddToCalendar = (
 );
 
 AddToCalendar.propTypes = {
+  /**
+   * The event to be added to the calendar
+   */
   event: PropTypes.shape({
     title: PropTypes.string.isRequired,
     description: PropTypes.string,
@@ -89,7 +92,13 @@ AddToCalendar.propTypes = {
     startTime: PropTypes.string.isRequired,
     endTime: PropTypes.string,
   }).isRequired,
+  /**
+   * An alternate description for the event
+   */
   alternateDescription: PropTypes.string,
+  /**
+   * Whether or not to show the title
+   */
   label: PropTypes.bool,
 };
 

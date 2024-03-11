@@ -7,9 +7,10 @@ import { HorizontalCardListFeature } from 'components';
 const exportedObject = {
   title: 'components/HorizontalCardListFeature',
   component: HorizontalCardListFeature,
+  tags: ['autodocs'],
 };
 
-export default exportedObject
+export default exportedObject;
 
 const cardData = altTitle => {
   return {

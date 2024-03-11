@@ -46,6 +46,9 @@ function ActionListFeature(props = {}) {
 }
 
 ActionListFeature.propTypes = {
+  /**
+   * Data object to be passed in to the component
+   */
   data: PropTypes.object,
 };
 

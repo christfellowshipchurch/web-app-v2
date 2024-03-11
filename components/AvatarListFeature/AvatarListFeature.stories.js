@@ -7,6 +7,7 @@ import { AvatarListFeature } from 'components';
 const exportedObject = {
   title: 'components/AvatarListFeature',
   component: AvatarListFeature,
+  tags: ['autodocs'],
 };
 
 export default exportedObject;

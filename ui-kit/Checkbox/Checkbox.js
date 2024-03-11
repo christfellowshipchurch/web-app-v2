@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { systemPropTypes } from 'ui-kit';
@@ -32,8 +32,17 @@ Checkbox.propTypes = {
   labelProps: PropTypes.shape({
     ...systemPropTypes,
   }),
+  /**
+   * Should be checkbox
+   */
   id: PropTypes.string.isRequired,
+  /**
+   * Label next to checkbox
+   */
   label: PropTypes.string,
+  /**
+   * Size of the checkbox
+   */
   size: PropTypes.number,
 };
 

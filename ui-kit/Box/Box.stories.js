@@ -1,10 +1,13 @@
-import React from 'react';
-
 import Box from './Box';
 
 export default {
-  title: 'ui-kit/Box',
+  tags: ['autodocs'],
   component: Box,
+  parameters: {
+    layout: 'centered',
+  },
 };
 
-export const Default = () => <Box bg="black" height="200px" width="200px" />;
+export const Default = {
+  args: { width: '160px', height: '160px', bg: 'primary' },
+};

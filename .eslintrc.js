@@ -5,5 +5,5 @@ module.exports = {
   env: {
     jest: true,
   },
-  extends: 'react-app',
+  extends: ['react-app', 'plugin:storybook/recommended'],
 };

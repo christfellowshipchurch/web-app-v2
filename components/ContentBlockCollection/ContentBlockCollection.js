@@ -34,56 +34,44 @@ const Item = ({ coverImage, title, description }) => {
             borderRadius="s"
             pl="s"
           />
-          <Box
-            as="h1"
-            position="relative"
-            pl="xs"
-          >{`${title}`}</Box>
+          <Box as="h1" position="relative" pl="xs">{`${title}`}</Box>
         </Box>
-        <Box as="p">
-          {description}
-        </Box>
+        <Box as="p">{description}</Box>
       </Box>
     </Box>
-  )
-}
+  );
+};
 
-const ContentBlockCollection = ({data}) => {
+const ContentBlockCollection = ({ data }) => {
   return (
-    <Box 
-      display="flex"
-      justifyContent="center"
-    >
-      <VerticalCardListFeature
-        Component={Item}
-        data={data}
-      />
+    <Box display="flex" justifyContent="center">
+      <VerticalCardListFeature Component={Item} data={data} />
     </Box>
-  )
+  );
 };
 
 ContentBlockCollection.propTypes = {
-  data: PropTypes.shape(
-    {
-      cards: PropTypes.arrayOf(
-        PropTypes.shape({
-            title: PropTypes.string,
-            description: PropTypes.string,
-            coverImage: PropTypes.shape({
-              sources: PropTypes.arrayOf(PropTypes.shape({
-                uri: PropTypes.string
-              }))
-            }),
-            highlightWidth: PropTypes.string,
-            highlightWidthSmall: PropTypes.string,
-        })
-      )
-    }
-  )
+  data: PropTypes.shape({
+    cards: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string,
+        description: PropTypes.string,
+        coverImage: PropTypes.shape({
+          sources: PropTypes.arrayOf(
+            PropTypes.shape({
+              uri: PropTypes.string,
+            })
+          ),
+        }),
+        highlightWidth: PropTypes.string,
+        highlightWidthSmall: PropTypes.string,
+      })
+    ),
+  }),
 };
 
 ContentBlockCollection.defaultProps = {
-    data: {cards: []},
+  data: { cards: [] },
 };
 
 export default ContentBlockCollection;

@@ -3,8 +3,8 @@ import React from 'react';
 import Divider from './Divider';
 
 export default {
-  title: 'ui-kit/Divider',
   component: Divider,
+  tags: ['autodocs'],
 };
 
 export const Default = () => <Divider />;

@@ -1,31 +1,24 @@
-/**
- * Icon.stories.js
- *
- * Author: Caleb Panza
- * Created: Aug 27, 2021
- *
- * Stories that enable users to cycle through all available icons
- */
-import React from 'react';
-
 import Icon from './Icon';
-import icons from '../_config/icons';
 
-const config = {
-  title: 'ui-kit/Icon',
+export default {
   component: Icon,
+  tags: ['autodocs'],
   argTypes: {
-    name: {
-      options: Object.keys(icons),
-      control: { type: 'select' },
-    },
+    name: { name: 'Name', control: 'text' },
+    size: { name: 'Size', control: 'text' },
+    color: { name: 'Color', control: 'text' },
+    height: { name: 'Height', control: 'text' },
+    width: { name: 'Width', control: 'text' },
+  },
+  parameters: {
+    layout: 'centered',
   },
 };
 
-const IconStory = ({ data, name }) => {
-  return <Icon name={name} />;
+export const Default = {
+  args: {
+    name: 'user',
+    size: '32',
+    color: 'red',
+  },
 };
-
-export const Default = IconStory.bind({});
-
-export default config;
