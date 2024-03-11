@@ -24,7 +24,6 @@ import {
 } from './AdditionalComponents';
 import { showModal, useModalDispatch } from 'providers/ModalProvider';
 import { whatToExpectVideos } from '../../../lib/locationData';
-import { useCurrentBreakpoint } from 'hooks';
 
 const CampusInfo = ({
   name,
@@ -40,8 +39,6 @@ const CampusInfo = ({
   mapLink,
   weekdaySchedules,
 }) => {
-  const currentBreakpoints = useCurrentBreakpoint();
-
   const addressFirst = street1 ? `${street1}` : null;
   const addressLast = `${city}, ${state} ${postalCode?.substring(0, 5)}`;
 
@@ -89,34 +86,37 @@ const CampusInfo = ({
         width="100%"
       >
         {/* Easter Banner For Mobile */}
-        {currentBreakpoints.isSmall && (
-          <Styled.MobileEventBanner>
-            <Image
-              width={50}
-              height={50}
-              objectFit="contain"
-              source="/location-pages/easter-banner.png"
-              m="0px 10px 0px 0px !important"
-            />
-            <Box display="flex" flexDirection="column">
-              <Box as="h3" mb="0">
-                {title}
-              </Box>
-              <Styled.EventSubtitle>
-                {subtitle}
-                <Box
-                  as="a"
-                  href={`/easter-2024${cfe ? '-espanol' : ''}`}
-                  color="rgba(59, 125, 217, 1)"
-                  textDecoration="underline"
-                >
-                  {cta}
-                </Box>
-                .
-              </Styled.EventSubtitle>
+        <Styled.MobileEventBanner
+          display={{ _: 'flex', md: 'none' }}
+          backgroundColor="#ebcd5f"
+          textColor="black"
+        >
+          <Image
+            width={50}
+            height={50}
+            objectFit="contain"
+            source="/location-pages/easter-banner.png"
+            m="0px 10px 0px 0px !important"
+          />
+          <Box display="flex" flexDirection="column">
+            <Box as="h3" mb="0">
+              {title}
             </Box>
-          </Styled.MobileEventBanner>
-        )}
+            <Styled.EventSubtitle>
+              {subtitle}
+              <Box
+                as="a"
+                href={`/easter-2024${cfe ? '-espanol' : ''}`}
+                color="rgba(59, 125, 217, 1)"
+                textDecoration="underline"
+              >
+                {cta}
+              </Box>
+              .
+            </Styled.EventSubtitle>
+          </Box>
+        </Styled.MobileEventBanner>
+
         {/* Service Times */}
         <Box width="100%">
           <Styled.ServiceTimeContainer>
@@ -150,29 +150,32 @@ const CampusInfo = ({
               )}
           </Styled.ServiceTimeContainer>
           {/* Desktop Easter Banner */}
-          {!currentBreakpoints.isSmall && (
-            <Styled.EventBanner fontSize={cfe ? 15 : { md: 16, xl: 18 }}>
-              <Image
-                m="0px 10px 0px 20px"
-                width={cfe ? 35 : { md: 35, lg: 40 }}
-                height={cfe ? 35 : { md: 35, lg: 40 }}
-                objectFit="contain"
-                source="/location-pages/easter-banner.png"
-              />
+          <Styled.EventBanner
+            display={{ _: 'none', md: 'flex' }}
+            backgroundColor="#ebcd5f"
+            textColor="black"
+            fontSize={cfe ? 15 : { md: 16, xl: 18 }}
+          >
+            <Image
+              m="0px 10px 0px 20px"
+              width={cfe ? 35 : { md: 35, lg: 40 }}
+              height={cfe ? 35 : { md: 35, lg: 40 }}
+              objectFit="contain"
+              source="/location-pages/easter-banner.png"
+            />
 
-              <Box
-                alignItems="center"
-                display=" inline-block"
-                justifyContent="center"
-                textWrap="pretty"
-              >
-                {title} {subtitle}
-                <Styled.EventCTA href={`/easter-2024${cfe ? '-espanol' : ''}`}>
-                  {cta}
-                </Styled.EventCTA>
-              </Box>
-            </Styled.EventBanner>
-          )}
+            <Box
+              alignItems="center"
+              display=" inline-block"
+              justifyContent="center"
+              textWrap="pretty"
+            >
+              {title} {subtitle}
+              <Styled.EventCTA href={`/easter-2024${cfe ? '-espanol' : ''}`}>
+                {cta}
+              </Styled.EventCTA>
+            </Box>
+          </Styled.EventBanner>
 
           <Box mr={{ _: 0, lg: 'base' }}>
             {/* Custom Info for CF Everywhere and Trinity */}
@@ -198,7 +201,6 @@ const CampusInfo = ({
             {/* What to Expect Section */}
             {name !== 'Trinity' &&
               name !== 'Online (CF Everywhere)' &&
-              !cfe &&
               !cfe && (
                 <Box display={{ _: 'none', md: 'flex' }} my="l">
                   <Box ml="base">
@@ -271,7 +273,7 @@ const CampusInfo = ({
       </Cell>
 
       {/* Mobile layout */}
-      {isWeekdaySchedule && !cfe && !cfe && name !== 'Trinity' ? (
+      {isWeekdaySchedule && !cfe && name !== 'Trinity' ? (
         <Box mt="xxl" display={{ _: 'inline', md: 'none' }}>
           <Divider my="l" width="80%" />
           <WeekdayScheduleDisplay

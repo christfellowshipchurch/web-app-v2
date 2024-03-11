@@ -162,9 +162,9 @@ const VideoOverlay = styled.div`
 
 // 2023 Event Banner Styled Components
 const EventBanner = styled.div`
-  background-color: #ebcd5f;
+  background-color: ${props => props.backgroundColor};
   border-bottom-left-radius: ${themeGet('radii.base')};
-  color: black;
+  color: ${props => props.textColor};
   display: flex;
   align-items: center;
 
@@ -187,8 +187,8 @@ const EventBanner = styled.div`
 `;
 
 const MobileEventBanner = styled.div`
-  background-color: #ebcd5f;
-  color: black;
+  background-color: ${props => props.backgroundColor};
+  color: ${props => props.textColor};
   font-weight: bold;
 
   font-size: 16px;
@@ -215,7 +215,7 @@ const MobileEventBanner = styled.div`
   ${system}
 `;
 
-const EventSubtitle = styled.a`
+const EventSubtitle = styled.div`
   color: rgba(59, 125, 217, 1);
   font-size: 12px;
   font-style: italic;
