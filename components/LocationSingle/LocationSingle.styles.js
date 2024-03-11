@@ -102,7 +102,6 @@ const ServiceTimeContainer = styled.div`
   background: linear-gradient(270.35deg, #0092bc -22.55%, #004f71 106.52%),
     linear-gradient(90.49deg, #6bcaba -24.45%, #0092bc 118.95%);
   border-top-left-radius: ${themeGet('radii.base')};
-  border-bottom-left-radius: ${themeGet('radii.base')};
   display: flex;
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
@@ -159,6 +158,74 @@ const VideoOverlay = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
+// ----------------------------------------------
+
+// 2023 Event Banner Styled Components
+const EventBanner = styled.div`
+  background-color: ${props => props.backgroundColor};
+  border-bottom-left-radius: ${themeGet('radii.base')};
+  color: ${props => props.textColor};
+  display: flex;
+  align-items: center;
+
+  font-weight: bold;
+
+  padding-bottom: ${themeGet('space.s')};
+  padding-left: 20px;
+  padding-right: 6px;
+  padding-top: ${themeGet('space.s')};
+  box-shadow: -7px -5px 19px rgba(0, 0, 0, 0.12);
+
+  @media screen and (min-width: ${themeGet(
+      'breakpoints.md'
+    )}) and (max-width: ${themeGet('breakpoints.lg')}) {
+    right: 306px;
+    font-size: 14px;
+  }
+
+  ${system}
+`;
+
+const MobileEventBanner = styled.div`
+  background-color: ${props => props.backgroundColor};
+  color: ${props => props.textColor};
+  font-weight: bold;
+
+  font-size: 16px;
+  padding-bottom: ${themeGet('space.s')};
+  padding-top: ${themeGet('space.s')};
+  box-shadow: -7px -5px 19px rgba(0, 0, 0, 0.12);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+    margin-right: 0px;
+  }
+
+  @media screen and (max-width: ${themeGet('breakpoints.sm')}) {
+    margin-top: 0px;
+    margin-left: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+  }
+
+  ${system}
+`;
+
+const EventSubtitle = styled.div`
+  color: rgba(59, 125, 217, 1);
+  font-size: 12px;
+  font-style: italic;
+`;
+
+const EventCTA = styled.a`
+  color: rgba(59, 125, 217, 1);
+  text-decoration: underline;
+`;
+
 LocationSingle.FlexBreak = FlexBreak;
 LocationSingle.InfoBox = InfoBox;
 LocationSingle.PastorsCard = PastorsCard;
@@ -168,72 +235,9 @@ LocationSingle.ServiceTimeContainer = ServiceTimeContainer;
 LocationSingle.VerticalDivider = VerticalDivider;
 LocationSingle.VideoCover = VideoCover;
 LocationSingle.VideoOverlay = VideoOverlay;
-// LocationSingle.ChristmasBanner = ChristmasBanner;
-// LocationSingle.ChristmasSubtitle = ChristmasSubtitle;
-// LocationSingle.MobileChristmasBanner = MobileChristmasBanner;
+LocationSingle.EventBanner = EventBanner;
+LocationSingle.EventSubtitle = EventSubtitle;
+LocationSingle.EventCTA = EventCTA;
+LocationSingle.MobileEventBanner = MobileEventBanner;
 
 export default LocationSingle;
-
-// ----------------------------------------------
-
-// 2023 Christmas Banner Styled Components - Not in use at the moment leaving here in case we need to use it again next year
-
-// const ChristmasBanner = styled.div`
-//   background: ${themeGet('colors.hues.red')};
-//   border-top-left-radius: ${themeGet('radii.base')};
-//   color: white;
-//   font-size: 17px;
-//   display: flex;
-
-//   padding-bottom: ${themeGet('space.s')};
-//   padding-left: 20px;
-//   padding-right: 32px;
-//   padding-top: ${themeGet('space.s')};
-//   box-shadow: -7px -5px 19px rgba(0, 0, 0, 0.12);
-//   position: absolute;
-//   top: -21px;
-//   right: 370px;
-
-//   @media screen and (min-width: ${themeGet(
-//       'breakpoints.md'
-//     )}) and (max-width: ${themeGet('breakpoints.lg')}) {
-//     right: 306px;
-//     top: -37px;
-//     font-size: 14px;
-//   }
-
-//   ${system}
-// `;
-
-// const MobileChristmasBanner = styled.div`
-//   background: ${themeGet('colors.hues.red')};
-//   color: white;
-//   font-size: 14px;
-//   padding-bottom: ${themeGet('space.s')};
-//   padding-top: ${themeGet('space.s')};
-//   box-shadow: -7px -5px 19px rgba(0, 0, 0, 0.12);
-//   width: 100%;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-
-//   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
-//     margin-right: 0px;
-//   }
-
-//   @media screen and (max-width: ${themeGet('breakpoints.sm')}) {
-//     margin-top: 0px;
-//     margin-left: 0px;
-//     padding-left: 10px;
-//     padding-right: 10px;
-//     width: 100%;
-//   }
-
-//   ${system}
-// `;
-
-// const ChristmasSubtitle = styled.div`
-//   font-weight: normal;
-//   font-size: 14px;
-//   font-style: italic;
-// `;
