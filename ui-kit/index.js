@@ -25,6 +25,7 @@ import FormLabel from './FormLabel';
 import GroupCard from './GroupCard';
 import GroupMemberStatusBadge from './GroupMemberStatusBadge';
 import HorizontalHighlightCard from './HorizontalHighlightCard';
+import HorizontalScroll from './HorizontalScroll';
 import HtmlRenderer from './HtmlRenderer';
 import Icon from './Icon';
 import Image from './Image';
@@ -70,6 +71,7 @@ export {
   GroupCard,
   GroupMemberStatusBadge,
   HorizontalHighlightCard,
+  HorizontalScroll,
   HtmlRenderer,
   Icon,
   Image,

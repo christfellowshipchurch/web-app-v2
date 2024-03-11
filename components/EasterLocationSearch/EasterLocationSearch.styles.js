@@ -108,7 +108,7 @@ const LocationCard = styled.div`
   justify-content: space-between;
   height: 75px;
   padding: ${themeGet('space.s')};
-  width: 86vw;
+  width: 90vw;
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     padding: ${themeGet('space.m')};

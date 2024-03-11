@@ -92,7 +92,7 @@ export default function DiscoverFilterCategoriesPreview() {
                   boxShadow="none"
                   coverImage={n?.coverImage?.sources[0]?.uri}
                   description={n?.summary}
-                  mobileWidth="86vw"
+                  mobileWidth="90vw"
                   href={getUrlFromRelatedNode(n)}
                   key={n?.id}
                   scaleCard={false}
