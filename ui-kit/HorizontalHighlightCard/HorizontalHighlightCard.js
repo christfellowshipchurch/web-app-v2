@@ -7,7 +7,7 @@ import Styled from 'ui-kit/DefaultCard';
 const HorizontalHighlightCard = (props = {}) => {
   let height = props?.height;
   let mobileHeight = props?.mobileHeight || 250;
-  let iPadHeight = props?.iPadHeight || 350;
+  let tableHeight = props?.tableHeight || 350;
 
   // specifies card height based on type
   if (!!props.type) {
@@ -38,7 +38,7 @@ const HorizontalHighlightCard = (props = {}) => {
       coverImageDescription={props.coverImageDescription || props.description}
       coverImageTitle={props.coverImageTitle || props.title}
       description={null}
-      height={{ _: mobileHeight, md: iPadHeight, lg: height }}
+      height={{ _: mobileHeight, md: tableHeight, lg: height }}
       title={null}
       display="block"
       cardSize={'s'}
