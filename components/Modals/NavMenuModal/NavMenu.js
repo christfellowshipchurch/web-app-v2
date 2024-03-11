@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Box, Button, Icon } from 'ui-kit';
-
 import Styled from './NavMenu.styles';
 import { SignIn, GetHelp } from './navComponents';
 function NavigationMenu(props = {}) {
-
   const { mainMenuLinks, subMenuLinks, additionalLinks } = props?.data;
 
   return (
@@ -17,16 +15,33 @@ function NavigationMenu(props = {}) {
           </Box>
           <SignIn />
         </Box>
-        <Button
-          as="a"
-          href="https://www.youtube.com/c/ChristFellowshipWelcomeHome"
-          target="_blank"
-          variant="secondary"
-          size="s"
-          mr="l"
-        >
-          Join Us Online
-        </Button>
+        <Box display="flex" flexDirection="row">
+          <Box
+            as="a"
+            href="/discover?c=en-espanol"
+            textDecoration="none"
+            display="flex"
+            alignItems="center"
+            color="primary"
+            mx="s"
+          >
+            <Icon name="campus" size={20} mb={2} mr={3} />
+            <Box as="span" fontSize={16} fontWeight="bold" mb={0}>
+              Iglesia Español
+            </Box>
+          </Box>
+
+          <Button
+            as="a"
+            href="https://www.youtube.com/c/ChristFellowshipWelcomeHome"
+            target="_blank"
+            variant="secondary"
+            size="s"
+            mr="l"
+          >
+            Join Us Online
+          </Button>
+        </Box>
       </Box>
       <Box display="flex" mt="base">
         {/* Main Menu */}

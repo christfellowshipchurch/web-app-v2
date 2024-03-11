@@ -18,7 +18,6 @@ function VideoHeader(props = {}) {
     >
       <Box height={{ _: 300, sm: 500, md: 600, lg: 700 }}>
         <Styled.VideoCover
-          mx="auto"
           src={
             currentBreakpoint.isSmall
               ? props?.backgroundVideo?.mobile ||
@@ -32,7 +31,9 @@ function VideoHeader(props = {}) {
           type="video/mp4"
         />
       </Box>
-      {props?.overlay && <Styled.VideoOverlay />}
+      {props?.overlay && (
+        <Styled.VideoOverlay overlayColor={props?.overlayColor} />
+      )}
       {/* Logo */}
       <Styled.LogoOverlay
         maxWidth={1200}

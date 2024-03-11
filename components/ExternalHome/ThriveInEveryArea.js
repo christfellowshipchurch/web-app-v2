@@ -102,7 +102,7 @@ const ThriveInEveryArea = ({ maxWidth }) => {
             fontSize={{ _: '16px', md: '18px' }}
             maxWidth={{ _: '320px', md: '490px' }}
           >
-            For the past 35 years, we’ve helped thousands of people just like
+            For the past 40 years, we’ve helped thousands of people just like
             you to...
           </Box>
           <Box display="flex">

@@ -10,7 +10,7 @@ const defaultBreakpoint = breakpointNames[0];
 export default function useCurrentBreakpoint() {
   const [currentBreakpoint, setCurrentBreakpoint] = useState(defaultBreakpoint);
   const matchers = useRef([]);
-  const isClient = typeof window !== "undefined";
+  const isClient = typeof window !== 'undefined';
 
   useEffect(() => {
     if (!isClient) {
