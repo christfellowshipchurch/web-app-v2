@@ -67,9 +67,11 @@ const Card = styled.div`
   box-shadow: ${themeGet('shadows.xl')};
   color: ${themeGet('colors.fg')};
   display: block;
+  height: 450px;
   overflow: ${props => (props.scaleCoverImage ? 'hidden' : 'initial')};
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+    height: 200px;
     width: ${props => props.mobileWidth && `${props.mobileWidth}`};
   }
 
