@@ -18,7 +18,7 @@ const Hero = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  height: 70vh;
+  height: 60vh;
   width: 100vw;
   overflow: none;
 
@@ -45,7 +45,6 @@ const Content = styled.div`
   }
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     max-width: 70%;
-    margin-bottom: ${themeGet('space.xxl')};
     padding: 20px;
   }
 
