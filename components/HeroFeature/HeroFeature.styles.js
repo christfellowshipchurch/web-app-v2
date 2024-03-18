@@ -41,7 +41,7 @@ const Content = styled.div`
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
     max-width: 100%;
     padding: 10px;
-    margin-top: 66%;
+    margin-top: 19vh;
   }
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     max-width: 70%;
@@ -100,6 +100,7 @@ const Button = styled.button`
 
 const Title = styled.h1`
   text-align: center;
+  text-wrap: pretty;
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
     font-size: 2rem;
@@ -118,8 +119,9 @@ const Summary = styled.h2`
   font-weight: normal;
   padding-left: 4px;
   text-align: center;
-
-  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+  text-wrap: pretty;
+  x @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+    margin-top: ${themeGet('space.s')};
     font-size: 1.3rem;
     max-width: 480px;
   }
