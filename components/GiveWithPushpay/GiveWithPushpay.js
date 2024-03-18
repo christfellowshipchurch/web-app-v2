@@ -5,6 +5,16 @@ import { useForm } from 'hooks';
 import PropTypes from 'prop-types';
 import { useCurrentBreakpoint } from 'hooks';
 
+const giftType = ['One Time', 'Recurring'];
+
+const givingType = [
+  'Tithes & Offerings',
+  'Heart for the House',
+  'Kingdom Builders',
+  'Christ Birthday Offering',
+  'Missions',
+];
+
 const campuses = [
   'Belle Glade',
   'Boca Raton',
@@ -48,20 +58,9 @@ function GiveWithPushpay(props = {}) {
 
   return (
     <Styled backgroundImage={props?.backgroundImage}>
-      {props?.title && (
-        <Box as="h1" color="secondary">
-          {props?.title}
-        </Box>
-      )}
-      {props?.subtitle && !currentBreakpoint.isSmall && (
-        <Box as="h4" color="secondary" fontWeight="normal">
-          {props?.subtitle}
-        </Box>
-      )}
       <Box
-        my="l"
         bg="none"
-        py={{ _: 'xxs', md: 's' }}
+        py={{ _: 'xxs' }}
         px={{ _: 's', md: 'l' }}
         borderRadius="base"
         display="flex"
@@ -69,6 +68,16 @@ function GiveWithPushpay(props = {}) {
         justifyContent="center"
         alignItems="center"
       >
+        {props?.title && (
+          <Box as="h1" color={props?.titleColor}>
+            {props?.title}
+          </Box>
+        )}
+        {props?.subtitle && !currentBreakpoint.isSmall && (
+          <Box as="h4" color={props?.subtitleColor} fontWeight="normal">
+            {props?.subtitle}
+          </Box>
+        )}
         <Box
           as="form"
           display="flex"
@@ -76,21 +85,6 @@ function GiveWithPushpay(props = {}) {
           justifyContent="center"
           alignItems="center"
         >
-          <Box as="h2" color="secondary">
-            Give Online
-          </Box>
-          <Select
-            mt="s"
-            width="330px"
-            borderColor="primary"
-            onChange={handleChange}
-            name="campus"
-          >
-            <Select.Option value={null}>Select a Campus</Select.Option>
-            {campuses.map(name => {
-              return <Select.Option>{name}</Select.Option>;
-            })}
-          </Select>
           <Box display="flex" flexDirection="column">
             <Styled.Input
               value={'$' + (values.amount ?? '0.00')}
@@ -98,32 +92,128 @@ function GiveWithPushpay(props = {}) {
               onClick={handleRemoveZeros}
               name="amount"
               autocomplete="off"
+              color={props?.amountColor}
             />
 
-            <Box
-              mb="base"
-              mt="-5px"
-              color="neutrals.500"
-              fontSize="30px"
-              fontWeight="bold"
-            >
-              Your gift amount
+            <Box as="h3" mb="base" mt="-5px" color={props?.giftTextColor}>
+              Enter your gift amount
             </Box>
           </Box>
+
+          <Box borderRadius="base" backgroundColor="white" p="base" mt="base">
+            <Box display="flex" flexDirection="column" alignItems="flex-start">
+              <Box as="h4" color="#39383A">
+                Gift Type
+              </Box>
+              <Select
+                mt="xs"
+                width={currentBreakpoint.isSmall ? '300px' : '600px'}
+                borderColor="primary"
+                onChange={handleChange}
+                name="campus"
+              >
+                <Select.Option value={null}>Select a Gift Type</Select.Option>
+                {giftType.map(name => {
+                  return <Select.Option>{name}</Select.Option>;
+                })}
+              </Select>
+            </Box>
+
+            <Box
+              mt="l"
+              display="flex"
+              flexDirection="column"
+              alignItems="flex-start"
+            >
+              <Box as="h4" color="#39383A">
+                Campus
+              </Box>
+              <Select
+                mt="xs"
+                width={currentBreakpoint.isSmall ? '300px' : '600px'}
+                borderColor="primary"
+                onChange={handleChange}
+                name="campus"
+              >
+                <Select.Option value={null}>Select a Campus</Select.Option>
+                {campuses.map(name => {
+                  return <Select.Option>{name}</Select.Option>;
+                })}
+              </Select>
+            </Box>
+
+            <Box
+              mt="l"
+              mb="base"
+              display="flex"
+              flexDirection="column"
+              alignItems="flex-start"
+            >
+              <Box as="h4" color="#39383A">
+                Giving Type
+              </Box>
+              <Select
+                mt="xs"
+                width={currentBreakpoint.isSmall ? '300px' : '600px'}
+                borderColor="primary"
+                onChange={handleChange}
+                name="campus"
+              >
+                <Select.Option value={null}>Select a Giving Type</Select.Option>
+                {givingType.map(name => {
+                  return <Select.Option>{name}</Select.Option>;
+                })}
+              </Select>
+            </Box>
+          </Box>
+
           <Button
             as="a"
             target="blank"
+            mt="xl"
+            mb="l"
             href={props?.buttonLink + values.campus + '&a=' + values.amount}
             bg={props?.buttonColor}
             px="xl"
           >
             {' '}
-            GIVE WITH <Icon name="pushPay" /> PUSHPAY
+            GIVE SAFELY & SECURELY <Icon name="pushPay" />
           </Button>
-          c
         </Box>
       </Box>
-      {props?.showOtherGiveOptions &&
+
+      {props?.otherOnlineOptions && (
+        <Box>
+          <Box as="h2">Other Online Options</Box>
+          <Box fontStyle="italic" fontSize="13px">
+            Note: Online gifts given through ApplePay, Cash App, or Venmo cannot
+            be designated to a <br />
+            specific fund or campus and will not be on your End-of-Year Giving
+            Statement.
+          </Box>
+
+          <Box
+            display="grid"
+            gridTemplateColumns="repeat(3, 1fr)"
+            gridColumnGap="s"
+            maxWidth="12.5rem"
+            mt="l"
+            mx="auto"
+          >
+            <Box as="a" color="white" href={''}>
+              <Icon name="venmo" size="50" />
+            </Box>
+            <Box as="a" color="white" href={''}>
+              <Icon name="apple" size="50" />
+            </Box>
+            <Box as="a" color="white" href={''}>
+              <Icon name="cashApp" size="50" />
+            </Box>
+          </Box>
+        </Box>
+      )}
+
+      {props?.giveByMail &&
         (!currentBreakpoint.isSmall ? (
           //web view only
           <Styled.Rhombus>
@@ -174,7 +264,7 @@ GiveWithPushpay.propTypes = {
   /**
    * optional to display the rhombus
    */
-  showOtherGiveOptions: PropTypes.bool,
+  giveByMail: PropTypes.bool,
   /**
    * optional to change color of the button
    */

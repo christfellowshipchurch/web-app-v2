@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ThemeProvider as SCThemeProvider } from 'styled-components';
 import colors from 'ui-kit/_config/colors';
-import { Button, Image, Box } from 'ui-kit';
+import { Button, Image, Box, Icon } from 'ui-kit';
 import { useCurrentBreakpoint } from 'hooks';
 import {
   Layout,
@@ -185,10 +185,14 @@ const ChristBirthdayOffering = () => {
         <Box id="give">
           <GiveWithPushpay
             title="Give Your Christ Birthday Offering"
+            titleColor="secondary"
             subtitle="GIVE IN PERSON DURING CHRISTMAS SERVICES OR ONLINE & BY MAIL ANYTIME"
+            subtitleColor="secondary"
+            amountColor="#CECECE"
+            giftTextColor="#9B9B9B"
             buttonColor="#E63E51"
             backgroundImage="url(/cbo/cbp-give-background.png)"
-            showOtherGiveOptions
+            giveByMail
             buttonLink={link}
           />
         </Box>

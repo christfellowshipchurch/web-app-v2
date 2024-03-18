@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { FAQ, HeroFeature, Layout } from 'components';
+import { FAQ, HeroFeature, Layout, GiveWithPushpay } from 'components';
 import { Box, Button, HtmlRenderer, Icon } from 'ui-kit';
 import faqData from 'components/FAQ/faqData';
 
@@ -89,9 +89,17 @@ export default function Give() {
 
       {/* Pushpay */}
       <Box id="give">
-        <Box height="200px">
-          <Box as="h1" textAlign="center">
-            Give Online
+        <Box>
+          <Box id="give">
+            <GiveWithPushpay
+              title="Give Online"
+              subtitle="Give safely and securely online to Christ Fellowship Church. Give a one-time gift or set up a recurring gift."
+              buttonColor="primary"
+              amountColor="white"
+              backgroundImage="url(/give/give-pushpay-background.png)"
+              otherOnlineOptions
+              // buttonLink={link}
+            />
           </Box>
         </Box>
       </Box>

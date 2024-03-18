@@ -18,8 +18,7 @@ const GiveWithPushpay = styled.div`
 
 const Input = styled(TextInput)`
   border: none;
-  background-color: ${themeGet('colors.neutrals.100')};
-  color: ${themeGet('colors.neutrals.300')};
+  background-color: rgba(54, 25, 25, 0.00004);
   font-size: 80px;
   font-weight: bold;
   text-align: center;
