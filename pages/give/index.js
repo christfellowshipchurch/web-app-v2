@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { FAQ, HeroFeature, Layout, GiveWithPushpay } from 'components';
-import { Box, Button, HtmlRenderer, Icon } from 'ui-kit';
+import { Box, Button, HtmlRenderer, Icon, Image } from 'ui-kit';
 import faqData from 'components/FAQ/faqData';
 
 export default function Give() {
@@ -11,21 +11,43 @@ export default function Give() {
       link: '#give',
     },
   ];
-  const otherWaysToGiveData = [
+  const carouselCards = [{ wistiaId: '' }, { wistiaId: '' }];
+  const giveImpactData = [
     {
-      icon: 'bible',
-      title: 'Give Cash or Check',
-      htmlContent: `Give at any <a href="/locations" style="font-style: italic; color: #004F71;">Christ Fellowship location</a> or mail to: <br/><br/>
-      <span style="font-style: italic;">Christ Fellowship Church Contributions <br/>
-      5343 Northlake Blvd.Palm Beach Gardens, FL 33418</span>`,
+      icon: 'campus',
+      title: 'Church Operations',
+      htmlContent: `<div style="color: black; margin-bottom: 20px; font-weight: bold;">From maintaining our facilities, supporting our staff, and carrying out various ministries effectively, we’re able to bring the love and message of Jesus to our region.</div>`,
     },
     {
-      icon: 'bible',
-      title: 'Stocks, Bonds, Crypto & other Assets',
-      htmlContent: `To give by stock, bond, or crypto currency please <a href="#contact-us??" style="font-style: italic; color: #004F71;">contact us.</a>`,
+      icon: 'users',
+      title: 'Weekly Ministry Offerings',
+      htmlContent: `<div style="color: black; margin-bottom: 20px; font-weight: bold;">We have ministry offerings for the entire family all throughout the week to help people grow in community and in their relationship with God.</div>`,
+    },
+    {
+      icon: 'handshake',
+      title: 'Local and Global Missions',
+      htmlContent: `<div style="color: black; margin-bottom: 20px; font-weight: bold;">Through service projects, trips, and supporting our partners, we’re able to serve others at their point of need and share the love of Jesus in tangible ways.</div>`,
+    },
+    {
+      icon: 'computer',
+      title: 'Digital Resources',
+      htmlContent: `<div style="color: black; font-weight: bold;">With weekly live online services and other digital resources like online groups and classes, and free articles and devotionals, people can grow in their faith from anywhere. </div>`,
     },
   ];
-
+  const otherWaysToGiveData = [
+    {
+      icon: 'envelope-open-dollar',
+      title: 'Give Cash or Check',
+      htmlContent: `<div style="color: black; font-style: italic;">Give at any <a href="/locations" color: #004F71;">Christ Fellowship location</a> or mail to: <br/><br/>
+      Christ Fellowship Church Contributions <br/>
+      5343 Northlake Blvd.Palm Beach Gardens, FL 33418</div>`,
+    },
+    {
+      icon: 'plus',
+      title: 'Stocks, Bonds, Crypto & other Assets',
+      htmlContent: `<div style="color: black; font-style: italic;">To give by stock, bond, or crypto currency please <a href="#contact-us??" style="color: #004F71;">contact us.</a></div>`,
+    },
+  ];
   const tithingOfferingCards = [
     {
       title: 'Tithing',
@@ -60,7 +82,7 @@ export default function Give() {
             <Box as="h1" mt="base" mb="base">
               Why We Give
             </Box>
-            <Box mt="s">
+            <Box mt="s" mb={{ _: 'base', md: 0 }} mx={{ _: 's', md: 0 }}>
               <Box
                 display="inline"
                 fontWeight="bold"
@@ -78,7 +100,7 @@ export default function Give() {
           <Button
             as="a"
             href="#what-the-bible-says"
-            mt="l"
+            my="l"
             fontWeight="normal"
             fontSize="s"
           >
@@ -114,14 +136,16 @@ export default function Give() {
         justifyContent="center"
         alignItems="center"
       >
-        <Box as="h2" color="#004F71">
+        <Box as="h1" color="#004F71">
           Other Ways to Give
         </Box>
-        <Box>
+        <Box mt="l" width={{ md: '80%' }} pb={{ md: 'base' }}>
           <Box
             display="flex"
-            justifyContent="space-between"
+            justifyContent={{ _: 'center', md: 'space-around' }}
+            alignItems={{ _: 'center', md: 'flex-start' }}
             flexDirection={{ _: 'column', md: 'row' }}
+            pb="l"
           >
             {otherWaysToGiveData?.map((card, index) => (
               <Box
@@ -131,23 +155,33 @@ export default function Give() {
                 ml={index !== 0 && { md: 'base' }}
                 mr={index === 0 && { md: 'base' }}
                 alignItems="center"
+                justifyContent="center"
                 flexDirection="column"
-                width={{ _: '90vw', md: 400 }}
+                maxWidth={{ _: '90vw', md: 430 }}
+                width={{ _: '90vw', md: '45vw' }}
+                color="#004F71"
               >
                 <Icon
-                  width="70px"
-                  height="70px"
+                  width="80px"
+                  height="80px"
                   name={card?.icon}
-                  color="#004F71"
+                  mt={index !== 0 && { _: 'base', md: 0 }}
+                  mb="s"
                 />
-                <Box mt="base" mb="s" as="h2">
+                <Box
+                  as="h2"
+                  width="320px"
+                  mt={{ _: 'base', md: 'l' }}
+                  mb="base"
+                  color="black"
+                >
                   {card?.title}
                 </Box>
                 <HtmlRenderer htmlContent={card?.htmlContent} />
               </Box>
             ))}
           </Box>
-          <Box py="l" textAlign="center">
+          <Box py="l" textAlign="center" mx={{ _: 'base', md: 0 }}>
             For help setting up electronic giving or other giving questions,{' '}
             <Box display="inline" color="#004F71" fontWeight="bold">
               please call 561-776-3380.
@@ -166,7 +200,7 @@ export default function Give() {
         alignItems="center"
       >
         <Box mb={{ _: 'base', md: 'l' }} textAlign="center" maxWidth="1000px">
-          <Box as="h2" mt="base" color="#004F71">
+          <Box as="h1" mt="base" color="#004F71">
             What Does the Bible Say About Giving?
           </Box>
           <Box mx="base" mt="base" fontStyle="italic">
@@ -189,7 +223,8 @@ export default function Give() {
         >
           {tithingOfferingCards?.map((card, index) => (
             <Box
-              width={{ _: '90vw', md: '510px' }}
+              maxWidth={{ _: '90vw', md: 510 }}
+              width={{ _: '90vw', md: '45vw' }}
               id={index}
               mt={index !== 0 ? { _: 'l', md: 0 } : 0}
               ml={index !== 0 && { md: 'base' }}
@@ -210,17 +245,114 @@ export default function Give() {
             </Box>
           ))}
         </Box>
-        <Button as="a" mt="l" fontWeight="normal" fontSize="s" href="#give-now">
+        <Button
+          as="a"
+          mt="l"
+          mb={{ _: 'base', md: 'l' }}
+          fontWeight="normal"
+          fontSize="s"
+          href="#give-now"
+        >
           GIVE NOW
         </Button>
       </Box>
 
       {/* Wistia Carouse */}
-      <Box id="what-the-bible-says"></Box>
+      <Box
+        id="what-the-bible-says"
+        py="l"
+        display="flex"
+        flexDirection="column"
+        alignItems={{ _: 'flex-start', md: 'center' }}
+      >
+        <Box
+          as="h1"
+          fontSize={{ _: 28, md: 40 }}
+          my="base"
+          color="#0092BC"
+          maxWidth={{ md: 800 }}
+          mx={{ _: 's', md: 0 }}
+          textAlign="center"
+        >
+          When you give, you’re impacting others with the love and message of
+          Jesus Christ.
+        </Box>
+        {/* Carousel */}
+        {/* <WistiaPlayer
+                videoId={card?.wistiaId}
+                wrapper={`wistia-player-container-${index}`}
+              /> */}
+        <Box
+          display="flex"
+          justifyContent={{ md: 'center' }}
+          width="100%"
+          overflow="auto"
+          py="l"
+        >
+          {carouselCards?.map((card, index) => (
+            <Box>
+              <Image
+                key={index}
+                boxShadow="l"
+                m="base"
+                borderRadius="xl"
+                overflow="auto"
+                maxWidth={{ _: '80vw', md: 450 }}
+                width={{ _: '80vw', md: '45vw' }}
+                source="/give/temp-image.png"
+                alt="temp-image"
+              />
+            </Box>
+          ))}
+        </Box>
+        <Box
+          display="flex"
+          justifyContent={{ _: 'center', md: 'center', xl: 'space-between' }}
+          alignItems={{ _: 'center', md: 'flex-start' }}
+          flexDirection={{ _: 'column', md: 'row' }}
+          flexWrap="wrap"
+          pb="l"
+          mx="auto"
+        >
+          {giveImpactData?.map((card, index) => (
+            <Box textAlign="center">
+              <Box
+                height={{ _: 'auto', md: '340px' }}
+                textAlign="center"
+                display="flex"
+                mt={index !== 0 ? { _: 'l', md: 0 } : 0}
+                ml={index !== 0 && { md: 'l' }}
+                mr={index === 0 && { md: 'l' }}
+                alignItems="center"
+                justifyContent="space-between"
+                flexDirection="column"
+                mx={{ md: 's' }}
+                width={{ _: '80vw', md: 260 }}
+                color="#818181"
+              >
+                <Box>
+                  <Icon
+                    width="80px"
+                    height="80px"
+                    name={card?.icon}
+                    mt={index !== 0 && { _: 'base', md: 0 }}
+                    mb="s"
+                  />
+                  <Box as="h2" mt={{ _: 'base', md: 'l' }} mb="base">
+                    {card?.title}
+                  </Box>
+                </Box>
+                <HtmlRenderer htmlContent={card?.htmlContent} />
+              </Box>
+            </Box>
+          ))}
+        </Box>
+      </Box>
 
       {/* Rock Content #1 */}
 
       {/* Rock Content #2 */}
+      <Box bg="#004F71" p="xl"></Box>
 
       {/* FAQ Section */}
       <Box mx="auto" maxWidth={1200} px="base">
