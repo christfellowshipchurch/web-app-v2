@@ -1,39 +1,41 @@
-import React from 'react';
+import { useState } from 'react';
 import Styled from './GiveWithPushpay.styles';
 import { HtmlRenderer, Select, Button, Box, Icon } from 'ui-kit';
 import { useForm } from 'hooks';
 import PropTypes from 'prop-types';
 import { useCurrentBreakpoint } from 'hooks';
 
-const giftType = ['One Time', 'Recurring'];
-
-const givingType = [
-  'Tithes & Offerings',
-  'Heart for the House',
-  'Kingdom Builders',
-  'Christ Birthday Offering',
-  'Missions',
-];
-
-const campuses = [
-  'Belle Glade',
-  'Boca Raton',
-  'Boynton Beach',
-  'CF Everywhere (Online)',
-  'Downtown West Palm Beach',
-  'En Español',
-  'Jupiter',
-  'Okeechobee',
-  'Palm Beach Gardens',
-  'Port St. Lucie',
-  'Royal Palm Beach',
-  'Stuart',
-  'Trinity',
-  'Vero Beach',
-  'Westlake',
-];
-
 function GiveWithPushpay(props = {}) {
+  const [active, setActive] = useState('giveOneTime');
+
+  const givingType = props?.isCBO
+    ? ['Christ Birthday Offering']
+    : [
+        'Tithes & Offerings',
+        'Heart for the House',
+        'Kingdom Builders',
+        'Christ Birthday Offering',
+        'Missions',
+      ];
+
+  const campuses = [
+    'Belle Glade',
+    'Boca Raton',
+    'Boynton Beach',
+    'CF Everywhere (Online)',
+    'Downtown West Palm Beach',
+    'En Español',
+    'Jupiter',
+    'Okeechobee',
+    'Palm Beach Gardens',
+    'Port St. Lucie',
+    'Royal Palm Beach',
+    'Stuart',
+    'Trinity',
+    'Vero Beach',
+    'Westlake Loxahatchee',
+  ];
+
   const { values, setValues, handleChange } = useForm();
   const currentBreakpoint = useCurrentBreakpoint();
 
@@ -105,18 +107,21 @@ function GiveWithPushpay(props = {}) {
               <Box as="h4" color="#39383A">
                 Gift Type
               </Box>
-              <Select
-                mt="xs"
-                width={currentBreakpoint.isSmall ? '300px' : '600px'}
-                borderColor="primary"
-                onChange={handleChange}
-                name="campus"
-              >
-                <Select.Option value={null}>Select a Gift Type</Select.Option>
-                {giftType.map(name => {
-                  return <Select.Option>{name}</Select.Option>;
-                })}
-              </Select>
+              <Box display="flex" flexDirection="row">
+                <Styled.GiveOneTimeButton
+                  selected={active}
+                  onClick={() => setActive('giveOneTime')}
+                >
+                  Give one time
+                </Styled.GiveOneTimeButton>
+
+                <Styled.SetRecurringButton
+                  selected={active}
+                  onClick={() => setActive('giveRecurring')}
+                >
+                  Set up recurring
+                </Styled.SetRecurringButton>
+              </Box>
             </Box>
 
             <Box
@@ -157,7 +162,7 @@ function GiveWithPushpay(props = {}) {
                 width={currentBreakpoint.isSmall ? '300px' : '600px'}
                 borderColor="primary"
                 onChange={handleChange}
-                name="campus"
+                name="givingType"
               >
                 <Select.Option value={null}>Select a Giving Type</Select.Option>
                 {givingType.map(name => {
@@ -172,11 +177,20 @@ function GiveWithPushpay(props = {}) {
             target="blank"
             mt="xl"
             mb="l"
-            href={props?.buttonLink + values.campus + '&a=' + values.amount}
+            href={
+              props?.buttonLink +
+              '?f[0]=' +
+              values.campus +
+              '&a=' +
+              values.amount +
+              '&f[1]=' +
+              values.givingType +
+              '&' +
+              (active === 'giveRecurring' && 'r=weekly')
+            }
             bg={props?.buttonColor}
-            px="xl"
+            px="l"
           >
-            {' '}
             GIVE SAFELY & SECURELY <Icon name="pushPay" />
           </Button>
         </Box>
@@ -187,7 +201,7 @@ function GiveWithPushpay(props = {}) {
           <Box as="h2">Other Online Options</Box>
           <Box fontStyle="italic" fontSize="13px">
             Note: Online gifts given through ApplePay, Cash App, or Venmo cannot
-            be designated to a <br />
+            be designated to a {!currentBreakpoint.isSmall && <br />}
             specific fund or campus and will not be on your End-of-Year Giving
             Statement.
           </Box>

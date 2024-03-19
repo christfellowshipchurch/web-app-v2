@@ -37,8 +37,60 @@ const GiveByMail = styled.div`
   transform: skewX(15deg);
 `;
 
+const GiveOneTimeButton = styled.div`
+  @media screen and (max-width: ${themeGet('breakpoints.sm')}) {
+    width: 150px;
+  }
+  padding-top: ${themeGet('space.s')};
+  padding-bottom: ${themeGet('space.s')};
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${props =>
+    props.selected === 'giveOneTime' ? themeGet('colors.primary') : 'white'};
+  color: ${props =>
+    props.selected === 'giveOneTime' ? 'white' : themeGet('colors.primary')};
+  border: 2px solid;
+  border-color: ${themeGet('colors.primary')};
+  font-weight: bold;
+  &:hover {
+    transition: 0.5s ease-in-out;
+    cursor: pointer;
+    background-color: ${themeGet('colors.secondary')};
+  }
+`;
+
+const SetRecurringButton = styled.div`
+  @media screen and (max-width: ${themeGet('breakpoints.sm')}) {
+    width: 150px;
+  }
+  padding-top: ${themeGet('space.s')};
+  padding-bottom: ${themeGet('space.s')};
+  width: 300px;
+  border: 2px solid;
+  border-color: ${themeGet('colors.primary')};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${props =>
+    props.selected === 'giveRecurring' ? themeGet('colors.primary') : 'white'};
+  color: ${props =>
+    props.selected === 'giveRecurring' ? 'white' : themeGet('colors.primary')};
+  font-weight: bold;
+  &:hover {
+    transition: 0.5s ease-in-out;
+    cursor: pointer;
+    background-color: ${themeGet('colors.secondary')};
+    color: white;
+    border-color: ${themeGet('colors.secondary')};
+  }
+`;
+
 GiveWithPushpay.Rhombus = Rhombus;
 GiveWithPushpay.GiveByMail = GiveByMail;
 GiveWithPushpay.Input = Input;
+GiveWithPushpay.GiveOneTimeButton = GiveOneTimeButton;
+GiveWithPushpay.SetRecurringButton = SetRecurringButton;
 
 export default GiveWithPushpay;

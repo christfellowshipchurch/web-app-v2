@@ -119,8 +119,8 @@ export default function Give() {
               buttonColor="primary"
               amountColor="white"
               backgroundImage="url(/give/give-pushpay-background.png)"
+              buttonLink="https://pushpay.com/g/christfellowship"
               otherOnlineOptions
-              // buttonLink={link}
             />
           </Box>
         </Box>

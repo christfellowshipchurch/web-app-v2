@@ -21,8 +21,6 @@ import { CustomTab, customTabs } from '../../components/Tabs/cboCustomTabs';
 const ChristBirthdayOffering = () => {
   const [imageSize, setImageSize] = useState('');
   const currentBreakpoint = useCurrentBreakpoint();
-  const link =
-    'https://pushpay.com/g/cfchristbirthdayoffering?f[1]=Christ%20Birthday%20Offering&f[0]=';
 
   //Fix for anchor links not scrolling on page load
   useEffect(() => {
@@ -192,8 +190,9 @@ const ChristBirthdayOffering = () => {
             giftTextColor="#9B9B9B"
             buttonColor="#E63E51"
             backgroundImage="url(/cbo/cbp-give-background.png)"
+            buttonLink="https://pushpay.com/g/cfchristbirthdayoffering"
             giveByMail
-            buttonLink={link}
+            isCBO
           />
         </Box>
 
