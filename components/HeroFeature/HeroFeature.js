@@ -13,9 +13,9 @@ const Hero = props => {
           <Styled.Summary>{props?.description}</Styled.Summary>
           <Box mt="base">
             {props?.cta.map((cta, index) => (
-              <Styled.Button key={index} href={cta.link}>
-                {cta.title}
-              </Styled.Button>
+              <Box as="a" key={index} href={cta?.link}>
+                <Styled.Button>{cta?.title}</Styled.Button>
+              </Box>
             ))}
           </Box>
         </Styled.Content>

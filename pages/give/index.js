@@ -1,7 +1,13 @@
 import React from 'react';
 
-import { FAQ, HeroFeature, Layout, GiveWithPushpay } from 'components';
-import { Box, Button, HtmlRenderer, Icon, Image } from 'ui-kit';
+import {
+  FAQ,
+  HeroFeature,
+  Layout,
+  GiveWithPushpay,
+  WistiaPlayer,
+} from 'components';
+import { Box, Button, HtmlRenderer, Icon } from 'ui-kit';
 import faqData from 'components/FAQ/faqData';
 
 export default function Give() {
@@ -11,7 +17,18 @@ export default function Give() {
       link: '#give',
     },
   ];
-  const carouselCards = [{ wistiaId: '' }, { wistiaId: '' }];
+  const carouselCards = [
+    {
+      wistiaId: 'kpga7mn5cj',
+      image:
+        'https://embed-ssl.wistia.com/deliveries/8a1ca2f5766877dc513d1b80b373d0e3.jpg',
+    },
+    {
+      wistiaId: 'dbukx4kdmk',
+      image:
+        'https://embed-ssl.wistia.com/deliveries/f82aa181462b90aeebb32438efd8d0ee.jpg',
+    },
+  ];
   const giveImpactData = [
     {
       icon: 'campus',
@@ -111,18 +128,16 @@ export default function Give() {
 
       {/* Pushpay */}
       <Box id="give">
-        <Box>
-          <Box id="give">
-            <GiveWithPushpay
-              title="Give Online"
-              subtitle="Give safely and securely online to Christ Fellowship Church. Give a one-time gift or set up a recurring gift."
-              buttonColor="primary"
-              amountColor="white"
-              backgroundImage="url(/give/give-pushpay-background.png)"
-              buttonLink="https://pushpay.com/g/christfellowship"
-              otherOnlineOptions
-            />
-          </Box>
+        <Box id="give">
+          <GiveWithPushpay
+            title="Give Online"
+            subtitle="Give safely and securely online to Christ Fellowship Church. Give a one-time gift or set up a recurring gift."
+            buttonColor="primary"
+            amountColor="white"
+            backgroundImage="url(/give/give-pushpay-background.png)"
+            buttonLink="https://pushpay.com/g/christfellowship"
+            otherOnlineOptions
+          />
         </Box>
       </Box>
 
@@ -136,7 +151,7 @@ export default function Give() {
         justifyContent="center"
         alignItems="center"
       >
-        <Box as="h1" color="#004F71">
+        <Box as="h1" mt="base" color="#004F71">
           Other Ways to Give
         </Box>
         <Box mt="l" width={{ md: '80%' }} pb={{ md: 'base' }}>
@@ -193,7 +208,7 @@ export default function Give() {
       {/* What Does the Bible Say About Giving */}
       <Box
         mt="l"
-        id="what-does-the-bible-say"
+        id="what-the-bible-says"
         display="flex"
         flexDirection="column"
         justifyContent="center"
@@ -251,7 +266,7 @@ export default function Give() {
           mb={{ _: 'base', md: 'l' }}
           fontWeight="normal"
           fontSize="s"
-          href="#give-now"
+          href="#give"
         >
           GIVE NOW
         </Button>
@@ -259,7 +274,7 @@ export default function Give() {
 
       {/* Wistia Carouse */}
       <Box
-        id="what-the-bible-says"
+        id="impact"
         py="l"
         display="flex"
         flexDirection="column"
@@ -278,10 +293,6 @@ export default function Give() {
           Jesus Christ.
         </Box>
         {/* Carousel */}
-        {/* <WistiaPlayer
-                videoId={card?.wistiaId}
-                wrapper={`wistia-player-container-${index}`}
-              /> */}
         <Box
           display="flex"
           justifyContent={{ md: 'center' }}
@@ -290,17 +301,25 @@ export default function Give() {
           py="l"
         >
           {carouselCards?.map((card, index) => (
-            <Box>
-              <Image
-                key={index}
-                boxShadow="l"
-                m="base"
-                borderRadius="xl"
-                overflow="auto"
-                maxWidth={{ _: '80vw', md: 450 }}
-                width={{ _: '80vw', md: '45vw' }}
-                source="/give/temp-image.png"
-                alt="temp-image"
+            <Box
+              minWidth={{ _: '80vw', md: 0 }}
+              maxWidth={{ _: '80vw', md: 450, lg: 500 }}
+              width={{ _: '80vw', md: '45vw' }}
+              boxShadow="xl"
+              borderRadius="base"
+              overflow="auto"
+              mr={
+                index === 0
+                  ? { md: 'base' }
+                  : index === carouselCards.length - 1
+                  ? { _: 'base', md: 0 }
+                  : 0
+              }
+              ml={{ _: 'base', md: index !== 0 ? 'base' : 0 }}
+            >
+              <WistiaPlayer
+                videoId={card?.wistiaId}
+                wrapper={`wistia-player-container-${index}`}
               />
             </Box>
           ))}
@@ -311,6 +330,7 @@ export default function Give() {
           alignItems={{ _: 'center', md: 'flex-start' }}
           flexDirection={{ _: 'column', md: 'row' }}
           flexWrap="wrap"
+          mt="base"
           pb="l"
           mx="auto"
         >
@@ -352,7 +372,6 @@ export default function Give() {
       {/* Rock Content #1 */}
 
       {/* Rock Content #2 */}
-      <Box bg="#004F71" p="xl"></Box>
 
       {/* FAQ Section */}
       <Box mx="auto" maxWidth={1200} px="base">

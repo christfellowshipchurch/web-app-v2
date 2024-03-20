@@ -16,7 +16,7 @@ const Hero = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 
   height: 60vh;
   width: 100vw;
@@ -36,12 +36,10 @@ const Content = styled.div`
   justify-content: center;
   z-index: 2;
   color: ${themeGet('colors.white')};
-  margin-top: 12%;
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
     max-width: 100%;
     padding: 10px;
-    margin-top: 19vh;
   }
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     max-width: 70%;

@@ -4,6 +4,7 @@ import { HtmlRenderer, Select, Button, Box, Icon } from 'ui-kit';
 import { useForm } from 'hooks';
 import PropTypes from 'prop-types';
 import { useCurrentBreakpoint } from 'hooks';
+import { colorHover } from 'utils';
 
 function GiveWithPushpay(props = {}) {
   const [active, setActive] = useState('giveOneTime');
@@ -214,14 +215,32 @@ function GiveWithPushpay(props = {}) {
             mt="l"
             mx="auto"
           >
-            <Box as="a" color="white" href={''}>
+            <Box
+              as="a"
+              color="white"
+              hoverColor={colorHover('white')}
+              target="_blank"
+              href={'https://www.paypal.com/paypalme/ChristFellowshipFL'}
+            >
+              <Icon name="payPal" size="50" />
+            </Box>
+            <Box
+              as="a"
+              color="white"
+              hoverColor={colorHover('white')}
+              target="_blank"
+              href={'https://account.venmo.com/u/Christ-Fellowship'}
+            >
               <Icon name="venmo" size="50" />
             </Box>
-            <Box as="a" color="white" href={''}>
+            <Box
+              as="a"
+              color="white"
+              hoverColor={colorHover('white')}
+              target="_blank"
+              href={'#apple-link'}
+            >
               <Icon name="apple" size="50" />
-            </Box>
-            <Box as="a" color="white" href={''}>
-              <Icon name="cashApp" size="50" />
             </Box>
           </Box>
         </Box>
@@ -229,7 +248,7 @@ function GiveWithPushpay(props = {}) {
 
       {props?.giveByMail &&
         (!currentBreakpoint.isSmall ? (
-          //web view only
+          //desktop view only
           <Styled.Rhombus>
             <Styled.GiveByMail>
               <Box fontWeight="bold">GIVE BY MAIL</Box>
