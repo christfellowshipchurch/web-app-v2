@@ -6,75 +6,25 @@ import {
   Layout,
   GiveWithPushpay,
   WistiaPlayer,
+  CardGridFeature,
 } from 'components';
 import { Box, Button, HtmlRenderer, Icon } from 'ui-kit';
 import faqData from 'components/FAQ/faqData';
+import { FeatureProvider } from 'providers';
+import {
+  otherWaysToGiveData,
+  tithingOfferingCards,
+  giveImpactData,
+  carouselCards,
+  financialImprovementId,
+  moreGivingOpportunitiesId,
+} from '../../lib/giveData';
 
 export default function Give() {
   const callToAction = [
     {
       title: 'GIVE NOW',
       link: '#give',
-    },
-  ];
-  const carouselCards = [
-    {
-      wistiaId: 'kpga7mn5cj',
-      image:
-        'https://embed-ssl.wistia.com/deliveries/8a1ca2f5766877dc513d1b80b373d0e3.jpg',
-    },
-    {
-      wistiaId: 'dbukx4kdmk',
-      image:
-        'https://embed-ssl.wistia.com/deliveries/f82aa181462b90aeebb32438efd8d0ee.jpg',
-    },
-  ];
-  const giveImpactData = [
-    {
-      icon: 'campus',
-      title: 'Church Operations',
-      htmlContent: `<div style="color: black; margin-bottom: 20px; font-weight: bold;">From maintaining our facilities, supporting our staff, and carrying out various ministries effectively, we’re able to bring the love and message of Jesus to our region.</div>`,
-    },
-    {
-      icon: 'users',
-      title: 'Weekly Ministry Offerings',
-      htmlContent: `<div style="color: black; margin-bottom: 20px; font-weight: bold;">We have ministry offerings for the entire family all throughout the week to help people grow in community and in their relationship with God.</div>`,
-    },
-    {
-      icon: 'handshake',
-      title: 'Local and Global Missions',
-      htmlContent: `<div style="color: black; margin-bottom: 20px; font-weight: bold;">Through service projects, trips, and supporting our partners, we’re able to serve others at their point of need and share the love of Jesus in tangible ways.</div>`,
-    },
-    {
-      icon: 'computer',
-      title: 'Digital Resources',
-      htmlContent: `<div style="color: black; font-weight: bold;">With weekly live online services and other digital resources like online groups and classes, and free articles and devotionals, people can grow in their faith from anywhere. </div>`,
-    },
-  ];
-  const otherWaysToGiveData = [
-    {
-      icon: 'envelope-open-dollar',
-      title: 'Give Cash or Check',
-      htmlContent: `<div style="color: black; font-style: italic;">Give at any <a href="/locations" color: #004F71;">Christ Fellowship location</a> or mail to: <br/><br/>
-      Christ Fellowship Church Contributions <br/>
-      5343 Northlake Blvd.Palm Beach Gardens, FL 33418</div>`,
-    },
-    {
-      icon: 'plus',
-      title: 'Stocks, Bonds, Crypto & other Assets',
-      htmlContent: `<div style="color: black; font-style: italic;">To give by stock, bond, or crypto currency please <a href="#contact-us??" style="color: #004F71;">contact us.</a></div>`,
-    },
-  ];
-  const tithingOfferingCards = [
-    {
-      title: 'Tithing',
-      subtitle: 'TRUSTING GOD WITH YOUR FINANCES.',
-      htmlContent: `Tithing is a biblical principle that means the tenth. The first tenth, which belongs to God, is Holy and set apart for Him. When we bring our tithe to God, it means that we trust and acknowledge that He’s the giver of every good thing in our lives. Tithing isn’t as much about finances as it is about faith. It’s not about what God wants from you but what He has for you.<br/><br/> In <span style="font-weight: bold;">Malachi 3:10</span>, the Bible says we can test this promise. When we bring our first and best back to God, He promises to bless the rest of our resources so that we could be a blessing toward others.<br/><br/> Is tithing new for you? Take the <a href="https://rock.gocf.org/310challenge">Malachi 3:10 Challenge</a> today!`,
-    },
-    {
-      title: 'Offerings',
-      subtitle: 'GIVING BEYOND THE TITHE.',
-      htmlContent: `As Pastor Todd has shared, "We're never more like Jesus than when we serve and give." In scripture, we're told that God so loved the world that He gave. Our offerings go beyond the obedience of the tithe; they are a reflection of a life marked by generosity. We believe generosity has a divine purpose connected to it, which is why we invite our church family to give beyond the tithe in one of these ways throughout the year. <br/><br/>Learn more about two special offerings we do each year: <a href="#???">Heart for the House and Christ Birthday Offering.</a>`,
     },
   ];
 
@@ -272,7 +222,7 @@ export default function Give() {
         </Button>
       </Box>
 
-      {/* Wistia Carouse */}
+      {/* Wistia Carousel */}
       <Box
         id="impact"
         py="l"
@@ -370,8 +320,59 @@ export default function Give() {
       </Box>
 
       {/* Rock Content #1 */}
+      <Box maxWidth={1100} mx="auto" my="l" py="l">
+        <FeatureProvider
+          Component={CardGridFeature}
+          customCardSize={'HIGHLIGHT_MEDIUM'}
+          horizontalScroll={false}
+          titleOverride
+          dataOverride={{
+            title:
+              '<div style="color: #004F71; font-size: 2.25rem; font-weight: bold;"> More Opportunities to Give</div>',
+          }}
+          options={{
+            variables: {
+              id: moreGivingOpportunitiesId,
+            },
+          }}
+        />
+      </Box>
 
       {/* Rock Content #2 */}
+      <Box bg="secondary" py="xl">
+        <Box maxWidth={1100} mx="auto" my="base">
+          <FeatureProvider
+            Component={CardGridFeature}
+            customCardSize={'HIGHLIGHT_MEDIUM'}
+            horizontalScroll={false}
+            titleOverride
+            dataOverride={{
+              title:
+                '<div style="color: white; font-size: 2.25rem; font-weight: bold;"> Looking to Improve Your Finances?</div>',
+              subtitle:
+                '<div style=" margin-top: 5px; color: white; font-size: 1rem; font-weight: bold;"> CLASSES & OTHER RESOURCES</div>',
+            }}
+            options={{
+              variables: {
+                id: financialImprovementId,
+              },
+            }}
+          />
+          <Button
+            as="a"
+            mt="l"
+            display="flex"
+            mx="auto"
+            width="fit-content"
+            href=""
+            bg="white"
+            color="primary"
+            border="2px solid"
+          >
+            SEE ALL
+          </Button>
+        </Box>
+      </Box>
 
       {/* FAQ Section */}
       <Box mx="auto" maxWidth={1200} px="base">
