@@ -42,6 +42,10 @@ const CampusInfo = ({
   const addressFirst = street1 ? `${street1}` : null;
   const addressLast = `${city}, ${state} ${postalCode?.substring(0, 5)}`;
 
+  const bannerUrl = ` /easter-2024${
+    cfe ? '-espanol' : ''
+  }?utm_campaign=Easter24&utm_source=locations`;
+
   // Make sure there is at least one weekday schedule
   const isWeekdaySchedule = validDaysOfWeek(weekdaySchedules)?.length > 0;
   const modalDispatch = useModalDispatch();
@@ -106,7 +110,7 @@ const CampusInfo = ({
               {subtitle}
               <Box
                 as="a"
-                href={`/easter-2024${cfe ? '-espanol' : ''}`}
+                href={bannerUrl}
                 color="rgba(59, 125, 217, 1)"
                 textDecoration="underline"
               >
@@ -183,9 +187,7 @@ const CampusInfo = ({
               textWrap="pretty"
             >
               {title} {subtitle}
-              <Styled.EventCTA href={`/easter-2024${cfe ? '-espanol' : ''}`}>
-                {cta}
-              </Styled.EventCTA>
+              <Styled.EventCTA href={bannerUrl}>{cta}</Styled.EventCTA>
             </Box>
           </Styled.EventBanner>
 
