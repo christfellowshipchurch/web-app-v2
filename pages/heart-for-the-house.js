@@ -268,7 +268,7 @@ function HeartForTheHouse({
           color="white"
         >
           <Box as="h1" id="give" color="white">
-            {/* <HtmlRenderer htmlContent='Be a part of the <span style="color:#133156">heart.</span>' /> */}
+            <HtmlRenderer htmlContent='Be a part of the <span style="color:#133156">heart.</span>' />
           </Box>
           <Box as="h3" color="neutrals.200">
             GIVE TOWARD HEART FOR THE HOUSE UNTIL DECEMBER 31, 2023.
@@ -297,7 +297,7 @@ function HeartForTheHouse({
             </Box>
           </Box>
 
-          {/* <HtmlRenderer htmlContent='GIVE IN PERSON<br/>Give by cash or check through a giving station at your campus location.<br/><br/> GIVE BY MAIL<br/>Christ Fellowship Church Contributions<br/>5343 Northlake Blvd. Palm Beach Gardens, FL 33418<br/> <i style="font-size:15px;" >*Note: Please designate "Heart for the House" on the memo line.</i>' /> */}
+          <HtmlRenderer htmlContent='GIVE IN PERSON<br/>Give by cash or check through a giving station at your campus location.<br/><br/> GIVE BY MAIL<br/>Christ Fellowship Church Contributions<br/>5343 Northlake Blvd. Palm Beach Gardens, FL 33418<br/> <i style="font-size:15px;" >*Note: Please designate "Heart for the House" on the memo line.</i>' />
         </Box>
 
         {/* Resources */}
@@ -359,7 +359,7 @@ export async function getStaticProps() {
   // Wistia Videos
   const wistiaId = 'dt78oks1hq';
   const wistiaProject = await wistiaAPI({ wistiaId });
-  const videos = wistiaProject?.medias || null;
+  const videos = wistiaProject?.medias;
 
   // H4H Static Data
   const { getThereFirstId, statistics, testimonies } = data;
