@@ -81,7 +81,7 @@ export const faqEaster = [
   {
     title: 'Will there be live Spanish translation or ASL Interpretation? ',
     description:
-      'Yes! <br/> <br/>Many of our locations offer live Spanish translation for family or friends who may need it. When you select a campus, you will see services that will offer Spanish translation  marked with an asterisk (*). <br/><br/><span style="font-style: italic;"><a href="/easter-2024-espanol">¿Buscas un servicio de Pascua en español?</a> Ten en cuenta que contamos con traducción al inglés disponible en todos los servicios.</span> <br/><br/>American Sign Language (ASL) interpretation is available at our Trinity location at 9:30AM.',
+      'Yes! <br/> <br/>Many of our locations offer live Spanish translation for family or friends who may need it. When you select a campus, you will see services that will offer Spanish translation  marked with an asterisk (*). <br/><br/><span style="font-style: italic;"><a href="/easter-espanol">¿Buscas un servicio de Pascua en español?</a> Ten en cuenta que contamos con traducción al inglés disponible en todos los servicios.</span> <br/><br/>American Sign Language (ASL) interpretation is available at our Trinity location at 9:30AM.',
   },
 ];
 

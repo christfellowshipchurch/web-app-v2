@@ -132,7 +132,7 @@ function LocationHeader({
                   fontStyle="italic"
                   fontWeight="bold"
                   mt="s"
-                  href="/easter-2024-espanol"
+                  href="/easter-espanol"
                 >
                   ¿Buscas un servicio de Pascua en español?
                 </Box>
