@@ -59,7 +59,7 @@ const Scroll = styled.h1`
       transform: translateY(-288px);
     }
     100% {
-      transform: translateY(0);
+      transform: translateY(-360px);
     }
   }
 
@@ -85,7 +85,7 @@ const Scroll = styled.h1`
       transform: translateY(-176px);
     }
     100% {
-      transform: translateY(0);
+      transform: translateY(-220px);
     }
   }
 
@@ -111,7 +111,7 @@ const Scroll = styled.h1`
       transform: translateY(-232px);
     }
     100% {
-      transform: translateY(0);
+      transform: translateY(-290px);
     }
   }
 
