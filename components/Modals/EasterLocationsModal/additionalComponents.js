@@ -145,7 +145,7 @@ export const DontMissService = props => {
       handleSocialShare({
         shareType: 'sms',
         shareMessages: {
-          sms: `${selectedMessage} https://www.christfellowship.church/easter-2024`,
+          sms: `${selectedMessage} https://www.christfellowship.church/easter`,
         },
       });
       console.log('Navigator.share is not a function');

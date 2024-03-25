@@ -42,7 +42,7 @@ const CampusInfo = ({
   const addressFirst = street1 ? `${street1}` : null;
   const addressLast = `${city}, ${state} ${postalCode?.substring(0, 5)}`;
 
-  const bannerUrl = ` /easter-2024${
+  const bannerUrl = ` /easter${
     cfe ? '-espanol' : ''
   }?utm_campaign=Easter24&utm_source=locations`;
 
