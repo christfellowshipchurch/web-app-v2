@@ -55,7 +55,7 @@ function EasterWordCarousel({
               overflow="hidden"
               height={{ _: 72, md: 44, lg: 56, xl: 72 }}
             >
-              {[1, 2, 3, 4].map(x => {
+              {[1, 2].map(x => {
                 return words?.map((word, index) => (
                   <Styled.Scroll
                     key={index}
