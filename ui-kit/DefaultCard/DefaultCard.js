@@ -15,7 +15,7 @@ const DefaultCard = (props = {}) => {
           {props.coverImage ? (
             <Styled.Cover
               src={props.coverImage}
-              hasContent={hasContent}
+              hasContent={hasContent || props?.hasContent}
               overlay={
                 props.coverImageTitle || props.coverImageDescription
                   ? props.coverImageOverlay
@@ -91,17 +91,44 @@ const DefaultCard = (props = {}) => {
 DefaultCard.propTypes = {
   ...systemPropTypes,
   contentProps: PropTypes.object,
+  /**
+   * Image for the Card
+   */
   coverImage: PropTypes.string,
+  /**
+   * Function that returns the content for the image? - not used
+   */
   coverImageContent: PropTypes.func,
+  /**
+   * Position of the content over the image - not really used
+   */
   coverImageContentPosition: PropTypes.oneOf(['bottomLeft', 'center']),
   coverImageDescription: PropTypes.string,
   coverImageLabel: PropTypes.string,
+  /**
+   * Background color for the label on the corner of the image
+   */
   coverImageLabelBgColor: PropTypes.string,
+  /**
+   * If true the image will have an overlay that darkens it, but only if there is content ON the image (coverImageTitle || coverImageDescription)
+   */
   coverImageOverlay: PropTypes.bool,
+  /**
+   * Title for the image that covers the entire card
+   */
   coverImageTitle: PropTypes.string,
-  description: PropTypes.string,
+  /**
+   * If true the card with have more height
+   */
   largeCard: PropTypes.bool,
+  /**
+   * The tile under the image - not title when image covers entire card (/discover cards)
+   */
   title: PropTypes.string,
+  /**
+   * Description for the image under the title
+   */
+  description: PropTypes.string,
   loading: PropTypes.bool,
 };
 
