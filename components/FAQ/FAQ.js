@@ -59,7 +59,11 @@ function FAQ(props = {}) {
               key={i}
               display={props?.displayAll ? null : i > 1 ? display : null}
             >
-              <Box as="h3" color="secondary" fontStyle={'italic'}>
+              <Box
+                as="h3"
+                color={n?.color || 'secondary'}
+                fontStyle={n?.fontStyle || 'italic'}
+              >
                 {n.title}
               </Box>
               <HtmlRenderer htmlContent={n.description} />
