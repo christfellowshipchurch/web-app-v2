@@ -55,17 +55,19 @@ function EasterWordCarousel({
               overflow="hidden"
               height={{ _: 72, md: 44, lg: 56, xl: 72 }}
             >
-              {words?.map((word, index) => (
-                <Styled.Scroll
-                  key={index}
-                  mb={16}
-                  fontSize={{ md: 28, lg: 42, xl: 56 }}
-                  lineHeight={1}
-                  {...customFontStyles}
-                >
-                  {word}
-                </Styled.Scroll>
-              ))}
+              {[1, 2].map(x => {
+                return words?.map((word, index) => (
+                  <Styled.Scroll
+                    key={index}
+                    mb={16}
+                    fontSize={{ md: 28, lg: 42, xl: 56 }}
+                    lineHeight={1}
+                    {...customFontStyles}
+                  >
+                    {word}
+                  </Styled.Scroll>
+                ));
+              })}
             </Box>
           </Box>
         </Box>

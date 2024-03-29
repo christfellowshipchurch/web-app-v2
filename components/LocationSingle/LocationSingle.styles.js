@@ -101,7 +101,7 @@ const ServiceTimeContainer = styled.div`
   align-items: center;
   background: linear-gradient(270.35deg, #0092bc -22.55%, #004f71 106.52%),
     linear-gradient(90.49deg, #6bcaba -24.45%, #0092bc 118.95%);
-  border-top-left-radius: ${themeGet('radii.base')};
+  border-bottom-left-radius: ${themeGet('radii.base')};
   display: flex;
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
@@ -163,7 +163,7 @@ const VideoOverlay = styled.div`
 // 2023 Event Banner Styled Components
 const EventBanner = styled.div`
   background-color: ${props => props.backgroundColor};
-  border-bottom-left-radius: ${themeGet('radii.base')};
+  border-top-left-radius: ${themeGet('radii.base')};
   color: ${props => props.textColor};
   display: flex;
   align-items: center;
@@ -172,15 +172,48 @@ const EventBanner = styled.div`
 
   padding-bottom: ${themeGet('space.s')};
   padding-left: 20px;
-  padding-right: 6px;
+  padding-right: 60px;
   padding-top: ${themeGet('space.s')};
   box-shadow: -7px -5px 19px rgba(0, 0, 0, 0.12);
+
+  position: absolute;
+  top: -40px;
+  right: 370px;
+
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    text-size: 14px;
+  }
+
+  @media screen and (min-width: 75rem) {
+    font-size: 18px;
+  }
 
   @media screen and (min-width: ${themeGet(
       'breakpoints.md'
     )}) and (max-width: ${themeGet('breakpoints.lg')}) {
+    text-size: 14px;
+    padding-right: 10px;
+    margin-left: 8px;
+
+    right: 322px;
+    top: -35px;
+  }
+
+  @media screen and (min-width: 63rem) and (max-width: 64rem) {
+    padding-right: 20px;
+
+    right: 370px;
+    top: -35px;
+  }
+
+  @media screen and (min-width: ${themeGet(
+      'breakpoints.md'
+    )}) and (max-width: 50rem) {
+    padding-right: 10px;
+    margin-left: 8px;
+
     right: 306px;
-    font-size: 14px;
+    top: -55px;
   }
 
   ${system}
