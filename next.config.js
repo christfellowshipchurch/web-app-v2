@@ -132,11 +132,6 @@ module.exports = {
         destination: '/dwpb',
         permanent: true,
       },
-      {
-        source: '/easter-2024',
-        destination: '/easter',
-        permanent: true,
-      },
       // TODO: Uncomment these lines to hide Group Finder.
       // NOTE: We can't get `config/flags` in this file.
       // {
