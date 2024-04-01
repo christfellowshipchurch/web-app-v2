@@ -133,8 +133,8 @@ module.exports = {
         permanent: true,
       },
       {
-        source: '/easter-2024',
-        destination: '/easter',
+        source: '/easter',
+        destination: '/easter-2024',
         permanent: true,
       },
       // TODO: Uncomment these lines to hide Group Finder.
