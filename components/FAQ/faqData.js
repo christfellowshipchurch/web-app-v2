@@ -260,14 +260,14 @@ export const faqHeartForHouseData = [
     color: '#414141',
     fontStyle: 'normal',
     title: 'Can I give to Heart for the House later?',
-    description: `Yes! You can give to Heart for the House any time throughout 2023, either as a one-time gift or you can set up a recurring gift (weekly/monthly) through December 31.`,
+    description: `Yes! You can give to Heart for the House any time throughout 2024, either as a one-time gift or you can set up a recurring gift (weekly/monthly) through December 31.`,
   },
   {
     color: '#414141',
     fontStyle: 'normal',
     title: 'What does Heart for the House go to?',
     description:
-      "Heart for the House goes toward Christ Fellowship's efforts in reaching more people for Jesus—whether that's new campuses or new initiatives, both inside and outside the walls of our church. <a target='_blank' href='https://issuu.com/christfellowshipchurch/docs/clients_heartforthehouse_print_handouts_7.5x10_web?fr=sNDM3ZjU5MDEzMDk'>Read more</a> about the Heart for the House vision for 2023!",
+      "Heart for the House goes toward Christ Fellowship's efforts in reaching more people for Jesus—whether that's new campuses or new initiatives, both inside and outside the walls of our church. <a target='_blank' href='https://issuu.com/christfellowshipchurch/docs/clients_heartforthehouse_print_handouts_7.5x10_dig/16?fr=sNWI3MDcyMzY3MDE' style='color: #E63E51;'>Read more</a> about the Heart for the House vision for 2024!",
   },
 ];
 

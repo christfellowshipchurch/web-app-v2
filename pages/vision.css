@@ -1,0 +1,113 @@
+/* Thin */
+@font-face {
+  font-family: 'Vision';
+  src: url('/fonts/vision/thin.woff2');
+
+  font-style: normal;
+  font-weight: 100;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'Vision';
+  src: url('/fonts/vision/thin-it.woff2');
+
+  font-style: italic;
+  font-weight: 100;
+  font-stretch: normal;
+}
+
+/* Light */
+@font-face {
+  font-family: 'Vision';
+  src: url('/fonts/vision/light.woff2');
+
+  font-style: normal;
+  font-weight: 200;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'Vision';
+  src: url('/fonts/vision/light-it.woff2');
+
+  font-style: italic;
+  font-weight: 200;
+  font-stretch: normal;
+}
+
+/* Regular */
+@font-face {
+  font-family: 'Vision';
+  src: url('/fonts/vision/regular.woff2');
+
+  font-style: normal;
+  font-weight: 300;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'Vision';
+  src: url('/fonts/vision/regular-it.woff2');
+
+  font-style: italic;
+  font-weight: 300;
+  font-stretch: normal;
+}
+
+/* Bold */
+@font-face {
+  font-family: 'Vision';
+  src: url('/fonts/vision/bold.woff2');
+
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'Vision';
+  src: url('/fonts/vision/bold-it.woff2');
+
+  font-style: italic;
+  font-weight: 600;
+  font-stretch: normal;
+}
+
+/* Black */
+@font-face {
+  font-family: 'Vision';
+  src: url('/fonts/vision/black.woff2');
+
+  font-style: normal;
+  font-weight: 800;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'Vision';
+  src: url('/fonts/vision/black-it.woff2');
+
+  font-style: italic;
+  font-weight: 800;
+  font-stretch: normal;
+}
+
+/* Heavy */
+@font-face {
+  font-family: 'Vision';
+  src: url('/fonts/vision/heavy.woff2');
+
+  font-style: normal;
+  font-weight: 900;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'Vision';
+  src: url('/fonts/vision/heavy-it.woff2');
+
+  font-style: italic;
+  font-weight: 900;
+  font-stretch: normal;
+}
