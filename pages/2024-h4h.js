@@ -9,6 +9,20 @@ const h4h = () => {
       {/* Hero */}
       <Box></Box>
 
+      {/* 40 Years of Building this House */}
+
+      {/* Year in Review */}
+
+      {/* Wistia Carousel */}
+
+      {/* The Future We're Praying for */}
+
+      {/* Give */}
+
+      {/* Todd and Julie */}
+
+      {/* Generation after Generation */}
+
       {/* FAQ */}
       <Box id="faq" px="base" py="xl" width="100%">
         <Box mx="auto" maxWidth={1200}>
