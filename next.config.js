@@ -65,7 +65,7 @@ module.exports = {
       { source: '/moms', destination: '/intentional-mom', permanent: true },
       { source: '/dodgeball', destination: '/dodgeball-2022', permanent: true },
       { source: '/teacher', destination: 'https://longhollow.com/back-to-school-teacher-serve-week', permanent: true },
-      { source: '/kidssummer', destination: 'https://longhollow.com/join-lh-kids-for-a-fun-filled-summer', permanent: true },
+      { source: '/kidssummer', destination: 'https://longhollow.com/summerevents', permanent: true },
       { source: '/backtoschool', destination: 'https://my.longhollow.com/Registration/backtoschool-2022', permanent: true },
       { source: '/statement', destination: '/an-important-message-from-long-hollow-church', permanent: true },
       { source: '/israel', destination: 'https://signature.rezdy.com/542911/the-forgotten-jesus-tour-with-dr-robby-and-kandi-gallaty-march-16-25-2024', permanent: true },
