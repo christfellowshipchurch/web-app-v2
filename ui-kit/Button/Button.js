@@ -20,7 +20,6 @@ function Button(props = {}) {
   const router = useRouter();
   let isFunction = null;
 
-  console.log(props);
   if (props?.onClick) {
     isFunction = 'Triggers Function';
   }

@@ -1,7 +1,5 @@
 import Color from 'color';
 
-//Defining colors
-
 //Brand Colors
 const OCEAN = '#0092bc';
 const OCEAN_SUBDUED = '#B5E4F1';
@@ -27,6 +25,9 @@ const SUCCESS = '#1ec27f';
 const WHITE = '#ffffff';
 const BLACK = '#000000';
 const WHITE_SMOKE = '#f6f6f6';
+
+//Campaign Colors
+const H4H_RED_2024 = '#E63E51';
 
 const colors = {
   // LIGHT THEME
@@ -82,6 +83,10 @@ const colors = {
     fg: '#353535',
     subdued: COTTON_CANDY,
     border: '#cecece',
+
+    h4h: {
+      red: H4H_RED_2024,
+    },
   },
 
   // DARK THEME

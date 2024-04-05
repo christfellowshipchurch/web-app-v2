@@ -46,6 +46,7 @@ import GroupSearchSideBar from './GroupSearchSideBar';
 import GroupSingle from './GroupSingle';
 import GroupsList from './GroupsList';
 import GroupsResultsList from './GroupsResultsList';
+import H4HStoryCarousel from './H4HStoryCarousel';
 import Header from './Header';
 import HeroListFeature from './HeroListFeature';
 import HomeFeed from './HomeFeed';
@@ -130,6 +131,7 @@ export {
   GroupSingle,
   GroupsList,
   GroupsResultsList,
+  H4HStoryCarousel,
   Header,
   HeroListFeature,
   InfoCardList,
