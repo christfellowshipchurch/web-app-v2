@@ -15,16 +15,16 @@ const HeartForHouseYearInReview = () => {
       py="xl"
     >
       {/* Title */}
-      <Box fontWeight="bold" fontSize={{ _: 42, md: 52 }}>
+      <Box fontFamily="vision" fontWeight="600" fontSize={{ _: 42, md: 52 }}>
         <Box
           color="#E63E51"
           textDecoration="underline"
           display="inline"
-          style={{
-            background:
-              'no-repeat url(/heart-for-house/inReview-rectangle.png)',
-            backgroundPosition: 'bottom ',
-          }}
+          background="url(/heart-for-house/inReview-rectangle.png)"
+          backgroundSize={{ _: 450, md: 580 }}
+          backgroundRepeat="no-repeat"
+          backgroundPosition="bottom"
+          px={{ md: 'xl' }}
         >
           YEAR IN REVIEW
         </Box>
@@ -39,7 +39,11 @@ const HeartForHouseYearInReview = () => {
         px={{ _: 'l', md: '' }}
         mt="xs"
       >
-        WHAT WE WERE ABLE TO DO BECAUSE OF YOU
+        WHAT WE WERE ABLE TO DO{' '}
+        <Box display={{ _: 'inline', md: 'none' }}>
+          <br />
+        </Box>
+        BECAUSE OF YOU
       </Box>
 
       <Box
@@ -63,29 +67,42 @@ const HeartForHouseYearInReview = () => {
           height="180px"
           width="180px"
           border="2px solid"
-          borderColor="#E63E51"
+          borderColor="primary"
           borderRadius="50%"
           justifyContent="center"
           alignItems="center"
           textAlign="center"
           bg="white"
         >
-          <Box display="flex" flexDirection="column" p="base">
+          <Box
+            display="flex"
+            flexDirection="column"
+            p="base"
+            fontFamily="vision"
+          >
             <Box color="black" fontSize="17px">
               In 2023:
             </Box>
-            <Box fontSize="50px" fontWeight="bold" color="#E63E51">
+            <Box fontSize="50px" fontWeight="600" color="primary">
               4,152{' '}
             </Box>
             <Box color="black" fontSize="17px">
-              people said "Yes" to Jesus.
+              people said{' '}
+              <Box display={{ _: 'inline', md: 'none' }}>
+                <br />
+              </Box>
+              "Yes" to{' '}
+              <Box display={{ _: 'inline', md: 'none' }}>
+                <br />
+              </Box>
+              Jesus.
             </Box>
           </Box>
         </Box>
       </Box>
 
-      {currentBreakpoint.isXLarge ? (
-        <Box display="flex" flexDirection="row">
+      {currentBreakpoint.isLarge ? (
+        <Box display="flex" flexDirection="row" fontWeight="200">
           <Image
             pl="l"
             width="230px"
@@ -101,7 +118,7 @@ const HeartForHouseYearInReview = () => {
             px="l"
           >
             <Box as="p">
-              <Box as="a" color="primary" fontSize="l" fontWeight="bold">
+              <Box as="a" color="primary" fontSize="l" fontWeight="600">
                 2,670{' '}
               </Box>
               people got baptized and made a public declaration of their faith.
@@ -109,7 +126,7 @@ const HeartForHouseYearInReview = () => {
 
             <Box as="p">
               Through{' '}
-              <Box as="a" color="primary" fontWeight="bold">
+              <Box as="a" color="primary" fontWeight="600">
                 Christ Fellowship Everywhere{' '}
               </Box>
               on- demand messages had over 5 million views and were shared with
@@ -118,7 +135,7 @@ const HeartForHouseYearInReview = () => {
 
             <Box as="p">
               Over{' '}
-              <Box as="a" color="primary" fontSize="l" fontWeight="bold">
+              <Box as="a" color="primary" fontSize="l" fontWeight="600">
                 4,000{' '}
               </Box>
               people experienced the Freedom Encounter!
@@ -133,14 +150,14 @@ const HeartForHouseYearInReview = () => {
           >
             <Box as="p">
               We kicked off 2024 with{' '}
-              <Box as="a" color="primary" fontWeight="bold">
+              <Box as="a" color="primary" fontWeight="600">
                 Revival Nights
               </Box>
               , where 27,000 people started the year in spiritual strength.
             </Box>
 
             <Box as="p">
-              <Box as="a" color="primary" fontSize="l" fontWeight="bold">
+              <Box as="a" color="primary" fontSize="l" fontWeight="600">
                 3,300{' '}
               </Box>
               kids and students attended Summer Camps—our largest ever!
@@ -148,7 +165,7 @@ const HeartForHouseYearInReview = () => {
 
             <Box as="p">
               Christ Fellowship Español hosted its{' '}
-              <Box as="a" color="primary" fontWeight="bold">
+              <Box as="a" color="primary" fontWeight="600">
                 first-ever Esperanza Festival
               </Box>
               , celebrating Hispanic heritage with over 3,000 people joining.
@@ -164,9 +181,9 @@ const HeartForHouseYearInReview = () => {
           />
         </Box>
       ) : (
-        <Box display="flex" flexDirection="column" px="base">
+        <Box display="flex" flexDirection="column" px="base" fontWeight="200">
           <Box as="p" py="s">
-            <Box as="a" color="primary" fontSize="l" fontWeight="bold">
+            <Box as="a" color="primary" fontSize="l" fontWeight="600">
               2,670{' '}
             </Box>
             people got baptized and made a public declaration of their faith.
@@ -182,7 +199,7 @@ const HeartForHouseYearInReview = () => {
 
           <Box as="p" py="s">
             Through{' '}
-            <Box as="a" color="primary" fontWeight="bold">
+            <Box as="a" color="primary" fontWeight="600">
               Christ Fellowship Everywhere{' '}
             </Box>
             on- demand messages had over 5 million views and were shared with
@@ -190,7 +207,7 @@ const HeartForHouseYearInReview = () => {
           </Box>
 
           <Box as="p" py="s">
-            <Box as="a" color="primary" fontSize="l" fontWeight="bold">
+            <Box as="a" color="primary" fontSize="l" fontWeight="600">
               3,300{' '}
             </Box>
             kids and students attended Summer Camps—our largest ever!
@@ -198,7 +215,7 @@ const HeartForHouseYearInReview = () => {
 
           <Box as="p" py="s">
             Over{' '}
-            <Box as="a" color="primary" fontSize="l" fontWeight="bold">
+            <Box as="a" color="primary" fontSize="l" fontWeight="600">
               4,000{' '}
             </Box>
             people experienced the Freedom Encounter!
@@ -206,7 +223,7 @@ const HeartForHouseYearInReview = () => {
 
           <Box as="p" py="s">
             Christ Fellowship Español hosted its{' '}
-            <Box as="a" color="primary" fontWeight="bold">
+            <Box as="a" color="primary" fontWeight="600">
               first-ever Esperanza Festival
             </Box>
             , celebrating Hispanic heritage with over 3,000 people joining.
@@ -216,8 +233,8 @@ const HeartForHouseYearInReview = () => {
 
       <Button
         as="a"
-        bg="#E63E51"
-        borderColor="#E63E51"
+        bg="primary"
+        borderColor="primary"
         mt="l"
         target="_blank"
         href="https://issuu.com/christfellowshipchurch/docs/clients_heartforthehouse_print_handouts_7.5x10_dig/10?fr=sZDczYjcyMzY2OTU"

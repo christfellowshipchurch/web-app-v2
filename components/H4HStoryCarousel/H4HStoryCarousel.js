@@ -72,7 +72,9 @@ function H4HStoryCarousel() {
           )}
         </Box>
       </Box>
-      <Button variant="tertiary">BE A PART OF THE HEART</Button>
+      <Button as="a" href="#give" variant="tertiary">
+        BE A PART OF THE HEART
+      </Button>
     </Box>
   );
 }

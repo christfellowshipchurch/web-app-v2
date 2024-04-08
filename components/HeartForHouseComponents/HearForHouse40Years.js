@@ -25,9 +25,10 @@ const HeartForHouse40Years = () => {
             alignItems="center"
           >
             <Box
+              fontFamily="vision"
               fontWeight="600"
-              fontSize={{ _: 42, md: 52 }}
-              width={{ _: 270, md: 330 }}
+              fontSize={{ _: 42, md: 64 }}
+              width={{ _: 270, md: 380 }}
             >
               40 YEARS <br />
               OF{' '}
@@ -42,9 +43,10 @@ const HeartForHouse40Years = () => {
               mx={{ md: 's' }}
               textAlign="center"
               my="l"
+              fontWeight="200"
             >
               This{' '}
-              <Box display="inline" color="primary">
+              <Box display="inline" color="primary" fontWeight="600">
                 Heart for the House
               </Box>{' '}
               season, we celebrate what God has done over the last 40 years
@@ -53,11 +55,11 @@ const HeartForHouse40Years = () => {
               years of faithfulness, generosity has spanned generations to
               create a church built on small beginnings and the sacrifices of
               many.{' '}
-              <Box display="inline" color="primary">
+              <Box display="inline" fontWeight="600" color="primary">
                 On Sunday, May 19,
               </Box>{' '}
               we get to continue in that legacy as we{' '}
-              <Box display="inline" fontWeight="500" fontStyle="italic">
+              <Box display="inline" fontWeight="normal" fontStyle="italic">
                 prepare for what we’re praying for
               </Box>{' '}
               and give toward the vision and future God has for our church.
@@ -67,6 +69,7 @@ const HeartForHouse40Years = () => {
                 <Button
                   as="a"
                   href="https://issuu.com/christfellowshipchurch/docs/clients_heartforthehouse_print_handouts_7.5x10_dig?fr=sZTVmNzcyMjI5ODc"
+                  target="_blank"
                   px="base"
                   py="xs"
                   mr="s"
@@ -84,7 +87,10 @@ const HeartForHouse40Years = () => {
                   GIVE
                 </Button>
               </Box>
-              <Styled.HeartForHouseRedLink href="https://issuu.com/christfellowshipchurch/docs/clients_heartforthehouse_print_hand_7396207fa85401?fr=sNDNmNDcyMjI5ODc">
+              <Styled.HeartForHouseRedLink
+                href="https://issuu.com/christfellowshipchurch/docs/clients_heartforthehouse_print_hand_7396207fa85401?fr=sNDNmNDcyMjI5ODc"
+                target="_blank"
+              >
                 Leer en Español
                 <Icon name="angleRight" />
               </Styled.HeartForHouseRedLink>

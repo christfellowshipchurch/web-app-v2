@@ -5,7 +5,7 @@ const HeartForHouseContentBlock = props => {
   return (
     <Box
       display="flex"
-      mx={{ _: 'base', md: '0' }}
+      mx={{ _: 'base', lg: '0' }}
       flexDirection={{ _: 'column', md: 'row' }}
       alignItems="center"
     >
@@ -23,7 +23,7 @@ const HeartForHouseContentBlock = props => {
         mb={{ _: 'base', md: 0 }}
       />
       <Box maxWidth={{ _: '90vw', md: 600 }}>
-        <Box as="h1" color="primary">
+        <Box as="h1" color="primary" fontFamily="vision">
           {props?.title}
         </Box>
         <HtmlRenderer htmlContent={props?.description} />

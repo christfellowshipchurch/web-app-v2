@@ -29,9 +29,8 @@ const HeartForHousePastorsSection = () => {
               borderRadius={0}
             />
           </Box>
-          <Box mb="base">
+          <Box mb="base" fontFamily="vision">
             <Box
-              fontFamily="vision"
               color="primary"
               fontWeight="600"
               fontSize={32}
@@ -47,7 +46,7 @@ const HeartForHousePastorsSection = () => {
               A letter from Pastors Todd & Julie
             </Box>
           </Box>
-          <Box>
+          <Box fontWeight="200">
             It was the spring of 1984 when a small Bible study began in my
             parents’ living room. My parents were always involved in church,
             always serving wherever they were needed—even serving as our Sunday
