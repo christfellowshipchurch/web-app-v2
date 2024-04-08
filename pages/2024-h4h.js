@@ -5,11 +5,13 @@ import { FAQ, H4HStoryCarousel, Layout } from 'components';
 import { Box } from 'ui-kit';
 import { faqHeartForHouseData } from 'components/FAQ/faqData';
 import colors from 'ui-kit/_config/colors';
+
 import {
   HeartForHouse40Years,
   HeartForHouseFutureSection,
   HeartForHouseHero,
   HeartForHousePastorsSection,
+  HeartForHouseYearInReview,
 } from 'components/HeartForHouseComponents';
 
 const H4H = () => {
@@ -28,7 +30,9 @@ const H4H = () => {
 
         {/* 40 Years of Building this House */}
         <HeartForHouse40Years />
+
         {/* Year in Review */}
+        <HeartForHouseYearInReview />
 
         {/* Wistia Carousel */}
         <H4HStoryCarousel />
@@ -38,6 +42,7 @@ const H4H = () => {
 
         {/* Give */}
         <Box id="give"></Box>
+
         {/* Todd and Julie */}
         <HeartForHousePastorsSection />
         {/* Generation after Generation */}
