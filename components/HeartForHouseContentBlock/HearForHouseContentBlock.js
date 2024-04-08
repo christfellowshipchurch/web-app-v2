@@ -2,9 +2,6 @@ import React from 'react';
 import { Box, HtmlRenderer, Image } from 'ui-kit';
 
 const HeartForHouseContentBlock = props => {
-  console.log(props);
-  console.log(props);
-
   return (
     <Box
       display="flex"

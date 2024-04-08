@@ -1,4 +1,5 @@
 import HeartForHouseContentBlock from 'components/HeartForHouseContentBlock';
+import { useCurrentBreakpoint } from 'hooks';
 import React from 'react';
 import { Box, Button } from 'ui-kit';
 
@@ -26,73 +27,83 @@ const HeartForHouseFutureSection = () => {
       image: '/heart-for-house/future-cfseu.png',
     },
   ];
+
+  const currentBreakpoint = useCurrentBreakpoint();
   return (
-    <Box
-      bg="#EBEBEB"
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      py="xl"
-    >
+    <Box bg="#EBEBEB">
       <Box
-        width="fit-content"
-        color="#414141"
-        fontSize={{ _: 34, md: 58 }}
-        textAlign="center"
-        mx={{ _: 's', md: '0' }}
-        style={{
-          background: 'no-repeat url(/heart-for-house/future-rectangle.png)',
-          backgroundPosition: 'center 55%',
-        }}
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        py="xl"
+        backgroundImage={
+          !currentBreakpoint.isSmall &&
+          !currentBreakpoint.isMedium &&
+          'url(/heart-for-house/i-heart-house-white-right.png)'
+        }
+        backgroundRepeat="no-repeat"
+        backgroundPosition="right 8% bottom 95%"
       >
-        THE{' '}
-        <Box display="inline" color="primary" textDecoration="underline">
-          FUTURE
+        <Box
+          width="fit-content"
+          color="#414141"
+          fontSize={{ _: 34, md: 58 }}
+          textAlign="center"
+          mx={{ _: 's', md: '0' }}
+          style={{
+            background: 'no-repeat url(/heart-for-house/future-rectangle.png)',
+            backgroundPosition: 'center 55%',
+          }}
+        >
+          THE{' '}
+          <Box display="inline" color="primary" textDecoration="underline">
+            FUTURE
+          </Box>
+          <br /> WE’RE PRAYING FOR
+          <br /> STARTS{' '}
+          <Box display="inline" color="primary" textDecoration="underline">
+            TODAY
+          </Box>
         </Box>
-        <br /> WE’RE PRAYING FOR
-        <br /> STARTS{' '}
-        <Box display="inline" color="primary" textDecoration="underline">
-          TODAY
+        <Box mt="s" mb="base" textAlign="center" color="#818181">
+          WHY WE'RE GIVING
         </Box>
+        {/* Section 1 */}
+        <Box my="l">
+          <HeartForHouseContentBlock
+            title={contentBlockSections[0].title}
+            description={contentBlockSections[0].description}
+            image={contentBlockSections[0].image}
+            layout="left"
+          />
+        </Box>
+        {/* Section 2 */}
+        <Box my="l">
+          <HeartForHouseContentBlock
+            title={contentBlockSections[1].title}
+            description={contentBlockSections[1].description}
+            image={contentBlockSections[1].image}
+            layout="right"
+          />
+        </Box>
+        {/* Section 3 */}
+        <Box my="l">
+          <HeartForHouseContentBlock
+            title={contentBlockSections[2].title}
+            description={contentBlockSections[2].description}
+            image={contentBlockSections[2].image}
+            layout="left"
+          />
+        </Box>
+        <Button
+          mt="l"
+          as="a"
+          href="https://issuu.com/christfellowshipchurch/docs/clients_heartforthehouse_print_handouts_7.5x10_dig/16?fr=sNWI3MDcyMzY3MDE"
+          target="_blank"
+        >
+          SEE MORE
+        </Button>
       </Box>
-      <Box mt="s" mb="base" textAlign="center" color="#818181">
-        WHY WE'RE GIVING
-      </Box>
-      {/* Section 1 */}
-      <Box my="l">
-        <HeartForHouseContentBlock
-          title={contentBlockSections[0].title}
-          description={contentBlockSections[0].description}
-          image={contentBlockSections[0].image}
-          layout="left"
-        />
-      </Box>
-      {/* Section 2 */}
-      <Box my="l">
-        <HeartForHouseContentBlock
-          title={contentBlockSections[1].title}
-          description={contentBlockSections[1].description}
-          image={contentBlockSections[1].image}
-          layout="right"
-        />
-      </Box>
-      {/* Section 3 */}
-      <Box my="l">
-        <HeartForHouseContentBlock
-          title={contentBlockSections[2].title}
-          description={contentBlockSections[2].description}
-          image={contentBlockSections[2].image}
-          layout="left"
-        />
-      </Box>
-      <Button
-        mt="l"
-        as="a"
-        href="https://issuu.com/christfellowshipchurch/docs/clients_heartforthehouse_print_handouts_7.5x10_dig/16?fr=sNWI3MDcyMzY3MDE"
-        target="_blank"
-      >
-        SEE MORE
-      </Button>
     </Box>
   );
 };
