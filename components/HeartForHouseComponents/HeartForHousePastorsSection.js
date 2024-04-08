@@ -1,6 +1,5 @@
 import React from 'react';
 import { Box, Button, Image } from 'ui-kit';
-import { colorHover } from 'utils';
 
 const HeartForHousePastorsSection = () => {
   return (
@@ -32,7 +31,7 @@ const HeartForHousePastorsSection = () => {
           </Box>
           <Box mb="base">
             <Box
-              color="#E63E51"
+              color="primary"
               fontWeight="bold"
               fontSize={32}
               fontStyle="italic"
@@ -70,10 +69,8 @@ const HeartForHousePastorsSection = () => {
             as="a"
             href="https://issuu.com/christfellowshipchurch/docs/clients_heartforthehouse_print_handouts_7.5x10_dig/4?fr=sYWNjNTcyMzY3MjY"
             target="_blank"
-            bg="#E63E51"
             mt="base"
             width={240}
-            buttonHover={colorHover('#E63E51')}
           >
             CONTINUE READING
           </Button>

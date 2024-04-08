@@ -2,7 +2,6 @@ import { useCurrentBreakpoint } from 'hooks';
 import React from 'react';
 import { Box, Button, Icon } from 'ui-kit';
 import Styled from './HeartForHouseComponents.styles';
-import { colorHover } from 'utils';
 
 const HeartForHouse40Years = () => {
   const currentBreakpoint = useCurrentBreakpoint();
@@ -33,7 +32,7 @@ const HeartForHouse40Years = () => {
           >
             40 YEARS <br />
             OF{' '}
-            <Box color="#E63E51" textDecoration="underline" display="inline">
+            <Box color="primary" textDecoration="underline" display="inline">
               BUILDING THIS HOUSE
             </Box>
           </Box>
@@ -46,7 +45,7 @@ const HeartForHouse40Years = () => {
             my="l"
           >
             This{' '}
-            <Box display="inline" color="#E63E51">
+            <Box display="inline" color="primary">
               Heart for the House
             </Box>{' '}
             season, we celebrate what God has done over the last 40 years
@@ -54,7 +53,7 @@ const HeartForHouse40Years = () => {
             all that God is going to do. As we stand on the shoulders of 40
             years of faithfulness, generosity has spanned generations to create
             a church built on small beginnings and the sacrifices of many.{' '}
-            <Box display="inline" color="#E63E51">
+            <Box display="inline" color="primary">
               On Sunday, May 19,
             </Box>{' '}
             we get to continue in that legacy as we{' '}
@@ -70,9 +69,7 @@ const HeartForHouse40Years = () => {
                 href="https://issuu.com/christfellowshipchurch/docs/clients_heartforthehouse_print_handouts_7.5x10_dig?fr=sZTVmNzcyMjI5ODc"
                 px="base"
                 py="xs"
-                bg="#E63E51"
                 mr="s"
-                buttonHover={colorHover('#E63E51')}
               >
                 READ BOOK
               </Button>
@@ -82,18 +79,12 @@ const HeartForHouse40Years = () => {
                 px="base"
                 py="xs"
                 variant="secondary"
-                color="#E63E51"
-                borderColor="#E63E51"
-                // Hover Color ???
-                buttonHover={colorHover('white')}
+                color="primary"
               >
                 GIVE
               </Button>
             </Box>
-            <Styled.HeartForHouseRedLink
-              hoverColor={colorHover('#E63E51')}
-              href="https://issuu.com/christfellowshipchurch/docs/clients_heartforthehouse_print_hand_7396207fa85401?fr=sNDNmNDcyMjI5ODc"
-            >
+            <Styled.HeartForHouseRedLink href="https://issuu.com/christfellowshipchurch/docs/clients_heartforthehouse_print_hand_7396207fa85401?fr=sNDNmNDcyMjI5ODc">
               Leer en Español
               <Icon name="angleRight" />
             </Styled.HeartForHouseRedLink>

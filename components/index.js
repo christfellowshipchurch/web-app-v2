@@ -48,6 +48,7 @@ import GroupsList from './GroupsList';
 import GroupsResultsList from './GroupsResultsList';
 import H4HStoryCarousel from './H4HStoryCarousel';
 import Header from './Header';
+import HeartForHouseContentBlock from './HeartForHouseContentBlock';
 import HeroListFeature from './HeroListFeature';
 import HomeFeed from './HomeFeed';
 import HorizontalCardListFeature from './HorizontalCardListFeature';
@@ -133,6 +134,7 @@ export {
   GroupsResultsList,
   H4HStoryCarousel,
   Header,
+  HeartForHouseContentBlock,
   HeroListFeature,
   InfoCardList,
   HomeFeed,

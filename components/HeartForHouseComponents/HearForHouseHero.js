@@ -1,6 +1,5 @@
 import React from 'react';
 import { Box, Button, Image } from 'ui-kit';
-import { colorHover } from 'utils';
 
 const HeartForHouseHero = () => {
   return (
@@ -26,7 +25,7 @@ const HeartForHouseHero = () => {
           fontSize={{ _: 42, md: 52 }}
           fontWeight="bold"
           fontFamily="vision"
-          color="#E63E51"
+          color="primary"
           style={{ textOrientation: 'mixed', writingMode: 'vertical-rl' }}
         >
           2024
@@ -37,7 +36,7 @@ const HeartForHouseHero = () => {
             fontWeight="bold"
             fontFamily="vision"
             textAlign="right"
-            color="#E63E51"
+            color="primary"
           >
             HEART <br />
             FOR <br />
@@ -54,7 +53,6 @@ const HeartForHouseHero = () => {
             variant="secondary"
             href="#give"
             border="1px solid #7A7A79"
-            buttonHover={colorHover('white')}
           >
             GIVE
           </Button>
