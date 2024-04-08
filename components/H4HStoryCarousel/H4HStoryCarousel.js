@@ -2,7 +2,7 @@
  * This component is a carousel that displays stories from the H4H 2024 campaign. We will be using Embla Carousel to create this component. And will plan to add Wistia videos to the carousel once content is ready.
  */
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 
 import { Box, Button } from 'ui-kit';
@@ -32,21 +32,26 @@ function H4HStoryCarousel() {
       display="flex"
       flexDirection="column"
       alignItems="center"
-      gridRowGap={{ _: 0, md: 'base', lg: 'l' }}
+      gridRowGap={{ _: '0px', md: 'base', lg: 'l' }}
       py="xl"
     >
       <TitleSection />
       <Box display="flex" alignItems="center" justifyContent="center">
-        {canScrollPrev && (
-          <SlideArrows
-            onClick={() => {
-              emblaApi.scrollPrev();
-              updateScrollState();
-            }}
-            direction="left"
-          />
-        )}
-        <Box overflow="hidden" maxWidth={{ _: 400, md: 700, lg: 1000 }}>
+        <Box display={{ _: 'none', md: 'block' }}>
+          {canScrollPrev && (
+            <SlideArrows
+              onClick={() => {
+                emblaApi.scrollPrev();
+                updateScrollState();
+              }}
+              direction="left"
+            />
+          )}
+        </Box>
+        <Box
+          overflow="hidden"
+          maxWidth={{ _: '100vw', sm: '75%', md: 700, lg: 1000 }}
+        >
           <div className="embla" ref={emblaRef}>
             <Box display="flex" alignItems="center">
               {CAROUSEL_SLIDE_DATA.map((slide, index) => (
@@ -55,15 +60,17 @@ function H4HStoryCarousel() {
             </Box>
           </div>
         </Box>
-        {canScrollNext && (
-          <SlideArrows
-            onClick={() => {
-              emblaApi.scrollNext();
-              updateScrollState();
-            }}
-            direction="right"
-          />
-        )}
+        <Box display={{ _: 'none', md: 'block' }}>
+          {canScrollNext && (
+            <SlideArrows
+              onClick={() => {
+                emblaApi.scrollNext();
+                updateScrollState();
+              }}
+              direction="right"
+            />
+          )}
+        </Box>
       </Box>
       <Button variant="tertiary">BE A PART OF THE HEART</Button>
     </Box>
