@@ -1,19 +1,23 @@
 import React from 'react';
-import { Box, Button, Image } from 'ui-kit';
+import { Box, Button } from 'ui-kit';
 
 const HeartForHouseHero = () => {
   return (
-    <Box bg="white" display="flex" justifyContent="space-between" py="base">
-      <Box py="base">
-        <Image
-          source="/heart-for-house/h4h-cropped-logo.png"
-          objectFit="contain"
-          height={{ _: 520, md: 700 }}
-          ml={{ _: 0, md: -54 }}
-          mt={{ _: -40, md: 0 }}
-        />
-      </Box>
-
+    <Box
+      bg="white"
+      display="flex"
+      justifyContent="end"
+      py="xxl"
+      backgroundImage="url('/heart-for-house/h4h-logo.png')"
+      backgroundRepeat="no-repeat"
+      backgroundSize={{ _: '58vh', sm: '70vh', md: '80vh' }}
+      backgroundPosition={{
+        _: '-210px 50%',
+        sm: '-300px 50%',
+        xl: '-30% 50%',
+      }}
+      height="100vh"
+    >
       <Box
         display="flex"
         flexDirection="column"
@@ -23,7 +27,7 @@ const HeartForHouseHero = () => {
       >
         <Box
           fontSize={{ _: 42, md: 52 }}
-          fontWeight="bold"
+          fontWeight="600"
           fontFamily="vision"
           color="primary"
           style={{ textOrientation: 'mixed', writingMode: 'vertical-rl' }}
@@ -33,7 +37,7 @@ const HeartForHouseHero = () => {
         <Box display="flex" flexDirection="column" alignItems="flex-end">
           <Box
             fontSize={{ _: 42, md: 52 }}
-            fontWeight="bold"
+            fontWeight="600"
             fontFamily="vision"
             textAlign="right"
             color="primary"

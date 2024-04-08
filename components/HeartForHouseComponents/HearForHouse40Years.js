@@ -25,7 +25,7 @@ const HeartForHouse40Years = () => {
             alignItems="center"
           >
             <Box
-              fontWeight="bold"
+              fontWeight="600"
               fontSize={{ _: 42, md: 52 }}
               width={{ _: 270, md: 330 }}
             >

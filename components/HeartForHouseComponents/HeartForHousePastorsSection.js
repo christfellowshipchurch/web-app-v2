@@ -31,8 +31,9 @@ const HeartForHousePastorsSection = () => {
           </Box>
           <Box mb="base">
             <Box
+              fontFamily="vision"
               color="primary"
-              fontWeight="bold"
+              fontWeight="600"
               fontSize={32}
               fontStyle="italic"
             >

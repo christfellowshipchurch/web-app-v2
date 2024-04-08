@@ -23,7 +23,9 @@ const HeartForHouseContentBlock = props => {
         mb={{ _: 'base', md: 0 }}
       />
       <Box maxWidth={{ _: '90vw', md: 600 }}>
-        <HtmlRenderer htmlContent={props?.title} />
+        <Box as="h1" color="primary">
+          {props?.title}
+        </Box>
         <HtmlRenderer htmlContent={props?.description} />
       </Box>
       <Image
