@@ -39,8 +39,9 @@ const HeartForHouseFutureSection = () => {
         backgroundImage={
           !currentBreakpoint.isSmall &&
           !currentBreakpoint.isMedium &&
-          'url(/heart-for-house/i-heart-house-white-right.png)'
+          'url(/heart-for-house/i-heart-house-white.png)'
         }
+        backgroundSize="170px"
         backgroundRepeat="no-repeat"
         backgroundPosition="right 8% bottom 95%"
       >
