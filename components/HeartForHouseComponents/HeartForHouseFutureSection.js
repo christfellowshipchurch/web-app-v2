@@ -78,32 +78,18 @@ const HeartForHouseFutureSection = () => {
           WHY WE'RE GIVING
         </Box>
         {/* Section 1 */}
-        <Box my="l">
-          <HeartForHouseContentBlock
-            title={contentBlockSections[0].title}
-            description={contentBlockSections[0].description}
-            image={contentBlockSections[0].image}
-            layout="left"
-          />
-        </Box>
-        {/* Section 2 */}
-        <Box my="l">
-          <HeartForHouseContentBlock
-            title={contentBlockSections[1].title}
-            description={contentBlockSections[1].description}
-            image={contentBlockSections[1].image}
-            layout="right"
-          />
-        </Box>
-        {/* Section 3 */}
-        <Box my="l">
-          <HeartForHouseContentBlock
-            title={contentBlockSections[2].title}
-            description={contentBlockSections[2].description}
-            image={contentBlockSections[2].image}
-            layout="left"
-          />
-        </Box>
+        {contentBlockSections.map((section, index) => {
+          return (
+            <Box my="l">
+              <HeartForHouseContentBlock
+                title={section?.title}
+                description={section?.description}
+                image={section?.image}
+                layout="left"
+              />
+            </Box>
+          );
+        })}
         <Button
           mt="l"
           as="a"
