@@ -3,7 +3,7 @@ import React from 'react';
 import { Box, Button, Icon } from 'ui-kit';
 import Styled from './HeartForHouseComponents.styles';
 
-const HeartForHouse40Years = () => {
+const BuildingThisHouse = () => {
   const currentBreakpoint = useCurrentBreakpoint();
   return (
     <Box id="40-years" bg="#E4E4E3">
@@ -27,10 +27,15 @@ const HeartForHouse40Years = () => {
             <Box
               fontFamily="vision"
               fontWeight="600"
+              lineHeight="100%"
               fontSize={{ _: 42, md: 64 }}
               width={{ _: 270, md: 380 }}
             >
-              40 YEARS <br />
+              {/* We have to change back to Proxima Nova for the number "40" due to bad font file👎 */}
+              <Box display="inline" fontFamily="Proxima Nova" fontSize={58}>
+                40
+              </Box>{' '}
+              YEARS <br />
               OF{' '}
               <Box color="primary" textDecoration="underline" display="inline">
                 BUILDING THIS HOUSE
@@ -102,4 +107,4 @@ const HeartForHouse40Years = () => {
   );
 };
 
-export default HeartForHouse40Years;
+export default BuildingThisHouse;

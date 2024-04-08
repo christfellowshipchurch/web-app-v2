@@ -9,9 +9,10 @@ import { Box, Button } from 'ui-kit';
 import {
   CarouselSlide,
   SlideArrows,
-  CAROUSEL_SLIDE_DATA,
   TitleSection,
-} from './H4HStoryCarousel.components';
+} from './StoryCarousel.components';
+
+import { CAROUSEL_SLIDE_DATA } from './StoryCarousel.data';
 
 function H4HStoryCarousel() {
   // see docs for more info on how to use Embla Carousel: https://www.embla-carousel.com/get-started/react/

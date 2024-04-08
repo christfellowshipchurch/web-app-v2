@@ -1,16 +1,16 @@
 import React from 'react';
 import { ThemeProvider as SCThemeProvider } from 'styled-components';
 
-import { FAQ, H4HStoryCarousel, Layout } from 'components';
+import { FAQ, Layout } from 'components';
 import { Box } from 'ui-kit';
 import { faqHeartForHouseData } from 'components/FAQ/faqData';
 import colors from 'ui-kit/_config/colors';
-
 import {
-  HeartForHouse40Years,
+  BuildingThisHouse,
   HeartForHouseFutureSection,
   HeartForHouseHero,
   HeartForHousePastorsSection,
+  HeartforHouseCarousel,
   HeartForHouseYearInReview,
 } from 'components/HeartForHouseComponents';
 
@@ -29,13 +29,13 @@ const H4H = () => {
         <HeartForHouseHero />
 
         {/* 40 Years of Building this House */}
-        <HeartForHouse40Years />
+        <BuildingThisHouse />
 
         {/* Year in Review */}
         <HeartForHouseYearInReview />
 
         {/* Wistia Carousel */}
-        <H4HStoryCarousel />
+        <HeartforHouseCarousel />
 
         {/* The Future We're Praying for */}
         <HeartForHouseFutureSection />

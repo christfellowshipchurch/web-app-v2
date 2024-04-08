@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, HtmlRenderer, Image } from 'ui-kit';
 
-const HeartForHouseContentBlock = props => {
+export const HeartForHouseContentBlock = props => {
   return (
     <Box
       display="flex"
@@ -23,7 +23,7 @@ const HeartForHouseContentBlock = props => {
         mb={{ _: 'base', md: 0 }}
       />
       <Box maxWidth={{ _: '90vw', md: 600 }}>
-        <Box as="h1" color="primary" fontFamily="vision">
+        <Box as="h1" color="primary" fontFamily="vision" fontWeight={600}>
           {props?.title}
         </Box>
         <HtmlRenderer htmlContent={props?.description} />
@@ -42,5 +42,3 @@ const HeartForHouseContentBlock = props => {
     </Box>
   );
 };
-
-export default HeartForHouseContentBlock;

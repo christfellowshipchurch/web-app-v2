@@ -28,7 +28,6 @@ import EasterLocationSearch from './EasterLocationSearch';
 import EasterWordCarousel from './EasterWordCarousel';
 import EventSingle from './EventSingle';
 import EventsList from './EventsList';
-import HeroLanding from './HeroLanding';
 import FAQ from './FAQ';
 import FeatureFeed from './FeatureFeed';
 import FilterField from './FilterField';
@@ -46,9 +45,8 @@ import GroupSearchSideBar from './GroupSearchSideBar';
 import GroupSingle from './GroupSingle';
 import GroupsList from './GroupsList';
 import GroupsResultsList from './GroupsResultsList';
-import H4HStoryCarousel from './H4HStoryCarousel';
 import Header from './Header';
-import HeartForHouseContentBlock from './HeartForHouseContentBlock';
+import HeroLanding from './HeroLanding';
 import HeroListFeature from './HeroListFeature';
 import HomeFeed from './HomeFeed';
 import HorizontalCardListFeature from './HorizontalCardListFeature';
@@ -132,9 +130,7 @@ export {
   GroupSingle,
   GroupsList,
   GroupsResultsList,
-  H4HStoryCarousel,
   Header,
-  HeartForHouseContentBlock,
   HeroListFeature,
   InfoCardList,
   HomeFeed,

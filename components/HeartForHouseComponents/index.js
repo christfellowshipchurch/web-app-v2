@@ -1,13 +1,15 @@
-import HeartForHouseHero from './HearForHouseHero';
-import HeartForHouse40Years from './HearForHouse40Years';
-import HeartForHouseYearInReview from './HeartForHouseYearInReview';
-import HeartForHousePastorsSection from './HeartForHousePastorsSection';
-import HeartForHouseFutureSection from './HeartForHouseFutureSection';
+import BuildingThisHouse from './BuildingThisHouse';
+import HeartForHouseFutureSection from './FutureSection';
+import HeartForHouseHero from './Hero';
+import HeartForHousePastorsSection from './PastorsSection';
+import HeartforHouseCarousel from './StoryCarousel';
+import HeartForHouseYearInReview from './YearInReview';
 
 export {
-  HeartForHouseHero,
-  HeartForHouse40Years,
-  HeartForHouseYearInReview,
-  HeartForHousePastorsSection,
+  BuildingThisHouse,
   HeartForHouseFutureSection,
+  HeartForHouseHero,
+  HeartForHousePastorsSection,
+  HeartforHouseCarousel,
+  HeartForHouseYearInReview,
 };
