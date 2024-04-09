@@ -12,6 +12,7 @@ import {
   HeartForHousePastorsSection,
   HeartforHouseCarousel,
   HeartForHouseYearInReview,
+  HeartforHouseGive,
 } from 'components/HeartForHouseComponents';
 
 const H4H = () => {
@@ -41,7 +42,7 @@ const H4H = () => {
         <HeartForHouseFutureSection />
 
         {/* Give */}
-        <Box id="give"></Box>
+        <HeartforHouseGive />
 
         {/* Todd and Julie */}
         <HeartForHousePastorsSection />

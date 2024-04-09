@@ -4,6 +4,7 @@ import HeartForHouseHero from './Hero';
 import HeartForHousePastorsSection from './PastorsSection';
 import HeartforHouseCarousel from './StoryCarousel';
 import HeartForHouseYearInReview from './YearInReview';
+import HeartforHouseGive from './Give';
 
 export {
   BuildingThisHouse,
@@ -12,4 +13,5 @@ export {
   HeartForHousePastorsSection,
   HeartforHouseCarousel,
   HeartForHouseYearInReview,
+  HeartforHouseGive,
 };
