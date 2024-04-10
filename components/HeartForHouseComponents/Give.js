@@ -1,6 +1,5 @@
 import React from 'react';
 import { Box, Button, HtmlRenderer } from 'ui-kit';
-import { colorHover } from 'utils';
 
 const GiveButton = ({ id, title, description, type, url, buttonHover }) => {
   return (

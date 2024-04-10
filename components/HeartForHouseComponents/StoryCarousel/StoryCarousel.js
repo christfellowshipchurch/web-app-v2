@@ -38,8 +38,11 @@ function H4HStoryCarousel({ id }) {
       gridRowGap={{ _: '0px', md: 'base', lg: 'l' }}
       py="xl"
     >
+      {/* Title */}
       <TitleSection />
+
       <Box display="flex" alignItems="center" justifyContent="center">
+        {/* Previous Arrow */}
         <Box display={{ _: 'none', md: 'block' }}>
           {canScrollPrev && (
             <SlideArrows
@@ -51,6 +54,8 @@ function H4HStoryCarousel({ id }) {
             />
           )}
         </Box>
+
+        {/* Carousel */}
         <Box
           overflow="hidden"
           maxWidth={{ _: '100vw', sm: '75%', md: 700, lg: 1000 }}
@@ -63,6 +68,8 @@ function H4HStoryCarousel({ id }) {
             </Box>
           </div>
         </Box>
+
+        {/* Next Arrow */}
         <Box display={{ _: 'none', md: 'block' }}>
           {canScrollNext && (
             <SlideArrows
