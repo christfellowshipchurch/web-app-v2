@@ -1,4 +1,5 @@
 import BuildingThisHouse from './BuildingThisHouse';
+import GenerationsCarousel from './GenerationsCarousel';
 import HeartForHouseFutureSection from './FutureSection';
 import HeartForHouseHero from './Hero';
 import HeartForHousePastorsSection from './PastorsSection';
@@ -8,6 +9,7 @@ import HeartforHouseGive from './Give';
 
 export {
   BuildingThisHouse,
+  GenerationsCarousel,
   HeartForHouseFutureSection,
   HeartForHouseHero,
   HeartForHousePastorsSection,

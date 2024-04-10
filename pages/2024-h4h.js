@@ -7,6 +7,7 @@ import { faqHeartForHouseData } from 'components/FAQ/faqData';
 import colors from 'ui-kit/_config/colors';
 import {
   BuildingThisHouse,
+  GenerationsCarousel,
   HeartForHouseFutureSection,
   HeartForHouseHero,
   HeartForHousePastorsSection,
@@ -46,7 +47,9 @@ const H4H = () => {
 
         {/* Todd and Julie */}
         <HeartForHousePastorsSection />
+
         {/* Generation after Generation */}
+        <GenerationsCarousel />
 
         {/* FAQ */}
         <Box id="faq" bg="white" px="base" py="xl" width="100%">
