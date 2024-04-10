@@ -101,7 +101,7 @@ const HeartForHouseYearInReview = () => {
         </Box>
       </Box>
 
-      {currentBreakpoint.isLarge || currentBreakpoint.isXLarge ? (
+      {currentBreakpoint.isLarge ? (
         <Box display="flex" flexDirection="row" fontWeight="200">
           <Image
             pl="l"
