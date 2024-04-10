@@ -3,10 +3,10 @@ import React from 'react';
 import { Box, Button, Icon } from 'ui-kit';
 import Styled from './HeartForHouseComponents.styles';
 
-const BuildingThisHouse = () => {
+const BuildingThisHouse = ({ id }) => {
   const currentBreakpoint = useCurrentBreakpoint();
   return (
-    <Box id="40-years" bg="#E4E4E3">
+    <Box id={id} bg="#E4E4E3">
       <Box
         py="xl"
         backgroundImage={

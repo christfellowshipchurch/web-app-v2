@@ -7181,6 +7181,11 @@ elliptic@^6.5.3:
     minimalistic-assert "^1.0.1"
     minimalistic-crypto-utils "^1.0.1"
 
+embla-carousel-auto-height@^8.0.2:
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/embla-carousel-auto-height/-/embla-carousel-auto-height-8.0.2.tgz#ceeab6aeb447242553d009b5084415d2341efa50"
+  integrity sha512-IJxmWTIIGm2F95iO8tKslf69kQswWcX5cZpZ6UTRKU6pocLgLk5w4hNwFkkno99px1oD53eo5F5GirT0NL5N2w==
+
 embla-carousel-auto-scroll@^8.0.1:
   version "8.0.1"
   resolved "https://registry.yarnpkg.com/embla-carousel-auto-scroll/-/embla-carousel-auto-scroll-8.0.1.tgz#2c863cee89a72ae0e9565aa8914a10ec441d1a21"

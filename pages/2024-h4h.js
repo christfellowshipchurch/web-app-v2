@@ -28,28 +28,28 @@ const H4H = () => {
         }}
       >
         {/* Hero */}
-        <HeartForHouseHero />
+        <HeartForHouseHero id="hero" />
 
         {/* 40 Years of Building this House */}
-        <BuildingThisHouse />
+        <BuildingThisHouse id="building-this-house" />
 
         {/* Year in Review */}
-        <HeartForHouseYearInReview />
+        <HeartForHouseYearInReview id="year-in-review" />
 
         {/* Wistia Carousel */}
-        <HeartforHouseCarousel />
+        <HeartforHouseCarousel id="stories" />
 
         {/* The Future We're Praying for */}
-        <HeartForHouseFutureSection />
+        <HeartForHouseFutureSection id="our-future" />
 
         {/* Give */}
-        <HeartforHouseGive />
+        <HeartforHouseGive id="give" />
 
         {/* Todd and Julie */}
-        <HeartForHousePastorsSection />
+        <HeartForHousePastorsSection id="pastors" />
 
         {/* Generation after Generation */}
-        <GenerationsCarousel />
+        <GenerationsCarousel id="over-the-years" />
 
         {/* FAQ */}
         <Box id="faq" bg="white" px="base" py="xl" width="100%">

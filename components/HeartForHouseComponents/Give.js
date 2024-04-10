@@ -1,32 +1,36 @@
 import React from 'react';
-import { Box, HtmlRenderer } from 'ui-kit';
+import { Box, Button, HtmlRenderer } from 'ui-kit';
+import { colorHover } from 'utils';
 
-const HeartforHouseGive = () => {
-  const GiveButton = ({ title, description, type, url }) => {
-    return (
-      <Box as="a" href={url} target="_blank" textDecoration="none">
-        <Box
-          m="base"
-          py="base"
-          maxWidth={300}
-          bg={type === 'primary' ? 'white' : 'primary'}
-          color={type === 'secondary' ? 'white' : 'black'}
-          border={type === 'primary' && '1px solid'}
-          borderRadius="l"
-          px="base"
-        >
-          <Box as="h4">{title}</Box>
-          <Box as="p" fontSize="s">
-            {description}
-          </Box>
-        </Box>
+const GiveButton = ({ id, title, description, type, url, buttonHover }) => {
+  return (
+    <Button
+      buttonHover={buttonHover}
+      as="a"
+      id={id}
+      href={url}
+      target="_blank"
+      m="base"
+      py="base"
+      maxWidth={300}
+      variant={type}
+      color={type === 'primary' ? 'white' : 'black'}
+      borderColor={type === 'primary' ? 'transparent' : 'black'}
+      borderRadius="l"
+      px="base"
+    >
+      <Box as="h4">{title}</Box>
+      <Box as="p" fontWeight="300" fontSize="s">
+        {description}
       </Box>
-    );
-  };
+    </Button>
+  );
+};
 
+const HeartforHouseGive = ({ id }) => {
   return (
     <Box
-      id="give"
+      id={id}
       py="xxl"
       px="base"
       backgroundImage="url(/heart-for-house/give-background.png)"
@@ -61,20 +65,26 @@ const HeartforHouseGive = () => {
         borderRadius="base"
       >
         <Box color="black">Choose a Giving Option:</Box>
-        <GiveButton
-          type="secondary"
-          title="Give Now"
-          description="Give a one-time gift toward Heart for the House today."
-          url="https://pushpay.com/g/cfh4th?fnd=JgFANVErApOD9KzpWXOqcQ&fndv=lock"
-        />
-        <GiveButton
-          type="primary"
-          title="Plan to Give"
-          description="Plan your giving goal for 2024 and set up a recurring gift until your goal is met."
-          url="https://pushpay.com/c/825da57018e258503ca8aaa65e0a300e/JgFANVErApOD9KzpWXOqcQ"
-        />
-        <Box as="a" color="secondary" href="#faq" fontSize={14}>
-          Need help? Check out these FAQs.
+        <Box display="flex" flexDirection="column">
+          <GiveButton
+            id="2024-H4H-Give"
+            type="primary"
+            title="Give Now"
+            description="Give a one-time gift toward Heart for the House today."
+            url="https://pushpay.com/g/cfh4th?fnd=JgFANVErApOD9KzpWXOqcQ&fndv=lock"
+          />
+          <GiveButton
+            id="2024-H4H-Pledge"
+            type="secondary"
+            buttonHover={'grey'}
+            title="Plan to Give"
+            description="Plan your giving goal for 2024 and set up a recurring gift until your goal is met."
+            url="https://pushpay.com/c/825da57018e258503ca8aaa65e0a300e/JgFANVErApOD9KzpWXOqcQ"
+          />
+
+          <Box as="a" color="secondary" href="#faq" fontSize={14}>
+            Need help? Check out these FAQs.
+          </Box>
         </Box>
       </Box>
       <HtmlRenderer htmlContent=' <span style="font-weight: bold">GIVE BY MAIL</span><br/>Christ Fellowship Church Contributions<br/>5343 Northlake Blvd. Palm Beach Gardens, FL 33418<br/> <i style="font-size:15px; font-style: italic;">"Heart for the House" on the memo line.</i>' />

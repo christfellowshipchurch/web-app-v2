@@ -2,11 +2,12 @@ import { useCurrentBreakpoint } from 'hooks';
 import React from 'react';
 import { Box, Button, Image } from 'ui-kit';
 
-const HeartForHouseYearInReview = () => {
+const HeartForHouseYearInReview = ({ id }) => {
   const currentBreakpoint = useCurrentBreakpoint();
 
   return (
     <Box
+      id={id}
       display="flex"
       flexDirection="column"
       alignItems="center"

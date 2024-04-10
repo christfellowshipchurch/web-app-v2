@@ -1,9 +1,9 @@
 import React from 'react';
 import { Box, Button, Image } from 'ui-kit';
 
-const HeartForHousePastorsSection = () => {
+const HeartForHousePastorsSection = ({ id }) => {
   return (
-    <Box bg="white" id="pastors" display="flex" justifyContent="center">
+    <Box bg="white" id={id} display="flex" justifyContent="center">
       <Box
         display="flex"
         flexDirection={{ _: 'column', md: 'row' }}

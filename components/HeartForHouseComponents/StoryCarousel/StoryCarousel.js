@@ -4,6 +4,7 @@
 
 import React, { useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
+import AutoHeight from 'embla-carousel-auto-height';
 
 import { Box, Button } from 'ui-kit';
 import {
@@ -14,9 +15,9 @@ import {
 
 import { CAROUSEL_SLIDE_DATA } from './StoryCarousel.data';
 
-function H4HStoryCarousel() {
+function H4HStoryCarousel({ id }) {
   // see docs for more info on how to use Embla Carousel: https://www.embla-carousel.com/get-started/react/
-  const [emblaRef, emblaApi] = useEmblaCarousel();
+  const [emblaRef, emblaApi] = useEmblaCarousel({}, [AutoHeight()]);
   const [canScrollNext, setCanScrollNext] = useState(true);
   const [canScrollPrev, setCanScrollPrev] = useState(true);
 
@@ -29,6 +30,7 @@ function H4HStoryCarousel() {
 
   return (
     <Box
+      id={id}
       bg="h4h.red"
       display="flex"
       flexDirection="column"

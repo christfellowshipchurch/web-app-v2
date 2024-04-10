@@ -6,11 +6,11 @@ import { HeartForHouseContentBlock } from './FutureSection.components';
 
 import { CONTENT_BLOCK_DATA } from './FutureSection.data';
 
-const HeartForHouseFutureSection = () => {
+const HeartForHouseFutureSection = ({ id }) => {
   const currentBreakpoint = useCurrentBreakpoint();
 
   return (
-    <Box bg="#EBEBEB">
+    <Box id={id} bg="#EBEBEB">
       <Box
         display="flex"
         flexDirection="column"

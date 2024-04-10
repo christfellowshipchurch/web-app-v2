@@ -1,9 +1,10 @@
 import React from 'react';
 import { Box, Button } from 'ui-kit';
 
-const HeartForHouseHero = () => {
+const HeartForHouseHero = ({ id }) => {
   return (
     <Box
+      id={id}
       bg="white"
       display="flex"
       justifyContent="end"

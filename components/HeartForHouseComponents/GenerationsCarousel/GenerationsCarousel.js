@@ -9,16 +9,17 @@ import AutoScroll from 'embla-carousel-auto-scroll';
 import { Box, Button } from 'ui-kit';
 import { ImageHover, TitleSection } from './GenerationsCarousel.components';
 
-function GenerationsCarousel() {
+function GenerationsCarousel({ id }) {
   // see docs for more info on how to use Embla Carousel: https://www.embla-carousel.com/get-started/react/
   const [emblaRef] = useEmblaCarousel({ loop: true }, [
-    AutoScroll({ stopOnInteraction: false }),
+    AutoScroll({ stopOnInteraction: false, speed: 1 }),
   ]);
 
   const numberOfSlides = 14;
 
   return (
     <Box
+      id={id}
       bg="#E4E4E3"
       display="flex"
       flexDirection="column"
@@ -61,7 +62,12 @@ function GenerationsCarousel() {
           </div>
         </Box>
       </Box>
-      <Button as="a" href="#give" variant="tertiary">
+      <Button
+        as="a"
+        target="_blank"
+        href="https://issuu.com/christfellowshipchurch/docs/clients_heartforthehouse_print_handouts_7.5x10_dig/6?fr=sNWFiNDcyMzY2OTI"
+        variant="tertiary"
+      >
         40 YEARS OF CHRIST FELLOWSHIP
       </Button>
     </Box>
