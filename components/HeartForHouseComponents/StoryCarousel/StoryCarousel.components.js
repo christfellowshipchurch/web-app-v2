@@ -55,7 +55,7 @@ export const CarouselSlide = ({ slide }) => {
             fontStyle="italic"
             mb="base"
           >
-            - {slide.author}
+            – {slide.author}
           </Box>
           <Box
             as="a"

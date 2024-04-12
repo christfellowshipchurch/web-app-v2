@@ -13,13 +13,13 @@ const GiveButton = ({ id, title, description, type, url, buttonHover }) => {
       py="base"
       maxWidth={300}
       variant={type}
-      color={type === 'primary' ? 'white' : 'black'}
-      borderColor={type === 'primary' ? 'transparent' : 'black'}
+      color={type === 'primary' ? 'white' : '#595959'}
+      borderColor={type === 'primary' ? 'transparent' : '#595959'}
       borderRadius="l"
       px="base"
     >
       <Box as="h4">{title}</Box>
-      <Box as="p" fontWeight="300" fontSize="s">
+      <Box as="p" fontWeight="normal" lineHeight="1.2" fontSize="s">
         {description}
       </Box>
     </Button>
@@ -53,7 +53,7 @@ const HeartforHouseGive = ({ id }) => {
         </Box>
         OF THE HEART
       </Box>
-      <Box fontWeight="bold" fontSize="l" color="white" mt="s">
+      <Box fontSize="l" color="white" mt="s">
         GIVE IN PERSON ON MAY 19 OR ONLINE & BY MAIL ANYTIME.
       </Box>
       <Box
@@ -75,7 +75,7 @@ const HeartforHouseGive = ({ id }) => {
           <GiveButton
             id="2024-H4H-Pledge"
             type="secondary"
-            buttonHover={'grey'}
+            buttonHover={'#595959'}
             title="Plan to Give"
             description="Plan your giving goal for 2024 and set up a recurring gift until your goal is met."
             url="https://pushpay.com/c/825da57018e258503ca8aaa65e0a300e/JgFANVErApOD9KzpWXOqcQ"
@@ -88,7 +88,7 @@ const HeartforHouseGive = ({ id }) => {
       </Box>
       <HtmlRenderer htmlContent=' <span style="font-weight: bold">GIVE BY MAIL</span><br/>Christ Fellowship Church Contributions<br/>5343 Northlake Blvd. Palm Beach Gardens, FL 33418<br/> <i style="font-size:15px; font-style: italic;">"Heart for the House" on the memo line.</i>' />
 
-      <Box mt="l" width={{ _: '', md: '38%' }}>
+      <Box mt="l" maxWidth={{ _: '90vw', sm: '80vw', md: 540 }}>
         <HtmlRenderer htmlContent='<span style="font-style: italic; font-size:12px;"> Please note: Indicating your plan to give to Heart for the House is for Christ Fellowship Church’s budget purposes only. You may change and/or rescind your indication at any time.</span>' />
       </Box>
     </Box>
