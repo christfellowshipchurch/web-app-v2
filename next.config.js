@@ -31,7 +31,7 @@ module.exports = {
         source: '/app-link/:slug',
         destination: '/:slug',
         permanent: false,
-      }, // reboot this stupid thing again
+      }, // reboot this stupid thing again again
       { source: '/freedom', destination: '/freedomfrompornographysupportgroup', permanent: true },
       { source: '/testimony', destination: '/ive-been-changed-from-addict-to-pastor', permanent: true },
       { source: '/host', destination: '/host-your-event-or-gathering-at-long-hollow', permanent: true },
