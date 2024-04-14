@@ -213,7 +213,7 @@ module.exports = {
       { source: '/grow', destination: '/next-steps/find-a-life-group', permanent: true },
       // { source: '/replicateapp', destination: 'TBD - App Page', permanent: true },
       { source: '/hendersonville-groups', destination: '/next-steps/find-a-life-group', permanent: true },
-      { source: '/vision', destination: '/the-2023-ministry-plan', permanent: true },
+      { source: '/vision', destination: '/questions-from-vision-sunday', permanent: true },
       { source: '/lhkidsmissions', destination: '/connect/kids', permanent: true },
       { source: '/guides', destination: '/download-life-group-curriculum', permanent: true },
       { source: '/curriculum', destination: '/download-life-group-curriculum', permanent: true },
