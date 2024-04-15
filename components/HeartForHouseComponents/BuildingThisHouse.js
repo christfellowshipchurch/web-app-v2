@@ -27,12 +27,7 @@ const BuildingThisHouse = ({ id }) => {
               fontSize={{ _: 42, md: 64 }}
               width={{ _: 240, md: 380 }}
             >
-              {/* We have to change back to Proxima Nova for the number "40" due to bad font file👎 */}
-              <Box
-                display="inline"
-                fontFamily="Proxima Nova"
-                fontSize={{ _: 40, md: 58 }}
-              >
+              <Box display="inline" fontSize={{ _: 40, md: 58 }}>
                 40
               </Box>{' '}
               YEARS <br />
