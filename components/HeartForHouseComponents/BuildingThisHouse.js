@@ -1,19 +1,15 @@
-import { useCurrentBreakpoint } from 'hooks';
 import React from 'react';
 import { Box, Button, Icon } from 'ui-kit';
 import Styled from './HeartForHouseComponents.styles';
 
 const BuildingThisHouse = ({ id }) => {
-  const currentBreakpoint = useCurrentBreakpoint();
   return (
     <Box id={id} bg="#E4E4E3">
       <Box
         py="xl"
-        backgroundImage={
-          !currentBreakpoint.isSmall &&
-          !currentBreakpoint.isMedium &&
-          'url(/heart-for-house/i-heart-house-red-left.png)'
-        }
+        backgroundImage={{
+          lg: 'url(/heart-for-house/i-heart-house-red-left.png)',
+        }}
         backgroundRepeat="no-repeat"
         backgroundPosition="left 8% bottom 88%"
       >
@@ -29,7 +25,7 @@ const BuildingThisHouse = ({ id }) => {
               fontWeight="600"
               lineHeight="100%"
               fontSize={{ _: 42, md: 64 }}
-              width={{ _: 270, md: 380 }}
+              width={{ _: 240, md: 380 }}
             >
               {/* We have to change back to Proxima Nova for the number "40" due to bad font file👎 */}
               <Box

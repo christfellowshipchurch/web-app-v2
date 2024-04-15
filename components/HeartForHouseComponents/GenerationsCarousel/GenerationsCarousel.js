@@ -2,7 +2,7 @@
  * This component is a carousel that displays the 40th Anniversary photos for the H4H 2024 campaign. We will be using Embla Carousel to create this component.
  */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import AutoScroll from 'embla-carousel-auto-scroll';
 
@@ -10,12 +10,13 @@ import { Box, Button } from 'ui-kit';
 import { ImageHover, TitleSection } from './GenerationsCarousel.components';
 
 function GenerationsCarousel({ id }) {
+  const [overlay, setOverlay] = useState(false);
+  const [speed, setSpeed] = useState(0.5);
+  const [overlayValue, setOverlayValue] = useState(null);
   // see docs for more info on how to use Embla Carousel: https://www.embla-carousel.com/get-started/react/
   const [emblaRef] = useEmblaCarousel({ loop: true }, [
-    AutoScroll({ stopOnInteraction: false, speed: 1 }),
+    AutoScroll({ stopOnInteraction: false, speed: speed }),
   ]);
-  const [overlay, setOverlay] = useState(false);
-  const [overlayValue, setOverlayValue] = useState(null);
   const imageHover = [
     { image: 1, date: 'January 1999', description: 'UN Trip' },
     { image: 2, date: 'February 1999', description: 'UN Trip' },
@@ -34,6 +35,9 @@ function GenerationsCarousel({ id }) {
   ];
   const numberOfSlides = 14;
 
+  useEffect(() => {
+    setSpeed(1);
+  }, []);
   return (
     <Box
       id={id}
@@ -82,7 +86,12 @@ function GenerationsCarousel({ id }) {
                       }.jpg`}
                     />
                     {overlay && overlayValue === index && (
-                      <Box position="absolute" top={230} ml="s" color="white">
+                      <Box
+                        position="absolute"
+                        top={{ _: 134, md: 230 }}
+                        ml="s"
+                        color="white"
+                      >
                         <Box mt="base">{imageHover[index].description}</Box>
                         <Box>{imageHover[index].date}</Box>
                       </Box>

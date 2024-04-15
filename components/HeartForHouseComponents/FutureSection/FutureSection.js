@@ -1,4 +1,3 @@
-import { useCurrentBreakpoint } from 'hooks';
 import React from 'react';
 import { Box, Button } from 'ui-kit';
 
@@ -7,8 +6,6 @@ import { HeartForHouseContentBlock } from './FutureSection.components';
 import { CONTENT_BLOCK_DATA } from './FutureSection.data';
 
 const HeartForHouseFutureSection = ({ id }) => {
-  const currentBreakpoint = useCurrentBreakpoint();
-
   return (
     <Box id={id} bg="#EBEBEB">
       <Box
@@ -16,11 +13,9 @@ const HeartForHouseFutureSection = ({ id }) => {
         flexDirection="column"
         alignItems="center"
         py="xl"
-        backgroundImage={
-          !currentBreakpoint.isSmall &&
-          !currentBreakpoint.isMedium &&
-          'url(/heart-for-house/i-heart-house-white.png)'
-        }
+        backgroundImage={{
+          lg: 'url(/heart-for-house/i-heart-house-white.png)',
+        }}
         backgroundSize="170px"
         backgroundRepeat="no-repeat"
         backgroundPosition="right 8% bottom 95%"

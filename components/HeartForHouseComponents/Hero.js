@@ -3,16 +3,16 @@ import { Box, Button } from 'ui-kit';
 
 const HeartForHouseHero = ({ id }) => {
   return (
-    <Box id={id} bg="white" py="base">
+    <Box id={id} bg="white" py={{ lg: 'base' }}>
       <Box
         display="flex"
         justifyContent="end"
-        py="xxl"
+        py={{ _: 'l', md: 'xxl' }}
         backgroundImage="url('/heart-for-house/h4h-logo.png')"
         backgroundRepeat="no-repeat"
-        backgroundSize={{ _: '58vh', sm: '70vh', md: '85vh', lg: '95vh' }}
+        backgroundSize={{ _: '64vh', sm: '70vh', md: '85vh', lg: '95vh' }}
         backgroundPosition={{
-          _: '-210px 50%',
+          _: '-260px 50%',
           sm: '-300px 50%',
           md: '-240px 50%',
           lg: '-200px 50%',
@@ -24,7 +24,7 @@ const HeartForHouseHero = ({ id }) => {
           flexDirection="column"
           justifyContent="space-between"
           mr={{ _: 's', md: '8%' }}
-          py="l"
+          py={{ _: 'xxl', md: 0 }}
         >
           <Box
             fontSize={{ _: 42, md: 56 }}
