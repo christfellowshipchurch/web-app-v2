@@ -3,7 +3,7 @@ import { Box, Button } from 'ui-kit';
 
 const HeartForHouseHero = ({ id }) => {
   return (
-    <Box id={id} bg="white" py={{ lg: 'base' }}>
+    <Box id={id} bg="white" py={{ md: 'base' }}>
       <Box
         display="flex"
         justifyContent="end"
@@ -24,7 +24,7 @@ const HeartForHouseHero = ({ id }) => {
           flexDirection="column"
           justifyContent="space-between"
           mr={{ _: 's', md: '8%' }}
-          py={{ _: 'xxl', md: 0 }}
+          py={{ _: 'xxl', md: 'l' }}
         >
           <Box
             fontSize={{ _: 42, md: 56 }}
