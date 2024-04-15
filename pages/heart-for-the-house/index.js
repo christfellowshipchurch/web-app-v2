@@ -60,8 +60,10 @@ const H4H = () => {
           <Box mx="auto" maxWidth={1200}>
             <FAQ
               displayAll
+              fullWidth
               showDescription={false}
               data={faqHeartForHouseData}
+              alternateData={{ title: 'FAQ', titleColor: 'neutrals.800' }}
             />
           </Box>
         </Box>

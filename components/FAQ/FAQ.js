@@ -25,22 +25,22 @@ function FAQ(props = {}) {
           <Box
             as="h2"
             fontSize={32}
-            color={props?.otherData?.titleColor || 'neutrals.300'}
+            color={props?.alternateData?.titleColor || 'neutrals.300'}
             mb={props?.fullWidth ? 's' : 'base'}
           >
-            {props?.otherData.title}
+            {props?.alternateData.title}
           </Box>
           {props?.showDescription && (
             <>
               <Box as="h4" color="tertiary" fontStyle="italic" mb={0}>
-                {props?.otherData.question}
+                {props?.alternateData.question}
               </Box>
 
-              {props?.otherData?.descriptionOverride ? (
-                <HtmlRenderer htmlContent={props?.otherData.description} />
+              {props?.alternateData?.descriptionOverride ? (
+                <HtmlRenderer htmlContent={props?.alternateData.description} />
               ) : (
                 <Box fontWeight="bold" mb="base" maxWidth={450}>
-                  {props?.otherData.description}
+                  {props?.alternateData.description}
                 </Box>
               )}
               <Box
@@ -48,7 +48,7 @@ function FAQ(props = {}) {
                 href="https://rock.gocf.org/contactus"
                 target="_blank"
               >
-                {props?.otherData.contactUs}
+                {props?.alternateData.contactUs}
               </Box>
             </>
           )}
@@ -84,7 +84,7 @@ function FAQ(props = {}) {
                   setDisplay(display ? null : 'none');
                 }}
               >
-                {props?.otherData?.title === 'FAQ'
+                {props?.alternateData?.title === 'FAQ'
                   ? `See ${display === 'none' ? 'More' : 'Less'}`
                   : `Ver ${display === 'none' ? 'Más' : 'Menos'}`}
               </Button>
@@ -101,7 +101,7 @@ FAQ.propTypes = {
   data: PropTypes.array,
   displayAll: PropTypes.bool,
   showDescription: PropTypes.bool,
-  otherData: PropTypes.shape({
+  alternateData: PropTypes.shape({
     title: PropTypes.string,
     question: PropTypes.string,
     description: PropTypes.string,
@@ -114,7 +114,7 @@ FAQ.defaultProps = {
   displayAll: false,
   showDescription: true,
   customTheme: colors?.light,
-  otherData: {
+  alternateData: {
     title: 'FAQ',
     question: 'Have a question?',
     description:

@@ -27,10 +27,7 @@ const BuildingThisHouse = ({ id }) => {
               fontSize={{ _: 42, md: 64 }}
               width={{ _: 240, md: 380 }}
             >
-              <Box display="inline" fontSize={{ _: 40, md: 58 }}>
-                40
-              </Box>{' '}
-              YEARS <br />
+              40 YEARS <br />
               OF{' '}
               <Box color="primary" textDecoration="underline" display="inline">
                 BUILDING THIS HOUSE
@@ -44,6 +41,8 @@ const BuildingThisHouse = ({ id }) => {
               textAlign="center"
               my="l"
               fontWeight="200"
+              fontSize={18}
+              lineHeight="24px"
             >
               This{' '}
               <Box display="inline" color="primary" fontWeight="600">
