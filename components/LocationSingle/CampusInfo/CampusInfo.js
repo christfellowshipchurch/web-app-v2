@@ -6,7 +6,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { camelCase, find } from 'lodash';
 
-import { Box, Cell, Divider, Icon, Image, utils } from 'ui-kit';
+import { Box, Cell, Divider, Icon, utils } from 'ui-kit';
 
 import { campusLinks } from '../../../lib/locationData';
 import Styled from '../LocationSingle.styles';
@@ -42,10 +42,6 @@ const CampusInfo = ({
   const addressFirst = street1 ? `${street1}` : null;
   const addressLast = `${city}, ${state} ${postalCode?.substring(0, 5)}`;
 
-  const bannerUrl = ` /easter${
-    cfe ? '-espanol' : ''
-  }?utm_campaign=Easter24&utm_source=locations`;
-
   // Make sure there is at least one weekday schedule
   const isWeekdaySchedule = validDaysOfWeek(weekdaySchedules)?.length > 0;
   const modalDispatch = useModalDispatch();
@@ -56,18 +52,24 @@ const CampusInfo = ({
 
   const desktopHeight = name === 'Online (CF Everywhere)' ? 500 : 560;
 
-  /** Spanish Campuses */
+  /** ---- Event Banner Props ----  */
+  // const bannerUrl = ` /easter${
+  //   cfe ? '-espanol' : ''
+  // }?utm_campaign=Easter24&utm_source=locations`;
 
-  let subtitle, title, cta;
-  if (cfe) {
-    title = '¿Buscas un servicio de Pascua?';
-    subtitle = 'Mira los horarios de los servicios de Pascua y Viernes Santo ';
-    cta = 'aquí';
-  } else {
-    title = 'Looking for an Easter service?';
-    subtitle = 'See all Easter and Good Friday service times ';
-    cta = 'here';
-  }
+  // /** Spanish Campuses */
+
+  // let subtitle, title, cta;
+  // if (cfe) {
+  //   title = '¿Buscas un servicio de Pascua?';
+  //   subtitle = 'Mira los horarios de los servicios de Pascua y Viernes Santo ';
+  //   cta = 'aquí';
+  // } else {
+  //   title = 'Looking for an Easter service?';
+  //   subtitle = 'See all Easter and Good Friday service times ';
+  //   cta = 'here';
+  // }
+  /** ---- Event Banner Props ----  */
 
   return (
     <Box
@@ -89,8 +91,8 @@ const CampusInfo = ({
         zIndex={1}
         width="100%"
       >
-        {/* Easter Banner For Mobile */}
-        <Styled.MobileEventBanner
+        {/* Event Banner For Mobile --- For Easter/Christmas */}
+        {/* <Styled.MobileEventBanner
           display={{ _: 'flex', md: 'none' }}
           backgroundColor="#ebcd5f"
           textColor="black"
@@ -119,7 +121,7 @@ const CampusInfo = ({
               .
             </Styled.EventSubtitle>
           </Box>
-        </Styled.MobileEventBanner>
+        </Styled.MobileEventBanner> */}
 
         {/* Service Times */}
         <Box width="100%">
@@ -165,8 +167,8 @@ const CampusInfo = ({
               </Styled.InfoBox>
             )}
           </Box>
-          {/* Desktop Easter Banner */}
-          <Styled.EventBanner
+          {/* Desktop Easter Banner --- For Easter/Christmas */}
+          {/* <Styled.EventBanner
             display={{ _: 'none', md: 'flex' }}
             backgroundColor="#ebcd5f"
             textColor="black"
@@ -189,7 +191,7 @@ const CampusInfo = ({
               {title} {subtitle}
               <Styled.EventCTA href={bannerUrl}>{cta}</Styled.EventCTA>
             </Box>
-          </Styled.EventBanner>
+          </Styled.EventBanner> */}
 
           <Box mr={{ _: 0, lg: 'base' }}>
             {/* Custom Info for CF Everywhere and Trinity */}
