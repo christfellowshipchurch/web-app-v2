@@ -47,6 +47,7 @@ const HeartForHouseFutureSection = ({ id }) => {
           mt="s"
           mb="base"
           textAlign="center"
+          fontSize="l"
           color="#818181"
         >
           WHY WE'RE GIVING
