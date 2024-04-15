@@ -12,13 +12,13 @@ const HeartForHouseYearInReview = ({ id }) => (
     py="xl"
   >
     {/* Title */}
-    <Box fontFamily="vision" fontWeight="600" fontSize={{ _: 42, md: 52 }}>
+    <Box fontFamily="vision" fontWeight="600" fontSize={{ _: 34, md: 58 }}>
       <Box
         color="#E63E51"
         textDecoration="underline"
         display="inline"
         background="url(/heart-for-house/inReview-rectangle.png)"
-        backgroundSize={{ _: 450, md: 580 }}
+        backgroundSize={{ _: 350, md: 460 }}
         backgroundRepeat="no-repeat"
         backgroundPosition="bottom"
         px={{ md: 'xl' }}
