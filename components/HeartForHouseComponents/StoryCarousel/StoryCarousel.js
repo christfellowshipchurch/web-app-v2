@@ -2,9 +2,9 @@
  * This component is a carousel that displays stories from the H4H 2024 campaign. We will be using Embla Carousel to create this component. And will plan to add Wistia videos to the carousel once content is ready.
  */
 
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
-import AutoHeight from 'embla-carousel-auto-height';
+import AutoPlay from 'embla-carousel-autoplay';
 
 import { Box, Button } from 'ui-kit';
 import {
@@ -14,12 +14,15 @@ import {
 } from './StoryCarousel.components';
 
 import { CAROUSEL_SLIDE_DATA } from './StoryCarousel.data';
+import { useCurrentBreakpoint } from 'hooks';
 
 function H4HStoryCarousel({ id }) {
   // see docs for more info on how to use Embla Carousel: https://www.embla-carousel.com/get-started/react/
-  const [emblaRef, emblaApi] = useEmblaCarousel({}, [AutoHeight()]);
+  const [emblaRef, emblaApi] = useEmblaCarousel({}, [
+    AutoPlay({ playOnInit: false }),
+  ]);
   const [canScrollNext, setCanScrollNext] = useState(true);
-  const [canScrollPrev, setCanScrollPrev] = useState(true);
+  const [canScrollPrev, setCanScrollPrev] = useState(false);
 
   // Determines whether the carousel can scroll to the next or previous slide
   function updateScrollState() {
@@ -27,6 +30,24 @@ function H4HStoryCarousel({ id }) {
     setCanScrollPrev(emblaApi.canScrollPrev());
     setCanScrollNext(emblaApi.canScrollNext());
   }
+
+  const currentBreakpoint = useCurrentBreakpoint();
+
+  const toggleAutoplay = useCallback(() => {
+    const autoplay = emblaApi?.plugins()?.autoplay;
+    if (!autoplay) return;
+
+    const playOrStop = autoplay.isPlaying() ? autoplay.stop : autoplay.play;
+    playOrStop();
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    if (currentBreakpoint?.name === 'sm') {
+      toggleAutoplay();
+    }
+  }, [currentBreakpoint]);
 
   return (
     <Box
@@ -82,7 +103,7 @@ function H4HStoryCarousel({ id }) {
           )}
         </Box>
       </Box>
-      <Button as="a" href="#give" variant="tertiary">
+      <Button mt="base" as="a" href="#give" variant="tertiary">
         BE A PART OF THE HEART
       </Button>
     </Box>

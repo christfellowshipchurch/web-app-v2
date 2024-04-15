@@ -27,6 +27,7 @@ export const CarouselSlide = ({ slide }) => {
             maxHeight={300}
             aspectRatio={!isLarge ? '16by9' : slide?.aspectRatio}
             source={slide.image}
+            borderRadius="0px"
           />
         </Box>
         <Box flex="1.5">
@@ -43,7 +44,7 @@ export const CarouselSlide = ({ slide }) => {
             textDecoration="underline"
             fontFamily="vision"
             fontWeight="600"
-            fontSize="h1"
+            fontSize={{ _: '2.05rem', md: 'h1' }}
             mb="s"
           >
             {slide.title}
@@ -85,23 +86,23 @@ export const SlideArrows = ({ onClick, direction }) => (
 export const TitleSection = () => (
   <Box display="flex" color="white" fontFamily="vision" fontWeight="600">
     <Box
-      mx="s"
       display="flex"
       alignItems={{ _: 'start', md: 'center' }}
       gridColumnGap={{ _: '0px', md: 'xl' }}
     >
       <Box
-        px={{ _: 's', md: 'xl' }}
+        pt="xs"
+        px={{ _: '10px', md: 'xl' }}
         maxWidth={{ _: 340, md: 540, lg: 754 }}
         fontSize={{ _: 32, md: 48 }}
         lineHeight="100%"
         backgroundImage="url('/heart-for-house/carousel/start-quote-bg.png'), url('/heart-for-house/carousel/end-quote-bg.png')"
         backgroundRepeat="no-repeat"
-        backgroundSize={{ _: '80px', md: '100px' }}
+        backgroundSize={{ _: '54px', md: '100px' }}
         backgroundPosition={{
-          _: '-5% -32%, 105% 160%',
+          _: '-10px -10px, 296px 96px',
           md: '0% -12%, 50% 125%',
-          lg: '-1% -45%, 75% 165%',
+          lg: '-1% -40%, 75% 165%',
         }}
       >
         I LOVE THE <u>HOUSE</u> WHERE YOU LIVE, THE PLACE WHERE{' '}

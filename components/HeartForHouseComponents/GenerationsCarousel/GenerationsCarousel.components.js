@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Box, Image } from 'ui-kit';
+import { Box, system } from 'ui-kit';
 
 export const TitleSection = () => (
   <Box
@@ -63,7 +63,7 @@ export const TitleSection = () => (
   </Box>
 );
 
-export const ImageHover = styled(Image)`
+export const HoverScale = styled(Box)`
   &:active {
     cursor: grabbing !important;
   }
@@ -73,4 +73,29 @@ export const ImageHover = styled(Image)`
 
   transition: transform 200ms ease-in;
   cursor: grab !important;
+
+  ${system}
+`;
+
+export const HoverOverlay = styled(Box)`
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.65);
+    color: white;
+  }
+
+  align-items: center;
+  background-color: transparent;
+  bottom: 0;
+  color: transparent;
+  cursor: grab !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  transition: background-color 200ms ease-in, color 200ms ease-in;
+  width: 100%;
+  z-index: 1;
+
+  ${system}
 `;
