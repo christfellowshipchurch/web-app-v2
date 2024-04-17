@@ -61,6 +61,7 @@ import LocationBlockFeatureEspanol from './LocationBlockFeatureEspanol';
 import LocationSearch from './LocationSearch';
 import LocationSingle from './LocationSingle';
 import Logo from './Logo';
+import LottieViewer from './LottieViewer';
 import MobileNavScreen from './MobileNavScreen';
 import Nav from './Nav';
 import NotFound from './NotFound';
@@ -145,6 +146,7 @@ export {
   LocationSearch,
   LocationSingle,
   Logo,
+  LottieViewer,
   MobileNavScreen,
   Nav,
   NotFound,
