@@ -23,6 +23,7 @@ const HeartForHouseFutureSection = ({ id }) => {
         <Box
           width="fit-content"
           color="#414141"
+          fontFamily="vision"
           fontSize={{ _: 34, md: 58 }}
           fontWeight={600}
           textAlign="center"
