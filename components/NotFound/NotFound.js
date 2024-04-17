@@ -22,7 +22,10 @@ const NotFound = (props = {}) => {
       link: '/locations',
     },
     { title: 'Sign up for a Group or Class.', link: '/groups' },
-    { title: 'Discover more about our Ministries.', link: '/discover' },
+    {
+      title: 'Discover more about our Ministries.',
+      link: '/discover?c=ministries',
+    },
     { title: 'Learn more about Christ Fellowship.', link: '/about' },
     { title: 'Get connected.', link: '/it-all-starts-here' },
     { title: 'Give online.', link: '/give' },
