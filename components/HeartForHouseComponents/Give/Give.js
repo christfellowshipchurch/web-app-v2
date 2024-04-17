@@ -13,11 +13,20 @@ const HeartforHouseGive = ({ id }) => {
         _: "url('/heart-for-house/give-bg.jpg')",
         lg: "url('/heart-for-house/h4h-logo-white.png'), url('/heart-for-house/give-bg.jpg')",
       }}
-      backgroundPosition={{ _: 'center', lg: '120%, center' }}
-      backgroundSize={{ _: 'cover', lg: '800px, cover' }}
+      backgroundPosition={{
+        _: 'center',
+        lg: '650px, center',
+        xl: '120%, center',
+      }}
+      backgroundSize={{ _: 'cover', lg: '700px, cover' }}
       backgroundRepeat="no-repeat"
     >
-      <Box width={{ _: 'auto', md: 600, lg: 1300 }} mx="auto" display="flex">
+      <Box
+        width={{ _: 'auto', md: 600, lg: 1300 }}
+        mx="auto"
+        display="flex"
+        justifyContent={{ _: 'center', lg: 'flex-start' }}
+      >
         <Box
           display="flex"
           justifyContent="center"
