@@ -16,7 +16,7 @@ const HeartforHouseGive = ({ id }) => {
       backgroundPosition={{
         _: 'center',
         lg: '650px, center',
-        xl: '120%, center',
+        xl: '105%, center',
       }}
       backgroundSize={{ _: 'cover', lg: '700px, cover' }}
       backgroundRepeat="no-repeat"
