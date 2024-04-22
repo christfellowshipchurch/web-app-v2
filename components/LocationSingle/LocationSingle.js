@@ -260,7 +260,7 @@ function LocationSingle(props = {}) {
         <Box mx="auto" maxWidth={1200}>
           <FAQ
             data={faqData(campus)}
-            otherData={otherData(campus)}
+            alternateData={otherData(campus)}
             onClick={faqScroll}
           />
         </Box>
