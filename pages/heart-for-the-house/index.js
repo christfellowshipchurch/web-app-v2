@@ -23,11 +23,11 @@ import {
 const H4H = () => {
   return (
     <Layout
-      title="Heart for the House"
+      title="Heart for the House | Christ Fellowship Church"
       seoMetaTags={{
-        image: '/heart-for-house/h4h-meta-data.jpg',
         description:
           'This Heart for the House season, we celebrate what God has done over the last 40 years through Christ Fellowship Church and look ahead full of faith for all that God is going to do. ',
+        image: '/heart-for-house/h4h-meta-data.jpg',
       }}
     >
       <SCThemeProvider
