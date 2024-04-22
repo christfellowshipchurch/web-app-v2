@@ -121,7 +121,7 @@ const HeartForHouseYearInReview = ({ id }) => (
           <Box as="a" color="primary" fontWeight="600">
             Christ Fellowship Everywhere{' '}
           </Box>
-          on- demand messages had over 5 million views and were shared with over
+          on-demand messages had over 5 million views and were shared with over
           100,000 people!
         </Box>
 

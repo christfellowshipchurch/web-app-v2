@@ -83,7 +83,7 @@ const HeartforHouseGive = ({ id }) => {
               </Box>
             </Box>
           </Box>
-          <HtmlRenderer htmlContent=' <span style="font-weight: bold">GIVE BY MAIL</span><br/>Christ Fellowship Church Contributions<br/>5343 Northlake Blvd. Palm Beach Gardens, FL 33418<br/> <i style="font-size:15px; font-style: italic;">"Heart for the House" on the memo line.</i>' />
+          <HtmlRenderer htmlContent=' <span style="font-weight: bold">GIVE BY MAIL</span><br/>Christ Fellowship Church Contributions<br/>5343 Northlake Blvd. Palm Beach Gardens, FL 33418<br/> <i style="font-size:15px;">*Note: Please designate "Heart for the House" on the memo line.</i>' />
 
           <Box mt="l" maxWidth={{ _: '90vw', sm: '80vw', md: 540 }}>
             <HtmlRenderer htmlContent='<span style="font-style: italic; font-size:12px;"> Please note: Indicating your plan to give to Heart for the House is for Christ Fellowship Church’s budget purposes only. You may change and/or rescind your indication at any time.</span>' />

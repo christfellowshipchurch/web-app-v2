@@ -38,7 +38,7 @@ export const CarouselSlide = ({ slide }) => {
             color="h4h.red"
             fontWeight="light"
           >
-            OUR HEART FOR THE HOUSE:
+            OUR HEART FOR THIS HOUSE:
           </Box>
           <Box
             textDecoration="underline"

@@ -59,7 +59,11 @@ const BuildingThisHouse = ({ id }) => {
               </Box>{' '}
               we get to continue in that legacy as we{' '}
               <Box display="inline" fontWeight="normal" fontStyle="italic">
-                prepare for what we’re praying for
+                prepare{' '}
+                <Box display="inline" fontWeight="200" fontStyle="normal">
+                  for what we’re{' '}
+                </Box>{' '}
+                praying for
               </Box>{' '}
               and give toward the vision and future God has for our church.
             </Box>

@@ -47,6 +47,7 @@ function H4HStoryCarousel({ id }) {
     if (currentBreakpoint?.name === 'sm') {
       toggleAutoplay();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentBreakpoint]);
 
   return (
