@@ -61,6 +61,7 @@ const HeartForHouseFutureSection = ({ id }) => {
                 description={section?.description}
                 image={section?.image}
                 layout={section?.orientation}
+                url={section?.url}
               />
             </Box>
           );

@@ -1,7 +1,8 @@
 import { useCurrentBreakpoint } from 'hooks';
 import React from 'react';
+import styled from 'styled-components';
 
-import { Box, Icon, Image } from 'ui-kit';
+import { Box, Icon, Image, system } from 'ui-kit';
 
 export const CarouselSlide = ({ slide }) => {
   const currentBreakpoint = useCurrentBreakpoint();
@@ -77,10 +78,21 @@ export const CarouselSlide = ({ slide }) => {
   );
 };
 
+const ArrowStyles = styled(Box)`
+  &:hover {
+    transform: scale(1.15);
+  }
+
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+
+  ${system}
+`;
+
 export const SlideArrows = ({ onClick, direction }) => (
-  <Box cursor="pointer" onClick={onClick}>
+  <ArrowStyles onClick={onClick}>
     <Icon color="white" size={64} name={`angle-${direction}`} />
-  </Box>
+  </ArrowStyles>
 );
 
 export const TitleSection = () => (
