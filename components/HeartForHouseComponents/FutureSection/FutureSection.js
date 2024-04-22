@@ -7,7 +7,7 @@ import { CONTENT_BLOCK_DATA } from './FutureSection.data';
 
 const HeartForHouseFutureSection = ({ id }) => {
   return (
-    <Box id={id} bg="#EBEBEB">
+    <Box id={id} py={{ lg: 'xl' }} bg="#EBEBEB">
       <Box
         display="flex"
         flexDirection="column"

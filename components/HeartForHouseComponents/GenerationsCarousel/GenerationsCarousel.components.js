@@ -15,6 +15,7 @@ export const TitleSection = () => (
     backgroundImage={{ _: "url('/heart-for-house/grey-bar.png')" }}
     backgroundSize={{ _: '260px 15px', sm: '0px' }}
     backgroundPosition="-10px 86px"
+    mb={{ lg: 'base' }}
   >
     <Box mx="s" display="flex" alignItems="center" justifyContent="center">
       <Box

@@ -22,7 +22,7 @@ import {
 
 const H4H = () => {
   return (
-    <Layout>
+    <Layout title="Heart for the House">
       <SCThemeProvider
         theme={{
           colors: {

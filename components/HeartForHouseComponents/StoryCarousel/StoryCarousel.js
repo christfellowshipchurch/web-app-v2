@@ -57,8 +57,7 @@ function H4HStoryCarousel({ id }) {
       display="flex"
       flexDirection="column"
       alignItems="center"
-      gridRowGap={{ _: '0px', md: 'base', lg: 'l' }}
-      py="xl"
+      py={{ _: 'xl', lg: 'xxl' }}
     >
       {/* Title */}
       <TitleSection />

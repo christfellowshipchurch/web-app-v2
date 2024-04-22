@@ -13,7 +13,7 @@ export const CAROUSEL_SLIDE_DATA = [
     content:
       '“Because of Shaun, Jim & Lynann, my family, and everybody who has given to Heart for the House and the vision to Get There First for my generation—I see hope because of the people I’m surrounded by.”',
     author: 'AIDEN',
-    image: '/heart-for-house/carousel/biance-tejeda.jpg',
+    image: '/heart-for-house/carousel/bianca-tejeda.jpg',
     url: 'https://issuu.com/christfellowshipchurch/docs/clients_heartforthehouse_print_handouts_7.5x10_dig/14?fr=sMDNlZTcyMzY2OTk',
     aspectRatio: '16by9',
   },
