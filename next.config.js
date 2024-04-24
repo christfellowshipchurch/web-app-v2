@@ -39,6 +39,7 @@ module.exports = {
       { source: '/relief', destination: 'https://longhollow.com/tornadodamage-crisisresponse', permanent: true },
       { source: '/hope', destination: '/hopefortheholidays-november2023', permanent: true },
       { source: '/secretchurch', destination: '/secretchurch-2024', permanent: true },
+      { source: '/summerserve', destination: '/serve-this-summer-make-the-most-of-summer', permanent: true },
       { source: '/intentional-mom', destination: '/imom-winterspring2024', permanent: true },
       { source: '/wednesdays', destination: '/wednesdaysatlhwinter-2024', permanent: true },
       { source: '/firstrespondermeals', destination: '/first-responder-meals-help-us-care-for-our-first-responders-on-christmas', permanent: true },
