@@ -35,6 +35,7 @@ module.exports = {
       { source: '/freedom', destination: '/freedomfrompornographysupportgroup', permanent: true },
       { source: '/testimony', destination: '/ive-been-changed-from-addict-to-pastor', permanent: true },
       { source: '/host', destination: '/host-your-event-or-gathering-at-long-hollow', permanent: true },
+      { source: '/5thgrade', destination: '/5th-grade-summer-transition', permanent: true },
       { source: '/family', destination: 'https://nsb2r6cpbt4.typeform.com/to/rv4waLbv', permanent: true },
       { source: '/relief', destination: 'https://longhollow.com/tornadodamage-crisisresponse', permanent: true },
       { source: '/hope', destination: '/hopefortheholidays-november2023', permanent: true },
