@@ -249,19 +249,42 @@ const faqTrinityData = [
 
 export const faqHeartForHouseData = [
   {
+    color: '#414141',
+    fontStyle: 'normal',
     title: 'What should I give',
     description:
-      "Heart for the House is a special offering we get to be a part of every year, where we give above our regular tithes and offerings. There isn't a set amount you should give, but as we often say,  it’s not the size of your gift—it's the size of your sacrifice! We encourage you to pray about how God wants you to be a part of it.",
+      "Heart for the House is a special offering we get to be a part of every year, where we give above our regular tithes and offerings. There isn't a set amount you should give, but as we often say,  it’s not the size of your gift—it's the size of your sacrifice! We encourage you to pray about how God wants you to be a part of it.",
   },
 
   {
+    color: '#414141',
+    fontStyle: 'normal',
     title: 'Can I give to Heart for the House later?',
-    description: `Yes! You can give to Heart for the House any time throughout 2023, either as a one-time gift or you can set up a recurring gift (weekly/monthly) through December 31.`,
+    description: `Yes! You can give to Heart for the House any time throughout 2024, either as a one-time gift or you can set up a recurring gift (weekly/monthly) through December 31 until your goal is met.`,
   },
   {
+    color: '#414141',
+    fontStyle: 'normal',
+    title: 'How do I give to Heart for the House?',
+    description: `On Sunday, May 19, you can be a part of giving to this special offering called Heart for the House by either giving a one-time gift online AND/OR planning your giving goal for 2024 and setting up a recurring gift online through December 31 until your goal is met. You can also give in person using a giving container in service or at a giving station with the envelope available at your location.<br/><br/>
+      Gifts can also be mailed to:<br/>
+      Christ Fellowship Church Contributions<br/>
+      5343 Northlake Blvd. Palm Beach Gardens, FL 33418<br/>
+      <span style="font-style: italic;">*Note: Please designate "Heart for the House" on the memo line.</span>`,
+  },
+  {
+    color: '#414141',
+    fontStyle: 'normal',
+    title: 'If I set up a recurring gift, can I change it later?',
+    description:
+      'Yes! Indicating your plan to give to Heart for the House is for Christ Fellowship Church’s budget purposes only. You may change and/or rescind your indication at any time. Recurring gifts can be managed by logging into your PushPay account.',
+  },
+  {
+    color: '#414141',
+    fontStyle: 'normal',
     title: 'What does Heart for the House go to?',
     description:
-      "Heart for the House goes toward Christ Fellowship's efforts in reaching more people for Jesus—whether that's new campuses or new initiatives, both inside and outside the walls of our church. <a target='_blank' href='https://issuu.com/christfellowshipchurch/docs/clients_heartforthehouse_print_handouts_7.5x10_web?fr=sNDM3ZjU5MDEzMDk'>Read more</a> about the Heart for the House vision for 2023!",
+      "Heart for the House goes toward Christ Fellowship's efforts in reaching more people for Jesus—whether that's new campuses or new initiatives, both inside and outside the walls of our church. <a target='_blank' href='https://issuu.com/christfellowshipchurch/docs/clients_heartforthehouse_print_handouts_7.5x10_dig/16?fr=sNWI3MDcyMzY3MDE' style='color: #E63E51;'>Read more</a> about the Heart for the House vision for 2024!",
   },
 ];
 

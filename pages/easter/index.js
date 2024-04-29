@@ -183,7 +183,7 @@ const Easter = () => {
             py="xl"
             mt="2.5rem !important"
             data={faqData('Easter')}
-            otherData={{
+            alternateData={{
               title: 'FAQ',
               titleColor: 'black',
               question: 'Have additional questions?',
