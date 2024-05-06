@@ -28,7 +28,6 @@ import EasterLocationSearch from './EasterLocationSearch';
 import EasterWordCarousel from './EasterWordCarousel';
 import EventSingle from './EventSingle';
 import EventsList from './EventsList';
-import HeroLanding from './HeroLanding';
 import FAQ from './FAQ';
 import FeatureFeed from './FeatureFeed';
 import FilterField from './FilterField';
@@ -48,6 +47,7 @@ import GroupsList from './GroupsList';
 import GroupsResultsList from './GroupsResultsList';
 import Header from './Header';
 import HeroFeature from './HeroFeature';
+import HeroLanding from './HeroLanding';
 import HeroListFeature from './HeroListFeature';
 import HomeFeed from './HomeFeed';
 import HorizontalCardListFeature from './HorizontalCardListFeature';
@@ -62,6 +62,7 @@ import LocationBlockFeatureEspanol from './LocationBlockFeatureEspanol';
 import LocationSearch from './LocationSearch';
 import LocationSingle from './LocationSingle';
 import Logo from './Logo';
+import LottieViewer from './LottieViewer';
 import MobileNavScreen from './MobileNavScreen';
 import Nav from './Nav';
 import NotFound from './NotFound';
@@ -147,6 +148,7 @@ export {
   LocationSearch,
   LocationSingle,
   Logo,
+  LottieViewer,
   MobileNavScreen,
   Nav,
   NotFound,

@@ -9,7 +9,7 @@ import Styled from './PhotoCarousel.styles';
 
 function PhotoCarousel({ photo }) {
   return (
-    <Box overflow="hidden" borderTop="3px solid black">
+    <Box overflow="hidden">
       <Styled.CarouselTrack
         height={400}
         position="relative"

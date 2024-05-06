@@ -6,7 +6,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { camelCase, find } from 'lodash';
 
-import { Box, Cell, Divider, Icon, Image, utils } from 'ui-kit';
+import { Box, Cell, Divider, Icon, utils } from 'ui-kit';
 
 import { campusLinks } from '../../../lib/locationData';
 import Styled from '../LocationSingle.styles';
@@ -52,18 +52,24 @@ const CampusInfo = ({
 
   const desktopHeight = name === 'Online (CF Everywhere)' ? 500 : 560;
 
-  /** Spanish Campuses */
+  /** ---- Event Banner Props ----  */
+  // const bannerUrl = ` /easter${
+  //   cfe ? '-espanol' : ''
+  // }?utm_campaign=Easter24&utm_source=locations`;
 
-  let subtitle, title, cta;
-  if (cfe) {
-    title = '¿Buscas un servicio de Pascua?';
-    subtitle = 'Mira los horarios de los servicios de Pascua y Viernes Santo ';
-    cta = 'aquí';
-  } else {
-    title = 'Looking for an Easter service?';
-    subtitle = 'See all Easter and Good Friday service times ';
-    cta = 'here';
-  }
+  // /** Spanish Campuses */
+
+  // let subtitle, title, cta;
+  // if (cfe) {
+  //   title = '¿Buscas un servicio de Pascua?';
+  //   subtitle = 'Mira los horarios de los servicios de Pascua y Viernes Santo ';
+  //   cta = 'aquí';
+  // } else {
+  //   title = 'Looking for an Easter service?';
+  //   subtitle = 'See all Easter and Good Friday service times ';
+  //   cta = 'here';
+  // }
+  /** ---- Event Banner Props ----  */
 
   return (
     <Box
@@ -85,8 +91,8 @@ const CampusInfo = ({
         zIndex={1}
         width="100%"
       >
-        {/* Easter Banner For Mobile */}
-        <Styled.MobileEventBanner
+        {/* Event Banner For Mobile --- For Easter/Christmas */}
+        {/* <Styled.MobileEventBanner
           display={{ _: 'flex', md: 'none' }}
           backgroundColor="#ebcd5f"
           textColor="black"
@@ -106,7 +112,7 @@ const CampusInfo = ({
               {subtitle}
               <Box
                 as="a"
-                href={`/easter-2024${cfe ? '-espanol' : ''}`}
+                href={bannerUrl}
                 color="rgba(59, 125, 217, 1)"
                 textDecoration="underline"
               >
@@ -115,7 +121,7 @@ const CampusInfo = ({
               .
             </Styled.EventSubtitle>
           </Box>
-        </Styled.MobileEventBanner>
+        </Styled.MobileEventBanner> */}
 
         {/* Service Times */}
         <Box width="100%">
@@ -149,12 +155,24 @@ const CampusInfo = ({
                   )
               )}
           </Styled.ServiceTimeContainer>
-          {/* Desktop Easter Banner */}
-          <Styled.EventBanner
+          {/* Addtional Information - Orange Box */}
+          <Box mr={{ _: 0, lg: 'base' }}>
+            {additionalInfo && additionalInfo?.length > 0 && (
+              <Styled.InfoBox>
+                {additionalInfo.map(n => (
+                  <Box key={n} as="li">
+                    {n}
+                  </Box>
+                ))}
+              </Styled.InfoBox>
+            )}
+          </Box>
+          {/* Desktop Easter Banner --- For Easter/Christmas */}
+          {/* <Styled.EventBanner
             display={{ _: 'none', md: 'flex' }}
             backgroundColor="#ebcd5f"
             textColor="black"
-            fontSize={cfe ? 15 : { md: 16, xl: 18 }}
+            fontSize={cfe && 15}
           >
             <Image
               m="0px 10px 0px 20px"
@@ -171,11 +189,9 @@ const CampusInfo = ({
               textWrap="pretty"
             >
               {title} {subtitle}
-              <Styled.EventCTA href={`/easter-2024${cfe ? '-espanol' : ''}`}>
-                {cta}
-              </Styled.EventCTA>
+              <Styled.EventCTA href={bannerUrl}>{cta}</Styled.EventCTA>
             </Box>
-          </Styled.EventBanner>
+          </Styled.EventBanner> */}
 
           <Box mr={{ _: 0, lg: 'base' }}>
             {/* Custom Info for CF Everywhere and Trinity */}
@@ -246,15 +262,6 @@ const CampusInfo = ({
                         />
                       </Box>
                     )}
-                    {additionalInfo && additionalInfo?.length > 0 && (
-                      <Box mt="base">
-                        {additionalInfo.map(n => (
-                          <Box key={n} as="li">
-                            {n}
-                          </Box>
-                        ))}
-                      </Box>
-                    )}
                   </Box>
                 </Box>
               )}
@@ -316,15 +323,6 @@ const CampusInfo = ({
               >
                 See what to expect here!
                 <Icon ml="s" name="play" size="24" variant="secondary" />
-              </Box>
-            )}
-            {additionalInfo && additionalInfo?.length > 0 && (
-              <Box ml="base" mt="base">
-                {additionalInfo.map(n => (
-                  <Box key={n} as="li">
-                    {n}
-                  </Box>
-                ))}
               </Box>
             )}
           </Box>

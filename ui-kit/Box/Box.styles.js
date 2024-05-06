@@ -8,6 +8,7 @@ const Box = styled.div`
   &:active {
     color: ${props => props?.hoverColor && `${props?.hoverColor}`};
   }
+  text-wrap: pretty;
   ${system}
 `;
 
