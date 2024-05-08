@@ -3,7 +3,6 @@ import Styled from './GiveWithPushpay.styles';
 import { HtmlRenderer, Select, Button, Box, Icon } from 'ui-kit';
 import { useForm } from 'hooks';
 import PropTypes from 'prop-types';
-import { useCurrentBreakpoint } from 'hooks';
 import { colorHover } from 'utils';
 
 function GiveWithPushpay(props = {}) {
@@ -38,7 +37,6 @@ function GiveWithPushpay(props = {}) {
   ];
 
   const { values, setValues, handleChange } = useForm();
-  const currentBreakpoint = useCurrentBreakpoint();
 
   const handleAmount = event => {
     const { name, value } = event.target;
@@ -76,8 +74,13 @@ function GiveWithPushpay(props = {}) {
             {props?.title}
           </Box>
         )}
-        {props?.subtitle && !currentBreakpoint.isSmall && (
-          <Box as="h4" color={props?.subtitleColor} fontWeight="normal">
+        {props?.subtitle && (
+          <Box
+            as="h4"
+            display={{ _: 'none', md: 'block' }}
+            color={props?.subtitleColor}
+            fontWeight="normal"
+          >
             {props?.subtitle}
           </Box>
         )}
@@ -136,7 +139,7 @@ function GiveWithPushpay(props = {}) {
               </Box>
               <Select
                 mt="xs"
-                width={currentBreakpoint.isSmall ? '300px' : '600px'}
+                width={{ _: '300px', md: '600px' }}
                 borderColor="primary"
                 onChange={handleChange}
                 name="campus"
@@ -160,7 +163,7 @@ function GiveWithPushpay(props = {}) {
               </Box>
               <Select
                 mt="xs"
-                width={currentBreakpoint.isSmall ? '300px' : '600px'}
+                width={{ _: '300px', md: '600px' }}
                 borderColor="primary"
                 onChange={handleChange}
                 name="givingType"
@@ -202,14 +205,15 @@ function GiveWithPushpay(props = {}) {
           <Box as="h2">Other Online Options</Box>
           <Box fontStyle="italic" fontSize="13px">
             Note: Online gifts given through ApplePay, Cash App, or Venmo cannot
-            be designated to a {!currentBreakpoint.isSmall && <br />}
+            be designated to a{' '}
+            <Box as="br" display={{ _: 'none', md: 'block' }} />
             specific fund or campus and will not be on your End-of-Year Giving
             Statement.
           </Box>
 
           <Box
             display="grid"
-            gridTemplateColumns="repeat(3, 1fr)"
+            gridTemplateColumns="repeat(2, 1fr)"
             gridColumnGap="s"
             maxWidth="12.5rem"
             mt="l"
@@ -233,22 +237,12 @@ function GiveWithPushpay(props = {}) {
             >
               <Icon name="venmo" size="50" />
             </Box>
-            <Box
-              as="a"
-              color="white"
-              hoverColor={colorHover('white')}
-              target="_blank"
-              href={'#apple-link'}
-            >
-              <Icon name="apple" size="50" />
-            </Box>
           </Box>
         </Box>
       )}
 
-      {props?.giveByMail &&
-        (!currentBreakpoint.isSmall ? (
-          //desktop view only
+      {props?.giveByMail && (
+        <>
           <Styled.Rhombus>
             <Styled.GiveByMail>
               <Box fontWeight="bold">GIVE BY MAIL</Box>
@@ -258,9 +252,7 @@ function GiveWithPushpay(props = {}) {
               />
             </Styled.GiveByMail>
           </Styled.Rhombus>
-        ) : (
-          //mobile view only
-          <Box>
+          <Box display={{ md: 'none' }}>
             <Box>
               <Box as="h3" fontWeight="bold" color="primary" fontSize="l">
                 Give In Person
@@ -280,7 +272,8 @@ function GiveWithPushpay(props = {}) {
               <HtmlRenderer py="xl" htmlContent={props?.giveByMailDesc} />
             </Box>
           </Box>
-        ))}
+        </>
+      )}
     </Styled>
   );
 }

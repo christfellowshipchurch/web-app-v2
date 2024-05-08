@@ -117,7 +117,7 @@ export const faqGive = [
   {
     title: 'What happens to my money when I give to Christ Fellowship?',
     description:
-      'Christ Fellowship Church is an elder-governed, staff-led church with a passion to help you know God and grow in your relationships so that you can discover your purpose and impact the world. We adhere to high standards of biblical accountability, board governance, financial transparency, integrity, and proper use of charitable resources. Every year, we undergo a full financial audit by an independent CPA firm. Anyone interested in learning more about our stewardship and accountability practices can request a meeting through <span style="color: red;">[email].</span>',
+      'Christ Fellowship Church is an elder-governed, staff-led church with a passion to help you know God and grow in your relationships so that you can discover your purpose and impact the world. We adhere to high standards of biblical accountability, board governance, financial transparency, integrity, and proper use of charitable resources. Every year, we undergo a full financial audit by an independent CPA firm. Anyone interested in learning more about our stewardship and accountability practices can <a href="mailto:mike.simpson@christfellowship.church">request a meeting through email</a>.',
   },
   {
     title: 'Why should I tithe?',
@@ -140,7 +140,7 @@ export const faqGive = [
     <br/><br/> <a href="/heart-for-the-house" style="font-weight: bold;">Heart for the House</a> is a special offering we get to be a part of every year, where we give above our regular tithes and offerings. Heart for the House goes toward Christ Fellowship's efforts in reaching more people for Jesus—whether that's new campuses or new initiatives, both inside and outside the walls of our church. 
     <br/><br/> <a href="/2023-christ-birthday-offering" style="font-weight: bold;">Christ Birthday Offering</a> is a special offering we get to be a part of every Christmas, where we give above our regular tithes and offerings to help fund our mission projects throughout the year. Every dollar you give to Christ Birthday Offering will make a difference toward continuing our impact both locally and globally through our mission projects throughout the year. 
     <br/><br/> <span style="font-weight: bold;">The Kingdom Builders Fund</span> supports People, Places, and Partnerships in and through Christ Fellowship, including initiatives, strategic partnerships, and building projects in new regions. <a href="/kingdom-builders" style="font-weight: bold;">Learn more about Kingdom Builders.</a>
-    <br/><br/> <a href="#need-link" style="font-weight: bold;">The Crisis Fund</a> meets needs as soon as they arise and allows Christ Fellowship to be among the first on the ground when a disaster strikes in our region and around the world. 
+    <br/><br/> <a href="https://pushpay.com/g/christfellowship?fnd=rEIhabXgOBRvdQkOdc5l7A&lang=en" target="_blank" style="font-weight: bold;">The Crisis Fund</a> meets needs as soon as they arise and allows Christ Fellowship to be among the first on the ground when a disaster strikes in our region and around the world. 
     <br/><br/> <span style="font-weight: bold;">The Missions Fund</span> supports the current mission projects happening both locally and globally.`,
   },
 ];

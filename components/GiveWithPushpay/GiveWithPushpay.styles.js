@@ -31,6 +31,10 @@ const Rhombus = styled.div`
   margin: ${themeGet('space.xs')} ${themeGet('space.xs')};
   padding: ${themeGet('space.base')} ${themeGet('space.l')};
   transform: skewX(-15deg);
+  display: block;
+  @media screen and (max-width: ${themeGet('breakpoints.sm')}) {
+    display: none;
+  }
 `;
 
 const GiveByMail = styled.div`
