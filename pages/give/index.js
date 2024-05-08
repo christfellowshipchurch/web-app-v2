@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { FAQ, Layout, GiveWithPushpay, CardGridFeature } from 'components';
-import { Box, Button } from 'ui-kit';
+import { Box } from 'ui-kit';
 import faqData from 'components/FAQ/faqData';
 import { FeatureProvider } from 'providers';
 import {
@@ -84,7 +84,8 @@ export default function Give() {
               },
             }}
           />
-          <Button
+          {/* When there are more than 3 cards, redirect to a page with all of the cards */}
+          {/* <Button
             as="a"
             mt="l"
             display="flex"
@@ -96,7 +97,7 @@ export default function Give() {
             border="2px solid"
           >
             SEE ALL
-          </Button>
+          </Button> */}
         </Box>
       </Box>
 

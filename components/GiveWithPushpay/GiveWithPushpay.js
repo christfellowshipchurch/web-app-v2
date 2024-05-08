@@ -106,7 +106,13 @@ function GiveWithPushpay(props = {}) {
             </Box>
           </Box>
 
-          <Box borderRadius="base" backgroundColor="white" p="base" mt="base">
+          <Box
+            borderRadius="base"
+            backgroundColor="white"
+            py="l"
+            px="base"
+            mt="base"
+          >
             <Box display="flex" flexDirection="column" alignItems="flex-start">
               <Box as="h4" color="#39383A">
                 Gift Type
