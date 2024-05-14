@@ -5,7 +5,7 @@ import startCase from 'lodash/startCase';
 import includes from 'lodash/includes';
 
 import { ContentItemProvider } from 'providers';
-import { LocationSingle, JsonLD, SEO } from 'components';
+import { LocationSingle, JsonLD } from 'components';
 import OldLocationSingle from '../../components/LocationSingle/OldLocationSingle';
 
 import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
@@ -45,7 +45,6 @@ export default function Location(props = {}) {
     <>
       {!!metaData && (
         <>
-          <SEO {...metaData} />
           <JsonLD
             schema={{
               '@type': 'LocalBusiness',
