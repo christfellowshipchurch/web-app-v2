@@ -69,8 +69,12 @@ export default function Video(props = {}) {
               left="0px"
               background={
                 hasPlayed
-                  ? `radial-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.0))`
-                  : `radial-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.0)), url(${props?.poster})`
+                  ? `radial-gradient(rgba(0, 0, 0, ${
+                      props?.opacity || 0.6
+                    }), rgba(0, 0, 0, 0.0))`
+                  : `radial-gradient(rgba(0, 0, 0, ${
+                      props?.opacity || 0.6
+                    }), rgba(0, 0, 0, 0.0)), url(${props?.poster})`
               }
               backgroundSize="cover"
               backgroundPosition="center"
@@ -92,7 +96,7 @@ export default function Video(props = {}) {
                 <Icon
                   name="play"
                   color={props?.buttonColor ? props?.buttonColor : 'white'}
-                  size="40%"
+                  size={props?.iconSize || '40%'}
                   opacity="0.95"
                 />
               </Button>
