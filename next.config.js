@@ -33,6 +33,7 @@ module.exports = {
         permanent: false,
       }, // reboot this stupid thing again again
       { source: '/mom', destination: '/mothers-day-2024', permanent: true },
+      { source: '/kidsconvol', destination: 'https://my.longhollow.com/Registration/kidsconvolunteer2024', permanent: true },
       { source: '/freedom', destination: '/freedomfrompornographysupportgroup', permanent: true },
       { source: '/testimony', destination: '/ive-been-changed-from-addict-to-pastor', permanent: true },
       { source: '/host', destination: '/host-your-event-or-gathering-at-long-hollow', permanent: true },
