@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import includes from 'lodash/includes';
+import { find, keyBy } from 'lodash';
 
 const DEFAULT_TITLE = 'Christ Fellowship Church - Get the Most Out of Life';
 const DEFAULT_DESCRIPTION = `Christ Fellowship Church is a church in South Florida that helps you do more than just get by. Life is complicated. But it doesn’t have to be. We’re here to help you live life to the fullest.`;
@@ -9,7 +10,7 @@ const DEFAULT_IMAGE = '/metadata_image.jpg';
 const DEFAULT_KEYWORDS = `Christ Fellowship Church, Christ Fellowship, Church, Churches in South Florida, Churches Near Me, Churches in the Area`;
 const DEFAULT_URL = 'https://christfellowship.church';
 
-function gettitle(title) {
+function getTitle(title) {
   if (title === DEFAULT_TITLE || title === 'Home') return DEFAULT_TITLE;
   // note : a catch for titles that already contain 'Christ Fellowship Church' so it doens't create extra long titles.
   if (includes(title, 'Christ Fellowship Church')) {
@@ -27,37 +28,23 @@ function gettitle(title) {
  * https://nextjs.org/docs/api-reference/next/head
  */
 function SEO(props = {}) {
-  const title = gettitle(props[6]?.content || props?.title);
-  // Make it so it so it doesn't break if the order of props is changed - use props?.name instead of props[0]?.content
+  const metadata = keyBy(props?.metadata, 'name');
+  const title = getTitle(metadata?.title?.content || props?.title);
+  const description = metadata?.description?.content || props.description;
+  const image = metadata?.image?.content || props.image;
+  const keywords = metadata?.keywords?.content || props.keywords;
+  const url = metadata?.url?.content || props.url;
+  const siteName = find(metadata, { name: 'og:site_name' })?.content || title;
+  const type = find(metadata, { name: 'og:type' })?.content || props.type;
 
-  console.log(props);
-  // const description = props?.filter(
-  //   prop => prop?.name === 'description' && prop?.content
-  // );
-  // console.log(description);
-
-  const description = props[0]?.content || props.description;
-  const image = props[4]?.content || props.image;
-  const keywords = props[1]?.content || props.keywords;
-  const url = props[5]?.content || props.url;
-
-  console.log(props);
   return (
     <Head>
-      <meta
-        property="og:type"
-        content={props[2]?.content || props.type}
-        key="og:type"
-      />
+      <meta property="og:type" content={type || props.type} key="og:type" />
 
       {/* Title */}
       <title>{title}</title>
       <meta property="og:title" content={title} key="og:title" />
-      <meta
-        propert="og:site_name"
-        content={props[3]?.content || title}
-        key="og:site_name"
-      />
+      <meta propert="og:site_name" content={siteName} key="og:site_name" />
       <meta name="twitter:title" content={title} />
       {/* Keywords */}
       <meta name="keywords" content={keywords} />

@@ -50,7 +50,6 @@ function LocationSingle(props = {}) {
    * note : Loading state
    **/
 
-  const metaData = props?.data?.metadata;
   if (props.loading || !props?.data) {
     return (
       <Layout
@@ -102,10 +101,9 @@ function LocationSingle(props = {}) {
   const expectData = whatToExpectData(campus);
   const comingUpSoon = whatsComingUp[camelCase(campus)];
   const testimonies = testimonials[camelCase(campus)];
-
   return (
     <>
-      <SEO {...metaData} />
+      <SEO metadata={props?.data?.metadata} />
       <Layout
         contentMaxWidth={'100vw'}
         contentHorizontalPadding={'0'}
