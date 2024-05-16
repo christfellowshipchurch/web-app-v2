@@ -57,7 +57,7 @@ const Discover = () => {
   //   }
   // };
 
-  const handleClick = event => {
+  const handleClick = () => {
     setSearchVisible(true);
     if (values.text) {
       router.push({
@@ -93,6 +93,13 @@ const Discover = () => {
   function handleClearAllClick(event) {
     event.preventDefault();
     setSearchVisible(false);
+    router.push({
+      pathname: '/discover',
+      query: {
+        c: kebabCase(filterValues.title),
+        s: kebabCase(''),
+      },
+    });
     reset();
   }
 
