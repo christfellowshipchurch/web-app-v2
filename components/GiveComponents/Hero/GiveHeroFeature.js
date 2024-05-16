@@ -31,7 +31,12 @@ const GiveFeatureHero = props => {
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
       >
-        <Box display="flex" flexDirection="column" justifyContent="center">
+        <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          ml={{ lg: 'base' }}
+        >
           <Box
             fontSize={{ _: 36, md: 54, lg: 46, xl: 64 }}
             color="white"

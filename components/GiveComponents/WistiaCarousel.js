@@ -90,7 +90,7 @@ const WistiaCarousel = () => {
                   mt={index !== 0 && { _: 'base', md: 0 }}
                   mb="s"
                 />
-                <Box as="h2" mt={{ _: 'base', md: 'l' }} mb="base">
+                <Box as="h2" mt="base" width={{ md: '220px' }}>
                   {card?.title}
                 </Box>
               </Box>
