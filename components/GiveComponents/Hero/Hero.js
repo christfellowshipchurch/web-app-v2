@@ -2,12 +2,10 @@ import React from 'react';
 import { Box, Button } from 'ui-kit';
 import GiveHeroFeature from './GiveHeroFeature';
 const Hero = () => {
-  const callToAction = [
-    {
-      title: 'GIVE NOW',
-      link: '#give',
-    },
-  ];
+  const callToAction = {
+    title: 'GIVE NOW',
+    link: '#give',
+  };
 
   return (
     <Box

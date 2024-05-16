@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ThemeProvider as SCThemeProvider } from 'styled-components';
 import colors from 'ui-kit/_config/colors';
-import { Button, Image, Box, Icon } from 'ui-kit';
+import { Button, Image, Box } from 'ui-kit';
 import { useCurrentBreakpoint } from 'hooks';
 import {
   Layout,

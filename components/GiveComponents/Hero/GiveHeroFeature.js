@@ -2,10 +2,8 @@ import React from 'react';
 import { Box, Image } from 'ui-kit';
 import Styled from './GiveHeroFeature.styles';
 
-const GiveFeatureHero = (
-  { title, description, cta, backgroundImage },
-  ...props
-) => {
+const GiveFeatureHero = props => {
+  const { description, cta, backgroundImage } = props;
   return (
     <Box
       backgroundImage={{ lg: 'url(/give/hero.jpg)' }}
@@ -68,7 +66,9 @@ const GiveFeatureHero = (
           >
             {description}
           </Box>
-          <Styled.HeroButton variant="secondary">GIVE NOW</Styled.HeroButton>
+          <Styled.HeroButton variant="secondary" as="a" href={cta?.link}>
+            {cta?.title}
+          </Styled.HeroButton>
         </Box>
       </Box>
       <Box width={{ _: '100vw', lg: '50vw' }}>

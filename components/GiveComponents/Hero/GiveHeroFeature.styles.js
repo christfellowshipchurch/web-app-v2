@@ -11,6 +11,8 @@ const GiveHeroButton = styled(Button)`
   width: 160px;
   text-decoration: none;
   font-weight: bold;
+  display: flex;
+  justify-content: center;
 
   font-size: 18px;
   padding: ${themeGet('space.s')};
@@ -32,6 +34,12 @@ const GiveHeroButton = styled(Button)`
     border-radius: 6px;
   }
 
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: white;
+    color: ${themeGet('colors.neutrals.900')};
+  }
   ${system}
 `;
 
