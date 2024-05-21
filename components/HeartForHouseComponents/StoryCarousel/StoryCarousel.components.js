@@ -21,14 +21,7 @@ export const CarouselSlide = ({ slide }) => {
       >
         <Box flex={slide?.aspectRatio === '4by3' ? 1 : 2}>
           {slide?.wistiaId ? (
-            <Video
-              opacity={0.2}
-              iconSize="25%"
-              poster={slide?.image}
-              src={
-                'https://embed.wistia.com/deliveries/bd75d85f4d2bbfb60db413ef88db6f2f.mp4'
-              }
-            />
+            <Video wistiaId={slide?.wistiaId} />
           ) : (
             <Image aspectRatio="16by9" source={slide?.image} />
           )}
