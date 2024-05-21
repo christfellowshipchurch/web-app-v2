@@ -12,6 +12,7 @@ import {
   Testimonials,
   HeroListFeature,
   Video,
+  SEO,
 } from 'components';
 import { Box, Button, Divider, Loader } from 'ui-kit';
 
@@ -100,12 +101,10 @@ function LocationSingle(props = {}) {
   const expectData = whatToExpectData(campus);
   const comingUpSoon = whatsComingUp[camelCase(campus)];
   const testimonies = testimonials[camelCase(campus)];
-
   return (
     <>
+      <SEO metadata={props?.data?.metadata} />
       <Layout
-        title={props?.data?.title}
-        seoMetaTags={props?.data?.metadata}
         contentMaxWidth={'100vw'}
         contentHorizontalPadding={'0'}
         contentVerticalPadding={'0'}
