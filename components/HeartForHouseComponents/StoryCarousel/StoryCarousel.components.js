@@ -10,16 +10,16 @@ export const CarouselSlide = ({ slide }) => {
       <Box
         boxShadow="xl"
         bg="white"
-        flexDirection={{ _: 'column', lg: 'row' }}
-        display="flex"
-        alignItems={{ _: 'flex-start', lg: 'center' }}
+        display={{ _: 'block', md: 'flex' }}
+        flexDirection="row"
+        alignItems="center"
         justifyContent="center"
         gridColumnGap="base"
         gridRowGap="base"
         p={{ _: 'base', md: 'l' }}
         minHeight={400}
       >
-        <Box flex={slide?.aspectRatio === '4by3' ? 1 : 2}>
+        <Box flex={2} mb="base">
           {slide?.wistiaId ? (
             <Video wistiaId={slide?.wistiaId} />
           ) : (
