@@ -24,7 +24,7 @@ export const CAROUSEL_SLIDE_DATA = [
     content: `“While Logan’s life ended in a tragic and unexpected way, his journey still continues through our family. Today, you’ll find us serving every Sunday in the place that was always there for us.”`,
     author: 'TRACY & JONATHAN',
     image: '/heart-for-house/carousel/inverso-family.jpg',
-    wistiaId: null,
+    wistiaId: 'wn2dy0nadm',
     url: 'https://issuu.com/christfellowshipchurch/docs/clients_heartforthehouse_print_handouts_7.5x10_dig/26?fr=sYzY1ZDcyMzY3MDM',
     aspectRatio: '16by9',
   },
