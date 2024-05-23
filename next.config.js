@@ -31,7 +31,7 @@ module.exports = {
         source: '/app-link/:slug',
         destination: '/:slug',
         permanent: false,
-      }, // reboot this stupid thing again again
+      }, // reboot this stupid thing again again notes
       { source: '/mom', destination: '/mothers-day-2024', permanent: true },
       { source: '/stayconnected', destination: 'https://longhollow.com/connect/connect-with-us', permanent: true },
       { source: '/kidsconvol', destination: 'https://my.longhollow.com/Registration/kidsconvolunteer2024', permanent: true },
