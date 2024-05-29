@@ -115,7 +115,7 @@ const LocationSearch = () => {
           <LocationsLoader mb="l" loading={true} />
         ) : (
           <CardGrid
-            mb="xl"
+            mb={{ _: 0, md: 'base' }}
             mx={{ _: 'base', md: 'auto' }}
             px={{ _: '0', md: 'l', lg: 'xl' }}
             maxWidth={1100}
@@ -186,9 +186,6 @@ const LocationSearch = () => {
       </Box>
 
       {/* Prison Location */}
-      <Box as="h2" textAlign="center">
-        Additional Locations
-      </Box>
       <Box mx="auto" mb="xl" maxWidth={{ _: '90vw', md: 600 }}>
         <CustomLink
           as="a"
