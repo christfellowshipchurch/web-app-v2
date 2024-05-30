@@ -20,7 +20,7 @@ const Hero = () => {
         description="When you give, you’re a part of making a difference in the lives of people right here in our region and around the world."
         cta={callToAction}
       />
-      <Box mt="l" textAlign="center" maxWidth="580px">
+      <Box mt="l" textAlign="center" maxWidth="780px">
         <Box px="base">
           <Box as="h1" mt="base" mb="base">
             Why We Give
@@ -30,11 +30,12 @@ const Hero = () => {
             mb={{ _: 'base', md: 0 }}
             mx={{ _: 's', md: 0 }}
             display="inline"
+            fontSize={18}
+            lineHeight="26px"
           >
             <Box display="inline" fontWeight="bold" textDecoration="underline">
               We give because God is a giver.
             </Box>{' '}
-            <Box as="br" display={{ _: 'block', md: 'none' }} />
             His very heart and nature, as shown throughout Scripture, is
             generosity. Because we’re created in His image, we’re most like Him
             when we give and steward all that He has entrusted to us. When we

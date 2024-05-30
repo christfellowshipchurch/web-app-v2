@@ -22,19 +22,15 @@ export default function Give() {
       <GiveHero />
 
       {/* Pushpay */}
-      <Box id="give">
-        <Box id="give">
-          <GiveWithPushpay
-            title="Give Online"
-            subtitle="Give safely and securely online to Christ Fellowship Church. Give a one-time gift or set up a recurring gift."
-            buttonColor="primary"
-            amountColor="white"
-            backgroundImage="url(/give/give-pushpay-background.png)"
-            buttonLink="https://pushpay.com/g/christfellowship"
-            otherOnlineOptions
-          />
-        </Box>
-      </Box>
+      <GiveWithPushpay
+        title="Give Online"
+        subtitle="Give safely and securely online to Christ Fellowship Church. Give a one-time gift or set up a recurring gift."
+        buttonColor="primary"
+        amountColor="white"
+        backgroundImage="url(/give/give-pushpay-background.png)"
+        buttonLink="https://pushpay.com/g/christfellowship"
+        otherOnlineOptions
+      />
 
       {/* Ways to Give */}
       <WaysToGive />

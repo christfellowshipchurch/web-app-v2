@@ -58,7 +58,7 @@ function GiveWithPushpay(props = {}) {
   };
 
   return (
-    <Styled backgroundImage={props?.backgroundImage}>
+    <Styled id="give" backgroundImage={props?.backgroundImage}>
       <Box
         bg="none"
         py={{ _: 'xxs' }}

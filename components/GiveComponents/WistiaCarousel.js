@@ -16,7 +16,7 @@ const WistiaCarousel = () => {
         as="h1"
         fontSize={{ _: 28, md: 40 }}
         my="base"
-        color="#0092BC"
+        color="secondary"
         maxWidth={{ md: 800 }}
         mx={{ _: 's', md: 0 }}
         textAlign="center"
@@ -76,13 +76,12 @@ const WistiaCarousel = () => {
               ml={index !== 0 && { md: 'l' }}
               mr={index === 0 && { md: 'l' }}
               alignItems="center"
-              justifyContent="space-between"
+              justifyContent="flex-start"
               flexDirection="column"
               mx={{ md: 's' }}
               width={{ _: '80vw', md: 260 }}
-              color="#818181"
             >
-              <Box>
+              <Box color="#818181">
                 <Icon
                   width="80px"
                   height="80px"
@@ -90,11 +89,11 @@ const WistiaCarousel = () => {
                   mt={index !== 0 && { _: 'base', md: 0 }}
                   mb="s"
                 />
-                <Box as="h2" mt="base" width={{ md: '220px' }}>
+                <Box mb="base" as="h2" mt="base" width={{ md: '220px' }}>
                   {card?.title}
                 </Box>
               </Box>
-              <HtmlRenderer htmlContent={card?.htmlContent} />
+              <Box as="p">{card?.htmlContent}</Box>
             </Box>
           </Box>
         ))}
