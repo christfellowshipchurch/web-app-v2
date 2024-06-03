@@ -1,5 +1,14 @@
 export const CAROUSEL_SLIDE_DATA = [
   {
+    title: 'THE INVERSO FAMILY',
+    content: `“While Logan’s life ended in a tragic and unexpected way, his journey still continues through our family. Today, you’ll find us serving every Sunday in the place that was always there for us.”`,
+    author: 'TRACY & JONATHAN',
+    image: '/heart-for-house/carousel/inverso-family.jpg',
+    wistiaId: 'wn2dy0nadm',
+    url: 'https://issuu.com/christfellowshipchurch/docs/clients_heartforthehouse_print_handouts_7.5x10_dig/26?fr=sYzY1ZDcyMzY3MDM',
+    aspectRatio: '16by9',
+  },
+  {
     title: 'CORRADO AND DANTE',
     content:
       '“Christ Fellowship got there first in my life by being the rock I grew up on, and the reason my faith has grown to where it is today.” ',
@@ -17,15 +26,6 @@ export const CAROUSEL_SLIDE_DATA = [
     image: '/heart-for-house/carousel/bianca-tejeda.jpg',
     wistiaId: 'jrgb56nrc7',
     url: 'https://issuu.com/christfellowshipchurch/docs/clients_heartforthehouse_print_handouts_7.5x10_dig/14?fr=sMDNlZTcyMzY2OTk',
-    aspectRatio: '16by9',
-  },
-  {
-    title: 'THE INVERSO FAMILY',
-    content: `“While Logan’s life ended in a tragic and unexpected way, his journey still continues through our family. Today, you’ll find us serving every Sunday in the place that was always there for us.”`,
-    author: 'TRACY & JONATHAN',
-    image: '/heart-for-house/carousel/inverso-family.jpg',
-    wistiaId: 'wn2dy0nadm',
-    url: 'https://issuu.com/christfellowshipchurch/docs/clients_heartforthehouse_print_handouts_7.5x10_dig/26?fr=sYzY1ZDcyMzY3MDM',
     aspectRatio: '16by9',
   },
 ];
