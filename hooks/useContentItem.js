@@ -175,6 +175,7 @@ export const GET_CONTENT_ITEM = gql`
 
       ... on MediaContentItem {
         wistiaId
+        videoLink
         metadata {
           name
           content
