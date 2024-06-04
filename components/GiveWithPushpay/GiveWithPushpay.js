@@ -209,10 +209,9 @@ function GiveWithPushpay(props = {}) {
       {props?.otherOnlineOptions && (
         <Box>
           <Box as="h2">Other Online Options</Box>
-          <Box fontStyle="italic" fontSize="13px">
-            Note: Online gifts given through ApplePay, Cash App, or Venmo cannot
-            be designated to a{' '}
-            <Box as="br" display={{ _: 'none', md: 'block' }} />
+          <Box fontStyle="italic" fontSize="16px">
+            Note: Online gifts given through PayPal or Venmo cannot be
+            designated to a <Box as="br" display={{ _: 'none', md: 'block' }} />
             specific fund or campus and will not be on your End-of-Year Giving
             Statement.
           </Box>
