@@ -15,22 +15,33 @@ import {
 } from 'ui-kit';
 import { Layout, CustomLink } from 'components';
 import { useAnalytics } from 'providers/AnalyticsProvider';
-import { startCase } from 'lodash';
+import { capitalize, includes, startCase, words } from 'lodash';
 
 const CARDS_LOADING = 6;
 
-export default function SisterhoodPodcastSeason() {
-  const { push } = useRouter();
-  const analytics = useAnalytics();
-  const router = useRouter();
-  const routerTitle = router.query.title;
+function extractSeasonNameAndTitle(routerTitle) {
   let seasonName;
-  // Check if the season name is the season number or a whole sentence like 'Summer With Friends'
-  if (!isNaN(routerTitle)) {
-    seasonName = `Season ${routerTitle}`;
+  let seasonTitle;
+
+  // If the Season name starts with "season", we will want to format it with season number and name. If else we will just capitalize the title.
+  if (includes(routerTitle, 'season')) {
+    seasonName = capitalize(words(routerTitle).slice(0, 2).join(' '));
+    seasonTitle = `${seasonName} | ${startCase(
+      words(routerTitle).slice(2).join(' ')
+    )}`;
   } else {
     seasonName = startCase(routerTitle);
+    seasonTitle = startCase(routerTitle);
   }
+  return { seasonName, seasonTitle };
+}
+
+export default function SisterhoodPodcastSeason() {
+  const { push, query } = useRouter();
+  const analytics = useAnalytics();
+
+  const { seasonName, seasonTitle } = extractSeasonNameAndTitle(query?.title);
+
   const { contentItems, loading } = useSisterhoodPodcast({
     variables: { seasonName: seasonName },
     fetchPolicy: 'cache-and-network',
@@ -39,14 +50,14 @@ export default function SisterhoodPodcastSeason() {
   //Segment Page Tracking
   useEffect(() => {
     analytics.page({
-      title: `View All "${seasonName}" Category`,
+      title: `View All "${seasonTitle}" Category`,
       mediaType: 'Information',
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <Layout title={seasonName}>
+    <Layout title={seasonTitle}>
       <Cell
         as="main"
         maxWidth={utils.rem('1100px')}
@@ -60,7 +71,7 @@ export default function SisterhoodPodcastSeason() {
           mb="l"
         >
           <Box as="h1" mb="0">
-            {seasonName}
+            {seasonTitle}
           </Box>
           <Box>
             <Button
