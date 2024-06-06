@@ -83,7 +83,10 @@ function LocationSingle(props = {}) {
           >
             {props?.data?.title}
           </Box>
-          <Box
+          {/**
+           * note : I'm leavin this subtitle here in case we want to use it in the future
+           **/}
+          {/* <Box
             px="base"
             fontSize={{ _: 24, md: 24, lg: 30 }}
             color="white"
@@ -91,7 +94,7 @@ function LocationSingle(props = {}) {
             mt={{ _: 10, sm: 0, md: 8, lg: 8 }}
           >
             A church that wants to help you live the life you were created for.
-          </Box>
+          </Box> */}
         </Box>
       </Box>
 
