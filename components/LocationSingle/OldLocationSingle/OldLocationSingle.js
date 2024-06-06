@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { createMarkup } from 'utils';
 
-import { ContentLayout, Layout, NotFound } from 'components';
+import { ContentLayout, Layout, NotFound, Video } from 'components';
 
 import { Box, Cell, Loader, Longform, utils } from 'ui-kit';
 import Styled from './OldLocationSingle.styles';
 
 function LocationSingle(props = {}) {
   const coverImage = props?.data?.coverImage?.sources[0]?.uri;
+  const videoLink = props?.data?.videoLink;
 
   if (props.loading) {
     return (
@@ -50,27 +51,50 @@ function LocationSingle(props = {}) {
         justifyContent="center"
         alignItems="end"
       >
-        <Styled.Cover
-          src={coverImage}
-          width="100%"
-          maxWidth={1100}
-          height={{ _: 300, md: 350, lg: 470 }}
-          borderRadius={{ _: 'none', lg: 'base' }}
-          mt={{ _: 0, md: 0, lg: 'l' }}
-          mx="auto"
-          overlay
-        />
-        <Box
-          as="h1"
-          textAlign="center"
-          color="white"
-          position="absolute"
-          mb="base"
-          zIndex={8}
-          mx="base"
-          bottom="0"
-        >
-          {props?.data?.title}
+        {videoLink ? (
+          <Styled.Cover
+            width="100%"
+            height={{ _: 350, lg: 600 }}
+            borderRadius={{ _: 'none', lg: 'base' }}
+            mx="auto"
+            overlay
+          >
+            <Video wistiaId={videoLink} />
+          </Styled.Cover>
+        ) : (
+          <Styled.Cover
+            width="100%"
+            src={coverImage}
+            height={{ _: 350, lg: 600 }}
+            borderRadius={{ _: 'none', lg: 'base' }}
+            mx="auto"
+            overlay
+          />
+        )}
+        <Box textAlign="center" zIndex={1} position="absolute" mb="l">
+          <Box
+            as="h1"
+            fontSize={{ _: 40, md: 48, lg: 60 }}
+            color="white"
+            textShadow="4px 4px 4px rgb(0 0 0 / 30%)"
+            mt="l"
+            maxWidth={{ _: 500, md: 600, lg: 1200 }}
+            mx="auto"
+          >
+            {props?.data?.title}
+          </Box>
+          {/**
+           * note : I'm leavin this subtitle here in case we want to use it in the future
+           **/}
+          {/* <Box
+            px="base"
+            fontSize={{ _: 24, md: 24, lg: 30 }}
+            color="white"
+            textShadow="4px 4px 4px rgb(0 0 0 / 30%)"
+            mt={{ _: 10, sm: 0, md: 8, lg: 8 }}
+          >
+            A church that wants to help you live the life you were created for.
+          </Box> */}
         </Box>
       </Box>
 
