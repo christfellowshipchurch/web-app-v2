@@ -15,6 +15,7 @@ import {
 } from 'ui-kit';
 import { Layout, CustomLink } from 'components';
 import { useAnalytics } from 'providers/AnalyticsProvider';
+import { startCase } from 'lodash';
 
 const CARDS_LOADING = 6;
 
@@ -22,24 +23,30 @@ export default function SisterhoodPodcastSeason() {
   const { push } = useRouter();
   const analytics = useAnalytics();
   const router = useRouter();
-  const seasonNumber = parseInt(router.query.title);
-
+  const routerTitle = router.query.title;
+  let seasonName;
+  // Check if the season name is the season number or a whole sentence like 'Summer With Friends'
+  if (!isNaN(routerTitle)) {
+    seasonName = `Season ${routerTitle}`;
+  } else {
+    seasonName = startCase(routerTitle);
+  }
   const { contentItems, loading } = useSisterhoodPodcast({
-    variables: { seasonNumber: seasonNumber },
+    variables: { seasonName: seasonName },
     fetchPolicy: 'cache-and-network',
   });
 
   //Segment Page Tracking
   useEffect(() => {
     analytics.page({
-      title: `View All Season "${seasonNumber}" Category`,
+      title: `View All "${seasonName}" Category`,
       mediaType: 'Information',
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <Layout title={`Season ${seasonNumber}`}>
+    <Layout title={seasonName}>
       <Cell
         as="main"
         maxWidth={utils.rem('1100px')}
@@ -53,7 +60,7 @@ export default function SisterhoodPodcastSeason() {
           mb="l"
         >
           <Box as="h1" mb="0">
-            Season {seasonNumber}
+            {seasonName}
           </Box>
           <Box>
             <Button
