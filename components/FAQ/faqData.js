@@ -297,7 +297,7 @@ export const faqHeartForHouseData = [
     color: '#414141',
     fontStyle: 'normal',
     title: 'How do I give to Heart for the House?',
-    description: `On Sunday, May 19, you can be a part of giving to this special offering called Heart for the House by either giving a one-time gift online AND/OR planning your giving goal for 2024 and setting up a recurring gift online through December 31 until your goal is met. You can also give in person using a giving container in service or at a giving station with the envelope available at your location.<br/><br/>
+    description: `You can be a part of giving to this special offering called Heart for the House by either giving a one-time gift online AND/OR planning your giving goal for 2024 and setting up a recurring gift online through December 31 until your goal is met. You can also give in person using a giving container in service or at a giving station with the envelope available at your location.<br/><br/>
       Gifts can also be mailed to:<br/>
       Christ Fellowship Church Contributions<br/>
       5343 Northlake Blvd. Palm Beach Gardens, FL 33418<br/>

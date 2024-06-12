@@ -48,7 +48,7 @@ const HeartforHouseGive = ({ id }) => {
             OF THE HEART
           </Box>
           <Box fontSize="l" color="white" mt="s">
-            GIVE IN PERSON ON MAY 19 OR ONLINE & BY MAIL ANYTIME.
+            GIVE IN PERSON OR ONLINE & BY MAIL ANYTIME.
           </Box>
           <Box
             my="l"

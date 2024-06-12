@@ -15,31 +15,49 @@ import {
 } from 'ui-kit';
 import { Layout, CustomLink } from 'components';
 import { useAnalytics } from 'providers/AnalyticsProvider';
+import { capitalize, includes, startCase, words } from 'lodash';
 
 const CARDS_LOADING = 6;
 
+function extractSeasonNameAndTitle(routerTitle) {
+  let seasonName;
+  let seasonTitle;
+
+  // If the Season name starts with "season", we will want to format it with season number and name. If else we will just capitalize the title.
+  if (includes(routerTitle, 'season')) {
+    seasonName = capitalize(words(routerTitle).slice(0, 2).join(' '));
+    seasonTitle = `${seasonName} | ${startCase(
+      words(routerTitle).slice(2).join(' ')
+    )}`;
+  } else {
+    seasonName = startCase(routerTitle);
+    seasonTitle = startCase(routerTitle);
+  }
+  return { seasonName, seasonTitle };
+}
+
 export default function SisterhoodPodcastSeason() {
-  const { push } = useRouter();
+  const { push, query } = useRouter();
   const analytics = useAnalytics();
-  const router = useRouter();
-  const seasonNumber = parseInt(router.query.title);
+
+  const { seasonName, seasonTitle } = extractSeasonNameAndTitle(query?.title);
 
   const { contentItems, loading } = useSisterhoodPodcast({
-    variables: { seasonNumber: seasonNumber },
+    variables: { seasonName: seasonName },
     fetchPolicy: 'cache-and-network',
   });
 
   //Segment Page Tracking
   useEffect(() => {
     analytics.page({
-      title: `View All Season "${seasonNumber}" Category`,
+      title: `View All "${seasonTitle}" Category`,
       mediaType: 'Information',
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <Layout title={`Season ${seasonNumber}`}>
+    <Layout title={seasonTitle}>
       <Cell
         as="main"
         maxWidth={utils.rem('1100px')}
@@ -53,7 +71,7 @@ export default function SisterhoodPodcastSeason() {
           mb="l"
         >
           <Box as="h1" mb="0">
-            Season {seasonNumber}
+            {seasonTitle}
           </Box>
           <Box>
             <Button

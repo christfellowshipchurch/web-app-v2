@@ -1,35 +1,30 @@
-import { useCurrentBreakpoint } from 'hooks';
 import React from 'react';
 import styled from 'styled-components';
 
 import { Box, Icon, Image, system } from 'ui-kit';
+import Video from 'components/Video';
 
 export const CarouselSlide = ({ slide }) => {
-  const currentBreakpoint = useCurrentBreakpoint();
-  const isLarge =
-    currentBreakpoint?.name === 'lg' || currentBreakpoint?.name === 'xl';
-
   return (
     <Box my={{ _: 'base', md: 'xl' }} flex="0 0 100%" p="base">
       <Box
         boxShadow="xl"
         bg="white"
-        flexDirection={{ _: 'column', lg: 'row' }}
-        display="flex"
-        alignItems={{ _: 'flex-start', lg: 'center' }}
+        display={{ _: 'block', md: 'flex' }}
+        flexDirection="row"
+        alignItems="center"
         justifyContent="center"
         gridColumnGap="base"
         gridRowGap="base"
         p={{ _: 'base', md: 'l' }}
         minHeight={400}
       >
-        <Box flex={slide?.aspectRatio === '4by3' ? 1 : 2}>
-          <Image
-            maxHeight={300}
-            aspectRatio={!isLarge ? '16by9' : slide?.aspectRatio}
-            source={slide.image}
-            borderRadius="0px"
-          />
+        <Box flex={2} mb="base">
+          {slide?.wistiaId ? (
+            <Video wistiaId={slide?.wistiaId} />
+          ) : (
+            <Image aspectRatio="16by9" source={slide?.image} />
+          )}
         </Box>
         <Box flex="1.5">
           <Box

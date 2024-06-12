@@ -115,7 +115,7 @@ const LocationSearch = () => {
           <LocationsLoader mb="l" loading={true} />
         ) : (
           <CardGrid
-            mb="xl"
+            mb={{ _: 0, md: 'base' }}
             mx={{ _: 'base', md: 'auto' }}
             px={{ _: '0', md: 'l', lg: 'xl' }}
             maxWidth={1100}
@@ -186,12 +186,21 @@ const LocationSearch = () => {
       </Box>
 
       {/* Prison Location */}
-      <Box fontWeight="bold" textAlign="center" mb="xxl" fontSize="16px">
-        Learn more about Christ Fellowship's reach in{' '}
-        <Box as="a" textDecoration="none" href="/locations/prison-locations">
-          local prisons
-        </Box>
-        .
+      <Box mx="auto" mb="xl" maxWidth={{ _: '90vw', md: 600 }}>
+        <CustomLink
+          as="a"
+          boxShadow="none"
+          href={'/locations/prison-locations'}
+          Component={HorizontalHighlightCard}
+          coverImage={'/location-pages/prison-location.jpeg'}
+          coverImageLabelBgColor="white"
+          coverImageOverlay={true}
+          title={'Prison Locations'}
+          type="HIGHLIGHT_SMALL"
+          mobileHeight="150px"
+          loading={loading}
+          width="100%"
+        />
       </Box>
     </Layout>
   );
