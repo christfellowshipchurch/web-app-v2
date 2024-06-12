@@ -1,31 +1,42 @@
-import React from 'react';
+import { useState } from 'react';
 import Styled from './GiveWithPushpay.styles';
 import { HtmlRenderer, Select, Button, Box, Icon } from 'ui-kit';
 import { useForm } from 'hooks';
 import PropTypes from 'prop-types';
-import { useCurrentBreakpoint } from 'hooks';
-
-const campuses = [
-  'Belle Glade',
-  'Boca Raton',
-  'Boynton Beach',
-  'CF Everywhere (Online)',
-  'Downtown West Palm Beach',
-  'En Español',
-  'Jupiter',
-  'Okeechobee',
-  'Palm Beach Gardens',
-  'Port St. Lucie',
-  'Royal Palm Beach',
-  'Stuart',
-  'Trinity',
-  'Vero Beach',
-  'Westlake',
-];
+import { colorHover } from 'utils';
 
 function GiveWithPushpay(props = {}) {
+  const [active, setActive] = useState('giveOneTime');
+
+  const givingType = props?.isCBO
+    ? ['Christ Birthday Offering']
+    : [
+        'Tithes & Offerings',
+        'Heart for the House',
+        'Kingdom Builders',
+        'Christ Birthday Offering',
+        'Missions',
+      ];
+
+  const campuses = [
+    'Belle Glade',
+    'Boca Raton',
+    'Boynton Beach',
+    'CF Everywhere (Online)',
+    'Downtown West Palm Beach',
+    'En Español',
+    'Jupiter',
+    'Okeechobee',
+    'Palm Beach Gardens',
+    'Port St. Lucie',
+    'Royal Palm Beach',
+    'Stuart',
+    'Trinity',
+    'Vero Beach',
+    'Westlake Loxahatchee',
+  ];
+
   const { values, setValues, handleChange } = useForm();
-  const currentBreakpoint = useCurrentBreakpoint();
 
   const handleAmount = event => {
     const { name, value } = event.target;
@@ -47,21 +58,10 @@ function GiveWithPushpay(props = {}) {
   };
 
   return (
-    <Styled backgroundImage={props?.backgroundImage}>
-      {props?.title && (
-        <Box as="h1" color="secondary">
-          {props?.title}
-        </Box>
-      )}
-      {props?.subtitle && !currentBreakpoint.isSmall && (
-        <Box as="h4" color="secondary" fontWeight="normal">
-          {props?.subtitle}
-        </Box>
-      )}
+    <Styled id="give" backgroundImage={props?.backgroundImage}>
       <Box
-        my="l"
         bg="none"
-        py={{ _: 'xxs', md: 's' }}
+        py={{ _: 'xxs' }}
         px={{ _: 's', md: 'l' }}
         borderRadius="base"
         display="flex"
@@ -69,6 +69,21 @@ function GiveWithPushpay(props = {}) {
         justifyContent="center"
         alignItems="center"
       >
+        {props?.title && (
+          <Box as="h1" color={props?.titleColor}>
+            {props?.title}
+          </Box>
+        )}
+        {props?.subtitle && (
+          <Box
+            as="h4"
+            display={{ _: 'none', md: 'block' }}
+            color={props?.subtitleColor}
+            fontWeight="normal"
+          >
+            {props?.subtitle}
+          </Box>
+        )}
         <Box
           as="form"
           display="flex"
@@ -76,21 +91,6 @@ function GiveWithPushpay(props = {}) {
           justifyContent="center"
           alignItems="center"
         >
-          <Box as="h2" color="secondary">
-            Give Online
-          </Box>
-          <Select
-            mt="s"
-            width="330px"
-            borderColor="primary"
-            onChange={handleChange}
-            name="campus"
-          >
-            <Select.Option value={null}>Select a Campus</Select.Option>
-            {campuses.map(name => {
-              return <Select.Option>{name}</Select.Option>;
-            })}
-          </Select>
           <Box display="flex" flexDirection="column">
             <Styled.Input
               value={'$' + (values.amount ?? '0.00')}
@@ -98,34 +98,156 @@ function GiveWithPushpay(props = {}) {
               onClick={handleRemoveZeros}
               name="amount"
               autocomplete="off"
+              color={props?.amountColor}
             />
 
-            <Box
-              mb="base"
-              mt="-5px"
-              color="neutrals.500"
-              fontSize="30px"
-              fontWeight="bold"
-            >
-              Your gift amount
+            <Box as="h3" mb="base" mt="-5px" color={props?.giftTextColor}>
+              Enter your gift amount
             </Box>
           </Box>
+
+          <Box
+            borderRadius="base"
+            backgroundColor="white"
+            py="l"
+            px="base"
+            mt="base"
+          >
+            <Box display="flex" flexDirection="column" alignItems="flex-start">
+              <Box as="h4" color="#39383A">
+                Gift Type
+              </Box>
+              <Box display="flex" flexDirection="row">
+                <Styled.GiveOneTimeButton
+                  selected={active}
+                  onClick={() => setActive('giveOneTime')}
+                >
+                  Give one time
+                </Styled.GiveOneTimeButton>
+
+                <Styled.SetRecurringButton
+                  selected={active}
+                  onClick={() => setActive('giveRecurring')}
+                >
+                  Set up recurring
+                </Styled.SetRecurringButton>
+              </Box>
+            </Box>
+
+            <Box
+              mt="l"
+              display="flex"
+              flexDirection="column"
+              alignItems="flex-start"
+            >
+              <Box as="h4" color="#39383A">
+                Campus
+              </Box>
+              <Select
+                mt="xs"
+                width={{ _: '300px', md: '600px' }}
+                borderColor="primary"
+                onChange={handleChange}
+                name="campus"
+              >
+                <Select.Option value={null}>Select a Campus</Select.Option>
+                {campuses.map(name => {
+                  return <Select.Option>{name}</Select.Option>;
+                })}
+              </Select>
+            </Box>
+
+            <Box
+              mt="l"
+              mb="base"
+              display="flex"
+              flexDirection="column"
+              alignItems="flex-start"
+            >
+              <Box as="h4" color="#39383A">
+                Giving Type
+              </Box>
+              <Select
+                mt="xs"
+                width={{ _: '300px', md: '600px' }}
+                borderColor="primary"
+                onChange={handleChange}
+                name="givingType"
+              >
+                <Select.Option value={null}>Select a Giving Type</Select.Option>
+                {givingType.map(name => {
+                  return <Select.Option>{name}</Select.Option>;
+                })}
+              </Select>
+            </Box>
+          </Box>
+
           <Button
             as="a"
             target="blank"
-            href={props?.buttonLink + values.campus + '&a=' + values.amount}
+            mt="xl"
+            mb="l"
+            href={
+              props?.buttonLink +
+              '?f[0]=' +
+              values.campus +
+              '&a=' +
+              values.amount +
+              '&f[1]=' +
+              values.givingType +
+              '&' +
+              (active === 'giveRecurring' && 'r=weekly')
+            }
             bg={props?.buttonColor}
-            px="xl"
+            px="l"
           >
-            {' '}
-            GIVE WITH <Icon name="pushPay" /> PUSHPAY
+            GIVE SAFELY & SECURELY <Icon name="pushPay" />
           </Button>
-          c
         </Box>
       </Box>
-      {props?.showOtherGiveOptions &&
-        (!currentBreakpoint.isSmall ? (
-          //web view only
+
+      {props?.otherOnlineOptions && (
+        <Box>
+          <Box as="h2">Other Online Options</Box>
+          <Box fontStyle="italic" fontSize="16px">
+            Note: Online gifts given through PayPal or Venmo cannot be
+            designated to a <Box as="br" display={{ _: 'none', md: 'block' }} />
+            specific fund or campus and will not be on your End-of-Year Giving
+            Statement.
+          </Box>
+
+          <Box
+            display="grid"
+            gridTemplateColumns="repeat(2, 1fr)"
+            gridColumnGap="s"
+            maxWidth="12.5rem"
+            mt="l"
+            mx="auto"
+          >
+            <Box
+              as="a"
+              color="white"
+              hoverColor={colorHover('white')}
+              target="_blank"
+              href={'https://www.paypal.com/paypalme/ChristFellowshipFL'}
+            >
+              <Icon name="payPal" size="50" />
+            </Box>
+            <Box
+              as="a"
+              color="white"
+              hoverColor={colorHover('white')}
+              target="_blank"
+              href={'https://account.venmo.com/u/Christ-Fellowship'}
+            >
+              <Icon name="venmo" size="50" />
+            </Box>
+          </Box>
+        </Box>
+      )}
+
+      {props?.giveByMail && (
+        <>
           <Styled.Rhombus>
             <Styled.GiveByMail>
               <Box fontWeight="bold">GIVE BY MAIL</Box>
@@ -135,9 +257,7 @@ function GiveWithPushpay(props = {}) {
               />
             </Styled.GiveByMail>
           </Styled.Rhombus>
-        ) : (
-          //mobile view only
-          <Box>
+          <Box display={{ md: 'none' }}>
             <Box>
               <Box as="h3" fontWeight="bold" color="primary" fontSize="l">
                 Give In Person
@@ -157,7 +277,8 @@ function GiveWithPushpay(props = {}) {
               <HtmlRenderer py="xl" htmlContent={props?.giveByMailDesc} />
             </Box>
           </Box>
-        ))}
+        </>
+      )}
     </Styled>
   );
 }
@@ -174,7 +295,7 @@ GiveWithPushpay.propTypes = {
   /**
    * optional to display the rhombus
    */
-  showOtherGiveOptions: PropTypes.bool,
+  giveByMail: PropTypes.bool,
   /**
    * optional to change color of the button
    */

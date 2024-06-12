@@ -46,6 +46,7 @@ import GroupSingle from './GroupSingle';
 import GroupsList from './GroupsList';
 import GroupsResultsList from './GroupsResultsList';
 import Header from './Header';
+import HeroFeature from './HeroFeature';
 import HeroLanding from './HeroLanding';
 import HeroListFeature from './HeroListFeature';
 import HomeFeed from './HomeFeed';
@@ -132,6 +133,7 @@ export {
   GroupsList,
   GroupsResultsList,
   Header,
+  HeroFeature,
   HeroListFeature,
   InfoCardList,
   HomeFeed,

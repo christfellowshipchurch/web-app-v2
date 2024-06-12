@@ -113,6 +113,37 @@ export const faqEasterCFE = [
   },
 ];
 
+export const faqGive = [
+  {
+    title: 'What happens to my money when I give to Christ Fellowship?',
+    description:
+      'Christ Fellowship Church is an elder-governed, staff-led church with a passion to help you know God and grow in your relationships so that you can discover your purpose and impact the world. We adhere to high standards of biblical accountability, board governance, financial transparency, integrity, and proper use of charitable resources. Every year, we undergo a full financial audit by an independent CPA firm. Anyone interested in learning more about our stewardship and accountability practices can <a href="mailto:mike.simpson@christfellowship.church">request a meeting through email</a>.',
+  },
+  {
+    title: 'Why should I tithe?',
+    description: `Tithing is a biblical principle that means the tenth. The first tenth, which belongs to God, is Holy and set apart for Him. Tithing is about training our hearts to trust God at His Word. He gave us the greatest gift, His Son, and in response to this gift, we also give.
+    Tithing isn’t as much about finances as it is about faith. It’s not about what God wants from you but what He has for you.  <br/><br/>In Malachi 3:10, The Bible says we can test this promise. When we bring our first and best back to God, He promises to bless the rest of our resources so that we could be a blessing toward others.`,
+  },
+  {
+    title: 'What’s the best way to give?',
+    description:
+      'To be a part of all God is doing through Christ Fellowship you can give easily and securely online through our giving platform. You can make a gift, schedule your giving, and review your giving history all in one place. Automating your giving by setting up a recurring gift is a great way to consistently put God first in your finances. It’s easy and takes just a few minutes to set up. Simply choose your schedule and amount to start automating your giving today.',
+  },
+  {
+    title: 'How can I get my giving statement for tax purposes?',
+    description:
+      'If you give through our online giving platform, you can access your giving history anytime. We will also send you a giving statement via email at the end of each quarter. If you need help getting a copy of your giving statement, need to update your email address, or have questions about your giving history, just let us know at contributions@christfellowship.church and we’d be happy to help!',
+  },
+  {
+    title: 'What’s the difference between the tithe and offerings?',
+    description: `As Pastor Todd has shared, "We're never more like Jesus than when we serve and give." In Scripture, we're told that God so loved the world that He gave. Our offerings go beyond the obedience of the tithe; they are a reflection of a life marked by generosity. We believe generosity has a divine purpose connected to it, which is why we invite our church family to give beyond the tithe in one of these ways throughout the year. 
+    <br/><br/> <a href="/heart-for-the-house" style="font-weight: bold;">Heart for the House</a> is a special offering we get to be a part of every year, where we give above our regular tithes. Heart for the House goes toward Christ Fellowship's efforts in reaching more people for Jesus—whether that's new or expanded campuses or initiatives, both inside and outside the walls of our church. 
+    <br/><br/> <a href="/2023-christ-birthday-offering" style="font-weight: bold;">Christ Birthday Offering</a> is a special offering we get to be a part of every Christmas, where we give above our regular tithes to help fund our mission projects throughout the year. Every dollar you give to Christ Birthday Offering will make a difference toward continuing our impact both locally and globally through our mission projects throughout the year. 
+    <br/><br/> <span style="font-weight: bold;">The Kingdom Builders Fund</span> supports People, Places, and Partnerships in and through Christ Fellowship, including initiatives, strategic partnerships, and building projects in new or existing regions. <a href="/kingdom-builders" style="font-weight: bold;">Learn more about Kingdom Builders.</a>
+    <br/><br/> <a href="https://pushpay.com/g/christfellowship?fnd=rEIhabXgOBRvdQkOdc5l7A&lang=en" target="_blank" style="font-weight: bold;">The Crisis Fund</a> meets needs as soon as they arise and allows Christ Fellowship to be among the first on the ground when a disaster strikes in our region and around the world.`,
+  },
+];
+
 const faqDowntownData = [
   {
     title: 'What does Christ Fellowship believe?',
@@ -379,6 +410,8 @@ const faqData = campus => {
       return faqEaster;
     case 'Easter CFE':
       return faqEasterCFE;
+    case 'Give':
+      return faqGive;
     case 'Christ Fellowship Español Palm Beach Gardens':
       return faqEspanolData;
     case 'Christ Fellowship Español Royal Palm Beach':

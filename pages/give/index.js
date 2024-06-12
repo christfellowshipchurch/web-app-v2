@@ -1,51 +1,118 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import { initializeApollo } from 'lib/apolloClient';
-import { GET_FEATURE_FEED } from 'hooks/useFeatureFeed';
-import { FeatureFeedProvider } from 'providers';
-import { Layout, FeatureFeed } from 'components';
-import { Cell, utils } from 'ui-kit';
-import { useAnalytics } from 'providers/AnalyticsProvider';
+import { FAQ, Layout, GiveWithPushpay, CardGridFeature } from 'components';
+import { Box } from 'ui-kit';
+import faqData from 'components/FAQ/faqData';
+import { FeatureProvider } from 'providers';
+import {
+  financialImprovementId,
+  moreGivingOpportunitiesId,
+} from '../../lib/giveData';
+import {
+  GiveHero,
+  WaysToGive,
+  WhatTheBibleSays,
+  WistiaCarousel,
+} from 'components/GiveComponents';
 
-export default function Give(props) {
-  const analytics = useAnalytics();
-  const options = {
-    variables: {
-      pathname: 'give',
-    },
-  };
-
-  //Segment Page Tracking
-  useEffect(() => {
-    analytics.page();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+export default function Give() {
   return (
     <Layout title="Give">
-      <Cell
-        as="main"
-        maxWidth={utils.rem('1100px')}
-        px="base"
-        py={{ _: 'base', lg: 'l' }}
-      >
-        <FeatureFeedProvider Component={FeatureFeed} options={options} />
-      </Cell>
+      {/* Hero */}
+      <GiveHero />
+
+      {/* Pushpay */}
+      <GiveWithPushpay
+        title="Give Online"
+        subtitle="Give safely and securely online to Christ Fellowship Church. Give a one-time gift or set up a recurring gift."
+        buttonColor="primary"
+        amountColor="white"
+        backgroundImage="url(/give/give-pushpay-background.png)"
+        buttonLink="https://pushpay.com/g/christfellowship"
+        otherOnlineOptions
+      />
+
+      {/* Ways to Give */}
+      <WaysToGive />
+
+      {/* What Does the Bible Say About Giving */}
+      <WhatTheBibleSays />
+
+      {/* Wistia Carousel */}
+      <WistiaCarousel />
+
+      {/* Rock Content #1 */}
+      <Box maxWidth={1100} mx="auto" my="l" py="l" id="opportunities">
+        <FeatureProvider
+          Component={CardGridFeature}
+          customCardSize={'HIGHLIGHT_MEDIUM'}
+          horizontalScroll={false}
+          titleOverride
+          dataOverride={{
+            title:
+              '<div style="color: #004F71; font-size: 2.25rem; font-weight: bold;"> More Opportunities to Give</div>',
+          }}
+          options={{
+            variables: {
+              id: moreGivingOpportunitiesId,
+            },
+          }}
+        />
+      </Box>
+
+      {/* Rock Content #2 */}
+      <Box bg="secondary" py="xl" id="finances">
+        <Box maxWidth={1100} mx="auto" my="base">
+          <FeatureProvider
+            Component={CardGridFeature}
+            customCardSize={'HIGHLIGHT_MEDIUM'}
+            horizontalScroll={false}
+            titleOverride
+            dataOverride={{
+              title:
+                '<div style="color: white; font-size: 2.25rem; font-weight: bold;"> Looking to Improve Your Finances?</div>',
+              subtitle:
+                '<div style=" margin-top: 5px; color: white; font-size: 1rem; font-weight: bold;"> CLASSES & OTHER RESOURCES</div>',
+            }}
+            options={{
+              variables: {
+                id: financialImprovementId,
+              },
+            }}
+          />
+          {/* When there are more than 3 cards, redirect to a page with all of the cards */}
+          {/* <Button
+            as="a"
+            mt="l"
+            display="flex"
+            mx="auto"
+            width="fit-content"
+            href=""
+            bg="white"
+            color="primary"
+            border="2px solid"
+          >
+            SEE ALL
+          </Button> */}
+        </Box>
+      </Box>
+
+      {/* FAQ Section */}
+      <Box mx="auto" maxWidth={1200} px="base">
+        <FAQ
+          customTheme={{ secondary: '#39383A' }}
+          py="xl"
+          mt="2.5rem !important"
+          data={faqData('Give')}
+          otherData={{
+            title: 'FAQ',
+            question: 'Have additional questions?',
+            description:
+              '<div>Call <span style="font-weight: bold;">561-776-3380</span> to speak to someone on our team that would love to help you.</div>',
+            descriptionOverride: true,
+          }}
+        />
+      </Box>
     </Layout>
   );
-}
-
-export async function getServerSideProps() {
-  const apolloClient = initializeApollo();
-
-  await apolloClient.query({
-    query: GET_FEATURE_FEED,
-    variables: { pathname: 'give' },
-  });
-
-  return {
-    props: {
-      initialApolloState: apolloClient.cache.extract(),
-    },
-  };
 }

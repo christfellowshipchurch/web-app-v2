@@ -1,5 +1,4 @@
 import { themeGet } from '@styled-system/theme-get';
-import { max } from 'lodash';
 import styled from 'styled-components';
 import { system } from 'ui-kit';
 
