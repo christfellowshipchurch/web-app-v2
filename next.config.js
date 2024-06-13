@@ -33,6 +33,7 @@ module.exports = {
         permanent: false,
       }, // reboot this stupid thing notes
       { source: '/mom', destination: '/mothers-day-2024', permanent: true },
+      { source: '/teacherserveweek', destination: '/back-to-school-teacher-serve-week-serve-our-communitys-faculty-and-staff', permanent: true },
       { source: '/praiseteam', destination: '/volunteer-for-lh-kids-praise-team', permanent: true },
       { source: '/foodtruck', destination: '/food-truck-fridays-summer-at-legacy-park', permanent: true },
       { source: '/stayconnected', destination: 'https://longhollow.com/connect/connect-with-us', permanent: true },
