@@ -2,8 +2,19 @@ import Head from 'next/head';
 import parseHtml from 'html-react-parser';
 import { Footer, Header } from 'components';
 import { Box } from 'ui-kit';
+import { useEffect } from 'react';
+import { useAnalytics } from 'providers/AnalyticsProvider';
 
 export default function TimelinePage(props) {
+  const analytics = useAnalytics();
+
+  useEffect(() => {
+    analytics?.page({
+      pathname: '/years-of-impact',
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <Box bg="black" overflow="none">
       <Head>{parseHtml(props.headContent)}</Head>
