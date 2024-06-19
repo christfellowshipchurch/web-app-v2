@@ -14,6 +14,23 @@ export const GET_LIVE_STREAMS = gql`
         }
       }
       webViewUrl
+      contentItem {
+        id
+        ... on UniversalContentItem {
+          title
+          summary
+          images {
+            sources {
+              uri
+            }
+          }
+          coverImage {
+            sources {
+              uri
+            }
+          }
+        }
+      }
     }
   }
 `;

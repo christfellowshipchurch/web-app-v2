@@ -10,8 +10,8 @@ export const StyledImage = styled(Image)`
   flex: 1;
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+    border-bottom-left-radius: ${props => (props.rounded ? '24px' : '0')};
+    border-bottom-right-radius: ${props => (props.rounded ? '24px' : '0')};
   }
 
   @media screen and (min-width: ${themeGet('breakpoints.md')}) {
@@ -27,7 +27,7 @@ export const StyledImage = styled(Image)`
 `;
 
 export const TextContainer = styled(Box)`
-  border-radius: 0 0 24px 24px;
+  border-radius: ${props => (props.rounded ? '0 0 24px 24px' : '0')};
   background: rgba(0, 0, 0, 0.5);
   flex: 1;
 
@@ -53,7 +53,7 @@ export const TextContainer = styled(Box)`
 
 export default styled(Box)`
   position: relative;
-  border-radius: 24px;
+  border-radius: ${props => (props.rounded ? '24px' : '0')};
   overflow: hidden;
 
   cursor: ${props => (props.onClick ? 'pointer' : 'default')};

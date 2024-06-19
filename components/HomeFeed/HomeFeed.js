@@ -20,25 +20,59 @@ import { useTheme } from 'styled-components';
 import { Box, CardGrid, Heading, Section, Text } from 'ui-kit';
 import { getMediaSource, getSlugFromURL } from 'utils';
 import Styled from './HomeFeed.styles';
+import useLiveStreams from 'hooks/useLiveStreams';
 
 function FullLengthSermon(props = {}) {
   const router = useRouter();
   const theme = useTheme();
   const [selectedClip, setSelectedClip] = useState(0);
 
-  const clips =
-    props.sermon?.childContentItemsConnection?.edges?.map(({ node }) => node) ||
-    [];
+  const { liveStreams } = useLiveStreams();
+  const liveContent = liveStreams?.[0]?.contentItem;
+  const livestreamUrl = liveStreams?.[0]?.webViewUrl;
+  const LIVE = !!liveStreams?.[0]?.isLive;
 
-  let src = getMediaSource(props.sermon);
-  if (!src) {
-    src = getMediaSource(props.sermon, 'audios') || src;
+  const clips =
+    props.sermon?.childContentItemsConnection?.edges
+      ?.map(({ node }) => node)
+      .map(clip => ({
+        ...clip,
+        mediaSource: getMediaSource(clip) || getMediaSource(clip, 'audios'),
+      }))
+      .filter(({ mediaSource }) => mediaSource) || [];
+  const CLIPS = !!clips?.length;
+
+  let sermonSource = getMediaSource(props.sermon);
+  if (!sermonSource) {
+    sermonSource = getMediaSource(props.sermon, 'audios');
   }
 
+  const liveContentImages = liveContent?.images || [];
+  const liveBackgroundImage = liveContentImages?.find(
+    image =>
+      image?.sources?.[0]?.uri !== liveContent?.coverImage?.sources?.[0]?.uri
+  );
   const mainPhoto =
+    (LIVE && liveBackgroundImage?.sources?.[0]?.uri) ||
     props.sermon?.seriesBackgroundImage?.sources?.[0].uri ||
     props.sermon?.seriesImage?.sources?.[0].uri ||
     'schedule.jpeg';
+
+  const hasContent = Boolean(clips.length || sermonSource || liveContent);
+
+  const heroTitle = LIVE ? liveContent?.title : props.sermon?.title;
+  const heroSummary = LIVE ? liveContent?.summary : props.sermon?.summary;
+  const heroSubtitle = LIVE ? '' : CLIPS ? 'HIGHLIGHTS FROM' : 'LATEST MESSAGE';
+
+  const calloutHeader = CLIPS && !LIVE ? 'FULL MESSAGE' : '';
+  const calloutImgSrc =
+    CLIPS && !LIVE
+      ? props.sermon?.coverImage?.sources?.[0]?.uri
+      : '/more-messages.jpeg';
+  const calloutLink =
+    CLIPS && !LIVE
+      ? `/${getSlugFromURL(props.sermon?.sharing?.url)}`
+      : `/watch/${IDS.SERIES.SUNDAY}`;
 
   return (
     <Box display="flex" flexDirection="column">
@@ -50,13 +84,7 @@ function FullLengthSermon(props = {}) {
         justifyText="center"
         backdrop={false}
         content={
-          Boolean(
-            (!!clips?.length &&
-              clips.some(
-                clip => clip?.videos?.length || clip?.audios?.length
-              )) ||
-              src
-          ) && (
+          hasContent && (
             <Box
               position="absolute"
               top="0"
@@ -72,11 +100,11 @@ function FullLengthSermon(props = {}) {
               display={'flex'}
               pl={{
                 _: '0',
-                lg: clips?.length ? '100px' : '400px',
-                xl: clips?.length ? '300px' : '400px',
+                lg: CLIPS && !LIVE ? '100px' : '400px',
+                xl: CLIPS && !LIVE ? '300px' : '400px',
               }}
             >
-              {clips?.length ? (
+              {CLIPS && !LIVE ? (
                 <Carousel
                   width="100%"
                   neighbors="3d"
@@ -91,36 +119,51 @@ function FullLengthSermon(props = {}) {
                   })}
                 >
                   {clips.map(clip => {
-                    let clipSrc = getMediaSource(clip);
-                    if (!clipSrc) {
-                      clipSrc = getMediaSource(clip, 'audios');
-                    }
-                    return clipSrc ? (
+                    return (
                       <VideoPlayer
-                        key={clip?.id}
-                        src={clipSrc}
+                        key={clip.id}
+                        src={clip.mediaSource}
                         poster={clip?.coverImage?.sources?.[0]?.uri}
                         style={{ width: '681px' }}
                       />
-                    ) : null;
+                    );
                   })}
                 </Carousel>
               ) : (
                 <Box width={{ _: '100%', lg: '681px' }}>
-                  <VideoPlayer
-                    key={props.sermon?.id}
-                    src={src}
-                    poster={props.sermon?.coverImage?.sources?.[0]?.uri}
-                    style={{ width: '100%' }}
-                  />
+                  {LIVE ? (
+                    <Box>
+                      <LargeImage
+                        width="100%"
+                        height={{ _: 'calc(100vw * 0.5625)', lg: '100%' }}
+                        constantHeight
+                        src={liveContent?.coverImage?.sources?.[0]?.uri}
+                        color="white"
+                        text={'Join us live!'}
+                        action={() => router.push(livestreamUrl)}
+                        rounded={false}
+                      />
+                    </Box>
+                  ) : (
+                    <VideoPlayer
+                      key={props.sermon?.id}
+                      src={!LIVE ? sermonSource : ''}
+                      poster={
+                        !LIVE
+                          ? props.sermon?.coverImage?.sources?.[0]?.uri
+                          : liveContent?.coverImage?.sources?.[0]?.uri
+                      }
+                      style={{ width: '100%' }}
+                    />
+                  )}
                 </Box>
               )}
             </Box>
           )
         }
-        title={props.sermon?.title}
-        summary={props.sermon?.summary}
-        subtitle={clips?.length ? 'HIGHLIGHTS FROM' : 'LATEST MESSAGE'}
+        title={heroTitle}
+        summary={heroSummary}
+        subtitle={heroSubtitle}
         mb={{ _: 'l', md: 'xxl' }}
       />
       <Box
@@ -132,25 +175,15 @@ function FullLengthSermon(props = {}) {
         display={{ _: 'none', lg: 'block', xl: 'block' }}
       >
         <Heading variant="h5" color="neutrals.500">
-          {clips?.length ? 'FULL MESSAGE' : ''}
+          {calloutHeader}
         </Heading>
         <Styled.SermonContainer mt="s">
           <Styled.SermonImage
             rounded
-            src={
-              clips?.length
-                ? props.sermon?.coverImage?.sources?.[0]?.uri
-                : '/more-messages.jpeg'
-            }
-            onClick={() =>
-              router.push(
-                clips?.length
-                  ? `/${getSlugFromURL(props.sermon?.sharing?.url)}`
-                  : `/watch/${IDS.SERIES.SUNDAY}`
-              )
-            }
+            src={calloutImgSrc}
+            onClick={() => router.push(calloutLink)}
           />
-          {Boolean(clips?.length) && (
+          {CLIPS && !LIVE && (
             <Box position="absolute" right="10px" bottom="10px">
               <PlayCircle
                 size="36"
@@ -419,9 +452,9 @@ function HomeFeedContent(props = {}) {
           mb="s"
           px="m"
         >
-          Starting Point is a fun two-part experience that will introduce you
-          to our church, help you learn more about yourself, and give you
-          practical ways to take the next step in your&nbsp;
+          Starting Point is a fun two-part experience that will introduce you to
+          our church, help you learn more about yourself, and give you practical
+          ways to take the next step in your&nbsp;
           <Text
             color="neutrals.100"
             opacity="60%"
