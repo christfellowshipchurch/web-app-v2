@@ -31,8 +31,9 @@ module.exports = {
         source: '/app-link/:slug',
         destination: '/:slug',
         permanent: false,
-      }, // reboot this stupid thing notes
+      }, // reboot this stupid thing notes fix rev
       { source: '/mom', destination: '/mothers-day-2024', permanent: true },
+      { source: '/revelation', destination: '/watch/71ec2079298288ea22cabf29ff907d73/revelation', permanent: true },
       { source: '/teacherserveweek', destination: '/back-to-school-teacher-serve-week-serve-our-communitys-faculty-and-staff', permanent: true },
       { source: '/praiseteam', destination: '/volunteer-for-lh-kids-praise-team', permanent: true },
       { source: '/foodtruck', destination: '/food-truck-fridays-summer-at-legacy-park', permanent: true },
