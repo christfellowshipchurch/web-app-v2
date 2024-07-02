@@ -1,10 +1,13 @@
 import Head from 'next/head';
 import parseHtml from 'html-react-parser';
-import { Footer, Header } from 'components';
-import { Box, Button, HtmlRenderer, Image } from 'ui-kit';
+import { Layout } from 'components';
+import { Box, Button, HtmlRenderer, Icon } from 'ui-kit';
 import { useAnalytics } from 'providers/AnalyticsProvider';
 import { useEffect } from 'react';
-import { faqClick, faqData } from './utils';
+import {
+  faqData,
+  webflowAccordionAnimation,
+} from '../../lib/marriedPeopleData';
 
 export default function MarriagePage(props) {
   const analytics = useAnalytics();
@@ -18,77 +21,83 @@ export default function MarriagePage(props) {
   }, []);
 
   return (
-    <Box overflow="none">
+    <>
       <Head key="marriage">{parseHtml(props?.headContent)}</Head>
-      <Header />
-      <div dangerouslySetInnerHTML={{ __html: props?.bodyContent }} />
-      {/* Weddings FAQ */}
-      <Box p={32} display="flex" flexDirection="column" alignItems="center">
-        <Box class="weddings-faqs">
-          {faqData?.map((faq, i) => (
-            <Box class="wedding-faq" key={i}>
-              {/* Title Container*/}
-              <Box
-                position="relative"
-                display="flex"
-                cursor="pointer"
-                width="100%"
-                alignItems="center"
-                py={8}
-              >
-                <Box fontSize={20} color="black">
-                  {faq?.title}
-                </Box>
-                <Image
-                  style={{ transition: 'all ease-in-out 0.25s' }}
-                  id="arrow-image"
-                  width={20}
-                  mr="0px"
-                  source="/marriage/blue-triangle.svg"
-                  borderRadius={0}
-                  aspectRatio="auto"
-                />
-                {/* Overlay for onClick */}
+
+      <Layout title="Married People">
+        {/* Webflow Content */}
+        <div dangerouslySetInnerHTML={{ __html: props?.bodyContent }} />
+
+        {/* Carousel */}
+
+        {/* Weddings FAQ */}
+        <Box mb="xxl" display="flex" flexDirection="column" alignItems="center">
+          <Box class="accordion-faqs_grid">
+            {faqData?.map((faq, i) => (
+              <Box class="accordion-faqs_item" key={i}>
+                {/* Title Container*/}
                 <Box
-                  position="absolute"
-                  height="100%"
+                  position="relative"
+                  display="flex"
+                  cursor="pointer"
                   width="100%"
-                  left={0}
-                  zIndex={1}
-                  onClick={e => {
-                    faqClick(e.target);
-                  }}
-                />
+                  alignItems="center"
+                  justifyContent="space-between"
+                  py="s"
+                >
+                  <Box fontSize={20} color="black">
+                    {faq?.title}
+                  </Box>
+                  <Icon
+                    id="arrow-image"
+                    name="triangle"
+                    color="primary"
+                    style={{ transition: 'transform ease-in-out 0.3s' }}
+                  />
+                  {/* Overlay for onClick */}
+                  <Box
+                    position="absolute"
+                    height="100%"
+                    width="100%"
+                    left={0}
+                    zIndex={1}
+                    onClick={e => {
+                      webflowAccordionAnimation(e.target);
+                    }}
+                  />
+                </Box>
+                {/* Content */}
+                <Box
+                  id="faq-content-container"
+                  maxHeight={0}
+                  overflow="hidden"
+                  style={{ transition: 'all ease-out 0.3s' }}
+                >
+                  <HtmlRenderer
+                    htmlContent={faq?.description}
+                    fontSize="18px"
+                    color="#767676"
+                  />
+                  {/* Bottom spacing */}
+                  <Box height="1rem" />
+                </Box>
               </Box>
-              {/* Content */}
-              <Box
-                id="faq-content-container"
-                maxHeight={0}
-                overflow="hidden"
-                style={{ transition: 'all ease-in-out 0.25s' }}
-              >
-                <HtmlRenderer
-                  htmlContent={faq?.description}
-                  fontSize="18px"
-                  color="#767676"
-                />
-              </Box>
-            </Box>
-          ))}
+            ))}
+          </Box>
+          <Box mt={64}>
+            <Button
+              borderRadius={12}
+              fontSize={20}
+              boxShadow="0 4px 4px rgba(0, 0, 0, .25)"
+              href="#inquiry"
+              fontWeight="500"
+            >
+              Wedding Inquiry Form
+            </Button>
+          </Box>
         </Box>
-        <Box mt={64}>
-          <Button
-            borderRadius={12}
-            fontSize={20}
-            boxShadow="0 4px 4px rgba(0, 0, 0, .25)"
-            href="#inquiry"
-          >
-            Wedding Inquiry Form
-          </Button>
-        </Box>
-      </Box>
-      <Footer />
-    </Box>
+      </Layout>
+    </>
   );
 }
 
