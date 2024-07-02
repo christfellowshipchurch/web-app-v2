@@ -3,7 +3,11 @@ import { Box, Image } from 'ui-kit';
 
 const MarriageSlide = ({ slide }) => {
   return (
-    <Box my={{ _: 'base', md: 'xl' }} flex="0 0 100%">
+    <Box
+      my={{ _: 'base', md: 'xl' }}
+      p={{ _: 's', lg: 'base' }}
+      flex="0 0 100%"
+    >
       <Box class="weddings_mask">
         <Box class="weddings_slide">
           <Image
