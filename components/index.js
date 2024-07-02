@@ -13,6 +13,7 @@ import CommunityActionSection from './CommunityActionSection';
 import CommunityLeaderActions from './CommunityLeaderActions';
 import CommunityList from './CommunityList';
 import CommunitySingle from './CommunitySingle';
+import Component from './Component';
 import ContentBlockFeature from './ContentBlockFeature';
 import ContentLayout from './ContentLayout';
 import ContentList from './ContentList';
@@ -26,6 +27,7 @@ import EasterContentBlock from './EasterContentBlock';
 import EasterHero from './EasterHero';
 import EasterLocationSearch from './EasterLocationSearch';
 import EasterWordCarousel from './EasterWordCarousel';
+import EmblaCarousel from './EmblaCarousel';
 import EventSingle from './EventSingle';
 import EventsList from './EventsList';
 import FAQ from './FAQ';
@@ -99,6 +101,7 @@ export {
   CommunityLeaderActions,
   CommunityList,
   CommunitySingle,
+  Component,
   ContentBlockFeature,
   ContentLayout,
   ContentList,
@@ -112,6 +115,7 @@ export {
   EasterHero,
   EasterLocationSearch,
   EasterWordCarousel,
+  EmblaCarousel,
   EventSingle,
   EventsList,
   HeroLanding,

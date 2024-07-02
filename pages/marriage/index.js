@@ -1,13 +1,15 @@
 import Head from 'next/head';
 import parseHtml from 'html-react-parser';
-import { Layout } from 'components';
+import { EmblaCarousel, Layout } from 'components';
 import { Box, Button, HtmlRenderer, Icon } from 'ui-kit';
 import { useAnalytics } from 'providers/AnalyticsProvider';
 import { useEffect } from 'react';
 import {
+  carouselData,
   faqData,
   webflowAccordionAnimation,
 } from '../../lib/marriedPeopleData';
+import MarriageSlide from 'components/MarriageSlide';
 
 export default function MarriagePage(props) {
   const analytics = useAnalytics();
@@ -23,15 +25,26 @@ export default function MarriagePage(props) {
   return (
     <>
       <Head key="marriage">{parseHtml(props?.headContent)}</Head>
-
       <Layout title="Married People">
         {/* Webflow Content */}
         <div dangerouslySetInnerHTML={{ __html: props?.bodyContent }} />
 
         {/* Carousel */}
-
+        <EmblaCarousel
+          arrowColor="secondary"
+          carouselData={carouselData}
+          Component={MarriageSlide}
+          mb="xl"
+          mx="l"
+        />
         {/* Weddings FAQ */}
-        <Box mb="xxl" display="flex" flexDirection="column" alignItems="center">
+        <Box
+          mb="xxl"
+          mx="base"
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+        >
           <Box class="accordion-faqs_grid">
             {faqData?.map((faq, i) => (
               <Box class="accordion-faqs_item" key={i}>

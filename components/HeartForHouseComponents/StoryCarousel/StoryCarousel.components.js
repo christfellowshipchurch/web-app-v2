@@ -1,7 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
 
-import { Box, Icon, Image, system } from 'ui-kit';
+import { Box, Icon, Image } from 'ui-kit';
 import Video from 'components/Video';
 
 export const CarouselSlide = ({ slide }) => {
@@ -72,23 +71,6 @@ export const CarouselSlide = ({ slide }) => {
     </Box>
   );
 };
-
-const ArrowStyles = styled(Box)`
-  &:hover {
-    transform: scale(1.15);
-  }
-
-  transition: transform 0.2s ease-in-out;
-  cursor: pointer;
-
-  ${system}
-`;
-
-export const SlideArrows = ({ onClick, direction }) => (
-  <ArrowStyles onClick={onClick}>
-    <Icon color="white" size={64} name={`angle-${direction}`} />
-  </ArrowStyles>
-);
 
 export const TitleSection = () => (
   <Box display="flex" color="white" fontFamily="vision" fontWeight="600">
