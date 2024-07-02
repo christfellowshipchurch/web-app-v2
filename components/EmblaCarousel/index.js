@@ -17,8 +17,8 @@ const ArrowStyles = styled(Box)`
   ${system}
 `;
 
-export const SlideArrows = ({ onClick, direction, color }) => (
-  <ArrowStyles onClick={onClick}>
+export const SlideArrows = ({ onClick, direction, color, disabled }) => (
+  <ArrowStyles onClick={onClick} opacity={disabled && 0}>
     <Icon color={color || 'white'} size={64} name={`angle-${direction}`} />
   </ArrowStyles>
 );
@@ -66,16 +66,15 @@ const EmblaCarousel = ({
     <Box display="flex" alignItems="center" justifyContent="center" {...props}>
       {/* Previous Arrow */}
       <Box display={{ _: 'none', md: 'block' }}>
-        {canScrollPrev && (
-          <SlideArrows
-            onClick={() => {
-              emblaApi.scrollPrev();
-              updateScrollState();
-            }}
-            direction="left"
-            color={arrowColor}
-          />
-        )}
+        <SlideArrows
+          onClick={() => {
+            emblaApi.scrollPrev();
+            updateScrollState();
+          }}
+          direction="left"
+          color={arrowColor}
+          disabled={!canScrollPrev}
+        />
       </Box>
 
       {/* Carousel */}
@@ -98,16 +97,16 @@ const EmblaCarousel = ({
 
       {/* Next Arrow */}
       <Box display={{ _: 'none', md: 'block' }}>
-        {canScrollNext && (
-          <SlideArrows
-            onClick={() => {
-              emblaApi.scrollNext();
-              updateScrollState();
-            }}
-            direction="right"
-            color={arrowColor}
-          />
-        )}
+        {/* {canScrollNext && ( */}
+        <SlideArrows
+          onClick={() => {
+            emblaApi.scrollNext();
+            updateScrollState();
+          }}
+          direction="right"
+          color={arrowColor}
+          disabled={!canScrollNext}
+        />
       </Box>
     </Box>
   );
