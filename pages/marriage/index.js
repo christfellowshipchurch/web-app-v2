@@ -102,7 +102,7 @@ export default function MarriagePage(props) {
               borderRadius={12}
               fontSize={20}
               boxShadow="0 4px 4px rgba(0, 0, 0, .25)"
-              href="#inquiry"
+              href="https://rock.gocf.org/page/1474"
               fontWeight="500"
             >
               Wedding Inquiry Form
