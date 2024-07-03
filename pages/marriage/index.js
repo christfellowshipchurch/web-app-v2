@@ -99,6 +99,8 @@ export default function MarriagePage(props) {
           </Box>
           <Box mt={64}>
             <Button
+              as="a"
+              target="_blank"
               borderRadius={12}
               fontSize={20}
               boxShadow="0 4px 4px rgba(0, 0, 0, .25)"
