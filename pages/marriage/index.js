@@ -24,7 +24,10 @@ export default function MarriagePage(props) {
 
   return (
     <>
-      <Head key="marriage">{parseHtml(props?.headContent)}</Head>
+      <Head key="marriage">
+        <style>{'html { scroll-behavior: unset; }'}</style>
+        {parseHtml(props?.headContent)}
+      </Head>
       <Layout title="Married People">
         {/* Webflow Content */}
         <div dangerouslySetInnerHTML={{ __html: props?.bodyContent }} />
