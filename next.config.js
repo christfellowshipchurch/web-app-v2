@@ -54,7 +54,7 @@ module.exports = {
       { source: '/summerserve', destination: '/serve-this-summer-make-the-most-of-summer', permanent: true },
       { source: '/wednesdays', destination: '/wednesdaysatlhwinter-2024', permanent: true },
       { source: '/firstrespondermeals', destination: '/first-responder-meals-help-us-care-for-our-first-responders-on-christmas', permanent: true },
-      { source: '/fall', destination: '/fallatlh', permanent: true },
+      { source: '/fall', destination: 'https://longhollow.com/search?category=Events&p=1', permanent: true },
       { source: '/winter', destination: 'https://longhollow.com/search?category=Events&p=1', permanent: true },
       { source: '/summer', destination: '/everything-coming-this-summer-at-long-hollow', permanent: true },
       { source: '/good', destination: '/get-involved', permanent: true },
