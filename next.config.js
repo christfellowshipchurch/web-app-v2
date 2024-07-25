@@ -34,6 +34,7 @@ module.exports = {
       }, // reboot this stupid thing notes fix rev
       { source: '/mom', destination: '/mothers-day-2024', permanent: true },
       { source: '/preview', destination: '/fall-preview-night-2024', permanent: true },
+      { source: '/mondaynightoutreach', destination: '/monday-night-outreach-provide-meals', permanent: true },
       { source: '/prison', destination: '/prison-ministry-volunteer-information-meeting', permanent: true },
       { source: '/events', destination: 'https://longhollow.com/search?category=Events&p=1', permanent: true },
       { source: '/wrap', destination: '/adoptivefoster-wrap-around-team-support-adoptive-and-foster-families', permanent: true },
