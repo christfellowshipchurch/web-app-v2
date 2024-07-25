@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { Box } from 'ui-kit';
+import WrappedComponent from 'components/Component';
+
 function CustomLink({ Component: _Component, href, ...props }) {
   if (!_Component) {
     return (
@@ -21,10 +23,6 @@ function CustomLink({ Component: _Component, href, ...props }) {
     </Link>
   );
 }
-
-const WrappedComponent = React.forwardRef(({ Component, ...props }, ref) => (
-  <Component {...props} />
-));
 
 CustomLink.propTypes = {
   Component: PropTypes.oneOfType([
