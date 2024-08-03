@@ -28,7 +28,7 @@ const navigation = {
   subMenuLinks: [
     {
       call: 'Get involved',
-      action: '/it-all-starts-here',
+      action: '/one-life',
     },
     {
       call: 'Find community',
