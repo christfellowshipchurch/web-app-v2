@@ -1,8 +1,20 @@
 import Head from 'next/head';
 import parseHtml from 'html-react-parser';
 import { Footer, Header } from 'components';
+import { useAnalytics } from 'providers/AnalyticsProvider';
+import { useEffect } from 'react';
 
 export default function TimelinePage(props) {
+  const analytics = useAnalytics();
+
+  useEffect(() => {
+    analytics.page({
+      contentCategory: 'Information',
+      mediaType: 'Information',
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <Head>{parseHtml(props.headContent)}</Head>
