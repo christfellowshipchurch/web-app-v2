@@ -42,6 +42,8 @@ export default class MyDocument extends Document {
     return (
       <Html
         lang="en"
+        //hard coding the One Life page data attributes
+        // todo: find a better way to do this
         data-wf-page="668fe801f1a28d6ad35222da"
         data-wf-site="66749aec3acbf8aa6ef9d378"
       >
