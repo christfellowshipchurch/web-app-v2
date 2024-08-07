@@ -177,6 +177,7 @@ function LocationSingle(props = {}) {
                   ? setReminderEspanolData
                   : setReminderData)}
                 button={{
+                  id: 'set-reminder',
                   title:
                     campus === CFEPBG || campus === CFERPB
                       ? 'Recuérdame'

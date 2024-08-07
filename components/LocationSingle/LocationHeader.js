@@ -97,6 +97,7 @@ const LocationHeader = (props = {}) => {
             >
               <Button
                 as="a"
+                id={props?.primaryButton?.id}
                 href={props?.primaryButton?.action}
                 onClick={() =>
                   modalDispatch(
@@ -144,6 +145,7 @@ LocationHeader.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
   primaryButton: PropTypes.shape({
+    id: PropTypes.string,
     call: PropTypes.string,
     action: PropTypes.string,
     newTab: PropTypes.bool,
@@ -165,6 +167,7 @@ LocationHeader.defaultProps = {
   subtitle:
     'A church that wants to help you live the life you were created for.',
   primaryButton: {
+    id: 'join-us',
     call: 'Join Us Sunday',
     action: '#service-times',
     newTab: false,
