@@ -104,6 +104,14 @@ function App({ Component, pageProps }) {
         <JsonLD schema={christFellowship} />
 
         <Component {...pageProps} />
+        {/* Google Tag Manager (noscript) */}
+        <noscript
+          dangerouslySetInnerHTML={{
+            __html: `
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KXJBXSP"
+height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
+          }}
+        />
       </>
     </AppProvider>
   );
