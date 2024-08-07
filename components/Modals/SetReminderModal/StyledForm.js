@@ -151,6 +151,7 @@ const StyledForm = ({
         </Box>
       )}
       <Button
+        id="set-reminder-submit"
         onClick={handleSubmit}
         borderRadius={50}
         size="s"
