@@ -104,11 +104,11 @@ function App({ Component, pageProps }) {
         <JsonLD schema={christFellowship} />
 
         <Component {...pageProps} />
-        {/* Google Tag Manager (noscript) */}
+        {/* Google Tag Manager (noscript) - to be placed below the body tag */}
         <noscript
           dangerouslySetInnerHTML={{
             __html: `
-<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KXJBXSP"
+<iframe src="https://www.googletagmanager.com/ns.html?id=${process.env.NEXT_PUBLIC_GTM_CODE}"
 height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
           }}
         />
