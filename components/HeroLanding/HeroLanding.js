@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Box } from 'ui-kit';
 import Styled from './HeroLanding.styles';
 import HeroButtons from './HeroButtons';
-import ClientSideComponent from 'components/ClientSideComponent';
 export default function HeroLanding(props = {}) {
   return (
     <>
@@ -22,9 +21,7 @@ export default function HeroLanding(props = {}) {
           <Styled.Title>{props?.heroTitle}</Styled.Title>
           <Styled.Summary>{props?.heroSummary}</Styled.Summary>
         </Styled.Content>
-        <ClientSideComponent>
-          <HeroButtons actions={props?.actions}></HeroButtons>
-        </ClientSideComponent>
+        <HeroButtons actions={props?.actions}></HeroButtons>
       </Styled>
       <Box mx="auto">{props?.children}</Box>
     </>
