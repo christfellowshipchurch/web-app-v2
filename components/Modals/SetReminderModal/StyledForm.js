@@ -37,7 +37,9 @@ const StyledForm = ({
       p={{ _: 'base', md: '' }}
     >
       <Box as="h1" mb="xl" color="secondary">
-        Set A Reminder!
+        {defaultUserCampus.includes('Español')
+          ? 'Recuérdame'
+          : 'Set A Reminder!'}
       </Box>
       {errors?.generalError ? (
         <Box as="p" color="alert" fontSize="s" mt="-1.8rem" mb="s">
@@ -53,7 +55,11 @@ const StyledForm = ({
       >
         <StyledTextInput
           id="firstName"
-          name="First Name"
+          name={
+            defaultUserCampus.includes('Español')
+              ? 'Primer Nombre'
+              : 'First Name'
+          }
           onChange={handleChange}
           value={values?.firstName}
           errors={errors?.firstName}
@@ -61,21 +67,31 @@ const StyledForm = ({
         <StyledTextInput
           id="lastName"
           label="Last Name"
-          name="Last Name"
+          name={
+            defaultUserCampus.includes('Español') ? 'Apellido' : 'Last Name'
+          }
           onChange={handleChange}
           value={values?.lastName}
           errors={errors.lastName}
         />
         <StyledTextInput
           id="email"
-          name="Email"
+          name={
+            defaultUserCampus.includes('Español')
+              ? 'Correo Electrónico'
+              : 'Email'
+          }
           onChange={handleChange}
           value={values?.email}
           errors={errors?.email}
         />
         <StyledTextInput
           id="phoneNumber"
-          name="Phone"
+          name={
+            defaultUserCampus.includes('Español')
+              ? 'Numero de Teléfono'
+              : 'Phone'
+          }
           onChange={handleChange}
           value={values?.phoneNumber}
           errors={errors?.phoneNumber}
@@ -119,13 +135,19 @@ const StyledForm = ({
         <Box>
           <Box display="flex" mb="s">
             <Box fontWeight="bold" fontSize="s" mr="s">
-              Service Times
+              {defaultUserCampus.includes('Español')
+                ? 'Horarios de Servicios'
+                : 'Service Times'}
             </Box>
             {!!isLoading && <Loader noLabel />}
           </Box>
           <Box display="flex" alignItems="center">
             <Select id="serviceTime" name="serviceTime" onChange={handleChange}>
-              <Select.Option value={null}>Select a Service Time</Select.Option>
+              <Select.Option value={null}>
+                {defaultUserCampus.includes('Español')
+                  ? 'Selecciona una hora de servicio '
+                  : 'Select a Service Time'}
+              </Select.Option>
               {serviceTimes.map(({ id, time }) => {
                 return (
                   time && (
@@ -158,7 +180,11 @@ const StyledForm = ({
         px="l"
         mt="base"
       >
-        {isLoading ? 'Loading...' : 'SUBMIT'}
+        {isLoading
+          ? 'Loading...'
+          : defaultUserCampus.includes('Español')
+          ? 'ENVIAR'
+          : 'SUBMIT'}
       </Button>
     </Box>
   );

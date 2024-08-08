@@ -41,6 +41,7 @@ export const AnalyticsProvider = ({ children, writeKey }) => {
         ...currentUser?.profile,
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser]);
 
   return (
