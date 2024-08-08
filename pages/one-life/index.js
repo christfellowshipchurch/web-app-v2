@@ -17,9 +17,9 @@ export default function TimelinePage(props) {
 
   return (
     <>
-      <Head>{parseHtml(props.headContent)}</Head>
+      <Head>{parseHtml(props?.headContent)}</Head>
       <Header />
-      <div dangerouslySetInnerHTML={{ __html: props.bodyContent }} />
+      <div dangerouslySetInnerHTML={{ __html: props?.bodyContent }} />
       <Footer />
     </>
   );
