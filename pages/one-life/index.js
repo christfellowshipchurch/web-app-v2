@@ -3,9 +3,13 @@ import parseHtml from 'html-react-parser';
 import { Footer, Header } from 'components';
 import { useAnalytics } from 'providers/AnalyticsProvider';
 import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
-export default function TimelinePage(props) {
+export default function OneLifePage(props) {
   const analytics = useAnalytics();
+  const router = useRouter();
+
+  const { asPath } = router;
 
   useEffect(() => {
     analytics.page({
@@ -15,11 +19,18 @@ export default function TimelinePage(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Refresh the page if the URL contains #refresh
+  useEffect(() => {
+    if (asPath.includes('#refresh')) {
+      window.location = '/one-life';
+    }
+  }, [router, asPath]);
+
   return (
     <>
-      <Head>{parseHtml(props.headContent)}</Head>
+      <Head>{parseHtml(props?.headContent)}</Head>
       <Header />
-      <div dangerouslySetInnerHTML={{ __html: props.bodyContent }} />
+      <div dangerouslySetInnerHTML={{ __html: props?.bodyContent }} />
       <Footer />
     </>
   );
