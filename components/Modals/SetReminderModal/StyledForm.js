@@ -1,6 +1,28 @@
 import React from 'react';
 import { Box, Button, Icon, Loader, Select, TextInput } from 'ui-kit';
 
+const DEFAULT_FORM_LABELS = {
+  title: 'Set A Reminder!',
+  firstName: 'First Name',
+  lastName: 'Last Name',
+  email: 'Email',
+  phoneNumber: 'Phone Number',
+  serviceTime: 'Service Time',
+  selectServiceTime: 'Select a Service Time',
+  submit: 'SUBMIT',
+};
+
+const SPANISH_FORM_LABELS = {
+  title: 'Recuérdame',
+  firstName: 'Primer Nombre',
+  lastName: 'Apellido',
+  email: 'Correo Electrónico',
+  phoneNumber: 'Número de Teléfono',
+  serviceTime: 'Horarios de Servicios',
+  selectServiceTime: 'Selecciona una hora de servicio',
+  submit: 'ENVIAR',
+};
+
 const StyledTextInput = props => (
   <Box>
     <TextInput
@@ -28,6 +50,9 @@ const StyledForm = ({
   campuses,
   serviceTimes,
 }) => {
+  const isSpanish = defaultUserCampus.includes('Español');
+  const formLabels = isSpanish ? SPANISH_FORM_LABELS : DEFAULT_FORM_LABELS;
+
   return (
     <Box
       display="flex"
@@ -37,9 +62,7 @@ const StyledForm = ({
       p={{ _: 'base', md: '' }}
     >
       <Box as="h1" mb="xl" color="secondary">
-        {defaultUserCampus.includes('Español')
-          ? 'Recuérdame'
-          : 'Set A Reminder!'}
+        {formLabels.title}
       </Box>
       {errors?.generalError ? (
         <Box as="p" color="alert" fontSize="s" mt="-1.8rem" mb="s">
@@ -55,11 +78,7 @@ const StyledForm = ({
       >
         <StyledTextInput
           id="firstName"
-          name={
-            defaultUserCampus.includes('Español')
-              ? 'Primer Nombre'
-              : 'First Name'
-          }
+          name={formLabels.firstName}
           onChange={handleChange}
           value={values?.firstName}
           errors={errors?.firstName}
@@ -67,31 +86,21 @@ const StyledForm = ({
         <StyledTextInput
           id="lastName"
           label="Last Name"
-          name={
-            defaultUserCampus.includes('Español') ? 'Apellido' : 'Last Name'
-          }
+          name={formLabels.lastName}
           onChange={handleChange}
           value={values?.lastName}
           errors={errors.lastName}
         />
         <StyledTextInput
           id="email"
-          name={
-            defaultUserCampus.includes('Español')
-              ? 'Correo Electrónico'
-              : 'Email'
-          }
+          name={formLabels.email}
           onChange={handleChange}
           value={values?.email}
           errors={errors?.email}
         />
         <StyledTextInput
           id="phoneNumber"
-          name={
-            defaultUserCampus.includes('Español')
-              ? 'Numero de Teléfono'
-              : 'Phone'
-          }
+          name={formLabels.phoneNumber}
           onChange={handleChange}
           value={values?.phoneNumber}
           errors={errors?.phoneNumber}
@@ -135,18 +144,14 @@ const StyledForm = ({
         <Box>
           <Box display="flex" mb="s">
             <Box fontWeight="bold" fontSize="s" mr="s">
-              {defaultUserCampus.includes('Español')
-                ? 'Horarios de Servicios'
-                : 'Service Times'}
+              {formLabels.serviceTime}
             </Box>
             {!!isLoading && <Loader noLabel />}
           </Box>
           <Box display="flex" alignItems="center">
             <Select id="serviceTime" name="serviceTime" onChange={handleChange}>
               <Select.Option value={null}>
-                {defaultUserCampus.includes('Español')
-                  ? 'Selecciona una hora de servicio '
-                  : 'Select a Service Time'}
+                {formLabels.selectServiceTime}
               </Select.Option>
               {serviceTimes.map(({ id, time }) => {
                 return (
@@ -180,11 +185,7 @@ const StyledForm = ({
         px="l"
         mt="base"
       >
-        {isLoading
-          ? 'Loading...'
-          : defaultUserCampus.includes('Español')
-          ? 'ENVIAR'
-          : 'SUBMIT'}
+        {isLoading ? 'Loading...' : formLabels.submit}
       </Button>
     </Box>
   );
