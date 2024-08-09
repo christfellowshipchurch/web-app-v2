@@ -20,6 +20,14 @@ const ConfirmationScreen = (props = {}) => {
   let events = null;
 
   useEffect(() => {
+    if (window.location.pathname.includes('locations')) {
+      if (!window.location.pathname.includes('#set-reminder-submitted')) {
+        window.location = '#set-reminder-submitted';
+      }
+    }
+  }, []);
+
+  useEffect(() => {
     async function getCampusAddress() {
       try {
         const { street1, city, state, postalCode } = await eventCampus;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box, Button, Icon, Loader, Select, TextInput } from 'ui-kit';
 
 const DEFAULT_FORM_LABELS = {
@@ -52,6 +52,12 @@ const StyledForm = ({
 }) => {
   const isSpanish = defaultUserCampus.includes('Español');
   const formLabels = isSpanish ? SPANISH_FORM_LABELS : DEFAULT_FORM_LABELS;
+
+  useEffect(() => {
+    if (!window.location.pathname.includes('set-reminder-opened')) {
+      window.location = '#set-reminder-opened';
+    }
+  }, []);
 
   return (
     <Box
