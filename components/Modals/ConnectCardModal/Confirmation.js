@@ -20,6 +20,14 @@ const ConfirmationScreen = (props = {}) => {
   let events = null;
 
   useEffect(() => {
+    if (window.location.pathname.includes('locations')) {
+      if (!window.location.pathname.includes('#set-reminder-submitted')) {
+        window.location = '#set-reminder-submitted';
+      }
+    }
+  }, []);
+
+  useEffect(() => {
     async function getCampusAddress() {
       try {
         const { street1, city, state, postalCode } = await eventCampus;
@@ -51,9 +59,11 @@ const ConfirmationScreen = (props = {}) => {
       px="xxl"
     >
       <Icon name="check" color="success" size="100" />
-      <Box as="h2" color="secondary" my="l">
+      <Box as="h2" color="secondary" my="l" maxWidth="80vw">
         {!router.asPath.includes('locations')
           ? `You're all set!`
+          : props?.campus.includes('Español')
+          ? `Asegúrese de revisar su correo electrónico para obtener más detalles y nos vemos este domingo.`
           : `Be sure to check out your email for more details and we'll see you this Sunday.`}
       </Box>
 
@@ -69,7 +79,9 @@ const ConfirmationScreen = (props = {}) => {
             variant="secondary"
             mr="xs"
           >
-            ADD TO CALENDAR
+            {props?.campus.includes('Español')
+              ? 'AÑADIR AL CALENDARIO'
+              : 'ADD TO CALENDAR'}
           </Button>
         )}
         <Button
@@ -80,7 +92,7 @@ const ConfirmationScreen = (props = {}) => {
           m={{ _: 'xs', lg: 0 }}
           onClick={() => modalDispatch(hideModal())}
         >
-          CONTINUE
+          {props?.campus.includes('Español') ? 'CONTINUAR' : 'CONTINUE'}
         </Button>
       </Box>
     </Box>
