@@ -26,7 +26,7 @@ export default function About() {
     });
 
     if (includes(asPath, lastOfPath)) {
-      setActive(lastOfPath);
+      setActive(lastOfPath || 'leadership');
       router.push({
         pathname: '/about',
         hash: lastOfPath,
