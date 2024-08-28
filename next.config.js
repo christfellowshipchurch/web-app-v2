@@ -33,6 +33,7 @@ module.exports = {
         permanent: false,
       }, // reboot this stupid thing notes fix rev
       { source: '/mom', destination: '/mothers-day-2024', permanent: true },
+      { source: '/mensnight', destination: '/lh-mens-night-come-hang-with-us', permanent: true },
       { source: '/group-leader-resources', destination: '/groupleaderresources', permanent: true },
       { source: '/preview', destination: '/fall-preview-night-2024', permanent: true },
       { source: '/mondaynightoutreach', destination: '/monday-night-outreach-provide-meals', permanent: true },
