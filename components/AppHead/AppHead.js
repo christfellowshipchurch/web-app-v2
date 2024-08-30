@@ -113,7 +113,8 @@ function AppHead({ Component, pageProps }) {
       <meta name="theme-color" content="#ffffff" />
       <link rel="stylesheet" type="text/css" href="/nprogress.css" />
 
-      {process.env.NEXT_PUBLIC_SEGMENT_KEY && (
+      {/* We are turning off tracking for Segment on our website for the time being to cutdown on MTUs */}
+      {/* {process.env.NEXT_PUBLIC_SEGMENT_KEY && (
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -123,7 +124,7 @@ function AppHead({ Component, pageProps }) {
           `,
           }}
         />
-      )}
+      )} */}
 
       {/* Google Tag Manager */}
       <script
