@@ -5,7 +5,7 @@ import Link from 'next/link';
 function CustomLink({ Component: _Component, href, ...props }) {
   if (!_Component) {
     return (
-      <Link href={href}>
+      <Link legacyBehavior href={href}>
         <a>{props.children}</a>
       </Link>
     );

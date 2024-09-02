@@ -18,7 +18,7 @@ function Header({ dropdownData }) {
     <Box position="fixed" top={0} width="100%" zIndex={100}>
       <Styled.Header bg="bg_alt">
         <Styled.LogoContainer bg="bg_alt" active={active}>
-          <Link href="/">
+          <Link legacyBehavior href="/">
             <a>
               <Logo withText />
             </a>
