@@ -72,7 +72,7 @@ const navigation = {
         },
         {
           call: 'Journey',
-          action: '/events/journey',
+          action: '/journey',
         },
         {
           call: 'Groups and Classes',
