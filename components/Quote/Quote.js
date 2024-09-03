@@ -78,7 +78,7 @@ function Quote({
                   </Text>
                 )}
                 {actionLink && (
-                  <Link href={actionLink}>
+                  <Link legacyBehavior href={actionLink}>
                     <a
                       style={{
                         display: 'flex',

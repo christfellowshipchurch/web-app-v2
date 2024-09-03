@@ -5,7 +5,7 @@ import { Box, systemPropTypes } from 'ui-kit';
 function ClientSideComponent(props = {}) {
   return (
     <Box suppressHydrationWarning={true} {...props}>
-      {process.browser ? props.children : null}
+      {props.children}
     </Box>
   );
 }
