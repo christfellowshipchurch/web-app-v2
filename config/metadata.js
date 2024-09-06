@@ -6,7 +6,7 @@ const metadata = {
       'https://www.youtube.com/playlist?list=PLUQ7jSnRB_efXMDq9Lka6stS02awWoaz4',
     giveOnline: 'https://christfellowship.church/give',
     volunteer: 'https://rock.christfellowship.church/dreamteam',
-    shopOnline: 'https://resource.gochristfellowship.com/',
+    shopOnline: 'https://cf-church.square.site/home',
     connectCard: 'https://rock.gocf.org/connect',
     submitPrayerRequest: 'https://rock.gocf.org/RequestPrayer',
     subscribeToUpdates: 'http://eepurl.com/hAk7aP',
