@@ -27,7 +27,7 @@ const NotFound = (props = {}) => {
       link: '/discover?c=ministries',
     },
     { title: 'Learn more about Christ Fellowship.', link: '/about' },
-    { title: 'Get connected.', link: '/it-all-starts-here' },
+    { title: 'Get connected.', link: 'next-steps' },
     { title: 'Give online.', link: '/give' },
     { title: 'See upcoming events.', link: '/events' },
   ];
