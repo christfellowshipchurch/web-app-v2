@@ -9,7 +9,7 @@ const metadata = {
     shopOnline: 'https://cf-church.square.site/home',
     connectCard: 'https://rock.gocf.org/connect',
     submitPrayerRequest: 'https://rock.gocf.org/RequestPrayer',
-    subscribeToUpdates: 'http://eepurl.com/hAk7aP',
+    subscribeToUpdates: 'https://rock.christfellowship.church/page/4344',
     contactUs: 'https://rock.gocf.org/contactus',
     webAndAppFeedback: 'https://form.jotform.com/201343828801148',
     careerOpportunities: 'https://boards.greenhouse.io/christfellowship',
