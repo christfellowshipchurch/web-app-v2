@@ -18,7 +18,7 @@ const navigation = {
     },
     {
       call: 'Next Steps',
-      action: '/it-all-starts-here',
+      action: '/next-steps',
     },
     {
       call: 'Give',
