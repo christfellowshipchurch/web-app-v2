@@ -59,7 +59,7 @@ const navigation = {
     {
       headerLink: {
         call: 'Next Steps',
-        action: '/it-all-starts-here',
+        action: '/next-steps',
       },
       subLinks: [
         {
