@@ -30,7 +30,10 @@ function FullLengthSermon(props = {}) {
   const { liveStreams } = useLiveStreams();
   const liveContent = liveStreams?.[0]?.contentItem;
   const livestreamUrl = liveStreams?.[0]?.webViewUrl;
-  const LIVE = !!liveStreams?.[0]?.isLive;
+  // TODO: we have a bug with this we need to fix
+  // https://linear.app/differential/issue/APO-212/long-hollow-watch-live-now-overlay-is-still-showing-on-the-home-page
+  //const LIVE = !!liveStreams?.[0]?.isLive;
+  const LIVE = false;
 
   const clips =
     props.sermon?.childContentItemsConnection?.edges
