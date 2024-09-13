@@ -74,7 +74,7 @@ const navigation = {
       links: [
         {
           call: 'Find Your Next Step',
-          action: '/it-all-starts-here',
+          action: '/next-steps',
         },
         {
           call: 'Jesus',
