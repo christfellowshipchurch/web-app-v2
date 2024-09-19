@@ -5,7 +5,6 @@ export const GET_CAMPUSES = gql`
     campuses {
       id
       name
-
       image {
         uri
       }

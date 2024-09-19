@@ -41,7 +41,7 @@ const navigation = {
   subMenuLinks: [
     {
       call: 'Get involved',
-      action: '/one-life',
+      action: '/next-steps',
     },
     {
       call: 'Find community',
