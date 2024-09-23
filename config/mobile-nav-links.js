@@ -41,7 +41,7 @@ const navigation = {
   subMenuLinks: [
     {
       call: 'Get involved',
-      action: '/one-life',
+      action: '/next-steps',
     },
     {
       call: 'Find community',
@@ -61,7 +61,7 @@ const navigation = {
     },
     {
       call: 'Improve my finances',
-      action: '/discover?c=stewardship',
+      action: '/kingdom-way-of-living',
     },
     {
       call: 'Get there first',

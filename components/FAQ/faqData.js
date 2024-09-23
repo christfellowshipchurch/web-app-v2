@@ -388,7 +388,7 @@ export const faqCfEverywhereData = [
   },
   {
     title: 'How can I get involved?',
-    description: `We are so excited to get you involved with Christ Fellowship Everywhere and want to help you take your next step. <a href=/events/journey> Journey</a> is a great first step that will lay out a variety of ways to get involved. Looking for your next step? <a target="blank" href="mailto:online@christfellowship.church"> Send us an email</a> so we can help you discover your next step!`,
+    description: `We are so excited to get you involved with Christ Fellowship Everywhere and want to help you take your next step. <a href=/next-steps> Journey</a> is a great first step that will lay out a variety of ways to get involved. Looking for your next step? <a target="blank" href="mailto:online@christfellowship.church"> Send us an email</a> so we can help you discover your next step!`,
   },
 ];
 
