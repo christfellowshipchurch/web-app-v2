@@ -41,14 +41,15 @@ function useLiveStreams(options = {}) {
     cachePolicy: 'network-only',
   });
   const firstStream = query?.data?.liveStreams?.[0];
-  let prettyCountdown;
-  if (firstStream?.isLive) prettyCountdown = '• LIVE NOW';
-  else if (!firstStream?.eventStartTime) prettyCountdown = '';
-  else
-    prettyCountdown = `• LIVE ${formatDistanceToNow(
-      new Date(firstStream?.eventStartTime),
-      { addSuffix: true }
-    ).toUpperCase()}`;
+  let prettyCountdown = '';
+  // TODO turn this back on when livestream cache is working properly
+  //if (firstStream?.isLive) prettyCountdown = '• LIVE NOW';
+  //else if (!firstStream?.eventStartTime) prettyCountdown = '';
+  //else
+  //prettyCountdown = `• LIVE ${formatDistanceToNow(
+  //new Date(firstStream?.eventStartTime),
+  //{ addSuffix: true }
+  //).toUpperCase()}`;
 
   return {
     prettyCountdown,
