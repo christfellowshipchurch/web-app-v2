@@ -32,6 +32,8 @@ module.exports = {
         permanent: false,
       }, // reboot this stupid thing notes fix rev
       { source: '/mom', destination: '/mothers-day-2024', permanent: true },
+      { source: '/missionssunday', destination: '/missions-sunday-2024-force-for-good-near-and-far', permanent: true },
+      { source: '/missionsunday', destination: '/missions-sunday-2024-force-for-good-near-and-far', permanent: true },
       { source: '/mensnight', destination: 'https://longhollow.com/lh-mens-night-come-hang-with-us', permanent: true },
       { source: '/group-leader-resources', destination: '/groupleaderresources', permanent: true },
       { source: '/preview', destination: '/fall-preview-night-2024', permanent: true },
