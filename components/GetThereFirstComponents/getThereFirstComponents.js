@@ -56,7 +56,7 @@ export const RaceToTheNextGen = () => {
       >
         <Video
           width={{ _: 350, sm: 400, md: 600, lg: 800 }}
-          wistiaId={'acwh7blcn4'}
+          wistiaId={'oqryj23yyi'}
         />
       </Box>
       <Button as="a" mt={{ _: 'base', md: 'l' }} href="#JoinTheRace">
