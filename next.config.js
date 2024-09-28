@@ -54,7 +54,7 @@ module.exports = {
       { source: '/host', destination: '/host-your-event-or-gathering-at-long-hollow', permanent: true },
       { source: '/5thgrade', destination: '/5th-grade-summer-transition', permanent: true },
       { source: '/family', destination: 'https://nsb2r6cpbt4.typeform.com/to/rv4waLbv', permanent: true },
-      { source: '/relief', destination: 'https://longhollow.com/tornadodamage-crisisresponse', permanent: true },
+      { source: '/relief', destination: 'https://longhollow.com/crisis-response-team', permanent: true },
       { source: '/hope', destination: '/hopefortheholidays-november2023', permanent: true },
       { source: '/secretchurch', destination: '/secretchurch-2024', permanent: true },
       { source: '/summerserve', destination: '/serve-this-summer-make-the-most-of-summer', permanent: true },
