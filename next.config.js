@@ -32,6 +32,7 @@ module.exports = {
         permanent: false,
       }, // reboot this stupid thing notes fix rev
       { source: '/mom', destination: '/mothers-day-2024', permanent: true },
+      { source: '/lh-men-groups', destination: 'https://my.longhollow.com/page/2804', permanent: true },
       { source: '/on-campus-life-groups', destination: 'https://my.longhollow.com/page/2828', permanent: true },
       { source: '/off', destination: 'https://my.longhollow.com/page/2829', permanent: true },
       { source: '/lh-women-groups', destination: 'https://my.longhollow.com/page/2825', permanent: true },
