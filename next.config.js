@@ -38,6 +38,7 @@ module.exports = {
       { source: '/on-campus-life-groups', destination: 'https://my.longhollow.com/page/2828', permanent: true },
       { source: '/off', destination: 'https://my.longhollow.com/page/2829', permanent: true },
       { source: '/lh-women-groups', destination: 'https://my.longhollow.com/page/2825', permanent: true },
+      { source: '/missionsemail', destination: 'https://my.longhollow.com/page/1322', permanent: true },
       { source: '/missionssunday', destination: '/missions-sunday-2024-force-for-good-near-and-far', permanent: true },
       { source: '/missionsunday', destination: '/missions-sunday-2024-force-for-good-near-and-far', permanent: true },
       { source: '/make-a-difference-2', destination: 'https://my.longhollow.com/page/1322', permanent: true },
