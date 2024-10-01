@@ -40,7 +40,7 @@ export default function About() {
       title="About Us"
       seoMetaTags={{
         description:
-          'Christ Fellowship is a church in South Florida with a passion to help you know God and grow in your relationships so that you can discover your purpose and impact the world. We believe that church isn’t just a building you walk in to, but a family you can belong to—so whether you call one of our many locations home or join from home, church is wherever you are! Led by senior pastors Todd & Julie Mullins, our mission is to impact the world with the love and message of Jesus Christ—everyone, everyday, everywhere.',
+          'Christ Fellowship is a church in South Florida with a passion to help you know God and grow in your relationships so that you can discover your purpose and impact the world. We believe that church isn’t just a building you walk into, but a family you can belong to—so whether you call one of our many locations home or join from home, church is wherever you are! Led by senior pastors Todd & Julie Mullins, our mission is to impact the world with the love and message of Jesus Christ—everyone, everyday, everywhere.',
       }}
     >
       <Styled.Hero>
@@ -49,7 +49,7 @@ export default function About() {
           Christ Fellowship is a church in South Florida with a passion to help
           you know God and grow in your relationships so that you can discover
           your purpose and impact the world. We believe that church isn’t just a
-          building you walk in to, but a family you can belong to—so whether you
+          building you walk into, but a family you can belong to—so whether you
           call one of our many locations home or join from home, church is
           wherever you are! Led by senior pastors Todd & Julie Mullins, God has
           given us a vision to lead a radical transformation for Jesus Christ in
@@ -59,7 +59,7 @@ export default function About() {
       <Styled.Section>
         <Box as="h1">One Church with Many Locations</Box>
         <Box as="p" fontSize="l" maxWidth="840px">
-          We believe that church isn’t just a building you walk in to, but a
+          We believe that church isn’t just a building you walk into, but a
           family you can belong to—so whether you call one of our many locations
           home or join from home, church is wherever you&nbsp;are!
         </Box>
