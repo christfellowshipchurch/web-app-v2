@@ -236,7 +236,7 @@ module.exports = {
       { source: '/member', destination: '/next-steps/become-a-member', permanent: true },
       { source: '/membership', destination: '/next-steps/become-a-member', permanent: true },
       { source: '/volunteer', destination: '/next-steps/volunteer', permanent: true },
-      { source: '/trips', destination: '/next-steps/get-involved-with-missions', permanent: true },
+      { source: '/trips', destination: 'https://longhollow.com/search?category=Mission%20Trips&p=1', permanent: true },
       { source: '/go', destination: '/next-steps/get-involved-with-missions', permanent: true },
       { source: '/serve', destination: '/next-steps/volunteer', permanent: true },
       { source: '/grow', destination: '/next-steps/find-a-life-group', permanent: true },
