@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import parseHtml from 'html-react-parser';
-import { Footer, Header } from 'components';
+import { Layout } from 'components';
 import { useAnalytics } from 'providers/AnalyticsProvider';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
@@ -29,9 +29,9 @@ export default function NextStepsPage(props) {
   return (
     <>
       <Head>{parseHtml(props?.headContent)}</Head>
-      <Header />
-      <div dangerouslySetInnerHTML={{ __html: props?.bodyContent }} />
-      <Footer />
+      <Layout>
+        <div dangerouslySetInnerHTML={{ __html: props?.bodyContent }} />
+      </Layout>
     </>
   );
 }

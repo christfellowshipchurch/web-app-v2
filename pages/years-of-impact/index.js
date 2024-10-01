@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import parseHtml from 'html-react-parser';
-import { Footer, Header } from 'components';
+import { Layout } from 'components';
 import { Box } from 'ui-kit';
 import { useAnalytics } from 'providers/AnalyticsProvider';
 import { useEffect } from 'react';
@@ -16,10 +16,10 @@ export default function TimelinePage(props) {
   }, []);
   return (
     <Box bg="black" overflow="none">
-      <Head>{parseHtml(props.headContent)}</Head>
-      <Header />
-      <div dangerouslySetInnerHTML={{ __html: props.bodyContent }} />
-      <Footer />
+      <Head>{parseHtml(props?.headContent)}</Head>
+      <Layout>
+        <div dangerouslySetInnerHTML={{ __html: props?.bodyContent }} />
+      </Layout>
     </Box>
   );
 }
