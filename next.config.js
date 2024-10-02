@@ -33,7 +33,7 @@ module.exports = {
       }, // reboot this stupid thing notes fix rev
       { source: '/mom', destination: '/mothers-day-2024', permanent: true },
       { source: '/global', destination: '/global-missions', permanent: true },
-      { source: '/missionsschedule', destination: '/missions-sunday', permanent: true },
+      { source: '/missionsschedule', destination: '/missions-sunday-next-steps', permanent: true },
       { source: '/churchplanting', destination: '/church-planting', permanent: true },
       { source: '/recovery-care-and-support-groups', destination: 'https://my.longhollow.com/page/2827', permanent: true },
       { source: '/lh-young-adults-groups', destination: 'https://my.longhollow.com/page/2826', permanent: true },
