@@ -6,6 +6,7 @@ import { ContentLayout, Share } from 'components';
 import ContentVideo from 'components/ContentSingle/ContentVideo';
 import EventGroupings from './EventGroupings';
 import { useAnalytics } from 'providers/AnalyticsProvider';
+import { includes } from 'lodash';
 
 function EventSingle(props = {}) {
   const analytics = useAnalytics();
@@ -53,7 +54,7 @@ function EventSingle(props = {}) {
     summary,
     title,
     videos,
-    wistiaId,
+    wistiaId: initialWistiaId,
   } = props?.data;
 
   const coverImageUri = coverImage?.sources[0]?.uri;
@@ -71,11 +72,21 @@ function EventSingle(props = {}) {
     sms: `Join me for ${title} at Christ Fellowship! ${document?.URL}`,
   };
 
+  let wistiaId = initialWistiaId;
+
   var contentLayoutVideo;
   if (wistiaId) {
     contentLayoutVideo = currentVideo?.wistiaId;
   } else {
     contentLayoutVideo = currentVideo?.sources[0]?.uri;
+  }
+
+  /**
+   * This is a temporary fix that allows us to use the "Promotional Video" field in Rock while we wait for the Rock team to fix the Wistia plugin.
+   */
+  if (includes(videos[0]?.sources[0]?.uri, 'wistia')) {
+    const videoUrl = videos[0]?.sources[0]?.uri;
+    wistiaId = videoUrl.split('/')[videoUrl.split('/').length - 1];
   }
 
   return (
