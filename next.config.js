@@ -267,7 +267,7 @@ module.exports = {
       { source: '/replicate', destination: 'https://replicate.org/', permanent: true },
       { source: '/bylaws', destination: '/about/beliefs', permanent: true },
       { source: '/divorcecare', destination: '/divorce-care', permanent: true },
-      { source: '/offering', destination: '/easteroffering', permanent: true },
+      { source: '/offering', destination: '/fall-offering-2024', permanent: true },
       { source: '/ministryplan', destination: '/the-2024-ministry-plan', permanent: true },
       { source: '/griefshare', destination: '/grief-share', permanent: true },
       { source: '/food', destination: '/next-steps/get-involved-with-missions', permanent: true },
