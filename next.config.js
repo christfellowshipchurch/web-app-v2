@@ -186,7 +186,7 @@ module.exports = {
       { source: '/enjoy', destination: 'https://rock.longhollow.com/Content/ExternalSite/Downloads/Running-on-Empty-Booklet.pdf', permanent: true },
       { source: '/fc', destination: 'https://my.longhollow.com/registration/manup-fullcount', permanent: true },
       { source: '/invite', destination: '/', permanent: true },
-      { source: '/groups', destination: '/next-steps/find-a-life-group', permanent: true },
+      { source: '/groups', destination: '/long-hollow-groups', permanent: true },
       { source: '/youngadult', destination: '/connect/young-adults', permanent: true },
       { source: '/youngadults', destination: '/connect/young-adults', permanent: true },
       { source: '/anxiety', destination: '/anxiety-support-group', permanent: true },
