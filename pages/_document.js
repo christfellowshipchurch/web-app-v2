@@ -26,6 +26,12 @@ export default class MyDocument extends Document {
         case '/next-steps':
           webflowDataAttributes = 'data-wf-page="66d89a03d565e226f00e0083"';
           break;
+        case '/cbo-2024':
+          webflowDataAttributes = 'data-wf-page="672a56e11ae5618cff593ec3"';
+          break;
+        case '/christmas-at-cf':
+          webflowDataAttributes = 'data-wf-page="6723dfd7d7fcb2c49854df47"';
+          break;
         default:
           // Default case if no matching path is found
           webflowDataAttributes = '';
