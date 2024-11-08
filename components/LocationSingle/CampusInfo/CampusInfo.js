@@ -50,7 +50,7 @@ const CampusInfo = ({
   /** Instagram URLs */
   const campusLink = find(campusLinks, { name: name });
 
-  const desktopHeight = name === 'Online (CF Everywhere)' ? 500 : 560;
+  // const desktopHeight = name === 'Online (CF Everywhere)' ? 500 : 560;
 
   /** ---- Event Banner Props ----  */
   // const bannerUrl = ` /easter${
@@ -73,9 +73,11 @@ const CampusInfo = ({
 
   return (
     <Box
-      height={{ _: 'auto', md: desktopHeight }}
+      // height={{ _: 'auto', md: desktopHeight }}
+      height="auto"
       bg="white"
-      pb={name !== 'Online (CF Everywhere)' ? { _: '0px', md: '39rem' } : '0px'}
+      // pb={name !== 'Online (CF Everywhere)' ? { _: '0px', md: '39rem' } : '0px'}
+      pb="0px"
     >
       {/* Campus Information */}
       <Cell
@@ -272,8 +274,6 @@ const CampusInfo = ({
                         href="https://rock.christfellowship.church/page/412?OpportunityId=240"
                         target="_blank"
                         mt="s"
-                        display="flex"
-                        alignItems="center"
                         width="fit-content"
                         fontStyle="italic"
                         textDecoration="underline"
