@@ -40,6 +40,8 @@ const WeekdayScheduleDisplay = ({ weekdaySchedules, isMobile, campus }) => {
                 <Box as="h3" mb="xs">
                   {campus === CFEPBG || campus === CFERPB
                     ? weekdaySpanishTranslation(formattedDay)
+                    : formattedDay === 'Monday' && campus === 'Belle Glade'
+                    ? 'Monday - Thursday'
                     : formattedDay}
                 </Box>
                 {day[Object?.keys(day)]?.map(event => {
@@ -49,7 +51,7 @@ const WeekdayScheduleDisplay = ({ weekdaySchedules, isMobile, campus }) => {
                     'h:mm a'
                   );
                   return (
-                    <Box display="flex" alignItems="center">
+                    <Box>
                       {`${formattedTime} - 
                       ${event?.title}`}
                       {event?.url && (
@@ -84,7 +86,6 @@ const WeekdayScheduleDisplay = ({ weekdaySchedules, isMobile, campus }) => {
       <Box>
         {validDaysOfWeek(weekdaySchedules)?.map(day => {
           const formattedDay = capitalize(Object?.keys(day));
-          console.log('formattedDay', formattedDay);
           return (
             <Box mt="base" textAlign="center">
               <Box as="h3" mb="xs">
@@ -101,7 +102,11 @@ const WeekdayScheduleDisplay = ({ weekdaySchedules, isMobile, campus }) => {
                   'h:mm a'
                 );
                 return (
-                  <Box>
+                  <Box
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                  >
                     {`${formattedTime} - 
                 ${event?.title}`}
                     {event?.url && (
