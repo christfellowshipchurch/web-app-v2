@@ -84,6 +84,7 @@ const CampusInfo = ({
         flexDirection={{ _: 'column', md: 'row' }}
         justifyContent="center"
         maxWidth={utils.rem('1200px')}
+        bg="white"
         mx="auto"
         position="relative"
         px={{ _: 0, md: 'base' }}
