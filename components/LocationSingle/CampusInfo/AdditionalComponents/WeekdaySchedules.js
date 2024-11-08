@@ -89,9 +89,9 @@ const WeekdayScheduleDisplay = ({ weekdaySchedules, isMobile, campus }) => {
               <Box as="h3" mb="xs">
                 {campus === CFEPBG || campus === CFERPB
                   ? weekdaySpanishTranslation(formattedDay)
-                  : formattedDay === 'Monday' &&
-                    campus === 'Belle Glade' &&
-                    'Monday - Thursday'}
+                  : formattedDay === 'Monday' && campus === 'Belle Glade'
+                  ? 'Monday - Thursday'
+                  : formattedDay}
               </Box>
               {day[Object?.keys(day)]?.map(event => {
                 const formattedTime = format(
