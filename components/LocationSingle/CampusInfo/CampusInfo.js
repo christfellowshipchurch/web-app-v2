@@ -232,6 +232,9 @@ const CampusInfo = ({
                       programming for your family, and opportunities for you to
                       find people to do life with all throughout the week—it all
                       starts here!
+                      <br />
+                      {name === 'Belle Glade' &&
+                        `Since the beginning, our heart has been to serve kids in our community, that's why we offer our Kids After School and Saturday program where kids can encounter Jesus through a safe and fun experience where they will grow spiritually, relationally, and academically.`}
                     </Box>
                     {expectVideo && (
                       <Box
@@ -254,6 +257,28 @@ const CampusInfo = ({
                         cursor="pointer"
                       >
                         See what to expect here!
+                        <Icon
+                          ml="s"
+                          name="play"
+                          size="24"
+                          variant="secondary"
+                        />
+                      </Box>
+                    )}
+                    {name === 'Belle Glade' && (
+                      <Box
+                        as="a"
+                        href="https://rock.christfellowship.church/page/412?OpportunityId=240"
+                        target="_blank"
+                        mt="s"
+                        display="flex"
+                        alignItems="center"
+                        width="fit-content"
+                        fontStyle="italic"
+                        textDecoration="underline"
+                        cursor="pointer"
+                      >
+                        Learn more about our Kids After School Program here!
                         <Icon
                           ml="s"
                           name="play"
