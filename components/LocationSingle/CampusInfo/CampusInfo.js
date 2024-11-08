@@ -50,7 +50,7 @@ const CampusInfo = ({
   /** Instagram URLs */
   const campusLink = find(campusLinks, { name: name });
 
-  // const desktopHeight = name === 'Online (CF Everywhere)' ? 500 : 560;
+  const mdHeight = name === 'Online (CF Everywhere)' ? 500 : 'auto';
 
   /** ---- Event Banner Props ----  */
   // const bannerUrl = ` /easter${
@@ -72,13 +72,7 @@ const CampusInfo = ({
   /** ---- Event Banner Props ----  */
 
   return (
-    <Box
-      // height={{ _: 'auto', md: desktopHeight }}
-      height="auto"
-      bg="white"
-      // pb={name !== 'Online (CF Everywhere)' ? { _: '0px', md: '39rem' } : '0px'}
-      pb="0px"
-    >
+    <Box height={{ _: 'auto', md: mdHeight, lg: 'auto' }} bg="white" pb="0px">
       {/* Campus Information */}
       <Cell
         alignItems={{ _: 'center', md: 'start' }}

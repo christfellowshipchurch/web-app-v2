@@ -113,7 +113,6 @@ const ServiceTimeContainer = styled.div`
   }
 
   justify-content: space-around;
-  /* margin-top: ${themeGet('space.base')}; */
   padding-top: ${themeGet('space.base')};
   padding-bottom: ${themeGet('space.base')};
 

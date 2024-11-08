@@ -168,7 +168,6 @@ function LocationSingle(props = {}) {
               overflow="hidden"
               mt={setAReminderVideo ? 'xxl' : 'xs'}
               mx="auto"
-              pt={campus === 'Belle Glade' && 'xl'}
             >
               <Video wistiaId={setAReminderVideo} />
             </Box>
