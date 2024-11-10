@@ -32,6 +32,7 @@ module.exports = {
         permanent: false,
       }, // reboot this stupid thing notes fix rev
       { source: '/mom', destination: '/mothers-day-2024', permanent: true },
+      { source: '/ice', destination: '/ice-rink-2024', permanent: true },
       { source: '/nightofworship', destination: '/long-hollow-worship-night', permanent: true },
       { source: '/serveatchristmas', destination: '/serve-at-christmas-2024-find-a-place-to-serve-at-long-hollow-during-the-holiday-season', permanent: true },
       { source: '/global', destination: '/global-missions', permanent: true },
