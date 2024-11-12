@@ -22,7 +22,7 @@ export default function CboPage(props) {
   // Refresh the page if the URL contains #refresh
   useEffect(() => {
     if (asPath.includes('#refresh')) {
-      // Is this the name we want?
+      // Is this the url we want?
       window.location = '/2024-christ-birthday-offering';
     }
   }, [router, asPath]);
