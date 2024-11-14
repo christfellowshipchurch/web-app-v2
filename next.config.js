@@ -284,7 +284,7 @@ module.exports = {
       { source: '/lhkids', destination: '/connect/kids', permanent: true },
       { source: '/christmas', destination: 'https://longhollowchristmas.com', permanent: true },
       { source: '/christmaseve', destination: '/christmas-eve-at-long-hollow', permanent: true },
-      { source: '/christmasspectacular', destination: '/long-hollows-christmas-spectacular-a-christmas-celebration-for-the-whole-family', permanent: true },
+      { source: '/christmasspectacular', destination: 'https://www.longhollowchristmas.com/', permanent: true },
       { source: '/schedule', destination: '/about/schedule', permanent: true },
       { source: '/contact_us', destination: '/connect/connect-with-us', permanent: true },
       { source: '/im_new', destination: '/next-steps/plan-your-visit', permanent: true },
