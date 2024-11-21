@@ -31,6 +31,7 @@ module.exports = {
         destination: '/:slug',
         permanent: false,
       }, // reboot this stupid thing notes fix rev
+      { source: '/forgiveness', destination: 'https://my.longhollow.com/page/2823?GroupId=422228&PageType=care', permanent: true },
       { source: '/mom', destination: '/mothers-day-2024', permanent: true },
       { source: '/winterserve', destination: '/serve-at-christmas-2024-find-a-place-to-serve-at-long-hollow-during-the-holiday-season', permanent: true },
       { source: '/ice', destination: '/ice-rink-2024', permanent: true },
