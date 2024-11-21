@@ -31,6 +31,7 @@ module.exports = {
         destination: '/:slug',
         permanent: false,
       }, // reboot this stupid thing notes fix rev
+      { source: '/mens-groups', destination: 'https://my.longhollow.com/page/2804', permanent: true },
       { source: '/womens-groups-1', destination: 'https://my.longhollow.com/page/2825', permanent: true },
       { source: '/forgiveness', destination: 'https://my.longhollow.com/page/2823?GroupId=422228&PageType=care', permanent: true },
       { source: '/family-grace-mental-health-support-for-families-of-loved-ones-struggling', destination: 'https://my.longhollow.com/page/2827', permanent: true },
