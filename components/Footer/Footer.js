@@ -53,6 +53,14 @@ function Contact(props = {}) {
       <Box mb="base">
         <Logo dark={true} />
       </Box>
+      <Styled.Link
+        href="https://goo.gl/maps/Uv6zB3aFzr8pkfzz9"
+        target="_blank"
+        mb="s"
+      >
+        5343 Northlake Blvd <br />
+        Palm Beach Gardens, FL 33418
+      </Styled.Link>
       <Styled.Link href="tel:561-799-7600" mb="s">
         (561) 799-7600
       </Styled.Link>

@@ -40,6 +40,8 @@ const WeekdayScheduleDisplay = ({ weekdaySchedules, isMobile, campus }) => {
                 <Box as="h3" mb="xs">
                   {campus === CFEPBG || campus === CFERPB
                     ? weekdaySpanishTranslation(formattedDay)
+                    : formattedDay === 'Monday' && campus === 'Belle Glade'
+                    ? 'Monday - Thursday'
                     : formattedDay}
                 </Box>
                 {day[Object?.keys(day)]?.map(event => {
@@ -49,7 +51,7 @@ const WeekdayScheduleDisplay = ({ weekdaySchedules, isMobile, campus }) => {
                     'h:mm a'
                   );
                   return (
-                    <Box display="flex" alignItems="center">
+                    <Box>
                       {`${formattedTime} - 
                       ${event?.title}`}
                       {event?.url && (
@@ -89,6 +91,8 @@ const WeekdayScheduleDisplay = ({ weekdaySchedules, isMobile, campus }) => {
               <Box as="h3" mb="xs">
                 {campus === CFEPBG || campus === CFERPB
                   ? weekdaySpanishTranslation(formattedDay)
+                  : formattedDay === 'Monday' && campus === 'Belle Glade'
+                  ? 'Monday - Thursday'
                   : formattedDay}
               </Box>
               {day[Object?.keys(day)]?.map(event => {

@@ -50,7 +50,7 @@ const CampusInfo = ({
   /** Instagram URLs */
   const campusLink = find(campusLinks, { name: name });
 
-  const desktopHeight = name === 'Online (CF Everywhere)' ? 500 : 560;
+  const mdHeight = name === 'Online (CF Everywhere)' ? 500 : 'auto';
 
   /** ---- Event Banner Props ----  */
   // const bannerUrl = ` /easter${
@@ -72,11 +72,7 @@ const CampusInfo = ({
   /** ---- Event Banner Props ----  */
 
   return (
-    <Box
-      height={{ _: 'auto', md: desktopHeight }}
-      bg="white"
-      pb={name !== 'Online (CF Everywhere)' ? { _: '0px', md: '39rem' } : '0px'}
-    >
+    <Box height={{ _: 'auto', md: mdHeight, lg: 'auto' }} bg="white" pb="0px">
       {/* Campus Information */}
       <Cell
         alignItems={{ _: 'center', md: 'start' }}
@@ -84,6 +80,7 @@ const CampusInfo = ({
         flexDirection={{ _: 'column', md: 'row' }}
         justifyContent="center"
         maxWidth={utils.rem('1200px')}
+        bg="white"
         mx="auto"
         position="relative"
         px={{ _: 0, md: 'base' }}
@@ -232,6 +229,9 @@ const CampusInfo = ({
                       programming for your family, and opportunities for you to
                       find people to do life with all throughout the week—it all
                       starts here!
+                      <br />
+                      {name === 'Belle Glade' &&
+                        `Since the beginning, our heart has been to serve kids in our community, that's why we offer our Kids After School and Saturday program where kids can encounter Jesus through a safe and fun experience where they will grow spiritually, relationally, and academically.`}
                     </Box>
                     {expectVideo && (
                       <Box
@@ -254,6 +254,26 @@ const CampusInfo = ({
                         cursor="pointer"
                       >
                         See what to expect here!
+                        <Icon
+                          ml="s"
+                          name="play"
+                          size="24"
+                          variant="secondary"
+                        />
+                      </Box>
+                    )}
+                    {name === 'Belle Glade' && (
+                      <Box
+                        as="a"
+                        href="https://rock.christfellowship.church/page/412?OpportunityId=240"
+                        target="_blank"
+                        mt="s"
+                        width="fit-content"
+                        fontStyle="italic"
+                        textDecoration="underline"
+                        cursor="pointer"
+                      >
+                        Learn more about our Kids After School Program here!
                         <Icon
                           ml="s"
                           name="play"

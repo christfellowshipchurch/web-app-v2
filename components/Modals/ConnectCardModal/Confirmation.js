@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { icsLinkEvents } from 'utils';
 import { useCampus } from 'hooks';
 import { icsLink } from 'components/AddToCalendar/utils';
+import PropTypes from 'prop-types';
 
 const ConfirmationScreen = (props = {}) => {
   const modalDispatch = useModalDispatch();
@@ -54,12 +55,11 @@ const ConfirmationScreen = (props = {}) => {
       display="flex"
       flexDirection="column"
       alignItems="center"
-      p="l"
+      p={props?.campus ? '' : 'l'} // Padding is only applied if campus is not provided(Not Set a Reminder)
       textAlign="center"
-      px="xxl"
     >
       <Icon name="check" color="success" size="100" />
-      <Box as="h2" color="secondary" my="l" maxWidth="80vw">
+      <Box as="h2" color="secondary" my="l" maxWidth={600}>
         {!router.asPath.includes('locations')
           ? `You're all set!`
           : props?.campus.includes('Español')
@@ -79,7 +79,7 @@ const ConfirmationScreen = (props = {}) => {
             variant="secondary"
             mr="xs"
           >
-            {props?.campus.includes('Español')
+            {props?.campus?.includes('Español')
               ? 'AÑADIR AL CALENDARIO'
               : 'ADD TO CALENDAR'}
           </Button>
@@ -92,10 +92,21 @@ const ConfirmationScreen = (props = {}) => {
           m={{ _: 'xs', lg: 0 }}
           onClick={() => modalDispatch(hideModal())}
         >
-          {props?.campus.includes('Español') ? 'CONTINUAR' : 'CONTINUE'}
+          {props?.campus?.includes('Español') ? 'CONTINUAR' : 'CONTINUE'}
         </Button>
       </Box>
     </Box>
   );
 };
+
+ConfirmationScreen.propTypes = {
+  campus: PropTypes.string,
+  serviceTime: PropTypes.string,
+};
+
+ConfirmationScreen.defaultProps = {
+  campus: 'Palm Beach Gardens',
+  serviceTime: '',
+};
+
 export default ConfirmationScreen;

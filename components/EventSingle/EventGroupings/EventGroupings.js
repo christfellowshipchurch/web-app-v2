@@ -4,9 +4,20 @@ import { Box, Button, Card, Select } from 'ui-kit';
 import { useForm } from 'hooks';
 
 import DateTime from './DateTime';
+import { startCase } from 'lodash';
+
+const parseSearchParams = () => {
+  const params = new URLSearchParams(window.location.search);
+  const paramsObject = {};
+  params.forEach((value, key) => {
+    paramsObject[key] = value;
+  });
+  return paramsObject;
+};
 
 const EventGroupings = (props = {}) => {
   const { values, handleSubmit, setValues, handleChange } = useForm();
+  const params = parseSearchParams();
 
   // note : Checks to make sure there is a valid instance of each grouping, if not that means the grouping's date is invalid and should not show
   const isValidGrouping = groupings =>
@@ -20,6 +31,9 @@ const EventGroupings = (props = {}) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setValues]);
+
+  const defaultCampus =
+    startCase(params.campus) || props.data?.eventGroupings?.[0]?.name;
 
   const selectedGroup = eventGroupings?.find(
     i => i.name === values.campusSelect
@@ -37,7 +51,7 @@ const EventGroupings = (props = {}) => {
           p={{ _: 's', md: 'base' }}
         >
           <Select
-            defaultValue={eventGroupings[0]?.name}
+            defaultValue={defaultCampus}
             id="campusSelect"
             mb={selectedGroup?.instances?.length > 0 ? 'base' : '0'}
             name="campusSelect"
