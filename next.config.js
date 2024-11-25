@@ -88,7 +88,7 @@ module.exports = {
       {
         source: '/christ-birthday-offering',
         destination:
-          'https://www.christfellowship.church/2022-christ-birthday-offering',
+          'https://www.christfellowship.church/2024-christ-birthday-offering',
         permanent: true,
       },
       {
