@@ -79,11 +79,11 @@ const CampusInfo = ({
         display="flex"
         flexDirection={{ _: 'column', md: 'row' }}
         justifyContent="center"
-        maxWidth={utils.rem('1200px')}
+        // maxWidth={utils.rem('1200px')}
         bg="white"
         mx="auto"
         position="relative"
-        px={{ _: 0, md: 'base' }}
+        px={{ _: 0, md: 'base', lg: 0 }}
         top={{ _: 0, md: '-2.7rem' }}
         zIndex={1}
         width="100%"
@@ -121,7 +121,7 @@ const CampusInfo = ({
         </Styled.MobileEventBanner> */}
 
         {/* Service Times */}
-        <Box width="100%">
+        <Box width="100%" mt="-0.3rem">
           <Styled.ServiceTimeContainer>
             <Styled.ServiceTimeTitle>
               {name === 'Online (CF Everywhere)'
