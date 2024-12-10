@@ -33,6 +33,7 @@ module.exports = {
       }, // reboot this stupid thing notes fix rev
       { source: '/family-grace-mental-health-support-for-families-of-loved-ones-struggling', destination: 'https://my.longhollow.com/page/2823?GroupId=489829&PageType=care', permanent: true },
       { source: '/explore-our-2024-annual-report', destination: 'impact.longhollow.com', permanent: true },
+      { source: '/healing-from-trauma-women-only', destination: 'https://my.longhollow.com/page/2823?GroupId=1062758&PageType=oncampus', permanent: true },
       { source: '/2024impact', destination: 'impact.longhollow.com', permanent: true },
       { source: '/mens-groups', destination: 'https://my.longhollow.com/page/2804', permanent: true },
       { source: '/mental-health', destination: 'https://my.longhollow.com/page/2823?GroupId=450719&PageType=care', permanent: true },
