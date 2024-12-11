@@ -66,7 +66,7 @@ module.exports = {
       { source: '/make-a-difference-2', destination: 'https://my.longhollow.com/page/1322', permanent: true },
       { source: '/mensnight', destination: 'https://longhollow.com/lh-mens-night-come-hang-with-us', permanent: true },
       { source: '/group-leader-resources', destination: '/groupleaderresources', permanent: true },
-      { source: '/preview', destination: '/fall-preview-night-2024', permanent: true },
+      { source: '/preview', destination: '/launch-night-winter-2025', permanent: true },
       { source: '/mondaynightoutreach', destination: '/monday-night-outreach-provide-meals', permanent: true },
       { source: '/prison', destination: '/prison-ministry-volunteer-information-meeting', permanent: true },
       { source: '/events', destination: 'https://longhollow.com/search?category=Events&p=1', permanent: true },
