@@ -30,7 +30,7 @@ module.exports = {
         source: '/app-link/:slug',
         destination: '/:slug',
         permanent: false,
-      }, // reboot this stupid thing notes fix rev
+      }, // reboot this stupid thing notes fix rev again
       { source: '/family-grace-mental-health-support-for-families-of-loved-ones-struggling', destination: 'https://my.longhollow.com/page/2823?GroupId=489829&PageType=care', permanent: true },
       { source: '/explore-our-2024-annual-report', destination: 'impact.longhollow.com', permanent: true },
       { source: '/word', destination: '/get-into-the-word-2025', permanent: true },
