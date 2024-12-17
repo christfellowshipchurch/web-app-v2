@@ -41,6 +41,7 @@ module.exports = {
       { source: '/2024impact', destination: 'https://www.longhollowimpact.com/', permanent: true },
       { source: '/mens-groups', destination: 'https://my.longhollow.com/page/2804', permanent: true },
       { source: '/mental-health', destination: 'https://my.longhollow.com/page/2823?GroupId=450719&PageType=care', permanent: true },
+      { source: '/divorce-care', destination: 'https://my.longhollow.com/page/2823?GroupId=1057044&PageType=care', permanent: true },
       { source: '/caring-for-aging-relatives-in-person-and-zoom', destination: 'https://my.longhollow.com/page/2823?GroupId=505203&PageType=care', permanent: true },
       { source: '/embracegrace', destination: 'https://my.longhollow.com/page/2823?GroupId=479136&PageType=care', permanent: true },
       { source: '/hope-through-illness', destination: 'https://my.longhollow.com/page/2823?GroupId=425337&PageType=care', permanent: true },
