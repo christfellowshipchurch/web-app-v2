@@ -36,7 +36,7 @@ module.exports = {
       { source: '/word', destination: '/get-into-the-word-2025', permanent: true },
       { source: '/impact', destination: 'https://www.longhollowimpact.com/', permanent: true },
       { source: '/2024impact', destination: 'https://www.longhollowimpact.com/', permanent: true },
-      { source: 'https://longhollow.com/adoptionfoster-parent-support-group', destination: 'https://my.longhollow.com/page/2823?GroupId=1079723&PageType=oncampus', permanent: true },
+      { source: '/adoptionfoster-parent-support-group', destination: 'https://my.longhollow.com/page/2823?GroupId=1079723&PageType=oncampus', permanent: true },
       { source: '/healing-from-trauma-women-only', destination: 'https://my.longhollow.com/page/2823?GroupId=1062758&PageType=oncampus', permanent: true },
       { source: '/getintotheword', destination: '/get-into-the-word-2025', permanent: true },
       { source: '/2024impact', destination: 'https://www.longhollowimpact.com/', permanent: true },
