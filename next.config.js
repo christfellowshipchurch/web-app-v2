@@ -147,6 +147,11 @@ module.exports = {
         destination: '/next-steps',
         permanent: true,
       },
+      {
+        source: '/christmas',
+        destination: '/christmas-2024',
+        permanent: true,
+      },
       // TODO: Uncomment these lines to hide Group Finder.
       // NOTE: We can't get `config/flags` in this file.
       // {

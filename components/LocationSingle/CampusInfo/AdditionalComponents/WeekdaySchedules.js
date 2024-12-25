@@ -84,10 +84,10 @@ const WeekdayScheduleDisplay = ({ weekdaySchedules, isMobile, campus }) => {
           : 'During the Week'}
       </Box>
       <Box>
-        {validDaysOfWeek(weekdaySchedules)?.map(day => {
+        {validDaysOfWeek(weekdaySchedules)?.map((day, index) => {
           const formattedDay = capitalize(Object?.keys(day));
           return (
-            <Box mt="base" textAlign="center">
+            <Box mt="base" key={index} textAlign="center">
               <Box as="h3" mb="xs">
                 {campus === CFEPBG || campus === CFERPB
                   ? weekdaySpanishTranslation(formattedDay)
