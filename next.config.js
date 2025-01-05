@@ -34,6 +34,7 @@ module.exports = {
       { source: '/family-grace-mental-health-support-for-families-of-loved-ones-struggling', destination: 'https://my.longhollow.com/page/2823?GroupId=489829&PageType=care', permanent: true },
       { source: '/explore-our-2024-annual-report', destination: 'impact.longhollow.com', permanent: true },
       { source: '/england', destination: '/pastor-robby-gallaty-10-day-footsteps-of-the-reformers-england-scotland-october-13-22-2025', permanent: true },
+      { source: '/anxiety-support-group', destination: 'https://my.longhollow.com/page/2823?GroupId=1055541&PageType=care', permanent: true },
       { source: '/word', destination: '/get-into-the-word-2025', permanent: true },
       { source: '/impact', destination: 'https://www.longhollowimpact.com/', permanent: true },
       { source: '/2024impact', destination: 'https://www.longhollowimpact.com/', permanent: true },
