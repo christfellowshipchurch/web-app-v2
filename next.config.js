@@ -35,6 +35,7 @@ module.exports = {
       { source: '/explore-our-2024-annual-report', destination: 'impact.longhollow.com', permanent: true },
       { source: '/england', destination: '/pastor-robby-gallaty-10-day-footsteps-of-the-reformers-england-scotland-october-13-22-2025', permanent: true },
       { source: '/anxiety-support-group', destination: 'https://my.longhollow.com/page/2823?GroupId=1055541&PageType=care', permanent: true },
+      { source: '/moms-of-special-needs-children', destination: 'https://my.longhollow.com/page/2823?GroupId=453889&PageType=care', permanent: true },
       { source: '/word', destination: '/get-into-the-word-2025', permanent: true },
       { source: '/grief-share', destination: 'https://my.longhollow.com/page/2823?GroupId=1057795&PageType=care', permanent: true },
       { source: '/impact', destination: 'https://www.longhollowimpact.com/', permanent: true },
