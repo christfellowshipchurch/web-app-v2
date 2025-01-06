@@ -41,7 +41,7 @@ module.exports = {
       { source: '/grief-share', destination: 'https://my.longhollow.com/page/2823?GroupId=1057795&PageType=care', permanent: true },
       { source: '/impact', destination: 'https://www.longhollowimpact.com/', permanent: true },
       { source: '/2024impact', destination: 'https://www.longhollowimpact.com/', permanent: true },
-      { source: '/connect/support-groups', destination: 'https://my.longhollow.com/page/2827', permanent: true },
+      { source: 'https://longhollow.com/connect/support-groups', destination: 'https://my.longhollow.com/page/2827', permanent: true },
       { source: '/support-groups', destination: 'https://my.longhollow.com/page/2827', permanent: true },
       { source: '/adoptionfoster-parent-support-group', destination: 'https://my.longhollow.com/page/2823?GroupId=1079723&PageType=oncampus', permanent: true },
       { source: '/healing-from-trauma-women-only', destination: 'https://my.longhollow.com/page/2823?GroupId=1062758&PageType=oncampus', permanent: true },
