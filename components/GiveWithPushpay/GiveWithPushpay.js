@@ -12,7 +12,6 @@ function GiveWithPushpay(props = {}) {
     ? ['Christ Birthday Offering']
     : [
         'Tithes & Offerings',
-        'Heart for the House',
         'Kingdom Builders',
         'Christ Birthday Offering',
         'Missions',
