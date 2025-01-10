@@ -39,6 +39,7 @@ module.exports = {
       { source: '/school', destination: '/long-hollow-school-of-ministry-spring-2025', permanent: true },
       { source: '/womens-groups', destination: 'https://my.longhollow.com/page/2825', permanent: true },
       { source: '/word', destination: '/get-into-the-word-2025', permanent: true },
+      { source: '/lafires', destination: '/california-wildfires', permanent: true },
       { source: '/volunteering', destination: '/next-steps/volunteer', permanent: true },
       { source: 'https://longhollow.com/grief-share', destination: 'https://my.longhollow.com/page/2823?GroupId=1057795&PageType=care', permanent: true },
       { source: '/impact', destination: 'https://www.longhollowimpact.com/', permanent: true },
