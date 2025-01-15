@@ -232,7 +232,7 @@ module.exports = {
       { source: '/open', destination: '/about/schedule', permanent: true },
       { source: '/neighbor', destination: '/a-message-from-derwin-gray', permanent: true },
       { source: '/plan', destination: '/about/schedule', permanent: true },
-      { source: '/resources', destination: 'https://longhollow.com/resources-for-our-journey-through-revelation', permanent: true },
+      { source: '/resources', destination: '/get-into-the-word-2025', permanent: true },
       { source: '/groupresources', destination: '/group-leader-resources', permanent: true },
       { source: '/register', destination: 'https://longhollow.wufoo.com/forms/p1sy523v1vypask/', permanent: true },
       { source: '/help', destination: '/connect/support-groups', permanent: true },
