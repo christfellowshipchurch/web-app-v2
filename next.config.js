@@ -170,7 +170,7 @@ module.exports = {
       { source: '/guys-weekend', destination: 'https://longhollow.com/guys-weekend-2024-a-weekend-retreat-for-middle-school-and-high-school-guys', permanent: true },
       { source: '/vote', destination: 'https://rock.longhollow.com/page/1267', permanent: true },
       { source: '/fallfamily', destination: '/fall-family-fun-day-2024', permanent: true },
-      { source: '/rhythms', destination: 'https://longhollow.com/rhythms-feb2024', permanent: true },
+      { source: '/rhythms', destination: '/rhythms-a-womens-gathering', permanent: true },
       { source: '/survey', destination: 'https://www.surveymonkey.com/r/YFZMCFP', permanent: true },
       { source: '/hvillemap', destination: 'https://rock.longhollow.com/Content/ExternalSite/Downloads/HENDERSONVILLE_MAP_COMBO.pdf', permanent: true },
       { source: '/mensnextsteps', destination: '/next-steps-from-mens-night-2021', permanent: true },
