@@ -59,6 +59,7 @@ module.exports = {
       { source: '/safe-people', destination: 'https://my.longhollow.com/page/2823?GroupId=1061529&PageType=care', permanent: true },
       { source: '/womens-infertility-and-miscarriage', destination: 'https://my.longhollow.com/page/2823?GroupId=465379&PageType=care', permanent: true },
       { source: '/mensconference', destination: '/lh-mens-conference-2025-a-weekend-of-growth-and-connection-for-men', permanent: true },
+      { source: '/menvol', destination: 'https://my.longhollow.com/morningofmensevent', permanent: true },
       { source: '/womens-groups-1', destination: 'https://my.longhollow.com/page/2825', permanent: true },
       { source: '/forgiveness', destination: 'https://my.longhollow.com/page/2823?GroupId=422228&PageType=care', permanent: true },
       { source: '/family-grace-mental-health-support-for-families-of-loved-ones-struggling', destination: 'https://my.longhollow.com/page/2827', permanent: true },
