@@ -100,10 +100,10 @@ const PastorCard = ({
       ) : null}
       <Box my="base">
         {campusName === 'Online (CF Everywhere)' ? (
-          /**
-           * todo : Add url to contact us button
-           */
           <Button
+            as="a"
+            target="_blank"
+            href={links.contactUs}
             size="xs"
             mr={{ _: 'xs', lg: 0 }}
             width="132px"
@@ -113,28 +113,26 @@ const PastorCard = ({
             CONTACT US
           </Button>
         ) : (
-          [
-            <Button
-              size="xs"
-              px="s"
-              borderRadius="xxl"
-              ml={{ _: 0, lg: 'xs' }}
-              m={{ _: 'xs', lg: 0 }}
-              width="132px"
-              onClick={() =>
-                handleSocialShare({
-                  shareType: 'sms',
-                  shareMessages: {
-                    sms: `Would you like to join me for service at Christ Fellowship Church? Here’s a link with all the details. ${document.URL}`,
-                  },
-                })
-              }
-            >
-              {campusName === CFERPB || campusName === CFEPBG
-                ? 'INVITA A UN AMIGO'
-                : 'INVITE A FRIEND'}
-            </Button>,
-          ]
+          <Button
+            size="xs"
+            px="s"
+            borderRadius="xxl"
+            ml={{ _: 0, lg: 'xs' }}
+            m={{ _: 'xs', lg: 0 }}
+            width="132px"
+            onClick={() =>
+              handleSocialShare({
+                shareType: 'sms',
+                shareMessages: {
+                  sms: `Would you like to join me for service at Christ Fellowship Church? Here’s a link with all the details. ${document.URL}`,
+                },
+              })
+            }
+          >
+            {campusName === CFERPB || campusName === CFEPBG
+              ? 'INVITA A UN AMIGO'
+              : 'INVITE A FRIEND'}
+          </Button>
         )}
         <Button
           as="a"

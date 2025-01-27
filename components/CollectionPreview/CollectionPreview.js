@@ -119,7 +119,7 @@ CollectionPreview.defaultProps = {
   buttonOverride: '',
   horizontalScroll: false,
   size: 'l',
-  cardType: 'highlight',
+  cardType: 'default',
   hideButton: false,
   titleOverride: '',
   summary: '',

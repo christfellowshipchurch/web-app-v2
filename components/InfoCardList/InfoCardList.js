@@ -21,8 +21,9 @@ function InfoCardList(props) {
         {props?.subtitle}
       </Box>
       <Box display="flex" flexDirection={{ _: 'column', lg: 'row' }}>
-        {props?.cards?.map(card => (
+        {props?.cards?.map((card, index) => (
           <Box
+            key={index}
             bg={props?.cardColor}
             my="s"
             mx="base"
