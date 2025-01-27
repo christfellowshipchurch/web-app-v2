@@ -102,6 +102,7 @@ const PastorCard = ({
         {campusName === 'Online (CF Everywhere)' ? (
           <Button
             as="a"
+            target="_blank"
             href={links.contactUs}
             size="xs"
             mr={{ _: 'xs', lg: 0 }}
