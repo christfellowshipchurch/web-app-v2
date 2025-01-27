@@ -100,10 +100,8 @@ const PastorCard = ({
       ) : null}
       <Box my="base">
         {campusName === 'Online (CF Everywhere)' ? (
-          /**
-           * todo : Add url to contact us button
-           */
           <Button
+            href={links.contactUs}
             size="xs"
             mr={{ _: 'xs', lg: 0 }}
             width="132px"
