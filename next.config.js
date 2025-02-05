@@ -37,6 +37,7 @@ module.exports = {
       { source: '/anxiety-support-group', destination: 'https://my.longhollow.com/page/2823?GroupId=1055541&PageType=care', permanent: true },
       { source: '/moms-of-special-needs-children', destination: 'https://my.longhollow.com/page/2823?GroupId=453889&PageType=care', permanent: true },
       { source: '/school', destination: '/long-hollow-school-of-ministry-spring-2025', permanent: true },
+      { source: '/healing-for-estrangement-parents-of-adult-children', destination: 'https://my.longhollow.com/page/2823?GroupId=1094662&PageType=care', permanent: true },
       { source: '/freedomfrompornographysupportgroup', destination: 'https://my.longhollow.com/page/2823?GroupId=1032637&PageType=care', permanent: true },
       { source: '/womens-groups', destination: 'https://my.longhollow.com/page/2825', permanent: true },
       { source: '/word', destination: '/get-into-the-word-2025', permanent: true },
