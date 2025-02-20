@@ -109,7 +109,7 @@ module.exports = {
       { source: '/family', destination: 'https://nsb2r6cpbt4.typeform.com/to/rv4waLbv', permanent: true },
       { source: '/relief', destination: 'https://longhollow.com/crisis-response-team', permanent: true },
       { source: '/hope', destination: '/hopefortheholidays-november2023', permanent: true },
-      { source: '/secretchurch', destination: '/secretchurch-2024', permanent: true },
+      { source: '/secretchurch', destination: '/secret-church-2025', permanent: true },
       { source: '/summerserve', destination: '/serve-this-summer-make-the-most-of-summer', permanent: true },
       { source: '/wednesdays', destination: '/wednesdays-at-lh-winterspring-2025', permanent: true },
       { source: '/firstrespondermeals', destination: '/first-responder-meals-help-us-care-for-our-first-responders-on-christmas-day-2024', permanent: true },
