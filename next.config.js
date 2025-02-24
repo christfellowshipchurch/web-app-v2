@@ -42,6 +42,7 @@ module.exports = {
       { source: '/freedomfrompornographysupportgroup', destination: 'https://my.longhollow.com/page/2823?GroupId=1032637&PageType=care', permanent: true },
       { source: '/womens-groups', destination: 'https://my.longhollow.com/page/2825', permanent: true },
       { source: '/word', destination: '/get-into-the-word-2025', permanent: true },
+      { source: '/campvolunteer', destination: 'https://my.longhollow.com/campvolunteer', permanent: true },
       { source: '/parentconference', destination: '/parent-conference-2025', permanent: true },
       { source: '/lafires', destination: '/california-wildfires', permanent: true },
       { source: '/volunteering', destination: '/next-steps/volunteer', permanent: true },
