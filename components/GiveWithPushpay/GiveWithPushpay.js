@@ -13,6 +13,7 @@ function GiveWithPushpay(props = {}) {
     : [
         'Tithes & Offerings',
         'Kingdom Builders',
+        'Heart for the House',
         'Christ Birthday Offering',
         'Missions',
       ];
@@ -55,6 +56,25 @@ function GiveWithPushpay(props = {}) {
         [event.target.name]: '',
       }));
   };
+
+  const givingTypeURL =
+    values.givingType === 'Heart for the House'
+      ? 'https://pushpay.com/g/cfh4th?fnd=jt-LCSg3OxQQuMJmf0SzbQ&lang=en' +
+        '?f[0]=' +
+        values.campus +
+        '&a=' +
+        values.amount +
+        '&' +
+        (active === 'giveRecurring' && 'r=weekly')
+      : props?.buttonLink +
+        '?f[0]=' +
+        values.campus +
+        '&a=' +
+        values.amount +
+        '&f[1]=' +
+        values.givingType +
+        '&' +
+        (active === 'giveRecurring' && 'r=weekly');
 
   return (
     <Styled id="give" backgroundImage={props?.backgroundImage}>
@@ -186,17 +206,7 @@ function GiveWithPushpay(props = {}) {
             target="blank"
             mt="xl"
             mb="l"
-            href={
-              props?.buttonLink +
-              '?f[0]=' +
-              values.campus +
-              '&a=' +
-              values.amount +
-              '&f[1]=' +
-              values.givingType +
-              '&' +
-              (active === 'giveRecurring' && 'r=weekly')
-            }
+            href={givingTypeURL}
             bg={props?.buttonColor}
             px="l"
           >
