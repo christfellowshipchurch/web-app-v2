@@ -37,7 +37,7 @@ export default function EasterPage(props) {
 }
 
 export async function getStaticProps(ctx) {
-  // Import modules in here that aren't needed in the component.
+  // Import modules in here that aren't needed in the component
   const cheerio = await import(`cheerio`);
   const axios = (await import(`axios`)).default;
 
