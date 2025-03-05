@@ -378,6 +378,7 @@ module.exports = {
       { source: '/gallatin', destination: '/about-the-closing-of-our-gallatin-campus', permanent: true },
       { source: '/events/lh-kids-baptism-classes', destination: '/kids-baptism-classes', permanent: true },
       { source: '/events/supporting-those-who-struggle-event', destination: '/supporting-those-who-struggle-event', permanent: true },
+      { source: '/supporting-those-who-struggle', destination: '/supporting-those-who-struggle-2021', permanent: true },
       { source: '/events/light-up-the-pike', destination: 'https://lightupthepike.com', permanent: true },
       { source: '/groupserve', destination: 'https://my.longhollow.com/groupserve', permanent: true },
       { source: '/vendor', destination: 'https://longhollow.wufoo.com/forms/phu7t8c0lslify/', permanent: true },
