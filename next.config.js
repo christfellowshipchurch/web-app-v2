@@ -149,7 +149,7 @@ module.exports = {
       { source: '/young-adults-weekly-gathering', destination: '/tuesday-night-gathering', permanent: true },
       { source: '/summerserve', destination: '/volunteer', permanent: true },
       { source: '/sign-up-to-use-your-gifts-at-summer-events', destination: '/volunteer', permanent: true },
-      { source: '/loveourcity', destination: '/serve-your-community-during-love-our-city', permanent: true },
+      { source: '/loveourcity', destination: '/love-our-city-2025', permanent: true },
       { source: '/compassion', destination: '/our-partnership-with-compassion-international', permanent: true },
       { source: '/summerjam', destination: '/bring-your-family-to-summer-jam-with-lh-kids', permanent: true },
       { source: '/compassionvolunteer', destination: 'https://my.longhollow.com/Registration/compassion-vol-2022', permanent: true },
