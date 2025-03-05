@@ -117,6 +117,7 @@ module.exports = {
       { source: '/fall', destination: 'https://longhollow.com/search?category=Events&p=1', permanent: true },
       { source: '/fallatlh', destination: 'https://longhollow.com/search?category=Events&p=1', permanent: true },
       { source: '/winter', destination: 'https://longhollow.com/search?category=Events&p=1', permanent: true },
+      { source: '/spring', destination: 'https://longhollow.com/search?category=Events&p=1', permanent: true },
       { source: '/summer', destination: '/everything-coming-this-summer-at-long-hollow', permanent: true },
       { source: '/good', destination: '/get-involved', permanent: true },
       { source: '/volunteerappreciation', destination: 'https://rock.longhollow.com/page/1759?ProjectId=140rpr189K&LocationId=x5yjnKGyeL&ScheduleId=jV038pgypv', permanent: true },
