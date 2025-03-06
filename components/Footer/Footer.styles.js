@@ -4,6 +4,7 @@ import { themeGet } from '@styled-system/theme-get';
 import { system } from 'ui-kit';
 
 const Footer = styled.footer`
+  z-index: 2;
   ${system}
 `;
 
