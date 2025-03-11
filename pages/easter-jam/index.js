@@ -19,7 +19,7 @@ export default function EasterPage(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Refresh the page if the URL contains #refresh
+  // Refresh the page if the URL contains #refresh.
   useEffect(() => {
     if (asPath.includes('#refresh')) {
       window.location = '/easter-jam';
