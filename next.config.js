@@ -43,6 +43,7 @@ module.exports = {
       { source: '/womens-groups', destination: 'https://my.longhollow.com/page/2825', permanent: true },
       { source: '/word', destination: '/get-into-the-word-2025', permanent: true },
       { source: '/campvolunteer', destination: 'https://my.longhollow.com/campvolunteer', permanent: true },
+      { source: '/gallatinsurvey', destination: 'https://docs.google.com/forms/d/e/1FAIpQLSfsbvHSkn4-Eo7RNfFIlLaqwfDE4Y5W7MR-xgitj-RNjAoQ5g/viewform', permanent: true },
       { source: '/parentconference', destination: '/parent-conference-2025', permanent: true },
       { source: '/lafires', destination: '/california-wildfires', permanent: true },
       { source: '/volunteering', destination: '/next-steps/volunteer', permanent: true },
