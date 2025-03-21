@@ -132,11 +132,11 @@ module.exports = {
         destination: '/dwpb',
         permanent: true,
       },
-      {
-        source: '/easter',
-        destination: '/easter-2024',
-        permanent: true,
-      },
+      // {
+      //   source: '/easter',
+      //   destination: '/easter-2025',
+      //   permanent: true,
+      // },
       {
         source: '/easter-espanol',
         destination: '/easter-espanol-2024',

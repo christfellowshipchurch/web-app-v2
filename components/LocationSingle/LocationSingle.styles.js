@@ -156,7 +156,7 @@ const VideoOverlay = styled.div`
 
 // ----------------------------------------------
 
-// 2023 Event Banner Styled Components
+// Event Banner Styled Components
 const EventBanner = styled.div`
   background-color: ${props => props.backgroundColor};
   border-top-left-radius: ${themeGet('radii.base')};
@@ -172,44 +172,12 @@ const EventBanner = styled.div`
   padding-top: ${themeGet('space.s')};
   box-shadow: -7px -5px 19px rgba(0, 0, 0, 0.12);
 
-  position: absolute;
-  top: -40px;
-  right: 370px;
-
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     text-size: 14px;
   }
 
   @media screen and (min-width: 75rem) {
     font-size: 18px;
-  }
-
-  @media screen and (min-width: ${themeGet(
-      'breakpoints.md'
-    )}) and (max-width: ${themeGet('breakpoints.lg')}) {
-    text-size: 14px;
-    padding-right: 10px;
-    margin-left: 8px;
-
-    right: 322px;
-    top: -35px;
-  }
-
-  @media screen and (min-width: 63rem) and (max-width: 64rem) {
-    padding-right: 20px;
-
-    right: 370px;
-    top: -35px;
-  }
-
-  @media screen and (min-width: ${themeGet(
-      'breakpoints.md'
-    )}) and (max-width: 50rem) {
-    padding-right: 10px;
-    margin-left: 8px;
-
-    right: 306px;
-    top: -55px;
   }
 
   ${system}
@@ -244,14 +212,19 @@ const MobileEventBanner = styled.div`
   ${system}
 `;
 
-const EventSubtitle = styled.div`
-  color: rgba(59, 125, 217, 1);
-  font-size: 12px;
+const EventSubtitle = styled.span`
   font-style: italic;
+  font-weight: 300;
+  color: #000;
+  font-size: 13px;
+  padding-left: 10px;
+
+  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+    padding-left: 0px;
+  }
 `;
 
 const EventCTA = styled.a`
-  color: rgba(59, 125, 217, 1);
   text-decoration: underline;
 `;
 
