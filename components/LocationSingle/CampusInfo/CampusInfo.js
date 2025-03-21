@@ -6,7 +6,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { camelCase, find } from 'lodash';
 
-import { Box, Cell, Divider, Icon } from 'ui-kit';
+import { Box, Cell, Divider, Icon, Image } from 'ui-kit';
 
 import { campusLinks } from '../../../lib/locationData';
 import Styled from '../LocationSingle.styles';
@@ -53,22 +53,20 @@ const CampusInfo = ({
   const mdHeight = name === 'Online (CF Everywhere)' ? 500 : 'auto';
 
   /** ---- Event Banner Props ----  */
-  // const bannerUrl = ` /easter${
-  //   cfe ? '-espanol' : ''
-  // }?utm_campaign=Easter24&utm_source=locations`;
+  const bannerUrl = '/easter';
 
-  // /** Spanish Campuses */
+  /** Spanish Campuses */
 
-  // let subtitle, title, cta;
-  // if (cfe) {
-  //   title = '¿Buscas un servicio de Pascua?';
-  //   subtitle = 'Mira los horarios de los servicios de Pascua y Viernes Santo ';
-  //   cta = 'aquí';
-  // } else {
-  //   title = 'Looking for an Easter service?';
-  //   subtitle = 'See all Easter and Good Friday service times ';
-  //   cta = 'here';
-  // }
+  let subtitle, title, cta;
+  if (cfe) {
+    title = '¿Buscas un servicio de Pascua?';
+    subtitle = 'Mira los horarios de los servicios de Pascua y Viernes Santo ';
+    cta = 'aquí';
+  } else {
+    title = 'Looking for an Easter service?';
+    subtitle = 'See all Easter and Good Friday service times ';
+    cta = 'here';
+  }
   /** ---- Event Banner Props ----  */
 
   return (
@@ -89,9 +87,9 @@ const CampusInfo = ({
         width="100%"
       >
         {/* Event Banner For Mobile --- For Easter/Christmas */}
-        {/* <Styled.MobileEventBanner
+        <Styled.MobileEventBanner
           display={{ _: 'flex', md: 'none' }}
-          backgroundColor="#ebcd5f"
+          backgroundColor="#F1EB9C"
           textColor="black"
         >
           <Image
@@ -110,15 +108,15 @@ const CampusInfo = ({
               <Box
                 as="a"
                 href={bannerUrl}
-                color="rgba(59, 125, 217, 1)"
                 textDecoration="underline"
+                color="#000"
               >
                 {cta}
               </Box>
               .
             </Styled.EventSubtitle>
           </Box>
-        </Styled.MobileEventBanner> */}
+        </Styled.MobileEventBanner>
 
         {/* Service Times */}
         <Box width="100%" mt="-0.3rem">
@@ -165,9 +163,11 @@ const CampusInfo = ({
             )}
           </Box>
           {/* Desktop Easter Banner --- For Easter/Christmas */}
-          {/* <Styled.EventBanner
+          <Styled.EventBanner
             display={{ _: 'none', md: 'flex' }}
-            backgroundColor="#ebcd5f"
+            position="relative"
+            top="-170px"
+            backgroundColor="#F1EB9C"
             textColor="black"
             fontSize={cfe && 15}
           >
@@ -181,14 +181,23 @@ const CampusInfo = ({
 
             <Box
               alignItems="center"
-              display=" inline-block"
+              display="inline-block"
               justifyContent="center"
               textWrap="pretty"
+              fontSize={16}
             >
-              {title} {subtitle}
-              <Styled.EventCTA href={bannerUrl}>{cta}</Styled.EventCTA>
+              {title}
+              <Styled.EventSubtitle>
+                {subtitle}
+                <a
+                  style={{ textDecoration: 'underline', color: '#000' }}
+                  href={bannerUrl}
+                >
+                  {cta}
+                </a>
+              </Styled.EventSubtitle>
             </Box>
-          </Styled.EventBanner> */}
+          </Styled.EventBanner>
 
           <Box mr={{ _: 0, lg: 'base' }}>
             {/* Custom Info for CF Everywhere and Trinity */}

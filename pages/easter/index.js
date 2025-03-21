@@ -29,7 +29,7 @@ export default function EasterPage(props) {
   return (
     <>
       <Head>{parseHtml(props?.headContent)}</Head>
-      <Layout>
+      <Layout transparentHeader>
         <div dangerouslySetInnerHTML={{ __html: props?.bodyContent }} />
       </Layout>
     </>
