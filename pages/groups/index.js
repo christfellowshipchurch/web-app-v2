@@ -110,8 +110,7 @@ export default function Community(props = {}) {
         }}
       >
         <Box>
-          {/* TODO: Change back after Dont Let Doubt Take You Out season is over */}
-          {/* <Styled.Hero height={{ _: 300, sm: 500, md: 600, lg: 700 }}>
+          <Styled.Hero height={{ _: 300, sm: 500, md: 600, lg: 700 }}>
             <Styled.Content>
               <Box
                 as="img"
@@ -128,37 +127,7 @@ export default function Community(props = {}) {
                 value={values.text || ''}
               />
             </Styled.Content>
-          </Styled.Hero> */}
-
-          {/* Remove starting here */}
-          <Styled.Hero
-            height={{ _: 400, sm: 500, md: 600, lg: 700 }}
-          ></Styled.Hero>
-          <Box
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
-            py={{ _: '1rem', md: 'l' }}
-            bg="primary"
-          >
-            <Box
-              as="img"
-              maxWidth={{ _: '250px', md: '350px' }}
-              mb="base"
-              src="/groups-logo.png"
-            />
-            <SearchField
-              minWidth={{ _: 'none', sm: '120%', md: '50%' }}
-              width={{ _: '75%', md: '50%' }}
-              handleSubmit={handleSubmit}
-              handleChange={handleChange}
-              handleClick={handleClick}
-              handleClear={() => reset()}
-              value={values.text || ''}
-            />
-          </Box>
-          {/* End Here */}
+          </Styled.Hero>
 
           <Box bg="white" textAlign="center" py="xl">
             <Box as="h1" color="secondary">

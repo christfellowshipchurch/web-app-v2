@@ -9,13 +9,11 @@ const Groups = styled.div`
 
 const Hero = styled.div`
   // TODO: Change back after Dont Let Doubt Take You Out season is over
-  // background-image: linear-gradient(
-  //       rgba(000, 000, 000, 0.3) 0%,
-  //       rgba(000, 000, 000, 0.6) 100%
-  //     ),
-  //     url(/groups-new-cover-image.jpeg);
-
-  background-image: url(/groups-new-cover-image.jpeg);
+  background-image: linear-gradient(
+      rgba(000, 000, 000, 0.3) 0%,
+      rgba(000, 000, 000, 0.6) 100%
+    ),
+    url(/groups-cover-image.jpeg);
   background-size: cover;
   background-position: center;
   position: relative;
