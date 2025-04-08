@@ -69,6 +69,19 @@ function Contact() {
         >
           (615) 824-4006
         </Styled.Link>
+      </Box>
+      <Box mb="m" display="flex" flexDirection="column">
+        <Text variant="h4" color="neutrals.100" opacity="33%">
+          Long Hollow Gallatin
+        </Text>
+        <Text variant="h5" color="neutrals.100" opacity="60%">
+          1200 Hartsville Pike
+        </Text>
+        <Text variant="h5" color="neutrals.100" opacity="60%">
+          Gallatin, TN 37066
+        </Text>
+      </Box>
+      <Box display="flex" flexDirection="column">
         <Box>
           <a href="https://www.facebook.com/longhollow">
             <FacebookLogo
