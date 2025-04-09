@@ -53,7 +53,7 @@ function Contact() {
       </Box>
       <Box display="flex" flexDirection="column">
         <Text variant="h4" color="neutrals.100" opacity="33%">
-          Long Hollow Church
+          Hendersonville
         </Text>
         <Text variant="h5" color="neutrals.100" opacity="60%">
           3031 Long Hollow Pike
@@ -72,7 +72,7 @@ function Contact() {
       </Box>
       <Box mb="m" display="flex" flexDirection="column">
         <Text variant="h4" color="neutrals.100" opacity="33%">
-          Long Hollow Gallatin
+          Gallatin
         </Text>
         <Text variant="h5" color="neutrals.100" opacity="60%">
           1200 Hartsville Pike
