@@ -6,7 +6,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { camelCase, find } from 'lodash';
 
-import { Box, Cell, Divider, Icon, Image } from 'ui-kit';
+import { Box, Button, Cell, Divider, Icon, Image } from 'ui-kit';
 
 import { campusLinks } from '../../../lib/locationData';
 import Styled from '../LocationSingle.styles';
@@ -91,8 +91,11 @@ const CampusInfo = ({
           display={{ _: 'flex', md: 'none' }}
           backgroundColor="#F1EB9C"
           textColor="black"
+          flexDirection="column"
+          alignItems="center"
+          px="base"
         >
-          <Image
+          {/* <Image
             width={50}
             height={50}
             objectFit="contain"
@@ -115,13 +118,33 @@ const CampusInfo = ({
               </Box>
               .
             </Styled.EventSubtitle>
+          </Box> */}
+
+          {/* Holy Week Banner */}
+          <Box as="h3" mt="0.5rem" color="#2A5989">
+            Easter Week Services
           </Box>
+          <Box as="p" textAlign="center" fontWeight="normal">
+            Join us for special services this week as we celebrate the
+            resurrection of Jesus Christ. Our schedule has been modified for
+            Easter.
+          </Box>
+          <Button
+            maxWidth="400px"
+            mx="auto"
+            width="100%"
+            borderRadius="l"
+            my="base"
+            bg="#2A5989"
+          >
+            View Easter Service Times
+          </Button>
         </Styled.MobileEventBanner>
 
         {/* Service Times */}
         <Box width="100%" mt="-0.3rem">
           <Styled.ServiceTimeContainer>
-            <Styled.ServiceTimeTitle>
+            {/* <Styled.ServiceTimeTitle>
               {name === 'Online (CF Everywhere)'
                 ? 'Live Every Sunday'
                 : cfe
@@ -148,10 +171,38 @@ const CampusInfo = ({
                       )}
                     </React.Fragment>
                   )
-              )}
+              )} */}
+
+            {/* Holy Week Service Times */}
+            <Box
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              pl="base"
+            >
+              <Box as="h3" fontSize="20px" color="#2A5989">
+                Easter Week Services
+              </Box>
+              <Button size="s" width="100%" borderRadius="l" bg="#2A5989">
+                Service Times
+              </Button>
+            </Box>
+            <Box
+              as="p"
+              px="base"
+              fontWeight="normal"
+              flex="3"
+              lineHeight="1.6"
+              href="/easter"
+            >
+              Join us for special services this week as we celebrate the
+              resurrection of Jesus Christ. Our schedule has been modified for
+              Easter.
+            </Box>
           </Styled.ServiceTimeContainer>
+
           {/* Addtional Information - Orange Box */}
-          <Box mr={{ _: 0, lg: 'base' }}>
+          {/* <Box mr={{ _: 0, lg: 'base' }}>
             {additionalInfo && additionalInfo?.length > 0 && (
               <Styled.InfoBox>
                 {additionalInfo.map(n => (
@@ -161,9 +212,10 @@ const CampusInfo = ({
                 ))}
               </Styled.InfoBox>
             )}
-          </Box>
+          </Box> */}
           {/* Desktop Easter Banner --- For Easter/Christmas */}
-          <Styled.EventBanner
+
+          {/* <Styled.EventBanner
             display={{ _: 'none', md: 'flex' }}
             position="relative"
             top="-170px"
@@ -197,7 +249,7 @@ const CampusInfo = ({
                 </a>
               </Styled.EventSubtitle>
             </Box>
-          </Styled.EventBanner>
+          </Styled.EventBanner> */}
 
           <Box mr={{ _: 0, lg: 'base' }}>
             {/* Custom Info for CF Everywhere and Trinity */}
