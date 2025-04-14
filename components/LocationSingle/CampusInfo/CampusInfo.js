@@ -130,6 +130,8 @@ const CampusInfo = ({
             Easter.
           </Box>
           <Button
+            as="a"
+            href="/easter"
             maxWidth="400px"
             mx="auto"
             width="100%"
@@ -183,18 +185,18 @@ const CampusInfo = ({
               <Box as="h3" fontSize="20px" color="#2A5989">
                 Easter Week Services
               </Box>
-              <Button size="s" width="100%" borderRadius="l" bg="#2A5989">
+              <Button
+                as="a"
+                href="/easter"
+                size="s"
+                width="100%"
+                borderRadius="l"
+                bg="#2A5989"
+              >
                 Service Times
               </Button>
             </Box>
-            <Box
-              as="p"
-              px="base"
-              fontWeight="normal"
-              flex="3"
-              lineHeight="1.6"
-              href="/easter"
-            >
+            <Box as="p" px="base" fontWeight="normal" flex="3" lineHeight="1.6">
               Join us for special services this week as we celebrate the
               resurrection of Jesus Christ. Our schedule has been modified for
               Easter.
