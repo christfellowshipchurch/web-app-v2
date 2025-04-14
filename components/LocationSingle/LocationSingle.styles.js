@@ -99,20 +99,14 @@ const ServiceTimeTitle = styled.h4`
 
 const ServiceTimeContainer = styled.div`
   align-items: center;
-  // background: linear-gradient(270.35deg, #0092bc -22.55%, #004f71 106.52%),
-  //   linear-gradient(90.49deg, #6bcaba -24.45%, #0092bc 118.95%);
-  // Easter 2025
-  background: #f1eb9c;
+  background: linear-gradient(270.35deg, #0092bc -22.55%, #004f71 106.52%),
+    linear-gradient(90.49deg, #6bcaba -24.45%, #0092bc 118.95%);
   border-top-left-radius: ${themeGet('radii.base')};
   border-bottom-left-radius: ${themeGet('radii.base')};
-  display: none;
+  display: flex;
   justify-content: space-around;
   padding-top: ${themeGet('space.base')};
   padding-bottom: ${themeGet('space.base')};
-
-  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
-    display: flex;
-  }
 
   @media screen and (min-width: ${themeGet('breakpoints.sm')}) {
     flex-wrap: nowrap;
