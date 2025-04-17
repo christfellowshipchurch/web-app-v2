@@ -13,7 +13,9 @@ function ConnectCardModal(props = {}) {
         return <ConnectCardForm {...currentUser?.profile} />;
       }
       case 1: {
-        return <Confirmation />;
+        return (
+          <Confirmation additionalText="You’ll hear from us soon. <br/><br/> In the meantime, <a style='font-weight: bold; text-decoration: underline;' href='https://www.christfellowship.church/next-steps'>see what’s here for you!</a>" />
+        );
       }
       default: {
         return <ConnectCardForm />;
