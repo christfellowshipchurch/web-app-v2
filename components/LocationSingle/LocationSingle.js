@@ -175,22 +175,16 @@ function LocationSingle(props = {}) {
                 {...(campus === CFEPBG || campus === CFERPB
                   ? setReminderEspanolData
                   : setReminderData)}
-                // HIDING FOR EASTER 2025
-                // button={{
-                //   id: 'set-reminder',
-                //   title:
-                //     campus === CFEPBG || campus === CFERPB
-                //       ? 'Recuérdame'
-                //       : 'Set a Reminder',
-                //   onClick: () =>
-                //     modalDispatch(
-                //       showModal('SetReminder', { defaultCampus: campus })
-                //     ),
-                // }}
                 button={{
-                  id: 'connect-card-button',
-                  title: 'Connect',
-                  onClick: () => modalDispatch(showModal('ConnectCardModal')),
+                  id: 'set-reminder',
+                  title:
+                    campus === CFEPBG || campus === CFERPB
+                      ? 'Recuérdame'
+                      : 'Set a Reminder',
+                  onClick: () =>
+                    modalDispatch(
+                      showModal('SetReminder', { defaultCampus: campus })
+                    ),
                 }}
               />
             </Box>
