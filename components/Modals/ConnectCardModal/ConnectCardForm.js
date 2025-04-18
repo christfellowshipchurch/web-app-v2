@@ -8,16 +8,33 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import { useCampuses, useForm, useSubmitConnectCard } from 'hooks';
+import { useForm, useSubmitConnectCard } from 'hooks';
 import { includes, isEmpty, toString } from 'lodash';
 import { validateEmail, validatePhoneNumber } from 'utils';
 import { showStep, useModalDispatch } from 'providers/ModalProvider';
 import StyledForm from './StyledForm';
 
+const campuseNames = [
+  'Belle Glade',
+  'Boca Raton',
+  'Boynton Beach',
+  'Jupiter',
+  'Okeechobee',
+  'Palm Beach Gardens',
+  'Español - Palm Beach Gardens',
+  'Port St. Lucie',
+  'Royal Palm Beach',
+  'Español - Royal Palm Beach',
+  'Stuart',
+  'Trinity in Palm Beach Gardens',
+  'Vero Beach',
+  'Westlake',
+  'Online (CF Everywhere)',
+];
+
 function ConnectCardForm(props = {}) {
   const modalDispatch = useModalDispatch();
   const [success, setSuccess] = useState(null);
-  const { campuses, loading: campusesLoading } = useCampuses();
   const [errors, setErrors] = useState({});
   const [submitConnectCard, { loading: mutationLoading }] =
     useSubmitConnectCard({
@@ -98,7 +115,8 @@ function ConnectCardForm(props = {}) {
     // Convert the checkbox values into a string of guids that Rock can read
     const asArray = Object.entries(values);
     const filterCheckboxes = asArray.filter(
-      ([key, value]) => typeof value === 'boolean' && value === true
+      ([key, value]) =>
+        typeof value === 'boolean' && value === true && key !== 'madeDecision'
     );
     const justIds = Object.keys(Object.fromEntries(filterCheckboxes));
     const allThatApplies = justIds.join(',');
@@ -108,6 +126,8 @@ function ConnectCardForm(props = {}) {
       lastName: values.lastName || '',
       phoneNumber: values.phoneNumber || '',
       emailAddress: values.email || '',
+      // birthDate: values.birthDate || '', // not using for now
+      // gender: values.gender || '', // not using for now
       campus: values.campusId || '',
       decision: decision || ' ',
       allThatApplies: allThatApplies || ' ',
@@ -148,11 +168,18 @@ function ConnectCardForm(props = {}) {
       phoneNumber: props?.phoneNumber,
       campusId: props?.campus?.name,
     });
-  }, [props?.campus?.name, props?.email, props?.firstName, props?.lastName, props?.phoneNumber, setValues]);
+  }, [
+    props?.campus?.name,
+    props?.email,
+    props?.firstName,
+    props?.lastName,
+    props?.phoneNumber,
+    setValues,
+  ]);
 
   useEffect(() => {
-    setIsLoading(mutationLoading || campusesLoading);
-  }, [mutationLoading, campusesLoading]);
+    setIsLoading(mutationLoading);
+  }, [mutationLoading]);
 
   useEffect(() => {
     if (success) {
@@ -169,7 +196,7 @@ function ConnectCardForm(props = {}) {
       values={values}
       errors={errors}
       defaultUserCampus={props?.campus}
-      campuses={campuses}
+      campuses={campuseNames}
     />
   );
 }

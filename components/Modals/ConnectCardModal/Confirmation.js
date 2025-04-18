@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { hideModal, useModalDispatch } from 'providers/ModalProvider';
-import { Box, Button, Icon } from 'ui-kit';
+import { Box, Button, HtmlRenderer, Icon } from 'ui-kit';
 import { useRouter } from 'next/router';
 import { icsLinkEvents } from 'utils';
 import { useCampus } from 'hooks';
@@ -65,6 +65,11 @@ const ConfirmationScreen = (props = {}) => {
           : props?.campus.includes('Español')
           ? `Asegúrese de revisar su correo electrónico para obtener más detalles y nos vemos este domingo.`
           : `Be sure to check out your email for more details and we'll see you this Sunday.`}
+        {props?.additionalText && (
+          <Box as="p" color="black" fontWeight="normal" fontSize="base" mt="l">
+            <HtmlRenderer htmlContent={props?.additionalText} />
+          </Box>
+        )}
       </Box>
 
       <Box display={{ _: 'inline', lg: 'flex' }}>

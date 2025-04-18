@@ -158,7 +158,6 @@ function LocationSingle(props = {}) {
           </Box>
         )}
 
-        {/* Set a Reminder */}
         {campus !== 'Cf Everywhere' && (
           <>
             <Box
@@ -176,16 +175,22 @@ function LocationSingle(props = {}) {
                 {...(campus === CFEPBG || campus === CFERPB
                   ? setReminderEspanolData
                   : setReminderData)}
+                // HIDING FOR EASTER 2025
+                // button={{
+                //   id: 'set-reminder',
+                //   title:
+                //     campus === CFEPBG || campus === CFERPB
+                //       ? 'Recuérdame'
+                //       : 'Set a Reminder',
+                //   onClick: () =>
+                //     modalDispatch(
+                //       showModal('SetReminder', { defaultCampus: campus })
+                //     ),
+                // }}
                 button={{
-                  id: 'set-reminder',
-                  title:
-                    campus === CFEPBG || campus === CFERPB
-                      ? 'Recuérdame'
-                      : 'Set a Reminder',
-                  onClick: () =>
-                    modalDispatch(
-                      showModal('SetReminder', { defaultCampus: campus })
-                    ),
+                  id: 'connect-card-button',
+                  title: 'Connect',
+                  onClick: () => modalDispatch(showModal('ConnectCardModal')),
                 }}
               />
             </Box>
