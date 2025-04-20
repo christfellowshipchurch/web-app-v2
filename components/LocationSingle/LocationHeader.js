@@ -95,8 +95,7 @@ const LocationHeader = (props = {}) => {
               display="flex"
               justifyContent={{ _: 'space-between', sm: 'flex-start' }}
             >
-              {/* Set a Reminder -- HIDING FOR EASTER 2025 */}
-              {/* <Button
+              <Button
                 as="a"
                 id={props?.primaryButton?.id}
                 href={props?.primaryButton?.action}
@@ -115,7 +114,7 @@ const LocationHeader = (props = {}) => {
                 px={{ _: '6px', sm: '1.25rem' }}
               >
                 {props?.primaryButton?.call}
-              </Button> */}
+              </Button>
               <Button
                 as="a"
                 onClick={() =>
