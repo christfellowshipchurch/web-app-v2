@@ -13,7 +13,7 @@ export default function Info(props = {}) {
 
   useEffect(() => {
     analytics.page({ title: `LinkTree - ${title}`, mediaType: 'Information' });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const options = {
@@ -57,6 +57,20 @@ export default function Info(props = {}) {
               }
         }
       >
+        {/* CFE Link Tree Banner - Hardcoded for now */}
+        {title === 'cfe' && (
+          <img
+            src="https://cloudfront.christfellowship.church/Content/CFE/cfe-link-tree.jpg"
+            alt="CFE Link Tree Banner"
+            style={{
+              width: '100%',
+              aspectRatio: '16/9',
+              maxHeight: 350,
+              objectFit: 'cover',
+              objectPosition: 'center 20%',
+            }}
+          />
+        )}
         <Cell
           as="main"
           maxWidth={utils.rem('1100px')}
