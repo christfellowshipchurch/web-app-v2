@@ -100,7 +100,7 @@ module.exports = {
       { source: '/prison', destination: '/prison-ministry-volunteer-information-meeting', permanent: true },
       { source: '/events', destination: 'https://longhollow.com/search?category=Events&p=1', permanent: true },
       { source: '/wrap', destination: '/adoptivefoster-wrap-around-team-support-adoptive-and-foster-families', permanent: true },
-      { source: '/missionsnight', destination: '/missions-night-2024', permanent: true },
+      { source: '/missionsnight', destination: '/missions-night', permanent: true },
       { source: '/fallservicetimes', destination: '/fall-service-times-at-long-hollow', permanent: true },
       { source: '/revelation', destination: '/watch/71ec2079298288ea22cabf29ff907d73/revelation', permanent: true },
       { source: '/teacherserveweek', destination: '/back-to-school-teacher-serve-week-serve-our-communitys-faculty-and-staff', permanent: true },
