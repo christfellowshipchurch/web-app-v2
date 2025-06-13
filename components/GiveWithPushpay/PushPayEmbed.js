@@ -2,19 +2,19 @@ import { useEffect } from 'react';
 
 const PushpayEmbed = () => {
   useEffect(() => {
-    // Set config
+    // Pushpay configuration
     window.pushpayEmbeddedConfig = {
       handle: 'christfellowship',
-      wgc: 'eyJhc2tncCI6dHJ1ZX06S3J6cmN5QmF0N2VnMm9veElaeTVMMktYNGZF',
+      wgc: 'eyJyYnUiOiJodHRwczovL3d3dy5jaHJpc3RmZWxsb3dzaGlwLmNodXJjaC8iLCJyYnQiOiJDaHJpc3QgRmVsbG93c2hpcCIsImFza2dwIjp0cnVlfTp0NWtuMzVaV0NNbXZfMzNMWEFzb0V6RnJ3aEk',
     };
 
-    // Create script
+    // Create Pushpay embed script
     const script = document.createElement('script');
     script.type = 'text/javascript';
     script.async = true;
     script.src = 'https://embedded.pushpay.com?version=1.0.0';
 
-    // Fallback function
+    // Fallback function if script fails or times out
     const fallback = () => {
       if (!window.pushpayEmbeddedFallbackDone) {
         window.pushpayEmbeddedFallbackDone = true;
@@ -27,16 +27,19 @@ const PushpayEmbed = () => {
       }
     };
 
+    // Handle load/failure
     script.onload = () => {
       window.pushpayEmbeddedFallbackDone = true;
     };
     script.onerror = fallback;
     setTimeout(fallback, 3000);
 
+    // Inject script
     document.head.appendChild(script);
 
+    // Cleanup on unmount
     return () => {
-      document.head.removeChild(script); // Clean up if component unmounts
+      document.head.removeChild(script);
     };
   }, []);
 
