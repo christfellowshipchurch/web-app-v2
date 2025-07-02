@@ -46,6 +46,7 @@ module.exports = {
       { source: '/campusnights', destination: '/summer-campus-nights-at-gallatin', permanent: true },
       { source: '/gallatin', destination: '/gallatin-schedule-and-directions', permanent: true },
       { source: '/longhollowweekly', destination: '/long-hollow-weekly-main', permanent: true },
+      { source: '/startagroup', destination: 'https://longhollow.wufoo.com/forms/wyeo3uq1108qq7/', permanent: true },
       { source: '/weekly', destination: '/long-hollow-weekly-main', permanent: true },
       { source: '/merch', destination: 'https://longhollow.store/', permanent: true },
       { source: '/prison', destination: '/jail-and-prison-ministry', permanent: true },
