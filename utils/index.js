@@ -1,6 +1,6 @@
 import cleanMarkup from './cleanMarkup';
 import colorHover from './colorHover';
-import currentUserIsLeader from './currentUserIsLeader';
+import currentUserIsMemberType from './currentUserIsMemberType';
 import createMarkup from './createMarkup';
 import dateTextFormat from './dateTextFormat';
 import formatPhoneNumber from './formatPhoneNumber';
@@ -22,7 +22,7 @@ import validatePhoneNumber from './validatePhoneNumber';
 export {
   cleanMarkup,
   colorHover,
-  currentUserIsLeader,
+  currentUserIsMemberType,
   createMarkup,
   dateTextFormat,
   formatPhoneNumber,

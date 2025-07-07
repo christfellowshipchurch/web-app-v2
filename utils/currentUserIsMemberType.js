@@ -1,6 +1,6 @@
 import find from 'lodash/find';
 
-function currentUserIsLeader(currentUser, leaders) {
+function currentUserIsMemberType(currentUser, leaders) {
   const id = _id => (!_id ? _id : _id.split(':').pop());
   const match = find(
     leaders,
@@ -9,4 +9,4 @@ function currentUserIsLeader(currentUser, leaders) {
   return match ? true : false;
 }
 
-export default currentUserIsLeader;
+export default currentUserIsMemberType;
