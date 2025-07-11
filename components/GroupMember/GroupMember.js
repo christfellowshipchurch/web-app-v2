@@ -64,13 +64,16 @@ const GroupMember = ({ id, person, role, status, groupId, groupRoleId }) => {
             width="56px"
             name={fullName || 'Group Member'}
           />
-          {role?.toUpperCase() === 'LEADER' && (
+          {role?.toUpperCase() === 'LEADER' ||
+          role?.toUpperCase() === 'COACH' ? (
             <Box
               position="absolute"
               bottom="0"
               width="100%"
               fontSize="0.6rem"
-              backgroundColor="tertiary"
+              backgroundColor={
+                role?.toUpperCase() === 'LEADER' ? 'tertiary' : 'secondary'
+              }
               opacity={0.9}
               color="white"
               fontWeight="bold"
@@ -78,9 +81,9 @@ const GroupMember = ({ id, person, role, status, groupId, groupRoleId }) => {
               borderBottomLeftRadius="base"
               borderBottomRightRadius="base"
             >
-              LEADER
+              {role?.toUpperCase() === 'LEADER' ? 'LEADER' : 'COACH'}
             </Box>
-          )}
+          ) : null}
         </Box>
 
         <Box
