@@ -17,6 +17,7 @@ const GroupCardConnected = ({ group, handleClick }) => {
   );
 
   return (
+    <CustomLink
       as="a"
       key={group.id}
       onClick={handleClick(group)}
