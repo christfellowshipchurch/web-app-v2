@@ -42,9 +42,6 @@ function GroupSingle(props = {}) {
     }
   };
 
-  const { leaders, coaches, members } = props.data;
-  console.log({ leaders, coaches, members });
-
   // Sub-render functions for clarity
   // -----------------------------------
   const renderMembers = () => (

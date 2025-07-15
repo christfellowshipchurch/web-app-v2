@@ -12,10 +12,6 @@ const GroupCardConnected = ({ group, handleClick }) => {
   const { groupLeaders } = useGroupLeaders({ groupId: group?.id });
   const { groupMembers } = useGroupMembers({ groupId: group?.id });
 
-  const filteredGroupMembers = groupMembers?.filter(
-    member => member?.role !== 'COACH'
-  );
-
   return (
     <CustomLink
       as="a"
@@ -27,7 +23,7 @@ const GroupCardConnected = ({ group, handleClick }) => {
       title={group.title}
       summary={group.summary}
       heroAvatars={groupLeaders?.map(member => member?.person)}
-      avatars={filteredGroupMembers?.map(member => member?.person)}
+      avatars={groupMembers?.map(member => member?.person)}
       totalHeroAvatars={group?.leaders?.totalCount}
       totalAvatars={0}
       flex={{
