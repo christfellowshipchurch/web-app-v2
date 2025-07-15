@@ -9,32 +9,37 @@ import { CustomLink } from 'components';
 import { useCurrentBreakpoint, useGroupLeaders, useGroupMembers } from 'hooks';
 
 const GroupCardConnected = ({ group, handleClick }) => {
-  const { groupLeaders } = useGroupLeaders({ groupId: group?.id })
-  const { groupMembers } = useGroupMembers({ groupId: group?.id })
+  const { groupLeaders } = useGroupLeaders({ groupId: group?.id });
+  const { groupMembers } = useGroupMembers({ groupId: group?.id });
 
-  return <CustomLink
-    as="a"
-    key={group.id}
-    onClick={handleClick(group)}
-    href={`/group/${slugify(group.title)}`}
-    Component={GroupCard}
-    coverImage={group?.coverImage?.sources[0]?.uri}
-    title={group.title}
-    summary={group.summary}
-    heroAvatars={groupLeaders?.map((member) => member?.person)}
-    avatars={groupMembers?.map(member => member?.person)}
-    totalHeroAvatars={group?.leaders?.totalCount}
-    totalAvatars={0}
-    flex={{
-      _: `0 0 calc(100% - ${rem('20px')})`,
-      md: `0 0 calc(50% - ${rem('20px')})`,
-      lg: `0 0 calc(33.333% - ${rem('20px')})`,
-    }}
-    maxWidth={{ lg: '333px' }}
-    m="s"
-    display="block"
-  />
-}
+  const filteredGroupMembers = groupMembers?.filter(
+    member => member?.role !== 'COACH'
+  );
+
+  return (
+      as="a"
+      key={group.id}
+      onClick={handleClick(group)}
+      href={`/group/${slugify(group.title)}`}
+      Component={GroupCard}
+      coverImage={group?.coverImage?.sources[0]?.uri}
+      title={group.title}
+      summary={group.summary}
+      heroAvatars={groupLeaders?.map(member => member?.person)}
+      avatars={filteredGroupMembers?.map(member => member?.person)}
+      totalHeroAvatars={group?.leaders?.totalCount}
+      totalAvatars={0}
+      flex={{
+        _: `0 0 calc(100% - ${rem('20px')})`,
+        md: `0 0 calc(50% - ${rem('20px')})`,
+        lg: `0 0 calc(33.333% - ${rem('20px')})`,
+      }}
+      maxWidth={{ lg: '333px' }}
+      m="s"
+      display="block"
+    />
+  );
+};
 
 function GroupsList(props = {}) {
   const router = useRouter();
@@ -62,7 +67,7 @@ function GroupsList(props = {}) {
       pb="base"
     >
       {props.data.map(group => {
-        return <GroupCardConnected group={group} handleClick={handleClick} />
+        return <GroupCardConnected group={group} handleClick={handleClick} />;
       })}
     </Box>
   );
