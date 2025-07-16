@@ -67,6 +67,7 @@ function GroupManageMembers(props = {}) {
     { key: 'text', values: [''] },
     { key: 'groupId', values: [groupData?.id] },
     { key: 'status', values: ['Active', 'Pending'] },
+    { key: 'role', values: ['MEMBER', 'COACH', 'LEADER'] },
   ]);
 
   // MARK : Variables

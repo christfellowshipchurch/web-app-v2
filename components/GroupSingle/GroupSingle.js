@@ -6,7 +6,7 @@ import { ContentLayout } from 'components';
 import { useCurrentBreakpoint, useCurrentUser, useCheckIn } from 'hooks';
 
 import { ChatConnectionProvider } from 'providers';
-import { currentUserIsLeader, transformISODates } from 'utils';
+import { currentUserIsMemberType, transformISODates } from 'utils';
 import { Box, Button, Card, Icon } from 'ui-kit';
 
 import GroupChat from './GroupChat';
@@ -19,7 +19,14 @@ function GroupSingle(props = {}) {
   const router = useRouter();
   const currentBreakpoint = useCurrentBreakpoint();
   const { currentUser } = useCurrentUser();
-  const isLeader = currentUserIsLeader(currentUser, props.data?.leaders?.edges);
+  const isLeader = currentUserIsMemberType(
+    currentUser,
+    props.data?.leaders?.edges
+  );
+  const isCoach = currentUserIsMemberType(
+    currentUser,
+    props.data?.coaches?.edges
+  );
 
   const { checkInCompleted, options, checkInCurrentUser } = useCheckIn({
     nodeId: props.data.id,
@@ -60,7 +67,7 @@ function GroupSingle(props = {}) {
       pb="l"
       mt={{ _: 'l', md: '0' }}
     >
-      {isLeader && (
+      {(isLeader || isCoach) && (
         <Box my="base">
           <Button
             rounded
