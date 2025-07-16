@@ -50,6 +50,7 @@ module.exports = {
       { source: '/job-opportunities', destination: 'https://recruiting.paylocity.com/recruiting/jobs/All/91a29838-d1d7-4bd7-bcd4-c5b7ce72873d/Long-Hollow-Church', permanent: true },
       { source: '/connect/current-job-opportunities', destination: 'https://recruiting.paylocity.com/recruiting/jobs/All/91a29838-d1d7-4bd7-bcd4-c5b7ce72873d/Long-Hollow-Church', permanent: true },
       { source: '/movienight', destination: '/family-movie-night-light-of-the-world', permanent: true },
+      { source: '/gamenight', destination: '/womens-game-night', permanent: true },
       { source: '/weekly', destination: '/long-hollow-weekly-main', permanent: true },
       { source: '/merch', destination: 'https://longhollow.store/', permanent: true },
       { source: '/prison', destination: '/jail-and-prison-ministry', permanent: true },
