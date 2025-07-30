@@ -54,7 +54,7 @@ module.exports = {
       { source: '/gamenight', destination: '/womens-game-night', permanent: true },
       { source: '/weekly', destination: '/long-hollow-weekly-main', permanent: true },
       { source: '/merch', destination: 'https://longhollow.store/', permanent: true },
-      { source: '/prison', destination: '/jail-and-prison-ministry', permanent: true },
+      { source: '/prison', destination: '/incarceration-ministry', permanent: true },
       { source: '/hunger', destination: 'end-hunger-in-sumner', permanent: true },
       { source: '/springoffering', destination: '/spring-offering-2025', permanent: true },
       { source: '/campvolunteer', destination: 'https://my.longhollow.com/campvolunteer', permanent: true },
