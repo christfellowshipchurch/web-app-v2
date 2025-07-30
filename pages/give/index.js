@@ -17,7 +17,17 @@ import {
 
 export default function Give() {
   return (
-    <Layout title="Give">
+    <Layout
+      title="Give"
+      seoMetaTags={{
+        children: (
+          <meta
+            name="apple-itunes-app"
+            content="app-id=244Z6V4SJ9.com.subsplashconsulting.BSVMPR, app-clip-bundle-id=244Z6V4SJ9.com.subsplashconsulting.BSVMPR.Clip, app-clip-display=card"
+          />
+        ),
+      }}
+    >
       {/* Hero */}
       <GiveHero />
 
