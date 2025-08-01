@@ -108,6 +108,7 @@ module.exports = {
       { source: '/group-leader-resources', destination: '/groupleaderresources', permanent: true },
       { source: '/preview', destination: '/launch-night-winter-2025', permanent: true },
       { source: '/launchnight', destination: '/launch-night-fall-2025', permanent: true },
+      { source: '/launch', destination: '/launch-night-fall-2025', permanent: true },
       { source: '/mondaynightoutreach', destination: '/monday-night-outreach-provide-meals', permanent: true },
       { source: '/prison', destination: '/prison-ministry-volunteer-information-meeting', permanent: true },
       { source: '/events', destination: 'https://longhollow.com/search?category=Events&p=1', permanent: true },
