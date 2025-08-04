@@ -156,7 +156,7 @@ const PastorCard = ({
           target="_blank"
           href={
             campusName === CFERPB || campusName === CFEPBG
-              ? 'facebook.com/cf.iglesia'
+              ? 'https://www.facebook.com/cf.iglesia'
               : 'https://www.facebook.com/CFimpact'
           }
           color="tertiary"
