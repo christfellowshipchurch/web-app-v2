@@ -156,7 +156,7 @@ const PastorCard = ({
           target="_blank"
           href={
             campusName === CFERPB || campusName === CFEPBG
-              ? 'https://www.facebook.com/christfellowshipespanol'
+              ? 'facebook.com/cf.iglesia'
               : 'https://www.facebook.com/CFimpact'
           }
           color="tertiary"
@@ -171,7 +171,7 @@ const PastorCard = ({
           target="_blank"
           href={
             campusName === CFERPB || campusName === CFEPBG
-              ? 'https://www.youtube.com/@christfellowshipespanol.church'
+              ? 'https://www.youtube.com/@iglesiacf'
               : links.youtube
           }
           color="tertiary"
