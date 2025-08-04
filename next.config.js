@@ -44,7 +44,7 @@ module.exports = {
       { source: '/freedomfrompornographysupportgroup', destination: 'https://my.longhollow.com/page/2823?GroupId=1032637&PageType=care', permanent: true },
       { source: '/womens-groups', destination: 'https://my.longhollow.com/page/2825', permanent: true },
       { source: '/word', destination: '/get-into-the-word-2025', permanent: true },
-      { source: '/servefinder ', destination: 'https://my.longhollow.com/servefinder', permanent: true },
+      { source: '/servefinder', destination: 'https://my.longhollow.com/servefinder', permanent: true },
       { source: '/campusnights', destination: '/summer-campus-nights-at-gallatin', permanent: true },
       { source: '/gallatin', destination: '/gallatin-schedule-and-directions', permanent: true },
       { source: '/mensnighthendersonville', destination: '/mens-night', permanent: true },
