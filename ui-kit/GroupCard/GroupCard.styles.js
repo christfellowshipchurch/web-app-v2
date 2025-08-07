@@ -107,6 +107,7 @@ const GroupDescription = styled.p`
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  word-break: break-all;
 
   ${system}
 `;
