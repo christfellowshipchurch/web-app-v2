@@ -2,23 +2,35 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import { capitalize } from 'lodash';
 
-import { initializeApollo } from 'lib/apolloClient';
 import { GET_CONTENT_ITEM } from 'hooks/useContentItem';
 import { FeatureFeedProvider, ContentItemProvider } from 'providers';
 import { Layout, FeatureFeed, PageSingle } from 'components';
 
 export default function PageBuilder(props = {}) {
   const router = useRouter();
-  const { query } = router;
+  const { query, isFallback } = router;
   const { title } = query;
+  const { pathname } = props;
+
+  // Handle fallback state during static generation
+  if (isFallback) {
+    return (
+      <Layout>
+        <div>Loading...</div>
+      </Layout>
+    );
+  }
+
+  // Use the pathname from props if available, otherwise from query
+  const finalPathname = pathname || title;
 
   const options = {
     variables: {
-      pathname: title,
+      pathname: finalPathname,
     },
   };
 
-  if (title && title.length) {
+  if (finalPathname && finalPathname.length) {
     return (
       <Layout>
         <ContentItemProvider Component={PageSingle} options={options} />
@@ -27,7 +39,7 @@ export default function PageBuilder(props = {}) {
   }
 
   return (
-    <Layout title={capitalize(title)}>
+    <Layout title={capitalize(finalPathname)}>
       <FeatureFeedProvider Component={FeatureFeed} options={options} />
     </Layout>
   );
@@ -38,23 +50,53 @@ export async function getStaticPaths() {
   const titles = [];
 
   return {
-    paths: titles.map(title => title),
-    fallback: true,
+    paths: titles.map(title => ({ params: { title } })),
+    fallback: 'blocking', // Changed from true to 'blocking' for better SSR
   };
 }
 
 export async function getStaticProps({ params }) {
-  const apolloClient = initializeApollo();
+  try {
+    // Validate params and pathname
+    if (!params?.title) {
+      console.error('Missing title parameter');
+      return {
+        notFound: true,
+      };
+    }
 
-  await apolloClient.query({
-    query: GET_CONTENT_ITEM,
-    variables: { pathname: params.title },
-  });
+    const pathname = params.title;
 
-  return {
-    props: {
-      initialApolloState: apolloClient.cache.extract(),
-    },
-    revalidate: 1,
-  };
+    // Log the pathname for debugging
+    console.log('Processing pathname:', pathname, 'Type:', typeof pathname);
+
+    // Basic validation for pathname
+    if (typeof pathname !== 'string' || pathname.length === 0) {
+      console.error('Invalid pathname:', pathname);
+      return {
+        notFound: true,
+      };
+    }
+
+    // For now, let's skip server-side GraphQL queries and let the client handle it
+    // This avoids the HTTP 400 errors we're seeing
+    console.log(
+      'Skipping server-side GraphQL query, will handle on client side'
+    );
+
+    return {
+      props: {
+        // Don't pass initialApolloState, let the client fetch the data
+        pathname,
+      },
+      revalidate: 1,
+    };
+  } catch (error) {
+    console.error('Error in getStaticProps:', error);
+
+    // Return notFound for any unhandled errors
+    return {
+      notFound: true,
+    };
+  }
 }
