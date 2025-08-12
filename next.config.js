@@ -43,6 +43,7 @@ module.exports = {
       { source: '/healing-for-estrangement-parents-of-adult-children', destination: 'https://my.longhollow.com/page/2823?GroupId=1094662&PageType=care', permanent: true },
       { source: '/freedomfrompornographysupportgroup', destination: 'https://my.longhollow.com/page/2823?GroupId=1032637&PageType=care', permanent: true },
       { source: '/womens-groups', destination: 'https://my.longhollow.com/page/2825', permanent: true },
+      { source: '/womensgroups', destination: 'https://my.longhollow.com/page/2825', permanent: true },
       { source: '/word', destination: '/get-into-the-word-2025', permanent: true },
       { source: '/servefinder', destination: 'https://my.longhollow.com/servefinder', permanent: true },
       { source: '/campusnights', destination: '/summer-campus-nights-at-gallatin', permanent: true },
