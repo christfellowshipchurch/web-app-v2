@@ -197,7 +197,7 @@ module.exports = {
       { source: '/legacypark', destination: '/legacy-park-is-now-open', permanent: true },
       { source: '/park', destination: '/legacy-park-is-now-open', permanent: true },
       { source: '/food', destination: '/food-for-families-filling-needs-in-our-neighborhoods', permanent: true },
-      { source: '/girls-weekend', destination: 'https://longhollow.com/girls-weekend-2024-a-weekend-retreat-for-middle-school-and-high-school-girls', permanent: true },
+      { source: '/girls-weekend', destination: '/girls-weekend-2025-a-weekend-retreat-for-middle-school-and-high-school-girls', permanent: true },
       { source: '/guys-weekend', destination: 'https://longhollow.com/guys-weekend-2024-a-weekend-retreat-for-middle-school-and-high-school-guys', permanent: true },
       { source: '/vote', destination: 'https://rock.longhollow.com/page/1267', permanent: true },
       { source: '/fallfamily', destination: '/fall-family-fun-day-2024', permanent: true },
