@@ -34,7 +34,7 @@ function GiveWithPushpay(props = {}) {
     'Stuart',
     'Trinity',
     'Vero Beach',
-    'Westlake Loxahatchee',
+    'Westlake - Loxahatchee',
   ];
 
   const { values, setValues, handleChange } = useForm();
@@ -69,7 +69,9 @@ function GiveWithPushpay(props = {}) {
         (active === 'giveRecurring' && 'r=weekly')
       : props?.buttonLink +
         '?f[0]=' +
-        values.campus +
+        (values.campus === 'Westlake - Loxahatchee'
+          ? 'Westlake%20%E2%80%93%20Loxahatchee'
+          : values.campus) +
         '&a=' +
         values.amount +
         '&f[1]=' +
