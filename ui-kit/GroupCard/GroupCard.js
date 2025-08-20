@@ -87,6 +87,9 @@ const GroupCard = (props = {}) => {
                 <SquareAvatar
                   height="72px"
                   width="72px"
+                  boxShadow="l"
+                  border="2px solid"
+                  borderColor="neutrals.300"
                   key={i}
                   mr={props.heroAvatars.length > 1 ? 'xs' : null}
                   name={`${n?.firstName} ${n?.lastName}`}
