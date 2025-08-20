@@ -47,9 +47,6 @@ export default function Connect(props = {}) {
         px="base"
         py={{ _: 's', lg: 'base' }}
       >
-        <Box as="h1" mb={'-1rem'}>
-          Connect
-        </Box>
         {!authenticated ? (
           <Box my="xl" py="l">
             <Loader text={loadingMessage} />
