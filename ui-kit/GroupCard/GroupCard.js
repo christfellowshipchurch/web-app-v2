@@ -64,115 +64,51 @@ const GroupCard = (props = {}) => {
     <Styled {...props}>
       <Box>
         {props.coverImage ? (
-          <Styled.GradientBackground src={props.coverImage}>
-            {!isEmpty(labelType) && (
-              <Styled.Label backgroundColor={labelType.color}>
-                {props?.meetingType}
-                <Icon size="18" name={labelType.icon} ml="xs" />
-              </Styled.Label>
-            )}
-            {heroAvatars ? (
-              heroAvatars.map((n, i) => (
+          <Styled.ImageBackground src={props.coverImage} />
+        ) : null}
+        <Box
+          display="flex"
+          alignItems="center"
+          mt="-36px"
+          zIndex="1"
+          position="relative"
+          px="base"
+        >
+          {!isEmpty(labelType) && (
+            <Styled.Label backgroundColor={labelType.color}>
+              {props?.meetingType}
+              <Icon size="18" name={labelType.icon} ml="xs" />
+            </Styled.Label>
+          )}
+          {heroAvatars ? (
+            heroAvatars.map((n, i) => {
+              if (i > 1) return null;
+              return (
                 <SquareAvatar
-                  height={heroAvatars.length > 3 ? '80px' : '100px'}
-                  width={heroAvatars.length > 3 ? '60px' : '80px'}
+                  height="72px"
+                  width="72px"
                   key={i}
                   mr={props.heroAvatars.length > 1 ? 'xs' : null}
                   name={`${n?.firstName} ${n?.lastName}`}
                   src={n?.photo?.uri}
                 />
-              ))
-            ) : (
-              <SquareAvatar
-                height="100px"
-                name="Group Leader"
-                src={false}
-                width="80px"
-              />
-            )}
-          </Styled.GradientBackground>
-        ) : null}
+              );
+            })
+          ) : (
+            <SquareAvatar
+              height="100px"
+              name="Group Leader"
+              src={false}
+              width="80px"
+            />
+          )}
+        </Box>
         <Styled.GroupCardTitle>
-          <Box as="h4">{props.title}</Box>
+          <Box as="h3" mb="0" mt="xs">
+            {props.title}
+          </Box>
         </Styled.GroupCardTitle>
-        {props.groupType && (
-          <Styled.GroupCardSubTitle>{props.groupType}</Styled.GroupCardSubTitle>
-        )}
-        {!isEmpty(props.preferences) && (
-          <Styled.GroupCardSubTitle>
-            {props.preferences.join(', ')}
-          </Styled.GroupCardSubTitle>
-        )}
       </Box>
-      <Styled.GroupCardContent>
-        {props.campus && (
-          <Styled.DateTimeLabel>
-            <Icon name="location" size="16" mr="xs" />
-            {props.campus}
-          </Styled.DateTimeLabel>
-        )}
-        {(props.dateTime || props.meetingDay) && (
-          <Styled.DateTimeLabel>
-            <Icon name="calendar" size="16" mr="xs" />
-            {renderDateTime(props)}
-          </Styled.DateTimeLabel>
-        )}
-        {props.summary && (
-          <Box mb="base">
-            <Styled.GroupDescription>{props?.summary}</Styled.GroupDescription>
-            {showSeeMore && (
-              <Styled.SeeMore onClick={e => handleSeeMore(e)}>
-                See More
-              </Styled.SeeMore>
-            )}
-          </Box>
-        )}
-        {Boolean(props.totalAvatars) && (
-          <Box as="h5" mt="base">
-            <Box as="span">{props.totalAvatars}</Box>{' '}
-            {props.totalAvatars === 1 ? `Group Member` : 'Group Members'}
-          </Box>
-        )}
-        {props.avatars?.length > 0 && (
-          <Box display="flex" gridColumnGap="s">
-            {props.avatars.slice(0, maxAvatars).map((n, i) => (
-              <Box
-                key={i}
-                display="flex"
-                flexDirection="column"
-                justifyContent="center"
-                position="relative"
-                width="70px"
-                height="90px"
-              >
-                <SquareAvatar
-                  width="100%"
-                  height="100%"
-                  name="Group Member"
-                  src={n?.photo?.uri}
-                />
-                {avatarsDiff > 0 && props.avatars.length === i + 1 && (
-                  <Styled.AvatarCount>{`+${avatarsDiff}`}</Styled.AvatarCount>
-                )}
-              </Box>
-            ))}
-          </Box>
-        )}
-        {props.callToAction && (
-          <CustomLink
-            as="a"
-            Component={Button}
-            variant="primary"
-            onClick={props?.callToAction?.action}
-            mt="auto"
-            size="l"
-            width="100%"
-            {...props?.callToAction?.buttonProps}
-          >
-            {props?.callToAction?.call}
-          </CustomLink>
-        )}
-      </Styled.GroupCardContent>
     </Styled>
   );
 };

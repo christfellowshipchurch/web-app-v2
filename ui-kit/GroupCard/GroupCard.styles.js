@@ -49,29 +49,20 @@ const DateTimeLabel = styled.p`
   padding-bottom: ${themeGet('space.xs')};
 `;
 
-const GradientBackground = styled.div`
+const ImageBackground = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   position: relative;
   overflow: hidden;
-
-  padding-bottom: ${themeGet('space.xl')};
-  padding-top: ${themeGet('space.xl')};
-  min-height: 200px;
-
-  background-image: linear-gradient(
-      to top,
-      rgb(255, 255, 255, 1),
-      rgba(255, 255, 255, 0.4)
-    ),
-    url(${props => props.src});
+  height: 160px;
+  background-image: url(${props => props.src});
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-
   border-top-left-radius: ${themeGet('radii.base')};
   border-top-right-radius: ${themeGet('radii.base')};
+  padding-left: ${themeGet('space.base')};
 `;
 
 const GroupCardContent = styled.div`
@@ -84,10 +75,7 @@ const GroupCardContent = styled.div`
 
 const GroupCardTitle = styled.div`
   display: flex;
-  justify-content: center;
-  text-align: center;
-  padding-left: ${themeGet('space.base')};
-  padding-right: ${themeGet('space.base')};
+  padding: ${themeGet('space.base')};
 `;
 const GroupCardSubTitle = styled.div`
   display: flex;
@@ -145,7 +133,7 @@ const Label = styled.b`
 
 GroupCard.AvatarCount = AvatarCount;
 GroupCard.DateTimeLabel = DateTimeLabel;
-GroupCard.GradientBackground = GradientBackground;
+GroupCard.ImageBackground = ImageBackground;
 GroupCard.GroupCardContent = GroupCardContent;
 GroupCard.GroupCardTitle = GroupCardTitle;
 GroupCard.GroupCardSubTitle = GroupCardSubTitle;
