@@ -1,71 +1,40 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { format } from 'date-fns';
-import isEmpty from 'lodash/isEmpty';
-import get from 'lodash/get';
-
-import { useModalDispatch, showModal } from 'providers/ModalProvider';
-
-import { CustomLink } from 'components';
-import { Box, Button, Icon, SquareAvatar, systemPropTypes } from 'ui-kit';
-
+import { Box, Icon, SquareAvatar, systemPropTypes } from 'ui-kit';
 import Styled from './GroupCard.styles';
 import { themeGet } from '@styled-system/theme-get';
 import camelCase from 'lodash.camelcase';
+import get from 'lodash/get';
 
-const GroupCard = (props = {}) => {
-  const modalDispatch = useModalDispatch();
+const MAX_AVATARS = 4;
 
-  const maxAvatars = 4;
+const labelTypes = {
+  virtual: {
+    icon: 'computer',
+    color: themeGet('colors.success'),
+  },
+  inPerson: {
+    icon: 'users',
+    color: themeGet('colors.primary'),
+  },
+};
 
-  // Option if we want to add a Avatar Count label for leaders
-  // const heroAvatarsDiff = props.totalHeroAvatars - props.heroAvatars.length;
-  const avatarsDiff =
-    props.totalAvatars - Math.min(props.avatars.length, maxAvatars);
-
-  const handleSeeMore = event => {
-    event.preventDefault();
-    modalDispatch(
-      showModal('GroupDetails', {
-        groupTitle: props.title,
-        groupSummary: props.summary,
-        groupCallToAction: props.callToAction,
-      })
-    );
-  };
-
-  const showSeeMore = props?.summary?.length > 120;
-
-  const labelTypes = {
-    virtual: {
-      icon: 'computer',
-      color: themeGet('colors.success'),
-    },
-    inPerson: {
-      icon: 'users',
-      color: themeGet('colors.primary'),
-    },
-  };
-
-  const labelType = get(labelTypes, camelCase(props?.meetingType));
-  const heroAvatars = props.heroAvatars
-    .slice(0, maxAvatars)
-    // only show group leaders with photos
+const GroupCard = ({
+  coverImage,
+  heroAvatars = [],
+  title,
+  meetingType,
+  ...props
+}) => {
+  const labelType = get(labelTypes, camelCase(meetingType));
+  const filteredHeroAvatars = (heroAvatars || [])
+    .slice(0, MAX_AVATARS)
     .filter(avatar => avatar?.photo?.uri);
-  const renderDateTime = _props => {
-    if (_props.dateTime) {
-      return format(new Date(props.dateTime), "EEEE 'at' h:mm a");
-    }
-
-    if (_props.meetingDay) return _props.meetingDay;
-  };
 
   return (
     <Styled {...props}>
       <Box>
-        {props.coverImage ? (
-          <Styled.ImageBackground src={props.coverImage} />
-        ) : null}
+        {coverImage && <Styled.ImageBackground src={coverImage} />}
         <Box
           display="flex"
           alignItems="center"
@@ -74,16 +43,16 @@ const GroupCard = (props = {}) => {
           position="relative"
           px="base"
         >
-          {!isEmpty(labelType) && (
+          {labelType && (
             <Styled.Label backgroundColor={labelType.color}>
-              {props?.meetingType}
+              {meetingType}
               <Icon size="18" name={labelType.icon} ml="xs" />
             </Styled.Label>
           )}
-          {heroAvatars ? (
-            heroAvatars.map((n, i) => {
-              if (i > 1) return null;
-              return (
+          {filteredHeroAvatars.length > 0 ? (
+            filteredHeroAvatars
+              .slice(0, 2)
+              .map((n, i) => (
                 <SquareAvatar
                   height="72px"
                   width="72px"
@@ -91,24 +60,23 @@ const GroupCard = (props = {}) => {
                   border="2px solid"
                   borderColor="neutrals.300"
                   key={i}
-                  mr={props.heroAvatars.length > 1 ? 'xs' : null}
-                  name={`${n?.firstName} ${n?.lastName}`}
+                  mr={filteredHeroAvatars.length > 1 ? 'xs' : null}
+                  name={`${n?.firstName || ''} ${n?.lastName || ''}`.trim()}
                   src={n?.photo?.uri}
                 />
-              );
-            })
+              ))
           ) : (
             <SquareAvatar
-              height="100px"
+              height="72px"
+              width="72px"
               name="Group Leader"
               src={false}
-              width="80px"
             />
           )}
         </Box>
         <Styled.GroupCardTitle>
           <Box as="h3" mb="0" mt="xs">
-            {props.title}
+            {title}
           </Box>
         </Styled.GroupCardTitle>
       </Box>
@@ -118,15 +86,7 @@ const GroupCard = (props = {}) => {
 
 GroupCard.propTypes = {
   ...systemPropTypes,
-  avatars: PropTypes.arrayOf(
-    PropTypes.shape({
-      node: PropTypes.shape({
-        photo: PropTypes.shape({
-          uri: PropTypes.string,
-        }),
-      }),
-    })
-  ),
+  avatars: PropTypes.array,
   callToAction: PropTypes.shape({
     call: PropTypes.string,
     action: PropTypes.func,
@@ -138,20 +98,13 @@ GroupCard.propTypes = {
   dateTime: PropTypes.string,
   meetingDay: PropTypes.string,
   groupType: PropTypes.string,
-  heroAvatars: PropTypes.arrayOf(
-    PropTypes.shape({
-      node: PropTypes.shape({
-        photo: PropTypes.shape({
-          uri: PropTypes.string,
-        }),
-      }),
-    })
-  ),
+  heroAvatars: PropTypes.array,
   isLoading: PropTypes.bool,
   summary: PropTypes.string,
   title: PropTypes.string,
   totalAvatars: PropTypes.number,
   totalHeroAvatars: PropTypes.number,
+  meetingType: PropTypes.string,
 };
 
 GroupCard.defaultProps = {
