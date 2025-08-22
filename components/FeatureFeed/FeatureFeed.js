@@ -12,6 +12,8 @@ import VerticalCardListFeature from '../VerticalCardListFeature';
 import { Box } from 'ui-kit';
 import { getComponent } from 'utils';
 import { isEmpty, kebabCase } from 'lodash';
+import GeneralGroupResourcesFeature from './custom-features/group-resources';
+import StaffResourcesFeature from './custom-features/staff-resources';
 
 const FEATURE_COMPONENTS = {
   ActionBarFeature,
@@ -86,6 +88,17 @@ const FeatureFeed = (props = {}) => {
     });
 
     const regex = /\D/g;
+
+    /**
+     * Custom Features for CONNECT Feed
+     */
+    if (edge.title === 'General Group Resources') {
+      return <GeneralGroupResourcesFeature edge={edge} regex={regex} />;
+    }
+
+    if (edge.title === 'Staff Resources') {
+      return <StaffResourcesFeature edge={edge} regex={regex} />;
+    }
 
     return (
       <Box
