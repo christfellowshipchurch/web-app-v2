@@ -12,7 +12,7 @@ const StyledStaffCard = styled.img`
   transition: transform 0.3s ease;
   object-fit: cover;
   flex: 1;
-  min-width: 0;
+  min-width: 200px;
 
   &:hover {
     transform: scale(1.01);
@@ -31,12 +31,18 @@ export default function StaffResourcesFeature({ edge, regex }) {
       }
       key={edge?.id}
       py="xl"
+      pr={{ _: 'none', lg: 'base' }}
+      pl="base"
     >
       <Box as="h2" fontWeight="bold" color="neutrals.900" mb="base">
         Staff Resources
       </Box>
 
-      <Box display="flex" style={{ gap: '16px' }} maxWidth="1200px">
+      <Box
+        display="flex"
+        maxWidth="1200px"
+        style={{ gap: '16px', overflow: 'auto' }}
+      >
         {edge?.cards?.map(card => (
           <StyledStaffCard
             key={card?.id}

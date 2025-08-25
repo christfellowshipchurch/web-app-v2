@@ -40,6 +40,7 @@ export default function GeneralGroupResourcesFeature({ edge, regex }) {
       }
       key={edge?.id}
       py="xl"
+      px="base"
     >
       <Box as="h2" fontWeight="bold" color="neutrals.900" mb="base">
         General Group Resources

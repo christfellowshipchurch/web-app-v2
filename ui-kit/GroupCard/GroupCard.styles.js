@@ -62,7 +62,6 @@ const ImageBackground = styled.div`
   background-size: cover;
   border-top-left-radius: ${themeGet('radii.base')};
   border-top-right-radius: ${themeGet('radii.base')};
-  padding-left: ${themeGet('space.base')};
 `;
 
 const GroupCardContent = styled.div`

@@ -44,7 +44,6 @@ export default function Connect(props = {}) {
       <Cell
         as="main"
         maxWidth={utils.rem('1100px')}
-        px="base"
         py={{ _: 's', lg: 'base' }}
         bg="#F3F5FA"
       >
