@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
 
-import { CardGrid, GroupCard, utils } from 'ui-kit';
+import { CardGrid, GroupSearchResultCard, utils } from 'ui-kit';
 
 import useFeatureAction from 'hooks/useFeatureAction';
 import useGroupMemberStatus from 'hooks/useGroupMemberStatus';
@@ -74,10 +74,10 @@ function GroupCardWithMember({ relatedNode, ...props }) {
           break;
       }
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, loading]);
 
-  return <GroupCard {...props} callToAction={callToAction} />;
+  return <GroupSearchResultCard {...props} callToAction={callToAction} />;
 }
 
 function GroupsResultsList(props = {}) {
