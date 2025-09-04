@@ -109,7 +109,7 @@ module.exports = {
       { source: '/missionssunday', destination: '/missions-sunday-2024-force-for-good-near-and-far', permanent: true },
       { source: '/missionsunday', destination: '/missions-sunday-2024-force-for-good-near-and-far', permanent: true },
       { source: '/make-a-difference-2', destination: 'https://my.longhollow.com/page/1322', permanent: true },
-      { source: '/mensnight', destination: 'https://longhollow.com/lh-mens-night-come-hang-with-us', permanent: true },
+      { source: '/mensnight', destination: 'https://rock.longhollow.com/Content/Men's_Night_Information.pdf', permanent: true },
       { source: '/group-leader-resources', destination: '/groupleaderresources', permanent: true },
       { source: '/preview', destination: '/launch-night-winter-2025', permanent: true },
       { source: '/launchnight', destination: '/launch-night-fall-2025', permanent: true },
