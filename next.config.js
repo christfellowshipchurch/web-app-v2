@@ -199,7 +199,7 @@ module.exports = {
       { source: '/legacy', destination: '/our-55x35-legacy-55000-legacies-changed-by-2035', permanent: true },
       { source: '/legacypark', destination: '/legacy-park-is-now-open', permanent: true },
       { source: '/park', destination: '/legacy-park-is-now-open', permanent: true },
-      { source: '/food', destination: '/food-for-families-filling-needs-in-our-neighborhoods', permanent: true },
+      { source: '/food', destination: '/food-for-families-filling-needs-in-our-neighborhoods-1', permanent: true },
       { source: '/girlsweekend', destination: '/girls-weekend-2025-a-weekend-retreat-for-middle-school-and-high-school-girls', permanent: true },
       { source: '/guysweekend', destination: '/guys-weekend-2025-a-weekend-retreat-for-middle-school-and-high-school-guys', permanent: true },
       { source: '/vote', destination: 'https://rock.longhollow.com/page/1267', permanent: true },
