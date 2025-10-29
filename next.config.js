@@ -402,6 +402,7 @@ module.exports = {
       { source: '/message-archives', destination: '/watch', permanent: true },
       { source: '/student-media', destination: '/watch', permanent: true },
       { source: '/baptism-videos', destination: '/baptisms', permanent: true },
+      { source: '/stream', destination: 'https://longhollow.com/next-steps/join-us-online', permanent: true },
       { source: '/times-and-locations', destination: '/about/schedule', permanent: true },
       { source: '/hendersonville', destination: '/', permanent: true },
       { source: '/gallatin', destination: '/about-the-closing-of-our-gallatin-campus', permanent: true },
