@@ -100,7 +100,7 @@ module.exports = {
       { source: '/winterserve', destination: '/serve-at-christmas-2024-find-a-place-to-serve-at-long-hollow-during-the-holiday-season', permanent: true },
       { source: '/ice', destination: '/ice-rink-2024', permanent: true },
       { source: '/nightofworship', destination: '/long-hollow-worship-live-recording-and-worship-night', permanent: true },
-      { source: '/serveatchristmas', destination: '/serve-at-christmas-2024-find-a-place-to-serve-at-long-hollow-during-the-holiday-season', permanent: true },
+      { source: '/serveatchristmas', destination: '/serve-for-the-holidays-2025', permanent: true },
       { source: '/global', destination: '/global-missions', permanent: true },
       { source: '/missionsschedule', destination: '/missions-sunday-next-steps', permanent: true },
       { source: '/churchplanting', destination: '/church-planting', permanent: true },
