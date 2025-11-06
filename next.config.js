@@ -97,7 +97,7 @@ module.exports = {
       { source: '/family-grace-mental-health-support-for-families-of-loved-ones-struggling', destination: 'https://my.longhollow.com/page/2827', permanent: true },
       { source: '/mom', destination: '/mothers-day-2025', permanent: true },
       { source: '/connect/support-groups', destination: '/connect/support-groups', permanent: true },
-      { source: '/winterserve', destination: '/serve-at-christmas-2024-find-a-place-to-serve-at-long-hollow-during-the-holiday-season', permanent: true },
+      { source: '/winterserve', destination: 'https://my.longhollow.com/WinterVolunteer', permanent: true },
       { source: '/ice', destination: '/ice-rink-2024', permanent: true },
       { source: '/nightofworship', destination: '/long-hollow-worship-live-recording-and-worship-night', permanent: true },
       { source: '/serveatchristmas', destination: '/serve-for-the-holidays-2025', permanent: true },
