@@ -411,7 +411,6 @@ module.exports = {
       { source: '/supporting-those-who-struggle', destination: '/supporting-those-who-struggle-2021', permanent: true },
       { source: '/events/light-up-the-pike', destination: 'https://lightupthepike.com', permanent: true },
       { source: '/groupserve', destination: 'https://my.longhollow.com/groupserve', permanent: true },
-      { source: '/winterserve', destination: 'https://my.longhollow.com/WinterVolunteer', permanent: true },
       { source: '/vendor', destination: 'https://longhollow.wufoo.com/forms/phu7t8c0lslify/', permanent: true },
       { source: '/notes', destination: 'http://bible.com/events/49517416', permanent: true }
     ];
