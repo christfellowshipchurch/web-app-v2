@@ -40,6 +40,7 @@ module.exports = {
       { source: '/moms-of-special-needs-children', destination: 'https://my.longhollow.com/page/2823?GroupId=453889&PageType=care', permanent: true },
       { source: '/school', destination: '/long-hollow-school-of-ministry', permanent: true },
       { source: '/gallatinmangerbuild', destination: '/gallatin-manger-build-2025', permanent: true },
+      { source: '/hendersonvillemangerbuild', destination: '/hendersonville-manger-build-2025', permanent: true },
       { source: '/hendersonvilledeckthehollow', destination: '/hendersonville-deck-the-hollow-decorate-long-hollow-for-the-christmas-season', permanent: true },
       { source: '/gallatindeckthehollow', destination: '/gallatin-deck-the-hollow-decorate-long-hollow-for-the-christmas-season', permanent: true },
       { source: '/playlist', destination: 'https://www.dropbox.com/scl/fo/011dcscuw1tjdpntkljfi/AFCsXs4wPwq9D8iMtggKRnI?rlkey=m1scyit8dwcf11z6i19qq0k9z&dl=0', permanent: true },
