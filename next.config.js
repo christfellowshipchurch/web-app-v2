@@ -70,6 +70,7 @@ module.exports = {
       { source: '/prison', destination: '/incarceration-ministry', permanent: true },
       { source: '/hunger', destination: 'end-hunger-in-sumner', permanent: true },
       { source: '/springoffering', destination: '/spring-offering-2025', permanent: true },
+      { source: '/holidayserve', destination: '/serve-for-the-holidays-2025', permanent: true },
       { source: '/campvolunteer', destination: 'https://my.longhollow.com/campvolunteer', permanent: true },
       { source: '/gallatinsurvey', destination: 'https://docs.google.com/forms/d/e/1FAIpQLSfsbvHSkn4-Eo7RNfFIlLaqwfDE4Y5W7MR-xgitj-RNjAoQ5g/viewform', permanent: true },
       { source: '/parentconference', destination: '/parent-conference-2025', permanent: true },
