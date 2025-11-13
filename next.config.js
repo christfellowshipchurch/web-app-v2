@@ -39,6 +39,7 @@ module.exports = {
       { source: '/anxiety-support-group', destination: 'https://my.longhollow.com/page/2823?GroupId=1055541&PageType=care', permanent: true },
       { source: '/moms-of-special-needs-children', destination: 'https://my.longhollow.com/page/2823?GroupId=453889&PageType=care', permanent: true },
       { source: '/school', destination: '/long-hollow-school-of-ministry', permanent: true },
+      { source: '/puntodepartidaenespañol', destination: 'https://my.longhollow.com/Registration/puntodepartidaenespanol-dec2025', permanent: true },
       { source: '/gallatinmangerbuild', destination: '/gallatin-manger-build-2025', permanent: true },
       { source: '/hendersonvillemangerbuild', destination: '/hendersonville-manger-build-2025', permanent: true },
       { source: '/hendersonvilledeckthehollow', destination: '/hendersonville-deck-the-hollow-decorate-long-hollow-for-the-christmas-season', permanent: true },
