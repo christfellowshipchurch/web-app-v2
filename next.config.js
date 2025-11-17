@@ -107,7 +107,7 @@ module.exports = {
       { source: '/mom', destination: '/mothers-day-2025', permanent: true },
       { source: '/connect/support-groups', destination: '/connect/support-groups', permanent: true },
       { source: '/winterserve', destination: 'https://my.longhollow.com/WinterVolunteer', permanent: true },
-      { source: '/ice', destination: '/ice-rink-2024', permanent: true },
+      { source: '/ice', destination: '/synthetic-ice-rink-at-long-hollow-2025', permanent: true },
       { source: '/nightofworship', destination: '/long-hollow-worship-live-recording-and-worship-night', permanent: true },
       { source: '/serveatchristmas', destination: '/serve-for-the-holidays-2025', permanent: true },
       { source: '/global', destination: '/global-missions', permanent: true },
