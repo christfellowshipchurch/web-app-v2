@@ -351,7 +351,7 @@ module.exports = {
       { source: '/bylaws', destination: '/about/beliefs', permanent: true },
       { source: '/divorcecare', destination: '/divorce-care', permanent: true },
       { source: '/offering', destination: '/fall-offering-2025', permanent: true },
-      { source: '/ministryplan', destination: '/2025-ministry-plan', permanent: true },
+      { source: '/ministryplan', destination: '/2026-ministry-plan', permanent: true },
       { source: '/griefshare', destination: '/grief-share', permanent: true },
       { source: '/food', destination: '/next-steps/get-involved-with-missions', permanent: true },
       { source: '/breakfast', destination: '/first-responder-wives-breakfast-2025', permanent: true },
