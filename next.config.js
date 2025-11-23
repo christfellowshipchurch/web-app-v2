@@ -148,7 +148,7 @@ module.exports = {
       { source: '/secretchurch', destination: '/secret-church-2025', permanent: true },
       { source: '/summerserve', destination: '/serve-this-summer-make-the-most-of-summer', permanent: true },
       { source: '/wednesdays', destination: '/wednesdays-at-lh-fall-2025', permanent: true },
-      { source: '/firstrespondermeals', destination: '/first-responder-meals-help-us-care-for-our-first-responders-on-christmas-day-2024', permanent: true },
+      { source: '/firstrespondermeals', destination: '/first-responder-meals-help-us-care-for-our-first-responders-on-thanksgiving', permanent: true },
       { source: '/fall', destination: 'https://longhollow.com/search?category=Events&p=1', permanent: true },
       { source: '/fallatlh', destination: 'https://longhollow.com/search?category=Events&p=1', permanent: true },
       { source: '/winter', destination: 'https://longhollow.com/search?category=Events&p=1', permanent: true },
