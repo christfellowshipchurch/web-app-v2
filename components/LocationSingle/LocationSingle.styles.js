@@ -187,9 +187,9 @@ const MobileEventBanner = styled.div`
   background-color: ${props => props.backgroundColor};
   color: ${props => props.textColor};
   font-weight: bold;
-
+  text-align: center;
   font-size: 16px;
-  padding-bottom: ${themeGet('space.s')};
+  padding-bottom: ${themeGet('space.base')};
   padding-top: ${themeGet('space.s')};
   box-shadow: -7px -5px 19px rgba(0, 0, 0, 0.12);
   width: 100%;
@@ -215,7 +215,6 @@ const MobileEventBanner = styled.div`
 const EventSubtitle = styled.span`
   font-style: italic;
   font-weight: 300;
-  color: #000;
   font-size: 13px;
   padding-left: 10px;
 
@@ -226,6 +225,7 @@ const EventSubtitle = styled.span`
 
 const EventCTA = styled.a`
   text-decoration: underline;
+  cursor: pointer;
 `;
 
 LocationSingle.FlexBreak = FlexBreak;
