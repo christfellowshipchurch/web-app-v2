@@ -152,6 +152,11 @@ module.exports = {
         destination: 'https://www.christmasatcf.com/',
         permanent: true,
       },
+      {
+        source: '/christmas-2024',
+        destination: 'https://www.christmasatcf.com/',
+        permanent: true,
+      },
       // TODO: Uncomment these lines to hide Group Finder.
       // NOTE: We can't get `config/flags` in this file.
       // {
