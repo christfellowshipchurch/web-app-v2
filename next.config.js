@@ -36,6 +36,7 @@ module.exports = {
       { source: '/hendersonvillestorytime', destination: '/hendersonville-sleigh-bell-story-time-a-christmas-party-for-preschoolers', permanent: true },
       { source: '/groupleadersummit', destination: 'https://my.longhollow.com/Registration/groupleadersummit-jan2026', permanent: true },
       { source: '/england', destination: '/pastor-robby-gallaty-10-day-footsteps-of-the-reformers-england-scotland-october-13-22-2025', permanent: true },
+      { source: '/germany', destination: 'https://www.signaturetours.com/RGallaty26', permanent: true },
       { source: '/anxiety-support-group', destination: 'https://my.longhollow.com/page/2823?GroupId=1055541&PageType=care', permanent: true },
       { source: '/moms-of-special-needs-children', destination: 'https://my.longhollow.com/page/2823?GroupId=453889&PageType=care', permanent: true },
       { source: '/school', destination: '/long-hollow-school-of-ministry', permanent: true },
