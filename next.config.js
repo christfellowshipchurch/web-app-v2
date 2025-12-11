@@ -54,6 +54,7 @@ module.exports = {
       { source: '/womens-groups', destination: 'https://my.longhollow.com/page/2825', permanent: true },
       { source: '/womensgroups', destination: 'https://my.longhollow.com/page/2825', permanent: true },
       { source: '/word', destination: '/get-into-the-word-2025', permanent: true },
+      { source: '/teamfinder', destination: 'https://my.longhollow.com/servefinder?BiggestNeed%3F=Yes', permanent: true },
       { source: '/teamnight', destination: 'https://my.longhollow.com/Registration/teamnight-2025', permanent: true },
       { source: '/discgolf', destination: '/lh-men-disc-golf-league', permanent: true },
       { source: '/servefinder', destination: 'https://my.longhollow.com/servefinder', permanent: true },
