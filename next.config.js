@@ -41,7 +41,7 @@ module.exports = {
       { source: '/moms-of-special-needs-children', destination: 'https://my.longhollow.com/page/2823?GroupId=453889&PageType=care', permanent: true },
       { source: '/school', destination: '/long-hollow-school-of-ministry', permanent: true },
       { source: '/gallatinpreview', destination: '/gallatin-winter-preview-night-2026', permanent: true },
-      { source: '/hendersonvillepreview', destination: '/hendersonville-winter-preview-night-2026', permanent: true },
+      { source: '/hendersonvillepreview', destination: '/hendersonville-winter-preview-night-202', permanent: true },
       { source: '/newschedule', destination: '/additional-service-time-at-hendersonville-more-room-more-hope-more-jesus', permanent: true },
       { source: '/puntodepartidaenespanol', destination: 'https://my.longhollow.com/Registration/puntodepartidaenespanol-dec2025', permanent: true },
       { source: '/gallatinmangerbuild', destination: '/gallatin-manger-build-2025', permanent: true },
