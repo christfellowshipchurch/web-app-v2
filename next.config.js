@@ -40,6 +40,7 @@ module.exports = {
       { source: '/anxiety-support-group', destination: 'https://my.longhollow.com/page/2823?GroupId=1055541&PageType=care', permanent: true },
       { source: '/moms-of-special-needs-children', destination: 'https://my.longhollow.com/page/2823?GroupId=453889&PageType=care', permanent: true },
       { source: '/school', destination: '/long-hollow-school-of-ministry', permanent: true },
+      { source: '/28daysofprayer', destination: '/28-days-of-prayer-2026', permanent: true },
       { source: '/gallatinpreview', destination: '/gallatin-winter-preview-night-2026', permanent: true },
       { source: '/hendersonvillepreview', destination: '/hendersonville-winter-preview-night-2026', permanent: true },
       { source: '/newschedule', destination: '/additional-service-time-at-hendersonville-more-room-more-hope-more-jesus', permanent: true },
