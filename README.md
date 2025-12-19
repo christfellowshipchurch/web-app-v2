@@ -1,44 +1,48 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# longhollow-web
 
-## Getting Started
+Next.js 13 app using the `pages` router, plus Storybook and Jest.
 
-First, run the development server:
+## Requirements
+
+- Node.js 20 (see `package.json` engine)
+- Yarn (classic)
+
+## Quick start
 
 ```bash
+yarn
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-## Creating Components
+## Common scripts
 
 ```bash
-yarn new-component [FOLDER_NAME] [COMPONENT_NAME]
-# yarn new-component components ComponentName
-# yarn new-component ui-kit ComponentName
+yarn dev          # Start the Next.js dev server
+yarn build        # Production build
+yarn start        # Run the production server
+yarn lint         # ESLint
+yarn format       # Prettier (writes files)
+yarn test         # Jest in watch mode
 ```
 
-## Directory Structure
+## Storybook
 
-- `__tests__` — Top-level smoke test for rendering the `<App>`.
-- `components` — App components that are more specific than `ui-kit` components.
-- `config` — Configuration files for things like the theme, metadata, etc.
-- `hooks` — Custom Hooks for wrapping `useQuery`, `useMutation`, etc.
-- `lib` — Library code.
-- `pages` — The directory structure that dictates the routes and main screens.
-- `providers` — Components that provide data (state or GraphQL) to components.
-- `public` — Public assets.
-- `scripts` — Handy scripts.
-- `ui-kit` — Abstracted ui-kit components and library.
-- `utils` — Utility functions.
+```bash
+yarn storybook
+```
 
-## Learn More
+Storybook runs on `http://localhost:6006`.
 
-To learn more about Next.js, take a look at the following resources:
+## Project layout
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-🍕
+- `pages` Routes and top-level screens (pages router)
+- `components` App-specific UI components
+- `ui-kit` Reusable, generic UI components
+- `providers` App providers (state, GraphQL, etc.)
+- `hooks` Custom React hooks
+- `lib` Shared library code
+- `config` Theme and app configuration
+- `public` Static assets
+- `__tests__` High-level smoke tests
