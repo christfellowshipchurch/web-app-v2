@@ -149,12 +149,12 @@ module.exports = {
       },
       {
         source: '/christmas',
-        destination: 'https://www.christmasatcf.com/',
+        destination: '/christmas-2025',
         permanent: true,
       },
       {
         source: '/christmas-2024',
-        destination: 'https://www.christmasatcf.com/',
+        destination: '/christmas-2025',
         permanent: true,
       },
       // TODO: Uncomment these lines to hide Group Finder.
