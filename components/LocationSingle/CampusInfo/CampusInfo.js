@@ -87,7 +87,7 @@ const CampusInfo = ({
         width="100%"
       >
         {/* Event Banner For Mobile --- For Easter/Christmas */}
-        <Styled.MobileEventBanner
+        {/* <Styled.MobileEventBanner
           display={{ _: 'flex', md: 'none' }}
           backgroundColor="#C6353D"
           textColor="white"
@@ -121,7 +121,7 @@ const CampusInfo = ({
               .
             </Styled.EventSubtitle>
           </Box>
-        </Styled.MobileEventBanner>
+        </Styled.MobileEventBanner> */}
 
         {/* Service Times */}
         <Box width="100%" mt="-0.3rem">
@@ -168,8 +168,9 @@ const CampusInfo = ({
               </Styled.InfoBox>
             )}
           </Box>
+
           {/* Event Banner for Desktop --- For Easter/Christmas */}
-          <Styled.EventBanner
+          {/* <Styled.EventBanner
             display={{ _: 'none', md: 'flex' }}
             position="relative"
             top={cfe ? '-160px' : '-170px'}
@@ -205,7 +206,7 @@ const CampusInfo = ({
                 </a>
               </Styled.EventSubtitle>
             </Box>
-          </Styled.EventBanner>
+          </Styled.EventBanner> */}
 
           <Box mr={{ _: 0, lg: 'base' }}>
             {/* Custom Info for CF Everywhere and Trinity */}
