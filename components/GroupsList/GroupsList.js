@@ -4,9 +4,8 @@ import { useRouter } from 'next/router';
 
 import { slugify } from 'utils';
 import { Box, GroupCard, Loader } from 'ui-kit';
-import { rem } from 'ui-kit/_utils';
 import { CustomLink } from 'components';
-import { useCurrentBreakpoint, useGroupLeaders, useGroupMembers } from 'hooks';
+import { useGroupLeaders, useGroupMembers } from 'hooks';
 
 const GroupCardConnected = ({ group, handleClick }) => {
   const { groupLeaders } = useGroupLeaders({ groupId: group?.id });
@@ -26,21 +25,15 @@ const GroupCardConnected = ({ group, handleClick }) => {
       avatars={groupMembers?.map(member => member?.person)}
       totalHeroAvatars={group?.leaders?.totalCount}
       totalAvatars={0}
-      flex={{
-        _: `0 0 calc(100% - ${rem('20px')})`,
-        md: `0 0 calc(50% - ${rem('20px')})`,
-        lg: `0 0 calc(33.333% - ${rem('20px')})`,
-      }}
-      maxWidth={{ lg: '333px' }}
-      m="s"
-      display="block"
+      flex={1}
+      minWidth="300px"
+      boxShadow="none"
     />
   );
 };
 
 function GroupsList(props = {}) {
   const router = useRouter();
-  const currentBreakpoint = useCurrentBreakpoint();
 
   if (props.loading) return <Loader text="Loading your Groups" />;
 
@@ -59,9 +52,10 @@ function GroupsList(props = {}) {
 
   return (
     <Box
-      display={currentBreakpoint.isSmall ? 'block' : 'flex'}
-      flexWrap="wrap"
-      pb="base"
+      display="flex"
+      m="-1rem"
+      p="base"
+      style={{ gap: '16px', overflow: 'auto' }}
     >
       {props.data.map(group => {
         return <GroupCardConnected group={group} handleClick={handleClick} />;
