@@ -29,6 +29,12 @@ export default class MyDocument extends Document {
         case '/cbo-2024':
           webflowDataAttributes = 'data-wf-page="672a56e11ae5618cff593ec3"';
           break;
+        case '/summer-internships':
+          webflowDataAttributes = 'data-wf-page="69690859a7915839b8c14f2a"';
+          break;
+        case '/internships':
+          webflowDataAttributes = 'data-wf-page="6966b4b48097f5c4f0e38fff"';
+          break;
         case '/easter':
           webflowDataAttributes = 'data-wf-page="67b3875c4e2c8ae8345d0cdd"';
           break;
