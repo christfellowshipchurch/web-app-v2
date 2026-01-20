@@ -46,6 +46,14 @@ function useSearchContentItems(options = {}) {
     fetchPolicy: 'no-cache',
   });
 
+  // Add a check that removes any results that don't have a url
+  // This is a temporary fix to remove duplicate results with no url
+  if (query?.data?.search?.edges) {
+    query.data.search.edges = query.data.search.edges.filter(
+      edge => edge.routing?.pathname
+    );
+  }
+
   return [
     search,
     {

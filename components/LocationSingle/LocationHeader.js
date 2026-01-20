@@ -29,7 +29,8 @@ const LocationHeader = (props = {}) => {
           mx="auto"
           src={
             currentBreakpoint.isSmall
-              ? props?.backgroundVideo?.mobile
+              ? props?.backgroundVideo?.mobile ||
+                props?.backgroundVideo?.desktop
               : props?.backgroundVideo?.desktop
           }
           autoPlay
@@ -54,37 +55,41 @@ const LocationHeader = (props = {}) => {
           justifyContent="space-between"
           maxWidth={
             props?.title !== 'Christ Fellowship Everywhere'
-              ? { _: 500, md: 600, lg: 750 }
+              ? { _: 600, md: 750, lg: 900 }
               : null
           }
         >
-          <Box
-            as="h1"
-            fontSize={{ _: 32, sm: 38, md: 48, lg: 60 }}
-            color="white"
-            textShadow="4px 4px 4px rgb(0 0 0 / 30%)"
-            mt="l"
-          >
-            {props?.title}
-            {props?.subtitle ? (
-              <Box
-                as="h2"
-                fontSize={{ _: 20, sm: 19, md: 24, lg: 30 }}
-                color="white"
-                textShadow="4px 4px 4px rgb(0 0 0 / 30%)"
-                mt={{ _: 10, sm: 0, md: 8, lg: 8 }}
-                // mb={{ _: 0, sm: 0, md: 0, lg:  }}
-              >
-                {props?.subtitle}
-              </Box>
-            ) : null}
+          <Box>
+            <Box
+              as="h1"
+              fontSize={{ _: 40, md: 48, lg: 60 }}
+              color="white"
+              textShadow="4px 4px 4px rgb(0 0 0 / 30%)"
+              mt="l"
+              maxWidth={
+                props?.title !== 'Christ Fellowship Everywhere'
+                  ? { _: 500, md: 600, lg: 750 }
+                  : null
+              }
+            >
+              {props?.title}
+            </Box>
+            <Box
+              fontSize={{ _: 24, md: 24, lg: 30 }}
+              color="white"
+              textShadow="4px 4px 4px rgb(0 0 0 / 30%)"
+              mt={{ _: 10, sm: 0, md: 8, lg: 8 }}
+            >
+              {props?.subtitle}
+            </Box>
           </Box>
+
           <Box
             display="flex"
             flexDirection={{ _: 'column', sm: 'column-reverse' }}
             gap={'1rem'}
             maxWidth={{ _: 500, md: 600, lg: 750 }}
-            mt={props?.subtitle ? { _: 0, sm: 0, md: -15, lg: -15 } : null}
+            mt={props?.subtitle ? { _: 0, md: -15, lg: -15 } : null}
           >
             <Box
               display="flex"
@@ -92,6 +97,7 @@ const LocationHeader = (props = {}) => {
             >
               <Button
                 as="a"
+                id={props?.primaryButton?.id}
                 href={props?.primaryButton?.action}
                 onClick={() =>
                   modalDispatch(
@@ -137,7 +143,9 @@ const LocationHeader = (props = {}) => {
 
 LocationHeader.propTypes = {
   title: PropTypes.string,
+  subtitle: PropTypes.string,
   primaryButton: PropTypes.shape({
+    id: PropTypes.string,
     call: PropTypes.string,
     action: PropTypes.string,
     newTab: PropTypes.bool,
@@ -156,7 +164,10 @@ LocationHeader.propTypes = {
 
 LocationHeader.defaultProps = {
   title: 'Palm Beach Gardens',
+  subtitle:
+    'A church that wants to help you live the life you were created for.',
   primaryButton: {
+    id: 'join-us',
     call: 'Join Us Sunday',
     action: '#service-times',
     newTab: false,

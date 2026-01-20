@@ -1,4 +1,4 @@
-import currentUserIsLeader from '../currentUserIsLeader';
+import currentUserIsMemberType from '../currentUserIsMemberType';
 
 const leaders = [
   { node: { id: 'Leader:1234' } },
@@ -7,10 +7,10 @@ const leaders = [
 
 test('it should return true when the current user is a leader', () => {
   const currentUser = { id: 'User:1234' };
-  expect(currentUserIsLeader(currentUser, leaders)).toBe(true);
+  expect(currentUserIsMemberType(currentUser, leaders)).toBe(true);
 });
 
 test('it should return false when the current user is NOT a leader', () => {
   const currentUser = { id: 'User:4321' };
-  expect(currentUserIsLeader(currentUser, leaders)).toBe(false);
+  expect(currentUserIsMemberType(currentUser, leaders)).toBe(false);
 });

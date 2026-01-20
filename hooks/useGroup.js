@@ -103,7 +103,7 @@ export const GROUP_FRAGMENT = gql`
     resources {
       ...GroupResourceFragment
     }
-    leaders: people(isLeader: true, first: 10) {
+    leaders: people(role: LEADER, first: 10) {
       edges {
         node {
           id
@@ -116,7 +116,20 @@ export const GROUP_FRAGMENT = gql`
       }
       totalCount
     }
-    members: people(isLeader: false, first: 10) {
+    members: people(role: MEMBER, first: 10) {
+      edges {
+        node {
+          id
+          firstName
+          lastName
+          photo {
+            uri
+          }
+        }
+      }
+      totalCount
+    }
+    coaches: people(role: COACH, first: 10) {
       edges {
         node {
           id

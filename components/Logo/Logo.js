@@ -5,6 +5,7 @@ import { Box } from 'ui-kit';
 
 function Logo(props = {}) {
   const filename = `/logo${props.dark ? '-dark' : ''}.png`;
+
   return (
     <Box
       as="img"

@@ -22,6 +22,43 @@ export const GET_CAMPUS = gql`
         day
         time
       }
+      weekdaySchedules {
+        monday {
+          title
+          time
+          url
+        }
+        tuesday {
+          title
+          time
+          url
+        }
+        wednesday {
+          title
+          time
+          url
+        }
+        thursday {
+          title
+          time
+          url
+        }
+        friday {
+          title
+          time
+          url
+        }
+        saturday {
+          title
+          time
+          url
+        }
+        sunday {
+          title
+          time
+          url
+        }
+      }
     }
   }
 `;

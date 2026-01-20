@@ -15,7 +15,7 @@ export default function CommunityActionSection(props) {
         You were made for community.
       </Box>
       <Box as="p" mb="l">
-        With many choices to pick from, we’ll help you find a group or class
+        With many choices to pick from, we’ll help you find a Group or Class
         that’s right for you!
       </Box>
       <Button onClick={props.handleOnClick} rounded={true} mb="base">

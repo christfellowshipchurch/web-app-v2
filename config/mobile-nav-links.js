@@ -6,7 +6,7 @@ const navigation = {
     },
     {
       call: 'Locations',
-      action: '#open-sub-menu',
+      action: '/locations',
     },
     {
       call: 'Messages & Content',
@@ -41,7 +41,7 @@ const navigation = {
   subMenuLinks: [
     {
       call: 'Get involved',
-      action: '/it-all-starts-here',
+      action: '/next-steps',
     },
     {
       call: 'Find community',
@@ -61,7 +61,11 @@ const navigation = {
     },
     {
       call: 'Improve my finances',
-      action: '/discover?c=stewardship',
+      action: '/kingdom-way-of-living',
+    },
+    {
+      call: 'Get there first',
+      action: '/get-there-first',
     },
   ],
   additionalLinks: [
@@ -70,7 +74,7 @@ const navigation = {
       links: [
         {
           call: 'Find Your Next Step',
-          action: '/it-all-starts-here',
+          action: '/next-steps',
         },
         {
           call: 'Jesus',
@@ -82,7 +86,7 @@ const navigation = {
         },
         {
           call: 'Journey',
-          action: '/events/journey',
+          action: '/journey',
         },
         {
           call: 'Groups and Classes',
@@ -134,7 +138,7 @@ const navigation = {
           action: '/special-needs',
         },
         {
-          call: 'CFSEU',
+          call: 'Southeastern',
           action: 'https://www.cfseu.com/',
         },
       ],

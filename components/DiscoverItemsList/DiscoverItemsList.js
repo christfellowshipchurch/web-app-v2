@@ -26,6 +26,7 @@ function DiscoverItemsList(props = {}) {
           boxShadow="none"
           coverImage={contentItem?.coverImage?.sources[0]?.uri}
           description={contentItem?.summary}
+          mobileWidth="90vw"
           href={getUrlFromRelatedNode({
             ...contentItem?.relatedNode,
             routing: contentItem?.routing,

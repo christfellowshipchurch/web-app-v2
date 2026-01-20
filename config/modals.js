@@ -4,6 +4,7 @@ import {
   AddToCalendarModal,
   AuthModal,
   ConnectCardModal,
+  EasterLocationsModal,
   ConnectModal,
   GroupDetailsModal,
   GroupEmailConfirmationModal,
@@ -41,6 +42,10 @@ const modals = [
   {
     title: 'ConnectModal',
     component: ConnectModal,
+  },
+  {
+    title: 'EasterLocations',
+    component: EasterLocationsModal,
   },
   {
     title: 'GroupDetails',

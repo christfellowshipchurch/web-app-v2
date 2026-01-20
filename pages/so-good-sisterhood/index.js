@@ -19,7 +19,7 @@ export default function SoGoodSisterhoodPage() {
       contentCategory: 'Information',
       mediaType: 'Information',
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const options = {
@@ -29,7 +29,11 @@ export default function SoGoodSisterhoodPage() {
   };
 
   if (title && title.length) {
-    return <ContentItemProvider Component={PageSingle} options={options} />;
+    return (
+      <Layout title={title}>
+        <ContentItemProvider Component={PageSingle} options={options} />;
+      </Layout>
+    );
   }
 
   return (

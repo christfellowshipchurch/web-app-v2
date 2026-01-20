@@ -1,9 +1,11 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 import { system } from 'ui-kit';
 import { primaryHover } from 'ui-kit/Button/Button.styles';
 
 const HtmlRenderer = styled.div`
+  text-wrap: pretty;
+
   > ul,
   > ol {
     margin-top: ${themeGet('space.base')};
@@ -19,10 +21,10 @@ const HtmlRenderer = styled.div`
       margin-bottom: ${themeGet('space.xs')};
     }
   }
-  
+
   a {
     color: ${themeGet('colors.primary')};
-    
+
     &:active,
     &:focus,
     &:hover {

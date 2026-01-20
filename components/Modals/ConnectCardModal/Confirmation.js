@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { hideModal, useModalDispatch } from 'providers/ModalProvider';
-import { Box, Button, Icon } from 'ui-kit';
+import { Box, Button, HtmlRenderer, Icon } from 'ui-kit';
 import { useRouter } from 'next/router';
 import { icsLinkEvents } from 'utils';
 import { useCampus } from 'hooks';
 import { icsLink } from 'components/AddToCalendar/utils';
+import PropTypes from 'prop-types';
 
 const ConfirmationScreen = (props = {}) => {
   const modalDispatch = useModalDispatch();
@@ -18,6 +19,14 @@ const ConfirmationScreen = (props = {}) => {
     },
   });
   let events = null;
+
+  useEffect(() => {
+    if (window.location.pathname.includes('locations')) {
+      if (!window.location.pathname.includes('#set-reminder-submitted')) {
+        window.location = '#set-reminder-submitted';
+      }
+    }
+  }, []);
 
   useEffect(() => {
     async function getCampusAddress() {
@@ -46,15 +55,21 @@ const ConfirmationScreen = (props = {}) => {
       display="flex"
       flexDirection="column"
       alignItems="center"
-      p="l"
+      p={props?.campus ? '' : 'l'} // Padding is only applied if campus is not provided(Not Set a Reminder)
       textAlign="center"
-      px="xxl"
     >
       <Icon name="check" color="success" size="100" />
-      <Box as="h2" color="secondary" my="l">
+      <Box as="h2" color="secondary" my="l" maxWidth={600}>
         {!router.asPath.includes('locations')
           ? `You're all set!`
+          : props?.campus.includes('Español')
+          ? `Asegúrese de revisar su correo electrónico para obtener más detalles y nos vemos este domingo.`
           : `Be sure to check out your email for more details and we'll see you this Sunday.`}
+        {props?.additionalText && (
+          <Box as="p" color="black" fontWeight="normal" fontSize="base" mt="l">
+            <HtmlRenderer htmlContent={props?.additionalText} />
+          </Box>
+        )}
       </Box>
 
       <Box display={{ _: 'inline', lg: 'flex' }}>
@@ -69,7 +84,9 @@ const ConfirmationScreen = (props = {}) => {
             variant="secondary"
             mr="xs"
           >
-            ADD TO CALENDAR
+            {props?.campus?.includes('Español')
+              ? 'AÑADIR AL CALENDARIO'
+              : 'ADD TO CALENDAR'}
           </Button>
         )}
         <Button
@@ -80,10 +97,21 @@ const ConfirmationScreen = (props = {}) => {
           m={{ _: 'xs', lg: 0 }}
           onClick={() => modalDispatch(hideModal())}
         >
-          CONTINUE
+          {props?.campus?.includes('Español') ? 'CONTINUAR' : 'CONTINUE'}
         </Button>
       </Box>
     </Box>
   );
 };
+
+ConfirmationScreen.propTypes = {
+  campus: PropTypes.string,
+  serviceTime: PropTypes.string,
+};
+
+ConfirmationScreen.defaultProps = {
+  campus: 'Palm Beach Gardens',
+  serviceTime: '',
+};
+
 export default ConfirmationScreen;

@@ -49,6 +49,7 @@ const Content = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   width: ${props => props.width};
+  max-width: ${props => props.maxWidth};
   z-index: 1002;
 
   /* Small Only */
@@ -56,7 +57,6 @@ const Content = styled.div`
     margin-top: ${themeGet('space.base')};
     padding: ${themeGet('space.base')};
     padding-top: ${themeGet('space.xl')};
-    width: max-content;
     max-width: calc(100vw - ${themeGet('space.base')});
     max-height: 80vh;
   }

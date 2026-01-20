@@ -218,6 +218,7 @@ function CommunitySingle(props = {}) {
                     sm: `0 0 calc(50% - ${utils.rem('20px')})`,
                     lg: `0 0 calc(33.333% - ${utils.rem('20px')})`,
                   }}
+                  minWidth="300px"
                   m="s"
                   coverImage={item?.coverImage?.sources[0]?.uri}
                   coverImageOverlay={true}

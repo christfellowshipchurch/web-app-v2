@@ -53,6 +53,14 @@ function Contact(props = {}) {
       <Box mb="base">
         <Logo dark={true} />
       </Box>
+      <Styled.Link
+        href="https://goo.gl/maps/Uv6zB3aFzr8pkfzz9"
+        target="_blank"
+        mb="s"
+      >
+        5343 Northlake Blvd <br />
+        Palm Beach Gardens, FL 33418
+      </Styled.Link>
       <Styled.Link href="tel:561-799-7600" mb="s">
         (561) 799-7600
       </Styled.Link>
@@ -76,23 +84,26 @@ function Resources() {
           </Styled.Link>
         </Box>
         <Box as="li">
+          <Styled.Link target="_blank" href={links.iglesiaEspanol}>
+            Iglesia Español
+          </Styled.Link>
+        </Box>
+        <Box as="li">
+          <Styled.Link href={links.cfApp}>App</Styled.Link>
+        </Box>
+        <Box as="li">
           <Styled.Link target="_blank" href={links.pastMessages}>
             Past Messages
           </Styled.Link>
         </Box>
         <Box as="li">
           <Styled.Link target="_blank" href={links.giveOnline}>
-            Give Online
+            Give
           </Styled.Link>
         </Box>
         <Box as="li">
           <Styled.Link target="_blank" href={links.shopOnline}>
-            Shop Online
-          </Styled.Link>
-        </Box>
-        <Box as="li">
-          <Styled.Link target="_blank" href={links.cfApp}>
-            CF App
+            Shop
           </Styled.Link>
         </Box>
       </List>
@@ -175,13 +186,13 @@ function Opportunities() {
           <Styled.Link href="/career-opportunities">Careers</Styled.Link>
         </Box>
         <Box as="li">
-          <Styled.Link target="_blank" href={links.cfConf}>
-            CF Conference
+          <Styled.Link target="_blank" href={links.cfSeu}>
+            Get Your Degree
           </Styled.Link>
         </Box>
         <Box as="li">
-          <Styled.Link target="_blank" href={links.cfSeu}>
-            Get Your Degree
+          <Styled.Link target="_blank" href={links.cfConf}>
+            Conference
           </Styled.Link>
         </Box>
       </List>

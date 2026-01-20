@@ -88,7 +88,7 @@ module.exports = {
       {
         source: '/christ-birthday-offering',
         destination:
-          'https://www.christfellowship.church/2022-christ-birthday-offering',
+          'https://www.christfellowship.church/2024-christ-birthday-offering',
         permanent: true,
       },
       {
@@ -125,6 +125,36 @@ module.exports = {
       {
         source: '/studies/sisterhood-sogoodsummer',
         destination: '/studies/sisterhood-shownotes-plus',
+        permanent: true,
+      },
+      {
+        source: '/locations/downtown-west-palm-beach',
+        destination: '/dwpb',
+        permanent: true,
+      },
+      // {
+      //   source: '/easter',
+      //   destination: '/easter-2025',
+      //   permanent: true,
+      // },
+      {
+        source: '/easter-espanol',
+        destination: '/easter-espanol-2024',
+        permanent: true,
+      },
+      {
+        source: '/it-all-starts-here',
+        destination: '/next-steps',
+        permanent: true,
+      },
+      {
+        source: '/christmas',
+        destination: '/christmas-2025',
+        permanent: true,
+      },
+      {
+        source: '/christmas-2024',
+        destination: '/christmas-2025',
         permanent: true,
       },
       // TODO: Uncomment these lines to hide Group Finder.

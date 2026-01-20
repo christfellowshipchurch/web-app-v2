@@ -60,12 +60,17 @@ const PastorsCard = styled.div`
   text-align: center;
   width: 100%;
 
-  @media screen and (min-width: ${themeGet('breakpoints.sm')}) {
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
     border: 1px solid ${themeGet('colors.neutrals.300')};
     border-radius: ${themeGet('radii.l')};
     box-shadow: ${themeGet('shadows.l')};
     width: auto;
   }
+
+  @media screen and (min-width: ${themeGet('breakpoints.md')}) {
+    top: -150px;
+  }
+
   @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
     min-width: 350px;
   }
@@ -99,23 +104,18 @@ const ServiceTimeContainer = styled.div`
   border-top-left-radius: ${themeGet('radii.base')};
   border-bottom-left-radius: ${themeGet('radii.base')};
   display: flex;
-
-  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
-    flex-wrap: wrap;
-  }
+  justify-content: space-around;
+  padding-top: ${themeGet('space.base')};
+  padding-bottom: ${themeGet('space.base')};
 
   @media screen and (min-width: ${themeGet('breakpoints.sm')}) {
     flex-wrap: nowrap;
   }
 
-  justify-content: space-around;
-  margin-top: ${themeGet('space.base')};
-  padding-top: ${themeGet('space.base')};
-  padding-bottom: ${themeGet('space.base')};
-
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
     border-radius: 0px;
     margin-top: 0px;
+    flex-wrap: wrap;
   }
 
   @media screen and (max-width: ${themeGet('breakpoints.sm')}) {
@@ -154,6 +154,80 @@ const VideoOverlay = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
+// ----------------------------------------------
+
+// Event Banner Styled Components
+const EventBanner = styled.div`
+  background-color: ${props => props.backgroundColor};
+  border-top-left-radius: ${themeGet('radii.base')};
+  color: ${props => props.textColor};
+  display: flex;
+  align-items: center;
+
+  font-weight: bold;
+
+  padding-bottom: ${themeGet('space.s')};
+  padding-left: 20px;
+  padding-right: 60px;
+  padding-top: ${themeGet('space.s')};
+  box-shadow: -7px -5px 19px rgba(0, 0, 0, 0.12);
+
+  @media screen and (min-width: ${themeGet('breakpoints.lg')}) {
+    text-size: 14px;
+  }
+
+  @media screen and (min-width: 75rem) {
+    font-size: 18px;
+  }
+
+  ${system}
+`;
+
+const MobileEventBanner = styled.div`
+  background-color: ${props => props.backgroundColor};
+  color: ${props => props.textColor};
+  font-weight: bold;
+  text-align: center;
+  font-size: 16px;
+  padding-bottom: ${themeGet('space.base')};
+  padding-top: ${themeGet('space.s')};
+  box-shadow: -7px -5px 19px rgba(0, 0, 0, 0.12);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+    margin-right: 0px;
+  }
+
+  @media screen and (max-width: ${themeGet('breakpoints.sm')}) {
+    margin-top: 0px;
+    margin-left: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+  }
+
+  ${system}
+`;
+
+const EventSubtitle = styled.span`
+  font-style: italic;
+  font-weight: 300;
+  font-size: 13px;
+  padding-left: 10px;
+
+  @media screen and (max-width: ${themeGet('breakpoints.md')}) {
+    padding-left: 0px;
+  }
+`;
+
+const EventCTA = styled.a`
+  text-decoration: underline;
+  cursor: pointer;
+`;
+
 LocationSingle.FlexBreak = FlexBreak;
 LocationSingle.InfoBox = InfoBox;
 LocationSingle.PastorsCard = PastorsCard;
@@ -163,5 +237,9 @@ LocationSingle.ServiceTimeContainer = ServiceTimeContainer;
 LocationSingle.VerticalDivider = VerticalDivider;
 LocationSingle.VideoCover = VideoCover;
 LocationSingle.VideoOverlay = VideoOverlay;
+LocationSingle.EventBanner = EventBanner;
+LocationSingle.EventSubtitle = EventSubtitle;
+LocationSingle.EventCTA = EventCTA;
+LocationSingle.MobileEventBanner = MobileEventBanner;
 
 export default LocationSingle;

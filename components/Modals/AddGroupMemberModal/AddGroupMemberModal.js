@@ -110,7 +110,7 @@ const AddGroupMemberModal = ({ groupId }) => {
         }, 1000);
       }
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [success]);
 
   return (
@@ -190,7 +190,6 @@ const AddGroupMemberModal = ({ groupId }) => {
               label="Email"
               placeholder="email@website.com"
               onChange={handleChange}
-              type="tel"
             />
             {errors?.email ? (
               <Box as="p" color="alert" fontSize="s">

@@ -13,14 +13,15 @@ const LifeToTheFullest = () => (
     maxWidth={1200}
     display="grid"
     justifyContent="center"
-    gridTemplateColumns={{ _: 'auto', md: 'auto auto' }}
+    gridTemplateColumns={{ _: 'auto', md: '1fr 1fr' }}
   >
     {lifeToTheFullest.map(({ title, subtitle, icon }, i) => (
       <Box
         key={i}
+        justifySelf="center"
         display="flex"
-        alignItems="center"
-        mx={{ _: '0', md: 'l' }}
+        alignItems="start"
+        mx={{ _: '0', md: 'base' }}
         my={{ _: 'base', md: 'l' }}
       >
         <Icon
@@ -29,6 +30,7 @@ const LifeToTheFullest = () => (
           size="48"
           alignSelf="normal"
           mr="base"
+          minWidth="48px"
         />
         <Box maxWidth={{ _: 290, md: 360 }}>
           <Box

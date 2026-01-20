@@ -21,8 +21,9 @@ function InfoCardList(props) {
         {props?.subtitle}
       </Box>
       <Box display="flex" flexDirection={{ _: 'column', lg: 'row' }}>
-        {props?.cards?.map(card => (
+        {props?.cards?.map((card, index) => (
           <Box
+            key={index}
             bg={props?.cardColor}
             my="s"
             mx="base"
@@ -30,7 +31,7 @@ function InfoCardList(props) {
             display="flex"
             flexDirection="column"
             alignItems="center"
-            jsutifyContent="center"
+            justifyContent="center"
             textAlign="center"
             color="white"
             p="l"
@@ -47,6 +48,7 @@ function InfoCardList(props) {
       {props?.button && (
         <Button
           as="a"
+          id={props?.button?.id}
           href={props?.button?.url}
           onClick={props?.button?.onClick}
           my="l"

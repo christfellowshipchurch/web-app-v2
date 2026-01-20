@@ -27,7 +27,7 @@ const DiscoverFilterSection = ({ contentId, title, filter }) => {
 
   const handleSeeMore = event => {
     // eslint-disable-next-line no-unused-vars
-    const [type,id] = contentId.split(':');
+    const [type, id] = contentId.split(':');
 
     event.preventDefault();
     router.push(`/discover/${slugify(title)}?id=${slugify(id)}&c=${filter}`);
@@ -37,7 +37,7 @@ const DiscoverFilterSection = ({ contentId, title, filter }) => {
     <Box my="s">
       <Box display="flex" justifyContent="space-between" mb="s">
         <Box as="h3">{title}</Box>
-        {content ? (
+        {content > 3 ? (
           <Button variant="link" paddingRight={0} onClick={handleSeeMore}>
             View All
           </Button>
@@ -56,10 +56,12 @@ const DiscoverFilterSection = ({ contentId, title, filter }) => {
               boxShadow="none"
               coverImage={n?.coverImage?.sources[0]?.uri}
               description={n?.summary}
+              mobileWidth="90vw"
               href={getUrlFromRelatedNode(n)}
               scaleCard={false}
               scaleCoverImage={true}
               title={n?.title}
+              minWidth={350}
               type="HIGHLIGHT_SMALL"
             />
           ))

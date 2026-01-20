@@ -32,7 +32,9 @@ import useFeedFeatures from './useFeedFeatures';
 import useForm from './useForm';
 import useGetTags from './useGetTags';
 import useGetTaggedItems from './useGetTaggedItems';
+import useGetTotalCampuses from './useGetTotalCampuses';
 import useGroup from './useGroup';
+import useGroupCoaches from './useGroupCoaches';
 import useGroupContentId from './useGroupContentId';
 import useGroupCoverImages from './useGroupCoverImages';
 import useGroupEmailRecipients from './useGroupEmailRecipients';
@@ -110,7 +112,9 @@ export {
   useForm,
   useGetTags,
   useGetTaggedItems,
+  useGetTotalCampuses,
   useGroup,
+  useGroupCoaches,
   useGroupContentId,
   useGroupCoverImages,
   useGroupEmailRecipients,

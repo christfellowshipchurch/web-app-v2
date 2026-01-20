@@ -1,5 +1,4 @@
 import { gql, useQuery } from '@apollo/client';
-import { CustomLink } from 'components';
 import clone from 'lodash/clone';
 
 import {

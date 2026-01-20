@@ -50,22 +50,27 @@ export default function ExternalLandingPage(props = {}) {
             </Box>
             <Box as="p" fontSize={{ _: 16, md: 24 }}>
               In the race to the heart of the next generation, the first one
-              there wins.
+              there wins.{' '}
+              <Box as="a" href="/get-there-first">
+                Learn about our vision
+              </Box>
+              <Box>to Get There First.</Box>
             </Box>
           </Box>
           <CollectionPreview
             hideTitle
             hideButton
             contentOverride={churchForEveryGeneration}
-            cardProps={{
-              textAlign: 'center',
-            }}
           />
         </Box>
       </Box>
 
       {/* Relevant Messages */}
-      <Box px="base" py={BASE_VERITCAL_PADDING} bg="neutrals.100">
+      <Box
+        px={{ _: 0, md: 'base' }}
+        py={BASE_VERITCAL_PADDING}
+        bg="neutrals.100"
+      >
         <Box mx="auto" maxWidth={1200}>
           <CollectionPreview
             horizontalScroll
@@ -76,7 +81,7 @@ export default function ExternalLandingPage(props = {}) {
       </Box>
 
       {/* Just for You */}
-      <Box px="base" py={BASE_VERITCAL_PADDING} bg="white">
+      <Box px={{ _: 0, md: 'base' }} py={BASE_VERITCAL_PADDING} bg="white">
         <Box mx="auto" maxWidth={1200}>
           <CollectionPreview
             horizontalScroll
@@ -106,7 +111,7 @@ export default function ExternalLandingPage(props = {}) {
               {
                 title: 'Subscribe',
                 relatedNode: {
-                  url: 'http://eepurl.com/hAk7aP',
+                  url: 'https://rock.christfellowship.church/page/4344',
                 },
                 mt: '-0.8rem',
                 target: '_blank',

@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useRouter } from 'next/router';
-import capitalize from 'lodash/capitalize';
 import isEmpty from 'lodash/isEmpty';
 
-import { Layout, NotFound, FeatureFeed } from 'components';
+import { NotFound, FeatureFeed, SEO } from 'components';
 import { Box, CoverImage, Loader, ThemeMixin, HtmlRenderer } from 'ui-kit';
 import { useAnalytics } from 'providers/AnalyticsProvider';
+import { capitalize } from 'lodash';
+import { useRouter } from 'next/router';
 
 const renderBody = ({ title, summary, htmlContent, coverImage }) => {
   const hasTitle = !isEmpty(title) && isEmpty(coverImage);
@@ -52,8 +52,8 @@ const formatTitleForSEO = path => {
     .filter(w => !isEmpty(w))
     .join(' ');
 };
-
 function PageSingle(props = {}) {
+  const { asPath } = useRouter();
   //Tracking Segment Data
   const analytics = useAnalytics();
   useEffect(() => {
@@ -68,9 +68,6 @@ function PageSingle(props = {}) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const router = useRouter();
-  const { asPath } = router;
 
   const data = props?.data;
   const loading = props?.loading;
@@ -115,50 +112,43 @@ function PageSingle(props = {}) {
     return <NotFound />;
   }
 
-  return (
-    <Layout
-      theme={theme}
+  return [
+    <SEO
       title={!title || isEmpty(title) ? formatTitleForSEO(asPath) : title}
-      seoMetaTags={{
-        image: coverImage,
-        description: summary,
-      }}
-      contentMaxWidth={'100vw'}
-      contentHorizontalPadding={'0'}
-      contentVerticalPadding={'0'}
-    >
-      <ThemeMixin theme={theme ?? {}}>
-        {(!isEmpty(coverImage) || pathname === 'christ-birthday-offering') && (
-          <CoverImage
-            type={
-              pathname === 'christ-birthday-offering'
-                ? 'graphic-overlay'
-                : 'hero-glass'
-            }
-            src={
-              pathname === 'christ-birthday-offering'
-                ? '/christ-birthday-offering/cover-image.png'
-                : coverImage
-            }
-            title={title}
-            subtitle={summary}
-            actions={actions}
-            alignment="left"
-          />
+      image={coverImage}
+      description={summary}
+    />,
+    <ThemeMixin theme={theme ?? {}}>
+      {(!isEmpty(coverImage) || pathname === 'christ-birthday-offering') && (
+        <CoverImage
+          type={
+            pathname === 'christ-birthday-offering'
+              ? 'graphic-overlay'
+              : 'hero-glass'
+          }
+          src={
+            pathname === 'christ-birthday-offering'
+              ? '/christ-birthday-offering/cover-image.png'
+              : coverImage
+          }
+          title={title}
+          subtitle={summary}
+          actions={actions}
+          alignment="left"
+        />
+      )}
+
+      <Box maxWidth={1100} margin="auto" px="base">
+        {renderBody({ title, summary, htmlContent, coverImage })}
+
+        {features && features.length > 0 && (
+          <Box>
+            <FeatureFeed data={features} />
+          </Box>
         )}
-
-        <Box maxWidth={1100} margin="auto" px="s">
-          {renderBody({ title, summary, htmlContent, coverImage })}
-
-          {features && features.length > 0 && (
-            <Box>
-              <FeatureFeed data={features} />
-            </Box>
-          )}
-        </Box>
-      </ThemeMixin>
-    </Layout>
-  );
+      </Box>
+    </ThemeMixin>,
+  ];
 }
 
 PageSingle.propTypes = {

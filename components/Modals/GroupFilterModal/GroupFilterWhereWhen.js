@@ -1,10 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 
-import {
-  useGroupFilters,
-  update
-} from 'providers/GroupFiltersProvider';
+import { useGroupFilters, update } from 'providers/GroupFiltersProvider';
 import { showStep, hideModal, useModalDispatch } from 'providers/ModalProvider';
 
 import { Box, Button, Select, Icon, FormLabel } from 'ui-kit';

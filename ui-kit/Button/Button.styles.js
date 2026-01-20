@@ -8,7 +8,11 @@ import { system } from 'ui-kit';
 export const primaryHover = () => props => {
   const primaryColor = themeGet('colors.primary')(props);
 
-  return Color(primaryColor).saturate(0.1).darken(0.35).hex();
+  if (props?.buttonHover) {
+    return props?.buttonHover;
+  } else {
+    return Color(primaryColor).saturate(0.1).darken(0.35).hex();
+  }
 };
 
 export const primarySubdued = () => props => {

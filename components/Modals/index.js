@@ -3,6 +3,7 @@ import AddToCalendarModal from './AddToCalendarModal';
 import AuthModal from './AuthModal';
 import ConnectCardModal from './ConnectCardModal';
 import ConnectModal from './ConnectModal';
+import EasterLocationsModal from './EasterLocationsModal/EasterLocationsModal';
 import GroupDetailsModal from './GroupDetailsModal';
 import GroupEmailConfirmationModal from './GroupEmailConfirmationModal';
 import GroupFilterModal from './GroupFilterModal';
@@ -20,6 +21,7 @@ export {
   AuthModal,
   ConnectCardModal,
   ConnectModal,
+  EasterLocationsModal,
   GroupDetailsModal,
   GroupEmailConfirmationModal,
   GroupFilterModal,

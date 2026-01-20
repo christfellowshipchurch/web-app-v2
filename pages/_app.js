@@ -10,8 +10,10 @@ import './StreamChatOverrides.css';
 
 import 'react-quill/dist/quill.snow.css';
 
-import './proxima-nova.css';
 import './merriweather.css';
+import './proxima-nova.css';
+import './retroica.css';
+import './vision.css';
 
 // Tracks the route changes and adds a bar to the top.
 configureNProgress();
@@ -102,6 +104,14 @@ function App({ Component, pageProps }) {
         <JsonLD schema={christFellowship} />
 
         <Component {...pageProps} />
+        {/* Google Tag Manager (noscript) - to be placed below the body tag */}
+        <noscript
+          dangerouslySetInnerHTML={{
+            __html: `
+<iframe src="https://www.googletagmanager.com/ns.html?id=${process.env.NEXT_PUBLIC_GTM_CODE}"
+height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
+          }}
+        />
       </>
     </AppProvider>
   );

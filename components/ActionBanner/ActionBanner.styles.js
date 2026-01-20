@@ -10,6 +10,7 @@ const Banner = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 999;
 
   padding: ${themeGet('space.base')};
   font-size: 0.9rem;

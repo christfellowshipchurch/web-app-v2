@@ -18,7 +18,7 @@ const navigation = {
     },
     {
       call: 'Next Steps',
-      action: '/it-all-starts-here',
+      action: '/next-steps',
     },
     {
       call: 'Give',
@@ -28,7 +28,7 @@ const navigation = {
   subMenuLinks: [
     {
       call: 'Get involved',
-      action: '/it-all-starts-here',
+      action: '/next-steps',
     },
     {
       call: 'Find community',
@@ -48,14 +48,18 @@ const navigation = {
     },
     {
       call: 'Improve my finances',
-      action: '/discover?c=stewardship',
+      action: '/kingdom-way-of-living',
+    },
+    {
+      call: 'Get there first',
+      action: '/get-there-first',
     },
   ],
   additionalLinks: [
     {
       headerLink: {
         call: 'Next Steps',
-        action: '/it-all-starts-here',
+        action: '/next-steps',
       },
       subLinks: [
         {
@@ -68,7 +72,7 @@ const navigation = {
         },
         {
           call: 'Journey',
-          action: '/events/journey',
+          action: '/journey',
         },
         {
           call: 'Groups and Classes',
@@ -143,7 +147,7 @@ const navigation = {
           action: '/special-needs',
         },
         {
-          call: 'CFSEU',
+          call: 'Southeastern',
           action: 'https://www.cfseu.com/',
         },
       ],

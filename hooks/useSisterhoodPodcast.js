@@ -1,8 +1,8 @@
 import { gql, useQuery } from '@apollo/client';
 
 export const GET_SISTERHOOD_SEASON = gql`
-  query SisterhoodPodcastSeason($seasonNumber: Int!) {
-    sisterhoodPodcastSeason(seasonNumber: $seasonNumber) {
+  query SisterhoodPodcastSeason($seasonName: String!) {
+    sisterhoodPodcastSeason(seasonName: $seasonName) {
       title
       summary
       id

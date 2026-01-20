@@ -24,11 +24,9 @@ const StyledTextInput = props => (
 );
 
 const StyledCheckBox = props => (
-  <Box display="flex" mt="s">
+  <Box display="flex" mt="1rem">
     <Checkbox id={props?.id} size={18} onChange={props?.onChange} mr="s" />
-    <Box as="p" mt="0.2rem">
-      {props?.text}
-    </Box>
+    <Box as="p">{props?.text}</Box>
   </Box>
 );
 
@@ -66,9 +64,20 @@ const StyledForm = ({
   /**
    * todo : For some reason, the DefinedValueListProvider is not working here or any provider for that matter. I am not sure why, but I am going to use the useQuery hook instead. We'll want to come back to this and figure out why the provider is not working.
    */
-  const checkBoxValues = useQuery(GET_DEFINED_VALUE_LIST, {
+  const checkBoxData = useQuery(GET_DEFINED_VALUE_LIST, {
     variables: { id: CHECKBOX_VALUES_ID },
   });
+
+  const allCheckBoxValues =
+    checkBoxData?.data?.getDefinedValueListByIdentifier?.values;
+
+  const nextStepValues = allCheckBoxValues?.filter(
+    value => value?.value === 'Baptism' || value?.value === 'The Journey class'
+  );
+
+  const defaultValues = allCheckBoxValues?.filter(
+    value => value?.value !== 'Baptism' && value?.value !== 'The Journey class'
+  );
 
   return (
     <Box
@@ -139,10 +148,10 @@ const StyledForm = ({
               onChange={handleChange}
             >
               <Select.Option value={null}>Select a Campus</Select.Option>
-              {campuses.map(({ id, name }) => {
+              {campuses.map((campus, index) => {
                 return (
-                  <Select.Option key={id} value={name}>
-                    {name}
+                  <Select.Option key={`campus-${index}`} value={campus}>
+                    {campus}
                   </Select.Option>
                 );
               })}
@@ -154,16 +163,28 @@ const StyledForm = ({
             </Box>
           ) : null}
         </Box>
+        {/* Birth Date Field - not using for now */}
+        {/* <Box>
+          <BirthDateField
+            required={false}
+            onChange={handleChange}
+            error={errors?.birthDate}
+          />
+        </Box> */}
+        {/* Gender Field - not using for now */}
+        {/* <Box>
+          <GenderField onChange={handleChange} initialValue={values?.gender} />
+        </Box> */}
         {/* Made a Decision */}
-        <Box display="flex" pt={25}>
+        <Box display="flex" pt="2rem">
           <Checkbox
             id="madeDecision"
             size={18}
             onChange={handleChange}
             mr="s"
           />
-          <Box as="p" mt="0.1rem" fontWeight="bold" color="secondary">
-            I made a decision to follow Christ today{' '}
+          <Box as="p" mb="base" fontWeight="bold" color="secondary">
+            I recently made a decision to follow Jesus!
           </Box>
         </Box>
       </Box>
@@ -177,20 +198,33 @@ const StyledForm = ({
         mr="auto"
         maxWidth={650}
       >
-        <Box as="p" fontStyle="italic">
+        <Box as="p" fontWeight="bold">
           I am looking to:
         </Box>
-        <Box>
-          {checkBoxValues?.data ? (
+        <Box as="p" mb="-0.8rem" fontStyle="italic">
+          Take the next step in my faith through…
+        </Box>
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          style={{ gap: '1rem' }}
+        >
+          {nextStepValues && (
             <StyledCheckBoxList
-              data={
-                checkBoxValues?.data?.getDefinedValueListByIdentifier?.values
-              }
+              data={nextStepValues}
               handleChange={handleChange}
               handleHook={() => setShowOther(!showOther)}
             />
-          ) : (
-            <Loader />
+          )}
+        </Box>
+        <Box>
+          {defaultValues && (
+            <StyledCheckBoxList
+              data={defaultValues}
+              handleChange={handleChange}
+              handleHook={() => setShowOther(!showOther)}
+            />
           )}
         </Box>
         <Box

@@ -8,7 +8,6 @@ import { useAnalytics } from 'providers/AnalyticsProvider';
 import { WistiaPlayer } from 'components';
 
 import ReactPlayer from 'react-player';
-import { random } from 'lodash';
 
 // Mux is used to deal with encodings and low-level video nonsense.
 // Without it, streams are unlikely to work on iOS and Safari.
@@ -70,8 +69,12 @@ export default function Video(props = {}) {
               left="0px"
               background={
                 hasPlayed
-                  ? `radial-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.0))`
-                  : `radial-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.0)), url(${props?.poster})`
+                  ? `radial-gradient(rgba(0, 0, 0, ${
+                      props?.opacity || 0.6
+                    }), rgba(0, 0, 0, 0.0))`
+                  : `radial-gradient(rgba(0, 0, 0, ${
+                      props?.opacity || 0.6
+                    }), rgba(0, 0, 0, 0.0)), url(${props?.poster})`
               }
               backgroundSize="cover"
               backgroundPosition="center"
@@ -90,7 +93,12 @@ export default function Video(props = {}) {
                   playing();
                 }}
               >
-                <Icon name="play" color="white" size="40%" opacity="0.95" />
+                <Icon
+                  name="play"
+                  color={props?.buttonColor ? props?.buttonColor : 'white'}
+                  size={props?.iconSize || '40%'}
+                  opacity="0.95"
+                />
               </Button>
             </Box>
           )}
