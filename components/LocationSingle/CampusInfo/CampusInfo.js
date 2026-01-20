@@ -6,7 +6,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { camelCase, find } from 'lodash';
 
-import { Box, Cell, Divider, Icon } from 'ui-kit';
+import { Box, Cell, Divider, Icon, Image } from 'ui-kit';
 
 import { campusLinks } from '../../../lib/locationData';
 import Styled from '../LocationSingle.styles';
@@ -53,20 +53,20 @@ const CampusInfo = ({
   const mdHeight = name === 'Online (CF Everywhere)' ? 500 : 'auto';
 
   /** ---- Event Banner Props ----  */
-  // const bannerUrl = '/easter';
+  const bannerUrl = 'https://www.christmasatcf.com/';
 
-  // /** Spanish Campuses */
+  /** Spanish Campuses */
 
-  // let subtitle, title, cta;
-  // if (cfe) {
-  //   title = '¿Buscas un servicio de Pascua?';
-  //   subtitle = 'Mira los horarios de los servicios de Pascua y Viernes Santo ';
-  //   cta = 'aquí';
-  // } else {
-  //   title = 'Looking for an Easter service?';
-  //   subtitle = 'See all Easter and Good Friday service times ';
-  //   cta = 'here';
-  // }
+  let subtitle, title, cta;
+  if (cfe) {
+    title = '¿Buscas un servicio de Navidad?';
+    subtitle = 'Mira todos los horarios de servicios de Navidad ';
+    cta = 'aquí';
+  } else {
+    title = 'Looking for a Christmas service?';
+    subtitle = 'See all Christmas service times ';
+    cta = 'here';
+  }
   /** ---- Event Banner Props ----  */
 
   return (
@@ -89,8 +89,8 @@ const CampusInfo = ({
         {/* Event Banner For Mobile --- For Easter/Christmas */}
         {/* <Styled.MobileEventBanner
           display={{ _: 'flex', md: 'none' }}
-          backgroundColor="#F1EB9C"
-          textColor="black"
+          backgroundColor="#C6353D"
+          textColor="white"
           flexDirection="column"
           alignItems="center"
           px="base"
@@ -99,7 +99,7 @@ const CampusInfo = ({
             width={50}
             height={50}
             objectFit="contain"
-            source="/location-pages/easter-banner.png"
+            source="/location-pages/christmas-star.png"
             m="0px 10px 0px 0px !important"
           />
           <Box display="flex" flexDirection="column">
@@ -112,7 +112,9 @@ const CampusInfo = ({
                 as="a"
                 href={bannerUrl}
                 textDecoration="underline"
-                color="#000"
+                color="white"
+                target="_blank"
+                rel="noreferrer"
               >
                 {cta}
               </Box>
@@ -166,13 +168,14 @@ const CampusInfo = ({
               </Styled.InfoBox>
             )}
           </Box>
+
           {/* Event Banner for Desktop --- For Easter/Christmas */}
           {/* <Styled.EventBanner
             display={{ _: 'none', md: 'flex' }}
             position="relative"
-            top="-170px"
-            backgroundColor="#F1EB9C"
-            textColor="black"
+            top={cfe ? '-160px' : '-170px'}
+            backgroundColor="#C6353D"
+            textColor="white"
             fontSize={cfe && 15}
           >
             <Image
@@ -180,7 +183,7 @@ const CampusInfo = ({
               width={cfe ? 35 : { md: 35, lg: 40 }}
               height={cfe ? 35 : { md: 35, lg: 40 }}
               objectFit="contain"
-              source="/location-pages/easter-banner.png"
+              source="/location-pages/christmas-star.png"
             />
 
             <Box
@@ -194,8 +197,10 @@ const CampusInfo = ({
               <Styled.EventSubtitle>
                 {subtitle}
                 <a
-                  style={{ textDecoration: 'underline', color: '#000' }}
+                  style={{ textDecoration: 'underline', color: 'white' }}
                   href={bannerUrl}
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   {cta}
                 </a>
