@@ -44,12 +44,9 @@ export default function Connect(props = {}) {
       <Cell
         as="main"
         maxWidth={utils.rem('1100px')}
-        px="base"
         py={{ _: 's', lg: 'base' }}
+        bg="#F3F5FA"
       >
-        <Box as="h1" mb={'-1rem'}>
-          Connect
-        </Box>
         {!authenticated ? (
           <Box my="xl" py="l">
             <Loader text={loadingMessage} />

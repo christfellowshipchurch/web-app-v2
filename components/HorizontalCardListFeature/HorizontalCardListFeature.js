@@ -45,7 +45,7 @@ function HorizontalCardListFeature(props = {}) {
    */
   if (cards && cards[0]?.action === 'READ_GROUP') {
     return (
-      <Box>
+      <Box pl="base" pr={{ _: 'none', lg: 'base' }}>
         {!isEmpty(title) && <Box as="h2">{title}</Box>}
         {!isEmpty(subtitle) && <Box as="p">{subtitle}</Box>}
         <GroupsProvider Component={GroupsList} />
