@@ -75,7 +75,7 @@ export const GettingThereFirst = () => {
         textAlign="center"
         mx={{ _: 'base', md: 'auto' }}
       >
-        How We Will Get There First in 2025
+        How We Will Get There First
       </Box>
       <Box
         as="p"
