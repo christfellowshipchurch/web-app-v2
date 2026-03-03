@@ -23,6 +23,7 @@ import DefaultCard from './DefaultCard';
 import Divider from './Divider';
 import FormLabel from './FormLabel';
 import GroupCard from './GroupCard';
+import GroupSearchResultCard from './GroupSearchResultCard';
 import GroupMemberStatusBadge from './GroupMemberStatusBadge';
 import HorizontalHighlightCard from './HorizontalHighlightCard';
 import HorizontalScroll from './HorizontalScroll';
@@ -69,6 +70,7 @@ export {
   Divider,
   FormLabel,
   GroupCard,
+  GroupSearchResultCard,
   GroupMemberStatusBadge,
   HorizontalHighlightCard,
   HorizontalScroll,

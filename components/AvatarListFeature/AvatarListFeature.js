@@ -12,20 +12,28 @@ const AvatarListFeature = ({
   return (
     <>
       {people.map(person => (
-        <Box key={person.id} display="flex">
+        <Box
+          key={person.id}
+          display="flex"
+          flexDirection="column"
+          width="100%"
+          justifyContent="center"
+          alignItems="center"
+          mb="-72px"
+        >
           <Box
             as="a"
             href="profile"
             cursor="pointer"
-            mr="base"
             onClick={e => onPressActionItem(e, primaryAction)}
             position="relative"
+            mb="base"
           >
             <Avatar
               name={person.firstName}
               src={person.photo.uri}
-              height="150px"
-              width="150px"
+              height="128px"
+              width="128px"
             />
             {primaryAction?.icon && (
               <Box
@@ -41,19 +49,24 @@ const AvatarListFeature = ({
                 <Icon
                   color={primaryAction?.theme?.color}
                   name={primaryAction?.icon}
-                  size="36"
+                  size="24"
                 />
               </Box>
             )}
           </Box>
-          <Box display="flex" justifyContent="center" flexDirection="column">
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            flexDirection="column"
+          >
             <Box
-              as="h4"
+              as="h3"
               isLoading={isLoading}
               mb={0}
             >{`${person?.firstName} ${person?.lastName}`}</Box>
             {person?.campus?.name && (
-              <Box as="p" fontSize="s" isLoading={isLoading}>
+              <Box as="p" color="neutrals.500" isLoading={isLoading}>
                 {person?.campus?.name}
               </Box>
             )}
