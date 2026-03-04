@@ -162,6 +162,11 @@ module.exports = {
         destination: 'https://www.christfellowshipconference.com/',
         permanent: true,
       },
+      {
+        source: '/easter',
+        destination: 'https://www.easteratcf.com/',
+        permanent: true,
+      },
       // TODO: Uncomment these lines to hide Group Finder.
       // NOTE: We can't get `config/flags` in this file.
       // {
