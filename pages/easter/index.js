@@ -42,11 +42,13 @@ export async function getStaticProps(ctx) {
   const axios = (await import(`axios`)).default;
 
   // Fetch HTML
-  let res = await axios('https://cfdp-marketing-site.webflow.io/easter').catch(
-    err => {
-      console.error(err);
-    }
-  );
+  let res;
+  try {
+    res = await axios('https://cfdp-marketing-site.webflow.io/easter');
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
   const html = res.data;
 
   // Parse HTML with Cheerio
