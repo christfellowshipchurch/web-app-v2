@@ -29,8 +29,8 @@ export default function SummerInternshipsPage(props) {
   return (
     <>
       <Head>{parseHtml(props?.headContent)}</Head>
-      <Layout transparentHeader>
-        <div dangerouslySetInnerHTML={{ __html: props?.bodyContent }} pt="xl" />
+      <Layout>
+        <div dangerouslySetInnerHTML={{ __html: props?.bodyContent }} />
       </Layout>
     </>
   );
