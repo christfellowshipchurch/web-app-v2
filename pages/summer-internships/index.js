@@ -30,7 +30,7 @@ export default function SummerInternshipsPage(props) {
     <>
       <Head>{parseHtml(props?.headContent)}</Head>
       <Layout transparentHeader>
-        <div dangerouslySetInnerHTML={{ __html: props?.bodyContent }} />
+        <div dangerouslySetInnerHTML={{ __html: props?.bodyContent }} pt="xl" />
       </Layout>
     </>
   );
@@ -44,7 +44,9 @@ export async function getStaticProps(ctx) {
   // Fetch HTML
   let res;
   try {
-    res = await axios('https://cfdp-marketing-site.webflow.io/summer-internships');
+    res = await axios(
+      'https://cfdp-marketing-site.webflow.io/summer-internships'
+    );
   } catch (err) {
     console.error(err);
     throw err;
