@@ -5,7 +5,7 @@ import { useAnalytics } from 'providers/AnalyticsProvider';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-export default function EasterPage(props) {
+export default function InternshipsPage(props) {
   const analytics = useAnalytics();
   const router = useRouter();
 
@@ -22,14 +22,14 @@ export default function EasterPage(props) {
   // Refresh the page if the URL contains #refresh
   useEffect(() => {
     if (asPath.includes('#refresh')) {
-      window.location = '/easter';
+      window.location = '/internships';
     }
   }, [router, asPath]);
 
   return (
     <>
       <Head>{parseHtml(props?.headContent)}</Head>
-      <Layout transparentHeader>
+      <Layout>
         <div dangerouslySetInnerHTML={{ __html: props?.bodyContent }} />
       </Layout>
     </>
@@ -44,7 +44,7 @@ export async function getStaticProps(ctx) {
   // Fetch HTML
   let res;
   try {
-    res = await axios('https://cfdp-marketing-site.webflow.io/easter');
+    res = await axios('https://cfdp-marketing-site.webflow.io/internships');
   } catch (err) {
     console.error(err);
     throw err;
