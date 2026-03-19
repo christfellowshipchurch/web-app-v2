@@ -63,7 +63,7 @@ const CampusInfo = ({
     subtitle = 'Mira todos los horarios de servicios de Pascua ';
     cta = 'aquí';
   } else {
-    title = 'Looking for a Easter service?';
+    title = 'Looking for an Easter service?';
     subtitle = 'See all Easter service times ';
     cta = 'here';
   }
