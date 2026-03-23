@@ -129,7 +129,7 @@ module.exports = {
       },
       {
         source: '/locations/downtown-west-palm-beach',
-        destination: '/dwpb',
+        destination: '/locations/trinity',
         permanent: true,
       },
       // {
@@ -155,6 +155,16 @@ module.exports = {
       {
         source: '/christmas-2024',
         destination: '/christmas-2025',
+        permanent: true,
+      },
+      {
+        source: '/events/christ-fellowship-conference',
+        destination: 'https://www.christfellowshipconference.com/',
+        permanent: true,
+      },
+      {
+        source: '/easter',
+        destination: 'https://www.easteratcf.com/',
         permanent: true,
       },
       // TODO: Uncomment these lines to hide Group Finder.
