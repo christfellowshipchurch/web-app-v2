@@ -141,14 +141,14 @@ module.exports = {
         destination: '/locations/trinity',
         permanent: true,
       },
-      // {
-      //   source: '/easter',
-      //   destination: '/easter-2025',
-      //   permanent: true,
-      // },
+      {
+        source: '/easter',
+        destination: '/easter-2026',
+        permanent: true,
+      },
       {
         source: '/easter-espanol',
-        destination: '/easter-espanol-2024',
+        destination: '/easter-espanol-2026',
         permanent: true,
       },
       {
@@ -171,14 +171,14 @@ module.exports = {
         destination: 'https://www.christfellowshipconference.com/',
         permanent: true,
       },
-      {
-        source: '/easter',
-        destination: 'https://www.easteratcf.com/',
-        permanent: true,
-      },
+      // {
+      //   source: '/easter',
+      //   destination: 'https://www.easteratcf.com/',
+      //   permanent: true,
+      // },
       {
         source: '/easter-jam',
-        destination: '/events/easter-jam',
+        destination: '/easter-2026',
         permanent: true,
       },
       // TODO: Uncomment these lines to hide Group Finder.
