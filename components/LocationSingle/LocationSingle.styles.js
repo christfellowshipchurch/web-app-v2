@@ -44,8 +44,6 @@ const InfoBox = styled.ul`
     padding-left: 50px;
     width: 100%;
   }
-
-  ${system}
 `;
 
 const PastorsCard = styled.div`
@@ -218,12 +216,11 @@ const EventSubtitle = styled.span`
   font-style: italic;
   font-weight: 300;
   font-size: 13px;
+  padding-left: 10px;
 
   @media screen and (max-width: ${themeGet('breakpoints.md')}) {
     padding-left: 0px;
   }
-
-  ${system}
 `;
 
 const EventCTA = styled.a`

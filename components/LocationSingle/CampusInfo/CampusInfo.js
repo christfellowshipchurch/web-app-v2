@@ -94,11 +94,10 @@ const CampusInfo = ({
           flexDirection="column"
           alignItems="center"
           px="base"
-          mb="xs"
         >
           <Image
-            width={36}
-            height={36}
+            width={50}
+            height={50}
             objectFit="contain"
             source="/location-pages/easter-banner.png"
             m="0px 10px 0px 0px !important"
@@ -126,7 +125,7 @@ const CampusInfo = ({
 
         {/* Service Times */}
         <Box width="100%" mt="-0.3rem">
-          {/* <Styled.ServiceTimeContainer>
+          <Styled.ServiceTimeContainer>
             <Styled.ServiceTimeTitle>
               {name === 'Online (CF Everywhere)'
                 ? 'Live Every Sunday'
@@ -155,12 +154,12 @@ const CampusInfo = ({
                     </React.Fragment>
                   )
               )}
-          </Styled.ServiceTimeContainer> */}
+          </Styled.ServiceTimeContainer>
 
           {/* Addtional Information - Orange Box */}
           <Box mr={{ _: 0, lg: 'base' }}>
             {additionalInfo && additionalInfo?.length > 0 && (
-              <Styled.InfoBox mb={{ _: 0, md: -10, lg: 0 }}>
+              <Styled.InfoBox>
                 {additionalInfo.map(n => (
                   <Box key={n} as="li">
                     {n}
@@ -174,39 +173,31 @@ const CampusInfo = ({
           <Styled.EventBanner
             display={{ _: 'none', md: 'flex' }}
             position="relative"
-            // top={cfe ? '-160px' : '-170px'}
-            height="100px"
-            top="-98px"
-            zIndex={-1}
+            top={cfe ? '-160px' : '-170px'}
             backgroundColor="#F1EB9C"
             textColor="black"
             fontSize={cfe && 15}
           >
             <Image
               m="0px 10px 0px 20px"
-              width={cfe ? 35 : { _: 35, lg: 40 }}
-              height={cfe ? 35 : { _: 35, lg: 40 }}
+              width={cfe ? 35 : { md: 35, lg: 40 }}
+              height={cfe ? 35 : { md: 35, lg: 40 }}
               objectFit="contain"
               source="/location-pages/easter-banner.png"
-              mb={{ _: 'base', lg: 0 }}
             />
 
             <Box
-              display="flex"
-              flexDirection={{ _: 'row', lg: 'column' }}
-              mb={{ _: 'base', lg: 0 }}
-              alignItems="start"
-              justifyContent="flex-start"
+              alignItems="center"
+              display="inline-block"
+              justifyContent="center"
+              textWrap="pretty"
               fontSize={16}
             >
               {title}
-              <Styled.EventSubtitle pl={{ _: 0, md: 10, lg: 0 }} pt={2}>
+              <Styled.EventSubtitle>
                 {subtitle}
                 <a
-                  style={{
-                    textDecoration: 'underline',
-                    color: 'black',
-                  }}
+                  style={{ textDecoration: 'underline', color: 'black' }}
                   href={bannerUrl}
                   target="_blank"
                   rel="noreferrer"
