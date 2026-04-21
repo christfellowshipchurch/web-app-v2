@@ -181,6 +181,16 @@ module.exports = {
         destination: '/easter-2026',
         permanent: true,
       },
+      {
+        source: '/camps',
+        destination: '/summer-camps-for-kids-and-students',
+        permanent: true,
+      },
+      {
+        source: '/camp',
+        destination: '/summer-camps-for-kids-and-students',
+        permanent: true,
+      },
       // TODO: Uncomment these lines to hide Group Finder.
       // NOTE: We can't get `config/flags` in this file.
       // {
