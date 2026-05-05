@@ -36,7 +36,9 @@ export default function Give() {
         title="Give Online"
         subtitle="Give safely and securely online to Christ Fellowship Church. Give a one-time gift or set up a recurring gift."
         buttonColor="primary"
-        givingCheckoutUrl="https://pushpay.com/g/christfellowship"
+        amountColor="white"
+        giftTextColor="white"
+        buttonLink="https://pushpay.com/g/christfellowship"
         backgroundImage="url(/give/give-pushpay-background.png)"
         otherOnlineOptions
       />

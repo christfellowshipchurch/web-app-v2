@@ -1,36 +1,116 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import Styled from '../GiveWithPushpay/GiveWithPushpay.styles';
-import { HtmlRenderer, Box, Icon, Button } from 'ui-kit';
+import { HtmlRenderer, Select, Button, Box, Icon } from 'ui-kit';
+import { useForm } from 'hooks';
 import PropTypes from 'prop-types';
 import { colorHover } from 'utils';
 
 /**
- * Inline give iframe — matches Apollos “Inline Give Form”:
+ * Pushpay campus / fund / amount form plus Apollos Web Embeds options (overlay link, optional iframe).
  * https://apollosproject.github.io/apollos-docs/features/giving/donation-embed.html
  *
- * The global `installApollosWebEmbed()` in `_app` loads `embed.js`, which detects
- * this iframe and wires height, theme, and (per docs) payment in an overlay modal.
- *
- * If your church’s `/give` HTTP response immediately redirects the iframe document
- * to a provider that sets `X-Frame-Options: SAMEORIGIN` (e.g. Pushpay), the browser
- * will still refuse that frame—that is independent of the embed script. Apollos
- * can address that on the hosted `/give` side; until then set `showInlineGiveIframe={false}`.
+ * Apollos overlay: same-origin-style link to `{apollosAppOrigin}/{slug}/give` is intercepted by global
+ * `installApollosWebEmbed()` in `_app`. Optional iframe stays off unless `/give` does not redirect the
+ * framed document to a host with `X-Frame-Options: SAMEORIGIN`.
  */
-function apollosGiveIframeSrc(slug, appOrigin) {
+function apollosGivePageUrl(slug, appOrigin) {
   const base = (appOrigin || 'https://apollos.com').replace(/\/$/, '');
   return `${base}/${slug}/give`;
+}
+
+function resolvePushpayButtonLink(props) {
+  const raw =
+    props.buttonLink ??
+    props.givingCheckoutUrl ??
+    'https://pushpay.com/g/christfellowship';
+  return String(raw).replace(/\?$/, '');
 }
 
 function GiveWithApollos(props = {}) {
   const slug = props.apollosSlug ?? 'christ_fellowship';
   const appOrigin = props.apollosAppOrigin ?? 'https://apollos.com';
-  const checkoutHref =
-    props.givingCheckoutUrl ?? 'https://pushpay.com/g/christfellowship';
-  const showIframe = props.showInlineGiveIframe !== false;
+  const buttonLink = resolvePushpayButtonLink(props);
+  const showIframe = props.showInlineGiveIframe === true;
+  const showApollosOverlay = props.showApollosOverlayLink !== false;
+  const showLinkTest =
+    props.showApollosEmbedLinkTest ??
+    (typeof process !== 'undefined' && process.env.NODE_ENV === 'development');
 
-  const inlineGiveSrc = useMemo(
-    () => apollosGiveIframeSrc(slug, appOrigin),
-    [slug, appOrigin]
+  const [active, setActive] = useState('giveOneTime');
+  const { values, setValues, handleChange } = useForm();
+
+  const givingType = props?.isCBO
+    ? ['Christ Birthday Offering']
+    : [
+        'Tithes & Offerings',
+        'Impact Offering',
+        'Kingdom Builders',
+        'Missions',
+        'Heart for the House',
+        'Christ Birthday Offering',
+      ];
+
+  const campuses = [
+    'Belle Glade',
+    'Boca Raton',
+    'Boynton Beach',
+    'CF Everywhere (Online)',
+    'Downtown West Palm Beach',
+    'En Español',
+    'Jupiter',
+    'Okeechobee',
+    'Palm Beach Gardens',
+    'Port St. Lucie',
+    'Royal Palm Beach',
+    'Stuart',
+    'Trinity',
+    'Vero Beach',
+    'Westlake - Loxahatchee',
+  ];
+
+  const handleAmount = event => {
+    const { name, value } = event.target;
+    const { data } = event.nativeEvent;
+
+    (!isNaN(data) || data === '.' || data === ',') &&
+      setValues(v => ({
+        ...v,
+        [name]: value.slice(1),
+      }));
+  };
+
+  const handleRemoveZeros = event => {
+    values.amount === undefined &&
+      setValues(v => ({
+        ...v,
+        [event.target.name]: '',
+      }));
+  };
+
+  const givingTypeURL =
+    values.givingType === 'Heart for the House'
+      ? 'https://pushpay.com/g/cfh4th?fnd=jt-LCSg3OxQQuMJmf0SzbQ&lang=en' +
+        '?f[0]=' +
+        values.campus +
+        '&a=' +
+        values.amount +
+        '&' +
+        (active === 'giveRecurring' && 'r=weekly')
+      : buttonLink +
+        '?f[0]=' +
+        (values.campus === 'Westlake - Loxahatchee'
+          ? 'Westlake%20%E2%80%93%20Loxahatchee'
+          : values.campus) +
+        '&a=' +
+        values.amount +
+        '&f[1]=' +
+        values.givingType +
+        '&' +
+        (active === 'giveRecurring' && 'r=weekly');
+
+  const givePageUrl = useMemo(
+    () => apollosGivePageUrl(slug, appOrigin),
+    [slug, appOrigin],
   );
 
   return (
@@ -44,7 +124,6 @@ function GiveWithApollos(props = {}) {
         flexDirection="column"
         justifyContent="center"
         alignItems="center"
-        width="100%"
       >
         {props?.title && (
           <Box as="h1" color={props?.titleColor}>
@@ -63,43 +142,153 @@ function GiveWithApollos(props = {}) {
         )}
 
         <Box
-          borderRadius="base"
-          py="l"
-          px="base"
-          mt="base"
-          width="100%"
-          maxWidth={{ _: '100%', md: '600px' }}
+          as="form"
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
         >
           {showIframe && (
-            <iframe
-              key={inlineGiveSrc}
-              title="Give"
-              src={inlineGiveSrc}
-              style={{
-                width: '100%',
-                minHeight: '440px',
-                border: 'none',
-                borderRadius: '16px',
-                overflow: 'hidden',
-                display: 'block',
-              }}
-              allow="payment *"
-            />
+            <Box mt="base">
+              <iframe
+                key={givePageUrl}
+                title="Give"
+                src={givePageUrl}
+                style={{
+                  width: '100%',
+                  maxWidth: '600px',
+                  minHeight: '440px',
+                  border: 'none',
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  display: 'block',
+                }}
+                allow="payment *"
+              />
+            </Box>
           )}
 
+          <Box display="flex" flexDirection="column">
+            <Styled.Input
+              value={'$' + (values.amount ?? '0.00')}
+              onChange={handleAmount}
+              onClick={handleRemoveZeros}
+              name="amount"
+              autocomplete="off"
+              color={props?.amountColor}
+            />
+
+            <Box as="h3" mb="base" mt="-5px" color={props?.giftTextColor}>
+              Enter your gift amount
+            </Box>
+          </Box>
+
+          <Box
+            borderRadius="base"
+            backgroundColor="white"
+            py="l"
+            px="base"
+            mt="base"
+          >
+            <Box display="flex" flexDirection="column" alignItems="flex-start">
+              <Box as="h4" color="#39383A">
+                Gift Type
+              </Box>
+              <Box display="flex" flexDirection="row">
+                <Styled.GiveOneTimeButton
+                  selected={active}
+                  onClick={() => setActive('giveOneTime')}
+                >
+                  Give one time
+                </Styled.GiveOneTimeButton>
+
+                <Styled.SetRecurringButton
+                  selected={active}
+                  onClick={() => setActive('giveRecurring')}
+                >
+                  Set up recurring
+                </Styled.SetRecurringButton>
+              </Box>
+            </Box>
+
+            <Box
+              mt="l"
+              display="flex"
+              flexDirection="column"
+              alignItems="flex-start"
+            >
+              <Box as="h4" color="#39383A">
+                Campus
+              </Box>
+              <Select
+                mt="xs"
+                width={{ _: '300px', md: '600px' }}
+                borderColor="primary"
+                onChange={handleChange}
+                name="campus"
+              >
+                <Select.Option value={null}>Select a Campus</Select.Option>
+                {campuses.map(name => (
+                  <Select.Option key={name}>{name}</Select.Option>
+                ))}
+              </Select>
+            </Box>
+
+            <Box
+              mt="l"
+              mb="base"
+              display="flex"
+              flexDirection="column"
+              alignItems="flex-start"
+            >
+              <Box as="h4" color="#39383A">
+                Giving Type
+              </Box>
+              <Select
+                mt="xs"
+                width={{ _: '300px', md: '600px' }}
+                borderColor="primary"
+                onChange={handleChange}
+                name="givingType"
+              >
+                <Select.Option value={null}>Select a Giving Type</Select.Option>
+                {givingType.map(name => (
+                  <Select.Option key={name}>{name}</Select.Option>
+                ))}
+              </Select>
+            </Box>
+          </Box>
+
           <Button
-            mt={showIframe ? 'l' : 'base'}
             as="a"
-            display="flex"
-            width="100%"
-            justifyContent="center"
-            alignItems="center"
-            href={checkoutHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            mt="xl"
+            mb={showApollosOverlay ? 'base' : 'l'}
+            href={givingTypeURL}
             bg={props?.buttonColor ?? 'primary'}
             px="l"
           >
             GIVE SAFELY & SECURELY <Icon name="pushPay" />
           </Button>
+
+          {showApollosOverlay && (
+            <Box mb="l">
+              <Button
+                as="a"
+                href={givePageUrl}
+                variant="secondary"
+                px="l"
+              >
+                Give with Apollos (overlay)
+              </Button>
+              {showLinkTest && (
+                <Box mt="xs" textAlign="center" fontSize="xs" color="white" opacity={0.9}>
+                  Dev: uses global embed link interception from `_app`
+                </Box>
+              )}
+            </Box>
+          )}
         </Box>
       </Box>
 
@@ -185,14 +374,17 @@ function GiveWithApollos(props = {}) {
 GiveWithApollos.propTypes = {
   apollosSlug: PropTypes.string,
   apollosAppOrigin: PropTypes.string,
+  /** Base Pushpay URL for fund/campus deep links (no trailing `?`). Falls back to `givingCheckoutUrl`. */
+  buttonLink: PropTypes.string,
+  /** Legacy alias for `buttonLink` when only the main Pushpay URL was passed. */
   givingCheckoutUrl: PropTypes.string,
-  giveCtaDescription: PropTypes.string,
-  giveCtaHtml: PropTypes.string,
-  /**
-   * Inline iframe per Apollos donation embed docs (default on). Set `false` if the
-   * framed document hits a provider that blocks embedding (e.g. immediate Pushpay redirect).
-   */
+  isCBO: PropTypes.bool,
+  amountColor: PropTypes.string,
+  giftTextColor: PropTypes.string,
   showInlineGiveIframe: PropTypes.bool,
+  /** Second CTA: Apollos overlay link (default on). Set `false` to hide. */
+  showApollosOverlayLink: PropTypes.bool,
+  showApollosEmbedLinkTest: PropTypes.bool,
   buttonColor: PropTypes.string,
   title: PropTypes.string,
   subtitle: PropTypes.string,
