@@ -4,14 +4,25 @@ import { HtmlRenderer, Box, Icon, Button } from 'ui-kit';
 import PropTypes from 'prop-types';
 import { colorHover } from 'utils';
 
-/** Inline give URL per Apollos Web Embeds README (“Inline Give Form”). */
+/**
+ * Inline give iframe — matches Apollos “Inline Give Form”:
+ * https://apollosproject.github.io/apollos-docs/features/giving/donation-embed.html
+ *
+ * The global `installApollosWebEmbed()` in `_app` loads `embed.js`, which detects
+ * this iframe and wires height, theme, and (per docs) payment in an overlay modal.
+ *
+ * If your church’s `/give` HTTP response immediately redirects the iframe document
+ * to a provider that sets `X-Frame-Options: SAMEORIGIN` (e.g. Pushpay), the browser
+ * will still refuse that frame—that is independent of the embed script. Apollos
+ * can address that on the hosted `/give` side; until then set `showInlineGiveIframe={false}`.
+ */
 function apollosGiveIframeSrc(slug, appOrigin) {
   const base = (appOrigin || 'https://apollos.com').replace(/\/$/, '');
   return `${base}/${slug}/give`;
 }
 
 function GiveWithApollos(props = {}) {
-  const slug = props.apollosSlug ?? 'christ-fellowship';
+  const slug = props.apollosSlug ?? 'christ_fellowship';
   const appOrigin = props.apollosAppOrigin ?? 'https://apollos.com';
   const checkoutHref =
     props.givingCheckoutUrl ?? 'https://pushpay.com/g/christfellowship';
@@ -72,12 +83,12 @@ function GiveWithApollos(props = {}) {
                 overflow: 'hidden',
                 display: 'block',
               }}
-              allow="payment *; fullscreen"
+              allow="payment *"
             />
           )}
 
           <Button
-            mt="l"
+            mt={showIframe ? 'l' : 'base'}
             as="a"
             display="flex"
             width="100%"
@@ -177,7 +188,10 @@ GiveWithApollos.propTypes = {
   givingCheckoutUrl: PropTypes.string,
   giveCtaDescription: PropTypes.string,
   giveCtaHtml: PropTypes.string,
-  /** Docs “Inline Give Form” iframe; set false if you only want the Pushpay link. */
+  /**
+   * Inline iframe per Apollos donation embed docs (default on). Set `false` if the
+   * framed document hits a provider that blocks embedding (e.g. immediate Pushpay redirect).
+   */
   showInlineGiveIframe: PropTypes.bool,
   buttonColor: PropTypes.string,
   title: PropTypes.string,
