@@ -1,3 +1,9 @@
+/**
+ * Legacy Pushpay giving form (campus / fund / amount → Pushpay deep link).
+ *
+ * For Apollos embed script + direct Pushpay checkout CTA, use `GiveWithApollos`
+ * (`components/GiveWithApollos`).
+ */
 import { useState } from 'react';
 import Styled from './GiveWithPushpay.styles';
 import { HtmlRenderer, Select, Button, Box, Icon } from 'ui-kit';

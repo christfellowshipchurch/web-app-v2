@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { FAQ, Layout, GiveWithPushpay, CardGridFeature } from 'components';
+import { FAQ, Layout, GiveWithApollos, CardGridFeature } from 'components';
 import { Box } from 'ui-kit';
 import faqData from 'components/FAQ/faqData';
 import { FeatureProvider } from 'providers';
@@ -31,7 +31,18 @@ export default function Give() {
       {/* Hero */}
       <GiveHero />
 
-      {/* Pushpay */}
+      {/* Apollos embed + Pushpay CTA (see components/GiveWithApollos). */}
+      <GiveWithApollos
+        title="Give Online"
+        subtitle="Give safely and securely online to Christ Fellowship Church. Give a one-time gift or set up a recurring gift."
+        buttonColor="primary"
+        givingCheckoutUrl="https://pushpay.com/g/christfellowship"
+        backgroundImage="url(/give/give-pushpay-background.png)"
+        otherOnlineOptions
+      />
+
+      {/*
+      Legacy Pushpay form (campus / fund / amount). Swap with GiveWithApollos above if needed.
       <GiveWithPushpay
         title="Give Online"
         subtitle="Give safely and securely online to Christ Fellowship Church. Give a one-time gift or set up a recurring gift."
@@ -41,6 +52,7 @@ export default function Give() {
         buttonLink="https://pushpay.com/g/christfellowship"
         otherOnlineOptions
       />
+      */}
 
       {/* Ways to Give */}
       <WaysToGive />
