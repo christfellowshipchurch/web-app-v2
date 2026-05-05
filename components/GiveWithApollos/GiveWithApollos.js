@@ -6,13 +6,12 @@ import PropTypes from 'prop-types';
 import { colorHover } from 'utils';
 
 /**
- * Pushpay campus / fund / amount form plus Apollos Web Embeds options (overlay link, optional iframe).
+ * Apollos inline give iframe (default on) plus optional inline Pushpay form (mirrors GiveWithPushpay).
  * https://apollosproject.github.io/apollos-docs/features/giving/donation-embed.html
  *
- * “Give on Apollos” uses `data-apollos-external` so it always navigates in the browser (Pushpay
- * cannot load inside the Apollos modal iframe for this tenant). Global init defaults to
- * `interceptLinks: false` for the same reason; re-enable interception in `installApollosWebEmbed`
- * when Apollos/checkout no longer frames Pushpay.
+ * Inline Pushpay UI is gated off below (`SHOW_INLINE_PUSHPAY_FORM`) while the page is iframe-first;
+ * set to `true` to restore amount / campus / fund / Pushpay deep-link CTA. Apollos external CTA block
+ * is commented out alongside it (`SHOW_APOLLOS_EXTERNAL_CTA`).
  */
 function apollosGivePageUrl(slug, appOrigin) {
   const base = (appOrigin || 'https://apollos.com').replace(/\/$/, '');
@@ -27,15 +26,24 @@ function resolvePushpayButtonLink(props) {
   return String(raw).replace(/\?$/, '');
 }
 
+/** Restore inline Pushpay form (amount, toggles, selects, “GIVE SAFELY” link). */
+const SHOW_INLINE_PUSHPAY_FORM = false;
+
+/** Restore “Give on Apollos” + dev hint under the Pushpay button. */
+const SHOW_APOLLOS_EXTERNAL_CTA = false;
+
 function GiveWithApollos(props = {}) {
   const slug = props.apollosSlug ?? 'christ_fellowship';
   const appOrigin = props.apollosAppOrigin ?? 'https://apollos.com';
   const buttonLink = resolvePushpayButtonLink(props);
-  const showIframe = props.showInlineGiveIframe === true;
-  const showApollosOverlay = props.showApollosOverlayLink !== false;
+  const showIframe = props.showInlineGiveIframe !== false;
+  const showApollosOverlay =
+    SHOW_APOLLOS_EXTERNAL_CTA && props.showApollosOverlayLink !== false;
   const showLinkTest =
-    props.showApollosEmbedLinkTest ??
-    (typeof process !== 'undefined' && process.env.NODE_ENV === 'development');
+    SHOW_APOLLOS_EXTERNAL_CTA &&
+    (props.showApollosEmbedLinkTest ??
+      (typeof process !== 'undefined' &&
+        process.env.NODE_ENV === 'development'));
 
   const [active, setActive] = useState('giveOneTime');
   const { values, setValues, handleChange } = useForm();
@@ -111,7 +119,7 @@ function GiveWithApollos(props = {}) {
 
   const givePageUrl = useMemo(
     () => apollosGivePageUrl(slug, appOrigin),
-    [slug, appOrigin],
+    [slug, appOrigin]
   );
 
   return (
@@ -150,14 +158,13 @@ function GiveWithApollos(props = {}) {
           alignItems="center"
         >
           {showIframe && (
-            <Box mt="base">
+            <Box mt="base" mb="l">
               <iframe
                 key={givePageUrl}
                 title="Give"
                 src={givePageUrl}
                 style={{
                   width: '100%',
-                  maxWidth: '600px',
                   minHeight: '440px',
                   border: 'none',
                   borderRadius: '16px',
@@ -169,128 +176,144 @@ function GiveWithApollos(props = {}) {
             </Box>
           )}
 
-          <Box display="flex" flexDirection="column">
-            <Styled.Input
-              value={'$' + (values.amount ?? '0.00')}
-              onChange={handleAmount}
-              onClick={handleRemoveZeros}
-              name="amount"
-              autocomplete="off"
-              color={props?.amountColor}
-            />
+          {SHOW_INLINE_PUSHPAY_FORM && (
+            <>
+              <Box display="flex" flexDirection="column">
+                <Styled.Input
+                  value={'$' + (values.amount ?? '0.00')}
+                  onChange={handleAmount}
+                  onClick={handleRemoveZeros}
+                  name="amount"
+                  autocomplete="off"
+                  color={props?.amountColor}
+                />
 
-            <Box as="h3" mb="base" mt="-5px" color={props?.giftTextColor}>
-              Enter your gift amount
-            </Box>
-          </Box>
-
-          <Box
-            borderRadius="base"
-            backgroundColor="white"
-            py="l"
-            px="base"
-            mt="base"
-          >
-            <Box display="flex" flexDirection="column" alignItems="flex-start">
-              <Box as="h4" color="#39383A">
-                Gift Type
+                <Box as="h3" mb="base" mt="-5px" color={props?.giftTextColor}>
+                  Enter your gift amount
+                </Box>
               </Box>
-              <Box display="flex" flexDirection="row">
-                <Styled.GiveOneTimeButton
-                  selected={active}
-                  onClick={() => setActive('giveOneTime')}
-                >
-                  Give one time
-                </Styled.GiveOneTimeButton>
 
-                <Styled.SetRecurringButton
-                  selected={active}
-                  onClick={() => setActive('giveRecurring')}
-                >
-                  Set up recurring
-                </Styled.SetRecurringButton>
-              </Box>
-            </Box>
-
-            <Box
-              mt="l"
-              display="flex"
-              flexDirection="column"
-              alignItems="flex-start"
-            >
-              <Box as="h4" color="#39383A">
-                Campus
-              </Box>
-              <Select
-                mt="xs"
-                width={{ _: '300px', md: '600px' }}
-                borderColor="primary"
-                onChange={handleChange}
-                name="campus"
+              <Box
+                borderRadius="base"
+                backgroundColor="white"
+                py="l"
+                px="base"
+                mt="base"
               >
-                <Select.Option value={null}>Select a Campus</Select.Option>
-                {campuses.map(name => (
-                  <Select.Option key={name}>{name}</Select.Option>
-                ))}
-              </Select>
-            </Box>
+                <Box
+                  display="flex"
+                  flexDirection="column"
+                  alignItems="flex-start"
+                >
+                  <Box as="h4" color="#39383A">
+                    Gift Type
+                  </Box>
+                  <Box display="flex" flexDirection="row">
+                    <Styled.GiveOneTimeButton
+                      selected={active}
+                      onClick={() => setActive('giveOneTime')}
+                    >
+                      Give one time
+                    </Styled.GiveOneTimeButton>
 
-            <Box
-              mt="l"
-              mb="base"
-              display="flex"
-              flexDirection="column"
-              alignItems="flex-start"
-            >
-              <Box as="h4" color="#39383A">
-                Giving Type
+                    <Styled.SetRecurringButton
+                      selected={active}
+                      onClick={() => setActive('giveRecurring')}
+                    >
+                      Set up recurring
+                    </Styled.SetRecurringButton>
+                  </Box>
+                </Box>
+
+                <Box
+                  mt="l"
+                  display="flex"
+                  flexDirection="column"
+                  alignItems="flex-start"
+                >
+                  <Box as="h4" color="#39383A">
+                    Campus
+                  </Box>
+                  <Select
+                    mt="xs"
+                    width={{ _: '300px', md: '600px' }}
+                    borderColor="primary"
+                    onChange={handleChange}
+                    name="campus"
+                  >
+                    <Select.Option value={null}>Select a Campus</Select.Option>
+                    {campuses.map(name => (
+                      <Select.Option key={name}>{name}</Select.Option>
+                    ))}
+                  </Select>
+                </Box>
+
+                <Box
+                  mt="l"
+                  mb="base"
+                  display="flex"
+                  flexDirection="column"
+                  alignItems="flex-start"
+                >
+                  <Box as="h4" color="#39383A">
+                    Giving Type
+                  </Box>
+                  <Select
+                    mt="xs"
+                    width={{ _: '300px', md: '600px' }}
+                    borderColor="primary"
+                    onChange={handleChange}
+                    name="givingType"
+                  >
+                    <Select.Option value={null}>
+                      Select a Giving Type
+                    </Select.Option>
+                    {givingType.map(name => (
+                      <Select.Option key={name}>{name}</Select.Option>
+                    ))}
+                  </Select>
+                </Box>
               </Box>
-              <Select
-                mt="xs"
-                width={{ _: '300px', md: '600px' }}
-                borderColor="primary"
-                onChange={handleChange}
-                name="givingType"
-              >
-                <Select.Option value={null}>Select a Giving Type</Select.Option>
-                {givingType.map(name => (
-                  <Select.Option key={name}>{name}</Select.Option>
-                ))}
-              </Select>
-            </Box>
-          </Box>
 
-          <Button
-            as="a"
-            target="_blank"
-            rel="noopener noreferrer"
-            mt="xl"
-            mb={showApollosOverlay ? 'base' : 'l'}
-            href={givingTypeURL}
-            bg={props?.buttonColor ?? 'primary'}
-            px="l"
-          >
-            GIVE SAFELY & SECURELY <Icon name="pushPay" />
-          </Button>
-
-          {showApollosOverlay && (
-            <Box mb="l">
               <Button
                 as="a"
-                href={givePageUrl}
-                variant="secondary"
+                target="_blank"
+                rel="noopener noreferrer"
+                mt="xl"
+                mb={showApollosOverlay ? 'base' : 'l'}
+                href={givingTypeURL}
+                bg={props?.buttonColor ?? 'primary'}
                 px="l"
-                data-apollos-external
               >
-                Give on Apollos
+                GIVE SAFELY & SECURELY <Icon name="pushPay" />
               </Button>
-              {showLinkTest && (
-                <Box mt="xs" textAlign="center" fontSize="xs" color="white" opacity={0.9}>
-                  Dev: `data-apollos-external` skips modal; site init uses `interceptLinks: false`
-                  until checkout is embed-safe
+
+              {showApollosOverlay && (
+                <Box mb="l">
+                  <Button
+                    as="a"
+                    href={givePageUrl}
+                    variant="secondary"
+                    px="l"
+                    data-apollos-external
+                  >
+                    Give on Apollos
+                  </Button>
+                  {showLinkTest && (
+                    <Box
+                      mt="xs"
+                      textAlign="center"
+                      fontSize="xs"
+                      color="white"
+                      opacity={0.9}
+                    >
+                      Dev: `data-apollos-external` skips modal; site init uses
+                      `interceptLinks: false` until checkout is embed-safe
+                    </Box>
+                  )}
                 </Box>
               )}
-            </Box>
+            </>
           )}
         </Box>
       </Box>
@@ -384,8 +407,9 @@ GiveWithApollos.propTypes = {
   isCBO: PropTypes.bool,
   amountColor: PropTypes.string,
   giftTextColor: PropTypes.string,
+  /** Apollos inline iframe (default on). Set `false` to hide. */
   showInlineGiveIframe: PropTypes.bool,
-  /** Second CTA: Apollos overlay link (default on). Set `false` to hide. */
+  /** Only when inline Pushpay form is enabled (`SHOW_INLINE_PUSHPAY_FORM`). */
   showApollosOverlayLink: PropTypes.bool,
   showApollosEmbedLinkTest: PropTypes.bool,
   buttonColor: PropTypes.string,

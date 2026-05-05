@@ -3,7 +3,6 @@ import { AppHead } from 'components';
 import JsonLD from 'components/JsonLD';
 
 import configureNProgress from 'config/nprogress';
-import { installApollosWebEmbed } from 'lib/apollosWebEmbed';
 import { AppProvider } from 'providers';
 
 import 'stream-chat-react/dist/css/index.css';
@@ -83,10 +82,6 @@ function App({ Component, pageProps }) {
       return (window.history.scrollRestoration = 'manual');
     }
     return null;
-  }, []);
-
-  useEffect(() => {
-    installApollosWebEmbed();
   }, []);
 
   return (
