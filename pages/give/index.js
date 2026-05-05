@@ -31,6 +31,7 @@ export default function Give() {
       {/* Hero */}
       <GiveHero />
 
+      {/* Pushpay */}
       <GiveWithPushpay
         title="Give Online"
         subtitle="Give safely and securely online to Christ Fellowship Church. Give a one-time gift or set up a recurring gift."
