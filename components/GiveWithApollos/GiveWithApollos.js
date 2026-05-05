@@ -1,65 +1,26 @@
-import { useEffect } from 'react';
+import { useMemo } from 'react';
 import Styled from '../GiveWithPushpay/GiveWithPushpay.styles';
 import { HtmlRenderer, Box, Icon, Button } from 'ui-kit';
 import PropTypes from 'prop-types';
 import { colorHover } from 'utils';
 
-const APOLLOS_SCRIPT_ID = 'apollos';
-const APOLLOS_EMBED_SRC =
-  'https://cdn.jsdelivr.net/npm/@apollosproject/web-embeds@latest/widget/embed.js';
-
-/**
- * Christ Fellowship’s Apollos `/give` route redirects to Pushpay; Pushpay uses
- * X-Frame-Options: SAMEORIGIN, so giving cannot run inside an iframe on this site.
- * This component loads the Apollos embed (link interception) and uses a top-level
- * Pushpay checkout link for the primary CTA.
- */
-function ensureApollosLoader() {
-  if (typeof document === 'undefined') return;
-  if (document.getElementById(APOLLOS_SCRIPT_ID)) return;
-
-  const w = window;
-  w.ApollosEmbed = APOLLOS_SCRIPT_ID;
-  w.apollos =
-    w.apollos ||
-    function apollosQueue() {
-      (w.apollos.q = w.apollos.q || []).push(arguments);
-    };
-
-  const d = document.createElement('script');
-  d.id = APOLLOS_SCRIPT_ID;
-  d.src = APOLLOS_EMBED_SRC;
-  d.async = true;
-  const firstScript = document.getElementsByTagName('script')[0];
-  if (firstScript?.parentNode) {
-    firstScript.parentNode.insertBefore(d, firstScript);
-  } else {
-    document.head.appendChild(d);
-  }
+/** Inline give URL per Apollos Web Embeds README (“Inline Give Form”). */
+function apollosGiveIframeSrc(slug, appOrigin) {
+  const base = (appOrigin || 'https://apollos.com').replace(/\/$/, '');
+  return `${base}/${slug}/give`;
 }
 
 function GiveWithApollos(props = {}) {
-  const slug = props.apollosSlug ?? 'christ_fellowship';
+  const slug = props.apollosSlug ?? 'christ-fellowship';
   const appOrigin = props.apollosAppOrigin ?? 'https://apollos.com';
   const checkoutHref =
     props.givingCheckoutUrl ?? 'https://pushpay.com/g/christfellowship';
+  const showIframe = props.showInlineGiveIframe !== false;
 
-  useEffect(() => {
-    ensureApollosLoader();
-    window.apollos('init', {
-      slug,
-      baseUrl: appOrigin,
-      interceptLinks: true,
-      autoOpen: false,
-    });
-
-    return () => {
-      const api = window.ApollosEmbed;
-      if (api && typeof api === 'object' && typeof api.destroy === 'function') {
-        api.destroy();
-      }
-    };
-  }, [slug, appOrigin]);
+  const inlineGiveSrc = useMemo(
+    () => apollosGiveIframeSrc(slug, appOrigin),
+    [slug, appOrigin]
+  );
 
   return (
     <Styled id="give" backgroundImage={props?.backgroundImage}>
@@ -98,7 +59,25 @@ function GiveWithApollos(props = {}) {
           width="100%"
           maxWidth={{ _: '100%', md: '600px' }}
         >
+          {showIframe && (
+            <iframe
+              key={inlineGiveSrc}
+              title="Give"
+              src={inlineGiveSrc}
+              style={{
+                width: '100%',
+                minHeight: '440px',
+                border: 'none',
+                borderRadius: '16px',
+                overflow: 'hidden',
+                display: 'block',
+              }}
+              allow="payment *; fullscreen"
+            />
+          )}
+
           <Button
+            mt="l"
             as="a"
             display="flex"
             width="100%"
@@ -196,6 +175,10 @@ GiveWithApollos.propTypes = {
   apollosSlug: PropTypes.string,
   apollosAppOrigin: PropTypes.string,
   givingCheckoutUrl: PropTypes.string,
+  giveCtaDescription: PropTypes.string,
+  giveCtaHtml: PropTypes.string,
+  /** Docs “Inline Give Form” iframe; set false if you only want the Pushpay link. */
+  showInlineGiveIframe: PropTypes.bool,
   buttonColor: PropTypes.string,
   title: PropTypes.string,
   subtitle: PropTypes.string,
