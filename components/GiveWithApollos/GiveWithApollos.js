@@ -9,9 +9,10 @@ import { colorHover } from 'utils';
  * Pushpay campus / fund / amount form plus Apollos Web Embeds options (overlay link, optional iframe).
  * https://apollosproject.github.io/apollos-docs/features/giving/donation-embed.html
  *
- * Apollos overlay: same-origin-style link to `{apollosAppOrigin}/{slug}/give` is intercepted by global
- * `installApollosWebEmbed()` in `_app`. Optional iframe stays off unless `/give` does not redirect the
- * framed document to a host with `X-Frame-Options: SAMEORIGIN`.
+ * “Give on Apollos” uses `data-apollos-external` so it always navigates in the browser (Pushpay
+ * cannot load inside the Apollos modal iframe for this tenant). Global init defaults to
+ * `interceptLinks: false` for the same reason; re-enable interception in `installApollosWebEmbed`
+ * when Apollos/checkout no longer frames Pushpay.
  */
 function apollosGivePageUrl(slug, appOrigin) {
   const base = (appOrigin || 'https://apollos.com').replace(/\/$/, '');
@@ -279,12 +280,14 @@ function GiveWithApollos(props = {}) {
                 href={givePageUrl}
                 variant="secondary"
                 px="l"
+                data-apollos-external
               >
-                Give with Apollos (overlay)
+                Give on Apollos
               </Button>
               {showLinkTest && (
                 <Box mt="xs" textAlign="center" fontSize="xs" color="white" opacity={0.9}>
-                  Dev: uses global embed link interception from `_app`
+                  Dev: `data-apollos-external` skips modal; site init uses `interceptLinks: false`
+                  until checkout is embed-safe
                 </Box>
               )}
             </Box>
