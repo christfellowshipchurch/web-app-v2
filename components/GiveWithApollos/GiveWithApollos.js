@@ -158,7 +158,7 @@ function GiveWithApollos(props = {}) {
           alignItems="center"
         >
           {showIframe && (
-            <Box mt="base" mb="l">
+            <Box mt="base" mb="l" width={{ _: '100%', md: '520px' }}>
               <iframe
                 key={givePageUrl}
                 title="Give"
