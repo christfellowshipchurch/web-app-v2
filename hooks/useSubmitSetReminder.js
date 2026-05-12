@@ -17,6 +17,7 @@ export const SUBMIT_SET_REMINDER = gql`
     $email: String!
     $campus: String!
     $serviceTime: String!
+    $beenToCF: String!
   ) {
     submitSetReminder(
       input: [
@@ -26,6 +27,7 @@ export const SUBMIT_SET_REMINDER = gql`
         { field: "phoneNumber", value: $phoneNumber }
         { field: "campus", value: $campus }
         { field: "serviceTime", value: $serviceTime }
+        { field: "beenToCF", value: $beenToCF }
       ]
     )
   }
