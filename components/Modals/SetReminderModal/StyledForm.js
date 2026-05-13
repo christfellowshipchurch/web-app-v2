@@ -4,8 +4,11 @@ import { Box, Button, Icon, Loader, Radio, Select, TextInput } from 'ui-kit';
 const BEEN_TO_CF_YES = 'Yes';
 const BEEN_TO_CF_NO_FIRST_TIME = "No, it's my first time";
 
+const PLAN_A_VISIT_TITLE = 'Plan a Visit!';
+const SET_A_REMINDER_TITLE = 'Set A Reminder!';
+
 const DEFAULT_FORM_LABELS = {
-  title: 'Set A Reminder!',
+  title: PLAN_A_VISIT_TITLE,
   firstName: 'First Name',
   lastName: 'Last Name',
   email: 'Email',
@@ -19,7 +22,7 @@ const DEFAULT_FORM_LABELS = {
 };
 
 const SPANISH_FORM_LABELS = {
-  title: 'Recuérdame',
+  title: 'Visítanos',
   firstName: 'Primer Nombre',
   lastName: 'Apellido',
   email: 'Correo Electrónico',
@@ -59,8 +62,16 @@ const StyledForm = ({
   campuses,
   serviceTimes,
 }) => {
-  const isSpanish = defaultUserCampus.includes('Español');
-  const formLabels = isSpanish ? SPANISH_FORM_LABELS : DEFAULT_FORM_LABELS;
+  const isSpanish = defaultUserCampus?.includes('Español');
+  const isOnlineCampus =
+    defaultUserCampus === 'Online (CF Everywhere)' ||
+    defaultUserCampus === 'Cf Everywhere';
+  const formLabels = isSpanish
+    ? SPANISH_FORM_LABELS
+    : {
+        ...DEFAULT_FORM_LABELS,
+        title: isOnlineCampus ? SET_A_REMINDER_TITLE : PLAN_A_VISIT_TITLE,
+      };
 
   useEffect(() => {
     if (!window.location.pathname.includes('set-reminder-opened')) {

@@ -158,7 +158,7 @@ function LocationSingle(props = {}) {
           </Box>
         )}
 
-        {campus !== 'Cf Everywhere' && (
+        {campus !== 'Online (CF Everywhere)' && (
           <>
             <Box
               maxWidth={{ _: 350, md: 600, lg: 800 }}
@@ -179,8 +179,8 @@ function LocationSingle(props = {}) {
                   id: 'set-reminder',
                   title:
                     campus === CFEPBG || campus === CFERPB
-                      ? 'Recuérdame'
-                      : 'Set a Reminder',
+                      ? 'Visítanos'
+                      : 'Plan a Visit',
                   onClick: () =>
                     modalDispatch(
                       showModal('SetReminder', { defaultCampus: campus })
@@ -251,7 +251,7 @@ function LocationSingle(props = {}) {
                   : 'UniversalContentItem:ddf0d380759e8404fb6b70aa941c06f7'
               }
               buttonOverride={
-                campus !== 'Cf Everywhere' ? '/events' : '/discover'
+                campus !== 'Online (CF Everywhere)' ? '/events' : '/discover'
               }
             />
           </Box>

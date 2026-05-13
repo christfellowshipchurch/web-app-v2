@@ -4,7 +4,7 @@
  * Author: Daniel Wood
  * Created: June 18, 2022
  *
- * Hook for triggering the Set a Reminder workflow.
+ * Hook for triggering the plan-a-visit / set-a-reminder workflow.
  */
 
 import { gql, useMutation } from '@apollo/client';
