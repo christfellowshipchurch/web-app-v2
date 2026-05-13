@@ -26,6 +26,7 @@ import {
   headerData,
   setReminderVideos,
   setReminderData,
+  setReminderOnlineData,
   setReminderEspanolData,
   testimonials,
   thisWeekFeatureId,
@@ -137,25 +138,52 @@ function LocationSingle(props = {}) {
           <Divider bg="secondarySubdued" />
         </Box>
 
-        {/* This Week Feature */}
+        {/* This Week + Set a Reminder (Online) */}
         {campus === 'Online (CF Everywhere)' && (
-          <Box maxWidth={1100} mx="auto" width="100%" px="base" py="xl">
-            <Box
-              as="h2"
-              color="secondary"
-              width="100%"
-              textAlign="center"
-              mb="base"
-            >
-              This Week
+          <>
+            <Box maxWidth={1100} mx="auto" width="100%" px="base" py="xl">
+              <Box
+                as="h2"
+                color="secondary"
+                width="100%"
+                textAlign="center"
+                mb="base"
+              >
+                This Week
+              </Box>
+              <FeatureProvider
+                //hide normal title
+                dataOverride={{ title: '' }}
+                Component={HeroListFeature}
+                options={{ variables: { id: thisWeekFeatureId } }}
+              />
             </Box>
-            <FeatureProvider
-              //hide normal title
-              dataOverride={{ title: '' }}
-              Component={HeroListFeature}
-              options={{ variables: { id: thisWeekFeatureId } }}
-            />
-          </Box>
+            {setAReminderVideo ? (
+              <Box
+                maxWidth={{ _: 350, md: 600, lg: 800 }}
+                boxShadow="l"
+                borderRadius="xl"
+                overflow="hidden"
+                mt="xxl"
+                mx="auto"
+              >
+                <Video wistiaId={setAReminderVideo} />
+              </Box>
+            ) : null}
+            <Box width="100%" px={{ _: 'base', md: 'xl' }} pt="base" pb="xl">
+              <InfoCardList
+                {...setReminderOnlineData}
+                button={{
+                  id: 'set-reminder',
+                  title: 'Set a Reminder',
+                  onClick: () =>
+                    modalDispatch(
+                      showModal('SetReminder', { defaultCampus: campus })
+                    ),
+                }}
+              />
+            </Box>
+          </>
         )}
 
         {campus !== 'Online (CF Everywhere)' && (
