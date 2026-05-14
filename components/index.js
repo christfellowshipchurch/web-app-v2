@@ -36,6 +36,7 @@ import FilterField from './FilterField';
 import Footer from './Footer';
 import GenderField from './GenderField';
 import GenericError from './GenericError';
+import GiveWithApollos from './GiveWithApollos';
 import GiveWithPushpay from './GiveWithPushpay';
 import GradientBackground from './GradientBackground';
 import GroupEmailComposer from './GroupEmailComposer';
@@ -125,6 +126,7 @@ export {
   Footer,
   GenderField,
   GenericError,
+  GiveWithApollos,
   GiveWithPushpay,
   GradientBackground,
   GroupEmailComposer,
