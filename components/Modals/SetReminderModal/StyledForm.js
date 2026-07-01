@@ -1,25 +1,37 @@
 import React, { useEffect } from 'react';
-import { Box, Button, Icon, Loader, Select, TextInput } from 'ui-kit';
+import { Box, Button, Icon, Loader, Radio, Select, TextInput } from 'ui-kit';
+
+const BEEN_TO_CF_YES = 'Yes';
+const BEEN_TO_CF_NO_FIRST_TIME = "No, it's my first time";
+
+const PLAN_A_VISIT_TITLE = 'Plan a Visit!';
+const SET_A_REMINDER_TITLE = 'Set A Reminder!';
 
 const DEFAULT_FORM_LABELS = {
-  title: 'Set A Reminder!',
+  title: PLAN_A_VISIT_TITLE,
   firstName: 'First Name',
   lastName: 'Last Name',
   email: 'Email',
   phoneNumber: 'Phone Number',
   serviceTime: 'Service Time',
   selectServiceTime: 'Select a Service Time',
+  beenToCFQuestion: 'Have you been to Christ Fellowship before?',
+  beenToCFYesLabel: BEEN_TO_CF_YES,
+  beenToCFNoFirstTimeLabel: BEEN_TO_CF_NO_FIRST_TIME,
   submit: 'SUBMIT',
 };
 
 const SPANISH_FORM_LABELS = {
-  title: 'Recuérdame',
+  title: 'Visítanos',
   firstName: 'Primer Nombre',
   lastName: 'Apellido',
   email: 'Correo Electrónico',
   phoneNumber: 'Número de Teléfono',
   serviceTime: 'Horarios de Servicios',
   selectServiceTime: 'Selecciona una hora de servicio',
+  beenToCFQuestion: '¿Has asistido a Christ Fellowship antes?',
+  beenToCFYesLabel: 'Sí',
+  beenToCFNoFirstTimeLabel: 'No, es mi primera vez',
   submit: 'ENVIAR',
 };
 
@@ -50,8 +62,16 @@ const StyledForm = ({
   campuses,
   serviceTimes,
 }) => {
-  const isSpanish = defaultUserCampus.includes('Español');
-  const formLabels = isSpanish ? SPANISH_FORM_LABELS : DEFAULT_FORM_LABELS;
+  const isSpanish = defaultUserCampus?.includes('Español');
+  const isOnlineCampus =
+    defaultUserCampus === 'Online (CF Everywhere)' ||
+    defaultUserCampus === 'Cf Everywhere';
+  const formLabels = isSpanish
+    ? SPANISH_FORM_LABELS
+    : {
+        ...DEFAULT_FORM_LABELS,
+        title: isOnlineCampus ? SET_A_REMINDER_TITLE : PLAN_A_VISIT_TITLE,
+      };
 
   useEffect(() => {
     if (!window.location.pathname.includes('set-reminder-opened')) {
@@ -176,6 +196,42 @@ const StyledForm = ({
             </Box>
           ) : null}
         </Box>
+      </Box>
+      <Box width="100%" mt="l" alignSelf="stretch">
+        <Box fontWeight="bold" fontSize="s" mb="s">
+          {formLabels.beenToCFQuestion}
+        </Box>
+        <Box
+          display="flex"
+          flexDirection={{ _: 'column', sm: 'row' }}
+          alignItems={{ _: 'flex-start', sm: 'center' }}
+        >
+          <Box mr={{ _: 0, sm: 's' }} mb={{ _: 's', sm: 0 }}>
+            <Radio
+              id="beenToCF-yes"
+              name="beenToCF"
+              value={BEEN_TO_CF_YES}
+              label={formLabels.beenToCFYesLabel}
+              onChange={handleChange}
+              checked={values?.beenToCF === BEEN_TO_CF_YES}
+            />
+          </Box>
+          <Box>
+            <Radio
+              id="beenToCF-no-first"
+              name="beenToCF"
+              value={BEEN_TO_CF_NO_FIRST_TIME}
+              label={formLabels.beenToCFNoFirstTimeLabel}
+              onChange={handleChange}
+              checked={values?.beenToCF === BEEN_TO_CF_NO_FIRST_TIME}
+            />
+          </Box>
+        </Box>
+        {errors?.beenToCF ? (
+          <Box as="p" color="alert" fontSize="s" mt="s">
+            {errors.beenToCF}
+          </Box>
+        ) : null}
       </Box>
       {errors?.networkError && (
         <Box display="flex" alignItems="center" color="alert" mb="s">

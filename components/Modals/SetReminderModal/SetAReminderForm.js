@@ -54,8 +54,15 @@ function SetAReminderForm(props = {}) {
   // useForm handles all of our erros and value changes
   const { values, handleSubmit, handleChange, setValues } = useForm(() => {
     const currentErrors = {};
-    let { email, phoneNumber, serviceTime, campus, firstName, lastName } =
-      values;
+    let {
+      email,
+      phoneNumber,
+      serviceTime,
+      campus,
+      firstName,
+      lastName,
+      beenToCF,
+    } = values;
 
     if (
       isEmpty(email) ||
@@ -87,6 +94,10 @@ function SetAReminderForm(props = {}) {
       currentErrors.campus = 'Please select a campus';
     }
 
+    if (isEmpty(beenToCF)) {
+      currentErrors.beenToCF = 'Please select an option';
+    }
+
     setErrors(currentErrors);
 
     if (Object.keys(currentErrors).length > 0) {
@@ -104,6 +115,7 @@ function SetAReminderForm(props = {}) {
       email: values.email || '',
       campus: values.campus || '',
       serviceTime: values.serviceTime || '',
+      beenToCF: values.beenToCF || '',
     };
 
     try {

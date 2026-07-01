@@ -55,7 +55,7 @@ const ConfirmationScreen = (props = {}) => {
       display="flex"
       flexDirection="column"
       alignItems="center"
-      p={props?.campus ? '' : 'l'} // Padding is only applied if campus is not provided(Not Set a Reminder)
+      p={props?.campus ? '' : 'l'} // Padding is only applied if campus is not provided (non–location flow)
       textAlign="center"
     >
       <Icon name="check" color="success" size="100" />

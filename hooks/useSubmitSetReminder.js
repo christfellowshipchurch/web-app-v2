@@ -4,7 +4,7 @@
  * Author: Daniel Wood
  * Created: June 18, 2022
  *
- * Hook for triggering the Set a Reminder workflow.
+ * Hook for triggering the plan-a-visit / set-a-reminder workflow.
  */
 
 import { gql, useMutation } from '@apollo/client';
@@ -17,6 +17,7 @@ export const SUBMIT_SET_REMINDER = gql`
     $email: String!
     $campus: String!
     $serviceTime: String!
+    $beenToCF: String!
   ) {
     submitSetReminder(
       input: [
@@ -26,6 +27,7 @@ export const SUBMIT_SET_REMINDER = gql`
         { field: "phoneNumber", value: $phoneNumber }
         { field: "campus", value: $campus }
         { field: "serviceTime", value: $serviceTime }
+        { field: "beenToCF", value: $beenToCF }
       ]
     )
   }
