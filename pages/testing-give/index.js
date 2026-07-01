@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import { FAQ, Layout, GiveWithPushpay, CardGridFeature } from 'components';
+import { FAQ, Layout, GiveWithApollos, CardGridFeature } from 'components';
 import { Box } from 'ui-kit';
 import faqData from 'components/FAQ/faqData';
 import { FeatureProvider } from 'providers';
+import { installApollosWebEmbed } from 'lib/apollosWebEmbed';
 import {
   financialImprovementId,
   moreGivingOpportunitiesId,
@@ -15,10 +16,17 @@ import {
   WistiaCarousel,
 } from 'components/GiveComponents';
 
-export default function Give() {
+/**
+ * Apollos embed + GiveWithApollos (iframe-first experiment). Production `/give` stays Pushpay-only.
+ */
+export default function TestingGive() {
+  useEffect(() => {
+    installApollosWebEmbed();
+  }, []);
+
   return (
     <Layout
-      title="Give"
+      title="Testing Give"
       seoMetaTags={{
         children: (
           <meta
@@ -28,29 +36,25 @@ export default function Give() {
         ),
       }}
     >
-      {/* Hero */}
       <GiveHero />
 
-      <GiveWithPushpay
+      <GiveWithApollos
         title="Give Online"
         subtitle="Give safely and securely online to Christ Fellowship Church. Give a one-time gift or set up a recurring gift."
         buttonColor="primary"
         amountColor="white"
-        backgroundImage="url(/give/give-pushpay-background.png)"
+        giftTextColor="white"
         buttonLink="https://pushpay.com/g/christfellowship"
+        backgroundImage="url(/give/give-pushpay-background.png)"
         otherOnlineOptions
       />
 
-      {/* Ways to Give */}
       <WaysToGive />
 
-      {/* What Does the Bible Say About Giving */}
       <WhatTheBibleSays />
 
-      {/* Wistia Carousel */}
       <WistiaCarousel />
 
-      {/* Rock Content #1 */}
       <Box maxWidth={1100} mx="auto" my="l" py="l" id="opportunities">
         <FeatureProvider
           Component={CardGridFeature}
@@ -69,7 +73,6 @@ export default function Give() {
         />
       </Box>
 
-      {/* Rock Content #2 */}
       <Box bg="secondary" py="xl" id="finances">
         <Box maxWidth={1100} mx="auto" my="base">
           <FeatureProvider
@@ -89,24 +92,9 @@ export default function Give() {
               },
             }}
           />
-          {/* When there are more than 3 cards, redirect to a page with all of the cards */}
-          {/* <Button
-            as="a"
-            mt="l"
-            display="flex"
-            mx="auto"
-            width="fit-content"
-            href=""
-            bg="white"
-            color="primary"
-            border="2px solid"
-          >
-            SEE ALL
-          </Button> */}
         </Box>
       </Box>
 
-      {/* FAQ Section */}
       <Box mx="auto" maxWidth={1200} px="base">
         <FAQ
           customTheme={{ secondary: '#39383A' }}
