@@ -11,7 +11,8 @@
 /sisterhood-night                       /link-tree/sisterhood-night
 /content/how-to-lead-communion-in-your-home-3cbe3357238650b7bbf3011f2356fb57 /articles/how-to-lead-communion-in-your-home
 /items/how-to-lead-communion-in-your-home-3cbe3357238650b7bbf3011f2356fb57 /articles/how-to-lead-communion-in-your-home
-/devotionals/dont-let-anyone-despise-you /devotionals/dont-let-anyone-look-down-on-you                     
+/devotionals/dont-let-anyone-despise-you https://www.christfellowship.church/articles/dont-let-anyone-look-down-on-you
+/devotionals/:title https://www.christfellowship.church/articles/:title
 /trinity-church                          /locations/trinity
 /christ-birthday-offering                https://www.impactoffering.church/
 /2023-christ-birthday-offering           https://www.impactoffering.church/

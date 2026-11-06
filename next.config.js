@@ -77,7 +77,16 @@ module.exports = {
       },
       {
         source: '/devotionals/dont-let-anyone-despise-you',
-        destination: '/devotionals/dont-let-anyone-look-down-on-you',
+        destination:
+          'https://www.christfellowship.church/articles/dont-let-anyone-look-down-on-you',
+        permanent: true,
+      },
+      // Older devotionals were re-routed under /articles in Rock/Apollos.
+      // Send legacy /devotionals/* links (incl. old Vercel site) to the live articles URLs.
+      {
+        source: '/devotionals/:title',
+        destination:
+          'https://www.christfellowship.church/articles/:title',
         permanent: true,
       },
       {
