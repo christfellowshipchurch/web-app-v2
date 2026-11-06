@@ -46,10 +46,15 @@ export default function SoGoodSisterhoodPage() {
 export async function getStaticProps() {
   const apolloClient = initializeApollo();
 
-  await apolloClient.query({
-    query: GET_CONTENT_ITEM,
-    variables: { pathname: 'so-good-sisterhood' },
-  });
+  try {
+    await apolloClient.query({
+      query: GET_CONTENT_ITEM,
+      variables: { pathname: 'so-good-sisterhood' },
+    });
+  } catch (err) {
+    // Apollos API may be unavailable (e.g. decommissioned apollos-2-dev host).
+    console.log({ err });
+  }
 
   return {
     props: {

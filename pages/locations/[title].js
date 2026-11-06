@@ -133,17 +133,26 @@ export async function getStaticPaths() {
 // This also gets called at build time
 export async function getStaticProps({ params }) {
   const apolloClient = initializeApollo();
-  const data = await apolloClient.query({
-    query: GET_CONTENT_ITEM,
-    variables: { pathname: `locations/${params.title}` },
-  });
+  let data = {};
+  let campus = {};
 
-  const campus = await apolloClient.query({
-    query: GET_CAMPUS,
-    variables: {
-      campusName: startCase(params.title),
-    },
-  });
+  try {
+    data = await apolloClient.query({
+      query: GET_CONTENT_ITEM,
+      variables: { pathname: `locations/${params.title}` },
+    });
+
+    campus = await apolloClient.query({
+      query: GET_CAMPUS,
+      variables: {
+        campusName: startCase(params.title),
+      },
+    });
+  } catch (err) {
+    // Apollos API may be unavailable (e.g. decommissioned apollos-2-dev host).
+    // Allow the build to succeed so redirects and static pages can still deploy.
+    console.log({ err });
+  }
 
   return {
     props: {
