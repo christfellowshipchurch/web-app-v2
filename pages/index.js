@@ -46,13 +46,13 @@ export async function getStaticProps() {
       query: GET_FEATURE_FEED,
       variables: { pathname: 'home' },
     });
-
-    return {
-      props: {
-        initialApolloState: apolloClient.cache.extract(),
-      },
-    };
   } catch (err) {
     console.log({ err });
   }
+
+  return {
+    props: {
+      initialApolloState: apolloClient.cache.extract(),
+    },
+  };
 }
